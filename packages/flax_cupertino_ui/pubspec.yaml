@@ -1,0 +1,15 @@
+name: flax_cupertino_ui
+description: Cupertino UI binding scaffold for Flax.
+version: 0.0.0
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ^3.13.0
+  flutter: '>=3.47.0'
+
+dependencies:
+  cupertino_ui: 1.0.2
+  flax: 0.0.0
+  flutter:
+    sdk: flutter

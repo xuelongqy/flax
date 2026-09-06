@@ -1,0 +1,62 @@
+name: flax_workspace
+description: Development workspace for the Flax framework.
+version: 0.0.0
+publish_to: none
+
+environment:
+  sdk: ^3.13.0
+  flutter: '>=3.47.0'
+
+workspace:
+  - packages/*
+
+dev_dependencies:
+  flutter_lints: 6.0.0
+  melos: 8.6.0
+
+melos:
+  repository: https://github.com/xuelongqy/flax
+  categories:
+    core:
+      - packages/flax
+    bindings:
+      - packages/flax_material_ui
+      - packages/flax_cupertino_ui
+    engines:
+      - packages/flax_engine_hermes
+    tools:
+      - packages/flax_codegen
+  scripts:
+    analyze:
+      description:
+        Analyze the Dart and Flutter workspace without resolving dependencies.
+      run: flutter analyze --no-pub --fatal-infos
+    format:check:
+      description: Check Dart, JavaScript, configuration, and documentation formatting.
+      steps:
+        - dart format --output=none --set-exit-if-changed packages
+        - pnpm --silent run format:check
+    js:typecheck:
+      description: Type-check all JavaScript workspace packages.
+      run: pnpm --silent run js:typecheck
+    js:build:
+      description: Emit ESM modules and declarations for all JavaScript packages.
+      run: pnpm --silent run js:build
+    docs:check:
+      description: Check Markdown, local links, and documentation checker behavior.
+      steps:
+        - pnpm --silent run docs:lint
+        - pnpm --silent run test:tooling
+        - pnpm --silent run docs:links
+    native:configure:
+      description: Validate CMake and the C/C++ toolchain without building an engine.
+      run: cmake -S native -B build/native
+    check:
+      description: Run all implemented scaffold checks in sequence.
+      steps:
+        - dart run melos run analyze
+        - dart run melos run format:check
+        - dart run melos run js:typecheck
+        - dart run melos run js:build
+        - dart run melos run docs:check
+        - dart run melos run native:configure

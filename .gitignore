@@ -1,0 +1,29 @@
+# Local dependencies, SDKs, and caches
+.dart_tool/
+.fvm/
+node_modules/
+.pnpm-store/
+.cache/
+.local/
+
+# Build outputs
+build/
+dist/
+coverage/
+*.tsbuildinfo
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# Local editor and OS state
+.DS_Store
+.idea/
+*.iml
+*.swp
+*.swo
+
+# Local environment configuration
+.env
+.env.*
+!.env.example
+
+# Workspace lockfiles are intentionally tracked.

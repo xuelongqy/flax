@@ -1,0 +1,21 @@
+{
+  "name": "@flax/runtime",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Unimplemented runtime package scaffold for Flax.",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "typecheck": "tsc --project tsconfig.json --noEmit",
+    "build": "tsc --project tsconfig.json"
+  }
+}

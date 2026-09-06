@@ -1,0 +1,7 @@
+# Standalone Example
+
+Intended scenario: An independent Flutter host with a JavaScript application.
+
+The [Flutter host](flutter/README.md) and [JS application](js/README.md) are
+placeholders. No GUI, runtime integration, or platform project is generated. This
+example is not a workspace member.

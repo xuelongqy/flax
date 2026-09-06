@@ -1,0 +1,23 @@
+name: Bug report
+description: Report a reproducible failure in implemented behavior.
+title: ''
+body:
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Include the command, inputs, and expected and actual results.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Include the OS, tool versions, and relevant package revisions.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Include a minimal sanitized log or example.

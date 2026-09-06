@@ -1,0 +1,8 @@
+name: flax_codegen
+description: Dart API binding generator scaffold for Flax.
+version: 0.0.0
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ^3.13.0

@@ -1,0 +1,26 @@
+{
+  "name": "flax-workspace",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.24.0",
+  "engines": {
+    "node": "22.23.0",
+    "pnpm": "11.24.0"
+  },
+  "scripts": {
+    "format:check": "prettier --check .",
+    "js:typecheck": "pnpm --silent --recursive --workspace-concurrency=1 run typecheck",
+    "js:build": "pnpm --silent --recursive --workspace-concurrency=1 run build",
+    "docs:lint": "markdownlint-cli2",
+    "docs:links": "node tool/check-doc-links.mjs",
+    "test:tooling": "node --test tool/check-doc-links.test.mjs"
+  },
+  "devDependencies": {
+    "github-slugger": "2.0.0",
+    "markdown-it": "15.0.1",
+    "markdownlint-cli2": "0.23.2",
+    "prettier": "3.9.6",
+    "typescript": "7.0.2"
+  }
+}

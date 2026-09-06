@@ -1,0 +1,12 @@
+.git/
+.dart_tool/
+.fvm/
+node_modules/
+.pnpm-store/
+.cache/
+.local/
+build/
+dist/
+coverage/
+pubspec.lock
+pnpm-lock.yaml

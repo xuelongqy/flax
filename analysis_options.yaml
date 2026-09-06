@@ -1,0 +1,23 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - build/**
+    - '**/dist/**'
+    - '**/node_modules/**'
+    - .local/**
+    - .fvm/**
+    - android/**
+    - ios/**
+    - web/**
+    - windows/**
+    - macos/**
+    - linux/**
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
+
+formatter:
+  page_width: 80
+  trailing_commas: automate

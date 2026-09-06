@@ -1,0 +1,21 @@
+{
+  "config": {
+    "default": true,
+    "MD013": false,
+    "MD033": false,
+  },
+  "globs": ["**/*.md"],
+  "ignores": [
+    ".git/**",
+    ".dart_tool/**",
+    ".fvm/**",
+    "**/node_modules/**",
+    ".pnpm-store/**",
+    ".cache/**",
+    ".local/**",
+    "**/build/**",
+    "**/dist/**",
+    "coverage/**",
+  ],
+  "gitignore": true,
+}
