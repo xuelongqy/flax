@@ -1,15 +1,22 @@
 name: flax_material_ui
-description: Material UI binding scaffold for Flax.
+description: Material UI binding subset for Flax.
 version: 0.0.0
 publish_to: none
 resolution: workspace
 
 environment:
-  sdk: ^3.13.0
-  flutter: '>=3.47.0'
+  sdk: ^3.13.2
+  flutter: '>=3.47.2'
 
 dependencies:
   flax: 0.0.0
   flutter:
     sdk: flutter
   material_ui: 1.1.1
+
+dev_dependencies:
+  flax_test: 0.0.0
+  flax_codegen: 0.0.0
+  flax_engine_hermes: 0.0.0
+  flutter_test:
+    sdk: flutter

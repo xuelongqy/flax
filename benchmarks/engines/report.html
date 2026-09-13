@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Flax engine benchmarks</title>
+  <style>
+    body {
+      font:
+        15px system-ui,
+        sans-serif;
+      background: #f5f6f8;
+      color: #1e293b;
+      margin: 32px auto;
+      padding: 0 24px;
+      max-width: 1400px;
+    }
+    h1 {
+      margin-bottom: 8px;
+    }
+    section {
+      background: white;
+      border: 1px solid #dce1e8;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px 0;
+      overflow: auto;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-variant-numeric: tabular-nums;
+    }
+    th,
+    td {
+      padding: 9px 12px;
+      text-align: left;
+      border-bottom: 1px solid #e2e8f0;
+      white-space: nowrap;
+    }
+    #latency,
+    #memory {
+      max-height: 560px;
+      overflow: auto;
+    }
+    th {
+      position: sticky;
+      top: 0;
+      background: #eef2f7;
+    }
+    p {
+      line-height: 1.6;
+    }
+    .warning {
+      color: #9a3412;
+    }
+    select {
+      padding: 8px;
+      max-width: 100%;
+    }
+    svg {
+      width: 100%;
+      height: 300px;
+    }
+    pre {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      font-size: 12px;
+    }
+    .legend {
+      color: #475569;
+    }
+    .hermes {
+      color: #2563eb;
+    }
+    .v8 {
+      color: #e87918;
+    }
+  </style>
+  <h1>Flax engine benchmarks</h1>
+  <p id="status"></p>
+  <p>
+    Times are microseconds per original workload. “First” is one execution before
+    workload warmup, not a cold OS filesystem cache. Later values are medians of process
+    medians. V8/Hermes &lt; 1 means lower V8 latency. These measurements include the
+    documented Flax bridge boundary. No composite score.
+  </p>
+  <section>
+    <h2>Latency and size comparison</h2>
+    <p>
+      Q1–Q3 describe independent processes. Confidence intervals resample paired
+      processes. Unstable workloads remain visible and are not called steady state.
+      Smoke results are correctness evidence only.
+    </p>
+    <div id="latency"></div>
+  </section>
+  <section>
+    <h2>Warmup and measured batches</h2>
+    <select id="select" aria-label="Workload and size"></select>
+    <p class="legend">
+      <span class="hermes">Blue: Hermes</span> · <span class="v8">Orange: V8</span>.
+      Each line is an independent process; warmup and measured batches are connected.
+      Dashed markers show each process’s measurement start. Y: microseconds per original
+      workload; X: batch index. First execution is listed separately above.
+    </p>
+    <svg id="chart" role="img" aria-label="Warmup and measurement latency curves"></svg>
+  </section>
+  <section>
+    <h2>Process RSS</h2>
+    <p>
+      Absolute RSS and differences from the process baseline, in MiB. These are
+      observation points, not JS heap sizes or true peaks. Allocator history is
+      identified in each point name; disposal need not return RSS to the OS.
+    </p>
+    <div id="memory"></div>
+  </section>
+  <section>
+    <h2>Native asset sizes</h2>
+    <div id="assets"></div>
+  </section>
+  <section>
+    <h2>Failures and completeness</h2>
+    <pre id="failures"></pre>
+  </section>
+  <section>
+    <details>
+      <summary>Reproduction metadata</summary>
+      <pre id="metadata"></pre>
+    </details>
+  </section>
+  <script id="data" type="application/json">
+    __FLAX_REPORT_DATA__
+  </script>
+  <script>
+    const report = JSON.parse(document.getElementById('data').textContent);
+    const fmt = (v) =>
+      v == null ? '—' : Number(v).toLocaleString('en-US', { maximumFractionDigits: 3 });
+    const table = (id, head, rows) => {
+      const t = document.createElement('table');
+      for (const [i, row] of [head, ...rows].entries()) {
+        const tr = document.createElement('tr');
+        for (const cell of row) {
+          const el = document.createElement(i === 0 ? 'th' : 'td');
+          el.textContent = String(cell);
+          tr.append(el);
+        }
+        t.append(tr);
+      }
+      document.getElementById(id).append(t);
+    };
+    document.getElementById('status').textContent =
+      `${report.mode.toUpperCase()} · ${report.complete ? 'Complete' : 'INCOMPLETE'} · ${report.samples.length}/${report.expectedSamples} samples · ${fmt(report.elapsedSeconds)} s · ${report.startedAt}`;
+    if (!report.complete) document.getElementById('status').className = 'warning';
+    const dist = (d) =>
+      d ? `${fmt(d.median)} [${fmt(d.q1)}–${fmt(d.q3)}]; n=${d.processes}` : '—';
+    table(
+      'latency',
+      [
+        'Case / size',
+        'Phase / metric',
+        'Hermes: median [Q1–Q3]',
+        'V8: median [Q1–Q3]',
+        'V8/Hermes [95% CI]',
+        'Unstable processes',
+      ],
+      report.summary.map((r) => [
+        r.group,
+        `${r.phase} / ${r.metric}`,
+        dist(r.hermes),
+        dist(r.v8),
+        r.v8OverHermes == null
+          ? '—'
+          : `${fmt(r.v8OverHermes)}${r.ratio95 ? ' [' + r.ratio95.map(fmt).join('–') + ']' : ''}`,
+        r.unstableProcesses,
+      ]),
+    );
+    const select = document.getElementById('select');
+    const keys = [
+      ...new Set(
+        report.samples
+          .filter((s) => s.measurements.length)
+          .map((s) => s.case + '/' + s.size),
+      ),
+    ].sort();
+    for (const key of keys) {
+      const option = document.createElement('option');
+      option.value = key;
+      option.textContent = key;
+      select.append(option);
+    }
+    const ns = 'http://www.w3.org/2000/svg';
+    function draw() {
+      const svg = document.getElementById('chart');
+      svg.replaceChildren();
+      svg.setAttribute('viewBox', '0 0 1100 300');
+      const samples = report.samples.filter(
+        (s) => s.case + '/' + s.size === select.value,
+      );
+      const series = samples.map((s) =>
+        [...s.warmup, ...s.measurements].map((b) => b.totalUs / s.batchRepeats),
+      );
+      const maxY = Math.max(1, ...series.flat());
+      const maxX = Math.max(1, ...series.map((s) => s.length - 1));
+      const add = (tag, attrs, text) => {
+        const el = document.createElementNS(ns, tag);
+        for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v);
+        if (text) el.textContent = text;
+        svg.append(el);
+      };
+      for (let i = 0; i <= 4; i++) {
+        const y = 260 - i * 60;
+        add('line', { x1: 85, x2: 1080, y1: y, y2: y, stroke: '#e2e8f0' });
+        add('text', { x: 3, y: y + 4, 'font-size': 12 }, fmt((maxY * i) / 4));
+      }
+      samples.forEach((s, i) => {
+        const color = s.engine === 'hermes' ? '#2563eb' : '#e87918';
+        add('polyline', {
+          points: series[i]
+            .map((v, j) => `${85 + (j / maxX) * 995},${260 - (v / maxY) * 240}`)
+            .join(' '),
+          fill: 'none',
+          stroke: color,
+          'stroke-width': 1.5,
+          opacity: 0.5,
+        });
+        const x = 85 + (s.warmup.length / maxX) * 995;
+        add('line', {
+          x1: x,
+          x2: x,
+          y1: 20,
+          y2: 260,
+          stroke: color,
+          'stroke-dasharray': '3 5',
+          opacity: 0.2,
+        });
+      });
+      add('text', { x: 85, y: 290, 'font-size': 12 }, '0');
+      add('text', { x: 1030, y: 290, 'font-size': 12 }, String(maxX));
+    }
+    select.addEventListener('change', draw);
+    draw();
+    const memory = [];
+    for (const s of report.samples) {
+      if (!s.rssBytes) continue;
+      for (const [k, v] of Object.entries(s.rssBytes))
+        memory.push([
+          s.engine,
+          s.case,
+          s.repeat,
+          k,
+          fmt(v / 1048576),
+          fmt(s.rssDeltaBytes[k] / 1048576),
+        ]);
+    }
+    table(
+      'memory',
+      ['Engine', 'Case', 'Process', 'Observation', 'RSS MiB', 'Baseline delta MiB'],
+      memory,
+    );
+    table(
+      'assets',
+      ['Engine', 'Library MiB', 'SHA-256'],
+      Object.entries(report.metadata.assets || {}).map(([engine, a]) => [
+        engine,
+        fmt(a.libraryBytes / 1048576),
+        a.sha256,
+      ]),
+    );
+    document.getElementById('failures').textContent = JSON.stringify(
+      {
+        complete: report.complete,
+        stopReason: report.stopReason,
+        failures: report.failures,
+      },
+      null,
+      2,
+    );
+    document.getElementById('metadata').textContent = JSON.stringify(
+      { ...report.metadata, calibration: report.calibration },
+      null,
+      2,
+    );
+  </script>
+</html>

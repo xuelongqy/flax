@@ -1,0 +1,17 @@
+name: HermesBindings
+description:
+  Hermes native asset bootstrap. Regenerate with dart run melos run ffi:generate.
+output: ../lib/src/hermes_bindings.g.dart
+headers:
+  entry-points:
+    - ./include/flax_hermes.h
+  include-directives:
+    - '**/flax_hermes.h'
+functions:
+  include:
+    - flax_hermes_get_api
+ffi-native:
+  asset-id: package:flax_engine_hermes/flax_engine_hermes.dart
+preamble: |
+  // Generated from the canonical Hermes adapter header. Do not edit by hand.
+  // ignore_for_file: type=lint

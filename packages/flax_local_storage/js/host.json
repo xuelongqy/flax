@@ -1,0 +1,5 @@
+{
+  "bridge": "__flaxLocalStorageCall",
+  "symbol": "flaxLocalStorageBootstrap",
+  "notices": []
+}

@@ -1,9 +1,10 @@
 # Runtime Compatibility Tests
 
-Status: reserved for future end-to-end behavior tests.
+Shared executable runtime contracts live in [runtime](../runtime/README.md), and the
+[embedded Flutter host](../../examples/embedded/README.md) runs the same UI scenarios
+with either engine. This directory does not contain a second test framework.
 
-A real implementation should exercise equivalent scenarios across engine adapters: value
-and error conversion, synchronous builders, inherited dependencies, microtask timing,
-signals, controller ownership, and shutdown.
-
-Do not infer engine compatibility from package compilation or CMake configuration.
+Run `check:runtime` / `check:runtime:v8` and `check:ui` / `check:ui:v8` through Melos.
+`check:engines` verifies both engines together. See the
+[V8 acceptance record](../../docs/tasks/v8-support.md) for actual platform evidence.
+Compilation or CMake configuration alone is not engine compatibility validation.

@@ -1,0 +1,937 @@
+format: 1
+name: flutter
+library: package:flutter/widgets.dart
+additionalLibraries:
+  [
+    package:flutter/foundation.dart,
+    package:flutter/gestures.dart,
+    package:flutter/services.dart,
+    package:flutter/scheduler.dart,
+    dart:async,
+    dart:core,
+    package:flax/bindings.dart,
+  ]
+jsPackage: '@flax/core/flutter'
+dartOutput: lib/src/generated/flutter_bindings.g.dart
+tsOutput: js/src/flutter/generated/bindings.ts
+types:
+  - AutovalidateMode
+  - Axis
+  - BorderStyle
+  - BoxFit
+  - BoxShape
+  - Clip
+  - ConnectionState
+  - CrossAxisAlignment
+  - DecorationPosition
+  - DragStartBehavior
+  - FlexFit
+  - FontStyle
+  - HitTestBehavior
+  - MainAxisAlignment
+  - MainAxisSize
+  - MaxLengthEnforcement
+  - StackFit
+  - TextAffinity
+  - TextAlign
+  - TextBaseline
+  - TextDirection
+  - TextOverflow
+  - UnfocusDisposition
+  - VerticalDirection
+  - WidgetState
+  - WrapAlignment
+  - WrapCrossAlignment
+functions:
+  applyBoxFit:
+    parameters: [fit, inputSize, outputSize]
+callbackSnapshots:
+  Offset:
+    fields: [dx, dy]
+  PhysicalKeyboardKey:
+    fields: [usbHidUsage]
+  LogicalKeyboardKey:
+    fields: [keyId, keyLabel]
+  PointerEvent:
+    fields:
+      [
+        pointer,
+        device,
+        kind,
+        buttons,
+        down,
+        position,
+        localPosition,
+        delta,
+        localDelta,
+        pressure,
+        pressureMin,
+        pressureMax,
+        size,
+        synthesized,
+      ]
+  PointerScrollEvent:
+    extends: PointerEvent
+    fields: [scrollDelta]
+  KeyEvent:
+    fields: [physicalKey, logicalKey, character, synthesized]
+classes:
+  Stream:
+    kind: stream
+    asyncIterableFactory: fromAsyncIterable
+    typeArguments: ['Object?']
+    eraseGenerics: true
+    constructors:
+      empty: [broadcast]
+      value: [value]
+      error: [error, stackTrace]
+      fromFuture: [future]
+      fromFutures: [futures]
+      fromIterable: [elements]
+      multi: [onListen, isBroadcast]
+      periodic: [period, computation]
+      eventTransformed: [source, mapSink]
+    getters: [isBroadcast, length, isEmpty, first, last, single]
+    methods:
+      castFrom: [source]
+    instanceMethods:
+      asBroadcastStream: [onListen, onCancel]
+      listen: [onData, onError, onDone, cancelOnError]
+      where: [test]
+      map: [convert]
+      asyncMap: [convert]
+      asyncExpand: [convert]
+      handleError: [onError, test]
+      expand: [convert]
+      pipe: [streamConsumer]
+      transform: [streamTransformer]
+      reduce: [combine]
+      fold: [initialValue, combine]
+      join: [separator]
+      contains: [needle]
+      forEach: [action]
+      every: [test]
+      any: [test]
+      cast: []
+      toList: []
+      toSet: []
+      drain: [futureValue]
+      take: [count]
+      takeWhile: [test]
+      skip: [count]
+      skipWhile: [test]
+      distinct: [equals]
+      firstWhere: [test, orElse]
+      lastWhere: [test, orElse]
+      singleWhere: [test, orElse]
+      elementAt: [index]
+      timeout: [timeLimit, onTimeout]
+    callbackSignatures:
+      listen.onError: [Object, StackTrace]
+      handleError.onError: [Object, StackTrace]
+    callbackOptionalParameters:
+      listen.onError: [1]
+      handleError.onError: [1]
+    callbackErrorParameters:
+      listen.onError: [0]
+      handleError.onError: [0]
+    callbackScopedParameters:
+      timeout.onTimeout: [0]
+  StreamSubscription:
+    kind: object
+    typeArguments: ['Object?']
+    eraseGenerics: true
+    getters: [isPaused]
+    instanceMethods:
+      cancel: []
+      onData: [handleData]
+      onError: [handleError]
+      onDone: [handleDone]
+      pause: [resumeSignal]
+      resume: []
+      asFuture: [futureValue]
+    callbackSignatures:
+      onError.handleError: [Object, StackTrace]
+    callbackOptionalParameters:
+      onError.handleError: [1]
+    callbackErrorParameters:
+      onError.handleError: [0]
+  StreamController:
+    kind: object
+    typeArguments: ['Object?']
+    constructors:
+      '': [onListen, onPause, onResume, onCancel, sync]
+      broadcast: [onListen, onCancel, sync]
+    getters:
+      [
+        onListen,
+        onPause,
+        onResume,
+        onCancel,
+        stream,
+        sink,
+        isClosed,
+        isPaused,
+        hasListener,
+        done,
+      ]
+    setters: [onListen, onPause, onResume, onCancel]
+    instanceMethods:
+      add: [event]
+      addError: [error, stackTrace]
+      close: []
+      addStream: [source, cancelOnError]
+  SynchronousStreamController:
+    kind: object
+    typeArguments: ['Object?']
+  MultiStreamController:
+    kind: object
+    typeArguments: ['Object?']
+    getters: [onCancel, onPause, onResume, isClosed]
+    setters: [onCancel, onPause, onResume]
+    instanceMethods:
+      add: [event]
+      addSync: [value]
+      addError: [error, stackTrace]
+      addErrorSync: [error, stackTrace]
+      close: []
+      closeSync: []
+  Duration:
+    kind: object
+    constructors:
+      '': [days, hours, minutes, seconds, milliseconds, microseconds]
+    getters: [inDays, inHours, inMinutes, inSeconds, inMilliseconds, inMicroseconds]
+    staticGetters: [zero]
+  StackTrace:
+    kind: object
+    staticGetters: [current, empty]
+    instanceMethods:
+      toString: []
+  Sink:
+    kind: object
+    typeArguments: ['Object?']
+  EventSink:
+    kind: object
+    proxy: implements
+    typeArguments: ['Object?']
+    instanceMethods:
+      add: [event]
+      addError: [error, stackTrace]
+      close: []
+  StreamConsumer:
+    kind: object
+    proxy: implements
+    typeArguments: ['Object?']
+    instanceMethods:
+      addStream: [stream]
+      close: []
+  StreamSink:
+    kind: object
+    typeArguments: ['Object?']
+    getters: [done]
+  StreamTransformer:
+    kind: object
+    proxy: implements
+    typeArguments: ['Object?', 'Object?']
+    eraseGenerics: true
+    constructors:
+      '': [onListen]
+      fromHandlers: [handleData, handleError, handleDone]
+      fromBind: [bind]
+    methods:
+      castFrom: [source]
+    instanceMethods:
+      bind: [stream]
+      cast: []
+    callbackScopedParameters:
+      fromHandlers.handleData: [1]
+      fromHandlers.handleError: [2]
+      fromHandlers.handleDone: [0]
+  StreamTransformerBase:
+    kind: object
+    proxy: extends
+    typeArguments: ['Object?', 'Object?']
+    eraseGenerics: true
+    constructors:
+      '': []
+    instanceMethods:
+      bind: [stream]
+      cast: []
+  StreamView:
+    kind: stream
+    typeArguments: ['Object?']
+    eraseGenerics: true
+    constructors:
+      '': [stream]
+  StreamIterator:
+    kind: object
+    typeArguments: ['Object?']
+    constructors:
+      '': [stream]
+    getters: [current]
+    instanceMethods:
+      moveNext: []
+      cancel: []
+  AsyncSnapshot:
+    kind: object
+    typeArguments: ['Object?']
+    constructors:
+      nothing: []
+      waiting: []
+      withData: [state, data]
+      withError: [state, error, stackTrace]
+    getters: [connectionState, data, error, stackTrace, hasData, hasError, requireData]
+    errorGetters: [error]
+    instanceMethods:
+      inState: [state]
+  StreamBuilder:
+    typeArguments: ['Object?']
+    constructors:
+      '': [key, stream, initialData, builder]
+  WidgetStateProperty:
+    kind: object
+    instanceMethods:
+      resolve: [states]
+    methods:
+      resolveWith: [callback]
+    deferredFactories: [resolveWith]
+  ValueListenableBuilder:
+    typeArguments: ['Object?']
+    constructors:
+      '': [key, valueListenable, builder, child]
+  ListenableBuilder:
+    constructors:
+      '': [key, listenable, builder, child]
+  Listenable:
+    kind: object
+    instanceMethods:
+      addListener: [listener]
+      removeListener: [listener]
+    listenerPairs:
+      addListener: removeListener
+  ValueListenable:
+    kind: object
+    proxy: extends
+    typeArguments: ['Object?']
+    constructors:
+      '': []
+    getters: [value]
+  FittedSizes:
+    kind: object
+    getters: [source, destination]
+  NavigatorObserver:
+    kind: object
+  FlaxNavigatorObserver:
+    kind: object
+    constructors:
+      '': []
+  PreferredSizeWidget:
+    kind: widgetInterface
+    getters: [preferredSize]
+  PreferredSize:
+    widgetInterfaces: [PreferredSizeWidget]
+    constructors:
+      '': [key, preferredSize, child]
+  Container:
+    constructors:
+      '':
+        [
+          key,
+          alignment,
+          padding,
+          color,
+          isAntiAlias,
+          decoration,
+          foregroundDecoration,
+          width,
+          height,
+          constraints,
+          margin,
+          child,
+          clipBehavior,
+        ]
+  DecoratedBox:
+    constructors:
+      '': [key, decoration, position, child]
+  Decoration:
+    kind: object
+  BoxBorder:
+    kind: object
+  BorderRadiusGeometry:
+    kind: object
+  EdgeInsetsGeometry:
+    kind: object
+  BoxDecoration:
+    kind: object
+    constructors:
+      '': [color, border, borderRadius, shape]
+    getters: [color, border, borderRadius, shape]
+    instanceMethods:
+      copyWith: [color, border, borderRadius, shape]
+  BorderSide:
+    kind: object
+    constructors:
+      '': [color, width, style, strokeAlign]
+    getters: [color, width, style, strokeAlign]
+    staticGetters: [none, strokeAlignInside, strokeAlignCenter, strokeAlignOutside]
+    instanceMethods:
+      copyWith: [color, width, style, strokeAlign]
+  Border:
+    kind: object
+    constructors:
+      '': [top, right, bottom, left]
+      all: [color, width, style, strokeAlign]
+    getters: [top, right, bottom, left, isUniform]
+  BorderDirectional:
+    kind: object
+    constructors:
+      '': [top, start, end, bottom]
+    getters: [top, start, end, bottom, isUniform]
+  Radius:
+    kind: object
+    constructors:
+      circular: [radius]
+      elliptical: [x, y]
+    getters: [x, y]
+    staticGetters: [zero]
+  BorderRadius:
+    kind: object
+    constructors:
+      all: [radius]
+      circular: [radius]
+      only: [topLeft, topRight, bottomLeft, bottomRight]
+    getters: [topLeft, topRight, bottomLeft, bottomRight]
+    staticGetters: [zero]
+    instanceMethods:
+      copyWith: [topLeft, topRight, bottomLeft, bottomRight]
+  BorderRadiusDirectional:
+    kind: object
+    constructors:
+      all: [radius]
+      circular: [radius]
+      only: [topStart, topEnd, bottomStart, bottomEnd]
+    getters: [topStart, topEnd, bottomStart, bottomEnd]
+    staticGetters: [zero]
+  EdgeInsetsDirectional:
+    kind: object
+    constructors:
+      fromSTEB: [start, top, end, bottom]
+      only: [start, top, end, bottom]
+      all: [value]
+      symmetric: [vertical, horizontal]
+    getters: [start, top, end, bottom]
+    staticGetters: [zero]
+  AlignmentGeometry:
+    kind: object
+  Alignment:
+    kind: object
+    constructors:
+      '': [x, y]
+    getters: [x, y]
+    staticGetters:
+      [
+        topLeft,
+        topCenter,
+        topRight,
+        centerLeft,
+        center,
+        centerRight,
+        bottomLeft,
+        bottomCenter,
+        bottomRight,
+      ]
+  AlignmentDirectional:
+    kind: object
+    constructors:
+      '': [start, y]
+    getters: [start, y]
+    staticGetters:
+      [
+        topStart,
+        topCenter,
+        topEnd,
+        centerStart,
+        center,
+        centerEnd,
+        bottomStart,
+        bottomCenter,
+        bottomEnd,
+      ]
+  Expanded:
+    constructors:
+      '': [key, flex, child]
+  Flexible:
+    constructors:
+      '': [key, flex, fit, child]
+  Stack:
+    constructors:
+      '': [key, alignment, textDirection, fit, clipBehavior, children]
+  Positioned:
+    constructors:
+      '': [key, left, top, right, bottom, width, height, child]
+  Align:
+    constructors:
+      '': [key, alignment, widthFactor, heightFactor, child]
+  Color:
+    kind: object
+    constructors:
+      '': [value]
+      fromARGB: [a, r, g, b]
+    getters: [a, r, g, b]
+    instanceMethods:
+      toARGB32: []
+  FontWeight:
+    kind: object
+    constructors:
+      '': [value]
+    getters: [value]
+    staticGetters: [w100, w200, w300, w400, w500, w600, w700, w800, w900, normal, bold]
+  TextStyle:
+    kind: object
+    constructors:
+      '':
+        [
+          inherit,
+          color,
+          backgroundColor,
+          fontSize,
+          fontWeight,
+          fontStyle,
+          letterSpacing,
+          wordSpacing,
+          height,
+        ]
+    getters:
+      [
+        inherit,
+        color,
+        backgroundColor,
+        fontSize,
+        fontWeight,
+        fontStyle,
+        letterSpacing,
+        wordSpacing,
+        height,
+      ]
+    instanceMethods:
+      copyWith:
+        [
+          inherit,
+          color,
+          backgroundColor,
+          fontSize,
+          fontWeight,
+          fontStyle,
+          letterSpacing,
+          wordSpacing,
+          height,
+        ]
+  Key:
+    kind: object
+  LocalKey:
+    kind: object
+  TextEditingController:
+    kind: object
+    constructors:
+      '': [text]
+      fromValue: [value]
+    getters: [text, value, selection]
+    setters: [text, value, selection]
+    instanceMethods:
+      clear: []
+      clearComposing: []
+      addListener: [listener]
+      removeListener: [listener]
+      dispose: []
+    disposeMethod: dispose
+    listenerPairs:
+      addListener: removeListener
+  TextEditingValue:
+    kind: object
+    constructors:
+      '': [text, selection, composing]
+    getters: [text, selection, composing, isComposingRangeValid]
+    staticGetters: [empty]
+    instanceMethods:
+      copyWith: [text, selection, composing]
+  TextSelection:
+    kind: object
+    constructors:
+      '': [baseOffset, extentOffset, affinity, isDirectional]
+      collapsed: [offset, affinity]
+    getters:
+      [
+        baseOffset,
+        extentOffset,
+        affinity,
+        isDirectional,
+        start,
+        end,
+        isValid,
+        isCollapsed,
+        isNormalized,
+      ]
+    instanceMethods:
+      copyWith: [baseOffset, extentOffset, affinity, isDirectional]
+  TextRange:
+    kind: object
+    constructors:
+      '': [start, end]
+      collapsed: [offset]
+    getters: [start, end, isValid, isCollapsed, isNormalized]
+    staticGetters: [empty]
+  Navigator:
+    constructors:
+      '':
+        [
+          key,
+          initialRoute,
+          onGenerateRoute,
+          onUnknownRoute,
+          pages,
+          onDidRemovePage,
+          observers,
+        ]
+    methods:
+      of: [context, rootNavigator]
+  NavigatorState:
+    kind: state
+    getters: [mounted]
+    instanceMethods:
+      push: [route]
+      pushNamed: [routeName, arguments]
+      pushReplacement: [newRoute, result]
+      pop: [result]
+      maybePop: [result]
+      canPop: []
+    methodTypeArguments:
+      push: ['Object?']
+      pushNamed: ['Object?']
+      pushReplacement: ['Object?', 'Object?']
+      pop: ['Object?']
+      maybePop: ['Object?']
+    startsRoute: [push, pushNamed, pushReplacement]
+    data:
+      methods:
+        pushNamed: [arguments]
+        pushReplacement: [result]
+        pop: [result]
+        maybePop: [result]
+      results: [push, pushNamed, pushReplacement]
+  Route:
+    kind: route
+    typeArguments: ['Object?']
+  Page:
+    kind: page
+    typeArguments: ['Object?']
+    getters: [key, name, arguments]
+    data:
+      getters: [arguments]
+  RouteSettings:
+    kind: object
+    constructors:
+      '': [name, arguments]
+    getters: [name, arguments]
+    data:
+      constructors:
+        '': [arguments]
+      getters: [arguments]
+  NavigatorPopHandler:
+    typeArguments: ['Object?']
+    constructors:
+      '': [key, enabled, onPopWithResult, child]
+    data:
+      constructors:
+        '': [onPopWithResult]
+  PopScope:
+    typeArguments: ['Object?']
+    constructors:
+      '': [key, canPop, onPopInvokedWithResult, child]
+    data:
+      constructors:
+        '': [onPopInvokedWithResult]
+  Builder:
+    constructors:
+      '': [key, builder]
+  LayoutBuilder:
+    constructors:
+      '': [key, builder]
+  BuildContext:
+    kind: context
+    getters: [mounted, size]
+  Size:
+    kind: object
+    constructors:
+      '': [width, height]
+      fromHeight: [height]
+    getters: [width, height]
+  SchedulerBinding:
+    kind: object
+    staticGetters: [instance]
+    getters: [endOfFrame]
+  BoxConstraints:
+    kind: object
+    constructors:
+      '': [minWidth, maxWidth, minHeight, maxHeight]
+      tightFor: [width, height]
+      expand: [width, height]
+    getters: [minWidth, maxWidth, minHeight, maxHeight]
+  Directionality:
+    methods:
+      of: [context]
+  Text:
+    constructors:
+      '': [data, key, style, softWrap, maxLines, textAlign, textDirection, overflow]
+  Row:
+    constructors:
+      '':
+        [
+          key,
+          children,
+          mainAxisAlignment,
+          mainAxisSize,
+          crossAxisAlignment,
+          textDirection,
+          verticalDirection,
+          textBaseline,
+          spacing,
+        ]
+  Column:
+    constructors:
+      '':
+        [
+          key,
+          children,
+          mainAxisAlignment,
+          mainAxisSize,
+          crossAxisAlignment,
+          textDirection,
+          verticalDirection,
+          textBaseline,
+          spacing,
+        ]
+  Center:
+    constructors:
+      '': [key, child, widthFactor, heightFactor]
+  Padding:
+    constructors:
+      '': [key, padding, child]
+  SizedBox:
+    constructors:
+      '': [key, width, height, child]
+  EdgeInsets:
+    kind: object
+    constructors:
+      all: [value]
+      symmetric: [vertical, horizontal]
+      fromLTRB: [left, top, right, bottom]
+      only: [left, top, right, bottom]
+    getters: [left, top, right, bottom]
+    staticGetters: [zero]
+  ValueKey:
+    kind: object
+    genericScalar: true
+    getters: [value]
+    constructors:
+      '': [value]
+  ScrollController:
+    kind: object
+    constructors:
+      '': [initialScrollOffset, keepScrollOffset, debugLabel]
+    getters: [hasClients, offset]
+    instanceMethods:
+      jumpTo: [value]
+      addListener: [listener]
+      removeListener: [listener]
+      dispose: []
+    disposeMethod: dispose
+    listenerPairs:
+      addListener: removeListener
+  ListView:
+    constructors:
+      builder:
+        [
+          key,
+          itemCount,
+          itemBuilder,
+          findChildIndexCallback,
+          scrollDirection,
+          reverse,
+          controller,
+          primary,
+          shrinkWrap,
+          padding,
+          itemExtent,
+          addAutomaticKeepAlives,
+          addRepaintBoundaries,
+          addSemanticIndexes,
+        ]
+    independentWidgetCallbacks:
+      builder: [itemBuilder]
+  SingleChildScrollView:
+    constructors:
+      '': [key, scrollDirection, reverse, padding, primary, controller, child]
+
+  FocusNode:
+    kind: object
+    constructors:
+      '': [debugLabel, canRequestFocus, skipTraversal]
+    getters: [hasFocus, hasPrimaryFocus, canRequestFocus, skipTraversal]
+    setters: [canRequestFocus, skipTraversal]
+    instanceMethods:
+      requestFocus: [node]
+      unfocus: [disposition]
+      nextFocus: []
+      previousFocus: []
+      addListener: [listener]
+      removeListener: [listener]
+      dispose: []
+    disposeMethod: dispose
+    listenerPairs:
+      addListener: removeListener
+  TextInputFormatter:
+    kind: object
+    constructors:
+      withFunction: [formatFunction]
+  FilteringTextInputFormatter:
+    kind: object
+    constructors:
+      '': [filterPattern, allow, replacementString]
+      allow: [filterPattern, replacementString]
+      deny: [filterPattern, replacementString]
+    staticGetters: [digitsOnly, singleLineFormatter]
+  LengthLimitingTextInputFormatter:
+    kind: object
+    constructors:
+      '': [maxLength, maxLengthEnforcement]
+  Pattern:
+    kind: object
+  RegExp:
+    kind: object
+    constructors:
+      '': [source, multiLine, caseSensitive, unicode, dotAll]
+  Listener:
+    constructors:
+      '':
+        [
+          key,
+          onPointerDown,
+          onPointerMove,
+          onPointerUp,
+          onPointerCancel,
+          onPointerHover,
+          onPointerSignal,
+          behavior,
+          child,
+        ]
+  MouseRegion:
+    constructors:
+      '': [key, onEnter, onExit, onHover, opaque, hitTestBehavior, child]
+  KeyboardListener:
+    constructors:
+      '': [key, focusNode, autofocus, includeSemantics, onKeyEvent, child]
+
+  # --- flax-core batch1 widget probe (do not commit until approved) ---
+  SafeArea:
+    constructors:
+      '': [key, left, top, right, bottom, minimum, maintainBottomViewPadding, child]
+  Wrap:
+    constructors:
+      '':
+        [
+          key,
+          direction,
+          alignment,
+          spacing,
+          runAlignment,
+          runSpacing,
+          crossAxisAlignment,
+          textDirection,
+          verticalDirection,
+          clipBehavior,
+          children,
+        ]
+  FittedBox:
+    constructors:
+      '': [key, fit, alignment, clipBehavior, child]
+  AspectRatio:
+    constructors:
+      '': [key, aspectRatio, child]
+  ConstrainedBox:
+    constructors:
+      '': [key, constraints, child]
+  Opacity:
+    constructors:
+      '': [key, opacity, alwaysIncludeSemantics, child]
+  Visibility:
+    # replacement omitted: const SizedBox.shrink() default → Unsupported constant default: widget
+    constructors:
+      '':
+        [
+          key,
+          child,
+          visible,
+          maintainState,
+          maintainAnimation,
+          maintainSize,
+          maintainSemantics,
+          maintainInteractivity,
+          maintainFocusability,
+        ]
+      maintain: [key, child, visible]
+  ColoredBox:
+    constructors:
+      '': [key, color, isAntiAlias, child]
+  ClipRRect:
+    constructors:
+      '': [key, borderRadius, clipBehavior, child]
+  IgnorePointer:
+    constructors:
+      '': [key, ignoring, child]
+  IndexedStack:
+    constructors:
+      '': [key, alignment, textDirection, clipBehavior, sizing, index, children]
+  GestureDetector:
+    constructors:
+      '':
+        [
+          key,
+          child,
+          behavior,
+          excludeFromSemantics,
+          dragStartBehavior,
+          onTap,
+          onTapCancel,
+          onDoubleTap,
+          onDoubleTapCancel,
+          onLongPress,
+          onLongPressCancel,
+          onSecondaryTap,
+          onSecondaryTapCancel,
+        ]
+  Focus:
+    constructors:
+      '':
+        [
+          key,
+          child,
+          focusNode,
+          autofocus,
+          onFocusChange,
+          canRequestFocus,
+          skipTraversal,
+          descendantsAreFocusable,
+          descendantsAreTraversable,
+          includeSemantics,
+          debugLabel,
+        ]
+  Form:
+    constructors:
+      '': [key, child, canPop, onPopInvokedWithResult, onChanged, autovalidateMode]
+    data:
+      constructors:
+        '': [onPopInvokedWithResult]
+  StatefulBuilder:
+    constructors:
+      '': [key, builder]
+  # --- end flax-core batch1 widget probe ---

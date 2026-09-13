@@ -1,6 +1,6 @@
 # ADR 0001: Workspace and Scaffold Boundaries
 
-Status: accepted
+Status: superseded by [ADR 0017](0017-package-boundaries.md)
 
 Date: 2026-09-06
 

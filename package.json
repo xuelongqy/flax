@@ -14,9 +14,12 @@
     "js:build": "pnpm --silent --recursive --workspace-concurrency=1 run build",
     "docs:lint": "markdownlint-cli2",
     "docs:links": "node tool/check-doc-links.mjs",
-    "test:tooling": "node --test tool/check-doc-links.test.mjs"
+    "test:tooling": "node --test tool/check-doc-links.test.mjs",
+    "js:test": "pnpm --silent --recursive --workspace-concurrency=1 --if-present run test"
   },
   "devDependencies": {
+    "@flax/core": "workspace:*",
+    "esbuild": "0.28.2",
     "github-slugger": "2.0.0",
     "markdown-it": "15.0.1",
     "markdownlint-cli2": "0.23.2",

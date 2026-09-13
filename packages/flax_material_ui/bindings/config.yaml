@@ -1,0 +1,493 @@
+format: 1
+name: material
+imports: [flax]
+library: package:material_ui/material_ui.dart
+additionalLibraries: [package:flutter/services.dart]
+jsPackage: '@flax/material-ui'
+dartOutput: lib/src/generated/material_bindings.g.dart
+tsOutput: js/src/generated/bindings.ts
+types:
+  - Brightness
+  - ListTileStyle
+  - NavigationDestinationLabelBehavior
+  - TextInputAction
+  - ThemeMode
+functions:
+  showDialog:
+    parameters:
+      [
+        context,
+        builder,
+        barrierDismissible,
+        barrierColor,
+        barrierLabel,
+        useSafeArea,
+        useRootNavigator,
+        routeSettings,
+        fullscreenDialog,
+        requestFocus,
+      ]
+    typeArguments: ['Object?']
+    data:
+      result: true
+    route:
+      context: context
+      rootNavigator: useRootNavigator
+      builders: [builder]
+classes:
+  AlertDialog:
+    constructors:
+      '': [key, title, content, actions, scrollable]
+  MaterialApp:
+    constructors:
+      '':
+        [
+          key,
+          title,
+          home,
+          theme,
+          darkTheme,
+          themeMode,
+          debugShowCheckedModeBanner,
+          navigatorObservers,
+        ]
+  Scaffold:
+    constructors:
+      '':
+        [
+          key,
+          appBar,
+          body,
+          floatingActionButton,
+          drawer,
+          endDrawer,
+          bottomNavigationBar,
+          backgroundColor,
+          resizeToAvoidBottomInset,
+          primary,
+          extendBody,
+          extendBodyBehindAppBar,
+        ]
+  RefreshIndicator:
+    constructors:
+      '': [key, onRefresh, child]
+  ButtonStyle:
+    kind: object
+    constructors:
+      '': [backgroundColor, foregroundColor, overlayColor, elevation]
+    getters: [backgroundColor, foregroundColor, overlayColor, elevation]
+    instanceMethods:
+      copyWith: [backgroundColor, foregroundColor, overlayColor, elevation]
+  AppBar:
+    widgetInterfaces: [PreferredSizeWidget]
+    constructors:
+      '':
+        [
+          key,
+          leading,
+          automaticallyImplyLeading,
+          title,
+          actions,
+          bottom,
+          elevation,
+          backgroundColor,
+          foregroundColor,
+          centerTitle,
+          primary,
+          toolbarHeight,
+        ]
+  Theme:
+    constructors:
+      '': [key, data, child]
+    methods:
+      of: [context]
+  ThemeData:
+    kind: object
+    constructors:
+      '': [brightness, colorScheme, colorSchemeSeed, textTheme]
+    getters: [brightness, colorScheme, textTheme]
+    instanceMethods:
+      copyWith: [brightness, colorScheme, textTheme]
+  TextTheme:
+    kind: object
+    constructors:
+      '': [titleLarge, titleMedium, bodyLarge, bodyMedium, labelLarge]
+    getters: [titleLarge, titleMedium, bodyLarge, bodyMedium, labelLarge]
+    instanceMethods:
+      copyWith: [titleLarge, titleMedium, bodyLarge, bodyMedium, labelLarge]
+  ColorScheme:
+    kind: object
+    constructors:
+      fromSeed: [seedColor, brightness]
+    getters: [brightness, primary, onPrimary, surface, onSurface, error, onError]
+    instanceMethods:
+      copyWith: [brightness, primary, onPrimary, surface, onSurface, error, onError]
+  InputDecoration:
+    kind: object
+    constructors:
+      '':
+        [
+          labelText,
+          hintText,
+          helperText,
+          errorText,
+          labelStyle,
+          hintStyle,
+          helperStyle,
+          errorStyle,
+          isDense,
+          contentPadding,
+          filled,
+          fillColor,
+        ]
+    getters:
+      [
+        labelText,
+        hintText,
+        helperText,
+        errorText,
+        labelStyle,
+        hintStyle,
+        helperStyle,
+        errorStyle,
+        isDense,
+        contentPadding,
+        filled,
+        fillColor,
+      ]
+    instanceMethods:
+      copyWith:
+        [
+          labelText,
+          hintText,
+          helperText,
+          errorText,
+          labelStyle,
+          hintStyle,
+          helperStyle,
+          errorStyle,
+          isDense,
+          contentPadding,
+          filled,
+          fillColor,
+        ]
+  TextField:
+    constructors:
+      '':
+        [
+          key,
+          controller,
+          style,
+          decoration,
+          onChanged,
+          onSubmitted,
+          onEditingComplete,
+          enabled,
+          readOnly,
+          obscureText,
+          autofocus,
+          autocorrect,
+          enableSuggestions,
+          minLines,
+          maxLines,
+          textInputAction,
+          focusNode,
+          inputFormatters,
+        ]
+  MaterialPageRoute:
+    kind: route
+    typeArguments: ['Object?']
+    constructors:
+      '': [builder, settings, maintainState, fullscreenDialog]
+  MaterialPage:
+    kind: page
+    typeArguments: ['Object?']
+    pageAdapter:
+      library: package:flax_material_ui/src/material_page_route.dart
+      function: createMaterialPageRoute
+    constructors:
+      '':
+        [
+          child,
+          key,
+          name,
+          arguments,
+          maintainState,
+          fullscreenDialog,
+          canPop,
+          onPopInvoked,
+        ]
+    getters: [key, name, arguments]
+    data:
+      constructors:
+        '': [arguments, onPopInvoked]
+      getters: [arguments]
+  TextButton:
+    constructors:
+      '': [key, onPressed, style, child]
+
+  ElevatedButton:
+    constructors:
+      '': [key, onPressed, style, child]
+  OutlinedButton:
+    constructors:
+      '': [key, onPressed, style, child]
+  FilledButton:
+    constructors:
+      '': [key, onPressed, style, child]
+      tonal: [key, onPressed, style, child]
+  IconButton:
+    constructors:
+      '':
+        [
+          key,
+          icon,
+          onPressed,
+          tooltip,
+          color,
+          disabledColor,
+          style,
+          padding,
+          alignment,
+          iconSize,
+          focusNode,
+          autofocus,
+          isSelected,
+          selectedIcon,
+        ]
+      filled:
+        [
+          key,
+          icon,
+          onPressed,
+          tooltip,
+          color,
+          disabledColor,
+          style,
+          padding,
+          alignment,
+          iconSize,
+          focusNode,
+          autofocus,
+          isSelected,
+          selectedIcon,
+        ]
+      filledTonal:
+        [
+          key,
+          icon,
+          onPressed,
+          tooltip,
+          color,
+          disabledColor,
+          style,
+          padding,
+          alignment,
+          iconSize,
+          focusNode,
+          autofocus,
+          isSelected,
+          selectedIcon,
+        ]
+      outlined:
+        [
+          key,
+          icon,
+          onPressed,
+          tooltip,
+          color,
+          disabledColor,
+          style,
+          padding,
+          alignment,
+          iconSize,
+          focusNode,
+          autofocus,
+          isSelected,
+          selectedIcon,
+        ]
+  FloatingActionButton:
+    constructors:
+      '':
+        [
+          key,
+          onPressed,
+          child,
+          tooltip,
+          mini,
+          backgroundColor,
+          foregroundColor,
+          elevation,
+          focusNode,
+          autofocus,
+        ]
+      small:
+        [
+          key,
+          onPressed,
+          child,
+          tooltip,
+          backgroundColor,
+          foregroundColor,
+          elevation,
+          focusNode,
+          autofocus,
+        ]
+      large:
+        [
+          key,
+          onPressed,
+          child,
+          tooltip,
+          backgroundColor,
+          foregroundColor,
+          elevation,
+          focusNode,
+          autofocus,
+        ]
+      extended:
+        [
+          key,
+          onPressed,
+          icon,
+          label,
+          tooltip,
+          backgroundColor,
+          foregroundColor,
+          elevation,
+          focusNode,
+          autofocus,
+        ]
+  Drawer:
+    constructors:
+      '':
+        [
+          key,
+          child,
+          backgroundColor,
+          width,
+          elevation,
+          shadowColor,
+          semanticLabel,
+          clipBehavior,
+        ]
+  Divider:
+    constructors:
+      '': [key, height, thickness, indent, endIndent, color, radius]
+  VerticalDivider:
+    constructors:
+      '': [key, width, thickness, indent, endIndent, color, radius]
+  Card:
+    constructors:
+      '':
+        [
+          key,
+          color,
+          elevation,
+          margin,
+          child,
+          clipBehavior,
+          shadowColor,
+          surfaceTintColor,
+          semanticContainer,
+        ]
+      filled:
+        [
+          key,
+          color,
+          elevation,
+          margin,
+          child,
+          clipBehavior,
+          shadowColor,
+          surfaceTintColor,
+          semanticContainer,
+        ]
+      outlined:
+        [
+          key,
+          color,
+          elevation,
+          margin,
+          child,
+          clipBehavior,
+          shadowColor,
+          surfaceTintColor,
+          semanticContainer,
+        ]
+  ListTile:
+    constructors:
+      '':
+        [
+          key,
+          leading,
+          title,
+          subtitle,
+          trailing,
+          isThreeLine,
+          dense,
+          enabled,
+          selected,
+          onTap,
+          onLongPress,
+          contentPadding,
+          selectedColor,
+          iconColor,
+          textColor,
+          titleTextStyle,
+          tileColor,
+          selectedTileColor,
+          focusNode,
+          style,
+        ]
+  Checkbox:
+    constructors:
+      '':
+        [
+          key,
+          value,
+          tristate,
+          onChanged,
+          activeColor,
+          checkColor,
+          focusNode,
+          autofocus,
+          isError,
+          fillColor,
+          overlayColor,
+        ]
+  Switch:
+    constructors:
+      '':
+        [
+          key,
+          value,
+          onChanged,
+          activeThumbColor,
+          activeTrackColor,
+          inactiveThumbColor,
+          focusNode,
+          autofocus,
+          padding,
+        ]
+  CircularProgressIndicator:
+    constructors:
+      '': [key, value, color, backgroundColor, strokeWidth, semanticsLabel]
+  NavigationDestination:
+    constructors:
+      '': [key, icon, selectedIcon, label, tooltip, enabled]
+  NavigationBar:
+    constructors:
+      '':
+        [
+          key,
+          selectedIndex,
+          destinations,
+          onDestinationSelected,
+          backgroundColor,
+          elevation,
+          height,
+          labelBehavior,
+          shadowColor,
+          indicatorColor,
+        ]

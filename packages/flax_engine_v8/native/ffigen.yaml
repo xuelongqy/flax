@@ -1,0 +1,16 @@
+name: V8Bindings
+description: V8 native asset bootstrap. Regenerate with dart run melos run ffi:generate.
+output: ../lib/src/v8_bindings.g.dart
+headers:
+  entry-points:
+    - ./include/flax_v8.h
+  include-directives:
+    - '**/flax_v8.h'
+functions:
+  include:
+    - flax_v8_get_api
+ffi-native:
+  asset-id: package:flax_engine_v8/flax_engine_v8.dart
+preamble: |
+  // Generated from the canonical V8 adapter header. Do not edit by hand.
+  // ignore_for_file: type=lint

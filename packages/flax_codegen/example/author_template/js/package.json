@@ -1,0 +1,15 @@
+{
+  "name": "@your-scope/your-package",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@flax/core": "0.0.0"
+  },
+  "devDependencies": {
+    "typescript": "5.9.2"
+  }
+}

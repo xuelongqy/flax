@@ -1,0 +1,8 @@
+format: 1
+dart:
+  entrypoint: package:flax_cupertino_ui/flax_cupertino_ui.dart
+javascript:
+  package: '@flax/cupertino-ui'
+  version: same
+  mode: declarations
+capabilities: []

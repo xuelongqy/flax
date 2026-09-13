@@ -1,0 +1,12 @@
+name: FlaxBindings
+description:
+  Experimental Flax C ABI types. Regenerate with dart run melos run ffi:generate.
+output: ../lib/src/native/runtime_bindings.g.dart
+headers:
+  entry-points:
+    - ./include/flax/runtime.h
+  include-directives:
+    - '**/flax/runtime.h'
+preamble: |
+  // Generated from the canonical Flax C headers. Do not edit by hand.
+  // ignore_for_file: type=lint

@@ -1,0 +1,14 @@
+format: 1
+dart:
+  entrypoint: package:flax/flax.dart
+javascript:
+  package: '@flax/core'
+  version: same
+  mode: runtime
+capabilities:
+  - core
+  - bindings
+bindingNamespace: flax.core
+registration:
+  bindings:
+    - flutterBindings

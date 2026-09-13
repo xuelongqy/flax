@@ -1,0 +1,18 @@
+// Application-level settings for the Runner target.
+//
+// This may be replaced with something auto-generated from metadata (e.g., pubspec.yaml) in the
+// future. If not, the values below would default to using the project name when this becomes a
+// 'flutter create' template.
+
+// The application's name. By default this is also the title of the Flutter window.
+PRODUCT_NAME = flax_embedded
+
+// The application's bundle identifier
+PRODUCT_BUNDLE_IDENTIFIER = dev.flax.flaxEmbedded
+
+// The copyright displayed in application information
+PRODUCT_COPYRIGHT = Copyright © 2026 dev.flax. All rights reserved.
+
+// The prepared Hermes native asset supports this architecture only.
+ARCHS = arm64
+EXCLUDED_ARCHS = x86_64

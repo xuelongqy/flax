@@ -1,0 +1,23 @@
+{
+  "name": "@flax/example-standalone",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@flax/core": "workspace:*",
+    "@flax/material-ui": "workspace:*",
+    "@flax/fetch": "workspace:*",
+    "@flax/websocket": "workspace:*",
+    "@flax/local-storage": "workspace:*",
+    "@flax/canvas": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2",
+    "esbuild": "0.28.2"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "bundle": "node tool/bundle.mjs"
+  }
+}

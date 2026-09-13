@@ -1,0 +1,14 @@
+format: 1
+dart:
+  entrypoint: package:flax_canvas/flax_canvas.dart
+javascript:
+  package: '@flax/canvas'
+  version: same
+  mode: runtime
+capabilities:
+  - bindings
+  - host-plugin
+bindingNamespace: flax.canvas
+registration:
+  plugins:
+    - FlaxCanvasPlugin

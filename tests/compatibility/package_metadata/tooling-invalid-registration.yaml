@@ -1,0 +1,8 @@
+format: 1
+dart:
+  entrypoint: package:example/example.dart
+capabilities:
+  - codegen
+registration:
+  bindings:
+    - exampleBindings

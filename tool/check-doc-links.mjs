@@ -18,12 +18,22 @@ const ignoredDirectories = new Set([
   'coverage',
 ]);
 
-async function findDocuments(directory) {
+async function findDocuments(directory, root = directory) {
   const documents = [];
   for (const entry of await readdir(directory, { withFileTypes: true })) {
     const target = path.join(directory, entry.name);
-    if (entry.isDirectory() && !ignoredDirectories.has(entry.name)) {
-      documents.push(...(await findDocuments(target)));
+    const relative = path.relative(root, target).split(path.sep);
+    const generatedNative =
+      relative.length === 4 &&
+      relative[0] === 'packages' &&
+      relative[2] === 'native' &&
+      relative[3] === 'generated';
+    if (
+      entry.isDirectory() &&
+      !ignoredDirectories.has(entry.name) &&
+      !generatedNative
+    ) {
+      documents.push(...(await findDocuments(target, root)));
     } else if (entry.isFile() && path.extname(entry.name).toLowerCase() === '.md') {
       documents.push(target);
     }

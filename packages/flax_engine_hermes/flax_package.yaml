@@ -1,0 +1,5 @@
+format: 1
+dart:
+  entrypoint: package:flax_engine_hermes/flax_engine_hermes.dart
+capabilities:
+  - engine

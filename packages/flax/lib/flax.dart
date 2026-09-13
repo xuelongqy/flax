@@ -1,4 +1,6 @@
-/// Flutter host and base binding scaffold for Flax.
-///
-/// No public runtime API is implemented yet.
+/// Flax's experimental Flutter host, generated base bindings, and JS runtime API.
 library;
+
+export 'bindings.dart';
+export 'runtime.dart';
+export 'src/generated/flutter_bindings.g.dart';

@@ -1,0 +1,12 @@
+format: 1
+dart:
+  entrypoint: package:flax_fetch/flax_fetch.dart
+javascript:
+  package: '@flax/fetch'
+  version: same
+  mode: declarations
+capabilities:
+  - host-plugin
+registration:
+  plugins:
+    - FlaxFetchPlugin

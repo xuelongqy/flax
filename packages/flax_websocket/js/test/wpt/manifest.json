@@ -1,0 +1,36 @@
+{
+  "repository": "https://github.com/web-platform-tests/wpt",
+  "revision": "0d0b8ffa40681402caa430f9ea732440d2d61e00",
+  "files": [
+    {
+      "path": "websockets/constants.sub.js",
+      "file": "constants.sub.js",
+      "sha256": "2f38f5f62d3e0f619d7122315e9f2d0f130550225bdf5949eb5bb5f10e9f3dad"
+    },
+    {
+      "path": "websockets/Create-asciiSep-protocol-string.any.js",
+      "file": "Create-asciiSep-protocol-string.any.js",
+      "sha256": "781127049587d78712ce1efd48b345f1158d52cc5e0472ab8a588056b0077f0b"
+    },
+    {
+      "path": "websockets/Create-nonAscii-protocol-string.any.js",
+      "file": "Create-nonAscii-protocol-string.any.js",
+      "sha256": "f079c77dc5b76950682d4232fd7a5deb2b85e7088c0d7049caeb509415fbb513"
+    },
+    {
+      "path": "websockets/Create-protocol-with-space.any.js",
+      "file": "Create-protocol-with-space.any.js",
+      "sha256": "f01f5bb190f856c77c10cd8661f7aa2a47e13f7f50f2fa5c65fc3aa2637bdc7f"
+    },
+    {
+      "path": "websockets/Create-protocols-repeated.any.js",
+      "file": "Create-protocols-repeated.any.js",
+      "sha256": "45a8117d642c6ce9730e2264c4745f9927f182c05f9a3597f76eae73e6bc2ca0"
+    },
+    {
+      "path": "LICENSE.md",
+      "file": "LICENSE.md",
+      "sha256": "5fac07febb0e2a97fb0d7b0def149ec08b642e1ba4b9c345283ab1cbd2af6570"
+    }
+  ]
+}

@@ -4,15 +4,24 @@ version: 0.0.0
 publish_to: none
 
 environment:
-  sdk: ^3.13.0
-  flutter: '>=3.47.0'
+  sdk: ^3.13.2
+  flutter: '>=3.47.2'
 
 workspace:
   - packages/*
+  - packages/*/example
+  - examples/embedded
+  - examples/standalone
 
 dev_dependencies:
+  flax:
+    path: packages/flax
+  crypto: 3.0.7
   flutter_lints: 6.0.0
   melos: 8.6.0
+  path: 1.9.1
+  test: 1.31.1
+  yaml: 3.1.4
 
 melos:
   repository: https://github.com/xuelongqy/flax
@@ -24,6 +33,7 @@ melos:
       - packages/flax_cupertino_ui
     engines:
       - packages/flax_engine_hermes
+      - packages/flax_engine_v8
     tools:
       - packages/flax_codegen
   scripts:
@@ -34,7 +44,11 @@ melos:
     format:check:
       description: Check Dart, JavaScript, configuration, and documentation formatting.
       steps:
-        - dart format --output=none --set-exit-if-changed packages
+        - dart format --output=none --set-exit-if-changed packages tool tests/runtime
+          benchmarks/engines examples/embedded/lib examples/embedded/test
+          examples/embedded/integration_test examples/embedded/test_driver
+          examples/standalone/lib examples/standalone/test
+          examples/standalone/integration_test examples/standalone/test_driver
         - pnpm --silent run format:check
     js:typecheck:
       description: Type-check all JavaScript workspace packages.
@@ -48,15 +62,122 @@ melos:
         - pnpm --silent run docs:lint
         - pnpm --silent run test:tooling
         - pnpm --silent run docs:links
+    packages:check:
+      description: Validate Dart and npm archive contents without publishing.
+      run: dart run tool/check_packages.dart
+    packages:pack:
+      description:
+        Stage disposable Dart/npm archives with a pack receipt (no publish).
+      run: dart run tool/pack_archives.dart
+    release:check:
+      description:
+        Pre-release archive validation without publishing or engines.
+      run: dart run tool/check_release.dart
     native:configure:
       description: Validate CMake and the C/C++ toolchain without building an engine.
-      run: cmake -S native -B build/native
-    check:
-      description: Run all implemented scaffold checks in sequence.
+      run: cmake -S packages/flax/native -B packages/flax/build/native
+    host:generate:
+      description: Bundle session host implementations into their owning Dart packages.
+      run: node tool/host_bundle.mjs
+    host:check:
+      description: Verify reproducible embedded host scripts without loading an engine.
+      run: node tool/host_bundle.mjs --check
+    ffi:generate:
+      description: Generate Dart FFI declarations from the canonical C headers.
+      run: dart run tool/ffi.dart
+    ffi:check:
+      description: Regenerate FFI declarations in a temporary directory and compare.
+      run: dart run tool/ffi.dart --check
+    native:build:v8:
+      description: Build pinned V8 with JIT and prepare native assets.
+      run: dart run tool/native.dart --engine=v8
+    check:runtime:v8:
+      description: Verify V8 native, Dart, and relocated package behavior.
+      run: dart run tool/check_runtime.dart --engine=v8
+    check:engines:
+      description: Verify engine coexistence, reference rejection, and reentry.
+      run: dart run tool/check_engines.dart
+    bench:engines:
+      description:
+        Compare prepared engines in isolated AOT processes (up to 60 minutes).
+      run: dart run tool/benchmark_engines.dart
+    bench:engines:smoke:
+      description: Verify benchmark workloads and reports with prepared engines.
+      run: dart run tool/benchmark_engines.dart --smoke
+    bench:engines:test:
+      description: Test benchmark scheduling and statistics without loading engines.
+      run: dart test benchmarks/engines/test
+    check:ui:v8:
+      description: Verify V8 runtime, Flutter behavior and relocated release JIT.
+      run: dart run tool/check_ui.dart --engine=v8
+    ui:test:v8:
+      description: Run shared Flutter framework tests with prepared V8 assets.
+      run: dart run tool/ui_test.dart --engine=v8
+    example:run:v8:
+      description: Run the embedded example with prepared V8 assets.
+      run: dart run tool/example_run.dart --engine=v8
+    native:build:
+      description: Build pinned Hermes and prepare macOS arm64 package assets.
+      run: dart run tool/native.dart
+    check:runtime:
+      description:
+        Verify the native ABI, Dart integration, and standalone JIT/AOT packages.
+      run: dart run tool/check_runtime.dart
+    bindings:generate:
+      description:
+        Generate selected Flutter and plugin bindings from public declarations.
+      run: dart run tool/package.dart bindings
+    bindings:check:
+      description: Verify reproducible bindings and generator behavior.
       steps:
+        - dart run tool/package.dart bindings --check
+        - cd packages/flax_codegen && dart test --reporter expanded
+    js:test:
+      description: Test real signals and generated descriptor construction.
+      run: pnpm --silent run js:test
+    example:bundle:
+      description: Build workspace modules and bundle both example applications.
+      steps:
+        - pnpm --silent run js:build
+        - node tool/example_bundle.mjs
+    ui:bundle:
+      description: Build workspace modules and bundle framework test fixtures.
+      steps:
+        - pnpm --silent run js:build
+        - node tool/ui_bundle.mjs
+    ui:test:
+      description: Run real framework tests using prepared Hermes native assets.
+      run: dart run tool/ui_test.dart
+    example:run:
+      description:
+        Bundle and run the macOS embedded example using prepared native assets.
+      run: dart run tool/example_run.dart
+    standalone:run:
+      description: Bundle and run the standalone macOS application with prepared assets.
+      run: dart run tool/standalone_run.dart
+    check:standalone:
+      description:
+        Verify standalone source consumption and relocated release UI with prepared
+        assets.
+      run: dart run tool/check_standalone.dart
+    check:ui:
+      description:
+        Verify the runtime, Flutter widgets, macOS integration, and release app.
+      run: dart run tool/check_ui.dart
+    check:
+      description: Run static workspace checks without fetching or building an engine.
+      steps:
+        - dart run melos run host:check
+        - dart run tool/package.dart bindings --check
+        - dart run melos run example:bundle
+        - node tool/ui_bundle.mjs
+        - dart run melos run js:test
+        - dart test tool/test
+        - dart run tool/package.dart tests
+        - dart run melos run bench:engines:test
         - dart run melos run analyze
         - dart run melos run format:check
         - dart run melos run js:typecheck
-        - dart run melos run js:build
         - dart run melos run docs:check
+        - dart run melos run packages:check
         - dart run melos run native:configure

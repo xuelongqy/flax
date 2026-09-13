@@ -1,0 +1,95 @@
+import 'dart:io';
+import 'dart:typed_data';
+
+import 'package:flax/runtime.dart';
+import 'package:{{enginePackage}}/{{enginePackage}}.dart';
+
+void main() {
+  final runtime = {{engineClass}}.createRuntime();
+  try {
+    final bytes = runtime.createArrayBuffer(Uint8List.fromList([0, 255, 42]));
+    final copied = runtime.readBytes(bytes);
+    final transfer = runtime.evaluate(
+      '(b) => { const v = new Uint8Array(b); Object.freeze(b); const moved = b.transfer(); if (v.byteLength !== 0) throw Error("Attached view"); return moved; }',
+    ) as FlaxJsFunction;
+    final moved = transfer.call([bytes]) as FlaxJsObject;
+    if (runtime.readBytes(moved).join(',') != '0,255,42') {
+      throw StateError('Frozen bridge buffer transfer failed');
+    }
+    moved.release();
+    transfer.release();
+    bytes.release();
+    if (copied.join(',') != '0,255,42') {
+      throw StateError('Bulk byte copy failed');
+    }
+    final detached = runtime.evaluate(
+      '(() => {const b = new ArrayBuffer(2);const v = new Uint8Array(b);b.transfer();return b.byteLength + v.byteLength;})()',
+    ) as FlaxJsNumber;
+    if (detached.value != 0) throw StateError('Transfer did not detach');
+    final captured = runtime.evaluate('''
+(() => {
+  const callbacks = [];
+  for (const value of [1, 2]) callbacks.push(() => value);
+  return callbacks.map(fn => fn()).join(',');
+})()
+''') as FlaxJsString;
+    if (captured.value != '1,2') {
+      throw StateError('Loop closures lost their per-iteration bindings');
+    }
+    runtime.registerHostFunction(
+      'doubleFromDart',
+      (_, arguments) =>
+          FlaxJsNumber((arguments.single as FlaxJsNumber).value * 2),
+    );
+    final result = runtime.evaluate('doubleFromDart(21)') as FlaxJsNumber;
+    if (result.value != 42) throw StateError('Synchronous callback failed');
+    runtime.evaluate(
+      'globalThis.answer = 0; Promise.resolve().then(() => answer = doubleFromDart(21))',
+    );
+    if ((runtime.getGlobal('answer') as FlaxJsNumber).value != 0) {
+      throw StateError('Unexpected microtask checkpoint');
+    }
+    runtime.drainMicrotasks();
+    if ((runtime.getGlobal('answer') as FlaxJsNumber).value != 42) {
+      throw StateError('Promise checkpoint failed');
+    }
+    runtime.registerHostFunction('echo', (_, args) => args.single);
+    final echo = runtime.getGlobal('echo') as FlaxJsFunction;
+    final object = runtime.evaluate('({})') as FlaxJsObject;
+    runtime.evaluate(
+      "globalThis.eval = () => { throw new Error('eval accessed'); }",
+    );
+    try {
+      final text = String.fromCharCodes([0x4e2d, 0, 0xd800]);
+      object.setProperty(text, FlaxJsString(text));
+      if ((object.getProperty(text) as FlaxJsString).value != text ||
+          (echo.call([FlaxJsString(text)]) as FlaxJsString).value != text) {
+        throw StateError('UTF-16 relied on mutable eval');
+      }
+    } finally {
+      echo.release();
+      object.release();
+    }
+    final spoofed = runtime.evaluate('''
+      (() => {
+        const buffer = new ArrayBuffer(0); buffer.transfer();
+        Object.defineProperty(buffer, 'detached', {value: false});
+        return buffer;
+      })()
+    ''') as FlaxJsObject;
+    try {
+      var rejected = false;
+      try {
+        runtime.readBytes(spoofed);
+      } on ArgumentError {
+        rejected = true;
+      }
+      if (!rejected) throw StateError('Spoofed detached buffer was accepted');
+    } finally {
+      spoofed.release();
+    }
+  } finally {
+    runtime.dispose();
+  }
+  stdout.writeln('Flax standalone runtime passed.');
+}

@@ -1,0 +1,12 @@
+format: 1
+dart:
+  entrypoint: package:example/example.dart
+javascript:
+  package: '@flax/example'
+  version: same
+  mode: runtime
+capabilities:
+  - bindings
+registration:
+  bindings:
+    - exampleBindings

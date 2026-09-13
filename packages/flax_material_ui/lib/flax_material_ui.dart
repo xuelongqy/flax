@@ -1,4 +1,4 @@
-/// Material UI binding scaffold for Flax.
-///
-/// No public runtime API is implemented yet.
+/// Generated bindings for the supported standalone Material UI subset.
 library;
+
+export 'src/generated/material_bindings.g.dart';

@@ -1,0 +1,13 @@
+format: 1
+dart:
+  entrypoint: package:your_package/your_package.dart
+javascript:
+  package: '@your-scope/your-package'
+  version: same
+  mode: runtime
+capabilities:
+  - bindings
+bindingNamespace: vendor.example
+registration:
+  bindings:
+    - yourBindings

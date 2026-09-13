@@ -1,0 +1,29 @@
+format: 1
+name: components
+library: package:flutter/widgets.dart
+jsPackage: '@flax/core/flutter'
+dartOutput: lib/src/generated/state_callbacks.dart
+tsOutput: js/src/flutter/generated/state_callbacks.ts
+classes:
+  StatefulWidget:
+    kind: object
+  State:
+    kind: object
+    proxy: host
+    typeArguments: [StatefulWidget]
+    proxyOverrides:
+      - initState
+      - didChangeDependencies
+      - didUpdateWidget
+      - deactivate
+      - activate
+      - dispose
+      - reassemble
+    proxySuper:
+      - initState
+      - didChangeDependencies
+      - didUpdateWidget
+      - deactivate
+      - activate
+      - dispose
+      - reassemble

@@ -5,18 +5,22 @@ node_modules/
 .pnpm-store/
 .cache/
 .local/
+.hermes/
 
 # Build outputs
 build/
 dist/
 coverage/
 *.tsbuildinfo
+*.tgz
+packages/flax_engine_hermes/native/generated/
 .flutter-plugins
 .flutter-plugins-dependencies
 
 # Local editor and OS state
 .DS_Store
 .idea/
+.vscode/
 *.iml
 *.swp
 *.swo
@@ -27,3 +31,11 @@ coverage/
 !.env.example
 
 # Workspace lockfiles are intentionally tracked.
+
+# Prepared example bundles
+examples/*/assets/*.js
+examples/*/assets/*.js.map
+packages/*/example/assets/*.js
+packages/*/example/assets/*.js.map
+
+packages/flax_engine_v8/native/generated/

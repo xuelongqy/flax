@@ -1,0 +1,5 @@
+format: null
+dart:
+  entrypoint: package:example/example.dart
+capabilities:
+  - codegen

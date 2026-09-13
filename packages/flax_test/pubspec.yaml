@@ -1,0 +1,17 @@
+name: flax_test
+description: Shared test support for Flax packages and runtime engines.
+version: 0.0.0
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ^3.13.2
+  flutter: '>=3.47.2'
+
+dependencies:
+  flax: 0.0.0
+  flutter:
+    sdk: flutter
+  flutter_test:
+    sdk: flutter
+  test: 1.31.1

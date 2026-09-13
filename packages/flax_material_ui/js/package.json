@@ -1,0 +1,26 @@
+{
+  "name": "@flax/material-ui",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Generated standalone Material UI bindings for Flax.",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist/index.*",
+    "dist/generated",
+    "README.md"
+  ],
+  "scripts": {
+    "typecheck": "tsc --project tsconfig.npm.json --noEmit",
+    "build": "node --eval \"import { rmSync } from 'node:fs'; rmSync('dist', { recursive: true, force: true })\" && tsc --project tsconfig.npm.json",
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@flax/core": "workspace:*"
+  }
+}

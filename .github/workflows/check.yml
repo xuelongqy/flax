@@ -1,4 +1,4 @@
-name: Scaffold checks
+name: Workspace checks
 
 on:
   pull_request:
@@ -43,7 +43,7 @@ jobs:
           flutter pub get --enforce-lockfile
           pnpm install --frozen-lockfile
 
-      - name: Check the workspace and build JS packages
+      - name: Check workspace, generated constructors, and JS bundles
         run: dart run melos run check
 
       - name: Verify source files are unchanged

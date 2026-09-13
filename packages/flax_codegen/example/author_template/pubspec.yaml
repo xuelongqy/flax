@@ -1,0 +1,16 @@
+name: your_package
+description: Third-party Flax binding package skeleton (author template).
+version: 0.0.0
+publish_to: none
+
+environment:
+  sdk: ^3.13.2
+  flutter: '>=3.47.2'
+
+dependencies:
+  flax: 0.0.0 # replace with path / git / packed archive
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flax_codegen: 0.0.0 # replace with path / git / packed archive

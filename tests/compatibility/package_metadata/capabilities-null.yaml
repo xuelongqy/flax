@@ -1,0 +1,4 @@
+format: 1
+dart:
+  entrypoint: package:example/example.dart
+capabilities: null

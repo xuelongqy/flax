@@ -1,4 +1,10 @@
 packages:
-  - js/*
+  - packages/*/js
+  - packages/*/example/js
+  - examples/*/js
+
+allowBuilds:
+  esbuild: true
+  core-js-pure: false
 
 engineStrict: true

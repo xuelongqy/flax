@@ -1,0 +1,30 @@
+name: flax_embedded
+description: A macOS host embedding independent Flax interfaces.
+version: 0.0.0
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ^3.13.2
+  flutter: '>=3.47.2'
+
+dependencies:
+  flax: 0.0.0
+  flax_local_storage: 0.0.0
+  flax_canvas: 0.0.0
+  flax_engine_hermes: 0.0.0
+  flax_material_ui: 0.0.0
+  flutter:
+    sdk: flutter
+  material_ui: 1.1.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/

@@ -1,9 +1,13 @@
 # Benchmarks
 
-No runtime benchmark is implemented or executed by this scaffold.
+The [engine suite](engines/README.md) compares prepared Hermes and V8 assets through an
+independent Dart AOT consumer. It separates source loading, JS execution, Flax bridge
+workloads, signals, descriptor construction, process RSS, and library size.
 
-Future measurements should distinguish engine creation, SDK loading, bridge calls,
-single and batched updates, Flutter layout/paint, memory, and teardown. Record device,
-toolchain, engine revision, methodology, and limitations.
+Use `dart run melos run bench:engines:smoke` to verify workloads and reports, or
+`dart run melos run bench:engines` for ten independent process samples per engine, case,
+and size. Neither command downloads or builds engines. See the suite README for
+prerequisites, timing boundaries, and result interpretation.
 
-Empty-package builds and configuration checks are not performance evidence.
+Flutter layout, painting, and frame timings remain separate end-to-end measurements in
+the standalone application verification. They are not pure JS engine results.

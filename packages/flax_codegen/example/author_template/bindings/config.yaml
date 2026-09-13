@@ -1,0 +1,15 @@
+format: 1
+name: example
+library: package:your_package/api.dart
+jsPackage: '@your-scope/your-package'
+dartOutput: lib/src/generated/your_bindings.g.dart
+tsOutput: js/src/generated/bindings.ts
+classes:
+  Gauge:
+    kind: object
+    constructors:
+      '': [value]
+    getters: [value]
+    setters: [value]
+    instanceMethods:
+      increment: [by]

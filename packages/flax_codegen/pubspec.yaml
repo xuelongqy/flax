@@ -1,8 +1,21 @@
 name: flax_codegen
-description: Dart API binding generator scaffold for Flax.
+description: Public Dart API analysis and Dart/TypeScript binding generation for Flax.
 version: 0.0.0
 publish_to: none
 resolution: workspace
 
 environment:
-  sdk: ^3.13.0
+  sdk: ^3.13.2
+
+dependencies:
+  analyzer: 13.3.0
+  path: 1.9.1
+  yaml: 3.1.4
+
+dev_dependencies:
+  flax: 0.0.0
+  flutter:
+    sdk: flutter
+  flutter_test:
+    sdk: flutter
+  test: 1.31.1

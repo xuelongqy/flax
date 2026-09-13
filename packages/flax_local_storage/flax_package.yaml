@@ -1,0 +1,12 @@
+format: 1
+dart:
+  entrypoint: package:flax_local_storage/flax_local_storage.dart
+javascript:
+  package: '@flax/local-storage'
+  version: same
+  mode: declarations
+capabilities:
+  - host-plugin
+registration:
+  plugins:
+    - FlaxLocalStoragePlugin

@@ -1,0 +1,13 @@
+format: 1
+dart:
+  entrypoint: package:flax_material_ui/flax_material_ui.dart
+javascript:
+  package: '@flax/material-ui'
+  version: same
+  mode: runtime
+capabilities:
+  - bindings
+bindingNamespace: flax.material
+registration:
+  bindings:
+    - materialBindings

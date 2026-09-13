@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true
+  },
+  "files": [
+    "src/host/bootstrap.ts",
+    "src/host/vendor.d.ts",
+    "src/host/encoding-types.d.ts"
+  ]
+}

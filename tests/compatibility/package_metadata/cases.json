@@ -1,0 +1,523 @@
+{
+  "cases": [
+    {
+      "id": "valid-bindings",
+      "file": "valid-bindings.yaml",
+      "pubspec": { "name": "example", "version": "0.0.0" },
+      "npmManifest": { "name": "@flax/example", "version": "0.0.0" },
+      "toolingOutcome": {
+        "valid": true,
+        "projection": {
+          "format": 1,
+          "capabilities": ["bindings"],
+          "bindingNamespace": "com.acme.flax.widgets"
+        }
+      },
+      "codegenProjectionOutcome": {
+        "valid": true,
+        "projection": {
+          "format": 1,
+          "capabilities": ["bindings"],
+          "bindingNamespace": "com.acme.flax.widgets"
+        }
+      }
+    },
+    {
+      "id": "valid-nonbindings",
+      "file": "valid-nonbindings.yaml",
+      "pubspec": { "name": "example", "version": "0.0.0" },
+      "npmManifest": null,
+      "toolingOutcome": {
+        "valid": true,
+        "projection": {
+          "format": 1,
+          "capabilities": ["codegen"],
+          "bindingNamespace": null
+        }
+      },
+      "codegenProjectionOutcome": {
+        "valid": true,
+        "projection": {
+          "format": 1,
+          "capabilities": ["codegen"],
+          "bindingNamespace": null
+        }
+      }
+    },
+    {
+      "id": "valid-canvas-host-plugin",
+      "file": "valid-canvas-host-plugin.yaml",
+      "pubspec": { "name": "example", "version": "0.0.0" },
+      "npmManifest": { "name": "@flax/example", "version": "0.0.0" },
+      "toolingOutcome": {
+        "valid": true,
+        "projection": {
+          "format": 1,
+          "capabilities": ["bindings", "host-plugin"],
+          "bindingNamespace": "flax.canvas"
+        }
+      },
+      "codegenProjectionOutcome": {
+        "valid": true,
+        "projection": {
+          "format": 1,
+          "capabilities": ["bindings", "host-plugin"],
+          "bindingNamespace": "flax.canvas"
+        }
+      }
+    },
+    {
+      "id": "missing-namespace",
+      "file": "missing-namespace.yaml",
+      "pubspec": { "name": "example", "version": "0.0.0" },
+      "npmManifest": { "name": "@flax/example", "version": "0.0.0" },
+      "toolingOutcome": {
+        "valid": false,
+        "diagnostics": [
+          {
+            "code": "FCG_INCOMPATIBLE_FIELDS",
+            "pointer": "/bindingNamespace",
+            "line": 1,
+            "column": 1,
+            "message": "capabilities bindings and bindingNamespace must match."
+          }
+        ]
+      },
+      "codegenProjectionOutcome": {
+        "valid": false,
+        "diagnostics": [
+          {
+            "code": "FCG_INCOMPATIBLE_FIELDS",
+            "pointer": "/bindingNamespace",
+            "line": 1,
+            "column": 1,
+            "message": "capabilities bindings and bindingNamespace must match."
+          }
+        ]
+      }
+    },
+    {
+      "id": "unexpected-namespace",
+      "file": "unexpected-namespace.yaml",
+      "pubspec": { "name": "example", "version": "0.0.0" },
+      "npmManifest": null,
+      "toolingOutcome": {
+        "valid": false,
+        "diagnostics": [
+          {
+            "code": "FCG_INCOMPATIBLE_FIELDS",
+            "pointer": "/bindingNamespace",
+            "line": 6,
+            "column": 19,
+            "message": "capabilities bindings and bindingNamespace must match."
+          }
+        ]
+      },
+      "codegenProjectionOutcome": {
+        "valid": false,
+        "diagnostics": [
+          {
+            "code": "FCG_INCOMPATIBLE_FIELDS",
+            "pointer": "/bindingNamespace",
+            "line": 6,
+            "column": 19,
+            "message": "capabilities bindings and bindingNamespace must match."
+          }
+        ]
+      }
+    },
+    {
+      "id": "invalid-namespace",
+      "file": "invalid-namespace.yaml",
+      "pubspec": { "name": "example", "version": "0.0.0" },
+      "npmManifest": { "name": "@flax/example", "version": "0.0.0" },
+      "toolingOutcome": {
+        "valid": false,
+        "diagnostics": [
+          {
+            "code": "FCG_INVALID_VALUE",
+            "pointer": "/bindingNamespace",
+            "line": 10,
+            "column": 19,
+            "message": "Invalid bindingNamespace."
+          }
+        ]
+      },
+      "codegenProjectionOutcome": {
+        "valid": false,
+        "diagnostics": [
+          {
+            "code": "FCG_INVALID_VALUE",
+            "pointer": "/bindingNamespace",
+            "line": 10,
+            "column": 19,
+            "message": "Invalid bindingNamespace."
+          }
+        ]
+      }
+    },
+    {
+      "id": "invalid-format",
+      "file": "invalid-format.yaml",
+      "pubspec": { "name": "example", "version": "0.0.0" },
+      "npmManifest": null,
+      "toolingOutcome": {
+        "valid": false,
+        "diagnostics": [
+          {
+            "code": "FCG_INVALID_VALUE",
+            "pointer": "/format",
+            "line": 1,
+            "column": 9,
+            "message": "Expected 1."
+          }
+        ]
+      },
+      "codegenProjectionOutcome": {
+        "valid": false,
+        "diagnostics": [
+          {
+            "code": "FCG_INVALID_VALUE",
+            "pointer": "/format",
+            "line": 1,
+            "column": 9,
+            "message": "Expected 1."
+          }
+        ]
+      }
+    },
+    {
+      "id": "invalid-capabilities-type",
+      "file": "invalid-capabilities-type.yaml",
+      "pubspec": { "name": "example", "version": "0.0.0" },
+      "npmManifest": null,
+      "toolingOutcome": {
+        "valid": false,
+        "diagnostics": [
+          {
+            "code": "FCG_TYPE_MISMATCH",
+            "pointer": "/capabilities",
+            "line": 4,
+            "column": 15,
+            "message": "Expected a list of strings."
+          }
+        ]
+      },
+      "codegenProjectionOutcome": {
+        "valid": false,
+        "diagnostics": [
+          {
+            "code": "FCG_TYPE_MISMATCH",
+            "pointer": "/capabilities",
+            "line": 4,
+            "column": 15,
+            "message": "Expected a list of strings."
+          }
+        ]
+      }
+    },
+    {
+      "id": "duplicate-capability",
+      "file": "duplicate-capability.yaml",
+      "pubspec": { "name": "example", "version": "0.0.0" },
+      "npmManifest": null,
+      "toolingOutcome": {
+        "valid": false,
+        "diagnostics": [
+          {
+            "code": "FCG_DUPLICATE_VALUE",
+            "pointer": "/capabilities/1",
+            "line": 6,
+            "column": 5,
+            "message": "Duplicate value."
+          }
+        ]
+      },
+      "codegenProjectionOutcome": {
+        "valid": false,
+        "diagnostics": [
+          {
+            "code": "FCG_DUPLICATE_VALUE",
+            "pointer": "/capabilities/1",
+            "line": 6,
+            "column": 5,
+            "message": "Duplicate value."
+          }
+        ]
+      }
+    },
+    {
+      "id": "duplicate-key",
+      "file": "duplicate-key.yaml",
+      "pubspec": { "name": "example", "version": "0.0.0" },
+      "npmManifest": null,
+      "toolingOutcome": {
+        "valid": false,
+        "diagnostics": [
+          {
+            "code": "FCG_DUPLICATE_KEY",
+            "pointer": "",
+            "line": 6,
+            "column": 1,
+            "message": "Duplicate mapping key."
+          }
+        ]
+      },
+      "codegenProjectionOutcome": {
+        "valid": false,
+        "diagnostics": [
+          {
+            "code": "FCG_DUPLICATE_KEY",
+            "pointer": "",
+            "line": 6,
+            "column": 1,
+            "message": "Duplicate mapping key."
+          }
+        ]
+      }
+    },
+    {
+      "id": "missing-format",
+      "file": "missing-format.yaml",
+      "pubspec": { "name": "example", "version": "0.0.0" },
+      "npmManifest": null,
+      "toolingOutcome": {
+        "valid": false,
+        "diagnostics": [
+          {
+            "code": "FCG_MISSING_FIELD",
+            "pointer": "/format",
+            "line": 1,
+            "column": 1,
+            "message": "Missing field."
+          }
+        ]
+      },
+      "codegenProjectionOutcome": {
+        "valid": false,
+        "diagnostics": [
+          {
+            "code": "FCG_MISSING_FIELD",
+            "pointer": "/format",
+            "line": 1,
+            "column": 1,
+            "message": "Missing field."
+          }
+        ]
+      }
+    },
+    {
+      "id": "missing-capabilities",
+      "file": "missing-capabilities.yaml",
+      "pubspec": { "name": "example", "version": "0.0.0" },
+      "npmManifest": null,
+      "toolingOutcome": {
+        "valid": false,
+        "diagnostics": [
+          {
+            "code": "FCG_MISSING_FIELD",
+            "pointer": "/capabilities",
+            "line": 1,
+            "column": 1,
+            "message": "Missing field."
+          }
+        ]
+      },
+      "codegenProjectionOutcome": {
+        "valid": false,
+        "diagnostics": [
+          {
+            "code": "FCG_MISSING_FIELD",
+            "pointer": "/capabilities",
+            "line": 1,
+            "column": 1,
+            "message": "Missing field."
+          }
+        ]
+      }
+    },
+    {
+      "id": "format-null",
+      "file": "format-null.yaml",
+      "pubspec": { "name": "example", "version": "0.0.0" },
+      "npmManifest": null,
+      "toolingOutcome": {
+        "valid": false,
+        "diagnostics": [
+          {
+            "code": "FCG_TYPE_MISMATCH",
+            "pointer": "/format",
+            "line": 1,
+            "column": 9,
+            "message": "Expected an integer."
+          }
+        ]
+      },
+      "codegenProjectionOutcome": {
+        "valid": false,
+        "diagnostics": [
+          {
+            "code": "FCG_TYPE_MISMATCH",
+            "pointer": "/format",
+            "line": 1,
+            "column": 9,
+            "message": "Expected an integer."
+          }
+        ]
+      }
+    },
+    {
+      "id": "capabilities-null",
+      "file": "capabilities-null.yaml",
+      "pubspec": { "name": "example", "version": "0.0.0" },
+      "npmManifest": null,
+      "toolingOutcome": {
+        "valid": false,
+        "diagnostics": [
+          {
+            "code": "FCG_TYPE_MISMATCH",
+            "pointer": "/capabilities",
+            "line": 4,
+            "column": 15,
+            "message": "Expected a list of strings."
+          }
+        ]
+      },
+      "codegenProjectionOutcome": {
+        "valid": false,
+        "diagnostics": [
+          {
+            "code": "FCG_TYPE_MISMATCH",
+            "pointer": "/capabilities",
+            "line": 4,
+            "column": 15,
+            "message": "Expected a list of strings."
+          }
+        ]
+      }
+    },
+    {
+      "id": "bindingNamespace-null",
+      "file": "bindingNamespace-null.yaml",
+      "pubspec": { "name": "example", "version": "0.0.0" },
+      "npmManifest": null,
+      "toolingOutcome": {
+        "valid": false,
+        "diagnostics": [
+          {
+            "code": "FCG_TYPE_MISMATCH",
+            "pointer": "/bindingNamespace",
+            "line": 6,
+            "column": 19,
+            "message": "Expected a string."
+          }
+        ]
+      },
+      "codegenProjectionOutcome": {
+        "valid": false,
+        "diagnostics": [
+          {
+            "code": "FCG_TYPE_MISMATCH",
+            "pointer": "/bindingNamespace",
+            "line": 6,
+            "column": 19,
+            "message": "Expected a string."
+          }
+        ]
+      }
+    },
+    {
+      "id": "yaml-syntax",
+      "file": "yaml-syntax.yaml",
+      "pubspec": { "name": "example", "version": "0.0.0" },
+      "npmManifest": null,
+      "toolingOutcome": {
+        "valid": false,
+        "diagnostics": [
+          {
+            "code": "FCG_YAML_SYNTAX",
+            "pointer": "",
+            "line": 2,
+            "column": 1,
+            "message": "Expected node content."
+          }
+        ]
+      },
+      "codegenProjectionOutcome": {
+        "valid": false,
+        "diagnostics": [
+          {
+            "code": "FCG_YAML_SYNTAX",
+            "pointer": "",
+            "line": 2,
+            "column": 1,
+            "message": "Expected node content."
+          }
+        ]
+      }
+    },
+    {
+      "id": "tooling-invalid-dart",
+      "file": "tooling-invalid-dart.yaml",
+      "pubspec": { "name": "example", "version": "0.0.0" },
+      "npmManifest": null,
+      "toolingOutcome": {
+        "valid": false,
+        "exception": {
+          "type": "FormatException",
+          "message": "dart.entrypoint must belong to example"
+        }
+      },
+      "codegenProjectionOutcome": {
+        "valid": true,
+        "projection": {
+          "format": 1,
+          "capabilities": ["codegen"],
+          "bindingNamespace": null
+        }
+      }
+    },
+    {
+      "id": "tooling-invalid-javascript",
+      "file": "tooling-invalid-javascript.yaml",
+      "pubspec": { "name": "example", "version": "0.0.0" },
+      "npmManifest": { "name": "@flax/example", "version": "0.0.0" },
+      "toolingOutcome": {
+        "valid": false,
+        "exception": {
+          "type": "FormatException",
+          "message": "Invalid javascript.mode: types"
+        }
+      },
+      "codegenProjectionOutcome": {
+        "valid": true,
+        "projection": {
+          "format": 1,
+          "capabilities": ["codegen"],
+          "bindingNamespace": null
+        }
+      }
+    },
+    {
+      "id": "tooling-invalid-registration",
+      "file": "tooling-invalid-registration.yaml",
+      "pubspec": { "name": "example", "version": "0.0.0" },
+      "npmManifest": null,
+      "toolingOutcome": {
+        "valid": false,
+        "exception": {
+          "type": "FormatException",
+          "message": "registration.bindings requires the bindings capability"
+        }
+      },
+      "codegenProjectionOutcome": {
+        "valid": true,
+        "projection": {
+          "format": 1,
+          "capabilities": ["codegen"],
+          "bindingNamespace": null
+        }
+      }
+    }
+  ]
+}

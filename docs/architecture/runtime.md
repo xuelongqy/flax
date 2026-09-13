@@ -1,74 +1,129 @@
 # Runtime Design
 
-Status: intended architecture; no runtime behavior is implemented.
+## Implemented scope
 
-## Product direction
+The experimental runtime supports macOS arm64, targeting macOS 15 or newer. It executes
+JavaScript synchronously through Dart FFI, a versioned C ABI, JSI, and Hermes or V8.
+This is the engine layer used by the [Flutter application host](ui.md), not broad
+platform certification.
 
-JavaScript describes interfaces, state, and interactions while Dart and Flutter own
-widgets, layout, painting, animation, and native controllers. Flax does not introduce an
-HTML/CSS/DOM rendering layer or require React or Vue.
+Public Dart interfaces live in `package:flax/runtime.dart`. Engine authors use the
+separate `package:flax/native_runtime.dart` extension entry. The Hermes package returns
+`FlaxJsRuntime` through `FlaxHermesEngine.createRuntime()`. The optional V8 package
+exposes `FlaxV8Engine.createRuntime()` with the same return type and unchanged ABI. V8
+is pinned to 15.2.124.21, requires JIT, and uses the existing JSI revision. See
+[adapter configuration and lifetime](../../packages/flax_engine_v8/native/README.md).
 
-Flet informed the initial investigation. Flax is intended to use generated JS bindings
-and a local runtime integration, not Flet's Python runtime or transport.
+## Source compilation
 
-## Engines and host environment
+The Hermes adapter explicitly enables ES6 block scoping, which is disabled by default in
+the pinned upstream runtime. Loop closures retain their per-iteration `let` and `const`
+bindings; `var` retains its shared function-scoped behavior. The setting also applies to
+source compiled through `eval` and the `Function` constructor.
 
-JSI is the intended engine-facing abstraction. A C ABI separates the C++ runtime from
-Dart FFI. Engine initialization, bytecode, debugging, and distribution remain
-engine-specific concerns.
+Tests cover direct source execution, ES2019 IIFE bundles, deferred callbacks, accessors,
+and outside-repository loading. They are focused regressions, not a complete ECMAScript
+conformance suite. Compilation settings belong to the engine adapter; application JS
+does not need loop rewriting or a Flax compatibility flag.
 
-Hermes, QuickJS-NG, and V8 are candidates. A default engine and supported platform
-matrix remain undecided. JSI compatibility does not establish identical language
-features, performance, or platform support.
+## Values and references
 
-Timers, networking, module loading, and other host services need explicit ownership.
-They are not supplied merely by embedding an engine. Browser-based Flutter Web interop
-is a separate future path.
+`FlaxJsUndefined`, `FlaxJsNull`, `FlaxJsBoolean`, `FlaxJsNumber`, and `FlaxJsString` are
+Dart value objects. Numbers preserve JS double semantics, including NaN and negative
+zero. String values and property names use UTF-16, preserving empty strings, embedded
+NULs, and unpaired surrogates. Source text, source URLs, and exception text use UTF-8.
+V8 creates and reads UTF-16 through native adapter operations, including property names;
+conversion does not invoke or inspect the application's global `eval`.
 
-## Scheduling and callbacks
+`FlaxJsObject` and `FlaxJsFunction` hold references into exactly one runtime. Objects
+stay in the selected engine; they are not serialized through JSON. Properties, function
+arguments, explicit receivers, identity comparison, and retained references use the same
+native value table. Cross-runtime arguments and released references fail before further
+native use.
 
-The runtime must serialize engine access and respect Dart isolate callback constraints.
-A synchronous Flutter builder must invoke JS and return to the correct UI isolate
-execution path. FFI availability alone does not establish safe synchronous reentry.
+Native IDs reserve their high eight bits for an engine namespace (Hermes 1, V8 2), with
+a library-wide monotonic 56-bit sequence. The sequence never resets on runtime
+destruction and permanently rejects allocation on exhaustion. Direct C ABI calls reject
+foreign IDs as well as the Dart wrapper; an invalid release cannot release a same-number
+object in another engine. IDs remain opaque and process-local.
 
-The timing of events, microtasks, signal flushes, and Flutter frame updates must be
-defined and tested across engines before an API is promised.
+References returned to Dart are owned and require `release()`. `retain()` creates an
+independent owned reference. Callback arguments and receivers are borrowed until that
+callback returns; retain them explicitly before storing them. Returning a reference from
+a callback preserves the caller's ownership. Releasing a wrapper does not destroy an
+object that JS or another reference still holds. Runtime disposal releases remaining
+owned references. There is no automatic GC-based runtime disposal.
 
-## Signals and Flutter dependencies
+Symbol and BigInt conversion, property enumeration, symbol keys, and dedicated buffer
+views are not implemented. Arrays and other objects can be retained as ordinary object
+references; there is no automatic collection conversion.
 
-The design favors explicit signal binding descriptors. Reading a signal value produces a
-snapshot; consuming a binding descriptor subscribes the relevant component property.
-Computed expressions use explicit bindings.
+## Calls, scheduling, and errors
 
-Signals will schedule updates to the corresponding Dart host State or Element. Flutter
-widgets remain immutable. Local rebuilds can still cause wider layout or paint work.
+One Dart isolate owns a runtime. The runtime cannot be sent to another isolate. Every
+engine operation starts synchronously from that isolate, without a JS worker thread.
+Native code rejects parallel access and allows same-stack reentry. This does not promise
+a permanently fixed operating-system thread for the Dart isolate.
 
-JS reactive dependencies and Flutter inherited dependencies are distinct. A Theme lookup
-made with the actual context during a synchronous builder should register the normal
-Flutter dependency and does not require an additional signal binding solely for theme
-changes.
+Dart host functions use `NativeCallable.isolateLocal`. Calls that can reach them are
+non-leaf FFI calls. A callback returns on the current stack and may call JS again,
+including nested `Dart -> JS -> Dart -> JS` sequences. Native threads must never invoke
+these callbacks independently of the owning Dart FFI call.
 
-No signal classes, binding functions, or component constructors are exported yet.
+Each C call receives its own error result. C++ exceptions are caught at the ABI;
+`FlaxJsException` carries the JS message and stack when available. Dart callback
+exceptions become JS exceptions, so JS may catch them. Nested failures do not overwrite
+another call's error. Recoverable exceptions leave the runtime usable.
 
-## Context, controllers, and lifetime
+Promise jobs run only when the host calls `drainMicrotasks()`. They do not flush after
+evaluation or after each callback. Its return value indicates an empty queue;
+`maxJobsHint` is an engine hint, not a deadline or preemption guarantee. Draining during
+an active callback is rejected. Future/Promise mapping and unhandled-rejection reporting
+are not provided by this bare runtime API. FlaxSession supplies typed Future/Promise
+delivery for generated UI calls while keeping the runtime contract explicit.
 
-BuildContext is intended to be a borrowed handle to a real Flutter Element, valid within
-the appropriate builder execution. It is not an unrestricted long-lived JS value.
+## Shutdown
 
-Controllers are real Dart objects accessed through JS handles. The bridge will need
-synchronous calls, listeners, Future-to-Promise mapping, and error propagation with
-explicit ownership.
+`dispose()` is idempotent after successful completion. Disposal during evaluation or a
+host callback throws `StateError`; the active call remains valid. Shutdown rejects new
+entries, clears references, destroys the engine, and only then closes Dart callbacks.
+Methods on a disposed runtime and operations on expired references fail in Dart rather
+than dereferencing freed native memory. Releasing an already invalid reference is safe.
 
-Component teardown must release owned subscriptions, callbacks, and controllers.
-Borrowed host objects must not be disposed by the guest. JS garbage collection alone is
-insufficient for deterministic Flutter resource disposal. Runtime shutdown must prevent
-later callbacks from entering a destroyed instance.
+Registered callbacks are kept until runtime disposal. Replacing a global does not prove
+that JS released the old function. Even a failed registration may have exposed a
+function to a global setter before it threw, so its callback must stay alive.
+
+The C API is an experimental, process-local function table with a version and size
+check. Its native runtime pointer is invalid after successful destruction; direct ABI
+callers must obey this ownership contract. The Dart wrapper supplies idempotence and
+use-after-dispose guards. See [ADR 0002](../decisions/0002-experimental-runtime.md).
+
+## Flutter integration
+
+The separate [FlaxView host](ui.md) implements generated widgets, explicit signals,
+frame-coalesced property updates, and Flutter-owned subtree reconciliation. It imports
+this runtime through the public entry and does not extend the native ABI. Borrowed
+Context access and [owned Controller bindings](objects.md) are implemented in the UI
+layer, preserving real Flutter-owned inherited dependencies and resource lifecycles.
+
+Session timers and optional Fetch belong to the [host environment](host.md), not the
+bare runtime. ABI 2 adds copied ArrayBuffer creation and byte-range reads for actual
+TypedArray/DataView views; callers never retain native byte pointers. Detached state
+comes from the engine, not an object's mutable `detached` property. A detached buffer is
+rejected even when its length is zero; an ordinary empty buffer remains valid.
 
 ## Deferred concerns
 
-Instance isolation, capability boundaries, hot reload, inspector integration, and
-concrete cross-language interfaces remain open. JSI is not itself a mini-app security
-boundary.
+Modules, bytecode packaging, hot reload, inspector integration, execution limits,
+capability isolation, and other platforms remain future work. JSI alone is not a
+mini-app security boundary. Node, Python, Rust, and other backend integrations are
+deferred; the first host integration remains Dart/Flutter.
 
-Node, Python, Rust, and other backend integrations are deferred. The first host
-integration is Dart/Flutter.
+## Performance measurement
+
+The [independent engine benchmarks](../../benchmarks/engines/README.md) consume the same
+public runtime API from a Dart AOT host. Workload processes isolate engines, source
+loading, execution, bridge calls, lifecycle and RSS observations. Timing includes the
+stated Flax boundary; it is not an engine-internal profiler. Runtime correctness and
+Flutter frame measurements remain separate from these results.

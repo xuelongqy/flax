@@ -1,0 +1,13 @@
+/.dart_tool/
+/build/
+/example/
+/test/
+/integration_test/
+/js/
+bindings/*
+!bindings/manifest.json
+native/tests/
+native/*_test.cpp
+*.iml
+
+/tool/

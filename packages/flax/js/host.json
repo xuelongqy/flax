@@ -1,0 +1,6 @@
+{
+  "base": true,
+  "bridge": "__flaxBaseCall",
+  "symbol": "flaxBaseBootstrap",
+  "notices": ["core-js-pure", "@exodus/bytes", "web-streams-polyfill"]
+}

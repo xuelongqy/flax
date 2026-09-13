@@ -1,0 +1,16 @@
+format: 1
+name: canvas
+imports: [flax]
+library: package:flax_canvas/flax_canvas.dart
+jsPackage: '@flax/canvas'
+dartOutput: lib/src/generated/canvas_bindings.g.dart
+tsOutput: js/src/generated/bindings.ts
+classes:
+  FlaxCanvasSurface:
+    kind: object
+    getters: [width, height]
+    setters: [width, height]
+  FlaxCanvasView:
+    jsName: CanvasView
+    constructors:
+      '': [canvas, key, width, height]

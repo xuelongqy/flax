@@ -1,0 +1,139 @@
+name: macOS runtime and UI checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: runtime-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  hermes:
+    runs-on: macos-15
+    timeout-minutes: 120
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Verify host and build tools
+        run: |
+          test "$(uname -m)" = arm64
+          xcrun --find clang
+          command -v cmake || brew install cmake
+          command -v ninja || brew install ninja
+
+      - name: Set up Flutter and Dart
+        uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
+        with:
+          channel: stable
+          flutter-version-file: .fvmrc
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+          package-manager-cache: false
+
+      - name: Set up pnpm
+        run:
+          npm install --global "$(node -p 'require("./package.json").packageManager')"
+
+      - name: Install locked dependencies
+        run: |
+          flutter pub get --enforce-lockfile
+          pnpm install --frozen-lockfile
+
+      - name: Verify runtime, both applications, external consumers, and release UI
+        run: dart run melos run check:ui
+
+      - name: Verify source files are unchanged
+        run: |
+          git diff --exit-code
+          if [ -n "$(git status --porcelain)" ]; then
+            git status --short
+            exit 1
+          fi
+
+  v8:
+    runs-on: macos-26
+    timeout-minutes: 180
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Verify host and build tools
+        run: |
+          test "$(uname -m)" = arm64
+          xcrun --find clang
+          command -v cmake || brew install cmake
+          command -v ninja || brew install ninja
+
+      - name: Select pinned V8 host tools
+        run: |
+          sudo xcode-select --switch /Applications/Xcode_26.6.app/Contents/Developer
+          cmake --version
+          ninja --version
+
+      - name: Cache pinned V8 inputs and build outputs
+        uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4.2.4
+        with:
+          path: packages/flax_engine_v8/.cache/native
+          key:
+            v8-macos-arm64-${{ hashFiles('packages/flax_engine_v8/native/v8.json',
+            'packages/flax_engine_v8/native/v8-jsi.patch',
+            'packages/flax_engine_v8/tool/native.dart') }}
+
+      - name: Set up Flutter and Dart
+        uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
+        with:
+          channel: stable
+          flutter-version-file: .fvmrc
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+          package-manager-cache: false
+
+      - name: Set up pnpm
+        run:
+          npm install --global "$(node -p 'require("./package.json").packageManager')"
+
+      - name: Install locked dependencies
+        run: |
+          flutter pub get --enforce-lockfile
+          pnpm install --frozen-lockfile
+
+      - name: Verify runtime, both applications, external consumers, and release UI
+        run: |
+          dart run melos run native:build
+          dart run melos run check:ui:v8
+          dart run melos run check:engines
+
+      - name: Smoke-test independent engine benchmarks
+        run: dart run melos run bench:engines:smoke
+
+      - name: Upload benchmark evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: engine-benchmark-smoke
+          path: build/benchmarks/engines/smoke/
+          if-no-files-found: warn
+
+      - name: Verify source files are unchanged
+        run: |
+          git diff --exit-code
+          if [ -n "$(git status --porcelain)" ]; then
+            git status --short
+            exit 1
+          fi

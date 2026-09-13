@@ -1,0 +1,10 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "paths": {
+      "@exodus/bytes/encoding.js": ["./src/host/encoding-types.d.ts"]
+    }
+  }
+}

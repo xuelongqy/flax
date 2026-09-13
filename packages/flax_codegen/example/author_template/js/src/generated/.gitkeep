@@ -1,0 +1,3 @@
+// Generated TypeScript lands here after:
+//   dart run flax_codegen generate --config bindings/config.yaml
+export {};

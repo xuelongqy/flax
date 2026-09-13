@@ -1,0 +1,33 @@
+{
+  "name": "@flax/canvas",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Optional Canvas 2D types and CanvasView wrapper for Flax sessions.",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./globals": {
+      "types": "./dist/globals.d.ts",
+      "import": "./dist/globals.js"
+    }
+  },
+  "files": [
+    "dist/*.js",
+    "dist/*.js.map",
+    "dist/*.d.ts",
+    "dist/*.d.ts.map",
+    "dist/generated",
+    "README.md"
+  ],
+  "scripts": {
+    "typecheck": "tsc --project tsconfig.npm.json --noEmit && tsc --project tsconfig.host.json && tsc --project tsconfig.test.json",
+    "build": "node --eval \"import { rmSync } from 'node:fs'; rmSync('dist', { recursive: true, force: true })\" && tsc --project tsconfig.npm.json",
+    "test": "node --expose-gc --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@flax/core": "workspace:*"
+  }
+}

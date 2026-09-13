@@ -1,0 +1,34 @@
+{
+  "name": "@flax/fetch",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Optional standard Fetch environment for Flax sessions.",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./noop.js"
+    },
+    "./globals": {
+      "types": "./dist/globals.d.ts",
+      "import": "./noop.js"
+    }
+  },
+  "files": [
+    "dist/**/*.d.ts",
+    "dist/**/*.d.ts.map",
+    "noop.js",
+    "README.md"
+  ],
+  "scripts": {
+    "typecheck": "tsc --project tsconfig.npm.json --noEmit && tsc --project tsconfig.host.json && tsc --project tsconfig.test.json",
+    "build": "node --eval \"import { rmSync } from 'node:fs'; rmSync('dist', { recursive: true, force: true })\" && tsc --project tsconfig.npm.json --emitDeclarationOnly",
+    "test": "node --expose-gc --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@flax/core": "workspace:*"
+  },
+  "devDependencies": {
+    "axios": "1.20.0"
+  }
+}

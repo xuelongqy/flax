@@ -1,0 +1,33 @@
+name: flax_standalone
+description: A standalone Flutter application with its interface written in JavaScript.
+version: 0.0.0
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ^3.13.2
+  flutter: '>=3.47.2'
+
+dependencies:
+  flax: 0.0.0
+  flax_fetch: 0.0.0
+  flax_websocket: 0.0.0
+  flax_local_storage: 0.0.0
+  flax_canvas: 0.0.0
+  flax_engine_hermes: 0.0.0
+  flax_material_ui: 0.0.0
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_lints: 6.0.0
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+  material_ui: 1.1.1
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/

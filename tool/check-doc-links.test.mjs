@@ -72,6 +72,8 @@ test('ignores code examples, external URLs, build outputs, and local notes', asy
     'js/runtime/dist/README.md': '[Missing](missing.md)',
     'node_modules/vendor/README.md': '[Missing](missing.md)',
     'build/native/README.md': '[Missing](missing.md)',
+    'packages/example_engine/native/generated/notices/LICENSE.md':
+      '[Missing](missing.md)',
   });
   assert.deepEqual(await checkDocumentation(root), {
     documentCount: 1,
