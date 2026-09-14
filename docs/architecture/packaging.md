@@ -108,9 +108,9 @@ rejected; there is no long-term compatibility layer — see
 [ADR 0021](../decisions/0021-external-binding-version-domains.md), the
 [migration guide](../guides/external-binding-migration.md), and the
 [compatibility matrix](external-binding-compatibility.md)). It carries the lossless
-cross-package semantic model: identities, JS exports, type categories and
-relationships, selected members, conversion semantics, and per-module UI protocol /
-required capabilities. It does not copy selection YAML into dependent packages.
+cross-package semantic model: identities, JS exports, type categories and relationships,
+selected members, conversion semantics, and per-module UI protocol / required
+capabilities. It does not copy selection YAML into dependent packages.
 
 A configuration imports a Dart package by name:
 
@@ -189,7 +189,9 @@ domain-specific support remain with their feature package. Root runtime tests co
 cross-engine coexistence, isolation, and benchmarks.
 
 Every implemented runtime package has a package-local macOS example. It demonstrates
-that package, core, and the selected engine. The top-level
+that package, core, and the selected engine. UI and package checks treat an example as
+runnable only when `example/pubspec.yaml` exists; `flax_codegen/example/` is a copyable
+author template, not a Flutter application. The top-level
 [embedded](../../examples/embedded/README.md) and
 [standalone](../../examples/standalone/README.md) applications are aggregate consumers;
 they do not own framework contract tests.

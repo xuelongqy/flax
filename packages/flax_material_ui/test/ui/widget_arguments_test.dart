@@ -187,15 +187,16 @@ void main() {
         expect(h.number('counts.built'), builds);
         expect(find.text('Local'), findsOneWidget);
         expect(rebuilt.length, 1);
-        expect(rebuilt.single.node.definition.id, endsWith('::Text'));
+        expect(rebuilt.single.node.definition.id, endsWith('#type:Text'));
         rebuilt.clear();
         h.execute('first.notify(2); first.notify(3); first.notify(4)');
         await t.pumpAndSettle();
         expect(find.text('Value 4'), findsOneWidget);
         expect(
           rebuilt.where(
-            (host) =>
-                host.node.definition.id.endsWith('::ValueListenableBuilder'),
+            (host) => host.node.definition.id.endsWith(
+              '#type:ValueListenableBuilder',
+            ),
           ),
           isEmpty,
         );

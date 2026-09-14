@@ -348,7 +348,7 @@ void main() {
       }
       final binding = flutterBindings.types
           .whereType<FlaxObjectBinding>()
-          .singleWhere((b) => b.id.endsWith('::BoxDecoration'));
+          .singleWhere((b) => b.id.endsWith('#type:BoxDecoration'));
       const original = BoxDecoration(
         color: red,
         boxShadow: [BoxShadow(color: blue)],
@@ -495,8 +495,8 @@ void main() {
             [
               for (final type in module.types)
                 if (type is FlaxWidgetBinding &&
-                    (type.id.endsWith('::Container') ||
-                        type.id.endsWith('::SizedBox')))
+                    (type.id.endsWith('#type:Container') ||
+                        type.id.endsWith('#type:SizedBox')))
                   FlaxWidgetBinding(
                     type.id,
                     type.constructors,

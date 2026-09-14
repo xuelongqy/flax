@@ -20,6 +20,11 @@ final class FlaxWorkspacePackage {
   Directory get bindings => Directory(p.join(directory.path, 'bindings'));
   Directory get uiTests => Directory(p.join(directory.path, 'test', 'ui'));
 
+  /// A runnable Flutter example owns `example/pubspec.yaml`. Nested templates
+  /// under `example/` do not qualify.
+  bool get hasRunnableExample =>
+      File(p.join(example.path, 'pubspec.yaml')).existsSync();
+
   Map<String, dynamic> get pubspec =>
       readYamlFile(File(p.join(directory.path, 'pubspec.yaml')));
 

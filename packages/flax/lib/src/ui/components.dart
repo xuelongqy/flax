@@ -434,10 +434,7 @@ extension _ComponentCalls on _Session {
         if (v is FlaxJsNull) return null;
         final decoded = decode(
           v,
-          const FlaxTypeRef(
-            'object',
-            id: 'flax.core/flutter#type:Key',
-          ),
+          const FlaxTypeRef('object', id: 'flax.core/flutter#type:Key'),
         );
         try {
           return decoded.data as Key;

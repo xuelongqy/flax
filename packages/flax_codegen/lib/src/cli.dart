@@ -35,7 +35,8 @@ final class FlaxCodegenCliUsageException implements Exception {
 ///
 /// Rejects the legacy `[--check] <config>` form and any other shape.
 FlaxCodegenCliArgs parseFlaxCodegenCliArgs(List<String> arguments) {
-  if (arguments.contains('--check') || _looksLikeLegacyConfigInvocation(arguments)) {
+  if (arguments.contains('--check') ||
+      _looksLikeLegacyConfigInvocation(arguments)) {
     throw FlaxCodegenCliUsageException(
       'The old "[--check] <config>" form is not supported.\n'
       '$flaxCodegenCliUsage',

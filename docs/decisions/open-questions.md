@@ -1,12 +1,12 @@
 # Open Questions
 
-These decisions remain open after the Dart-reference, focus and formatter milestone.
-v1 binding metadata, Manifest 2 compatibility, stable wire identity, package-atomic
-config discovery, and trusted third-party package boundaries are accepted in
+These decisions remain open after the Dart-reference, focus and formatter milestone. v1
+binding metadata, Manifest 2 compatibility, stable wire identity, package-atomic config
+discovery, and trusted third-party package boundaries are accepted in
 [ADR 0021](0021-external-binding-version-domains.md),
 [ADR 0022](0022-stable-binding-identity.md), and
-[ADR 0023](0023-external-binding-package-trust.md). Native ABI 2 and UI protocol 20 remain
-the experimental runtime baseline. The rows below are post-v1 native ABI and
+[ADR 0023](0023-external-binding-package-trust.md). Native ABI 2 and UI protocol 20
+remain the experimental runtime baseline. The rows below are post-v1 native ABI and
 public-release policy questions, plus unrelated open topics.
 
 | Decision                                  | Evidence required before choosing                                                            |

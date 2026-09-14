@@ -1,8 +1,8 @@
 # Third-party binding package author template
 
 English guide for authors who ship a Flax binding package **outside** the Flax
-repository. Follow this layout, then run the three-command Codegen CLI against a
-direct YAML config.
+repository. Follow this layout, then run the three-command Codegen CLI against a direct
+YAML config.
 
 This template targets UI protocol **20**, Manifest format **2**, and strict YAML /
 package-metadata parsing. Native ABI 2 is unchanged and out of scope for binding
@@ -55,11 +55,9 @@ Rules:
   Codegen at `package:<name>/src/...` (Manifest 2 rejects private `src/` type library
   URIs).
 - Prefer a small `lib/api.dart` that exports only the selected API (not the generated
-  file) so the config library URI does not create an import cycle with generated
-  output.
+  file) so the config library URI does not create an import cycle with generated output.
 
-Copyable stubs live under
-[`example/author_template/`](../example/author_template/).
+Copyable stubs live under [`example/author_template/`](../example/author_template/).
 
 ## `flax_package.yaml` (format 1)
 
@@ -68,15 +66,15 @@ format: 1
 dart:
   entrypoint: package:your_package/your_package.dart
 javascript:
-  package: '@your-scope/your-package'   # product decision: npm name
+  package: '@your-scope/your-package' # product decision: npm name
   version: same
-  mode: runtime                         # or declarations for host-only npm shells
+  mode: runtime # or declarations for host-only npm shells
 capabilities:
   - bindings
-bindingNamespace: vendor.example        # must NOT collide with flax.*
+bindingNamespace: vendor.example # must NOT collide with flax.*
 registration:
   bindings:
-    - yourBindings                      # exported FlaxBindingModule constant name
+    - yourBindings # exported FlaxBindingModule constant name
 ```
 
 Requirements:
@@ -86,9 +84,8 @@ Requirements:
 - Packages **without** `bindings` must **omit** `bindingNamespace`.
 - Do not use official Flax namespaces (`flax.core`, `flax.material`, `flax.canvas`, …).
   Choose a DNS-like vendor namespace you control.
-- `registration.bindings` lists the Dart export names of generated
-  `FlaxBindingModule` values (documentation / tooling; registration is still
-  explicit in application code).
+- `registration.bindings` lists the Dart export names of generated `FlaxBindingModule`
+  values (documentation / tooling; registration is still explicit in application code).
 
 ## `bindings/*.yaml` (format 1)
 
@@ -113,15 +110,15 @@ classes:
 Notes:
 
 - `format: 1` must be the first field.
-- `name` becomes the module segment of `moduleId` =
-  `<bindingNamespace>/<name>` (example: `vendor.example/example`).
+- `name` becomes the module segment of `moduleId` = `<bindingNamespace>/<name>`
+  (example: `vendor.example/example`).
 - Default constructors use the empty key `''` under `constructors:`.
 - Instance methods use `instanceMethods:` (not `methods:`; `methods:` is static).
 - Ownership is derived from `classes` / `functions` / `callbackSnapshots` / `types`
-  selections. Signature-only types you do not own belong in `types:` (or as imports
-  from another package’s Manifest 2). There is no separate `owners:` YAML key.
-- Strict parsing rejects unknown fields, wrong types, and incompatible combinations
-  with stable diagnostic codes (`FCG_*`).
+  selections. Signature-only types you do not own belong in `types:` (or as imports from
+  another package’s Manifest 2). There is no separate `owners:` YAML key.
+- Strict parsing rejects unknown fields, wrong types, and incompatible combinations with
+  stable diagnostic codes (`FCG_*`).
 
 Depend on other binding packages with:
 
@@ -156,8 +153,8 @@ Dependencies for the CLI:
 - Selected Dart APIs must resolve through `.dart_tool/package_config.json` (run
   `dart pub get` / `flutter pub get` first).
 - Generated Dart currently imports `package:flax/bindings.dart`, so consumers that
-  compile generated output also need a `flax` dependency (Flutter SDK constraint
-  follows Core).
+  compile generated output also need a `flax` dependency (Flutter SDK constraint follows
+  Core).
 
 ## Explicit registration
 
@@ -175,11 +172,11 @@ final bindings = FlaxBindingRegistry([
 
 - Do not rely on automatic discovery from `flax_package.yaml`.
 - Generated modules must register/install with literal `moduleId`, `uiProtocol`, and
-  `requiredCapabilities` (no ambient Core version). Codegen emits those literals and
-  a JS install facade; do not read `flaxBindingVersion`. Wire IDs use
+  `requiredCapabilities` (no ambient Core version). Codegen emits those literals and a
+  JS install facade; do not read `flaxBindingVersion`. Wire IDs use
   `<bindingNamespace>/<module>#type:<Name>` form.
-- Host packages that return Dart objects to JS must pass the **wire id** string (not
-  the Codegen-only `sourceIdentity`) when exposing objects through the host API.
+- Host packages that return Dart objects to JS must pass the **wire id** string (not the
+  Codegen-only `sourceIdentity`) when exposing objects through the host API.
 
 ## Minimal walkthrough
 

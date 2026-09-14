@@ -102,7 +102,8 @@ void main() {
         isTrue,
       );
       expect(
-        File(p.join(package.root.path, 'bindings', 'manifest.json')).existsSync(),
+        File(p.join(package.root.path, 'bindings', 'manifest.json'))
+            .existsSync(),
         isTrue,
       );
       stdout.clear();
@@ -114,27 +115,33 @@ void main() {
       );
       expect(checkCode, 0);
       expect(stderr, isEmpty);
-      expect(stdout.single, 'Generated bindings and manifests are reproducible.');
+      expect(
+        stdout.single,
+        'Generated bindings and manifests are reproducible.',
+      );
 
       await FlaxCodegenPackagePipeline.checkConfig(package.configPath);
     });
 
-    test('old invocation returns exit 1 with usage and no package mutation', () async {
-      final package = _tempCliPackage();
-      final before = _listing(package.root);
-      final stderr = <String>[];
+    test(
+      'old invocation returns exit 1 with usage and no package mutation',
+      () async {
+        final package = _tempCliPackage();
+        final before = _listing(package.root);
+        final stderr = <String>[];
 
-      final code = await runFlaxCodegenCli(
-        ['--check', package.configPath],
-        writeStdout: (_) => fail('stdout must stay empty'),
-        writeStderr: stderr.add,
-      );
+        final code = await runFlaxCodegenCli(
+          ['--check', package.configPath],
+          writeStdout: (_) => fail('stdout must stay empty'),
+          writeStderr: stderr.add,
+        );
 
-      expect(code, 1);
-      expect(stderr.single, contains('The old "[--check] <config>" form'));
-      expect(stderr.single, contains(flaxCodegenCliUsage));
-      expect(_listing(package.root), before);
-    });
+        expect(code, 1);
+        expect(stderr.single, contains('The old "[--check] <config>" form'));
+        expect(stderr.single, contains(flaxCodegenCliUsage));
+        expect(_listing(package.root), before);
+      },
+    );
 
     test('pipeline failure prints diagnostics and returns exit 1', () async {
       final package = _tempCliPackage();
@@ -156,9 +163,8 @@ void main() {
 }
 
 ({Directory root, String configPath}) _tempCliPackage() {
-  final root = Directory(
-    Directory.systemTemp.resolveSymbolicLinksSync(),
-  ).createTempSync('flax-cli-pkg-');
+  final root = Directory(Directory.systemTemp.resolveSymbolicLinksSync())
+      .createTempSync('flax-cli-pkg-');
   addTearDown(() {
     if (root.existsSync()) {
       root.deleteSync(recursive: true);
@@ -233,8 +239,9 @@ classes:
 List<String> _listing(Directory root) {
   final entries = <String>[];
   void walk(Directory directory) {
-    for (final entity in directory.listSync(followLinks: false).toList()
-      ..sort((left, right) => left.path.compareTo(right.path))) {
+    for (final entity
+        in directory.listSync(followLinks: false).toList()
+          ..sort((left, right) => left.path.compareTo(right.path))) {
       entries.add(entity.path);
       final type = FileSystemEntity.typeSync(entity.path, followLinks: false);
       if (type == FileSystemEntityType.directory) {

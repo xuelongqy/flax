@@ -60,7 +60,7 @@ Future<int> runPackageExampleTests(
   FlaxWorkspacePackage package, {
   String engine = defaultFlaxEngine,
 }) async {
-  if (!package.example.existsSync()) return 0;
+  if (!package.hasRunnableExample) return 0;
   var count = 0;
   await withPackageExample(root, package, engine, (example) async {
     for (final entry in const [('test', false), ('integration_test', true)]) {

@@ -325,10 +325,11 @@ void main() {
         findsOneWidget,
       );
       await tap(find.text('Add JS Page'));
+      await _pumpUntilFound(tester, find.text('Order 2 · all'));
       await tap(find.text('Push order overlay').last);
       expect(find.text('Close order overlay'), findsOneWidget);
       await tap(find.text('Remove JS Page'));
-      expect(find.text('Close order overlay'), findsNothing);
+      await _pumpUntilGone(tester, find.text('Close order overlay'));
       await tap(find.text('Exit Pages demo'));
       await tap(find.byKey(const ValueKey('components-demo')));
       final componentController = tester
@@ -430,6 +431,13 @@ Future<void> _pumpUntilFound(WidgetTester tester, Finder finder) async {
     await tester.pump(const Duration(milliseconds: 10));
   }
   expect(finder, findsWidgets);
+}
+
+Future<void> _pumpUntilGone(WidgetTester tester, Finder finder) async {
+  for (var i = 0; i < 500 && finder.evaluate().isNotEmpty; i++) {
+    await tester.pump(const Duration(milliseconds: 10));
+  }
+  expect(finder, findsNothing);
 }
 
 Future<void> _pumpApplicationFrame(WidgetTester tester) async {

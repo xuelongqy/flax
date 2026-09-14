@@ -66,12 +66,10 @@ melos:
       description: Validate Dart and npm archive contents without publishing.
       run: dart run tool/check_packages.dart
     packages:pack:
-      description:
-        Stage disposable Dart/npm archives with a pack receipt (no publish).
+      description: Stage disposable Dart/npm archives with a pack receipt (no publish).
       run: dart run tool/pack_archives.dart
     release:check:
-      description:
-        Pre-release archive validation without publishing or engines.
+      description: Pre-release archive validation without publishing or engines.
       run: dart run tool/check_release.dart
     native:configure:
       description: Validate CMake and the C/C++ toolchain without building an engine.

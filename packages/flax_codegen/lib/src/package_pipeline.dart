@@ -360,10 +360,7 @@ final class FlaxCodegenPackagePipeline {
       }
       Error.throwWithStackTrace(
         FlaxCodegenException([
-          _outputDiagnostic(
-            packageRoot,
-            'Package install failed: $error',
-          ),
+          _outputDiagnostic(packageRoot, 'Package install failed: $error'),
         ]),
         stackTrace,
       );

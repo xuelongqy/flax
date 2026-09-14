@@ -268,7 +268,7 @@ void main() {
       await h.enter(t);
       h.execute('''
       navigation.sharedBuilder = context => ({kind:'widget', type:'flax.core/flutter#type:Text', ctor:'', args:{data:'Shared page'}});
-      navigation.description = {kind:'value', type:'package:material_ui/src/page.dart::MaterialPageRoute', ctor:'', args:{builder:navigation.sharedBuilder}};
+      navigation.description = {kind:'value', type:'flax.material/material#type:MaterialPageRoute', ctor:'', args:{builder:navigation.sharedBuilder}};
       navigation.navigator.push(navigation.description);
       navigation.navigator.push(navigation.description);
     ''');

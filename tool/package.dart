@@ -126,7 +126,7 @@ Future<void> _check(String root, FlaxWorkspacePackage package) async {
     ], directory: root);
   }
 
-  if (package.example.existsSync()) {
+  if (package.hasRunnableExample) {
     final exampleJs = Directory(p.join(package.example.path, 'js'));
     if (File(p.join(exampleJs.path, 'package.json')).existsSync()) {
       await _buildJsDependencies(root, exampleJs);
@@ -226,7 +226,7 @@ Future<void> _integration(
     path: 'integration_test',
     device: hasPackageMacosRunner ? 'macos' : null,
   );
-  if (package.example.existsSync()) {
+  if (package.hasRunnableExample) {
     final exampleJs = Directory(p.join(package.example.path, 'js'));
     if (File(p.join(exampleJs.path, 'package.json')).existsSync()) {
       await _buildJsDependencies(root, exampleJs);

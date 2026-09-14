@@ -4,12 +4,12 @@
 - [Runtime design](architecture/runtime.md): runtime execution and reference ownership.
 - [Binding generation](architecture/bindings.md): inputs, outputs, and adaptation.
 - [Packaging](architecture/packaging.md): workspaces and distribution boundaries.
-- [External binding migration](guides/external-binding-migration.md): Manifest 1 /
-  loose config → format-1 YAML, `bindingNamespace`, Manifest 2, and the
+- [External binding migration](guides/external-binding-migration.md): Manifest 1 / loose
+  config → format-1 YAML, `bindingNamespace`, Manifest 2, and the
   `validate|check|generate --config` CLI (M3 direct cutover; no long-term compat).
 - [External Binding Kit v1 compatibility matrix](architecture/external-binding-compatibility.md):
-  proven / partially proven / not run / open-questions status for protocol, ABI,
-  YAML, Manifest 2, CLI, engines, and outside canaries.
+  proven / partially proven / not run / open-questions status for protocol, ABI, YAML,
+  Manifest 2, CLI, engines, and outside canaries.
 - [Binding coverage map](architecture/binding-coverage-map.md): explicit selection
   inventory, in-envelope waves, hard-wall queue, and Cupertino/pilot calls
   ([ADR 0018](decisions/0018-binding-coverage-strategy.md)).

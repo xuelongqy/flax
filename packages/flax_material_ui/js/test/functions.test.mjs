@@ -5,10 +5,7 @@ import { showDialog } from '../dist/index.js';
 
 test('showDialog forwards its builder without executing it', () => {
   const helpers = globalThis.__flaxBindings;
-  const context = helpers.context(
-    'flax.core/flutter#type:BuildContext',
-    41,
-  );
+  const context = helpers.context('flax.core/flutter#type:BuildContext', 41);
   let count = 0;
   const builder = () => {
     count++;

@@ -22,3 +22,8 @@ packages/flax_engine_v8/native/generated/
 
 packages/flax_fetch/js/test/wpt/
 packages/flax_websocket/js/test/wpt/
+
+# Codegen-owned outputs and intentionally invalid fixtures
+packages/*/js/src/**/generated/
+packages/flax/js/src/flutter/generated/
+tests/compatibility/package_metadata/yaml-syntax.yaml

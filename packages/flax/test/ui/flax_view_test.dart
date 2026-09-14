@@ -348,7 +348,7 @@ hooks.callback.value = () => hooks.count.value += 2;
       matching: find.byWidgetPredicate(
         (widget) =>
             widget is FlaxWidgetHost &&
-            widget.node.definition.id.endsWith('::Listener'),
+            widget.node.definition.id.endsWith('#type:Listener'),
       ),
     );
     final first = t.element(item(1));

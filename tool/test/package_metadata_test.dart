@@ -97,10 +97,11 @@ void main() {
       () => _read(temporary, _valid.replaceFirst('format: 1', 'format: 2')),
       throwsFormatException,
     );
-    expect(
-      () => _read(temporary, '$_valid\nbindingNamespace: flax.core\n'),
-      throwsFormatException,
-    );
+  });
+
+  test('accepts bindingNamespace on a bindings package', () {
+    final metadata = _read(temporary, '${_valid}bindingNamespace: flax.core\n');
+    expect(metadata.bindingNamespace, 'flax.core');
   });
 
   test('rejects invalid modes and duplicate capabilities', () {
@@ -182,8 +183,13 @@ void main() {
     expect(packages, isNotEmpty);
     final byName = {for (final package in packages) package.name: package};
     expect(byName['flax']!.metadata.bindingNamespace, 'flax.core');
-    expect(byName['flax_material_ui']!.metadata.bindingNamespace, 'flax.material');
+    expect(
+      byName['flax_material_ui']!.metadata.bindingNamespace,
+      'flax.material',
+    );
     expect(byName['flax_canvas']!.metadata.bindingNamespace, 'flax.canvas');
+    expect(byName['flax']!.hasRunnableExample, isTrue);
+    expect(byName['flax_codegen']!.hasRunnableExample, isFalse);
     for (final package in packages) {
       expect(package.metadata.format, 1);
       final hasBindings = package.metadata.capabilities.contains('bindings');

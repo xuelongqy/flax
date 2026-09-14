@@ -13,12 +13,12 @@ implementation layout and change when a declaration moves between private source
 libraries. They are not a public wire contract. The frozen public wire identity must
 also remain independent of working directory and re-export route.
 
-[ADR 0017](0017-package-boundaries.md) already makes `packages/*` the capability boundary
-and commits versioned declaration manifests.
+[ADR 0017](0017-package-boundaries.md) already makes `packages/*` the capability
+boundary and commits versioned declaration manifests.
 [ADR 0018](0018-binding-coverage-strategy.md) keeps explicit selection fail-closed.
 [ADR 0020](0020-ui-protocol-20.md) freezes UI protocol 20 with native ABI 2 unchanged.
-[ADR 0021](0021-external-binding-version-domains.md) separates version domains and allows
-format-1 [`flax_package.yaml`](../architecture/packaging.md) to add a top-level
+[ADR 0021](0021-external-binding-version-domains.md) separates version domains and
+allows format-1 [`flax_package.yaml`](../architecture/packaging.md) to add a top-level
 `bindingNamespace` before freeze.
 
 Trusted third-party package boundaries are
@@ -32,28 +32,27 @@ dependency subtype rules.
 
 Public binding names and every user/source string inside derived shape IDs use this
 encoding. The `publicBindingName` input domain is defined under Wire identity. Take the
-UTF-8 bytes with no BOM. Emit an ASCII byte unchanged only when it is
-`A-Z`, `a-z`, `0-9`, `_`, `.`, `-`, or `~`. Every other byte becomes `%HH` with uppercase
-hex and two digits. Therefore `%`, `/`, `#`, `:`, `$`, controls, and non-ASCII bytes
-are `%HH`.
+UTF-8 bytes with no BOM. Emit an ASCII byte unchanged only when it is `A-Z`, `a-z`,
+`0-9`, `_`, `.`, `-`, or `~`. Every other byte becomes `%HH` with uppercase hex and two
+digits. Therefore `%`, `/`, `#`, `:`, `$`, controls, and non-ASCII bytes are `%HH`.
 
 Do not decode or normalize before comparison. Comparison is exact over the encoded
 bytes.
 
 Normative encoding vectors:
 
-| Input | Encoded |
-| --- | --- |
-| `Widget` | `Widget` |
+| Input            | Encoded          |
+| ---------------- | ---------------- |
+| `Widget`         | `Widget`         |
 | `FlaxCanvasView` | `FlaxCanvasView` |
-| `applyBoxFit` | `applyBoxFit` |
-| `Fancy$Button` | `Fancy%24Button` |
-| `a/b` | `a%2Fb` |
-| `a#b` | `a%23b` |
-| `a:b` | `a%3Ab` |
-| `100%` | `100%25` |
-| `café` | `caf%C3%A9` |
-| `~ok_id` | `~ok_id` |
+| `applyBoxFit`    | `applyBoxFit`    |
+| `Fancy$Button`   | `Fancy%24Button` |
+| `a/b`            | `a%2Fb`          |
+| `a#b`            | `a%23b`          |
+| `a:b`            | `a%3Ab`          |
+| `100%`           | `100%25`         |
+| `café`           | `caf%C3%A9`      |
+| `~ok_id`         | `~ok_id`         |
 
 ### Package namespace
 
@@ -102,25 +101,23 @@ ownership; see [ADR 0023](0023-external-binding-package-trust.md).
 ### Module identity
 
 `config.name` is the module component. Grammar: `[a-z][a-z0-9_]{0,63}`, 1..64 ASCII
-bytes. The current names `flutter`, `components`, `material`, and `canvas` remain
-valid.
+bytes. The current names `flutter`, `components`, `material`, and `canvas` remain valid.
 
 Invalid: `Flutter`, `_hidden`, `1abc`, `my-module`, the empty string, and any name
 longer than 64 bytes.
 
-`moduleId` is `bindingNamespace + "/" + config.name`. The slash is a structural separator
-and is not percent-encoded. Core therefore publishes `flax.core/flutter` and
+`moduleId` is `bindingNamespace + "/" + config.name`. The slash is a structural
+separator and is not percent-encoded. Core therefore publishes `flax.core/flutter` and
 `flax.core/components`. Generated Dart and TypeScript modules carry the same literal
-`moduleId` as the manifest, as in
-[ADR 0021](0021-external-binding-version-domains.md).
+`moduleId` as the manifest, as in [ADR 0021](0021-external-binding-version-domains.md).
 
 Further normative `moduleId` values: `flax.material/material`, `flax.canvas/canvas`,
 `com.acme.flax.widgets/buttons`.
 
 ### Source identity
 
-`sourceIdentity` is Codegen-only. It is present in Manifest 2 for ownership matching
-and never appears in runtime calls. Codegen resolves aliases and re-exports to the real
+`sourceIdentity` is Codegen-only. It is present in Manifest 2 for ownership matching and
+never appears in runtime calls. Codegen resolves aliases and re-exports to the real
 non-synthetic declaration, then identifies it by declaration kind, canonical originating
 `package:` or `dart:` URI, and declaration name. `file:` URIs and absolute paths are
 rejected.
@@ -160,14 +157,14 @@ selection order, generator version, and `jsName`.
 
 Normative wire IDs:
 
-| Selection | `wireId` |
-| --- | --- |
-| `Widget` in `flax.core/flutter` | `flax.core/flutter#type:Widget` |
-| `applyBoxFit` | `flax.core/flutter#function:applyBoxFit` |
-| `State` in `flax.core/components` | `flax.core/components#type:State` |
-| `showDialog` | `flax.material/material#function:showDialog` |
-| `FlaxCanvasView` with `jsName: CanvasView` | `flax.canvas/canvas#type:FlaxCanvasView` |
-| public Dart name `Fancy$Button` | `com.acme.flax.widgets/buttons#type:Fancy%24Button` |
+| Selection                                  | `wireId`                                            |
+| ------------------------------------------ | --------------------------------------------------- |
+| `Widget` in `flax.core/flutter`            | `flax.core/flutter#type:Widget`                     |
+| `applyBoxFit`                              | `flax.core/flutter#function:applyBoxFit`            |
+| `State` in `flax.core/components`          | `flax.core/components#type:State`                   |
+| `showDialog`                               | `flax.material/material#function:showDialog`        |
+| `FlaxCanvasView` with `jsName: CanvasView` | `flax.canvas/canvas#type:FlaxCanvasView`            |
+| public Dart name `Fancy$Button`            | `com.acme.flax.widgets/buttons#type:Fancy%24Button` |
 
 ### Derived callback, collection, and adapter IDs
 
@@ -216,9 +213,9 @@ Fixed tagged shapes, in field order:
 - `<nominalWireId>` is the encoded owner `wireId`, or `null` for an anonymous stream
   reference.
 - `type-parameter` is a use site: `["type-parameter", <slot>, <nullable>]`.
-- Each callback `typeParameters` element is
-  `["generic", <slot>, <bound>, <default>]` in declaration order. `<default>` is a bound
-  default shape or `null`. Original generic spelling is absent from the shape ID.
+- Each callback `typeParameters` element is `["generic", <slot>, <bound>, <default>]` in
+  declaration order. `<default>` is a bound default shape or `null`. Original generic
+  spelling is absent from the shape ID.
 
 Generic identity uses the Analyzer-resolved declaration element, never its source
 spelling. Source identifier shadowing is resolved by that declaration element; it must
@@ -230,13 +227,13 @@ next-slot counter starting at `g0`. Nested callbacks reuse that same root alloca
 never reset it.
 
 When canonical preorder enters a callback, reserve consecutive slots for all generic
-declarations owned by that callback, in their declaration order, before serializing any of
-their bounds, defaults, or other children. This permits legal self-bounds and F-bounds,
-and other cross-references, to resolve against already reserved slots. Captured outer
-generic references keep the outer declaration's slot. Inner declarations receive the
-next unused slots. On leaving an inner lexical scope, remove its declaration mappings but
-never decrement or reuse the counter. Sibling nested callbacks therefore continue
-monotonically in canonical preorder.
+declarations owned by that callback, in their declaration order, before serializing any
+of their bounds, defaults, or other children. This permits legal self-bounds and
+F-bounds, and other cross-references, to resolve against already reserved slots.
+Captured outer generic references keep the outer declaration's slot. Inner declarations
+receive the next unused slots. On leaving an inner lexical scope, remove its declaration
+mappings but never decrement or reuse the counter. Sibling nested callbacks therefore
+continue monotonically in canonical preorder.
 
 The fixed canonical serialization preorder is: visit a node before descendants. For a
 callback, after reserving its declaration block, traverse generic bounds then defaults
@@ -256,7 +253,8 @@ renumber them.
 - `<mode>` is exactly `requiredPositional`, `optionalPositional`, `requiredNamed`, or
   `optionalNamed`.
 - Positional parameter names are not type identity. `<name>` is JSON `null` for
-  `requiredPositional` and `optionalPositional`. A non-null positional name fails closed.
+  `requiredPositional` and `optionalPositional`. A non-null positional name fails
+  closed.
 - Named parameter names remain percent-encoded and identity-bearing. Named parameters
   remain a JSON array sorted by encoded name. Positional parameters keep source order.
 - Dart function types do not carry parameter default values. The fifth callback
@@ -268,13 +266,13 @@ renumber them.
 - `<snapshot>` is the encoded snapshot name, or `null`.
 - `<encodeKind>` is the encoded conversion kind, or `null`.
 - `<asyncMode>` is exactly `sync`, `future`, `futureOr`, or `stream`.
-- `<result>` is the resolved return type, including any `future` / `futureOr` /
-  `stream` wrapper. `asyncMode` is the explicit adapter invocation mode.
+- `<result>` is the resolved return type, including any `future` / `futureOr` / `stream`
+  wrapper. `asyncMode` is the explicit adapter invocation mode.
 - `<independentWidgetResult>` is a callback-level slot. It is `0` for mounted/default
   callback Widget result ownership and `1` only when the callback's `Widget` / `Widget?`
   result receives independent ownership. It describes the callback result, never any
-  callback input. Value `1` with a non-Widget result fails closed. All callback slots are
-  always present.
+  callback input. Value `1` with a non-Widget result fails closed. All callback slots
+  are always present.
 - Adapter `<adapterKind>` identifies the adapter (for example `stream`). The four
   adapter metadata slots are always present: kind, `encodeKind`, scoped, and
   `asyncIterableFactory`.
@@ -282,13 +280,13 @@ renumber them.
 A non-null callback parameter default, a non-null positional `<name>`, or
 `<independentWidgetResult>` `1` on a non-Widget result fails closed. The following also
 fail closed: unresolved or out-of-scope type-parameter references; duplicate or
-inconsistent mapping of one declaration; a slot spelling other than exactly `g`
-followed by the canonical unsigned decimal index; gaps, reuse, or non-preorder
-numbering; nested allocator reset or collision; and any Manifest 2 shape whose
-declarations or references violate lexical binding or the canonical sequence.
+inconsistent mapping of one declaration; a slot spelling other than exactly `g` followed
+by the canonical unsigned decimal index; gaps, reuse, or non-preorder numbering; nested
+allocator reset or collision; and any Manifest 2 shape whose declarations or references
+violate lexical binding or the canonical sequence.
 
-The complete derived ID is compared as the `shape-v1:` string. Readers do not parse
-JSON and re-serialize.
+The complete derived ID is compared as the `shape-v1:` string. Readers do not parse JSON
+and re-serialize.
 
 #### Golden: nullable collection
 
@@ -300,8 +298,8 @@ shape-v1:["collection","list",1,["primitive","String",1,[]]]
 
 #### Golden: mixed callback
 
-Nullable synchronous Widget-returning mixed callback, so
-`<independentWidgetResult>` is meaningful:
+Nullable synchronous Widget-returning mixed callback, so `<independentWidgetResult>` is
+meaningful:
 
 `Widget? Function<T extends Widget>(T value, [String? hint], {required String label, Widget? child, Offset? origin, Object? error, Object? sink})?`
 
@@ -348,8 +346,9 @@ shape-v1:["callback",0,[],[],[],[["param","requiredNamed","label",["primitive","
 shape-v1:["callback",0,[],[],[],[["param","requiredNamed","caption",["primitive","String",0,[]],null,0,null,null,0]],["primitive","void",0,[]],"sync",0]
 ```
 
-Mounted-result versus independent-result mode: `Widget? Function(BuildContext context, int index)`
-produces two exact IDs that differ only in the final callback-level slot, `0` versus `1`:
+Mounted-result versus independent-result mode:
+`Widget? Function(BuildContext context, int index)` produces two exact IDs that differ
+only in the final callback-level slot, `0` versus `1`:
 
 ```text
 shape-v1:["callback",0,[],[],[["param","requiredPositional",null,["nominal","flax.core%2Fflutter%23type%3ABuildContext",0,[]],null,0,null,null,0],["param","requiredPositional",null,["primitive","int",0,[]],null,0,null,null,0]],[],["nominal","flax.core%2Fflutter%23type%3AWidget",1,[]],"sync",0]
@@ -359,8 +358,8 @@ shape-v1:["callback",0,[],[],[["param","requiredPositional",null,["nominal","fla
 Nested capture and inner declaration are stable under rename. These source-equivalent
 types produce the same exact ID. The outer declaration and uses are `g0`. The nested
 callback captures `g0` and declares/uses `g1`. Positional names and parameter defaults
-remain JSON `null`. `asyncMode` is `sync` and `<independentWidgetResult>` is `0` at
-both levels:
+remain JSON `null`. `asyncMode` is `sync` and `<independentWidgetResult>` is `0` at both
+levels:
 
 ```text
 void Function<T extends Widget>(T value, void Function<U extends T>(T captured, U inner) nested)
@@ -392,17 +391,17 @@ A sibling module that mentions the declaration in a signature references the own
 `wireId`. Missing owner (orphan) or multiple owners fail closed. Tools never choose the
 first sorted config or module.
 
-Re-exports do not create owners. `sourceIdentity` is the canonical originating declaration,
-so two public re-export paths cannot produce two owners.
+Re-exports do not create owners. `sourceIdentity` is the canonical originating
+declaration, so two public re-export paths cannot produce two owners.
 
 Input order does not change ownership, `moduleId`, `wireId`, or derived IDs. Loading
 `bindings/components.yaml` before `bindings/config.yaml`, or the reverse, is equivalent.
 
-M3 is a direct coordinated cutover (M2.6 private migration adapter was cancelled).
-M3 writes explicit owner fields to checked-in YAML together with all other
-coordinated changes. The ownership rule is fixed now: Core's
-`flutter` and `components` modules, for example, must not both own `State`, and a type
-used only through signatures is not owned by the discovering module.
+M3 is a direct coordinated cutover (M2.6 private migration adapter was cancelled). M3
+writes explicit owner fields to checked-in YAML together with all other coordinated
+changes. The ownership rule is fixed now: Core's `flutter` and `components` modules, for
+example, must not both own `State`, and a type used only through signatures is not owned
+by the discovering module.
 
 ### Dependency subtype rules
 
@@ -410,10 +409,10 @@ When an imported source is already owned in a dependency manifest, the dependent
 that owner `wireId` exactly. A dependent package may not republish, shadow, override, or
 enlarge the same `sourceIdentity` or `wireId`.
 
-A genuinely distinct child declaration has its own `sourceIdentity` and `wireId`. It
-may inherit the dependency owner's resolved public surface and references the parent by
-the parent's `wireId`. Extra child members live on the child's `wireId`. They do not
-enlarge the parent's symbol.
+A genuinely distinct child declaration has its own `sourceIdentity` and `wireId`. It may
+inherit the dependency owner's resolved public surface and references the parent by the
+parent's `wireId`. Extra child members live on the child's `wireId`. They do not enlarge
+the parent's symbol.
 
 Positive fixture: a child subtype with a new `sourceIdentity` and `wireId`, inherited
 parent surface, and a parent `wireId` reference.
@@ -430,8 +429,8 @@ A new `wireId` is additive. Removal, rename, reassignment, or a change of kind, 
 or namespace is a package-breaking change. Retired IDs are never reused.
 
 A private source move that keeps the same public binding name and semantics changes
-`sourceIdentity` and does not change `wireId`. A `jsName` change breaks the JS public API
-and does not change wire identity.
+`sourceIdentity` and does not change `wireId`. A `jsName` change breaks the JS public
+API and does not change wire identity.
 
 Codegen checks the current resolved graph. M5 release tooling compares previously
 released manifests for historical immutability.
@@ -472,6 +471,6 @@ capability-package major version, as in
 
 [ADR 0021](0021-external-binding-version-domains.md) still owns version domains,
 Manifest 2 projection, tuple pinning, and compatibility bump rules.
-[ADR 0023](0023-external-binding-package-trust.md) still owns trusted third-party package
-boundaries. Publication, registry names, license, signing, and support lifetime remain
-blocked as in [ADR 0017](0017-package-boundaries.md).
+[ADR 0023](0023-external-binding-package-trust.md) still owns trusted third-party
+package boundaries. Publication, registry names, license, signing, and support lifetime
+remain blocked as in [ADR 0017](0017-package-boundaries.md).

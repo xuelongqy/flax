@@ -2138,11 +2138,8 @@ classes:
 
       await FlaxCodegenPackagePipeline.generateConfig(
         package.configPath,
-        processRunner: (executable, arguments) => formatRunner(
-          executable,
-          arguments,
-          packageRoot: package.root.path,
-        ),
+        processRunner: (executable, arguments) =>
+            formatRunner(executable, arguments, packageRoot: package.root.path),
       );
 
       final afterGenerate = _packageFilesystemSnapshot(package.root);
@@ -2160,155 +2157,80 @@ classes:
         isTrue,
       );
       expect(
-        File(
-          p.join(package.root.path, 'bindings', 'manifest.json'),
-        ).existsSync(),
+        File(p.join(package.root.path, 'bindings', 'manifest.json'))
+            .existsSync(),
         isTrue,
       );
 
       final beforeCheck = _packageFilesystemSnapshot(package.root);
       await FlaxCodegenPackagePipeline.checkConfig(
         package.configPath,
-        processRunner: (executable, arguments) => formatRunner(
-          executable,
-          arguments,
-          packageRoot: package.root.path,
-        ),
+        processRunner: (executable, arguments) =>
+            formatRunner(executable, arguments, packageRoot: package.root.path),
       );
       _expectPackageFilesystemUnchanged(package.root, before: beforeCheck);
     });
 
-    test('mid-install failure restores pre-generate filesystem snapshot', () async {
-      final package = _tempGeneratePackage();
-      File(p.join(package.root.path, 'lib', 'widgets.g.dart'))
-        ..createSync(recursive: true)
-        ..writeAsStringSync('// prior widgets dart\n');
-      File(p.join(package.root.path, 'js', 'widgets.ts'))
-        ..createSync(recursive: true)
-        ..writeAsStringSync('// prior widgets ts\n');
-      File(p.join(package.root.path, 'lib', 'extra.g.dart'))
-          .writeAsStringSync('// prior extra dart\n');
-      File(p.join(package.root.path, 'js', 'extra.ts'))
-        ..createSync(recursive: true)
-        ..writeAsStringSync('// prior extra ts\n');
-      File(p.join(package.root.path, 'bindings', 'manifest.json'))
-          .writeAsStringSync('{ "prior": true }\n');
+    test(
+      'mid-install failure restores pre-generate filesystem snapshot',
+      () async {
+        final package = _tempGeneratePackage();
+        File(p.join(package.root.path, 'lib', 'widgets.g.dart'))
+          ..createSync(recursive: true)
+          ..writeAsStringSync('// prior widgets dart\n');
+        File(p.join(package.root.path, 'js', 'widgets.ts'))
+          ..createSync(recursive: true)
+          ..writeAsStringSync('// prior widgets ts\n');
+        File(p.join(package.root.path, 'lib', 'extra.g.dart'))
+            .writeAsStringSync('// prior extra dart\n');
+        File(p.join(package.root.path, 'js', 'extra.ts'))
+          ..createSync(recursive: true)
+          ..writeAsStringSync('// prior extra ts\n');
+        File(p.join(package.root.path, 'bindings', 'manifest.json'))
+            .writeAsStringSync('{ "prior": true }\n');
 
-      final before = _packageFilesystemSnapshot(package.root);
-      var mutationCount = 0;
-      FlaxCodegenException? caught;
-      try {
-        await FlaxCodegenPackagePipeline.generateConfig(
-          package.configPath,
-          processRunner: (executable, arguments) => formatRunner(
-            executable,
-            arguments,
-            packageRoot: package.root.path,
-          ),
-          beforeInstallMutation: (absolutePath) {
-            mutationCount++;
-            if (mutationCount == 2) {
-              throw StateError('injected mid-install failure');
-            }
-          },
-        );
-        fail('expected mid-install failure');
-      } on FlaxCodegenException catch (error) {
-        caught = error;
-      }
-
-      expect(caught, isNotNull);
-      expect(mutationCount, 2);
-      expect(
-        caught.diagnostics.single.message,
-        contains('Package install failed:'),
-      );
-      expect(
-        caught.diagnostics.single.message,
-        contains('injected mid-install failure'),
-      );
-      // Restore rewrites prior bytes; mtimes may advance.
-      _expectPackageFilesystemContentsUnchanged(package.root, before: before);
-    });
-
-    test('orphan owned generated files are deleted in the generate transaction', () async {
-      final package = _tempGeneratePackage();
-      await FlaxCodegenPackagePipeline.generateConfig(
-        package.configPath,
-        processRunner: (executable, arguments) => formatRunner(
-          executable,
-          arguments,
-          packageRoot: package.root.path,
-        ),
-      );
-
-      final orphanNormal = File(
-        p.join(package.root.path, 'lib', 'orphan.g.dart'),
-      )..writeAsStringSync('$_normalGeneratedHeader\nexport {};\n');
-      final orphanHost = File(
-        p.join(package.root.path, 'lib', 'orphan_host.g.dart'),
-      )..writeAsStringSync('$_hostGeneratedHeader\nmixin Orphan {}\n');
-      final skippedRootBuild = File(
-        p.join(package.root.path, 'build', 'skipped.g.dart'),
-      )
-        ..parent.createSync(recursive: true)
-        ..writeAsStringSync('$_normalGeneratedHeader\nexport {};\n');
-
-      await FlaxCodegenPackagePipeline.generateConfig(
-        package.configPath,
-        processRunner: (executable, arguments) => formatRunner(
-          executable,
-          arguments,
-          packageRoot: package.root.path,
-        ),
-      );
-
-      expect(orphanNormal.existsSync(), isFalse);
-      expect(orphanHost.existsSync(), isFalse);
-      expect(skippedRootBuild.existsSync(), isTrue);
-
-      final beforeCheck = _packageFilesystemSnapshot(package.root);
-      await FlaxCodegenPackagePipeline.checkConfig(
-        package.configPath,
-        processRunner: (executable, arguments) => formatRunner(
-          executable,
-          arguments,
-          packageRoot: package.root.path,
-        ),
-      );
-      _expectPackageFilesystemUnchanged(package.root, before: beforeCheck);
-    });
-
-    test('ancestor symlink on expected output fails closed without writes', () async {
-      final package = _tempGeneratePackage();
-      File(p.join(package.root.path, 'lib', 'widgets.g.dart'))
-        ..createSync(recursive: true)
-        ..writeAsStringSync('// prior\n');
-      File(p.join(package.root.path, 'js', 'widgets.ts'))
-        ..createSync(recursive: true)
-        ..writeAsStringSync('// prior\n');
-      File(p.join(package.root.path, 'lib', 'extra.g.dart'))
-          .writeAsStringSync('// prior\n');
-      File(p.join(package.root.path, 'js', 'extra.ts'))
-        ..createSync(recursive: true)
-        ..writeAsStringSync('// prior\n');
-      File(p.join(package.root.path, 'bindings', 'manifest.json'))
-          .writeAsStringSync('{ "prior": true }\n');
-
-      final outside = _trustedTempRoot('flax-generate-outside-');
-      addTearDown(() {
-        if (outside.existsSync()) {
-          outside.deleteSync(recursive: true);
+        final before = _packageFilesystemSnapshot(package.root);
+        var mutationCount = 0;
+        FlaxCodegenException? caught;
+        try {
+          await FlaxCodegenPackagePipeline.generateConfig(
+            package.configPath,
+            processRunner: (executable, arguments) => formatRunner(
+              executable,
+              arguments,
+              packageRoot: package.root.path,
+            ),
+            beforeInstallMutation: (absolutePath) {
+              mutationCount++;
+              if (mutationCount == 2) {
+                throw StateError('injected mid-install failure');
+              }
+            },
+          );
+          fail('expected mid-install failure');
+        } on FlaxCodegenException catch (error) {
+          caught = error;
         }
-      });
-      File(p.join(outside.path, 'widgets.ts')).writeAsStringSync('outside\n');
-      File(p.join(outside.path, 'extra.ts')).writeAsStringSync('outside\n');
-      Directory(p.join(package.root.path, 'js')).deleteSync(recursive: true);
-      Link(p.join(package.root.path, 'js')).createSync(outside.path);
 
-      final before = _packageFilesystemSnapshot(package.root);
-      FlaxCodegenException? caught;
-      try {
+        expect(caught, isNotNull);
+        expect(mutationCount, 2);
+        expect(
+          caught.diagnostics.single.message,
+          contains('Package install failed:'),
+        );
+        expect(
+          caught.diagnostics.single.message,
+          contains('injected mid-install failure'),
+        );
+        // Restore rewrites prior bytes; mtimes may advance.
+        _expectPackageFilesystemContentsUnchanged(package.root, before: before);
+      },
+    );
+
+    test(
+      'orphan owned generated files are deleted in the generate transaction',
+      () async {
+        final package = _tempGeneratePackage();
         await FlaxCodegenPackagePipeline.generateConfig(
           package.configPath,
           processRunner: (executable, arguments) => formatRunner(
@@ -2317,27 +2239,106 @@ classes:
             packageRoot: package.root.path,
           ),
         );
-        fail('expected FCG_OUTPUT for ancestor symlink');
-      } on FlaxCodegenException catch (error) {
-        caught = error;
-      }
 
-      expect(caught, isNotNull);
-      expect(
-        caught.diagnostics.every(
-          (diagnostic) => diagnostic.code == FlaxCodegenDiagnosticCode.output,
-        ),
-        isTrue,
-      );
-      expect(
-        caught.diagnostics.any(
-          (diagnostic) =>
-              diagnostic.message == 'Symbolic links are not allowed.',
-        ),
-        isTrue,
-      );
-      _expectPackageFilesystemUnchanged(package.root, before: before);
-    });
+        final orphanNormal = File(
+          p.join(package.root.path, 'lib', 'orphan.g.dart'),
+        )..writeAsStringSync('$_normalGeneratedHeader\nexport {};\n');
+        final orphanHost = File(
+          p.join(package.root.path, 'lib', 'orphan_host.g.dart'),
+        )..writeAsStringSync('$_hostGeneratedHeader\nmixin Orphan {}\n');
+        final skippedRootBuild =
+            File(p.join(package.root.path, 'build', 'skipped.g.dart'))
+              ..parent.createSync(recursive: true)
+              ..writeAsStringSync('$_normalGeneratedHeader\nexport {};\n');
+
+        await FlaxCodegenPackagePipeline.generateConfig(
+          package.configPath,
+          processRunner: (executable, arguments) => formatRunner(
+            executable,
+            arguments,
+            packageRoot: package.root.path,
+          ),
+        );
+
+        expect(orphanNormal.existsSync(), isFalse);
+        expect(orphanHost.existsSync(), isFalse);
+        expect(skippedRootBuild.existsSync(), isTrue);
+
+        final beforeCheck = _packageFilesystemSnapshot(package.root);
+        await FlaxCodegenPackagePipeline.checkConfig(
+          package.configPath,
+          processRunner: (executable, arguments) => formatRunner(
+            executable,
+            arguments,
+            packageRoot: package.root.path,
+          ),
+        );
+        _expectPackageFilesystemUnchanged(package.root, before: beforeCheck);
+      },
+    );
+
+    test(
+      'ancestor symlink on expected output fails closed without writes',
+      () async {
+        final package = _tempGeneratePackage();
+        File(p.join(package.root.path, 'lib', 'widgets.g.dart'))
+          ..createSync(recursive: true)
+          ..writeAsStringSync('// prior\n');
+        File(p.join(package.root.path, 'js', 'widgets.ts'))
+          ..createSync(recursive: true)
+          ..writeAsStringSync('// prior\n');
+        File(p.join(package.root.path, 'lib', 'extra.g.dart'))
+            .writeAsStringSync('// prior\n');
+        File(p.join(package.root.path, 'js', 'extra.ts'))
+          ..createSync(recursive: true)
+          ..writeAsStringSync('// prior\n');
+        File(p.join(package.root.path, 'bindings', 'manifest.json'))
+            .writeAsStringSync('{ "prior": true }\n');
+
+        final outside = _trustedTempRoot('flax-generate-outside-');
+        addTearDown(() {
+          if (outside.existsSync()) {
+            outside.deleteSync(recursive: true);
+          }
+        });
+        File(p.join(outside.path, 'widgets.ts')).writeAsStringSync('outside\n');
+        File(p.join(outside.path, 'extra.ts')).writeAsStringSync('outside\n');
+        Directory(p.join(package.root.path, 'js')).deleteSync(recursive: true);
+        Link(p.join(package.root.path, 'js')).createSync(outside.path);
+
+        final before = _packageFilesystemSnapshot(package.root);
+        FlaxCodegenException? caught;
+        try {
+          await FlaxCodegenPackagePipeline.generateConfig(
+            package.configPath,
+            processRunner: (executable, arguments) => formatRunner(
+              executable,
+              arguments,
+              packageRoot: package.root.path,
+            ),
+          );
+          fail('expected FCG_OUTPUT for ancestor symlink');
+        } on FlaxCodegenException catch (error) {
+          caught = error;
+        }
+
+        expect(caught, isNotNull);
+        expect(
+          caught.diagnostics.every(
+            (diagnostic) => diagnostic.code == FlaxCodegenDiagnosticCode.output,
+          ),
+          isTrue,
+        );
+        expect(
+          caught.diagnostics.any(
+            (diagnostic) =>
+                diagnostic.message == 'Symbolic links are not allowed.',
+          ),
+          isTrue,
+        );
+        _expectPackageFilesystemUnchanged(package.root, before: before);
+      },
+    );
 
     test('generate then check agree from stale package contents', () async {
       final prepared = await _prepareCheckPackage();
@@ -2415,10 +2416,7 @@ classes:
 ''',
     },
   );
-  return (
-    root: package.root,
-    configPath: package.configPath('widgets.yaml'),
-  );
+  return (root: package.root, configPath: package.configPath('widgets.yaml'));
 }
 
 const _normalGeneratedHeader =

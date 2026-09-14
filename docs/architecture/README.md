@@ -72,14 +72,13 @@ Public Dart APIs + package-owned binding rules and dependency manifests
 ```
 
 These are separate tools and ownership boundaries; see
-[binding generation](bindings.md). Authors migrating from Manifest 1 / loose config
-use the
-[external binding migration guide](../guides/external-binding-migration.md).
-The reviewable
+[binding generation](bindings.md). Authors migrating from Manifest 1 / loose config use
+the [external binding migration guide](../guides/external-binding-migration.md). The
+reviewable
 [External Binding Kit v1 compatibility matrix](external-binding-compatibility.md)
-records proven vs residual evidence against ADR 0021 domains. Explicit selection
-growth after the kit is planned in the
-[binding coverage map](binding-coverage-map.md) ([ADR 0018](../decisions/0018-binding-coverage-strategy.md)).
+records proven vs residual evidence against ADR 0021 domains. Explicit selection growth
+after the kit is planned in the [binding coverage map](binding-coverage-map.md)
+([ADR 0018](../decisions/0018-binding-coverage-strategy.md)).
 
 ## Package boundaries
 

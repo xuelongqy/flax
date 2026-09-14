@@ -71,10 +71,7 @@ test('Theme binds whole Dart values and queries only the supplied real context',
   assert.throws(() => ThemeData({ colorScheme: selected.bind }), /bind/i);
   assert.throws(() => ColorScheme.fromSeed({}), /Missing required/);
   assert.throws(() => ThemeData({ inputDecorationTheme: null }), /Unsupported/);
-  const context = api.context(
-    'flax.core/flutter#type:BuildContext',
-    501,
-  );
+  const context = api.context('flax.core/flutter#type:BuildContext', 501);
   let queries = 0;
   globalThis.__flaxCall = (version, type, method, handle) => {
     assert.equal(version, 20);

@@ -8,8 +8,8 @@ Keep records short and current: scope, acceptance, results, validation evidence,
 blockers, and the next action. Refer to architecture decisions instead of copying them.
 Do not maintain a shared chronological agent log.
 
-Current binding-kit handoff: [External Binding Kit v1](external-binding-kit-v1.md) (complete).
-Next: [Binding Coverage Expansion v1](binding-coverage-expansion-v1.md).
+Current binding-kit handoff: [External Binding Kit v1](external-binding-kit-v1.md)
+(complete). Next: [Binding Coverage Expansion v1](binding-coverage-expansion-v1.md).
 
 Historical records retain the API names used during their original validation. See
 [public Dart type naming](dart-public-type-naming.md) for the current names.

@@ -9,9 +9,11 @@ Build with `dart run tool/native.dart` from the package directory or
 `dart run melos run native:build:v8` from the repository root. Inputs and host tool
 versions are fixed in [v8.json](v8.json); the build checks exact revisions and applies
 [the adapter patch](v8-jsi.patch). V8's pinned DEPS controls Clang, Rust, GN, CIPD
-packages, and source dependencies. CMake and Ninja are checked against the manifest;
-Xcode supplies the pinned macOS SDK. Source archive checksums record prototype
-provenance; the production builder uses exact Git checkouts.
+packages, and source dependencies. `gclient sync` is skipped when that cached GN and
+Clang already exist, so a complete tree does not need Google's vpython registry. CMake
+and Ninja are checked against the manifest; Xcode supplies the pinned macOS SDK. Source
+archive checksums record prototype provenance; the production builder uses exact Git
+checkouts.
 
 GN builds a release monolith with embedded startup data, JIT enabled, Intl disabled, no
 pointer compression and no V8 sandbox. This is not a security isolation boundary. V8's

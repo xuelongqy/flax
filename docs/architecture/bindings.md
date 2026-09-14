@@ -34,35 +34,35 @@ dart run flax_codegen generate --config <direct-yaml>
 
 Official selection files carry `format: 1` and live as direct children of package
 `bindings/`. Packages with `bindings` capability set `bindingNamespace` in
-`flax_package.yaml`. Generated `bindings/manifest.json` uses Manifest
-`formatVersion: 2` only (Manifest 1 rejected after the M3 direct cutover). See the
+`flax_package.yaml`. Generated `bindings/manifest.json` uses Manifest `formatVersion: 2`
+only (Manifest 1 rejected after the M3 direct cutover). See the
 [external binding migration guide](../guides/external-binding-migration.md) and the
 [compatibility matrix](external-binding-compatibility.md).
 
-Include dependency
-modules to share declaration ownership. Input order does not change adaptation identity.
+Include dependency modules to share declaration ownership. Input order does not change
+adaptation identity.
 
 ## Literal module tuple and registration
 
-M5-F landed the public Dart and JavaScript contract. Native ABI 2 and UI protocol
-20 semantics are unchanged. `uiProtocol` is a pre-release **rename** of the old
-ambient `version` field, not a second version domain. Official generated modules
-emit required `moduleId`, `uiProtocol`, and `requiredCapabilities` literals; they
-do not register with ambient `version: 20`.
+M5-F landed the public Dart and JavaScript contract. Native ABI 2 and UI protocol 20
+semantics are unchanged. `uiProtocol` is a pre-release **rename** of the old ambient
+`version` field, not a second version domain. Official generated modules emit required
+`moduleId`, `uiProtocol`, and `requiredCapabilities` literals; they do not register with
+ambient `version: 20`.
 
 ### `FlaxBindingModule`
 
 Keep `name`, `types`, and `functions`. Add required:
 
-| Field | Rule |
-| --- | --- |
-| `moduleId` | `String`; Manifest 2 / [ADR 0022](../decisions/0022-stable-binding-identity.md): `bindingNamespace + "/" + name` |
-| `uiProtocol` | required `int`; **no default**. Same integer domain as Core `flaxBindingVersion` (UI protocol). There is no parallel `version` field. |
+| Field                  | Rule                                                                                                                                                                                     |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `moduleId`             | `String`; Manifest 2 / [ADR 0022](../decisions/0022-stable-binding-identity.md): `bindingNamespace + "/" + name`                                                                         |
+| `uiProtocol`           | required `int`; **no default**. Same integer domain as Core `flaxBindingVersion` (UI protocol). There is no parallel `version` field.                                                    |
 | `requiredCapabilities` | required `List<String>`; sorted unique; empty allowed. Generated code must emit an **explicit literal** (for example `const <String>[]`); never omit and rely on a Core ambient default. |
 
 `flaxBindingVersion` remains Core's active protocol constant for Core-owned code and
-Registry comparison. Generated modules pass their **own** literals; they must not
-read Core's constant as a fallback.
+Registry comparison. Generated modules pass their **own** literals; they must not read
+Core's constant as a fallback.
 
 ### `FlaxBindingRegistry`
 
@@ -81,10 +81,10 @@ On construction, **before** publishing type or function maps:
 
 Every generated JS module carries literal `moduleId`, `uiProtocol`, and sorted unique
 `requiredCapabilities`. Validate that tuple **before** any `defineObject`,
-`defineStream`, `defineContext`, `defineState`, realm mutation, definition-map
-mutation, or host call. On success, return or select a **module-scoped facade/token**
-bound to that literal tuple; every generated host call uses it. Zero-entry modules
-still emit and validate the tuple. Rejected install is side-effect-free.
+`defineStream`, `defineContext`, `defineState`, realm mutation, definition-map mutation,
+or host call. On success, return or select a **module-scoped facade/token** bound to
+that literal tuple; every generated host call uses it. Zero-entry modules still emit and
+validate the tuple. Rejected install is side-effect-free.
 
 See [ADR 0021](../decisions/0021-external-binding-version-domains.md).
 
@@ -229,9 +229,8 @@ The selection covers basic layout/text Widgets, Builder/LayoutBuilder, Context a
 Directionality; shared/nested navigation, named Pages and host Router; ScrollController;
 and [Material editing, focus and formatters](text-input.md). Unselected members do not
 appear in TS. Material code comes from the standalone material_ui package and shares
-core identities. Planned in-envelope expansions, the hard-wall queue, and the
-Cupertino first-wave call are in the
-[coverage map](binding-coverage-map.md).
+core identities. Planned in-envelope expansions, the hard-wall queue, and the Cupertino
+first-wave call are in the [coverage map](binding-coverage-map.md).
 
 Material Pages retain their explicit public PageRoute adapter and standard transition
 mixin. This is separate from ordinary object references. No per-class Controller guard,

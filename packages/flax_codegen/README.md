@@ -28,14 +28,13 @@ dart run flax_codegen generate --config <direct-yaml>
 ```
 
 `<direct-yaml>` must be an explicit direct child of the package `bindings/` directory.
-The CLI discovers sibling binding configs in that directory, resolves imported Manifest 2
-projections through the package config, and (for `generate`) writes `lib/...`, `js/...`,
-and `bindings/manifest.json` below the owning package. The old
+The CLI discovers sibling binding configs in that directory, resolves imported Manifest
+2 projections through the package config, and (for `generate`) writes `lib/...`,
+`js/...`, and `bindings/manifest.json` below the owning package. The old
 `dart run flax_codegen [--check] <config>` form is not supported.
 
-Third-party authors: start from
-[docs/author-template.md](docs/author-template.md) and the copyable skeleton under
-[example/author_template/](example/author_template/).
+Third-party authors: start from [docs/author-template.md](docs/author-template.md) and
+the copyable skeleton under [example/author_template/](example/author_template/).
 
 Protocol 20 includes ordinary references, returned objects, setters, static readonly
 fields, abstract factories, typed List/Map conversion, stored callbacks, fixed Dart

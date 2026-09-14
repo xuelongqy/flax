@@ -4,6 +4,7 @@ import 'dart:isolate';
 import 'package:flax_codegen/flax_codegen.dart';
 import 'package:flax_codegen/src/manifest_v2.dart';
 import 'package:flax_codegen/src/manifest_v2_codec.dart';
+import 'package:flax_codegen/src/module_id_rewrite.dart';
 
 import '../test/fixtures/functions_selection.dart';
 import '../test/fixtures/repeated_selection.dart';
@@ -18,7 +19,7 @@ Future<void> main() async {
   );
   if (flaxLibrary == null) throw StateError('Cannot resolve package:flax');
   final flaxRoot = File.fromUri(flaxLibrary).parent.parent;
-  final core = _loadManifest2ModulesForParser(
+  final core = _loadManifest2Modules(
     File('${flaxRoot.path}/bindings/manifest.json'),
   );
   await _generate(
@@ -51,7 +52,7 @@ Future<void> _generate(
   Directory output,
   String name,
   Map<String, FlaxCodegenClassSelection> classes,
-  List<FlaxCodegenModuleModel> dependencies, {
+  _LoadedManifestModules dependencies, {
   Map<String, FlaxCodegenFunctionSelection> functions = const {},
   String? libraryName,
 }) async {
@@ -74,19 +75,34 @@ Future<void> _generate(
       functions: functions,
     );
     await parser.prepare([config]);
-    parser.prepareModules(dependencies);
-    final module = await parser.parse(config);
-    final emitter = FlaxCodegenBindingEmitter([...dependencies, module]);
+    parser.prepareModules(dependencies.raw);
+    final parsed = await parser.parse(config);
+    // Parser matches analyzer identities. Official JS/Dart modules speak wire
+    // IDs, so freeze the local model before emit.
+    final frozen = flaxCodegenRewriteModuleIds(parsed, dependencies.rawToWire);
+    final emitter = FlaxCodegenBindingEmitter([...dependencies.wire, frozen]);
     File('${output.path}/${name}_bindings.dart')
-        .writeAsStringSync(emitter.dart(module));
+        .writeAsStringSync(emitter.dart(frozen));
     File('${output.path}/${name}_bindings.ts')
-        .writeAsStringSync(emitter.typescript(module));
+        .writeAsStringSync(emitter.typescript(frozen));
   } finally {
     parser.dispose();
   }
 }
 
-List<FlaxCodegenModuleModel> _loadManifest2ModulesForParser(File file) {
+class _LoadedManifestModules {
+  const _LoadedManifestModules({
+    required this.wire,
+    required this.raw,
+    required this.rawToWire,
+  });
+
+  final List<FlaxCodegenModuleModel> wire;
+  final List<FlaxCodegenModuleModel> raw;
+  final Map<String, String> rawToWire;
+}
+
+_LoadedManifestModules _loadManifest2Modules(File file) {
   final diagnostics = FlaxCodegenManifestV2Diagnostics(file.path);
   final manifest = FlaxCodegenManifestV2.parse(
     file.readAsStringSync(),
@@ -101,60 +117,15 @@ List<FlaxCodegenModuleModel> _loadManifest2ModulesForParser(File file) {
           '${identity.sourceIdentity.name}';
     }
   }
-  return [
-    for (final module in manifest.modules)
-      _rewriteModuleIds(module.model.module, wireToRaw),
-  ];
-}
-
-FlaxCodegenModuleModel _rewriteModuleIds(
-  FlaxCodegenModuleModel module,
-  Map<String, String> idMap,
-) {
-  Object? walk(Object? value) {
-    if (value is Map) {
-      final out = <String, Object?>{};
-      for (final entry in value.entries) {
-        final key = entry.key as String;
-        final child = entry.value;
-        if (key == 'id' && child is String && idMap.containsKey(child)) {
-          out[key] = idMap[child];
-        } else if (key == 'supertypes' && child is List) {
-          out[key] = [
-            for (final item in child)
-              item is String && idMap.containsKey(item) ? idMap[item]! : item,
-          ];
-        } else {
-          out[key] = walk(child);
-        }
-      }
-      return out;
-    }
-    if (value is List) {
-      return [for (final item in value) walk(item)];
-    }
-    return value;
-  }
-
-  final diagnostics = FlaxCodegenManifestV2Diagnostics('');
-  final decoded = FlaxCodegenManifestV2Codec.decodeModule(
-    walk(FlaxCodegenManifestV2Codec.encodeModule(module)),
-    diagnostics,
-    '',
-    module.name,
-  );
-  diagnostics.throwIfAny();
-  final rewritten = decoded!;
-  return FlaxCodegenModuleModel(
-    name: rewritten.name,
-    library: rewritten.library,
-    jsPackage: rewritten.jsPackage,
-    dartOutput: module.dartOutput,
-    tsOutput: module.tsOutput,
-    classes: rewritten.classes,
-    types: rewritten.types,
-    typeLibraries: rewritten.typeLibraries,
-    functions: rewritten.functions,
-    snapshots: rewritten.snapshots,
+  final rawToWire = <String, String>{
+    for (final entry in wireToRaw.entries) entry.value: entry.key,
+  };
+  final wire = [for (final module in manifest.modules) module.model.module];
+  return _LoadedManifestModules(
+    wire: wire,
+    raw: [
+      for (final module in wire) flaxCodegenRewriteModuleIds(module, wireToRaw),
+    ],
+    rawToWire: rawToWire,
   );
 }

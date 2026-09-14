@@ -159,25 +159,32 @@ Future<void> main() async {
     'DEPOT_TOOLS_UPDATE': '0',
     'PATH': '$depot:${Platform.environment['PATH'] ?? ''}',
   };
-  await _run(
-    '$depot/gclient',
-    [
-      'sync',
-      '--no-history',
-      '--nohooks',
-      '--revision',
-      'v8@${input['revision']}',
-    ],
-    directory: cache,
-    environment: environment,
-  );
+  // gclient pulls vpython from Google's Python AR. A complete local DEPS tree
+  // already has GN, Clang, and the other pinned third_party inputs.
+  final gn = '$source/buildtools/mac/gn';
+  final clang = '$source/third_party/llvm-build/Release+Asserts/bin/clang++';
+  if (File(gn).existsSync() && File(clang).existsSync()) {
+    stdout.writeln('Using cached V8 DEPS; skipping gclient sync.');
+  } else {
+    await _run(
+      '$depot/gclient',
+      [
+        'sync',
+        '--no-history',
+        '--nohooks',
+        '--revision',
+        'v8@${input['revision']}',
+      ],
+      directory: cache,
+      environment: environment,
+    );
+  }
   await _checkout(
     source,
     'https://chromium.googlesource.com/v8/v8.git',
     input['revision'] as String,
   );
   final args = input['gnArgs'] as String;
-  final gn = '$source/buildtools/mac/gn';
   await _run(
     gn,
     ['gen', 'out/flax', '--args=$args'],
