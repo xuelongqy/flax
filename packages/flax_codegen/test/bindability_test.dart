@@ -98,21 +98,64 @@ void main() {
       config.classes['AutoTile']!.widgetInterfaces,
       contains('AutoPreferred'),
     );
+    expect(config.classes['AutoList']?.independentWidgetCallbacks, isEmpty);
+    final callbackShapes = config.classes['AutoCallbackShapes']!;
+    expect(callbackShapes.independentWidgetCallbacks, isEmpty);
     expect(
-      config.classes['AutoList']?.independentWidgetCallbacks,
-      {
-        '': ['itemBuilder'],
-      },
+      callbackShapes.constructors[''],
+      containsAll([
+        'emptyBuilder',
+        'indexBuilder',
+        'nullableBuilder',
+        'contextBuilder',
+        'childrenBuilder',
+        'indexChildrenBuilder',
+      ]),
       reason: proposal.skips
-          .where((skip) => skip.target.contains('AutoList'))
+          .where((skip) => skip.target.contains('AutoCallbackShapes'))
           .map((skip) => '${skip.target}: ${skip.reason}')
           .join('\n'),
     );
+    expect(
+      config.classes['AutoObjectWidgetFactory']!.constructors[''],
+      contains('builder'),
+    );
+    final deferred = config.classes['AutoDeferredWidgetCallbacks']!;
+    for (final name in [
+      'nullableList',
+      'nullableItems',
+      'iterableWidgets',
+      'setWidgets',
+      'mapWidgets',
+      'futureWidget',
+      'futureOrWidget',
+      'streamWidget',
+      'futureWidgets',
+      'streamWidgets',
+    ]) {
+      expect(deferred.constructors[''], isNot(contains(name)), reason: name);
+    }
+    for (final name in ['futureWidget', 'futureOrWidget', 'streamWidget']) {
+      expect(
+        proposal.skips
+            .where((skip) => skip.target.endsWith('.$name'))
+            .map((skip) => skip.reason),
+        contains(contains('Unsupported mounted Widget callback result')),
+        reason: name,
+      );
+    }
 
     final module = await parser.parse(config);
     expect(
       module.classes.map((type) => type.name),
-      containsAll(['AutoPreferred', 'AutoTile', 'AutoList']),
+      containsAll([
+        'AutoPreferred',
+        'AutoTile',
+        'AutoList',
+        'AutoCallbackShapes',
+        'AutoObjectWidgetFactory',
+        'AutoDeferredWidgetCallbacks',
+      ]),
     );
     expect(module.functions.single.call.name, 'autoGreeting');
     expect(module.typedefs.single.name, 'LabelBuilder');
@@ -127,9 +170,99 @@ void main() {
       autoList.constructors.single.parameters
           .singleWhere((parameter) => parameter.name == 'itemBuilder')
           .independentWidgetResult,
+      isFalse,
+    );
+    final callbackShapeModel = module.classes.singleWhere(
+      (type) => type.name == 'AutoCallbackShapes',
+    );
+    final callbackShapeParams = {
+      for (final parameter in callbackShapeModel.constructors.single.parameters)
+        parameter.name: parameter,
+    };
+    for (final name in [
+      'emptyBuilder',
+      'indexBuilder',
+      'nullableBuilder',
+      'contextBuilder',
+      'childrenBuilder',
+      'indexChildrenBuilder',
+    ]) {
+      expect(
+        callbackShapeParams[name]!.independentWidgetResult,
+        isFalse,
+        reason: name,
+      );
+    }
+    expect(callbackShapeParams['emptyBuilder']!.type.result!.kind, 'widget');
+    expect(
+      callbackShapeParams['indexBuilder']!.type.parameters.single.type.kind,
+      'int',
+    );
+    expect(
+      callbackShapeParams['nullableBuilder']!.type.result!.nullable,
       isTrue,
     );
+    expect(
+      callbackShapeParams['contextBuilder']!.type.parameters.map(
+        (p) => p.type.kind,
+      ),
+      ['context', 'int'],
+    );
+    expect(callbackShapeParams['childrenBuilder']!.type.result!.kind, 'list');
+    expect(
+      callbackShapeParams['indexChildrenBuilder']!.type.result!.item!.kind,
+      'widget',
+    );
+    final objectFactory = module.classes.singleWhere(
+      (type) => type.name == 'AutoObjectWidgetFactory',
+    );
+    final objectBuilder = objectFactory.constructors.single.parameters
+        .singleWhere((parameter) => parameter.name == 'builder');
+    expect(objectBuilder.type.result!.kind, 'widget');
+    expect(objectBuilder.independentWidgetResult, isFalse);
   });
+
+  test(
+    'legacy independent Widget metadata does not require BuildContext',
+    () async {
+      final parser = FlaxCodegenBindingParser(repoRoot);
+      addTearDown(parser.dispose);
+      final source = fixture('auto_library.dart', const {});
+      final module = await parser.parse(
+        FlaxCodegenBindingConfig(
+          'legacy-independent-widget',
+          source.library,
+          '@example/legacy-independent-widget',
+          'unused.dart',
+          'unused.ts',
+          const {
+            'AutoCallbackShapes': FlaxCodegenClassSelection(
+              {
+                '': [
+                  'emptyBuilder',
+                  'indexBuilder',
+                  'nullableBuilder',
+                  'contextBuilder',
+                  'childrenBuilder',
+                  'indexChildrenBuilder',
+                ],
+              },
+              independentWidgetCallbacks: {
+                '': ['emptyBuilder'],
+              },
+            ),
+          },
+          additionalLibraries: const ['package:flutter/widgets.dart'],
+        ),
+      );
+      final builder = module.classes.single.constructors.single.parameters
+          .singleWhere((parameter) => parameter.name == 'emptyBuilder');
+      expect(builder.name, 'emptyBuilder');
+      expect(builder.type.parameters, isEmpty);
+      expect(builder.type.result!.kind, 'widget');
+      expect(builder.independentWidgetResult, isTrue);
+    },
+  );
 
   test(
     'excluded types do not return through automatic dependency closure',

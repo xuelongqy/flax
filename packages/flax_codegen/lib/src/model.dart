@@ -951,11 +951,7 @@ class FlaxCodegenModuleModel {
               (category != FlaxCodegenClassCategory.widget ||
                   parameter.type.category != FlaxCodegenTypeCategory.callback ||
                   parameter.type.result!.category !=
-                      FlaxCodegenTypeCategory.widget ||
-                  parameter.type.parameters.isEmpty ||
-                  parameter.type.parameters.first.type.category !=
-                      FlaxCodegenTypeCategory.context ||
-                  parameter.type.parameters.first.type.nullable)) {
+                      FlaxCodegenTypeCategory.widget)) {
             throw StateError(
               'Invalid independent Widget callback: ${type.name}.${constructor.name}.${parameter.name}',
             );

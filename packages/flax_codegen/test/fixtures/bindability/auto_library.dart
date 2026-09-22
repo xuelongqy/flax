@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:collection';
 
 import 'package:flutter/widgets.dart';
@@ -55,6 +56,64 @@ class AutoList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => itemBuilder(context, 0);
+}
+
+class AutoCallbackShapes extends StatelessWidget {
+  const AutoCallbackShapes({
+    super.key,
+    required this.emptyBuilder,
+    required this.indexBuilder,
+    required this.nullableBuilder,
+    required this.contextBuilder,
+    required this.childrenBuilder,
+    required this.indexChildrenBuilder,
+  });
+
+  final Widget Function() emptyBuilder;
+  final Widget Function(int index) indexBuilder;
+  final Widget? Function(bool enabled) nullableBuilder;
+  final Widget Function(BuildContext context, int index) contextBuilder;
+  final List<Widget> Function() childrenBuilder;
+  final List<Widget> Function(int index) indexChildrenBuilder;
+
+  @override
+  Widget build(BuildContext context) => emptyBuilder();
+}
+
+class AutoObjectWidgetFactory {
+  AutoObjectWidgetFactory(this.builder);
+
+  final Widget Function(int index) builder;
+}
+
+class AutoDeferredWidgetCallbacks extends StatelessWidget {
+  const AutoDeferredWidgetCallbacks({
+    super.key,
+    this.nullableList,
+    this.nullableItems,
+    this.iterableWidgets,
+    this.setWidgets,
+    this.mapWidgets,
+    this.futureWidget,
+    this.futureOrWidget,
+    this.streamWidget,
+    this.futureWidgets,
+    this.streamWidgets,
+  });
+
+  final List<Widget>? Function()? nullableList;
+  final List<Widget?> Function()? nullableItems;
+  final Iterable<Widget> Function()? iterableWidgets;
+  final Set<Widget> Function()? setWidgets;
+  final Map<String, Widget> Function()? mapWidgets;
+  final Future<Widget> Function()? futureWidget;
+  final FutureOr<Widget> Function()? futureOrWidget;
+  final Stream<Widget> Function()? streamWidget;
+  final Future<List<Widget>> Function()? futureWidgets;
+  final Stream<List<Widget>> Function()? streamWidgets;
+
+  @override
+  Widget build(BuildContext context) => const SizedBox();
 }
 
 class AutoSet extends SetBase<String> {

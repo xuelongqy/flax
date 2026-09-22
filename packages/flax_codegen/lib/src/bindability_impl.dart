@@ -233,7 +233,6 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
 
   final scope = await parser._openTypeScope(library);
   final constructors = <String, List<String>>{};
-  final independentWidgetCallbacks = <String, List<String>>{};
   if (element is ClassElement) {
     for (final constructor in element.constructors) {
       if (!constructor.isPublic) continue;
@@ -250,11 +249,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
         skips: skips,
       );
       if (bound != null) {
-        constructors[ctorName] = bound.parameters;
-        if (bound.independentWidgetCallbacks.isNotEmpty) {
-          independentWidgetCallbacks[ctorName] =
-              bound.independentWidgetCallbacks;
-        }
+        constructors[ctorName] = bound;
       }
     }
   } else if (widget) {
@@ -571,10 +566,6 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     selectedConstructors,
     kind: kind,
     proxy: proxy,
-    independentWidgetCallbacks: {
-      for (final entry in independentWidgetCallbacks.entries)
-        if (selectedConstructors.containsKey(entry.key)) entry.key: entry.value,
-    },
     typeArguments: typeArguments,
     getters: selectedGetters,
     setters: selectedSetters,
@@ -801,8 +792,7 @@ String? _typeArgumentSource(FlaxCodegenBindingParser parser, DartType type) {
   return nullable ? '$name?' : name;
 }
 
-({List<String> parameters, List<String> independentWidgetCallbacks})?
-_bindConstructor({
+List<String>? _bindConstructor({
   required FlaxCodegenBindingParser parser,
   required _FlaxCodegenTypeScope scope,
   required InterfaceElement element,
@@ -815,7 +805,6 @@ _bindConstructor({
   final location = '${element.name}.$ctorName';
   final chosen = <String>[];
   final omit = <String>[];
-  final independent = <String>[];
   for (final parameter in constructor.formalParameters) {
     final paramName = parameter.name;
     if (!_usableMemberName(paramName)) {
@@ -846,7 +835,6 @@ _bindConstructor({
     }
     chosen.add(paramName!);
     if (bound.omitWhenAbsent) omit.add(paramName);
-    if (bound.independentWidgetResult) independent.add(paramName);
   }
   var kept = chosen;
   if (omit.length > FlaxCodegenBindability.omitWhenAbsentCap) {
@@ -865,16 +853,10 @@ _bindConstructor({
       );
     }
   }
-  return (
-    parameters: kept,
-    independentWidgetCallbacks: [
-      for (final name in independent)
-        if (kept.contains(name)) name,
-    ],
-  );
+  return kept;
 }
 
-({bool omitWhenAbsent, bool independentWidgetResult})? _bindParameter({
+({bool omitWhenAbsent})? _bindParameter({
   required FlaxCodegenBindingParser parser,
   required _FlaxCodegenTypeScope scope,
   required FormalParameterElement parameter,
@@ -923,13 +905,14 @@ _bindConstructor({
     );
     return null;
   }
-  final independentWidgetResult =
-      widget && _canInferIndependentWidgetResult(type);
-  if (_needsIndependentOverlay(type) && !independentWidgetResult) {
+  if (widget &&
+      type.kind == 'callback' &&
+      type.result!.containsWidget &&
+      !_isDirectMountedWidgetResult(type.result!)) {
     skips.add(
       FlaxCodegenSkip(
         target: location,
-        reason: 'Independent Widget-result callbacks stay YAML-only',
+        reason: 'Unsupported mounted Widget callback result: $location',
       ),
     );
     return null;
@@ -993,10 +976,7 @@ _bindConstructor({
       return null;
     }
   }
-  return (
-    omitWhenAbsent: omitWhenAbsent,
-    independentWidgetResult: independentWidgetResult,
-  );
+  return (omitWhenAbsent: omitWhenAbsent);
 }
 
 FlaxCodegenTypeRef? _tryMemberType(
@@ -1120,21 +1100,12 @@ List<String>? _bindMethod({
   return chosen;
 }
 
-bool _needsIndependentOverlay(FlaxCodegenTypeRef type) {
-  if (type.kind != 'callback' || type.result?.kind != 'widget') return false;
-  final parameters = type.parameters;
-  if (parameters.length == 1 && parameters.single.type.kind == 'context') {
-    return false;
-  }
-  return true;
-}
-
-bool _canInferIndependentWidgetResult(FlaxCodegenTypeRef type) =>
-    type.kind == 'callback' &&
-    type.result?.kind == 'widget' &&
-    type.parameters.isNotEmpty &&
-    type.parameters.first.type.kind == 'context' &&
-    !type.parameters.first.type.nullable;
+bool _isDirectMountedWidgetResult(FlaxCodegenTypeRef type) =>
+    type.kind == 'widget' ||
+    (type.kind == 'list' &&
+        !type.nullable &&
+        type.item?.kind == 'widget' &&
+        type.item?.nullable == false);
 
 Future<
   ({

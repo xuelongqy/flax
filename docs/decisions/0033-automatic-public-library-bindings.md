@@ -23,11 +23,12 @@ A generic class is specialized only when observed public signatures provide one 
 unambiguous concrete use (or the existing erasure is sufficient). Multiple runtime
 specializations, provider augmentation and cross-barrel arbitration remain deferred.
 
-Supported synchronous BuildContext-to-Widget callbacks reuse independent result
-ownership, including the already supported Widget collection path. Public non-generic
-implementable Widget interfaces reuse native interface forwarding. This adds selection
-inference without changing lifetime rules or the UI protocol. Route, page and host
-semantic adapters remain explicit. Application resource cleanup remains ordinary
+Supported Widget constructor callbacks with direct synchronous `Widget`, `Widget?` or
+`List<Widget>` results reuse mounted invocation ownership without requiring a
+`BuildContext` parameter or generated `independentWidgetCallbacks` metadata. Public
+non-generic implementable Widget interfaces reuse native interface forwarding. This adds
+selection inference without changing lifetime rules or the UI protocol. Route, page and
+host semantic adapters remain explicit. Application resource cleanup remains ordinary
 application code under Flutter lifecycle rules.
 
 Optional `bindings/overrides.yaml` uses format 1 with `overrides.classes`,

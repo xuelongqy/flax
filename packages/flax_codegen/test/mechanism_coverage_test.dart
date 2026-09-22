@@ -808,14 +808,11 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'widget_callback_shapes.dart',
     type: 'WidgetNullableBox',
     member: 'maybe',
-    verdict: 'automation gap',
+    verdict: 'supported',
     route: 'classWide',
     bindable: true,
-    memberStatus: 'skipped',
-    skips: <String>[
-      'WidgetNullableBox.maybe.build: Independent Widget-result callbacks '
-          'stay YAML-only',
-    ],
+    memberStatus: 'selected',
+    skips: <String>[],
     classWideOk: true,
     classWideClasses: <String>['WidgetNullableBox'],
     classWideMemberSelected: true,

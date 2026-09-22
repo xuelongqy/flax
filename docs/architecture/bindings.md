@@ -436,9 +436,11 @@ C-header FFI generation is separate (`ffi:generate` / `ffi:check`). JS tree shak
 not remove Dart registry entries automatically; broad API coverage, bytecode loading and
 additional engine adapters remain separate work.
 
-Mounted Widget/Widget? callback results use [invocation ownership](lists.md)
-automatically. The `independentWidgetCallbacks` selection field remains accepted as
-compatibility metadata but is not required for ownership correctness.
+Mounted Widget constructor callbacks with direct synchronous `Widget`, `Widget?` or
+`List<Widget>` results use [invocation ownership](lists.md) automatically, regardless of
+whether `BuildContext` appears in the callback parameters. The
+`independentWidgetCallbacks` selection field remains accepted as compatibility metadata;
+automatic discovery does not emit it.
 
 Typed List elements and Map values may contain nested callbacks. The host adapts them
 per mount, and nested Widget results always use independent invocation ownership.

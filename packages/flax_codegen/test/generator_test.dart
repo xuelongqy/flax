@@ -1002,6 +1002,29 @@ TileBatch({render: (context, index) => null, count: undefined});
 TileBatch({render: async () => null});
 """,
       );
+      final legacy = await parser.parse(
+        fixture('repeated.dart', {
+          'BuildContext': repeatedSelection['BuildContext']!,
+          'TileBatch': const FlaxCodegenClassSelection(
+            {
+              '': ['render'],
+            },
+            independentWidgetCallbacks: {
+              '': ['render'],
+            },
+          ),
+        }),
+      );
+      expect(
+        legacy.classes
+            .singleWhere((type) => type.name == 'TileBatch')
+            .constructors
+            .single
+            .parameters
+            .single
+            .independentWidgetResult,
+        isTrue,
+      );
       for (final invalid in [
         {
           'missing': ['render'],

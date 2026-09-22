@@ -50,17 +50,19 @@ rebuilds follow Flutter, including dependencies registered on the shared Sliver 
 
 ## Independent result ownership
 
-Mounted Widget/Widget? callback results use invocation ownership automatically. No
-constructor-specific callback list is required:
+Callbacks stored by a mounted Widget constructor use invocation ownership automatically
+when their direct synchronous result is `Widget`, `Widget?` or `List<Widget>`. The
+callback does not need a `BuildContext` parameter. No constructor-specific callback list
+is required:
 
 ```yaml
 # No independentWidgetCallbacks entry is needed for itemBuilder.
 ```
 
-The runtime derives this from the callback result type instead of a component name,
-callback name or index. Existing `independentWidgetCallbacks` metadata remains readable
-for compatibility but is not required for correct ownership. There is no new JS wire
-format or protocol migration.
+The runtime derives ownership from the mounted Widget callback position and result type,
+instead of a component name, callback name, parameter list or index. Existing
+`independentWidgetCallbacks` metadata remains readable for compatibility but automatic
+discovery does not emit it. There is no new JS wire format or protocol migration.
 
 JS executes synchronously when Flutter requests the child, not during descriptor
 validation or inside a deferred replacement Builder. Each non-null result is wrapped by

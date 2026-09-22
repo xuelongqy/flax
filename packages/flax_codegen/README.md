@@ -185,10 +185,12 @@ independent fixture compiles constructor, instance, static and proxy calls in th
 Required inputs remain required. The SDK test reports constructor call counts and
 generated sizes.
 
-Selected Widget constructors can mark independentWidgetCallbacks. The model validates
-Widget/Widget? results with a leading BuildContext and emits Dart-only ownership
-metadata. Nullable callbacks no longer require a non-null result. A separately named
-plugin fixture verifies generation and repeated result mounting through the UI tests.
+Widget constructor callbacks with direct synchronous `Widget`, `Widget?` or
+`List<Widget>` results use mounted Widget result semantics automatically. `BuildContext`
+is an ordinary callback argument and is not required for this inference. The historical
+`independentWidgetCallbacks` field remains accepted for explicit selections but automatic
+discovery does not emit it. A separately named plugin fixture verifies generation and
+repeated result mounting through the UI tests.
 See [lazy list ownership](../../docs/architecture/lists.md).
 
 Nested callbacks in typed List elements and Map values receive per-mount adapters.

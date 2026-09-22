@@ -296,7 +296,7 @@ overrides:
         final itemBuilder = list.constructors.single.parameters.singleWhere(
           (parameter) => parameter.name == 'itemBuilder',
         );
-        expect(itemBuilder.independentWidgetResult, isTrue);
+        expect(itemBuilder.independentWidgetResult, isFalse);
 
         final bar = module.classes.singleWhere(
           (type) => type.name == 'AutoBar',
