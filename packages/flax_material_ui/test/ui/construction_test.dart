@@ -44,7 +44,8 @@ void main() {
             module.name,
             [
               for (final type in module.types)
-                if (type is FlaxWidgetBinding && type.id.endsWith('::Text'))
+                if (type is FlaxWidgetBinding &&
+                    type.id == 'flax.core/flutter#type:Text')
                   FlaxWidgetBinding(
                     type.id,
                     type.constructors,

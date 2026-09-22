@@ -15,12 +15,31 @@ Future<void> startApplication({String? storageDirectory}) async {
   runApp(
     Directionality(
       textDirection: TextDirection.ltr,
-      child: FlaxView(
-        createRuntime: FlaxHermesEngine.createRuntime,
-        source: source,
-        sourceUrl: 'flax:flax_local_storage:example',
-        bindings: bindings,
-        plugins: [const FlaxLocalStoragePlugin()],
+      child: Row(
+        children: [
+          for (final entry in const [
+            ('Shared 1', 'shop'),
+            ('Shared 2', 'shop'),
+            ('Isolated', 'private'),
+          ])
+            Expanded(
+              child: Column(
+                children: [
+                  Text(entry.$1),
+                  Expanded(
+                    child: FlaxView(
+                      namespace: entry.$2,
+                      createRuntime: FlaxHermesEngine.createRuntime,
+                      source: source,
+                      sourceUrl: 'flax:flax_local_storage:example/${entry.$2}',
+                      bindings: bindings,
+                      plugins: const [FlaxLocalStoragePlugin()],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+        ],
       ),
     ),
   );

@@ -29,6 +29,7 @@ Future<int> runFrameworkTests(
   String root, {
   String engine = defaultFlaxEngine,
   String? packageName,
+  List<String> testPaths = const ['test/ui'],
 }) async {
   requireUiAssets(root, engine: engine);
   final packages = discoverPackages(root)
@@ -38,7 +39,7 @@ Future<int> runFrameworkTests(
   final tests = packages.map((package) => package.uiTests.path).toList();
   if (tests.isEmpty) return 0;
   if (engine != defaultFlaxEngine) {
-    await _runIsolated(root, packages, engine);
+    await _runIsolated(root, packages, engine, testPaths);
     return tests.length;
   }
   for (final test in tests) {
@@ -49,7 +50,7 @@ Future<int> runFrameworkTests(
       '--no-pub',
       '--reporter',
       'expanded',
-      'test/ui',
+      ...testPaths,
     ], directory: package);
   }
   return tests.length;
@@ -59,8 +60,10 @@ Future<int> runPackageExampleTests(
   String root,
   FlaxWorkspacePackage package, {
   String engine = defaultFlaxEngine,
+  Future<void> Function(String, List<String>, {String? directory}) runCommand =
+      run,
 }) async {
-  if (!package.example.existsSync()) return 0;
+  if (!package.hasFlutterExample) return 0;
   var count = 0;
   await withPackageExample(root, package, engine, (example) async {
     for (final entry in const [('test', false), ('integration_test', true)]) {
@@ -75,7 +78,7 @@ Future<int> runPackageExampleTests(
               .toList()
             ..sort();
       if (tests.isEmpty) continue;
-      await run('flutter', [
+      await runCommand('flutter', [
         'test',
         '--no-pub',
         if (entry.$2) ...['-d', 'macos'],
@@ -90,10 +93,17 @@ Future<int> runPackageExampleTests(
 Future<int> runAllPackageExamples(
   String root, {
   String engine = defaultFlaxEngine,
+  Future<void> Function(String, List<String>, {String? directory}) runCommand =
+      run,
 }) async {
   var count = 0;
   for (final package in discoverPackages(root)) {
-    count += await runPackageExampleTests(root, package, engine: engine);
+    count += await runPackageExampleTests(
+      root,
+      package,
+      engine: engine,
+      runCommand: runCommand,
+    );
   }
   return count;
 }
@@ -143,6 +153,7 @@ Future<void> _runIsolated(
   String root,
   List<FlaxWorkspacePackage> selected,
   String engine,
+  List<String> testPaths,
 ) async {
   final temporary = Directory.systemTemp.createTempSync('flax-ui-$engine-');
   try {
@@ -233,7 +244,7 @@ workspace:
         '--no-pub',
         '--reporter',
         'expanded',
-        'test/ui',
+        ...testPaths,
       ], directory: directory);
     }
   } finally {

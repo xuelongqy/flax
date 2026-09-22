@@ -308,6 +308,15 @@ const interopSelection = {
       'twice': ['value'],
     },
   ),
+  'AsyncRequiredSuper': FlaxCodegenClassSelection(
+    {'': []},
+    kind: 'object',
+    proxy: 'extends',
+    instanceMethods: {
+      'load': ['value'],
+      'normalize': ['value'],
+    },
+  ),
   'Selector': FlaxCodegenClassSelection(
     {},
     kind: 'object',

@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { ListView, Text } from '@flax/core/flutter';
+import { ListView, Text } from '@flax/flutter/widgets';
 import { RefreshIndicator } from '../dist/index.js';
 
 test('RefreshIndicator preserves the asynchronous callback without invoking it', () => {

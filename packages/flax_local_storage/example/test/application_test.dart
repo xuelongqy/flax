@@ -15,7 +15,10 @@ void main() {
     );
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 20));
-    expect(find.text('localStorage ready'), findsOneWidget);
+    expect(find.text('Shared 1'), findsOneWidget);
+    expect(find.text('Shared 2'), findsOneWidget);
+    expect(find.text('Isolated'), findsOneWidget);
+    expect(find.text('Stored: 0'), findsNWidgets(3));
     await tester.pumpWidget(const SizedBox());
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 20));

@@ -10,4 +10,4 @@ capabilities:
 bindingNamespace: vendor.example
 registration:
   bindings:
-    - yourBindings
+    - exampleBindings

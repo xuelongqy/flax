@@ -1,19 +1,23 @@
 import { bind, signal } from '@flax/core';
 import {
   Builder,
-  Color,
   Column,
   EdgeInsets,
   FontStyle,
-  FontWeight,
   Text,
   TextStyle,
-  ValueKey,
   WidgetState,
   WidgetStateProperty,
   registerPage,
-} from '@flax/core/flutter';
-import { ButtonStyle, InputDecoration, TextButton, TextField } from '@flax/material-ui';
+} from '@flax/flutter/widgets';
+import { Color, FontWeight } from '@flax/flutter/services';
+import { ValueKey } from '@flax/flutter/foundation';
+import {
+  ButtonStyle,
+  InputDecoration,
+  TextButton,
+  TextField,
+} from '@flax/flutter/material';
 
 const normalColor = Color(0xff315cba);
 const pressedColor = Color(0xffba315c);

@@ -1,0 +1,62 @@
+{
+  "name": "@flax/flutter",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Declaration-only public Flutter library surface for Flax.",
+  "exports": {
+    "./foundation": {
+      "types": "./types/generated/libraries/foundation/index.d.ts"
+    },
+    "./foundation/*": {
+      "types": "./types/generated/libraries/foundation/*.d.ts"
+    },
+    "./gestures": {
+      "types": "./types/generated/libraries/gestures/index.d.ts"
+    },
+    "./gestures/*": {
+      "types": "./types/generated/libraries/gestures/*.d.ts"
+    },
+    "./cupertino": {
+      "types": "./types/generated/libraries/cupertino/index.d.ts"
+    },
+    "./cupertino/*": {
+      "types": "./types/generated/libraries/cupertino/*.d.ts"
+    },
+    "./material": {
+      "types": "./types/generated/libraries/material/index.d.ts"
+    },
+    "./material/*": {
+      "types": "./types/generated/libraries/material/*.d.ts"
+    },
+    "./scheduler": {
+      "types": "./types/generated/libraries/scheduler/index.d.ts"
+    },
+    "./scheduler/*": {
+      "types": "./types/generated/libraries/scheduler/*.d.ts"
+    },
+    "./services": {
+      "types": "./types/generated/libraries/services/index.d.ts"
+    },
+    "./services/*": {
+      "types": "./types/generated/libraries/services/*.d.ts"
+    },
+    "./widgets": {
+      "types": "./types/widgets.d.ts"
+    },
+    "./widgets/*": {
+      "types": "./types/generated/libraries/widgets/*.d.ts"
+    }
+  },
+  "files": [
+    "types"
+  ],
+  "scripts": {
+    "build": "tsc --project tsconfig.json --noEmit",
+    "typecheck": "tsc --project tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@flax/core": "workspace:*",
+    "@flax/dart": "workspace:*"
+  }
+}

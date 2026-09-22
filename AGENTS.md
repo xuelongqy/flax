@@ -8,7 +8,7 @@ Builder/LayoutBuilder callbacks with real Context access. Explicit sessions supp
 shared and nested Flutter navigation with Route-owned callbacks and UI Future delivery.
 Named page entries, reactive parameters, and Dart/JS declarative Pages support host
 Router integration. Read the [UI contract](docs/architecture/ui.md) and
-[current handoff](docs/tasks/package-isolation.md). Generated owned objects and
+[package boundaries](docs/architecture/packaging.md). Generated owned objects and
 ScrollController and TextEditingController support explicit listeners and page cleanup.
 Material TextField supports generated focus and formatters. Ordinary Dart values use
 real references; session close clears bridge resources without application disposal.
@@ -137,8 +137,7 @@ require explicit FlaxNavigatorObserver installation; see
 
 Optional localStorage uses Hive CE and `FlaxSession.namespace`. Initialization is
 explicit and preserves the host's Hive configuration and boxes. See
-[storage contracts](docs/architecture/local-storage.md) and the
-[storage handoff](docs/tasks/local-storage.md).
+[storage contracts](docs/architecture/local-storage.md).
 
 Optional Canvas 2D uses a command buffer and generated `CanvasView`. rAF is part of the
 base host. See [canvas contracts](docs/architecture/canvas.md).

@@ -54,8 +54,10 @@ A capability can be generated and statically checked by package name, and its re
 tests can run independently with a selected engine. Adding a conforming plugin does not
 require a root package-name list.
 
-The manifest format is an explicit codegen boundary independent of UI protocol 18 and
-native ABI 2. Package tests cannot import another package's `test/` or `lib/src/`.
+The manifest format is an explicit codegen boundary independent of the UI protocol and
+native ABI. Current versions are defined by the
+[compatibility contract](../architecture/external-binding-compatibility.md). Package
+tests cannot import another package's `test/` or `lib/src/`.
 
 Pub and npm form a versioned pair only where metadata declares a JavaScript peer. Each
 capability pair may evolve independently. Runtime-mode npm packages contain

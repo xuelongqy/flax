@@ -6,6 +6,7 @@ class _Session {
   _Session(this.runtime, this.registry, this.onError, {this.namespace});
   final String? namespace;
   final _hostInstallations = <_HostInstallation>[];
+  _ModuleInstallation? _moduleInstallation;
   // These entries are installed after plugins or by the application UI bundle.
   final _hostGlobals = <String>{
     '__flaxBindings',
@@ -119,6 +120,7 @@ class _Session {
     String source,
     String sourceUrl, {
     required List<FlaxPlugin> plugins,
+    required FlaxModuleAssets? moduleAssets,
   }) {
     try {
       _objectKeys = runtime.evaluate('Object.keys') as FlaxJsFunction;
@@ -129,6 +131,7 @@ class _Session {
       registerStreams();
       registerFunctions();
       registerAsync();
+      installModules(moduleAssets, plugins);
       installHost(plugins);
       runtime.registerHostFunction('__flaxInvalidate', (_, args) {
         if (args.length != 1 || args.single is! FlaxJsNumber) {
@@ -263,6 +266,57 @@ class _Session {
         throw ArgumentError('Expected a Dart Stream reference');
       }
       return decodeStream(value, type);
+    }
+    if (type.kind == 'record') {
+      if (value is! FlaxJsObject) {
+        throw ArgumentError('Expected a Record object');
+      }
+      final shape = helper('collectionShape').call([value]);
+      try {
+        if (shape is! FlaxJsString || shape.value != 'record') {
+          throw ArgumentError('Expected a Record object');
+        }
+      } finally {
+        _releaseJs(shape);
+      }
+      final binding = type.record;
+      if (binding == null) throw ArgumentError('Missing Record binding');
+      final ownKeys = keys(value).toSet();
+      final fields = <_Value>[];
+      try {
+        for (final field in binding.fields) {
+          if (!ownKeys.contains(field.name)) {
+            throw ArgumentError('Missing Record field ${field.name}');
+          }
+          try {
+            fields.add(
+              _property(
+                value,
+                field.name,
+                (input) => decode(
+                  input,
+                  field.type,
+                  callbackScope: callbackScope,
+                  conversion: conversion,
+                ),
+              ),
+            );
+          } catch (error) {
+            throw ArgumentError('Record field ${field.name}: $error');
+          }
+        }
+        return _Value(
+          binding.create(
+            fields.map((field) => field.data).toList(growable: false),
+          ),
+          fields,
+        );
+      } catch (_) {
+        for (final field in fields.reversed) {
+          field.release();
+        }
+        rethrow;
+      }
     }
     if (type.kind == 'object') {
       final binding = registry._types[type.id];
@@ -598,6 +652,7 @@ class _Session {
       cancelStreamIterators();
       cancelAsyncIterableSources();
       closeHost();
+      closeModules();
       checkpoint();
     }
     _tryClose();
@@ -622,6 +677,7 @@ class _Session {
     cancelStreamIterators();
     cancelAsyncIterableSources();
     disposeHost();
+    disposeModules();
     _status = _SessionStatus.closed;
     if (_frame != null) {
       SchedulerBinding.instance.cancelFrameCallbackWithId(_frame!);

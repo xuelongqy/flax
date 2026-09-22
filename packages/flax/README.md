@@ -1,5 +1,11 @@
 # flax
 
+Selected Flutter APIs use public library entries such as `@flax/flutter/foundation` and
+`@flax/flutter/widgets`. Dynamic top-level values are ordinary module exports such as
+`getKIsWeb()` and `getDefaultTargetPlatform()`; each call reads Dart without caching or
+subscribing, while importing the module does not evaluate them. See
+[top-level values](../../docs/architecture/bindings.md#public-libraries-and-top-level-readonly-declarations).
+
 Owns the engine-independent runtime API and the shared Dart FFI bridge. Also owns
 FlaxSession, FlaxView, generated base bindings, mounted-property subscriptions, and
 Flutter subtree reconciliation. The package is experimental, version 0.0.0, with
@@ -7,10 +13,14 @@ publication disabled.
 
 ## Paired installation
 
-Applications install `flax` from Pub and `@flax/core` from npm at the same exact
-version. The Pub package contains Dart, generated bindings, the base host bootstrap, and
-the public native ABI header. The npm package contains signals, Flutter description
-factories, binding types, and host declarations.
+Applications install `flax` from Pub and the physical `@flax/core` runtime package at
+the same exact version when Core is carried by that application. Public Flutter and Dart
+SDK declarations are exposed separately through `@flax/flutter/*` and `@flax/dart/*`;
+applications that provide those modules through `Flax.moduleAssets` can depend on the
+declaration packages without bundling a second implementation. The Pub package contains
+Dart, generated bindings, the base host bootstrap, and the public native ABI header. The
+npm runtime package contains signals, binding transport, Core implementation modules,
+navigation, and host declarations.
 
 ```yaml
 dependencies:
@@ -24,6 +34,12 @@ pnpm add @flax/core@<version>
 Register `flutterBindings` in the application's `FlaxBindingRegistry`. Import
 `@flax/core/host` only for session host global types; it has no installation side effect
 and targets an ES-only TypeScript project rather than `lib.dom`.
+
+Application source imports Flutter libraries through their public paths, for example
+`@flax/flutter/widgets`; `package:flax/bindings.dart` is exposed as
+`@flax/core/navigation`. Public paths, physical npm delivery packages, and stable wire
+IDs are separate concerns. See
+[package boundaries](../../docs/architecture/packaging.md).
 
 Generated Builder/LayoutBuilder adapters use real Flutter callbacks. The shared UI host
 owns callback results and Context references per mounted instance; scalar member calls
@@ -92,6 +108,19 @@ Widget parameters borrow controllers; named page factories can register cleanup 
 PageLifecycle. See [owned objects](../../docs/architecture/objects.md) for listener and
 disposal semantics.
 
+ScrollController.animateTo accepts Duration and Curve references and returns a Promise
+through the existing Future bridge. Core selects Curve.transform, Cubic and five Curves
+constants. ListView.builder and SingleChildScrollView also accept selected ScrollPhysics
+references with parent composition; native Flutter owns motion and drag behavior. See
+[scrolling](../../docs/architecture/lists.md).
+
+Core also owns ShapeBorder/OutlinedBorder, RoundedRectangleBorder, CircleBorder,
+StadiumBorder and selected mouse cursor constants. Existing Border/BoxBorder values
+retain their identity and satisfy ShapeBorder. Material reuses these public exports and
+their provider manifest. See
+[shapes and cursors](../../docs/architecture/styles.md#shapes-cursors-and-density) and
+the [shared-object tests](../flax_material_ui/test/ui/shared_objects_test.dart).
+
 TextEditingController adds text/value/selection access and Flutter editing methods.
 TextEditingValue, TextSelection and TextRange are constructed by Dart and returned as
 readonly references; nested fields call real Dart getters. See the
@@ -103,6 +132,11 @@ copyWith, property bindings and inherited dependencies.
 
 Generated ListView.builder uses explicit independent callback results and Flutter-owned
 scrolling, caching and key matching. See [lazy lists](../../docs/architecture/lists.md).
+
+Generated Spacer selects `key` and reactive `flex`, retaining Flutter's default flex of
+one and native free-space distribution. The
+[Core/Material slice tests](../flax_material_ui/test/ui/binding_slice_test.dart) compare
+default, unequal and changing flex values with native Flutter layout.
 
 Generated Expanded/Flexible and Stack/Positioned preserve Flutter ParentData through the
 existing hosts. Align and physical/directional alignment values reuse ordinary object

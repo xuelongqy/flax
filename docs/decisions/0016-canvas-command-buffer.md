@@ -19,8 +19,10 @@ Keep `requestAnimationFrame` in the base host. Expose `CanvasView` through gener
 bindings with `jsName: CanvasView`. Pointer and key events use `callbackSnapshots`
 instead of DOM events.
 
-Do not change native ABI 2 or UI protocol 17 for this plugin. Document ABI 2's two byte
-copies rather than claiming zero-copy.
+The private Canvas command version is independent of native ABI 2 and the UI protocol.
+Document ABI 2's two byte copies rather than claiming zero-copy. The
+[Canvas contract](../architecture/canvas.md) records current behavior and known gaps;
+this decision alone does not establish conformance.
 
 ## Alternatives
 

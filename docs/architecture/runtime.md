@@ -113,6 +113,25 @@ TypedArray/DataView views; callers never retain native byte pointers. Detached s
 comes from the engine, not an object's mutable `detached` property. A detached buffer is
 rejected even when its length is zero; an ordinary empty buffer remains valid.
 
+## Verification
+
+`dart run melos run check:runtime` builds and tests Hermes; `check:runtime:v8`
+explicitly selects V8. `check:engines` tests coexistence, cross-engine object and
+native-handle rejection, reentry and recreation. Run these serially with UI aggregates
+because engine assets and generated fixtures are shared. Ordinary `check` configures
+native builds but does not build or fetch an engine.
+
+Package integration commands own package-specific Flutter/example behavior.
+`check:aggregate` adds only cross-module embedded composition, while `check:ui` runs all
+UI-owning package integrations followed by that aggregate. Runtime, standalone,
+engine-coexistence, and release checks remain separate gates. The current acceptance
+scope is recorded in
+[External Binding Compatibility](external-binding-compatibility.md). The
+[V8 adapter](../../packages/flax_engine_v8/native/README.md) documents lifecycle and JIT
+smoke coverage; [packaging](packaging.md) defines outside-consumer and relocated-bundle
+checks. A local runtime pass does not establish other-platform, published-archive or
+complete ECMAScript conformance.
+
 ## Deferred concerns
 
 Modules, bytecode packaging, hot reload, inspector integration, execution limits,

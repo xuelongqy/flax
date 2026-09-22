@@ -8,7 +8,7 @@ import {
   EdgeInsets,
   TextDirection,
   runApp,
-} from '../../dist/flutter/index.js';
+} from '../../dist/flutter/widgets.js';
 import { signal } from '../../dist/runtime/index.js';
 
 const host = objectHost();

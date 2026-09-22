@@ -1,5 +1,5 @@
 import type {} from '@flax/canvas/globals';
-import { runApp, Text, Column } from '@flax/core/flutter';
+import { runApp, Text, Column } from '@flax/flutter/widgets';
 import { CanvasView } from '@flax/canvas';
 
 const canvas = new OffscreenCanvas(80, 40);

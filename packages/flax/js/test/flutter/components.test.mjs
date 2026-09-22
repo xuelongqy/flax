@@ -5,7 +5,7 @@ import {
   StatefulWidget,
   StatelessWidget,
   Text,
-} from '../../dist/flutter/index.js';
+} from '../../dist/flutter/widgets.js';
 import { signal } from '../../dist/runtime/index.js';
 const api = globalThis.__flaxBindings;
 

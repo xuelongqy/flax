@@ -9,6 +9,7 @@ import 'src/process.dart';
 Future<void> main() => command(() async {
   final root = Directory.fromUri(Platform.script.resolve('../')).path;
   final packages = discoverPackages(root);
+  final npmDeliverables = discoverNpmPackages(root);
   for (final package in packages) {
     _validatePackageLayout(package);
   }
@@ -19,15 +20,10 @@ Future<void> main() => command(() async {
   if (coreNpmName == null) throw StateError('Core package has no npm package');
   final npmVersions = <String, String>{};
   final npmPackages = <String, Map<String, dynamic>>{};
-  for (final package in packages) {
-    final metadata = package.metadata;
-    final file = File(p.join(package.js.path, 'package.json'));
-    if (metadata.javascript == null) continue;
-    final data = jsonDecode(file.readAsStringSync()) as Map<String, dynamic>;
-    final name = metadata.javascript!.name;
-    final version = data['version'] as String;
-    npmVersions[name] = version;
-    npmPackages[name] = data;
+  for (final package in npmDeliverables) {
+    final data = package.manifest;
+    npmVersions[package.name] = data['version'] as String;
+    npmPackages[package.name] = data;
   }
 
   final temporary = Directory.systemTemp.createTempSync('flax-packages-');
@@ -38,15 +34,15 @@ Future<void> main() => command(() async {
       final copy = dartCopies[package.name]!;
       _rejectRepositoryPaths(copy, root);
       await _checkDartPackage(package, copy);
-      if (package.metadata.javascript != null) {
-        final archive = await _checkNpmPackage(
-          package,
-          temporary,
-          npmVersions,
-          root,
-        );
-        npmArchives[archive.name] = archive;
-      }
+    }
+    for (final package in npmDeliverables) {
+      final archive = await _checkNpmPackage(
+        package,
+        temporary,
+        npmVersions,
+        root,
+      );
+      npmArchives[archive.name] = archive;
     }
     await _checkDartConsumers(packages, dartCopies, temporary);
     await _checkNpmConsumers(
@@ -312,17 +308,21 @@ void _rejectNoticeArtifacts(Directory package) {
 }
 
 Future<_NpmArchive> _checkNpmPackage(
-  FlaxWorkspacePackage package,
+  FlaxNpmPackage package,
   Directory temporary,
   Map<String, String> versions,
   String workspaceRoot,
 ) async {
-  final copy = Directory(p.join(temporary.path, 'npm', package.name));
-  _copySource(package.js, copy);
+  final copy = Directory(
+    p.join(
+      temporary.path,
+      'npm',
+      package.name.replaceAll(RegExp(r'[^a-zA-Z0-9._-]+'), '-'),
+    ),
+  );
+  _copySource(package.directory, copy);
   final manifest = File(p.join(copy.path, 'package.json'));
   final data = jsonDecode(manifest.readAsStringSync()) as Map<String, dynamic>;
-  final metadata = package.metadata;
-  final javascript = metadata.javascript!;
   data.remove('private');
   for (final field in ['dependencies', 'devDependencies']) {
     final dependencies = data[field] as Map<String, dynamic>?;
@@ -355,7 +355,7 @@ Future<_NpmArchive> _checkNpmPackage(
       .cast<Map<String, dynamic>>()
       .map((file) => file['path'] as String)
       .toList();
-  _checkNpmArchive(package, data, files, javascript.mode);
+  _checkNpmArchive(package, data, files);
   if (files.any(
     (file) =>
         file.startsWith('src/') ||
@@ -391,10 +391,9 @@ Future<_NpmArchive> _checkNpmPackage(
 }
 
 void _checkNpmArchive(
-  FlaxWorkspacePackage package,
+  FlaxNpmPackage package,
   Map<String, dynamic> manifest,
   List<String> files,
-  String mode,
 ) {
   final configuredFiles = (manifest['files'] as List<dynamic>?)?.cast<String>();
   if (configuredFiles == null || configuredFiles.contains('dist')) {
@@ -408,8 +407,15 @@ void _checkNpmArchive(
     );
   }
   final javascript = files.where((path) => path.endsWith('.js')).toList();
-  if (mode == 'declarations') {
-    if (javascript.length != 1 || javascript.single != 'noop.js') {
+  if (package.mode == 'declarations') {
+    if (package.isTypeOnly && javascript.isNotEmpty) {
+      throw StateError(
+        'Type-only npm package ${package.name} must not contain JavaScript: '
+        '$javascript',
+      );
+    }
+    if (!package.isTypeOnly &&
+        (javascript.length != 1 || javascript.single != 'noop.js')) {
       throw StateError(
         'Declaration npm package ${package.name} must contain only noop.js: '
         '$javascript',
@@ -418,17 +424,39 @@ void _checkNpmArchive(
   } else if (javascript.isEmpty) {
     throw StateError('Runtime npm package ${package.name} has no JavaScript');
   }
-  final exports = (manifest['exports'] as Map<String, dynamic>).values
-      .cast<Map<String, dynamic>>();
-  for (final entry in exports) {
+  final exports = manifest['exports'] as Map<String, dynamic>;
+  for (final entry in exports.values) {
+    if (entry is String) {
+      _requireNpmExport(package, files, 'export', entry);
+      continue;
+    }
+    final conditions = entry as Map<String, dynamic>;
     for (final field in ['types', 'import']) {
-      final path = (entry[field] as String).replaceFirst('./', '');
-      if (!files.contains(path)) {
-        throw StateError(
-          'Missing npm export for ${package.name}: $field $path',
-        );
+      final target = conditions[field];
+      if (target is String) {
+        _requireNpmExport(package, files, field, target);
       }
     }
+  }
+}
+
+void _requireNpmExport(
+  FlaxNpmPackage package,
+  List<String> files,
+  String field,
+  String target,
+) {
+  final path = target.replaceFirst('./', '');
+  final parts = path.split('*');
+  final matches = parts.length == 1
+      ? files.contains(path)
+      : files.any(
+          (file) =>
+              RegExp('^${parts.map(RegExp.escape).join('.*')}\$')
+                  .hasMatch(file),
+        );
+  if (!matches) {
+    throw StateError('Missing npm export for ${package.name}: $field $path');
   }
 }
 
@@ -531,28 +559,29 @@ Future<void> _checkNpmConsumers(
     File(p.join(directory.path, 'package.json')).writeAsStringSync(
       '${const JsonEncoder.withIndent('  ').convert({'name': 'consumer-${p.basename(directory.path)}', 'private': true, 'type': 'module', 'dependencies': dependencies})}\n',
     );
-    final exports = (manifests[archive.name]!['exports'] as Map).keys
-        .cast<String>()
-        .where((name) => name != '.')
-        .map((name) => '${archive.name}${name.substring(1)}')
-        .toList();
-    final imports = <String>[
-      coreName,
-      '$coreName/flutter',
-      '$coreName/bindings',
-      '$coreName/host',
-      if (archive.name != core.name) archive.name,
-      if (archive.name != core.name) ...exports,
-    ];
+    final runtimeImports = <String>{
+      ..._npmExportSpecifiers(coreName, manifests[coreName]!, runtime: true),
+      if (archive.name != core.name)
+        ..._npmExportSpecifiers(
+          archive.name,
+          manifests[archive.name]!,
+          runtime: true,
+        ),
+    }.toList()..sort();
+    final typeImports = <String>{
+      ..._npmExportSpecifiers(coreName, manifests[coreName]!),
+      if (archive.name != core.name)
+        ..._npmExportSpecifiers(archive.name, manifests[archive.name]!),
+    }.toList()..sort();
     File(p.join(directory.path, 'verify.mjs')).writeAsStringSync(
-      'for (const name of ${jsonEncode(imports)}) await import(name);\n'
+      'for (const name of ${jsonEncode(runtimeImports)}) await import(name);\n'
       "console.log('Verified ${archive.name} with @flax/core');\n",
     );
     File(p.join(directory.path, 'verify.ts')).writeAsStringSync(
       [
         "export type Core = typeof import('$coreName');",
-        for (final name in imports)
-          "export type Module${imports.indexOf(name)} = typeof import('$name');",
+        for (var index = 0; index < typeImports.length; index += 1)
+          "export type Module$index = typeof import('${typeImports[index]}');",
       ].join('\n'),
     );
     File(p.join(directory.path, 'tsconfig.json')).writeAsStringSync(
@@ -583,8 +612,22 @@ Future<void> _checkNpmConsumers(
     '--offline',
     '--ignore-scripts',
   ], directory: root.path);
+  final nodeLoader = File(
+    p.join(
+      workspaceRoot,
+      'packages',
+      'flax_tools',
+      'js',
+      'src',
+      'register-node-loader.mjs',
+    ),
+  ).uri.toString();
   for (final consumer in consumers) {
-    await run('node', ['verify.mjs'], directory: consumer.path);
+    await run('node', [
+      '--import',
+      nodeLoader,
+      'verify.mjs',
+    ], directory: consumer.path);
     await run('pnpm', [
       '--silent',
       'exec',
@@ -593,6 +636,35 @@ Future<void> _checkNpmConsumers(
       p.join(consumer.path, 'tsconfig.json'),
     ], directory: workspaceRoot);
   }
+}
+
+List<String> _npmExportSpecifiers(
+  String packageName,
+  Map<String, dynamic> manifest, {
+  bool runtime = false,
+}) {
+  final exports = (manifest['exports'] as Map).cast<String, dynamic>();
+  final result = <String>[];
+  for (final entry in exports.entries) {
+    if (entry.key.contains('*')) continue;
+    final target = entry.value;
+    final available = switch (target) {
+      String value when runtime =>
+        value.endsWith('.js') ||
+            value.endsWith('.mjs') ||
+            value.endsWith('.cjs'),
+      String _ => true,
+      Map<Object?, Object?> value when runtime => value['import'] is String,
+      Map<Object?, Object?> value =>
+        value['types'] is String || value['import'] is String,
+      _ => false,
+    };
+    if (!available) continue;
+    result.add(
+      entry.key == '.' ? packageName : '$packageName${entry.key.substring(1)}',
+    );
+  }
+  return result;
 }
 
 void _rejectRepositoryPaths(Directory package, String workspaceRoot) {

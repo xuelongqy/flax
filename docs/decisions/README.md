@@ -1,5 +1,12 @@
 # Architecture Decisions
 
+These records preserve accepted decisions and their rationale. Superseded records keep
+their numbers and replacement links; an accepted decision is not evidence that every
+proposed capability is implemented. Current versions and verification limits are in
+[External Binding Compatibility](../architecture/external-binding-compatibility.md), and
+current language support is in the
+[coverage map](../architecture/binding-coverage-map.md).
+
 - [0001: Workspace and scaffold boundaries](0001-workspace-and-scaffold.md) is
   superseded by [0017](0017-package-boundaries.md).
 - [0002: Experimental runtime and native assets](0002-experimental-runtime.md) is
@@ -63,3 +70,29 @@ adding a record. A design decision is not evidence of implemented behavior.
 
 - [0023: External Binding Package and Trust Boundary](0023-external-binding-package-trust.md)
   is accepted.
+
+- [0024: Basic typedef bindings and Manifest 3](0024-basic-typedef-bindings.md) is
+  accepted and amended by ADR 0025.
+- [0025: Generic typedef bindings and Manifest 4](0025-generic-typedef-bindings.md) is
+  accepted and amended by ADR 0026 for the manifest writer version.
+- [0026: Top-level readonly bindings and Manifest 5](0026-top-level-readonly-bindings.md)
+  is accepted and amended by ADR 0027 for public-library routing and the Manifest
+  writer.
+- [0027: Public library routing and module delivery](0027-public-library-module-delivery.md)
+  is accepted and amended by ADR 0028 for the Manifest writer version.
+- [0028: Structural Record bindings and Manifest 7](0028-record-bindings.md) is accepted
+  and amended by ADR 0029 for the Manifest writer version.
+
+- [0029: Native Widget interface members and Manifest 8](0029-native-widget-interface-members.md)
+  amends ADR 0011 and ADR 0028. The current writer is 10 with strict readers 2 through
+  10; UI protocol 20 and native ABI 2 are unchanged.
+
+- [0030: Extension binding adapters and Manifest 9](0030-extension-binding-adapters.md)
+  is accepted and amends ADR 0029.
+
+- [0031: Mutable top-level access and Manifest 10](0031-mutable-top-level-bindings.md)
+  is accepted and amends ADR 0030.
+- [0032: Generic bound-only type references](0032-bound-type-only-references.md)
+
+- [0033: Automatic public-library bindings](0033-automatic-public-library-bindings.md)
+  is accepted and amends ADR 0018.

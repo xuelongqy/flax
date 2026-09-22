@@ -1,7 +1,12 @@
 import { objectHost } from './support/host.mjs';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { registerPage, PageContent, Text, ValueKey } from '../../dist/flutter/index.js';
+import {
+  registerPage,
+  PageContent,
+  Text,
+  ValueKey,
+} from '../../dist/flutter/widgets.js';
 import { signal, bind } from '../../dist/runtime/index.js';
 
 const host = objectHost();

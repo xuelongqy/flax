@@ -41,7 +41,7 @@ JSI still requires engine-specific build, feature, and platform verification.
 
 Synchronous entry permits Flutter-style builders in a later phase, while explicit
 microtasks make the first scheduling contract testable. It also means long-running JS
-can block the owning isolate; this milestone adds no execution deadline or scheduler.
+can block the owning isolate; the runtime adds no execution deadline or scheduler.
 
 Explicit preparation makes missing package inputs visible and keeps static checks free
 of engine builds. Package copies prove loading independence without pretending registry
@@ -55,6 +55,6 @@ security isolation, performance budgets, licensing, and remote distribution rema
 
 - [Runtime contract](../architecture/runtime.md)
 - [Packaging verification](../architecture/packaging.md)
-- [Milestone acceptance](../tasks/hermes-macos-runtime.md)
+- [Runtime verification](../architecture/runtime.md#verification)
 - [React Native 0.87.1 Hermes reference](https://github.com/facebook/react-native/blob/v0.87.1/packages/react-native/sdks/.hermesv1version)
 - [Dart isolate-local callback constraints](https://api.dart.dev/dart-ffi/NativeCallable/NativeCallable.isolateLocal.html)

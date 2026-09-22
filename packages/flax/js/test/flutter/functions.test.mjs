@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { applyBoxFit, BoxFit } from '../../dist/flutter/index.js';
+import { applyBoxFit, BoxFit } from '../../dist/flutter/widgets.js';
 
 test('top-level exports use one host entry and preserve argument order', () => {
   const input = {},
@@ -14,13 +14,7 @@ test('top-level exports use one host entry and preserve argument order', () => {
   try {
     assert.equal(applyBoxFit(BoxFit.contain, input, output), expected);
     assert.deepEqual(calls, [
-      [
-        20,
-        'flax.core/flutter#function:applyBoxFit',
-        BoxFit.contain,
-        input,
-        output,
-      ],
+      [20, 'flax.core/flutter#function:applyBoxFit', BoxFit.contain, input, output],
     ]);
     assert.throws(() => applyBoxFit(BoxFit.contain, input, output, 1), /Too many/);
   } finally {

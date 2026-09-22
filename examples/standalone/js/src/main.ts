@@ -14,7 +14,7 @@ import {
   ValueKey,
   runApp,
   type BuildContext,
-} from '@flax/core/flutter';
+} from '@flax/flutter/widgets';
 import {
   AppBar,
   Brightness,
@@ -26,8 +26,8 @@ import {
   TextField,
   ThemeData,
   ThemeMode,
-} from '@flax/material-ui';
-import { Color } from '@flax/core/flutter';
+} from '@flax/flutter/material';
+import { Color } from '@flax/flutter/services';
 import { CanvasView } from '@flax/canvas';
 
 const themeMode = signal(ThemeMode.system);

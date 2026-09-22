@@ -1,5 +1,6 @@
 import 'package:flax/flax.dart';
 import 'package:flax_local_storage/flax_local_storage.dart';
+import 'package:flax_material_ui/flax_material_ui.dart';
 import 'package:flutter/services.dart';
 
 import 'dart:io';
@@ -14,12 +15,19 @@ Future<void> applicationScenario(WidgetTester t) async {
   );
   FlaxJsRuntime? baseRuntime;
   final source = await t.runAsync(() => rootBundle.loadString('assets/app.js'));
+  final moduleAssets = await t.runAsync(
+    () => FlaxModuleAssets.load(
+      bundle: rootBundle,
+      manifest: 'assets/flax_modules/modules.json',
+    ),
+  );
+  Flax.moduleAssets = moduleAssets!;
   await t.pumpWidget(
     FlaxView(
       createRuntime: () => baseRuntime = app.createRuntime(),
       source: source!,
       bindings: app.bindings,
-      plugins: const [],
+      plugins: [const FlaxMaterialPlugin()],
     ),
   );
   await t.pumpAndSettle();

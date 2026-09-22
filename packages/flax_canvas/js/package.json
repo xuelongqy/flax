@@ -28,6 +28,7 @@
     "test": "node --expose-gc --test test/*.test.mjs"
   },
   "dependencies": {
-    "@flax/core": "workspace:*"
+    "@flax/core": "workspace:*",
+    "@flax/flutter": "workspace:*"
   }
 }

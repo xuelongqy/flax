@@ -8,6 +8,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@flax/core": "workspace:*"
+    "@flax/core": "workspace:*",
+    "@flax/flutter": "workspace:*"
   }
 }

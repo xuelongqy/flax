@@ -51,8 +51,14 @@ final app = MaterialApp(navigatorObservers: [observer], home: content);
 For a JS-owned MaterialApp:
 
 ```typescript
-import { FlaxNavigatorObserver, Navigator, Text } from '@flax/core/flutter';
-import { AlertDialog, MaterialApp, TextButton, showDialog } from '@flax/material-ui';
+import { FlaxNavigatorObserver } from '@flax/core/navigation';
+import { Navigator, Text } from '@flax/flutter/widgets';
+import {
+  AlertDialog,
+  MaterialApp,
+  TextButton,
+  showDialog,
+} from '@flax/flutter/material';
 
 const observer = FlaxNavigatorObserver();
 const app = MaterialApp({ navigatorObservers: [observer], home });
@@ -120,9 +126,9 @@ Mounted content retains its own resources until unmount. If invocation throws af
 pushing, the accepted Route still owns its resources until it actually exits; native
 side effects are not rolled back.
 
-Initial builder failure shows an error placeholder; later failures retain the last valid
-subtree. Errors are reported once and later valid builds can recover. Promise builders
-and invalid Widget returns are rejected. Closing rejects new dialogs and cancels pending
-Promise delivery, while accepted dialogs can still rebuild and return. The host must
-remove them before close can finish. Application disposal remains the application's
-responsibility. See [navigation ownership](navigation.md).
+Every failed builder invocation shows an error placeholder for that invocation. Errors
+are reported once and later valid builds can recover. Promise builders and invalid Widget
+returns are rejected. Closing rejects new dialogs and cancels pending Promise delivery,
+while accepted dialogs can still rebuild and return. The host must remove them before
+close can finish. Application disposal remains the application's responsibility. See
+[navigation ownership](navigation.md).

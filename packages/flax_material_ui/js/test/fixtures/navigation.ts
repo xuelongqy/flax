@@ -7,13 +7,13 @@ import {
   NavigatorPopHandler,
   PopScope,
   RouteSettings,
-  ValueKey,
   runApp,
   type BuildContext,
   type NavigatorState,
   type NavigationData,
-} from '@flax/core/flutter';
-import { MaterialPageRoute, TextButton } from '@flax/material-ui';
+} from '@flax/flutter/widgets';
+import { ValueKey } from '@flax/flutter/foundation';
+import { MaterialPageRoute, TextButton } from '@flax/flutter/material';
 
 const rootCount = signal(0);
 const result = signal<NavigationData>(null);

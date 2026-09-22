@@ -19,6 +19,9 @@ Future<void> verifyStandalone(
   final workspacePackages = {
     for (final package in discoverPackages(root)) package.name: package,
   };
+  final workspaceNpmPackages = {
+    for (final package in discoverNpmPackages(root)) package.name: package,
+  };
   final sourcePubspec = readYamlFile(
     File('$root/examples/standalone/pubspec.yaml'),
   );
@@ -110,49 +113,95 @@ Future<void> verifyStandalone(
     selectExampleEngine(root, flutter, engine);
     final artifacts = Directory('${temporary.path}/artifacts')..createSync();
     final dependencies = <String, String>{};
-    final npmPackages = <String, ({String directory, String version})>{};
-    for (final package in workspacePackages.values) {
-      final javascript = package.metadata.javascript;
-      if (javascript == null) continue;
-      final file = File(p.join(package.js.path, 'package.json'));
-      final data = jsonDecode(file.readAsStringSync()) as Map<String, dynamic>;
-      npmPackages[javascript.name] = (
-        directory: package.js.path,
-        version: data['version'] as String,
-      );
-    }
     final sourceJs = jsonDecode(
       File('$root/examples/standalone/js/package.json').readAsStringSync(),
     ) as Map<String, dynamic>;
     final requestedJs =
         (sourceJs['dependencies'] as Map).keys.cast<String>().toList()..sort();
-    for (final name in requestedJs) {
-      final package = npmPackages[name];
-      if (package == null) {
+    final workspaceJsDirectories = <String, Directory>{
+      for (final package in workspaceNpmPackages.values)
+        package.name: package.directory,
+    };
+    for (final entity in Directory('$root/packages').listSync()) {
+      if (entity is! Directory) continue;
+      final directory = Directory(p.join(entity.path, 'js'));
+      final manifest = File(p.join(directory.path, 'package.json'));
+      if (!manifest.existsSync()) continue;
+      final data =
+          jsonDecode(manifest.readAsStringSync()) as Map<String, dynamic>;
+      final name = data['name'];
+      if (name is String && name.isNotEmpty) {
+        workspaceJsDirectories.putIfAbsent(name, () => directory);
+      }
+    }
+    final requestedBuildJs = <String>[
+      for (final entry
+          in ((sourceJs['devDependencies'] as Map?) ?? const {}).entries)
+        if (entry.value is String &&
+            (entry.value as String).startsWith('workspace:') &&
+            workspaceJsDirectories.containsKey(entry.key))
+          entry.key as String,
+    ]..sort();
+    final requiredJs = <String>{};
+    final pendingJs = [...requestedJs, ...requestedBuildJs];
+    while (pendingJs.isNotEmpty) {
+      final name = pendingJs.removeLast();
+      final directory = workspaceJsDirectories[name];
+      if (directory == null) {
         throw StateError('Unknown workspace JS package: $name');
       }
+      if (!requiredJs.add(name)) continue;
+      final packageManifest = jsonDecode(
+        File(p.join(directory.path, 'package.json')).readAsStringSync(),
+      ) as Map<String, dynamic>;
+      final packageDependencies = packageManifest['dependencies'];
+      if (packageDependencies is Map) {
+        pendingJs.addAll(
+          packageDependencies.keys.cast<String>().where(
+            workspaceJsDirectories.containsKey,
+          ),
+        );
+      }
+    }
+    final packedDependencies = <String, String>{};
+    for (final name in requiredJs.toList()..sort()) {
+      final directory = workspaceJsDirectories[name]!;
+      final packageManifest = jsonDecode(
+        File(p.join(directory.path, 'package.json')).readAsStringSync(),
+      ) as Map<String, dynamic>;
+      final version = packageManifest['version'] as String;
       await execute('pnpm', [
         'pack',
         '--pack-destination',
         artifacts.path,
-      ], package.directory);
+      ], directory.path);
       final archiveName = name.replaceFirst('@', '').replaceAll('/', '-');
-      final tarball = '${artifacts.path}/$archiveName-${package.version}.tgz';
+      final tarball = '${artifacts.path}/$archiveName-$version.tgz';
       if (!File(tarball).existsSync()) {
         throw StateError('Missing packed package: $tarball');
       }
-      dependencies[name] = 'file:${p.relative(tarball, from: js)}';
+      packedDependencies[name] = 'file:${p.relative(tarball, from: js)}';
+      if (requestedJs.contains(name)) {
+        dependencies[name] = packedDependencies[name]!;
+      }
     }
     final packageFile = File('$js/package.json');
     final package =
         jsonDecode(packageFile.readAsStringSync()) as Map<String, dynamic>;
     package['dependencies'] = dependencies;
+    final devDependencies =
+        (package['devDependencies'] as Map?)?.cast<String, dynamic>() ??
+        <String, dynamic>{};
+    for (final name in requestedBuildJs) {
+      devDependencies[name] = packedDependencies[name]!;
+    }
+    package['devDependencies'] = devDependencies;
     packageFile.writeAsStringSync(jsonEncode(package));
     // Map transitive Flax edges to the same unpublished tarballs, never a registry.
     File('$js/pnpm-workspace.yaml').writeAsStringSync(
       jsonEncode({
         'packages': ['.'],
-        'overrides': dependencies,
+        'overrides': packedDependencies,
         'allowBuilds': {'esbuild': true, 'core-js-pure': false},
       }),
     );
@@ -185,20 +234,28 @@ const root = realpathSync(process.cwd());
 const roots = Object.fromEntries(packages.map(name => [name, realpathSync(`node_modules/${name}`)]));
 for (const [name, location] of Object.entries(roots)) {
   if (!location.startsWith(root + '/node_modules/')) throw new Error(`Package outside consumer: ${name}`);
-  await import(name);
-  const deps = JSON.parse(readFileSync(resolve(location, 'package.json'), 'utf8')).dependencies;
+  const packageJson = JSON.parse(readFileSync(resolve(location, 'package.json'), 'utf8'));
+  const rootExport = packageJson.exports?.['.'];
+  if (typeof rootExport === 'string' || rootExport?.import) await import(name);
+  const deps = packageJson.dependencies;
   for (const dependency of packages) {
     if (deps?.[dependency] && realpathSync(resolve(root, 'node_modules', dependency)) !== roots[dependency]) {
       throw new Error(`Duplicate or external dependency: ${name} -> ${dependency}`);
     }
   }
 }
-await import('@flax/core/flutter');
+await import('@flax/core/navigation');
 await import('@flax/core/bindings');
 await import('@flax/core/host');
 console.log('External JS exports and singleton Flax dependencies verified.');
 ''';
-    await execute('node', ['--input-type=module', '-e', verifyJs], js);
+    final verifyFile = File('$js/.flax-verify.mjs')
+      ..writeAsStringSync(verifyJs);
+    await execute('node', [
+      '--import',
+      '@flax/tools/register-node-loader',
+      verifyFile.path,
+    ], js);
     await execute('flutter', ['analyze', '--no-pub', '--fatal-infos'], flutter);
     final receipt = File('$flutter/build/standalone-integration.json');
     await execute('flutter', [

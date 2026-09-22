@@ -1,6 +1,7 @@
 import { bind, signal } from '@flax/core';
-import { Builder, Column, Text, ValueKey, runApp } from '@flax/core/flutter';
-import { TextButton } from '@flax/material-ui';
+import { Builder, Column, Text, runApp } from '@flax/flutter/widgets';
+import { ValueKey } from '@flax/flutter/foundation';
+import { TextButton } from '@flax/flutter/material';
 
 const count = signal(0);
 const callback = signal<(() => void) | null>(() => count.value++);

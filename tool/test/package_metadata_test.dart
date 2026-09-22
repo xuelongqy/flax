@@ -88,6 +88,11 @@ void main() {
     expect(metadata.bindingNamespace, isNull);
   });
 
+  test('parses an explicit binding namespace', () {
+    final metadata = _read(temporary, '$_valid\nbindingNamespace: flax.core\n');
+    expect(metadata.bindingNamespace, 'flax.core');
+  });
+
   test('rejects unknown fields and formats', () {
     expect(
       () => _read(temporary, '$_valid\nunknown: true\n'),
@@ -95,10 +100,6 @@ void main() {
     );
     expect(
       () => _read(temporary, _valid.replaceFirst('format: 1', 'format: 2')),
-      throwsFormatException,
-    );
-    expect(
-      () => _read(temporary, '$_valid\nbindingNamespace: flax.core\n'),
       throwsFormatException,
     );
   });
@@ -182,7 +183,10 @@ void main() {
     expect(packages, isNotEmpty);
     final byName = {for (final package in packages) package.name: package};
     expect(byName['flax']!.metadata.bindingNamespace, 'flax.core');
-    expect(byName['flax_material_ui']!.metadata.bindingNamespace, 'flax.material');
+    expect(
+      byName['flax_material_ui']!.metadata.bindingNamespace,
+      'flax.material',
+    );
     expect(byName['flax_canvas']!.metadata.bindingNamespace, 'flax.canvas');
     for (final package in packages) {
       expect(package.metadata.format, 1);
@@ -193,6 +197,17 @@ void main() {
         reason: package.name,
       );
     }
+  });
+
+  test('repository npm delivery includes SDK type packages but not tools', () {
+    final packages = discoverNpmPackages(Directory.current.path);
+    final byName = {for (final package in packages) package.name: package};
+    expect(byName, contains('@flax/dart'));
+    expect(byName, contains('@flax/flutter'));
+    expect(byName, isNot(contains('@flax/tools')));
+    expect(byName['@flax/dart']!.isTypeOnly, isTrue);
+    expect(byName['@flax/flutter']!.isTypeOnly, isTrue);
+    expect(byName['@flax/core']!.isTypeOnly, isFalse);
   });
 
   test('strict mode rejects binding metadata without namespace', () {

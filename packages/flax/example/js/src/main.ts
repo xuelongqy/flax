@@ -1,3 +1,3 @@
-import { runApp, Text } from '@flax/core/flutter';
+import { runApp, Text } from '@flax/flutter/widgets';
 
 runApp(Text('Flax core ready'));

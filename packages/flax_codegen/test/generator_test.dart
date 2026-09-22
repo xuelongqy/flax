@@ -187,6 +187,7 @@ copyData(token);
         await expectLater(parser.parse(invalid), throwsStateError);
       }
     },
+    timeout: const Timeout(Duration(minutes: 2)),
   );
 
   late FlaxCodegenBindingParser parser;
@@ -214,7 +215,7 @@ copyData(token);
       final emitter = FlaxCodegenBindingEmitter([module]);
       final dart = emitter.dart(module);
       expect(dart, contains('implements api.LabelledContract'));
-      expect(dart, contains('(configuration as api.ExtentTile).extent'));
+      expect(dart, contains('LabelledContract).extent'));
       expect(dart, contains('fixedArguments: true'));
       await compileFixture(
         root,
@@ -326,21 +327,18 @@ ExtentFrame({item});
   });
 
   test('returned functions compile both conversion directions', () async {
-    await expectLater(
-      parser
-          .parse(
-            fixture('repeated.dart', {
-              'BuildContext': repeatedSelection['BuildContext']!,
-              'UnsupportedWidgetCollection': const FlaxCodegenClassSelection(
-                {},
-                kind: 'object',
-                getters: ['render'],
-              ),
-            }),
-          )
-          .then((module) => FlaxCodegenBindingEmitter([module])),
-      throwsStateError,
+    final widgetCallbacks = await parser.parse(
+      fixture('repeated.dart', {
+        'BuildContext': repeatedSelection['BuildContext']!,
+        'UnsupportedWidgetCollection': const FlaxCodegenClassSelection(
+          {},
+          kind: 'object',
+          getters: ['render'],
+        ),
+      }),
     );
+    final widgetEmitter = FlaxCodegenBindingEmitter([widgetCallbacks]);
+    expect(widgetEmitter.dart(widgetCallbacks), contains('FlaxTypeRef("list"'));
 
     final module = await parser.parse(
       fixture('interop.dart', interopSelection),
@@ -510,27 +508,68 @@ const contract = AsyncContract.implement([], {
     await compileFixture(root, FlaxCodegenBindingEmitter([module]), module);
   });
 
-  for (final method in ['nested', 'nestedList', 'nestedMap', 'deeplyNested']) {
-    test(
-      'unsupported asynchronous callback $method fails generation',
-      () async {
-        await expectLater(
-          parser.parse(
-            fixture('interop.dart', {
-              'UnsupportedAsyncCallbacks': FlaxCodegenClassSelection(
-                const {'': []},
-                kind: 'object',
-                instanceMethods: {
-                  method: const ['callback'],
-                },
-              ),
-            }),
+  test(
+    'nested Future and FutureOr callback shapes generate recursively',
+    () async {
+      final module = await parser.parse(
+        fixture('interop.dart', {
+          'UnsupportedAsyncCallbacks': const FlaxCodegenClassSelection(
+            {'': []},
+            kind: 'object',
+            instanceMethods: {
+              'nested': ['callback'],
+              'nestedFutureOr': ['callback'],
+              'futureOrNested': ['callback'],
+              'nestedList': ['callback'],
+              'nestedMap': ['callback'],
+              'nestedRecord': ['callback'],
+              'deeplyNested': ['callback'],
+              'genericNested': ['value', 'callback'],
+              'nullableNested': ['callback'],
+            },
+            methodTypeArguments: {
+              'genericNested': ['int'],
+            },
           ),
-          throwsStateError,
-        );
-      },
-    );
-  }
+        }),
+      );
+      final selected = module.classes.single;
+      final methods = {
+        for (final method in selected.methods) method.name: method,
+      };
+
+      expect(methods['nested']!.result.kind, 'future');
+      expect(methods['nested']!.result.item!.kind, 'future');
+      expect(methods['nestedFutureOr']!.result.item!.kind, 'futureOr');
+      expect(methods['futureOrNested']!.result.kind, 'futureOr');
+      expect(methods['futureOrNested']!.result.item!.kind, 'future');
+      expect(methods['nestedList']!.result.item!.item!.kind, 'future');
+      expect(methods['nestedMap']!.result.item!.item!.kind, 'futureOr');
+      final record = methods['nestedRecord']!.result.item!;
+      expect(record.kind, 'record');
+      expect(record.recordFields.map((field) => field.type.kind), [
+        'future',
+        'futureOr',
+      ]);
+      expect(methods['genericNested']!.result.item!.kind, 'futureOr');
+      final nullable = methods['nullableNested']!.result;
+      expect(nullable.nullable, isTrue);
+      expect(nullable.item!.nullable, isTrue);
+      expect(nullable.item!.item!.nullable, isTrue);
+
+      final emitter = FlaxCodegenBindingEmitter([module]);
+      final output = emitter.typescript(module);
+      expect(output, contains('Promise<Promise<number>>'));
+      expect(output, contains('Promise<number | Promise<number>>'));
+      expect(
+        output,
+        contains(
+          r'{ readonly $1: Promise<number>; readonly value: string | Promise<string> }',
+        ),
+      );
+      await compileFixture(root, emitter, module);
+    },
+  );
 
   test('non-constructible mixins and Future/Stream getters compile', () async {
     final config = fixture('frames.dart', {
@@ -915,27 +954,42 @@ NestedBatch({builders: [async () => null]});
     );
   });
 
-  test('independent Widget results generate nullable adapters and reject invalid selections', () async {
-    final module = await parser.parse(
-      fixture('repeated.dart', repeatedSelection),
-    );
-    final batch = module.classes.singleWhere((c) => c.name == 'TileBatch');
-    final render = batch.constructors.single.parameters.singleWhere(
-      (p) => p.name == 'render',
-    );
-    expect(render.independentWidgetResult, isTrue);
-    expect(render.type.result!.nullable, isTrue);
-    expect(render.type.parameters.map((p) => p.type.kind), ['context', 'int']);
-    final emitter = FlaxCodegenBindingEmitter([module]);
-    expect(emitter.dart(module), contains('independentWidgetResult: true'));
-    await compileFixture(
-      root,
-      emitter,
-      module,
-      consumerSource: """
-import { TileBatch, WidgetCache, ChildConsumer } from './plugin.js';
+  test(
+    'Widget results generate without independent callback configuration',
+    () async {
+      final module = await parser.parse(
+        fixture('repeated.dart', repeatedSelection),
+      );
+      final batch = module.classes.singleWhere((c) => c.name == 'TileBatch');
+      final render = batch.constructors.single.parameters.singleWhere(
+        (p) => p.name == 'render',
+      );
+      expect(render.independentWidgetResult, isFalse);
+      expect(render.type.result!.nullable, isTrue);
+      expect(render.type.parameters.map((p) => p.type.kind), [
+        'context',
+        'int',
+      ]);
+      final emitter = FlaxCodegenBindingEmitter([module]);
+      expect(
+        emitter.dart(module),
+        isNot(contains('independentWidgetResult: true')),
+      );
+      await compileFixture(
+        root,
+        emitter,
+        module,
+        consumerSource: """
+import { TileBatch, WidgetCache, ChildConsumer, CallbackStore } from './plugin.js';
 const cache = WidgetCache();
 const child = TileBatch({render: () => null});
+const widgets = CallbackStore.widgets;
+widgets.get(0);
+widgets.toArray();
+// @ts-expect-error Widget collection views do not accept insertions.
+widgets.add(child);
+// @ts-expect-error Widget collection views do not accept replacements.
+widgets.set(0, child);
 cache.save(cache.wrap(child));
 cache.transform(value => value)(child);
 ChildConsumer({child, render: (context, child) => child ?? TileBatch({render: () => null})});
@@ -947,46 +1001,47 @@ TileBatch({render: (context, index) => null, count: undefined});
 // @ts-expect-error A Promise cannot be returned by a synchronous builder.
 TileBatch({render: async () => null});
 """,
-    );
-    for (final invalid in [
-      {
-        'missing': ['render'],
-      },
-      {
-        '': ['missing'],
-      },
-      {
-        '': ['count'],
-      },
-      {
-        '': ['render', 'render'],
-      },
-    ]) {
+      );
+      for (final invalid in [
+        {
+          'missing': ['render'],
+        },
+        {
+          '': ['missing'],
+        },
+        {
+          '': ['count'],
+        },
+        {
+          '': ['render', 'render'],
+        },
+      ]) {
+        await expectLater(
+          parser.parse(
+            fixture('repeated.dart', {
+              'BuildContext': repeatedSelection['BuildContext']!,
+              'TileBatch': FlaxCodegenClassSelection({
+                '': ['render', 'count'],
+              }, independentWidgetCallbacks: invalid),
+            }),
+          ),
+          throwsStateError,
+        );
+      }
       await expectLater(
         parser.parse(
-          fixture('repeated.dart', {
-            'BuildContext': repeatedSelection['BuildContext']!,
-            'TileBatch': FlaxCodegenClassSelection({
-              '': ['render', 'count'],
-            }, independentWidgetCallbacks: invalid),
+          fixture('interop.dart', {
+            'Collections': const FlaxCodegenClassSelection(
+              {'': []},
+              kind: 'object',
+              independentWidgetCallbacks: {'': []},
+            ),
           }),
         ),
         throwsStateError,
       );
-    }
-    await expectLater(
-      parser.parse(
-        fixture('interop.dart', {
-          'Collections': const FlaxCodegenClassSelection(
-            {'': []},
-            kind: 'object',
-            independentWidgetCallbacks: {'': []},
-          ),
-        }),
-      ),
-      throwsStateError,
-    );
-  });
+    },
+  );
 
   test('decoration selections preserve public geometry and constructor defaults', () async {
     final module = await parser.parse(
@@ -1209,11 +1264,16 @@ AlignmentGeometry();
     expect(application.widgetInterfaces, isEmpty);
     expect(material.types.singleWhere((t) => t.name == 'Key').id, key.id);
     final emitter = FlaxCodegenBindingEmitter([module, material]);
-    expect(emitter.typescript(material), contains("from '@flax/core/flutter'"));
+    final materialTypescript = emitter
+        .typescriptOutputs(material)
+        .values
+        .join('\n');
     expect(
-      emitter.typescript(material),
-      isNot(contains('export interface Key')),
+      materialTypescript,
+      contains("from '@flax/flutter/foundation/_bindings/flutter_Key'"),
     );
+    expect(materialTypescript, isNot(contains('@flax/core/flutter')));
+    expect(materialTypescript, isNot(contains('export interface Key')));
     final refresh = material.classes.singleWhere(
       (type) => type.name == 'RefreshIndicator',
     );
@@ -1226,7 +1286,7 @@ AlignmentGeometry();
     expect(refreshParams['onRefresh']!.type.result!.item!.kind, 'void');
     expect(refreshParams['child']!.type.kind, 'widget');
     expect(
-      emitter.typescript(material),
+      materialTypescript,
       contains('onRefresh: Bindable<(() => Promise<void>)>'),
     );
     expect(() => FlaxCodegenBindingEmitter([module, module]), throwsStateError);
@@ -1253,8 +1313,8 @@ AlignmentGeometry();
     final listParams = {
       for (final p in list.constructors.single.parameters) p.name: p,
     };
-    expect(listParams.length, 14);
-    expect(listParams['itemBuilder']!.independentWidgetResult, isTrue);
+    expect(listParams.length, 15);
+    expect(listParams['itemBuilder']!.independentWidgetResult, isFalse);
     expect(listParams['itemBuilder']!.type.result!.nullable, isTrue);
     expect(listParams['itemBuilder']!.type.parameters.map((p) => p.type.kind), [
       'context',
@@ -1270,6 +1330,12 @@ AlignmentGeometry();
     expect(
       listParams['controller']!.type.id,
       module.classes.singleWhere((c) => c.name == 'ScrollController').id,
+    );
+    expect(listParams['physics']!.type.kind, 'object');
+    expect(listParams['physics']!.type.nullable, isTrue);
+    expect(
+      listParams['physics']!.type.id,
+      module.classes.singleWhere((c) => c.name == 'ScrollPhysics').id,
     );
     final editing = module.classes.singleWhere(
       (c) => c.name == 'TextEditingValue',
@@ -1378,14 +1444,22 @@ AlignmentGeometry();
     };
     // Measure selected direct-call growth without adding a runtime dispatch path.
     stdout.writeln('Selected constructor call combinations: $calls');
-    for (final (owner, file) in [
-      (p.join(root, 'packages/flax'), module.dartOutput),
-      (p.join(root, 'packages/flax'), module.tsOutput),
-      (p.join(root, 'packages/flax_material_ui'), material.dartOutput),
-      (p.join(root, 'packages/flax_material_ui'), material.tsOutput),
+    for (final (owner, current) in [
+      (p.join(root, 'packages/flax'), module),
+      (p.join(root, 'packages/flax_material_ui'), material),
     ]) {
       stdout.writeln(
-        'Generated size: $file = ${File(p.join(owner, file)).lengthSync()} bytes',
+        'Generated size: ${current.dartOutput} = '
+        '${File(p.join(owner, current.dartOutput)).lengthSync()} bytes',
+      );
+      final outputs = emitter.typescriptOutputs(current);
+      final totalBytes = outputs.values.fold<int>(
+        0,
+        (total, source) => total + utf8.encode(source).length,
+      );
+      stdout.writeln(
+        'Generated TypeScript size: ${current.name} = $totalBytes bytes '
+        'across ${outputs.length} files',
       );
     }
     expect(
@@ -1961,7 +2035,8 @@ void main() {
     expect(callback.parameters.single.type.kind, 'context');
     final emitted = FlaxCodegenBindingEmitter([consumer, dependency])
         .typescript(consumer);
-    expect(emitted, contains("import '@flax/core/flutter';"));
+    expect(emitted, contains("import '${selected.jsPackage}';"));
+    expect(emitted, isNot(contains('@flax/core/flutter')));
     expect(emitted, isNot(contains('defineContext(')));
   });
   test(
@@ -2414,9 +2489,16 @@ void main() {
     final child = properties.classes.singleWhere(
       (c) => c.name == 'PropertyChild',
     );
-    expect(child.proxy!.getters.map((g) => g.name), ['value']);
+    expect(child.proxy!.getters.map((g) => g.name), [
+      'inherited',
+      'observed',
+      'value',
+    ]);
     expect(child.proxy!.setters.map((g) => g.name), ['value']);
-    expect(child.proxy!.getters.single.type.name, 'Token');
+    expect(
+      child.proxy!.getters.singleWhere((g) => g.name == 'value').type.name,
+      'Token',
+    );
     final emitter = FlaxCodegenBindingEmitter([properties]);
     await compileFixture(
       root,
@@ -2478,23 +2560,102 @@ PropertyParent.implement<Token>([current], { get value(): number { return 1; } }
         ),
         throwsStateError,
       );
-      for (final name in [
-        'UnboundGenericContract',
-        'RecursiveGenericContract',
-      ]) {
-        await expectLater(
-          parser.parse(
-            fixture('interop.dart', {
-              name: const FlaxCodegenClassSelection(
-                {},
-                kind: 'object',
-                proxy: 'implements',
-              ),
-            }),
+      final localBound = await parser.parse(
+        fixture('interop.dart', {
+          'UnboundGenericContract': const FlaxCodegenClassSelection(
+            {},
+            kind: 'object',
+            proxy: 'implements',
           ),
-          throwsStateError,
-        );
-      }
+        }),
+      );
+      final localBoundMethod = localBound.classes.single.proxy!.methods.single;
+      expect(
+        localBoundMethod.typeParameters.single.bound.name,
+        'HiddenGenericBound',
+      );
+
+      await expectLater(
+        parser.parse(
+          fixture('interop.dart', {
+            'RecursiveGenericContract': const FlaxCodegenClassSelection(
+              {},
+              kind: 'object',
+              proxy: 'implements',
+            ),
+          }),
+        ),
+        throwsStateError,
+      );
+    }
+  });
+
+  test('implements proxies follow Dart class modifier rules', () async {
+    final module = await parser.parse(
+      fixture('../capability/class_modifier_shapes.dart', {
+        'InterfaceBox': const FlaxCodegenClassSelection(
+          {},
+          kind: 'object',
+          proxy: 'implements',
+          getters: ['value'],
+        ),
+      }),
+    );
+    final interfaceBox = module.classes.single;
+    expect(interfaceBox.name, 'InterfaceBox');
+    expect(interfaceBox.proxy!.kind, 'implements');
+    expect(interfaceBox.proxy!.getters.single.name, 'value');
+    await compileFixture(
+      root,
+      FlaxCodegenBindingEmitter([module]),
+      module,
+      consumerSource: '''
+import { InterfaceBox } from './plugin.js';
+const value = InterfaceBox.implement([], {
+  get value(): number { return 2; },
+});
+const result: number = value.value;
+''',
+    );
+
+    final concrete = await parser.parse(
+      fixture('../capability/class_modifier_shapes.dart', {
+        'InterfaceBoxImpl': const FlaxCodegenClassSelection(
+          {},
+          kind: 'object',
+          proxy: 'implements',
+          getters: ['value'],
+        ),
+      }),
+    );
+    expect(concrete.classes.single.proxy!.kind, 'implements');
+    await compileFixture(
+      root,
+      FlaxCodegenBindingEmitter([concrete]),
+      concrete,
+      consumerSource: '''
+import { InterfaceBoxImpl } from './plugin.js';
+const value = InterfaceBoxImpl.implement([], {
+  get value(): number { return 3; },
+});
+const result: number = value.value;
+''',
+    );
+
+    for (final name in ['BaseBox', 'FinalBox', 'SealedBox']) {
+      await expectLater(
+        parser.parse(
+          fixture('../capability/class_modifier_shapes.dart', {
+            name: const FlaxCodegenClassSelection(
+              {},
+              kind: 'object',
+              proxy: 'implements',
+              getters: ['value'],
+            ),
+          }),
+        ),
+        throwsStateError,
+      );
     }
   });
 
@@ -2510,6 +2671,11 @@ PropertyParent.implement<Token>([current], { get value(): number { return 1; } }
       expect(ts, contains('echo(input: T): T'));
       expect(ts, contains('select<U extends Token'));
       expect(ts, contains('implement'));
+      expect(ts, contains('export abstract class Evaluator'));
+      expect(ts, contains('constructExtendedProxy(this, Evaluator.prototype'));
+      expect(ts, contains('abstract evaluate(value: number): number;'));
+      expect(ts, contains('twice(value: number): number {'));
+      expect(ts, contains('invokeProxySuper(this,'));
       expect(
         ts,
         contains(
@@ -2522,6 +2688,16 @@ PropertyParent.implement<Token>([current], { get value(): number { return 1; } }
       final dart = emitter.dart(module);
       expect(dart, contains('extends api.Evaluator'));
       expect(dart, contains('implements api.Selector'));
+      expect(dart, contains('if (_call_twice == null)'));
+      expect(dart, contains('return super.twice(value);'));
+      expect(dart, contains('_flaxSuper_twice'));
+      expect(dart, contains('"@super:twice": FlaxInstanceMethod'));
+      expect(
+        dart,
+        contains(
+          "return result.then<int>((_) => throw StateError('load must call super.load()'));",
+        ),
+      );
       expect(dart, contains('api.DeferredProperty.resolveWith<api.Token?>'));
       expect(dart, contains('api.DeferredProperty.resolveWith<num?>'));
       await compileFixture(
@@ -2529,7 +2705,18 @@ PropertyParent.implement<Token>([current], { get value(): number { return 1; } }
         emitter,
         module,
         consumerSource: '''
-import {DeferredConsumer, DeferredProperty, Mode, Token} from './plugin.js';
+import {DeferredConsumer, DeferredProperty, Evaluator, Mode, Token} from './plugin.js';
+class CustomEvaluator extends Evaluator {
+  constructor(initial: number) { super(initial); }
+  evaluate(value: number): number { return value + 1; }
+  twice(value: number): number { return super.twice(value) + 1; }
+}
+const evaluator = new CustomEvaluator(3);
+const initialResult: number = evaluator.initialResult;
+const legacy = Evaluator.implement([3], {
+  evaluate(value: number): number { return value + 1; },
+});
+const legacyResult: number = legacy.twice(4);
 const token = DeferredProperty.resolveWith<Token | null>(
   states => states.contains(Mode.first) ? Token(1) : null,
 );
@@ -2835,6 +3022,7 @@ Future<void> compileFixture(
   FlaxCodegenBindingEmitter emitter,
   FlaxCodegenModuleModel module, {
   String? consumerSource,
+  String? dartTestSource,
 }) async {
   final parent = Directory(p.join(root, '.dart_tool', 'flax'))
     ..createSync(recursive: true);
@@ -2842,16 +3030,73 @@ Future<void> compileFixture(
   try {
     File(p.join(directory.path, 'plugin.dart'))
         .writeAsStringSync(emitter.dart(module));
-    final ts = File(p.join(directory.path, 'plugin.ts'))
-      ..writeAsStringSync(emitter.typescript(module));
+    final execution = dartTestSource == null
+        ? null
+        : (File(p.join(directory.path, 'execution_test.dart'))
+            ..writeAsStringSync(
+              "import 'package:flutter_test/flutter_test.dart';\n"
+              '${emitter.dart(module)}\n$dartTestSource',
+            ));
     final dependencyPaths = <String, List<String>>{};
-    for (final dependency in emitter.modules.where((m) => m != module)) {
-      final name = 'dependency${dependencyPaths.length}';
-      final source = File(p.join(directory.path, '$name.ts'))
-        ..writeAsStringSync(emitter.typescript(dependency));
-      dependencyPaths[dependency.jsPackage] = [source.path];
-      File(p.join(directory.path, '$name.dart'))
-          .writeAsStringSync(emitter.dart(dependency));
+    final tsFiles = <String>[];
+    var tsIndex = 0;
+    var dependencyIndex = 0;
+    for (final current in emitter.modules) {
+      final outputs = emitter.typescriptOutputs(current);
+      final specifiers = flaxCodegenTypescriptOutputSpecifiers(current);
+      for (final entry in outputs.entries) {
+        final specifier = specifiers[entry.key];
+        if (specifier == null) {
+          fail(
+            'Missing TypeScript specifier for ${current.name}: ${entry.key}',
+          );
+        }
+        final isPrimaryTarget =
+            current == module &&
+            outputs.length == 1 &&
+            entry.key == module.tsOutput;
+        final source = File(
+          p.join(
+            directory.path,
+            isPrimaryTarget ? 'plugin.ts' : 'typescript${tsIndex++}.ts',
+          ),
+        )..writeAsStringSync(entry.value);
+        if (dependencyPaths.containsKey(specifier)) {
+          fail('Duplicate TypeScript specifier: $specifier');
+        }
+        dependencyPaths[specifier] = [source.path];
+        tsFiles.add(source.path);
+      }
+      if (current != module) {
+        File(p.join(directory.path, 'dependency${dependencyIndex++}.dart'))
+            .writeAsStringSync(emitter.dart(current));
+      }
+    }
+    if (consumerSource != null && module.publicLibraries.isNotEmpty) {
+      final routes = [...module.publicLibraries]
+        ..sort((a, b) => a.jsPackage.compareTo(b.jsPackage));
+      final exported = <String>{};
+      final topLevelExports = {
+        for (final getter
+            in module.topLevel?.getters ?? <FlaxCodegenTopLevelGetterModel>[])
+          getter.name: getter.exportName,
+      };
+      final facade = StringBuffer();
+      for (final route in routes) {
+        final names =
+            route.exports
+                .map((name) => topLevelExports[name] ?? name)
+                .where(exported.add)
+                .toList()
+              ..sort();
+        if (names.isEmpty) continue;
+        facade.writeln(
+          'export { ${names.join(', ')} } from ${jsonEncode(route.jsPackage)};',
+        );
+      }
+      final source = File(p.join(directory.path, 'plugin.ts'))
+        ..writeAsStringSync(facade.toString());
+      tsFiles.add(source.path);
     }
     final consumer = consumerSource == null
         ? null
@@ -2875,7 +3120,7 @@ Future<void> compileFixture(
               ],
             },
           },
-          'files': [ts.path, if (consumer != null) consumer.path],
+          'files': [...tsFiles, if (consumer != null) consumer.path],
         }),
       );
     final analyzed = await Process.run(Platform.resolvedExecutable, [
@@ -2898,6 +3143,20 @@ Future<void> compileFixture(
       0,
       reason: '${compiled.stdout}\n${compiled.stderr}',
     );
+    if (execution != null) {
+      final executed = await Process.run('flutter', [
+        'test',
+        '--no-pub',
+        '--reporter',
+        'expanded',
+        execution.path,
+      ], workingDirectory: root);
+      expect(
+        executed.exitCode,
+        0,
+        reason: '${executed.stdout}\n${executed.stderr}',
+      );
+    }
   } finally {
     directory.deleteSync(recursive: true);
   }

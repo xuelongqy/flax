@@ -90,13 +90,19 @@ both Route leases and mounted hosts. Failed construction releases unaccepted res
 initial builder failures show an error widget, and later failures preserve valid
 content.
 
+Integration tests wait for outgoing content to disappear with a bounded frame-driven
+wait before interacting with a global finder. A completed pop Future or a shorter Pages
+list alone does not establish Widget disposal. Do not replace that lifecycle condition
+with a fixed engine-specific delay. See the
+[navigation owner tests](../../packages/flax_material_ui/test/ui/navigation_test.dart).
+
 ## Named page entries
 
 Register factories synchronously during source initialization:
 
 ```javascript
 import { bind, signal } from '@flax/core';
-import { Column, Text, registerPage } from '@flax/core/flutter';
+import { Column, Text, registerPage } from '@flax/flutter/widgets';
 
 registerPage('orderDetails', (params) => {
   const count = signal(0);
@@ -172,12 +178,11 @@ the last runtime owner during a transition. Closing rejects new entries and new 
 while existing Routes may update, rebuild, pop, and retire. The host must remove its
 retained routes before awaiting close, even if their Flax content has unmounted.
 
-The [native Router example](../../examples/embedded/lib/pages.dart) maps
-`/orders/42?filter=all` to the registered factory and a stable native Page key. Updating
-filter retains the counter; replacing the key resets it. This is ordinary Flutter
-Router/RouterDelegate/RouteInformationParser, with no routing package dependency. Path
+The [Pages owner tests](../../packages/flax_material_ui/test/ui/pages_test.dart) cover
+registered factories, stable Page keys, updates, and replacement behavior. Host routing
+uses ordinary Flutter Router/RouterDelegate/RouteInformationParser semantics; path
 mapping belongs to the host. System deep-link registration and restoration remain
-outside this milestone.
+outside the supported navigation surface.
 
 ## Data and asynchronous delivery
 
@@ -213,10 +218,12 @@ Router and JS Pages are implemented. go_router-specific adapters, system deep-li
 registration, restoration, custom transitions, and additional platforms remain deferred.
 URL parsing in the example does not register OS links.
 
-See the [navigation example](../../examples/embedded/js/src/navigation.ts),
+See the
+[navigation owner tests](../../packages/flax_material_ui/test/ui/navigation_test.dart),
 [Pages decision](../decisions/0006-pages-and-router.md), and
-[acceptance record](../tasks/pages-and-router.md). Existing check and check:ui commands
-include the new generator, JS, real Hermes/V8 widget, and macOS integration coverage.
+[compatibility scope](external-binding-compatibility.md). Package checks own navigation
+behavior; full `check:ui` reuses that owner integration and then adds only the
+aggregate.
 
 ## Internal ownership boundaries
 

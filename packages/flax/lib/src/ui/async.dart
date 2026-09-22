@@ -14,6 +14,23 @@ class _PendingPromise {
   final completer = Completer<Object?>();
 }
 
+FlaxTypeRef _promiseSettlementLeaf(FlaxTypeRef type) {
+  var current = type;
+  while (current.kind == 'future' || current.kind == 'futureOr') {
+    current = current.item!;
+  }
+  return current;
+}
+
+bool _promiseSettlementAllowsNull(FlaxTypeRef type) {
+  var current = type;
+  while (true) {
+    if (current.nullable) return true;
+    if (current.kind != 'future' && current.kind != 'futureOr') return false;
+    current = current.item!;
+  }
+}
+
 extension _AsyncCalls on _Session {
   void registerAsync() {
     runtime.registerHostFunction('__flaxAsyncError', (_, args) {
@@ -84,13 +101,18 @@ extension _AsyncCalls on _Session {
   }
 
   void _completePromise(_PendingPromise pending, FlaxJsValue value) {
-    if (pending.result.kind == 'void') {
+    final settlement = _promiseSettlementLeaf(pending.result);
+    if (settlement.kind == 'void') {
       pending.completer.complete();
+      return;
+    }
+    if (value is FlaxJsNull && _promiseSettlementAllowsNull(pending.result)) {
+      pending.completer.complete(null);
       return;
     }
     _Value? decoded;
     try {
-      decoded = decode(value, pending.result);
+      decoded = decode(value, settlement);
       decoded.escapeCallbacks();
       escapeWidget(decoded.data);
       pending.completer.complete(decoded.data);

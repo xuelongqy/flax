@@ -7,7 +7,7 @@ and keep-alive. There is no JS virtual list or parallel item-state table.
 ## Selected API
 
 ListView.builder selects key, itemCount, itemBuilder, findChildIndexCallback,
-scrollDirection, reverse, controller, primary, shrinkWrap, padding, itemExtent,
+scrollDirection, reverse, controller, primary, physics, shrinkWrap, padding, itemExtent,
 addAutomaticKeepAlives, addRepaintBoundaries and addSemanticIndexes. Other constructors
 and parameters are not exposed. Defaults come from the real Dart constructor.
 
@@ -20,13 +20,22 @@ Use bounded constraints, such as the existing SizedBox, for the viewport. With
 shrinkWrap false, a large itemCount does not create every item. Flutter may build extra
 items within its cache region or retain items requesting keep-alive.
 
+ListView.builder and SingleChildScrollView accept a nullable, bindable ScrollPhysics
+reference. Core selects ScrollPhysics, ClampingScrollPhysics, BouncingScrollPhysics,
+AlwaysScrollableScrollPhysics and NeverScrollableScrollPhysics. Constructors expose only
+parent, and subclasses inherit the parent getter; other parameters keep their Dart
+defaults. Flutter owns parent composition, user-drag acceptance and edge behavior.
+NeverScrollableScrollPhysics does not prohibit programmatic ScrollController calls. The
+[shared-object tests](../../packages/flax_material_ui/test/ui/shared_objects_test.dart)
+exercise drag rejection, clamping/bouncing boundaries and parent identity/composition.
+
 ## Binding and data updates
 
-The [example](../../examples/embedded/js/src/lazy_list.ts) binds itemCount and a builder
-that captures the current data array. A bound findChildIndexCallback captures a Map from
-stable key values to new indices. Data changes update these parameters in the same
-frame; individual item counters bind only their labels. Ordinary signal.value reads do
-not subscribe the whole builder.
+The [lazy-list owner tests](../../packages/flax_material_ui/test/ui/lazy_list_test.dart)
+bind itemCount and builders against the Material UI package fixture. A bound
+findChildIndexCallback can capture a Map from stable key values to new indices. Data
+changes update these parameters in the same frame; ordinary signal.value reads do not
+subscribe the whole builder.
 
 Stable keys and findChildIndexCallback allow Flutter to move mounted Elements. They do
 not preserve State after actual unmount. The example keeps counters in page-owned JS
@@ -41,18 +50,17 @@ rebuilds follow Flutter, including dependencies registered on the shared Sliver 
 
 ## Independent result ownership
 
-A Widget constructor can explicitly select independently owned callback results:
+Mounted Widget/Widget? callback results use invocation ownership automatically. No
+constructor-specific callback list is required:
 
 ```yaml
-independentWidgetCallbacks:
-  builder: [itemBuilder]
+# No independentWidgetCallbacks entry is needed for itemBuilder.
 ```
 
-The generator validates the selected constructor and callback signature and emits Dart
-metadata. It does not infer ownership from a component name, callback name or index. The
-callback must take a non-null BuildContext first and return Widget or Widget?. Existing
-required positional callback restrictions still apply. There is no new JS wire format or
-protocol migration.
+The runtime derives this from the callback result type instead of a component name,
+callback name or index. Existing `independentWidgetCallbacks` metadata remains readable
+for compatibility but is not required for correct ownership. There is no new JS wire
+format or protocol migration.
 
 JS executes synchronously when Flutter requests the child, not during descriptor
 validation or inside a deferred replacement Builder. Each non-null result is wrapped by
@@ -67,11 +75,10 @@ session destruction. No result history is indexed by item index or key.
 
 ## Errors and Flutter boundaries
 
-An independent callback error, invalid return or Promise reports once through the
-session and produces a bounded error placeholder for that invocation. It never returns
-another invocation's content. Later valid calls can recover. Existing Builder and
-LayoutBuilder retain their previous-result recovery; item property bindings also retain
-their existing recovery behavior.
+A Widget callback error, invalid return or Promise reports once through the session and
+produces a bounded error placeholder for that invocation. It never returns another
+invocation's content. Later valid calls can recover. Builder and LayoutBuilder follow the
+same invocation-isolated rule.
 
 Explicit null is forwarded to Flutter and may terminate construction. Undefined is not
 null and is rejected. In pinned Flutter 3.47.2, changing an already materialized middle

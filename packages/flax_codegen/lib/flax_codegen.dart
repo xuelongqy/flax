@@ -3,6 +3,7 @@
 /// No public runtime API is implemented yet.
 library;
 
+export 'src/bindability.dart';
 export 'src/config.dart';
 export 'src/diagnostic.dart';
 export 'src/model.dart';

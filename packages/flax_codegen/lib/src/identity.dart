@@ -109,15 +109,17 @@ final class FlaxCodegenModuleId {
   String toString() => value;
 }
 
-enum FlaxCodegenWireKind { type, function }
+enum FlaxCodegenWireKind { type, function, read }
 
 enum FlaxCodegenDeclarationKind {
   type,
-  function;
+  function,
+  readonly;
 
   static FlaxCodegenDeclarationKind parse(String value) => switch (value) {
     'type' => type,
     'function' => function,
+    'readonly' => readonly,
     _ => throw const FormatException('Unsupported declaration kind.'),
   };
 }
@@ -151,6 +153,15 @@ final class FlaxCodegenWireId {
     _publicBindingName(publicBindingName),
   );
 
+  factory FlaxCodegenWireId.read({
+    required FlaxCodegenModuleId moduleId,
+    required String publicBindingName,
+  }) => FlaxCodegenWireId._(
+    moduleId,
+    FlaxCodegenWireKind.read,
+    _publicBindingName(publicBindingName),
+  );
+
   factory FlaxCodegenWireId.parse(String value) {
     final hash = value.indexOf('#');
     if (hash <= 0) {
@@ -166,6 +177,9 @@ final class FlaxCodegenWireId {
     } else if (rest.startsWith('function:')) {
       kind = FlaxCodegenWireKind.function;
       encoded = rest.substring('function:'.length);
+    } else if (rest.startsWith('read:')) {
+      kind = FlaxCodegenWireKind.read;
+      encoded = rest.substring('read:'.length);
     } else {
       throw const FormatException('Invalid wireId.');
     }
@@ -219,7 +233,7 @@ final class FlaxCodegenSourceIdentity {
       case FlaxCodegenOriginState.resolved:
         break;
     }
-    if (!_isCanonicalOriginatingUri(originatingUri)) {
+    if (!flaxCodegenIsCanonicalOriginatingUri(originatingUri)) {
       throw const FormatException('Invalid originating URI.');
     }
     return FlaxCodegenSourceIdentity._(
@@ -327,7 +341,8 @@ bool _isModuleName(String value) =>
     value.length <= 64 &&
     _moduleNamePattern.hasMatch(value);
 
-bool _isCanonicalOriginatingUri(String uri) {
+/// Canonical declaration provenance shared by nominal identities and typedefs.
+bool flaxCodegenIsCanonicalOriginatingUri(String uri) {
   final parsed = Uri.tryParse(uri);
   if (parsed == null) return false;
   if (uri != parsed.toString()) return false;
@@ -479,6 +494,7 @@ void _rejectExtraneous(
   bool primitiveKinds = false,
   bool declaration = false,
   bool tsArguments = false,
+  bool recordFields = false,
   bool genericIdentity = false,
 }) {
   if ((!id && type.id != null) ||
@@ -493,6 +509,7 @@ void _rejectExtraneous(
       (!primitiveKinds && type.primitiveKinds.isNotEmpty) ||
       (!declaration && type.declaration != null) ||
       (!tsArguments && type.tsArguments.isNotEmpty) ||
+      (!recordFields && type.recordFields.isNotEmpty) ||
       (!genericIdentity && type.genericIdentity != null)) {
     throw const FormatException('Invalid shape arity.');
   }
@@ -512,6 +529,19 @@ List<Object?> _encodeShape(
       allocator,
       independentWidgetResult: independentWidgetResult,
     );
+  }
+  if (type.kind == 'typeOnly') {
+    type.validate('shape bound');
+    return [
+      'type-only',
+      FlaxCodegenPercentEncoding.encode(type.originatingUri!),
+      FlaxCodegenPercentEncoding.encode(type.originatingName!),
+      _nullable(type.nullable),
+      [
+        for (final argument in type.tsArguments)
+          _encodeShape(argument, allocator: allocator),
+      ],
+    ];
   }
   if (type.kind == 'parameter') {
     _rejectExtraneous(type, genericIdentity: true);
@@ -539,10 +569,56 @@ List<Object?> _encodeShape(
   if (type.kind == 'stream') {
     return _encodeStream(type, allocator);
   }
+  if (type.kind == 'record') {
+    return _encodeRecord(type, allocator);
+  }
   if (type.kind == 'widget' || _nominalKinds.contains(type.kind)) {
     return _encodeNominal(type, allocator);
   }
   throw const FormatException('Unsupported shape tag.');
+}
+
+List<Object?> _encodeRecord(
+  FlaxCodegenTypeRef type,
+  _GenericAllocator allocator,
+) {
+  _rejectExtraneous(type, recordFields: true);
+  if (type.recordFields.isEmpty) {
+    throw const FormatException('Invalid Record arity.');
+  }
+  var positionalIndex = 0;
+  var namedStarted = false;
+  String? previousNamed;
+  final seen = <String>{};
+  for (final field in type.recordFields) {
+    if (field.name.isEmpty || !seen.add(field.name)) {
+      throw const FormatException('Invalid Record field.');
+    }
+    if (field.positional) {
+      if (namedStarted || field.name != '\$${++positionalIndex}') {
+        throw const FormatException('Invalid Record field order.');
+      }
+      continue;
+    }
+    namedStarted = true;
+    final encoded = FlaxCodegenPercentEncoding.encode(field.name);
+    if (previousNamed != null && previousNamed.compareTo(encoded) >= 0) {
+      throw const FormatException('Invalid Record field order.');
+    }
+    previousNamed = encoded;
+  }
+  return [
+    'record',
+    _nullable(type.nullable),
+    [
+      for (final field in type.recordFields)
+        [
+          field.positional ? 'positional' : 'named',
+          FlaxCodegenPercentEncoding.encode(field.name),
+          _encodeShape(field.type, allocator: allocator),
+        ],
+    ],
+  ];
 }
 
 List<Object?> _encodeCallback(

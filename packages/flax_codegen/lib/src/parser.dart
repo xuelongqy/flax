@@ -1,5 +1,10 @@
+import 'dart:convert';
+
 import 'package:analyzer/dart/analysis/analysis_context_collection.dart';
 import 'package:analyzer/dart/analysis/results.dart';
+import 'package:analyzer/dart/analysis/session.dart';
+import 'package:analyzer/dart/ast/visitor.dart';
+import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/constant/value.dart';
 import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/nullability_suffix.dart';
@@ -9,8 +14,15 @@ import 'package:analyzer/dart/element/type.dart';
 import 'package:analyzer/src/dart/element/type_algebra.dart' show Substitution;
 import 'package:path/path.dart' as p;
 
+import 'bindability.dart';
 import 'config.dart';
 import 'model.dart';
+import 'manifest_v5_codec.dart';
+
+part 'bindability_impl.dart';
+part 'auto_binding.dart';
+part 'type_scope.dart';
+part 'widget_interface.dart';
 
 String identity(InterfaceElement element) =>
     '${element.library.uri}::${element.name}';
@@ -59,7 +71,8 @@ bool _containsData(FlaxCodegenTypeRef type) =>
     (type.item != null && _containsData(type.item!)) ||
     (type.key != null && _containsData(type.key!)) ||
     (type.result != null && _containsData(type.result!)) ||
-    type.parameters.any((parameter) => _containsData(parameter.type));
+    type.parameters.any((parameter) => _containsData(parameter.type)) ||
+    type.recordFields.any((field) => _containsData(field.type));
 
 String _callbackSignatureTypeName(FlaxCodegenTypeRef type) {
   final suffix = type.nullable ? '?' : '';
@@ -114,6 +127,10 @@ void _collectRawCallbackSelection(
 
 FlaxCodegenClassSelection _selectionFromModel(FlaxCodegenClassModel type) {
   final methods = {
+    for (final member in type.widgetMembers.where(
+      (m) => type.kind == 'widgetInterface' && m.kind == 'method',
+    ))
+      member.name: member.parameters,
     for (final method in type.methods.where((method) => !method.instance))
       method.name: method.parameters
           .map((parameter) => parameter.name)
@@ -159,9 +176,20 @@ FlaxCodegenClassSelection _selectionFromModel(FlaxCodegenClassModel type) {
     kind: type.kind == 'widget' ? null : type.kind,
     jsName: type.jsName,
     genericScalar: type.genericScalar,
+    asyncIterableFactory: type.asyncIterableFactory,
     typeArguments: type.typeArguments,
-    getters: type.getters.map((getter) => getter.name).toList(),
-    setters: type.setters.map((setter) => setter.name).toList(),
+    getters: [
+      ...type.getters.map((getter) => getter.name),
+      ...type.widgetMembers
+          .where((m) => type.kind == 'widgetInterface' && m.kind == 'getter')
+          .map((m) => m.name),
+    ],
+    setters: [
+      ...type.setters.map((setter) => setter.name),
+      ...type.widgetMembers
+          .where((m) => type.kind == 'widgetInterface' && m.kind == 'setter')
+          .map((m) => m.name),
+    ],
     staticGetters: type.staticGetters.map((getter) => getter.name).toList(),
     errorGetters: type.getters
         .where((getter) => getter.encodeKind == 'error')
@@ -306,6 +334,7 @@ FlaxCodegenTypeRef _dataType(FlaxCodegenTypeRef type, String location) {
       'iterable',
       'list',
       'map',
+      'record',
       'set',
     }.contains(actual.kind)) {
       return declared == null ? actual : actual.declaredAs(declared);
@@ -323,6 +352,19 @@ FlaxCodegenTypeRef _dataType(FlaxCodegenTypeRef type, String location) {
           _parameterWithType(
             p,
             visit(p.type, declared?.parameters[index].type),
+          ),
+      ],
+      recordFields: [
+        for (final (index, field) in actual.recordFields.indexed)
+          FlaxCodegenRecordFieldModel(
+            name: field.name,
+            type: visit(
+              field.type,
+              declared != null && index < declared.recordFields.length
+                  ? declared.recordFields[index].type
+                  : null,
+            ),
+            positional: field.positional,
           ),
       ],
       dartArguments: actual.dartArguments,
@@ -352,6 +394,7 @@ Set<String> _dataParameters(Iterable<FlaxCodegenTypeRef> types) {
         if (type.key != null) type.key!,
         if (type.result != null) type.result!,
         ...type.parameters.map((p) => p.type),
+        ...type.recordFields.map((field) => field.type),
         ...type.typeParameters.expand(
           (p) => [p.bound, if (p.defaultType != null) p.defaultType!],
         ),
@@ -386,11 +429,60 @@ class FlaxCodegenBindingParser {
 
   /// Lazily resolved public elements for [_dependencyTypeLibraries].
   final _dependencyExports = <String, Element>{};
+  final _dependencyOwners = <String, FlaxCodegenModuleModel>{};
+  final _privateDependencyExtensions = <String>{};
+  final _dependencyExtensions = <String, FlaxCodegenExtensionModel>{};
+  final _dependencyReadonly = <String, FlaxCodegenTopLevelGetterModel>{};
+  final _dependencySetters = <String, FlaxCodegenTopLevelSetterModel>{};
+  final _dependencyTopLevelDeclarations = <String>{};
+  final _privateDependencyTopLevelOperations = <String>{};
   final _dependencyExportLibraries = <String, String>{};
   var _dependencyExportsResolved = false;
 
   final _publicInputs =
       <FlaxCodegenBindingConfig, (Map<String, Element>, Map<String, String>)>{};
+  final _libraryByIdentity = <String, String>{};
+  final _elementsByIdentity = <String, InterfaceElement>{};
+  final _literalLibraries = <LibraryElement, SomeParsedLibraryResult>{};
+
+  String? _safeConstantLiteral(TopLevelVariableElement variable) {
+    if (!variable.isConst) return null;
+    final parsed = _literalLibraries.putIfAbsent(
+      variable.library,
+      () => _contexts.contexts.first.currentSession.getParsedLibraryByElement(
+        variable.library,
+      ),
+    );
+    if (parsed is! ParsedLibraryResult) return null;
+    final node = parsed.getFragmentDeclaration(variable.firstFragment)?.node;
+    if (node is! VariableDeclaration) return null;
+    // Only syntax with no name resolution or environment dependency is folded.
+    // Constants involving identifiers, constructors or fromEnvironment stay Dart reads.
+    Expression? expression = node.initializer;
+    while (expression is ParenthesizedExpression) {
+      expression = expression.expression;
+    }
+    num sign = 1;
+    if (expression is PrefixExpression &&
+        {'-', '+'}.contains(expression.operator.lexeme)) {
+      sign = expression.operator.lexeme == '-' ? -1 : 1;
+      expression = expression.operand;
+    }
+    switch (expression) {
+      case IntegerLiteral(:final value?) when value.abs() <= 9007199254740991:
+        return jsonEncode(value * sign);
+      case DoubleLiteral(:final value) when value.isFinite:
+        return jsonEncode(value * sign);
+      case SimpleStringLiteral(:final value):
+        return jsonEncode(value);
+      case BooleanLiteral(:final value):
+        return jsonEncode(value);
+      case NullLiteral():
+        return 'null';
+      default:
+        return null;
+    }
+  }
 
   Future<(Map<String, Element>, Map<String, String>)> _publicExports(
     FlaxCodegenBindingConfig config,
@@ -398,7 +490,11 @@ class FlaxCodegenBindingParser {
     if (_publicInputs[config] case final cached?) return cached;
     final names = <String, Element>{};
     final libraries = <String, String>{};
-    for (final uri in [config.library, ...config.additionalLibraries]) {
+    for (final uri in {
+      config.library,
+      ...config.additionalLibraries,
+      ...config.publicLibraries.keys,
+    }) {
       final result = await _contexts.contexts.first.currentSession
           .getLibraryByUri(uri);
       if (result is! LibraryElementResult) {
@@ -434,7 +530,8 @@ class FlaxCodegenBindingParser {
     final names = _dependencyTypeLibraries.keys.toList()..sort();
     for (final name in names) {
       final uri = _dependencyTypeLibraries[name]!;
-      final element = libraries[uri]!.exportNamespace.definedNames2[name];
+      final namespace = libraries[uri]!.exportNamespace.definedNames2;
+      final element = namespace[name] ?? namespace['$name='];
       if (element == null) {
         throw StateError('Unknown dependency type: $name in $uri');
       }
@@ -448,6 +545,10 @@ class FlaxCodegenBindingParser {
       }
       _dependencyExports[name] = element;
       _dependencyExportLibraries[name] = uri;
+      if (element is InterfaceElement) {
+        _elementsByIdentity[identity(element)] = element;
+        _libraryByIdentity.putIfAbsent(identity(element), () => uri);
+      }
     }
     _dependencyExportsResolved = true;
   }
@@ -480,7 +581,7 @@ class FlaxCodegenBindingParser {
   /// Resolve adaptations before signatures so module argument order does not matter.
   Future<void> prepare(List<FlaxCodegenBindingConfig> configs) async {
     for (final config in configs) {
-      final (exports, _) = await _publicExports(config);
+      final (exports, libraries) = await _publicExports(config);
       for (final entry in config.classes.entries) {
         final selected = entry.value;
         final declaration = exports[entry.key];
@@ -503,6 +604,8 @@ class FlaxCodegenBindingParser {
         final id = identity(element);
         _validateDuplicates(entry.value, id);
         _selections[id] = entry.value;
+        _elementsByIdentity[id] = element;
+        _libraryByIdentity[id] = libraries[entry.key] ?? config.library;
         final previous = _adaptations[id];
         if (previous != null && previous != kind) {
           throw StateError('Conflicting adaptation: $id');
@@ -516,6 +619,20 @@ class FlaxCodegenBindingParser {
   /// Registers dependency declarations loaded from a package manifest.
   void prepareModules(Iterable<FlaxCodegenModuleModel> modules) {
     for (final module in modules) {
+      for (final extension in module.extensions) {
+        if (extension.isReference) continue;
+        final identity = '${extension.originatingUri}::${extension.name}';
+        if (_dependencyExtensions.containsKey(identity)) {
+          throw StateError('Duplicate extension provider: $identity');
+        }
+        _dependencyExtensions[identity] = extension;
+        if (module.publicLibraries.isNotEmpty &&
+            !module.publicLibraries.any(
+              (r) => r.exports.contains(extension.name),
+            )) {
+          _privateDependencyExtensions.add(identity);
+        }
+      }
       for (final entry in module.typeLibraries.entries) {
         final previous = _dependencyTypeLibraries[entry.key];
         if (previous != null && previous != entry.value) {
@@ -528,10 +645,45 @@ class FlaxCodegenBindingParser {
     _dependencyExports.clear();
     _dependencyExportLibraries.clear();
     for (final module in modules) {
+      for (final getter
+          in module.topLevel?.getters ?? <FlaxCodegenTopLevelGetterModel>[]) {
+        if (getter.isReference) continue;
+        if (_dependencyReadonly.containsKey(getter.id)) {
+          throw StateError('Duplicate readonly provider: ${getter.id}');
+        }
+        _dependencyReadonly[getter.id] = getter;
+        _dependencyTopLevelDeclarations.add(getter.id);
+        if (module.publicLibraries.isNotEmpty &&
+            !module.publicLibraries.any(
+              (route) => route.exports.contains(getter.name),
+            )) {
+          _privateDependencyTopLevelOperations.add(getter.id);
+        }
+      }
+      for (final setter
+          in module.topLevel?.setters ?? <FlaxCodegenTopLevelSetterModel>[]) {
+        if (setter.isReference) continue;
+        if (_dependencySetters.containsKey(setter.id)) {
+          throw StateError('Duplicate top-level setter provider: ${setter.id}');
+        }
+        _dependencySetters[setter.id] = setter;
+        _dependencyTopLevelDeclarations.add(
+          setter.id.substring(0, setter.id.length - 1),
+        );
+        if (module.publicLibraries.isNotEmpty &&
+            !module.publicLibraries.any(
+              (route) => route.exports.contains(setter.name),
+            )) {
+          _privateDependencyTopLevelOperations.add(setter.id);
+        }
+      }
       for (final type in module.classes) {
+        _dependencyOwners[type.id] = module;
         final selection = _selectionFromModel(type);
         _validateDuplicates(selection, type.id);
         _selections[type.id] = selection;
+        _libraryByIdentity[type.id] =
+            module.typeLibraries[type.name] ?? module.library;
         if (type.kind != 'widget') {
           final previous = _adaptations[type.id];
           if (previous != null && previous != type.kind) {
@@ -542,6 +694,85 @@ class FlaxCodegenBindingParser {
         _argumentsByType[type.id] = type.typeArguments;
       }
     }
+  }
+
+  bool _isPoolType(InterfaceElement element) {
+    final id = identity(element);
+    if (_adaptations.containsKey(id) || _selections.containsKey(id)) {
+      return true;
+    }
+    return _dependencyExports[element.name] == element;
+  }
+
+  String? _publicLibraryFor(InterfaceElement element, String name) =>
+      _libraryByIdentity[identity(element)] ?? _dependencyExportLibraries[name];
+
+  InterfaceElement? _poolInterface(String name) {
+    final dependency = _dependencyExports[name];
+    if (dependency is InterfaceElement) return dependency;
+    for (final element in _elementsByIdentity.values) {
+      if (element.name == name) return element;
+    }
+    return null;
+  }
+
+  bool _isFlutterWidget(InterfaceElement element) {
+    const widgetLibrary = 'package:flutter/src/widgets/framework.dart';
+    bool isWidget(InterfaceElement candidate) =>
+        candidate.name == 'Widget' &&
+        candidate.library.uri.toString() == widgetLibrary;
+    return isWidget(element) ||
+        element.allSupertypes.any((type) => isWidget(type.element));
+  }
+
+  Future<_FlaxCodegenTypeScope> _openTypeScope(
+    FlaxCodegenBindingConfig config,
+  ) async {
+    final (exports, libraries) = await _resolutionExports(config);
+    final result = await _contexts.contexts.first.currentSession
+        .getLibraryByUri(config.library);
+    if (result is! LibraryElementResult) {
+      throw StateError('Cannot resolve ${config.library}');
+    }
+    return _FlaxCodegenTypeScope(
+      parser: this,
+      config: config,
+      exports: exports,
+      publicLibraries: Map<String, String>.of(libraries),
+      objectQuestionType: result.element.typeProvider.objectQuestionType,
+    );
+  }
+
+  /// Propose a fail-open member subset for [element] in [library]'s export
+  /// namespace. Does not claim the type. Explicit [parse] stays fail-closed.
+  ///
+  /// Elements from other analysis contexts are resolved by declaration identity.
+  /// [concreteUses] are already-observed use sites for this declaration; proposal
+  /// may infer one complete representable generic specialization from them.
+  /// Throws if the declaration is neither exported nor in the prepared pool.
+  Future<FlaxCodegenProposedBinding> proposeSelection(
+    InterfaceElement element, {
+    required FlaxCodegenBindingConfig library,
+    FlaxCodegenClassSelection? base,
+    Iterable<InterfaceType> concreteUses = const [],
+  }) async {
+    final (exports, _) = await _resolutionExports(library);
+    final id = identity(element);
+    final resolved = exports[element.name] ?? _elementsByIdentity[id];
+    if (resolved is! InterfaceElement || identity(resolved) != id) {
+      throw StateError(
+        'Declaration $id is not exported by ${library.library} or available '
+        'in its prepared type pool',
+      );
+    }
+    // Member types must share the parser's context with the export namespace.
+    return _proposeSelection(
+      this,
+      resolved,
+      library: library,
+      base: base,
+      concreteUses: concreteUses,
+    );
   }
 
   /// Merge selected surfaces, then resolve every signature on the actual subtype.
@@ -841,15 +1072,19 @@ class FlaxCodegenBindingParser {
   Future<FlaxCodegenModuleModel> parse(FlaxCodegenBindingConfig config) async {
     await prepare([config]);
     final session = _contexts.contexts.first.currentSession;
-    final (exports, publicLibraries) = await _resolutionExports(config);
+    final scope = await _openTypeScope(config);
+    final exports = scope.exports;
+    for (final name in config.types.toSet()) {
+      final element = exports[name];
+      if (element is! InterfaceElement || element.isPrivate) {
+        throw StateError('Unknown public type: $name');
+      }
+      scope.typeRef(element.thisType);
+    }
     final snapshots = _parseSnapshots(config, exports);
     final classes = <FlaxCodegenClassModel>[];
-    final types = <String, FlaxCodegenNamedTypeModel>{};
-    var usesWidget = false;
-    var usesFutureOr = false;
-    var usesStream = false;
     for (final snapshot in snapshots) {
-      types[snapshot.id] = FlaxCodegenNamedTypeModel(
+      scope.types[snapshot.id] = FlaxCodegenNamedTypeModel(
         name: snapshot.name,
         id: snapshot.id,
       );
@@ -861,366 +1096,15 @@ class FlaxCodegenBindingParser {
       bool forTypescript = false,
       Set<TypeParameterElement>? erasing,
       bool allowRecursiveErasure = false,
-    }) {
-      bool containsErasedParameter(DartType value) {
-        if (value is TypeParameterType) {
-          return erasing?.contains(value.element) ?? false;
-        }
-        if (value is InterfaceType) {
-          return value.typeArguments.any(containsErasedParameter);
-        }
-        if (value is FunctionType) {
-          return containsErasedParameter(value.returnType) ||
-              value.formalParameters.any(
-                (parameter) => containsErasedParameter(parameter.type),
-              );
-        }
-        return false;
-      }
-
-      final nullable = type.nullabilitySuffix == NullabilitySuffix.question;
-      if (type is TypeParameterType && forTypescript) {
-        return FlaxCodegenTypeRef(
-          'parameter',
-          name: type.element.name,
-          nullable: nullable,
-          genericIdentity: type.element,
-        );
-      }
-      if (type is TypeParameterType && scalar) {
-        return FlaxCodegenTypeRef('scalar', nullable: nullable);
-      }
-      if (type is TypeParameterType) {
-        final path = erasing ?? <TypeParameterElement>{};
-        if (!path.add(type.element)) {
-          if (allowRecursiveErasure) {
-            return const FlaxCodegenTypeRef('any', nullable: true);
-          }
-          throw StateError('Recursive generic callback bound: $type');
-        }
-        try {
-          final bound =
-              type.element.bound ??
-              type.element.library!.typeProvider.objectQuestionType;
-          return typeRef(
-            bound,
-            scalar: scalar,
-            erasing: path,
-            allowRecursiveErasure: allowRecursiveErasure,
-          ).declaredAs(typeRef(type, forTypescript: true));
-        } finally {
-          path.remove(type.element);
-        }
-      }
-      if (type is DynamicType) {
-        return const FlaxCodegenTypeRef('any', nullable: true);
-      }
-      if (type is VoidType) return const FlaxCodegenTypeRef('void');
-      if (type is FunctionType) {
-        final typeParameters = [
-          for (final parameter in type.typeParameters)
-            FlaxCodegenGenericParameter(
-              parameter.name!,
-              typeRef(
-                parameter.bound ??
-                    parameter.library!.typeProvider.objectQuestionType,
-                forTypescript: true,
-              ),
-              defaultType: typeRef(
-                parameter.bound ??
-                    parameter.library!.typeProvider.objectQuestionType,
-                erasing: {parameter},
-              ),
-              genericIdentity: parameter,
-            ),
-        ];
-        final parameters = [
-          for (final (index, p) in type.formalParameters.indexed)
-            FlaxCodegenParameterModel(
-              name: p.name ?? 'p$index',
-              type: forTypescript
-                  ? typeRef(p.type, forTypescript: true)
-                  : typeRef(
-                      p.type,
-                      allowRecursiveErasure: allowRecursiveErasure,
-                    ).declaredAs(typeRef(p.type, forTypescript: true)),
-              required: p.isRequired,
-              positional: p.isPositional,
-              defaultCode: 'null',
-              snapshot: p.type is InterfaceType
-                  ? _snapshotFor((p.type as InterfaceType).element)?.name
-                  : null,
-            ),
-        ];
-        final result = forTypescript
-            ? typeRef(type.returnType, forTypescript: true)
-            : typeRef(
-                type.returnType,
-                allowRecursiveErasure: allowRecursiveErasure,
-              ).declaredAs(typeRef(type.returnType, forTypescript: true));
-        const incoming = {
-          'callback',
-          'String',
-          'bool',
-          'int',
-          'double',
-          'num',
-          'enum',
-          'context',
-          'widget',
-          'object',
-          'page',
-          'data',
-          'any',
-          'iterable',
-          'list',
-          'map',
-          'set',
-          'future',
-          'futureOr',
-          'stream',
-        };
-        const outgoing = {
-          'callback',
-          'String',
-          'bool',
-          'int',
-          'double',
-          'num',
-          'enum',
-          'widget',
-          'route',
-          'object',
-          'data',
-          'any',
-          'iterable',
-          'list',
-          'map',
-          'set',
-          'void',
-          'future',
-          'futureOr',
-          'stream',
-        };
-        if (!forTypescript &&
-            (parameters.any((p) => !incoming.contains(p.type.kind)) ||
-                !outgoing.contains(result.kind))) {
-          throw StateError('Unsupported callback signature: $type');
-        }
-        return FlaxCodegenTypeRef(
-          'callback',
-          nullable: nullable,
-          parameters: parameters,
-          result: result,
-          typeParameters: typeParameters,
-        );
-      }
-      if (type is! InterfaceType) {
-        throw StateError('Unsupported binding type: $type');
-      }
-      if (!allowRecursiveErasure &&
-          erasing != null &&
-          type.typeArguments.any(containsErasedParameter)) {
-        throw StateError('Recursive generic callback bound: $type');
-      }
-      final element = type.element;
-      final name = element.name!;
-      final snapshot = _snapshotFor(element);
-      if (snapshot != null) {
-        return FlaxCodegenTypeRef(
-          'object',
-          id: snapshot.id,
-          name: snapshot.name,
-          nullable: nullable,
-        );
-      }
-      if (element.library.uri.toString() == 'dart:async' && name == 'Future') {
-        return FlaxCodegenTypeRef(
-          'future',
-          item: typeRef(
-            type.typeArguments.single,
-            forTypescript: forTypescript,
-            erasing: erasing,
-            allowRecursiveErasure: allowRecursiveErasure,
-          ),
-          nullable: nullable,
-        );
-      }
-      if (element.library.uri.toString() == 'dart:async' &&
-          name == 'FutureOr') {
-        usesFutureOr = true;
-        return FlaxCodegenTypeRef(
-          'futureOr',
-          item: typeRef(
-            type.typeArguments.single,
-            forTypescript: forTypescript,
-            erasing: erasing,
-            allowRecursiveErasure: allowRecursiveErasure,
-          ),
-          nullable: nullable,
-        );
-      }
-      if (element.library.uri.toString() == 'dart:async' && name == 'Stream') {
-        final streamId = identity(element);
-        final selected = _adaptations[streamId] == 'stream';
-        if (selected) usesStream = true;
-        if (selected && !types.containsKey(streamId)) {
-          types[streamId] = FlaxCodegenNamedTypeModel(
-            name: name,
-            id: streamId,
-            typeParameters: [
-              for (final parameter in element.typeParameters)
-                FlaxCodegenGenericParameter(
-                  parameter.name!,
-                  typeRef(
-                    parameter.bound ??
-                        element.library.typeProvider.objectQuestionType,
-                    forTypescript: true,
-                  ),
-                  genericIdentity: parameter,
-                ),
-            ],
-          );
-        }
-        return FlaxCodegenTypeRef(
-          'stream',
-          id: selected ? streamId : null,
-          name: selected ? name : null,
-          item: typeRef(
-            type.typeArguments.single,
-            forTypescript: forTypescript,
-            erasing: erasing,
-            allowRecursiveErasure: allowRecursiveErasure,
-          ),
-          nullable: nullable,
-        );
-      }
-      if (element.library.isDartCore) {
-        if (name == 'Object') {
-          return FlaxCodegenTypeRef('any', nullable: nullable);
-        }
-        if (['String', 'bool', 'int', 'double', 'num'].contains(name)) {
-          return FlaxCodegenTypeRef(name, nullable: nullable);
-        }
-        if ({'Iterable', 'List', 'Map', 'Set'}.contains(name)) {
-          return FlaxCodegenTypeRef(
-            switch (name) {
-              'Iterable' => 'iterable',
-              'List' => 'list',
-              'Map' => 'map',
-              _ => 'set',
-            },
-            nullable: nullable,
-            item: typeRef(
-              type.typeArguments.last,
-              scalar: scalar,
-              forTypescript: forTypescript,
-              erasing: erasing,
-              allowRecursiveErasure: allowRecursiveErasure,
-            ),
-            key: name == 'Map'
-                ? typeRef(
-                    type.typeArguments.first,
-                    scalar: scalar,
-                    forTypescript: forTypescript,
-                    erasing: erasing,
-                    allowRecursiveErasure: allowRecursiveErasure,
-                  )
-                : null,
-          );
-        }
-        if (!_adaptations.containsKey(identity(element))) {
-          throw StateError('Unsupported core type: $type');
-        }
-      }
-      if (name == 'Widget' &&
-          element.library.uri.toString() ==
-              'package:flutter/src/widgets/framework.dart') {
-        if (exports[name] != element) {
-          throw StateError('Selected public libraries must export Widget');
-        }
-        usesWidget = true;
-        return FlaxCodegenTypeRef('widget', nullable: nullable);
-      }
-      if (exports[name] != element) {
-        throw StateError(
-          '${config.library} must publicly export the referenced type $name',
-        );
-      }
-      final id = identity(element);
-      if (erasing != null && !_adaptations.containsKey(id)) {
-        throw StateError('Unbound generic callback bound: $type');
-      }
-      final widgetInterface = _adaptations[id] == 'widgetInterface';
-      if (widgetInterface) usesWidget = true;
-      if (!types.containsKey(id)) {
-        // Seed the identity before resolving recursive generic bounds.
-        types[id] = FlaxCodegenNamedTypeModel(name: name, id: id);
-        final typeParameters = [
-          for (final parameter in element.typeParameters)
-            FlaxCodegenGenericParameter(
-              parameter.name!,
-              typeRef(
-                parameter.bound ??
-                    element.library.typeProvider.objectQuestionType,
-                forTypescript: true,
-              ),
-              genericIdentity: parameter,
-            ),
-        ];
-        types[id] = FlaxCodegenNamedTypeModel(
-          name: name,
-          id: id,
-          typeParameters: typeParameters,
-          enumNames: element is EnumElement
-              ? element.fields
-                    .where((field) => field.isEnumConstant)
-                    .map((field) => field.name!)
-                    .toList()
-              : [],
-        );
-      }
-      return FlaxCodegenTypeRef(
-        element is EnumElement
-            ? 'enum'
-            : widgetInterface
-            ? 'widget'
-            : _adaptations[id] ?? 'object',
-        id: id,
-        name: name,
-        nullable: nullable,
-        typeArguments: _argumentsByType[id] ?? const [],
-        dartArguments: forTypescript
-            ? const []
-            : type.typeArguments
-                  .map(
-                    (t) => typeRef(
-                      t,
-                      erasing: erasing,
-                      allowRecursiveErasure: allowRecursiveErasure,
-                    ),
-                  )
-                  .toList(),
-        tsArguments: forTypescript
-            ? type.typeArguments
-                  .map((t) => typeRef(t, forTypescript: true))
-                  .toList()
-            : const [],
-        primitiveKinds: element is EnumElement
-            ? const []
-            : [
-                for (final entry in {
-                  'String': element.library.typeProvider.stringType,
-                  'bool': element.library.typeProvider.boolType,
-                  'int': element.library.typeProvider.intType,
-                  'double': element.library.typeProvider.doubleType,
-                  'num': element.library.typeProvider.numType,
-                }.entries)
-                  if (element.library.typeSystem.isSubtypeOf(entry.value, type))
-                    entry.key,
-              ],
-      );
-    }
+      bool typeOnlyPosition = false,
+    }) => scope.typeRef(
+      type,
+      scalar: scalar,
+      forTypescript: forTypescript,
+      erasing: erasing,
+      allowRecursiveErasure: allowRecursiveErasure,
+      typeOnlyPosition: typeOnlyPosition,
+    );
 
     List<FlaxCodegenParameterModel> parameters(
       List<FormalParameterElement> actual,
@@ -1371,6 +1255,7 @@ class FlaxCodegenBindingParser {
             primitiveKinds: type.primitiveKinds,
             declaration: type.declaration,
             tsArguments: type.tsArguments,
+            recordFields: type.recordFields,
           );
         }
         if (declared != null && rawSignature == null) {
@@ -1441,6 +1326,11 @@ class FlaxCodegenBindingParser {
       return result;
     }
 
+    final nativeWidgetMembers = _WidgetInterfaceParser(
+      session,
+      exports,
+      scope.publicLibraries,
+    );
     for (final entry in config.classes.entries) {
       final element = exports[entry.key];
       if (element is! InterfaceElement ||
@@ -1495,6 +1385,7 @@ class FlaxCodegenBindingParser {
                     element.typeParameters[i].bound ??
                         element.library.typeProvider.objectQuestionType,
                     forTypescript: true,
+                    typeOnlyPosition: true,
                   ),
             defaultType: selection.genericScalar
                 ? const FlaxCodegenTypeRef('scalar')
@@ -1526,34 +1417,16 @@ class FlaxCodegenBindingParser {
             'Expected an implementable non-generic Widget interface: ${entry.key}',
           );
         }
-        final widget = exports['Widget'] as InterfaceElement;
-        final supplied = {
-          widget,
-          ...widget.allSupertypes.map((t) => t.element),
-        };
-        for (final declaration in [
-          element,
-          ...element.allSupertypes.map((t) => t.element),
-        ]) {
-          if (supplied.contains(declaration)) {
-            continue;
-          }
-          if (declaration.methods.any((m) => !m.isStatic && !m.isPrivate) ||
-              declaration.setters.any((s) => !s.isStatic && !s.isPrivate) ||
-              declaration.getters.any(
-                (g) =>
-                    !g.isStatic &&
-                    !g.isPrivate &&
-                    !selection.getters.contains(g.name),
-              )) {
-            throw StateError(
-              'Select every readonly configuration getter; other interface members are unsupported: ${entry.key}',
-            );
-          }
-        }
       }
       final widgetInterfaces = <FlaxCodegenTypeRef>[];
       final widgetGetters = <FlaxCodegenGetterModel>[];
+      final widgetMembers = <FlaxCodegenWidgetMember>[];
+      if (selection.kind == 'widgetInterface') {
+        widgetMembers.addAll(
+          await nativeWidgetMembers.parse(actualType, selection),
+        );
+      }
+      final contracts = <(InterfaceType, FlaxCodegenClassSelection)>[];
       for (final name in selection.widgetInterfaces) {
         final contract = exports[name];
         if (!isWidget ||
@@ -1569,17 +1442,12 @@ class FlaxCodegenBindingParser {
           );
         }
         widgetInterfaces.add(typeRef(contract.thisType));
-        for (final getter in _selections[identity(contract)]!.getters) {
-          if (widgetGetters.any((g) => g.name == getter)) continue;
-          widgetGetters.add(
-            FlaxCodegenGetterModel(
-              getter,
-              typeRef(
-                actualType.lookUpGetter(getter, element.library)!.returnType,
-              ),
-            ),
-          );
-        }
+        contracts.add((contract.thisType, _selections[identity(contract)]!));
+      }
+      if (contracts.isNotEmpty) {
+        widgetMembers.addAll(
+          await nativeWidgetMembers.implement(actualType, contracts),
+        );
       }
       final constructors = <FlaxCodegenConstructorModel>[];
       if (selection.kind != null &&
@@ -1614,7 +1482,10 @@ class FlaxCodegenBindingParser {
           'Adapted types currently expose only selected getters',
         );
       }
-      for (final name in selection.getters) {
+      for (final name
+          in selection.kind == 'widgetInterface'
+              ? <String>[]
+              : selection.getters) {
         if (selection.pageAdapter case final adapter?) {
           final library = await session.getLibraryByUri(adapter.library);
           final function = library is LibraryElementResult
@@ -1659,6 +1530,7 @@ class FlaxCodegenBindingParser {
           type = _dataType(type, '${entry.key}.$name');
         }
         if (!{
+          'void',
           'String',
           'bool',
           'int',
@@ -1670,6 +1542,7 @@ class FlaxCodegenBindingParser {
           'iterable',
           'list',
           'map',
+          'record',
           'set',
           'scalar',
           'object',
@@ -1706,7 +1579,10 @@ class FlaxCodegenBindingParser {
         throw StateError('Value getters require selected constructor fields');
       }
       final setters = <FlaxCodegenGetterModel>[];
-      for (final name in selection.setters) {
+      for (final name
+          in selection.kind == 'widgetInterface'
+              ? <String>[]
+              : selection.setters) {
         final setter = actualType.lookUpSetter(name, element.library);
         if (selection.kind != 'object' ||
             setter == null ||
@@ -1739,6 +1615,7 @@ class FlaxCodegenBindingParser {
           'iterable',
           'list',
           'map',
+          'record',
           'set',
           'object',
           'callback',
@@ -1749,11 +1626,12 @@ class FlaxCodegenBindingParser {
       }
       final methods = <FlaxCodegenMethodModel>[];
       final selectedMethods = {
-        ...selection.methods,
+        if (selection.kind != 'widgetInterface') ...selection.methods,
         ...selection.instanceMethods,
       };
-      if (selectedMethods.length !=
-          selection.methods.length + selection.instanceMethods.length) {
+      if (selection.kind != 'widgetInterface' &&
+          selectedMethods.length !=
+              selection.methods.length + selection.instanceMethods.length) {
         throw StateError('Duplicate method selection');
       }
       if (selection.instanceMethods.isNotEmpty &&
@@ -1893,6 +1771,7 @@ class FlaxCodegenBindingParser {
           'iterable',
           'list',
           'map',
+          'record',
           'set',
           'state',
           'object',
@@ -1934,6 +1813,7 @@ class FlaxCodegenBindingParser {
             'iterable',
             'list',
             'map',
+            'record',
             'set',
             'route',
             'object',
@@ -1970,6 +1850,7 @@ class FlaxCodegenBindingParser {
                     originalMethod.typeParameters[i].bound ??
                         element.library.typeProvider.objectQuestionType,
                     forTypescript: true,
+                    typeOnlyPosition: true,
                   ),
                   defaultType: typeRef(
                     deferredFactory
@@ -2154,9 +2035,9 @@ class FlaxCodegenBindingParser {
         }
         if (selection.kind != 'object' ||
             !{'extends', 'implements', 'host'}.contains(selection.proxy) ||
-            !element.isAbstract) {
+            (selection.proxy == 'host' && !element.isAbstract)) {
           throw StateError(
-            'Proxies require an abstract object class and extends/implements',
+            'Proxies require an object class compatible with extends/implements',
           );
         }
         if (element.isFinal ||
@@ -2219,6 +2100,7 @@ class FlaxCodegenBindingParser {
                   !(t.element.library.isDartCore && t.element.name == 'Object'),
             )
             .toList();
+        final proxySuperMembers = <String>[...selection.proxySuper];
         final proxyGetters = <FlaxCodegenGetterModel>[];
         final proxySetters = <FlaxCodegenGetterModel>[];
         for (final setter in [false, true]) {
@@ -2235,9 +2117,28 @@ class FlaxCodegenBindingParser {
             final accessor = setter
                 ? actualType.lookUpSetter(name, element.library)
                 : actualType.lookUpGetter(name, element.library);
+            final selected = (setter ? setters : getters).any(
+              (member) => member.name == name,
+            );
+            if (selection.proxy == 'extends' &&
+                accessor != null &&
+                !accessor.isAbstract &&
+                selected &&
+                accessor.metadata.hasNonVirtual) {
+              throw StateError(
+                'Non-virtual proxy property cannot be overridden: ${entry.key}.$name',
+              );
+            }
+            final concreteOverride =
+                selection.proxy == 'extends' &&
+                accessor != null &&
+                !accessor.isAbstract &&
+                selected &&
+                !accessor.metadata.hasNonVirtual;
             if (accessor != null &&
                 selection.proxy != 'implements' &&
-                !accessor.isAbstract) {
+                !accessor.isAbstract &&
+                !concreteOverride) {
               continue;
             }
             if (accessor == null || accessor.isPrivate) {
@@ -2260,6 +2161,12 @@ class FlaxCodegenBindingParser {
             (setter ? proxySetters : proxyGetters).add(
               FlaxCodegenGetterModel(name, type),
             );
+            if (concreteOverride) {
+              final member = '${setter ? 'set' : 'get'}:$name';
+              if (!proxySuperMembers.contains(member)) {
+                proxySuperMembers.add(member);
+              }
+            }
           }
         }
         if (selection.proxy == 'host' &&
@@ -2276,9 +2183,26 @@ class FlaxCodegenBindingParser {
             ...t.methods.where((m) => !m.isStatic).map((m) => m.name!),
         }) {
           final method = actualType.lookUpMethod(name, element.library)!;
+          final selectedConcrete = methods.any(
+            (candidate) => candidate.instance && candidate.name == name,
+          );
+          if (selection.proxy == 'extends' &&
+              !method.isAbstract &&
+              selectedConcrete &&
+              method.metadata.hasNonVirtual) {
+            throw StateError(
+              'Non-virtual proxy method cannot be overridden: ${entry.key}.$name',
+            );
+          }
+          final concreteOverride =
+              selection.proxy == 'extends' &&
+              !method.isAbstract &&
+              selectedConcrete &&
+              !method.metadata.hasNonVirtual;
           if (selection.proxy != 'implements' &&
               !method.isAbstract &&
-              !selection.proxyOverrides.contains(name)) {
+              !selection.proxyOverrides.contains(name) &&
+              !concreteOverride) {
             continue;
           }
           if (method.isPrivate || method.isOperator) {
@@ -2294,6 +2218,7 @@ class FlaxCodegenBindingParser {
           final result = callback.result!.declaredAs(
             typeRef(declaredMethod.returnType, forTypescript: true),
           );
+          final mustCallSuper = _requiresSuper(element, name);
           if ((selection.proxy == 'host' &&
                   {'future', 'stream'}.contains(result.kind)) ||
               (selection.proxy != 'host' &&
@@ -2311,10 +2236,13 @@ class FlaxCodegenBindingParser {
               ),
               result,
               typeParameters: callback.typeParameters,
-              mustCallSuper: _requiresSuper(element, name),
+              mustCallSuper: mustCallSuper,
               instance: true,
             ),
           );
+          if (concreteOverride && !proxySuperMembers.contains(name)) {
+            proxySuperMembers.add(name);
+          }
         }
         if (selection.proxySuper.any(
           (name) => !proxyMethods.any((m) => m.name == name),
@@ -2332,7 +2260,7 @@ class FlaxCodegenBindingParser {
         proxy = FlaxCodegenProxyModel(
           selection.proxy!,
           proxyMethods,
-          superMethods: selection.proxySuper,
+          superMethods: proxySuperMembers,
           getters: proxyGetters,
           setters: proxySetters,
         );
@@ -2386,11 +2314,21 @@ class FlaxCodegenBindingParser {
                             selection.kind))
                   typeRef(parent)
                       .declaredAs(typeRef(parent, forTypescript: true)),
+            if (!isWidget &&
+                !{'context', 'state', 'members'}.contains(selection.kind))
+              scope.typeOnlyReference(element.thisType),
+            if (!isWidget &&
+                !{'context', 'state', 'members'}.contains(selection.kind))
+              for (final parent in element.thisType.allSupertypes)
+                if (!parent.isDartCoreObject &&
+                    !_adaptations.containsKey(identity(parent.element)))
+                  typeRef(parent, forTypescript: true, typeOnlyPosition: true),
           ],
           genericScalar: entry.value.genericScalar,
           asyncIterableFactory: selection.asyncIterableFactory,
           widgetInterfaces: widgetInterfaces,
           widgetGetters: widgetGetters,
+          widgetMembers: widgetMembers,
           jsName: selection.jsName,
           typeParameters: genericParameters,
           proxy: proxy,
@@ -2400,8 +2338,231 @@ class FlaxCodegenBindingParser {
           pageAdapter: selection.pageAdapter,
           setters: setters,
           disposeMethod: selection.disposeMethod,
+          capabilities: [
+            if (selection.disposeMethod != null) 'Disposable',
+          ],
           listenerPairs: selection.listenerPairs,
           staticGetters: staticGetters,
+        ),
+      );
+    }
+    final extensions = <FlaxCodegenExtensionModel>[];
+    final (extensionExports, _) = await _publicExports(config);
+    for (final name in config.extensions.keys.toList()..sort()) {
+      final element = extensionExports[name];
+      if (element is! ExtensionElement ||
+          element.isPrivate ||
+          !flaxCodegenIsExportName(name)) {
+        throw StateError('Expected a public named extension: $name');
+      }
+      final selection = config.extensions[name]!;
+      FlaxCodegenTypeRef ref(DartType type) =>
+          typeRef(type).declaredAs(typeRef(type, forTypescript: true));
+      List<FlaxCodegenGenericParameter> generics(
+        List<TypeParameterElement> parameters,
+      ) => [
+        for (final parameter in parameters)
+          FlaxCodegenGenericParameter(
+            parameter.name!,
+            typeRef(
+              parameter.bound ??
+                  element.library.typeProvider.objectQuestionType,
+              forTypescript: true,
+              typeOnlyPosition: true,
+            ),
+            defaultType: typeRef(
+              parameter.bound ??
+                  element.library.typeProvider.objectQuestionType,
+              erasing: {parameter},
+            ),
+            genericIdentity: parameter,
+          ),
+      ];
+      final extensionIdentity = '${element.library.uri}::$name';
+      if (_privateDependencyExtensions.contains(extensionIdentity)) {
+        throw StateError(
+          'Extension is not publicly exported by its provider: $name',
+        );
+      }
+      final provider = _dependencyExtensions[extensionIdentity];
+      final extensionGenerics = generics(element.typeParameters);
+      final onType = ref(element.extendedType);
+      final members = <FlaxCodegenExtensionMemberModel>[];
+      void add(String memberName, String kind, List<String>? chosen) {
+        final isStatic = kind.startsWith('static');
+        if (!isStatic &&
+            {
+              '==',
+              'hashCode',
+              'runtimeType',
+              'toString',
+              'noSuchMethod',
+            }.contains(memberName)) {
+          throw StateError(
+            'Dart extensions cannot declare Object members: $name.$memberName',
+          );
+        }
+        final ExecutableElement? member = switch (kind) {
+          'getter' || 'staticGetter' =>
+            element.getters.where((m) => m.name == memberName).firstOrNull,
+          'setter' =>
+            element.setters
+                .where(
+                  (m) =>
+                      m.displayName == memberName ||
+                      m.name == memberName ||
+                      m.name == '$memberName=',
+                )
+                .firstOrNull,
+          _ =>
+            element.methods
+                .where(
+                  (m) => memberName == 'unary-'
+                      ? m.name == '-' && m.formalParameters.isEmpty
+                      : m.name == memberName &&
+                            (memberName != '-' ||
+                                m.formalParameters.isNotEmpty),
+                )
+                .firstOrNull,
+        };
+        if (member == null ||
+            member.isPrivate ||
+            member.isStatic != isStatic ||
+            (member is MethodElement &&
+                member.isOperator != (kind == 'operator'))) {
+          throw StateError('Unknown extension $kind: $name.$memberName');
+        }
+        if (member.returnType is VoidType &&
+            member.fragments.any((f) => f.isAsynchronous || f.isGenerator)) {
+          throw StateError(
+            'Extension void members must execute synchronously: $name.$memberName',
+          );
+        }
+        final jsName = switch (kind) {
+          'getter' || 'staticGetter' =>
+            'get${memberName[0].toUpperCase()}${memberName.substring(1)}',
+          'setter' =>
+            'set${memberName[0].toUpperCase()}${memberName.substring(1)}',
+          'operator' =>
+            flaxCodegenExtensionOperators[memberName] ??
+                (throw StateError(
+                  'Unsupported extension operator: $memberName',
+                )),
+          _ => memberName,
+        };
+        final args = parameters(
+          member.formalParameters,
+          chosen ?? member.formalParameters.map((p) => p.name!).toList(),
+          '$name.$memberName',
+          declared: member.formalParameters,
+        );
+        // Keep the synthetic receiver distinct from upstream parameter names.
+        var receiverName = 'receiver';
+        while (args.any((p) => p.name == receiverName)) {
+          receiverName = '_$receiverName';
+        }
+        final call = FlaxCodegenMethodModel(
+          jsName,
+          [
+            if (!isStatic)
+              FlaxCodegenParameterModel(
+                name: receiverName,
+                type: onType,
+                required: true,
+                positional: true,
+                defaultCode: 'null',
+              ),
+            ...args,
+          ],
+          kind == 'setter'
+              ? const FlaxCodegenTypeRef('void')
+              : ref(member.returnType),
+          typeParameters: [
+            if (!isStatic) ...extensionGenerics,
+            ...generics(member.typeParameters),
+          ],
+        );
+        bool unsupported(FlaxCodegenTypeRef type) =>
+            {
+              'widget',
+              'widgetInterface',
+              'context',
+              'state',
+              'page',
+              'route',
+            }.contains(type.kind) ||
+            [
+              ?type.item,
+              ?type.key,
+              ?type.result,
+              ...type.parameters.map((p) => p.type),
+              ...type.recordFields.map((f) => f.type),
+            ].any(unsupported);
+        if ([
+          call.result,
+          ...call.parameters.map((p) => p.type),
+        ].any(unsupported)) {
+          throw StateError(
+            'Unsupported extension semantic position: $name.$memberName',
+          );
+        }
+        members.add(
+          FlaxCodegenExtensionMemberModel(
+            id: '${element.library.uri}::$name.$kind.$memberName',
+            name: memberName,
+            kind: kind,
+            call: call,
+          ),
+        );
+      }
+
+      for (final getter in selection.getters) {
+        add(getter, 'getter', const []);
+      }
+      for (final setter in selection.setters) {
+        add(setter, 'setter', null);
+      }
+      for (final method in selection.methods.entries) {
+        add(method.key, 'method', method.value);
+      }
+      for (final getter in selection.staticGetters) {
+        add(getter, 'staticGetter', const []);
+      }
+      for (final method in selection.staticMethods.entries) {
+        add(method.key, 'staticMethod', method.value);
+      }
+      for (final operator in selection.operators.entries) {
+        add(operator.key, 'operator', operator.value);
+      }
+      if (provider != null) {
+        for (var index = 0; index < members.length; index++) {
+          final member = members[index];
+          final supplied = provider.members
+              .where((m) => m.kind == member.kind && m.name == member.name)
+              .firstOrNull;
+          if (supplied == null ||
+              jsonEncode(
+                    FlaxCodegenManifestV5Codec.encodeMethod(supplied.call),
+                  ) !=
+                  jsonEncode(
+                    FlaxCodegenManifestV5Codec.encodeMethod(member.call),
+                  )) {
+            throw StateError(
+              'Extension provider surface does not include $name.${member.name} with the selected signature',
+            );
+          }
+          members[index] = supplied;
+        }
+      }
+      members.sort((a, b) => a.call.name.compareTo(b.call.name));
+      extensions.add(
+        FlaxCodegenExtensionModel(
+          name: name,
+          originatingUri: element.library.uri.toString(),
+          onType: provider?.onType ?? onType,
+          isReference: provider != null,
+          typeParameters: provider?.typeParameters ?? extensionGenerics,
+          members: members,
         ),
       );
     }
@@ -2487,7 +2648,8 @@ class FlaxCodegenBindingParser {
           ? type.result!.kind == 'route' ||
                 type.parameters.any((p) => p.type.kind == 'context')
           : (type.item != null && needsWidgetOwner(type.item!)) ||
-                (type.key != null && needsWidgetOwner(type.key!));
+                (type.key != null && needsWidgetOwner(type.key!)) ||
+                type.recordFields.any((field) => needsWidgetOwner(field.type));
       for (final p in args) {
         if ({
               'page',
@@ -2517,6 +2679,7 @@ class FlaxCodegenBindingParser {
               function.typeParameters[i].bound ??
                   function.library.typeProvider.objectQuestionType,
               forTypescript: true,
+              typeOnlyPosition: true,
             ),
             defaultType: typeRef(typeArguments[i]),
             genericIdentity: function.typeParameters[i],
@@ -2541,6 +2704,194 @@ class FlaxCodegenBindingParser {
         ),
       );
     }
+    FlaxCodegenTopLevelModel? topLevel;
+    if (config.topLevel case final selection?) {
+      final (publicExports, _) = await _publicExports(config);
+      final getters = <FlaxCodegenTopLevelGetterModel>[];
+      final names = List<String>.of(selection.getters)..sort();
+      for (final name in names) {
+        final element = publicExports[name];
+        final getter = switch (element) {
+          GetterElement() => element,
+          TopLevelVariableElement() => element.getter,
+          _ => null,
+        };
+        if (getter == null ||
+            getter.isPrivate ||
+            getter.variable is! TopLevelVariableElement) {
+          throw StateError(
+            'Expected a public top-level readonly declaration: $name',
+          );
+        }
+        final variable = getter.variable as TopLevelVariableElement;
+        final FlaxCodegenReadonlyKind kind;
+        if (variable.isOriginDeclaration) {
+          if (variable.isConst) {
+            kind = FlaxCodegenReadonlyKind.constant;
+          } else if (variable.isFinal) {
+            kind = variable.isLate
+                ? FlaxCodegenReadonlyKind.lateFinal
+                : FlaxCodegenReadonlyKind.finalValue;
+          } else {
+            kind = FlaxCodegenReadonlyKind.mutableValue;
+          }
+        } else if (getter.isOriginDeclaration) {
+          kind = FlaxCodegenReadonlyKind.getter;
+        } else {
+          throw StateError(
+            'Top-level getters with setters are not supported: $name',
+          );
+        }
+        try {
+          final id = '${variable.library.uri}::${variable.name}';
+          final provider = _dependencyReadonly[id];
+          if ((_dependencyTopLevelDeclarations.contains(id) &&
+                  provider == null) ||
+              _privateDependencyTopLevelOperations.contains(id)) {
+            throw StateError(
+              'Provider does not expose top-level getter: $name',
+            );
+          }
+          final type = typeRef(getter.returnType)
+              .declaredAs(typeRef(getter.returnType, forTypescript: true));
+          getters.add(
+            FlaxCodegenTopLevelGetterModel(
+              id,
+              name,
+              provider?.type ?? type,
+              provider?.kind ?? kind,
+              isReference: provider != null,
+              literal: provider != null
+                  ? provider.literal
+                  : selection.jsName.isEmpty
+                  ? _safeConstantLiteral(variable)
+                  : null,
+            ),
+          );
+        } on StateError catch (error) {
+          throw StateError(
+            'Unsupported top-level readonly declaration $name: ${error.message}',
+          );
+        }
+      }
+      final setters = <FlaxCodegenTopLevelSetterModel>[];
+      for (final name in List<String>.of(selection.setters)..sort()) {
+        final element = publicExports['$name='] ?? publicExports[name];
+        final declaration = switch (element) {
+          SetterElement() => element.variable,
+          GetterElement() => element.variable,
+          TopLevelVariableElement() => element,
+          _ => null,
+        };
+        if (declaration is TopLevelVariableElement &&
+            declaration.isOriginDeclaration &&
+            (declaration.isConst || declaration.isFinal)) {
+          throw StateError(
+            'Cannot bind readonly declaration as a setter: $name',
+          );
+        }
+        final setter = switch (element) {
+          SetterElement() => element,
+          TopLevelVariableElement() => element.setter,
+          GetterElement() => element.correspondingSetter,
+          _ => null,
+        };
+        if (setter == null ||
+            setter.isPrivate ||
+            setter.variable is! TopLevelVariableElement) {
+          throw StateError(
+            'Expected a public writable top-level declaration: $name',
+          );
+        }
+        final variable = setter.variable as TopLevelVariableElement;
+        final declarationId = '${variable.library.uri}::${variable.name}';
+        final id = '$declarationId=';
+        final provider = _dependencySetters[id];
+        if ((_dependencyTopLevelDeclarations.contains(declarationId) &&
+                provider == null) ||
+            _privateDependencyTopLevelOperations.contains(id)) {
+          throw StateError('Provider does not expose top-level setter: $name');
+        }
+        try {
+          final parameterType = setter.formalParameters.single.type;
+          final type = typeRef(parameterType)
+              .declaredAs(typeRef(parameterType, forTypescript: true));
+          setters.add(
+            FlaxCodegenTopLevelSetterModel(
+              id,
+              name,
+              provider?.type ?? type,
+              isReference: provider != null,
+            ),
+          );
+        } on StateError catch (error) {
+          throw StateError(
+            'Unsupported top-level setter $name: ${error.message}',
+          );
+        }
+      }
+      topLevel = FlaxCodegenTopLevelModel(
+        selection.jsName,
+        getters,
+        setters: setters,
+      );
+    }
+    final typedefs = <FlaxCodegenTypeAliasModel>[];
+    for (final name in config.typedefs.toSet()) {
+      // Only the configured public surface may select an alias. Dependencies
+      // contribute target providers, not additional implicit local exports.
+      final (publicExports, _) = await _publicExports(config);
+      final element = publicExports[name];
+      if (element is! TypeAliasElement || !element.isPublic) {
+        throw StateError('Unknown public typedef: $name');
+      }
+      try {
+        final typeOnlyBounds = element.typeParameters.any(
+          (parameter) => typeRef(
+            parameter.bound ?? element.library.typeProvider.objectQuestionType,
+            forTypescript: true,
+            typeOnlyPosition: true,
+          ).containsTypeOnly,
+        );
+        final alias = FlaxCodegenTypeAliasModel(
+          name: name,
+          originatingUri: element.library.uri.toString(),
+          originatingName: element.name!,
+          target: typeRef(element.aliasedType, forTypescript: typeOnlyBounds),
+          typeParameters: [
+            for (final parameter in element.typeParameters)
+              FlaxCodegenGenericParameter(
+                parameter.name!,
+                typeRef(
+                  parameter.bound ??
+                      element.library.typeProvider.objectQuestionType,
+                  forTypescript: true,
+                  typeOnlyPosition: true,
+                ),
+                defaultType: typeOnlyBounds
+                    ? null
+                    : typeRef(
+                        parameter.bound ??
+                            element.library.typeProvider.objectQuestionType,
+                        erasing: {parameter},
+                      ).declaredAs(
+                        typeRef(
+                          parameter.bound ??
+                              element.library.typeProvider.objectQuestionType,
+                          forTypescript: true,
+                          typeOnlyPosition: true,
+                        ),
+                      ),
+                genericIdentity: parameter,
+              ),
+          ],
+        );
+        alias.validate();
+        typedefs.add(alias);
+      } on StateError catch (error) {
+        throw StateError('Unsupported typedef $name: ${error.message}');
+      }
+    }
     final module = FlaxCodegenModuleModel(
       name: config.name,
       library: config.library,
@@ -2549,27 +2900,104 @@ class FlaxCodegenBindingParser {
       tsOutput: config.tsOutput,
       classes: classes,
       functions: functions,
-      types: types.values.toList(),
+      extensions: extensions,
+      types: scope.types.values.toList(),
       snapshots: snapshots,
+      typedefs: typedefs,
+      topLevel: topLevel,
+      publicLibraries: await _publicLibraryModels(config),
       typeLibraries: {
-        if (usesFutureOr) 'FutureOr': 'dart:async',
-        if (usesStream) 'Stream': 'dart:async',
+        if (scope.usesFutureOr) 'FutureOr': 'dart:async',
+        if (scope.usesStream) 'Stream': 'dart:async',
         for (final name in {
-          if (usesWidget || classes.any((c) => c.kind == 'widget')) 'Widget',
+          if (scope.usesWidget || classes.any((c) => c.kind == 'widget'))
+            'Widget',
           if (classes.any((c) => c.kind == 'route')) 'Route',
           if (classes.any((c) => c.kind == 'page')) ...['Page', 'BuildContext'],
           ...classes.map((c) => c.name),
           ...functions.map((f) => f.call.name),
-          ...types.values.map((t) => t.name),
+          ...extensions.map((e) => e.name),
+          ...?topLevel?.getters.where((g) => !g.isReference).map((g) => g.name),
+          ...?topLevel?.setters.where((s) => !s.isReference).map((s) => s.name),
+          ...scope.types.values.map((t) => t.name),
           ...snapshots.map((s) => s.name),
         })
-          name: usesStream && name == 'Stream'
-              ? 'dart:async'
-              : publicLibraries[name]!,
+          name: _typeLibraryUri(name, scope),
       },
     );
     module.validate();
     return module;
+  }
+
+  Future<List<FlaxCodegenLibraryModel>> _publicLibraryModels(
+    FlaxCodegenBindingConfig config,
+  ) async {
+    final selected = <String>{
+      ...config.classes.keys,
+      ...config.types,
+      ...config.functions.keys,
+      ...config.extensions.keys,
+      ...config.callbackSnapshots.keys,
+      ...config.typedefs,
+      ...?config.topLevel?.getters,
+      ...?config.topLevel?.setters,
+    };
+    final routes = <FlaxCodegenLibraryModel>[];
+    final libraries = config.publicLibraries.entries.toList()
+      ..sort((a, b) => a.value.jsPackage.compareTo(b.value.jsPackage));
+    final visible = <String>{};
+    for (final entry in libraries) {
+      final result = await _contexts.contexts.first.currentSession
+          .getLibraryByUri(entry.key);
+      if (result is! LibraryElementResult) {
+        throw StateError('Cannot resolve public library: ${entry.key}');
+      }
+      final exports =
+          selected
+              .where(
+                (name) =>
+                    result.element.exportNamespace.definedNames2.containsKey(
+                      name,
+                    ) ||
+                    (config.topLevel?.setters.contains(name) == true &&
+                        result.element.exportNamespace.definedNames2
+                            .containsKey('$name=')),
+              )
+              .toList()
+            ..sort();
+      visible.addAll(exports);
+      routes.add(
+        FlaxCodegenLibraryModel(
+          library: entry.key,
+          jsPackage: entry.value.jsPackage,
+          tsOutput: entry.value.tsOutput,
+          exports: exports,
+        ),
+      );
+    }
+    if (routes.isNotEmpty && !visible.containsAll(selected)) {
+      throw StateError(
+        'Selected declarations have no public library: '
+        '${(selected.difference(visible).toList()..sort()).join(', ')}',
+      );
+    }
+    return routes;
+  }
+
+  String _typeLibraryUri(String name, _FlaxCodegenTypeScope scope) {
+    if (scope.usesStream && name == 'Stream') return 'dart:async';
+    // References retain the provider's public import path through re-exports.
+    final providerLibrary = _dependencyTypeLibraries[name];
+    if (providerLibrary != null) return providerLibrary;
+    final uri = scope.publicLibraries[name] ?? scope.publicLibraries['$name='];
+    if (uri != null) return uri;
+    for (final type in scope.types.values) {
+      if (type.name == name) {
+        final recorded = _libraryByIdentity[type.id];
+        if (recorded != null) return recorded;
+      }
+    }
+    throw StateError('Missing public library for $name');
   }
 
   DartType _runtimeType(
@@ -2588,7 +3016,7 @@ class FlaxCodegenBindingParser {
       'double': provider.doubleType,
       'num': provider.numType,
     }[name];
-    final element = primitive?.element ?? exports[name];
+    final element = primitive?.element ?? exports[name] ?? _poolInterface(name);
     if (element is! InterfaceElement || element.typeParameters.isNotEmpty) {
       throw StateError(
         'Runtime type arguments require a concrete selected type: $source',
@@ -2680,5 +3108,54 @@ class FlaxCodegenBindingParser {
     throw StateError('Unsupported constant default: ${type.name ?? type.kind}');
   }
 
+  /// Snapshot of adaptation tables so a bindability probe can restore after a
+  /// failed [parse]. Not part of the public generate pipeline.
+  FlaxCodegenParserCheckpoint checkpoint() => FlaxCodegenParserCheckpoint._(
+    adaptations: Map.of(_adaptations),
+    argumentsByType: {
+      for (final entry in _argumentsByType.entries)
+        entry.key: List.of(entry.value),
+    },
+    selections: Map.of(_selections),
+    libraryByIdentity: Map.of(_libraryByIdentity),
+    elementsByIdentity: Map.of(_elementsByIdentity),
+  );
+
+  void restore(FlaxCodegenParserCheckpoint checkpoint) {
+    _adaptations
+      ..clear()
+      ..addAll(checkpoint.adaptations);
+    _argumentsByType
+      ..clear()
+      ..addAll(checkpoint.argumentsByType);
+    _selections
+      ..clear()
+      ..addAll(checkpoint.selections);
+    _libraryByIdentity
+      ..clear()
+      ..addAll(checkpoint.libraryByIdentity);
+    _elementsByIdentity
+      ..clear()
+      ..addAll(checkpoint.elementsByIdentity);
+    _publicInputs.clear();
+  }
+
   void dispose() => _contexts.dispose();
+}
+
+/// Mutable parser tables captured by [FlaxCodegenBindingParser.checkpoint].
+final class FlaxCodegenParserCheckpoint {
+  const FlaxCodegenParserCheckpoint._({
+    required this.adaptations,
+    required this.argumentsByType,
+    required this.selections,
+    required this.libraryByIdentity,
+    required this.elementsByIdentity,
+  });
+
+  final Map<String, String> adaptations;
+  final Map<String, List<String>> argumentsByType;
+  final Map<String, FlaxCodegenClassSelection> selections;
+  final Map<String, String> libraryByIdentity;
+  final Map<String, InterfaceElement> elementsByIdentity;
 }

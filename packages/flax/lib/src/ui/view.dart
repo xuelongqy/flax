@@ -10,13 +10,15 @@ class FlaxSession {
     this.namespace,
     this.onError,
     List<FlaxPlugin>? plugins,
-  }) : plugins = _pluginSnapshot(plugins ?? Flax._plugins) {
+  }) : plugins = _pluginSnapshot(plugins ?? Flax._plugins),
+       _moduleAssets = Flax.moduleAssets {
     if (namespace != null && namespace!.isEmpty) {
       throw ArgumentError.value(namespace, 'namespace', 'Must not be empty');
     }
   }
   final String? namespace;
   final List<FlaxPlugin> plugins;
+  final FlaxModuleAssets? _moduleAssets;
   final FlaxJsRuntime Function() createRuntime;
   final String source;
   final String sourceUrl;
@@ -44,7 +46,12 @@ class FlaxSession {
           namespace: namespace,
         );
         _session = session;
-        session.load(source, sourceUrl, plugins: plugins);
+        session.load(
+          source,
+          sourceUrl,
+          plugins: plugins,
+          moduleAssets: _moduleAssets,
+        );
       }
       return _session!;
     } catch (error) {

@@ -2,12 +2,9 @@ import {
   Builder,
   Column,
   Text,
-  Size,
   BoxFit,
   applyBoxFit,
-  ValueKey,
   Navigator,
-  FlaxNavigatorObserver,
   StatefulWidget,
   State,
   TextEditingController,
@@ -15,14 +12,17 @@ import {
   runApp,
   type BuildContext,
   type Widget,
-} from '@flax/core/flutter';
+} from '@flax/flutter/widgets';
+import { ValueKey } from '@flax/flutter/foundation';
+import { Size } from '@flax/flutter/services';
+import { FlaxNavigatorObserver } from '@flax/core/navigation';
 import {
   AlertDialog,
   MaterialApp,
   TextButton,
   TextField,
   showDialog,
-} from '@flax/material-ui';
+} from '@flax/flutter/material';
 import { signal } from '@flax/core';
 import * as functions from '../../../.dart_tool/flax/ui/functions_bindings.js';
 

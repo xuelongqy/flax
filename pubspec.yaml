@@ -66,12 +66,10 @@ melos:
       description: Validate Dart and npm archive contents without publishing.
       run: dart run tool/check_packages.dart
     packages:pack:
-      description:
-        Stage disposable Dart/npm archives with a pack receipt (no publish).
+      description: Stage disposable Dart/npm archives with a pack receipt (no publish).
       run: dart run tool/pack_archives.dart
     release:check:
-      description:
-        Pre-release archive validation without publishing or engines.
+      description: Pre-release archive validation without publishing or engines.
       run: dart run tool/check_release.dart
     native:configure:
       description: Validate CMake and the C/C++ toolchain without building an engine.
@@ -108,8 +106,11 @@ melos:
       description: Test benchmark scheduling and statistics without loading engines.
       run: dart test benchmarks/engines/test
     check:ui:v8:
-      description: Verify V8 runtime, Flutter behavior and relocated release JIT.
+      description: Verify all owner UI modules and aggregate behavior with V8.
       run: dart run tool/check_ui.dart --engine=v8
+    check:aggregate:v8:
+      description: Verify only cross-module aggregate behavior with V8.
+      run: dart run tool/check_aggregate.dart --engine=v8
     ui:test:v8:
       description: Run shared Flutter framework tests with prepared V8 assets.
       run: dart run tool/ui_test.dart --engine=v8
@@ -160,9 +161,14 @@ melos:
         Verify standalone source consumption and relocated release UI with prepared
         assets.
       run: dart run tool/check_standalone.dart
+    check:standalone:v8:
+      description: Verify standalone relocated release UI with prepared V8 assets.
+      run: dart run tool/check_standalone.dart --engine=v8
+    check:aggregate:
+      description: Verify only cross-module aggregate behavior with Hermes.
+      run: dart run tool/check_aggregate.dart
     check:ui:
-      description:
-        Verify the runtime, Flutter widgets, macOS integration, and release app.
+      description: Verify all owner UI modules and aggregate behavior with Hermes.
       run: dart run tool/check_ui.dart
     check:
       description: Run static workspace checks without fetching or building an engine.

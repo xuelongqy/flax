@@ -5,7 +5,12 @@ import 'dart:core';
 
 import 'package:material_ui/material_ui.dart' as api;
 import 'package:flax/bindings.dart';
-import 'package:flutter/services.dart' as api1;
+import 'package:flutter/widgets.dart' as api1;
+
+import 'dart:core' as api2;
+
+import 'package:flutter/services.dart' as api3;
+import 'package:material_ui/material_ui.dart' as _flaxNative7;
 import 'package:flax_material_ui/src/material_page_route.dart'
     as adapterMaterialPage;
 
@@ -14,15 +19,30 @@ const _flaxOmitted = Object();
 const materialBindings = FlaxBindingModule(
   'material',
   [
-    FlaxEnumBinding("flax.material/material#type:ThemeMode", {
-      "system": api.ThemeMode.system,
-      "light": api.ThemeMode.light,
-      "dark": api.ThemeMode.dark,
-    }),
     FlaxEnumBinding("flax.material/material#type:Brightness", {
       "dark": api.Brightness.dark,
       "light": api.Brightness.light,
     }),
+    FlaxEnumBinding("flax.material/material#type:ListTileStyle", {
+      "list": api.ListTileStyle.list,
+      "drawer": api.ListTileStyle.drawer,
+    }),
+    FlaxEnumBinding("flax.material/material#type:MaterialType", {
+      "canvas": api.MaterialType.canvas,
+      "card": api.MaterialType.card,
+      "circle": api.MaterialType.circle,
+      "button": api.MaterialType.button,
+      "transparency": api.MaterialType.transparency,
+    }),
+    FlaxEnumBinding(
+      "flax.material/material#type:NavigationDestinationLabelBehavior",
+      {
+        "alwaysShow": api.NavigationDestinationLabelBehavior.alwaysShow,
+        "alwaysHide": api.NavigationDestinationLabelBehavior.alwaysHide,
+        "onlyShowSelected":
+            api.NavigationDestinationLabelBehavior.onlyShowSelected,
+      },
+    ),
     FlaxEnumBinding("flax.material/material#type:TextInputAction", {
       "none": api.TextInputAction.none,
       "unspecified": api.TextInputAction.unspecified,
@@ -38,18 +58,394 @@ const materialBindings = FlaxBindingModule(
       "emergencyCall": api.TextInputAction.emergencyCall,
       "newline": api.TextInputAction.newline,
     }),
-    FlaxEnumBinding("flax.material/material#type:ListTileStyle", {
-      "list": api.ListTileStyle.list,
-      "drawer": api.ListTileStyle.drawer,
+    FlaxEnumBinding("flax.material/material#type:ThemeMode", {
+      "system": api.ThemeMode.system,
+      "light": api.ThemeMode.light,
+      "dark": api.ThemeMode.dark,
     }),
-    FlaxEnumBinding(
-      "flax.material/material#type:NavigationDestinationLabelBehavior",
+    FlaxWidgetBinding(
+      "flax.material/material#type:Material",
       {
-        "alwaysShow": api.NavigationDestinationLabelBehavior.alwaysShow,
-        "alwaysHide": api.NavigationDestinationLabelBehavior.alwaysHide,
-        "onlyShowSelected":
-            api.NavigationDestinationLabelBehavior.onlyShowSelected,
+        "": [
+          FlaxParameter(
+            "key",
+            FlaxTypeRef(
+              "object",
+              id: "flax.core/flutter#type:Key",
+              nullable: true,
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "type",
+            FlaxTypeRef("enum", id: "flax.material/material#type:MaterialType"),
+            required: false,
+            defaultValue: api.MaterialType.canvas,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "elevation",
+            FlaxTypeRef("double"),
+            required: false,
+            defaultValue: 0.0,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "color",
+            FlaxTypeRef(
+              "object",
+              id: "flax.core/flutter#type:Color",
+              nullable: true,
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "shadowColor",
+            FlaxTypeRef(
+              "object",
+              id: "flax.core/flutter#type:Color",
+              nullable: true,
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "surfaceTintColor",
+            FlaxTypeRef(
+              "object",
+              id: "flax.core/flutter#type:Color",
+              nullable: true,
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "textStyle",
+            FlaxTypeRef(
+              "object",
+              id: "flax.core/flutter#type:TextStyle",
+              nullable: true,
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "borderRadius",
+            FlaxTypeRef(
+              "object",
+              id: "flax.core/flutter#type:BorderRadiusGeometry",
+              nullable: true,
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "shape",
+            FlaxTypeRef(
+              "object",
+              id: "flax.core/flutter#type:ShapeBorder",
+              nullable: true,
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "clipBehavior",
+            FlaxTypeRef("enum", id: "flax.core/flutter#type:Clip"),
+            required: false,
+            defaultValue: api1.Clip.none,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "child",
+            FlaxTypeRef("widget", nullable: true),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+        ],
       },
+      _MaterialHost.new,
+      fixedArguments: false,
+      methods: {},
+    ),
+    FlaxWidgetBinding(
+      "flax.material/material#type:InkWell",
+      {
+        "": [
+          FlaxParameter(
+            "key",
+            FlaxTypeRef(
+              "object",
+              id: "flax.core/flutter#type:Key",
+              nullable: true,
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "child",
+            FlaxTypeRef("widget", nullable: true),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "onTap",
+            FlaxTypeRef(
+              "callback",
+              nullable: true,
+              callback: FlaxCallbackBinding(
+                [],
+                FlaxTypeRef("void"),
+                _callback0,
+                id: "callback:<>()->void:",
+                invoke: _callback0Invoke,
+                matches: _callback0Matches,
+              ),
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "onLongPress",
+            FlaxTypeRef(
+              "callback",
+              nullable: true,
+              callback: FlaxCallbackBinding(
+                [],
+                FlaxTypeRef("void"),
+                _callback1,
+                id: "callback:<>()->void:",
+                invoke: _callback1Invoke,
+                matches: _callback1Matches,
+              ),
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "onHighlightChanged",
+            FlaxTypeRef(
+              "callback",
+              nullable: true,
+              callback: FlaxCallbackBinding(
+                [
+                  FlaxCallbackParameter(
+                    "value",
+                    FlaxTypeRef("bool"),
+                    required: true,
+                    positional: true,
+                  ),
+                ],
+                FlaxTypeRef("void"),
+                _callback2,
+                id: "callback:<>(p:r:value:bool:)->void:",
+                invoke: _callback2Invoke,
+                matches: _callback2Matches,
+              ),
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "onHover",
+            FlaxTypeRef(
+              "callback",
+              nullable: true,
+              callback: FlaxCallbackBinding(
+                [
+                  FlaxCallbackParameter(
+                    "value",
+                    FlaxTypeRef("bool"),
+                    required: true,
+                    positional: true,
+                  ),
+                ],
+                FlaxTypeRef("void"),
+                _callback3,
+                id: "callback:<>(p:r:value:bool:)->void:",
+                invoke: _callback3Invoke,
+                matches: _callback3Matches,
+              ),
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "mouseCursor",
+            FlaxTypeRef(
+              "object",
+              id: "flax.core/flutter#type:MouseCursor",
+              nullable: true,
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "hoverColor",
+            FlaxTypeRef(
+              "object",
+              id: "flax.core/flutter#type:Color",
+              nullable: true,
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "highlightColor",
+            FlaxTypeRef(
+              "object",
+              id: "flax.core/flutter#type:Color",
+              nullable: true,
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "splashColor",
+            FlaxTypeRef(
+              "object",
+              id: "flax.core/flutter#type:Color",
+              nullable: true,
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "borderRadius",
+            FlaxTypeRef(
+              "object",
+              id: "flax.core/flutter#type:BorderRadius",
+              nullable: true,
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "customBorder",
+            FlaxTypeRef(
+              "object",
+              id: "flax.core/flutter#type:ShapeBorder",
+              nullable: true,
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "enableFeedback",
+            FlaxTypeRef("bool"),
+            required: false,
+            defaultValue: true,
+            omitWhenAbsent: false,
+          ),
+        ],
+      },
+      _InkWellHost.new,
+      fixedArguments: false,
+      methods: {},
+    ),
+    FlaxWidgetBinding(
+      "flax.material/material#type:LinearProgressIndicator",
+      {
+        "": [
+          FlaxParameter(
+            "key",
+            FlaxTypeRef(
+              "object",
+              id: "flax.core/flutter#type:Key",
+              nullable: true,
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "value",
+            FlaxTypeRef("double", nullable: true),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "backgroundColor",
+            FlaxTypeRef(
+              "object",
+              id: "flax.core/flutter#type:Color",
+              nullable: true,
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "color",
+            FlaxTypeRef(
+              "object",
+              id: "flax.core/flutter#type:Color",
+              nullable: true,
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "minHeight",
+            FlaxTypeRef("double", nullable: true),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "semanticsLabel",
+            FlaxTypeRef("String", nullable: true),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "semanticsValue",
+            FlaxTypeRef("String", nullable: true),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "borderRadius",
+            FlaxTypeRef(
+              "object",
+              id: "flax.core/flutter#type:BorderRadiusGeometry",
+              nullable: true,
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+        ],
+      },
+      _LinearProgressIndicatorHost.new,
+      fixedArguments: false,
+      methods: {},
     ),
     FlaxWidgetBinding(
       "flax.material/material#type:AlertDialog",
@@ -355,10 +751,10 @@ const materialBindings = FlaxBindingModule(
                   item: FlaxTypeRef("void"),
                   future: FlaxFutureBinding("void:", _future0Adapt),
                 ),
-                _callback0,
+                _callback4,
                 id: "callback:<>()->future:[void:]",
-                invoke: _callback0Invoke,
-                matches: _callback0Matches,
+                invoke: _callback4Invoke,
+                matches: _callback4Matches,
               ),
             ),
             required: true,
@@ -432,10 +828,10 @@ const materialBindings = FlaxBindingModule(
                           id: "flax.core/flutter#type:Color",
                           nullable: true,
                         ),
-                        _callback1,
+                        _callback5,
                         id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->object?:flax.core/flutter#type:Color",
-                        invoke: _callback1Invoke,
-                        matches: _callback1Matches,
+                        invoke: _callback5Invoke,
+                        matches: _callback5Matches,
                       ),
                     ),
                     required: true,
@@ -500,10 +896,10 @@ const materialBindings = FlaxBindingModule(
                           id: "flax.core/flutter#type:Color",
                           nullable: true,
                         ),
-                        _callback2,
+                        _callback6,
                         id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->object?:flax.core/flutter#type:Color",
-                        invoke: _callback2Invoke,
-                        matches: _callback2Matches,
+                        invoke: _callback6Invoke,
+                        matches: _callback6Matches,
                       ),
                     ),
                     required: true,
@@ -568,10 +964,10 @@ const materialBindings = FlaxBindingModule(
                           id: "flax.core/flutter#type:Color",
                           nullable: true,
                         ),
-                        _callback3,
+                        _callback7,
                         id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->object?:flax.core/flutter#type:Color",
-                        invoke: _callback3Invoke,
-                        matches: _callback3Matches,
+                        invoke: _callback7Invoke,
+                        matches: _callback7Matches,
                       ),
                     ),
                     required: true,
@@ -632,10 +1028,10 @@ const materialBindings = FlaxBindingModule(
                           ),
                         ],
                         FlaxTypeRef("double", nullable: true),
-                        _callback4,
+                        _callback8,
                         id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->double?:",
-                        invoke: _callback4Invoke,
-                        matches: _callback4Matches,
+                        invoke: _callback8Invoke,
+                        matches: _callback8Matches,
                       ),
                     ),
                     required: true,
@@ -648,6 +1044,151 @@ const materialBindings = FlaxBindingModule(
             },
           ),
           _ButtonStyle_elevation,
+        ),
+        FlaxGetter(
+          "shape",
+          FlaxTypeRef(
+            "object",
+            id: "flax.core/flutter#type:WidgetStateProperty",
+            nullable: true,
+            deferredFactories: {
+              "resolveWith": FlaxDeferredFactoryBinding(
+                "object:flax.core/flutter#type:WidgetStateProperty<object?:flax.core/flutter#type:OutlinedBorder>",
+                [
+                  FlaxParameter(
+                    "callback",
+                    FlaxTypeRef(
+                      "callback",
+                      callback: FlaxCallbackBinding(
+                        [
+                          FlaxCallbackParameter(
+                            "states",
+                            FlaxTypeRef(
+                              "set",
+                              item: FlaxTypeRef(
+                                "enum",
+                                id: "flax.core/flutter#type:WidgetState",
+                              ),
+                              collection: FlaxCollectionBinding(
+                                "set:[enum:flax.core/flutter#type:WidgetState]",
+                                _collection4Create,
+                                _collection4Matches,
+                              ),
+                              iterable: FlaxTypeRef(
+                                "iterable",
+                                item: FlaxTypeRef(
+                                  "enum",
+                                  id: "flax.core/flutter#type:WidgetState",
+                                ),
+                                collection: FlaxCollectionBinding(
+                                  "iterable:[enum:flax.core/flutter#type:WidgetState]",
+                                  _collection5Create,
+                                  _collection5Matches,
+                                ),
+                              ),
+                            ),
+                            required: true,
+                            positional: true,
+                          ),
+                        ],
+                        FlaxTypeRef(
+                          "object",
+                          id: "flax.core/flutter#type:OutlinedBorder",
+                          nullable: true,
+                        ),
+                        _callback9,
+                        id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->object?:flax.core/flutter#type:OutlinedBorder",
+                        invoke: _callback9Invoke,
+                        matches: _callback9Matches,
+                      ),
+                    ),
+                    required: true,
+                    defaultValue: null,
+                    omitWhenAbsent: false,
+                  ),
+                ],
+                _deferred2,
+              ),
+            },
+          ),
+          _ButtonStyle_shape,
+        ),
+        FlaxGetter(
+          "mouseCursor",
+          FlaxTypeRef(
+            "object",
+            id: "flax.core/flutter#type:WidgetStateProperty",
+            nullable: true,
+            deferredFactories: {
+              "resolveWith": FlaxDeferredFactoryBinding(
+                "object:flax.core/flutter#type:WidgetStateProperty<object?:flax.core/flutter#type:MouseCursor>",
+                [
+                  FlaxParameter(
+                    "callback",
+                    FlaxTypeRef(
+                      "callback",
+                      callback: FlaxCallbackBinding(
+                        [
+                          FlaxCallbackParameter(
+                            "states",
+                            FlaxTypeRef(
+                              "set",
+                              item: FlaxTypeRef(
+                                "enum",
+                                id: "flax.core/flutter#type:WidgetState",
+                              ),
+                              collection: FlaxCollectionBinding(
+                                "set:[enum:flax.core/flutter#type:WidgetState]",
+                                _collection4Create,
+                                _collection4Matches,
+                              ),
+                              iterable: FlaxTypeRef(
+                                "iterable",
+                                item: FlaxTypeRef(
+                                  "enum",
+                                  id: "flax.core/flutter#type:WidgetState",
+                                ),
+                                collection: FlaxCollectionBinding(
+                                  "iterable:[enum:flax.core/flutter#type:WidgetState]",
+                                  _collection5Create,
+                                  _collection5Matches,
+                                ),
+                              ),
+                            ),
+                            required: true,
+                            positional: true,
+                          ),
+                        ],
+                        FlaxTypeRef(
+                          "object",
+                          id: "flax.core/flutter#type:MouseCursor",
+                          nullable: true,
+                        ),
+                        _callback10,
+                        id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->object?:flax.core/flutter#type:MouseCursor",
+                        invoke: _callback10Invoke,
+                        matches: _callback10Matches,
+                      ),
+                    ),
+                    required: true,
+                    defaultValue: null,
+                    omitWhenAbsent: false,
+                  ),
+                ],
+                _deferred3,
+              ),
+            },
+          ),
+          _ButtonStyle_mouseCursor,
+        ),
+        FlaxGetter(
+          "visualDensity",
+          FlaxTypeRef(
+            "object",
+            id: "flax.material/material#type:VisualDensity",
+            nullable: true,
+          ),
+          _ButtonStyle_visualDensity,
         ),
       ],
       {
@@ -704,10 +1245,10 @@ const materialBindings = FlaxBindingModule(
                               id: "flax.core/flutter#type:Color",
                               nullable: true,
                             ),
-                            _callback5,
+                            _callback11,
                             id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->object?:flax.core/flutter#type:Color",
-                            invoke: _callback5Invoke,
-                            matches: _callback5Matches,
+                            invoke: _callback11Invoke,
+                            matches: _callback11Matches,
                           ),
                         ),
                         required: true,
@@ -770,10 +1311,10 @@ const materialBindings = FlaxBindingModule(
                               ),
                             ],
                             FlaxTypeRef("double", nullable: true),
-                            _callback6,
+                            _callback12,
                             id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->double?:",
-                            invoke: _callback6Invoke,
-                            matches: _callback6Matches,
+                            invoke: _callback12Invoke,
+                            matches: _callback12Matches,
                           ),
                         ),
                         required: true,
@@ -840,10 +1381,10 @@ const materialBindings = FlaxBindingModule(
                               id: "flax.core/flutter#type:Color",
                               nullable: true,
                             ),
-                            _callback7,
+                            _callback13,
                             id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->object?:flax.core/flutter#type:Color",
-                            invoke: _callback7Invoke,
-                            matches: _callback7Matches,
+                            invoke: _callback13Invoke,
+                            matches: _callback13Matches,
                           ),
                         ),
                         required: true,
@@ -852,6 +1393,76 @@ const materialBindings = FlaxBindingModule(
                       ),
                     ],
                     _deferred0,
+                  ),
+                },
+              ),
+              required: false,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+            FlaxParameter(
+              "mouseCursor",
+              FlaxTypeRef(
+                "object",
+                id: "flax.core/flutter#type:WidgetStateProperty",
+                nullable: true,
+                deferredFactories: {
+                  "resolveWith": FlaxDeferredFactoryBinding(
+                    "object:flax.core/flutter#type:WidgetStateProperty<object?:flax.core/flutter#type:MouseCursor>",
+                    [
+                      FlaxParameter(
+                        "callback",
+                        FlaxTypeRef(
+                          "callback",
+                          callback: FlaxCallbackBinding(
+                            [
+                              FlaxCallbackParameter(
+                                "states",
+                                FlaxTypeRef(
+                                  "set",
+                                  item: FlaxTypeRef(
+                                    "enum",
+                                    id: "flax.core/flutter#type:WidgetState",
+                                  ),
+                                  collection: FlaxCollectionBinding(
+                                    "set:[enum:flax.core/flutter#type:WidgetState]",
+                                    _collection4Create,
+                                    _collection4Matches,
+                                  ),
+                                  iterable: FlaxTypeRef(
+                                    "iterable",
+                                    item: FlaxTypeRef(
+                                      "enum",
+                                      id: "flax.core/flutter#type:WidgetState",
+                                    ),
+                                    collection: FlaxCollectionBinding(
+                                      "iterable:[enum:flax.core/flutter#type:WidgetState]",
+                                      _collection5Create,
+                                      _collection5Matches,
+                                    ),
+                                  ),
+                                ),
+                                required: true,
+                                positional: true,
+                              ),
+                            ],
+                            FlaxTypeRef(
+                              "object",
+                              id: "flax.core/flutter#type:MouseCursor",
+                              nullable: true,
+                            ),
+                            _callback14,
+                            id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->object?:flax.core/flutter#type:MouseCursor",
+                            invoke: _callback14Invoke,
+                            matches: _callback14Matches,
+                          ),
+                        ),
+                        required: true,
+                        defaultValue: null,
+                        omitWhenAbsent: false,
+                      ),
+                    ],
+                    _deferred3,
                   ),
                 },
               ),
@@ -910,10 +1521,10 @@ const materialBindings = FlaxBindingModule(
                               id: "flax.core/flutter#type:Color",
                               nullable: true,
                             ),
-                            _callback8,
+                            _callback15,
                             id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->object?:flax.core/flutter#type:Color",
-                            invoke: _callback8Invoke,
-                            matches: _callback8Matches,
+                            invoke: _callback15Invoke,
+                            matches: _callback15Matches,
                           ),
                         ),
                         required: true,
@@ -924,6 +1535,87 @@ const materialBindings = FlaxBindingModule(
                     _deferred0,
                   ),
                 },
+              ),
+              required: false,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+            FlaxParameter(
+              "shape",
+              FlaxTypeRef(
+                "object",
+                id: "flax.core/flutter#type:WidgetStateProperty",
+                nullable: true,
+                deferredFactories: {
+                  "resolveWith": FlaxDeferredFactoryBinding(
+                    "object:flax.core/flutter#type:WidgetStateProperty<object?:flax.core/flutter#type:OutlinedBorder>",
+                    [
+                      FlaxParameter(
+                        "callback",
+                        FlaxTypeRef(
+                          "callback",
+                          callback: FlaxCallbackBinding(
+                            [
+                              FlaxCallbackParameter(
+                                "states",
+                                FlaxTypeRef(
+                                  "set",
+                                  item: FlaxTypeRef(
+                                    "enum",
+                                    id: "flax.core/flutter#type:WidgetState",
+                                  ),
+                                  collection: FlaxCollectionBinding(
+                                    "set:[enum:flax.core/flutter#type:WidgetState]",
+                                    _collection4Create,
+                                    _collection4Matches,
+                                  ),
+                                  iterable: FlaxTypeRef(
+                                    "iterable",
+                                    item: FlaxTypeRef(
+                                      "enum",
+                                      id: "flax.core/flutter#type:WidgetState",
+                                    ),
+                                    collection: FlaxCollectionBinding(
+                                      "iterable:[enum:flax.core/flutter#type:WidgetState]",
+                                      _collection5Create,
+                                      _collection5Matches,
+                                    ),
+                                  ),
+                                ),
+                                required: true,
+                                positional: true,
+                              ),
+                            ],
+                            FlaxTypeRef(
+                              "object",
+                              id: "flax.core/flutter#type:OutlinedBorder",
+                              nullable: true,
+                            ),
+                            _callback16,
+                            id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->object?:flax.core/flutter#type:OutlinedBorder",
+                            invoke: _callback16Invoke,
+                            matches: _callback16Matches,
+                          ),
+                        ),
+                        required: true,
+                        defaultValue: null,
+                        omitWhenAbsent: false,
+                      ),
+                    ],
+                    _deferred2,
+                  ),
+                },
+              ),
+              required: false,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+            FlaxParameter(
+              "visualDensity",
+              FlaxTypeRef(
+                "object",
+                id: "flax.material/material#type:VisualDensity",
+                nullable: true,
               ),
               required: false,
               defaultValue: null,
@@ -988,10 +1680,10 @@ const materialBindings = FlaxBindingModule(
                             id: "flax.core/flutter#type:Color",
                             nullable: true,
                           ),
-                          _callback9,
+                          _callback17,
                           id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->object?:flax.core/flutter#type:Color",
-                          invoke: _callback9Invoke,
-                          matches: _callback9Matches,
+                          invoke: _callback17Invoke,
+                          matches: _callback17Matches,
                         ),
                       ),
                       required: true,
@@ -1058,10 +1750,10 @@ const materialBindings = FlaxBindingModule(
                             id: "flax.core/flutter#type:Color",
                             nullable: true,
                           ),
-                          _callback10,
+                          _callback18,
                           id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->object?:flax.core/flutter#type:Color",
-                          invoke: _callback10Invoke,
-                          matches: _callback10Matches,
+                          invoke: _callback18Invoke,
+                          matches: _callback18Matches,
                         ),
                       ),
                       required: true,
@@ -1128,10 +1820,10 @@ const materialBindings = FlaxBindingModule(
                             id: "flax.core/flutter#type:Color",
                             nullable: true,
                           ),
-                          _callback11,
+                          _callback19,
                           id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->object?:flax.core/flutter#type:Color",
-                          invoke: _callback11Invoke,
-                          matches: _callback11Matches,
+                          invoke: _callback19Invoke,
+                          matches: _callback19Matches,
                         ),
                       ),
                       required: true,
@@ -1194,10 +1886,10 @@ const materialBindings = FlaxBindingModule(
                             ),
                           ],
                           FlaxTypeRef("double", nullable: true),
-                          _callback12,
+                          _callback20,
                           id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->double?:",
-                          invoke: _callback12Invoke,
-                          matches: _callback12Matches,
+                          invoke: _callback20Invoke,
+                          matches: _callback20Matches,
                         ),
                       ),
                       required: true,
@@ -1208,6 +1900,157 @@ const materialBindings = FlaxBindingModule(
                   _deferred1,
                 ),
               },
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "shape",
+            FlaxTypeRef(
+              "object",
+              id: "flax.core/flutter#type:WidgetStateProperty",
+              nullable: true,
+              deferredFactories: {
+                "resolveWith": FlaxDeferredFactoryBinding(
+                  "object:flax.core/flutter#type:WidgetStateProperty<object?:flax.core/flutter#type:OutlinedBorder>",
+                  [
+                    FlaxParameter(
+                      "callback",
+                      FlaxTypeRef(
+                        "callback",
+                        callback: FlaxCallbackBinding(
+                          [
+                            FlaxCallbackParameter(
+                              "states",
+                              FlaxTypeRef(
+                                "set",
+                                item: FlaxTypeRef(
+                                  "enum",
+                                  id: "flax.core/flutter#type:WidgetState",
+                                ),
+                                collection: FlaxCollectionBinding(
+                                  "set:[enum:flax.core/flutter#type:WidgetState]",
+                                  _collection4Create,
+                                  _collection4Matches,
+                                ),
+                                iterable: FlaxTypeRef(
+                                  "iterable",
+                                  item: FlaxTypeRef(
+                                    "enum",
+                                    id: "flax.core/flutter#type:WidgetState",
+                                  ),
+                                  collection: FlaxCollectionBinding(
+                                    "iterable:[enum:flax.core/flutter#type:WidgetState]",
+                                    _collection5Create,
+                                    _collection5Matches,
+                                  ),
+                                ),
+                              ),
+                              required: true,
+                              positional: true,
+                            ),
+                          ],
+                          FlaxTypeRef(
+                            "object",
+                            id: "flax.core/flutter#type:OutlinedBorder",
+                            nullable: true,
+                          ),
+                          _callback21,
+                          id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->object?:flax.core/flutter#type:OutlinedBorder",
+                          invoke: _callback21Invoke,
+                          matches: _callback21Matches,
+                        ),
+                      ),
+                      required: true,
+                      defaultValue: null,
+                      omitWhenAbsent: false,
+                    ),
+                  ],
+                  _deferred2,
+                ),
+              },
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "mouseCursor",
+            FlaxTypeRef(
+              "object",
+              id: "flax.core/flutter#type:WidgetStateProperty",
+              nullable: true,
+              deferredFactories: {
+                "resolveWith": FlaxDeferredFactoryBinding(
+                  "object:flax.core/flutter#type:WidgetStateProperty<object?:flax.core/flutter#type:MouseCursor>",
+                  [
+                    FlaxParameter(
+                      "callback",
+                      FlaxTypeRef(
+                        "callback",
+                        callback: FlaxCallbackBinding(
+                          [
+                            FlaxCallbackParameter(
+                              "states",
+                              FlaxTypeRef(
+                                "set",
+                                item: FlaxTypeRef(
+                                  "enum",
+                                  id: "flax.core/flutter#type:WidgetState",
+                                ),
+                                collection: FlaxCollectionBinding(
+                                  "set:[enum:flax.core/flutter#type:WidgetState]",
+                                  _collection4Create,
+                                  _collection4Matches,
+                                ),
+                                iterable: FlaxTypeRef(
+                                  "iterable",
+                                  item: FlaxTypeRef(
+                                    "enum",
+                                    id: "flax.core/flutter#type:WidgetState",
+                                  ),
+                                  collection: FlaxCollectionBinding(
+                                    "iterable:[enum:flax.core/flutter#type:WidgetState]",
+                                    _collection5Create,
+                                    _collection5Matches,
+                                  ),
+                                ),
+                              ),
+                              required: true,
+                              positional: true,
+                            ),
+                          ],
+                          FlaxTypeRef(
+                            "object",
+                            id: "flax.core/flutter#type:MouseCursor",
+                            nullable: true,
+                          ),
+                          _callback22,
+                          id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->object?:flax.core/flutter#type:MouseCursor",
+                          invoke: _callback22Invoke,
+                          matches: _callback22Matches,
+                        ),
+                      ),
+                      required: true,
+                      defaultValue: null,
+                      omitWhenAbsent: false,
+                    ),
+                  ],
+                  _deferred3,
+                ),
+              },
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "visualDensity",
+            FlaxTypeRef(
+              "object",
+              id: "flax.material/material#type:VisualDensity",
+              nullable: true,
             ),
             required: false,
             defaultValue: null,
@@ -1226,6 +2069,94 @@ const materialBindings = FlaxBindingModule(
       matches: _isButtonStyle,
       methods: {},
       staticGetters: {},
+    ),
+    FlaxObjectBinding(
+      "flax.material/material#type:VisualDensity",
+      [
+        FlaxGetter(
+          "horizontal",
+          FlaxTypeRef("double"),
+          _VisualDensity_horizontal,
+        ),
+        FlaxGetter("vertical", FlaxTypeRef("double"), _VisualDensity_vertical),
+      ],
+      {
+        "copyWith": FlaxInstanceMethod(
+          [
+            FlaxParameter(
+              "horizontal",
+              FlaxTypeRef("double", nullable: true),
+              required: false,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+            FlaxParameter(
+              "vertical",
+              FlaxTypeRef("double", nullable: true),
+              required: false,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+          ],
+          FlaxTypeRef(
+            "object",
+            id: "flax.material/material#type:VisualDensity",
+          ),
+          _VisualDensity_copyWith,
+          startsRoute: false,
+        ),
+      },
+      constructors: {
+        "": [
+          FlaxParameter(
+            "horizontal",
+            FlaxTypeRef("double"),
+            required: false,
+            defaultValue: 0.0,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "vertical",
+            FlaxTypeRef("double"),
+            required: false,
+            defaultValue: 0.0,
+            omitWhenAbsent: false,
+          ),
+        ],
+      },
+      create: _createVisualDensity,
+      disposeMethod: null,
+      listenerPairs: {},
+      supertypes: [
+        "dart:core::Object",
+        "package:flutter/src/foundation/diagnostics.dart::Diagnosticable",
+      ],
+      setters: [],
+      matches: _isVisualDensity,
+      methods: {},
+      staticGetters: {
+        "standard": FlaxStaticGetter(
+          FlaxTypeRef(
+            "object",
+            id: "flax.material/material#type:VisualDensity",
+          ),
+          _VisualDensity_static_standard,
+        ),
+        "comfortable": FlaxStaticGetter(
+          FlaxTypeRef(
+            "object",
+            id: "flax.material/material#type:VisualDensity",
+          ),
+          _VisualDensity_static_comfortable,
+        ),
+        "compact": FlaxStaticGetter(
+          FlaxTypeRef(
+            "object",
+            id: "flax.material/material#type:VisualDensity",
+          ),
+          _VisualDensity_static_compact,
+        ),
+      },
     ),
     FlaxWidgetBinding(
       "flax.material/material#type:AppBar",
@@ -2327,10 +3258,10 @@ const materialBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef("void"),
-                _callback13,
+                _callback23,
                 id: "callback:<>(p:r:value:String:)->void:",
-                invoke: _callback13Invoke,
-                matches: _callback13Matches,
+                invoke: _callback23Invoke,
+                matches: _callback23Matches,
               ),
             ),
             required: false,
@@ -2345,10 +3276,10 @@ const materialBindings = FlaxBindingModule(
               callback: FlaxCallbackBinding(
                 [],
                 FlaxTypeRef("void"),
-                _callback14,
+                _callback24,
                 id: "callback:<>()->void:",
-                invoke: _callback14Invoke,
-                matches: _callback14Matches,
+                invoke: _callback24Invoke,
+                matches: _callback24Matches,
               ),
             ),
             required: false,
@@ -2370,10 +3301,10 @@ const materialBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef("void"),
-                _callback15,
+                _callback25,
                 id: "callback:<>(p:r:value:String:)->void:",
-                invoke: _callback15Invoke,
-                matches: _callback15Matches,
+                invoke: _callback25Invoke,
+                matches: _callback25Matches,
               ),
             ),
             required: false,
@@ -2445,10 +3376,10 @@ const materialBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef("widget"),
-                _callback16,
+                _callback26,
                 id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
-                invoke: _callback16Invoke,
-                matches: _callback16Matches,
+                invoke: _callback26Invoke,
+                matches: _callback26Matches,
               ),
             ),
             required: true,
@@ -2558,10 +3489,10 @@ const materialBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef("void"),
-                _callback17,
+                _callback27,
                 id: "callback:<>(p:r:didPop:bool:,p:r:result:data?:)->void:",
-                invoke: _callback17Invoke,
-                matches: _callback17Matches,
+                invoke: _callback27Invoke,
+                matches: _callback27Matches,
               ),
             ),
             required: false,
@@ -2614,10 +3545,10 @@ const materialBindings = FlaxBindingModule(
               callback: FlaxCallbackBinding(
                 [],
                 FlaxTypeRef("void"),
-                _callback18,
+                _callback28,
                 id: "callback:<>()->void:",
-                invoke: _callback18Invoke,
-                matches: _callback18Matches,
+                invoke: _callback28Invoke,
+                matches: _callback28Matches,
               ),
             ),
             required: true,
@@ -2671,10 +3602,10 @@ const materialBindings = FlaxBindingModule(
               callback: FlaxCallbackBinding(
                 [],
                 FlaxTypeRef("void"),
-                _callback19,
+                _callback29,
                 id: "callback:<>()->void:",
-                invoke: _callback19Invoke,
-                matches: _callback19Matches,
+                invoke: _callback29Invoke,
+                matches: _callback29Matches,
               ),
             ),
             required: true,
@@ -2728,10 +3659,10 @@ const materialBindings = FlaxBindingModule(
               callback: FlaxCallbackBinding(
                 [],
                 FlaxTypeRef("void"),
-                _callback20,
+                _callback30,
                 id: "callback:<>()->void:",
-                invoke: _callback20Invoke,
-                matches: _callback20Matches,
+                invoke: _callback30Invoke,
+                matches: _callback30Matches,
               ),
             ),
             required: true,
@@ -2785,10 +3716,10 @@ const materialBindings = FlaxBindingModule(
               callback: FlaxCallbackBinding(
                 [],
                 FlaxTypeRef("void"),
-                _callback21,
+                _callback31,
                 id: "callback:<>()->void:",
-                invoke: _callback21Invoke,
-                matches: _callback21Matches,
+                invoke: _callback31Invoke,
+                matches: _callback31Matches,
               ),
             ),
             required: true,
@@ -2834,10 +3765,10 @@ const materialBindings = FlaxBindingModule(
               callback: FlaxCallbackBinding(
                 [],
                 FlaxTypeRef("void"),
-                _callback22,
+                _callback32,
                 id: "callback:<>()->void:",
-                invoke: _callback22Invoke,
-                matches: _callback22Matches,
+                invoke: _callback32Invoke,
+                matches: _callback32Matches,
               ),
             ),
             required: true,
@@ -2942,10 +3873,10 @@ const materialBindings = FlaxBindingModule(
               callback: FlaxCallbackBinding(
                 [],
                 FlaxTypeRef("void"),
-                _callback23,
+                _callback33,
                 id: "callback:<>()->void:",
-                invoke: _callback23Invoke,
-                matches: _callback23Matches,
+                invoke: _callback33Invoke,
+                matches: _callback33Matches,
               ),
             ),
             required: true,
@@ -3081,10 +4012,10 @@ const materialBindings = FlaxBindingModule(
               callback: FlaxCallbackBinding(
                 [],
                 FlaxTypeRef("void"),
-                _callback24,
+                _callback34,
                 id: "callback:<>()->void:",
-                invoke: _callback24Invoke,
-                matches: _callback24Matches,
+                invoke: _callback34Invoke,
+                matches: _callback34Matches,
               ),
             ),
             required: true,
@@ -3220,10 +4151,10 @@ const materialBindings = FlaxBindingModule(
               callback: FlaxCallbackBinding(
                 [],
                 FlaxTypeRef("void"),
-                _callback25,
+                _callback35,
                 id: "callback:<>()->void:",
-                invoke: _callback25Invoke,
-                matches: _callback25Matches,
+                invoke: _callback35Invoke,
+                matches: _callback35Matches,
               ),
             ),
             required: true,
@@ -3359,10 +4290,10 @@ const materialBindings = FlaxBindingModule(
               callback: FlaxCallbackBinding(
                 [],
                 FlaxTypeRef("void"),
-                _callback26,
+                _callback36,
                 id: "callback:<>()->void:",
-                invoke: _callback26Invoke,
-                matches: _callback26Matches,
+                invoke: _callback36Invoke,
+                matches: _callback36Matches,
               ),
             ),
             required: true,
@@ -3498,10 +4429,10 @@ const materialBindings = FlaxBindingModule(
               callback: FlaxCallbackBinding(
                 [],
                 FlaxTypeRef("void"),
-                _callback27,
+                _callback37,
                 id: "callback:<>()->void:",
-                invoke: _callback27Invoke,
-                matches: _callback27Matches,
+                invoke: _callback37Invoke,
+                matches: _callback37Matches,
               ),
             ),
             required: true,
@@ -3597,10 +4528,10 @@ const materialBindings = FlaxBindingModule(
               callback: FlaxCallbackBinding(
                 [],
                 FlaxTypeRef("void"),
-                _callback28,
+                _callback38,
                 id: "callback:<>()->void:",
-                invoke: _callback28Invoke,
-                matches: _callback28Matches,
+                invoke: _callback38Invoke,
+                matches: _callback38Matches,
               ),
             ),
             required: true,
@@ -3689,10 +4620,10 @@ const materialBindings = FlaxBindingModule(
               callback: FlaxCallbackBinding(
                 [],
                 FlaxTypeRef("void"),
-                _callback29,
+                _callback39,
                 id: "callback:<>()->void:",
-                invoke: _callback29Invoke,
-                matches: _callback29Matches,
+                invoke: _callback39Invoke,
+                matches: _callback39Matches,
               ),
             ),
             required: true,
@@ -3774,10 +4705,10 @@ const materialBindings = FlaxBindingModule(
               callback: FlaxCallbackBinding(
                 [],
                 FlaxTypeRef("void"),
-                _callback30,
+                _callback40,
                 id: "callback:<>()->void:",
-                invoke: _callback30Invoke,
-                matches: _callback30Matches,
+                invoke: _callback40Invoke,
+                matches: _callback40Matches,
               ),
             ),
             required: true,
@@ -4459,10 +5390,10 @@ const materialBindings = FlaxBindingModule(
               callback: FlaxCallbackBinding(
                 [],
                 FlaxTypeRef("void"),
-                _callback31,
+                _callback41,
                 id: "callback:<>()->void:",
-                invoke: _callback31Invoke,
-                matches: _callback31Matches,
+                invoke: _callback41Invoke,
+                matches: _callback41Matches,
               ),
             ),
             required: false,
@@ -4477,10 +5408,10 @@ const materialBindings = FlaxBindingModule(
               callback: FlaxCallbackBinding(
                 [],
                 FlaxTypeRef("void"),
-                _callback32,
+                _callback42,
                 id: "callback:<>()->void:",
-                invoke: _callback32Invoke,
-                matches: _callback32Matches,
+                invoke: _callback42Invoke,
+                matches: _callback42Matches,
               ),
             ),
             required: false,
@@ -4577,10 +5508,10 @@ const materialBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef("void"),
-                _callback33,
+                _callback43,
                 id: "callback:<>(p:r:value:bool?:)->void:",
-                invoke: _callback33Invoke,
-                matches: _callback33Matches,
+                invoke: _callback43Invoke,
+                matches: _callback43Matches,
               ),
             ),
             required: true,
@@ -4649,10 +5580,10 @@ const materialBindings = FlaxBindingModule(
                             id: "flax.core/flutter#type:Color",
                             nullable: true,
                           ),
-                          _callback34,
+                          _callback44,
                           id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->object?:flax.core/flutter#type:Color",
-                          invoke: _callback34Invoke,
-                          matches: _callback34Matches,
+                          invoke: _callback44Invoke,
+                          matches: _callback44Matches,
                         ),
                       ),
                       required: true,
@@ -4730,10 +5661,10 @@ const materialBindings = FlaxBindingModule(
                             id: "flax.core/flutter#type:Color",
                             nullable: true,
                           ),
-                          _callback35,
+                          _callback45,
                           id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->object?:flax.core/flutter#type:Color",
-                          invoke: _callback35Invoke,
-                          matches: _callback35Matches,
+                          invoke: _callback45Invoke,
+                          matches: _callback45Matches,
                         ),
                       ),
                       required: true,
@@ -4817,10 +5748,10 @@ const materialBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef("void"),
-                _callback36,
+                _callback46,
                 id: "callback:<>(p:r:value:bool:)->void:",
-                invoke: _callback36Invoke,
-                matches: _callback36Matches,
+                invoke: _callback46Invoke,
+                matches: _callback46Matches,
               ),
             ),
             required: true,
@@ -5076,10 +6007,10 @@ const materialBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef("void"),
-                _callback37,
+                _callback47,
                 id: "callback:<>(p:r:value:int:)->void:",
-                invoke: _callback37Invoke,
-                matches: _callback37Matches,
+                invoke: _callback47Invoke,
+                matches: _callback47Matches,
               ),
             ),
             required: false,
@@ -5153,6 +6084,18 @@ const materialBindings = FlaxBindingModule(
   ],
   functions: [
     FlaxFunctionBinding(
+      "flax.material/material#read:kTabScrollDuration",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
+      _read_kTabScrollDuration,
+    ),
+    FlaxFunctionBinding(
+      "flax.material/material#read:kToolbarHeight",
+      [],
+      FlaxTypeRef("double"),
+      _read_kToolbarHeight,
+    ),
+    FlaxFunctionBinding(
       "flax.material/material#function:showDialog",
       [
         FlaxParameter(
@@ -5197,10 +6140,10 @@ const materialBindings = FlaxBindingModule(
                 ),
               ],
               FlaxTypeRef("widget"),
-              _callback38,
+              _callback48,
               id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
-              invoke: _callback38Invoke,
-              matches: _callback38Matches,
+              invoke: _callback48Invoke,
+              matches: _callback48Matches,
             ),
           ),
           required: true,
@@ -5269,35 +6212,130 @@ const materialBindings = FlaxBindingModule(
 );
 Object? _function_showDialog(Map<String, Object?> values) {
   return api.showDialog<Object?>(
-    barrierColor: values["barrierColor"] as api.Color?,
+    barrierColor: values["barrierColor"] as api1.Color?,
     barrierDismissible: values["barrierDismissible"] as bool,
     barrierLabel: values["barrierLabel"] as String?,
-    builder: values["builder"] as api.Widget Function(api.BuildContext context),
-    context: values["context"] as api.BuildContext,
+    builder:
+        values["builder"] as api1.Widget Function(api1.BuildContext context),
+    context: values["context"] as api1.BuildContext,
     fullscreenDialog: values["fullscreenDialog"] as bool,
     requestFocus: values["requestFocus"] as bool?,
-    routeSettings: values["routeSettings"] as api.RouteSettings?,
+    routeSettings: values["routeSettings"] as api1.RouteSettings?,
     useRootNavigator: values["useRootNavigator"] as bool,
     useSafeArea: values["useSafeArea"] as bool,
   );
+}
+
+Object? _read_kTabScrollDuration(Map<String, Object?> values) =>
+    api.kTabScrollDuration;
+Object? _read_kToolbarHeight(Map<String, Object?> values) => api.kToolbarHeight;
+
+class _MaterialHost extends FlaxWidgetHost {
+  _MaterialHost(super.node);
+
+  @override
+  api1.Widget buildNative(Map<String, Object?> values) =>
+      _createMaterial(node.ctor, values);
+}
+
+api1.Widget _createMaterial(String ctor, Map<String, Object?> values) {
+  switch (ctor) {
+    case "":
+      return api.Material(
+        key: values["key"] as api1.Key?,
+        type: values["type"] as api.MaterialType,
+        elevation: values["elevation"] as double,
+        color: values["color"] as api1.Color?,
+        shadowColor: values["shadowColor"] as api1.Color?,
+        surfaceTintColor: values["surfaceTintColor"] as api1.Color?,
+        textStyle: values["textStyle"] as api1.TextStyle?,
+        borderRadius: values["borderRadius"] as api1.BorderRadiusGeometry?,
+        shape: values["shape"] as api1.ShapeBorder?,
+        clipBehavior: values["clipBehavior"] as api1.Clip,
+        child: values["child"] as api1.Widget?,
+      );
+    default:
+      throw ArgumentError('Unknown generated constructor');
+  }
+}
+
+class _InkWellHost extends FlaxWidgetHost {
+  _InkWellHost(super.node);
+
+  @override
+  api1.Widget buildNative(Map<String, Object?> values) =>
+      _createInkWell(node.ctor, values);
+}
+
+api1.Widget _createInkWell(String ctor, Map<String, Object?> values) {
+  switch (ctor) {
+    case "":
+      return api.InkWell(
+        key: values["key"] as api1.Key?,
+        child: values["child"] as api1.Widget?,
+        onTap: values["onTap"] as void Function()?,
+        onLongPress: values["onLongPress"] as void Function()?,
+        onHighlightChanged:
+            values["onHighlightChanged"] as void Function(bool value)?,
+        onHover: values["onHover"] as void Function(bool value)?,
+        mouseCursor: values["mouseCursor"] as api1.MouseCursor?,
+        hoverColor: values["hoverColor"] as api1.Color?,
+        highlightColor: values["highlightColor"] as api1.Color?,
+        splashColor: values["splashColor"] as api1.Color?,
+        borderRadius: values["borderRadius"] as api1.BorderRadius?,
+        customBorder: values["customBorder"] as api1.ShapeBorder?,
+        enableFeedback: values["enableFeedback"] as bool,
+      );
+    default:
+      throw ArgumentError('Unknown generated constructor');
+  }
+}
+
+class _LinearProgressIndicatorHost extends FlaxWidgetHost {
+  _LinearProgressIndicatorHost(super.node);
+
+  @override
+  api1.Widget buildNative(Map<String, Object?> values) =>
+      _createLinearProgressIndicator(node.ctor, values);
+}
+
+api1.Widget _createLinearProgressIndicator(
+  String ctor,
+  Map<String, Object?> values,
+) {
+  switch (ctor) {
+    case "":
+      return api.LinearProgressIndicator(
+        key: values["key"] as api1.Key?,
+        value: values["value"] as double?,
+        backgroundColor: values["backgroundColor"] as api1.Color?,
+        color: values["color"] as api1.Color?,
+        minHeight: values["minHeight"] as double?,
+        semanticsLabel: values["semanticsLabel"] as String?,
+        semanticsValue: values["semanticsValue"] as String?,
+        borderRadius: values["borderRadius"] as api1.BorderRadiusGeometry?,
+      );
+    default:
+      throw ArgumentError('Unknown generated constructor');
+  }
 }
 
 class _AlertDialogHost extends FlaxWidgetHost {
   _AlertDialogHost(super.node);
 
   @override
-  api.Widget buildNative(Map<String, Object?> values) =>
+  api1.Widget buildNative(Map<String, Object?> values) =>
       _createAlertDialog(node.ctor, values);
 }
 
-api.Widget _createAlertDialog(String ctor, Map<String, Object?> values) {
+api1.Widget _createAlertDialog(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.AlertDialog(
-        key: values["key"] as api.Key?,
-        title: values["title"] as api.Widget?,
-        content: values["content"] as api.Widget?,
-        actions: values["actions"] as List<api.Widget>?,
+        key: values["key"] as api1.Key?,
+        title: values["title"] as api1.Widget?,
+        content: values["content"] as api1.Widget?,
+        actions: values["actions"] as List<api1.Widget>?,
         scrollable: values["scrollable"] as bool,
       );
     default:
@@ -5309,17 +6347,17 @@ class _MaterialAppHost extends FlaxWidgetHost {
   _MaterialAppHost(super.node);
 
   @override
-  api.Widget buildNative(Map<String, Object?> values) =>
+  api1.Widget buildNative(Map<String, Object?> values) =>
       _createMaterialApp(node.ctor, values);
 }
 
-api.Widget _createMaterialApp(String ctor, Map<String, Object?> values) {
+api1.Widget _createMaterialApp(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       if (!values.containsKey("navigatorObservers")) {
         return api.MaterialApp(
-          key: values["key"] as api.Key?,
-          home: values["home"] as api.Widget?,
+          key: values["key"] as api1.Key?,
+          home: values["home"] as api1.Widget?,
           title: values["title"] as String?,
           theme: values["theme"] as api.ThemeData?,
           darkTheme: values["darkTheme"] as api.ThemeData?,
@@ -5329,10 +6367,10 @@ api.Widget _createMaterialApp(String ctor, Map<String, Object?> values) {
         );
       }
       return api.MaterialApp(
-        key: values["key"] as api.Key?,
-        home: values["home"] as api.Widget?,
+        key: values["key"] as api1.Key?,
+        home: values["home"] as api1.Widget?,
         navigatorObservers:
-            values["navigatorObservers"] as List<api.NavigatorObserver>,
+            values["navigatorObservers"] as List<api1.NavigatorObserver>,
         title: values["title"] as String?,
         theme: values["theme"] as api.ThemeData?,
         darkTheme: values["darkTheme"] as api.ThemeData?,
@@ -5349,22 +6387,22 @@ class _ScaffoldHost extends FlaxWidgetHost {
   _ScaffoldHost(super.node);
 
   @override
-  api.Widget buildNative(Map<String, Object?> values) =>
+  api1.Widget buildNative(Map<String, Object?> values) =>
       _createScaffold(node.ctor, values);
 }
 
-api.Widget _createScaffold(String ctor, Map<String, Object?> values) {
+api1.Widget _createScaffold(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.Scaffold(
-        key: values["key"] as api.Key?,
-        appBar: values["appBar"] as api.PreferredSizeWidget?,
-        body: values["body"] as api.Widget?,
-        floatingActionButton: values["floatingActionButton"] as api.Widget?,
-        drawer: values["drawer"] as api.Widget?,
-        endDrawer: values["endDrawer"] as api.Widget?,
-        bottomNavigationBar: values["bottomNavigationBar"] as api.Widget?,
-        backgroundColor: values["backgroundColor"] as api.Color?,
+        key: values["key"] as api1.Key?,
+        appBar: values["appBar"] as api1.PreferredSizeWidget?,
+        body: values["body"] as api1.Widget?,
+        floatingActionButton: values["floatingActionButton"] as api1.Widget?,
+        drawer: values["drawer"] as api1.Widget?,
+        endDrawer: values["endDrawer"] as api1.Widget?,
+        bottomNavigationBar: values["bottomNavigationBar"] as api1.Widget?,
+        backgroundColor: values["backgroundColor"] as api1.Color?,
         resizeToAvoidBottomInset: values["resizeToAvoidBottomInset"] as bool?,
         primary: values["primary"] as bool,
         extendBody: values["extendBody"] as bool,
@@ -5379,17 +6417,17 @@ class _RefreshIndicatorHost extends FlaxWidgetHost {
   _RefreshIndicatorHost(super.node);
 
   @override
-  api.Widget buildNative(Map<String, Object?> values) =>
+  api1.Widget buildNative(Map<String, Object?> values) =>
       _createRefreshIndicator(node.ctor, values);
 }
 
-api.Widget _createRefreshIndicator(String ctor, Map<String, Object?> values) {
+api1.Widget _createRefreshIndicator(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.RefreshIndicator(
-        key: values["key"] as api.Key?,
+        key: values["key"] as api1.Key?,
         onRefresh: values["onRefresh"] as Future<void> Function(),
-        child: values["child"] as api.Widget,
+        child: values["child"] as api1.Widget,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -5405,15 +6443,24 @@ Object? _ButtonStyle_overlayColor(Object value) =>
     (value as api.ButtonStyle).overlayColor;
 Object? _ButtonStyle_elevation(Object value) =>
     (value as api.ButtonStyle).elevation;
+Object? _ButtonStyle_shape(Object value) => (value as api.ButtonStyle).shape;
+Object? _ButtonStyle_mouseCursor(Object value) =>
+    (value as api.ButtonStyle).mouseCursor;
+Object? _ButtonStyle_visualDensity(Object value) =>
+    (value as api.ButtonStyle).visualDensity;
 Object? _ButtonStyle_copyWith(Object receiver, Map<String, Object?> values) {
   return (receiver as api.ButtonStyle).copyWith(
     backgroundColor:
-        values["backgroundColor"] as api.WidgetStateProperty<api.Color?>?,
-    elevation: values["elevation"] as api.WidgetStateProperty<double?>?,
+        values["backgroundColor"] as api1.WidgetStateProperty<api1.Color?>?,
+    elevation: values["elevation"] as api1.WidgetStateProperty<double?>?,
     foregroundColor:
-        values["foregroundColor"] as api.WidgetStateProperty<api.Color?>?,
+        values["foregroundColor"] as api1.WidgetStateProperty<api1.Color?>?,
+    mouseCursor:
+        values["mouseCursor"] as api1.WidgetStateProperty<api1.MouseCursor?>?,
     overlayColor:
-        values["overlayColor"] as api.WidgetStateProperty<api.Color?>?,
+        values["overlayColor"] as api1.WidgetStateProperty<api1.Color?>?,
+    shape: values["shape"] as api1.WidgetStateProperty<api1.OutlinedBorder?>?,
+    visualDensity: values["visualDensity"] as api.VisualDensity?,
   );
 }
 
@@ -5422,40 +6469,75 @@ Object _createButtonStyle(String ctor, Map<String, Object?> values) {
     case "":
       return api.ButtonStyle(
         backgroundColor:
-            values["backgroundColor"] as api.WidgetStateProperty<api.Color?>?,
+            values["backgroundColor"] as api1.WidgetStateProperty<api1.Color?>?,
         foregroundColor:
-            values["foregroundColor"] as api.WidgetStateProperty<api.Color?>?,
+            values["foregroundColor"] as api1.WidgetStateProperty<api1.Color?>?,
         overlayColor:
-            values["overlayColor"] as api.WidgetStateProperty<api.Color?>?,
-        elevation: values["elevation"] as api.WidgetStateProperty<double?>?,
+            values["overlayColor"] as api1.WidgetStateProperty<api1.Color?>?,
+        elevation: values["elevation"] as api1.WidgetStateProperty<double?>?,
+        shape:
+            values["shape"] as api1.WidgetStateProperty<api1.OutlinedBorder?>?,
+        mouseCursor:
+            values["mouseCursor"]
+                as api1.WidgetStateProperty<api1.MouseCursor?>?,
+        visualDensity: values["visualDensity"] as api.VisualDensity?,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
   }
 }
 
-class _AppBarHost extends FlaxWidgetHost implements api.PreferredSizeWidget {
+bool _isVisualDensity(Object value) => value is api.VisualDensity;
+Object? _VisualDensity_horizontal(Object value) =>
+    (value as api.VisualDensity).horizontal;
+Object? _VisualDensity_vertical(Object value) =>
+    (value as api.VisualDensity).vertical;
+Object? _VisualDensity_static_standard() => api.VisualDensity.standard;
+Object? _VisualDensity_static_comfortable() => api.VisualDensity.comfortable;
+Object? _VisualDensity_static_compact() => api.VisualDensity.compact;
+Object? _VisualDensity_copyWith(Object receiver, Map<String, Object?> values) {
+  return (receiver as api.VisualDensity).copyWith(
+    horizontal: values["horizontal"] as double?,
+    vertical: values["vertical"] as double?,
+  );
+}
+
+Object _createVisualDensity(String ctor, Map<String, Object?> values) {
+  switch (ctor) {
+    case "":
+      return api.VisualDensity(
+        horizontal: values["horizontal"] as double,
+        vertical: values["vertical"] as double,
+      );
+    default:
+      throw ArgumentError('Unknown generated constructor');
+  }
+}
+
+class _AppBarHost extends FlaxWidgetHost implements api1.PreferredSizeWidget {
   _AppBarHost(super.node);
   @override
-  api.Size get preferredSize => (configuration as api.AppBar).preferredSize;
+  _flaxNative7.Size get preferredSize =>
+      (configuration as _flaxNative7.PreferredSizeWidget).preferredSize;
+
   @override
-  api.Widget buildNative(Map<String, Object?> values) =>
+  api1.Widget buildNative(Map<String, Object?> values) =>
       _createAppBar(node.ctor, values);
 }
 
-api.Widget _createAppBar(String ctor, Map<String, Object?> values) {
+api1.Widget _createAppBar(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.AppBar(
-        key: values["key"] as api.Key?,
-        leading: values["leading"] as api.Widget?,
+        key: values["key"] as api1.Key?,
+        leading: values["leading"] as api1.Widget?,
         automaticallyImplyLeading: values["automaticallyImplyLeading"] as bool,
-        title: values["title"] as api.Widget?,
-        actions: values["actions"] as List<api.Widget>?,
-        bottom: values["bottom"] as api.PreferredSizeWidget?,
+        title: values["title"] as api1.Widget?,
+        actions: values["actions"] as List<api1.Widget>?,
+        bottom: values["bottom"] as api1.PreferredSizeWidget?,
         elevation: values["elevation"] as double?,
-        backgroundColor: values["backgroundColor"] as api.Color?,
-        foregroundColor: values["foregroundColor"] as api.Color?,
+        backgroundColor: values["backgroundColor"] as api1.Color?,
+        foregroundColor: values["foregroundColor"] as api1.Color?,
         primary: values["primary"] as bool,
         centerTitle: values["centerTitle"] as bool?,
         toolbarHeight: values["toolbarHeight"] as double?,
@@ -5466,24 +6548,24 @@ api.Widget _createAppBar(String ctor, Map<String, Object?> values) {
 }
 
 Object? _Theme_of(Map<String, Object?> values) {
-  return api.Theme.of(values["context"] as api.BuildContext);
+  return api.Theme.of(values["context"] as api1.BuildContext);
 }
 
 class _ThemeHost extends FlaxWidgetHost {
   _ThemeHost(super.node);
 
   @override
-  api.Widget buildNative(Map<String, Object?> values) =>
+  api1.Widget buildNative(Map<String, Object?> values) =>
       _createTheme(node.ctor, values);
 }
 
-api.Widget _createTheme(String ctor, Map<String, Object?> values) {
+api1.Widget _createTheme(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.Theme(
-        key: values["key"] as api.Key?,
+        key: values["key"] as api1.Key?,
         data: values["data"] as api.ThemeData,
-        child: values["child"] as api.Widget,
+        child: values["child"] as api1.Widget,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -5511,7 +6593,7 @@ Object _createThemeData(String ctor, Map<String, Object?> values) {
       return api.ThemeData(
         colorScheme: values["colorScheme"] as api.ColorScheme?,
         brightness: values["brightness"] as api.Brightness?,
-        colorSchemeSeed: values["colorSchemeSeed"] as api.Color?,
+        colorSchemeSeed: values["colorSchemeSeed"] as api1.Color?,
         textTheme: values["textTheme"] as api.TextTheme?,
       );
     default:
@@ -5532,11 +6614,11 @@ Object? _TextTheme_labelLarge(Object value) =>
     (value as api.TextTheme).labelLarge;
 Object? _TextTheme_copyWith(Object receiver, Map<String, Object?> values) {
   return (receiver as api.TextTheme).copyWith(
-    bodyLarge: values["bodyLarge"] as api.TextStyle?,
-    bodyMedium: values["bodyMedium"] as api.TextStyle?,
-    labelLarge: values["labelLarge"] as api.TextStyle?,
-    titleLarge: values["titleLarge"] as api.TextStyle?,
-    titleMedium: values["titleMedium"] as api.TextStyle?,
+    bodyLarge: values["bodyLarge"] as api1.TextStyle?,
+    bodyMedium: values["bodyMedium"] as api1.TextStyle?,
+    labelLarge: values["labelLarge"] as api1.TextStyle?,
+    titleLarge: values["titleLarge"] as api1.TextStyle?,
+    titleMedium: values["titleMedium"] as api1.TextStyle?,
   );
 }
 
@@ -5544,11 +6626,11 @@ Object _createTextTheme(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.TextTheme(
-        titleLarge: values["titleLarge"] as api.TextStyle?,
-        titleMedium: values["titleMedium"] as api.TextStyle?,
-        bodyLarge: values["bodyLarge"] as api.TextStyle?,
-        bodyMedium: values["bodyMedium"] as api.TextStyle?,
-        labelLarge: values["labelLarge"] as api.TextStyle?,
+        titleLarge: values["titleLarge"] as api1.TextStyle?,
+        titleMedium: values["titleMedium"] as api1.TextStyle?,
+        bodyLarge: values["bodyLarge"] as api1.TextStyle?,
+        bodyMedium: values["bodyMedium"] as api1.TextStyle?,
+        labelLarge: values["labelLarge"] as api1.TextStyle?,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -5572,12 +6654,12 @@ Object? _ColorScheme_onError(Object value) =>
 Object? _ColorScheme_copyWith(Object receiver, Map<String, Object?> values) {
   return (receiver as api.ColorScheme).copyWith(
     brightness: values["brightness"] as api.Brightness?,
-    error: values["error"] as api.Color?,
-    onError: values["onError"] as api.Color?,
-    onPrimary: values["onPrimary"] as api.Color?,
-    onSurface: values["onSurface"] as api.Color?,
-    primary: values["primary"] as api.Color?,
-    surface: values["surface"] as api.Color?,
+    error: values["error"] as api1.Color?,
+    onError: values["onError"] as api1.Color?,
+    onPrimary: values["onPrimary"] as api1.Color?,
+    onSurface: values["onSurface"] as api1.Color?,
+    primary: values["primary"] as api1.Color?,
+    surface: values["surface"] as api1.Color?,
   );
 }
 
@@ -5585,7 +6667,7 @@ Object _createColorScheme(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "fromSeed":
       return api.ColorScheme.fromSeed(
-        seedColor: values["seedColor"] as api.Color,
+        seedColor: values["seedColor"] as api1.Color,
         brightness: values["brightness"] as api.Brightness,
       );
     default:
@@ -5623,17 +6705,17 @@ Object? _InputDecoration_copyWith(
   Map<String, Object?> values,
 ) {
   return (receiver as api.InputDecoration).copyWith(
-    contentPadding: values["contentPadding"] as api.EdgeInsetsGeometry?,
-    errorStyle: values["errorStyle"] as api.TextStyle?,
+    contentPadding: values["contentPadding"] as api1.EdgeInsetsGeometry?,
+    errorStyle: values["errorStyle"] as api1.TextStyle?,
     errorText: values["errorText"] as String?,
-    fillColor: values["fillColor"] as api.Color?,
+    fillColor: values["fillColor"] as api1.Color?,
     filled: values["filled"] as bool?,
-    helperStyle: values["helperStyle"] as api.TextStyle?,
+    helperStyle: values["helperStyle"] as api1.TextStyle?,
     helperText: values["helperText"] as String?,
-    hintStyle: values["hintStyle"] as api.TextStyle?,
+    hintStyle: values["hintStyle"] as api1.TextStyle?,
     hintText: values["hintText"] as String?,
     isDense: values["isDense"] as bool?,
-    labelStyle: values["labelStyle"] as api.TextStyle?,
+    labelStyle: values["labelStyle"] as api1.TextStyle?,
     labelText: values["labelText"] as String?,
   );
 }
@@ -5643,17 +6725,17 @@ Object _createInputDecoration(String ctor, Map<String, Object?> values) {
     case "":
       return api.InputDecoration(
         labelText: values["labelText"] as String?,
-        labelStyle: values["labelStyle"] as api.TextStyle?,
+        labelStyle: values["labelStyle"] as api1.TextStyle?,
         helperText: values["helperText"] as String?,
-        helperStyle: values["helperStyle"] as api.TextStyle?,
+        helperStyle: values["helperStyle"] as api1.TextStyle?,
         hintText: values["hintText"] as String?,
-        hintStyle: values["hintStyle"] as api.TextStyle?,
+        hintStyle: values["hintStyle"] as api1.TextStyle?,
         errorText: values["errorText"] as String?,
-        errorStyle: values["errorStyle"] as api.TextStyle?,
+        errorStyle: values["errorStyle"] as api1.TextStyle?,
         isDense: values["isDense"] as bool?,
-        contentPadding: values["contentPadding"] as api.EdgeInsetsGeometry?,
+        contentPadding: values["contentPadding"] as api1.EdgeInsetsGeometry?,
         filled: values["filled"] as bool?,
-        fillColor: values["fillColor"] as api.Color?,
+        fillColor: values["fillColor"] as api1.Color?,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -5664,20 +6746,20 @@ class _TextFieldHost extends FlaxWidgetHost {
   _TextFieldHost(super.node);
 
   @override
-  api.Widget buildNative(Map<String, Object?> values) =>
+  api1.Widget buildNative(Map<String, Object?> values) =>
       _createTextField(node.ctor, values);
 }
 
-api.Widget _createTextField(String ctor, Map<String, Object?> values) {
+api1.Widget _createTextField(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       if (!values.containsKey("decoration")) {
         return api.TextField(
-          key: values["key"] as api.Key?,
-          controller: values["controller"] as api.TextEditingController?,
-          focusNode: values["focusNode"] as api.FocusNode?,
+          key: values["key"] as api1.Key?,
+          controller: values["controller"] as api1.TextEditingController?,
+          focusNode: values["focusNode"] as api1.FocusNode?,
           textInputAction: values["textInputAction"] as api.TextInputAction?,
-          style: values["style"] as api.TextStyle?,
+          style: values["style"] as api1.TextStyle?,
           readOnly: values["readOnly"] as bool,
           autofocus: values["autofocus"] as bool,
           obscureText: values["obscureText"] as bool,
@@ -5689,17 +6771,17 @@ api.Widget _createTextField(String ctor, Map<String, Object?> values) {
           onEditingComplete: values["onEditingComplete"] as void Function()?,
           onSubmitted: values["onSubmitted"] as void Function(String value)?,
           inputFormatters:
-              values["inputFormatters"] as List<api1.TextInputFormatter>?,
+              values["inputFormatters"] as List<api3.TextInputFormatter>?,
           enabled: values["enabled"] as bool?,
         );
       }
       return api.TextField(
-        key: values["key"] as api.Key?,
-        controller: values["controller"] as api.TextEditingController?,
-        focusNode: values["focusNode"] as api.FocusNode?,
+        key: values["key"] as api1.Key?,
+        controller: values["controller"] as api1.TextEditingController?,
+        focusNode: values["focusNode"] as api1.FocusNode?,
         decoration: values["decoration"] as api.InputDecoration?,
         textInputAction: values["textInputAction"] as api.TextInputAction?,
-        style: values["style"] as api.TextStyle?,
+        style: values["style"] as api1.TextStyle?,
         readOnly: values["readOnly"] as bool,
         autofocus: values["autofocus"] as bool,
         obscureText: values["obscureText"] as bool,
@@ -5711,7 +6793,7 @@ api.Widget _createTextField(String ctor, Map<String, Object?> values) {
         onEditingComplete: values["onEditingComplete"] as void Function()?,
         onSubmitted: values["onSubmitted"] as void Function(String value)?,
         inputFormatters:
-            values["inputFormatters"] as List<api1.TextInputFormatter>?,
+            values["inputFormatters"] as List<api3.TextInputFormatter>?,
         enabled: values["enabled"] as bool?,
       );
     default:
@@ -5719,7 +6801,7 @@ api.Widget _createTextField(String ctor, Map<String, Object?> values) {
   }
 }
 
-api.Route<Object?> _createMaterialPageRoute(
+api1.Route<Object?> _createMaterialPageRoute(
   String ctor,
   Map<String, Object?> values,
   FlaxRouteLease lease,
@@ -5729,7 +6811,7 @@ api.Route<Object?> _createMaterialPageRoute(
       return _MaterialPageRoute(
         lease,
         builder: lease.builder("builder"),
-        settings: values["settings"] as api.RouteSettings?,
+        settings: values["settings"] as api1.RouteSettings?,
         maintainState: values["maintainState"] as bool,
         fullscreenDialog: values["fullscreenDialog"] as bool,
       );
@@ -5738,7 +6820,7 @@ api.Route<Object?> _createMaterialPageRoute(
   }
 }
 
-api.Page<Object?> _createMaterialPage(
+api1.Page<Object?> _createMaterialPage(
   String ctor,
   Map<String, Object?> values,
   FlaxPageLease lease,
@@ -5748,10 +6830,10 @@ api.Page<Object?> _createMaterialPage(
       if (!values.containsKey("onPopInvoked")) {
         return _MaterialPage(
           lease,
-          child: values["child"] as api.Widget,
+          child: values["child"] as api1.Widget,
           maintainState: values["maintainState"] as bool,
           fullscreenDialog: values["fullscreenDialog"] as bool,
-          key: values["key"] as api.LocalKey?,
+          key: values["key"] as api1.LocalKey?,
           canPop: values["canPop"] as bool,
           name: values["name"] as String?,
           arguments: values["arguments"],
@@ -5759,10 +6841,10 @@ api.Page<Object?> _createMaterialPage(
       }
       return _MaterialPage(
         lease,
-        child: values["child"] as api.Widget,
+        child: values["child"] as api1.Widget,
         maintainState: values["maintainState"] as bool,
         fullscreenDialog: values["fullscreenDialog"] as bool,
-        key: values["key"] as api.LocalKey?,
+        key: values["key"] as api1.LocalKey?,
         canPop: values["canPop"] as bool,
         onPopInvoked:
             values["onPopInvoked"]
@@ -5779,18 +6861,18 @@ class _TextButtonHost extends FlaxWidgetHost {
   _TextButtonHost(super.node);
 
   @override
-  api.Widget buildNative(Map<String, Object?> values) =>
+  api1.Widget buildNative(Map<String, Object?> values) =>
       _createTextButton(node.ctor, values);
 }
 
-api.Widget _createTextButton(String ctor, Map<String, Object?> values) {
+api1.Widget _createTextButton(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.TextButton(
-        key: values["key"] as api.Key?,
+        key: values["key"] as api1.Key?,
         onPressed: values["onPressed"] as void Function()?,
         style: values["style"] as api.ButtonStyle?,
-        child: values["child"] as api.Widget,
+        child: values["child"] as api1.Widget,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -5801,18 +6883,18 @@ class _ElevatedButtonHost extends FlaxWidgetHost {
   _ElevatedButtonHost(super.node);
 
   @override
-  api.Widget buildNative(Map<String, Object?> values) =>
+  api1.Widget buildNative(Map<String, Object?> values) =>
       _createElevatedButton(node.ctor, values);
 }
 
-api.Widget _createElevatedButton(String ctor, Map<String, Object?> values) {
+api1.Widget _createElevatedButton(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.ElevatedButton(
-        key: values["key"] as api.Key?,
+        key: values["key"] as api1.Key?,
         onPressed: values["onPressed"] as void Function()?,
         style: values["style"] as api.ButtonStyle?,
-        child: values["child"] as api.Widget?,
+        child: values["child"] as api1.Widget?,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -5823,18 +6905,18 @@ class _OutlinedButtonHost extends FlaxWidgetHost {
   _OutlinedButtonHost(super.node);
 
   @override
-  api.Widget buildNative(Map<String, Object?> values) =>
+  api1.Widget buildNative(Map<String, Object?> values) =>
       _createOutlinedButton(node.ctor, values);
 }
 
-api.Widget _createOutlinedButton(String ctor, Map<String, Object?> values) {
+api1.Widget _createOutlinedButton(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.OutlinedButton(
-        key: values["key"] as api.Key?,
+        key: values["key"] as api1.Key?,
         onPressed: values["onPressed"] as void Function()?,
         style: values["style"] as api.ButtonStyle?,
-        child: values["child"] as api.Widget?,
+        child: values["child"] as api1.Widget?,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -5845,25 +6927,25 @@ class _FilledButtonHost extends FlaxWidgetHost {
   _FilledButtonHost(super.node);
 
   @override
-  api.Widget buildNative(Map<String, Object?> values) =>
+  api1.Widget buildNative(Map<String, Object?> values) =>
       _createFilledButton(node.ctor, values);
 }
 
-api.Widget _createFilledButton(String ctor, Map<String, Object?> values) {
+api1.Widget _createFilledButton(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.FilledButton(
-        key: values["key"] as api.Key?,
+        key: values["key"] as api1.Key?,
         onPressed: values["onPressed"] as void Function()?,
         style: values["style"] as api.ButtonStyle?,
-        child: values["child"] as api.Widget?,
+        child: values["child"] as api1.Widget?,
       );
     case "tonal":
       return api.FilledButton.tonal(
-        key: values["key"] as api.Key?,
+        key: values["key"] as api1.Key?,
         onPressed: values["onPressed"] as void Function()?,
         style: values["style"] as api.ButtonStyle?,
-        child: values["child"] as api.Widget?,
+        child: values["child"] as api1.Widget?,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -5874,79 +6956,79 @@ class _IconButtonHost extends FlaxWidgetHost {
   _IconButtonHost(super.node);
 
   @override
-  api.Widget buildNative(Map<String, Object?> values) =>
+  api1.Widget buildNative(Map<String, Object?> values) =>
       _createIconButton(node.ctor, values);
 }
 
-api.Widget _createIconButton(String ctor, Map<String, Object?> values) {
+api1.Widget _createIconButton(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.IconButton(
-        key: values["key"] as api.Key?,
+        key: values["key"] as api1.Key?,
         iconSize: values["iconSize"] as double?,
-        padding: values["padding"] as api.EdgeInsetsGeometry?,
-        alignment: values["alignment"] as api.AlignmentGeometry?,
-        color: values["color"] as api.Color?,
-        disabledColor: values["disabledColor"] as api.Color?,
+        padding: values["padding"] as api1.EdgeInsetsGeometry?,
+        alignment: values["alignment"] as api1.AlignmentGeometry?,
+        color: values["color"] as api1.Color?,
+        disabledColor: values["disabledColor"] as api1.Color?,
         onPressed: values["onPressed"] as void Function()?,
-        focusNode: values["focusNode"] as api.FocusNode?,
+        focusNode: values["focusNode"] as api1.FocusNode?,
         autofocus: values["autofocus"] as bool,
         tooltip: values["tooltip"] as String?,
         style: values["style"] as api.ButtonStyle?,
         isSelected: values["isSelected"] as bool?,
-        selectedIcon: values["selectedIcon"] as api.Widget?,
-        icon: values["icon"] as api.Widget,
+        selectedIcon: values["selectedIcon"] as api1.Widget?,
+        icon: values["icon"] as api1.Widget,
       );
     case "filled":
       return api.IconButton.filled(
-        key: values["key"] as api.Key?,
+        key: values["key"] as api1.Key?,
         iconSize: values["iconSize"] as double?,
-        padding: values["padding"] as api.EdgeInsetsGeometry?,
-        alignment: values["alignment"] as api.AlignmentGeometry?,
-        color: values["color"] as api.Color?,
-        disabledColor: values["disabledColor"] as api.Color?,
+        padding: values["padding"] as api1.EdgeInsetsGeometry?,
+        alignment: values["alignment"] as api1.AlignmentGeometry?,
+        color: values["color"] as api1.Color?,
+        disabledColor: values["disabledColor"] as api1.Color?,
         onPressed: values["onPressed"] as void Function()?,
-        focusNode: values["focusNode"] as api.FocusNode?,
+        focusNode: values["focusNode"] as api1.FocusNode?,
         autofocus: values["autofocus"] as bool,
         tooltip: values["tooltip"] as String?,
         style: values["style"] as api.ButtonStyle?,
         isSelected: values["isSelected"] as bool?,
-        selectedIcon: values["selectedIcon"] as api.Widget?,
-        icon: values["icon"] as api.Widget,
+        selectedIcon: values["selectedIcon"] as api1.Widget?,
+        icon: values["icon"] as api1.Widget,
       );
     case "filledTonal":
       return api.IconButton.filledTonal(
-        key: values["key"] as api.Key?,
+        key: values["key"] as api1.Key?,
         iconSize: values["iconSize"] as double?,
-        padding: values["padding"] as api.EdgeInsetsGeometry?,
-        alignment: values["alignment"] as api.AlignmentGeometry?,
-        color: values["color"] as api.Color?,
-        disabledColor: values["disabledColor"] as api.Color?,
+        padding: values["padding"] as api1.EdgeInsetsGeometry?,
+        alignment: values["alignment"] as api1.AlignmentGeometry?,
+        color: values["color"] as api1.Color?,
+        disabledColor: values["disabledColor"] as api1.Color?,
         onPressed: values["onPressed"] as void Function()?,
-        focusNode: values["focusNode"] as api.FocusNode?,
+        focusNode: values["focusNode"] as api1.FocusNode?,
         autofocus: values["autofocus"] as bool,
         tooltip: values["tooltip"] as String?,
         style: values["style"] as api.ButtonStyle?,
         isSelected: values["isSelected"] as bool?,
-        selectedIcon: values["selectedIcon"] as api.Widget?,
-        icon: values["icon"] as api.Widget,
+        selectedIcon: values["selectedIcon"] as api1.Widget?,
+        icon: values["icon"] as api1.Widget,
       );
     case "outlined":
       return api.IconButton.outlined(
-        key: values["key"] as api.Key?,
+        key: values["key"] as api1.Key?,
         iconSize: values["iconSize"] as double?,
-        padding: values["padding"] as api.EdgeInsetsGeometry?,
-        alignment: values["alignment"] as api.AlignmentGeometry?,
-        color: values["color"] as api.Color?,
-        disabledColor: values["disabledColor"] as api.Color?,
+        padding: values["padding"] as api1.EdgeInsetsGeometry?,
+        alignment: values["alignment"] as api1.AlignmentGeometry?,
+        color: values["color"] as api1.Color?,
+        disabledColor: values["disabledColor"] as api1.Color?,
         onPressed: values["onPressed"] as void Function()?,
-        focusNode: values["focusNode"] as api.FocusNode?,
+        focusNode: values["focusNode"] as api1.FocusNode?,
         autofocus: values["autofocus"] as bool,
         tooltip: values["tooltip"] as String?,
         style: values["style"] as api.ButtonStyle?,
         isSelected: values["isSelected"] as bool?,
-        selectedIcon: values["selectedIcon"] as api.Widget?,
-        icon: values["icon"] as api.Widget,
+        selectedIcon: values["selectedIcon"] as api1.Widget?,
+        icon: values["icon"] as api1.Widget,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -5957,64 +7039,64 @@ class _FloatingActionButtonHost extends FlaxWidgetHost {
   _FloatingActionButtonHost(super.node);
 
   @override
-  api.Widget buildNative(Map<String, Object?> values) =>
+  api1.Widget buildNative(Map<String, Object?> values) =>
       _createFloatingActionButton(node.ctor, values);
 }
 
-api.Widget _createFloatingActionButton(
+api1.Widget _createFloatingActionButton(
   String ctor,
   Map<String, Object?> values,
 ) {
   switch (ctor) {
     case "":
       return api.FloatingActionButton(
-        key: values["key"] as api.Key?,
-        child: values["child"] as api.Widget?,
+        key: values["key"] as api1.Key?,
+        child: values["child"] as api1.Widget?,
         tooltip: values["tooltip"] as String?,
-        foregroundColor: values["foregroundColor"] as api.Color?,
-        backgroundColor: values["backgroundColor"] as api.Color?,
+        foregroundColor: values["foregroundColor"] as api1.Color?,
+        backgroundColor: values["backgroundColor"] as api1.Color?,
         elevation: values["elevation"] as double?,
         onPressed: values["onPressed"] as void Function()?,
         mini: values["mini"] as bool,
-        focusNode: values["focusNode"] as api.FocusNode?,
+        focusNode: values["focusNode"] as api1.FocusNode?,
         autofocus: values["autofocus"] as bool,
       );
     case "small":
       return api.FloatingActionButton.small(
-        key: values["key"] as api.Key?,
-        child: values["child"] as api.Widget?,
+        key: values["key"] as api1.Key?,
+        child: values["child"] as api1.Widget?,
         tooltip: values["tooltip"] as String?,
-        foregroundColor: values["foregroundColor"] as api.Color?,
-        backgroundColor: values["backgroundColor"] as api.Color?,
+        foregroundColor: values["foregroundColor"] as api1.Color?,
+        backgroundColor: values["backgroundColor"] as api1.Color?,
         elevation: values["elevation"] as double?,
         onPressed: values["onPressed"] as void Function()?,
-        focusNode: values["focusNode"] as api.FocusNode?,
+        focusNode: values["focusNode"] as api1.FocusNode?,
         autofocus: values["autofocus"] as bool,
       );
     case "large":
       return api.FloatingActionButton.large(
-        key: values["key"] as api.Key?,
-        child: values["child"] as api.Widget?,
+        key: values["key"] as api1.Key?,
+        child: values["child"] as api1.Widget?,
         tooltip: values["tooltip"] as String?,
-        foregroundColor: values["foregroundColor"] as api.Color?,
-        backgroundColor: values["backgroundColor"] as api.Color?,
+        foregroundColor: values["foregroundColor"] as api1.Color?,
+        backgroundColor: values["backgroundColor"] as api1.Color?,
         elevation: values["elevation"] as double?,
         onPressed: values["onPressed"] as void Function()?,
-        focusNode: values["focusNode"] as api.FocusNode?,
+        focusNode: values["focusNode"] as api1.FocusNode?,
         autofocus: values["autofocus"] as bool,
       );
     case "extended":
       return api.FloatingActionButton.extended(
-        key: values["key"] as api.Key?,
+        key: values["key"] as api1.Key?,
         tooltip: values["tooltip"] as String?,
-        foregroundColor: values["foregroundColor"] as api.Color?,
-        backgroundColor: values["backgroundColor"] as api.Color?,
+        foregroundColor: values["foregroundColor"] as api1.Color?,
+        backgroundColor: values["backgroundColor"] as api1.Color?,
         elevation: values["elevation"] as double?,
         onPressed: values["onPressed"] as void Function()?,
-        focusNode: values["focusNode"] as api.FocusNode?,
+        focusNode: values["focusNode"] as api1.FocusNode?,
         autofocus: values["autofocus"] as bool,
-        icon: values["icon"] as api.Widget?,
-        label: values["label"] as api.Widget,
+        icon: values["icon"] as api1.Widget?,
+        label: values["label"] as api1.Widget,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -6025,22 +7107,22 @@ class _DrawerHost extends FlaxWidgetHost {
   _DrawerHost(super.node);
 
   @override
-  api.Widget buildNative(Map<String, Object?> values) =>
+  api1.Widget buildNative(Map<String, Object?> values) =>
       _createDrawer(node.ctor, values);
 }
 
-api.Widget _createDrawer(String ctor, Map<String, Object?> values) {
+api1.Widget _createDrawer(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.Drawer(
-        key: values["key"] as api.Key?,
-        backgroundColor: values["backgroundColor"] as api.Color?,
+        key: values["key"] as api1.Key?,
+        backgroundColor: values["backgroundColor"] as api1.Color?,
         elevation: values["elevation"] as double?,
-        shadowColor: values["shadowColor"] as api.Color?,
+        shadowColor: values["shadowColor"] as api1.Color?,
         width: values["width"] as double?,
-        child: values["child"] as api.Widget?,
+        child: values["child"] as api1.Widget?,
         semanticLabel: values["semanticLabel"] as String?,
-        clipBehavior: values["clipBehavior"] as api.Clip?,
+        clipBehavior: values["clipBehavior"] as api1.Clip?,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -6051,21 +7133,21 @@ class _DividerHost extends FlaxWidgetHost {
   _DividerHost(super.node);
 
   @override
-  api.Widget buildNative(Map<String, Object?> values) =>
+  api1.Widget buildNative(Map<String, Object?> values) =>
       _createDivider(node.ctor, values);
 }
 
-api.Widget _createDivider(String ctor, Map<String, Object?> values) {
+api1.Widget _createDivider(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.Divider(
-        key: values["key"] as api.Key?,
+        key: values["key"] as api1.Key?,
         height: values["height"] as double?,
         thickness: values["thickness"] as double?,
         indent: values["indent"] as double?,
         endIndent: values["endIndent"] as double?,
-        color: values["color"] as api.Color?,
-        radius: values["radius"] as api.BorderRadiusGeometry?,
+        color: values["color"] as api1.Color?,
+        radius: values["radius"] as api1.BorderRadiusGeometry?,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -6076,21 +7158,21 @@ class _VerticalDividerHost extends FlaxWidgetHost {
   _VerticalDividerHost(super.node);
 
   @override
-  api.Widget buildNative(Map<String, Object?> values) =>
+  api1.Widget buildNative(Map<String, Object?> values) =>
       _createVerticalDivider(node.ctor, values);
 }
 
-api.Widget _createVerticalDivider(String ctor, Map<String, Object?> values) {
+api1.Widget _createVerticalDivider(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.VerticalDivider(
-        key: values["key"] as api.Key?,
+        key: values["key"] as api1.Key?,
         width: values["width"] as double?,
         thickness: values["thickness"] as double?,
         indent: values["indent"] as double?,
         endIndent: values["endIndent"] as double?,
-        color: values["color"] as api.Color?,
-        radius: values["radius"] as api.BorderRadiusGeometry?,
+        color: values["color"] as api1.Color?,
+        radius: values["radius"] as api1.BorderRadiusGeometry?,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -6101,46 +7183,46 @@ class _CardHost extends FlaxWidgetHost {
   _CardHost(super.node);
 
   @override
-  api.Widget buildNative(Map<String, Object?> values) =>
+  api1.Widget buildNative(Map<String, Object?> values) =>
       _createCard(node.ctor, values);
 }
 
-api.Widget _createCard(String ctor, Map<String, Object?> values) {
+api1.Widget _createCard(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.Card(
-        key: values["key"] as api.Key?,
-        color: values["color"] as api.Color?,
-        shadowColor: values["shadowColor"] as api.Color?,
-        surfaceTintColor: values["surfaceTintColor"] as api.Color?,
+        key: values["key"] as api1.Key?,
+        color: values["color"] as api1.Color?,
+        shadowColor: values["shadowColor"] as api1.Color?,
+        surfaceTintColor: values["surfaceTintColor"] as api1.Color?,
         elevation: values["elevation"] as double?,
-        margin: values["margin"] as api.EdgeInsetsGeometry?,
-        clipBehavior: values["clipBehavior"] as api.Clip?,
-        child: values["child"] as api.Widget?,
+        margin: values["margin"] as api1.EdgeInsetsGeometry?,
+        clipBehavior: values["clipBehavior"] as api1.Clip?,
+        child: values["child"] as api1.Widget?,
         semanticContainer: values["semanticContainer"] as bool,
       );
     case "filled":
       return api.Card.filled(
-        key: values["key"] as api.Key?,
-        color: values["color"] as api.Color?,
-        shadowColor: values["shadowColor"] as api.Color?,
-        surfaceTintColor: values["surfaceTintColor"] as api.Color?,
+        key: values["key"] as api1.Key?,
+        color: values["color"] as api1.Color?,
+        shadowColor: values["shadowColor"] as api1.Color?,
+        surfaceTintColor: values["surfaceTintColor"] as api1.Color?,
         elevation: values["elevation"] as double?,
-        margin: values["margin"] as api.EdgeInsetsGeometry?,
-        clipBehavior: values["clipBehavior"] as api.Clip?,
-        child: values["child"] as api.Widget?,
+        margin: values["margin"] as api1.EdgeInsetsGeometry?,
+        clipBehavior: values["clipBehavior"] as api1.Clip?,
+        child: values["child"] as api1.Widget?,
         semanticContainer: values["semanticContainer"] as bool,
       );
     case "outlined":
       return api.Card.outlined(
-        key: values["key"] as api.Key?,
-        color: values["color"] as api.Color?,
-        shadowColor: values["shadowColor"] as api.Color?,
-        surfaceTintColor: values["surfaceTintColor"] as api.Color?,
+        key: values["key"] as api1.Key?,
+        color: values["color"] as api1.Color?,
+        shadowColor: values["shadowColor"] as api1.Color?,
+        surfaceTintColor: values["surfaceTintColor"] as api1.Color?,
         elevation: values["elevation"] as double?,
-        margin: values["margin"] as api.EdgeInsetsGeometry?,
-        clipBehavior: values["clipBehavior"] as api.Clip?,
-        child: values["child"] as api.Widget?,
+        margin: values["margin"] as api1.EdgeInsetsGeometry?,
+        clipBehavior: values["clipBehavior"] as api1.Clip?,
+        child: values["child"] as api1.Widget?,
         semanticContainer: values["semanticContainer"] as bool,
       );
     default:
@@ -6152,34 +7234,34 @@ class _ListTileHost extends FlaxWidgetHost {
   _ListTileHost(super.node);
 
   @override
-  api.Widget buildNative(Map<String, Object?> values) =>
+  api1.Widget buildNative(Map<String, Object?> values) =>
       _createListTile(node.ctor, values);
 }
 
-api.Widget _createListTile(String ctor, Map<String, Object?> values) {
+api1.Widget _createListTile(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.ListTile(
-        key: values["key"] as api.Key?,
-        leading: values["leading"] as api.Widget?,
-        title: values["title"] as api.Widget?,
-        subtitle: values["subtitle"] as api.Widget?,
-        trailing: values["trailing"] as api.Widget?,
+        key: values["key"] as api1.Key?,
+        leading: values["leading"] as api1.Widget?,
+        title: values["title"] as api1.Widget?,
+        subtitle: values["subtitle"] as api1.Widget?,
+        trailing: values["trailing"] as api1.Widget?,
         isThreeLine: values["isThreeLine"] as bool?,
         dense: values["dense"] as bool?,
         style: values["style"] as api.ListTileStyle?,
-        selectedColor: values["selectedColor"] as api.Color?,
-        iconColor: values["iconColor"] as api.Color?,
-        textColor: values["textColor"] as api.Color?,
-        titleTextStyle: values["titleTextStyle"] as api.TextStyle?,
-        contentPadding: values["contentPadding"] as api.EdgeInsetsGeometry?,
+        selectedColor: values["selectedColor"] as api1.Color?,
+        iconColor: values["iconColor"] as api1.Color?,
+        textColor: values["textColor"] as api1.Color?,
+        titleTextStyle: values["titleTextStyle"] as api1.TextStyle?,
+        contentPadding: values["contentPadding"] as api1.EdgeInsetsGeometry?,
         enabled: values["enabled"] as bool,
         onTap: values["onTap"] as void Function()?,
         onLongPress: values["onLongPress"] as void Function()?,
         selected: values["selected"] as bool,
-        focusNode: values["focusNode"] as api.FocusNode?,
-        tileColor: values["tileColor"] as api.Color?,
-        selectedTileColor: values["selectedTileColor"] as api.Color?,
+        focusNode: values["focusNode"] as api1.FocusNode?,
+        tileColor: values["tileColor"] as api1.Color?,
+        selectedTileColor: values["selectedTileColor"] as api1.Color?,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -6190,24 +7272,25 @@ class _CheckboxHost extends FlaxWidgetHost {
   _CheckboxHost(super.node);
 
   @override
-  api.Widget buildNative(Map<String, Object?> values) =>
+  api1.Widget buildNative(Map<String, Object?> values) =>
       _createCheckbox(node.ctor, values);
 }
 
-api.Widget _createCheckbox(String ctor, Map<String, Object?> values) {
+api1.Widget _createCheckbox(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.Checkbox(
-        key: values["key"] as api.Key?,
+        key: values["key"] as api1.Key?,
         value: values["value"] as bool?,
         tristate: values["tristate"] as bool,
         onChanged: values["onChanged"] as void Function(bool? value)?,
-        activeColor: values["activeColor"] as api.Color?,
-        fillColor: values["fillColor"] as api.WidgetStateProperty<api.Color?>?,
-        checkColor: values["checkColor"] as api.Color?,
+        activeColor: values["activeColor"] as api1.Color?,
+        fillColor:
+            values["fillColor"] as api1.WidgetStateProperty<api1.Color?>?,
+        checkColor: values["checkColor"] as api1.Color?,
         overlayColor:
-            values["overlayColor"] as api.WidgetStateProperty<api.Color?>?,
-        focusNode: values["focusNode"] as api.FocusNode?,
+            values["overlayColor"] as api1.WidgetStateProperty<api1.Color?>?,
+        focusNode: values["focusNode"] as api1.FocusNode?,
         autofocus: values["autofocus"] as bool,
         isError: values["isError"] as bool,
       );
@@ -6220,23 +7303,23 @@ class _SwitchHost extends FlaxWidgetHost {
   _SwitchHost(super.node);
 
   @override
-  api.Widget buildNative(Map<String, Object?> values) =>
+  api1.Widget buildNative(Map<String, Object?> values) =>
       _createSwitch(node.ctor, values);
 }
 
-api.Widget _createSwitch(String ctor, Map<String, Object?> values) {
+api1.Widget _createSwitch(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.Switch(
-        key: values["key"] as api.Key?,
+        key: values["key"] as api1.Key?,
         value: values["value"] as bool,
         onChanged: values["onChanged"] as void Function(bool value)?,
-        activeThumbColor: values["activeThumbColor"] as api.Color?,
-        activeTrackColor: values["activeTrackColor"] as api.Color?,
-        inactiveThumbColor: values["inactiveThumbColor"] as api.Color?,
-        focusNode: values["focusNode"] as api.FocusNode?,
+        activeThumbColor: values["activeThumbColor"] as api1.Color?,
+        activeTrackColor: values["activeTrackColor"] as api1.Color?,
+        inactiveThumbColor: values["inactiveThumbColor"] as api1.Color?,
+        focusNode: values["focusNode"] as api1.FocusNode?,
         autofocus: values["autofocus"] as bool,
-        padding: values["padding"] as api.EdgeInsetsGeometry?,
+        padding: values["padding"] as api1.EdgeInsetsGeometry?,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -6247,21 +7330,21 @@ class _CircularProgressIndicatorHost extends FlaxWidgetHost {
   _CircularProgressIndicatorHost(super.node);
 
   @override
-  api.Widget buildNative(Map<String, Object?> values) =>
+  api1.Widget buildNative(Map<String, Object?> values) =>
       _createCircularProgressIndicator(node.ctor, values);
 }
 
-api.Widget _createCircularProgressIndicator(
+api1.Widget _createCircularProgressIndicator(
   String ctor,
   Map<String, Object?> values,
 ) {
   switch (ctor) {
     case "":
       return api.CircularProgressIndicator(
-        key: values["key"] as api.Key?,
+        key: values["key"] as api1.Key?,
         value: values["value"] as double?,
-        backgroundColor: values["backgroundColor"] as api.Color?,
-        color: values["color"] as api.Color?,
+        backgroundColor: values["backgroundColor"] as api1.Color?,
+        color: values["color"] as api1.Color?,
         strokeWidth: values["strokeWidth"] as double?,
         semanticsLabel: values["semanticsLabel"] as String?,
       );
@@ -6274,20 +7357,20 @@ class _NavigationDestinationHost extends FlaxWidgetHost {
   _NavigationDestinationHost(super.node);
 
   @override
-  api.Widget buildNative(Map<String, Object?> values) =>
+  api1.Widget buildNative(Map<String, Object?> values) =>
       _createNavigationDestination(node.ctor, values);
 }
 
-api.Widget _createNavigationDestination(
+api1.Widget _createNavigationDestination(
   String ctor,
   Map<String, Object?> values,
 ) {
   switch (ctor) {
     case "":
       return api.NavigationDestination(
-        key: values["key"] as api.Key?,
-        icon: values["icon"] as api.Widget,
-        selectedIcon: values["selectedIcon"] as api.Widget?,
+        key: values["key"] as api1.Key?,
+        icon: values["icon"] as api1.Widget,
+        selectedIcon: values["selectedIcon"] as api1.Widget?,
         label: values["label"] as String,
         tooltip: values["tooltip"] as String?,
         enabled: values["enabled"] as bool,
@@ -6301,23 +7384,23 @@ class _NavigationBarHost extends FlaxWidgetHost {
   _NavigationBarHost(super.node);
 
   @override
-  api.Widget buildNative(Map<String, Object?> values) =>
+  api1.Widget buildNative(Map<String, Object?> values) =>
       _createNavigationBar(node.ctor, values);
 }
 
-api.Widget _createNavigationBar(String ctor, Map<String, Object?> values) {
+api1.Widget _createNavigationBar(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.NavigationBar(
-        key: values["key"] as api.Key?,
+        key: values["key"] as api1.Key?,
         selectedIndex: values["selectedIndex"] as int,
-        destinations: values["destinations"] as List<api.Widget>,
+        destinations: values["destinations"] as List<api1.Widget>,
         onDestinationSelected:
             values["onDestinationSelected"] as void Function(int value)?,
-        backgroundColor: values["backgroundColor"] as api.Color?,
+        backgroundColor: values["backgroundColor"] as api1.Color?,
         elevation: values["elevation"] as double?,
-        shadowColor: values["shadowColor"] as api.Color?,
-        indicatorColor: values["indicatorColor"] as api.Color?,
+        shadowColor: values["shadowColor"] as api1.Color?,
+        indicatorColor: values["indicatorColor"] as api1.Color?,
         height: values["height"] as double?,
         labelBehavior:
             values["labelBehavior"] as api.NavigationDestinationLabelBehavior?,
@@ -6331,8 +7414,8 @@ class _MaterialPageRoute extends api.MaterialPageRoute<Object?> {
   final FlaxRouteLease _lease;
   _MaterialPageRoute(
     this._lease, {
-    required api.Widget Function(api.BuildContext context) builder,
-    required api.RouteSettings? settings,
+    required api1.Widget Function(api1.BuildContext context) builder,
+    required api1.RouteSettings? settings,
     required bool maintainState,
     required bool fullscreenDialog,
   }) : super(
@@ -6359,41 +7442,117 @@ class _MaterialPage extends api.MaterialPage<Object?>
   final FlaxPageLease flaxPageLease;
   _MaterialPage(
     this.flaxPageLease, {
-    required api.Widget super.child,
+    required api1.Widget super.child,
     required bool super.maintainState,
     required bool super.fullscreenDialog,
-    required api.LocalKey? super.key,
+    required api1.LocalKey? super.key,
     required bool super.canPop,
     void Function(bool didPop, Object? result) super.onPopInvoked,
     required String? super.name,
     required Object? super.arguments,
   });
   @override
-  FlaxPageRoute createRoute(api.BuildContext context) =>
+  FlaxPageRoute createRoute(api1.BuildContext context) =>
       adapterMaterialPage.createMaterialPageRoute(this);
 }
 
 Object _deferred0(Map<String, Object?> values) {
-  return api.WidgetStateProperty.resolveWith<api.Color?>(
-    values["callback"] as api.Color? Function(Set<api.WidgetState> states),
+  return api1.WidgetStateProperty.resolveWith<api1.Color?>(
+    values["callback"] as api1.Color? Function(Set<api.WidgetState> states),
   );
 }
 
 Object _deferred1(Map<String, Object?> values) {
-  return api.WidgetStateProperty.resolveWith<double?>(
+  return api1.WidgetStateProperty.resolveWith<double?>(
     values["callback"] as double? Function(Set<api.WidgetState> states),
+  );
+}
+
+Object _deferred2(Map<String, Object?> values) {
+  return api1.WidgetStateProperty.resolveWith<api1.OutlinedBorder?>(
+    values["callback"]
+        as api1.OutlinedBorder? Function(Set<api.WidgetState> states),
+  );
+}
+
+Object _deferred3(Map<String, Object?> values) {
+  return api1.WidgetStateProperty.resolveWith<api1.MouseCursor?>(
+    values["callback"]
+        as api1.MouseCursor? Function(Set<api.WidgetState> states),
   );
 }
 
 Object _callback0(FlaxCallback callback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
+  callback.call(positional, named);
+};
+bool _callback0Matches(Object value) => value is void Function();
+Object? _callback0Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  (function as void Function())();
+  return null;
+}
+
+Object _callback1(FlaxCallback callback) => () {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  callback.call(positional, named);
+};
+bool _callback1Matches(Object value) => value is void Function();
+Object? _callback1Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  (function as void Function())();
+  return null;
+}
+
+Object _callback2(FlaxCallback callback) => (bool p0) {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  positional.add(p0);
+  callback.call(positional, named);
+};
+bool _callback2Matches(Object value) => value is void Function(bool value);
+Object? _callback2Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  (function as void Function(bool value))(positional[0] as bool);
+  return null;
+}
+
+Object _callback3(FlaxCallback callback) => (bool p0) {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  positional.add(p0);
+  callback.call(positional, named);
+};
+bool _callback3Matches(Object value) => value is void Function(bool value);
+Object? _callback3Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  (function as void Function(bool value))(positional[0] as bool);
+  return null;
+}
+
+Object _callback4(FlaxCallback callback) => () {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
   return (callback.call(positional, named) as Future<Object?>).then<void>(
     (value) => null,
   );
 };
-bool _callback0Matches(Object value) => value is Future<void> Function();
-Object? _callback0Invoke(
+bool _callback4Matches(Object value) => value is Future<void> Function();
+Object? _callback4Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -6401,92 +7560,20 @@ Object? _callback0Invoke(
   return (function as Future<void> Function())();
 }
 
-Object _callback1(FlaxCallback callback) => (Set<api.WidgetState> p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return callback.call(positional, named) as api.Color?;
-};
-bool _callback1Matches(Object value) =>
-    value is api.Color? Function(Set<api.WidgetState> states);
-Object? _callback1Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as api.Color? Function(Set<api.WidgetState> states))(
-    positional[0] as Set<api.WidgetState>,
-  );
-}
-
-Object _callback2(FlaxCallback callback) => (Set<api.WidgetState> p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return callback.call(positional, named) as api.Color?;
-};
-bool _callback2Matches(Object value) =>
-    value is api.Color? Function(Set<api.WidgetState> states);
-Object? _callback2Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as api.Color? Function(Set<api.WidgetState> states))(
-    positional[0] as Set<api.WidgetState>,
-  );
-}
-
-Object _callback3(FlaxCallback callback) => (Set<api.WidgetState> p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return callback.call(positional, named) as api.Color?;
-};
-bool _callback3Matches(Object value) =>
-    value is api.Color? Function(Set<api.WidgetState> states);
-Object? _callback3Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as api.Color? Function(Set<api.WidgetState> states))(
-    positional[0] as Set<api.WidgetState>,
-  );
-}
-
-Object _callback4(FlaxCallback callback) => (Set<api.WidgetState> p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return callback.call(positional, named) as double?;
-};
-bool _callback4Matches(Object value) =>
-    value is double? Function(Set<api.WidgetState> states);
-Object? _callback4Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as double? Function(Set<api.WidgetState> states))(
-    positional[0] as Set<api.WidgetState>,
-  );
-}
-
 Object _callback5(FlaxCallback callback) => (Set<api.WidgetState> p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
-  return callback.call(positional, named) as api.Color?;
+  return callback.call(positional, named) as api1.Color?;
 };
 bool _callback5Matches(Object value) =>
-    value is api.Color? Function(Set<api.WidgetState> states);
+    value is api1.Color? Function(Set<api.WidgetState> states);
 Object? _callback5Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  return (function as api.Color? Function(Set<api.WidgetState> states))(
+  return (function as api1.Color? Function(Set<api.WidgetState> states))(
     positional[0] as Set<api.WidgetState>,
   );
 }
@@ -6495,11 +7582,47 @@ Object _callback6(FlaxCallback callback) => (Set<api.WidgetState> p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
-  return callback.call(positional, named) as double?;
+  return callback.call(positional, named) as api1.Color?;
 };
 bool _callback6Matches(Object value) =>
-    value is double? Function(Set<api.WidgetState> states);
+    value is api1.Color? Function(Set<api.WidgetState> states);
 Object? _callback6Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  return (function as api1.Color? Function(Set<api.WidgetState> states))(
+    positional[0] as Set<api.WidgetState>,
+  );
+}
+
+Object _callback7(FlaxCallback callback) => (Set<api.WidgetState> p0) {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  positional.add(p0);
+  return callback.call(positional, named) as api1.Color?;
+};
+bool _callback7Matches(Object value) =>
+    value is api1.Color? Function(Set<api.WidgetState> states);
+Object? _callback7Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  return (function as api1.Color? Function(Set<api.WidgetState> states))(
+    positional[0] as Set<api.WidgetState>,
+  );
+}
+
+Object _callback8(FlaxCallback callback) => (Set<api.WidgetState> p0) {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  positional.add(p0);
+  return callback.call(positional, named) as double?;
+};
+bool _callback8Matches(Object value) =>
+    value is double? Function(Set<api.WidgetState> states);
+Object? _callback8Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -6509,56 +7632,21 @@ Object? _callback6Invoke(
   );
 }
 
-Object _callback7(FlaxCallback callback) => (Set<api.WidgetState> p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return callback.call(positional, named) as api.Color?;
-};
-bool _callback7Matches(Object value) =>
-    value is api.Color? Function(Set<api.WidgetState> states);
-Object? _callback7Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as api.Color? Function(Set<api.WidgetState> states))(
-    positional[0] as Set<api.WidgetState>,
-  );
-}
-
-Object _callback8(FlaxCallback callback) => (Set<api.WidgetState> p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return callback.call(positional, named) as api.Color?;
-};
-bool _callback8Matches(Object value) =>
-    value is api.Color? Function(Set<api.WidgetState> states);
-Object? _callback8Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as api.Color? Function(Set<api.WidgetState> states))(
-    positional[0] as Set<api.WidgetState>,
-  );
-}
-
 Object _callback9(FlaxCallback callback) => (Set<api.WidgetState> p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
-  return callback.call(positional, named) as api.Color?;
+  return callback.call(positional, named) as api1.OutlinedBorder?;
 };
 bool _callback9Matches(Object value) =>
-    value is api.Color? Function(Set<api.WidgetState> states);
+    value is api1.OutlinedBorder? Function(Set<api.WidgetState> states);
 Object? _callback9Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  return (function as api.Color? Function(Set<api.WidgetState> states))(
+  return (function
+      as api1.OutlinedBorder? Function(Set<api.WidgetState> states))(
     positional[0] as Set<api.WidgetState>,
   );
 }
@@ -6567,16 +7655,16 @@ Object _callback10(FlaxCallback callback) => (Set<api.WidgetState> p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
-  return callback.call(positional, named) as api.Color?;
+  return callback.call(positional, named) as api1.MouseCursor?;
 };
 bool _callback10Matches(Object value) =>
-    value is api.Color? Function(Set<api.WidgetState> states);
+    value is api1.MouseCursor? Function(Set<api.WidgetState> states);
 Object? _callback10Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  return (function as api.Color? Function(Set<api.WidgetState> states))(
+  return (function as api1.MouseCursor? Function(Set<api.WidgetState> states))(
     positional[0] as Set<api.WidgetState>,
   );
 }
@@ -6585,16 +7673,16 @@ Object _callback11(FlaxCallback callback) => (Set<api.WidgetState> p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
-  return callback.call(positional, named) as api.Color?;
+  return callback.call(positional, named) as api1.Color?;
 };
 bool _callback11Matches(Object value) =>
-    value is api.Color? Function(Set<api.WidgetState> states);
+    value is api1.Color? Function(Set<api.WidgetState> states);
 Object? _callback11Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  return (function as api.Color? Function(Set<api.WidgetState> states))(
+  return (function as api1.Color? Function(Set<api.WidgetState> states))(
     positional[0] as Set<api.WidgetState>,
   );
 }
@@ -6617,179 +7705,201 @@ Object? _callback12Invoke(
   );
 }
 
-Object _callback13(FlaxCallback callback) => (String p0) {
+Object _callback13(FlaxCallback callback) => (Set<api.WidgetState> p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
-  callback.call(positional, named);
+  return callback.call(positional, named) as api1.Color?;
 };
-bool _callback13Matches(Object value) => value is void Function(String value);
+bool _callback13Matches(Object value) =>
+    value is api1.Color? Function(Set<api.WidgetState> states);
 Object? _callback13Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  (function as void Function(String value))(positional[0] as String);
-  return null;
+  return (function as api1.Color? Function(Set<api.WidgetState> states))(
+    positional[0] as Set<api.WidgetState>,
+  );
 }
 
-Object _callback14(FlaxCallback callback) => () {
+Object _callback14(FlaxCallback callback) => (Set<api.WidgetState> p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  callback.call(positional, named);
+  positional.add(p0);
+  return callback.call(positional, named) as api1.MouseCursor?;
 };
-bool _callback14Matches(Object value) => value is void Function();
+bool _callback14Matches(Object value) =>
+    value is api1.MouseCursor? Function(Set<api.WidgetState> states);
 Object? _callback14Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  (function as void Function())();
-  return null;
+  return (function as api1.MouseCursor? Function(Set<api.WidgetState> states))(
+    positional[0] as Set<api.WidgetState>,
+  );
 }
 
-Object _callback15(FlaxCallback callback) => (String p0) {
+Object _callback15(FlaxCallback callback) => (Set<api.WidgetState> p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
-  callback.call(positional, named);
+  return callback.call(positional, named) as api1.Color?;
 };
-bool _callback15Matches(Object value) => value is void Function(String value);
+bool _callback15Matches(Object value) =>
+    value is api1.Color? Function(Set<api.WidgetState> states);
 Object? _callback15Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  (function as void Function(String value))(positional[0] as String);
-  return null;
+  return (function as api1.Color? Function(Set<api.WidgetState> states))(
+    positional[0] as Set<api.WidgetState>,
+  );
 }
 
-Object _callback16(FlaxCallback callback) => (api.BuildContext p0) {
+Object _callback16(FlaxCallback callback) => (Set<api.WidgetState> p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
-  return callback.call(positional, named) as api.Widget;
+  return callback.call(positional, named) as api1.OutlinedBorder?;
 };
 bool _callback16Matches(Object value) =>
-    value is api.Widget Function(api.BuildContext context);
+    value is api1.OutlinedBorder? Function(Set<api.WidgetState> states);
 Object? _callback16Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  return (function as api.Widget Function(api.BuildContext context))(
-    positional[0] as api.BuildContext,
+  return (function
+      as api1.OutlinedBorder? Function(Set<api.WidgetState> states))(
+    positional[0] as Set<api.WidgetState>,
   );
 }
 
-Object _callback17(FlaxCallback callback) => (bool p0, Object? p1) {
+Object _callback17(FlaxCallback callback) => (Set<api.WidgetState> p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
-  positional.add(p1);
-  callback.call(positional, named);
+  return callback.call(positional, named) as api1.Color?;
 };
 bool _callback17Matches(Object value) =>
-    value is void Function(bool didPop, Object? result);
+    value is api1.Color? Function(Set<api.WidgetState> states);
 Object? _callback17Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  (function as void Function(bool didPop, Object? result))(
-    positional[0] as bool,
-    positional[1],
+  return (function as api1.Color? Function(Set<api.WidgetState> states))(
+    positional[0] as Set<api.WidgetState>,
   );
-  return null;
 }
 
-Object _callback18(FlaxCallback callback) => () {
+Object _callback18(FlaxCallback callback) => (Set<api.WidgetState> p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  callback.call(positional, named);
+  positional.add(p0);
+  return callback.call(positional, named) as api1.Color?;
 };
-bool _callback18Matches(Object value) => value is void Function();
+bool _callback18Matches(Object value) =>
+    value is api1.Color? Function(Set<api.WidgetState> states);
 Object? _callback18Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  (function as void Function())();
-  return null;
+  return (function as api1.Color? Function(Set<api.WidgetState> states))(
+    positional[0] as Set<api.WidgetState>,
+  );
 }
 
-Object _callback19(FlaxCallback callback) => () {
+Object _callback19(FlaxCallback callback) => (Set<api.WidgetState> p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  callback.call(positional, named);
+  positional.add(p0);
+  return callback.call(positional, named) as api1.Color?;
 };
-bool _callback19Matches(Object value) => value is void Function();
+bool _callback19Matches(Object value) =>
+    value is api1.Color? Function(Set<api.WidgetState> states);
 Object? _callback19Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  (function as void Function())();
-  return null;
+  return (function as api1.Color? Function(Set<api.WidgetState> states))(
+    positional[0] as Set<api.WidgetState>,
+  );
 }
 
-Object _callback20(FlaxCallback callback) => () {
+Object _callback20(FlaxCallback callback) => (Set<api.WidgetState> p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  callback.call(positional, named);
+  positional.add(p0);
+  return callback.call(positional, named) as double?;
 };
-bool _callback20Matches(Object value) => value is void Function();
+bool _callback20Matches(Object value) =>
+    value is double? Function(Set<api.WidgetState> states);
 Object? _callback20Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  (function as void Function())();
-  return null;
+  return (function as double? Function(Set<api.WidgetState> states))(
+    positional[0] as Set<api.WidgetState>,
+  );
 }
 
-Object _callback21(FlaxCallback callback) => () {
+Object _callback21(FlaxCallback callback) => (Set<api.WidgetState> p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  callback.call(positional, named);
+  positional.add(p0);
+  return callback.call(positional, named) as api1.OutlinedBorder?;
 };
-bool _callback21Matches(Object value) => value is void Function();
+bool _callback21Matches(Object value) =>
+    value is api1.OutlinedBorder? Function(Set<api.WidgetState> states);
 Object? _callback21Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  (function as void Function())();
-  return null;
+  return (function
+      as api1.OutlinedBorder? Function(Set<api.WidgetState> states))(
+    positional[0] as Set<api.WidgetState>,
+  );
 }
 
-Object _callback22(FlaxCallback callback) => () {
+Object _callback22(FlaxCallback callback) => (Set<api.WidgetState> p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  callback.call(positional, named);
+  positional.add(p0);
+  return callback.call(positional, named) as api1.MouseCursor?;
 };
-bool _callback22Matches(Object value) => value is void Function();
+bool _callback22Matches(Object value) =>
+    value is api1.MouseCursor? Function(Set<api.WidgetState> states);
 Object? _callback22Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  (function as void Function())();
-  return null;
+  return (function as api1.MouseCursor? Function(Set<api.WidgetState> states))(
+    positional[0] as Set<api.WidgetState>,
+  );
 }
 
-Object _callback23(FlaxCallback callback) => () {
+Object _callback23(FlaxCallback callback) => (String p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
+  positional.add(p0);
   callback.call(positional, named);
 };
-bool _callback23Matches(Object value) => value is void Function();
+bool _callback23Matches(Object value) => value is void Function(String value);
 Object? _callback23Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  (function as void Function())();
+  (function as void Function(String value))(positional[0] as String);
   return null;
 }
 
@@ -6808,48 +7918,58 @@ Object? _callback24Invoke(
   return null;
 }
 
-Object _callback25(FlaxCallback callback) => () {
+Object _callback25(FlaxCallback callback) => (String p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
+  positional.add(p0);
   callback.call(positional, named);
 };
-bool _callback25Matches(Object value) => value is void Function();
+bool _callback25Matches(Object value) => value is void Function(String value);
 Object? _callback25Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  (function as void Function())();
+  (function as void Function(String value))(positional[0] as String);
   return null;
 }
 
-Object _callback26(FlaxCallback callback) => () {
+Object _callback26(FlaxCallback callback) => (api1.BuildContext p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  callback.call(positional, named);
+  positional.add(p0);
+  return callback.call(positional, named) as api1.Widget;
 };
-bool _callback26Matches(Object value) => value is void Function();
+bool _callback26Matches(Object value) =>
+    value is api1.Widget Function(api1.BuildContext context);
 Object? _callback26Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  (function as void Function())();
-  return null;
+  return (function as api1.Widget Function(api1.BuildContext context))(
+    positional[0] as api1.BuildContext,
+  );
 }
 
-Object _callback27(FlaxCallback callback) => () {
+Object _callback27(FlaxCallback callback) => (bool p0, Object? p1) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
+  positional.add(p0);
+  positional.add(p1);
   callback.call(positional, named);
 };
-bool _callback27Matches(Object value) => value is void Function();
+bool _callback27Matches(Object value) =>
+    value is void Function(bool didPop, Object? result);
 Object? _callback27Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  (function as void Function())();
+  (function as void Function(bool didPop, Object? result))(
+    positional[0] as bool,
+    positional[1],
+  );
   return null;
 }
 
@@ -6928,14 +8048,164 @@ Object? _callback32Invoke(
   return null;
 }
 
-Object _callback33(FlaxCallback callback) => (bool? p0) {
+Object _callback33(FlaxCallback callback) => () {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  callback.call(positional, named);
+};
+bool _callback33Matches(Object value) => value is void Function();
+Object? _callback33Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  (function as void Function())();
+  return null;
+}
+
+Object _callback34(FlaxCallback callback) => () {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  callback.call(positional, named);
+};
+bool _callback34Matches(Object value) => value is void Function();
+Object? _callback34Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  (function as void Function())();
+  return null;
+}
+
+Object _callback35(FlaxCallback callback) => () {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  callback.call(positional, named);
+};
+bool _callback35Matches(Object value) => value is void Function();
+Object? _callback35Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  (function as void Function())();
+  return null;
+}
+
+Object _callback36(FlaxCallback callback) => () {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  callback.call(positional, named);
+};
+bool _callback36Matches(Object value) => value is void Function();
+Object? _callback36Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  (function as void Function())();
+  return null;
+}
+
+Object _callback37(FlaxCallback callback) => () {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  callback.call(positional, named);
+};
+bool _callback37Matches(Object value) => value is void Function();
+Object? _callback37Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  (function as void Function())();
+  return null;
+}
+
+Object _callback38(FlaxCallback callback) => () {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  callback.call(positional, named);
+};
+bool _callback38Matches(Object value) => value is void Function();
+Object? _callback38Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  (function as void Function())();
+  return null;
+}
+
+Object _callback39(FlaxCallback callback) => () {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  callback.call(positional, named);
+};
+bool _callback39Matches(Object value) => value is void Function();
+Object? _callback39Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  (function as void Function())();
+  return null;
+}
+
+Object _callback40(FlaxCallback callback) => () {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  callback.call(positional, named);
+};
+bool _callback40Matches(Object value) => value is void Function();
+Object? _callback40Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  (function as void Function())();
+  return null;
+}
+
+Object _callback41(FlaxCallback callback) => () {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  callback.call(positional, named);
+};
+bool _callback41Matches(Object value) => value is void Function();
+Object? _callback41Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  (function as void Function())();
+  return null;
+}
+
+Object _callback42(FlaxCallback callback) => () {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  callback.call(positional, named);
+};
+bool _callback42Matches(Object value) => value is void Function();
+Object? _callback42Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  (function as void Function())();
+  return null;
+}
+
+Object _callback43(FlaxCallback callback) => (bool? p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
   callback.call(positional, named);
 };
-bool _callback33Matches(Object value) => value is void Function(bool? value);
-Object? _callback33Invoke(
+bool _callback43Matches(Object value) => value is void Function(bool? value);
+Object? _callback43Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -6944,50 +8214,50 @@ Object? _callback33Invoke(
   return null;
 }
 
-Object _callback34(FlaxCallback callback) => (Set<api.WidgetState> p0) {
+Object _callback44(FlaxCallback callback) => (Set<api.WidgetState> p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
-  return callback.call(positional, named) as api.Color?;
+  return callback.call(positional, named) as api1.Color?;
 };
-bool _callback34Matches(Object value) =>
-    value is api.Color? Function(Set<api.WidgetState> states);
-Object? _callback34Invoke(
+bool _callback44Matches(Object value) =>
+    value is api1.Color? Function(Set<api.WidgetState> states);
+Object? _callback44Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  return (function as api.Color? Function(Set<api.WidgetState> states))(
+  return (function as api1.Color? Function(Set<api.WidgetState> states))(
     positional[0] as Set<api.WidgetState>,
   );
 }
 
-Object _callback35(FlaxCallback callback) => (Set<api.WidgetState> p0) {
+Object _callback45(FlaxCallback callback) => (Set<api.WidgetState> p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
-  return callback.call(positional, named) as api.Color?;
+  return callback.call(positional, named) as api1.Color?;
 };
-bool _callback35Matches(Object value) =>
-    value is api.Color? Function(Set<api.WidgetState> states);
-Object? _callback35Invoke(
+bool _callback45Matches(Object value) =>
+    value is api1.Color? Function(Set<api.WidgetState> states);
+Object? _callback45Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  return (function as api.Color? Function(Set<api.WidgetState> states))(
+  return (function as api1.Color? Function(Set<api.WidgetState> states))(
     positional[0] as Set<api.WidgetState>,
   );
 }
 
-Object _callback36(FlaxCallback callback) => (bool p0) {
+Object _callback46(FlaxCallback callback) => (bool p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
   callback.call(positional, named);
 };
-bool _callback36Matches(Object value) => value is void Function(bool value);
-Object? _callback36Invoke(
+bool _callback46Matches(Object value) => value is void Function(bool value);
+Object? _callback46Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -6996,14 +8266,14 @@ Object? _callback36Invoke(
   return null;
 }
 
-Object _callback37(FlaxCallback callback) => (int p0) {
+Object _callback47(FlaxCallback callback) => (int p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
   callback.call(positional, named);
 };
-bool _callback37Matches(Object value) => value is void Function(int value);
-Object? _callback37Invoke(
+bool _callback47Matches(Object value) => value is void Function(int value);
+Object? _callback47Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -7012,43 +8282,43 @@ Object? _callback37Invoke(
   return null;
 }
 
-Object _callback38(FlaxCallback callback) => (api.BuildContext p0) {
+Object _callback48(FlaxCallback callback) => (api1.BuildContext p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
-  return callback.call(positional, named) as api.Widget;
+  return callback.call(positional, named) as api1.Widget;
 };
-bool _callback38Matches(Object value) =>
-    value is api.Widget Function(api.BuildContext context);
-Object? _callback38Invoke(
+bool _callback48Matches(Object value) =>
+    value is api1.Widget Function(api1.BuildContext context);
+Object? _callback48Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  return (function as api.Widget Function(api.BuildContext context))(
-    positional[0] as api.BuildContext,
+  return (function as api1.Widget Function(api1.BuildContext context))(
+    positional[0] as api1.BuildContext,
   );
 }
 
-Object _collection0Create() => <api.Widget>[];
-bool _collection0Matches(Object value) => value is List<api.Widget>;
-Object _collection1Create() => <api.Widget>[];
-bool _collection1Matches(Object value) => value is Iterable<api.Widget>;
-Object _collection2Create() => <api.NavigatorObserver>[];
-bool _collection2Matches(Object value) => value is List<api.NavigatorObserver>;
-Object _collection3Create() => <api.NavigatorObserver>[];
+Object _collection0Create() => <api1.Widget>[];
+bool _collection0Matches(Object value) => value is List<api1.Widget>;
+Object _collection1Create() => <api1.Widget>[];
+bool _collection1Matches(Object value) => value is Iterable<api1.Widget>;
+Object _collection2Create() => <api1.NavigatorObserver>[];
+bool _collection2Matches(Object value) => value is List<api1.NavigatorObserver>;
+Object _collection3Create() => <api1.NavigatorObserver>[];
 bool _collection3Matches(Object value) =>
-    value is Iterable<api.NavigatorObserver>;
+    value is Iterable<api1.NavigatorObserver>;
 Object _collection4Create() => <api.WidgetState>{};
 bool _collection4Matches(Object value) => value is Set<api.WidgetState>;
 Object _collection5Create() => <api.WidgetState>[];
 bool _collection5Matches(Object value) => value is Iterable<api.WidgetState>;
-Object _collection6Create() => <api1.TextInputFormatter>[];
+Object _collection6Create() => <api3.TextInputFormatter>[];
 bool _collection6Matches(Object value) =>
-    value is List<api1.TextInputFormatter>;
-Object _collection7Create() => <api1.TextInputFormatter>[];
+    value is List<api3.TextInputFormatter>;
+Object _collection7Create() => <api3.TextInputFormatter>[];
 bool _collection7Matches(Object value) =>
-    value is Iterable<api1.TextInputFormatter>;
+    value is Iterable<api3.TextInputFormatter>;
 Future<Object?> _future0Adapt(Future<Object?> value) =>
     value.then<void>((_) {});
 Future<Object?> _future1Adapt(Future<Object?> value) => value;

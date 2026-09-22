@@ -18,6 +18,7 @@ class FlaxTypeRef {
     this.future,
     this.stream,
     this.callback,
+    this.record,
     this.deferredFactories = const {},
   });
   final String kind;
@@ -30,15 +31,33 @@ class FlaxTypeRef {
   final FlaxFutureBinding? future;
   final FlaxStreamBinding? stream;
   final FlaxCallbackBinding? callback;
+  final FlaxRecordBinding? record;
   final Map<String, FlaxDeferredFactoryBinding> deferredFactories;
   bool get containsWidget =>
       kind == 'widget' ||
       (item?.containsWidget ?? false) ||
-      (key?.containsWidget ?? false);
+      (key?.containsWidget ?? false) ||
+      (record?.fields.any((field) => field.type.containsWidget) ?? false);
   bool get containsCallback =>
       kind == 'callback' ||
       (item?.containsCallback ?? false) ||
-      (key?.containsCallback ?? false);
+      (key?.containsCallback ?? false) ||
+      (record?.fields.any((field) => field.type.containsCallback) ?? false);
+}
+
+/// Generated structural access for one Dart Record field.
+class FlaxRecordFieldBinding {
+  const FlaxRecordFieldBinding(this.name, this.type, this.read);
+  final String name;
+  final FlaxTypeRef type;
+  final Object? Function(Object) read;
+}
+
+/// Generated reconstruction for one concrete Dart Record shape.
+class FlaxRecordBinding {
+  const FlaxRecordBinding(this.fields, this.create);
+  final List<FlaxRecordFieldBinding> fields;
+  final Object Function(List<Object?>) create;
 }
 
 /// Generated type adaptation for a JavaScript Promise entering Dart.

@@ -5,14 +5,14 @@ import {
   Navigator,
   PageContent,
   Text,
-  ValueKey,
   registerPage,
   runApp,
   type NavigationData,
   type Page,
   type NavigatorState,
-} from '@flax/core/flutter';
-import { MaterialPage, MaterialPageRoute, TextButton } from '@flax/material-ui';
+} from '@flax/flutter/widgets';
+import { ValueKey } from '@flax/flutter/foundation';
+import { MaterialPage, MaterialPageRoute, TextButton } from '@flax/flutter/material';
 
 const list = signal<readonly Page[]>([]);
 const hooks = {

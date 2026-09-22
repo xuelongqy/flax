@@ -25,11 +25,11 @@ the session through TransitionRoute.completed. Closing stops new entries while
 preserving accepted routes' rebuild/exit/cleanup paths; only the host removes its
 routes.
 
-Protocol 4 replaces earlier UI protocols with no compatibility layer. The native ABI,
-Hermes, and existing Future/checkpoint/error contracts stay unchanged. Optional private
-callback and empty-list defaults are omitted from generated constructor calls and
-inherited through super parameters. Empty-list omission preserves upstream sentinel
-identity; the generator does not name private functions or substitute callbacks.
+Page metadata uses the versioned UI contract without changing the native ABI, engine or
+existing Future/checkpoint/error contracts. Optional private callback and empty-list
+defaults are omitted from generated constructor calls and inherited through super
+parameters. Empty-list omission preserves upstream sentinel identity; the generator does
+not name private functions or substitute callbacks.
 
 ## Rationale and consequences
 
@@ -42,9 +42,10 @@ result. Explicit ownership at Route adoption/disposal protects callbacks during 
 and exit animations while mounted descendants retain their own resources. No JS stack
 matching algorithm or universal navigation manager is needed.
 
-Standard Router integration is validated only on macOS arm64 Hermes. System deep-link
-registration, restoration, router-package adapters, custom transitions, and Controllers
-remain separate work. This experimental protocol has no stable compatibility promise.
+The current in-repository Router integration is covered by the macOS arm64 Hermes and V8
+UI checks. System deep-link registration, restoration, router-package adapters and
+custom transitions remain separate work. This experimental protocol has no stable
+compatibility promise.
 
 See the [contract](../architecture/navigation.md) and
-[verification record](../tasks/pages-and-router.md).
+[verification scope](../architecture/external-binding-compatibility.md).

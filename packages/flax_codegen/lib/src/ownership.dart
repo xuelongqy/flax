@@ -65,8 +65,11 @@ final class FlaxCodegenSiblingModuleInput {
     required FlaxCodegenBindingConfig config,
     required String source,
     required Map<String, FlaxCodegenSourceIdentity> listing,
+    Iterable<FlaxCodegenOwnerClaim> claims = const [],
     Iterable<FlaxCodegenNominalReference> references = const [],
     Map<String, FlaxCodegenSourceLocation> locations = const {},
+    Set<String> readonlyReferences = const {},
+    Set<String> setterReferences = const {},
   }) {
     final types = List<String>.unmodifiable(List<String>.of(config.types));
     final classNames = List<String>.unmodifiable(
@@ -81,7 +84,7 @@ final class FlaxCodegenSiblingModuleInput {
     return FlaxCodegenSiblingModuleInput._(
       name: config.name,
       source: source,
-      claims: const [],
+      claims: List.unmodifiable(List<FlaxCodegenOwnerClaim>.of(claims)),
       references: List.unmodifiable(
         List<FlaxCodegenNominalReference>.of(references),
       ),
@@ -110,6 +113,30 @@ final class FlaxCodegenSiblingModuleInput {
             FlaxCodegenDeclarationKind.type,
             FlaxCodegenDiagnostic.jsonPointer(['callbackSnapshots', name]),
           ),
+        for (final (index, name)
+            in (config.topLevel?.getters ?? <String>[]).indexed)
+          if (!readonlyReferences.contains(name))
+            _ClaimSpec(
+              name,
+              FlaxCodegenDeclarationKind.readonly,
+              FlaxCodegenDiagnostic.jsonPointer([
+                'topLevel',
+                'getters',
+                '$index',
+              ]),
+            ),
+        for (final (index, name)
+            in (config.topLevel?.setters ?? <String>[]).indexed)
+          if (!setterReferences.contains(name))
+            _ClaimSpec(
+              '$name=',
+              FlaxCodegenDeclarationKind.function,
+              FlaxCodegenDiagnostic.jsonPointer([
+                'topLevel',
+                'setters',
+                '$index',
+              ]),
+            ),
         for (var index = 0; index < types.length; index++)
           _ClaimSpec(
             types[index],
@@ -644,6 +671,8 @@ bool _wireKindMatches(
   FlaxCodegenDeclarationKind.type => wireId.kind == FlaxCodegenWireKind.type,
   FlaxCodegenDeclarationKind.function =>
     wireId.kind == FlaxCodegenWireKind.function,
+  FlaxCodegenDeclarationKind.readonly =>
+    wireId.kind == FlaxCodegenWireKind.read,
 };
 
 final class _PackageIdentity {
@@ -717,6 +746,10 @@ FlaxCodegenWireId _ownerWireId(
     publicBindingName: identity.name,
   ),
   FlaxCodegenDeclarationKind.function => FlaxCodegenWireId.function(
+    moduleId: moduleId,
+    publicBindingName: identity.name,
+  ),
+  FlaxCodegenDeclarationKind.readonly => FlaxCodegenWireId.read(
     moduleId: moduleId,
     publicBindingName: identity.name,
   ),

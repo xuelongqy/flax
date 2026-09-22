@@ -1,36 +1,31 @@
 # Documentation
 
-- [Architecture](architecture/README.md): layer responsibilities and current status.
-- [Runtime design](architecture/runtime.md): runtime execution and reference ownership.
-- [Binding generation](architecture/bindings.md): inputs, outputs, and adaptation.
-- [Packaging](architecture/packaging.md): workspaces and distribution boundaries.
-- [External binding migration](guides/external-binding-migration.md): Manifest 1 /
-  loose config → format-1 YAML, `bindingNamespace`, Manifest 2, and the
-  `validate|check|generate --config` CLI (M3 direct cutover; no long-term compat).
-- [External Binding Kit v1 compatibility matrix](architecture/external-binding-compatibility.md):
-  proven / partially proven / not run / open-questions status for protocol, ABI,
-  YAML, Manifest 2, CLI, engines, and outside canaries.
-- [Binding coverage map](architecture/binding-coverage-map.md): explicit selection
-  inventory, in-envelope waves, hard-wall queue, and Cupertino/pilot calls
-  ([ADR 0018](decisions/0018-binding-coverage-strategy.md)).
-- [Decisions](decisions/README.md): accepted decisions and unresolved questions.
-- [Task records](tasks/README.md): concise planning and handoff guidance.
-- [Contributing](../CONTRIBUTING.md): installation, commands, and review workflow.
+Start with the [project README](../README.md) for supported scope and setup, then use
+[Contributing](../CONTRIBUTING.md) for development and verification commands.
 
-The macOS arm64 Hermes runtime, generated reactive UI, navigation, named pages, and host
-Router example are implemented. The current repository-structure handoff is
-[package distribution](tasks/package-distribution.md), following
-[package isolation](tasks/package-isolation.md). The earlier
-[capability package boundary](tasks/package-boundaries.md) record describes the initial
-move.
+## Current contracts
 
-- [Flutter host and signals](architecture/ui.md): generated widgets, local updates, and
-  lifecycle.
+| Area                                      | Authoritative entry                                                                                                                                        |
+| ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Layers and package ownership              | [Architecture](architecture/README.md), [packaging](architecture/packaging.md)                                                                             |
+| Runtime and engines                       | [Runtime](architecture/runtime.md)                                                                                                                         |
+| Generation and authoring                  | [Binding Generation](architecture/bindings.md), [author template](../packages/flax_codegen/docs/author-template.md)                                        |
+| Capability status and remaining gaps      | [Binding Coverage Map](architecture/binding-coverage-map.md)                                                                                               |
+| Migration and verification scope          | [Migration guide](guides/external-binding-migration.md), [compatibility matrix](architecture/external-binding-compatibility.md)                            |
+| Flutter lifecycle and application startup | [UI](architecture/ui.md), [applications](architecture/applications.md)                                                                                     |
+| Values and ownership                      | [Interop](architecture/interop.md), [objects](architecture/objects.md)                                                                                     |
+| Navigation and components                 | [Navigation](architecture/navigation.md), [components](architecture/components.md)                                                                         |
+| Optional services                         | [Host and Fetch](architecture/host.md), [WebSocket](architecture/websocket.md), [storage](architecture/local-storage.md), [Canvas](architecture/canvas.md) |
 
-- [Navigation and application sessions](architecture/navigation.md)
+Configuration format 1, Manifest writer 10 with strict readers 2/3/4/5/6/7/8/9/10, UI
+protocol 20 and native ABI 2 are separate domains. The supported runtime scope is
+experimental macOS arm64 Hermes and V8; broader API coverage and public distribution are
+unfinished.
 
-- [Containers and decoration](architecture/decoration.md)
+## Decisions and active work
 
-- [Widget interfaces and page shells](architecture/widget-interfaces.md)
-
-- [Canvas 2D](architecture/canvas.md)
+[Decisions](decisions/README.md) retain architectural rationale and explicit
+supersession notices. [Open Questions](decisions/open-questions.md) lists unsettled
+choices. [Active tasks](tasks/README.md) contain unfinished work and handoff guidance;
+completed implementation histories are replaced by current contracts and reproducible
+tests. Licenses, third-party notices and formal changelogs retain their own purpose.

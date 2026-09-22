@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { Text } from '@flax/core/flutter';
+import { Text } from '@flax/flutter/widgets';
 import { MaterialApp, ThemeMode } from '../dist/index.js';
 import { signal } from '@flax/core';
 

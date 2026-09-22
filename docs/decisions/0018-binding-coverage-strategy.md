@@ -6,22 +6,21 @@ Date: 2026-09-12
 
 ## Context
 
-UI protocol 18 and the binding generator support an explicit, fail-closed selection
-model: packages list the Dart types and members they expose, and unsupported signatures
-fail at generation time rather than emitting permissive stubs. A Protocol 18 bindability
-census of `package:flutter/widgets.dart` (plus the core binding `additionalLibraries`)
-and `package:material_ui/material_ui.dart` showed a high ceiling for _partial_
-generatability and a low ceiling for _full_ public-surface exposure. Treating export
-coverage or full-type generation as acceptance criteria would push incorrect protocol
+The generator uses explicit, fail-closed selection: packages list the Dart types and
+members they expose, and unsupported signatures fail at generation time rather than
+emitting permissive stubs. A visible export, a representable subset and a tested public
+surface are different claims. Treating them as equivalent encourages incorrect protocol
 growth and false progress.
 
-Package/ABI compatibility policy and stable ABI evolution remain separate open
-questions. This record only settles how binding coverage is planned and accepted.
+This decision was introduced with UI protocol 18 and remains applicable to protocol 20.
+Version domains and package ownership are now defined by ADRs 0021–0025. This record
+settles how binding coverage is planned and accepted.
 
 ## Decision
 
-Use **explicit selection** as the only binding coverage strategy under UI protocol 18
-(and any successor that keeps the same fail-closed model).
+Use **explicit selection** for the currently implemented binding surface. Broader
+full-library and whitelist product modes remain design work; this decision does not
+define their YAML or prohibit a future evidence-backed proposal.
 
 Acceptance for an expanded binding surface is:
 
@@ -53,28 +52,29 @@ be copied into this decision as fixed targets.
 
 ### Expansion gates
 
-- **In-envelope selection** (members whose shapes already generate under the current
-  protocol and object pool): the package owner and Codegen may expand selection YAML and
-  regenerate without a protocol bump.
-- **Hard walls** that require Architecture review and, when needed, a protocol or
-  generator contract change before selection proceeds include at least: Future
-  parameters, nested Futures / FutureOr, asynchronous lifecycle or build callbacks,
-  callbacks that transport collections of Widgets, and other generation rejects
-  documented in the binding and interop contracts.
-- Adding high-frequency dependency types to an optional object selection pool (for
-  example Duration, Animation, ShapeBorder, ScrollPhysics) is a selection/object-pool
-  change when it reuses existing conversion rules; new conversion or lifetime semantics
-  still need Architecture review.
+- **Supported selection** (members whose shapes already generate under the current
+  protocol and provider set): the package owner and Codegen may expand selection YAML
+  and regenerate without a protocol bump.
+- **New conversion or lifetime behavior** requires Architecture review and, when needed,
+  a protocol or generator contract change. Examples still outside the contract include
+  unsupported nested Future/FutureOr values, asynchronous lifecycle or build callbacks
+  and callbacks transporting Widget collections. Supported Future parameters, FutureOr
+  and generic typedefs are no longer gaps. The
+  [coverage map](../architecture/binding-coverage-map.md) owns the current inventory.
+- Adding dependency types or members through a canonical provider is a selection change
+  when it reuses existing conversion rules. Existing imported owners cannot be
+  duplicated or have their published member surfaces silently expanded. New conversion
+  or lifetime semantics still need Architecture review.
 
 Cupertino and painting-or-animation libraries as primary census universes remain later
 work and are not decided here.
 
 ## Alternatives
 
-**Require near-complete export or full-type coverage before shipping binding packages.**
-Rejected: the census full-type ceiling is structurally low because of out-of-denominator
-painting, animation, and diagnostics dependencies. That goal conflicts with explicit
-selection and fail-closed generation.
+**Require near-complete export or full-type coverage before accepting useful bindings.**
+Rejected: a useful selected surface can be tested independently of unrelated painting,
+animation and diagnostic dependencies. A larger declaration count cannot substitute for
+correct conversion and lifetime behavior.
 
 **Treat partial-generatability percentage as a release gate.** Rejected: the metric is a
 ceiling estimate from a static study, not proof that every interesting type should be
@@ -87,21 +87,22 @@ decision is about how APIs are chosen and accepted inside the current protocol e
 ## Consequences
 
 Material UI, core Flutter bindings, and Codegen share one coverage vocabulary: select
-what applications need, generate what the envelope supports, and escalate only hard
-walls. Tasks must not use full-type percentage or export coverage as done criteria.
+what applications need, generate supported shapes, and review new contracts. Tasks must
+not use full-type percentage or export coverage as done criteria.
 
 Architecture reviews focus on protocol and conversion changes, not routine selection
-lists. Optional dependency object-pool expansions can raise how many members fit inside
-a type's selected subset without changing the acceptance rule above.
+lists. Provider additions can enable more selected members without changing the
+acceptance rule above.
 
-This ADR is **accepted**. It does not by itself change UI protocol 18 or native ABI 2;
-it only locks coverage strategy, acceptance criteria, and expansion gates.
+This ADR does not itself change the UI protocol or native ABI. Current versions and
+verification limits are in the
+[compatibility contract](../architecture/external-binding-compatibility.md).
 
 ## Appendix: census reference (non-normative)
 
-A 2026-09-12 Protocol 18 bindability census (static fixpoint mirroring generator
-allowlists; not a per-type dry-run emit) reported roughly 96% partial and 12% full
-generatability over the widgets + material_ui interesting-type denominator. Artifacts
-live under the repository `.local/flax-binding-census/` working tree (and any synced
-copy). Those figures inform prioritization only and are not part of this decision's
-normative text.
+The 2026-09-12 protocol-18 census was a static fixpoint study of older selections, not
+per-type emission or runtime acceptance. Its counts and first-failure diagnoses are not
+current coverage. Preserve the measured input set and distinguish static discovery,
+generation, compilation and runtime checks when making a new measurement. Reproduce a
+disputed boundary with the existing small capability fixtures before commissioning a new
+SDK-wide study.

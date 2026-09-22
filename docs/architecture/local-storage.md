@@ -107,6 +107,6 @@ previous owner closes. Applications must coordinate process and isolate ownershi
 storage directory.
 
 Storage JS/types live in `packages/flax_local_storage/js`; embedded source is generated
-into the Dart package. It imports no Fetch or WebSocket implementation. Framework tests
-use the existing embedded harness; Hive tests also cover real failed I/O and a fresh
-process.
+into the Dart package. It imports no Fetch or WebSocket implementation. Owner framework
+tests live in `packages/flax_local_storage/test/ui`, while its package example owns the
+real persistence and fresh-process integration coverage.

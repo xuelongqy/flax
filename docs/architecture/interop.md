@@ -88,11 +88,12 @@ passes that same instance back through roots, children, builders, components and
 content. It adds no Element and preserves the actual runtimeType and key. DartList of
 Widget becomes a structural snapshot when accepted as children. The Widget collection
 boundary supports reading, copying and removal. Inserting or replacing Widgets from JS
-and callbacks transporting collections of Widgets remain unsupported. Single Widget
+remains unsupported. Direct non-null `List<Widget>` callback parameters and results are
+supported; other Widget collection callback shapes remain fail-closed. Single Widget
 arguments support Dart retention as described below. Widget references are accepted only
 at Widget positions, not ordinary Object/dynamic inputs. Flax hosts also retain their
-description resources. The application root holds the session until its subtree
-unmounts, even when it consists entirely of native Widgets.
+description resources. The application root holds the session until its subtree unmounts,
+even when it consists entirely of native Widgets.
 
 A returned builder borrows the supplied Context's existing owner and lifecycle. It does
 not manufacture an Element, extend Context lifetime or execute during conversion.
@@ -101,14 +102,17 @@ and optional named parameters. Named arguments use one final JS options object. 
 optional values are not sent, so JS and Dart defaults execute normally; explicit null is
 still checked against Dart nullability. A callback whose Dart result is Future must
 return a Promise or callable thenable; a synchronous value is rejected. Future
-parameters, first-level Future collections, and FutureOr in supported positions
-generate. Nested Future completion values and native Route references remain
-unsupported. The nested-Future check continues through List and Map completion values. A
-function returned by a Future starts a separate invocation boundary and can have its own
-supported Future result. Stream references may appear in supported callback and
-collection positions because they retain their own lazy Dart lifetime. Ordinary
-synchronous Widget-to-Widget functions do not require a Context; true UI builders still
-use their actual mounted owner.
+parameters, Future collection positions, and FutureOr in supported positions generate.
+Nested Future and FutureOr completion values also generate recursively. Native
+JavaScript Promises assimilate direct nested Promise/thenable layers, so Flax preserves
+the declared Dart type and converted value but does not expose independent JavaScript
+identity or completion timing for those direct layers. Collection, Map and Record fields
+form conversion boundaries: Future/FutureOr values inside them remain independent async
+values. Native Route references remain unsupported. A function returned by a Future
+starts a separate invocation boundary and can have its own supported Future result.
+Stream references may appear in supported callback and collection positions because they
+retain their own lazy Dart lifetime. Ordinary synchronous Widget-to-Widget functions do
+not require a Context; true UI builders still use their actual mounted owner.
 
 Future result encoding distinguishes `Future<T>?` returning null (JS null), `Future<T?>`
 completing with null (Promise resolves null), and `Future<void>` completing normally
@@ -118,12 +122,15 @@ and the existing UI checkpoint and close-cancellation rules.
 The reverse direction creates one pending Dart Future per JS Promise result. Settlement
 runs through the existing safe UI checkpoint and one shared host entry. Fulfilled values
 use the declared generated conversion, including callbacks and Widget configuration
-holds. Rejections become FlaxJsException with the available JS message and stack.
-Reading or converting a hostile rejection value cannot strand the Dart Future; Flax
-falls back to `Promise rejected` when no message can be obtained safely. A callback
-replacement or Widget unmount does not cancel an already returned Future. Session
-closing completes pending Futures with `StateError('FlaxSessionClosed')`, drops their
-observers and ignores later settlement. Promise cancellation is not inferred.
+holds. When a direct nested Future is part of the declared completion type, generated
+adapters rebuild the required Dart Future layers after JavaScript Promise assimilation;
+direct nested FutureOr completion recovers to its immediate value branch. Rejections
+become FlaxJsException with the available JS message and stack. Reading or converting a
+hostile rejection value cannot strand the Dart Future; Flax falls back to
+`Promise rejected` when no message can be obtained safely. A callback replacement or
+Widget unmount does not cancel an already returned Future. Session closing completes
+pending Futures with `StateError('FlaxSessionClosed')`, drops their observers and
+ignores later settlement. Promise cancellation is not inferred.
 
 ## Dart Stream and FutureOr (UI protocol 20)
 
@@ -169,8 +176,10 @@ responsible for `close()` and other Dart object cleanup.
 
 `FutureOr<T>` generates in supported getter, method, callback-result and argument
 positions. Future inputs required by the selected Stream API, including
-`Iterable<Future<T>>`, use typed Promise adapters. Nested Future completion values
-remain generation errors. Protocol 18 and 19 modules are rejected. See
+`Iterable<Future<T>>`, use typed Promise adapters. Nested Future/FutureOr combinations
+reuse the same recursive TypeRef conversion described above. This does not expand async
+properties, lifecycle/build callbacks, Context roles, Route transport or Stream
+semantics. Protocol 18 and 19 modules are rejected. See
 [ADR 0020](../decisions/0020-ui-protocol-20.md).
 
 ## Widget configuration and mounting
@@ -216,8 +225,9 @@ preserves its original Widget, Element and State when Flutter's matching rules a
 Notifications do not reconstruct static child configuration. Temporarily excluding it
 can unmount it; returning it later creates a new mount as in native Flutter. The child
 and listener source may themselves be property bindings. The builder remains synchronous
-and uses last-valid-result recovery. Signals update their bound properties independently
-of Listenable notifications and State.setState; Flax adds no notification policy.
+and each invocation owns its result independently; failed invocations show the bounded
+error placeholder. Signals update their bound properties independently of Listenable
+notifications and State.setState; Flax adds no notification policy.
 
 ## Generic declarations and runtime choices
 
@@ -235,6 +245,21 @@ dependent bounds such as `U extends T` erase transitively. The TS call-site type
 useful for development, but it does not change the Dart erasure used by the bridge.
 Generic callback erasure still rejects recursive bounds, unbound interfaces and bounds
 without an existing conversion.
+
+Generic numeric results use the representation required by the current Dart type
+argument, including nullable `int` and `double`. Integer conversion rejects fractional,
+non-finite and unsafe JavaScript integers; broad `Object?` results keep their decoded
+representation. The same validation applies to asynchronous callback results. A nullable
+use such as `T?` remains nullable when its bound is erased.
+
+Standalone typedefs reuse these rules. Alias parameters appear on the exported TS type,
+while function-local parameters remain on its callback signature. For example,
+`Mapper<T> = T Function(T)` and `GenericMapper = T Function<T>(T)` retain their distinct
+declaration scopes. Combining them with `Converter<T> = T Function<U extends T>(U)`
+preserves the captured outer bound. Aliases also preserve the existing asynchronous,
+collection, exception and reference-lifetime behavior; no alias wrapper is allocated at
+runtime. Core's `ValueChanged<T>` and `ValueGetter<T>` exports come from the real
+Flutter SDK declarations. See [standalone typedefs](bindings.md#standalone-typedefs).
 
 No runtime type tokens or TS compiler transformation are used. A generic function whose
 implementation depends on the exact runtime identity of the TS call-site type is outside
@@ -259,17 +284,25 @@ implementations determined by analyzer. For example, Pattern accepts a String or
 bound Dart RegExp. This follows type relationships rather than a Pattern-specific
 conversion branch. An arbitrary JS object cannot impersonate a Dart interface.
 
-## Explicit generated implementations
+## Generated implementations
 
 Public factories, including abstract-class factories, are preferred when available. A
-selection can request `proxy: extends` for an abstract class or `proxy: implements` for
-an interface. JS supplies `SomeType.implement(arguments, implementation)`; constructor
-arguments are positional entries followed by the named-options object.
+selection can request `proxy: extends` for an eligible class or `proxy: implements` for
+any class Dart permits an external library to implement. `proposeSelection` chooses
+between those modes for ordinary class contracts when the choice is unambiguous:
+interface-style contracts prefer implements, while classes with reusable concrete
+behavior and a uniquely selectable generative constructor prefer extends. Explicit
+proxy configuration wins. JS keeps `SomeType.implement(arguments, implementation)` for
+contract-style use. An extends proxy also emits a real TypeScript abstract class so
+application code can use normal `class Derived extends SomeType` syntax.
 
 An extends proxy initializes callback fields before calling its selected generative
-super constructor. It inherits concrete default methods. An implements proxy supplies
-the entire required interface. Generated direct Dart overrides invoke the shared
-callback conversion; there is no parallel Flax abstract-class hierarchy or reflection.
+super constructor. Selected concrete virtual methods and accessors may be overridden in
+JS; omitted overrides execute Dart `super`, and JS `super.foo()` uses a generated direct
+parent entry so it cannot recurse through the virtual override. An implements proxy
+supplies the entire effective interface. Generated direct Dart overrides invoke the
+shared callback conversion; there is no parallel Flax abstract-class hierarchy or
+reflection.
 
 Required getters and setters use explicit JS accessors with synchronous typed
 conversion. The generator resolves effective inherited properties and prepares callbacks
@@ -277,9 +310,17 @@ before the parent constructor. See
 [proxy properties and ValueListenable](proxy-properties.md).
 
 Proxy methods support the same positional, named and generic callback model, including
-supported Future results. Asynchronous properties, private members and incompatible Dart
-modifiers fail generation. Ordinary proxies do not expose JS class inheritance, super
-calls or arbitrary concrete overrides.
+supported Future results. `@mustCallSuper` checks capture whether JS called the direct
+parent entry before returning control to Dart. For Future/FutureOr overrides this is the
+pre-yield boundary: calling `super` before the first `await` is valid; calling it only
+after an `await` fails. A returned Promise that rejects preserves that rejection, while a
+Promise that resolves without the required pre-yield call completes with the
+`mustCallSuper` error. A Dart super constructor may dispatch to a JS override because
+callbacks exist before the parent constructor runs, but that callback cannot call JS
+`super` until Dart object construction has returned and the object handle is attached.
+Such a call fails explicitly instead of recursing or using a partially initialized
+handle. Asynchronous properties, private members, non-virtual concrete overrides and
+incompatible Dart modifiers fail generation.
 
 ## Verification
 

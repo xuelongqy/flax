@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart' show mustCallSuper;
+
 // Independent names exercise reference, collection, generic and proxy generation.
 abstract class Token {
   factory Token(int value) = _Token;
@@ -123,6 +125,16 @@ abstract class Evaluator {
   int twice(int value) => evaluate(value) * 2;
 }
 
+abstract class AsyncRequiredSuper {
+  AsyncRequiredSuper();
+
+  @mustCallSuper
+  Future<int> load(int value) async => value * 2;
+
+  @mustCallSuper
+  FutureOr<int> normalize(int value) => value + 1;
+}
+
 abstract interface class Selector {
   Token choose(Token value);
 }
@@ -170,15 +182,38 @@ class AsyncCallbacks {
   ) => callback(value);
 }
 
+typedef NestedAsyncMapper<T> = Future<FutureOr<T>> Function(T value);
+
 class UnsupportedAsyncCallbacks {
   void futureParameter(void Function(Future<int>) callback) {}
   void futureCollection(void Function(List<Future<int>>) callback) {}
-  void nested(Future<Future<int>> Function() callback) {}
-  void nestedList(Future<List<Future<int>>> Function() callback) {}
-  void nestedMap(Future<Map<String, Future<int>>> Function() callback) {}
-  void deeplyNested(
+  Future<Future<int>> nested(Future<Future<int>> Function() callback) =>
+      callback();
+  Future<FutureOr<int>> nestedFutureOr(
+    Future<FutureOr<int>> Function() callback,
+  ) => callback();
+  FutureOr<Future<int>> futureOrNested(
+    FutureOr<Future<int>> Function() callback,
+  ) => callback();
+  Future<List<Future<int>>> nestedList(
+    Future<List<Future<int>>> Function() callback,
+  ) => callback();
+  Future<Map<String, FutureOr<int>>> nestedMap(
+    Future<Map<String, FutureOr<int>>> Function() callback,
+  ) => callback();
+  Future<(Future<int>, {FutureOr<String> value})> nestedRecord(
+    Future<(Future<int>, {FutureOr<String> value})> Function() callback,
+  ) => callback();
+  Future<List<Map<String, List<Future<int>>>>> deeplyNested(
     Future<List<Map<String, List<Future<int>>>>> Function() callback,
-  ) {}
+  ) => callback();
+  Future<FutureOr<T>> genericNested<T>(
+    T value,
+    NestedAsyncMapper<T> callback,
+  ) => callback(value);
+  Future<Future<int?>?>? nullableNested(
+    Future<Future<int?>?>? Function() callback,
+  ) => callback();
   void futureOr(FutureOr<int> Function() callback) {}
 }
 

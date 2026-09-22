@@ -1,6 +1,7 @@
 # 0011: Fixed Widget Interface Configuration
 
-Status: accepted
+Status: accepted; extended by [ADR 0029](0029-native-widget-interface-members.md) for
+native setters and methods.
 
 ## Decision
 
@@ -27,6 +28,6 @@ and native runtime checks preserve interface compatibility. Custom JS components
 Flutter PreferredSize when they need a preferred size; class-name checks and automatic
 interface inference from build results are not introduced.
 
-UI protocol 12 carries the new type identity and fixed-argument metadata. The native ABI
-and application disposal responsibility are unchanged. Read the
+The UI protocol carries type identity and fixed-argument metadata. The native ABI and
+application disposal responsibility are unchanged. Read the
 [interface contract](../architecture/widget-interfaces.md) for the selected subset.

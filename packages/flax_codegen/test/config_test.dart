@@ -7,7 +7,7 @@ import 'package:test/test.dart';
 void main() {
   final root = p.normalize(p.join(Directory.current.path, '../..'));
 
-  test('read is strict; fromMap keeps types empty for tests', () {
+  test('read is strict; fromMap preserves explicit type selection', () {
     final config = FlaxCodegenBindingConfig.read(
       p.join(root, 'packages/flax/bindings/components.yaml'),
     );
@@ -27,7 +27,7 @@ void main() {
         'types': ['Widget'],
         'format': 1,
       }).types,
-      isEmpty,
+      ['Widget'],
     );
     expect(
       () => FlaxCodegenFunctionSelection.fromMap({
@@ -460,6 +460,38 @@ classes:
     expectDiagnostic(_readErrors(directory.path), [
       _d(FlaxCodegenDiagnosticCode.path, '', 1, 1),
     ]);
+  });
+
+  test('automatic overrides preserve partial selection intent', () {
+    final overrides = FlaxCodegenAutoOverrides.parseStrict('''
+format: 1
+overrides:
+  classes:
+    SpecialPage:
+      typeArguments: [String]
+      pageAdapter:
+        library: package:example/adapter.dart
+        function: createRoute
+  functions:
+    openPage:
+      route:
+        context: context
+        rootNavigator: root
+        builders: [builder]
+  exclude: [legacyHelper]
+''');
+
+    final classOverride = overrides.classes['SpecialPage']!;
+    expect(classOverride.fields, {'typeArguments', 'pageAdapter'});
+    expect(classOverride.selection.typeArguments, ['String']);
+    expect(classOverride.selection.constructors, isEmpty);
+    expect(classOverride.selection.pageAdapter?.function, 'createRoute');
+
+    final functionOverride = overrides.functions['openPage']!;
+    expect(functionOverride.fields, {'route'});
+    expect(functionOverride.selection.parameters, isEmpty);
+    expect(functionOverride.selection.route?.context, 'context');
+    expect(overrides.exclude, ['legacyHelper']);
   });
 }
 

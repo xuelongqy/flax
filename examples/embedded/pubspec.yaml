@@ -1,5 +1,5 @@
 name: flax_embedded
-description: A macOS host embedding independent Flax interfaces.
+description: Cross-module Flax composition fixture for macOS UI validation.
 version: 0.0.0
 publish_to: none
 resolution: workspace
@@ -10,8 +10,6 @@ environment:
 
 dependencies:
   flax: 0.0.0
-  flax_local_storage: 0.0.0
-  flax_canvas: 0.0.0
   flax_engine_hermes: 0.0.0
   flax_material_ui: 0.0.0
   flutter:
@@ -28,3 +26,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    - assets/flax_modules/

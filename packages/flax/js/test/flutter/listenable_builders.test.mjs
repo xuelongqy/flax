@@ -4,7 +4,7 @@ import {
   ListenableBuilder,
   ValueListenableBuilder,
   Text,
-} from '../../dist/flutter/index.js';
+} from '../../dist/flutter/widgets.js';
 import { signal } from '../../dist/runtime/index.js';
 
 test('Listenable builders preserve the supplied child and defer callbacks to Flutter', () => {

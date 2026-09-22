@@ -8,46 +8,53 @@ import 'package:test/test.dart';
 
 void main() {
   group('literal module tuple emission', () {
-    test('dart pins moduleId, uiProtocol, and requiredCapabilities literals', () {
-      final module = _richModule(
-        typeLibraries: {
-          'Widget': 'package:flutter/widgets.dart',
-          'Element': 'package:flutter/element.dart',
-        },
-        listenerPairs: {'watch': 'unwatch', 'addListener': 'removeListener'},
-      );
-      final dart = FlaxCodegenBindingEmitter([module]).dart(module);
-      expect(dart, contains('moduleId: "com.acme.widgets/widgets"'));
-      expect(dart, contains('uiProtocol: 20'));
-      expect(dart, contains('requiredCapabilities: const <String>[]'));
-      expect(dart, isNot(contains('version:')));
-      expect(dart, isNot(contains('flaxBindingVersion')));
-    });
+    test(
+      'dart pins moduleId, uiProtocol, and requiredCapabilities literals',
+      () {
+        final module = _richModule(
+          typeLibraries: {
+            'Widget': 'package:flutter/widgets.dart',
+            'Element': 'package:flutter/element.dart',
+          },
+          listenerPairs: {'watch': 'unwatch', 'addListener': 'removeListener'},
+        );
+        final dart = FlaxCodegenBindingEmitter([module]).dart(module);
+        expect(dart, contains('moduleId: "com.acme.widgets/widgets"'));
+        expect(dart, contains('uiProtocol: 20'));
+        expect(dart, contains('requiredCapabilities: const <String>[]'));
+        expect(dart, isNot(contains('version:')));
+        expect(dart, isNot(contains('flaxBindingVersion')));
+      },
+    );
 
-    test('typescript validates the tuple before defineObject and host calls', () {
-      final module = _richModule(
-        typeLibraries: {
-          'Widget': 'package:flutter/widgets.dart',
-          'Element': 'package:flutter/element.dart',
-        },
-        listenerPairs: {'watch': 'unwatch', 'addListener': 'removeListener'},
-      );
-      final typescript = FlaxCodegenBindingEmitter([module]).typescript(module);
-      final installAt = typescript.indexOf('_flaxInstallBindingModule(');
-      final defineAt = typescript.indexOf('defineObject(');
-      final enumAt = typescript.indexOf('enumValue<');
-      expect(installAt, greaterThan(0));
-      expect(defineAt, greaterThan(installAt));
-      expect(enumAt, greaterThan(installAt));
-      expect(
-        typescript,
-        contains(
-          '_flaxInstallBindingModule("com.acme.widgets/widgets", 20, Object.freeze([]) as readonly string[])',
-        ),
-      );
-      expect(typescript, contains('export const widgetsBindingModule'));
-      expect(typescript, isNot(contains('version: 20')));
-    });
+    test(
+      'typescript validates the tuple before defineObject and host calls',
+      () {
+        final module = _richModule(
+          typeLibraries: {
+            'Widget': 'package:flutter/widgets.dart',
+            'Element': 'package:flutter/element.dart',
+          },
+          listenerPairs: {'watch': 'unwatch', 'addListener': 'removeListener'},
+        );
+        final typescript = FlaxCodegenBindingEmitter([module])
+            .typescript(module);
+        final installAt = typescript.indexOf('_flaxInstallBindingModule(');
+        final defineAt = typescript.indexOf('defineObject(');
+        final enumAt = typescript.indexOf('enumValue<');
+        expect(installAt, greaterThan(0));
+        expect(defineAt, greaterThan(installAt));
+        expect(enumAt, greaterThan(installAt));
+        expect(
+          typescript,
+          contains(
+            '_flaxInstallBindingModule("com.acme.widgets/widgets", 20, Object.freeze([]) as readonly string[])',
+          ),
+        );
+        expect(typescript, contains('export const widgetsBindingModule'));
+        expect(typescript, isNot(contains('version: 20')));
+      },
+    );
 
     test('zero-member modules still emit and validate the literal tuple', () {
       const module = FlaxCodegenModuleModel(
@@ -102,6 +109,60 @@ void main() {
         ),
       );
     });
+
+    test(
+      'record bindings use top-level readers in the const binding table',
+      () {
+        const record = FlaxCodegenTypeRef(
+          'record',
+          recordFields: [
+            FlaxCodegenRecordFieldModel(
+              name: '\$1',
+              type: FlaxCodegenTypeRef('int'),
+              positional: true,
+            ),
+            FlaxCodegenRecordFieldModel(
+              name: 'label',
+              type: FlaxCodegenTypeRef('String'),
+              positional: false,
+            ),
+          ],
+        );
+        final module = FlaxCodegenModuleModel(
+          name: 'records',
+          library: 'package:example/records.dart',
+          jsPackage: '@example/records',
+          dartOutput: 'records.dart',
+          tsOutput: 'records.ts',
+          classes: const [],
+          types: const [],
+          functions: [
+            FlaxCodegenFunctionModel(
+              'example.records/records#function:echo',
+              FlaxCodegenMethodModel('echo', const [
+                FlaxCodegenParameterModel(
+                  name: 'value',
+                  type: record,
+                  required: true,
+                  positional: true,
+                  defaultCode: 'null',
+                ),
+              ], record),
+            ),
+          ],
+        );
+
+        final dart = FlaxCodegenBindingEmitter([module]).dart(module);
+        expect(dart, contains('_record0Read0),'));
+        expect(dart, contains('_record0Read1),'));
+        expect(dart, contains('Object? _record0Read0(Object value) =>'));
+        expect(dart, contains('Object? _record0Read1(Object value) =>'));
+        expect(
+          dart,
+          contains('Object _record0Create(List<Object?> values) =>'),
+        );
+      },
+    );
   });
 
   group('FlaxCodegenBindingEmitter determinism', () {

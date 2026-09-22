@@ -8,9 +8,9 @@ import {
   Listener,
   MouseRegion,
   Text,
-  ValueKey,
   runApp,
-} from '@flax/core/flutter';
+} from '@flax/flutter/widgets';
+import { ValueKey } from '@flax/flutter/foundation';
 
 const canvas = new OffscreenCanvas(40, 20);
 const context = canvas.getContext('2d')!;

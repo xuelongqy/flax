@@ -1,7 +1,7 @@
 import { objectHost } from './support/host.mjs';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { Navigator, RouteSettings, PopScope, Text } from '@flax/core/flutter';
+import { Navigator, RouteSettings, PopScope, Text } from '@flax/flutter/widgets';
 import { MaterialPageRoute } from '../dist/index.js';
 import { copyNavigationData, invokeInstance } from '@flax/core/bindings';
 

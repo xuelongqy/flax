@@ -1,6 +1,12 @@
 import { bind, signal } from '@flax/core';
-import { Builder, Column, Text, PageContent, registerPage } from '@flax/core/flutter';
-import { TextButton } from '@flax/material-ui';
+import {
+  Builder,
+  Column,
+  Text,
+  PageContent,
+  registerPage,
+} from '@flax/flutter/widgets';
+import { TextButton } from '@flax/flutter/material';
 
 const hooks = {
   starts: 1,

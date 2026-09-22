@@ -9,10 +9,10 @@ dependency tracking and rendering. There is no JS theme store or style mirror.
 The exact selections are in the [core rules](../../packages/flax/bindings/config.yaml)
 and [Material rules](../../packages/flax_material_ui/bindings/config.yaml).
 
-| Module   | Selected surface                                                                                                                                                                                                  |
-| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Core     | Color and FontWeight construction, readonly fields and static weights; TextStyle construction/copyWith; Text.style; FontStyle; WidgetState and WidgetStateProperty                                                |
-| Material | InputDecoration construction/copyWith; TextField.style/decoration; Theme and Theme.of; ThemeData and TextTheme construction/copyWith; ColorScheme.fromSeed/copyWith; ButtonStyle and TextButton.style; Brightness |
+| Module   | Selected surface                                                                                                                                                                                                                                                                      |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Core     | Color and FontWeight construction, readonly fields and static weights; TextStyle construction/copyWith; Text.style; FontStyle; WidgetState and WidgetStateProperty; selected ShapeBorder/OutlinedBorder values and mouse cursor constants                                             |
+| Material | InputDecoration construction/copyWith; TextField.style/decoration; Theme and Theme.of; ThemeData and TextTheme construction/copyWith; ColorScheme.fromSeed/copyWith; ButtonStyle and TextButton.style; Brightness; VisualDensity; Material.shape and InkWell.customBorder/mouseCursor |
 
 Full component themes, Material input borders, font loading, Cupertino Theme and
 AnimatedTheme bindings remain outside this subset. Material uses the standalone
@@ -58,9 +58,10 @@ application; session close only clears bridge resources.
 
 WidgetState uses canonical enum wrappers for every Flutter value. A generic
 WidgetStateProperty created with `resolveWith` remains deferred until it is supplied to
-a concrete Dart position such as ButtonStyle.backgroundColor or ButtonStyle.elevation.
-That first use constructs the real `WidgetStateProperty<Color?>` or
-`WidgetStateProperty<double?>`; subsequent uses of the same concrete type reuse it.
+a concrete Dart position such as ButtonStyle.backgroundColor, elevation, shape or
+mouseCursor. That first use constructs the real `WidgetStateProperty<Color?>`,
+`WidgetStateProperty<double?>`, `WidgetStateProperty<OutlinedBorder?>` or
+`WidgetStateProperty<MouseCursor?>`; subsequent uses of the same concrete type reuse it.
 Using one wrapper at two incompatible types fails before the target Widget is built.
 
 The resolver receives a `DartSet<WidgetState>` backed by Flutter's real state set, so
@@ -72,6 +73,45 @@ inferred.
 ButtonStyle fields and copyWith calls use the real Dart object. TextButton.style can be
 bound as a whole property; changing the binding replaces the style through the existing
 Widget update path. Flax does not mirror button states or compute Material colors in JS.
+
+The concrete use validates every resolver result. A `Border` cannot satisfy a button's
+`OutlinedBorder` result, and a shape cannot satisfy `MouseCursor`. Unmounting releases
+mount-owned callbacks; closing the session retires remaining callbacks without disposing
+application objects. A retained non-void resolver invoked after retirement throws
+`StateError('Retired JS callback')` without entering JavaScript.
+
+## Shapes, cursors and density
+
+Core owns non-constructible `ShapeBorder` and `OutlinedBorder` references; the latter
+exposes `side`. `RoundedRectangleBorder` selects side and borderRadius, `CircleBorder`
+selects side and eccentricity, and `StadiumBorder` selects side. Their constructors,
+getters and `copyWith` calls retain Dart defaults and subtype relationships. Existing
+`BoxBorder`, `Border` and `BorderDirectional` keep their identities and also satisfy
+`ShapeBorder`; they do not satisfy `OutlinedBorder`.
+
+Material.shape and InkWell.customBorder borrow `ShapeBorder` values. Material retains
+its native assertion that shape and borderRadius cannot both be supplied. Painting,
+clipping and shape interpolation stay in Dart. ButtonStyle.shape instead requires a
+`WidgetStateProperty<OutlinedBorder?>?`.
+
+Core exposes MouseCursor.defer/uncontrolled and
+SystemMouseCursors.basic/click/text/forbidden as real cursor references. Neither cursor
+type exposes an instance constructor or cursor-session creation. InkWell.mouseCursor
+accepts the cursor directly; ButtonStyle.mouseCursor uses
+`WidgetStateProperty<MouseCursor?>?` so Flutter can resolve current button states.
+
+Material owns `VisualDensity` from `package:material_ui/material_ui.dart`. Construction,
+getters and `copyWith` select horizontal/vertical, alongside
+standard/comfortable/compact constants. ButtonStyle construction, getters and `copyWith`
+select visualDensity as well as shape and mouseCursor. Replace the bound style to update
+these values; native Material layout and density constraints continue to apply.
+
+The
+[shared-object UI tests](../../packages/flax_material_ui/test/ui/shared_objects_test.dart)
+compare shape clipping and density updates with native Dart controls, exercise actual
+mouse cursors and button states, and verify invalid-result and cleanup boundaries. The
+[strict TS cases](../../packages/flax_material_ui/js/test/shared_objects.types.ts) cover
+the corresponding positive and negative public-type relationships.
 
 ## Host and local themes
 
@@ -122,8 +162,7 @@ Element/key matching retains editing state; ordinary signal writes update the
 corresponding bound Flax hosts. Flutter's own editing and painting rebuilds are distinct
 from Flax scheduling.
 
-See the [JS example](../../examples/embedded/js/src/styles.ts) and
-[Dart host](../../examples/embedded/lib/styles.dart). Dart controls brightness and seed
-color; JS demonstrates derived typography, local Theme, input decoration, focus,
-formatting and navigation. Routes continue to use their actual Flutter ancestors; Flax
-does not copy a source page's local theme into a new Route.
+See the [style owner tests](../../packages/flax_material_ui/test/ui/styles_test.dart).
+They exercise derived typography, local Theme, input decoration, focus, formatting, and
+updates within the Material UI owner. Routes continue to use their actual Flutter
+ancestors; Flax does not copy a source page's local theme into a new Route.

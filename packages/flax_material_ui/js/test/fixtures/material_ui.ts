@@ -5,12 +5,12 @@ import {
   Column,
   SizedBox,
   Row,
-  ValueKey,
   MainAxisSize,
   Padding,
   EdgeInsets,
-} from '@flax/core/flutter';
-import { TextButton } from '@flax/material-ui';
+} from '@flax/flutter/widgets';
+import { ValueKey } from '@flax/flutter/foundation';
+import { TextButton } from '@flax/flutter/material';
 
 const count = signal(0);
 const visible = signal(true);

@@ -1,5 +1,5 @@
 {
-  "formatVersion": 2,
+  "formatVersion": 11,
   "package": "flax_canvas",
   "bindingNamespace": "flax.canvas",
   "imports": [
@@ -17,9 +17,9 @@
         "typeLibraries": {
           "FlaxCanvasSurface": "package:flax_canvas/flax_canvas.dart",
           "FlaxCanvasView": "package:flax_canvas/flax_canvas.dart",
-          "Key": "package:flax_canvas/flax_canvas.dart",
+          "Key": "package:flutter/widgets.dart",
           "Listenable": "package:flutter/widgets.dart",
-          "Widget": "package:flax_canvas/flax_canvas.dart"
+          "Widget": "package:flutter/widgets.dart"
         },
         "classes": [
           {
@@ -499,6 +499,44 @@
                 },
                 "tsArguments": [],
                 "slot": null
+              },
+              {
+                "originatingUri": "package:flax_canvas/src/surface.dart",
+                "originatingName": "FlaxCanvasSurface",
+                "kind": "typeOnly",
+                "id": null,
+                "name": "FlaxCanvasSurface",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              {
+                "originatingUri": "package:flutter/src/foundation/change_notifier.dart",
+                "originatingName": "ChangeNotifier",
+                "kind": "typeOnly",
+                "id": null,
+                "name": "ChangeNotifier",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
               }
             ],
             "proxy": null,
@@ -731,6 +769,7 @@
         ],
         "functions": [],
         "snapshots": [],
+        "typedefs": [],
         "identities": [
           {
             "sourceIdentity": {

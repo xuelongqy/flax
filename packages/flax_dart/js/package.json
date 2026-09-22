@@ -1,0 +1,31 @@
+{
+  "name": "@flax/dart",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Declaration-only public Dart SDK library surface for Flax.",
+  "exports": {
+    "./async": {
+      "types": "./types/generated/libraries/async/index.d.ts"
+    },
+    "./async/*": {
+      "types": "./types/generated/libraries/async/*.d.ts"
+    },
+    "./core": {
+      "types": "./types/generated/libraries/core/index.d.ts"
+    },
+    "./core/*": {
+      "types": "./types/generated/libraries/core/*.d.ts"
+    }
+  },
+  "files": [
+    "types"
+  ],
+  "scripts": {
+    "build": "tsc --project tsconfig.json --noEmit",
+    "typecheck": "tsc --project tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@flax/core": "workspace:*"
+  }
+}

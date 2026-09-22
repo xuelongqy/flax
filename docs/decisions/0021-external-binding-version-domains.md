@@ -4,25 +4,23 @@ Status: accepted
 
 Date: 2026-09-12
 
+Amended by [ADR 0024](0024-basic-typedef-bindings.md) for basic aliases and
+[ADR 0025](0025-generic-typedef-bindings.md) for generic aliases, and
+[ADR 0026](0026-top-level-readonly-bindings.md) for readonly declarations, and
+[ADR 0027](0027-public-library-module-delivery.md) for public-library routing and module
+delivery, and [ADR 0028](0028-record-bindings.md) for structural Record TypeRefs. This
+record presents the resulting current version contract; legacy schemas keep their
+original restrictions.
+
 ## Context
 
-External Binding Kit v1 needs a frozen compatibility contract before Codegen, manifests,
-or registration change. [ADR 0017](0017-package-boundaries.md) already separates capability
-packages, declaration manifests, UI protocol, and native ABI.
-[ADR 0018](0018-binding-coverage-strategy.md) keeps in-envelope selection inside the current
-protocol. [ADR 0020](0020-ui-protocol-20.md) freezes the active UI protocol at 20 with
-native ABI 2 unchanged.
-
-[Package boundaries](../architecture/packaging.md) describe `flax_package.yaml` format 1
-and binding manifest format 1. Those integers are easy to collapse into one Flax version,
-and they do not yet pin generated modules to the protocol and capabilities they were
-generated for.
-
-Stable source and wire identities are
-[ADR 0022](0022-stable-binding-identity.md). Trusted third-party package boundaries are
-[ADR 0023](0023-external-binding-package-trust.md). This record separates version
-domains, Manifest 2 as the lossless downstream projection, generated tuple pinning,
-atomic registration, and the strict M2/M3 switch.
+Binding configuration, package metadata, dependency manifests, runtime protocol and the
+native calling convention evolve independently. One global version or an ambient Core
+fallback would silently change the meaning of already-generated packages. The manifest
+must preserve dependency semantics without reading another package's selection YAML or
+private sources. Stable identities are defined in
+[ADR 0022](0022-stable-binding-identity.md), and package trust in
+[ADR 0023](0023-external-binding-package-trust.md).
 
 ## Decision
 
@@ -30,7 +28,7 @@ External bindings freeze these independent domains:
 
 - binding YAML configuration format **1**
 - `flax_package.yaml` metadata format **1**
-- binding manifest format **2**
+- binding Manifest writer **11**, with strict readers **2/3/4/5/6/7/8/9/10/11**
 - UI protocol **20**, exactly the [ADR 0020](0020-ui-protocol-20.md) baseline
 - native ABI **2**
 - Codegen SemVer
@@ -53,61 +51,65 @@ schemas and bump independently.
 ### Package metadata format 1
 
 `flax_package.yaml` remains tool metadata as in
-[packaging](../architecture/packaging.md): it never imports code, instantiates plugins, or
-participates in session startup.
+[packaging](../architecture/packaging.md): it never imports code, instantiates plugins,
+or participates in session startup.
 
-Before the first external release only, format 1 may add a final top-level
-`bindingNamespace` field and then freeze. That addition does not bump the metadata format.
-After freeze, the same bump rules as binding YAML apply. Schema ownership, the Codegen
-projection, and the `bindings` ↔ `bindingNamespace` rule are
-[ADR 0023](0023-external-binding-package-trust.md).
+Format 1 includes the top-level `bindingNamespace` field. Schema ownership, the Codegen
+projection and the `bindings` ↔ `bindingNamespace` rule are defined in
+[ADR 0023](0023-external-binding-package-trust.md). Its schema is independent of binding
+selection YAML; future incompatible changes require their own format bump.
 
-### Binding manifest format 2
+### Binding manifests
 
-Manifest format 2 is the lossless Codegen cross-package semantic model. A dependent
-generator reconstructs required semantics from the imported manifest without reading another
-package's YAML or private source.
+The manifest is the lossless Codegen cross-package semantic model. A dependent generator
+reconstructs required semantics from it and public APIs. Bump the manifest format when
+an older reader cannot safely reconstruct those semantics, independently of UI protocol
+and native ABI.
 
-Bump the manifest format when an older reader cannot reconstruct or safely interpret
-required semantics. That bump is independent of UI protocol and native ABI.
-
-There is no public long-term Manifest format 1 compatibility. Manifest format 1
-was removed in the M3 direct cutover; M2.6 (private migration adapter) was
-cancelled. Strict Manifest 2 readers are the only supported path.
+The current writer emits format 10 and reads strict formats 2 through 10. Validate
+before normalization: format 2 rejects aliases, format 3 supports basic aliases but
+rejects alias-owned parameters and generic alias targets. Format 4 requires
+`typeParameters` on each alias even when empty. Formats 2/3/4 reject readonly top-level
+declarations and read identities; format 5 adds the historical readonly namespace
+semantics. Format 6 adds public-library routing and current named/literal top-level
+exports. Format 7 adds structural Record fields to TypeRefs. Formats 2 through 6 reject
+Record-only fields before normalization. Format 1 and unknown versions fail closed. The
+exact codec and migration regressions are maintained in
+[manifest tests](../../packages/flax_codegen/test/manifest_v5_test.dart).
 
 #### Exact top-level fields
 
-Manifest 2 JSON has exactly these top-level fields:
+Current Manifest JSON has exactly these top-level fields:
 
-| Field | Meaning |
-| --- | --- |
-| `formatVersion` | integer `2` |
-| `package` | owning Dart package identity: the pubspec package name used by `package_config` |
+| Field              | Meaning                                                                         |
+| ------------------ | ------------------------------------------------------------------------------- |
+| `formatVersion`    | integer `7`                                                                     |
+| `package`          | owning Dart package identity: the pubspec package name used by `package_config` |
 | `bindingNamespace` | the package `bindingNamespace` from [ADR 0022](0022-stable-binding-identity.md) |
-| `imports` | dependency metadata: unique imported Dart package names, sorted |
-| `modules` | array of registration units |
+| `imports`          | dependency metadata: unique imported Dart package names, sorted                 |
+| `modules`          | array of registration units                                                     |
 
 `uiProtocol` is not a package-level field. Each `modules[]` entry carries its own tuple.
 
 Each `modules[]` entry is one registration unit and has exactly these fields:
 
-| Field | Meaning |
-| --- | --- |
-| `name` | `config.name`; identity-bearing cross-package metadata |
-| `moduleId` | `bindingNamespace + "/" + name` |
-| `uiProtocol` | integer `20` for v1 |
+| Field                  | Meaning                                                                    |
+| ---------------------- | -------------------------------------------------------------------------- |
+| `name`                 | `config.name`; identity-bearing cross-package metadata                     |
+| `moduleId`             | `bindingNamespace + "/" + name`                                            |
+| `uiProtocol`           | integer `20` for v1                                                        |
 | `requiredCapabilities` | sorted unique derived capability identifiers; never omitted (`[]` if none) |
-| `model` | the downstream projection defined below |
+| `model`                | the downstream projection defined below                                    |
 
-No other module-level fields exist in Manifest 2. All nested downstream fields live
-under `model`.
+No other module-level fields exist in the current format. All nested downstream fields
+live under `model`.
 
 `config.name` remains identity-bearing even though `moduleId` includes it.
 
 Exclude only:
 
-- selection provenance (YAML search paths, `additionalLibraries`, explicit member
-  name lists, raw `Function` override tables, and other owner-local selection input);
+- selection provenance (YAML search paths, `additionalLibraries`, explicit member name
+  lists, raw `Function` override tables, and other owner-local selection input);
 - owner-local output paths (`dartOutput`, `tsOutput`, and any other write destinations).
 
 `library`, `jsPackage`, and `typeLibraries` live under `model` when Dart or TypeScript
@@ -115,12 +117,12 @@ emission consumes them. They are not output paths.
 
 #### Downstream semantic projection
 
-The downstream semantic projection is every field under `model` consumed by
-dependency parsing, Dart/TypeScript emission, identity resolution, or
-required-capability derivation. That projection, not owner-local output paths or
-selection provenance, is the compatibility obligation.
+The downstream semantic projection is every field under `model` consumed by dependency
+parsing, Dart/TypeScript emission, identity resolution, or required-capability
+derivation. That projection, not owner-local output paths or selection provenance, is
+the compatibility obligation.
 
-Manifest 2 must losslessly carry every such semantic, recursively, including:
+The manifest must losslessly carry every such semantic, recursively, including:
 
 - resolved types;
 - concrete, Dart, and TypeScript arguments and declarations;
@@ -130,39 +132,43 @@ Manifest 2 must losslessly carry every such semantic, recursively, including:
   `encodeKind`, scoped, and independent-result semantics;
 - generic bounds, defaults, and arguments;
 - constructors, methods, getters, setters, and static members;
-- ownership, dispose, listener, proxy, widget, context, state, route, page, and
-  snapshot semantics;
+- ownership, dispose, listener, proxy, widget, context, state, route, page, and snapshot
+  semantics;
 - `Future`, `FutureOr`, and `Stream`;
 - `asyncIterableFactory`;
 - supertypes and inheritance;
 - public JS aliases (`jsName`);
-- functions;
+- functions and type-only aliases, including alias-owned and function-local generic
+  scopes;
+- optional top-level declarations, declaration kinds, result signatures, public export
+  names/literal values and provider references;
+- public library routing and reexport metadata;
 - dependency identities.
 
 Every owned declaration, including nominal leaves discovered through signatures, carries
 Codegen-only `sourceIdentity` and stable `wireId`, forming an explicit
 `sourceIdentity -> owner wireId` map. Codegen-only means `sourceIdentity` never appears
-in runtime calls, not that it is absent from Manifest 2.
+in runtime calls, not that it is absent from the manifest.
 
 Downstream readers decode `model` directly. They never reconstruct YAML and never
 re-infer analyzer or raw `Function` overrides.
 
 A host-only module with zero binding entries still appears in `modules[]` and still
-carries its literal `name`, `moduleId`, `uiProtocol`, `requiredCapabilities`, and `model`.
-`model` is present and may contain no owned declarations. Generation and registration still
-emit and register that zero-entry descriptor.
+carries its literal `name`, `moduleId`, `uiProtocol`, `requiredCapabilities`, and
+`model`. `model` is present and may contain no owned declarations. Generation and
+registration still emit and register that zero-entry descriptor.
 
-Object maps in Manifest 2 that represent unordered relations use sorted keys. Codec
+Object maps in the manifest that represent unordered relations use sorted keys. Codec
 output does not depend on YAML insertion order or process map order.
 
 #### Projection acceptance
 
 Acceptance includes:
 
-- an independently constructed maximal-model parsed-model → Manifest 2 →
-  loaded-projection deep equality test;
+- an independently constructed maximal-model parsed-model → manifest → loaded-projection
+  deep equality test;
 - byte-identical Dart and TypeScript output for a direct dependency model versus the
-  same model imported through Manifest 2, including A → B → C transitivity.
+  same model imported through the manifest, including A → B → C transitivity.
 
 Independent construction means the expected projection is built from the required
 semantics, not from a single serializer that could drop the same field on both sides.
@@ -172,14 +178,14 @@ semantics, not from a single serializer that could drop the same field on both s
 Protocol 20 is exactly the [ADR 0020](0020-ui-protocol-20.md) baseline. This record does
 not expand or contract it.
 
-Bump the protocol only when an older Runtime cannot safely interpret new or changed wire,
-conversion, ownership, disposal, listener, callback, proxy, route/page, or async
+Bump the protocol only when an older Runtime cannot safely interpret new or changed
+wire, conversion, ownership, disposal, listener, callback, proxy, route/page, or async
 lifecycle semantics.
 
 ### Required capabilities
 
-`requiredCapabilities` is derived by Codegen per module from that module's `model`.
-The list is sorted and unique. Authors never write it. It is never a package union of
+`requiredCapabilities` is derived by Codegen per module from that module's `model`. The
+list is sorted and unique. Authors never write it. It is never a package union of
 sibling modules.
 
 Existing protocol-20 abilities are the baseline, so initial lists are empty. Future
@@ -197,7 +203,7 @@ subset of that internal set.
 
 ### Generated Dart and TypeScript/JavaScript tuple pinning
 
-Every Manifest 2 `modules[]` entry and every generated Dart and TypeScript/JavaScript
+Every manifest `modules[]` entry and every generated Dart and TypeScript/JavaScript
 module carries its own literal `moduleId`, `uiProtocol`, and sorted unique
 `requiredCapabilities`. Capabilities stay per module.
 
@@ -210,8 +216,9 @@ or host call. Successful validation returns or selects a module-scoped facade/to
 bound to that literal tuple. Every generated host call uses that facade/token.
 
 No ambient Core `bindingVersion` or capability default may silently upgrade old output.
-Core may keep a current protocol constant for Core-owned code. Generated modules pass their
-own literals into validation; they do not read Core's current constant as a fallback.
+Core may keep a current protocol constant for Core-owned code. Generated modules pass
+their own literals into validation; they do not read Core's current constant as a
+fallback.
 
 Dart registration follows the same literal tuple. Generated Dart does not default
 `uiProtocol` from the installed Core.
@@ -245,33 +252,25 @@ Normal binding packages declare no native ABI.
 
 ### Codegen and capability package SemVer
 
-Codegen SemVer and each capability package SemVer are independent of the format, protocol,
-and ABI integers.
+Codegen SemVer and each capability package SemVer are independent of the format,
+protocol, and ABI integers.
 
 The Dart and npm halves of one capability remain an exact version pair when metadata
 declares `javascript.version: same`, as in [ADR 0017](0017-package-boundaries.md).
 Separate capability packages are not lockstep.
 
-In-envelope additions affect only the owning package. An incompatible generated public API
-or a stable identity change is a package major version. Internal Codegen changes that
-keep generated behavior and bytes identical do not require regeneration.
+In-envelope additions affect only the owning package. An incompatible generated public
+API or a stable identity change is a package major version. Internal Codegen changes
+that keep generated behavior and bytes identical do not require regeneration.
 
-Names, license, signing, publication, and support lifetime remain deferred to M5.
+Names, license, signing, publication and support lifetime remain open product decisions.
 
-### Strict M2/M3 activation
+### Strict input and migration
 
-The repository switch is explicit. There is no silent fallback to format-1 manifests,
-unpinned Core defaults, or legacy YAML readers.
-
-- **M2** builds and tests strict v1 YAML readers, the package-metadata projection
-  reader, and the Manifest 2 codec behind an explicit private repository migration
-  path/flag. That path exists only to feed current legacy inputs into the new readers. It
-  is not a public API and not a long-term compatibility mode.
-- **M3** atomically adds YAML `format: 1`, package `bindingNamespace`, explicit nominal
-  owners, Manifest 2, generated literal tuples/facades, and strict registration, then
-  deletes the migration path and makes the strict readers the only default.
-
-After M3, Manifest format 1 is rejected. Strict readers are the only default.
+There is no silent fallback to format-1 manifests, unpinned Core defaults or loose YAML
+readers. Migration regenerates both language outputs and their manifest from the owning
+package's valid selections. Supported legacy dependency reading does not weaken strict
+validation or imply support for an older UI protocol.
 
 ## Alternatives
 
@@ -283,23 +282,24 @@ different schedules.
 wire and lifecycle contract. In-envelope selection, diagnostics, and byte-identical
 refactors must not force every consumer to regenerate or reject modules.
 
-**Capability negotiation or package-union capability lists.** Rejected. Registration
-is a fail-closed exact-protocol and required-subset check. Versions, ranges, optional or
+**Capability negotiation or package-union capability lists.** Rejected. Registration is
+a fail-closed exact-protocol and required-subset check. Versions, ranges, optional or
 provided sets, solving, security permissions, and unioning sibling modules are out of
 scope.
 
 **Ambient Core `bindingVersion` / capability defaults.** Rejected. Old generated output
 must not silently adopt a newer Core protocol or capability set.
 
-**Publish definitions, then validate.** Rejected. Failed Dart or JavaScript
-installation must not mutate the previous registry or definition maps.
+**Publish definitions, then validate.** Rejected. Failed Dart or JavaScript installation
+must not mutate the previous registry or definition maps.
 
 **Couple native ABI to the UI protocol or manifests.** Rejected. ABI 2 is the C
 `FlaxApi` table. Binding packages normally do not declare it. Manifest schema is a
 Codegen semantic model, not a native calling convention.
 
-**Public long-term Manifest format 1 compatibility.** Rejected. Format 1 is repository
-legacy input only. M3 deletes the migration path.
+**Public long-term Manifest format 1 compatibility.** Rejected. Format 1 is unsupported
+legacy input. Regenerate from owner selections; do not introduce a hidden migration
+fallback.
 
 **A shared metadata package or runtime owner registry.** Rejected. See
 [ADR 0023](0023-external-binding-package-trust.md) and
@@ -307,9 +307,10 @@ legacy input only. M3 deletes the migration path.
 
 ## Consequences
 
-This record is the M1 compatibility contract. It does not implement YAML validation,
-manifest format 2, generated pinning, registration checks, or the repository migration.
-Those remain later milestone work.
+These independent domains allow generator and package evolution without unnecessary
+protocol or ABI changes. Strict rejection prevents an old module from silently adopting
+new runtime semantics. Implementation and acceptance scope are recorded in
+[External Binding Compatibility](../architecture/external-binding-compatibility.md).
 
 Sibling decisions still own stable identities
 ([ADR 0022](0022-stable-binding-identity.md)) and trusted package boundaries

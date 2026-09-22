@@ -1,28 +1,17 @@
-# Embedded Flutter Host
+# Embedded Aggregate Host
 
-`lib/main.dart` loads the JS asset and creates two independent FlaxViews under a native
-Material shell. Only the macOS platform project is enabled, targeting macOS 15+ arm64.
-See [setup and validation](../README.md).
+This application is the minimal cross-module aggregate fixture. It loads the prepared
+module inventory, mounts one `FlaxView`, and verifies that core plus selected plugins
+can share a session without duplicate module initialization.
 
-`integration_test/app_test.dart` drives the real example on macOS;
-`test_driver/integration_test.dart` collects its results. Test hooks stay in fixtures.
+Package-specific Widget behavior belongs in `packages/<owner>/test/ui` and each package
+example. This app intentionally does not duplicate layout, text editing, navigation,
+storage, Canvas, or other owner scenarios.
 
-The application owns the shared navigation session above its Navigator. MiniAppPage owns
-a session for its JS-created nested Navigator. Host Material is explicitly above the
-Navigator so minimal JS pages inherit it. The integration scenario covers both flows in
-addition to the existing reactive regions.
+`test/aggregate_test.dart` verifies plugin-driven module selection and session
+recreation. `integration_test/app_test.dart` drives the same aggregate on macOS and
+writes the `embedded-module-aggregate` receipt consumed by the test driver.
 
-`lib/pages.dart` owns the named-entry session, URL parser, and native Router delegate.
-Package-local framework tests cover factory/parameter identity, Page callbacks and
-resource replacement. This aggregate app keeps Router and mixed-package behavior tests,
-and the macOS integration scenario exercises the same page bundle and host Router.
-
-The Text input entry opens the named [textEditing page](js/src/text_editing.ts). It
-shows single and multiline Material fields, editing snapshots, complete value
-replacement, clear, controller replacement and reentry. The macOS test injects
-composition through Flutter's input channel; system IME behavior is not certified by
-that test.
-
-The Flutter State demo keeps a named component session while the host changes Theme.
-Framework component tests use independent fixtures; example tests cover its input,
-configuration updates and navigation.
+Use `dart run melos run check:aggregate` after preparing Hermes assets, or
+`check:aggregate:v8` after preparing V8 assets. Full `check:ui` runs all UI-owning
+package integrations first and this aggregate last.

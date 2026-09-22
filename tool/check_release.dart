@@ -49,15 +49,13 @@ void _assertUnpublished(String root) {
         'decision (found: $publishTo)',
       );
     }
-    if (package.metadata.javascript == null) continue;
-    final file = File(p.join(package.js.path, 'package.json'));
-    if (!file.existsSync()) {
-      throw StateError('${package.name} declares npm metadata without js/');
-    }
+  }
+  for (final package in discoverNpmPackages(root)) {
+    final file = File(p.join(package.directory.path, 'package.json'));
     final data = jsonDecode(file.readAsStringSync()) as Map<String, dynamic>;
     if (data['private'] != true) {
       throw StateError(
-        '${package.name} npm package must keep private: true before a real '
+        '${package.name} must keep private: true before a real '
         'release decision',
       );
     }

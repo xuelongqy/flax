@@ -71,7 +71,7 @@ void main() {
   );
 
   testWidgets(
-    'builder replacement, failures and keyed children retain valid state',
+    'builder replacement isolates failures and keyed children recover',
     (t) async {
       final h = Harness();
       await t.pumpWidget(app(h));
@@ -83,25 +83,30 @@ void main() {
         'hooks.callback.value = c => { throw Error("replacement failed"); }',
       );
       await t.pump();
-      expect(find.text('LTR'), findsOneWidget);
-      expect(t.state(host(1)), same(state));
+      expect(find.text('LTR'), findsNothing);
+      expect(find.byType(ErrorWidget), findsOneWidget);
       expect(h.errors, hasLength(1));
       h.execute('hooks.callback.value = hooks.builder');
       await t.pump();
+      expect(find.text('LTR'), findsOneWidget);
+      expect(find.byType(ErrorWidget), findsNothing);
+      expect(t.state(host(1)), isNot(same(state)));
       expect(h.number('Number(hooks.context === hooks.latest)'), 1);
       for (final mode in ['throw', 'promise', 'duplicate']) {
         h.execute(
           'hooks.mode.value = "$mode"; hooks.callback.value = c => hooks.builder(c)',
         );
         await t.pump();
-        expect(find.text('LTR'), findsOneWidget);
-        expect(t.state(host(1)), same(state));
+        expect(find.text('LTR'), findsNothing);
+        expect(find.byType(ErrorWidget), findsOneWidget);
       }
       expect(h.errors, hasLength(4));
       h.execute(
         'hooks.mode.value = "valid"; hooks.callback.value = hooks.builder',
       );
       await t.pump();
+      expect(find.text('LTR'), findsOneWidget);
+      expect(find.byType(ErrorWidget), findsNothing);
       expect(h.number('hooks.active'), 1);
       h.execute('hooks.visible.value = false');
       await t.pump();
@@ -163,11 +168,13 @@ void main() {
       await t.pumpWidget(app(h));
       h.execute('hooks.mode.value = "layout-throw"');
       await t.pumpWidget(app(h, width: 300));
-      expect(find.text('Width 400'), findsOneWidget);
+      expect(find.text('Width 400'), findsNothing);
+      expect(find.byType(ErrorWidget), findsOneWidget);
       expect(h.errors, hasLength(1));
       h.execute('hooks.mode.value = "write-during-layout"');
       await t.pumpWidget(app(h, width: 320));
       expect(find.text('Width 320'), findsOneWidget);
+      expect(find.byType(ErrorWidget), findsNothing);
       expect(find.text('Count 0'), findsOneWidget);
       h.execute('hooks.mode.value = "valid"');
       await t.pump();

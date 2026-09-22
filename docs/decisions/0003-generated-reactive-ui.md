@@ -1,31 +1,31 @@
 # 0003: Generated Bindings and Reactive Flutter Subtrees
 
-Status: accepted for the experimental macOS arm64 UI milestone.
+Status: accepted; extended by later UI and binding decisions.
 
-Extended by [ADR 0004](0004-contextual-builders.md), which adds contextual builders and
-replaces experimental binding protocol 1 with protocol 2.
+Extended by [ADR 0004](0004-contextual-builders.md), which adds contextual builders. The
+[UI contract](../architecture/ui.md) defines the current protocol and scope.
 
 ## Decision
 
 Generate selected public constructors, types, and defaults from analyzer into both Dart
 and TS packages. Keep selection rules separate from the parser/model and emitters. Use
 declaration origins for identity, including standalone Material re-exports. The public
-extension entry and JS/Dart binding protocol are experimental version 1.
+extension entry and JS/Dart binding protocol are explicitly versioned.
 
-Wrap unmodified signals-core 1.14.4 with explicit property bindings. Descriptors are
-immutable, subscriptions belong to mounted properties, and updates are coalesced before
-Flutter build. Generate a distinct host class per Widget type and delegate keyed and
-positional reconciliation to Flutter. Keep unchanged child Widgets during property-only
-updates. Keep real Theme, Directionality, and layout in Flutter.
+Wrap signals-core with explicit property bindings. Descriptors are immutable,
+subscriptions belong to mounted properties, and updates are coalesced before Flutter
+build. Generate a distinct host class per Widget type and delegate keyed and positional
+reconciliation to Flutter. Keep unchanged child Widgets during property-only updates.
+Keep real Theme, Directionality, and layout in Flutter.
 
 Each FlaxView owns its runtime and an internal session root. Parent rebuilds preserve
 that session; source/factory/registry changes replace the subtree. Reference leases keep
 the engine accessible while retiring descendants. Recoverable update errors retain last
 valid content; initial errors dispose and display a Flutter error placeholder.
 
-Use esbuild 0.28.2 to produce ES2019 IIFEs during development. The embedded example has
-two isolated regions. It reuses the existing C ABI/JSI/Hermes runtime without extending
-its native protocol or automatically draining microtasks.
+Use esbuild to produce ES2019 IIFEs during development. Embedded content reuses the C
+ABI/JSI runtime without extending its native protocol or automatically draining
+microtasks.
 
 ## Rationale and consequences
 

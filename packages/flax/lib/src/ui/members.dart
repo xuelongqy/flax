@@ -294,6 +294,7 @@ extension _MemberCalls on _Session {
     if (type.kind == 'stream') {
       return streamResult(value!, type);
     }
+    if (type.kind == 'record') return recordResult(value!, type);
     if (type.kind == 'data') {
       if (value == null && !type.nullable) {
         throw ArgumentError('Unexpected null for data');
@@ -307,6 +308,29 @@ extension _MemberCalls on _Session {
     if (type.kind == 'state') return stateResult(value as State, type);
     if (type.kind == 'object') return objectResult(value!, type);
     return scalarResult(value, type);
+  }
+
+  FlaxJsObject recordResult(Object value, FlaxTypeRef type) {
+    final binding = type.record;
+    if (binding == null) throw ArgumentError('Missing Record binding');
+    final output = helper('emptyRecord').call(const []) as FlaxJsObject;
+    try {
+      for (final field in binding.fields) {
+        FlaxJsValue? encoded;
+        try {
+          encoded = memberResult(field.read(value), field.type);
+          output.setProperty(field.name, encoded);
+        } catch (error) {
+          throw ArgumentError('Record field ${field.name}: $error');
+        } finally {
+          if (encoded != null) _releaseJs(encoded);
+        }
+      }
+      return output;
+    } catch (_) {
+      output.release();
+      rethrow;
+    }
   }
 
   void registerStateMembers() {
@@ -458,6 +482,7 @@ extension _MemberCalls on _Session {
           'future',
           'futureOr',
           'stream',
+          'record',
           'widget',
           'error',
         }.contains(type.kind) &&

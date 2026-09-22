@@ -17,9 +17,13 @@ class FlaxCodegenBindingConfig {
     this.classes, {
     this.additionalLibraries = const [],
     this.functions = const {},
+    this.extensions = const {},
     this.callbackSnapshots = const {},
     this.imports = const [],
     this.types = const [],
+    this.typedefs = const [],
+    this.topLevel,
+    this.publicLibraries = const {},
   });
   final String name;
   final String library;
@@ -29,9 +33,13 @@ class FlaxCodegenBindingConfig {
   final Map<String, FlaxCodegenClassSelection> classes;
   final List<String> additionalLibraries;
   final Map<String, FlaxCodegenFunctionSelection> functions;
+  final Map<String, FlaxCodegenExtensionSelection> extensions;
   final Map<String, FlaxCodegenCallbackSnapshotSelection> callbackSnapshots;
   final List<String> imports;
   final List<String> types;
+  final List<String> typedefs;
+  final FlaxCodegenTopLevelSelection? topLevel;
+  final Map<String, FlaxCodegenLibrarySelection> publicLibraries;
 
   factory FlaxCodegenBindingConfig.read(String filename) =>
       FlaxCodegenBindingConfig.readStrict(filename);
@@ -165,6 +173,12 @@ class FlaxCodegenBindingConfig {
           ),
         );
       }),
+      extensions: (data['extensions'] as Map<String, dynamic>? ?? {}).map(
+        (name, value) => MapEntry(
+          name,
+          FlaxCodegenExtensionSelection.fromMap(value as Map<String, dynamic>),
+        ),
+      ),
       additionalLibraries: (data['additionalLibraries'] as List<dynamic>? ?? [])
           .cast<String>(),
       functions: (data['functions'] as Map<String, dynamic>? ?? {}).map(
@@ -183,6 +197,28 @@ class FlaxCodegenBindingConfig {
             ),
           ),
       imports: (data['imports'] as List<dynamic>? ?? []).cast<String>(),
+      types: (data['types'] as List<dynamic>? ?? []).cast<String>(),
+      typedefs: (data['typedefs'] as List<dynamic>? ?? []).cast<String>(),
+      topLevel: data['topLevel'] == null
+          ? null
+          : FlaxCodegenTopLevelSelection(
+              data['topLevel']['jsName'] as String?,
+              (data['topLevel']['getters'] as List<dynamic>? ?? const [])
+                  .cast<String>(),
+              setters:
+                  (data['topLevel']['setters'] as List<dynamic>? ?? const [])
+                      .cast<String>(),
+            ),
+      publicLibraries: (data['publicLibraries'] as Map<String, dynamic>? ?? {})
+          .map(
+            (uri, value) => MapEntry(
+              uri,
+              FlaxCodegenLibrarySelection(
+                jsPackage: value['jsPackage'] as String,
+                tsOutput: value['tsOutput'] as String,
+              ),
+            ),
+          ),
     );
   }
 
@@ -211,6 +247,86 @@ class FlaxCodegenBindingConfig {
       ]);
     }
   }
+}
+
+/// Optional exceptions applied on top of automatic `--library` inference.
+///
+/// This file intentionally carries no package, library, or output routing.
+/// Those come from the CLI target and `flax_package.yaml`.
+final class FlaxCodegenAutoOverrides {
+  const FlaxCodegenAutoOverrides({
+    this.classes = const {},
+    this.functions = const {},
+    this.exclude = const [],
+  });
+
+  final Map<String, FlaxCodegenClassOverride> classes;
+  final Map<String, FlaxCodegenFunctionOverride> functions;
+  final List<String> exclude;
+
+  factory FlaxCodegenAutoOverrides.parseStrict(
+    String contents, {
+    String source = 'overrides.yaml',
+  }) => _parseAutoOverridesStrict(contents, source);
+
+  factory FlaxCodegenAutoOverrides.readStrict(String filename) {
+    try {
+      return FlaxCodegenAutoOverrides.parseStrict(
+        File(filename).readAsStringSync(),
+        source: filename,
+      );
+    } on FileSystemException {
+      throw FlaxCodegenException([
+        FlaxCodegenDiagnostic(
+          code: FlaxCodegenDiagnosticCode.path,
+          source: filename,
+          offset: 0,
+          line: 1,
+          column: 1,
+          pointer: '',
+          message: 'Cannot read file.',
+        ),
+      ]);
+    }
+  }
+}
+
+/// A partial class selection. Only [fields] replace inferred values.
+final class FlaxCodegenClassOverride {
+  const FlaxCodegenClassOverride(this.selection, this.fields);
+
+  final FlaxCodegenClassSelection selection;
+  final Set<String> fields;
+}
+
+/// A partial top-level function selection. Only [fields] replace inferred values.
+final class FlaxCodegenFunctionOverride {
+  const FlaxCodegenFunctionOverride(this.selection, this.fields);
+
+  final FlaxCodegenFunctionSelection selection;
+  final Set<String> fields;
+}
+
+class FlaxCodegenTopLevelSelection {
+  const FlaxCodegenTopLevelSelection(
+    String? jsName,
+    this.getters, {
+    this.setters = const [],
+  }) : jsName = jsName ?? '';
+
+  final String jsName;
+  final List<String> getters;
+  final List<String> setters;
+}
+
+class FlaxCodegenLibrarySelection {
+  const FlaxCodegenLibrarySelection({
+    required this.jsPackage,
+    required this.tsOutput,
+  });
+
+  final String jsPackage;
+  final String tsOutput;
 }
 
 class FlaxCodegenFunctionSelection {
@@ -392,6 +508,41 @@ class FlaxCodegenCallbackSnapshotSelection {
     return FlaxCodegenCallbackSnapshotSelection(
       fields: fields,
       extendsName: extendsName,
+    );
+  }
+}
+
+/// Explicit members of a public, named Dart extension.
+class FlaxCodegenExtensionSelection {
+  const FlaxCodegenExtensionSelection({
+    this.getters = const [],
+    this.setters = const [],
+    this.methods = const {},
+    this.staticGetters = const [],
+    this.staticMethods = const {},
+    this.operators = const {},
+  });
+  final List<String> getters;
+  final List<String> setters;
+  final Map<String, List<String>> methods;
+  final List<String> staticGetters;
+  final Map<String, List<String>> staticMethods;
+  final Map<String, List<String>> operators;
+
+  factory FlaxCodegenExtensionSelection.fromMap(Map<String, dynamic> data) {
+    List<String> names(String key) =>
+        (data[key] as List<dynamic>? ?? []).cast<String>();
+    Map<String, List<String>> calls(String key) =>
+        (data[key] as Map<String, dynamic>? ?? {}).map(
+          (k, v) => MapEntry(k, (v as List<dynamic>).cast<String>()),
+        );
+    return FlaxCodegenExtensionSelection(
+      getters: names('getters'),
+      setters: names('setters'),
+      methods: calls('methods'),
+      staticGetters: names('staticGetters'),
+      staticMethods: calls('staticMethods'),
+      operators: calls('operators'),
     );
   }
 }

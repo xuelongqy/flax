@@ -5,11 +5,7 @@ final _pageContentBinding = FlaxWidgetBinding('flax:page-content', {
     const FlaxParameter('name', FlaxTypeRef('String'), required: true),
     const FlaxParameter(
       'key',
-      FlaxTypeRef(
-        'object',
-        id: 'flax.core/flutter#type:Key',
-        nullable: true,
-      ),
+      FlaxTypeRef('object', id: 'flax.core/flutter#type:Key', nullable: true),
       required: false,
     ),
     const FlaxParameter(

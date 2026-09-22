@@ -4,6 +4,10 @@ library: package:your_package/api.dart
 jsPackage: '@your-scope/your-package'
 dartOutput: lib/src/generated/your_bindings.g.dart
 tsOutput: js/src/generated/bindings.ts
+publicLibraries:
+  package:your_package/api.dart:
+    jsPackage: '@your-scope/your-package/api'
+    tsOutput: js/src/generated/libraries/api/index.ts
 classes:
   Gauge:
     kind: object

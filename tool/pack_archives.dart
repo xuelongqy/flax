@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
@@ -16,6 +15,7 @@ Future<void> main(List<String> arguments) => command(() async {
   final options = _Options.parse(arguments);
   final root = Directory.fromUri(Platform.script.resolve('../')).path;
   final discovered = discoverPackages(root);
+  final discoveredNpm = discoverNpmPackages(root);
   if (options.selected != null) {
     final known = discovered.map((package) => package.name).toSet();
     final missing = options.selected!.difference(known);
@@ -30,6 +30,11 @@ Future<void> main(List<String> arguments) => command(() async {
             : options.selected!.contains(package.name),
       )
       .toList();
+  final npmPackages = discoveredNpm.where((package) {
+    if (options.selected == null) return true;
+    final owner = package.dartOwner;
+    return owner != null && options.selected!.contains(owner.name);
+  }).toList();
   if (packages.isEmpty) {
     throw StateError('No packages selected for archive packing');
   }
@@ -47,6 +52,7 @@ Future<void> main(List<String> arguments) => command(() async {
       root: root,
       out: out,
       packages: packages,
+      npmPackages: npmPackages,
       mode: options.dryRun ? 'dry-run' : 'write',
       skipNpm: options.skipNpm,
       forceBuild: options.forceBuild,
@@ -68,6 +74,7 @@ Future<Map<String, dynamic>> _pack({
   required String root,
   required Directory out,
   required List<FlaxWorkspacePackage> packages,
+  required List<FlaxNpmPackage> npmPackages,
   required String mode,
   required bool skipNpm,
   required bool forceBuild,
@@ -95,18 +102,13 @@ Future<Map<String, dynamic>> _pack({
 
   final npmEntries = <Map<String, String>>[];
   if (!skipNpm) {
-    final npmPackages = packages
-        .where((package) => package.metadata.javascript != null)
-        .toList();
     final npmVersions = <String, String>{};
     final npmOwners = <String, String>{};
+    for (final package in discoverNpmPackages(root)) {
+      npmVersions[package.name] = package.version;
+    }
     for (final package in npmPackages) {
-      final manifest = jsonDecode(
-        File(p.join(package.js.path, 'package.json')).readAsStringSync(),
-      ) as Map<String, dynamic>;
-      final name = package.metadata.javascript!.name;
-      npmVersions[name] = manifest['version'] as String;
-      npmOwners[name] = package.name;
+      npmOwners[package.name] = package.archiveDirectoryName;
     }
 
     final npmOut = Directory(p.join(out.path, 'npm'))..createSync();
@@ -114,16 +116,16 @@ Future<Map<String, dynamic>> _pack({
       ..createSync();
 
     for (final package in npmPackages) {
-      final dist = Directory(p.join(package.js.path, 'dist'));
+      final dist = Directory(p.join(package.directory.path, 'dist'));
       if (forceBuild || !dist.existsSync()) {
         await run('pnpm', const [
           '--silent',
           'run',
           'build',
-        ], directory: package.js.path);
+        ], directory: package.directory.path);
       }
-      final copy = Directory(p.join(npmOut.path, package.name));
-      copyArchiveSource(package.js, copy);
+      final copy = Directory(p.join(npmOut.path, package.archiveDirectoryName));
+      copyArchiveSource(package.directory, copy);
       prepareNpmArchiveManifest(
         copy,
         npmVersions: npmVersions,
@@ -134,7 +136,7 @@ Future<Map<String, dynamic>> _pack({
         '--pack-destination',
         artifacts.path,
       ], directory: copy.path);
-      final name = package.metadata.javascript!.name;
+      final name = package.name;
       final version = npmVersions[name]!;
       final archiveName = npmArchiveFileName(name, version);
       final archive = File(p.join(artifacts.path, archiveName));

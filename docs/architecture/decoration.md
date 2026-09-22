@@ -82,10 +82,9 @@ rollback are promised.
 
 ## Verification and limits
 
-The [existing layout page](../../examples/embedded/js/src/layout.ts) demonstrates
-selected-row decoration, theme-derived colors, asymmetric directional geometry and
-explicit clipping. Its host changes theme, size and direction without replacing the
-session. Application resources remain explicitly disposed through page cleanup.
+The [decoration regressions](../../packages/flax/test/ui/decoration_test.dart) exercise
+selected decoration, asymmetric directional geometry, clipping, updates, and native
+Flutter comparisons within the owning package.
 
 Framework tests compare native/Flax geometry and rendered pixels in the same process,
 using fixed dimensions, an opaque background and no text in raster scenes. There are no
@@ -94,6 +93,7 @@ layout/paint and Flax construction; static siblings remain unchanged. Weak objec
 reclamation remains distinct from deterministic subscription and session cleanup.
 
 Images, gradients, shadows, transforms, animations, custom painting and Material input
-border bindings remain unselected. Run bindings:check and ui:test for focused checks;
-check:ui includes the runtime, standalone JIT/AOT, macOS integration and release build.
-See the [task record](../tasks/generated-decoration.md) for results and costs.
+border bindings remain unselected. Run the `flax` package check and integration command
+for focused evidence; full `check:ui` invokes the same owner suite before the aggregate.
+The regressions preserve the geometry, pixel and update-isolation checks. Their counters
+describe those fixtures, not an SDK-wide performance guarantee.

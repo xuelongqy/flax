@@ -40,8 +40,8 @@ void main() {
           jsonDecode(manifest.readAsStringSync()) as Map<String, Object?>;
       expect(
         data['formatVersion'],
-        2,
-        reason: '${manifest.path} must be Manifest format 2 after M3',
+        11,
+        reason: '${manifest.path} must use Manifest format 11',
       );
       expect(data['bindingNamespace'], isA<String>());
       final modules = data['modules'] as List<Object?>;
@@ -55,6 +55,7 @@ void main() {
         );
         expect(entry['moduleId'], isA<String>());
         expect(entry['requiredCapabilities'], isA<List<Object?>>());
+        expect((entry['model']! as Map)['typedefs'], isA<List<Object?>>());
       }
     }
   });

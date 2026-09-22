@@ -1,45 +1,67 @@
 import { build } from 'esbuild';
 import { access, readdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
-import { bundleOptions } from './src/bundle.mjs';
+import {
+  bundleOptions,
+  bundleOptionsFor,
+  prepareBundleModulesFor,
+} from './src/bundle.mjs';
 
 const option = process.argv.slice(2);
-if (option.length !== 0 && (option.length !== 2 || option[0] !== '--package'))
-  throw new Error('Usage: node tool/example_bundle.mjs [--package <dart-package>]');
-const selectedPackage = option[1];
+const aggregateOnly = option.length === 1 && option[0] === '--aggregate';
+const selectedPackage =
+  option.length === 2 && option[0] === '--package' ? option[1] : undefined;
+if (option.length !== 0 && !aggregateOnly && !selectedPackage)
+  throw new Error(
+    'Usage: node tool/example_bundle.mjs [--aggregate | --package <dart-package>]',
+  );
 
 if (!selectedPackage) {
-  for (const name of ['main', 'shared_navigation', 'nested_navigation', 'pages']) {
+  const embeddedRoot = resolve(bundleOptions.absWorkingDir, 'examples/embedded/js');
+  await prepareBundleModulesFor(embeddedRoot);
+  const embeddedOptions = await bundleOptionsFor(embeddedRoot);
+  await build({
+    ...embeddedOptions,
+    entryPoints: ['examples/embedded/js/src/main.ts'],
+    outfile: 'examples/embedded/assets/app.js',
+  });
+
+  if (!aggregateOnly) {
+    const standaloneRoot = resolve(
+      bundleOptions.absWorkingDir,
+      'examples/standalone/js',
+    );
+    await prepareBundleModulesFor(standaloneRoot);
+    const standaloneOptions = await bundleOptionsFor(standaloneRoot);
     await build({
-      ...bundleOptions,
-      entryPoints: [`examples/embedded/js/src/${name}.ts`],
-      outfile: `examples/embedded/assets/${name === 'main' ? 'app' : name}.js`,
+      ...standaloneOptions,
+      entryPoints: ['examples/standalone/js/src/main.ts'],
+      outfile: 'examples/standalone/assets/app.js',
     });
   }
-
-  await build({
-    ...bundleOptions,
-    entryPoints: ['examples/standalone/js/src/main.ts'],
-    outfile: 'examples/standalone/assets/app.js',
-  });
 }
 
-const packageRoot = resolve(bundleOptions.absWorkingDir, 'packages');
-for (const packageEntry of await readdir(packageRoot, { withFileTypes: true })) {
-  if (!packageEntry.isDirectory()) continue;
-  if (selectedPackage && packageEntry.name !== selectedPackage) continue;
-  const entry = resolve(packageRoot, packageEntry.name, 'example/js/src/main.ts');
-  try {
-    await access(entry);
-  } catch (error) {
-    if (error.code === 'ENOENT') continue;
-    throw error;
+if (!aggregateOnly) {
+  const packageRoot = resolve(bundleOptions.absWorkingDir, 'packages');
+  for (const packageEntry of await readdir(packageRoot, { withFileTypes: true })) {
+    if (!packageEntry.isDirectory()) continue;
+    if (selectedPackage && packageEntry.name !== selectedPackage) continue;
+    const entry = resolve(packageRoot, packageEntry.name, 'example/js/src/main.ts');
+    try {
+      await access(entry);
+    } catch (error) {
+      if (error.code === 'ENOENT') continue;
+      throw error;
+    }
+    const projectRoot = resolve(packageRoot, packageEntry.name, 'example/js');
+    await prepareBundleModulesFor(projectRoot);
+    const options = await bundleOptionsFor(projectRoot);
+    await build({
+      ...options,
+      entryPoints: [entry],
+      outfile: resolve(packageRoot, packageEntry.name, 'example/assets/app.js'),
+    });
+    if (selectedPackage) process.exit(0);
   }
-  await build({
-    ...bundleOptions,
-    entryPoints: [entry],
-    outfile: resolve(packageRoot, packageEntry.name, 'example/assets/app.js'),
-  });
-  if (selectedPackage) process.exit(0);
 }
 if (selectedPackage) throw new Error(`Unknown package example: ${selectedPackage}`);

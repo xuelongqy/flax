@@ -5,6 +5,7 @@
   "type": "module",
   "dependencies": {
     "@flax/core": "workspace:*",
+    "@flax/flutter": "workspace:*",
     "@flax/material-ui": "workspace:*",
     "@flax/fetch": "workspace:*",
     "@flax/websocket": "workspace:*",
@@ -12,6 +13,7 @@
     "@flax/canvas": "workspace:*"
   },
   "devDependencies": {
+    "@flax/tools": "workspace:*",
     "typescript": "7.0.2",
     "esbuild": "0.28.2"
   },

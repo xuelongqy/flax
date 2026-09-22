@@ -11,6 +11,7 @@ enum FlaxCodegenDiagnosticCode {
   incompatibleFields('FCG_INCOMPATIBLE_FIELDS'),
   path('FCG_PATH'),
   resolution('FCG_RESOLUTION'),
+  dependency('FCG_DEPENDENCY'),
   ownership('FCG_OWNERSHIP'),
   manifest('FCG_MANIFEST'),
   output('FCG_OUTPUT');

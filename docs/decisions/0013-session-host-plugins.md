@@ -14,7 +14,7 @@ object disposal remains the application's responsibility.
 
 Fetch uses one HttpClient per instance, explicit bulk byte copies and standard Streams.
 Its JavaScript is embedded in the Dart plugin so consumers need no installation import.
-Binary transport raises the native ABI to 2; it does not change UI protocol 12.
+Binary transport requires native ABI 2. That version is independent of the UI protocol.
 
 ## Rationale and limits
 

@@ -5,7 +5,7 @@
 // ignore_for_file: type=lint, unused_import
 import 'package:flax/bindings.dart';
 
-const yourBindings = FlaxBindingModule(
+const exampleBindings = FlaxBindingModule(
   'example',
   [],
   moduleId: 'vendor.example/example',

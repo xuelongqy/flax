@@ -6,7 +6,7 @@ import {
   Directionality,
   TextDirection,
   Text,
-} from '../../dist/flutter/index.js';
+} from '../../dist/flutter/widgets.js';
 import { signal } from '../../dist/runtime/index.js';
 import { contextHandle } from '../../dist/runtime/bindings.js';
 
@@ -94,7 +94,7 @@ test('a reference from another runtime module cannot become a local handle', asy
 });
 
 test('canonical enum getters return host identity without string conversion', async () => {
-  const { TextSelection, TextAffinity } = await import('../../dist/flutter/index.js');
+  const { TextSelection, TextAffinity } = await import('../../dist/flutter/widgets.js');
   const { objectHost } = await import('./support/host.mjs');
   const { api, calls } = objectHost();
   const value = TextSelection.collapsed({ offset: 1, affinity: TextAffinity.upstream });

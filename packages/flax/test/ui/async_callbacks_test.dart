@@ -146,6 +146,50 @@ void main() {
     },
   );
 
+  testWidgets('nested Future and FutureOr values round-trip recursively', (
+    tester,
+  ) async {
+    final fixture = _Fixture();
+    final harness = fixture.harness();
+    await tester.pumpWidget(harness.app('async-callbacks'));
+    await tester.pumpAndSettle();
+
+    expect(await fixture.callbacks.applyNested(), 21);
+
+    harness.execute('void asyncHooks.nestedRoundTrips()');
+    await tester.pumpAndSettle();
+    expect(harness.boolean('asyncHooks.nestedRoundTripsDone'), isTrue);
+    expect(harness.number('asyncHooks.nestedValue'), 31);
+    expect(harness.number('asyncHooks.nestedFutureOrValue'), 32);
+    expect(harness.number('asyncHooks.futureOrNestedValue'), 33);
+    expect(harness.number('asyncHooks.nestedCallback'), 41);
+    expect(harness.number('asyncHooks.nestedFutureOrCallback'), 42);
+    expect(harness.boolean('asyncHooks.futureOrUsesFutureBranch'), isTrue);
+    expect(harness.number('asyncHooks.nestedMapDirect'), 51);
+    expect(harness.number('asyncHooks.nestedMapAsync'), 52);
+    expect(harness.number('asyncHooks.nestedRecordFirst'), 61);
+    expect(harness.string('asyncHooks.nestedRecordValue'), 'record');
+    expect(harness.boolean('asyncHooks.nullableDirect === null'), isTrue);
+    expect(harness.boolean('asyncHooks.nullableAsync === null'), isTrue);
+    expect(harness.number('asyncHooks.nestedAlias'), 71);
+
+    harness.execute('void asyncHooks.nestedListTiming()');
+    await _pumpAsync(tester, const Duration(milliseconds: 19));
+    expect(harness.boolean('asyncHooks.nestedListDone === true'), isFalse);
+    await _pumpAsync(tester, const Duration(milliseconds: 1));
+    expect(harness.boolean('asyncHooks.nestedListDone'), isTrue);
+    expect(harness.number('asyncHooks.nestedListFirst'), 1);
+    expect(harness.number('asyncHooks.nestedListSecond'), 2);
+
+    harness.execute('void asyncHooks.nestedFailures()');
+    await tester.pumpAndSettle();
+    expect(harness.boolean('asyncHooks.nestedFailuresDone'), isTrue);
+    expect(harness.boolean('asyncHooks.nestedOuterRejected'), isTrue);
+    expect(harness.boolean('asyncHooks.nestedInnerRejected'), isTrue);
+    expect(harness.errors, isEmpty);
+    await harness.finish(tester);
+  });
+
   testWidgets('async Widget results retain configuration until mounted', (
     tester,
   ) async {
@@ -175,6 +219,33 @@ void main() {
     harness.execute('asyncHooks.mode = "delayed"');
     final pending = expectLater(
       fixture.callbacks.apply(1),
+      throwsA(
+        isA<StateError>().having(
+          (error) => error.message,
+          'message',
+          'FlaxSessionClosed',
+        ),
+      ),
+    );
+    final closing = harness.session.close();
+    await _pumpAsync(tester);
+    await pending;
+    await _pumpAsync(tester, const Duration(milliseconds: 30));
+    expect(harness.runtime.hostCalls['__flaxPromiseSettlement'] ?? 0, 0);
+    await harness.finish(tester);
+    await closing;
+  });
+
+  testWidgets('session close rejects pending nested callback Futures', (
+    tester,
+  ) async {
+    final fixture = _Fixture();
+    final harness = fixture.harness();
+    await tester.pumpWidget(harness.app('async-callbacks'));
+    await tester.pumpAndSettle();
+    harness.execute('asyncHooks.mode = "nested-delayed"');
+    final pending = expectLater(
+      fixture.callbacks.applyNested(),
       throwsA(
         isA<StateError>().having(
           (error) => error.message,

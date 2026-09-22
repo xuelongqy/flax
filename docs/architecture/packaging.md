@@ -17,19 +17,21 @@ Extensions depend on Dart `flax` and JS `@flax/core`. They do not depend on anot
 extension unless that dependency becomes an explicit public product decision. The core
 package has no concrete engine dependency.
 
-| Package                                      | Owned capability                                                                         |
-| -------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `flax` / `@flax/core`                        | Runtime interfaces, host base, Flutter bindings, signals, sessions, and shared C ABI/JSI |
-| `flax_material_ui` / `@flax/material-ui`     | Material bindings and Route/Page adapters                                                |
-| `flax_cupertino_ui` / `@flax/cupertino-ui`   | Reserved Cupertino bindings; empty scaffold, no generated runtime or example             |
-| `flax_fetch` / `@flax/fetch`                 | Fetch session plugin                                                                     |
-| `flax_websocket` / `@flax/websocket`         | WebSocket session plugin                                                                 |
-| `flax_local_storage` / `@flax/local-storage` | Persistent localStorage session plugin                                                   |
-| `flax_canvas` / `@flax/canvas`               | Canvas host plugin and CanvasView binding                                                |
-| `flax_engine_hermes`                         | Hermes adapter, pinned source, prepared assets, and engine tests                         |
-| `flax_engine_v8`                             | Experimental V8 adapter, pinned source, prepared assets, and engine tests                |
-| `flax_codegen`                               | Analyzer model, manifest format, and Dart/TypeScript emitters                            |
-| `flax_test`                                  | Development-only engine-neutral runtime contracts and shared test harnesses              |
+| Package                                      | Owned capability                                                                                         |
+| -------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `flax` / `@flax/core`                        | Runtime interfaces, host base, Core binding implementations, signals, sessions, and shared C ABI/JSI     |
+| `flax_flutter` / `@flax/flutter`             | Declaration-only public Flutter library surface (`foundation`, `widgets`, `material`, and related paths) |
+| `flax_dart` / `@flax/dart`                   | Declaration-only public Dart SDK library surface (`core`, `async`)                                       |
+| `flax_material_ui` / `@flax/material-ui`     | Material implementation delivery package and Route/Page adapters                                         |
+| `flax_cupertino_ui` / `@flax/cupertino-ui`   | Reserved Cupertino bindings; empty scaffold, no generated runtime or example                             |
+| `flax_fetch` / `@flax/fetch`                 | Fetch session plugin                                                                                     |
+| `flax_websocket` / `@flax/websocket`         | WebSocket session plugin                                                                                 |
+| `flax_local_storage` / `@flax/local-storage` | Persistent localStorage session plugin                                                                   |
+| `flax_canvas` / `@flax/canvas`               | Canvas host plugin and CanvasView binding                                                                |
+| `flax_engine_hermes`                         | Hermes adapter, pinned source, prepared assets, and engine tests                                         |
+| `flax_engine_v8`                             | Experimental V8 adapter, pinned source, prepared assets, and engine tests                                |
+| `flax_codegen`                               | Analyzer model, manifest format, and Dart/TypeScript emitters                                            |
+| `flax_test`                                  | Development-only engine-neutral runtime contracts and shared test harnesses                              |
 
 Cupertino remains an empty package boundary. It has no generated runtime or example
 until a real implementation exists. `flax_test` is not a published product API.
@@ -68,20 +70,37 @@ to have exactly the same version. It does not force all Flax packages to share o
 version. Consumers install the Dart and npm halves of a capability at matching versions,
 while core and each extension can evolve independently.
 
-## JavaScript package
+## JavaScript packages and public library specifiers
 
-The former runtime and Flutter npm packages are one package:
+Application code imports Flutter and Dart APIs by their public library specifier:
 
 ```typescript
 import { signal, computed, bind, batch } from '@flax/core';
-import { Text, Column, StatefulWidget, runApp } from '@flax/core/flutter';
+import { Text, Column, StatefulWidget, runApp } from '@flax/flutter/widgets';
+import { TextButton } from '@flax/flutter/material';
+import { Duration } from '@flax/dart/core';
+import { FlaxNavigatorObserver } from '@flax/core/navigation';
 import type { DartList, DartMap } from '@flax/core/bindings';
 import type {} from '@flax/core/host';
 ```
 
-Source remains separated under `packages/flax/js/src/runtime`, `flutter`, `host`, and
-generated directories. Optional packages import only the public subpaths they need.
-There are no compatibility packages or re-export shims for the old names.
+The public path is independent of the physical npm package that owns the JavaScript
+implementation. `@flax/flutter` and `@flax/dart` are declaration-only packages and are
+the authoritative TypeScript surface. Core physically delivers the selected
+`@flax/flutter/{widgets,foundation,gestures,services,scheduler}` and `@flax/dart/*`
+implementations; `@flax/material-ui` physically delivers `@flax/flutter/material`.
+`@flax/core/navigation` remains a Core-owned public implementation entry.
+
+This separation lets a business application install only `@flax/flutter` / `@flax/dart`
+for modules the Flutter application can provide while the executable JavaScript lives in
+the Flutter application assets. A module that is absent from that application inventory
+may still be bundled from its implementation package. Public declaration identity does
+not change between those two delivery modes.
+
+Source remains separated under `packages/flax/js/src/runtime`, `flutter`, `dart`,
+`host`, and generated directories. Optional packages import only the public subpaths
+they need. The removed `@flax/core/flutter` public entry and direct `@flax/material-ui`
+application API have no compatibility re-export layer.
 
 The pnpm workspace discovers `packages/*/js`, `packages/*/example/js`, and
 `examples/*/js`. Each JavaScript package has separate npm and embedded-host checks.
@@ -102,13 +121,16 @@ ordinary module type imports at shared boundaries.
 
 ## Binding manifests
 
-Every implemented binding package commits `bindings/manifest.json`. Manifest format
-**2** is the only supported projection after the M3 direct cutover (Manifest 1 is
-rejected; there is no long-term compatibility layer — see
-[ADR 0021](../decisions/0021-external-binding-version-domains.md), the
+Every implemented binding package commits `bindings/manifest.json`. The writer emits
+Manifest **6**; dependencies may use strict formats **2, 3, 4, 5 or 6** within their
+original schema restrictions. Format 2 forbids aliases; format 3 allows basic aliases
+but not alias-owned parameters or generic alias targets; format 4 adds generic aliases;
+format 5 adds readonly namespace exports; format 6 adds public-library routing and named
+top-level exports. Validate before normalization. Manifest 1 and unknown versions are
+rejected. See [ADR 0027](../decisions/0027-public-library-module-delivery.md), the
 [migration guide](../guides/external-binding-migration.md), and the
-[compatibility matrix](external-binding-compatibility.md)). It carries the lossless
-cross-package semantic model: identities, JS exports, type categories and
+[compatibility matrix](external-binding-compatibility.md). The manifest carries the
+lossless cross-package semantic model: identities, JS exports, type categories and
 relationships, selected members, conversion semantics, and per-module UI protocol /
 required capabilities. It does not copy selection YAML into dependent packages.
 
@@ -123,6 +145,58 @@ It parses only the current package's selection YAML. Missing imports, dependency
 manifest-format mismatches, and UI protocol mismatches fail before output is emitted.
 Generation follows the dependency graph and never reads another package's tests or
 private Dart sources.
+
+## Application module inventory and host delivery
+
+Implementation delivery uses a versioned `flax_modules.json`, separate from the Binding
+Manifest. It records public specifiers, the physical npm package and source entry,
+delivery dependencies, and the Dart binding requirements needed if that module is
+actually injected into a session. `tool/module_delivery.mjs` derives official delivery
+metadata from Manifest 8 rather than duplicating binding ownership by hand.
+
+An application prepares the modules it can provide, for example:
+
+```json
+{
+  "formatVersion": 1,
+  "modules": [
+    { "specifier": "@flax/flutter/widgets", "package": "@flax/core" },
+    { "specifier": "@flax/flutter/material", "package": "@flax/material-ui" }
+  ],
+  "flutterProject": "..",
+  "output": "assets/flax_modules"
+}
+```
+
+`@flax/tools` resolves the locked npm implementations, follows declared delivery
+dependencies, emits Flax-loadable factories into the Flutter assets directory, and
+checks that the asset path is declared. The resulting manifest is an application
+capability inventory, not a per-session injection list. The Flutter application loads it
+once as immutable `FlaxModuleAssets` and assigns it to `Flax.moduleAssets` before
+constructing sessions. Sessions snapshot that value; the preloaded source bytes may be
+reused across sessions without sharing JavaScript module instances or Dart references.
+
+Each `FlaxPlugin` declares the public modules it needs through `jsModules`. `FlaxView`
+passes its plugin snapshot to the session, which selects only requested modules present
+in `Flax.moduleAssets`, follows their delivery dependency closure, validates the Dart
+binding requirements for that selected set, and registers only those factories. The base
+host requests its Core Flutter module implicitly. Material requests
+`@flax/flutter/material` through `FlaxMaterialPlugin`. Inventory modules that no plugin
+requests are not evaluated, registered, or binding-validated.
+
+A requested module that is absent from the application inventory does not by itself fail
+session startup. That path permits business JavaScript to bundle the implementation
+package instead. Conversely, if a business build externalizes a module because it is in
+the prepared inventory, the session using that source must include a plugin that
+requests the module; otherwise the runtime module registry correctly reports it as
+unavailable.
+
+The business bundler reads the same prepared inventory. Imports present in that
+application inventory are externalized to the host module registry; other public modules
+are bundled from their physical implementation package. Direct imports, transitive
+imports and reexports use the same resolution rule, so an injected module and its
+business imports resolve to one module instance. Wire IDs remain the runtime
+Dart-binding identity and are not derived from npm paths.
 
 Config paths are package-relative. `flax_codegen` locates the nearest
 `.dart_tool/package_config.json` by walking upward from the owning configuration, then
@@ -262,9 +336,14 @@ Root Melos commands aggregate the same package owners:
 dart run melos run bindings:check
 dart run melos run host:check
 dart run melos run check
+dart run melos run check:aggregate
 dart run melos run check:ui
 dart run melos run check:ui:v8
 ```
 
-Ordinary `check` never fetches or builds an engine. UI checks require prepared or
-explicitly built macOS arm64 assets and run serially because they drive desktop apps.
+For daily package work, use `dart run tool/package.dart check NAME` and add
+`integration NAME --engine=hermes|v8` only when real UI behavior is needed.
+`check:aggregate` verifies the minimal cross-module application. `check:ui` runs every
+UI owner integration plus the aggregate. Ordinary `check` never fetches or builds an
+engine; UI commands require prepared macOS arm64 assets and run serially because they
+drive desktop apps.

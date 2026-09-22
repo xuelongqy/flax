@@ -1,5 +1,5 @@
 import { bind, signal } from '@flax/core';
-import * as f from '@flax/core/flutter';
+import * as f from '@flax/flutter/widgets';
 import { RetainedTile } from '../../../.dart_tool/flax/ui/repeated_bindings.js';
 
 const red = f.Color(0xffff0000);

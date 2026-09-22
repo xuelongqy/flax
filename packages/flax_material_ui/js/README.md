@@ -1,13 +1,16 @@
 # @flax/material-ui
 
-Exports generated TextButton, TextField, MaterialPageRoute, and MaterialPage bindings
-from the standalone material_ui package. Core re-exported types retain their identity
-through @flax/core/flutter. No legacy SDK Material constructors are silently
-substituted.
+Physical implementation and delivery package for generated TextButton, TextField,
+MaterialPageRoute, MaterialPage and the selected Material surface. Application source
+imports the authoritative public API from `@flax/flutter/material`; shared Flutter types
+retain their identity through the corresponding `@flax/flutter/*` libraries. The
+delivery package does not substitute legacy SDK Material constructors.
 
-Install this package at the same version as Dart `flax_material_ui`. It contains the
-application-side generated factories and declarations; Dart registration remains
-explicit through `materialBindings`.
+Keep this package at the same version as Dart `flax_material_ui` when the application
+physically carries the Material implementation. It contains generated runtime modules
+and `flax_modules.json`; authoritative application declarations are staged into the
+separate `@flax/flutter` package. Dart registration remains explicit through
+`materialBindings`.
 
 Publication is disabled. See
 [generation and supported parameters](../../../docs/architecture/bindings.md) and

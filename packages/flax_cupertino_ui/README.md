@@ -1,12 +1,17 @@
 # flax_cupertino_ui
 
-Intended responsibility: Generated bindings for the standalone Cupertino UI package.
+Generated bindings for the supported standalone Cupertino UI subset.
 
-Status: empty library scaffold. There is no public API or working runtime. The package
-is version 0.0.0 and publication is disabled.
-
-Dependencies describe the intended package graph; component factories and host behavior
-are not implemented.
+The public JavaScript module is `@flax/flutter/cupertino`. The Dart package owns the
+corresponding binding registration and `FlaxCupertinoPlugin` opts the module into a
+`FlaxView` host. Flutter/Core-owned values keep their existing provider identity.
 
 See [architecture](../../docs/architecture/README.md) and
 [scoped checks](../../CONTRIBUTING.md#checks).
+
+The selected navigation slice includes `CupertinoNavigationBar` and
+`CupertinoPageScaffold.navigationBar`. Generated hosts implement
+`ObstructingPreferredSizeWidget`; Flutter reads `preferredSize` and calls
+`shouldFullyObstruct(context)` directly on the real native configuration. Update a fixed
+navigation bar by binding the scaffold's `navigationBar` property. These native
+interface members are not JS methods.

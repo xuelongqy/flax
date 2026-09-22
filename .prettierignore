@@ -15,6 +15,7 @@ pnpm-lock.yaml
 packages/flax_engine_hermes/native/generated/
 examples/*/assets/*.js
 examples/*/assets/*.js.map
+examples/*/assets/flax_modules/
 packages/*/example/assets/*.js
 packages/*/example/assets/*.js.map
 
@@ -22,3 +23,18 @@ packages/flax_engine_v8/native/generated/
 
 packages/flax_fetch/js/test/wpt/
 packages/flax_websocket/js/test/wpt/
+
+# Intentionally malformed input for strict metadata parser regression tests.
+tests/compatibility/package_metadata/yaml-syntax.yaml
+
+# Generated sources are verified by bindings:check.
+packages/flax/js/src/flutter/generated/bindings.ts
+packages/flax/js/src/flutter/generated/state_callbacks.ts
+packages/flax/js/src/flutter/generated/libraries/
+packages/flax/js/src/dart/generated/libraries/
+packages/flax_canvas/js/src/generated/bindings.ts
+packages/flax_cupertino_ui/js/src/generated/
+packages/flax_material_ui/js/src/generated/bindings.ts
+packages/flax_material_ui/js/src/generated/libraries/
+packages/flax_flutter/js/types/
+packages/flax_dart/js/types/

@@ -1,0 +1,17 @@
+// GENERATED CODE. Selected public API subset; do not edit.
+// Regenerate with dart run melos run bindings:generate.
+import { bindingVersion, construct as _flaxHostConstruct, constructProxy as _flaxHostConstructProxy, constructObject as _flaxHostConstructObject, constructDeferredObject as _flaxHostConstructDeferredObject, constructStream as _flaxHostConstructStream, constructAsyncIterableStream as _flaxHostConstructAsyncIterableStream, defineObject as _flaxHostDefineObject, defineStream as _flaxHostDefineStream, invokeObject as _flaxHostInvokeObject, invokeObjectStatic as _flaxHostInvokeObjectStatic, invokeStream as _flaxHostInvokeStream, enumValue as _flaxHostEnumValue, defineContext as _flaxHostDefineContext, defineState as _flaxHostDefineState, contextHandle as _flaxHostContextHandle, invokeStatic as _flaxHostInvokeStatic, invokeInstance as _flaxHostInvokeInstance, invokeTopLevel as _flaxHostInvokeTopLevel, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/flutter/foundation/_bindings/flutter_Key';
+import '@flax/flutter/foundation/_bindings/flutter_Key';
+import type * as upstream1 from '@flax/flutter/services/_bindings/flutter_Color';
+import '@flax/flutter/services/_bindings/flutter_Color';
+import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_FocusNode';
+import '@flax/flutter/widgets/_bindings/flutter_FocusNode';
+import type * as upstream3 from '@flax/flutter/widgets/_bindings/flutter_EdgeInsetsGeometry';
+import '@flax/flutter/widgets/_bindings/flutter_EdgeInsetsGeometry';
+import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/material.__module";
+export interface Switch extends WidgetDescription { readonly type: "flax.material/material#type:Switch";  }
+export function Switch(options: { key?: upstream0.Key | null | undefined; value: Bindable<boolean>; onChanged: Bindable<((value: boolean) => void) | null>; activeThumbColor?: Bindable<upstream1.Color | null> | undefined; activeTrackColor?: Bindable<upstream1.Color | null> | undefined; inactiveThumbColor?: Bindable<upstream1.Color | null> | undefined; focusNode?: Bindable<upstream2.FocusNode | null> | undefined; autofocus?: Bindable<boolean> | undefined; padding?: Bindable<upstream3.EdgeInsetsGeometry | null> | undefined }): Switch {
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return construct("widget", "flax.material/material#type:Switch", "", [{"name":"key","required":false,"positional":false},{"name":"value","required":true,"positional":false},{"name":"onChanged","required":true,"positional":false},{"name":"activeThumbColor","required":false,"positional":false},{"name":"activeTrackColor","required":false,"positional":false},{"name":"inactiveThumbColor","required":false,"positional":false},{"name":"focusNode","required":false,"positional":false},{"name":"autofocus","required":false,"positional":false},{"name":"padding","required":false,"positional":false}], [], options) as Switch;
+}

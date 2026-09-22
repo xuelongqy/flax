@@ -1,12 +1,9 @@
 # @flax/cupertino-ui
 
-Intended responsibility: Generated Cupertino UI bindings.
+Generated Cupertino UI bindings delivered through `@flax/flutter/cupertino`.
 
-Status: empty declaration package scaffold. TypeScript compilation emits declarations;
-the ESM export is a side-effect-free empty entry. There is no public runtime API. The
-package is private and version 0.0.0.
-
-No component constructors, signals, or native host access are implemented.
+The package contains runtime ESM, declarations, and the module-delivery manifest used by
+Flax host assets. Shared Flutter values are imported from their existing providers.
 
 See [architecture](../../../docs/architecture/README.md) and
 [scoped checks](../../../CONTRIBUTING.md#checks).

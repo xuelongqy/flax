@@ -13,3 +13,10 @@ dependencies:
   flax: 0.0.0
   flutter:
     sdk: flutter
+
+dev_dependencies:
+  flax_codegen: 0.0.0
+  flax_engine_hermes: 0.0.0
+  flax_test: 0.0.0
+  flutter_test:
+    sdk: flutter

@@ -1,0 +1,46 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "..",
+    "outDir": "../.local/public-types-build",
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "declarationMap": false,
+    "sourceMap": false,
+    "paths": {
+      "@flax/core/navigation": [
+        "../packages/flax/js/src/flutter/generated/libraries/navigation/index.ts"
+      ],
+      "@flax/core/navigation/*": [
+        "../packages/flax/js/src/flutter/generated/libraries/navigation/*"
+      ],
+      "@flax/core/*": ["../packages/flax/js/src/*"],
+      "@flax/flutter/material": [
+        "../packages/flax_material_ui/js/src/generated/libraries/material/index.ts"
+      ],
+      "@flax/flutter/material/*": [
+        "../packages/flax_material_ui/js/src/generated/libraries/material/*"
+      ],
+      "@flax/flutter/cupertino": [
+        "../packages/flax_cupertino_ui/js/src/generated/libraries/cupertino/index.ts"
+      ],
+      "@flax/flutter/cupertino/*": [
+        "../packages/flax_cupertino_ui/js/src/generated/libraries/cupertino/*"
+      ],
+      "@flax/flutter/*": ["../packages/flax/js/src/flutter/generated/libraries/*"],
+      "@flax/dart/*": ["../packages/flax/js/src/dart/generated/libraries/*"]
+    }
+  },
+  "files": [
+    "../packages/flax/js/src/flutter/widgets.ts",
+    "../packages/flax/js/src/flutter/generated/libraries/foundation/index.ts",
+    "../packages/flax/js/src/flutter/generated/libraries/gestures/index.ts",
+    "../packages/flax/js/src/flutter/generated/libraries/scheduler/index.ts",
+    "../packages/flax/js/src/flutter/generated/libraries/services/index.ts",
+    "../packages/flax/js/src/dart/generated/libraries/async/index.ts",
+    "../packages/flax/js/src/dart/generated/libraries/core/index.ts",
+    "../packages/flax_material_ui/js/src/generated/libraries/material/index.ts",
+    "../packages/flax_cupertino_ui/js/src/generated/libraries/cupertino/index.ts"
+  ]
+}

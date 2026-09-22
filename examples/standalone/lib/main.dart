@@ -22,6 +22,10 @@ Future<void> startApplication({
   WidgetsFlutterBinding.ensureInitialized();
   try {
     final source = await rootBundle.loadString('assets/app.js');
+    Flax.moduleAssets = await FlaxModuleAssets.load(
+      bundle: rootBundle,
+      manifest: 'assets/flax_modules/modules.json',
+    );
     await FlaxLocalStoragePlugin.initialize(directory: storageDirectory);
     runApp(
       FlaxView(
@@ -30,6 +34,7 @@ Future<void> startApplication({
         sourceUrl: 'flax:standalone/main',
         bindings: bindings,
         plugins: [
+          const FlaxMaterialPlugin(),
           const FlaxLocalStoragePlugin(),
           const FlaxCanvasPlugin(),
           FlaxWebSocketPlugin(

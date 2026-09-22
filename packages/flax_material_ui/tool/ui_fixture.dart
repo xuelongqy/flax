@@ -2,8 +2,8 @@ import 'dart:io';
 import 'dart:isolate';
 
 import 'package:flax_codegen/flax_codegen.dart';
-import 'package:flax_codegen/src/manifest_v2.dart';
-import 'package:flax_codegen/src/manifest_v2_codec.dart';
+import 'package:flax_codegen/src/manifest_v5.dart';
+import 'package:flax_codegen/src/manifest_v5_codec.dart';
 
 import '../test/fixtures/functions_selection.dart';
 import '../test/fixtures/repeated_selection.dart';
@@ -18,7 +18,7 @@ Future<void> main() async {
   );
   if (flaxLibrary == null) throw StateError('Cannot resolve package:flax');
   final flaxRoot = File.fromUri(flaxLibrary).parent.parent;
-  final core = _loadManifest2ModulesForParser(
+  final (core, rawToWire) = _loadCoreManifest(
     File('${flaxRoot.path}/bindings/manifest.json'),
   );
   await _generate(
@@ -27,6 +27,7 @@ Future<void> main() async {
     'functions',
     functionClasses,
     core,
+    rawToWire,
     functions: functionSelections,
   );
   await _generate(
@@ -35,6 +36,7 @@ Future<void> main() async {
     'material_repeated',
     repeatedSelection,
     core,
+    rawToWire,
     libraryName: 'repeated',
   );
   await _generate(
@@ -43,6 +45,42 @@ Future<void> main() async {
     'widget_interfaces',
     widgetInterfacesSelection,
     core,
+    rawToWire,
+  );
+  await _generate(
+    package,
+    output,
+    'readonly_values',
+    const {
+      'ReadonlyProbe': FlaxCodegenClassSelection(
+        {},
+        kind: 'object',
+        getters: ['value', 'disposed'],
+        setters: ['value'],
+        instanceMethods: {'dispose': []},
+      ),
+    },
+    core,
+    rawToWire,
+    typedefs: const ['ReadonlyTransform', 'ReadonlyIdentity'],
+    topLevel: const FlaxCodegenTopLevelSelection('FixtureValues', [
+      'answer',
+      'changing',
+      'initialized',
+      'lazy',
+      'assigned',
+      'optional',
+      'probe',
+      'numbers',
+      'groups',
+      'transform',
+      'identity',
+      'later',
+      'laterFailure',
+      'pending',
+      'failing',
+      'sideEffect',
+    ]),
   );
 }
 
@@ -51,8 +89,11 @@ Future<void> _generate(
   Directory output,
   String name,
   Map<String, FlaxCodegenClassSelection> classes,
-  List<FlaxCodegenModuleModel> dependencies, {
+  List<FlaxCodegenModuleModel> dependencies,
+  Map<String, String> rawToWire, {
   Map<String, FlaxCodegenFunctionSelection> functions = const {},
+  List<String> typedefs = const [],
+  FlaxCodegenTopLevelSelection? topLevel,
   String? libraryName,
 }) async {
   final parser = FlaxCodegenBindingParser(package.path);
@@ -72,10 +113,18 @@ Future<void> _generate(
       'unused.ts',
       selected,
       functions: functions,
+      typedefs: typedefs,
+      topLevel: topLevel,
     );
     await parser.prepare([config]);
-    parser.prepareModules(dependencies);
-    final module = await parser.parse(config);
+    final wireToRaw = {
+      for (final entry in rawToWire.entries) entry.value: entry.key,
+    };
+    parser.prepareModules([
+      for (final dependency in dependencies)
+        _rewriteModuleIds(dependency, wireToRaw),
+    ]);
+    final module = _rewriteModuleIds(await parser.parse(config), rawToWire);
     final emitter = FlaxCodegenBindingEmitter([...dependencies, module]);
     File('${output.path}/${name}_bindings.dart')
         .writeAsStringSync(emitter.dart(module));
@@ -86,25 +135,27 @@ Future<void> _generate(
   }
 }
 
-List<FlaxCodegenModuleModel> _loadManifest2ModulesForParser(File file) {
-  final diagnostics = FlaxCodegenManifestV2Diagnostics(file.path);
-  final manifest = FlaxCodegenManifestV2.parse(
+(List<FlaxCodegenModuleModel>, Map<String, String>) _loadCoreManifest(
+  File file,
+) {
+  final diagnostics = FlaxCodegenManifestV5Diagnostics(file.path);
+  final manifest = FlaxCodegenManifestV5.parse(
     file.readAsStringSync(),
     diagnostics,
   );
   diagnostics.throwIfAny();
-  final wireToRaw = <String, String>{};
+  final rawToWire = <String, String>{};
   for (final module in manifest!.modules) {
     for (final identity in module.model.identities) {
-      wireToRaw[identity.wireId.value] =
-          '${identity.sourceIdentity.originatingUri}::'
-          '${identity.sourceIdentity.name}';
+      rawToWire['${identity.sourceIdentity.originatingUri}::'
+              '${identity.sourceIdentity.name}'] =
+          identity.wireId.value;
     }
   }
-  return [
-    for (final module in manifest.modules)
-      _rewriteModuleIds(module.model.module, wireToRaw),
-  ];
+  return (
+    [for (final module in manifest.modules) module.model.module],
+    rawToWire,
+  );
 }
 
 FlaxCodegenModuleModel _rewriteModuleIds(
@@ -136,15 +187,31 @@ FlaxCodegenModuleModel _rewriteModuleIds(
     return value;
   }
 
-  final diagnostics = FlaxCodegenManifestV2Diagnostics('');
-  final decoded = FlaxCodegenManifestV2Codec.decodeModule(
-    walk(FlaxCodegenManifestV2Codec.encodeModule(module)),
+  final diagnostics = FlaxCodegenManifestV5Diagnostics('');
+  // Local fixtures use file: imports and are never published. Preserve those
+  // emitter-only paths outside the manifest's public-library validation.
+  final encoded = FlaxCodegenManifestV5Codec.encodeModule(module)
+    ..['typeLibraries'] = <String, Object?>{};
+  // Native override imports have the same local-only file URI boundary.
+  for (final type in encoded['classes']! as List) {
+    for (final member in (type as Map)['widgetMembers'] as List? ?? const []) {
+      (member as Map)['imports'] = <String, Object?>{};
+    }
+  }
+  final decoded = FlaxCodegenManifestV5Codec.decodeModule(
+    walk(encoded),
     diagnostics,
     '',
     module.name,
   );
   diagnostics.throwIfAny();
   final rewritten = decoded!;
+  for (var i = 0; i < rewritten.classes.length; i++) {
+    final members = rewritten.classes[i].widgetMembers;
+    for (var j = 0; j < members.length; j++) {
+      members[j].imports.addAll(module.classes[i].widgetMembers[j].imports);
+    }
+  }
   return FlaxCodegenModuleModel(
     name: rewritten.name,
     library: rewritten.library,
@@ -153,8 +220,12 @@ FlaxCodegenModuleModel _rewriteModuleIds(
     tsOutput: module.tsOutput,
     classes: rewritten.classes,
     types: rewritten.types,
-    typeLibraries: rewritten.typeLibraries,
+    typeLibraries: module.typeLibraries,
     functions: rewritten.functions,
     snapshots: rewritten.snapshots,
+    typedefs: rewritten.typedefs,
+    topLevel: rewritten.topLevel,
+    moduleId: module.moduleId,
+    requiredCapabilities: module.requiredCapabilities,
   );
 }

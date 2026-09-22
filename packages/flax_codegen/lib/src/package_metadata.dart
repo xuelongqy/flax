@@ -10,11 +10,15 @@ final class FlaxCodegenPackageMetadataProjection {
     this.format,
     List<String> capabilities,
     this.bindingNamespace,
+    this.dartEntrypoint,
+    this.javascriptPackage,
   ) : capabilities = List.unmodifiable(capabilities);
 
   final int format;
   final List<String> capabilities;
   final String? bindingNamespace;
+  final String? dartEntrypoint;
+  final String? javascriptPackage;
 
   factory FlaxCodegenPackageMetadataProjection.parseStrict(
     String contents, {
@@ -47,11 +51,19 @@ final class FlaxCodegenPackageMetadataProjection {
       other is FlaxCodegenPackageMetadataProjection &&
       format == other.format &&
       bindingNamespace == other.bindingNamespace &&
+      dartEntrypoint == other.dartEntrypoint &&
+      javascriptPackage == other.javascriptPackage &&
       _sameStrings(capabilities, other.capabilities);
 
   @override
   int get hashCode =>
-      Object.hash(format, bindingNamespace, Object.hashAll(capabilities));
+      Object.hash(
+        format,
+        bindingNamespace,
+        dartEntrypoint,
+        javascriptPackage,
+        Object.hashAll(capabilities),
+      );
 }
 
 bool _sameStrings(List<String> left, List<String> right) {
@@ -98,6 +110,8 @@ FlaxCodegenPackageMetadataProjection _parsePackageMetadata(
   }
   final capabilities = root.requiredStringList('capabilities');
   final namespace = root.optionalNamespace();
+  final dartEntrypoint = root.optionalNestedString('dart', 'entrypoint');
+  final javascriptPackage = root.optionalNestedString('javascript', 'package');
   if (capabilities != null &&
       (namespace.omitted || namespace.value != null) &&
       capabilities.contains('bindings') != (namespace.value != null)) {
@@ -113,6 +127,8 @@ FlaxCodegenPackageMetadataProjection _parsePackageMetadata(
     format!,
     capabilities!,
     namespace.value,
+    dartEntrypoint,
+    javascriptPackage,
   );
 }
 
@@ -295,5 +311,31 @@ final class _MetadataMap {
       return _NamespaceField(omitted: false, node: value);
     }
     return _NamespaceField(omitted: false, value: text, node: value);
+  }
+
+  String? optionalNestedString(String parent, String key) {
+    final parentNode = node(parent);
+    if (parentNode == null) return null;
+    if (parentNode is! YamlMap) {
+      diagnostics.add(
+        code: FlaxCodegenDiagnosticCode.typeMismatch,
+        pointer: '/$parent',
+        message: 'Expected a mapping.',
+        node: parentNode,
+      );
+      return null;
+    }
+    final value = parentNode.nodes[key];
+    if (value == null) return null;
+    if (value.value is! String || (value.value as String).isEmpty) {
+      diagnostics.add(
+        code: FlaxCodegenDiagnosticCode.typeMismatch,
+        pointer: '/$parent/$key',
+        message: 'Expected a nonempty string.',
+        node: value,
+      );
+      return null;
+    }
+    return value.value as String;
   }
 }

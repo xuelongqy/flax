@@ -79,7 +79,7 @@ void main() {
   );
 
   testWidgets(
-    'native showDialog captures the source Theme and retains valid content after failure',
+    'native showDialog captures Theme and isolates builder failures',
     (t) async {
       final h = _harness();
       final observer = FlaxNavigatorObserver();
@@ -106,11 +106,30 @@ void main() {
         await t.pumpAndSettle();
         for (final mode in ['throw', 'valid']) {
           h.execute('topLevel.setMode("$mode")');
-          final reassemble = t.binding.reassembleApplication();
-          await t.pump();
-          await reassemble;
+          if (mode == 'throw') {
+            final reassemble = t.binding.reassembleApplication();
+            await t.pump();
+            await reassemble;
+          } else {
+            t
+                .element(
+                  find
+                      .ancestor(
+                        of: find.byType(ErrorWidget),
+                        matching: find.byType(Builder),
+                      )
+                      .first,
+                )
+                .markNeedsBuild();
+          }
           await t.pumpAndSettle();
-          expect(find.text('Local 1'), findsOneWidget);
+          if (mode == 'throw') {
+            expect(find.text('Local 1'), findsNothing);
+            expect(find.byType(ErrorWidget), findsOneWidget);
+          } else {
+            expect(find.text('Local 0'), findsOneWidget);
+            expect(find.byType(ErrorWidget), findsNothing);
+          }
         }
         expect(h.errors, hasLength(1));
         h.errors.clear();

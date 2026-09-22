@@ -46,4 +46,5 @@ verification workload and logs actual machine-code events for its function. It d
 enable native syntax, expose a JS API, change JIT flags or permit JITless fallback.
 Normal runtime creation does not execute that workload.
 
-See the [task and validation record](../../../docs/tasks/v8-support.md).
+See the [runtime verification scope](../../../docs/architecture/runtime.md#verification)
+and [contribution checks](../../../CONTRIBUTING.md#checks).

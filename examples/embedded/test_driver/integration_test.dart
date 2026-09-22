@@ -12,7 +12,7 @@ Future<void> main() async {
   }
   await integrationDriver(
     responseDataCallback: (data) async {
-      if (data?['scenario'] != 'embedded-navigation-pages-router' ||
+      if (data?['scenario'] != 'embedded-module-aggregate' ||
           data?['completed'] != true) {
         throw StateError('The embedded app scenario did not complete');
       }

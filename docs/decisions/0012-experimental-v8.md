@@ -29,4 +29,5 @@ foreground work and explicit checkpoints drain Promise jobs. Release application
 allow JIT in their signing entitlements. Prepared consumers need neither V8 source nor
 Homebrew V8. Both-engine tests and measured performance are required before changing
 defaults. Acceptance evidence is maintained in the
-[V8 task record](../tasks/v8-support.md), separately from this decision.
+[runtime verification contract](../architecture/runtime.md#verification), separately
+from this decision.

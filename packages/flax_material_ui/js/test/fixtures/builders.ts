@@ -4,17 +4,17 @@ import {
   Builder,
   LayoutBuilder,
   Directionality,
-  TextDirection,
   Column,
   Text,
   SizedBox,
-  ValueKey,
   MainAxisSize,
   runApp,
   type BuildContext,
   type Widget,
-} from '@flax/core/flutter';
-import { TextButton } from '@flax/material-ui';
+} from '@flax/flutter/widgets';
+import { TextDirection } from '@flax/flutter/services';
+import { ValueKey } from '@flax/flutter/foundation';
+import { TextButton } from '@flax/flutter/material';
 
 const count = signal(0);
 const visible = signal(true);

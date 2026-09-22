@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "files": [
+    "src/flutter/widgets.ts",
+    "src/flutter/generated/libraries/foundation/index.ts",
+    "src/flutter/generated/libraries/gestures/index.ts",
+    "src/flutter/generated/libraries/scheduler/index.ts",
+    "src/flutter/generated/libraries/services/index.ts",
+    "src/dart/generated/libraries/async/index.ts",
+    "src/dart/generated/libraries/core/index.ts"
+  ],
+  "include": [
+    "src/flutter/generated/libraries/*/_bindings/**/*.ts",
+    "src/dart/generated/libraries/*/_bindings/**/*.ts"
+  ]
+}

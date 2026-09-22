@@ -523,9 +523,61 @@ void main() {
       final h = OwnedHarness(fixture: 'interop', extra: [interopBindings]);
       await t.pumpWidget(h.app('interop'));
       await t.pumpAndSettle();
-      h.execute(
-        'var token = interop.Token(7); var store = interop.Store(token); var proxy = interop.Evaluator.implement([3], {evaluate(value) {return value + 1}}); var selector = interop.Selector.implement([], {choose(value) {return value}}); var fn = interop.Functions(value => value)',
-      );
+      h.execute('''
+var token = interop.Token(7);
+var store = interop.Store(token);
+var proxy = interop.Evaluator.implement([3], {evaluate(value) {return value + 1}});
+class PlainEvaluator extends interop.Evaluator {
+  evaluate(value) { return value + 1; }
+}
+var DerivedEvaluator = class extends interop.Evaluator {
+  evaluate(value) { return value + 1; }
+  twice(value) { return super.twice(value) + 1; }
+};
+var plainEvaluator = new PlainEvaluator(3);
+var derivedEvaluator = new DerivedEvaluator(3);
+var evaluatorConsumer = interop.EvaluatorConsumer();
+class GoodRequiredSuper extends interop.RequiredSuper {
+  refresh() { super.refresh(); }
+}
+class BadRequiredSuper extends interop.RequiredSuper {
+  refresh() {}
+}
+var ConstructorSuperEvaluator = class extends interop.ConstructorSuperEvaluator {
+  evaluate(value) { return super.evaluate(value) + 1; }
+};
+var goodRequiredSuper = new GoodRequiredSuper();
+var badRequiredSuper = new BadRequiredSuper();
+var requiredSuperConsumer = interop.RequiredSuperConsumer();
+class GoodAsyncRequiredSuper extends interop.AsyncRequiredSuper {
+  async load(value) { return (await super.load(value)) + 1; }
+  normalize(value) { return super.normalize(value) + 1; }
+}
+class PromiseAsyncRequiredSuper extends interop.AsyncRequiredSuper {
+  async load(value) { return (await super.load(value)) + 2; }
+  async normalize(value) { return (await super.normalize(value)) + 2; }
+}
+class LateAsyncRequiredSuper extends interop.AsyncRequiredSuper {
+  async load(value) { await Promise.resolve(); return super.load(value); }
+  async normalize(value) { await Promise.resolve(); return super.normalize(value); }
+}
+class RejectingAsyncRequiredSuper extends interop.AsyncRequiredSuper {
+  load(value) { return Promise.reject(new Error('async required super rejection')); }
+  normalize(value) { return Promise.reject(new Error('futureOr required super rejection')); }
+}
+class ThrowingAsyncRequiredSuper extends interop.AsyncRequiredSuper {
+  load(value) { throw new Error('async required super throw'); }
+  normalize(value) { throw new Error('futureOr required super throw'); }
+}
+var goodAsyncRequiredSuper = new GoodAsyncRequiredSuper();
+var promiseAsyncRequiredSuper = new PromiseAsyncRequiredSuper();
+var lateAsyncRequiredSuper = new LateAsyncRequiredSuper();
+var rejectingAsyncRequiredSuper = new RejectingAsyncRequiredSuper();
+var throwingAsyncRequiredSuper = new ThrowingAsyncRequiredSuper();
+var asyncRequiredSuperConsumer = interop.AsyncRequiredSuperConsumer();
+var selector = interop.Selector.implement([], {choose(value) {return value}});
+var fn = interop.Functions(value => value);
+''');
       for (final operation in [
         'interop.Functions.fail(value => value)',
         'interop.Functions.retainAndThrow(value => value)',
@@ -539,6 +591,94 @@ void main() {
       }
       expect(h.number('proxy.initialResult'), 4);
       expect(h.number('proxy.twice(4)'), 10);
+      expect(h.number('plainEvaluator.initialResult'), 4);
+      expect(h.number('derivedEvaluator.initialResult'), 4);
+      expect(
+        h.boolean(
+          'derivedEvaluator instanceof DerivedEvaluator && '
+          'derivedEvaluator instanceof interop.Evaluator',
+        ),
+        isTrue,
+      );
+      expect(h.number('evaluatorConsumer.run(plainEvaluator, 4)'), 10);
+      expect(h.number('evaluatorConsumer.run(derivedEvaluator, 4)'), 11);
+      expect(
+        h.boolean(
+          'evaluatorConsumer.identity(derivedEvaluator) === derivedEvaluator',
+        ),
+        isTrue,
+      );
+      expect(h.number('requiredSuperConsumer.run(goodRequiredSuper)'), 1);
+      expect(
+        () => h.execute('requiredSuperConsumer.run(badRequiredSuper)'),
+        throwsA(isA<FlaxJsException>()),
+      );
+      h.execute('''
+var asyncLoadResult = null;
+var asyncNormalizeResult = null;
+var asyncPromiseNormalizeResult = null;
+var lateLoadError = null;
+var lateNormalizeError = null;
+var rejectedLoadError = null;
+var rejectedNormalizeError = null;
+void asyncRequiredSuperConsumer.load(goodAsyncRequiredSuper, 3)
+  .then(value => asyncLoadResult = value);
+void asyncRequiredSuperConsumer.normalize(goodAsyncRequiredSuper, 3)
+  .then(value => asyncNormalizeResult = value);
+void asyncRequiredSuperConsumer.normalize(promiseAsyncRequiredSuper, 3)
+  .then(value => asyncPromiseNormalizeResult = value);
+void asyncRequiredSuperConsumer.load(lateAsyncRequiredSuper, 3)
+  .catch(error => lateLoadError = String(error));
+void asyncRequiredSuperConsumer.normalize(lateAsyncRequiredSuper, 3)
+  .catch(error => lateNormalizeError = String(error));
+void asyncRequiredSuperConsumer.load(rejectingAsyncRequiredSuper, 3)
+  .catch(error => rejectedLoadError = String(error));
+void asyncRequiredSuperConsumer.normalize(rejectingAsyncRequiredSuper, 3)
+  .catch(error => rejectedNormalizeError = String(error));
+''');
+      await t.pump();
+      await t.pump();
+      expect(h.number('asyncLoadResult'), 7);
+      expect(h.number('asyncNormalizeResult'), 5);
+      expect(h.number('asyncPromiseNormalizeResult'), 6);
+      expect(
+        h.string('lateLoadError'),
+        contains('load must call super.load()'),
+      );
+      expect(
+        h.string('lateNormalizeError'),
+        contains('normalize must call super.normalize()'),
+      );
+      expect(
+        h.string('rejectedLoadError'),
+        contains('async required super rejection'),
+      );
+      expect(
+        h.string('rejectedNormalizeError'),
+        contains('futureOr required super rejection'),
+      );
+      expect(
+        () => h.execute(
+          'asyncRequiredSuperConsumer.load(throwingAsyncRequiredSuper, 3)',
+        ),
+        throwsA(
+          isA<FlaxJsException>().having(
+            (error) => error.toString(),
+            'message',
+            contains('async required super throw'),
+          ),
+        ),
+      );
+      expect(
+        () => h.execute('new ConstructorSuperEvaluator(3)'),
+        throwsA(
+          isA<FlaxJsException>().having(
+            (error) => error.toString(),
+            'message',
+            contains('Dart proxy construction is not complete'),
+          ),
+        ),
+      );
       expect(
         h.boolean(
           'store.echo(token) === token && store.select(token) === token && selector.choose(token) === token && fn.apply(token) === token',

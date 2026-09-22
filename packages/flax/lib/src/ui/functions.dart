@@ -221,6 +221,12 @@ extension _WidgetReferences on _Session {
   // Promote before entering Dart: the callee may keep the Widget even if it throws.
   // Native wrappers need no inspection; each escaped Flax child owns its resources.
   void escapeWidget(Object? value) {
+    if (value is List<Widget>) {
+      for (final widget in value) {
+        escapeWidget(widget);
+      }
+      return;
+    }
     if (value is! Widget) return;
     final existing = _widgetConfigurations[value];
     if (existing != null) {

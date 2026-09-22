@@ -10,4 +10,4 @@ configuration, patches, and the detailed notice tree remain repository-only. The
 metadata has the `engine` capability and no npm peer.
 
 See [the runtime contract](../../docs/architecture/runtime.md) and
-[the implementation record](../../docs/tasks/v8-support.md) for verification status.
+[verification scope](../../docs/architecture/runtime.md#verification).

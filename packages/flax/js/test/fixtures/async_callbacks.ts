@@ -1,5 +1,5 @@
 import { signal } from '@flax/core';
-import { Text, registerPage } from '@flax/core/flutter';
+import { Text, registerPage } from '@flax/flutter/widgets';
 import {
   AsyncCallbacks,
   AsyncContract,
@@ -86,8 +86,27 @@ function result(value: number): Promise<number> {
   }
 }
 
+function nestedResult(): Promise<Promise<number>> {
+  hooks.calls++;
+  switch (hooks.mode) {
+    case 'nested-delayed':
+      return new Promise<number>((resolve) =>
+        setTimeout(() => resolve(23), 20),
+      ) as unknown as Promise<Promise<number>>;
+    case 'nested-rejected':
+      return Promise.reject(new Error('nested async rejected'));
+    default:
+      // Native promises assimilate the inner promise. The declared nested type is
+      // reconstructed by the Dart callback adapter.
+      return Promise.resolve(Promise.resolve(21)) as unknown as Promise<
+        Promise<number>
+      >;
+  }
+}
+
 const callbacks = AsyncCallbacks(result, {
   optional: () => (hooks.mode === 'null-future' ? null : Promise.resolve(5)),
+  nestedTransform: nestedResult,
 });
 callbacks.callbacks.add(async (value) => value * 2);
 callbacks.mapping.set('triple', async (value) => value * 3);
@@ -124,6 +143,86 @@ Object.assign(hooks, {
       asyncCallbackValue: await laterAsyncCallback(),
       nativeAsyncValue,
       roundTripsDone: true,
+    });
+  },
+  nestedRoundTrips: async () => {
+    const nestedValue = await callbacks.nestedValue(31);
+    const nestedFutureOrValue = await callbacks.nestedFutureOrValue(32);
+    const futureOrNestedValue = await callbacks.futureOrNestedValue(33);
+    const nestedCallback = await callbacks.runNested(
+      () => Promise.resolve(Promise.resolve(41)) as unknown as Promise<Promise<number>>,
+    );
+    const nestedFutureOrCallback = await callbacks.runNestedFutureOr(async () => 42);
+    const futureOrUsesFutureBranch = callbacks.futureOrNestedUsesFutureBranch(
+      () => Promise.resolve(Promise.resolve(43)) as unknown as Promise<Promise<number>>,
+    );
+    const map = await callbacks.runNestedMap(async () => ({
+      direct: 51,
+      async: Promise.resolve(52),
+    }));
+    const record = await callbacks.runNestedRecord(async () => ({
+      $1: Promise.resolve(61),
+      value: Promise.resolve('record'),
+    }));
+    const nullableDirect = await callbacks.runNullableNested(() => null);
+    const nullableAsync = await callbacks.runNullableNested(() =>
+      Promise.resolve(null),
+    );
+    const alias = await callbacks.runNestedAlias(async (value) => value + 1, 70);
+    Object.assign(hooks, {
+      nestedValue,
+      nestedFutureOrValue,
+      futureOrNestedValue,
+      nestedCallback,
+      nestedFutureOrCallback,
+      futureOrUsesFutureBranch,
+      nestedMapDirect: map.get('direct'),
+      nestedMapAsync: map.get('async'),
+      nestedRecordFirst: record.$1,
+      nestedRecordValue: record.value,
+      nullableDirect,
+      nullableAsync,
+      nestedAlias: alias,
+      nestedRoundTripsDone: true,
+    });
+  },
+  nestedListTiming: async () => {
+    const values = await callbacks.runNestedList(() =>
+      Promise.resolve([
+        Promise.resolve(1),
+        new Promise<number>((resolve) => setTimeout(() => resolve(2), 20)),
+      ]),
+    );
+    Object.assign(hooks, {
+      nestedListFirst: values.get(0),
+      nestedListSecond: values.get(1),
+      nestedListDone: true,
+    });
+  },
+  nestedFailures: async () => {
+    let outerRejected = false;
+    let innerRejected = false;
+    try {
+      await callbacks.runNested(() =>
+        Promise.reject(new Error('nested outer rejected')),
+      );
+    } catch {
+      outerRejected = true;
+    }
+    try {
+      await callbacks.runNestedList(() =>
+        Promise.resolve([
+          Promise.resolve(1),
+          Promise.reject(new Error('nested inner rejected')),
+        ]),
+      );
+    } catch {
+      innerRejected = true;
+    }
+    Object.assign(hooks, {
+      nestedOuterRejected: outerRejected,
+      nestedInnerRejected: innerRejected,
+      nestedFailuresDone: true,
     });
   },
 });

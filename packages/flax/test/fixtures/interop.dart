@@ -1,5 +1,113 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart'
+    show ValueChanged, ValueGetter, mustCallSuper;
+
+class Box<T> {
+  Box(T? value) : _value = value;
+  final T? _value;
+  int reads = 0;
+  T? get value {
+    reads++;
+    return _value;
+  }
+}
+
+class VoidBox extends Box<void> {
+  VoidBox() : super(null);
+  void get explicitValue {
+    reads++;
+  }
+
+  void get failure {
+    reads++;
+    throw StateError('getter failure');
+  }
+}
+
+class IndirectVoidBox extends VoidBox {}
+
+class CoreValueConsumer {
+  CoreValueConsumer(this.date, this.uri, this.buffer);
+  final DateTime date;
+  final Uri uri;
+  final StringBuffer buffer;
+}
+
+typedef CodegenOnChanged = void Function(int value);
+typedef CodegenNames = List<String>;
+typedef CodegenAttributes = Map<String, String>;
+typedef CodegenTransform = CodegenNames Function(CodegenNames values);
+typedef CodegenMapper<T> = T Function(T value);
+typedef CodegenItems<T> = List<T>;
+typedef CodegenGenericMapper = T Function<T>(T value);
+typedef CodegenConverter<T> = T Function<U extends T>(U value);
+typedef CodegenAsyncMapper<T> = Future<T> Function(T value);
+typedef CodegenAsyncGenericMapper = Future<T> Function<T>(T value);
+typedef CodegenNullableMapper = T? Function<T extends num>(T? value);
+typedef NestedAsyncMapper<T> = Future<FutureOr<T>> Function(T value);
+
+T _aliasIdentity<T>(T value) => value;
+Future<T> _aliasAsyncIdentity<T>(T value) async => value;
+
+class CodegenGenericAliasConsumer {
+  final CodegenItems<CodegenGenericMapper> callbacks = [_aliasIdentity];
+
+  CodegenGenericMapper get identity => _aliasIdentity;
+  CodegenAsyncGenericMapper get asyncIdentity => _aliasAsyncIdentity;
+  CodegenMapper<int> get increment =>
+      (value) => value + 1;
+  CodegenNullableMapper get nullableIdentity =>
+      <T extends num>(T? value) => value;
+
+  int map(CodegenMapper<int> callback, int value) => callback(value);
+  int generic(CodegenGenericMapper callback, int value) => callback<int>(value);
+  double genericDouble(CodegenGenericMapper callback, double value) =>
+      callback<double>(value);
+  int? genericNullable(CodegenGenericMapper callback, int? value) =>
+      callback<int?>(value);
+  bool broadNumberIsDouble(CodegenGenericMapper callback) =>
+      callback<Object?>(1) is double;
+  int inline(T Function<T>(T value) callback, int value) =>
+      callback<int>(value);
+  Token genericToken(CodegenGenericMapper callback, Token value) =>
+      callback<Token>(value);
+  num convert(CodegenConverter<num> callback, int value) =>
+      callback<int>(value);
+  CodegenItems<int> collection(
+    CodegenMapper<CodegenItems<int>> callback,
+    CodegenItems<int> values,
+  ) => callback(values);
+  int stored(int index, int value) => callbacks[index]<int>(value);
+  Future<int> later(CodegenAsyncMapper<int> callback, int value) =>
+      callback(value);
+  Future<int> genericLater(CodegenAsyncGenericMapper callback, int value) =>
+      callback<int>(value);
+  Future<int> inlineLater(Future<T> Function<T>(T value) callback, int value) =>
+      callback<int>(value);
+  Future<int?> nullableLater(CodegenAsyncGenericMapper callback, int? value) =>
+      callback<int?>(value);
+  num? nullable(CodegenNullableMapper callback) => callback<int>(null);
+  double? nullableDouble(CodegenNullableMapper callback, double? value) =>
+      callback<double>(value);
+  int foundation(ValueChanged<int> changed, ValueGetter<int> getter) {
+    final value = getter();
+    changed(value);
+    return value;
+  }
+}
+
+class CodegenAliasConsumer {
+  CodegenAliasConsumer(this.onChanged, this.names, this.attributes);
+
+  final CodegenOnChanged onChanged;
+  final CodegenNames names;
+  final CodegenAttributes attributes;
+
+  void notify(int value) => onChanged(value);
+  CodegenNames transform(CodegenTransform callback) => callback(names);
+}
+
 // Independent names exercise reference, collection, generic and proxy generation.
 abstract class Token {
   factory Token(int value) = _Token;
@@ -14,6 +122,34 @@ class _Token implements Token {
   bool operator ==(Object other) => other is Token && other.value == value;
   @override
   int get hashCode => value.hashCode;
+}
+
+class RecordInterop {
+  RecordInterop();
+
+  (int, String) echo((int, String) value) => value;
+
+  ({int id, String name}) echoNamed(({int id, String name}) value) => value;
+
+  (int, {bool enabled, String name}) echoMixed(
+    (int, {bool enabled, String name}) value,
+  ) => value;
+
+  (int?, String?)? echoNullable((int?, String?)? value) => value;
+
+  ((int, String), {Token token}) nested(((int, String), {Token token}) value) =>
+      value;
+
+  bool sameToken((Token, int) value, Token token) => identical(value.$1, token);
+
+  List<(int, String)> echoList(List<(int, String)> values) => values;
+
+  Future<(int, String)> later((int, String) value) async => value;
+
+  (int, String) apply(
+    (int, String) Function((int, String)) callback,
+    (int, String) value,
+  ) => callback(value);
 }
 
 class Store<T extends Token> {
@@ -123,6 +259,53 @@ abstract class Evaluator {
   int twice(int value) => evaluate(value) * 2;
 }
 
+abstract class ConstructorSuperEvaluator {
+  ConstructorSuperEvaluator(int initial) {
+    initialResult = evaluate(initial);
+  }
+
+  late final int initialResult;
+
+  int evaluate(int value) => value * 2;
+}
+
+class EvaluatorConsumer {
+  int run(Evaluator evaluator, int value) => evaluator.twice(value);
+
+  Evaluator identity(Evaluator evaluator) => evaluator;
+}
+
+abstract class RequiredSuper {
+  RequiredSuper();
+
+  @mustCallSuper
+  void refresh() {}
+}
+
+class RequiredSuperConsumer {
+  int run(RequiredSuper value) {
+    value.refresh();
+    return 1;
+  }
+}
+
+abstract class AsyncRequiredSuper {
+  AsyncRequiredSuper();
+
+  @mustCallSuper
+  Future<int> load(int value) async => value * 2;
+
+  @mustCallSuper
+  FutureOr<int> normalize(int value) => value + 1;
+}
+
+class AsyncRequiredSuperConsumer {
+  Future<int> load(AsyncRequiredSuper value, int input) => value.load(input);
+
+  Future<int> normalize(AsyncRequiredSuper value, int input) async =>
+      await value.normalize(input);
+}
+
 abstract interface class Selector {
   Token choose(Token value);
 }
@@ -136,14 +319,16 @@ abstract class AsyncContract {
 }
 
 class AsyncCallbacks {
-  AsyncCallbacks(this.transform, {this.optional});
+  AsyncCallbacks(this.transform, {this.optional, this.nestedTransform});
   final Future<int> Function(int) transform;
   final Future<int>? Function()? optional;
+  final Future<Future<int>> Function()? nestedTransform;
   final List<Future<int> Function(int)> callbacks = [];
   final Map<String, Future<int> Function(int)> mapping = {};
 
   Future<int> apply(int value) => transform(value);
   Future<int>? applyOptional() => optional?.call();
+  Future<int> applyNested() => nestedTransform!().then((inner) => inner);
   Future<int> Function(int) echo(Future<int> Function(int) callback) =>
       callback;
   Future<void> runVoid(Future<void> Function() callback) => callback();
@@ -168,6 +353,56 @@ class AsyncCallbacks {
     Future<Object?> Function(Object?) callback,
     Object? value,
   ) => callback(value);
+
+  Future<Future<int>> nestedValue(int value) =>
+      Future<Future<int>>.syncValue(Future<int>.value(value));
+
+  Future<FutureOr<int>> nestedFutureOrValue(int value) =>
+      Future<FutureOr<int>>.syncValue(value);
+
+  FutureOr<Future<int>> futureOrNestedValue(int value) =>
+      Future<Future<int>>.syncValue(Future<int>.value(value));
+
+  Future<int> runNested(Future<Future<int>> Function() callback) =>
+      callback().then((inner) => inner);
+
+  Future<int> runNestedFutureOr(Future<FutureOr<int>> Function() callback) =>
+      callback().then((value) => value);
+
+  bool futureOrNestedUsesFutureBranch(
+    FutureOr<Future<int>> Function() callback,
+  ) => callback() is Future<Future<int>>;
+
+  Future<List<int>> runNestedList(
+    Future<List<Future<int>>> Function() callback,
+  ) async => Future.wait(await callback());
+
+  Future<Map<String, int>> runNestedMap(
+    Future<Map<String, FutureOr<int>>> Function() callback,
+  ) async {
+    final values = await callback();
+    final result = <String, int>{};
+    for (final entry in values.entries) {
+      result[entry.key] = await Future<int>.value(entry.value);
+    }
+    return result;
+  }
+
+  Future<(int, {String value})> runNestedRecord(
+    Future<(Future<int>, {FutureOr<String> value})> Function() callback,
+  ) async {
+    final value = await callback();
+    return (await value.$1, value: await Future<String>.value(value.value));
+  }
+
+  Future<int?> runNullableNested(Future<Future<int?>?>? Function() callback) {
+    final outer = callback();
+    if (outer == null) return Future<int?>.value();
+    return outer.then((inner) => inner ?? Future<int?>.value());
+  }
+
+  Future<int> runNestedAlias(NestedAsyncMapper<int> callback, int value) =>
+      callback(value).then((next) => next);
 }
 
 class UnsupportedAsyncCallbacks {
@@ -291,6 +526,9 @@ class Child extends Base {
   int ping({int first = 10, int second = 20}) => first + second;
 }
 
+// A private fixture stays unbound when the public Core surface expands.
+class _UnboundValue {}
+
 class Probe {
   Probe({this.data});
   final Object? data;
@@ -303,7 +541,7 @@ class Probe {
   Object nonNull(Object value) => value;
   Object defaultValue({Object value = Mode.first}) => value;
   Object unsafeNumber() => 9007199254740992;
-  Object unboundValue() => DateTime(2000);
+  Object unboundValue() => _UnboundValue();
   dynamic echoDynamic(dynamic value) => value;
   Object? copy(Object? value) => value;
   static Object? copyStatic(Object? value) => value;

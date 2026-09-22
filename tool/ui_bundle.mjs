@@ -3,7 +3,7 @@ import { build } from 'esbuild';
 import { access, readdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { bundleOptions, root } from './src/bundle.mjs';
+import { bundleOptionsFor, prepareBundleModulesFor, root } from './src/bundle.mjs';
 
 const args = process.argv.slice(2);
 if (args.length !== 0 && (args.length !== 2 || args[0] !== '--package')) {
@@ -50,8 +50,11 @@ for (const owner of packages) {
     .map((name) => resolve(fixtures, name));
   const outdir = resolve(owner.root, '.dart_tool/flax/ui');
   if (entries.length > 0) {
+    const projectRoot = resolve(owner.root, 'js');
+    await prepareBundleModulesFor(projectRoot);
+    const options = await bundleOptionsFor(projectRoot);
     await build({
-      ...bundleOptions,
+      ...options,
       entryPoints: Object.fromEntries(
         entries.map((entry) => [entry.slice(entry.lastIndexOf('/') + 1, -3), entry]),
       ),

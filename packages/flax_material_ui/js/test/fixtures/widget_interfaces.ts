@@ -3,24 +3,24 @@ import {
   Builder,
   Column,
   PreferredSize,
-  Size,
   SizedBox,
   Text,
-  ValueKey,
   TextEditingController,
   FocusNode,
   registerPage,
   StatefulWidget,
   State,
-} from '@flax/core/flutter';
-import { AppBar, Scaffold, TextButton, TextField } from '@flax/material-ui';
+} from '@flax/flutter/widgets';
+import { Size } from '@flax/flutter/services';
+import { ValueKey } from '@flax/flutter/foundation';
+import { AppBar, Scaffold, TextButton, TextField } from '@flax/flutter/material';
 import {
   ExtentFrame,
   ExtentTile,
   ExtentProbe,
   MetadataFrame,
 } from '../../../.dart_tool/flax/ui/widget_interfaces_bindings.js';
-import type { PreferredSizeWidget, Widget } from '@flax/core/flutter';
+import type { PreferredSizeWidget, Widget } from '@flax/flutter/widgets';
 
 export const height = signal<number | null>(null);
 export const bottomHeight = signal<number | null>(null);

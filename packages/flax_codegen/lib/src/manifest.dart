@@ -5,7 +5,8 @@ import 'model.dart';
 
 /// Legacy Manifest format 1 surface.
 ///
-/// After M3, format 1 is rejected. Use [FlaxCodegenManifestV2] for Manifest 2.
+/// After M3, format 1 is rejected. Use FlaxCodegenManifestV5 for the current
+/// strict manifest format.
 /// [uiProtocol] remains the shared protocol constant for consistency checks.
 class FlaxCodegenBindingManifest {
   const FlaxCodegenBindingManifest({
@@ -14,7 +15,7 @@ class FlaxCodegenBindingManifest {
     required this.modules,
   });
 
-  /// Removed format. Callers must use Manifest 2 (`formatVersion` 2).
+  /// Removed format. Callers must use the current strict manifest format.
   static const formatVersion = 1;
   static const uiProtocol = 20;
 
@@ -36,19 +37,19 @@ class FlaxCodegenBindingManifest {
     final format = decoded is Map ? decoded['formatVersion'] : null;
     if (format == 1) {
       throw StateError(
-        'Binding manifest format 1 is not supported. Use Manifest format 2 '
-        '(FlaxCodegenManifestV2): ${file.path}',
+        'Binding manifest format 1 is not supported. Use Manifest format 11 '
+        '(FlaxCodegenManifestV5): ${file.path}',
       );
     }
     throw StateError(
       'Unsupported binding manifest format: ${file.path}. '
-      'Use FlaxCodegenManifestV2.',
+      'Use FlaxCodegenManifestV5.',
     );
   }
 
   /// Always fails closed. Manifest format 1 encoding is not supported after M3.
   String encode() => throw UnsupportedError(
     'Binding manifest format 1 encoding is not supported. '
-    'Use FlaxCodegenManifestV2.',
+    'Use FlaxCodegenManifestV5.',
   );
 }

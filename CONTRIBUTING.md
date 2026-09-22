@@ -56,7 +56,8 @@ Run commands from the repository root.
 | JS example bundle                                  | `dart run melos run example:bundle`                           |
 | JS framework test bundles                          | `dart run melos run ui:bundle`                                |
 | Framework UI with prepared Hermes assets           | `dart run melos run ui:test`                                  |
-| Flutter host and UI behavior                       | `dart run melos run check:ui`                                 |
+| Cross-module aggregate with prepared Hermes assets | `dart run melos run check:aggregate`                          |
+| All UI-owning packages plus aggregate              | `dart run melos run check:ui`                                 |
 | Launch prepared macOS example                      | `dart run melos run example:run`                              |
 | Standalone source and release with prepared assets | `dart run melos run check:standalone`                         |
 | Launch standalone macOS app                        | `dart run melos run standalone:run`                           |
@@ -67,10 +68,10 @@ Run commands from the repository root.
 | Stage packable archives with receipt (no publish)  | `dart run melos run packages:pack`                            |
 | Pre-release archive dry-run (no engines/publish)   | `dart run melos run release:check`                            |
 
-V8 is explicit: use `native:build:v8`, `check:runtime:v8`, `ui:test:v8`, or
-`check:ui:v8`. The corresponding Dart tools accept `--engine=v8`. Build both assets
-before `check:engines`, which verifies coexistence. Independent measurements use
-`bench:engines`. V8 requires the exact host tools in
+V8 is explicit: use `native:build:v8`, `check:runtime:v8`, `ui:test:v8`,
+`check:aggregate:v8`, or `check:ui:v8`. The corresponding Dart tools accept
+`--engine=v8`. Build both assets before `check:engines`, which verifies coexistence.
+Independent measurements use `bench:engines`. V8 requires the exact host tools in
 [its manifest](packages/flax_engine_v8/native/v8.json); normal consumers use prepared
 assets and do not need those build tools.
 
@@ -145,9 +146,9 @@ The workspace workflow uses Ubuntu and the pinned Flutter, Node, pnpm, and Melos
 versions. It installs locked dependencies, runs the same full check, and checks for
 unexpected working-tree changes.
 
-A separate macOS arm64 workflow runs `check:ui` using the same pinned tools. That
-command includes check:runtime, real Flutter Widget tests, Flutter drive app
-integration, and a macOS release build. A desktop GUI session and full Xcode are needed.
+A separate macOS arm64 workflow explicitly composes runtime, UI, and standalone gates
+using the same pinned tools. `check:ui` itself runs each UI-owning package integration
+and then the cross-module aggregate. A desktop GUI session and full Xcode are needed.
 Neither workflow publishes artifacts. These tests do not certify other platforms,
 security isolation, or performance budgets.
 
@@ -156,10 +157,9 @@ entry enables the Flutter test VM service for actual Dart GC/Finalizer observati
 manual framework test invocations should include `--enable-vmservice`. These GC tests
 are distinct from deterministic session-close checks and do not run during `check`.
 
-`check:ui` includes standalone application tests, outside-repository Flutter/JS package
-installation, macOS integration and relocated release UI validation. `check:standalone`
-runs just that portion with already prepared assets. Both reuse the same verification
-implementation; `check:ui` prepares native and JS inputs once.
+`check:standalone` owns standalone application tests, outside-repository Flutter/JS
+package installation, macOS integration and relocated release UI validation. It uses
+already prepared assets and stays separate from package UI and aggregate checks.
 
 ## Engine performance checks
 
@@ -174,8 +174,9 @@ Generated host scripts and dependency notices belong to the corresponding Dart p
 Run `check:ui` and `check:ui:v8` for host scheduling, binary or network changes.
 
 For storage changes, run `dart run tool/package.dart check flax_local_storage` and its
-package integration command. Full UI checks include Hive failure/persistence tests,
-namespace examples, and external consumer coverage.
+package integration command. Those owner checks contain the storage-specific Hive,
+namespace, and example coverage.
 
 For Canvas changes, run `dart run tool/package.dart check flax_canvas` and its package
-integration command. Full UI checks include those suites.
+integration command. `check:ui` invokes the same owner integration when full UI evidence
+is needed; the aggregate does not duplicate Canvas behavior.

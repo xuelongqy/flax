@@ -1,247 +1,264 @@
-# Binding Coverage Expansion v1 — coverage map
+# Binding Coverage Map
 
-Planning map for **explicit** selection growth after External Binding Kit v1. Follow
-[ADR 0018](../decisions/0018-binding-coverage-strategy.md): list types and members;
-acceptance is that the **selected** surface generates and is tested. This is **not**
-full Flutter SDK export coverage, full-type exposure, or automatic whole-package
-binding.
+This is the current capability inventory for `flax_codegen`, not a percentage of the
+Flutter SDK. [Binding Generation](bindings.md) defines selection and conversion rules;
+the [active backlog](../tasks/binding-coverage-expansion-v1.md) tracks unfinished work.
+A declaration being visible to analyzer, a generated file compiling, and a binding
+passing real runtime tests are different levels of evidence.
 
-Baseline: UI protocol **20**, native ABI **2**. Do not bump either for in-envelope
-waves. Census percentages under `.local/flax-binding-census/` are **planning
-evidence only**, not gates. Do not invent license, pub.dev names, npm scope, or
-support policy ([open questions](../decisions/open-questions.md)).
+The version domains are configuration format **1**, Manifest writer **11** with strict
+readers **2/3/4/5/6/7/8/9/10/11**, UI protocol **20**, and native ABI **2**. Supported
+legacy manifest schemas retain their original restrictions. They do not enable older UI
+protocols.
 
-Related: [binding generation](bindings.md), [interop hard walls](interop.md),
-[task record](../tasks/binding-coverage-expansion-v1.md).
+## Status vocabulary
 
-## Current inventory (orders of magnitude)
+| Status                 | Meaning                                                                                                                                        |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| Supported              | Implemented and covered by the linked regressions for the stated surface.                                                                      |
+| Requires configuration | Existing conversion works when public libraries, members, providers and semantic roles are explicitly selected. It is not automatic discovery. |
+| Deferred               | Intentionally unsupported in the current contract because the implementation cost is not justified by demonstrated API coverage.              |
+| Generator gap          | A selected declaration or signature still lacks parsing, modeling, emission or conversion support.                                             |
+| Design undecided       | The intended semantics or product configuration have not been accepted.                                                                        |
+| Not verified           | Available evidence does not establish the broader claim.                                                                                       |
 
-Counts are YAML keys in committed selection files (2026-09-13). They are not
-export-namespace coverage.
+## Language and declaration support
 
-| Module | Package / files | `types` | `classes` | Other | Notes |
-| --- | --- | ---: | ---: | --- | --- |
-| `flax.core/flutter` | `packages/flax/bindings/config.yaml` | **27** | **107** | 1 function (`applyBoxFit`); 6 `callbackSnapshots` | Widgets, layout/decoration geometry, navigation, text input, dart:async Stream family, `Duration`, listenables |
-| `flax.core/components` | `packages/flax/bindings/components.yaml` | 0 | **2** | host proxy | `StatefulWidget`, `State` — small by design |
-| `flax.material/material` | `packages/flax_material_ui/bindings/config.yaml` | **5** | **30** | 1 function (`showDialog`) | Library **`package:material_ui/material_ui.dart`** (not `package:flutter/material.dart`) |
-| `flax.canvas/canvas` | `packages/flax_canvas/bindings/config.yaml` | 0 | **2** | — | `FlaxCanvasSurface`, `FlaxCanvasView` (`jsName: CanvasView`) — **narrow by design** |
-| Cupertino (none) | `packages/flax_cupertino_ui` | — | — | no selection YAML | `capabilities: []`; no `bindingNamespace`; empty library scaffold. Pubspec already depends on `cupertino_ui: 1.0.2`. Reserved identity `flax.cupertino` is assigned only once `bindings` exist ([ADR 0022](../decisions/0022-stable-binding-identity.md)) |
+| Surface                                            | Status                 | Current boundary                                                                                                                                                                                                                                                                             |
+| -------------------------------------------------- | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Classes, constructors, static and instance members | Requires configuration | Select the public members and parameters to expose. Inherited instance selections use analyzer-resolved subtype signatures; constructors and static members stay local.                                                                                                                      |
+| Class modifiers and extension-type references      | Requires configuration | Modifier fixtures and selected extension-type fields/getters/parameters compile. Extension-type discovery is not a general automatic proposal path.                                                                                                                                          |
+| Non-constructible mixin members                    | Requires configuration | Existing object/member selection can expose members. This does not implement Dart mixin application, construction or general mixin proxies.                                                                                                                                                  |
+| Mixin composition and `mixin class` application    | Design undecided       | Deferred. Do not infer composition support from member selection or internal generated host mixins.                                                                                                                                                                                          |
+| Enums                                              | Requires configuration | Existing selected enum values and typed conversion are supported. General discovery/export of every enum member is not implemented.                                                                                                                                                          |
+| Top-level functions                                | Requires configuration | The `functions` surface emits named exports and typed calls, including supported callbacks and Futures. Route-producing functions need explicit lifetime roles and observer installation.                                                                                                    |
+| Basic and generic typedefs                         | Supported              | `typedefs` emits directional `Name`/`NameInput` types, alias-owned parameters and function-local generic callbacks. Targets must already be representable.                                                                                                                                   |
+| Top-level readonly declarations                    | Supported              | Explicit `topLevel` selections export at the owning public library. Safe primitive consts may be literal exports; dynamic/object/final/late-final/getter values use uncached `getX()` reads. Existing conversions and provider identity apply.                                               |
+| Mutable top-level variables and setters            | Supported              | Independent `topLevel.getters` / `setters` generate uncached reads and synchronous writes. Setter-only exports, actual accessor signatures, provider reuse and Manifest 10 preserve Dart state and existing call semantics.                                                                  |
+| Extension declarations and extension methods       | Supported              | Explicit named extension adapters support instance/static members, setters, generics and legal operators through receiver-first functions. No prototype mutation or extension instance identity; extension types and Widget/lifecycle positions remain separate.                             |
+| Records                                            | Supported              | Positional, named and mixed Records use readonly structural TypeScript objects and real Dart Record reconstruction. They recurse through existing nullable/generic/callback/collection/Future/provider conversions, carry no wire/session identity, and are encoded by Manifest 7 and later. |
 
-### Already strong in Core
+Typedefs include `Mapper<T> = T Function(T)`, `Items<T> = List<T>`,
+`GenericMapper = T Function<T>(T)` and `Converter<T> = T Function<U extends T>(U)`. Real
+Flutter `ValueChanged<T>` and `ValueGetter<T>` are selected in Core. Aliases have no
+runtime constructor, extra wire ID or independent ownership of their target.
 
-Layout/text/chrome: `Text`, `Row`/`Column`/`Wrap`, `Stack`/`Positioned`/`Align`,
-`Expanded`/`Flexible`, `Padding`/`SizedBox`/`Container`/`DecoratedBox`,
-`ListView`/`SingleChildScrollView`, `GestureDetector`, `Form`/`Focus`/`SafeArea`,
-builders (`Builder`/`LayoutBuilder`/`StatefulBuilder`), navigation, text editing,
-Stream/`StreamBuilder`. `Duration` is already a selected object (the 2026-09-12
-census still listed it as a thinning `unsupported_core_type`).
+Evidence: [typedef tests](../../packages/flax_codegen/test/typedef_test.dart),
+[mechanism tests](../../packages/flax_codegen/test/mechanism_coverage_test.dart),
+[Core selection](../../packages/flax/bindings/config.yaml), and
+[Codegen tests](../../packages/flax_codegen/test/).
 
-### Already strong in Material
+## Types, conversion and lifetime
 
-App shell (`MaterialApp`, `Scaffold`, `AppBar`, `Drawer`, `NavigationBar`),
-buttons, `TextField`/`InputDecoration`, theme objects, `Card`/`ListTile`,
-`Checkbox`/`Switch`, `CircularProgressIndicator`, `RefreshIndicator`,
-`showDialog`.
+| Surface                                                 | Status                 | Current boundary                                                                                                                                                                                          |
+| ------------------------------------------------------- | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Scalars, selected objects and enums                     | Supported              | Ordinary Dart values retain real references and declared conversion; copied navigation data is explicit.                                                                                                  |
+| Core DateTime, Uri and StringBuffer providers           | Supported              | Core owns a minimal selected surface, alongside Duration and TextRange. Consumers reuse that surface and cannot expand an imported owner's members.                                                       |
+| Inherited `void` getters                                | Supported              | The getter evaluates once, propagates errors and returns JS `undefined`, including generic inheritance instantiated with `void`.                                                                          |
+| List, Map, Iterable and Set                             | Supported              | Typed views preserve Dart identity; explicit copies have shape/cycle rules. Direct `List<Widget>` callbacks are supported; Map callback keys and other Widget collection callback shapes remain rejected. |
+| Callback parameter forms and directions                 | Supported              | Required/optional positional and named parameters, returned functions and supported generic callbacks share typed adapters and omission rules.                                                            |
+| Generic relationships                                   | Supported              | TS preserves type relationships; Dart uses supported upper-bound erasure and checks concrete use sites. Explicit TS arguments do not create Dart runtime type tokens or promise identical Dart inference. |
+| Bound-only recursive/dependent constraints              | Supported              | Manifest 11 type-only identities preserve nominal relationships without runtime owners. Explicit class/method specializations and type aliases are covered; value conversion remains separate.            |
+| Recursive, unbound or nonconvertible callback erasure   | Deferred               | Fail closed when a callback would need concrete runtime specialization instead of supported upper-bound erasure. Ordinary higher-rank callbacks with erasable bounds remain supported.                    |
+| Single concrete class/mixin use-site specialization | Supported | `proposeSelection` can infer one complete representable specialization from observed `InterfaceType` uses. Explicit `typeArguments` win. |
+| Global or multiple concrete generic specialization discovery | Deferred | No whole-graph enumeration or multiple bindings per declaration. Conflicts and unsupported uses stay explicit. |
+| Futures, FutureOr and Dart Streams                      | Supported              | Supported parameters, results, callbacks and typed collections use protocol 20. Stream wrapping is lazy; applications own their controllers and sinks.                                                    |
+| Nested Future/FutureOr completion values                | Supported              | Direct async chains preserve declared type/value semantics across native Promise assimilation; Future/FutureOr values inside collection, Map and Record fields remain independent async values.           |
+| Native Widget interface members                         | Supported              | Explicit getters, setters, methods, generic methods and operators forward in Dart. No JS member exposure; generic interface declarations and inaccessible signatures remain excluded.                     |
+| Flutter Context, builders, Routes and Widget interfaces | Supported with explicit lifecycle overrides | Automatic library binding reuses provider-owned Context types, infers supported BuildContext-to-Widget builder ownership, and attaches supported non-generic Widget interfaces. Route/page/session lifecycle intent and observers remain explicit. |
+| Async build/lifecycle and unsupported Widget traffic    | Generator gap          | Build, Route factories and lifecycle callbacks stay synchronous. Widget collection mutation, non-List Widget callback collections and proxy Widget properties remain unsupported.                         |
+| Deferred generic factories                              | Requires configuration | Explicit synchronous static factories infer every parameter from concrete selected uses; generic inputs are limited to supported direct synchronous callbacks.                                            |
+| Generalized deferred-factory inference                  | Deferred               | Factories whose result does not determine every type parameter, or whose generic inputs require collection, Future, Widget, Route, Context or lifecycle inference, remain fail-closed.                    |
+| General core types and rendering dependencies           | Not verified           | Minimal providers do not establish support for every `dart:core` type, every value constructor, `vsync` owner, painting delegate, Route position or SDK class.                                            |
 
-### Main gaps (interesting types, not a to-bind-all list)
+Evidence: [interop contract](interop.md), [object lifetime](objects.md),
+[generic inheritance tests](../../packages/flax_codegen/test/capability_combined_getter_test.dart),
+[provider tests](../../packages/flax_codegen/test/bindability_test.dart), and
+[real UI regressions](../../packages/flax/test/ui/codegen_basics_test.dart).
 
-Census (Protocol 18 static study, 2026-09-12): widgets interesting-type denominator
-**411**, material_ui **619**, combined partial ceiling **~96%**, full-type ceiling
-**~12%**. Then-current YAML (~75 flutter / ~15 material **class** keys) is **stale**
-versus today's **107 / 30**. The gap that matters: selected interesting widgets and
-Material chrome are still a **small subset** of the partial-generatable pool.
+Dependent generic defaults preserve their preceding TS parameters rather than using
+broader Dart-erased defaults. Explicit TS arguments are covered by generated Dart/TS
+compilation and Dart construction in the
+[bounded generic tests](../../packages/flax_codegen/test/generic_and_defaults_test.dart).
+The [selection tests](../../packages/flax_codegen/test/bindability_test.dart) cover
+direct `List<Widget>` callback arguments/setters while keeping deferred collection and
+proxy positions fail-closed. [Native callback tests](../../packages/flax/test/ui/native_callbacks_test.dart)
+cover invocation-owned builders and bidirectional `List<Widget>` callback traffic while
+rejecting Widget collection insertions and replacements without changing the existing
+collection.
 
-High-frequency **unselected** application types (in-envelope candidates unless noted):
+## Discovery, emission and package composition
 
-- Core widgets: `Icon` (+ `IconData`), `Spacer`, extra box widgets, `GridView` /
-  `PageView` builder subsets, `MediaQuery` / `MediaQueryData`, `DefaultTextStyle`,
-  `Hero` (constructor subset), `Image` (**often blocked** on `ImageProvider`).
-- Material chrome: `Material`, `InkWell`, `LinearProgressIndicator`, `SnackBar` /
-  `ScaffoldMessenger`, chips, `Tooltip`, `Radio`/`Slider`, `CircleAvatar`,
-  `TabBar` **via** `DefaultTabController` (avoid `TabController`/`vsync`).
-- Object-pool (raises how many **members** fit; not a coverage KPI): `Animation`,
-  `ShapeBorder`, `ScrollPhysics`, `MouseCursor`, `Curve`, `VisualDensity`.
-- Hard-wall shaped: slivers (`SliverChildDelegate`), transitions (`Animation`),
-  `ColorFilter`/`CustomClipper`, layout delegates, `ImageProvider`.
+| Capability                                             | Status                 | Remaining work                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| ------------------------------------------------------ | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Explicit format-1 selection and public library routing | Requires configuration | `additionalLibraries` closes known analyzer/export gaps. `publicLibraries` maps originating public Dart libraries to canonical JS/TS entry points and rejects conflicting ownership. No generated private SDK imports.                                                                                                                                                                                                                                                             |
+| `proposeSelection` / `proposeLibrary`                  | Supported              | `proposeSelection` handles one class/mixin. `proposeLibrary` inventories one public export namespace, returns an inferred config plus skip/notice diagnostics, and preserves explicit override precedence. |
+| Automatic dependency closure                           | Supported              | Selected value signatures, runtime defaults and runtime inheritance close transitively. Bound-only declarations do not create runtime owners. Same-package dependencies may become internal generated capabilities without becoming public exports; uniquely inferable direct-dependency providers reuse their Manifest identity without a YAML import. Provider member/value-construction augmentation, unsupported conversions and unsupported semantic roles still fail closed. |
+| Automatic function, enum, alias and top-level discovery | Supported             | `--library` discovers supported functions, enums, typedefs, const/final/getters and setters from the selected public export namespace. Unsupported declarations are skipped independently. |
+| Annotation-aware selection                             | Supported              | Automatic mode excludes private, `@internal`, `@visibleForTesting`, and `@protected` declarations/members. Deprecated API remains selected and produces an informational notice. |
+| Unique concrete generic specialization                 | Supported              | One complete representable specialization may be inferred from observed public use sites. Conflicting, unresolved, or nested runtime specializations are skipped unless an explicit override supplies the type arguments. |
+| Automatic public-barrel routing                        | Supported              | One `--library package:...` invocation defines the canonical public entry. Re-exports from `lib/src/` are discovered through that barrel; direct `package:.../src/...` targets are rejected. Cross-barrel canonical arbitration is deferred. |
+| Optional omission                                      | Supported              | Direct calls preserve Dart defaults and explicit null. Independent `omitWhenAbsent` parameters produce exponential branch growth; a scalable replacement remains open.                                                                                                                                                                                                                                                                                                             |
+| Manifest ownership and lexical generic scopes          | Supported              | Writer 11 and strict readers 2/3/4/5/6/7/8/9/10/11 preserve originating declarations, alias scopes, readonly exports, public-library routing, Record fields and provider ownership. Consumers use public entries and dependency manifests, without provider YAML.                                                                                                                                                                                                                  |
+| Package-atomic CLI and registration                    | Supported              | `validate`, `generate`, and `check` accept either explicit `--config` or best-effort `--library`. Automatic mode keeps the same package ownership, manifest, output planning, and atomic install/check pipeline. |
+| Optional automatic overrides                           | Supported              | `bindings/overrides.yaml` changes only named class/function exception fields or excludes named declarations. It carries no library/output/package routing and is ignored by explicit config discovery. |
+| Package-wide all/whitelist product modes               | Deferred               | Automatic mode intentionally binds one requested public library at a time. Package-wide enumeration, multi-barrel arbitration, and broader whitelist products wait for repeated real-package demand. |
+| Broader package/project binding management             | Design undecided       | Public-library partitioning, application module inventory, plugin-selected host injection and business-bundled fallback are implemented. Provider augmentation, ambiguous provider/version ownership conflicts, and broader authoring automation remain open. |
 
-Canvas stays out of expansion waves unless a Canvas-owned task says otherwise.
+Evidence:
+[additional-library tests](../../packages/flax_codegen/test/capability_additional_libraries_test.dart),
+[value-closure probes](../../packages/flax_codegen/test/capability_value_closure_test.dart),
+[manifest tests](../../packages/flax_codegen/test/manifest_v5_test.dart), and
+[manifest-only package tests](../../packages/flax_codegen/test/package_pipeline_test.dart),
+[automatic CLI tests](../../packages/flax_codegen/test/cli_test.dart), and
+[automatic proposal tests](../../packages/flax_codegen/test/bindability_test.dart).
+Historical census artifacts are exploratory samples of older inputs. Their counts,
+percentages and first-failure diagnoses are not current coverage measurements. Use the
+checked-in [capability tools](../../packages/flax_codegen/tool/) and small fixtures to
+reproduce a disputed boundary before expanding a selection.
 
-## Expansion rules
+The additional-library regressions compile public-barrel consumers and execute generated
+value construction. Imported providers retain their published constructor/member limits
+and canonical identity. The
+[omission regression](../../packages/flax_codegen/test/generic_and_defaults_test.dart)
+executes all 64 combinations for six independently omitted nullable parameters with
+non-null defaults, alongside the existing three-parameter case. Proposal selection caps
+these parameters at six; explicit generation still has exponential branch growth.
 
-- **In-envelope:** member shapes already generate under protocol 20 and the current
-  object pool. Package owner + Codegen expand YAML and regenerate. No protocol bump.
-- **Object-pool add:** selecting a high-frequency dependency type with **existing**
-  conversion/lifetime rules is a selection change. **New** conversion or lifetime
-  semantics need Architecture review first ([ADR 0018](../decisions/0018-binding-coverage-strategy.md)).
-- **Hard wall:** documented generator/interop reject. Queue it; do **not** silently
-  widen the generator or treat a census miss as a protocol requirement.
+### Reproducing a disputed capability
 
-Protocol 20 already generates Future **parameters**, first-level Future collections,
-and FutureOr in supported positions ([interop](interop.md)). The ADR 0018 “Future
-parameters” bullet is a protocol-18-era hard wall; **nested** Future / FutureOr
-completion values remain out of envelope.
+From `packages/flax_codegen`, run the relevant small fixtures before making a new
+coverage claim:
 
-## In-envelope backlog
+```sh
+dart test test/typedef_test.dart test/mechanism_coverage_test.dart \
+  test/capability_combined_getter_test.dart \
+  test/capability_additional_libraries_test.dart \
+  test/capability_value_closure_test.dart
+```
 
-Each wave is a **member subset** on named types. Stop at generate/check +
-proportionate tests. Do not require every constructor or conventional instance
-member.
+From the repository root, `dart run melos run bindings:check` verifies current generated
+output and the complete generator suite. The experimental
+[`capability_verify.dart`](../../packages/flax_codegen/tool/capability_verify.dart)
+supports `--stage2-mechanisms` for a bounded mechanism report and explicit `--entry`,
+`--stage3-library`, `--stage3-additional-libraries` and `--closure-probe` workflows for
+larger investigations. Its source documents the required input/output options. These
+flags are investigation tools, not accepted product selection modes. The
+[`bindability_census.dart`](../../packages/flax_codegen/tool/bindability_census.dart)
+study estimates static ceilings; it does not replace generation, compilation or runtime
+checks. Do not carry historical exclusion lists into a new measurement without
+reproducing their failures.
 
-### Wave A — Core widgets (highest leverage)
+Mutable access evidence:
+[accessor regressions](../../packages/flax_codegen/test/top_level_mutable_test.dart)
+compile strict TypeScript and execute generated Dart adapters;
+[Manifest 10 tests](../../packages/flax_codegen/test/top_level_setter_manifest_test.dart)
+verify old-version rejection, getter identity and provider projection. JavaScript
+dispatch tests cover import-time zero calls and host error forwarding. They do not claim
+fresh Hermes/V8 session certification; the shared runtime implementation is unchanged.
 
-Owner: **Core** (`packages/flax` / `flax.core/flutter`). Codegen supports rejects.
-Integration: proportionate `ui:test` / package tests, not a full dual-engine matrix
-unless the wave touches engines.
+## Selected packages and evidence limits
 
-Suggested first slice (constructors already likely in-envelope: scalars, `Widget`,
-`Key`, existing geometry/`Color`/`TextStyle`):
+Core exports `getKIsWeb()` and `getDefaultTargetPlatform()` from
+`@flax/flutter/foundation`, with the `TargetPlatform` enum. Material exports the direct
+`kToolbarHeight` literal and `getKTabScrollDuration()` from `@flax/flutter/material`,
+using Core's Duration provider. Mutable declarations expose independently selected
+`getX()` / `setX(value)` functions. The
+[readonly fixtures](../../packages/flax_codegen/test/top_level_readonly_test.dart),
+[strict manifest cases](../../packages/flax_codegen/test/top_level_manifest_test.dart)
+and [real UI tests](../../packages/flax_material_ui/test/ui/readonly_values_test.dart)
+cover readonly selection, import-time zero reads, repeated reads, Dart initialization,
+errors, returned references/callbacks/Futures and session cleanup. This explicit surface
+does not imply automatic discovery or a writable namespace.
 
-- `Icon` + `IconData` (value object; keep font/package fields that are scalars)
-- `Spacer`
-- `FractionallySizedBox`, `LimitedBox`, `Offstage`, `AbsorbPointer`
-- `DefaultTextStyle` (reuse selected `TextStyle`)
-- `GridView` and/or `PageView` **builder** subsets using the same independent-child
-  pattern as `ListView.builder` ([lazy lists](lists.md))
-- `MediaQuery` / `MediaQueryData` (static `of` / padding/`size`; skip exotic views)
+The four readonly runtime cases passed in both Hermes and V8 framework suites on
+2026-09-18 (UTC+8). The full static and V8 UI aggregates passed. Hermes full UI
+acceptance remains open after a standalone relocated Release timeout and a subsequent
+scoped debug navigation failure; retain the separate outcomes in
+[readonly verification](external-binding-compatibility.md#top-level-readonly-verification).
 
-Defer in this wave: `Image`/`ImageProvider`, `Transform` if it needs `Matrix4`
-without an existing selection, `CustomPaint` / delegates, slivers.
+Core contains selected Flutter layout, text, navigation, components, editing,
+collections and dart:async APIs. The small layout addition is Spacer (`key`, `flex`).
+Material binds `package:material_ui/material_ui.dart` and reuses Core identities; its
+small surface addition selects MaterialType, Material, InkWell and
+LinearProgressIndicator. CircularProgressIndicator was already selected.
 
-### Wave B — Material chrome
+The shared-object selection adds Core Curve/Cubic/Curves, MouseCursor/SystemMouseCursor
+constants, ShapeBorder/OutlinedBorder with RoundedRectangleBorder/CircleBorder/
+StadiumBorder, and five ScrollPhysics classes exposing parent. Material owns selected
+VisualDensity construction, getters, copyWith and constants. These are ordinary objects
+and inherited members; no new parser, emitter, runtime or protocol mechanism is needed
+for this slice. Constructors and static containers remain explicitly bounded.
 
-Owner: **UI bindings** (`flax_material_ui`). Library stays
-`package:material_ui/material_ui.dart`.
+Consumers select ScrollController.animateTo, physics on ListView.builder and
+SingleChildScrollView, Material.shape, InkWell.mouseCursor/customBorder, and
+ButtonStyle.shape/mouseCursor/visualDensity in construction, getters and copyWith.
+Material imports Core identities rather than registering duplicate shared objects.
+Existing Border/BoxBorder retain their capabilities and satisfy ShapeBorder, while
+button shape requires OutlinedBorder. State-property results retain concrete Dart
+use-site validation. See the
+[exact dependency table](../tasks/binding-coverage-expansion-v1.md#shared-object-selection)
+and [styles contract](styles.md#shapes-cursors-and-density).
 
-Suggested first slice:
+The
+[shared-object UI tests](../../packages/flax_material_ui/test/ui/shared_objects_test.dart)
+cover native layout/clipping comparisons, actual cursors and button states, animation
+positions/Future delivery, scroll physics and cleanup. The
+[strict TS cases](../../packages/flax_material_ui/js/test/shared_objects.types.ts) cover
+constructors, defaults, copies, nullable values, inheritance and negative provider
+member/type cases. This does not expose Animation, TickerProvider, custom painting
+delegates or general mixin composition.
 
-- `Material`, `InkWell` (common ink/splash; drop members that need unselected
-  `ShapeBorder` until Wave C)
-- `LinearProgressIndicator`
-- `SnackBar`, `SnackBarAction`, `ScaffoldMessenger` (prefer widgets/methods whose
-  shapes already match protocol 20 Future **results**)
-- `Tooltip`, `Chip` (one concrete chip class before the full family)
-- `Radio`, `Slider`
-- `CircleAvatar`
-- `DefaultTabController` + `TabBar` + `Tab` + `TabBarView` (**not**
-  `TabController` constructors that require `vsync`)
+The
+[combined slice tests](../../packages/flax_material_ui/test/ui/binding_slice_test.dart)
+cover native layout comparison, input callbacks and retirement, progress updates and
+indeterminate transitions, inherited/explicit styling and accessibility semantics. These
+are selected constructor surfaces, not complete component APIs. Icon/IconData remain
+deferred pending an explicit release-safe icon/font policy; debug rendering alone would
+not establish release icon tree-shaking behavior. Canvas owns a deliberately narrow
+surface.
 
-### Wave C — optional object pool
+Cupertino now has a bounded production selection in `@flax/flutter/cupertino`:
+CupertinoApp, CupertinoPageScaffold, CupertinoButton and CupertinoThemeData.
+CupertinoNavigationBar additionally implements ObstructingPreferredSizeWidget through
+native `preferredSize` and `shouldFullyObstruct(BuildContext)` forwarding. Its package
+tests cover obstruction-driven layout and configuration replacement.
 
-Owner: **Architecture** reviews conversion/lifetime; **Core** (and Material if the
-type is owned there) selects. Codegen confirms existing rules suffice.
+The external `gap 3.0.1` pilot binds
+`Gap(mainAxisExtent, {key, crossAxisExtent, color})` as `@vendor/flutter-gap`, reusing
+Core provider identities for Key and Color. Separate declaration and runtime packages,
+host-provided and business-bundled delivery, and real Hermes/V8 execution all pass for
+this bounded case. Missing Dart bindings fail explicitly on both engines, and a
+types-only build with no implementation fails module resolution. See the
+[compatibility matrix](external-binding-compatibility.md#real-third-party-pilot-gap-301).
 
-Candidates from the census thinning buckets, only if they reuse current object /
-enum / callback conversion:
+Automatic dependency closure now turns selected APIs into a deterministic dependency
+graph. Same-package signature, generic and inheritance dependencies can be generated as
+internal capability, while direct dependency providers reuse stable Manifest identity;
+dependency-only declarations do not become public TS exports. Provider surface requests
+fail closed with a dependency path and suggested provider additions instead of silently
+expanding another package.
 
-- `Animation` / `Animation<double>` as `Listenable`-like objects (not implicit
-  `vsync` construction)
-- `ShapeBorder` / a small `OutlinedBorder` subset
-- `ScrollPhysics`
-- `MouseCursor`
-- `Curve` (or a named enum/object subset already representable)
-- `VisualDensity`
+Generic bound-only interfaces are supported by Manifest 11 without a runtime owner, wire
+ID or member surface. `RecursiveBox<ComparableLeaf>`, dependent bounds, custom recursive
+interfaces, selected generic methods/functions and generic typedefs retain nominal TS
+relations. Value positions still require conversion bindings, and Dart analyzer subtype
+checks remain authoritative for concrete specializations. See
+[bound regressions](../../packages/flax_codegen/test/bound_type_only_test.dart) and
+[provider tests](../../packages/flax_codegen/test/package_pipeline_test.dart).
 
-Do **not** select `DiagnosticPropertiesBuilder` (debug/diagnostics API).
+Generic extension receiver specialization is an explicit unsupported boundary. Extensions
+whose type parameters can be erased to valid default or upper-bound Dart types remain
+supported; recursive or otherwise non-erasable receiver bounds that require a concrete
+Dart specialization fail closed. Flax does not require users to enumerate those
+specializations and does not automatically derive them from the binding type graph.
+Higher-rank callbacks with erasable bounds remain supported; callback erasure that would
+require concrete runtime specialization is deferred. The bounded mechanism matrix also
+retains method callbacks returning Widgets through BuildContext. Declaration discovery,
+full-library selection, mixin composition and generic Widget-interface declarations
+remain separate work.
 
-### Wave D — Cupertino first non-empty selection
-
-See [Cupertino decision](#cupertino-decision) below. Owner: **UI bindings**.
-
-### Wave E — third-party / vendor-namespace pilot
-
-See [Pilot candidate](#pilot-candidate-for-evaluation). Owner: **Integration**
-leads the outside host/canary; Codegen supports the Kit CLI; Architecture reviews
-namespace/identity only if the candidate needs a contract exception (it should not).
-
-## Hard-wall queue (do not silently widen)
-
-Escalate to Architecture (and protocol/generator contract work) before selecting
-these shapes. Current protocol-20 / interop rejects include:
-
-| Wall | Typical hits | Notes |
-| --- | --- | --- |
-| Nested Future / FutureOr completion values | Deep async signatures | First-level Future params/results are in-envelope |
-| Async lifecycle or **build** callbacks | `Future<Widget> build(...)` and similar | Build/lifecycle stay synchronous |
-| Callbacks transporting **Widget collections** | `List<Widget> Function(...)` as callback traffic | Independent **single** Widget results remain the ListView pattern |
-| Map **callback keys** | `Map` keyed by functions | Documented generator fail |
-| `vsync` / `TickerProvider` construction | `AnimationController`, `TabController` | Widgets that **hide** vsync internally (e.g. `DefaultTabController`) may still be in-envelope |
-| Unselected painting/render delegates | `ColorFilter`, `CustomClipper`, `MultiChildLayoutDelegate`, `SliverChildDelegate`, `ImageProvider`, `AssetBundle`, `LayerLink` | Object-pool **or** new conversion; not a silent emit |
-| Native Route references in unsupported positions | Some navigation members | Follow [functions](functions.md) / navigation contracts |
-
-Census “completely ungeneratable” rows are almost all `unselected_dependency`, not
-Stream/Future dominance. Filling them is a **pool or conversion** decision, not a
-reason to auto-bind the SDK.
-
-## Cupertino decision
-
-**Call: first non-empty selection wave (Wave D), not deferral.**
-
-Rationale:
-
-- `flax_cupertino_ui` is already a reserved capability package with a
-  `cupertino_ui` Dart dependency, matching how Material binds
-  `package:material_ui/material_ui.dart` rather than the Flutter SDK Material
-  library.
-- ADR 0018 left Cupertino as a **later census universe**; it did not forbid a
-  small explicit selection. Keeping the package empty indefinitely contradicts
-  the “real track” in the expansion task.
-- A first wave can stay in-envelope and mirror Material’s original shell:
-  app + scaffold + navigation bar + button + theme data.
-
-Recommended first YAML (UI implements; Architecture does not invent members here):
-
-- Enable `capabilities: [bindings]` and `bindingNamespace: flax.cupertino`.
-- Config as a **direct child** of `bindings/` with `format: 1`.
-- `library: package:cupertino_ui/cupertino_ui.dart` (confirm public export URI at
-  implementation time; do not point at `src/`).
-- Types/classes subset: `CupertinoApp`, `CupertinoPageScaffold`,
-  `CupertinoNavigationBar`, `CupertinoButton`, `CupertinoTheme` /
-  `CupertinoThemeData` (drop members that require unselected painting types).
-
-Explicitly **not** this wave: a Cupertino interesting-type census as a release
-gate; `package:flutter/cupertino.dart` as the library URI; vsync-heavy
-controllers.
-
-## Pilot candidate (for evaluation)
-
-**Candidate for evaluation:** bind a **small real Flutter widget package** with a
-tiny public Widget surface whose constructors are scalars / `Widget` / already
-selected Core types — specifically evaluate **`package:gap`** (Gap / MaxGap /
-SliverGap).
-
-Why this class of library:
-
-- In-envelope shaped (typically `double`, optional `Color` — `Color` is already
-  selected in Core).
-- Small enough for the author template + `validate|check|generate --config`
-  outside the Flax checkout.
-- Not a Flax official `flax.*` namespace. The evaluator chooses a vendor
-  `bindingNamespace` they control (pattern only: `com.example…` / `io.github…`
-  per [ADR 0022](../decisions/0022-stable-binding-identity.md)).
-
-Do **not** invent a Flax pub.dev name, npm scope, license text, or support
-window for the pilot package. Keep `publish_to: none` / npm `private: true`.
-The M4 canary `canary.pure` Counter and the Codegen author-template Gauge remain
-**fixtures**, not this pilot.
-
-Reject as first pilot if evaluation shows CustomPaint, `ImageProvider`, or
-vsync-only APIs. Then pick another small Widget package with the same envelope
-rule — still as a candidate, still without invented registry names.
-
-## Owners for next cuts
-
-| Cut | Lead | Support |
-| --- | --- | --- |
-| This map / hard-wall calls / object-pool conversion review | **Architecture** | Codegen (diagnostics) |
-| Wave A Core YAML + regenerate | **Core** | Codegen; Integration for proportionate UI evidence |
-| Wave B Material YAML + regenerate | **UI bindings** | Codegen; Core if a type must be owned in `flax.core` |
-| Wave C object pool | **Architecture** then Core (and UI if Material-owned) | Codegen |
-| Wave D Cupertino first selection | **UI bindings** | Core (shared identities); Codegen; Integration example/smoke |
-| Wave E outside pilot | **Integration** | Codegen (Kit CLI); Architecture only if a contract exception appears |
-| Canvas | **Canvas** | Out of this milestone unless a separate task expands it |
-| Priority / worktrees | **Project lead** | — |
-
-Suggested immediate assignments: **Core → Wave A first slice**; **UI → Wave B
-first slice** (can follow Wave A if checkout contention); **UI → Wave D** after
-the Cupertino `bindings` metadata cut is sequenced; **Integration → Wave E**
-evaluation of `package:gap` (parallelizable in a worktree).
+The [compatibility matrix](external-binding-compatibility.md) separates in-repository
+Hermes/V8 acceptance, outside-template generation/type checking, historical canaries and
+the bounded real Gap pilot. None establishes complete Flutter SDK coverage, arbitrary
+third-party-library support, other platforms or a public release commitment.

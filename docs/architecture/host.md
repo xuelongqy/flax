@@ -30,15 +30,34 @@ session and page constructors use only their session's snapshot. Session and own
 See [persistent storage](local-storage.md). An owned View replaces its session when the
 namespace changes.
 
+`Flax.moduleAssets` is the application-wide inventory of JavaScript binding modules the
+host can provide. Applications normally preload the prepared immutable assets once and
+assign them before constructing a `FlaxView` or `FlaxSession`; each session snapshots
+the current value. The inventory may be a superset of what any one View needs.
+
 FlaxPlugin is immutable configuration; install creates a FlaxPluginInstance for one
 session. FlaxHostContext exposes public runtime access, host function registration,
 script evaluation, `exposeObject`/`requireObject`, safe queued calls, and reporting.
-Plugins may contribute `bindingModules`; those merge with the application registry
-before source runs. Duplicate module names, type ids, function ids and incompatible
-protocol versions fail before installation. Declare installed public globals in
-`globals`; private dispatcher names are also checked for collisions. Plugins must clean
-incomplete installations themselves. Successfully installed instances close and dispose
-in reverse order.
+Plugins declare required host-delivered JavaScript binding modules through `jsModules`.
+Before plugin installation, the session selects the requested modules that are present
+in `Flax.moduleAssets`, includes their dependency closure, validates only that selected
+set against the session binding registry, and installs only those module factories. The
+base host participates implicitly and requests its Core Flutter module; capability
+packages such as Material expose a normal plugin (`FlaxMaterialPlugin`) that declares
+their public module. Duplicate requests are harmless because selection is by specifier.
+
+A requested module that is not in `Flax.moduleAssets` is left to the business bundle and
+does not make host startup fail solely because it is absent. An inventory module that no
+plugin requests remains unevaluated and does not impose Dart binding requirements on the
+session. Module instances and their registry are session-local even when multiple
+sessions reuse the same preloaded `FlaxModuleAssets`.
+
+Plugins may also contribute `bindingModules`; those merge with the application registry
+before module selection and source execution. Duplicate module names, type ids, function
+ids and incompatible protocol versions fail before installation. Declare installed
+public globals in `globals`; private dispatcher names are also checked for collisions.
+Plugins must clean incomplete installations themselves. Successfully installed instances
+close and dispose in reverse order.
 
 Closing stops new timers and requests, cancels active work, and delivers rejection while
 the engine lives. Existing pages and Routes keep their prior exit contract. Final
@@ -123,6 +142,11 @@ arrives; session close also force-closes its entire client. Body convenience rea
 necessarily accumulate the complete body, and tee follows the standard buffering
 behavior rather than imposing a hidden size limit.
 
+Applications explicitly consume or cancel response bodies and unused clone branches.
+Receiving headers is not completion of the body resource's lifetime. The same session
+checkpoint delivers host work; adding data containers or optional transports does not
+create another scheduler or implicit HTTP installation.
+
 An application-supplied ReadableStream remains the exact Body stream and is not locked
 or converted to a byte stream on acceptance. A default stream does not gain BYOB;
 network and Blob byte streams retain it. Empty byte chunks are skipped during complete
@@ -195,8 +219,10 @@ transport, stream and lifecycle cases are targeted tests, not claims of passing 
 entire WPT suite.
 
 This is a selected host API implementation, not a complete browser or Node environment.
-XHR, SSE, storage, Crypto, Worker, FileReader and general structuredClone are outside
-this delivery. App-specific Dart APIs can still use generated bindings.
+XHR, SSE, IndexedDB, sessionStorage, Crypto, Worker, FileReader and general
+structuredClone are outside this delivery. Optional [localStorage](local-storage.md) has
+its own plugin and namespace contract. App-specific Dart APIs can still use generated
+bindings.
 
 Optional [WebSocket](websocket.md) installs independently of Fetch, with client headers,
 TLS/proxy configuration and real close-handshake observation. bufferedAmount is

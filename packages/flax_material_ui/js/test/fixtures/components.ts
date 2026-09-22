@@ -1,5 +1,6 @@
-import * as ui from '@flax/core/flutter';
-import * as material from '@flax/material-ui';
+import * as ui from '@flax/flutter/widgets';
+import * as material from '@flax/flutter/material';
+import * as scheduler from '@flax/flutter/scheduler';
 import { signal, bind, batch } from '@flax/core';
 
 const hooks = {
@@ -112,6 +113,7 @@ Object.assign(globalThis, {
   componentApi: {
     ...ui,
     ...material,
+    ...scheduler,
     signal,
     bind,
     batch,

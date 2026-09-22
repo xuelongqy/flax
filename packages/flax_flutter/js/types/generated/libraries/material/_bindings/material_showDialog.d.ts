@@ -1,0 +1,20 @@
+import { type NavigationData, type Widget } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/flutter/services/_bindings/flutter_Color';
+import '@flax/flutter/services/_bindings/flutter_Color';
+import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_RouteSettings';
+import '@flax/flutter/widgets/_bindings/flutter_RouteSettings';
+declare function _flaxTopLevel_showDialog<T extends NavigationData | null = NavigationData | null>(options: {
+    barrierColor?: upstream0.Color | null | undefined;
+    barrierDismissible?: boolean | undefined;
+    barrierLabel?: string | null | undefined;
+    builder: ((context: upstream1.BuildContext) => Widget);
+    context: upstream1.BuildContext;
+    fullscreenDialog?: boolean | undefined;
+    requestFocus?: boolean | null | undefined;
+    routeSettings?: upstream2.RouteSettings | null | undefined;
+    useRootNavigator?: boolean | undefined;
+    useSafeArea?: boolean | undefined;
+}): Promise<T | null>;
+export { _flaxTopLevel_showDialog as showDialog };

@@ -89,7 +89,8 @@ void main() {
             module.name,
             [
               for (final type in module.types)
-                if (type is FlaxWidgetBinding && type.id.endsWith('::Align'))
+                if (type is FlaxWidgetBinding &&
+                    type.id == 'flax.core/flutter#type:Align')
                   FlaxWidgetBinding(
                     type.id,
                     type.constructors,

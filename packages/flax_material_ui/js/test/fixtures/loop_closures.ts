@@ -1,6 +1,7 @@
 import { bind, signal } from '@flax/core';
-import { Column, Text, ValueKey, runApp, type Widget } from '@flax/core/flutter';
-import { TextButton } from '@flax/material-ui';
+import { Column, Text, runApp, type Widget } from '@flax/flutter/widgets';
+import { ValueKey } from '@flax/flutter/foundation';
+import { TextButton } from '@flax/flutter/material';
 
 const children: Widget[] = [Text('Static', { key: ValueKey('loop-static') })];
 for (const index of [1, 2, 3]) {

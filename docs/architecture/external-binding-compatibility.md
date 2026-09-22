@@ -1,139 +1,217 @@
-# External Binding Kit v1 — compatibility matrix
+# External Binding Compatibility
 
-Reviewable status of the External Binding Kit v1 compatibility domains against
-accepted decisions and recorded M3/M4/M5-F evidence. This matrix does **not**
-decide public-release support lifetime, registry publication, or license policy.
+This document separates implemented contracts, recorded acceptance and unverified
+coverage. [Binding Generation](bindings.md) owns generation rules;
+[Binding Coverage Map](binding-coverage-map.md) owns language and API support. Neither
+an accepted decision nor an outside-template check establishes whole-library support.
 
-Contract owner:
-[ADR 0021](../decisions/0021-external-binding-version-domains.md). Related:
-[ADR 0020](../decisions/0020-ui-protocol-20.md) (UI protocol 20),
-[ADR 0022](../decisions/0022-stable-binding-identity.md),
-[ADR 0023](../decisions/0023-external-binding-package-trust.md),
-[open questions](../decisions/open-questions.md),
-[task record](../tasks/external-binding-kit-v1.md),
-[migration guide](../guides/external-binding-migration.md).
+## Version contract
 
-Outside-checkout canary tree (sibling workspace, not linked from this repo):
-`/Volumes/MAC_HOME/Develop/Flutter/flax-m4-canaries/`.
+| Domain            | Current contract                                                                                                           | Evidence                                                                                                                              |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Binding selection | Configuration format 1; strict parsing and package-atomic discovery of direct `bindings/*.yaml` and `bindings/*.yml` files | [Configuration tests](../../packages/flax_codegen/test/config_test.dart), [CLI tests](../../packages/flax_codegen/test/cli_test.dart) |
+| Package metadata  | Format 1; `bindingNamespace` is required exactly when `capabilities` includes `bindings`                                   | [Metadata fixtures](../../tests/compatibility/package_metadata/), [package tests](../../tool/test/package_metadata_test.dart)         |
+| Binding Manifest  | Writer 11; strict readers 2 through 11; format 1 and unknown formats rejected                                              | [Manifest tests](../../packages/flax_codegen/test/manifest_v5_test.dart), [ADR 0031](../decisions/0031-mutable-top-level-bindings.md) |
+| Generated module  | Literal `moduleId`, `uiProtocol` and sorted unique `requiredCapabilities`; validation precedes installation                | [Registration contract](bindings.md#literal-module-tuple-and-registration)                                                            |
+| UI protocol       | 20; exact protocol match and required-capability subset check                                                              | [ADR 0020](../decisions/0020-ui-protocol-20.md), [Core definitions](../../packages/flax/lib/src/ui/definitions.dart)                  |
+| Native ABI        | 2; native table validation is independent of selection and Manifest versions                                               | [Native header](../../packages/flax/native/include/flax/runtime.h), [runtime contract](runtime.md)                                    |
 
-## Status vocabulary
+Legacy manifests are validated against their original schemas before normalization.
+Format 2 cannot contain aliases. Format 3 supports basic aliases but rejects alias-owned
+parameters and generic alias targets. Format 4 requires each alias's `typeParameters`,
+including an empty array. Formats 2/3/4 reject readonly exports and read identities.
+Format 5 adds the historical readonly namespace representation. Format 6 adds
+`publicLibraries` routing and the current module-level top-level export contract.
+Regeneration writes format 6; editing only the version number is not migration. Older
+generators cannot read the new format.
 
-| Status | Meaning |
-| --- | --- |
-| **proven** | Recorded command/receipt or committed fixture evidence supports the claim |
-| **partially proven** | Core claim holds, but a documented residual or scoped gap remains |
-| **contract locked** | Architecture accepted the public API; package implementation is not yet landed |
-| **not run** | Required or desirable suite was intentionally not executed for this matrix |
-| **blocked by open-questions** | Product/policy decision still open; do not invent a release commitment |
+## Top-level readonly verification
 
-Cells may combine a technical status with an open-questions blocker when evidence
-exists for the experimental baseline but public support policy is unsettled.
+The readonly slice now exposes Core `getKIsWeb()` / `getDefaultTargetPlatform()` from
+`@flax/flutter/foundation` and Material `kToolbarHeight` / `getKTabScrollDuration()`
+from `@flax/flutter/material`, plus independent declarations for lazy final
+initialization, late final errors, changing getters, object and collection identity,
+generic callbacks, and Future delivery. The namespace form in the receipts below is
+historical evidence from Manifest 5 and is no longer a public entry point.
+[Generation tests](../../packages/flax_codegen/test/top_level_readonly_test.dart),
+[schema tests](../../packages/flax_codegen/test/top_level_manifest_test.dart), and
+[manifest-only provider tests](../../packages/flax_codegen/test/package_pipeline_test.dart)
+cover readonly typing, source identity, legacy formats, provider forwarding and
+rejection of altered consumer declarations. The
+[runtime tests](../../packages/flax_material_ui/test/ui/readonly_values_test.dart)
+contain four cases that passed in both Hermes and V8 framework suites, each within the
+176-test Material UI suite.
 
-## Summary matrix
+Fresh outcomes recorded on **2026-09-18 (UTC+8)** are retained under the ignored
+`.local/top-level-readonly-20260918-201754/acceptance/` directory:
 
-| Domain | Technical status | Public-release policy | Primary evidence |
-| --- | --- | --- | --- |
-| UI protocol 20 | proven | blocked by open-questions | ADR 0020/0021; `flaxBindingVersion = 20`; Manifest 2 `uiProtocol: 20`; official generated Dart/JS pin literal `moduleId` / `uiProtocol` / `requiredCapabilities` |
-| Native ABI 2 | proven | blocked by open-questions | `FLAX_ABI_VERSION 2`; load-time table check; engines reuse ABI without binding YAML |
-| Binding YAML format 1 | proven | blocked by open-questions | Official `format: 1` configs; Codegen config/CLI tests; M3/M4 generate+check |
-| Manifest 2 | proven | blocked by open-questions | Committed `formatVersion: 2`; Manifest 2 round-trip and reject-format-1 tests; M3 cutover |
-| Codegen CLI | proven | blocked by open-questions | `validate\|check\|generate --config`; package CLI tests; M4 pure-Dart canary |
-| Engine Hermes | partially proven | blocked by open-questions | M4 Flutter canary Hermes smoke PASS; full dual-engine UI suite not re-run in canary |
-| Engine V8 | partially proven | blocked by open-questions | M4 Flutter canary V8 smoke PASS; full `check:ui:v8` / dual-engine UI suite not re-run in canary |
-| Out-of-repo pure Dart canary | proven | blocked by open-questions | `flax-m4-canaries/receipts/pure_dart.md` |
-| Out-of-repo Flutter canary | partially proven | blocked by open-questions | `flax-m4-canaries/receipts/flutter_host.md` + `flutter_canary.log` |
+| Check                                                                                   | Recorded outcome        | Scope                                                                                                                                                                   |
+| --------------------------------------------------------------------------------------- | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `dart run melos run check`                                                              | Passed, exit 0          | Full static aggregate, including generation consistency, tests, analysis, strict types, documentation and package checks                                                |
+| `dart run melos run check:ui`                                                           | Failed, exit 1          | Hermes framework and package-example tests passed; standalone relocated Release verification timed out                                                                  |
+| `dart run melos run check:ui:v8`                                                        | Passed, exit 0          | Full V8 aggregate, including package examples, outside-consumer debug integration, relocated Release execution, embedded integration receipt and embedded Release build |
+| `dart run tool/check_standalone.dart`                                                   | Failed, exit 1          | Scoped Hermes investigation stopped at a standalone debug navigation-text assertion; it did not reach Release verification                                              |
+| Outside-template `validate`, `generate`, `check`, Dart analysis and strict TS typecheck | All five passed, exit 0 | Current author template with readonly declarations, public registration and Manifest-only Core forwarding without provider YAML                                         |
 
-## Domain detail
+The Hermes run passed standalone debug integration and built the production and test
+Release applications. The relocated test application then failed to produce its
+`FLAX_STANDALONE_RESULT` receipt within the three-minute limit in
+[`_verifyRelease`](../../tool/src/standalone_verification.dart). The aggregate exited
+before the later embedded test, drive/report and release-build stages in
+[`check_ui.dart`](../../tool/check_ui.dart). The cause of the Release stall remains
+unresolved; framework success does not establish complete UI or Release acceptance.
 
-### 1. UI protocol 20
+During the scoped Hermes investigation, the running Flutter test reported a `hidden`
+lifecycle, disabled frame scheduling and a pending test frame. Activating the test
+application advanced execution, but the
+[navigation-text assertion](../../examples/standalone/test/support/scenario.dart) then
+failed. This observation does not establish the cause of the earlier Release timeout or
+a repair. Keep both failures distinct from the passing readonly runtime cases and the
+complete V8 aggregate.
 
-| Claim | Status | Evidence |
-| --- | --- | --- |
-| Protocol 20 is the single active UI protocol baseline for External Binding Kit v1 | proven | [ADR 0020](../decisions/0020-ui-protocol-20.md); [ADR 0021](../decisions/0021-external-binding-version-domains.md); `packages/flax/lib/src/ui/definitions.dart` (`flaxBindingVersion = 20`); official Manifest 2 modules use `uiProtocol: 20` (e.g. `packages/flax/bindings/manifest.json`) |
-| Registry / mount reject mismatched protocol integers | proven | `FlaxBindingRegistry` `uiProtocol` check in `packages/flax/lib/src/ui/definitions.dart`; session mount protocol check in `packages/flax/lib/src/ui/session.dart` |
-| Generated modules pin literal `moduleId` / `uiProtocol` / `requiredCapabilities` facades (ADR 0021 tuple pinning) | proven | [literal module tuple](bindings.md#literal-module-tuple-and-registration); [task M5-F Core/Codegen](../tasks/external-binding-kit-v1.md); official `FlaxBindingModule` registration in `packages/flax/lib/src/generated/flutter_bindings.g.dart` (`moduleId: "flax.core/flutter"`, `uiProtocol: 20`, `requiredCapabilities: const <String>[]`), `packages/flax_material_ui/lib/src/generated/material_bindings.g.dart` (`flax.material/material`), `packages/flax_canvas/lib/src/generated/canvas_bindings.g.dart` (`flax.canvas/canvas`); matching JS `_flaxInstallBindingModule(...)` before define/host calls; Manifest 2 per-module tuples match. No ambient `version: 20` on those generated modules. Side note: `packages/flax_fetch/test/ui/host_test.dart` still constructs `version: 16` in a handwritten test (out of this slice; not an official generated binding module) |
-| Public-release host/guest protocol support lifetime | blocked by open-questions | [open questions](../decisions/open-questions.md) row “Public-release compatibility policy” |
+The successful static receipt is `check-final-20260918T143426Z.json`; the Hermes failure
+is `check-ui-native.json`. The Hermes log is a retained native command-output transcript
+with any tool truncation markers preserved. The full V8 receipt is
+`check-ui-v8-20260918T150448Z.json`; the scoped Hermes investigation is
+`standalone-hermes-repro-20260918T152915Z.json`. The latter two retain unabridged
+process logs. The five outside-template results are summarized by
+`template-suite-final-20260918T143331Z.json`. Executable and generated inputs match the
+successful static and template snapshots; subsequent receipt-only documentation edits
+require documentation checks.
 
-### 2. Native ABI 2
+Those 2026-09-18 Hermes failures are historical. The Manifest 6
+public-library/module-delivery migration was verified again on **2026-09-19 (UTC+8)**:
 
-| Claim | Status | Evidence |
-| --- | --- | --- |
-| Current C `FlaxApi` table is ABI 2 | proven | `packages/flax/native/include/flax/runtime.h` (`#define FLAX_ABI_VERSION 2`); generated `packages/flax/lib/src/native/runtime_bindings.g.dart` (`FLAX_ABI_VERSION = 2`); load rejects mismatched table version in `packages/flax/lib/src/native/native_runtime.dart` |
-| Binding YAML / Manifest do not declare native ABI (normal binding packages) | proven | [ADR 0021](../decisions/0021-external-binding-version-domains.md) “Native ABI 2”; [author template](../../packages/flax_codegen/docs/author-template.md) |
-| M4 outside canaries exercise ABI 2 through packed Hermes/V8 engines | proven (indirect) | Flutter canary depends on packed `flax_engine_hermes` / `flax_engine_v8` and passes focused smoke — receipts under `/Volumes/MAC_HOME/Develop/Flutter/flax-m4-canaries/receipts/` |
-| Native ABI evolution after ABI 2 / public ABI support policy | blocked by open-questions | [open questions](../decisions/open-questions.md) rows “Native ABI evolution after ABI 2” and “Public-release compatibility policy” |
+| Check                                 | Current outcome | Scope                                                                                                                                                   |
+| ------------------------------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `dart run tool/check_standalone.dart` | Passed, exit 0  | Packed external packages, strict TypeScript, loader-based direct imports, macOS integration, production Release and relocated Release execution         |
+| `dart run melos run check:ui`         | Passed, exit 0  | Full current Hermes UI aggregate, including package examples, standalone verification and embedded Flutter integration/Release                          |
+| `dart run melos run check:ui:v8`      | Passed, exit 0  | Full current V8 UI aggregate, including package examples, packed external consumer, standalone relocated Release and embedded integration/Release build |
 
-### 3. Binding YAML format 1
+The current standalone verifier executes direct-import checks through the Flax Node
+loader so public `@flax/flutter/*` subpaths can resolve their owning physical runtime
+packages without bundling duplicate owners. The previous relocated-Release timeout and
+navigation-text assertion are therefore not current Hermes blockers. These results still
+cover the selected bindings and package-delivery paths rather than whole-SDK discovery
+or arbitrary third-party libraries. They predate Manifest 7 Record support and are
+evidence for the Manifest 6 migration only.
 
-| Claim | Status | Evidence |
-| --- | --- | --- |
-| Official selection files carry `format: 1` | proven | e.g. `packages/flax/bindings/config.yaml`; Material/Canvas package configs; architecture [bindings](bindings.md) |
-| Strict fail-closed parsing for unknown/missing/mistyped/duplicate input | proven | `packages/flax_codegen/test/config_test.dart`; M3 GREEN `bindings:check` in [task record](../tasks/external-binding-kit-v1.md) |
-| Outside-checkout generate/check against format-1 config | proven | Canary `pure_dart/bindings/config.yaml` starts with `format: 1`; receipt `/Volumes/MAC_HOME/Develop/Flutter/flax-m4-canaries/receipts/pure_dart.md` (`generate`/`check --config` EXIT 0) |
-| Long-term public support for format 1 across Codegen majors | blocked by open-questions | ADR 0021 freezes bump rules; support lifetime remains open |
+The outside-template run used TypeScript 5.9.2 and a packed Core npm package, while the
+workspace used TypeScript 7.0.2. That run itself proves generation, types and public
+dependency registration rather than external dual-engine UI execution. A separate real
+`gap 3.0.1` package pilot now supplies bounded third-party dual-engine evidence below.
+The older typedef and shared-object receipts do not establish acceptance of this
+readonly implementation. These checks cover the selected APIs and fixtures, not
+whole-SDK or complete external-library support.
 
-### 4. Manifest 2
+The normal Fetch module test uses `uiProtocol: 20`; its `uiProtocol: 16` case
+deliberately tests rejection. It is not an unresolved compatibility failure. See the
+[Fetch host tests](../../packages/flax_fetch/test/ui/host_test.dart).
 
-| Claim | Status | Evidence |
-| --- | --- | --- |
-| Official manifests are `formatVersion: 2` only | proven | `packages/flax/bindings/manifest.json` (`formatVersion: 2`, `bindingNamespace: flax.core`, modules with `uiProtocol: 20`); [packaging](packaging.md); M3 direct cutover in [ADR 0021](../decisions/0021-external-binding-version-domains.md) |
-| Manifest format 1 is rejected | proven | `packages/flax_codegen/test/manifest_v2_test.dart` (`formatVersion` 1 → Invalid formatVersion); migration guide states no long-term Manifest 1 path |
-| Lossless model → Manifest 2 → loaded projection round trips | proven | `packages/flax_codegen/test/manifest_v2_test.dart` maximal-model / module / identity round-trip tests |
-| Outside canary emits Manifest 2 | proven | Spot-check: `/Volumes/MAC_HOME/Develop/Flutter/flax-m4-canaries/pure_dart/bindings/manifest.json` → `formatVersion: 2`, `bindingNamespace: canary.pure`, `uiProtocol: 20` |
-| Public Manifest 2 support lifetime across releases | blocked by open-questions | [open questions](../decisions/open-questions.md) |
+## Generic typedef acceptance
 
-### 5. Codegen CLI
+Acceptance completed on **2026-09-18 (UTC+8)** for the implementation inputs recorded
+with the successful commands below. Reuse requires matching executable inputs; source,
+configuration, generated-output or dependency changes require the affected checks again.
+Documentation-only consolidation does not expand the runtime evidence.
 
-| Claim | Status | Evidence |
-| --- | --- | --- |
-| Public CLI is `validate` / `check` / `generate` with required `--config` | proven | `packages/flax_codegen/README.md`; `packages/flax_codegen/test/cli_test.dart` (accepts three commands; rejects old `[--check] <config>` form with exit 1) |
-| Package-atomic happy path and check without mutating tree inappropriately | proven | `cli_test.dart` validate/generate/check EXIT 0; package pipeline tests under `packages/flax_codegen/test/` |
-| Outside-checkout CLI on packed `flax_codegen` archive | proven | `/Volumes/MAC_HOME/Develop/Flutter/flax-m4-canaries/receipts/pure_dart.md`; packed archive path `archives/dart/flax_codegen` |
-| Published CLI SemVer / support window | blocked by open-questions | License, pub.dev names, and support policy remain open |
+| Check                                                                                   | Recorded outcome        | Scope                                                                                              |
+| --------------------------------------------------------------------------------------- | ----------------------- | -------------------------------------------------------------------------------------------------- |
+| `dart run melos run check:ui`                                                           | Passed, exit 0          | In-repository Hermes UI aggregate, including embedded Flutter integration                          |
+| `dart run melos run check:ui:v8`                                                        | Passed, exit 0          | In-repository V8 UI aggregate, including embedded Flutter integration                              |
+| `dart run melos run check:engines`                                                      | Passed, exit 0          | Engine coexistence, foreign-object rejection, reentry and runtime recreation                       |
+| Outside-template `validate`, `generate`, `check`, Dart analysis and strict TS typecheck | All five passed, exit 0 | Copied author template, public registration and manifest-based dependencies outside the repository |
 
-### 6. Engines — Hermes and V8
+The typedef regressions cover alias-owned and function-local parameters, bounds and
+defaults, nullability, capture and shadowing, async aliases, both callback directions,
+invalid results and manifest-only consumers. Numeric callback results are adapted at
+concrete Dart use sites: safe finite integral values may satisfy `int`, and integers may
+satisfy `double`; `Object?` and `num` preserve their representation. Invalid values
+still fail. See [typedef tests](../../packages/flax_codegen/test/typedef_test.dart) and
+[runtime regressions](../../packages/flax/test/ui/codegen_basics_test.dart).
 
-Spot-check (2026-09-13 receipts; **not** re-run for this matrix): canary logs are short, dated, and coherent with the written receipts.
+The author template registers `exampleBindings`, derived from selection `name: example`.
+The outside smoke imports public Dart entry points and the packed Core npm exports. It
+used TypeScript 5.9.2; the workspace used TypeScript 7.0.2. These results do not
+establish support for every compiler version. See the
+[author guide](../../packages/flax_codegen/docs/author-template.md).
 
-| Claim | Status | Evidence |
-| --- | --- | --- |
-| Hermes focused Flutter canary smoke | proven | `/Volumes/MAC_HOME/Develop/Flutter/flax-m4-canaries/receipts/flutter_host.md`; `receipts/flutter_canary.log` (`M4 canary smoke on hermes` PASS; overall EXIT 0) |
-| V8 focused Flutter canary smoke | proven | Same receipts (`M4 canary smoke on v8` PASS) |
-| Covered behaviors in canary smoke | proven (scoped) | Explicit registry registration, MaterialApp/Scaffold, ElevatedButton callback, StreamBuilder + `Stream.fromIterable`, JS Promise microtask → status signal, `FlaxView` teardown — listed in `flutter_host.md` / canary README |
-| Full dual-engine UI suite / identity goldens / host-plugin matrix in canary | not run | Explicitly documented gap in [task M4](../tasks/external-binding-kit-v1.md) and canary receipts |
-| In-repo Hermes/V8 runtime baseline (pre-existing, not re-run here) | partially proven (cite only) | Architecture [runtime](runtime.md); task [v8-support](../tasks/v8-support.md) records `check:runtime:v8` / `check:ui:v8` as the explicit V8 verification path; root [AGENTS.md](../../AGENTS.md) requires runtime checks on macOS arm64 when runtime changes. This matrix does **not** claim a fresh dual-engine green run. |
-| Default product engine / per-platform selection | blocked by open-questions | [open questions](../decisions/open-questions.md) “Default engine and per-platform selection” |
+The navigation test correction waits for outgoing content to disappear within a bounded
+frame-driven wait. A completed pop Future and removal from declarative Pages do not mean
+the exit transition has disposed its Widget. That timing issue is resolved in the test;
+it is not a current Hermes or V8 blocker. The lifetime contract remains in
+[navigation](navigation.md#route-and-callback-lifetime).
 
-### 7. Out-of-repo pure Dart / Flutter canaries
+## Real third-party pilot: gap 3.0.1
 
-| Claim | Status | Evidence |
-| --- | --- | --- |
-| Pure Dart package installs packed archives, generates, checks, compiles Dart, typechecks/builds/tests JS | proven | `/Volumes/MAC_HOME/Develop/Flutter/flax-m4-canaries/README.md`; `receipts/pure_dart.md` (all listed commands EXIT 0); namespace `canary.pure`; wire evidence `canary.pure/canary#type:Counter` |
-| Flutter host package registers Core + Material bindings and runs Hermes + V8 smoke | proven (focused) | `receipts/flutter_host.md`; `receipts/flutter_canary.log`; pubspec uses packed `archives/dart/{flax,flax_material_ui,flax_engine_hermes,flax_engine_v8}` |
-| Aggregate `packages:check` on the integration baseline used for M4 | proven | [task M4](../tasks/external-binding-kit-v1.md) records EXIT 0; log `/Volumes/MAC_HOME/Develop/Flutter/flax-m4-canaries/receipts/packages_check.log` completes outside Dart consumers for core, engines, Material, Codegen, and extension packages (spot-checked; no failure markers in the receipt body) |
-| Full dual-engine UI / identity goldens / host-plugin surface outside checkout | not run | Same documented M4 gaps |
-| Public “supported consumer” commitment for outside archives | blocked by open-questions | License, registry names, and public-release compatibility policy |
+The disposable outside-workspace pilot binds `gap 3.0.1` under vendor namespace
+`vendor.gap`. Its public declarations are delivered as `@vendor/flutter-gap`, while the
+implementation/module-delivery package is `@vendor/flutter-gap-runtime`. The binding
+configuration selects only `package:gap/gap.dart` and does not declare an explicit Flax
+provider import. The selected surface is
+`Gap(mainAxisExtent, {key, crossAxisExtent, color})`; automatic dependency closure
+resolves Key and Color to the existing Flax provider manifests and wire identities
+rather than creating third-party owners.
 
-## Residuals carried forward (not invented green)
+The pilot passed `flutter pub get`, `flax_codegen validate`, `generate` and `check`,
+Dart analysis and strict TypeScript compilation. Both declarations and runtime packages
+pack independently. Host module preparation resolves the selected vendor module plus its
+Flax provider dependency closure into the prepared asset inventory.
 
-M5-F Core + Codegen landed official literal-tuple registration. Remaining honesty
-notes:
+Two delivery modes were exercised with real external hosts:
 
-- Full dual-engine UI suite, identity goldens, and host-plugin matrix were not
-  re-run inside the outside canaries (M4 gap; **not run** for this matrix).
-- M4 canary archives were packed before M5-F; they prove outside generate/check
-  and focused Hermes/V8 smoke, not a fresh outside-checkout of the literal-tuple
-  facades.
-- Handwritten `packages/flax_fetch/test/ui/host_test.dart` still uses
-  `FlaxBindingModule(..., version: 16)` (out of this slice).
+- **Host-provided module.** The App provides `@vendor/flutter-gap`; business code
+  installs only the declarations. Its bundle contains the host-module shim and excludes
+  the Gap runtime implementation.
+- **Business-bundled module.** The App omits Gap; business code depends on and bundles
+  the vendor runtime. Flax provider modules continue to resolve through host shims
+  instead of being duplicated.
 
-## What this matrix does not settle
+Hermes and V8 both passed all three external Gap runtime cases and rendered a real Gap
+with `mainAxisExtent == 24` and `crossAxisExtent == 12`. A deliberately altered module
+requirement (`vendor.gap/missing`) fails on both engines with the expected missing or
+incompatible Dart-binding error. A types-only business build with neither a host Gap
+module nor the runtime implementation fails module resolution at build time, proving
+that the declaration package alone cannot silently supply executable code.
 
-Do not read any cell as a public support promise. Still open in
-[open questions](../decisions/open-questions.md):
+Existing repository tests retain the broader duplicate-owner, version/host
+incompatibility, re-export and transitive-dependency cases. The Gap pilot adds real
+package and engine evidence for one dependency shape. Together with generator
+regressions it verifies the implemented automatic signature/generic/inheritance and
+provider-identity closure, but it does not certify arbitrary third-party packages,
+provider auto-augmentation, unsupported conversions or complete declaration discovery.
+During the external Flutter test, `rootBundle.loadString` stalled while decoding a large
+generated bundle; the fixture switched to byte loading plus direct UTF-8 decoding. That
+is test-harness plumbing, not a Flax runtime/session-cleanup fix.
 
-- Project license
-- Public pub.dev names and npm scope
-- Public-release compatibility policy / support lifetime
-- Default engine and per-platform selection
-- Native ABI evolution after ABI 2
+## Reproducing verification
+
+Run `dart run melos run check` after all changes. It checks generated consistency,
+tests, analysis, formatting, TypeScript, documentation, packages and native
+configuration. It does not build or certify either engine. Keep its command, exit code,
+log and input hashes with the local acceptance receipt instead of maintaining a public
+turn-by-turn log.
+
+Run engine/UI aggregates serially because generation and embedded assets are shared. The
+[contribution checks](../../CONTRIBUTING.md#checks) describe the scoped commands.
+Changes to executable template files require a new outside-template run. Changes to
+shared runtime behavior require both affected engine paths; a template typecheck cannot
+replace them.
+
+## Evidence limits and remaining work
+
+The older outside-repository canaries were packed before literal module tuples and
+Manifest 4. Their pure-Dart generation and focused Hermes/V8 smoke are historical
+evidence only. They are not fresh acceptance of the current package contents.
+
+The current outside-template results do **not** rerun a complete external dual-engine UI
+suite, normalized identity goldens or the full host-plugin matrix. The `gap 3.0.1` pilot
+adds real Hermes/V8 evidence for one third-party Widget package and both supported
+module delivery modes. Broader third-party/API coverage, other platforms and
+published-archive acceptance remain separate work in the
+[coverage task](../tasks/binding-coverage-expansion-v1.md).
+
+Registry publication, license choice, naming, signing and support lifetime remain
+[open decisions](../decisions/open-questions.md). The trusted compile-time package model
+does not provide remote loading or untrusted-code isolation. See
+[package trust](../decisions/0023-external-binding-package-trust.md).

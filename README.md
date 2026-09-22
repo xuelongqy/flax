@@ -27,8 +27,9 @@ explicit disposal. Named page factories can register synchronous cleanup after c
 unmount. See [owned Dart objects](docs/architecture/objects.md).
 
 Sessions install a [base host environment](docs/architecture/host.md) with Console,
-timers, URL, encoding and cancellation APIs. Optional `flax_fetch` installs Fetch and
-byte streams per session. Bare runtimes remain explicit and engine-only.
+timers, URL, encoding, cancellation, data containers and Web Streams. Optional
+`flax_fetch` installs HTTP Fetch using those shared base types. Bare runtimes remain
+explicit and engine-only.
 
 Generated dart:async bindings provide lazy, bidirectional Stream references,
 controllers, subscriptions, transforms, AsyncIterable conversion and native Flutter
@@ -54,16 +55,18 @@ On macOS arm64 (macOS 15 or newer), install Xcode command-line tools and Ninja, 
 run:
 
 ```sh
+dart run melos run native:build
 dart run melos run check:ui
 ```
 
-This explicitly downloads checksum-pinned Hermes source, builds the native library,
-prepares package-local assets, and runs runtime, packaging, Flutter Widget, and macOS
-app integration tests, followed by a release build. To launch the example afterward, run
+`native:build` downloads checksum-pinned Hermes source, builds the native library, and
+prepares package-local assets. `check:ui` then runs every UI-owning package integration
+plus the cross-module aggregate. Runtime, standalone, engine-coexistence, and release
+verification remain separate gates. To launch the example afterward, run
 `dart run melos run example:run`. Hermes remains the default for repository commands and
 examples. Experimental V8 15.2.124.21 is available explicitly with `native:build:v8` and
 `check:ui:v8`; see the [V8 adapter](packages/flax_engine_v8/native/README.md) and
-[validation record](docs/tasks/v8-support.md). See the
+[verification scope](docs/architecture/runtime.md#verification). See the
 [runtime package](packages/flax_engine_hermes/README.md) and
 [packaging instructions](docs/architecture/packaging.md).
 

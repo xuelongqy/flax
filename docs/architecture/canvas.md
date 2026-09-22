@@ -155,3 +155,23 @@ coordinates; applications scale to canvas pixels when display size differs.
 
 `putImageData` is a synchronous RGBA blit. Image and text paints use the current
 composite, alpha, shader and filter.
+
+## Known limitations and verification
+
+The current `reset()` implementation resets drawing state, the stack and the current
+path, but its decoder opcode does not clear already committed surface pictures. The
+current `transferToImageBitmap()` also calls the context's `reset()`, so drawing state
+is not preserved after transfer. These are implementation gaps, not completed fixes. See
+the [encoder](../../packages/flax_canvas/js/src/canvas.ts) and
+[decoder](../../packages/flax_canvas/lib/src/commands.dart).
+
+Non-finite color components are ignored by the color setters, but this does not cover
+all numeric drawing arguments. A non-finite number reaching the decoder throws
+`FormatException('Non-finite canvas number')` and rejects the pending batch, including
+otherwise valid commands in that batch. The previous committed picture remains.
+
+The [JavaScript tests](../../packages/flax_canvas/js/test/) and
+[Flutter pixel tests](../../packages/flax_canvas/test/ui/canvas_test.dart) cover
+selected commands, resources and scene comparisons. They do not prove complete Canvas
+behavior. Closing the gaps above requires dedicated pixel/state regressions and affected
+Hermes and V8 checks; old aggregate passes do not substitute for those regressions.

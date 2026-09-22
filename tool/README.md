@@ -74,6 +74,12 @@ bundle check, and example static checks when present. `integration <name>` runs 
 real-engine UI tests and package example with prepared assets. The tool has no list of
 Material, Fetch, WebSocket, storage, or Canvas packages.
 
+Flutter example checks require a root `example/pubspec.yaml` with a Flutter SDK
+dependency. Template containers and plain Dart examples do not enter that flow. Invalid
+manifests and failing Flutter checks still fail the command. The Codegen author template
+is validated separately after copying it outside the checkout; see the
+[author walkthrough](../packages/flax_codegen/docs/author-template.md#minimal-walkthrough).
+
 Every package declares its entry point, optional npm peer, capabilities, and public
 registration symbols in `flax_package.yaml`. Archive checks use this metadata to select
 binding, host, engine, and npm rules. Temporary Dart consumers import the declared entry
@@ -105,14 +111,19 @@ arm64 and prepared Hermes assets; missing assets report
 validation. This command does not launch aggregate applications, build native code, or
 publish anything.
 
-`check_ui.dart` runs check_runtime, builds JS once, bundles example and test inputs,
-runs package-owned suites and examples, drives the aggregate macOS integration
-scenarios, and builds release. `example_run.dart` bundles and launches the embedded app.
+`check_aggregate.dart` builds the minimal embedded aggregate bundle, runs its framework
+test, drives its macOS integration scenario, and validates the resulting receipt for the
+selected engine. It requires prepared native assets and verifies only behavior created
+by composing multiple modules.
+
+`check_ui.dart` sequentially invokes `package.dart integration` for every UI-owning
+package, then invokes `check_aggregate.dart` for the selected engine. It does not build
+an engine or rerun runtime, standalone, engine-coexistence, archive, or release gates.
+`example_run.dart` bundles and launches the embedded app.
 
 `standalone_run.dart` bundles and launches the independent application.
 `check_standalone.dart` verifies it with prepared native assets, including external
-source consumption, real macOS integration and relocated release assertions.
-`check_ui.dart` reuses that verifier without rebuilding shared JS or native inputs. See
+source consumption, real macOS integration and relocated release assertions. See
 [application packaging](../docs/architecture/applications.md).
 
 ## Engine selection
@@ -125,12 +136,12 @@ staging rewrites the existing runtime factory boundary and reads JIT requirement
 the selected package's prepared manifest. No consumer hook performs a source download or
 build.
 
-Use `native:build:v8`, `check:runtime:v8`, `ui:test:v8`, and `check:ui:v8` for the V8
-Melos entries. After preparing both assets, `check:engines` verifies coexistence.
-Independent AOT-host measurements now use `bench:engines`; see the benchmark section
-below. The standalone integration scenario reports first/second-pass frame build/raster
-medians and process RSS in its relocated release receipt. These are local workload
-measurements, not platform-wide performance guarantees.
+Use `native:build:v8`, `check:runtime:v8`, `ui:test:v8`, `check:aggregate:v8`, and
+`check:ui:v8` for the V8 Melos entries. After preparing both assets, `check:engines`
+verifies coexistence. Independent AOT-host measurements now use `bench:engines`; see the
+benchmark section below. The standalone integration scenario reports first/second-pass
+frame build/raster medians and process RSS in its relocated release receipt. These are
+local workload measurements, not platform-wide performance guarantees.
 
 ## Engine benchmarks
 
@@ -156,5 +167,6 @@ only declarations and `noop.js`; `host_bundle.mjs` still bundles the private boo
 directly into its Dart owner.
 
 Run `dart test packages/flax_websocket/test` for local transport, TLS and proxy checks
-without an engine. Run `check:ui` and `check:ui:v8` for the full host and external
-application paths, serially because they drive desktop apps.
+without an engine. Run the package integration command for its real host path;
+`check:ui` and `check:ui:v8` compose all UI owners plus the aggregate, serially because
+they drive desktop apps.

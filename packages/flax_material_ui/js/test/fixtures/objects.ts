@@ -6,13 +6,13 @@ import {
   SizedBox,
   SingleChildScrollView,
   ScrollController,
-  ValueKey,
   registerPage,
   runApp,
   PageContent,
   type Widget,
-} from '@flax/core/flutter';
-import { TextButton } from '@flax/material-ui';
+} from '@flax/flutter/widgets';
+import { ValueKey } from '@flax/flutter/foundation';
+import { TextButton } from '@flax/flutter/material';
 
 const hooks = {
   mount: () => runApp(PageContent('scroll')),

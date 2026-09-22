@@ -4,6 +4,12 @@ part of '../../bindings.dart';
 abstract final class Flax {
   static List<FlaxPlugin> _plugins = const [];
 
+  /// Modules this application can provide to subsequently created sessions.
+  ///
+  /// Sessions snapshot this value when they are constructed. The assets remain
+  /// immutable and may be reused by independent sessions.
+  static FlaxModuleAssets? moduleAssets;
+
   /// Replaces the complete default list. An empty list restores the base host.
   static void registerPlugins(List<FlaxPlugin> plugins) {
     _plugins = _pluginSnapshot(plugins);
@@ -34,6 +40,7 @@ abstract class FlaxPlugin {
   const FlaxPlugin();
   String get id;
   Set<String> get globals;
+  Set<String> get jsModules => const {};
   List<FlaxBindingModule> get bindingModules => const [];
   FlaxPluginInstance install(FlaxHostContext context);
 }
@@ -51,6 +58,9 @@ abstract class FlaxPluginInstance {
 abstract class FlaxHostContext {
   String? get namespace;
   FlaxJsRuntime get runtime;
+
+  /// The immutable, already-validated registry installed for this session.
+  List<FlaxBindingModule> get bindingModules;
   bool get isClosing;
   bool get isActive;
   void registerFunction(
@@ -79,6 +89,8 @@ class _HostContext implements FlaxHostContext {
   String? get namespace => session.namespace;
   @override
   FlaxJsRuntime get runtime => session.runtime;
+  @override
+  List<FlaxBindingModule> get bindingModules => session.registry.modules;
   @override
   bool get isClosing => session.closing || retired;
   @override
@@ -180,7 +192,7 @@ extension _HostPlugins on _Session {
   }
 
   void installHost(List<FlaxPlugin> plugins) {
-    final all = <FlaxPlugin>[const _BaseHostPlugin(), ...plugins];
+    final all = _pluginsWithBase(plugins);
     for (final plugin in all) {
       for (final name in plugin.globals) {
         claimGlobal(name, engineDefault: plugin is _BaseHostPlugin);
@@ -231,6 +243,8 @@ class _BaseHostPlugin extends FlaxPlugin {
   const _BaseHostPlugin();
   @override
   String get id => 'flax.base';
+  @override
+  Set<String> get jsModules => const {'@flax/flutter/widgets'};
   @override
   Set<String> get globals => const {
     'console',
@@ -289,6 +303,11 @@ class _BaseHostPlugin extends FlaxPlugin {
     }
   }
 }
+
+List<FlaxPlugin> _pluginsWithBase(List<FlaxPlugin> plugins) => [
+  const _BaseHostPlugin(),
+  ...plugins,
+];
 
 class _BaseHost implements FlaxPluginInstance {
   _BaseHost(this.context);

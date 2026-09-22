@@ -128,6 +128,7 @@ Only server template variables are filled in by the test runner. The same subset
 Node, Hermes and V8; Node's built-in WebSocket runs the reference assertions too. This
 is a selected subset, not a claim of complete browser or Node compatibility.
 
-See the [initial task evidence](../tasks/websocket-transport.md),
-[event and close fixes](../tasks/websocket-fixes.md) and
-[session host contract](host.md) for current validation results and packaging.
+See the [transport regressions](../../packages/flax_websocket/test/),
+[session host contract](host.md) and [contribution checks](../../CONTRIBUTING.md#checks)
+for reproducible verification and packaging. A historical external smoke does not
+certify the current contents of a published archive.

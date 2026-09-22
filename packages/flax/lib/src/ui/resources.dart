@@ -64,7 +64,6 @@ class _ResourceCleanup {
         handle = resource.wrapper;
       case _Callback():
         callback = resource._handle;
-        children = [?resource._result?._detachedCleanup];
       case FlaxPageLease():
         children = [
           for (final source in resource._sources.values)
@@ -234,7 +233,6 @@ class _Callback extends _Resource implements FlaxCallback {
   final FlaxCallbackBinding signature;
   final _CallbackScope scope;
   final _NodeState? owner;
-  _Value? _result;
   bool get active =>
       !_handle.retired && session.active && (owner?._active ?? true);
 
@@ -250,41 +248,25 @@ class _Callback extends _Resource implements FlaxCallback {
     _handle.release();
   }
 
-  _Callback mount(
-    _NodeState owner,
-    _Callback? previous, {
-    bool nested = false,
-  }) {
+  _Callback mount(_NodeState owner) {
     if (!active) throw StateError('Retired JS callback');
     if (!identical(session, owner.widget.node._session)) {
       throw ArgumentError('Foreign JS callback');
     }
-    final mountedSignature = nested && signature.result.kind == 'widget'
-        ? FlaxCallbackBinding(
-            signature.parameters,
-            signature.result,
-            signature.wrap,
-            id: signature.id,
-            invoke: signature.invoke,
-            matches: signature.matches,
-            independentWidgetResult: true,
-          )
-        : signature;
-    final next = _Callback(
+    return _Callback(
       session,
       function.retain() as FlaxJsFunction,
-      mountedSignature,
+      signature,
       scope: _CallbackScope.ui,
       owner: owner,
     );
-    // A replacement builder can fail before producing its first valid result.
-    if (signature.result.kind == 'widget' &&
-        !mountedSignature.independentWidgetResult) {
-      next._result = previous?._result;
-      next._result?.retain();
-    }
-    return next;
   }
+
+  bool get _returnsWidgetList =>
+      signature.result.kind == 'list' &&
+      !signature.result.nullable &&
+      signature.result.item?.kind == 'widget' &&
+      signature.result.item?.nullable == false;
 
   @override
   Object? call(
@@ -370,6 +352,7 @@ class _Callback extends _Resource implements FlaxCallback {
       }
       try {
         if (scope == _CallbackScope.member) return _memberResult(value);
+        if (_returnsWidgetList) return _builderListResult(value);
         return switch (signature.result.kind) {
           'void' => _eventResult(value),
           'widget' => _builderResult(value),
@@ -383,9 +366,10 @@ class _Callback extends _Resource implements FlaxCallback {
       if (scope == _CallbackScope.member) rethrow;
       session.report(error, stack);
       if (signature.result.kind == 'widget') {
-        return !signature.independentWidgetResult && _result != null
-            ? _result!.data
-            : _errorWidget(error);
+        return _errorWidget(error);
+      }
+      if (_returnsWidgetList) {
+        return List<Widget>.unmodifiable([_errorWidget(error)]);
       }
       if (signature.result.kind != 'void') rethrow;
       return null;
@@ -427,19 +411,38 @@ class _Callback extends _Resource implements FlaxCallback {
       throw StateError('Widget callbacks require a mounted owner');
     }
     final decoded = session.decode(value, signature.result);
-    if (signature.independentWidgetResult) {
-      if (decoded.data == null) {
-        decoded.release();
-        return null;
-      }
-      session._unmountedResults.add(decoded);
-      return _IndependentResult(session, decoded);
+    if (decoded.data == null) {
+      decoded.release();
+      return null;
     }
-    final previous = _result;
-    _result = decoded;
-    _cleanup?.children = [decoded._detachedCleanup];
-    previous?.release();
-    return decoded.data as Widget?;
+    session._unmountedResults.add(decoded);
+    return _IndependentResult(session, decoded);
+  }
+
+  List<Widget> _builderListResult(FlaxJsValue value) {
+    if (owner == null) {
+      throw StateError('Widget callbacks require a mounted owner');
+    }
+    final decoded = session.decode(value, signature.result);
+    final retained = <_Value>[];
+    try {
+      for (final widget in decoded.data as List<Widget>) {
+        retained.add(session.retainWidget(widget));
+      }
+    } catch (_) {
+      for (final item in retained.reversed) {
+        item.release();
+      }
+      rethrow;
+    } finally {
+      decoded.release();
+    }
+    for (final item in retained) {
+      session._unmountedResults.add(item);
+    }
+    return List<Widget>.unmodifiable([
+      for (final item in retained) _IndependentResult(session, item),
+    ]);
   }
 
   Object? _routeResult(FlaxJsValue value) {
@@ -456,8 +459,6 @@ class _Callback extends _Resource implements FlaxCallback {
 
   @override
   void close() {
-    _result?.release();
-    _result = null;
     if (!escaped) {
       _callbackFinalizer.detach(this);
       _handle.release();

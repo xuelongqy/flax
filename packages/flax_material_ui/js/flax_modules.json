@@ -1,0 +1,65 @@
+{
+  "formatVersion": 1,
+  "package": "@flax/material-ui",
+  "version": "0.0.0",
+  "modules": [
+    {
+      "specifier": "@flax/flutter/material",
+      "source": "dist/generated/libraries/material/index.js",
+      "subpathRoot": "dist/generated/libraries/material",
+      "helperSubpaths": ["_bindings/material.__module"],
+      "bindings": [
+        {
+          "moduleId": "flax.material/material",
+          "uiProtocol": 20,
+          "types": [
+            "flax.material/material#type:AlertDialog",
+            "flax.material/material#type:AppBar",
+            "flax.material/material#type:Brightness",
+            "flax.material/material#type:ButtonStyle",
+            "flax.material/material#type:Card",
+            "flax.material/material#type:Checkbox",
+            "flax.material/material#type:CircularProgressIndicator",
+            "flax.material/material#type:ColorScheme",
+            "flax.material/material#type:Divider",
+            "flax.material/material#type:Drawer",
+            "flax.material/material#type:ElevatedButton",
+            "flax.material/material#type:FilledButton",
+            "flax.material/material#type:FloatingActionButton",
+            "flax.material/material#type:IconButton",
+            "flax.material/material#type:InkWell",
+            "flax.material/material#type:InputDecoration",
+            "flax.material/material#type:LinearProgressIndicator",
+            "flax.material/material#type:ListTile",
+            "flax.material/material#type:ListTileStyle",
+            "flax.material/material#type:Material",
+            "flax.material/material#type:MaterialApp",
+            "flax.material/material#type:MaterialPage",
+            "flax.material/material#type:MaterialPageRoute",
+            "flax.material/material#type:MaterialType",
+            "flax.material/material#type:NavigationBar",
+            "flax.material/material#type:NavigationDestination",
+            "flax.material/material#type:NavigationDestinationLabelBehavior",
+            "flax.material/material#type:OutlinedButton",
+            "flax.material/material#type:RefreshIndicator",
+            "flax.material/material#type:Scaffold",
+            "flax.material/material#type:Switch",
+            "flax.material/material#type:TextButton",
+            "flax.material/material#type:TextField",
+            "flax.material/material#type:TextInputAction",
+            "flax.material/material#type:TextTheme",
+            "flax.material/material#type:Theme",
+            "flax.material/material#type:ThemeData",
+            "flax.material/material#type:ThemeMode",
+            "flax.material/material#type:VerticalDivider",
+            "flax.material/material#type:VisualDensity"
+          ],
+          "functions": [
+            "flax.material/material#function:showDialog",
+            "flax.material/material#read:kTabScrollDuration"
+          ]
+        }
+      ]
+    }
+  ]
+}

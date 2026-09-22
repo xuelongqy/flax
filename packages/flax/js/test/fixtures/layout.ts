@@ -16,9 +16,9 @@ import {
   Builder,
   SizedBox,
   Text,
-  ValueKey,
   type AlignmentGeometry,
-} from '@flax/core/flutter';
+} from '@flax/flutter/widgets';
+import { ValueKey } from '@flax/flutter/foundation';
 import { RetainedTile } from '../../../.dart_tool/flax/ui/repeated_bindings.js';
 
 const state = {

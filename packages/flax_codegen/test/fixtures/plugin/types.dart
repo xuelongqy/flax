@@ -14,7 +14,7 @@ class Badge extends Base {
 
 class Unsupported {
   const Unsupported(this.data);
-  final ({int value}) data;
+  final Comparable<int> data;
 }
 
 typedef Transform = String? Function(int value, Tone tone);

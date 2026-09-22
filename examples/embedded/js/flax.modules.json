@@ -1,0 +1,15 @@
+{
+  "formatVersion": 1,
+  "modules": [
+    {
+      "specifier": "@flax/flutter/widgets",
+      "package": "@flax/core"
+    },
+    {
+      "specifier": "@flax/flutter/material",
+      "package": "@flax/material-ui"
+    }
+  ],
+  "flutterProject": "..",
+  "output": "assets/flax_modules"
+}

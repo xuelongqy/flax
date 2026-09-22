@@ -11,9 +11,37 @@ additionalLibraries:
     dart:core,
     package:flax/bindings.dart,
   ]
-jsPackage: '@flax/core/flutter'
+jsPackage: '@flax/core/navigation'
 dartOutput: lib/src/generated/flutter_bindings.g.dart
 tsOutput: js/src/flutter/generated/bindings.ts
+publicLibraries:
+  package:flutter/widgets.dart:
+    jsPackage: '@flax/flutter/widgets'
+    tsOutput: js/src/flutter/generated/libraries/widgets/index.ts
+  package:flutter/foundation.dart:
+    jsPackage: '@flax/flutter/foundation'
+    tsOutput: js/src/flutter/generated/libraries/foundation/index.ts
+  package:flutter/gestures.dart:
+    jsPackage: '@flax/flutter/gestures'
+    tsOutput: js/src/flutter/generated/libraries/gestures/index.ts
+  package:flutter/services.dart:
+    jsPackage: '@flax/flutter/services'
+    tsOutput: js/src/flutter/generated/libraries/services/index.ts
+  package:flutter/scheduler.dart:
+    jsPackage: '@flax/flutter/scheduler'
+    tsOutput: js/src/flutter/generated/libraries/scheduler/index.ts
+  dart:async:
+    jsPackage: '@flax/dart/async'
+    tsOutput: js/src/dart/generated/libraries/async/index.ts
+  dart:core:
+    jsPackage: '@flax/dart/core'
+    tsOutput: js/src/dart/generated/libraries/core/index.ts
+  package:flax/bindings.dart:
+    jsPackage: '@flax/core/navigation'
+    tsOutput: js/src/flutter/generated/libraries/navigation/index.ts
+typedefs: [ValueChanged, ValueGetter]
+topLevel:
+  getters: [kIsWeb, defaultTargetPlatform]
 types:
   - AutovalidateMode
   - Axis
@@ -32,6 +60,7 @@ types:
   - MainAxisSize
   - MaxLengthEnforcement
   - StackFit
+  - TargetPlatform
   - TextAffinity
   - TextAlign
   - TextBaseline
@@ -76,6 +105,9 @@ callbackSnapshots:
   KeyEvent:
     fields: [physicalKey, logicalKey, character, synthesized]
 classes:
+  Spacer:
+    constructors:
+      '': [key, flex]
   Stream:
     kind: stream
     asyncIterableFactory: fromAsyncIterable
@@ -202,6 +234,26 @@ classes:
       '': [days, hours, minutes, seconds, milliseconds, microseconds]
     getters: [inDays, inHours, inMinutes, inSeconds, inMilliseconds, inMicroseconds]
     staticGetters: [zero]
+  DateTime:
+    kind: object
+    constructors:
+      fromMillisecondsSinceEpoch: [millisecondsSinceEpoch, isUtc]
+    getters: [year, isUtc]
+    instanceMethods:
+      toIso8601String: []
+  Uri:
+    kind: object
+    methods:
+      parse: [uri, start, end]
+    getters: [scheme, host]
+  StringBuffer:
+    kind: object
+    constructors:
+      '': [content]
+    getters: [length]
+    instanceMethods:
+      write: [object]
+      toString: []
   StackTrace:
     kind: object
     staticGetters: [current, empty]
@@ -295,6 +347,26 @@ classes:
     methods:
       resolveWith: [callback]
     deferredFactories: [resolveWith]
+  Curve:
+    kind: object
+    instanceMethods:
+      transform: [t]
+  Cubic:
+    kind: object
+    constructors:
+      '': [a, b, c, d]
+    getters: [a, b, c, d]
+  Curves:
+    kind: object
+    staticGetters: [linear, ease, easeIn, easeOut, easeInOut]
+  MouseCursor:
+    kind: object
+    staticGetters: [defer, uncontrolled]
+  SystemMouseCursor:
+    kind: object
+  SystemMouseCursors:
+    kind: object
+    staticGetters: [basic, click, text, forbidden]
   ValueListenableBuilder:
     typeArguments: ['Object?']
     constructors:
@@ -355,6 +427,32 @@ classes:
       '': [key, decoration, position, child]
   Decoration:
     kind: object
+  ShapeBorder:
+    kind: object
+  OutlinedBorder:
+    kind: object
+    getters: [side]
+  RoundedRectangleBorder:
+    kind: object
+    constructors:
+      '': [side, borderRadius]
+    getters: [side, borderRadius]
+    instanceMethods:
+      copyWith: [side, borderRadius]
+  CircleBorder:
+    kind: object
+    constructors:
+      '': [side, eccentricity]
+    getters: [side, eccentricity]
+    instanceMethods:
+      copyWith: [side, eccentricity]
+  StadiumBorder:
+    kind: object
+    constructors:
+      '': [side]
+    getters: [side]
+    instanceMethods:
+      copyWith: [side]
   BoxBorder:
     kind: object
   BorderRadiusGeometry:
@@ -741,12 +839,34 @@ classes:
     getters: [hasClients, offset]
     instanceMethods:
       jumpTo: [value]
+      animateTo: [offset, duration, curve]
       addListener: [listener]
       removeListener: [listener]
       dispose: []
     disposeMethod: dispose
     listenerPairs:
       addListener: removeListener
+  ScrollPhysics:
+    kind: object
+    constructors:
+      '': [parent]
+    getters: [parent]
+  ClampingScrollPhysics:
+    kind: object
+    constructors:
+      '': [parent]
+  BouncingScrollPhysics:
+    kind: object
+    constructors:
+      '': [parent]
+  AlwaysScrollableScrollPhysics:
+    kind: object
+    constructors:
+      '': [parent]
+  NeverScrollableScrollPhysics:
+    kind: object
+    constructors:
+      '': [parent]
   ListView:
     constructors:
       builder:
@@ -758,6 +878,7 @@ classes:
           scrollDirection,
           reverse,
           controller,
+          physics,
           primary,
           shrinkWrap,
           padding,
@@ -766,11 +887,9 @@ classes:
           addRepaintBoundaries,
           addSemanticIndexes,
         ]
-    independentWidgetCallbacks:
-      builder: [itemBuilder]
   SingleChildScrollView:
     constructors:
-      '': [key, scrollDirection, reverse, padding, primary, controller, child]
+      '': [key, scrollDirection, reverse, padding, primary, controller, physics, child]
 
   FocusNode:
     kind: object

@@ -859,7 +859,13 @@ void main() {
   testWidgets('plugin binding modules merge and conflict before source', (
     tester,
   ) async {
-    const extra = FlaxBindingModule('test.extra', []);
+    const extra = FlaxBindingModule(
+      'test.extra',
+      [],
+      moduleId: 'test/extra',
+      uiProtocol: 20,
+      requiredCapabilities: [],
+    );
     final merged = Harness();
     await tester.pumpWidget(
       MaterialApp(
@@ -909,7 +915,13 @@ void main() {
           bindings: registry,
           plugins: [
             _ModulePlugin('ver', [
-              const FlaxBindingModule('test.ver', [], version: 16),
+              const FlaxBindingModule(
+                'test.ver',
+                [],
+                moduleId: 'test/ver',
+                uiProtocol: 16,
+                requiredCapabilities: [],
+              ),
             ]),
           ],
           onError: (e, _) => version.errors.add(e),
@@ -1070,7 +1082,7 @@ class _ExposeBox {
   FlaxJsObject? stolen;
   var crossSessionRejected = false;
   static const size = Size(3, 4);
-  static const sizeId = 'dart:ui::Size';
+  static const sizeId = 'flax.core/flutter#type:Size';
 }
 
 class _ExposePlugin extends FlaxPlugin {
@@ -1099,7 +1111,7 @@ class _ExposePlugin extends FlaxPlugin {
             ),
           );
         case 'wrongType':
-          context.requireObject<Size>(args[1], 'dart:ui::Offset');
+          context.requireObject<Size>(args[1], 'flax.core/flutter#type:Offset');
         case 'badId':
           context.exposeObject(_ExposeBox.size, 'not-a-type');
         case 'cross':
@@ -1168,6 +1180,8 @@ class _QueueHook implements FlaxHostContext {
 
   @override
   FlaxJsRuntime get runtime => inner.runtime;
+  @override
+  List<FlaxBindingModule> get bindingModules => inner.bindingModules;
   @override
   bool get isClosing => inner.isClosing;
   @override

@@ -49,8 +49,8 @@ runApp(new Counter(3));
 ```
 
 The imports are `signal` from `@flax/core`, component/layout types from
-`@flax/core/flutter`, and `TextButton` from `@flax/material-ui`. Existing generated
-constructors retain their function syntax.
+`@flax/flutter/widgets`, and `TextButton` from `@flax/flutter/material`. Existing
+generated constructors retain their function syntax.
 
 A Widget is configuration. Its instance is shallow-frozen on acceptance, after the
 subclass constructor finishes. Its referenced signals and controllers are not frozen.
@@ -187,9 +187,9 @@ Existing accepted Routes may rebuild while a session closes. Component mount lea
 the runtime alive until their cleanup finishes, alongside existing Route and transition
 leases. Named-page lifecycle cleanup remains available for page-factory resources.
 
-Protocol 10 introduced component type metadata and ancestor queries. Protocol 11 adds
-returned Dart functions and Widget references; previous protocols are rejected. The C
-ABI and runtime microtask API are unchanged. There is no arbitrary Flutter
-concrete-class inheritance, TickerProvider/mixin binding, JS GlobalKey/currentState,
-state restoration, JS source hot reload, automatic build tracking or new
-engine/platform. `reassemble` forwards Flutter's lifecycle only.
+UI protocol 20 includes component type metadata, ancestor queries, returned Dart
+functions and Widget references; previous protocols are rejected. The C ABI and runtime
+microtask API are unchanged. There is no arbitrary Flutter concrete-class inheritance,
+TickerProvider/mixin binding, JS GlobalKey/currentState, state restoration, JS source
+hot reload, automatic build tracking or new engine/platform. `reassemble` forwards
+Flutter's lifecycle only.

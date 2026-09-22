@@ -101,9 +101,7 @@ class _MountedProperty {
         next.retain();
         return next;
       }
-      final old = previous ?? _value;
-      final prior = old?.data == null ? null : _callbackSources[old!.data!];
-      final mounted = callback.mount(owner, prior);
+      final mounted = callback.mount(owner);
       return _Value(mounted.wrap(), [mounted]);
     } finally {
       next.release();
@@ -147,7 +145,7 @@ class _MountedProperty {
       if (type.kind == 'callback') {
         final source = _callbackSources[value];
         if (source == null) return value;
-        final callback = source.mount(owner, null, nested: true);
+        final callback = source.mount(owner);
         mounted.add(callback);
         return callback.wrap();
       }

@@ -4,17 +4,19 @@ import {
   Column,
   Text,
   TextEditingController,
-  TextEditingValue,
-  TextSelection,
-  TextRange,
-  TextAffinity,
-  ValueKey,
   registerPage,
   runApp,
   PageContent,
   SizedBox,
-} from '@flax/core/flutter';
-import { TextField, TextInputAction } from '@flax/material-ui';
+} from '@flax/flutter/widgets';
+import {
+  TextEditingValue,
+  TextSelection,
+  TextRange,
+  TextAffinity,
+} from '@flax/flutter/services';
+import { ValueKey } from '@flax/flutter/foundation';
+import { TextField, TextInputAction } from '@flax/flutter/material';
 
 const hooks = {
   mount: () => runApp(PageContent('editing')),

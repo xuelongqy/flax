@@ -22,8 +22,8 @@ conservative choice; native JIT/AOT experiments and framework regression tests n
 support using narrowly scoped tokens for custom JS Widget proxies.
 
 Lifecycle overrides use explicit super. State.setState executes synchronously through
-real Dart State; signals remain optional, explicit property subscriptions. Protocol 10
-replaces protocol 9, with no compatibility layer or native ABI change.
+real Dart State; signals remain optional, explicit property subscriptions. Component
+metadata uses the versioned UI protocol without changing the native ABI.
 
 ## Consequences
 

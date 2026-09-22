@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { WidgetState, WidgetStateProperty } from '@flax/core/flutter';
+import { WidgetState, WidgetStateProperty } from '@flax/flutter/widgets';
 import { ButtonStyle } from '../dist/index.js';
 
 test('deferred factories wait for a concrete Dart position and then keep identity', () => {

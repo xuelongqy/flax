@@ -3,24 +3,27 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "description": "Unimplemented cupertino_ui package scaffold for Flax.",
+  "description": "Generated standalone Cupertino UI bindings for Flax.",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./noop.js"
-    }
+      "import": "./dist/index.js"
+    },
+    "./flax_modules.json": "./flax_modules.json"
   },
   "files": [
-    "dist/**/*.d.ts",
-    "dist/**/*.d.ts.map",
-    "noop.js",
+    "dist/index.*",
+    "dist/generated",
+    "flax_modules.json",
     "README.md"
   ],
   "scripts": {
     "typecheck": "tsc --project tsconfig.npm.json --noEmit",
-    "build": "node --eval \"import { rmSync } from 'node:fs'; rmSync('dist', { recursive: true, force: true })\" && tsc --project tsconfig.npm.json --emitDeclarationOnly"
+    "build": "node --eval \"import { rmSync } from 'node:fs'; rmSync('dist', { recursive: true, force: true })\" && tsc --project tsconfig.npm.json"
   },
   "dependencies": {
-    "@flax/core": "workspace:*"
+    "@flax/core": "workspace:*",
+    "@flax/dart": "workspace:*",
+    "@flax/flutter": "workspace:*"
   }
 }

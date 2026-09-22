@@ -1,0 +1,28 @@
+{
+  "formatVersion": 1,
+  "package": "@flax/cupertino-ui",
+  "version": "0.0.0",
+  "modules": [
+    {
+      "specifier": "@flax/flutter/cupertino",
+      "source": "dist/generated/libraries/cupertino/index.js",
+      "subpathRoot": "dist/generated/libraries/cupertino",
+      "helperSubpaths": ["_bindings/cupertino.__module"],
+      "bindings": [
+        {
+          "moduleId": "flax.cupertino/cupertino",
+          "uiProtocol": 20,
+          "types": [
+            "flax.cupertino/cupertino#type:CupertinoApp",
+            "flax.cupertino/cupertino#type:CupertinoButton",
+            "flax.cupertino/cupertino#type:CupertinoNavigationBar",
+            "flax.cupertino/cupertino#type:CupertinoPageScaffold",
+            "flax.cupertino/cupertino#type:CupertinoThemeData",
+            "flax.cupertino/cupertino#type:ObstructingPreferredSizeWidget"
+          ],
+          "functions": []
+        }
+      ]
+    }
+  ]
+}

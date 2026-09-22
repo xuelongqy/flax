@@ -1,16 +1,25 @@
 # flax_material_ui
 
 Exports materialBindings, generated from the standalone material_ui TextButton,
-TextField, MaterialPageRoute, and MaterialPage APIs. Register it alongside
-flutterBindings in FlaxBindingRegistry. Generated host types use the public
-flax/bindings.dart extension and preserve Flutter Element matching.
+TextField, Material, InkWell, progress, MaterialPageRoute, and MaterialPage APIs.
+Register it alongside flutterBindings in FlaxBindingRegistry. Generated host types use
+the public flax/bindings.dart extension and preserve Flutter Element matching.
+
+The public Material library is `@flax/flutter/material`. It exports the safe primitive
+constant `kToolbarHeight` directly and exposes the Dart-backed duration through
+`getKTabScrollDuration()`, reusing Core's `Duration` object binding and identity. The
+dynamic read remains lazy through the existing session; no Dart value is captured during
+module import. See
+[top-level values](../../docs/architecture/bindings.md#public-libraries-and-top-level-readonly-declarations).
 
 Publication is disabled. See
 [generation and supported parameters](../../docs/architecture/bindings.md) and
 [UI semantics](../../docs/architecture/ui.md).
 
-Install `flax_material_ui` and `@flax/material-ui` at the same exact version, then add
-`materialBindings` beside `flutterBindings`:
+Install `flax_material_ui` in the Dart host and add `materialBindings` beside
+`flutterBindings`. `@flax/material-ui` is the physical JavaScript implementation and
+module-delivery package; application source and declaration-only consumers import the
+public API from `@flax/flutter/material`:
 
 ```yaml
 dependencies:
@@ -21,9 +30,11 @@ dependencies:
 final bindings = FlaxBindingRegistry([flutterBindings, materialBindings]);
 ```
 
-```sh
-pnpm add @flax/core@<core-version> @flax/material-ui@<material-version>
-```
+Hosts that bundle the implementation directly keep `@flax/material-ui` at the matching
+version. Applications that include it in `Flax.moduleAssets` can let business JavaScript
+install only the `@flax/flutter` declarations; add `FlaxMaterialPlugin` to each
+`FlaxView` / `FlaxSession` that should inject `@flax/flutter/material`. See
+[package boundaries](../../docs/architecture/packaging.md#application-module-inventory-and-host-delivery).
 
 Navigation now includes explicit sessions, shared or nested Flutter Navigators,
 Route-owned callbacks, copied data, and UI Future delivery. See the
@@ -43,6 +54,34 @@ Generated Theme, ThemeData, TextTheme, ColorScheme and InputDecoration support h
 queries and local theme overrides. TextField accepts style and decoration bindings. See
 [styles and themes](../../docs/architecture/styles.md); values and dependencies use the
 existing Dart object and Widget paths.
+
+Generated MaterialType, Material, InkWell and LinearProgressIndicator reuse Core Color,
+TextStyle, BorderRadius, Clip, keys and callback conversion. The
+[owning selection](bindings/config.yaml) defines the exposed constructor parameters;
+unselected parameters retain their upstream defaults. Material supplies the native ink
+surface. Text style animation retains Flutter's `TextStyle.inherit` constraints.
+
+The [combined UI tests](test/ui/binding_slice_test.dart) exercise Core Spacer geometry,
+tap/long-press/hover/highlight callbacks, reactive progress, inherited and explicit
+styles, semantics, unmounting and session closure. Indeterminate progress uses bounded
+frame pumps. The [strict TypeScript fixture](js/test/types.ts) verifies public Core
+value types and rejects incompatible enum, callback, child and scalar inputs.
+
+Material.shape and InkWell.customBorder reuse Core ShapeBorder references;
+InkWell.mouseCursor accepts a Core MouseCursor. Material retains its native
+shape/borderRadius mutual exclusion. ButtonStyle construction, getters and copyWith also
+select shape, mouseCursor and visualDensity. Shape and cursor remain typed state
+properties, resolved by Flutter with concrete-use validation. Only OutlinedBorder
+subtypes are button shapes; an existing Border can still be used by Material or
+BoxDecoration.
+
+VisualDensity belongs to this package's material_ui declaration. Its constructor,
+getters and copyWith select horizontal/vertical, plus standard/comfortable/compact
+constants. The [shared-object tests](test/ui/shared_objects_test.dart) compare shape,
+clipping and density with native controls and exercise cursors, state changes, scrolling
+and callback retirement. The [strict TS cases](js/test/shared_objects.types.ts) check
+inheritance, nullable/default arguments, provider limits and invalid state-property
+types. See [styles](../../docs/architecture/styles.md#shapes-cursors-and-density).
 
 Generated Scaffold and AppBar support complete page shells. AppBar arguments are fixed;
 bind the containing Scaffold.appBar for dynamic configuration. Its child Text/Widget

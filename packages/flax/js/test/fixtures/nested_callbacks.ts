@@ -6,11 +6,11 @@ import {
   ListView,
   SizedBox,
   Text,
-  ValueKey,
   Directionality,
   type BuildContext,
   type Widget,
-} from '@flax/core/flutter';
+} from '@flax/flutter/widgets';
+import { ValueKey } from '@flax/flutter/foundation';
 import {
   NestedBatch,
   CallbackStore,

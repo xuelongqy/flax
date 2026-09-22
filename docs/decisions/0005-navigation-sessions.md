@@ -26,7 +26,7 @@ returned by UI void events. Late completions after close cannot invoke the engin
 
 Generate signatures and concrete calls from analyzer models, with explicit State, Route,
 snapshot, and generic adaptations. Route subclasses only add ownership cleanup to the
-selected upstream class. Use protocol 3 without a compatibility layer; retain the C ABI.
+selected upstream class. Version the UI contract independently of the native C ABI.
 
 ## Rationale and limits
 
@@ -35,10 +35,11 @@ Route-owned callbacks and explicit session ownership prevent the source Element 
 becoming an accidental lifetime boundary. Flutter still controls transitions and content
 retention.
 
-The same implementation supports mini-app containers and host navigation. A future Pages
-or Router adapter can supply independent page entries without requiring a source button
-or maintaining a second history stack. This milestone does not implement deep links,
-restoration, mobile gesture certification, or a general Promise/Future bridge.
+The same implementation supports mini-app containers and host navigation. Independent
+Pages and Router entries are defined by [ADR 0006](0006-pages-and-router.md), without a
+second history stack. Typed Promise/Future conversion is part of the current
+[interop contract](../architecture/interop.md). System deep-link registration,
+restoration and mobile gesture certification remain separate work.
 
 This extends [contextual builders](0004-contextual-builders.md). The current contract is
 in [navigation and sessions](../architecture/navigation.md).

@@ -100,9 +100,23 @@ listeners; their creator remains responsible for disposal.
 ## Selected mutable objects
 
 ScrollController supports its initial offset, persistence flag, debug label, hasClients,
-offset, jumpTo and listener/disposal methods. SingleChildScrollView borrows it.
-Flutter's single/multiple-position rules apply directly, including release-mode
-behavior.
+offset, jumpTo, animateTo and listener/disposal methods. SingleChildScrollView and
+ListView.builder borrow it. Flutter's single/multiple-position rules apply directly,
+including release-mode behavior.
+
+`animateTo(offset, {duration, curve})` accepts real Duration and Curve references and
+returns `Promise<void>` through the existing Dart Future conversion. Flutter owns the
+animation, curve calculation and interruption semantics. Session shutdown retires bridge
+delivery; it does not transfer ownership of the controller or replace explicit page
+cleanup.
+
+Core selects non-constructible Curve with transform(t), Cubic(a, b, c, d) with its four
+getters and inherited transform, and Curves.linear/ease/easeIn/easeOut/easeInOut. Curves
+is a static constant container. These values use the same object-reference path as
+[shapes and cursors](styles.md#shapes-cursors-and-density). The
+[shared-object tests](../../packages/flax_material_ui/test/ui/shared_objects_test.dart)
+exercise intermediate/final scroll positions, Future completion and closing during an
+animation.
 
 TextEditingController and FocusNode use this same mechanism. See
 [text input](text-input.md), [collection wrappers](interop.md), and
@@ -125,11 +139,10 @@ unchanged. Only containers needing adaptation are copied, retaining shared refer
 and cycles without changing the application's collection. Unknown Object/dynamic
 contents are not searched for callbacks, and callback Map keys fail generation.
 
-Nested Widget/Widget? callbacks own each invocation's result independently, using the
+Mounted Widget/Widget? callbacks own each invocation's result independently, using the
 same child host and unmounted-result cleanup as lazy lists. A failure reports once and
 returns a bounded error placeholder; it never reuses another invocation's content.
-Nullable results accept null, while Promise and invalid descriptions fail. Top-level
-Builder/LayoutBuilder retain their existing last-valid-result recovery. Nested void
+Nullable results accept null, while Promise and invalid descriptions fail. Nested void
 events report Promise rejection through the existing UI boundary.
 
 Returned Dart functions and Widgets use the existing weak JS reference cache. A saved

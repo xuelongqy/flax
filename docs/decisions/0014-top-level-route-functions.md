@@ -6,8 +6,8 @@ Status: accepted.
 
 Generate public top-level functions directly, using the existing typed conversion and
 Future delivery mechanisms. Register their metadata separately from class bindings. All
-calls share one host entry. UI protocol 13 rejects earlier modules; native ABI 2 is
-unchanged.
+calls share one host entry. Function metadata follows the current UI protocol; native
+ABI 2 is unchanged.
 
 Route-producing functions require explicit parameter roles and an installed
 FlaxNavigatorObserver on the target Navigator. The observer captures the Route only

@@ -1,38 +1,24 @@
 # 0007: Explicitly Owned Dart Objects
 
-Superseded in the areas described by [0009: Dart interop](0009-dart-interop.md). This
-record documents the earlier decision, not the current contract.
+Status: partly superseded by [0009: Dart Interop](0009-dart-interop.md).
 
-Status: partly superseded by [0009: Dart interop](0009-dart-interop.md)
+## Retained decision and rationale
 
-## Decision
+Applications explicitly select disposal methods, paired listeners and exceptional Dart
+preconditions. No method name implies ownership. Widgets borrow Controllers; the
+application that creates an owned resource arranges its disposal. Duplicate listeners
+preserve upstream semantics, and cleanup must remain valid during exit transitions.
 
-UI protocol 5 adds immediately constructed, session-owned Dart objects. Generated
-metadata explicitly selects the disposal method, paired listeners, getters, setters, and
-instance methods. Adapters declare exceptional Dart preconditions and must match the
-actual selected signature. No method name implies ownership.
+Page cleanup is registered synchronously, runs in reverse order after descendants
+unmount, and also runs on failed initialization. It is independent of a Route's result
+completion. Explicit lifecycle ownership avoids depending on JavaScript garbage
+collection and keeps shared objects usable across mounted content.
 
-Widgets borrow objects. The creator releases them, with final session cleanup as a
-fallback. Object results reuse registered session identity and never silently transfer
-ownership of unrelated Dart instances. Borrowed Flutter Context and State references
-retain their existing lifetime rules.
+## Replaced ownership rule
 
-Named page factories receive an explicit lifecycle argument. Cleanup is registered
-synchronously, runs in reverse order after content descendants unmount, and also runs on
-failed initialization. It is independent of Route result completion.
-
-## Rationale and consequences
-
-This follows Flutter's creator-owned Controller convention while supporting shared
-objects and `maintainState: false`. Explicit ownership avoids depending on JS GC and
-keeps cleanup valid during exit animations. The host coordinates references and callback
-lifetimes; generated code calls real Dart APIs without reflection or name-based
-branches.
-
-Duplicate listener registrations preserve upstream semantics. Disposing during a
-listener notification is rejected, while actual disposal revokes references even if Dart
-reports an error. Remaining objects are cleaned before engine shutdown.
-
-Protocol 4 is rejected instead of maintained through a compatibility layer. Native ABI,
-package layout, engine, and platform scope remain unchanged. See the
-[object contract](../architecture/objects.md) for implemented behavior and limits.
+The earlier session-owned-object model and automatic application disposal at session
+close are replaced by real Dart references in ADR 0009. Session shutdown releases bridge
+resources without disposing application-owned objects. Borrowed Context and State
+references retain their own Flutter lifetime rules. The
+[object contract](../architecture/objects.md) is authoritative for current construction,
+listeners, disposal and reference lifetime.

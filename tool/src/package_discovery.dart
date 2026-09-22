@@ -37,7 +37,47 @@ final class FlaxWorkspacePackage {
   }
 
   bool get usesFlutter => _usesFlutter(pubspec);
+
+  /// Template containers and plain Dart examples are not Flutter projects.
+  bool get hasFlutterExample {
+    final manifest = File(p.join(example.path, 'pubspec.yaml'));
+    if (!manifest.existsSync()) return false;
+    final dependencies = readYamlFile(manifest)['dependencies'];
+    if (dependencies is! Map) return false;
+    final flutter = dependencies['flutter'];
+    return flutter is Map && flutter['sdk'] == 'flutter';
+  }
 }
+
+final class FlaxNpmPackage {
+  const FlaxNpmPackage({
+    required this.name,
+    required this.directory,
+    required this.mode,
+    this.dartOwner,
+  });
+
+  final String name;
+  final Directory directory;
+  final String mode;
+  final FlaxWorkspacePackage? dartOwner;
+
+  bool get isTypeOnly => dartOwner == null;
+
+  String get archiveDirectoryName =>
+      dartOwner?.name ?? p.basename(p.dirname(directory.path));
+
+  Map<String, dynamic> get manifest => (jsonDecode(
+    File(p.join(directory.path, 'package.json')).readAsStringSync(),
+  ) as Map).cast<String, dynamic>();
+
+  String get version => manifest['version'] as String;
+}
+
+const _standaloneNpmDeliverables = {
+  'flax_dart': 'declarations',
+  'flax_flutter': 'declarations',
+};
 
 const _packageCapabilities = {
   'core',
@@ -297,6 +337,45 @@ List<FlaxWorkspacePackage> discoverPackages(String root) {
   }
   packages.sort((left, right) => left.name.compareTo(right.name));
   return packages;
+}
+
+List<FlaxNpmPackage> discoverNpmPackages(String root) {
+  final result = <FlaxNpmPackage>[];
+  final names = <String>{};
+  for (final package in discoverPackages(root)) {
+    final javascript = package.metadata.javascript;
+    if (javascript == null) continue;
+    if (!names.add(javascript.name)) {
+      throw StateError('Duplicate npm package: ${javascript.name}');
+    }
+    result.add(
+      FlaxNpmPackage(
+        name: javascript.name,
+        directory: package.js,
+        mode: javascript.mode,
+        dartOwner: package,
+      ),
+    );
+  }
+  for (final entry in _standaloneNpmDeliverables.entries) {
+    final directory = Directory(p.join(root, 'packages', entry.key, 'js'));
+    final manifest = File(p.join(directory.path, 'package.json'));
+    if (!manifest.existsSync()) {
+      throw StateError('Missing standalone npm package: ${manifest.path}');
+    }
+    final data = (jsonDecode(manifest.readAsStringSync()) as Map)
+        .cast<String, dynamic>();
+    final name = data['name'];
+    if (name is! String || name.isEmpty) {
+      throw StateError('Invalid npm package name: ${manifest.path}');
+    }
+    if (!names.add(name)) throw StateError('Duplicate npm package: $name');
+    result.add(
+      FlaxNpmPackage(name: name, directory: directory, mode: entry.value),
+    );
+  }
+  result.sort((left, right) => left.name.compareTo(right.name));
+  return result;
 }
 
 FlaxWorkspacePackage findPackage(String root, String name) =>

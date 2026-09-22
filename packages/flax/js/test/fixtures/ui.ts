@@ -5,12 +5,12 @@ import {
   Column,
   SizedBox,
   Row,
-  ValueKey,
   MainAxisSize,
   Padding,
   EdgeInsets,
   Listener,
-} from '@flax/core/flutter';
+} from '@flax/flutter/widgets';
+import { ValueKey } from '@flax/flutter/foundation';
 
 const count = signal(0);
 const visible = signal(true);

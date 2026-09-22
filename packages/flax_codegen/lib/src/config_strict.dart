@@ -10,10 +10,17 @@ const _configFields = {
   'additionalLibraries',
   'imports',
   'types',
+  'typedefs',
   'classes',
   'functions',
+  'extensions',
+  'topLevel',
   'callbackSnapshots',
+  'publicLibraries',
 };
+
+const _autoOverrideRootFields = {'format', 'overrides'};
+const _autoOverrideFields = {'classes', 'functions', 'exclude'};
 
 const _classFields = {
   'constructors',
@@ -93,9 +100,13 @@ FlaxCodegenBindingConfig _parseBindingConfigStrict(
   final additionalLibraries = root.stringList('additionalLibraries');
   final imports = root.stringList('imports');
   final types = root.stringList('types');
+  final typedefs = root.stringList('typedefs');
   final classes = _readClasses(root);
   final functions = _readFunctions(root);
+  final extensions = _readExtensions(root);
   final snapshots = _readSnapshots(root);
+  final topLevel = _readTopLevel(root);
+  final publicLibraries = _readPublicLibraries(root);
   diagnostics.throwIfAny();
   return FlaxCodegenBindingConfig(
     name!,
@@ -107,10 +118,116 @@ FlaxCodegenBindingConfig _parseBindingConfigStrict(
     additionalLibraries: additionalLibraries,
     imports: imports,
     types: types,
+    typedefs: typedefs,
     functions: functions,
+    extensions: extensions,
     callbackSnapshots: snapshots,
+    topLevel: topLevel,
+    publicLibraries: publicLibraries,
   );
 }
+
+FlaxCodegenAutoOverrides _parseAutoOverridesStrict(
+  String contents,
+  String source,
+) {
+  final diagnostics = _StrictDiagnostics(source);
+  final rootNode = _loadYamlNode(contents, diagnostics);
+  if (rootNode is! YamlMap) {
+    diagnostics.add(
+      code: FlaxCodegenDiagnosticCode.typeMismatch,
+      pointer: '',
+      message: 'Expected a mapping.',
+      node: rootNode,
+    );
+    diagnostics.throwIfAny();
+    throw StateError('Unreachable root type mismatch');
+  }
+  final root = _StrictMap(
+    diagnostics,
+    rootNode,
+    '',
+    _autoOverrideRootFields,
+  );
+  final format = root.requiredInt('format');
+  if (format != null && format != 1) {
+    diagnostics.add(
+      code: FlaxCodegenDiagnosticCode.invalidValue,
+      pointer: root.child('format'),
+      message: 'Expected 1.',
+      node: root.node('format'),
+    );
+  }
+  final overrides = root.schemaMap('overrides', _autoOverrideFields);
+  if (overrides == null) {
+    diagnostics.add(
+      code: FlaxCodegenDiagnosticCode.missingField,
+      pointer: root.child('overrides'),
+      message: 'Missing field.',
+      node: rootNode,
+    );
+    diagnostics.throwIfAny();
+    throw StateError('Unreachable missing overrides');
+  }
+
+  final classes = <String, FlaxCodegenClassOverride>{};
+  final classNodes = overrides.dynamicMap('classes');
+  if (classNodes != null) {
+    _forEachNamed(diagnostics, classNodes, overrides.child('classes'), (
+      name,
+      value,
+      pointer,
+    ) {
+      final selection = _StrictMap(diagnostics, value, pointer, _classFields);
+      classes[name] = FlaxCodegenClassOverride(
+        _readClass(selection),
+        _stringKeys(value),
+      );
+    });
+  }
+
+  final functions = <String, FlaxCodegenFunctionOverride>{};
+  final functionNodes = overrides.dynamicMap('functions');
+  if (functionNodes != null) {
+    _forEachNamed(diagnostics, functionNodes, overrides.child('functions'), (
+      name,
+      value,
+      pointer,
+    ) {
+      final selection = _StrictMap(
+        diagnostics,
+        value,
+        pointer,
+        _functionFields,
+      );
+      final data = selection.schemaMap('data', _functionDataFields);
+      final route = selection.schemaMap('route', _routeFields);
+      functions[name] = FlaxCodegenFunctionOverride(
+        FlaxCodegenFunctionSelection(
+          selection.stringList('parameters'),
+          typeArguments: selection.stringList('typeArguments', unique: false),
+          dataParameters: data?.stringList('parameters') ?? const [],
+          dataResult: data?.boolean('result') ?? false,
+          route: route == null ? null : _route(route),
+        ),
+        _stringKeys(value),
+      );
+    });
+  }
+
+  final exclude = overrides.stringList('exclude');
+  diagnostics.throwIfAny();
+  return FlaxCodegenAutoOverrides(
+    classes: classes,
+    functions: functions,
+    exclude: exclude,
+  );
+}
+
+Set<String> _stringKeys(YamlMap map) => {
+  for (final key in map.nodes.keys)
+    if ((key as YamlNode).value case final String value) value,
+};
 
 YamlNode _loadYamlNode(String contents, _StrictDiagnostics diagnostics) {
   try {
@@ -225,6 +342,89 @@ FlaxCodegenDataSelection _readData(_StrictMap selection) {
     methods: data.stringListMap('methods'),
     results: data.stringList('results'),
   );
+}
+
+FlaxCodegenTopLevelSelection? _readTopLevel(_StrictMap root) {
+  final selection = root.schemaMap('topLevel', {
+    'jsName',
+    'getters',
+    'setters',
+  });
+  if (selection == null) return null;
+  final name = selection.optionalString('jsName');
+  final getters = selection.tryStringList('getters');
+  final setters = selection.tryStringList('setters');
+  if (name != null && !flaxCodegenIsExportName(name)) {
+    selection.diagnostics.add(
+      code: FlaxCodegenDiagnosticCode.invalidValue,
+      pointer: selection.child('jsName'),
+      message: 'Expected a public JavaScript export identifier.',
+      node: selection.node('jsName'),
+    );
+  }
+  if (getters != null &&
+      setters != null &&
+      getters.isEmpty &&
+      setters.isEmpty) {
+    selection.diagnostics.add(
+      code: FlaxCodegenDiagnosticCode.invalidValue,
+      pointer: selection.child('getters'),
+      message: 'Select at least one top-level getter or setter.',
+      node: selection.node('getters'),
+    );
+  }
+  for (final entry in {'getters': getters, 'setters': setters}.entries) {
+    final key = entry.key;
+    for (final declaration in entry.value ?? <String>[]) {
+      if (!RegExp(r'^[A-Za-z$][A-Za-z0-9_$]*$').hasMatch(declaration)) {
+        selection.diagnostics.add(
+          code: FlaxCodegenDiagnosticCode.invalidValue,
+          pointer: selection.child(key),
+          message: 'Expected a public declaration identifier.',
+          node: selection.node(key),
+        );
+      }
+    }
+  }
+  return getters == null || setters == null
+      ? null
+      : FlaxCodegenTopLevelSelection(name, getters, setters: setters);
+}
+
+Map<String, FlaxCodegenLibrarySelection> _readPublicLibraries(_StrictMap root) {
+  final node = root.dynamicMap('publicLibraries');
+  if (node == null) return const {};
+  final libraries = <String, FlaxCodegenLibrarySelection>{};
+  final specifiers = <String>{};
+  _forEachNamed(root.diagnostics, node, root.child('publicLibraries'), (
+    uri,
+    value,
+    pointer,
+  ) {
+    final selection = _StrictMap(root.diagnostics, value, pointer, {
+      'jsPackage',
+      'tsOutput',
+    });
+    final specifier = selection.requiredString('jsPackage');
+    final output = selection.requiredString('tsOutput');
+    if (specifier != null &&
+        (!flaxCodegenIsModuleSpecifier(specifier) ||
+            !specifiers.add(specifier))) {
+      root.diagnostics.add(
+        code: FlaxCodegenDiagnosticCode.invalidValue,
+        pointer: selection.child('jsPackage'),
+        message: 'Expected a unique public npm module specifier.',
+        node: selection.node('jsPackage'),
+      );
+    }
+    if (specifier != null && output != null) {
+      libraries[uri] = FlaxCodegenLibrarySelection(
+        jsPackage: specifier,
+        tsOutput: output,
+      );
+    }
+  });
+  return libraries;
 }
 
 Map<String, FlaxCodegenFunctionSelection> _readFunctions(_StrictMap root) {
@@ -682,3 +882,32 @@ final class _StrictMap {
 
 String _pointer(String parent, String token) =>
     '$parent/${FlaxCodegenDiagnostic.jsonPointerToken(token)}';
+
+Map<String, FlaxCodegenExtensionSelection> _readExtensions(_StrictMap root) {
+  final node = root.dynamicMap('extensions');
+  if (node == null) return const {};
+  final result = <String, FlaxCodegenExtensionSelection>{};
+  _forEachNamed(root.diagnostics, node, root.child('extensions'), (
+    name,
+    value,
+    pointer,
+  ) {
+    final selection = _StrictMap(root.diagnostics, value, pointer, {
+      'getters',
+      'setters',
+      'methods',
+      'staticGetters',
+      'staticMethods',
+      'operators',
+    });
+    result[name] = FlaxCodegenExtensionSelection(
+      getters: selection.stringList('getters'),
+      setters: selection.stringList('setters'),
+      methods: selection.stringListMap('methods'),
+      staticGetters: selection.stringList('staticGetters'),
+      staticMethods: selection.stringListMap('staticMethods'),
+      operators: selection.stringListMap('operators'),
+    );
+  });
+  return result;
+}

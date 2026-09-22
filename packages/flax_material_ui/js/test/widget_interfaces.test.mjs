@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { PreferredSize, Size, Text } from '@flax/core/flutter';
+import { PreferredSize, Text } from '@flax/flutter/widgets';
+import { Size } from '@flax/flutter/services';
 import { AppBar, Scaffold } from '../dist/index.js';
 import { signal, bind } from '@flax/core';
 import { objectHost } from './support/host.mjs';

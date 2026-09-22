@@ -3,7 +3,7 @@
   "files": [
     "src/runtime/index.ts",
     "src/runtime/bindings.ts",
-    "src/flutter/index.ts",
+    "src/flutter/generated/libraries/navigation/index.ts",
     "src/host/index.ts",
     "src/host/vendor.d.ts"
   ]

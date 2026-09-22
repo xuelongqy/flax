@@ -4,6 +4,13 @@
     "rootDir": "src",
     "outDir": "dist",
     "paths": {
+      "@flax/core/navigation": [
+        "./src/flutter/generated/libraries/navigation/index.ts"
+      ],
+      "@flax/core/navigation/*": ["./src/flutter/generated/libraries/navigation/*"],
+      "@flax/flutter/widgets": ["./src/flutter/widgets.ts"],
+      "@flax/flutter/*": ["./src/flutter/generated/libraries/*"],
+      "@flax/dart/*": ["./src/dart/generated/libraries/*"],
       "@exodus/bytes/encoding.js": ["./src/host/encoding-types.d.ts"]
     }
   }

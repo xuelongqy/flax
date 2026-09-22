@@ -1,0 +1,45 @@
+format: 1
+name: cupertino
+imports: [flax]
+library: package:cupertino_ui/cupertino_ui.dart
+jsPackage: '@flax/flutter/cupertino'
+dartOutput: lib/src/generated/cupertino_bindings.g.dart
+tsOutput: js/src/generated/bindings.ts
+publicLibraries:
+  package:cupertino_ui/cupertino_ui.dart:
+    jsPackage: '@flax/flutter/cupertino'
+    tsOutput: js/src/generated/libraries/cupertino/index.ts
+classes:
+  CupertinoApp:
+    constructors:
+      '': [key, home, theme, debugShowCheckedModeBanner]
+  CupertinoPageScaffold:
+    constructors:
+      '': [key, child, navigationBar, backgroundColor, resizeToAvoidBottomInset]
+  CupertinoButton:
+    constructors:
+      '': [key, child, onPressed]
+  CupertinoThemeData:
+    kind: object
+    constructors:
+      '': [primaryColor, scaffoldBackgroundColor]
+    getters: [primaryColor, scaffoldBackgroundColor]
+  ObstructingPreferredSizeWidget:
+    kind: widgetInterface
+    getters: [preferredSize]
+    methods:
+      shouldFullyObstruct: [context]
+  CupertinoNavigationBar:
+    widgetInterfaces: [ObstructingPreferredSizeWidget]
+    constructors:
+      '':
+        [
+          key,
+          leading,
+          automaticallyImplyLeading,
+          middle,
+          trailing,
+          backgroundColor,
+          border,
+          transitionBetweenRoutes,
+        ]

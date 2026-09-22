@@ -38,7 +38,7 @@ callback cycles. Users must follow Flutter lifecycle rules and unregister long-l
 callbacks. Close remains deterministic for bridge holdings and does not depend on GC. A
 Dart disposal error may follow partial side effects; no rollback guarantee is added.
 
-Protocol 7 replaces earlier UI protocols without compatibility paths. The native ABI,
-engine implementation, package layout and Material Page/Route adapter remain unchanged.
-See [objects](../architecture/objects.md), [interop](../architecture/interop.md) and
-[input](../architecture/text-input.md) for implemented limits and validation.
+The real-reference contract is carried by the current versioned UI protocol. It does not
+itself require a native ABI or engine change. See [objects](../architecture/objects.md),
+[interop](../architecture/interop.md) and [input](../architecture/text-input.md) for
+implemented limits and validation.

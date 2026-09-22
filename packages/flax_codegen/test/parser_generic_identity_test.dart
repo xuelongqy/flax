@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flax_codegen/src/config.dart';
-import 'package:flax_codegen/src/manifest_v2_codec.dart';
+import 'package:flax_codegen/src/manifest_v5_codec.dart';
 import 'package:flax_codegen/src/model.dart';
 import 'package:flax_codegen/src/parser.dart';
 import 'package:path/path.dart' as p;
@@ -10,7 +10,7 @@ import 'package:test/test.dart';
 void main() {
   group('parser genericIdentity', () {
     test(
-      'nested capture, shadow, and data generics survive Manifest2 codec',
+      'nested capture, shadow, and data generics survive Manifest3 codec',
       () async {
         final package = _tempGenericPackage();
         final parser = FlaxCodegenBindingParser(package.root.path);
@@ -131,9 +131,9 @@ void main() {
           same(dataToken),
         );
 
-        final diagnostics = FlaxCodegenManifestV2Diagnostics('');
-        final decoded = FlaxCodegenManifestV2Codec.decodeModule(
-          FlaxCodegenManifestV2Codec.encodeModule(module),
+        final diagnostics = FlaxCodegenManifestV5Diagnostics('');
+        final decoded = FlaxCodegenManifestV5Codec.decodeModule(
+          FlaxCodegenManifestV5Codec.encodeModule(module),
           diagnostics,
           '',
           module.name,
@@ -200,6 +200,107 @@ void main() {
         );
       },
     );
+    test(
+      'generic getter runtime and declaration views have separate binders',
+      () async {
+        final package = _tempGenericPackage();
+        final parser = FlaxCodegenBindingParser(package.root.path);
+        addTearDown(parser.dispose);
+        final config = FlaxCodegenBindingConfig(
+          'generics',
+          'package:generic_pkg/generics.dart',
+          '@example/generics',
+          'unused.dart',
+          'unused.ts',
+          const {
+            'Bound': FlaxCodegenClassSelection({'create': []}, kind: 'object'),
+            'GenericResults': FlaxCodegenClassSelection(
+              {},
+              kind: 'object',
+              getters: ['generic', 'genericAsync'],
+            ),
+            'GenericContract': FlaxCodegenClassSelection(
+              {},
+              kind: 'object',
+              proxy: 'implements',
+            ),
+            'Capture': FlaxCodegenClassSelection(
+              {},
+              kind: 'object',
+              typeArguments: ['Bound'],
+              getters: ['callback'],
+            ),
+          },
+        );
+        await parser.prepare([config]);
+        final module = await parser.parse(config);
+        final encoded = FlaxCodegenManifestV5Codec.encodeModule(module);
+        final diagnostics = FlaxCodegenManifestV5Diagnostics('');
+        final decoded = FlaxCodegenManifestV5Codec.decodeModule(
+          encoded,
+          diagnostics,
+          '',
+          module.name,
+        );
+        diagnostics.throwIfAny();
+        expect(FlaxCodegenManifestV5Codec.encodeModule(decoded!), encoded);
+        for (final model in [module, decoded]) {
+          final results = model.classes.singleWhere(
+            (type) => type.name == 'GenericResults',
+          );
+          for (final getter in results.getters) {
+            final runtime = getter.type;
+            final declaration = runtime.declaration!;
+            final runtimeToken = runtime.typeParameters.single.genericIdentity;
+            final declarationToken =
+                declaration.typeParameters.single.genericIdentity;
+            expect(runtimeToken, isNotNull);
+            expect(declarationToken, isNot(same(runtimeToken)));
+            expect(
+              _lexicalToken(runtime.parameters.single.type),
+              same(runtimeToken),
+            );
+            expect(
+              declaration.parameters.single.type.genericIdentity,
+              same(declarationToken),
+            );
+            final runtimeResult = runtime.result!.kind == 'future'
+                ? runtime.result!.item!
+                : runtime.result!;
+            final declaredResult = declaration.result!.kind == 'future'
+                ? declaration.result!.item!
+                : declaration.result!;
+            expect(_lexicalToken(runtimeResult), same(runtimeToken));
+            expect(declaredResult.genericIdentity, same(declarationToken));
+          }
+          final capture = model.classes.singleWhere(
+            (type) => type.name == 'Capture',
+          );
+          final callback = capture.getters.single.type.declaration!;
+          expect(
+            callback.parameters.first.type.genericIdentity,
+            same(capture.typeParameters.single.genericIdentity),
+          );
+          expect(
+            callback.parameters.last.type.genericIdentity,
+            same(callback.typeParameters.single.genericIdentity),
+          );
+          final method = model.classes
+              .singleWhere((type) => type.name == 'GenericContract')
+              .proxy!
+              .methods
+              .single;
+          expect(
+            _lexicalToken(method.parameters.single.type),
+            same(method.typeParameters.single.genericIdentity),
+          );
+          expect(
+            _lexicalToken(method.result),
+            same(method.typeParameters.single.genericIdentity),
+          );
+        }
+      },
+    );
   });
 }
 
@@ -227,6 +328,18 @@ class Capture<T extends Bound> {
   Capture.create(this.value);
   final T value;
   U nest<U extends T>(U child) => child;
+  T Function<U extends Bound>(T, U) get callback =>
+      <U extends Bound>(T value, U other) => value;
+}
+
+class GenericResults {
+  T Function<T extends Bound>(T) get generic => <T extends Bound>(T value) => value;
+  Future<T> Function<T extends Bound>(T) get genericAsync =>
+      <T extends Bound>(T value) async => value;
+}
+
+abstract class GenericContract {
+  T echo<T extends Bound>(T value);
 }
 
 class Shadow<T extends Bound> {

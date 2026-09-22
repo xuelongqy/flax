@@ -5,7 +5,7 @@ import {
   defineStream,
   invokeStream,
 } from '../../dist/runtime/bindings.js';
-import { Stream } from '../../dist/flutter/generated/bindings.js';
+import { Stream } from '../../dist/dart/generated/libraries/async/index.js';
 
 const api = globalThis.__flaxBindings;
 const type = 'test:Stream';

@@ -1,12 +1,12 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { TextEditingController } from '@flax/flutter/widgets';
 import {
-  TextEditingController,
   TextEditingValue,
   TextSelection,
   TextRange,
   TextAffinity,
-} from '@flax/core/flutter';
+} from '@flax/flutter/services';
 import { TextField } from '../dist/index.js';
 import { signal } from '@flax/core';
 import { objectHost } from './support/host.mjs';

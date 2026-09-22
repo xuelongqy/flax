@@ -1,0 +1,28 @@
+{
+  "name": "@flax/tools",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Prepare local Flax module assets and connect host-provided imports.",
+  "exports": {
+    ".": "./src/modules.mjs",
+    "./register-node-loader": "./src/register-node-loader.mjs"
+  },
+  "bin": {
+    "flax-modules": "./bin/flax-modules.mjs"
+  },
+  "files": [
+    "src",
+    "bin",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node --check src/modules.mjs && node --check src/registry.mjs && node --check src/node-loader.mjs && node --check src/register-node-loader.mjs",
+    "typecheck": "node --check src/modules.mjs && node --check src/registry.mjs && node --check src/node-loader.mjs && node --check src/register-node-loader.mjs",
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "esbuild": "0.28.2",
+    "js-yaml": "5.2.2"
+  }
+}

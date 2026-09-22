@@ -17,6 +17,8 @@ final class FlaxCanvasPlugin implements FlaxPlugin {
   @override
   String get id => 'flax.canvas';
   @override
+  Set<String> get jsModules => const {};
+  @override
   Set<String> get globals => const {
     'OffscreenCanvas',
     'OffscreenCanvasRenderingContext2D',

@@ -1,6 +1,13 @@
 import 'package:flax_codegen/flax_codegen.dart';
 
 const repeatedSelection = {
+  'CoreValuePeer': FlaxCodegenClassSelection(
+    {
+      '': ['date', 'uri', 'buffer'],
+    },
+    kind: 'object',
+    getters: ['date', 'uri', 'buffer'],
+  ),
   'AsyncWidgetStore': FlaxCodegenClassSelection(
     {
       '': ['callback'],
@@ -32,14 +39,9 @@ const repeatedSelection = {
     kind: 'context',
     getters: ['mounted'],
   ),
-  'ContextBatch': FlaxCodegenClassSelection(
-    {
-      '': ['render', 'epoch', 'count'],
-    },
-    independentWidgetCallbacks: {
-      '': ['render'],
-    },
-  ),
+  'ContextBatch': FlaxCodegenClassSelection({
+    '': ['render', 'epoch', 'count'],
+  }),
   'CallbackStore': FlaxCodegenClassSelection(
     {
       '': ['builders'],
@@ -51,14 +53,12 @@ const repeatedSelection = {
   'NestedBatch': FlaxCodegenClassSelection({
     '': ['key', 'builders', 'groups', 'keyed', 'events', 'discard', 'repeat'],
   }),
-  'TileBatch': FlaxCodegenClassSelection(
-    {
-      '': ['key', 'render', 'count', 'discard'],
-    },
-    independentWidgetCallbacks: {
-      '': ['render'],
-    },
-  ),
+  'TileBatch': FlaxCodegenClassSelection({
+    '': ['key', 'render', 'count', 'discard'],
+  }),
+  'WidgetListBatch': FlaxCodegenClassSelection({
+    '': ['key', 'render', 'onChildren'],
+  }),
   'RetainedTile': FlaxCodegenClassSelection({
     '': ['key', 'label', 'child', 'keep'],
   }),

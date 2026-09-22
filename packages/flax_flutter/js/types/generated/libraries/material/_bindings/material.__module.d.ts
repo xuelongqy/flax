@@ -1,0 +1,26 @@
+import { construct as _flaxHostConstruct, constructProxy as _flaxHostConstructProxy, constructObject as _flaxHostConstructObject, constructDeferredObject as _flaxHostConstructDeferredObject, constructStream as _flaxHostConstructStream, constructAsyncIterableStream as _flaxHostConstructAsyncIterableStream, defineObject as _flaxHostDefineObject, defineStream as _flaxHostDefineStream, invokeObject as _flaxHostInvokeObject, invokeObjectStatic as _flaxHostInvokeObjectStatic, invokeStream as _flaxHostInvokeStream, enumValue as _flaxHostEnumValue, defineContext as _flaxHostDefineContext, defineState as _flaxHostDefineState, contextHandle as _flaxHostContextHandle, invokeStatic as _flaxHostInvokeStatic, invokeInstance as _flaxHostInvokeInstance, invokeTopLevel as _flaxHostInvokeTopLevel } from '@flax/core/bindings';
+export declare const materialBindingModule: Readonly<{
+    moduleId: string;
+    uiProtocol: 20;
+    requiredCapabilities: readonly string[];
+    construct: typeof _flaxHostConstruct;
+    constructProxy: typeof _flaxHostConstructProxy;
+    constructObject: typeof _flaxHostConstructObject;
+    constructDeferredObject: typeof _flaxHostConstructDeferredObject;
+    constructStream: typeof _flaxHostConstructStream;
+    constructAsyncIterableStream: typeof _flaxHostConstructAsyncIterableStream;
+    defineObject: typeof _flaxHostDefineObject;
+    defineStream: typeof _flaxHostDefineStream;
+    invokeObject: typeof _flaxHostInvokeObject;
+    invokeObjectStatic: typeof _flaxHostInvokeObjectStatic;
+    invokeStream: typeof _flaxHostInvokeStream;
+    enumValue: typeof _flaxHostEnumValue;
+    defineContext: typeof _flaxHostDefineContext;
+    defineState: typeof _flaxHostDefineState;
+    contextHandle: typeof _flaxHostContextHandle;
+    invokeStatic: typeof _flaxHostInvokeStatic;
+    invokeInstance: typeof _flaxHostInvokeInstance;
+    invokeTopLevel: typeof _flaxHostInvokeTopLevel;
+}>;
+declare const construct: typeof _flaxHostConstruct, constructProxy: typeof _flaxHostConstructProxy, constructObject: typeof _flaxHostConstructObject, constructDeferredObject: typeof _flaxHostConstructDeferredObject, constructStream: typeof _flaxHostConstructStream, constructAsyncIterableStream: typeof _flaxHostConstructAsyncIterableStream, defineObject: typeof _flaxHostDefineObject, defineStream: typeof _flaxHostDefineStream, invokeObject: typeof _flaxHostInvokeObject, invokeObjectStatic: typeof _flaxHostInvokeObjectStatic, invokeStream: typeof _flaxHostInvokeStream, enumValue: typeof _flaxHostEnumValue, defineContext: typeof _flaxHostDefineContext, defineState: typeof _flaxHostDefineState, contextHandle: typeof _flaxHostContextHandle, invokeStatic: typeof _flaxHostInvokeStatic, invokeInstance: typeof _flaxHostInvokeInstance, invokeTopLevel: typeof _flaxHostInvokeTopLevel;
+export { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel };

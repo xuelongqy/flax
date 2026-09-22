@@ -7,8 +7,8 @@ Status: accepted for the experimental macOS arm64 Hermes implementation.
 Extend the existing generator model with typed synchronous callbacks, selected static
 methods, and getters. Generate direct Dart calls and typed JS wrappers from public
 declarations. Resolve inherited generic members and declaration identities before
-emission. Increment the binding protocol to 2, rejecting older bundles and modules. Keep
-the native C ABI, JSI, and runtime entry unchanged.
+emission. Version binding metadata explicitly and reject incompatible bundles. Keep the
+native C ABI, JSI, and runtime entry unchanged.
 
 Use actual Flutter Builder and LayoutBuilder callbacks at build and layout time. Each
 mounted callback owns its last successful returned subtree. Replacement callbacks

@@ -187,7 +187,10 @@ void main() {
         expect(h.number('counts.built'), builds);
         expect(find.text('Local'), findsOneWidget);
         expect(rebuilt.length, 1);
-        expect(rebuilt.single.node.definition.id, endsWith('::Text'));
+        expect(
+          rebuilt.single.node.definition.id,
+          'flax.core/flutter#type:Text',
+        );
         rebuilt.clear();
         h.execute('first.notify(2); first.notify(3); first.notify(4)');
         await t.pumpAndSettle();
@@ -195,7 +198,8 @@ void main() {
         expect(
           rebuilt.where(
             (host) =>
-                host.node.definition.id.endsWith('::ValueListenableBuilder'),
+                host.node.definition.id ==
+                'flax.core/flutter#type:ValueListenableBuilder',
           ),
           isEmpty,
         );
@@ -238,7 +242,7 @@ void main() {
   );
 
   testWidgets(
-    'nullable/replaced/temporarily absent children and builder recovery',
+    'nullable/replaced children and isolated builder failures recover',
     (t) async {
       final h = _harness();
       try {
@@ -246,7 +250,8 @@ void main() {
         for (final failure in ['throw', 'promise', 'invalid']) {
           h.execute("setFailure('$failure'); first.notify(2)");
           await t.pumpAndSettle();
-          expect(find.text('Value 1'), findsOneWidget);
+          expect(find.text('Value 1'), findsNothing);
+          expect(find.byType(ErrorWidget), findsOneWidget);
           expect(h.number('counts.created'), 1);
         }
         expect(h.errors.length, 3);
@@ -255,6 +260,7 @@ void main() {
         );
         await t.pumpAndSettle();
         expect(find.text('Value 3'), findsOneWidget);
+        expect(find.byType(ErrorWidget), findsNothing);
         expect(h.number('counts.disposed'), 1);
         h.execute('showChild.value = true; first.notify(4)');
         await t.pumpAndSettle();

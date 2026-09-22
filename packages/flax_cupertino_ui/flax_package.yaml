@@ -4,5 +4,10 @@ dart:
 javascript:
   package: '@flax/cupertino-ui'
   version: same
-  mode: declarations
-capabilities: []
+  mode: runtime
+capabilities:
+  - bindings
+bindingNamespace: flax.cupertino
+registration:
+  bindings:
+    - cupertinoBindings

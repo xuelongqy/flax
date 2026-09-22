@@ -55,19 +55,44 @@ narrower interface without a typed declaration.
 
 ## Generation and ownership
 
-Select readonly configuration getters with kind: widgetInterface. Select contracts on an
-implementing Widget with widgetInterfaces. Analyzer verifies public declarations,
-inheritance, compatibility and all additional interface members. Standard Widget and
-diagnostic members are supplied by the existing FlaxWidgetHost. Interface methods,
-setters, generics, and direct or collection-contained constructor callbacks are outside
-this subset. Widgets inside child/children keep their own callback ownership.
+Select native configuration contracts with `kind: widgetInterface`. Use the existing
+`getters`, `setters` and `methods` selections, listing every additional public instance
+member and every method parameter in declaration order. Select the contracts on an
+implementing Widget with `widgetInterfaces`. Analyzer resolves inheritance and generic
+substitution; compatible shared members are emitted once. Widget and diagnostic members
+remain supplied by FlaxWidgetHost. Conflicts with its configuration and lifecycle
+members are rejected. Generic interface declarations remain unsupported; generic methods
+and bounds are preserved. Supporting generic interface declarations would require a
+separate concrete-specialization contract and is intentionally deferred.
 
-Generated hosts implement the actual Dart interface and forward its getters to the
-validated native configuration. Constructor validation happens before acceptance and
-does not mount children. The same fixed configuration is reused on mounting. Getter
-reads add no bridge call, allocation, constructor call or Element. AppBar's original
-preferredSize object is preserved, including its private Size subtype used by native
-theme-height fallback.
+Generated hosts implement the Dart interface and directly forward to the cached real
+configuration. Signatures may contain BuildContext, Widgets, callbacks, collections,
+Records, Future/FutureOr, Stream, nullable types and generic methods without requiring
+JS converters or binding owners for those native-only types. Required/optional
+positional and named parameters, accessible constant defaults, setters and operators are
+preserved. Optional defaults follow the concrete Dart implementation even when it
+changes an inherited default or renames positional parameters. Inaccessible
+types/defaults fail generation. Interface methods and properties are not exposed as JS
+descriptor members. Ordinary bridge validation is unchanged.
+
+Constructor validation happens before acceptance and does not mount children. The same
+configuration is reused on mounting; forwarding adds no JS bridge call, constructor or
+Element. Arguments, return values, exceptions and asynchronous identities stay native.
+For example, CupertinoNavigationBar forwards both `preferredSize` and
+`shouldFullyObstruct(BuildContext)` to its native configuration. CupertinoPageScaffold
+therefore uses its real obstruction and layout behavior. AppBar's original preferredSize
+object, including its private theme-height sentinel subtype, is preserved.
+
+Manifest 8 records native member selections, Dart override source and explicit public
+imports separately from bridge TypeRefs. Readers 2 through 7 retain their original
+schemas and reject this metadata. Native members add no wire operations or owner rows;
+existing declaration IDs, UI protocol 20 and native ABI 2 remain unchanged. See
+[ADR 0029](../decisions/0029-native-widget-interface-members.md).
+
+Interface Widgets still require fixed constructor arguments without direct or
+collection-contained callbacks. Widgets inside child/children keep their own callback
+ownership. A native setter mutates the target configuration according to its Dart
+implementation; it does not create a reactive subscription or schedule a rebuild.
 
 Interface types work in Widget parameters, typed Widget lists and native Widget results.
 Callbacks declaring a narrower Widget-interface return type are rejected: existing
@@ -83,8 +108,9 @@ sequence. Mounted children hold their own resources; new configurations do not r
 State when native type/key matching retains it. No application object disposal, upward
 notification graph, extra Element, ComponentBoundary or runtimeType override is added.
 
-The [embedded example](../../examples/embedded/README.md) includes a named scaffold page
-whose JS owns the Scaffold. Dart supplies MaterialApp, navigation and a theme control.
-Drawer, SnackBar, ScaffoldState operations and arbitrary JS interface implementation
-remain unselected. See
+The
+[widget-interface owner tests](../../packages/flax_material_ui/test/ui/widget_interfaces_test.dart)
+verify the selected Scaffold/AppBar/PreferredSize surface inside the Material UI
+package. Drawer, SnackBar, ScaffoldState operations and arbitrary JS interface
+implementation remain unselected. See
 [the decision](../decisions/0011-widget-interface-configuration.md).

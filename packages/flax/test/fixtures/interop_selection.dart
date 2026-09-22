@@ -1,6 +1,68 @@
 import 'package:flax_codegen/flax_codegen.dart';
 
 const interopSelection = {
+  'CodegenGenericAliasConsumer': FlaxCodegenClassSelection(
+    {'': []},
+    kind: 'object',
+    getters: [
+      'callbacks',
+      'identity',
+      'asyncIdentity',
+      'increment',
+      'nullableIdentity',
+    ],
+    instanceMethods: {
+      'map': ['callback', 'value'],
+      'generic': ['callback', 'value'],
+      'genericDouble': ['callback', 'value'],
+      'genericNullable': ['callback', 'value'],
+      'broadNumberIsDouble': ['callback'],
+      'inline': ['callback', 'value'],
+      'genericToken': ['callback', 'value'],
+      'convert': ['callback', 'value'],
+      'collection': ['callback', 'values'],
+      'stored': ['index', 'value'],
+      'later': ['callback', 'value'],
+      'genericLater': ['callback', 'value'],
+      'inlineLater': ['callback', 'value'],
+      'nullableLater': ['callback', 'value'],
+      'nullable': ['callback'],
+      'nullableDouble': ['callback', 'value'],
+      'foundation': ['changed', 'getter'],
+    },
+  ),
+  'Box': FlaxCodegenClassSelection(
+    {
+      '': ['value'],
+    },
+    kind: 'object',
+    typeArguments: ['Object?'],
+    getters: ['value', 'reads'],
+  ),
+  'VoidBox': FlaxCodegenClassSelection(
+    {'': []},
+    kind: 'object',
+    getters: ['explicitValue', 'failure'],
+  ),
+  'IndirectVoidBox': FlaxCodegenClassSelection({'': []}, kind: 'object'),
+  'CoreValueConsumer': FlaxCodegenClassSelection(
+    {
+      '': ['date', 'uri', 'buffer'],
+    },
+    kind: 'object',
+    getters: ['date', 'uri', 'buffer'],
+  ),
+  'CodegenAliasConsumer': FlaxCodegenClassSelection(
+    {
+      '': ['onChanged', 'names', 'attributes'],
+    },
+    kind: 'object',
+    getters: ['names', 'attributes'],
+    instanceMethods: {
+      'notify': ['value'],
+      'transform': ['callback'],
+    },
+  ),
   'DeferredProperty': FlaxCodegenClassSelection(
     {},
     kind: 'object',
@@ -44,13 +106,14 @@ const interopSelection = {
   ),
   'AsyncCallbacks': FlaxCodegenClassSelection(
     {
-      '': ['transform', 'optional'],
+      '': ['transform', 'optional', 'nestedTransform'],
     },
     kind: 'object',
     getters: ['callbacks', 'mapping'],
     instanceMethods: {
       'apply': ['value'],
       'applyOptional': [],
+      'applyNested': [],
       'echo': ['callback'],
       'runVoid': ['callback'],
       'runNullable': ['callback'],
@@ -60,6 +123,17 @@ const interopSelection = {
       'runToken': ['callback', 'value'],
       'runList': ['callback', 'value'],
       'runData': ['callback', 'value'],
+      'nestedValue': ['value'],
+      'nestedFutureOrValue': ['value'],
+      'futureOrNestedValue': ['value'],
+      'runNested': ['callback'],
+      'runNestedFutureOr': ['callback'],
+      'futureOrNestedUsesFutureBranch': ['callback'],
+      'runNestedList': ['callback'],
+      'runNestedMap': ['callback'],
+      'runNestedRecord': ['callback'],
+      'runNullableNested': ['callback'],
+      'runNestedAlias': ['callback', 'value'],
     },
     data: FlaxCodegenDataSelection(
       methods: {
@@ -255,6 +329,21 @@ const interopSelection = {
     kind: 'object',
     getters: ['value'],
   ),
+  'RecordInterop': FlaxCodegenClassSelection(
+    {'': []},
+    kind: 'object',
+    instanceMethods: {
+      'echo': ['value'],
+      'echoNamed': ['value'],
+      'echoMixed': ['value'],
+      'echoNullable': ['value'],
+      'nested': ['value'],
+      'sameToken': ['value', 'token'],
+      'echoList': ['values'],
+      'later': ['value'],
+      'apply': ['callback', 'value'],
+    },
+  ),
   'Store': FlaxCodegenClassSelection(
     {
       '': ['value'],
@@ -314,6 +403,55 @@ const interopSelection = {
     instanceMethods: {
       'evaluate': ['value'],
       'twice': ['value'],
+    },
+  ),
+  'ConstructorSuperEvaluator': FlaxCodegenClassSelection(
+    {
+      '': ['initial'],
+    },
+    kind: 'object',
+    proxy: 'extends',
+    getters: ['initialResult'],
+    instanceMethods: {
+      'evaluate': ['value'],
+    },
+  ),
+  'EvaluatorConsumer': FlaxCodegenClassSelection(
+    {'': []},
+    kind: 'object',
+    instanceMethods: {
+      'run': ['evaluator', 'value'],
+      'identity': ['evaluator'],
+    },
+  ),
+  'RequiredSuper': FlaxCodegenClassSelection(
+    {'': []},
+    kind: 'object',
+    proxy: 'extends',
+    instanceMethods: {'refresh': []},
+  ),
+  'RequiredSuperConsumer': FlaxCodegenClassSelection(
+    {'': []},
+    kind: 'object',
+    instanceMethods: {
+      'run': ['value'],
+    },
+  ),
+  'AsyncRequiredSuper': FlaxCodegenClassSelection(
+    {'': []},
+    kind: 'object',
+    proxy: 'extends',
+    instanceMethods: {
+      'load': ['value'],
+      'normalize': ['value'],
+    },
+  ),
+  'AsyncRequiredSuperConsumer': FlaxCodegenClassSelection(
+    {'': []},
+    kind: 'object',
+    instanceMethods: {
+      'load': ['value', 'input'],
+      'normalize': ['value', 'input'],
     },
   ),
   'Selector': FlaxCodegenClassSelection(

@@ -14,7 +14,7 @@ import {
   BoxConstraints,
   Clip,
   DecorationPosition,
-} from '../../dist/flutter/index.js';
+} from '../../dist/flutter/widgets.js';
 import { signal } from '../../dist/runtime/index.js';
 import { objectHost } from './support/host.mjs';
 

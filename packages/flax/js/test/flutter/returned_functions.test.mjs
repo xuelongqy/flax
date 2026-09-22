@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { runApp } from '../../dist/flutter/index.js';
+import { runApp } from '../../dist/flutter/widgets.js';
 import { bindingVersion, copyNavigationData } from '../../dist/runtime/bindings.js';
 
 test('returned functions share one typed entry and cannot become navigation data', () => {

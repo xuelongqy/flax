@@ -4,10 +4,13 @@ import {
   Column,
   Text,
   SizedBox,
-  ValueKey,
   registerPage,
   FocusNode,
   TextEditingController,
+  UnfocusDisposition,
+} from '@flax/flutter/widgets';
+import { ValueKey } from '@flax/flutter/foundation';
+import {
   TextEditingValue,
   TextSelection,
   TextRange,
@@ -15,10 +18,9 @@ import {
   FilteringTextInputFormatter,
   LengthLimitingTextInputFormatter,
   MaxLengthEnforcement,
-  RegExp,
-  UnfocusDisposition,
-} from '@flax/core/flutter';
-import { TextField } from '@flax/material-ui';
+} from '@flax/flutter/services';
+import { RegExp } from '@flax/dart/core';
+import { TextField } from '@flax/flutter/material';
 
 const hooks = {
   FocusNode,

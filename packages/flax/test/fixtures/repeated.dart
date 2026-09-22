@@ -3,6 +3,13 @@ export 'package:flutter/widgets.dart' show BuildContext, Key, Widget;
 
 typedef CellBuilder = Widget? Function(BuildContext, int);
 
+class CoreValuePeer {
+  CoreValuePeer(this.date, this.uri, this.buffer);
+  final DateTime date;
+  final Uri uri;
+  final StringBuffer buffer;
+}
+
 /// A native consumer can keep a Widget without mounting it or returning it to JS.
 class WidgetCache {
   WidgetCache({this.child});
@@ -150,6 +157,19 @@ class TileBatch extends StatelessWidget {
       final child = render(context, i);
       if (!discard && child != null) children.add(child);
     }
+    return Column(children: children);
+  }
+}
+
+class WidgetListBatch extends StatelessWidget {
+  const WidgetListBatch({super.key, required this.render, this.onChildren});
+  final List<Widget> Function(BuildContext) render;
+  final void Function(List<Widget>)? onChildren;
+
+  @override
+  Widget build(BuildContext context) {
+    final children = render(context);
+    onChildren?.call(children);
     return Column(children: children);
   }
 }

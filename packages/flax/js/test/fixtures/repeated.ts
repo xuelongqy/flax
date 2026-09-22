@@ -1,5 +1,5 @@
 import { bind, signal } from '@flax/core';
-import { Text, registerPage } from '@flax/core/flutter';
+import { Text, registerPage } from '@flax/flutter/widgets';
 import { TileBatch } from '../../../.dart_tool/flax/ui/repeated_bindings.js';
 
 const hooks = {

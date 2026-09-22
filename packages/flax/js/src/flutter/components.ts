@@ -7,8 +7,9 @@ import {
   type ComponentWidget,
   type Widget,
 } from '@flax/core/bindings';
-import type { BuildContext, ValueKey } from './generated/bindings.js';
-import { StateLifecycle } from './generated/state_callbacks.js';
+import type { ValueKey } from './generated/libraries/foundation/_bindings/flutter_ValueKey.js';
+import type { BuildContext } from './generated/libraries/widgets/_bindings/flutter_BuildContext.js';
+import { StateLifecycle } from './generated/libraries/widgets/components.js';
 
 export interface WidgetOptions {
   readonly key?: ValueKey | null | undefined;

@@ -6,10 +6,10 @@ import {
   Navigator,
   StatefulWidget,
   State,
-  ValueKey,
   runApp,
   type BuildContext,
-} from '@flax/core/flutter';
+} from '@flax/flutter/widgets';
+import { ValueKey } from '@flax/flutter/foundation';
 import {
   MaterialApp,
   ThemeMode,
@@ -21,8 +21,8 @@ import {
   TextField,
   MaterialPageRoute,
   Theme,
-} from '@flax/material-ui';
-import { Builder } from '@flax/core/flutter';
+} from '@flax/flutter/material';
+import { Builder } from '@flax/flutter/widgets';
 const mode = signal(ThemeMode.system);
 const title = signal('Application');
 const result = signal('Pending');

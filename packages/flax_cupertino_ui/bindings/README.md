@@ -1,7 +1,7 @@
 # Cupertino UI Binding Rules
 
-Reserved for API selection and exceptional adaptation rules for Cupertino UI. No
-configuration schema or generated bindings are present yet.
+`config.yaml` selects the supported Cupertino surface. Keep the public surface narrow
+until real package usage demonstrates that another declaration is required.
 
 Generated code will belong to the corresponding Dart and JS packages. See
 [generation design](../../../docs/architecture/bindings.md) and

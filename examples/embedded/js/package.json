@@ -5,9 +5,8 @@
   "type": "module",
   "dependencies": {
     "@flax/core": "workspace:*",
-    "@flax/material-ui": "workspace:*",
-    "@flax/local-storage": "workspace:*",
-    "@flax/canvas": "workspace:*"
+    "@flax/flutter": "workspace:*",
+    "@flax/material-ui": "workspace:*"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",

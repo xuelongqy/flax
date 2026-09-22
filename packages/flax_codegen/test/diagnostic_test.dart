@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   test('diagnostic codes expose the frozen wire strings', () {
-    expect(FlaxCodegenDiagnosticCode.values, hasLength(14));
+    expect(FlaxCodegenDiagnosticCode.values, hasLength(15));
     expect(
       [for (final code in FlaxCodegenDiagnosticCode.values) code.value],
       [
@@ -18,6 +18,7 @@ void main() {
         'FCG_INCOMPATIBLE_FIELDS',
         'FCG_PATH',
         'FCG_RESOLUTION',
+        'FCG_DEPENDENCY',
         'FCG_OWNERSHIP',
         'FCG_MANIFEST',
         'FCG_OUTPUT',

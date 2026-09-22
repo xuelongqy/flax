@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { signal } from '@flax/core';
-import { Navigator, PageContent, Text, ValueKey } from '@flax/core/flutter';
+import { Navigator, PageContent, Text } from '@flax/flutter/widgets';
+import { ValueKey } from '@flax/flutter/foundation';
 import { MaterialPage } from '../dist/index.js';
 import { objectHost } from './support/host.mjs';
 

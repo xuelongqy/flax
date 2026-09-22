@@ -3,12 +3,19 @@ name: material
 imports: [flax]
 library: package:material_ui/material_ui.dart
 additionalLibraries: [package:flutter/services.dart]
-jsPackage: '@flax/material-ui'
+jsPackage: '@flax/flutter/material'
 dartOutput: lib/src/generated/material_bindings.g.dart
 tsOutput: js/src/generated/bindings.ts
+publicLibraries:
+  package:material_ui/material_ui.dart:
+    jsPackage: '@flax/flutter/material'
+    tsOutput: js/src/generated/libraries/material/index.ts
+topLevel:
+  getters: [kToolbarHeight, kTabScrollDuration]
 types:
   - Brightness
   - ListTileStyle
+  - MaterialType
   - NavigationDestinationLabelBehavior
   - TextInputAction
   - ThemeMode
@@ -35,6 +42,53 @@ functions:
       rootNavigator: useRootNavigator
       builders: [builder]
 classes:
+  Material:
+    constructors:
+      '':
+        [
+          key,
+          type,
+          child,
+          color,
+          elevation,
+          shadowColor,
+          surfaceTintColor,
+          textStyle,
+          borderRadius,
+          shape,
+          clipBehavior,
+        ]
+  InkWell:
+    constructors:
+      '':
+        [
+          key,
+          child,
+          onTap,
+          onLongPress,
+          onHover,
+          onHighlightChanged,
+          splashColor,
+          highlightColor,
+          hoverColor,
+          borderRadius,
+          mouseCursor,
+          customBorder,
+          enableFeedback,
+        ]
+  LinearProgressIndicator:
+    constructors:
+      '':
+        [
+          key,
+          value,
+          color,
+          backgroundColor,
+          minHeight,
+          semanticsLabel,
+          semanticsValue,
+          borderRadius,
+        ]
   AlertDialog:
     constructors:
       '': [key, title, content, actions, scrollable]
@@ -74,10 +128,45 @@ classes:
   ButtonStyle:
     kind: object
     constructors:
-      '': [backgroundColor, foregroundColor, overlayColor, elevation]
-    getters: [backgroundColor, foregroundColor, overlayColor, elevation]
+      '':
+        [
+          backgroundColor,
+          foregroundColor,
+          overlayColor,
+          elevation,
+          shape,
+          mouseCursor,
+          visualDensity,
+        ]
+    getters:
+      [
+        backgroundColor,
+        foregroundColor,
+        overlayColor,
+        elevation,
+        shape,
+        mouseCursor,
+        visualDensity,
+      ]
     instanceMethods:
-      copyWith: [backgroundColor, foregroundColor, overlayColor, elevation]
+      copyWith:
+        [
+          backgroundColor,
+          foregroundColor,
+          overlayColor,
+          elevation,
+          shape,
+          mouseCursor,
+          visualDensity,
+        ]
+  VisualDensity:
+    kind: object
+    constructors:
+      '': [horizontal, vertical]
+    getters: [horizontal, vertical]
+    staticGetters: [standard, comfortable, compact]
+    instanceMethods:
+      copyWith: [horizontal, vertical]
   AppBar:
     widgetInterfaces: [PreferredSizeWidget]
     constructors:

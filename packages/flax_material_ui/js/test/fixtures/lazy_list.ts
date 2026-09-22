@@ -4,17 +4,16 @@ import {
   type BuildContext,
   Column,
   Directionality,
-  type Key,
   ListView,
   ScrollController,
   SizedBox,
   Text,
-  TextDirection,
-  ValueKey,
   type Widget,
   registerPage,
-} from '@flax/core/flutter';
-import { RefreshIndicator, TextButton } from '@flax/material-ui';
+} from '@flax/flutter/widgets';
+import { type Key, ValueKey } from '@flax/flutter/foundation';
+import { TextDirection } from '@flax/flutter/services';
+import { RefreshIndicator, TextButton } from '@flax/flutter/material';
 import { RetainedTile } from '../../../.dart_tool/flax/ui/material_repeated_bindings.js';
 
 const hooks = {

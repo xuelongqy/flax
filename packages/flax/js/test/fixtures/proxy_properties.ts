@@ -1,6 +1,7 @@
 import type { DartList, DartMap } from '@flax/core/bindings';
 import * as plugin from '../../../.dart_tool/flax/ui/interop_bindings.js';
-import { ValueListenable, Text, registerPage } from '@flax/core/flutter';
+import { ValueListenable } from '@flax/flutter/foundation';
+import { Text, registerPage } from '@flax/flutter/widgets';
 
 const observations = { reads: 0, writes: 0, adds: 0, removes: 0 };
 let readFailure: 'none' | 'error' | 'promise' | 'type' = 'none';

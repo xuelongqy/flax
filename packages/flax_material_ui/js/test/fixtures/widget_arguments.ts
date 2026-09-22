@@ -6,13 +6,12 @@ import {
   State,
   StatefulWidget,
   Text,
-  ValueKey,
-  ValueListenable,
   ValueListenableBuilder,
   registerPage,
   type Widget,
-} from '@flax/core/flutter';
-import { TextButton, TextField } from '@flax/material-ui';
+} from '@flax/flutter/widgets';
+import { ValueKey, ValueListenable } from '@flax/flutter/foundation';
+import { TextButton, TextField } from '@flax/flutter/material';
 import {
   ChildConsumer,
   TileBatch,

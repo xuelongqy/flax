@@ -42,6 +42,14 @@ Future<void> main(List<String> arguments) => command(() async {
         ], directory: root);
       }
     }
+    await run('node', [
+      'tool/public_types.mjs',
+      if (check) '--check',
+    ], directory: root);
+    await run('node', [
+      'tool/module_delivery.mjs',
+      if (check) '--check',
+    ], directory: root);
     return;
   }
   if (action == 'tests') {
@@ -126,7 +134,7 @@ Future<void> _check(String root, FlaxWorkspacePackage package) async {
     ], directory: root);
   }
 
-  if (package.example.existsSync()) {
+  if (package.hasFlutterExample) {
     final exampleJs = Directory(p.join(package.example.path, 'js'));
     if (File(p.join(exampleJs.path, 'package.json')).existsSync()) {
       await _buildJsDependencies(root, exampleJs);
@@ -226,7 +234,7 @@ Future<void> _integration(
     path: 'integration_test',
     device: hasPackageMacosRunner ? 'macos' : null,
   );
-  if (package.example.existsSync()) {
+  if (package.hasFlutterExample) {
     final exampleJs = Directory(p.join(package.example.path, 'js'));
     if (File(p.join(exampleJs.path, 'package.json')).existsSync()) {
       await _buildJsDependencies(root, exampleJs);

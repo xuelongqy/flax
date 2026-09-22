@@ -154,6 +154,19 @@ class TileBatch extends StatelessWidget {
   }
 }
 
+class WidgetListBatch extends StatelessWidget {
+  const WidgetListBatch({super.key, required this.render, this.onChildren});
+  final List<Widget> Function(BuildContext) render;
+  final void Function(List<Widget>)? onChildren;
+
+  @override
+  Widget build(BuildContext context) {
+    final children = render(context);
+    onChildren?.call(children);
+    return Column(children: children);
+  }
+}
+
 /// Native state and keep-alive behavior, observable only by tests.
 class RetainedTile extends StatefulWidget {
   RetainedTile({

@@ -68,23 +68,21 @@ last-valid-update recovery. Errors discovered later by Flutter, such as invalid
 ParentData ancestry or an unbounded Flex, use Flutter diagnostics. There is no layout
 transaction rollback or additional release-mode assertion layer.
 
-## Example and verification
+## Verification
 
-The [layout page](../../examples/embedded/js/src/layout.ts) combines filtering, flexible
-input space, a list filling the remaining height, directional alignment and a positioned
-back-to-top button. The [Dart host](../../examples/embedded/lib/layout.dart) changes the
-available region and direction without replacing the session or page. Controllers and
-FocusNode are created once per page content mount and explicitly disposed through the
-page lifecycle.
+The [layout regressions](../../packages/flax/test/ui/layout_test.dart) keep layout
+ownership inside the core package and compare generated layout behavior with native Dart
+layouts.
 
 Framework tests compare sizes, positions and ParentData against native Dart layouts.
 They also check local batching, keyed State, shared descriptions, synchronous builders,
 defaults and Flutter diagnostics. Example tests verify editing/focus identity,
 scrolling, filtering and reentry. macOS integration exercises the same bundled JS page.
 
-Use bindings:check and ui:test for focused verification with prepared assets. Full
-check:ui includes runtime/package loading, Flutter tests, macOS integration and release
-packaging. See the [task record](../tasks/generated-layout.md) for measurements.
+Use `dart run tool/package.dart check flax` for static coverage and its integration
+command for real UI verification with prepared assets. Full `check:ui` invokes the same
+owner suite before the aggregate. Fixture counters are not a general performance
+guarantee.
 
 Container and decoration add native border insets, margins, constraints and explicit
 clipping. See [decoration semantics](decoration.md) for structural update behavior.

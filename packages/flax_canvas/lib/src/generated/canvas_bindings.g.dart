@@ -176,16 +176,16 @@ class _FlaxCanvasViewHost extends FlaxWidgetHost {
   _FlaxCanvasViewHost(super.node);
 
   @override
-  api.Widget buildNative(Map<String, Object?> values) =>
+  api1.Widget buildNative(Map<String, Object?> values) =>
       _createFlaxCanvasView(node.ctor, values);
 }
 
-api.Widget _createFlaxCanvasView(String ctor, Map<String, Object?> values) {
+api1.Widget _createFlaxCanvasView(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.FlaxCanvasView(
         values["canvas"] as api.FlaxCanvasSurface,
-        key: values["key"] as api.Key?,
+        key: values["key"] as api1.Key?,
         width: values["width"] as double?,
         height: values["height"] as double?,
       );

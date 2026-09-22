@@ -1,18 +1,15 @@
+import { Column, StreamBuilder, Text, registerPage } from '@flax/flutter/widgets';
+import { Duration } from '@flax/dart/core';
 import {
-  Column,
-  Duration,
   EventSink,
   Stream,
-  StreamBuilder,
   StreamConsumer,
   StreamController,
   StreamIterator,
   StreamTransformer,
   StreamTransformerBase,
   StreamView,
-  Text,
-  registerPage,
-} from '@flax/core/flutter';
+} from '@flax/dart/async';
 import { signal } from '@flax/core';
 
 const hooks: Record<string, unknown> = {

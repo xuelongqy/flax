@@ -268,7 +268,7 @@ void main() {
       await h.enter(t);
       h.execute('''
       navigation.sharedBuilder = context => ({kind:'widget', type:'flax.core/flutter#type:Text', ctor:'', args:{data:'Shared page'}});
-      navigation.description = {kind:'value', type:'package:material_ui/src/page.dart::MaterialPageRoute', ctor:'', args:{builder:navigation.sharedBuilder}};
+      navigation.description = {kind:'value', type:'flax.material/material#type:MaterialPageRoute', ctor:'', args:{builder:navigation.sharedBuilder}};
       navigation.navigator.push(navigation.description);
       navigation.navigator.push(navigation.description);
     ''');
@@ -293,35 +293,35 @@ void main() {
     },
   );
 
-  testWidgets(
-    'Route builders retain last valid content and recover after failure',
-    (t) async {
-      final h = NavigationHarness();
-      await h.enter(t);
-      await t.tap(find.text('Open detail'));
-      await t.pumpAndSettle();
-      final body = find.byWidgetPredicate(
-        (w) => w is FlaxWidgetHost && w.node.definition.id == 'flax:route-body',
-      );
-      void rebuild() => t
-          .element(
-            find.descendant(of: body, matching: find.byType(Builder)).first,
-          )
-          .markNeedsBuild();
-      h.execute('navigation.throwBuilder = true');
-      rebuild();
-      await t.pumpAndSettle();
-      expect(find.text('Detail'), findsOneWidget);
-      expect(h.errors.single.toString(), contains('route builder failed'));
-      h.execute('navigation.throwBuilder = false');
-      rebuild();
-      await t.pumpAndSettle();
-      await t.tap(find.text('Detail increment'));
-      await t.pumpAndSettle();
-      expect(find.text('Detail count 1'), findsOneWidget);
-      await h.finish(t);
-    },
-  );
+  testWidgets('Route builder failures isolate content and recover', (t) async {
+    final h = NavigationHarness();
+    await h.enter(t);
+    await t.tap(find.text('Open detail'));
+    await t.pumpAndSettle();
+    final body = find.byWidgetPredicate(
+      (w) => w is FlaxWidgetHost && w.node.definition.id == 'flax:route-body',
+    );
+    void rebuild() => t
+        .element(
+          find.descendant(of: body, matching: find.byType(Builder)).first,
+        )
+        .markNeedsBuild();
+    h.execute('navigation.throwBuilder = true');
+    rebuild();
+    await t.pumpAndSettle();
+    expect(find.text('Detail'), findsNothing);
+    expect(find.byType(ErrorWidget), findsOneWidget);
+    expect(h.errors.single.toString(), contains('route builder failed'));
+    h.execute('navigation.throwBuilder = false');
+    rebuild();
+    await t.pumpAndSettle();
+    expect(find.text('Detail'), findsOneWidget);
+    expect(find.byType(ErrorWidget), findsNothing);
+    await t.tap(find.text('Detail increment'));
+    await t.pumpAndSettle();
+    expect(find.text('Detail count 1'), findsOneWidget);
+    await h.finish(t);
+  });
 
   testWidgets(
     'structured Future data is copied, rejected on error, and canceled on close',

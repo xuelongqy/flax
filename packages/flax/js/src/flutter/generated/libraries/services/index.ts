@@ -1,0 +1,37 @@
+// GENERATED CODE. Selected public API subset; do not edit.
+// Regenerate with dart run melos run bindings:generate.
+import "@flax/flutter/services/_bindings/flutter_Color";
+import "@flax/flutter/services/_bindings/flutter_FilteringTextInputFormatter";
+import "@flax/flutter/services/_bindings/flutter_FontWeight";
+import "@flax/flutter/services/_bindings/flutter_LengthLimitingTextInputFormatter";
+import "@flax/flutter/services/_bindings/flutter_MouseCursor";
+import "@flax/flutter/services/_bindings/flutter_Size";
+import "@flax/flutter/services/_bindings/flutter_SystemMouseCursor";
+import "@flax/flutter/services/_bindings/flutter_SystemMouseCursors";
+import "@flax/flutter/services/_bindings/flutter_TextEditingValue";
+import "@flax/flutter/services/_bindings/flutter_TextInputFormatter";
+import "@flax/flutter/services/_bindings/flutter_TextRange";
+import "@flax/flutter/services/_bindings/flutter_TextSelection";
+export { Color } from "@flax/flutter/services/_bindings/flutter_Color";
+export { FilteringTextInputFormatter } from "@flax/flutter/services/_bindings/flutter_FilteringTextInputFormatter";
+export { FontWeight } from "@flax/flutter/services/_bindings/flutter_FontWeight";
+export type { KeyEvent } from "@flax/flutter/services/_bindings/flutter_KeyEvent";
+export { LengthLimitingTextInputFormatter } from "@flax/flutter/services/_bindings/flutter_LengthLimitingTextInputFormatter";
+export type { LogicalKeyboardKey } from "@flax/flutter/services/_bindings/flutter_LogicalKeyboardKey";
+export { MaxLengthEnforcement } from "@flax/flutter/services/_bindings/flutter_MaxLengthEnforcement";
+export { MouseCursor } from "@flax/flutter/services/_bindings/flutter_MouseCursor";
+export type { Offset } from "@flax/flutter/gestures/_bindings/flutter_Offset";
+export type { PhysicalKeyboardKey } from "@flax/flutter/services/_bindings/flutter_PhysicalKeyboardKey";
+export type { PointerEvent } from "@flax/flutter/gestures/_bindings/flutter_PointerEvent";
+export { Size } from "@flax/flutter/services/_bindings/flutter_Size";
+export type { SystemMouseCursor } from "@flax/flutter/services/_bindings/flutter_SystemMouseCursor";
+export { SystemMouseCursors } from "@flax/flutter/services/_bindings/flutter_SystemMouseCursors";
+export { TargetPlatform } from "@flax/flutter/foundation/_bindings/flutter_TargetPlatform";
+export { TextAffinity } from "@flax/flutter/services/_bindings/flutter_TextAffinity";
+export { TextAlign } from "@flax/flutter/services/_bindings/flutter_TextAlign";
+export { TextDirection } from "@flax/flutter/services/_bindings/flutter_TextDirection";
+export { TextEditingValue } from "@flax/flutter/services/_bindings/flutter_TextEditingValue";
+export { TextInputFormatter } from "@flax/flutter/services/_bindings/flutter_TextInputFormatter";
+export { TextRange } from "@flax/flutter/services/_bindings/flutter_TextRange";
+export { TextSelection } from "@flax/flutter/services/_bindings/flutter_TextSelection";
+export type { ValueChanged, ValueChangedInput } from "@flax/flutter/foundation/_bindings/flutter_ValueChanged";

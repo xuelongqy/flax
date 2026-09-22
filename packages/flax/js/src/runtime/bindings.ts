@@ -612,6 +612,7 @@ const objectHandles = new WeakMap<
   { type: string; id: number; alive: boolean }
 >();
 const objects = new Map<number, Set<WeakRef<object>>>();
+const constructingExtendedProxies = new WeakSet<object>();
 type DeferredObject = {
   type: string;
   factory: string;
@@ -660,6 +661,18 @@ function trackObject(value: object, type: string, id: number): void {
   const aliases = objects.get(id) ?? new Set<WeakRef<object>>();
   aliases.add(new WeakRef(value));
   objects.set(id, aliases);
+}
+
+function transferObjectAlias(source: object, target: object): void {
+  const ref = objectHandles.get(source);
+  if (!ref || !ref.alive) throw new TypeError('Invalid Dart object alias');
+  trackObject(target, ref.type, ref.id);
+  const aliases = objects.get(ref.id)!;
+  for (const alias of aliases) {
+    const value = alias.deref();
+    if (!value || value === source) aliases.delete(alias);
+  }
+  objectHandles.delete(source);
 }
 
 export function defineObject(
@@ -1007,19 +1020,8 @@ export function constructProxy(
     (args[positional] ?? {}) as Record<string, unknown>,
   ) as DartValue;
   const values: Record<string, unknown> = { ...descriptor.args };
-  function property(name: string): PropertyDescriptor | undefined {
-    for (
-      let object: object | null = implementation;
-      object !== null;
-      object = Object.getPrototypeOf(object)
-    ) {
-      const descriptor = Object.getOwnPropertyDescriptor(object, name);
-      if (descriptor) return descriptor;
-    }
-    return undefined;
-  }
   for (const name of names) {
-    const method: unknown = property(name)?.value;
+    const method: unknown = proxyProperty(implementation, name)?.value;
     if (typeof method !== 'function')
       throw new TypeError(`Missing proxy method: ${name}`);
     values[`@call:${name}`] = method.bind(implementation);
@@ -1028,7 +1030,7 @@ export function constructProxy(
     for (const name of kind === 'get' ? getters : setters) {
       if (names.includes(name))
         throw new TypeError(`Conflicting proxy member: ${name}`);
-      const accessor = property(name)?.[kind];
+      const accessor = proxyProperty(implementation, name)?.[kind];
       if (typeof accessor !== 'function')
         throw new TypeError(`Missing proxy ${kind} accessor: ${name}`);
       values[`@${kind}:${name}`] = (...args: unknown[]) =>
@@ -1041,6 +1043,112 @@ export function constructProxy(
   const create = (globalThis as ObjectHost).__flaxCreateObject;
   if (!create) throw new Error('Dart proxies require a Flax host');
   return create(bindingVersion, type, { ...descriptor, args: Object.freeze(values) });
+}
+
+function proxyProperty(
+  implementation: object,
+  name: string,
+  stopBefore?: object,
+): PropertyDescriptor | undefined {
+  for (
+    let object: object | null = implementation;
+    object !== null && object !== stopBefore;
+    object = Object.getPrototypeOf(object)
+  ) {
+    const descriptor = Object.getOwnPropertyDescriptor(object, name);
+    if (descriptor) return descriptor;
+  }
+  return undefined;
+}
+
+/**
+ * Attaches a newly-created Dart extends proxy to the JS instance currently
+ * being initialized by a generated abstract base class.
+ */
+export function constructExtendedProxy(
+  receiver: object,
+  basePrototype: object,
+  type: string,
+  parameters: readonly Parameter[],
+  args: readonly unknown[],
+  names: readonly string[],
+  getters: readonly string[],
+  setters: readonly string[],
+  superMembers: readonly string[],
+): void {
+  if (receiver === null || typeof receiver !== 'object')
+    throw new TypeError('Expected a proxy class instance');
+  if (objectHandles.has(receiver))
+    throw new TypeError('Proxy class instance is already initialized');
+
+  const positional = parameters.filter((p) => p.positional).length;
+  const hasNamed = parameters.some((p) => !p.positional);
+  if (args.length > positional + (hasNamed ? 1 : 0))
+    throw new TypeError('Too many proxy constructor arguments');
+
+  const descriptor = construct(
+    'value',
+    type,
+    '@implementation',
+    parameters,
+    args.slice(0, positional),
+    (args[positional] ?? {}) as Record<string, unknown>,
+  ) as DartValue;
+  const values: Record<string, unknown> = { ...descriptor.args };
+
+  for (const name of names) {
+    const method: unknown = proxyProperty(receiver, name, basePrototype)?.value;
+    if (typeof method !== 'function') {
+      if (superMembers.includes(name)) continue;
+      throw new TypeError(`Missing proxy method: ${name}`);
+    }
+    values[`@call:${name}`] = method.bind(receiver);
+  }
+  for (const kind of ['get', 'set'] as const) {
+    for (const name of kind === 'get' ? getters : setters) {
+      if (names.includes(name))
+        throw new TypeError(`Conflicting proxy member: ${name}`);
+      const accessor = proxyProperty(receiver, name, basePrototype)?.[kind];
+      const superName = `${kind}:${name}`;
+      if (typeof accessor !== 'function') {
+        if (superMembers.includes(superName)) continue;
+        throw new TypeError(`Missing proxy ${kind} accessor: ${name}`);
+      }
+      values[`@${kind}:${name}`] = (...callArgs: unknown[]) =>
+        synchronous(
+          Reflect.apply(accessor, receiver, callArgs),
+          `Proxy ${kind} ${name}`,
+        );
+    }
+  }
+
+  const create = (globalThis as ObjectHost).__flaxCreateObject;
+  if (!create) throw new Error('Dart proxies require a Flax host');
+  constructingExtendedProxies.add(receiver);
+  try {
+    const created = create(bindingVersion, type, {
+      ...descriptor,
+      args: Object.freeze(values),
+    });
+    const ref = objectHandles.get(created);
+    if (!ref || !ref.alive || ref.type !== type)
+      throw new TypeError('Invalid Dart proxy result');
+    transferObjectAlias(created, receiver);
+  } finally {
+    constructingExtendedProxies.delete(receiver);
+  }
+}
+
+export function invokeProxySuper(
+  receiver: object,
+  type: string,
+  member: string,
+  args: readonly unknown[],
+): unknown {
+  if (constructingExtendedProxies.has(receiver) && !objectHandles.has(receiver)) {
+    throw new Error('Dart proxy construction is not complete');
+  }
+  return invokeObject(receiver, type, `@super:${member}`, args);
 }
 
 function callObject(
@@ -1334,6 +1442,9 @@ Object.assign(globalThis, {
           : value instanceof Set || Symbol.iterator in Object(value)
             ? [...(value as Iterable<unknown>)]
             : Object.entries(value);
+    },
+    emptyRecord(): object {
+      return {};
     },
     emptyCollection(kind: string): object {
       return kind === 'map' ? new Map() : kind === 'set' ? new Set() : [];

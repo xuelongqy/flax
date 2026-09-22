@@ -1,1 +1,1 @@
-export * from './generated/bindings.js';
+export * from './generated/libraries/material/index.js';

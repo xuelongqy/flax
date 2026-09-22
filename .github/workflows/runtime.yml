@@ -50,8 +50,11 @@ jobs:
           flutter pub get --enforce-lockfile
           pnpm install --frozen-lockfile
 
-      - name: Verify runtime, both applications, external consumers, and release UI
-        run: dart run melos run check:ui
+      - name: Verify runtime, owner UI modules, aggregate, and standalone release UI
+        run: |
+          dart run melos run check:runtime
+          dart run melos run check:ui
+          dart run melos run check:standalone
 
       - name: Verify source files are unchanged
         run: |
@@ -113,10 +116,12 @@ jobs:
           flutter pub get --enforce-lockfile
           pnpm install --frozen-lockfile
 
-      - name: Verify runtime, both applications, external consumers, and release UI
+      - name: Verify runtimes, owner UI modules, aggregate, and standalone release UI
         run: |
           dart run melos run native:build
+          dart run melos run check:runtime:v8
           dart run melos run check:ui:v8
+          dart run melos run check:standalone:v8
           dart run melos run check:engines
 
       - name: Smoke-test independent engine benchmarks

@@ -5,7 +5,7 @@ import {
   SingleChildScrollView,
   Text,
   registerPage,
-} from '../../dist/flutter/index.js';
+} from '../../dist/flutter/widgets.js';
 import { signal } from '../../dist/runtime/index.js';
 import { copyNavigationData } from '../../dist/runtime/bindings.js';
 

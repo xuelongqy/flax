@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { constructProxy } from '../../dist/runtime/bindings.js';
-import { ValueListenable } from '../../dist/flutter/index.js';
+import { ValueListenable } from '../../dist/flutter/generated/libraries/foundation/index.js';
 
 function capture(t) {
   const original = globalThis.__flaxCreateObject;

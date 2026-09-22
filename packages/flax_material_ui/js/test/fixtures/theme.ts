@@ -1,15 +1,15 @@
 import { bind, signal } from '@flax/core';
 import {
   Builder,
-  Color,
   Column,
   FocusNode,
   Text,
   TextEditingController,
   TextStyle,
-  ValueKey,
   registerPage,
-} from '@flax/core/flutter';
+} from '@flax/flutter/widgets';
+import { Color } from '@flax/flutter/services';
+import { ValueKey } from '@flax/flutter/foundation';
 import {
   Brightness,
   ColorScheme,
@@ -18,7 +18,7 @@ import {
   TextTheme,
   Theme,
   ThemeData,
-} from '@flax/material-ui';
+} from '@flax/flutter/material';
 
 const hooks = {
   Color,

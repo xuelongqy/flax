@@ -13,3 +13,8 @@ Replace before use:
 
 Do not hand-edit files under `lib/src/generated/` or `js/src/generated/` after the first
 successful `generate`.
+
+The config's `name: example` generates the exported module `exampleBindings`; its
+`publicLibraries` mapping exposes the selected Dart public library as the matching npm
+subpath. Keep `registration.bindings`, public-library routes and application
+registration aligned when renaming the module or public entry.
