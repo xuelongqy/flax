@@ -590,6 +590,7 @@ class FlaxCodegenClassModel {
   final FlaxCodegenPageAdapterModel? pageAdapter;
   final List<FlaxCodegenGetterModel> setters;
   final String? disposeMethod;
+
   /// Semantic capabilities describe available API traits. They do not imply
   /// runtime ownership or automatic lifecycle actions.
   final List<String> capabilities;
@@ -921,7 +922,7 @@ class FlaxCodegenModuleModel {
           (category != FlaxCodegenClassCategory.object &&
               category != FlaxCodegenClassCategory.stream &&
               (type.setters.isNotEmpty || type.listenerPairs.isNotEmpty))) {
-        throw StateError('Invalid object ownership model: ${type.name}');
+        throw StateError('Invalid object binding model: ${type.name}');
       }
       if ((category == FlaxCodegenClassCategory.context ||
               category == FlaxCodegenClassCategory.state) &&

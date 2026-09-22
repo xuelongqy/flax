@@ -408,9 +408,11 @@ void main() {
     second.execute(
       'globalThis.own = Gauge(); own.watch(async () => { throw Error("listener rejected"); }); own.move(10);',
     );
+    final owned = second.created.whereType<Gauge>().last;
     await t.pumpAndSettle();
     expect(second.errors.single.toString(), contains('listener rejected'));
     await second.finish(t);
+    expect(owned.finishes, 0);
     expect(foreign.finishes, 0);
     await first.finish(t);
     expect(foreign.finishes, 0);

@@ -897,6 +897,31 @@ void main() {
       expect(named.proxyCapability, FlaxCodegenProxyCapability.canExtend);
       expect(named.selection!.proxy, 'extends');
       expect(named.selection!.constructors.keys, ['named']);
+
+      final disposable = await proposal('DisposableBox');
+      expect(disposable.proxyCapability, FlaxCodegenProxyCapability.canExtend);
+      expect(disposable.selection!.disposeMethod, 'dispose');
+      expect(disposable.selection!.instanceMethods['dispose'], isEmpty);
+      expect(disposable.selection!.getters, contains('inheritedValue'));
+      expect(disposable.selection!.getters, isNot(contains('kind')));
+      expect(disposable.selection!.setters, contains('inheritedValue'));
+      expect(disposable.selection!.instanceMethods['normalize'], ['value']);
+      final parsedDisposable = await parser.parse(
+        FlaxCodegenBindingConfig(
+          'proxy-disposable',
+          uri,
+          '@example/proxy-disposable',
+          'unused.dart',
+          'unused.ts',
+          {'DisposableBox': disposable.selection!},
+        ),
+      );
+      expect(parsedDisposable.classes.single.capabilities, ['Disposable']);
+
+      final oddDispose = await proposal('OddDisposeBox');
+      expect(oddDispose.selection!.disposeMethod, isNull);
+      expect(oddDispose.selection!.instanceMethods['dispose'], ['value']);
+
       for (final name in ['FinalBox', 'SealedBox']) {
         final proposed = await proposal(name);
         expect(
@@ -975,7 +1000,7 @@ void main() {
       );
       expect(
         widget.proxyCapability,
-        FlaxCodegenProxyCapability.specialLifecycle,
+        FlaxCodegenProxyCapability.flutterSemantics,
       );
     },
   );

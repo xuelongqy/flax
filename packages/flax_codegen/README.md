@@ -250,7 +250,7 @@ through the existing function binding channel. Importing a module does not trigg
 reads. Initialization, exceptions, object identity, callbacks and async delivery keep
 their existing Dart and session behavior. Writes emit synchronous `setX(value): void`
 functions; getter and setter types follow their separate Dart signatures.
-Const/final/late-final writes and special Flutter ownership are rejected. Provider-owned
+Const/final/late-final writes and Flutter-specific input semantics are rejected. Provider-owned
 declarations reuse the provider's public module without registering twice. Manifest 10
 records source identity, read/write operations and public-library routing; Manifest 5
 remains readable as the historical namespace representation. See

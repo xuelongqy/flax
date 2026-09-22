@@ -268,6 +268,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
   final staticGetters = <String>[];
   final instanceMethods = <String, List<String>>{};
   final methods = <String, List<String>>{};
+  String? inferredDisposeMethod;
 
   if (!widget) {
     for (final getter in element.getters) {
@@ -333,6 +334,104 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
         methods[methodName] = bound;
       } else {
         instanceMethods[methodName] = bound;
+      }
+    }
+
+    // Public instance API is inherited in Dart. Collect the effective member
+    // from thisType so generic substitutions and overrides match what callers
+    // actually see, while keeping static members declaration-local.
+    for (final parent in element.allSupertypes) {
+      if (parent.isDartCoreObject) continue;
+      for (final declared in parent.getters) {
+        final getterName = declared.name!;
+        if (getters.contains(getterName) ||
+            !_usableMemberName(getterName) ||
+            {'hashCode', 'runtimeType'}.contains(getterName) ||
+            {'kind', 'type', 'ctor', 'args'}.contains(getterName)) {
+          continue;
+        }
+        final getter = element.thisType.lookUpGetter(
+          getterName,
+          element.library,
+        );
+        if (getter == null || !getter.isPublic || getter.isStatic) continue;
+        final converted = _tryMemberType(
+          scope,
+          getter.returnType,
+          '$name.$getterName',
+          skips,
+          allowed: _getterKinds,
+        );
+        if (converted != null) getters.add(getterName);
+      }
+      for (final declared in parent.setters) {
+        final setterName = declared.name!.replaceFirst(RegExp(r'=$'), '');
+        if (setters.contains(setterName) || !_usableMemberName(setterName)) {
+          continue;
+        }
+        final setter = element.thisType.lookUpSetter(
+          setterName,
+          element.library,
+        );
+        if (setter == null || !setter.isPublic || setter.isStatic) continue;
+        final converted = _tryMemberType(
+          scope,
+          setter.formalParameters.single.type,
+          '$name.$setterName=',
+          skips,
+          allowed: _setterKinds,
+          input: true,
+        );
+        if (converted != null) setters.add(setterName);
+      }
+      for (final declared in parent.methods) {
+        final methodName = declared.name!;
+        if (instanceMethods.containsKey(methodName) ||
+            !_usableMemberName(methodName) ||
+            {'toString', 'noSuchMethod'}.contains(methodName)) {
+          continue;
+        }
+        final method = element.thisType.lookUpMethod(
+          methodName,
+          element.library,
+        );
+        if (method == null || !method.isPublic || method.isStatic) continue;
+        final bound = _bindMethod(
+          parser: parser,
+          scope: scope,
+          element: element,
+          method: method,
+          location: '$name.$methodName',
+          skips: skips,
+        );
+        if (bound != null) instanceMethods[methodName] = bound;
+      }
+    }
+
+    // `dispose()` is ordinary application code. Automatic binding may expose
+    // the conventional Flutter/Dart disposer (including an inherited one),
+    // but this only records what happens when the application calls it. It
+    // never assigns ownership or schedules disposal on session/widget close.
+    if (kind == 'object' && base?.disposeMethod == null) {
+      final disposer = element.thisType.lookUpMethod(
+        'dispose',
+        element.library,
+      );
+      if (_isConventionalDisposer(disposer)) {
+        final bound =
+            instanceMethods['dispose'] ??
+            _bindMethod(
+              parser: parser,
+              scope: scope,
+              element: element,
+              method: disposer!,
+              location: '$name.dispose',
+              skips: skips,
+            );
+        if (bound != null && bound.isEmpty) {
+          instanceMethods['dispose'] = bound;
+          inferredDisposeMethod = 'dispose';
+        }
       }
     }
   } else {
@@ -482,6 +581,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     staticGetters: staticGetters,
     instanceMethods: selectedInstanceMethods,
     methods: methods,
+    disposeMethod: base?.disposeMethod ?? inferredDisposeMethod,
     genericScalar: base?.genericScalar ?? false,
     jsName: base?.jsName,
   );
@@ -493,6 +593,17 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     proxyCapability: proxyCapability,
   );
 }
+
+bool _isConventionalDisposer(MethodElement? method) =>
+    method != null &&
+    !method.isStatic &&
+    method.isPublic &&
+    method.typeParameters.isEmpty &&
+    method.formalParameters.isEmpty &&
+    method.returnType is VoidType &&
+    !method.baseElement.fragments.any(
+      (fragment) => fragment.isAsynchronous || fragment.isGenerator,
+    );
 
 const _getterKinds = {
   'void',
@@ -1044,9 +1155,9 @@ _proxyRecommendation({
   required Map<String, List<String>> instanceMethods,
   required String? kind,
 }) async {
-  if (_isSpecialLifecycle(parser, element)) {
+  if (_requiresFlutterSemantics(parser, element)) {
     return (
-      capability: FlaxCodegenProxyCapability.specialLifecycle,
+      capability: FlaxCodegenProxyCapability.flutterSemantics,
       proxy: null,
       constructorName: null,
     );
@@ -1313,7 +1424,7 @@ bool _proxyMethodCanOverride(ClassElement element, String name) {
       (method.isAbstract || !method.metadata.hasNonVirtual);
 }
 
-bool _isSpecialLifecycle(
+bool _requiresFlutterSemantics(
   FlaxCodegenBindingParser parser,
   InterfaceElement element,
 ) {

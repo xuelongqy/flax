@@ -52,6 +52,12 @@ The imports are `signal` from `@flax/core`, component/layout types from
 `@flax/flutter/widgets`, and `TextButton` from `@flax/flutter/material`. Existing
 generated constructors retain their function syntax.
 
+Application components are class-based Flutter Widgets. An arbitrary JavaScript
+function that returns a Widget is not a component and receives no mount, State or
+lifecycle ownership. Flutter callback APIs such as builders remain ordinary functions;
+their callback/result lifetime follows the generated Flutter API contract rather than
+creating a second component model.
+
 A Widget is configuration. Its instance is shallow-frozen on acceptance, after the
 subclass constructor finishes. Its referenced signals and controllers are not frozen.
 Fields do not automatically subscribe or unwrap bindings. Share a signal explicitly or

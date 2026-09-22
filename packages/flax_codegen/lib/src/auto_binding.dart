@@ -584,11 +584,19 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     }
     final getters = [
       for (final name in selection.getters)
-        if (visible(element.getGetter(name), '${element.name}.$name')) name,
+        if (visible(
+          element.thisType.lookUpGetter(name, element.library),
+          '${element.name}.$name',
+        ))
+          name,
     ];
     final setters = [
       for (final name in selection.setters)
-        if (visible(element.getSetter(name), '${element.name}.$name=')) name,
+        if (visible(
+          element.thisType.lookUpSetter(name, element.library),
+          '${element.name}.$name=',
+        ))
+          name,
     ];
     final staticGetters = [
       for (final name in selection.staticGetters)
@@ -597,7 +605,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     final instanceMethods = <String, List<String>>{
       for (final entry in selection.instanceMethods.entries)
         if (visible(
-          element.getMethod(entry.key),
+          element.thisType.lookUpMethod(entry.key, element.library),
           '${element.name}.${entry.key}',
         ))
           entry.key: entry.value,
@@ -812,7 +820,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       if (type.containsWidget ||
           {'context', 'state', 'route', 'page'}.contains(type.kind)) {
         throw StateError(
-          'Special Flutter ownership requires an explicit override',
+          'Flutter tree/reference semantics require an explicit override',
         );
       }
       setters.add(name);

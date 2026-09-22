@@ -26,8 +26,9 @@ specializations, provider augmentation and cross-barrel arbitration remain defer
 Supported synchronous BuildContext-to-Widget callbacks reuse independent result
 ownership, including the already supported Widget collection path. Public non-generic
 implementable Widget interfaces reuse native interface forwarding. This adds selection
-inference without changing lifetime rules or the UI protocol. Route, page, host and
-application-specific lifecycle intent remains explicit.
+inference without changing lifetime rules or the UI protocol. Route, page and host
+semantic adapters remain explicit. Application resource cleanup remains ordinary
+application code under Flutter lifecycle rules.
 
 Optional `bindings/overrides.yaml` uses format 1 with `overrides.classes`,
 `overrides.functions`, and a declaration-level `overrides.exclude` list. Only supplied

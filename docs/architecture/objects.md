@@ -21,6 +21,10 @@ If Dart throws, the error propagates and the wrapper is not revoked. Dart may al
 have performed side effects, so applications must not assume rollback or blindly retry.
 Removing a paired listener from a successfully disposed wrapper remains safe.
 
+Automatic binding may recognize a conventional synchronous `void dispose()` method so
+the explicit call receives this wrapper-revocation behavior without per-class
+configuration. Recognition does not make Flax the owner and never schedules disposal.
+
 **Session close never disposes application objects.** It removes registered listeners,
 revokes callbacks, releases bridge references and destroys the engine after accepted
 mounts, Routes and transitions finish. Existing accepted pages can still use and replace

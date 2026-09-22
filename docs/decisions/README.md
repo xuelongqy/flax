@@ -96,3 +96,7 @@ adding a record. A design decision is not evidence of implemented behavior.
 
 - [0033: Automatic public-library bindings](0033-automatic-public-library-bindings.md)
   is accepted and amends ADR 0018.
+
+- [0034: Preserve Flutter application semantics](0034-flutter-application-semantics.md)
+  is accepted and clarifies application ownership, State lifecycle and automatic
+  disposal inference.

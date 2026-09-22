@@ -4,7 +4,10 @@ import 'config.dart';
 enum FlaxCodegenProxyCapability {
   canImplement,
   canExtend,
-  specialLifecycle,
+
+  /// Generic proxy inference must stop because this declaration participates
+  /// in Flutter-specific Widget/Context/State/Route/Page semantics.
+  flutterSemantics,
   unsupported,
 }
 

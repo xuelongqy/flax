@@ -5,11 +5,17 @@ Automatic library discovery is available through
 [codegen usage guide](../../packages/flax_codegen/README.md) and
 [ADR 0033](../decisions/0033-automatic-public-library-bindings.md). It reuses the binding
 contracts below, skips unsupported declarations, and accepts optional overrides for
-lifecycle intent. Explicit configuration remains fail-closed.
+binding semantics that cannot be inferred safely. Explicit configuration remains
+fail-closed.
 
 The analyzer-based generator resolves selected public APIs and emits Dart calls,
 TypeScript declarations and shared parameter metadata. Configuration, parsing/model and
 emission remain separate. UI protocol 20 reuses the unchanged native C ABI (ABI 2).
+
+The `FlaxCodegen*Model` graph produced by parsing is the semantic IR between analyzer
+resolution and emission. It carries resolved types, generics, inheritance, Widget and
+callback roles, and capabilities such as `Disposable`. Emitters consume that semantic
+model; they do not infer application ownership or lifecycle policy from method names.
 
 ## Selection and generation
 
@@ -268,10 +274,12 @@ classes:
       watch: unwatch
 ```
 
-Disposal must be an explicitly selected synchronous zero-argument void method. Listener
-pairs select one non-null VoidCallback argument on each method. These annotations
-identify API semantics; they do not impose application disposal policy. Classes with
-neither annotation use the same reference mechanism. See [object lifetime](objects.md).
+Explicit configuration may name any selected synchronous zero-argument void disposal
+method. Automatic public-library binding also recognizes the conventional `void
+dispose()` method, including an inherited one. Listener pairs select one non-null
+VoidCallback argument on each method. These annotations identify API semantics; they do
+not impose application disposal policy or cause session/widget cleanup to dispose the
+object. See [object lifetime](objects.md) and [ADR 0034](../decisions/0034-flutter-application-semantics.md).
 
 ## Standalone typedefs
 

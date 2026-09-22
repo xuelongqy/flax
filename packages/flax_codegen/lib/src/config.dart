@@ -434,7 +434,8 @@ class FlaxCodegenClassSelection {
   final Map<String, List<String>> instanceMethods;
   final List<String> startsRoute;
 
-  /// Explicit lifecycle categories for objects and Flutter hosts.
+  /// Binding role. Flutter-specific roles preserve Flutter semantics but do
+  /// not assign application ownership or automatic disposal.
   final String? kind;
   final String? proxy;
   final List<String> proxyOverrides;

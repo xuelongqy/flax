@@ -73,3 +73,23 @@ class AbstractInterfaceBoxImpl implements AbstractInterfaceBox {
   @override
   int get value => 1;
 }
+
+class DisposableBase {
+  int get inheritedValue => 1;
+  String get kind => 'reserved';
+  set inheritedValue(int value) {}
+  int normalize(int value) => value + 1;
+  void dispose() {}
+}
+
+class DisposableBox extends DisposableBase {
+  DisposableBox();
+
+  int get value => 1;
+}
+
+class OddDisposeBox {
+  OddDisposeBox();
+
+  int dispose(int value) => value;
+}
