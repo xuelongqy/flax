@@ -2343,9 +2343,19 @@ class FlaxCodegenBindingParser {
         final proxyMethods = <FlaxCodegenMethodModel>[];
         for (final name in {
           for (final t in hierarchy)
-            ...t.methods.where((m) => !m.isStatic).map((m) => m.name!),
+            for (final method in t.methods)
+              if (!method.isStatic &&
+                  (!method.isPrivate ||
+                      method.isAbstract ||
+                      selection.proxy == 'implements'))
+                method.name!,
         }) {
-          final method = actualType.lookUpMethod(name, element.library)!;
+          final method = actualType.lookUpMethod(name, element.library);
+          if (method == null || method.isPrivate || method.isOperator) {
+            throw StateError(
+              'Proxy methods require public non-operator signatures: $name',
+            );
+          }
           final selectedConcrete = methods.any(
             (candidate) => candidate.instance && candidate.name == name,
           );
@@ -2368,16 +2378,14 @@ class FlaxCodegenBindingParser {
               !concreteOverride) {
             continue;
           }
-          if (method.isPrivate || method.isOperator) {
-            throw StateError(
-              'Proxy methods require public non-operator signatures: $name',
-            );
-          }
           final callback = typeRef(method.type);
           final declaredMethod = element.thisType.lookUpMethod(
             name,
             element.library,
-          )!;
+          );
+          if (declaredMethod == null || declaredMethod.isPrivate) {
+            throw StateError('Proxy methods must be public: $name');
+          }
           final result = callback.result!.declaredAs(
             typeRef(declaredMethod.returnType, forTypescript: true),
           );

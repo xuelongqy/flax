@@ -46,6 +46,20 @@ void main() {
     return element;
   }
 
+  test('proxy proposal ignores inaccessible inherited private methods', () async {
+    final parser = FlaxCodegenBindingParser(repoRoot);
+    addTearDown(parser.dispose);
+    final config = fixture('private_proxy_child.dart', const {});
+    final proposed = await parser.proposeSelection(
+      await loadType(config.library, 'PrivateInheritedChild'),
+      library: config,
+    );
+
+    expect(proposed.selection, isNotNull);
+    expect(proposed.selection!.proxy, 'extends');
+    expect(proposed.selection!.getters, contains('value'));
+  });
+
   test('automatic library proposal covers ordinary declarations and Widget overlays', () async {
     final parser = FlaxCodegenBindingParser(repoRoot);
     addTearDown(parser.dispose);
