@@ -217,7 +217,8 @@ BindingAssessment _fromProposal(
   ApiDeclarationRecord declaration,
   String label,
 ) {
-  if (proposed.skips.any((skip) => skip.reason == 'Already adapted')) {
+  if (proposed.provider != null ||
+      proposed.skips.any((skip) => skip.reason == 'Already adapted')) {
     return BindingAssessment(
       status: CoverageStatus.existingProvider,
       evidence: EvidenceLevel.e1,
@@ -232,7 +233,7 @@ BindingAssessment _fromProposal(
           ),
       ],
       selection: _selectionJson(proposed.selection),
-      provider: 'official',
+      provider: proposed.provider ?? 'official',
     );
   }
   if (proposed.selection == null) {

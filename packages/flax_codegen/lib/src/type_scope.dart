@@ -524,6 +524,15 @@ final class _FlaxCodegenTypeScope {
     final widgetInterface = parser._adaptations[id] == 'widgetInterface';
     if (widgetInterface) usesWidget = true;
     if (!types.containsKey(id)) {
+      final dependencyOwner = parser._dependencyTypeOwners[id];
+      final dependencyType = dependencyOwner?.types
+          .where((type) => type.id == id)
+          .firstOrNull;
+      if (dependencyType != null) {
+        types[id] = dependencyType;
+      }
+    }
+    if (!types.containsKey(id)) {
       // Seed the identity before resolving recursive generic bounds.
       types[id] = FlaxCodegenNamedTypeModel(name: name, id: id);
       final typeParameters = [

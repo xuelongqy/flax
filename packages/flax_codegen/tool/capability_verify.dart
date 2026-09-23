@@ -368,7 +368,38 @@ Future<void> main(List<String> args) async {
       };
 
       stdout.writeln('Preparing official Flutter pool…');
+      final officialParser = FlaxCodegenBindingParser(root);
+      late final FlaxCodegenModuleModel officialModule;
+      try {
+        officialModule = await officialParser.parse(official);
+      } finally {
+        officialParser.dispose();
+      }
       await parser.prepare([official]);
+      final providerTypeNames = {
+        ...official.callbackSnapshots.keys,
+        ...official.types,
+      };
+      final providerTypes = [
+        for (final type in officialModule.types)
+          if (providerTypeNames.contains(type.name)) type,
+      ];
+      final typeOwnerModule = FlaxCodegenModuleModel(
+        name: officialModule.name,
+        library: officialModule.library,
+        jsPackage: officialModule.jsPackage,
+        dartOutput: officialModule.dartOutput,
+        tsOutput: officialModule.tsOutput,
+        classes: const [],
+        types: providerTypes,
+      );
+      final ownerModuleId = typeOwnerModule.name;
+      parser.prepareModules(
+        [typeOwnerModule],
+        dependencyTypeOwnerModules: {
+          for (final type in providerTypes) type.id: ownerModuleId,
+        },
+      );
       stdout.writeln('Pooled proposeSelection…');
       await _assess(
         parser: parser,

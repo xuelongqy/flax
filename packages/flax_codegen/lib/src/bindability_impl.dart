@@ -156,6 +156,18 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     );
   }
 
+  if (parser._dependencyTypeOwners[id] case final owner?) {
+    if (base != null) {
+      skip(name, 'Existing provider type is not expanded');
+    }
+    return FlaxCodegenProposedBinding(
+      name: name,
+      id: id,
+      provider: owner.jsPackage,
+      skips: skips,
+    );
+  }
+
   if (parser._adaptations.containsKey(id) ||
       parser._selections.containsKey(id)) {
     if (base != null) {

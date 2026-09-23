@@ -15,6 +15,134 @@ import 'package:test/test.dart';
 
 void main() {
   group('FlaxCodegenPackagePipeline.validateConfig', () {
+    test(
+      'dependency snapshot owner stops recursive superclass binding',
+      () async {
+        final workspace = _tempWorkspace();
+        final base = _writeSnapshotProviderPackage(workspace);
+        final host = _writeHostPackage(
+          workspace: workspace,
+          name: 'host_pkg',
+          dependencies: ['base_pkg'],
+          libraries: {
+            'api.dart': '''
+import 'package:base_pkg/base.dart';
+
+class Consumer {
+  Consumer(this.value, this.optional, this.generic);
+  final PublicValue value;
+  final PublicValue? optional;
+  final GenericValue<String>? generic;
+}
+''',
+          },
+          configs: {
+            'api.yaml': '''
+format: 1
+name: api
+library: package:host_pkg/api.dart
+jsPackage: '@host/api'
+dartOutput: lib/api.g.dart
+tsOutput: js/api.ts
+imports: [base_pkg]
+classes:
+  Consumer:
+    kind: object
+    constructors: {'': [value, optional, generic]}
+    getters: [value, optional, generic]
+''',
+          },
+        );
+        _writePackageConfig(workspace, {
+          'base_pkg': base.root,
+          'host_pkg': host.root,
+        });
+
+        final result = await FlaxCodegenPackagePipeline.validateConfig(
+          host.configPath('api.yaml'),
+        );
+        final local = result.localModels.single;
+        final consumer = local.classes.singleWhere(
+          (type) => type.name == 'Consumer',
+        );
+        final parameters = consumer.constructors.single.parameters;
+        expect(parameters[0].type.id, 'example.base/base#type:PublicValue');
+        expect(parameters[1].type.id, 'example.base/base#type:PublicValue');
+        expect(parameters[1].type.nullable, isTrue);
+        expect(parameters[2].type.id, 'example.base/base#type:GenericValue');
+        expect(parameters[2].type.nullable, isTrue);
+        expect(parameters[2].type.dartArguments.single.kind, 'String');
+        expect(
+          local.classes.map((type) => type.name),
+          isNot(contains('HiddenBase')),
+        );
+        expect(
+          local.classes.map((type) => type.name),
+          isNot(contains('PublicValue')),
+        );
+        final dependency = result
+            .directDependencies['base_pkg']!
+            .modulesByModuleId
+            .values
+            .single;
+        final typescript = FlaxCodegenBindingEmitter([dependency, local])
+            .typescript(local);
+        expect(typescript, contains('upstream0.PublicValue'));
+        expect(typescript, contains('upstream0.GenericValue<string>'));
+        expect(typescript, isNot(contains('HiddenBase')));
+      },
+    );
+
+    test('unowned superclass remains fail-closed', () async {
+      final workspace = _tempWorkspace();
+      final base = _writeSnapshotProviderPackage(workspace);
+      final host = _writeHostPackage(
+        workspace: workspace,
+        name: 'host_pkg',
+        dependencies: ['base_pkg'],
+        libraries: {
+          'api.dart': '''
+import 'package:base_pkg/base.dart';
+
+class Consumer {
+  Consumer(this.value);
+  final HiddenBase value;
+}
+''',
+        },
+        configs: {
+          'api.yaml': '''
+format: 1
+name: api
+library: package:host_pkg/api.dart
+jsPackage: '@host/api'
+dartOutput: lib/api.g.dart
+tsOutput: js/api.ts
+imports: [base_pkg]
+classes:
+  Consumer:
+    kind: object
+    constructors: {'': [value]}
+''',
+        },
+      );
+      _writePackageConfig(workspace, {
+        'base_pkg': base.root,
+        'host_pkg': host.root,
+      });
+
+      await expectLater(
+        FlaxCodegenPackagePipeline.validateConfig(host.configPath('api.yaml')),
+        throwsA(
+          isA<FlaxCodegenException>().having(
+            (error) => error.diagnostics.map((item) => item.message).join('\n'),
+            'message',
+            contains('must publicly export the referenced type HiddenBase'),
+          ),
+        ),
+      );
+    });
+
     test('type-only recursive bounds cross a Manifest 11 provider without creating an owner', () async {
       final workspace = _tempWorkspace();
       final base = _writeHostPackage(
@@ -4293,6 +4421,126 @@ Directory _tempWorkspace() {
     }
   });
   return root;
+}
+
+({Directory root, FlaxCodegenManifestV5 manifest})
+_writeSnapshotProviderPackage(Directory workspace) {
+  const package = 'base_pkg';
+  const namespace = 'example.base';
+  const moduleName = 'base';
+  const typeName = 'PublicValue';
+  final root = Directory(p.join(workspace.path, package))..createSync();
+  File(p.join(root.path, 'pubspec.yaml')).writeAsStringSync('name: $package\n');
+  final lib = Directory(p.join(root.path, 'lib'))..createSync();
+  File(p.join(lib.path, '$moduleName.dart')).writeAsStringSync('''
+abstract class HiddenBase {}
+
+class PublicValue extends HiddenBase {
+  PublicValue(this.value);
+  final int value;
+}
+
+class GenericValue<T> extends HiddenBase {}
+''');
+  final bindings = Directory(p.join(root.path, 'bindings'))..createSync();
+  final ns = FlaxCodegenBindingNamespace.parse(namespace);
+  final moduleId = FlaxCodegenModuleId(
+    namespace: ns,
+    name: FlaxCodegenModuleName.parse(moduleName),
+  );
+  final ownerSource = FlaxCodegenSourceIdentity(
+    kind: FlaxCodegenDeclarationKind.type,
+    originatingUri: 'package:$package/$moduleName.dart',
+    name: typeName,
+    origin: FlaxCodegenOriginState.resolved,
+  );
+  final ownerWire = FlaxCodegenWireId.type(
+    moduleId: moduleId,
+    publicBindingName: typeName,
+  );
+  final genericSource = FlaxCodegenSourceIdentity(
+    kind: FlaxCodegenDeclarationKind.type,
+    originatingUri: 'package:$package/$moduleName.dart',
+    name: 'GenericValue',
+    origin: FlaxCodegenOriginState.resolved,
+  );
+  final genericWire = FlaxCodegenWireId.type(
+    moduleId: moduleId,
+    publicBindingName: 'GenericValue',
+  );
+  final genericIdentity = Object();
+  final genericParameter = FlaxCodegenGenericParameter(
+    'T',
+    const FlaxCodegenTypeRef('any'),
+    genericIdentity: genericIdentity,
+  );
+  final model = FlaxCodegenModuleModel(
+    name: moduleName,
+    library: 'package:$package/$moduleName.dart',
+    jsPackage: '@base/values',
+    dartOutput: 'lib/$moduleName.g.dart',
+    tsOutput: 'js/$moduleName.ts',
+    classes: [
+      FlaxCodegenClassModel(
+        name: 'GenericValue',
+        id: genericWire.value,
+        kind: 'object',
+        constructors: const [],
+        typeParameters: [genericParameter],
+        supertypes: const [],
+      ),
+    ],
+    types: [
+      FlaxCodegenNamedTypeModel(name: typeName, id: ownerWire.value),
+      FlaxCodegenNamedTypeModel(
+        name: 'GenericValue',
+        id: genericWire.value,
+        typeParameters: [genericParameter],
+      ),
+    ],
+    typeLibraries: const {
+      typeName: 'package:$package/$moduleName.dart',
+      'GenericValue': 'package:$package/$moduleName.dart',
+    },
+    snapshots: [
+      FlaxCodegenSnapshotModel(
+        name: typeName,
+        id: ownerWire.value,
+        fields: const [
+          FlaxCodegenSnapshotFieldModel(name: 'value', kind: 'int'),
+        ],
+      ),
+    ],
+  );
+  final manifest = FlaxCodegenManifestV5.fromResolved(
+    package: FlaxCodegenResolvedPackage(
+      dartPackage: package,
+      namespace: ns,
+      modules: [
+        FlaxCodegenResolvedModule(
+          moduleId: moduleId,
+          source: '$moduleName.yaml',
+          owners: [
+            FlaxCodegenResolvedOwner(
+              sourceIdentity: ownerSource,
+              wireId: ownerWire,
+            ),
+            FlaxCodegenResolvedOwner(
+              sourceIdentity: genericSource,
+              wireId: genericWire,
+            ),
+          ],
+          references: const [],
+          requiredCapabilities: flaxCodegenProtocol20RequiredCapabilities(),
+        ),
+      ],
+    ),
+    modules: {moduleName: model},
+    importPackageNames: const [],
+  );
+  File(p.join(bindings.path, 'manifest.json'))
+      .writeAsStringSync(manifest.encode());
+  return (root: root, manifest: manifest);
 }
 
 ({Directory root, String Function(String) configPath}) _writeHostPackage({

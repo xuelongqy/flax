@@ -584,6 +584,7 @@ class FlaxCodegenBindingParser {
   /// Lazily resolved public elements for [_dependencyTypeLibraries].
   final _dependencyExports = <String, Element>{};
   final _dependencyOwners = <String, FlaxCodegenModuleModel>{};
+  final _dependencyTypeOwners = <String, FlaxCodegenModuleModel>{};
   final _privateDependencyExtensions = <String>{};
   final _dependencyExtensions = <String, FlaxCodegenExtensionModel>{};
   final _dependencyReadonly = <String, FlaxCodegenTopLevelGetterModel>{};
@@ -771,7 +772,10 @@ class FlaxCodegenBindingParser {
   }
 
   /// Registers dependency declarations loaded from a package manifest.
-  void prepareModules(Iterable<FlaxCodegenModuleModel> modules) {
+  void prepareModules(
+    Iterable<FlaxCodegenModuleModel> modules, {
+    Map<String, String> dependencyTypeOwnerModules = const {},
+  }) {
     for (final module in modules) {
       for (final extension in module.extensions) {
         if (extension.isReference) continue;
@@ -793,6 +797,17 @@ class FlaxCodegenBindingParser {
           throw StateError('Conflicting dependency type library: ${entry.key}');
         }
         _dependencyTypeLibraries[entry.key] = entry.value;
+      }
+      for (final type in module.types) {
+        final ownerModuleId = dependencyTypeOwnerModules[type.id];
+        final moduleOwnerId = module.moduleId ?? module.name;
+        if (ownerModuleId == null || ownerModuleId != moduleOwnerId) continue;
+        final previous = _dependencyTypeOwners[type.id];
+        if (previous != null &&
+            (previous.moduleId ?? previous.name) != moduleOwnerId) {
+          throw StateError('Duplicate dependency type provider: ${type.id}');
+        }
+        _dependencyTypeOwners[type.id] = module;
       }
     }
     _dependencyExportsResolved = false;
@@ -833,6 +848,7 @@ class FlaxCodegenBindingParser {
       }
       for (final type in module.classes) {
         _dependencyOwners[type.id] = module;
+        _dependencyTypeOwners.putIfAbsent(type.id, () => module);
         final selection = _selectionFromModel(type);
         _validateDuplicates(selection, type.id);
         _selections[type.id] = selection;

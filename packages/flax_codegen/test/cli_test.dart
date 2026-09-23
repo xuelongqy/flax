@@ -306,6 +306,13 @@ overrides:
           bar.widgetInterfaces.map((type) => type.name),
           contains('PreferredSizeWidget'),
         );
+        final offsetHolder = module.classes.singleWhere(
+          (type) => type.name == 'OffsetHolder',
+        );
+        expect(
+          offsetHolder.constructors.single.parameters.single.type.id,
+          'flax.core/flutter#type:Offset',
+        );
         expect(validation.directDependencies.keys, contains('flax'));
       },
     );
@@ -568,6 +575,11 @@ class AutoBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) => const SizedBox.shrink();
+}
+
+class OffsetHolder {
+  const OffsetHolder(this.value);
+  final Offset value;
 }
 ''');
   _copyWorkspacePackageConfig(root, 'widget_cli_pkg');

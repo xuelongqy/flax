@@ -295,10 +295,15 @@ final class FlaxCodegenPackagePipeline {
         }
       }
       final wireToRaw = _wireIdToRawFromProjections(providerCandidates);
-      proposalParser.prepareModules([
-        for (final module in imported.values)
-          _rewriteModuleIds(module, wireToRaw),
-      ]);
+      proposalParser.prepareModules(
+        [
+          for (final module in imported.values)
+            _rewriteModuleIds(module, wireToRaw),
+        ],
+        dependencyTypeOwnerModules: _ownedTypeModulesFromProjections(
+          providerCandidates,
+        ),
+      );
       proposal = await proposalParser.proposeLibrary(
         seed,
         overrides: overrides,
@@ -1348,7 +1353,12 @@ Future<List<FlaxCodegenModuleModel>> _parseLocalModules({
         _rewriteModuleIds(module, wireToRaw),
     ];
     try {
-      parser.prepareModules(prepared);
+      parser.prepareModules(
+        prepared,
+        dependencyTypeOwnerModules: _ownedTypeModulesFromProjections(
+          directDependencies,
+        ),
+      );
     } on StateError catch (error) {
       throw FlaxCodegenException([
         _dependencyDiagnostic(workspaceRoot, error.message),
@@ -1805,6 +1815,33 @@ Map<String, String> _wireIdToRawFromProjections(
     }
   }
   return wireToRaw;
+}
+
+Map<String, String> _ownedTypeModulesFromProjections(
+  Map<String, FlaxCodegenManifestV5Projection> directDependencies,
+) {
+  final result = <String, String>{};
+  for (final projection in directDependencies.values) {
+    for (final manifest in projection.packageManifests) {
+      for (final module in manifest.modules) {
+        for (final identity in module.model.identities) {
+          if (!identity.owner ||
+              identity.sourceIdentity.kind != FlaxCodegenDeclarationKind.type) {
+            continue;
+          }
+          final rawId =
+              '${identity.sourceIdentity.originatingUri}::'
+              '${identity.sourceIdentity.name}';
+          final previous = result[rawId];
+          if (previous != null && previous != module.moduleId.value) {
+            throw StateError('Conflicting dependency type provider: $rawId');
+          }
+          result[rawId] = module.moduleId.value;
+        }
+      }
+    }
+  }
+  return result;
 }
 
 FlaxCodegenModuleModel _rewriteModuleIds(

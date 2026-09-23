@@ -128,7 +128,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       final classOverride = overrides.classes[name];
       if (classOverride != null) seenOverrides.add(name);
       if (classOverride == null &&
-          !_dependencyOwners.containsKey(identity(element)) &&
+          !_dependencyTypeOwners.containsKey(identity(element)) &&
           element.allSupertypes.any(
             (parent) =>
                 parent.element.library.uri.toString() == 'dart:core' &&
@@ -193,7 +193,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       ...hiddenTypes,
       for (final entry in elements.entries)
         if (!classes.containsKey(entry.key) &&
-            !_dependencyOwners.containsKey(identity(entry.value)))
+            !_dependencyTypeOwners.containsKey(identity(entry.value)))
           identity(entry.value),
     };
     bool changed;
