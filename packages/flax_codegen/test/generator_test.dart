@@ -1427,6 +1427,15 @@ AlignmentGeometry();
       module.classes.singleWhere((c) => c.name == 'Color').id,
       'dart:ui::Color',
     );
+    final imageFilter = module.classes.singleWhere(
+      (c) => c.name == 'ImageFilter',
+    );
+    expect(imageFilter.id, 'dart:ui::ImageFilter');
+    expect(
+      imageFilter.constructors.map((constructor) => constructor.name),
+      ['blur', 'dilate', 'erode', 'compose'],
+    );
+    expect(module.typeLibraries['ImageFilter'], 'package:flax/dart_ui.dart');
     final inputDecoration = material.classes.singleWhere(
       (c) => c.name == 'InputDecoration',
     );

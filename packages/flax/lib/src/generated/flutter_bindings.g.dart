@@ -14,9 +14,10 @@ import 'dart:async' as api3;
 
 import 'package:flutter/services.dart' as api4;
 import 'package:flax/bindings.dart' as api5;
-import 'package:flutter/scheduler.dart' as api6;
-import 'package:flutter/foundation.dart' as api7;
-import 'package:flutter/widgets.dart' as _flaxNative7;
+import 'package:flax/dart_ui.dart' as api6;
+import 'package:flutter/scheduler.dart' as api7;
+import 'package:flutter/foundation.dart' as api8;
+import 'package:flutter/widgets.dart' as _flaxNative8;
 
 // ignore: unused_element
 const _flaxOmitted = Object();
@@ -8167,6 +8168,85 @@ const flutterBindings = FlaxBindingModule(
       staticGetters: {},
     ),
     FlaxObjectBinding(
+      "flax.core/flutter#type:ImageFilter",
+      [],
+      {},
+      constructors: {
+        "blur": [
+          FlaxParameter(
+            "sigmaX",
+            FlaxTypeRef("double"),
+            required: false,
+            defaultValue: 0.0,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "sigmaY",
+            FlaxTypeRef("double"),
+            required: false,
+            defaultValue: 0.0,
+            omitWhenAbsent: false,
+          ),
+        ],
+        "dilate": [
+          FlaxParameter(
+            "radiusX",
+            FlaxTypeRef("double"),
+            required: false,
+            defaultValue: 0.0,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "radiusY",
+            FlaxTypeRef("double"),
+            required: false,
+            defaultValue: 0.0,
+            omitWhenAbsent: false,
+          ),
+        ],
+        "erode": [
+          FlaxParameter(
+            "radiusX",
+            FlaxTypeRef("double"),
+            required: false,
+            defaultValue: 0.0,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "radiusY",
+            FlaxTypeRef("double"),
+            required: false,
+            defaultValue: 0.0,
+            omitWhenAbsent: false,
+          ),
+        ],
+        "compose": [
+          FlaxParameter(
+            "outer",
+            FlaxTypeRef("object", id: "flax.core/flutter#type:ImageFilter"),
+            required: true,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "inner",
+            FlaxTypeRef("object", id: "flax.core/flutter#type:ImageFilter"),
+            required: true,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+        ],
+      },
+      create: _createImageFilter,
+      disposeMethod: null,
+      listenerPairs: {},
+      supertypes: ["dart:core::Object"],
+      setters: [],
+      matches: _isImageFilter,
+      methods: {},
+      staticGetters: {},
+    ),
+    FlaxObjectBinding(
       "flax.core/flutter#type:FontWeight",
       [FlaxGetter("value", FlaxTypeRef("int"), _FontWeight_value)],
       {},
@@ -12911,8 +12991,8 @@ Object? _function_applyBoxFit(Map<String, Object?> values) {
 }
 
 Object? _read_defaultTargetPlatform(Map<String, Object?> values) =>
-    api7.defaultTargetPlatform;
-Object? _read_kIsWeb(Map<String, Object?> values) => api7.kIsWeb;
+    api8.defaultTargetPlatform;
+Object? _read_kIsWeb(Map<String, Object?> values) => api8.kIsWeb;
 
 class _SpacerHost extends FlaxWidgetHost {
   _SpacerHost(super.node);
@@ -14225,7 +14305,7 @@ api.Widget _createValueListenableBuilder(
       return api.ValueListenableBuilder<Object?>(
         key: values["key"] as api.Key?,
         valueListenable:
-            values["valueListenable"] as api7.ValueListenable<Object?>,
+            values["valueListenable"] as api8.ValueListenable<Object?>,
         builder:
             values["builder"]
                 as api.Widget Function(
@@ -14287,14 +14367,14 @@ Object? _Listenable_removeListener(
 
 Object _createListenable(String ctor, Map<String, Object?> values) =>
     throw ArgumentError('Abstract object has no constructor');
-bool _isValueListenable(Object value) => value is api7.ValueListenable<Object?>;
+bool _isValueListenable(Object value) => value is api8.ValueListenable<Object?>;
 Object? _ValueListenable_value(Object value) =>
-    (value as api7.ValueListenable<Object?>).value;
+    (value as api8.ValueListenable<Object?>).value;
 Object? _ValueListenable_addListener(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  (receiver as api7.ValueListenable<Object?>).addListener(
+  (receiver as api8.ValueListenable<Object?>).addListener(
     values["listener"] as void Function(),
   );
   return null;
@@ -14304,7 +14384,7 @@ Object? _ValueListenable_removeListener(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  (receiver as api7.ValueListenable<Object?>).removeListener(
+  (receiver as api8.ValueListenable<Object?>).removeListener(
     values["listener"] as void Function(),
   );
   return null;
@@ -14350,8 +14430,8 @@ class _PreferredSizeHost extends FlaxWidgetHost
     implements api.PreferredSizeWidget {
   _PreferredSizeHost(super.node);
   @override
-  _flaxNative7.Size get preferredSize =>
-      (configuration as _flaxNative7.PreferredSizeWidget).preferredSize;
+  _flaxNative8.Size get preferredSize =>
+      (configuration as _flaxNative8.PreferredSizeWidget).preferredSize;
 
   @override
   api.Widget buildNative(Map<String, Object?> values) =>
@@ -15362,6 +15442,34 @@ Object _createColor(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isImageFilter(Object value) => value is api6.ImageFilter;
+Object _createImageFilter(String ctor, Map<String, Object?> values) {
+  switch (ctor) {
+    case "blur":
+      return api6.ImageFilter.blur(
+        sigmaX: values["sigmaX"] as double,
+        sigmaY: values["sigmaY"] as double,
+      );
+    case "dilate":
+      return api6.ImageFilter.dilate(
+        radiusX: values["radiusX"] as double,
+        radiusY: values["radiusY"] as double,
+      );
+    case "erode":
+      return api6.ImageFilter.erode(
+        radiusX: values["radiusX"] as double,
+        radiusY: values["radiusY"] as double,
+      );
+    case "compose":
+      return api6.ImageFilter.compose(
+        outer: values["outer"] as api6.ImageFilter,
+        inner: values["inner"] as api6.ImageFilter,
+      );
+    default:
+      throw ArgumentError('Unknown generated constructor');
+  }
+}
+
 bool _isFontWeight(Object value) => value is api.FontWeight;
 Object? _FontWeight_value(Object value) => (value as api.FontWeight).value;
 Object? _FontWeight_static_w100() => api.FontWeight.w100;
@@ -15902,10 +16010,10 @@ Object _createSize(String ctor, Map<String, Object?> values) {
   }
 }
 
-bool _isSchedulerBinding(Object value) => value is api6.SchedulerBinding;
+bool _isSchedulerBinding(Object value) => value is api7.SchedulerBinding;
 Object? _SchedulerBinding_endOfFrame(Object value) =>
-    (value as api6.SchedulerBinding).endOfFrame;
-Object? _SchedulerBinding_static_instance() => api6.SchedulerBinding.instance;
+    (value as api7.SchedulerBinding).endOfFrame;
+Object? _SchedulerBinding_static_instance() => api7.SchedulerBinding.instance;
 Object _createSchedulerBinding(String ctor, Map<String, Object?> values) =>
     throw ArgumentError('Abstract object has no constructor');
 bool _isBoxConstraints(Object value) => value is api.BoxConstraints;
@@ -17153,7 +17261,7 @@ final class _StreamTransformerBaseProxy
   }
 }
 
-final class _ValueListenableProxy extends api7.ValueListenable<Object?> {
+final class _ValueListenableProxy extends api8.ValueListenable<Object?> {
   final void Function(void Function() listener) _call_addListener;
   final void Function(void Function() listener) _call_removeListener;
   final Object? Function() _get_value;

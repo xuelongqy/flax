@@ -9,6 +9,7 @@ additionalLibraries:
     package:flutter/scheduler.dart,
     dart:async,
     dart:core,
+    package:flax/dart_ui.dart,
     package:flax/bindings.dart,
   ]
 jsPackage: '@flax/core/navigation'
@@ -36,6 +37,9 @@ publicLibraries:
   dart:core:
     jsPackage: '@flax/dart/core'
     tsOutput: js/src/dart/generated/libraries/core/index.ts
+  package:flax/dart_ui.dart:
+    jsPackage: '@flax/dart/ui'
+    tsOutput: js/src/dart/generated/libraries/ui/index.ts
   package:flax/bindings.dart:
     jsPackage: '@flax/core/navigation'
     tsOutput: js/src/flutter/generated/libraries/navigation/index.ts
@@ -577,6 +581,13 @@ classes:
     getters: [a, r, g, b]
     instanceMethods:
       toARGB32: []
+  ImageFilter:
+    kind: object
+    constructors:
+      blur: [sigmaX, sigmaY]
+      dilate: [radiusX, radiusY]
+      erode: [radiusX, radiusY]
+      compose: [outer, inner]
   FontWeight:
     kind: object
     constructors:

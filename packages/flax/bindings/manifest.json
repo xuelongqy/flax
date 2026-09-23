@@ -723,6 +723,13 @@
             ]
           },
           {
+            "library": "package:flax/dart_ui.dart",
+            "jsPackage": "@flax/dart/ui",
+            "exports": [
+              "ImageFilter"
+            ]
+          },
+          {
             "library": "package:flutter/foundation.dart",
             "jsPackage": "@flax/flutter/foundation",
             "exports": [
@@ -990,6 +997,7 @@
           "GestureDetector": "package:flutter/widgets.dart",
           "HitTestBehavior": "package:flutter/widgets.dart",
           "IgnorePointer": "package:flutter/widgets.dart",
+          "ImageFilter": "package:flax/dart_ui.dart",
           "IndexedStack": "package:flutter/widgets.dart",
           "Key": "package:flutter/widgets.dart",
           "KeyEvent": "package:flutter/widgets.dart",
@@ -41667,9 +41675,9 @@
                 "name": "preferredSize",
                 "kind": "getter",
                 "parameters": [],
-                "source": "@override\n_flaxNative7.Size get preferredSize => (configuration as _flaxNative7.PreferredSizeWidget).preferredSize;",
+                "source": "@override\n_flaxNative8.Size get preferredSize => (configuration as _flaxNative8.PreferredSizeWidget).preferredSize;",
                 "imports": {
-                  "package:flutter/widgets.dart": "_flaxNative7"
+                  "package:flutter/widgets.dart": "_flaxNative8"
                 }
               }
             ],
@@ -41862,9 +41870,9 @@
                 "name": "preferredSize",
                 "kind": "getter",
                 "parameters": [],
-                "source": "@override\n_flaxNative7.Size get preferredSize => (configuration as _flaxNative7.PreferredSizeWidget).preferredSize;",
+                "source": "@override\n_flaxNative8.Size get preferredSize => (configuration as _flaxNative8.PreferredSizeWidget).preferredSize;",
                 "imports": {
-                  "package:flutter/widgets.dart": "_flaxNative7"
+                  "package:flutter/widgets.dart": "_flaxNative8"
                 }
               }
             ],
@@ -51782,6 +51790,424 @@
                 "kind": "typeOnly",
                 "id": null,
                 "name": "Color",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            ],
+            "proxy": null,
+            "pageAdapter": null,
+            "disposeMethod": null,
+            "listenerPairs": {}
+          },
+          {
+            "name": "ImageFilter",
+            "id": "flax.core/flutter#type:ImageFilter",
+            "kind": "object",
+            "jsName": null,
+            "genericScalar": false,
+            "asyncIterableFactory": null,
+            "typeArguments": [],
+            "typeParameters": [],
+            "constructors": [
+              {
+                "name": "blur",
+                "parameters": [
+                  {
+                    "name": "sigmaX",
+                    "type": {
+                      "kind": "double",
+                      "id": null,
+                      "name": null,
+                      "nullable": false,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": {
+                        "kind": "double",
+                        "id": null,
+                        "name": null,
+                        "nullable": false,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": null,
+                        "tsArguments": [],
+                        "slot": null
+                      },
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "required": false,
+                    "positional": false,
+                    "defaultCode": "0.0",
+                    "omitWhenAbsent": false,
+                    "independentWidgetResult": false,
+                    "snapshot": null,
+                    "encodeKind": null,
+                    "scoped": false
+                  },
+                  {
+                    "name": "sigmaY",
+                    "type": {
+                      "kind": "double",
+                      "id": null,
+                      "name": null,
+                      "nullable": false,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": {
+                        "kind": "double",
+                        "id": null,
+                        "name": null,
+                        "nullable": false,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": null,
+                        "tsArguments": [],
+                        "slot": null
+                      },
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "required": false,
+                    "positional": false,
+                    "defaultCode": "0.0",
+                    "omitWhenAbsent": false,
+                    "independentWidgetResult": false,
+                    "snapshot": null,
+                    "encodeKind": null,
+                    "scoped": false
+                  }
+                ]
+              },
+              {
+                "name": "dilate",
+                "parameters": [
+                  {
+                    "name": "radiusX",
+                    "type": {
+                      "kind": "double",
+                      "id": null,
+                      "name": null,
+                      "nullable": false,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": {
+                        "kind": "double",
+                        "id": null,
+                        "name": null,
+                        "nullable": false,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": null,
+                        "tsArguments": [],
+                        "slot": null
+                      },
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "required": false,
+                    "positional": false,
+                    "defaultCode": "0.0",
+                    "omitWhenAbsent": false,
+                    "independentWidgetResult": false,
+                    "snapshot": null,
+                    "encodeKind": null,
+                    "scoped": false
+                  },
+                  {
+                    "name": "radiusY",
+                    "type": {
+                      "kind": "double",
+                      "id": null,
+                      "name": null,
+                      "nullable": false,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": {
+                        "kind": "double",
+                        "id": null,
+                        "name": null,
+                        "nullable": false,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": null,
+                        "tsArguments": [],
+                        "slot": null
+                      },
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "required": false,
+                    "positional": false,
+                    "defaultCode": "0.0",
+                    "omitWhenAbsent": false,
+                    "independentWidgetResult": false,
+                    "snapshot": null,
+                    "encodeKind": null,
+                    "scoped": false
+                  }
+                ]
+              },
+              {
+                "name": "erode",
+                "parameters": [
+                  {
+                    "name": "radiusX",
+                    "type": {
+                      "kind": "double",
+                      "id": null,
+                      "name": null,
+                      "nullable": false,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": {
+                        "kind": "double",
+                        "id": null,
+                        "name": null,
+                        "nullable": false,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": null,
+                        "tsArguments": [],
+                        "slot": null
+                      },
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "required": false,
+                    "positional": false,
+                    "defaultCode": "0.0",
+                    "omitWhenAbsent": false,
+                    "independentWidgetResult": false,
+                    "snapshot": null,
+                    "encodeKind": null,
+                    "scoped": false
+                  },
+                  {
+                    "name": "radiusY",
+                    "type": {
+                      "kind": "double",
+                      "id": null,
+                      "name": null,
+                      "nullable": false,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": {
+                        "kind": "double",
+                        "id": null,
+                        "name": null,
+                        "nullable": false,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": null,
+                        "tsArguments": [],
+                        "slot": null
+                      },
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "required": false,
+                    "positional": false,
+                    "defaultCode": "0.0",
+                    "omitWhenAbsent": false,
+                    "independentWidgetResult": false,
+                    "snapshot": null,
+                    "encodeKind": null,
+                    "scoped": false
+                  }
+                ]
+              },
+              {
+                "name": "compose",
+                "parameters": [
+                  {
+                    "name": "outer",
+                    "type": {
+                      "kind": "object",
+                      "id": "flax.core/flutter#type:ImageFilter",
+                      "name": "ImageFilter",
+                      "nullable": false,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": {
+                        "kind": "object",
+                        "id": "flax.core/flutter#type:ImageFilter",
+                        "name": "ImageFilter",
+                        "nullable": false,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": null,
+                        "tsArguments": [],
+                        "slot": null
+                      },
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "required": true,
+                    "positional": false,
+                    "defaultCode": "null",
+                    "omitWhenAbsent": false,
+                    "independentWidgetResult": false,
+                    "snapshot": null,
+                    "encodeKind": null,
+                    "scoped": false
+                  },
+                  {
+                    "name": "inner",
+                    "type": {
+                      "kind": "object",
+                      "id": "flax.core/flutter#type:ImageFilter",
+                      "name": "ImageFilter",
+                      "nullable": false,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": {
+                        "kind": "object",
+                        "id": "flax.core/flutter#type:ImageFilter",
+                        "name": "ImageFilter",
+                        "nullable": false,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": null,
+                        "tsArguments": [],
+                        "slot": null
+                      },
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "required": true,
+                    "positional": false,
+                    "defaultCode": "null",
+                    "omitWhenAbsent": false,
+                    "independentWidgetResult": false,
+                    "snapshot": null,
+                    "encodeKind": null,
+                    "scoped": false
+                  }
+                ]
+              }
+            ],
+            "getters": [],
+            "setters": [],
+            "staticGetters": [],
+            "methods": [],
+            "widgetInterfaces": [],
+            "widgetGetters": [],
+            "supertypes": [
+              "dart:core::Object"
+            ],
+            "superTypes": [
+              {
+                "originatingUri": "dart:ui",
+                "originatingName": "ImageFilter",
+                "kind": "typeOnly",
+                "id": null,
+                "name": "ImageFilter",
                 "nullable": false,
                 "item": null,
                 "key": null,
@@ -78951,6 +79377,12 @@
             "typeParameters": []
           },
           {
+            "name": "ImageFilter",
+            "id": "flax.core/flutter#type:ImageFilter",
+            "enumNames": [],
+            "typeParameters": []
+          },
+          {
             "name": "FontWeight",
             "id": "flax.core/flutter#type:FontWeight",
             "enumNames": [],
@@ -80097,6 +80529,15 @@
               "name": "FontWeight"
             },
             "wireId": "flax.core/flutter#type:FontWeight",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "type",
+              "originatingUri": "dart:ui",
+              "name": "ImageFilter"
+            },
+            "wireId": "flax.core/flutter#type:ImageFilter",
             "owner": true
           },
           {
