@@ -318,7 +318,7 @@ class FlaxCodegenTypeRef {
       );
     }
     if (kind == 'callback') {
-      bool supported(
+      String? unsupportedPosition(
         FlaxCodegenTypeRef type,
         String position, {
         required bool toDart,
@@ -327,6 +327,7 @@ class FlaxCodegenTypeRef {
       }) {
         if (type.kind == 'future' || type.kind == 'futureOr') {
           final item = type.item!;
+          final itemPosition = '$position item';
           if ({
                 'context',
                 'state',
@@ -335,18 +336,19 @@ class FlaxCodegenTypeRef {
                 'stream',
               }.contains(item.kind) ||
               (item.containsWidget && item.kind != 'widget')) {
-            return false;
+            return itemPosition;
           }
-          return supported(
+          return unsupportedPosition(
             item,
-            '$position item',
+            itemPosition,
             toDart: toDart,
             insideFuture: true,
           );
         }
         if (type.kind == 'stream') {
-          if (insideFuture) return false;
+          if (insideFuture) return position;
           final item = type.item!;
+          final itemPosition = '$position item';
           if ({
                 'context',
                 'state',
@@ -358,11 +360,11 @@ class FlaxCodegenTypeRef {
                 'stream',
               }.contains(item.kind) ||
               (item.containsWidget && item.kind != 'widget')) {
-            return false;
+            return itemPosition;
           }
-          return supported(
+          return unsupportedPosition(
             item,
-            '$position item',
+            itemPosition,
             toDart: toDart,
             insideFuture: true,
           );
@@ -373,78 +375,93 @@ class FlaxCodegenTypeRef {
               !type.nullable &&
               type.item!.kind == 'widget' &&
               !type.item!.nullable;
-          if (type.containsWidget && !directWidgetList) return false;
-          return supported(
-                type.item!,
-                '$position item',
-                toDart: toDart,
-                argument: argument,
-                insideFuture: insideFuture,
-              ) &&
-              (type.key == null ||
-                  supported(
-                    type.key!,
-                    '$position key',
-                    toDart: toDart,
-                    argument: argument,
-                    insideFuture: insideFuture,
-                  ));
+          if (type.containsWidget && !directWidgetList) return position;
+          final itemError = unsupportedPosition(
+            type.item!,
+            '$position item',
+            toDart: toDart,
+            argument: argument,
+            insideFuture: insideFuture,
+          );
+          if (itemError != null) return itemError;
+          if (type.key != null) {
+            return unsupportedPosition(
+              type.key!,
+              '$position key',
+              toDart: toDart,
+              argument: argument,
+              insideFuture: insideFuture,
+            );
+          }
+          return null;
         }
         if (type.kind == 'record') {
-          return type.recordFields.every(
-            (field) => supported(
+          for (final field in type.recordFields) {
+            final error = unsupportedPosition(
               field.type,
               '$position.${field.name}',
               toDart: toDart,
               argument: argument,
               insideFuture: insideFuture,
-            ),
-          );
+            );
+            if (error != null) return error;
+          }
+          return null;
         }
         if (type.kind == 'callback') {
           // A returned function starts a separate invocation and may return its
           // own Future.
           type.validateCallbacks(position, input: toDart);
-          return true;
+          return null;
         }
-        if (type.kind == 'context') return argument;
-        if (type.kind == 'page') return argument && !toDart;
+        if (type.kind == 'context') return argument ? null : position;
+        if (type.kind == 'page') return argument && !toDart ? null : position;
         // Mounted callback result hosts do not inherit a narrower Widget interface.
-        if (type.kind == 'widget') return type.id == null;
-        if (type.kind == 'route') return toDart && !argument;
+        if (type.kind == 'widget') return type.id == null ? null : position;
+        if (type.kind == 'route') return toDart && !argument ? null : position;
         // Lexical type-parameter refs require a bound genericIdentity token.
-        if (type.kind == 'parameter') return type.genericIdentity != null;
+        if (type.kind == 'parameter') {
+          return type.genericIdentity != null ? null : position;
+        }
         return {
-          'String',
-          'bool',
-          'int',
-          'double',
-          'num',
-          'scalar',
-          'enum',
-          'object',
-          'any',
-          'data',
-          'void',
-        }.contains(type.kind);
+              'String',
+              'bool',
+              'int',
+              'double',
+              'num',
+              'scalar',
+              'enum',
+              'object',
+              'any',
+              'data',
+              'void',
+            }.contains(type.kind)
+            ? null
+            : position;
       }
 
       for (final parameter in parameters) {
         final position = '$location.${parameter.name}';
-        if (!supported(
+        final unsupported = unsupportedPosition(
           parameter.type,
           position,
           toDart: !input,
           argument: true,
-        )) {
+        );
+        if (unsupported != null) {
           throw StateError(
-            'Unsupported ${input ? "input" : "returned"} callback signature at $position',
+            'Unsupported ${input ? "input" : "returned"} callback signature at $unsupported',
           );
         }
       }
-      if (!supported(result!, '$location result', toDart: input)) {
+      final unsupportedResult = unsupportedPosition(
+        result!,
+        '$location result',
+        toDart: input,
+      );
+      if (unsupportedResult != null) {
         throw StateError(
-          'Unsupported ${input ? "input" : "returned"} callback signature at $location result',
+          'Unsupported ${input ? "input" : "returned"} callback signature at $unsupportedResult',
         );
       }
       for (final p in parameters) {

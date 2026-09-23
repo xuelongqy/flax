@@ -74,6 +74,13 @@ bool _containsData(FlaxCodegenTypeRef type) =>
     type.parameters.any((parameter) => _containsData(parameter.type)) ||
     type.recordFields.any((field) => _containsData(field.type));
 
+bool _requiresWidgetOwner(FlaxCodegenTypeRef type) => type.kind == 'callback'
+    ? type.result!.kind == 'route' ||
+          type.parameters.any((parameter) => parameter.type.kind == 'context')
+    : (type.item != null && _requiresWidgetOwner(type.item!)) ||
+          (type.key != null && _requiresWidgetOwner(type.key!)) ||
+          type.recordFields.any((field) => _requiresWidgetOwner(field.type));
+
 String _callbackSignatureTypeName(FlaxCodegenTypeRef type) {
   final suffix = type.nullable ? '?' : '';
   if (type.kind == 'any' || type.kind == 'data') return 'Object$suffix';
@@ -1618,6 +1625,9 @@ class FlaxCodegenBindingParser {
           'record',
           'set',
           'object',
+          'future',
+          'futureOr',
+          'stream',
           'callback',
         }.contains(type.kind)) {
           throw StateError('Unsupported setter type: $name');
@@ -2644,23 +2654,11 @@ class FlaxCodegenBindingParser {
           }
         }
       }
-      bool needsWidgetOwner(FlaxCodegenTypeRef type) => type.kind == 'callback'
-          ? type.result!.kind == 'route' ||
-                type.parameters.any((p) => p.type.kind == 'context')
-          : (type.item != null && needsWidgetOwner(type.item!)) ||
-                (type.key != null && needsWidgetOwner(type.key!)) ||
-                type.recordFields.any((field) => needsWidgetOwner(field.type));
       for (final p in args) {
-        if ({
-              'page',
-              'state',
-              'future',
-              'stream',
-              'route',
-            }.contains(p.type.kind) ||
+        if ({'page', 'state', 'route'}.contains(p.type.kind) ||
             (p.type.containsWidget &&
                 !{'widget', 'callback'}.contains(p.type.kind)) ||
-            (needsWidgetOwner(p.type) &&
+            (_requiresWidgetOwner(p.type) &&
                 !(route?.builders.contains(p.name) ?? false))) {
           throw StateError(
             'Unsupported function input: ${entry.key}.${p.name}',

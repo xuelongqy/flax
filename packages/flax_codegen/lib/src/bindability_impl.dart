@@ -635,6 +635,9 @@ const _setterKinds = {
   'record',
   'set',
   'object',
+  'future',
+  'futureOr',
+  'stream',
   'callback',
 };
 

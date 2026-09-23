@@ -231,13 +231,15 @@ options object. Generated direct calls preserve omitted defaults in both directi
 Generic callback calls convert through erased upper bounds while TS keeps the declared
 relationship. A callback declared to return Future requires a JS Promise or thenable and
 produces the typed Dart Future awaited by the caller. Future-returning Dart members use
-the reverse conversion and the same UI checkpoint. Future parameters, first-level Future
-collections, and FutureOr in supported positions generate under protocol 20. Nested
-Future completion values, asynchronous lifecycle/build callbacks and Map callback keys
-remain unsupported. Direct non-null `List<Widget>` callback parameters and results are
-supported; nullable-element lists and other Widget collection shapes remain fail-closed.
+the reverse conversion and the same UI checkpoint. Future and FutureOr values compose
+recursively through supported collection, Record and callback positions under protocol
+20; nested completion values retain their own declared async semantics. Asynchronous
+lifecycle/build callbacks and Map callback keys remain unsupported. Direct non-null
+`List<Widget>` callback parameters and results are supported; nullable-element lists and
+other Widget collection shapes remain fail-closed.
 Dart Stream references can appear in
-parameters, results, callbacks and typed collections; they follow
+parameters, results, callbacks and typed collections, including nested ordinary value
+shapes; they follow
 [ADR 0020](../decisions/0020-ui-protocol-20.md). The JS interop handle is
 `FlaxStreamReference` (not a `Dart*` alias and not Web `ReadableStream`). Generated
 Flutter bindings expose the selected dart:async Stream family and call real Dart

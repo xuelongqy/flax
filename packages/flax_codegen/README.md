@@ -145,6 +145,13 @@ also recommends and embeds a validated `implements` or `extends` proxy when one 
 unambiguous. Explicit YAML `generate` remains fail-closed: listed members still error.
 Special lifecycle decisions remain explicit overrides.
 
+Ordinary recursive value types reuse the same `FlaxCodegenTypeRef` tree in automatic
+mode. Supported `List`/`Map`/`Record`, `Future`/`FutureOr`, Stream and callback shapes
+therefore compose without per-combination YAML, including constructor/method positions,
+object setters, top-level functions and inherited generic members. Dart generic values
+keep the existing upper-bound erasure while TypeScript preserves the declared generic
+relationship. Flutter lifecycle positions retain their separate fail-closed rules.
+
 Prepared dependency owners are reused by `proposeSelection`: `provider` identifies the
 existing JS package, with no duplicate local selection. An explicit requested surface or
 adaptation that the owner does not provide produces a skip diagnostic; consumers do not

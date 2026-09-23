@@ -749,10 +749,10 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       final type = scope.tryTypeRef(parameter.type).type;
       final unsupported =
           type == null ||
-          {'page', 'state', 'future', 'stream', 'route'}.contains(type.kind) ||
+          {'page', 'state', 'route'}.contains(type.kind) ||
           (type.containsWidget &&
               !{'widget', 'callback'}.contains(type.kind)) ||
-          _autoNeedsWidgetOwner(type);
+          _requiresWidgetOwner(type);
       if (bound == null || unsupported) {
         skips.addAll(localSkips);
         if (unsupported && localSkips.isEmpty) {
@@ -770,13 +770,6 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     }
     return FlaxCodegenFunctionSelection(selected);
   }
-
-  bool _autoNeedsWidgetOwner(FlaxCodegenTypeRef type) => type.kind == 'callback'
-      ? type.result!.kind == 'route' ||
-            type.parameters.any((parameter) => parameter.type.kind == 'context')
-      : (type.item != null && _autoNeedsWidgetOwner(type.item!)) ||
-            (type.key != null && _autoNeedsWidgetOwner(type.key!)) ||
-            type.recordFields.any((field) => _autoNeedsWidgetOwner(field.type));
 
   void _autoTopLevel({
     required _FlaxCodegenTypeScope scope,
