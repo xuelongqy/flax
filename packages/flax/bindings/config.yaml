@@ -346,7 +346,6 @@ classes:
       resolve: [states]
     methods:
       resolveWith: [callback]
-    deferredFactories: [resolveWith]
   Curve:
     kind: object
     instanceMethods:

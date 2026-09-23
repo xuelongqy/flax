@@ -415,6 +415,22 @@ const wrong: number[] = callback([1]);
       final module = await parser.parse(
         fixture('interop.dart', interopSelection),
       );
+      expect(
+        module.classes
+            .singleWhere((type) => type.name == 'DeferredProperty')
+            .methods
+            .singleWhere((method) => method.name == 'resolveWith')
+            .deferredFactory,
+        isTrue,
+      );
+      expect(
+        module.classes
+            .singleWhere((type) => type.name == 'SharedDeferredProperty')
+            .methods
+            .singleWhere((method) => method.name == 'resolveWith')
+            .deferredFactory,
+        isTrue,
+      );
       final emitter = FlaxCodegenBindingEmitter([module]);
       final dart = emitter.dart(module);
       expect(dart, contains('as Future<Object?>).then<int>'));

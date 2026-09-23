@@ -618,6 +618,10 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
         ))
           entry.key: entry.value,
     };
+    final deferredFactories = [
+      for (final name in selection.deferredFactories)
+        if (methods.containsKey(name)) name,
+    ];
     return _copyClassSelection(
       selection,
       constructors: constructors,
@@ -626,6 +630,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       staticGetters: staticGetters,
       instanceMethods: instanceMethods,
       methods: methods,
+      deferredFactories: deferredFactories,
     );
   }
 
@@ -1063,6 +1068,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     List<String>? staticGetters,
     Map<String, List<String>>? instanceMethods,
     Map<String, List<String>>? methods,
+    List<String>? deferredFactories,
   }) => FlaxCodegenClassSelection(
     constructors ?? source.constructors,
     widgetInterfaces: widgetInterfaces ?? source.widgetInterfaces,
@@ -1077,7 +1083,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     callbackScopedParameters: source.callbackScopedParameters,
     typeArguments: source.typeArguments,
     methodTypeArguments: source.methodTypeArguments,
-    deferredFactories: source.deferredFactories,
+    deferredFactories: deferredFactories ?? source.deferredFactories,
     instanceMethods: instanceMethods ?? source.instanceMethods,
     startsRoute: source.startsRoute,
     kind: source.kind,

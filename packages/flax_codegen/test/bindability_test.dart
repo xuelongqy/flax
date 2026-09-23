@@ -80,6 +80,19 @@ void main() {
     expect(config.classes['AutoStore']!.typeArguments, ['String']);
     expect(config.classes, isNot(contains('ConflictedStore')));
     expect(config.classes, isNot(contains('ConflictedStoreUser')));
+    final autoProperty = config.classes['AutoProperty']!;
+    expect(autoProperty.typeArguments, isEmpty);
+    expect(autoProperty.instanceMethods['resolve'], isEmpty);
+    expect(autoProperty.methods['resolveWith'], ['callback']);
+    expect(autoProperty.deferredFactories, ['resolveWith']);
+    expect(config.classes, contains('AutoPropertyConsumer'));
+    expect(config.classes, isNot(contains('AutoInvalidDeferred')));
+    expect(
+      proposal.skips
+          .where((skip) => skip.target == 'AutoInvalidDeferred')
+          .map((skip) => skip.reason),
+      contains(contains('Explicit runtime type arguments required')),
+    );
     expect(config.classes, isNot(contains('AutoSet')));
     expect(
       proposal.skips.where((skip) => skip.target == 'AutoSet').single.reason,
@@ -155,7 +168,27 @@ void main() {
         'AutoCallbackShapes',
         'AutoObjectWidgetFactory',
         'AutoDeferredWidgetCallbacks',
+        'AutoProperty',
+        'AutoPropertyConsumer',
       ]),
+    );
+    final autoPropertyModel = module.classes.singleWhere(
+      (type) => type.name == 'AutoProperty',
+    );
+    expect(autoPropertyModel.typeArguments, isEmpty);
+    expect(
+      autoPropertyModel.methods
+          .singleWhere((method) => method.name == 'resolveWith')
+          .deferredFactory,
+      isTrue,
+    );
+    expect(
+      autoPropertyModel.methods
+          .singleWhere((method) => method.name == 'resolve')
+          .result
+          .declaration
+          ?.kind,
+      'parameter',
     );
     expect(module.functions.single.call.name, 'autoGreeting');
     expect(module.typedefs.single.name, 'LabelBuilder');

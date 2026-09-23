@@ -190,10 +190,22 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     skip(name, 'Overlay selections stay YAML-only');
   }
 
+  final scope = await parser._openTypeScope(library);
+  final inferredDeferredFactories = <String>{
+    for (final method in element.methods)
+      if (!method.metadata.hasInternal &&
+          !method.metadata.hasVisibleForTesting &&
+          !method.metadata.hasProtected &&
+          _isInferredDeferredFactory(scope, element, method))
+        method.name!,
+  };
+  final hasDeferredFactory =
+      inferredDeferredFactories.isNotEmpty ||
+      (base?.deferredFactories.isNotEmpty ?? false);
   final typeArguments = [...?base?.typeArguments];
   if (element.typeParameters.isNotEmpty &&
       !((base?.genericScalar) ?? false) &&
-      (base?.deferredFactories.isEmpty ?? true) &&
+      !hasDeferredFactory &&
       typeArguments.length != element.typeParameters.length) {
     if (typeArguments.isNotEmpty) {
       skip(name, 'Explicit runtime type arguments required: $name');
@@ -231,7 +243,6 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     }
   }
 
-  final scope = await parser._openTypeScope(library);
   final constructors = <String, List<String>>{};
   if (element is ClassElement) {
     for (final constructor in element.constructors) {
@@ -263,6 +274,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
   final staticGetters = <String>[];
   final instanceMethods = <String, List<String>>{};
   final methods = <String, List<String>>{};
+  final deferredFactories = <String>{};
   String? inferredDisposeMethod;
 
   if (!widget) {
@@ -316,6 +328,9 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
           methodName == 'noSuchMethod') {
         continue;
       }
+      final deferredFactory =
+          inferredDeferredFactories.contains(methodName) ||
+          (base?.deferredFactories.contains(methodName) ?? false);
       final bound = _bindMethod(
         parser: parser,
         scope: scope,
@@ -323,10 +338,12 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
         method: method,
         location: '$name.$methodName',
         skips: skips,
+        deferredFactory: deferredFactory,
       );
       if (bound == null) continue;
       if (method.isStatic) {
         methods[methodName] = bound;
+        if (deferredFactory) deferredFactories.add(methodName);
       } else {
         instanceMethods[methodName] = bound;
       }
@@ -545,6 +562,18 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
       proxyCapability: proxyCapability,
     );
   }
+  if (element.typeParameters.isNotEmpty &&
+      !(base?.genericScalar ?? false) &&
+      typeArguments.length != element.typeParameters.length &&
+      deferredFactories.isEmpty) {
+    skip(name, 'Explicit runtime type arguments required: $name');
+    return FlaxCodegenProposedBinding(
+      name: name,
+      id: id,
+      skips: skips,
+      proxyCapability: proxyCapability,
+    );
+  }
   if (!widget &&
       selectedConstructors.isEmpty &&
       getters.isEmpty &&
@@ -572,6 +601,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     staticGetters: staticGetters,
     instanceMethods: selectedInstanceMethods,
     methods: methods,
+    deferredFactories: deferredFactories.toList()..sort(),
     disposeMethod: base?.disposeMethod ?? inferredDisposeMethod,
     genericScalar: base?.genericScalar ?? false,
     jsName: base?.jsName,
@@ -867,6 +897,7 @@ List<String>? _bindConstructor({
   required bool widget,
   required String? kind,
   required List<FlaxCodegenSkip> skips,
+  bool allowRecursiveErasure = false,
 }) {
   if (parameter.type is InterfaceType &&
       (parameter.type as InterfaceType).element.name == 'Function' &&
@@ -879,7 +910,10 @@ List<String>? _bindConstructor({
     );
     return null;
   }
-  final converted = scope.tryTypeRef(parameter.type);
+  final converted = scope.tryTypeRef(
+    parameter.type,
+    allowRecursiveErasure: allowRecursiveErasure,
+  );
   if (converted.skip != null || converted.type == null) {
     skips.add(
       FlaxCodegenSkip(
@@ -989,8 +1023,12 @@ FlaxCodegenTypeRef? _tryMemberType(
   List<FlaxCodegenSkip> skips, {
   Set<String>? allowed,
   bool input = false,
+  bool allowRecursiveErasure = false,
 }) {
-  final converted = scope.tryTypeRef(type);
+  final converted = scope.tryTypeRef(
+    type,
+    allowRecursiveErasure: allowRecursiveErasure,
+  );
   if (converted.skip != null || converted.type == null) {
     skips.add(
       FlaxCodegenSkip(
@@ -1029,8 +1067,9 @@ List<String>? _bindMethod({
   required MethodElement method,
   required String location,
   required List<FlaxCodegenSkip> skips,
+  bool deferredFactory = false,
 }) {
-  if (method.typeParameters.isNotEmpty) {
+  if (method.typeParameters.isNotEmpty && !deferredFactory) {
     skips.add(
       FlaxCodegenSkip(
         target: location,
@@ -1067,6 +1106,7 @@ List<String>? _bindMethod({
       'callback',
       'widget',
     },
+    allowRecursiveErasure: deferredFactory,
   );
   if (result == null) return null;
   final chosen = <String>[];
@@ -1093,6 +1133,7 @@ List<String>? _bindMethod({
       widget: false,
       kind: 'object',
       skips: skips,
+      allowRecursiveErasure: deferredFactory,
     );
     if (bound == null) {
       if (parameter.isRequired || parameter.isPositional) return null;

@@ -311,13 +311,14 @@ metadata. DartIterable and DartSet wrappers preserve real Dart collection identi
 iteration and explicit copies use one bulk host call and retain repeated references and
 cycles.
 
-`deferredFactories` marks a synchronous static generic factory whose type arguments are
-inferred from concrete selected Dart use sites. The full generator scans all loaded
-modules and emits exact direct materializers instead of requiring every concrete type in
-configuration. The JS wrapper records arguments until first use, then locks to the
-materialized type and real Dart object. Unsupported inference, conflicting targets,
-generic collection inputs and missing concrete consumers fail generation. This path uses
-no reflection or runtime TS type token.
+Synchronous static generic factories are inferred automatically when their direct owner
+result determines every method type parameter and generic inputs stay within the existing
+direct-callback contract. `deferredFactories` remains accepted as an explicit compatibility
+override. The full generator scans all loaded modules and emits exact direct materializers
+instead of requiring every concrete type in configuration. The JS wrapper records
+arguments until first use, then locks to the materialized type and real Dart object.
+Unsupported inference, conflicting targets, generic collection inputs and missing
+concrete consumers fail generation. This path uses no reflection or runtime TS type token.
 
 Explicit `extensions` selections expose named Dart extensions as receiver-first static
 TypeScript adapters: `StringX.getIsBlank(value)` and `StringX.repeat(value, count)`.

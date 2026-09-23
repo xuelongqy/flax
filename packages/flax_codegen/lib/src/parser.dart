@@ -81,6 +81,152 @@ bool _requiresWidgetOwner(FlaxCodegenTypeRef type) => type.kind == 'callback'
           (type.key != null && _requiresWidgetOwner(type.key!)) ||
           type.recordFields.any((field) => _requiresWidgetOwner(field.type));
 
+bool _containsDeferredTypeParameter(
+  DartType type,
+  Set<TypeParameterElement> parameters,
+) {
+  if (type is TypeParameterType) return parameters.contains(type.element);
+  if (type is InterfaceType) {
+    return type.typeArguments.any(
+      (argument) => _containsDeferredTypeParameter(argument, parameters),
+    );
+  }
+  if (type is FunctionType) {
+    return _containsDeferredTypeParameter(type.returnType, parameters) ||
+        type.formalParameters.any(
+          (parameter) =>
+              _containsDeferredTypeParameter(parameter.type, parameters),
+        ) ||
+        type.typeParameters.any(
+          (parameter) =>
+              parameter.bound != null &&
+              _containsDeferredTypeParameter(parameter.bound!, parameters),
+        );
+  }
+  if (type is RecordType) {
+    return type.positionalFields.any(
+          (field) => _containsDeferredTypeParameter(field.type, parameters),
+        ) ||
+        type.namedFields.any(
+          (field) => _containsDeferredTypeParameter(field.type, parameters),
+        );
+  }
+  return false;
+}
+
+void _collectInferableDeferredTypeParameters(
+  DartType type,
+  Set<TypeParameterElement> parameters,
+  Set<TypeParameterElement> found,
+) {
+  if (type is TypeParameterType) {
+    if (parameters.contains(type.element)) found.add(type.element);
+    return;
+  }
+  if (type is InterfaceType) {
+    for (final argument in type.typeArguments) {
+      _collectInferableDeferredTypeParameters(argument, parameters, found);
+    }
+    return;
+  }
+  if (type is RecordType) {
+    for (final field in type.positionalFields) {
+      _collectInferableDeferredTypeParameters(field.type, parameters, found);
+    }
+    for (final field in type.namedFields) {
+      _collectInferableDeferredTypeParameters(field.type, parameters, found);
+    }
+  }
+}
+
+bool _containsDeferredParameter(FlaxCodegenTypeRef type, Set<String> names) =>
+    type.kind == 'parameter' && names.contains(type.name) ||
+    (type.declaration != null &&
+        _containsDeferredParameter(type.declaration!, names)) ||
+    (type.item != null && _containsDeferredParameter(type.item!, names)) ||
+    (type.key != null && _containsDeferredParameter(type.key!, names)) ||
+    (type.result != null && _containsDeferredParameter(type.result!, names)) ||
+    type.parameters.any(
+      (parameter) => _containsDeferredParameter(parameter.type, names),
+    ) ||
+    type.recordFields.any(
+      (field) => _containsDeferredParameter(field.type, names),
+    ) ||
+    type.dartArguments.any((type) => _containsDeferredParameter(type, names)) ||
+    type.tsArguments.any((type) => _containsDeferredParameter(type, names));
+
+bool _validInferredDeferredCallbackType(
+  FlaxCodegenTypeRef type,
+  Set<String> names,
+) {
+  if (type.typeParameters.isNotEmpty) return false;
+  bool valid(FlaxCodegenTypeRef value) {
+    if (!_containsDeferredParameter(value, names)) return true;
+    if ({
+      'future',
+      'stream',
+      'iterable',
+      'list',
+      'map',
+      'set',
+      'widget',
+      'route',
+      'context',
+    }.contains(value.kind)) {
+      return false;
+    }
+    return [
+      if (value.item != null) value.item!,
+      if (value.key != null) value.key!,
+      if (value.result != null) value.result!,
+      ...value.parameters.map((parameter) => parameter.type),
+      ...value.recordFields.map((field) => field.type),
+    ].every(valid);
+  }
+
+  return valid(type);
+}
+
+bool _isInferredDeferredFactory(
+  _FlaxCodegenTypeScope scope,
+  InterfaceElement owner,
+  MethodElement method,
+) {
+  if (!method.isPublic ||
+      !method.isStatic ||
+      method.typeParameters.isEmpty ||
+      method.baseElement.fragments.any(
+        (fragment) => fragment.isAsynchronous || fragment.isGenerator,
+      )) {
+    return false;
+  }
+  final result = method.returnType;
+  if (result is! InterfaceType || result.element != owner) return false;
+
+  final parameters = method.typeParameters.toSet();
+  final inferred = <TypeParameterElement>{};
+  for (final argument in result.typeArguments) {
+    _collectInferableDeferredTypeParameters(argument, parameters, inferred);
+  }
+  if (inferred.length != parameters.length) return false;
+
+  final names = {for (final parameter in parameters) parameter.name!};
+  for (final parameter in method.formalParameters) {
+    if (!_containsDeferredTypeParameter(parameter.type, parameters)) continue;
+    final converted = scope.tryTypeRef(
+      parameter.type,
+      allowRecursiveErasure: true,
+    );
+    final type = converted.type;
+    if (type == null ||
+        type.kind != 'callback' ||
+        !_validInferredDeferredCallbackType(type, names)) {
+      return false;
+    }
+  }
+  return true;
+}
+
 String _callbackSignatureTypeName(FlaxCodegenTypeRef type) {
   final suffix = type.nullable ? '?' : '';
   if (type.kind == 'any' || type.kind == 'data') return 'Object$suffix';
@@ -1347,6 +1493,15 @@ class FlaxCodegenBindingParser {
         );
       }
       final selection = _effectiveSelection(element, entry.value);
+      final inferredDeferredFactories = <String>{
+        for (final name in selection.methods.keys)
+          if (element.getMethod(name) case final method?)
+            if (_isInferredDeferredFactory(scope, element, method)) name,
+      };
+      final effectiveDeferredFactories = <String>{
+        ...selection.deferredFactories,
+        ...inferredDeferredFactories,
+      };
       if (element is MixinElement &&
           (selection.kind != 'object' ||
               selection.constructors.isNotEmpty ||
@@ -1358,7 +1513,7 @@ class FlaxCodegenBindingParser {
       _validateDataTargets(selection, entry.key);
       if (element.typeParameters.isNotEmpty &&
           !selection.genericScalar &&
-          selection.deferredFactories.isEmpty &&
+          effectiveDeferredFactories.isEmpty &&
           selection.typeArguments.length != element.typeParameters.length) {
         throw StateError(
           'Explicit runtime type arguments required: ${entry.key}',
@@ -1368,7 +1523,7 @@ class FlaxCodegenBindingParser {
         for (final name in selection.typeArguments)
           _runtimeType(name, exports, element.library),
       ];
-      if (selection.deferredFactories.isEmpty) {
+      if (effectiveDeferredFactories.isEmpty) {
         _checkBounds(
           element.typeParameters,
           runtimeArguments,
@@ -1717,9 +1872,7 @@ class FlaxCodegenBindingParser {
         final typeArgs = configuredTypeArgs.isNotEmpty
             ? configuredTypeArgs
             : erasedTypeArgs;
-        final deferredFactory = selection.deferredFactories.contains(
-          chosen.key,
-        );
+        final deferredFactory = effectiveDeferredFactories.contains(chosen.key);
         if (deferredFactory &&
             (instance ||
                 method.typeParameters.isEmpty ||
@@ -2348,9 +2501,7 @@ class FlaxCodegenBindingParser {
           pageAdapter: selection.pageAdapter,
           setters: setters,
           disposeMethod: selection.disposeMethod,
-          capabilities: [
-            if (selection.disposeMethod != null) 'Disposable',
-          ],
+          capabilities: [if (selection.disposeMethod != null) 'Disposable'],
           listenerPairs: selection.listenerPairs,
           staticGetters: staticGetters,
         ),

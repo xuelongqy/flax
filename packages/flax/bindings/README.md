@@ -39,6 +39,6 @@ Top-level applyBoxFit selects BoxFit and FittedSizes source/destination referenc
 Navigator selects observers; NavigatorObserver is an opaque type and
 FlaxNavigatorObserver has a generated no-argument factory from the public Flax library.
 
-WidgetState and WidgetStateProperty use generated enum, Set and deferred generic factory
-support. The latter is materialized only when an exact selected consumer provides its
-concrete Dart type.
+WidgetState and WidgetStateProperty use generated enum, Set and automatically inferred
+deferred generic factory support. The latter is materialized only when an exact selected
+consumer provides its concrete Dart type.

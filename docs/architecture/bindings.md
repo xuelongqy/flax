@@ -342,7 +342,9 @@ Conflicting or unresolved uses, nested generic runtime arguments, generic functi
 methods, and generic Extension receiver specialization still require explicit handling
 or remain unsupported.
 
-An explicitly selected static generic factory may instead use `deferredFactories`:
+An explicitly selected static generic factory is inferred as deferred when it is
+synchronous, returns its generic owner directly, the result determines every method type
+parameter and generic inputs use the supported direct synchronous callback shape:
 
 ```yaml
 classes:
@@ -352,8 +354,11 @@ classes:
       resolve: [states]
     methods:
       resolveWith: [callback]
-    deferredFactories: [resolveWith]
 ```
+
+The legacy `deferredFactories: [resolveWith]` form remains accepted and is validated
+strictly, but it is not required for inferable factories. Automatic library binding uses
+the same analyzer predicate.
 
 The generated JS call records the factory arguments without calling Dart. The complete
 generation pass finds concrete uses of the returned generic object, emits one direct
@@ -365,13 +370,14 @@ Concrete arguments are checked against full analyzer-resolved bounds, including 
 supertypes and self-referential bounds after specialization. This keeps the
 configuration finite while retaining exact Dart generic calls.
 
-Deferred factories must be synchronous static generic methods whose result determines
-every type parameter. Generic inputs are currently limited to direct synchronous
-callbacks. Generic collections, Futures, Widgets, Routes, Contexts and lifecycle values
-remain generation errors. Generalized inference for those shapes, or for factories whose
-result does not determine every type parameter, is intentionally deferred. Full CLI
-generation requires at least one concrete selected use. Partial fixture emission can omit
-consumers so parser and emitter tests can inspect one module at a time.
+Deferred factories must be synchronous static generic methods whose direct owner result
+determines every type parameter. Generic inputs are currently limited to direct
+synchronous callbacks. Generic collections, Futures, Widgets, Routes, Contexts and
+lifecycle values remain generation errors. Generalized inference for those shapes, or
+for factories whose result does not determine every type parameter, is intentionally
+deferred. Full CLI generation requires at least one concrete selected use. Partial
+fixture emission can omit consumers so parser and emitter tests can inspect one module at
+a time.
 
 `proposeSelection` automatically recommends `proxy: implements` for eligible contract
 surfaces and `proxy: extends` when an ordinary class has reusable concrete behavior and

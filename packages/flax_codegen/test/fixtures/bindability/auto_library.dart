@@ -35,6 +35,36 @@ class ConflictedStoreUser {
   final ConflictedStore<int> number;
 }
 
+abstract class AutoProperty<T> {
+  T resolve();
+
+  static AutoProperty<T> resolveWith<T>(T Function() callback) =>
+      _AutoProperty<T>(callback);
+}
+
+class _AutoProperty<T> implements AutoProperty<T> {
+  _AutoProperty(this.callback);
+
+  final T Function() callback;
+
+  @override
+  T resolve() => callback();
+}
+
+class AutoPropertyConsumer {
+  AutoPropertyConsumer(this.text, this.count);
+
+  final AutoProperty<String> text;
+  final AutoProperty<int> count;
+}
+
+abstract class AutoInvalidDeferred<T> {
+  static AutoInvalidDeferred<T> create<T>(
+    T Function() callback,
+    Function unsupported,
+  ) => throw UnimplementedError();
+}
+
 abstract class AutoPreferred implements Widget {
   double get extent;
 }
