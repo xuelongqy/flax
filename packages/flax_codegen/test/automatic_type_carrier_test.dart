@@ -112,8 +112,20 @@ class ForeignType {}
       final parser = FlaxCodegenBindingParser(root.path);
       addTearDown(parser.dispose);
 
+      final baseline = await parser.proposeLibrary(
+        seed(),
+        inferPublicTypeCarriers: false,
+      );
       final proposal = await parser.proposeLibrary(seed());
 
+      expect(baseline.config.classes, isNot(contains('Consumer')));
+      expect(
+        baseline.skips
+            .where((skip) => skip.target.startsWith('Consumer'))
+            .map((skip) => skip.reason)
+            .join('\n'),
+        contains('must publicly export the referenced type PublicType'),
+      );
       expect(proposal.config.additionalLibraries, isEmpty);
       expect(
         proposal
@@ -168,6 +180,72 @@ class ForeignType {}
       );
       expect(module.typeLibraries['SharedType'], 'package:carrier_pkg/a.dart');
       expect(module.publicLibraries, isEmpty);
+    },
+  );
+
+  test(
+    'same-name distinct identities fail before typeLibraries collapse',
+    () async {
+      final lib = Directory(p.join(root.path, 'lib'));
+      File(p.join(lib.path, 'left.dart')).writeAsStringSync('''
+class Token {}
+''');
+      File(p.join(lib.path, 'right.dart')).writeAsStringSync('''
+class Token {}
+''');
+      File(p.join(lib.path, 'main.dart')).writeAsStringSync('''
+import 'left.dart' as a;
+import 'right.dart' as b;
+
+class CollisionConsumer {
+  CollisionConsumer(this.left, this.right);
+  final a.Token left;
+  final b.Token right;
+}
+''');
+      final parser = FlaxCodegenBindingParser(root.path);
+      addTearDown(parser.dispose);
+
+      final proposal = await parser.proposeLibrary(seed());
+      expect(
+        proposal.config.classes,
+        contains('CollisionConsumer'),
+        reason: proposal.skips
+            .where((skip) => skip.target.startsWith('CollisionConsumer'))
+            .map((skip) => '${skip.target}: ${skip.reason}')
+            .join('\n'),
+      );
+
+      await expectLater(
+        parser.parse(
+          proposal.config,
+          automaticTypeCarriers: proposal.typeCarriers,
+        ),
+        throwsA(
+          isA<StateError>()
+              .having(
+                (error) => error.message,
+                'message',
+                contains('Ambiguous type library routing for Token'),
+              )
+              .having(
+                (error) => error.message,
+                'left identity',
+                contains(
+                  'package:carrier_pkg/left.dart::Token -> '
+                  'package:carrier_pkg/left.dart',
+                ),
+              )
+              .having(
+                (error) => error.message,
+                'right identity',
+                contains(
+                  'package:carrier_pkg/right.dart::Token -> '
+                  'package:carrier_pkg/right.dart',
+                ),
+              ),
+        ),
+      );
     },
   );
 

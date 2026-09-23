@@ -115,6 +115,7 @@ BindingAssessment mergeIsolated(
 
 void applyAutomaticLibraryProposal({
   required LibraryInventory inventory,
+  required FlaxCodegenAutoBindingProposal baselineProposal,
   required FlaxCodegenAutoBindingProposal proposal,
   String label = 'automatic',
 }) {
@@ -125,34 +126,36 @@ void applyAutomaticLibraryProposal({
         previous?.status == CoverageStatus.notRun) {
       continue;
     }
-    final selection = proposal.config.classes[declaration.name];
-    final skips = [
-      for (final skip in proposal.skips)
-        if (skip.target == declaration.name ||
-            skip.target.startsWith('${declaration.name}.'))
-          skip,
-    ];
-    if (selection == null && previous?.status != CoverageStatus.unsupported) {
+    final baseline = _automaticAssessment(
+      baselineProposal,
+      declaration,
+      '$label-baseline',
+    );
+    if (proposal.config.classes[declaration.name] == null &&
+        previous?.status != CoverageStatus.unsupported) {
       continue;
     }
-    if (selection == null && skips.isEmpty) continue;
-    final proposed = FlaxCodegenProposedBinding(
-      name: declaration.name,
-      id: declaration.id,
-      selection: selection,
-      skips: skips,
-    );
-    final automatic = _fromProposal(proposed, declaration, label);
+    final automatic = _automaticAssessment(proposal, declaration, label);
+    if (automatic == null) continue;
     if (previous == null) {
       declaration.assessment = automatic;
       continue;
     }
     final carrierResolved =
-        previous.diagnostics.any(
-          (diagnostic) => diagnostic.code == 'missing_export',
-        ) &&
+        baseline?.diagnostics.any(
+              (diagnostic) => diagnostic.code == 'missing_export',
+            ) ==
+            true &&
         !automatic.diagnostics.any(
           (diagnostic) => diagnostic.code == 'missing_export',
+        );
+    final genericSpecializationResolved =
+        previous.diagnostics.any(
+          (diagnostic) => diagnostic.code == 'generic_instantiation',
+        ) &&
+        baseline != null &&
+        !baseline.diagnostics.any(
+          (diagnostic) => diagnostic.code == 'generic_instantiation',
         );
     declaration.assessment = BindingAssessment(
       status: automatic.status,
@@ -161,6 +164,7 @@ void applyAutomaticLibraryProposal({
       surface: {
         ...automatic.surface,
         'pooledStatus': previous.status.name,
+        if (baseline != null) 'automaticBaselineStatus': baseline.status.name,
         'automaticStatus': automatic.status.name,
       },
       diagnostics: [
@@ -170,11 +174,42 @@ void applyAutomaticLibraryProposal({
             code: 'public_carrier_automation',
             message: 'Automatic library routing resolved a same-package public carrier',
           ),
+        if (genericSpecializationResolved)
+          CapabilityDiagnostic(
+            code: 'generic_specialization_automation',
+            message:
+                'Automatic library inference resolved runtime type arguments',
+          ),
       ],
       selection: automatic.selection,
       provider: automatic.provider ?? previous.provider,
     );
   }
+}
+
+BindingAssessment? _automaticAssessment(
+  FlaxCodegenAutoBindingProposal proposal,
+  ApiDeclarationRecord declaration,
+  String label,
+) {
+  final selection = proposal.config.classes[declaration.name];
+  final skips = [
+    for (final skip in proposal.skips)
+      if (skip.target == declaration.name ||
+          skip.target.startsWith('${declaration.name}.'))
+        skip,
+  ];
+  if (selection == null && skips.isEmpty) return null;
+  return _fromProposal(
+    FlaxCodegenProposedBinding(
+      name: declaration.name,
+      id: declaration.id,
+      selection: selection,
+      skips: skips,
+    ),
+    declaration,
+    label,
+  );
 }
 
 BindingAssessment _fromProposal(

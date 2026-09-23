@@ -3058,6 +3058,7 @@ class FlaxCodegenBindingParser {
         throw StateError('Unsupported typedef $name: ${error.message}');
       }
     }
+    _validateTypeLibraryIdentityNames(scope, automaticTypeCarriers);
     final module = FlaxCodegenModuleModel(
       name: config.name,
       library: config.library,
@@ -3093,6 +3094,34 @@ class FlaxCodegenBindingParser {
     );
     module.validate();
     return module;
+  }
+
+  void _validateTypeLibraryIdentityNames(
+    _FlaxCodegenTypeScope scope,
+    Map<String, String> automaticTypeCarriers,
+  ) {
+    final identitiesByName = <String, Map<String, String>>{};
+    for (final type in scope.types.values) {
+      final split = type.id.lastIndexOf('::');
+      final declarationUri = split < 0 ? type.id : type.id.substring(0, split);
+      final carrier =
+          automaticTypeCarriers[type.id] ??
+          _libraryByIdentity[type.id] ??
+          declarationUri;
+      identitiesByName.putIfAbsent(
+        type.name,
+        () => <String, String>{},
+      )[type.id] = carrier;
+    }
+    for (final entry in identitiesByName.entries) {
+      if (entry.value.length < 2) continue;
+      final routes = entry.value.entries.toList()
+        ..sort((a, b) => a.key.compareTo(b.key));
+      throw StateError(
+        'Ambiguous type library routing for ${entry.key}: '
+        '${routes.map((route) => '${route.key} -> ${route.value}').join('; ')}',
+      );
+    }
   }
 
   Future<List<FlaxCodegenLibraryModel>> _publicLibraryModels(

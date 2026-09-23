@@ -106,6 +106,8 @@ Map<String, Object?> firstBatchInsights(LibraryInventory inventory) {
   var missingDependency = 0;
   var isolatedUnsupported = 0;
   var pooledUnsupported = 0;
+  var automaticBaselineUnsupported = 0;
+  var automaticUnsupported = 0;
   var illegalJsNames = 0;
   final skipCodes = <String, int>{};
   final sourceLibraries = <String>{};
@@ -127,11 +129,17 @@ Map<String, Object?> firstBatchInsights(LibraryInventory inventory) {
     }
     final isolated = assessment.surface['isolatedStatus'];
     final pooled = assessment.surface['pooledStatus'];
+    final automaticBaseline = assessment.surface['automaticBaselineStatus'];
+    final automatic = assessment.surface['automaticStatus'];
     if (isolated == CoverageStatus.unsupported.name) isolatedUnsupported++;
     if (pooled == CoverageStatus.unsupported.name ||
         assessment.status == CoverageStatus.unsupported) {
       pooledUnsupported++;
     }
+    if (automaticBaseline == CoverageStatus.unsupported.name) {
+      automaticBaselineUnsupported++;
+    }
+    if (automatic == CoverageStatus.unsupported.name) automaticUnsupported++;
   }
   final codes = skipCodes.entries.toList()
     ..sort((a, b) => b.value.compareTo(a.value));
@@ -159,6 +167,15 @@ Map<String, Object?> firstBatchInsights(LibraryInventory inventory) {
     'missingDependency': missingDependency,
     'isolatedUnsupported': isolatedUnsupported,
     'pooledUnsupported': pooledUnsupported,
+    'automaticBaselineUnsupported': automaticBaselineUnsupported,
+    'automaticUnsupported': automaticUnsupported,
+    'publicCarrierAutomation': skipCodes['public_carrier_automation'] ?? 0,
+    'genericSpecializationAutomation':
+        skipCodes['generic_specialization_automation'] ?? 0,
+    'genericInstantiationGap': skipCodes['generic_instantiation'] ?? 0,
+    'sdkCoreTypeGap': skipCodes['unsupported_core_type'] ?? 0,
+    'privateImplementationDependency':
+        skipCodes['private_implementation_dependency'] ?? 0,
     'illegalJsNames': illegalJsNames,
     'skipCodes': {for (final entry in codes) entry.key: entry.value},
     'namedUnsupported': named(
@@ -275,6 +292,16 @@ String firstBatchMarkdown({
       'Isolated unsupported ${insights['isolatedUnsupported']}; '
       'pooled unsupported ${insights['pooledUnsupported']}; '
       'missing_dependency ${insights['missingDependency']}.',
+    )
+    ..writeln(
+      'Automatic A/B unsupported without/with public carriers: '
+      '${insights['automaticBaselineUnsupported']} / '
+      '${insights['automaticUnsupported']}. Carrier-resolved declarations: '
+      '${insights['publicCarrierAutomation']}; generic-specialization-resolved: '
+      '${insights['genericSpecializationAutomation']}. Remaining '
+      'generic/core/private diagnostics: ${insights['genericInstantiationGap']} / '
+      '${insights['sdkCoreTypeGap']} / '
+      '${insights['privateImplementationDependency']}.',
     )
     ..writeln()
     ..writeln('Skip codes:')

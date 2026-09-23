@@ -174,6 +174,7 @@ topLevel:
       final module = modules.single;
       final token = module.classes.single;
       const tokenId = 'example.host/api#type:Token';
+      expect(module.internalTypeNames, isEmpty);
       expect(token.name, 'Token');
       expect(token.id, tokenId);
       expect(token.constructors, isEmpty);
@@ -191,6 +192,8 @@ topLevel:
         tokenId,
       );
       expect(module.typeLibraries['Token'], 'package:host_pkg/api.dart');
+      final encodedModule = FlaxCodegenManifestV5Codec.encodeModule(module);
+      expect(encodedModule, isNot(contains('internalTypeNames')));
       final rows = result.manifest.modules.single.model.identities;
       expect(rows.map((row) => row.sourceIdentity.name), ['token=', 'Token']);
       expect(rows.every((row) => row.owner), isTrue);
@@ -225,6 +228,10 @@ topLevel:
       expect(outputs['js/api/index.ts'], isNot(contains('export { Token')));
       expect(
         outputs['js/api/_bindings/api.__internal.ts'],
+        contains('export interface Token'),
+      );
+      expect(
+        FlaxCodegenBindingEmitter(modules).typescript(module),
         contains('export interface Token'),
       );
       expect(_listing(host.root), before);

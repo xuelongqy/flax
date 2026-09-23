@@ -341,6 +341,7 @@ final class FlaxCodegenPackagePipeline {
       configs: configs,
       parsedModels: parsedModels,
       resolved: resolved,
+      internalizeAutomaticTypes: true,
     );
     final modulesByName = <String, FlaxCodegenModuleModel>{
       for (final module in frozenModels) module.name: module,
@@ -1894,6 +1895,7 @@ List<FlaxCodegenModuleModel> _freezeLocalModels({
   required List<FlaxCodegenBindingConfig> configs,
   required List<FlaxCodegenModuleModel> parsedModels,
   required FlaxCodegenResolvedPackage resolved,
+  bool internalizeAutomaticTypes = false,
 }) {
   final rawToWire = <String, String>{};
   void mapIdentity(FlaxCodegenSourceIdentity identity, FlaxCodegenWireId wire) {
@@ -1924,7 +1926,13 @@ List<FlaxCodegenModuleModel> _freezeLocalModels({
       throw StateError('Missing resolved module ${parsed.name}');
     }
     frozen.add(
-      _freezeModule(parsed, configs[index], rawToWire, resolvedModule),
+      _freezeModule(
+        parsed,
+        configs[index],
+        rawToWire,
+        resolvedModule,
+        internalizeAutomaticTypes: internalizeAutomaticTypes,
+      ),
     );
   }
   return frozen;
@@ -1934,8 +1942,9 @@ FlaxCodegenModuleModel _freezeModule(
   FlaxCodegenModuleModel parsed,
   FlaxCodegenBindingConfig config,
   Map<String, String> rawToWire,
-  FlaxCodegenResolvedModule resolvedModule,
-) {
+  FlaxCodegenResolvedModule resolvedModule, {
+  required bool internalizeAutomaticTypes,
+}) {
   final claimedNames = <String>{
     ...config.classes.keys,
     ...config.functions.keys,
@@ -2056,9 +2065,9 @@ FlaxCodegenModuleModel _freezeModule(
     publicLibraries: parsed.publicLibraries,
     moduleId: resolvedModule.moduleId.value,
     requiredCapabilities: List<String>.of(resolvedModule.requiredCapabilities),
-    internalTypeNames: {
-      for (final identity in automaticTypeOwners) identity.name,
-    },
+    internalTypeNames: internalizeAutomaticTypes
+        ? {for (final identity in automaticTypeOwners) identity.name}
+        : const <String>{},
   );
 
   final rewritten = _rewriteIdEntries(

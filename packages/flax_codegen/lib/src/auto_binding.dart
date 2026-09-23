@@ -9,6 +9,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
   Future<FlaxCodegenAutoBindingProposal> proposeLibrary(
     FlaxCodegenBindingConfig seed, {
     FlaxCodegenAutoOverrides overrides = const FlaxCodegenAutoOverrides(),
+    bool inferPublicTypeCarriers = true,
   }) async {
     await prepare([seed]);
     final result = await _contexts.contexts.first.currentSession
@@ -20,10 +21,9 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       for (final entry in result.element.exportNamespace.definedNames2.entries)
         entry.key: entry.value,
     };
-    final typeCarriers = await _discoverAutoTypeCarriers(
-      seed.library,
-      result.element,
-    );
+    final typeCarriers = inferPublicTypeCarriers
+        ? await _discoverAutoTypeCarriers(seed.library, result.element)
+        : const <String, String>{};
     final scope = await _openTypeScope(
       seed,
       automaticTypeCarriers: typeCarriers,

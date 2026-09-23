@@ -386,9 +386,18 @@ Future<void> main(List<String> args) async {
           );
         }
       }
-      stdout.writeln('Automatic proposeLibrary…');
+      stdout.writeln('Automatic proposeLibrary baseline…');
+      final automaticBaseline = await parser.proposeLibrary(
+        target,
+        inferPublicTypeCarriers: false,
+      );
+      stdout.writeln('Automatic proposeLibrary with public carriers…');
       final automatic = await parser.proposeLibrary(target);
-      applyAutomaticLibraryProposal(inventory: inventory, proposal: automatic);
+      applyAutomaticLibraryProposal(
+        inventory: inventory,
+        baselineProposal: automaticBaseline,
+        proposal: automatic,
+      );
     }
 
     final genericResults = await _fixtureProposals(
