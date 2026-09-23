@@ -690,6 +690,7 @@ class FlaxCodegenModuleModel {
     this.publicLibraries = const [],
     this.moduleId,
     this.requiredCapabilities = const <String>[],
+    this.internalTypeNames = const <String>{},
   });
   final String name;
   final String library;
@@ -740,6 +741,13 @@ class FlaxCodegenModuleModel {
 
   /// Sorted unique capability literals. Protocol 20 is empty.
   final List<String> requiredCapabilities;
+
+  /// Generator-only visibility for dependency-owned nominal types.
+  ///
+  /// This is intentionally not part of the Manifest schema. These types still
+  /// have runtime owners, but aggregate TypeScript output keeps their nominal
+  /// declarations private to the generated module.
+  final Set<String> internalTypeNames;
 
   void validate() {
     final names = <String>{

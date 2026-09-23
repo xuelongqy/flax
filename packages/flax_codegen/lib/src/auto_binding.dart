@@ -20,7 +20,14 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       for (final entry in result.element.exportNamespace.definedNames2.entries)
         entry.key: entry.value,
     };
-    final scope = await _openTypeScope(seed);
+    final typeCarriers = await _discoverAutoTypeCarriers(
+      seed.library,
+      result.element,
+    );
+    final scope = await _openTypeScope(
+      seed,
+      automaticTypeCarriers: typeCarriers,
+    );
     final skips = <FlaxCodegenSkip>[];
     final notices = <FlaxCodegenNotice>[];
     final concreteUses = _autoConcreteUses(exports.values);
@@ -151,11 +158,13 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
           notices,
         );
       } else {
-        final proposed = await proposeSelection(
+        final proposed = await _proposeSelection(
+          this,
           element,
           library: seed,
           base: _autoProposalBase(classOverride),
           concreteUses: concreteUses[identity(element)] ?? const [],
+          automaticTypeCarriers: typeCarriers,
         );
         skips.addAll(proposed.skips);
         selection = proposed.selection == null
@@ -360,9 +369,67 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
               ),
         publicLibraries: seed.publicLibraries,
       ),
+      typeCarriers: typeCarriers,
       skips: skips,
       notices: notices,
     );
+  }
+
+  Future<Map<String, String>> _discoverAutoTypeCarriers(
+    String library,
+    LibraryElement seedLibrary,
+  ) async {
+    final uri = Uri.tryParse(library);
+    if (uri == null || uri.scheme != 'package' || uri.pathSegments.length < 2) {
+      return const {};
+    }
+
+    var libPath = p.normalize(seedLibrary.firstFragment.source.fullName);
+    for (var i = 1; i < uri.pathSegments.length; i++) {
+      libPath = p.dirname(libPath);
+    }
+    final lib = Directory(libPath);
+    if (!lib.existsSync()) return const {};
+
+    final packageName = uri.pathSegments.first;
+    final publicUris = <String>[];
+    for (final entity in lib.listSync(recursive: true, followLinks: false)) {
+      if (entity is! File || p.extension(entity.path) != '.dart') continue;
+      final relative = p.relative(entity.path, from: lib.path);
+      final segments = p.split(relative);
+      if (segments.isEmpty || segments.first == 'src') continue;
+      publicUris.add('package:$packageName/${p.posix.joinAll(segments)}');
+    }
+    publicUris.sort();
+    final publicUriSet = publicUris.toSet();
+    final candidates = <String, List<String>>{};
+    final declaredPublicly = <String, String>{};
+    final session = _contexts.contexts.first.currentSession;
+    for (final publicUri in publicUris) {
+      final resolved = await session.getLibraryByUri(publicUri);
+      if (resolved is! LibraryElementResult) continue;
+      for (final element
+          in resolved.element.exportNamespace.definedNames2.values) {
+        if (element is! InterfaceElement || element.isPrivate) continue;
+        final declarationUri = element.library.uri;
+        if (declarationUri.scheme != 'package' ||
+            declarationUri.pathSegments.isEmpty ||
+            declarationUri.pathSegments.first != packageName) {
+          continue;
+        }
+        final id = identity(element);
+        candidates.putIfAbsent(id, () => <String>[]).add(publicUri);
+        final declaringUri = declarationUri.toString();
+        if (publicUriSet.contains(declaringUri)) {
+          declaredPublicly[id] = declaringUri;
+        }
+      }
+    }
+
+    return {
+      for (final entry in candidates.entries)
+        entry.key: declaredPublicly[entry.key] ?? (entry.value..sort()).first,
+    };
   }
 
   bool _autoHidden(Element element) =>

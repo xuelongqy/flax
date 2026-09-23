@@ -60,11 +60,18 @@ final class FlaxCodegenProposedBinding {
 final class FlaxCodegenAutoBindingProposal {
   const FlaxCodegenAutoBindingProposal({
     required this.config,
+    this.typeCarriers = const {},
     this.skips = const [],
     this.notices = const [],
   });
 
   final FlaxCodegenBindingConfig config;
+
+  /// Same-package public libraries that carry referenced declaration identities.
+  ///
+  /// Automatic parsing uses this routing without widening [config]'s public
+  /// export namespace or creating additional JavaScript library facades.
+  final Map<String, String> typeCarriers;
   final List<FlaxCodegenSkip> skips;
   final List<FlaxCodegenNotice> notices;
 }

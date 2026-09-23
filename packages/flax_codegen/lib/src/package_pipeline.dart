@@ -320,6 +320,7 @@ final class FlaxCodegenPackagePipeline {
       configs: configs,
       configPaths: configPaths,
       directDependencies: providerCandidates,
+      automaticTypeCarriers: [proposal.typeCarriers],
     );
     final directDependencies = _selectDirectDependencyProjections(
       dartPackage: dartPackage,
@@ -1322,6 +1323,7 @@ Future<List<FlaxCodegenModuleModel>> _parseLocalModules({
   required List<FlaxCodegenBindingConfig> configs,
   required List<String> configPaths,
   required Map<String, FlaxCodegenManifestV5Projection> directDependencies,
+  List<Map<String, String>>? automaticTypeCarriers,
 }) async {
   final parser = FlaxCodegenBindingParser(workspaceRoot);
   try {
@@ -1355,7 +1357,12 @@ Future<List<FlaxCodegenModuleModel>> _parseLocalModules({
     final diagnostics = <FlaxCodegenDiagnostic>[];
     for (var index = 0; index < configs.length; index++) {
       try {
-        models.add(await parser.parse(configs[index]));
+        models.add(
+          await parser.parse(
+            configs[index],
+            automaticTypeCarriers: automaticTypeCarriers?[index] ?? const {},
+          ),
+        );
       } on StateError catch (error) {
         diagnostics.add(
           _parseStateDiagnostic(configPaths[index], error.message),
@@ -1876,6 +1883,7 @@ FlaxCodegenModuleModel _moduleFromEncoded(
     ],
     moduleId: template.moduleId,
     requiredCapabilities: template.requiredCapabilities,
+    internalTypeNames: template.internalTypeNames,
   );
 }
 
@@ -2048,6 +2056,9 @@ FlaxCodegenModuleModel _freezeModule(
     publicLibraries: parsed.publicLibraries,
     moduleId: resolvedModule.moduleId.value,
     requiredCapabilities: List<String>.of(resolvedModule.requiredCapabilities),
+    internalTypeNames: {
+      for (final identity in automaticTypeOwners) identity.name,
+    },
   );
 
   final rewritten = _rewriteIdEntries(

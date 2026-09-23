@@ -126,6 +126,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
   required FlaxCodegenBindingConfig library,
   FlaxCodegenClassSelection? base,
   Iterable<InterfaceType> concreteUses = const [],
+  Map<String, String> automaticTypeCarriers = const {},
 }) async {
   final name = element.name!;
   final id = identity(element);
@@ -190,7 +191,10 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     skip(name, 'Overlay selections stay YAML-only');
   }
 
-  final scope = await parser._openTypeScope(library);
+  final scope = await parser._openTypeScope(
+    library,
+    automaticTypeCarriers: automaticTypeCarriers,
+  );
   final inferredDeferredFactories = <String>{
     for (final method in element.methods)
       if (!method.metadata.hasInternal &&

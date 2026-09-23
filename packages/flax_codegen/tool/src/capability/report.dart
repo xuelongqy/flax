@@ -245,7 +245,7 @@ String firstBatchMarkdown({
   }
   buffer
     ..writeln()
-    ..writeln('## Assessment (E1, proposeSelection)')
+    ..writeln('## Assessment (E1, automatic library + proposeSelection)')
     ..writeln()
     ..writeln('| Status | Count |')
     ..writeln('| --- | ---: |');

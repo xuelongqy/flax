@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flax_codegen/flax_codegen.dart' show FlaxCodegenBindingEmitter;
 import 'package:flax_codegen/src/cli.dart';
 import 'package:flax_codegen/src/package_pipeline.dart';
 import 'package:path/path.dart' as p;
@@ -309,6 +310,33 @@ overrides:
       },
     );
 
+    test('automatic library mode carries same-package public dependency routing into parse', () async {
+      final package = _tempCarrierCliPackage();
+      final validation = await FlaxCodegenPackagePipeline.validateLibrary(
+        'package:carrier_cli_pkg/main.dart',
+        packageRoot: package.path,
+      );
+      final module = validation.localModels.single;
+
+      expect(module.classes.map((type) => type.name), contains('Consumer'));
+      final dependencyType = module.classes.singleWhere(
+        (type) => type.name == 'PublicType',
+      );
+      expect(dependencyType.constructors, isEmpty);
+      expect(dependencyType.getters, isEmpty);
+      expect(dependencyType.methods, isEmpty);
+      expect(
+        module.typeLibraries['PublicType'],
+        'package:carrier_cli_pkg/dependency.dart',
+      );
+      expect(module.publicLibraries, isEmpty);
+      expect(module.internalTypeNames, contains('PublicType'));
+      final typescript = FlaxCodegenBindingEmitter([module]).typescript(module);
+      expect(typescript, contains('export interface Consumer'));
+      expect(typescript, contains('interface PublicType'));
+      expect(typescript, isNot(contains('export interface PublicType')));
+    });
+
     test(
       'old invocation returns exit 1 with usage and no package mutation',
       () async {
@@ -543,6 +571,58 @@ class AutoBar extends StatelessWidget implements PreferredSizeWidget {
 }
 ''');
   _copyWorkspacePackageConfig(root, 'widget_cli_pkg');
+  return root;
+}
+
+Directory _tempCarrierCliPackage() {
+  final root = Directory(Directory.systemTemp.resolveSymbolicLinksSync())
+      .createTempSync('flax-carrier-cli-pkg-');
+  addTearDown(() {
+    if (root.existsSync()) {
+      root.deleteSync(recursive: true);
+    }
+  });
+  File(p.join(root.path, 'pubspec.yaml')).writeAsStringSync('''
+name: carrier_cli_pkg
+''');
+  File(p.join(root.path, 'flax_package.yaml')).writeAsStringSync('''
+format: 1
+dart:
+  entrypoint: package:carrier_cli_pkg/main.dart
+javascript:
+  package: '@cli/carrier-auto'
+  version: same
+  mode: runtime
+capabilities:
+  - bindings
+bindingNamespace: example.carriercli
+''');
+  Directory(p.join(root.path, 'bindings')).createSync();
+  final lib = Directory(p.join(root.path, 'lib'))..createSync();
+  File(p.join(lib.path, 'main.dart')).writeAsStringSync('''
+import 'dependency.dart';
+
+class Consumer {
+  Consumer(this.value);
+  final PublicType value;
+}
+''');
+  File(p.join(lib.path, 'dependency.dart')).writeAsStringSync('''
+class PublicType {}
+''');
+  final tool = Directory(p.join(root.path, '.dart_tool'))..createSync();
+  File(p.join(tool.path, 'package_config.json')).writeAsStringSync('''
+{
+  "configVersion": 2,
+  "packages": [
+    {
+      "name": "carrier_cli_pkg",
+      "rootUri": "../",
+      "packageUri": "lib/"
+    }
+  ]
+}
+''');
   return root;
 }
 

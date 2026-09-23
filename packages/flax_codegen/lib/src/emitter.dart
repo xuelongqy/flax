@@ -2755,11 +2755,14 @@ $_typescriptHostImport
           !snapshotIds.contains(type.id) &&
           !module.classes.any((value) => value.id == type.id),
     )) {
+      final exportPrefix = module.internalTypeNames.contains(type.name)
+          ? ''
+          : 'export ';
       if (type.isEnum) {
         out.writeln(
-          'export interface ${type.name} extends DartEnum { readonly type: ${jsonEncode(type.id)}; }',
+          '${exportPrefix}interface ${type.name} extends DartEnum { readonly type: ${jsonEncode(type.id)}; }',
         );
-        out.writeln('export const ${type.name} = Object.freeze({');
+        out.writeln('${exportPrefix}const ${type.name} = Object.freeze({');
         for (final name in type.enumNames) {
           out.writeln(
             '$name: enumValue<${type.name}>(${jsonEncode(type.id)}, ${jsonEncode(name)}),',
@@ -2768,7 +2771,7 @@ $_typescriptHostImport
         out.writeln('});');
       } else {
         out.writeln(
-          'export interface ${type.name}${generics(type.typeParameters, defaults: type.typeParameters.any((p) => p.defaultType != null))} { readonly __${type.name}: unique symbol; }',
+          '${exportPrefix}interface ${type.name}${generics(type.typeParameters, defaults: type.typeParameters.any((p) => p.defaultType != null))} { readonly __${type.name}: unique symbol; }',
         );
       }
     }
@@ -3038,16 +3041,19 @@ $_typescriptHostImport
     }
 
     for (final type in module.classes) {
+      final exportPrefix = module.internalTypeNames.contains(type.name)
+          ? ''
+          : 'export ';
       if (type.kind == 'widgetInterface') {
         out.writeln(
-          'export type ${type.name} = Widget & { readonly __${type.name}: unique symbol; }${type.superTypes.map((t) => ' & ${tsType(t, nominal: true)}').join('')};',
+          '${exportPrefix}type ${type.name} = Widget & { readonly __${type.name}: unique symbol; }${type.superTypes.map((t) => ' & ${tsType(t, nominal: true)}').join('')};',
         );
         continue;
       }
       if ({'context', 'state', 'object', 'stream'}.contains(type.kind)) {
         final extendsProxy = type.proxy?.kind == 'extends';
         out.writeln(
-          'export interface ${type.name}${generics(type.typeParameters)}${type.kind == 'context'
+          '${exportPrefix}interface ${type.name}${generics(type.typeParameters)}${type.kind == 'context'
               ? ' extends ComponentContext'
               : type.kind == 'object' && type.superTypes.isNotEmpty
               ? ' extends ${type.superTypes.map((parent) => tsType(parent, nominal: true)).join(', ')}'
@@ -3159,7 +3165,7 @@ $_typescriptHostImport
       if (type.constructors.isEmpty && type.proxy == null) {
         if (type.kind == 'route' || type.kind == 'page') {
           out.writeln(
-            'export interface ${type.name}${generics(type.typeParameters)} extends DartValue { readonly __${type.name}: unique symbol; ${type.getters.map((g) => 'readonly ${g.name}: ${tsType(g.type)};').join(' ')} }',
+            '${exportPrefix}interface ${type.name}${generics(type.typeParameters)} extends DartValue { readonly __${type.name}: unique symbol; ${type.getters.map((g) => 'readonly ${g.name}: ${tsType(g.type)};').join(' ')} }',
           );
         }
         continue;
@@ -3169,11 +3175,11 @@ $_typescriptHostImport
           .toSet();
       if (type.widgetInterfaces.isNotEmpty) {
         out.writeln(
-          'export type ${type.name} = WidgetDescription & { readonly type: ${jsonEncode(type.id)}; } & ${type.widgetInterfaces.map((t) => tsType(t)).join(' & ')};',
+          '${exportPrefix}type ${type.name} = WidgetDescription & { readonly type: ${jsonEncode(type.id)}; } & ${type.widgetInterfaces.map((t) => tsType(t)).join(' & ')};',
         );
       } else if (type.kind != 'object' && type.kind != 'stream') {
         out.writeln(
-          'export interface ${type.name}${generics(type.typeParameters)} extends ${type.kind == 'widget' ? 'WidgetDescription' : 'DartValue'}${bases.isEmpty ? '' : ', ${bases.join(', ')}'} { readonly type: ${jsonEncode(type.id)};${type.kind == 'widget' ? '' : ' readonly __${type.name}: unique symbol;'} ${type.getters.map((g) => 'readonly ${g.name}: ${tsType(g.type)};').join(' ')} }',
+          '${exportPrefix}interface ${type.name}${generics(type.typeParameters)} extends ${type.kind == 'widget' ? 'WidgetDescription' : 'DartValue'}${bases.isEmpty ? '' : ', ${bases.join(', ')}'} { readonly type: ${jsonEncode(type.id)};${type.kind == 'widget' ? '' : ' readonly __${type.name}: unique symbol;'} ${type.getters.map((g) => 'readonly ${g.name}: ${tsType(g.type)};').join(' ')} }',
         );
       }
       final delayedProxy =

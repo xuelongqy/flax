@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:analyzer/dart/analysis/analysis_context_collection.dart';
 import 'package:analyzer/dart/analysis/results.dart';
@@ -879,8 +880,9 @@ class FlaxCodegenBindingParser {
   }
 
   Future<_FlaxCodegenTypeScope> _openTypeScope(
-    FlaxCodegenBindingConfig config,
-  ) async {
+    FlaxCodegenBindingConfig config, {
+    Map<String, String> automaticTypeCarriers = const {},
+  }) async {
     final (exports, libraries) = await _resolutionExports(config);
     final result = await _contexts.contexts.first.currentSession
         .getLibraryByUri(config.library);
@@ -892,6 +894,7 @@ class FlaxCodegenBindingParser {
       config: config,
       exports: exports,
       publicLibraries: Map<String, String>.of(libraries),
+      automaticTypeCarriers: automaticTypeCarriers,
       objectQuestionType: result.element.typeProvider.objectQuestionType,
     );
   }
@@ -1222,10 +1225,16 @@ class FlaxCodegenBindingParser {
     return models;
   }
 
-  Future<FlaxCodegenModuleModel> parse(FlaxCodegenBindingConfig config) async {
+  Future<FlaxCodegenModuleModel> parse(
+    FlaxCodegenBindingConfig config, {
+    Map<String, String> automaticTypeCarriers = const {},
+  }) async {
     await prepare([config]);
     final session = _contexts.contexts.first.currentSession;
-    final scope = await _openTypeScope(config);
+    final scope = await _openTypeScope(
+      config,
+      automaticTypeCarriers: automaticTypeCarriers,
+    );
     final exports = scope.exports;
     for (final name in config.types.toSet()) {
       final element = exports[name];

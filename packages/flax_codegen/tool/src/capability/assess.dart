@@ -113,6 +113,70 @@ BindingAssessment mergeIsolated(
   );
 }
 
+void applyAutomaticLibraryProposal({
+  required LibraryInventory inventory,
+  required FlaxCodegenAutoBindingProposal proposal,
+  String label = 'automatic',
+}) {
+  for (final declaration in inventory.declarations) {
+    final previous = declaration.assessment;
+    if (previous?.status == CoverageStatus.existingProvider ||
+        previous?.status == CoverageStatus.excluded ||
+        previous?.status == CoverageStatus.notRun) {
+      continue;
+    }
+    final selection = proposal.config.classes[declaration.name];
+    final skips = [
+      for (final skip in proposal.skips)
+        if (skip.target == declaration.name ||
+            skip.target.startsWith('${declaration.name}.'))
+          skip,
+    ];
+    if (selection == null && previous?.status != CoverageStatus.unsupported) {
+      continue;
+    }
+    if (selection == null && skips.isEmpty) continue;
+    final proposed = FlaxCodegenProposedBinding(
+      name: declaration.name,
+      id: declaration.id,
+      selection: selection,
+      skips: skips,
+    );
+    final automatic = _fromProposal(proposed, declaration, label);
+    if (previous == null) {
+      declaration.assessment = automatic;
+      continue;
+    }
+    final carrierResolved =
+        previous.diagnostics.any(
+          (diagnostic) => diagnostic.code == 'missing_export',
+        ) &&
+        !automatic.diagnostics.any(
+          (diagnostic) => diagnostic.code == 'missing_export',
+        );
+    declaration.assessment = BindingAssessment(
+      status: automatic.status,
+      evidence: automatic.evidence,
+      useCases: {...previous.useCases, ...automatic.useCases},
+      surface: {
+        ...automatic.surface,
+        'pooledStatus': previous.status.name,
+        'automaticStatus': automatic.status.name,
+      },
+      diagnostics: [
+        ...automatic.diagnostics,
+        if (carrierResolved)
+          CapabilityDiagnostic(
+            code: 'public_carrier_automation',
+            message: 'Automatic library routing resolved a same-package public carrier',
+          ),
+      ],
+      selection: automatic.selection,
+      provider: automatic.provider ?? previous.provider,
+    );
+  }
+}
+
 BindingAssessment _fromProposal(
   FlaxCodegenProposedBinding proposed,
   ApiDeclarationRecord declaration,
@@ -327,6 +391,9 @@ String _codeFor(String reason) {
   }
   if (reason.contains('No bindable constructors')) return 'no_constructors';
   if (reason.contains('No bindable members')) return 'no_members';
+  if (RegExp(r'must publicly export the referenced type _').hasMatch(reason)) {
+    return 'private_implementation_dependency';
+  }
   if (reason.contains('must publicly export')) return 'missing_export';
   if (reason.contains('Widget instance methods')) return 'widget_methods';
   if (reason.contains('Value getters require')) return 'widget_getters';

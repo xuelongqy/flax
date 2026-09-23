@@ -386,6 +386,9 @@ Future<void> main(List<String> args) async {
           );
         }
       }
+      stdout.writeln('Automatic proposeLibrary…');
+      final automatic = await parser.proposeLibrary(target);
+      applyAutomaticLibraryProposal(inventory: inventory, proposal: automatic);
     }
 
     final genericResults = await _fixtureProposals(

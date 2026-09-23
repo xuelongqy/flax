@@ -7,6 +7,7 @@ final class _FlaxCodegenTypeScope {
     required this.config,
     required this.exports,
     required this.publicLibraries,
+    required this.automaticTypeCarriers,
     required this.objectQuestionType,
   });
 
@@ -14,6 +15,7 @@ final class _FlaxCodegenTypeScope {
   final FlaxCodegenBindingConfig config;
   final Map<String, Element> exports;
   final Map<String, String> publicLibraries;
+  final Map<String, String> automaticTypeCarriers;
   // Substituted function type parameters can have no enclosing library.
   final InterfaceType objectQuestionType;
 
@@ -497,21 +499,26 @@ final class _FlaxCodegenTypeScope {
       usesWidget = true;
       return FlaxCodegenTypeRef('widget', nullable: nullable);
     }
+    final id = identity(element);
+    final automaticCarrier = automaticTypeCarriers[id];
     if (exports[name] != element) {
-      if (!parser._isPoolType(element)) {
+      if (automaticCarrier != null) {
+        publicLibraries.putIfAbsent(name, () => automaticCarrier);
+      } else if (!parser._isPoolType(element)) {
         throw StateError(
           '${config.library} must publicly export the referenced type $name',
         );
-      }
-      final uri = parser._publicLibraryFor(element, name);
-      if (uri != null) {
-        publicLibraries.putIfAbsent(name, () => uri);
+      } else {
+        final uri = parser._publicLibraryFor(element, name);
+        if (uri != null) {
+          publicLibraries.putIfAbsent(name, () => uri);
+        }
       }
     }
-    final id = identity(element);
     if (erasing != null &&
         !parser._adaptations.containsKey(id) &&
-        exports[name] != element) {
+        exports[name] != element &&
+        automaticCarrier == null) {
       throw StateError('Unbound generic callback bound: $type');
     }
     final widgetInterface = parser._adaptations[id] == 'widgetInterface';
