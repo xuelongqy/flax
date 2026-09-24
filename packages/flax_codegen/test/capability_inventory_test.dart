@@ -119,19 +119,15 @@ void main() {
     );
   });
 
-  test('does not treat a non-empty selection as complete coverage', () async {
+  test('countInventory reports unassessed declarations as notRun', () async {
     final inventory = await inventoryLibrary(
       collection: collection,
       uri: fixture('discovery_show.dart'),
     );
     final child = inventory.declarations.singleWhere((d) => d.name == 'Child');
     child.assessment = null;
-    final legacy = legacyCensusView(inventory);
-    expect(legacy['legacyWouldCallOwnFull'], 0);
-    expect(
-      (legacy['corrected'] as Map)['notRun'],
-      inventory.declarations.length,
-    );
+    final counts = countInventory(inventory);
+    expect(counts.byStatus['notRun'], inventory.declarations.length);
     expect(
       child.declaredMembers.any(
         (member) => !isJsLegalName(member.name) && member.name.isNotEmpty,

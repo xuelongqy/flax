@@ -12,12 +12,12 @@ test('bundled loop callbacks retain independent signals and subscriptions', () =
   let root;
   runInNewContext(source, {
     __flaxCreateObject(version, type, descriptor) {
-      assert.equal(version, 20);
+      assert.equal(version, 21);
       assert.match(type, /#type:ValueKey$/);
       return Object.freeze({ value: descriptor.args.value });
     },
     __flaxMount(widget, version) {
-      assert.equal(version, 20);
+      assert.equal(version, 21);
       root = widget;
     },
     __flaxInvalidate: (token) => notifications.push(token),

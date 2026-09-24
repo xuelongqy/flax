@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core:dist/runtime/bindings.js","version":"0.0.0","artifact":"66a4e1dec440db0d5474db3ccda62e08ca493e653602f97be92ec39528610a71","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core","source":"dist/runtime/bindings.js","dependencies":{},"bindings":[]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core:dist/runtime/bindings.js","version":"0.0.0","artifact":"2850d49f55e297457074282eac0e4054f5dbc005c85c4e5a5e1476c089ebb07e","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core","source":"dist/runtime/bindings.js","dependencies":{},"bindings":[]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -63,6 +63,7 @@ __export(bindings_exports, {
   construct: () => construct,
   constructAsyncIterableStream: () => constructAsyncIterableStream,
   constructDeferredObject: () => constructDeferredObject,
+  constructExtendedProxy: () => constructExtendedProxy,
   constructObject: () => constructObject,
   constructProxy: () => constructProxy,
   constructStream: () => constructStream,
@@ -76,6 +77,7 @@ __export(bindings_exports, {
   invokeInstance: () => invokeInstance,
   invokeObject: () => invokeObject,
   invokeObjectStatic: () => invokeObjectStatic,
+  invokeProxySuper: () => invokeProxySuper,
   invokeStatic: () => invokeStatic,
   invokeStream: () => invokeStream,
   invokeTopLevel: () => invokeTopLevel,
@@ -84,6 +86,7 @@ __export(bindings_exports, {
   registerComponent: () => registerComponent,
   registerComponentBase: () => registerComponentBase,
   registerComponentState: () => registerComponentState,
+  registerComponentStateVariant: () => registerComponentStateVariant,
   registerPage: () => registerPage
 });
 module.exports = __toCommonJS(bindings_exports);
@@ -520,7 +523,7 @@ function computed(read) {
 }
 
 // ../../../packages/flax/js/dist/runtime/bindings.js
-var bindingVersion = 20;
+var bindingVersion = 21;
 var components = /* @__PURE__ */ new WeakMap();
 var componentTypes = /* @__PURE__ */ new WeakMap();
 var componentBases = /* @__PURE__ */ new WeakMap();
@@ -562,9 +565,20 @@ function registerComponentState(instance) {
   componentStates.set(instance, {
     id: null,
     widget: null,
+    variant: null,
     retired: false,
     claimed: false
   });
+}
+function registerComponentStateVariant(instance, variant) {
+  const state = componentStates.get(instance);
+  if (!state || state.claimed || state.retired)
+    throw new Error("State variant must be selected by a fresh State");
+  if (typeof variant !== "string" || variant.length === 0)
+    throw new TypeError("Expected a State variant identity");
+  if (state.variant !== null && state.variant !== variant)
+    throw new Error("State variant is already selected");
+  state.variant = variant;
 }
 function componentStateWidget(instance) {
   const state = componentStates.get(instance);
@@ -774,6 +788,7 @@ function invokeInstance(receiver, type, method, args) {
 var objectTypes = /* @__PURE__ */ new Map();
 var objectHandles = /* @__PURE__ */ new WeakMap();
 var objects = /* @__PURE__ */ new Map();
+var constructingExtendedProxies = /* @__PURE__ */ new WeakSet();
 var deferredObjects = /* @__PURE__ */ new WeakMap();
 var iterableObjectTypes = /* @__PURE__ */ new Set();
 var objectSweep;
@@ -807,6 +822,19 @@ function trackObject(value, type, id) {
   const aliases = (_a = objects.get(id)) != null ? _a : /* @__PURE__ */ new Set();
   aliases.add(new WeakRef(value));
   objects.set(id, aliases);
+}
+function transferObjectAlias(source, target) {
+  const ref = objectHandles.get(source);
+  if (!ref || !ref.alive)
+    throw new TypeError("Invalid Dart object alias");
+  trackObject(target, ref.type, ref.id);
+  const aliases = objects.get(ref.id);
+  for (const alias of aliases) {
+    const value = alias.deref();
+    if (!value || value === source)
+      aliases.delete(alias);
+  }
+  objectHandles.delete(source);
 }
 function defineObject(type, fields, setters, methods, removers) {
   if (objectTypes.has(type))
@@ -1034,16 +1062,8 @@ function constructProxy(type, parameters, args, implementation, names, getters, 
     throw new TypeError("Invalid proxy implementation");
   const descriptor = construct("value", type, "@implementation", parameters, args.slice(0, positional), (_a = args[positional]) != null ? _a : {});
   const values = { ...descriptor.args };
-  function property(name) {
-    for (let object = implementation; object !== null; object = Object.getPrototypeOf(object)) {
-      const descriptor2 = Object.getOwnPropertyDescriptor(object, name);
-      if (descriptor2)
-        return descriptor2;
-    }
-    return void 0;
-  }
   for (const name of names) {
-    const method = (_b = property(name)) == null ? void 0 : _b.value;
+    const method = (_b = proxyProperty(implementation, name)) == null ? void 0 : _b.value;
     if (typeof method !== "function")
       throw new TypeError(`Missing proxy method: ${name}`);
     values[`@call:${name}`] = method.bind(implementation);
@@ -1052,7 +1072,7 @@ function constructProxy(type, parameters, args, implementation, names, getters, 
     for (const name of kind === "get" ? getters : setters) {
       if (names.includes(name))
         throw new TypeError(`Conflicting proxy member: ${name}`);
-      const accessor = (_c = property(name)) == null ? void 0 : _c[kind];
+      const accessor = (_c = proxyProperty(implementation, name)) == null ? void 0 : _c[kind];
       if (typeof accessor !== "function")
         throw new TypeError(`Missing proxy ${kind} accessor: ${name}`);
       values[`@${kind}:${name}`] = (...args2) => synchronous(Reflect.apply(accessor, implementation, args2), `Proxy ${kind} ${name}`);
@@ -1062,6 +1082,72 @@ function constructProxy(type, parameters, args, implementation, names, getters, 
   if (!create)
     throw new Error("Dart proxies require a Flax host");
   return create(bindingVersion, type, { ...descriptor, args: Object.freeze(values) });
+}
+function proxyProperty(implementation, name, stopBefore) {
+  for (let object = implementation; object !== null && object !== stopBefore; object = Object.getPrototypeOf(object)) {
+    const descriptor = Object.getOwnPropertyDescriptor(object, name);
+    if (descriptor)
+      return descriptor;
+  }
+  return void 0;
+}
+function constructExtendedProxy(receiver, basePrototype, type, parameters, args, names, getters, setters, superMembers) {
+  var _a, _b, _c;
+  if (receiver === null || typeof receiver !== "object")
+    throw new TypeError("Expected a proxy class instance");
+  if (objectHandles.has(receiver))
+    throw new TypeError("Proxy class instance is already initialized");
+  const positional = parameters.filter((p2) => p2.positional).length;
+  const hasNamed = parameters.some((p2) => !p2.positional);
+  if (args.length > positional + (hasNamed ? 1 : 0))
+    throw new TypeError("Too many proxy constructor arguments");
+  const descriptor = construct("value", type, "@implementation", parameters, args.slice(0, positional), (_a = args[positional]) != null ? _a : {});
+  const values = { ...descriptor.args };
+  for (const name of names) {
+    const method = (_b = proxyProperty(receiver, name, basePrototype)) == null ? void 0 : _b.value;
+    if (typeof method !== "function") {
+      if (superMembers.includes(name))
+        continue;
+      throw new TypeError(`Missing proxy method: ${name}`);
+    }
+    values[`@call:${name}`] = method.bind(receiver);
+  }
+  for (const kind of ["get", "set"]) {
+    for (const name of kind === "get" ? getters : setters) {
+      if (names.includes(name))
+        throw new TypeError(`Conflicting proxy member: ${name}`);
+      const accessor = (_c = proxyProperty(receiver, name, basePrototype)) == null ? void 0 : _c[kind];
+      const superName = `${kind}:${name}`;
+      if (typeof accessor !== "function") {
+        if (superMembers.includes(superName))
+          continue;
+        throw new TypeError(`Missing proxy ${kind} accessor: ${name}`);
+      }
+      values[`@${kind}:${name}`] = (...callArgs) => synchronous(Reflect.apply(accessor, receiver, callArgs), `Proxy ${kind} ${name}`);
+    }
+  }
+  const create = globalThis.__flaxCreateObject;
+  if (!create)
+    throw new Error("Dart proxies require a Flax host");
+  constructingExtendedProxies.add(receiver);
+  try {
+    const created = create(bindingVersion, type, {
+      ...descriptor,
+      args: Object.freeze(values)
+    });
+    const ref = objectHandles.get(created);
+    if (!ref || !ref.alive || ref.type !== type)
+      throw new TypeError("Invalid Dart proxy result");
+    transferObjectAlias(created, receiver);
+  } finally {
+    constructingExtendedProxies.delete(receiver);
+  }
+}
+function invokeProxySuper(receiver, type, member, args) {
+  if (constructingExtendedProxies.has(receiver) && !objectHandles.has(receiver)) {
+    throw new Error("Dart proxy construction is not complete");
+  }
+  return invokeObject(receiver, type, `@super:${member}`, args);
 }
 function callObject(receiver, type, operation, member, args) {
   const ref = objectHandles.get(receiver);
@@ -1204,7 +1290,13 @@ Object.assign(globalThis, {
       state.claimed = true;
       state.widget = widget;
       state.id = id;
-      return value;
+      return Object.freeze({ state: value, variant: state.variant });
+    },
+    tryComponentStateId(value) {
+      const state = componentStates.get(value);
+      if (state == null ? void 0 : state.retired)
+        throw new Error("Disposed component State");
+      return (state == null ? void 0 : state.claimed) ? state.id : null;
     },
     updateComponentState(value, widget) {
       const state = componentStates.get(value);
@@ -1224,6 +1316,17 @@ Object.assign(globalThis, {
       const state = componentStates.get(value);
       if (state == null ? void 0 : state.retired)
         throw new Error("Disposed component State");
+      if (method.startsWith("get:")) {
+        if (args.length !== 0)
+          throw new TypeError("Invalid getter arguments");
+        return value[method.slice(4)];
+      }
+      if (method.startsWith("set:")) {
+        if (args.length !== 1)
+          throw new TypeError("Invalid setter arguments");
+        value[method.slice(4)] = args[0];
+        return void 0;
+      }
       const fn = value[method];
       if (typeof fn !== "function")
         throw new TypeError(`Missing component method: ${method}`);

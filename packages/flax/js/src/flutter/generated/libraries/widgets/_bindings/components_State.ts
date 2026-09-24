@@ -1,16 +1,9 @@
-// GENERATED CODE. Selected host overrides; do not edit.
+// GENERATED CODE. Selected public API subset; do not edit.
 // Regenerate with dart run melos run bindings:generate.
-import type { Widget } from '@flax/core/bindings';
+import { bindingVersion, construct as _flaxHostConstruct, constructProxy as _flaxHostConstructProxy, constructObject as _flaxHostConstructObject, constructDeferredObject as _flaxHostConstructDeferredObject, constructStream as _flaxHostConstructStream, constructAsyncIterableStream as _flaxHostConstructAsyncIterableStream, defineObject as _flaxHostDefineObject, defineStream as _flaxHostDefineStream, invokeObject as _flaxHostInvokeObject, invokeObjectStatic as _flaxHostInvokeObjectStatic, invokeStream as _flaxHostInvokeStream, enumValue as _flaxHostEnumValue, defineContext as _flaxHostDefineContext, defineState as _flaxHostDefineState, contextHandle as _flaxHostContextHandle, invokeStatic as _flaxHostInvokeStatic, invokeInstance as _flaxHostInvokeInstance, invokeTopLevel as _flaxHostInvokeTopLevel, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/components_StatefulWidget';
-import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
-export abstract class StateLifecycle<T> {
-protected abstract invokeSuper(name: string, args: readonly unknown[]): unknown;
-initState(): void { return this.invokeSuper("initState", []) as void; }
-didUpdateWidget(oldWidget: T): void { return this.invokeSuper("didUpdateWidget", [oldWidget]) as void; }
-reassemble(): void { return this.invokeSuper("reassemble", []) as void; }
-deactivate(): void { return this.invokeSuper("deactivate", []) as void; }
-activate(): void { return this.invokeSuper("activate", []) as void; }
-dispose(): void { return this.invokeSuper("dispose", []) as void; }
-abstract build(context: upstream1.BuildContext): Widget;
-didChangeDependencies(): void { return this.invokeSuper("didChangeDependencies", []) as void; }
+import '@flax/flutter/widgets/_bindings/components_StatefulWidget';
+import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/components.__module";
+export interface State<T extends upstream0.StatefulWidget = upstream0.StatefulWidget> { readonly __State: unique symbol;
 }
+defineState("flax.core/components#type:State", [], {});

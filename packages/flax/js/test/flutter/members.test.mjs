@@ -33,12 +33,12 @@ test('generated context access uses synchronous selected members and canonical e
   const context = api.context(type, 7);
   let calls = 0;
   globalThis.__flaxGet = (version, id, handle, member) => {
-    assert.deepEqual([version, id, handle, member], [20, type, 7, 'mounted']);
+    assert.deepEqual([version, id, handle, member], [21, type, 7, 'mounted']);
     calls++;
     return true;
   };
   globalThis.__flaxCall = (version, id, member, handle) => {
-    assert.equal(version, 20);
+    assert.equal(version, 21);
     assert.match(id, /#type:Directionality$/);
     assert.equal(member, 'of');
     assert.equal(handle, 7);

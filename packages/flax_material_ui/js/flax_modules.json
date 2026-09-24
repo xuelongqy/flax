@@ -11,7 +11,7 @@
       "bindings": [
         {
           "moduleId": "flax.material/material",
-          "uiProtocol": 20,
+          "uiProtocol": 21,
           "types": [
             "flax.material/material#type:AlertDialog",
             "flax.material/material#type:AppBar",

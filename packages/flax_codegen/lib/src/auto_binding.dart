@@ -516,6 +516,9 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
         if (element is ClassElement) {
           for (final constructor in element.constructors) {
             executable(constructor);
+            if (constructor.redirectedConstructor case final redirected?) {
+              type(redirected.returnType);
+            }
           }
         }
         for (final getter in element.getters) {
@@ -685,10 +688,6 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
         ))
           entry.key: entry.value,
     };
-    final deferredFactories = [
-      for (final name in selection.deferredFactories)
-        if (methods.containsKey(name)) name,
-    ];
     return _copyClassSelection(
       selection,
       constructors: constructors,
@@ -697,7 +696,6 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       staticGetters: staticGetters,
       instanceMethods: instanceMethods,
       methods: methods,
-      deferredFactories: deferredFactories,
     );
   }
 
@@ -1001,17 +999,10 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     final typeArguments = fields.contains('typeArguments')
         ? selection.typeArguments
         : const <String>[];
-    final deferredFactories = fields.contains('deferredFactories')
-        ? selection.deferredFactories
-        : const <String>[];
-    final genericScalar =
-        fields.contains('genericScalar') && selection.genericScalar;
     final kind = fields.contains('kind') ? selection.kind : null;
     final jsName = fields.contains('jsName') ? selection.jsName : null;
     if (constructors.isEmpty &&
         typeArguments.isEmpty &&
-        deferredFactories.isEmpty &&
-        !genericScalar &&
         kind == null &&
         proxy == null &&
         jsName == null) {
@@ -1019,8 +1010,6 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     }
     return FlaxCodegenClassSelection(
       constructors,
-      genericScalar: genericScalar,
-      deferredFactories: deferredFactories,
       typeArguments: typeArguments,
       kind: kind,
       proxy: proxy,
@@ -1040,15 +1029,6 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       widgetInterfaces: has('widgetInterfaces')
           ? value.widgetInterfaces
           : source.widgetInterfaces,
-      independentWidgetCallbacks: has('independentWidgetCallbacks')
-          ? value.independentWidgetCallbacks
-          : source.independentWidgetCallbacks,
-      genericScalar: has('genericScalar')
-          ? value.genericScalar
-          : source.genericScalar,
-      eraseGenerics: has('eraseGenerics')
-          ? value.eraseGenerics
-          : source.eraseGenerics,
       asyncIterableFactory: has('asyncIterableFactory')
           ? value.asyncIterableFactory
           : source.asyncIterableFactory,
@@ -1070,19 +1050,15 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       methodTypeArguments: has('methodTypeArguments')
           ? value.methodTypeArguments
           : source.methodTypeArguments,
-      deferredFactories: has('deferredFactories')
-          ? value.deferredFactories
-          : source.deferredFactories,
       instanceMethods: has('instanceMethods')
           ? value.instanceMethods
           : source.instanceMethods,
       startsRoute: has('startsRoute') ? value.startsRoute : source.startsRoute,
       kind: has('kind') ? value.kind : source.kind,
       proxy: has('proxy') ? value.proxy : source.proxy,
-      proxyOverrides: has('proxyOverrides')
-          ? value.proxyOverrides
-          : source.proxyOverrides,
-      proxySuper: has('proxySuper') ? value.proxySuper : source.proxySuper,
+      proxyVariants: has('proxyVariants')
+          ? value.proxyVariants
+          : source.proxyVariants,
       staticGetters: has('staticGetters')
           ? value.staticGetters
           : source.staticGetters,
@@ -1129,20 +1105,14 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     FlaxCodegenClassSelection source, {
     Map<String, List<String>>? constructors,
     List<String>? widgetInterfaces,
-    Map<String, List<String>>? independentWidgetCallbacks,
     List<String>? getters,
     List<String>? setters,
     List<String>? staticGetters,
     Map<String, List<String>>? instanceMethods,
     Map<String, List<String>>? methods,
-    List<String>? deferredFactories,
   }) => FlaxCodegenClassSelection(
     constructors ?? source.constructors,
     widgetInterfaces: widgetInterfaces ?? source.widgetInterfaces,
-    independentWidgetCallbacks:
-        independentWidgetCallbacks ?? source.independentWidgetCallbacks,
-    genericScalar: source.genericScalar,
-    eraseGenerics: source.eraseGenerics,
     asyncIterableFactory: source.asyncIterableFactory,
     callbackSignatures: source.callbackSignatures,
     callbackOptionalParameters: source.callbackOptionalParameters,
@@ -1150,13 +1120,11 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     callbackScopedParameters: source.callbackScopedParameters,
     typeArguments: source.typeArguments,
     methodTypeArguments: source.methodTypeArguments,
-    deferredFactories: deferredFactories ?? source.deferredFactories,
     instanceMethods: instanceMethods ?? source.instanceMethods,
     startsRoute: source.startsRoute,
     kind: source.kind,
     proxy: source.proxy,
-    proxyOverrides: source.proxyOverrides,
-    proxySuper: source.proxySuper,
+    proxyVariants: source.proxyVariants,
     staticGetters: staticGetters ?? source.staticGetters,
     errorGetters: source.errorGetters,
     pageAdapter: source.pageAdapter,

@@ -35,32 +35,15 @@ void main() {
       }
     });
 
-    test('rejects the old [--check] <config> form', () {
+    test('rejects unknown commands and malformed --config usage', () {
       for (final arguments in const [
+        <String>[],
+        ['unknown', '--config', 'bindings/widgets.yaml'],
         ['bindings/widgets.yaml'],
         ['--check', 'bindings/widgets.yaml'],
         ['--check'],
         ['widgets.yml'],
         ['check', '--check', '--config', 'bindings/widgets.yaml'],
-      ]) {
-        expect(
-          () => parseFlaxCodegenCliArgs(arguments),
-          throwsA(
-            isA<FlaxCodegenCliUsageException>().having(
-              (error) => error.message,
-              'message',
-              contains('The old "[--check] <config>" form is not supported.'),
-            ),
-          ),
-          reason: 'arguments=$arguments',
-        );
-      }
-    });
-
-    test('rejects unknown commands and malformed --config usage', () {
-      for (final arguments in const [
-        <String>[],
-        ['unknown', '--config', 'bindings/widgets.yaml'],
         ['validate'],
         ['validate', 'bindings/widgets.yaml'],
         ['validate', '--config'],
@@ -244,7 +227,7 @@ void main() {
         final package = _tempCliPackage();
         File(p.join(package.root.path, 'bindings', 'overrides.yaml'))
             .writeAsStringSync('''
-format: 1
+format: 2
 overrides:
   classes:
     GenericBox:
@@ -297,7 +280,7 @@ overrides:
         final itemBuilder = list.constructors.single.parameters.singleWhere(
           (parameter) => parameter.name == 'itemBuilder',
         );
-        expect(itemBuilder.independentWidgetResult, isFalse);
+        expect(itemBuilder.independentWidgetResult, isTrue);
 
         final bar = module.classes.singleWhere(
           (type) => type.name == 'AutoBar',
@@ -345,20 +328,19 @@ overrides:
     });
 
     test(
-      'old invocation returns exit 1 with usage and no package mutation',
+      'invalid invocation returns exit 1 with usage and no package mutation',
       () async {
         final package = _tempCliPackage();
         final before = _listing(package.root);
         final stderr = <String>[];
 
         final code = await runFlaxCodegenCli(
-          ['--check', package.configPath],
+          ['validate', '--config'],
           writeStdout: (_) => fail('stdout must stay empty'),
           writeStderr: stderr.add,
         );
 
         expect(code, 1);
-        expect(stderr.single, contains('The old "[--check] <config>" form'));
         expect(stderr.single, contains(flaxCodegenCliUsage));
         expect(_listing(package.root), before);
       },
@@ -459,7 +441,7 @@ class ExternalCounter {
 ''');
   final bindings = Directory(p.join(root.path, 'bindings'))..createSync();
   File(p.join(bindings.path, 'extra.yaml')).writeAsStringSync('''
-format: 1
+format: 2
 name: extra
 library: package:cli_pkg/extra.dart
 jsPackage: '@cli/extra'
@@ -472,7 +454,7 @@ classes:
       create: []
 ''');
   File(p.join(bindings.path, 'widgets.yaml')).writeAsStringSync('''
-format: 1
+format: 2
 name: widgets
 library: package:cli_pkg/widgets.dart
 jsPackage: '@cli/widgets'
@@ -536,7 +518,7 @@ bindingNamespace: example.widgetcli
 ''');
   Directory(p.join(root.path, 'bindings')).createSync();
   File(p.join(root.path, 'bindings', 'overrides.yaml')).writeAsStringSync('''
-format: 1
+format: 2
 overrides:
   functions:
     openPage:

@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flax_codegen/flax_codegen.dart';
-import 'package:flax_codegen/src/manifest_v5_codec.dart';
+import 'package:flax_codegen/src/manifest_codec.dart';
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
@@ -23,7 +23,7 @@ void main() {
     try {
       return await parser.parse(
         FlaxCodegenBindingConfig.parseStrict('''
-format: 1
+format: 2
 name: bounds
 library: $uri
 jsPackage: '@example/bounds'
@@ -193,41 +193,21 @@ classes:
     },
   );
 
-  test(
-    'Manifest 11 preserves bound provenance and versions 2-10 reject it',
-    () async {
-      final module = await parse(classes);
-      final json = FlaxCodegenManifestV5Codec.encodeModule(module);
-      json['typeLibraries'] = {
-        for (final name in (module.typeLibraries.keys.toList()..sort()))
-          name: 'package:example/bounds.dart',
-      };
-      final diagnostics = FlaxCodegenManifestV5Diagnostics('fixture');
-      final decoded = FlaxCodegenManifestV5Codec.decodeModule(
-        json,
-        diagnostics,
-        '',
-        'bounds',
-      );
-      expect(diagnostics.items, isEmpty);
-      expect(FlaxCodegenManifestV5Codec.encodeModule(decoded!), json);
-      for (var version = 2; version <= 10; version++) {
-        final errors = FlaxCodegenManifestV5Diagnostics('v$version');
-        expect(
-          FlaxCodegenManifestV5Codec.decodeModule(
-            json,
-            errors,
-            '',
-            'bounds',
-            formatVersion: version,
-          ),
-          isNull,
-        );
-        expect(
-          errors.items.map((e) => e.message),
-          contains('Type-only references require Manifest 11.'),
-        );
-      }
-    },
-  );
+  test('Manifest 12 preserves bound provenance', () async {
+    final module = await parse(classes);
+    final json = FlaxCodegenManifestCodec.encodeModule(module);
+    json['typeLibraries'] = {
+      for (final name in (module.typeLibraries.keys.toList()..sort()))
+        name: 'package:example/bounds.dart',
+    };
+    final diagnostics = FlaxCodegenManifestDiagnostics('fixture');
+    final decoded = FlaxCodegenManifestCodec.decodeModule(
+      json,
+      diagnostics,
+      '',
+      'bounds',
+    );
+    expect(diagnostics.items, isEmpty);
+    expect(FlaxCodegenManifestCodec.encodeModule(decoded!), json);
+  });
 }

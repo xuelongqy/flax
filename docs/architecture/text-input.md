@@ -1,6 +1,6 @@
 # Material Text Input and Focus
 
-Implemented for macOS arm64 Hermes/V8 with UI protocol 20. All selected calls use
+Implemented for macOS arm64 Hermes/V8 with UI protocol 21. All selected calls use
 generated Dart APIs; no Controller-specific validation or formatter fallback is added.
 
 ## Selected API

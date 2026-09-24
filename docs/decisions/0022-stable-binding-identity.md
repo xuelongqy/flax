@@ -6,7 +6,7 @@ Date: 2026-09-12
 
 ## Context
 
-External Binding Kit v1 needs a frozen identity contract before Codegen, manifests, or
+External bindings need a stable identity contract before Codegen, manifests, or
 registration change. Earlier declaration IDs used originating library URIs such as
 `package:flutter/src/widgets/framework.dart::Widget`. Those source-based IDs expose
 private implementation layout and change when a declaration moves between private source
@@ -16,10 +16,10 @@ also remain independent of working directory and re-export route.
 [ADR 0017](0017-package-boundaries.md) already makes `packages/*` the capability
 boundary and commits versioned declaration manifests.
 [ADR 0018](0018-binding-coverage-strategy.md) keeps explicit selection fail-closed.
-[ADR 0020](0020-ui-protocol-20.md) freezes UI protocol 20 with native ABI 2 unchanged.
-[ADR 0021](0021-external-binding-version-domains.md) separates version domains and
-allows format-1 [`flax_package.yaml`](../architecture/packaging.md) to add a top-level
-`bindingNamespace` before freeze.
+[ADR 0035](0035-generic-state-variants-and-protocol-21.md) defines UI protocol 21 with
+native ABI 2 unchanged. [ADR 0021](0021-external-binding-version-domains.md) separates
+version domains and allows format-1 [`flax_package.yaml`](../architecture/packaging.md)
+to add a top-level `bindingNamespace` before freeze.
 
 Trusted third-party package boundaries are
 [ADR 0023](0023-external-binding-package-trust.md). This record settles namespace
@@ -59,7 +59,7 @@ Normative encoding vectors:
 `bindingNamespace` is the permanent package identity for generated bindings. A package
 stores it once as a top-level `flax_package.yaml` field whenever `capabilities` includes
 `bindings`. Binding YAML never repeats it. Sibling configs and modules of that package
-share the same value. Manifest format 2 copies it.
+share the same value. Manifest 12 copies it.
 
 Grammar: two or more dot-separated lower-case ASCII labels. Each label is
 `[a-z][a-z0-9]{0,62}`. Total ASCII byte length is 3..253, as implied by two nonempty
@@ -446,8 +446,8 @@ scoped, or renamed independently of a permanent binding namespace, and they are 
 frozen while publication remains blocked.
 
 **Hash type shapes or look them up in a runtime registry.** Rejected. Hashes are not
-readable diagnostics, and a runtime registry would add a new identity domain. v1 keeps
-deterministic readable encodings of resolved semantic shape.
+readable diagnostics, and a runtime registry would add a new identity domain. the
+current contract keeps deterministic readable encodings of resolved semantic shape.
 
 **First-sorted config/module as owner.** Rejected. Multiple explicit owners and orphans
 fail closed. Signature discovery does not assign ownership.
@@ -463,15 +463,15 @@ ownership conflicts and make historical immutability unenforceable. Fail closed 
 Stable wire IDs decouple public bindings from private source layout and export routes.
 Strict ownership rejects duplicate providers and orphans instead of making input order
 significant. See [Binding Generation](../architecture/bindings.md) for current usage and
-[compatibility evidence](../architecture/external-binding-compatibility.md) for
+[verification evidence](../architecture/external-binding-verification.md) for
 validation.
 
-It does not change UI protocol 20 or native ABI 2. A stable identity change is a
+It does not change UI protocol 21 or native ABI 2. A stable identity change is a
 capability-package major version, as in
 [ADR 0021](0021-external-binding-version-domains.md).
 
 [ADR 0021](0021-external-binding-version-domains.md) still owns version domains, the
-binding manifest projection, tuple pinning, and compatibility bump rules.
+binding manifest projection, tuple pinning, and version-bump rules.
 [ADR 0023](0023-external-binding-package-trust.md) still owns trusted third-party
 package boundaries. Publication, registry names, license, signing, and support lifetime
 remain blocked as in [ADR 0017](0017-package-boundaries.md).

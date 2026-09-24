@@ -16,6 +16,12 @@
     },
     "./core/*": {
       "types": "./types/generated/libraries/core/*.d.ts"
+    },
+    "./ui": {
+      "types": "./types/generated/libraries/ui/index.d.ts"
+    },
+    "./ui/*": {
+      "types": "./types/generated/libraries/ui/*.d.ts"
     }
   },
   "files": [

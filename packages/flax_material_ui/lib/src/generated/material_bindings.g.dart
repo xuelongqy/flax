@@ -10,7 +10,7 @@ import 'package:flutter/widgets.dart' as api1;
 import 'dart:core' as api2;
 
 import 'package:flutter/services.dart' as api3;
-import 'package:material_ui/material_ui.dart' as _flaxNative7;
+import 'package:material_ui/material_ui.dart' as _flaxNative8;
 import 'package:flax_material_ui/src/material_page_route.dart'
     as adapterMaterialPage;
 
@@ -785,7 +785,7 @@ const materialBindings = FlaxBindingModule(
             nullable: true,
             deferredFactories: {
               "resolveWith": FlaxDeferredFactoryBinding(
-                "object:flax.core/flutter#type:WidgetStateProperty<object?:flax.core/flutter#type:Color>",
+                "object:flax.core/flutter#type:WidgetStateProperty<Object?><object?:flax.core/flutter#type:Color>",
                 [
                   FlaxParameter(
                     "callback",
@@ -853,7 +853,7 @@ const materialBindings = FlaxBindingModule(
             nullable: true,
             deferredFactories: {
               "resolveWith": FlaxDeferredFactoryBinding(
-                "object:flax.core/flutter#type:WidgetStateProperty<object?:flax.core/flutter#type:Color>",
+                "object:flax.core/flutter#type:WidgetStateProperty<Object?><object?:flax.core/flutter#type:Color>",
                 [
                   FlaxParameter(
                     "callback",
@@ -921,7 +921,7 @@ const materialBindings = FlaxBindingModule(
             nullable: true,
             deferredFactories: {
               "resolveWith": FlaxDeferredFactoryBinding(
-                "object:flax.core/flutter#type:WidgetStateProperty<object?:flax.core/flutter#type:Color>",
+                "object:flax.core/flutter#type:WidgetStateProperty<Object?><object?:flax.core/flutter#type:Color>",
                 [
                   FlaxParameter(
                     "callback",
@@ -989,7 +989,7 @@ const materialBindings = FlaxBindingModule(
             nullable: true,
             deferredFactories: {
               "resolveWith": FlaxDeferredFactoryBinding(
-                "object:flax.core/flutter#type:WidgetStateProperty<double?:>",
+                "object:flax.core/flutter#type:WidgetStateProperty<Object?><double?:>",
                 [
                   FlaxParameter(
                     "callback",
@@ -1053,7 +1053,7 @@ const materialBindings = FlaxBindingModule(
             nullable: true,
             deferredFactories: {
               "resolveWith": FlaxDeferredFactoryBinding(
-                "object:flax.core/flutter#type:WidgetStateProperty<object?:flax.core/flutter#type:OutlinedBorder>",
+                "object:flax.core/flutter#type:WidgetStateProperty<Object?><object?:flax.core/flutter#type:OutlinedBorder>",
                 [
                   FlaxParameter(
                     "callback",
@@ -1121,7 +1121,7 @@ const materialBindings = FlaxBindingModule(
             nullable: true,
             deferredFactories: {
               "resolveWith": FlaxDeferredFactoryBinding(
-                "object:flax.core/flutter#type:WidgetStateProperty<object?:flax.core/flutter#type:MouseCursor>",
+                "object:flax.core/flutter#type:WidgetStateProperty<Object?><object?:flax.core/flutter#type:MouseCursor>",
                 [
                   FlaxParameter(
                     "callback",
@@ -1202,7 +1202,7 @@ const materialBindings = FlaxBindingModule(
                 nullable: true,
                 deferredFactories: {
                   "resolveWith": FlaxDeferredFactoryBinding(
-                    "object:flax.core/flutter#type:WidgetStateProperty<object?:flax.core/flutter#type:Color>",
+                    "object:flax.core/flutter#type:WidgetStateProperty<Object?><object?:flax.core/flutter#type:Color>",
                     [
                       FlaxParameter(
                         "callback",
@@ -1272,7 +1272,7 @@ const materialBindings = FlaxBindingModule(
                 nullable: true,
                 deferredFactories: {
                   "resolveWith": FlaxDeferredFactoryBinding(
-                    "object:flax.core/flutter#type:WidgetStateProperty<double?:>",
+                    "object:flax.core/flutter#type:WidgetStateProperty<Object?><double?:>",
                     [
                       FlaxParameter(
                         "callback",
@@ -1338,7 +1338,7 @@ const materialBindings = FlaxBindingModule(
                 nullable: true,
                 deferredFactories: {
                   "resolveWith": FlaxDeferredFactoryBinding(
-                    "object:flax.core/flutter#type:WidgetStateProperty<object?:flax.core/flutter#type:Color>",
+                    "object:flax.core/flutter#type:WidgetStateProperty<Object?><object?:flax.core/flutter#type:Color>",
                     [
                       FlaxParameter(
                         "callback",
@@ -1408,7 +1408,7 @@ const materialBindings = FlaxBindingModule(
                 nullable: true,
                 deferredFactories: {
                   "resolveWith": FlaxDeferredFactoryBinding(
-                    "object:flax.core/flutter#type:WidgetStateProperty<object?:flax.core/flutter#type:MouseCursor>",
+                    "object:flax.core/flutter#type:WidgetStateProperty<Object?><object?:flax.core/flutter#type:MouseCursor>",
                     [
                       FlaxParameter(
                         "callback",
@@ -1478,7 +1478,7 @@ const materialBindings = FlaxBindingModule(
                 nullable: true,
                 deferredFactories: {
                   "resolveWith": FlaxDeferredFactoryBinding(
-                    "object:flax.core/flutter#type:WidgetStateProperty<object?:flax.core/flutter#type:Color>",
+                    "object:flax.core/flutter#type:WidgetStateProperty<Object?><object?:flax.core/flutter#type:Color>",
                     [
                       FlaxParameter(
                         "callback",
@@ -1548,7 +1548,7 @@ const materialBindings = FlaxBindingModule(
                 nullable: true,
                 deferredFactories: {
                   "resolveWith": FlaxDeferredFactoryBinding(
-                    "object:flax.core/flutter#type:WidgetStateProperty<object?:flax.core/flutter#type:OutlinedBorder>",
+                    "object:flax.core/flutter#type:WidgetStateProperty<Object?><object?:flax.core/flutter#type:OutlinedBorder>",
                     [
                       FlaxParameter(
                         "callback",
@@ -1637,7 +1637,7 @@ const materialBindings = FlaxBindingModule(
               nullable: true,
               deferredFactories: {
                 "resolveWith": FlaxDeferredFactoryBinding(
-                  "object:flax.core/flutter#type:WidgetStateProperty<object?:flax.core/flutter#type:Color>",
+                  "object:flax.core/flutter#type:WidgetStateProperty<Object?><object?:flax.core/flutter#type:Color>",
                   [
                     FlaxParameter(
                       "callback",
@@ -1707,7 +1707,7 @@ const materialBindings = FlaxBindingModule(
               nullable: true,
               deferredFactories: {
                 "resolveWith": FlaxDeferredFactoryBinding(
-                  "object:flax.core/flutter#type:WidgetStateProperty<object?:flax.core/flutter#type:Color>",
+                  "object:flax.core/flutter#type:WidgetStateProperty<Object?><object?:flax.core/flutter#type:Color>",
                   [
                     FlaxParameter(
                       "callback",
@@ -1777,7 +1777,7 @@ const materialBindings = FlaxBindingModule(
               nullable: true,
               deferredFactories: {
                 "resolveWith": FlaxDeferredFactoryBinding(
-                  "object:flax.core/flutter#type:WidgetStateProperty<object?:flax.core/flutter#type:Color>",
+                  "object:flax.core/flutter#type:WidgetStateProperty<Object?><object?:flax.core/flutter#type:Color>",
                   [
                     FlaxParameter(
                       "callback",
@@ -1847,7 +1847,7 @@ const materialBindings = FlaxBindingModule(
               nullable: true,
               deferredFactories: {
                 "resolveWith": FlaxDeferredFactoryBinding(
-                  "object:flax.core/flutter#type:WidgetStateProperty<double?:>",
+                  "object:flax.core/flutter#type:WidgetStateProperty<Object?><double?:>",
                   [
                     FlaxParameter(
                       "callback",
@@ -1913,7 +1913,7 @@ const materialBindings = FlaxBindingModule(
               nullable: true,
               deferredFactories: {
                 "resolveWith": FlaxDeferredFactoryBinding(
-                  "object:flax.core/flutter#type:WidgetStateProperty<object?:flax.core/flutter#type:OutlinedBorder>",
+                  "object:flax.core/flutter#type:WidgetStateProperty<Object?><object?:flax.core/flutter#type:OutlinedBorder>",
                   [
                     FlaxParameter(
                       "callback",
@@ -1983,7 +1983,7 @@ const materialBindings = FlaxBindingModule(
               nullable: true,
               deferredFactories: {
                 "resolveWith": FlaxDeferredFactoryBinding(
-                  "object:flax.core/flutter#type:WidgetStateProperty<object?:flax.core/flutter#type:MouseCursor>",
+                  "object:flax.core/flutter#type:WidgetStateProperty<Object?><object?:flax.core/flutter#type:MouseCursor>",
                   [
                     FlaxParameter(
                       "callback",
@@ -5537,7 +5537,7 @@ const materialBindings = FlaxBindingModule(
               nullable: true,
               deferredFactories: {
                 "resolveWith": FlaxDeferredFactoryBinding(
-                  "object:flax.core/flutter#type:WidgetStateProperty<object?:flax.core/flutter#type:Color>",
+                  "object:flax.core/flutter#type:WidgetStateProperty<Object?><object?:flax.core/flutter#type:Color>",
                   [
                     FlaxParameter(
                       "callback",
@@ -5618,7 +5618,7 @@ const materialBindings = FlaxBindingModule(
               nullable: true,
               deferredFactories: {
                 "resolveWith": FlaxDeferredFactoryBinding(
-                  "object:flax.core/flutter#type:WidgetStateProperty<object?:flax.core/flutter#type:Color>",
+                  "object:flax.core/flutter#type:WidgetStateProperty<Object?><object?:flax.core/flutter#type:Color>",
                   [
                     FlaxParameter(
                       "callback",
@@ -6207,8 +6207,9 @@ const materialBindings = FlaxBindingModule(
     ),
   ],
   moduleId: "flax.material/material",
-  uiProtocol: 20,
+  uiProtocol: 21,
   requiredCapabilities: const <String>[],
+  stateVariants: [],
 );
 Object? _function_showDialog(Map<String, Object?> values) {
   return api.showDialog<Object?>(
@@ -6517,9 +6518,8 @@ Object _createVisualDensity(String ctor, Map<String, Object?> values) {
 class _AppBarHost extends FlaxWidgetHost implements api1.PreferredSizeWidget {
   _AppBarHost(super.node);
   @override
-  _flaxNative7.Size get preferredSize =>
-      (configuration as _flaxNative7.PreferredSizeWidget).preferredSize;
-
+  _flaxNative8.Size get preferredSize =>
+      (configuration as _flaxNative8.PreferredSizeWidget).preferredSize;
   @override
   api1.Widget buildNative(Map<String, Object?> values) =>
       _createAppBar(node.ctor, values);

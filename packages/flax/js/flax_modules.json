@@ -16,7 +16,7 @@
       "bindings": [
         {
           "moduleId": "flax.core/flutter",
-          "uiProtocol": 20,
+          "uiProtocol": 21,
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -162,6 +162,7 @@
             "flax.core/flutter#type:TextRange",
             "flax.core/flutter#type:TextSelection",
             "flax.core/flutter#type:TextStyle",
+            "flax.core/flutter#type:TickerProvider",
             "flax.core/flutter#type:UnfocusDisposition",
             "flax.core/flutter#type:Uri",
             "flax.core/flutter#type:ValueKey",
@@ -190,7 +191,7 @@
       "bindings": [
         {
           "moduleId": "flax.core/flutter",
-          "uiProtocol": 20,
+          "uiProtocol": 21,
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -336,6 +337,7 @@
             "flax.core/flutter#type:TextRange",
             "flax.core/flutter#type:TextSelection",
             "flax.core/flutter#type:TextStyle",
+            "flax.core/flutter#type:TickerProvider",
             "flax.core/flutter#type:UnfocusDisposition",
             "flax.core/flutter#type:Uri",
             "flax.core/flutter#type:ValueKey",
@@ -364,7 +366,7 @@
       "bindings": [
         {
           "moduleId": "flax.core/flutter",
-          "uiProtocol": 20,
+          "uiProtocol": 21,
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -510,6 +512,7 @@
             "flax.core/flutter#type:TextRange",
             "flax.core/flutter#type:TextSelection",
             "flax.core/flutter#type:TextStyle",
+            "flax.core/flutter#type:TickerProvider",
             "flax.core/flutter#type:UnfocusDisposition",
             "flax.core/flutter#type:Uri",
             "flax.core/flutter#type:ValueKey",
@@ -538,7 +541,7 @@
       "bindings": [
         {
           "moduleId": "flax.core/flutter",
-          "uiProtocol": 20,
+          "uiProtocol": 21,
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -684,6 +687,7 @@
             "flax.core/flutter#type:TextRange",
             "flax.core/flutter#type:TextSelection",
             "flax.core/flutter#type:TextStyle",
+            "flax.core/flutter#type:TickerProvider",
             "flax.core/flutter#type:UnfocusDisposition",
             "flax.core/flutter#type:Uri",
             "flax.core/flutter#type:ValueKey",
@@ -712,7 +716,7 @@
       "bindings": [
         {
           "moduleId": "flax.core/flutter",
-          "uiProtocol": 20,
+          "uiProtocol": 21,
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -858,6 +862,7 @@
             "flax.core/flutter#type:TextRange",
             "flax.core/flutter#type:TextSelection",
             "flax.core/flutter#type:TextStyle",
+            "flax.core/flutter#type:TickerProvider",
             "flax.core/flutter#type:UnfocusDisposition",
             "flax.core/flutter#type:Uri",
             "flax.core/flutter#type:ValueKey",
@@ -886,7 +891,7 @@
       "bindings": [
         {
           "moduleId": "flax.core/flutter",
-          "uiProtocol": 20,
+          "uiProtocol": 21,
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -1032,6 +1037,7 @@
             "flax.core/flutter#type:TextRange",
             "flax.core/flutter#type:TextSelection",
             "flax.core/flutter#type:TextStyle",
+            "flax.core/flutter#type:TickerProvider",
             "flax.core/flutter#type:UnfocusDisposition",
             "flax.core/flutter#type:Uri",
             "flax.core/flutter#type:ValueKey",
@@ -1060,7 +1066,7 @@
       "bindings": [
         {
           "moduleId": "flax.core/flutter",
-          "uiProtocol": 20,
+          "uiProtocol": 21,
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -1206,6 +1212,7 @@
             "flax.core/flutter#type:TextRange",
             "flax.core/flutter#type:TextSelection",
             "flax.core/flutter#type:TextStyle",
+            "flax.core/flutter#type:TickerProvider",
             "flax.core/flutter#type:UnfocusDisposition",
             "flax.core/flutter#type:Uri",
             "flax.core/flutter#type:ValueKey",
@@ -1234,7 +1241,7 @@
       "bindings": [
         {
           "moduleId": "flax.core/flutter",
-          "uiProtocol": 20,
+          "uiProtocol": 21,
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -1380,6 +1387,7 @@
             "flax.core/flutter#type:TextRange",
             "flax.core/flutter#type:TextSelection",
             "flax.core/flutter#type:TextStyle",
+            "flax.core/flutter#type:TickerProvider",
             "flax.core/flutter#type:UnfocusDisposition",
             "flax.core/flutter#type:Uri",
             "flax.core/flutter#type:ValueKey",
@@ -1408,8 +1416,17 @@
       "helperSubpaths": ["_bindings/components.__module"],
       "bindings": [
         {
+          "moduleId": "flax.core/components",
+          "uiProtocol": 21,
+          "types": [
+            "flax.core/components#type:State",
+            "flax.core/components#type:StatefulWidget"
+          ],
+          "functions": []
+        },
+        {
           "moduleId": "flax.core/flutter",
-          "uiProtocol": 20,
+          "uiProtocol": 21,
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -1555,6 +1572,7 @@
             "flax.core/flutter#type:TextRange",
             "flax.core/flutter#type:TextSelection",
             "flax.core/flutter#type:TextStyle",
+            "flax.core/flutter#type:TickerProvider",
             "flax.core/flutter#type:UnfocusDisposition",
             "flax.core/flutter#type:Uri",
             "flax.core/flutter#type:ValueKey",

@@ -46,19 +46,22 @@ void main() {
     return element;
   }
 
-  test('proxy proposal ignores inaccessible inherited private methods', () async {
-    final parser = FlaxCodegenBindingParser(repoRoot);
-    addTearDown(parser.dispose);
-    final config = fixture('private_proxy_child.dart', const {});
-    final proposed = await parser.proposeSelection(
-      await loadType(config.library, 'PrivateInheritedChild'),
-      library: config,
-    );
+  test(
+    'proxy proposal ignores inaccessible inherited private methods',
+    () async {
+      final parser = FlaxCodegenBindingParser(repoRoot);
+      addTearDown(parser.dispose);
+      final config = fixture('private_proxy_child.dart', const {});
+      final proposed = await parser.proposeSelection(
+        await loadType(config.library, 'PrivateInheritedChild'),
+        library: config,
+      );
 
-    expect(proposed.selection, isNotNull);
-    expect(proposed.selection!.proxy, 'extends');
-    expect(proposed.selection!.getters, contains('value'));
-  });
+      expect(proposed.selection, isNotNull);
+      expect(proposed.selection!.proxy, 'extends');
+      expect(proposed.selection!.getters, contains('value'));
+    },
+  );
 
   test('automatic library proposal covers ordinary declarations and Widget overlays', () async {
     final parser = FlaxCodegenBindingParser(repoRoot);
@@ -91,32 +94,26 @@ void main() {
     expect(config.types, contains('AutoMode'));
     expect(config.typedefs, contains('LabelBuilder'));
     expect(config.functions.keys, contains('autoGreeting'));
-    expect(config.classes['AutoStore']!.typeArguments, ['String']);
-    expect(config.classes, isNot(contains('ConflictedStore')));
-    expect(config.classes, isNot(contains('ConflictedStoreUser')));
+    expect(config.classes['AutoStore']!.typeArguments, isEmpty);
+    expect(config.classes, contains('ConflictedStore'));
+    expect(config.classes, contains('ConflictedStoreUser'));
+    expect(config.classes['ConflictedStore']!.typeArguments, isEmpty);
     final autoProperty = config.classes['AutoProperty']!;
     expect(autoProperty.typeArguments, isEmpty);
     expect(autoProperty.instanceMethods['resolve'], isEmpty);
     expect(autoProperty.methods['resolveWith'], ['callback']);
-    expect(autoProperty.deferredFactories, ['resolveWith']);
     expect(config.classes, contains('AutoPropertyConsumer'));
     expect(config.classes, isNot(contains('AutoInvalidDeferred')));
     expect(
       proposal.skips
           .where((skip) => skip.target == 'AutoInvalidDeferred')
           .map((skip) => skip.reason),
-      contains(contains('Explicit runtime type arguments required')),
+      contains('No bindable members'),
     );
     expect(config.classes, isNot(contains('AutoSet')));
     expect(
       proposal.skips.where((skip) => skip.target == 'AutoSet').single.reason,
       contains('Custom core collection subclasses'),
-    );
-    expect(
-      proposal.skips
-          .where((skip) => skip.target == 'ConflictedStore')
-          .map((skip) => skip.reason),
-      contains(contains('Explicit runtime type arguments required')),
     );
     expect(config.topLevel!.getters, containsAll(['autoLimit', 'autoMutable']));
     expect(config.topLevel!.setters, contains('autoMutable'));
@@ -125,9 +122,7 @@ void main() {
       config.classes['AutoTile']!.widgetInterfaces,
       contains('AutoPreferred'),
     );
-    expect(config.classes['AutoList']?.independentWidgetCallbacks, isEmpty);
     final callbackShapes = config.classes['AutoCallbackShapes']!;
-    expect(callbackShapes.independentWidgetCallbacks, isEmpty);
     expect(
       callbackShapes.constructors[''],
       containsAll([
@@ -189,7 +184,7 @@ void main() {
     final autoPropertyModel = module.classes.singleWhere(
       (type) => type.name == 'AutoProperty',
     );
-    expect(autoPropertyModel.typeArguments, isEmpty);
+    expect(autoPropertyModel.typeArguments, ['Object?']);
     expect(
       autoPropertyModel.methods
           .singleWhere((method) => method.name == 'resolveWith')
@@ -204,6 +199,19 @@ void main() {
           ?.kind,
       'parameter',
     );
+    final conflictedStore = module.classes.singleWhere(
+      (type) => type.name == 'ConflictedStore',
+    );
+    expect(conflictedStore.typeArguments, ['Object?']);
+    final specializations = conflictedStore.constructors.single.specializations;
+    expect(
+      specializations.map((value) => value.typeArguments.single),
+      unorderedEquals(['String', 'int']),
+    );
+    expect(
+      specializations.map((value) => value.runtimeDomains['value']),
+      unorderedEquals(['string', 'number']),
+    );
     expect(module.functions.single.call.name, 'autoGreeting');
     expect(module.typedefs.single.name, 'LabelBuilder');
     expect(
@@ -217,7 +225,7 @@ void main() {
       autoList.constructors.single.parameters
           .singleWhere((parameter) => parameter.name == 'itemBuilder')
           .independentWidgetResult,
-      isFalse,
+      isTrue,
     );
     final callbackShapeModel = module.classes.singleWhere(
       (type) => type.name == 'AutoCallbackShapes',
@@ -236,7 +244,7 @@ void main() {
     ]) {
       expect(
         callbackShapeParams[name]!.independentWidgetResult,
-        isFalse,
+        isTrue,
         reason: name,
       );
     }
@@ -268,48 +276,6 @@ void main() {
     expect(objectBuilder.type.result!.kind, 'widget');
     expect(objectBuilder.independentWidgetResult, isFalse);
   });
-
-  test(
-    'legacy independent Widget metadata does not require BuildContext',
-    () async {
-      final parser = FlaxCodegenBindingParser(repoRoot);
-      addTearDown(parser.dispose);
-      final source = fixture('auto_library.dart', const {});
-      final module = await parser.parse(
-        FlaxCodegenBindingConfig(
-          'legacy-independent-widget',
-          source.library,
-          '@example/legacy-independent-widget',
-          'unused.dart',
-          'unused.ts',
-          const {
-            'AutoCallbackShapes': FlaxCodegenClassSelection(
-              {
-                '': [
-                  'emptyBuilder',
-                  'indexBuilder',
-                  'nullableBuilder',
-                  'contextBuilder',
-                  'childrenBuilder',
-                  'indexChildrenBuilder',
-                ],
-              },
-              independentWidgetCallbacks: {
-                '': ['emptyBuilder'],
-              },
-            ),
-          },
-          additionalLibraries: const ['package:flutter/widgets.dart'],
-        ),
-      );
-      final builder = module.classes.single.constructors.single.parameters
-          .singleWhere((parameter) => parameter.name == 'emptyBuilder');
-      expect(builder.name, 'emptyBuilder');
-      expect(builder.type.parameters, isEmpty);
-      expect(builder.type.result!.kind, 'widget');
-      expect(builder.independentWidgetResult, isTrue);
-    },
-  );
 
   test(
     'excluded types do not return through automatic dependency closure',
@@ -533,7 +499,7 @@ void main() {
     final incompatible = await parser.proposeSelection(
       element,
       library: config,
-      base: const FlaxCodegenClassSelection({}, genericScalar: true),
+      base: const FlaxCodegenClassSelection({}, kind: 'page'),
     );
     expect(
       incompatible.skips.single.reason,
@@ -588,39 +554,50 @@ void main() {
     },
   );
 
-  test('defaults unconstrained generics to Object?', () async {
-    final parser = FlaxCodegenBindingParser(repoRoot);
-    addTearDown(parser.dispose);
-    final config = fixture('objects.dart', const {});
-    final proposed = await parser.proposeSelection(
-      await loadType(config.library, 'Box'),
-      library: config,
-    );
-    expect(proposed.selection!.typeArguments, ['Object?']);
-    expect(proposed.selection!.constructors[''], ['value']);
-
-    final parsed = await parser.parse(
-      fixture('objects.dart', {'Box': proposed.selection!}),
-    );
-    expect(parsed.classes.single.typeArguments, ['Object?']);
-
-    await expectLater(
-      parser.parse(
-        fixture('objects.dart', {
-          'Box': const FlaxCodegenClassSelection({
-            '': ['value'],
-          }, kind: 'object'),
-        }),
-      ),
-      throwsA(
-        isA<StateError>().having(
-          (error) => error.message,
-          'message',
-          contains('Explicit runtime type arguments required'),
+  test(
+    'infers a shared owner without guessing a generic constructor',
+    () async {
+      final parser = FlaxCodegenBindingParser(repoRoot);
+      addTearDown(parser.dispose);
+      final config = fixture('objects.dart', const {});
+      final proposed = await parser.proposeSelection(
+        await loadType(config.library, 'Box'),
+        library: config,
+      );
+      expect(proposed.selection, isNotNull);
+      expect(proposed.selection!.typeArguments, isEmpty);
+      expect(proposed.selection!.constructors, isEmpty);
+      expect(proposed.selection!.getters, ['value']);
+      expect(
+        proposed.skips
+            .where((skip) => skip.target == 'Box.')
+            .map((skip) => skip.reason),
+        contains(
+          'Generic constructor specialization needs a concrete use-site',
         ),
-      ),
-    );
-  });
+      );
+
+      final parsed = await parser.parse(
+        fixture('objects.dart', {'Box': proposed.selection!}),
+      );
+      expect(parsed.classes.single.typeArguments, ['Object?']);
+      expect(parsed.classes.single.constructors, isEmpty);
+
+      final explicit = await parser.parse(
+        fixture('objects.dart', {
+          'Box': const FlaxCodegenClassSelection(
+            {
+              '': ['value'],
+            },
+            kind: 'object',
+            typeArguments: ['String'],
+          ),
+        }),
+      );
+      expect(explicit.classes.single.typeArguments, ['String']);
+      expect(explicit.classes.single.constructors.single.name, isEmpty);
+    },
+  );
 
   test('caps omitWhenAbsent parameters per constructor', () async {
     final parser = FlaxCodegenBindingParser(repoRoot);
@@ -1155,24 +1132,6 @@ void main() {
       expect(inherited.proxyCapability, FlaxCodegenProxyCapability.canExtend);
       expect(inherited.selection!.proxy, 'extends');
 
-      const host = FlaxCodegenClassSelection(
-        {},
-        kind: 'object',
-        proxy: 'host',
-        proxyOverrides: ['attach'],
-        proxySuper: ['attach'],
-      );
-      final explicitHost = await parser.proposeSelection(
-        processor,
-        library: lifecycleConfig,
-        base: host,
-      );
-      expect(explicitHost.selection, same(host));
-      expect(
-        explicitHost.skips.map((skip) => skip.reason),
-        contains('Overlay selections stay YAML-only'),
-      );
-
       final widgetConfig = fixture('widget_probe.dart', const {});
       final widget = await parser.proposeSelection(
         await loadType(widgetConfig.library, 'ProbeBox'),
@@ -1204,6 +1163,81 @@ void main() {
       expect(proposed.selection != null || proposed.skips.isNotEmpty, isTrue);
     }
   });
+
+  test(
+    'Flutter generic proposals separate shared owners from constructors',
+    () async {
+      final core = FlaxCodegenBindingConfig.read(
+        p.join(repoRoot, 'packages/flax/bindings/config.yaml'),
+      );
+
+      Future<
+        ({FlaxCodegenProposedBinding proposal, FlaxCodegenModuleModel? module})
+      >
+      inspect(String name, {required bool parse}) async {
+        final parser = FlaxCodegenBindingParser(repoRoot);
+        addTearDown(parser.dispose);
+        await parser.prepare([core]);
+        final proposal = await parser.proposeSelection(
+          await loadType('package:flutter/widgets.dart', name),
+          library: core,
+        );
+        if (!parse) return (proposal: proposal, module: null);
+        final module = await parser.parse(
+          FlaxCodegenBindingConfig(
+            'generic_$name',
+            core.library,
+            '@example/generic',
+            'unused.dart',
+            'unused.ts',
+            {name: proposal.selection!},
+            additionalLibraries: core.additionalLibraries,
+            imports: core.imports,
+            publicLibraries: core.publicLibraries,
+          ),
+        );
+        return (proposal: proposal, module: module);
+      }
+
+      final restorable = await inspect('RestorableChangeNotifier', parse: true);
+      expect(restorable.proposal.selection, isNotNull);
+      expect(restorable.proposal.selection!.constructors, isEmpty);
+      expect(
+        restorable.proposal.skips.map((skip) => skip.code),
+        contains('constructor_specialization_missing_use_site'),
+      );
+      expect(
+        restorable.module!.classes
+            .singleWhere((type) => type.name == 'RestorableChangeNotifier')
+            .typeArguments,
+        ['ChangeNotifier'],
+      );
+
+      final observer = await inspect('RouteObserver', parse: true);
+      expect(observer.proposal.selection, isNotNull);
+      expect(observer.proposal.selection!.constructors, isEmpty);
+      expect(
+        observer.proposal.skips.map((skip) => skip.code),
+        contains('constructor_specialization_missing_use_site'),
+      );
+      expect(
+        observer.module!.classes
+            .singleWhere((type) => type.name == 'RouteObserver')
+            .typeArguments,
+        ['Route<dynamic>'],
+      );
+
+      for (final name in ['FutureBuilder', 'AnnotatedRegion']) {
+        final result = await inspect(name, parse: false);
+        expect(result.proposal.selection, isNull, reason: name);
+        expect(
+          result.proposal.skips.map((skip) => skip.code),
+          contains('constructor_specialization_missing_use_site'),
+          reason: name,
+        );
+      }
+    },
+  );
 }
 
 String _repoRoot() {

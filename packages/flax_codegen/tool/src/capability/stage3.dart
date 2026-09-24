@@ -1275,9 +1275,6 @@ Set<String> _classReferencedTypeIds(FlaxCodegenClassModel value) {
   for (final type in value.widgetInterfaces) {
     _collectTypeRefIds(type, ids);
   }
-  for (final getter in value.widgetGetters) {
-    _collectTypeRefIds(getter.type, ids);
-  }
   final callbacks = value.proxy?.callbacks;
   if (callbacks != null) {
     for (final (_, callback) in callbacks) {

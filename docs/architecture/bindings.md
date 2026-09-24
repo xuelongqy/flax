@@ -3,14 +3,14 @@
 Automatic library discovery is available through
 `dart run flax_codegen generate --library package:foo/foo.dart`; see the
 [codegen usage guide](../../packages/flax_codegen/README.md) and
-[ADR 0033](../decisions/0033-automatic-public-library-bindings.md). It reuses the binding
-contracts below, skips unsupported declarations, and accepts optional overrides for
-binding semantics that cannot be inferred safely. Explicit configuration remains
+[ADR 0033](../decisions/0033-automatic-public-library-bindings.md). It reuses the
+binding contracts below, skips unsupported declarations, and accepts optional overrides
+for binding semantics that cannot be inferred safely. Explicit configuration remains
 fail-closed.
 
 The analyzer-based generator resolves selected public APIs and emits Dart calls,
 TypeScript declarations and shared parameter metadata. Configuration, parsing/model and
-emission remain separate. UI protocol 20 reuses the unchanged native C ABI (ABI 2).
+emission remain separate. UI protocol 21 reuses the unchanged native C ABI (ABI 2).
 
 The `FlaxCodegen*Model` graph produced by parsing is the semantic IR between analyzer
 resolution and emission. It carries resolved types, generics, inheritance, Widget and
@@ -48,23 +48,13 @@ dart run flax_codegen check --config <direct-yaml>
 dart run flax_codegen generate --config <direct-yaml>
 ```
 
-Official selection files carry `format: 1` and live as direct children of package
-`bindings/`. Packages with `bindings` capability set `bindingNamespace` in
-`flax_package.yaml`. Generated `bindings/manifest.json` uses Manifest
-`formatVersion: 11`. Strict readers also accept Manifest 2 without aliases, Manifest 3
-with basic aliases, Manifest 4 with generic aliases, Manifest 5 with readonly namespace
-exports, Manifest 6 with public-library routing, Manifest 7 with Records, and Manifest 8
-with native Widget interface members. Manifest 9 adds extension adapters; Manifest 10
-adds mutable top-level reads and setters. Manifest 11 adds bound-only references;
-versions 2 through 10 reject these references. Formats before 5 reject top-level
-readonly declarations; formats before 6 reject public-library routing and named
-top-level exports; formats before 7 reject structural Record fields, formats before 8
-reject native Widget member metadata, formats before 9 reject extensions, and formats
-before 10 reject setters and mutable getter classification. Legacy restrictions are
-checked before normalization; Manifest 1 and unknown versions remain rejected. See
-[ADR 0028](../decisions/0028-record-bindings.md), the
-[external binding migration guide](../guides/external-binding-migration.md) and the
-[compatibility matrix](external-binding-compatibility.md).
+Official selection files carry `format: 2` and live as direct children of package
+`bindings/`. Packages with `bindings` capability keep package metadata format 1 and set
+`bindingNamespace` in `flax_package.yaml`. Generated `bindings/manifest.json` uses
+Manifest `formatVersion: 12`; the reader accepts format 12 only. The generator has no
+reader or normalization path for other binding selection or Manifest formats. See
+[ADR 0035](../decisions/0035-generic-state-variants-and-protocol-21.md) and
+[External Binding Verification](external-binding-verification.md).
 
 Include dependency modules to share declaration ownership. Input order does not change
 adaptation identity.
@@ -86,7 +76,7 @@ publicLibraries:
     tsOutput: js/src/dart/generated/libraries/core/index.ts
 ```
 
-The optional format-1 `topLevel` selection chooses public reads and writes:
+The optional format-2 `topLevel` selection chooses public reads and writes:
 
 ```yaml
 topLevel:
@@ -128,15 +118,13 @@ create no implicit reactive subscriptions or cross-session reference cache. Clos
 existing call, reference and pending-delivery cleanup; it does not dispose
 application-owned values.
 
-Manifest 10 stores public-library routing plus each readonly declaration's source,
+Manifest 12 stores public-library routing plus each readonly declaration's source,
 public export, return type, declaration kind, optional literal and ownership/reference
 status. Source kind `readonly` maps to a stable
 `<bindingNamespace>/<module>#read:<name>` operation. Existing type and function IDs are
 unchanged. A public reexport of a provider-owned read forwards to the provider's public
 module without registering another Dart entry. Consumers use public libraries and
-manifests and cannot enlarge or change the provider's declaration. Manifest 5 namespace
-exports remain readable for dependency compatibility but are not written by the current
-generator.
+manifests and cannot enlarge or change the provider's declaration.
 
 Core exposes `getKIsWeb()` and `getDefaultTargetPlatform()` from
 `@flax/flutter/foundation`, with `TargetPlatform`. Material exposes direct
@@ -148,7 +136,7 @@ synchronous, propagate Dart exceptions and return void; the next read observes c
 Dart state. Top-level state belongs to the Dart application and can be shared across
 sessions; closing a session does not roll back writes. Source identity uses the function
 operation `name=` (wire suffix `#function:name%3D`), leaving existing getter/read IDs
-unchanged. Manifest 10 adds `topLevel.setters`; formats 2 through 9 reject that field.
+unchanged. Manifest 12 records `topLevel.setters` and their independent operation IDs.
 Provider read and write surfaces are checked separately and cannot be widened by
 consumers. Writes reuse ordinary input conversion and existing session cleanup without
 new ownership rules. See
@@ -160,7 +148,7 @@ new ownership rules. See
 ## Literal module tuple and registration
 
 Generated Dart and JavaScript modules carry literal `moduleId`, `uiProtocol` and
-`requiredCapabilities` values. The active UI protocol is 20 and native ABI is 2.
+`requiredCapabilities` values. The active UI protocol is 21 and native ABI is 2.
 `uiProtocol` is the required field for module compatibility; there is no parallel
 `version` field or ambient Core fallback.
 
@@ -236,15 +224,13 @@ recursively through supported collection, Record and callback positions under pr
 20; nested completion values retain their own declared async semantics. Asynchronous
 lifecycle/build callbacks and Map callback keys remain unsupported. Direct non-null
 `List<Widget>` callback parameters and results are supported; nullable-element lists and
-other Widget collection shapes remain fail-closed.
-Dart Stream references can appear in
+other Widget collection shapes remain fail-closed. Dart Stream references can appear in
 parameters, results, callbacks and typed collections, including nested ordinary value
-shapes; they follow
-[ADR 0020](../decisions/0020-ui-protocol-20.md). The JS interop handle is
-`FlaxStreamReference` (not a `Dart*` alias and not Web `ReadableStream`). Generated
-Flutter bindings expose the selected dart:async Stream family and call real Dart
-operators. Widget builders and Route factories stay synchronous and retain their Flutter
-lifecycle-specific ownership.
+shapes; they follow [ADR 0020](../decisions/0020-complete-dart-stream-interop.md). The
+JS interop handle is `FlaxStreamReference` (not a `Dart*` alias and not Web
+`ReadableStream`). Generated Flutter bindings expose the selected dart:async Stream
+family and call real Dart operators. Widget builders and Route factories stay
+synchronous and retain their Flutter lifecycle-specific ownership.
 
 ## Example object selection
 
@@ -277,15 +263,16 @@ classes:
 ```
 
 Explicit configuration may name any selected synchronous zero-argument void disposal
-method. Automatic public-library binding also recognizes the conventional `void
-dispose()` method, including an inherited one. Listener pairs select one non-null
+method. Automatic public-library binding also recognizes the conventional
+`void dispose()` method, including an inherited one. Listener pairs select one non-null
 VoidCallback argument on each method. These annotations identify API semantics; they do
 not impose application disposal policy or cause session/widget cleanup to dispose the
-object. See [object lifetime](objects.md) and [ADR 0034](../decisions/0034-flutter-application-semantics.md).
+object. See [object lifetime](objects.md) and
+[ADR 0034](../decisions/0034-flutter-application-semantics.md).
 
 ## Standalone typedefs
 
-Add public aliases to the optional format-1 `typedefs` list:
+Add public aliases to the optional format-2 `typedefs` list:
 
 ```yaml
 typedefs: [ValueChanged, ValueGetter, Mapper, Items, GenericMapper, Converter]
@@ -305,7 +292,7 @@ on the outer one. Defaults, nullability, alias-chain substitution, nested captur
 shadowing use the existing declaration identities. Explicit TS arguments are supported
 without promising identical Dart inference or supplying Dart runtime type tokens.
 
-Manifest 10 stores each alias's public name, originating URI/name, `typeParameters` and
+Manifest 12 stores each alias's public name, originating URI/name, `typeParameters` and
 target type. Even non-generic aliases require an empty `typeParameters` array. Lexical
 slots preserve parameter identity across dependency projections. Bounds and defaults, as
 well as targets, participate in dependency imports and nominal ownership checks.
@@ -314,8 +301,7 @@ Re-exports deduplicate by originating declaration; conflicting public names, gen
 `NameInput` collisions and unsupported targets fail generation. Generic callback erasure
 still rejects recursive, unbound or nonconvertible bounds. Callback shapes that would
 require concrete runtime specialization are intentionally deferred; ordinary higher-rank
-callbacks with erasable bounds remain supported. Mixin composition remains separate
-work.
+callbacks with erasable bounds remain supported.
 
 Record types are emitted as readonly structural TypeScript objects. Positional fields
 use `$1`, `$2`, and so on in source order; named fields are canonicalized by name for
@@ -324,23 +310,22 @@ the existing TypeRef conversion. JS-to-Dart conversion requires every declared f
 ignores extra properties, validates field nullability independently from whole-Record
 nullability, and reconstructs a real Dart Record. Records themselves have no wire ID,
 owner or session reference identity; provider-owned objects nested inside fields retain
-their normal identity. Manifest 7 is the first schema that carries Record fields, while
-strict readers 2 through 6 reject that shape.
+their normal identity. Manifest 12 carries the complete current Record shape.
 
-`typeArguments` and `methodTypeArguments` choose valid concrete Dart types. The analyzer
-checks bounds and inherited substitution. TS retains its generic variables and
-associated signatures, but those variables do not instantiate new Dart types. ValueKey
-uses the explicit String/int scalar specialization for Flutter key identity.
+Generic declarations use one shared Dart owner while TypeScript keeps the declared type
+parameters. An unconstrained owner uses `Object?`; a simple upper bound such as `num` is
+used when required. Existing Dart values such as `Box<String>` and `Box<int>` therefore
+share one owner without losing their TypeScript relationships.
 
-`proposeSelection` can infer one class or mixin specialization from concrete analyzer
-`InterfaceType` uses that a caller has already observed while walking selected
-signatures or dependencies. The use sites must all resolve to one complete,
-representable specialization; explicit `typeArguments` still take precedence.
-
-Whole-graph discovery and multiple specializations per declaration remain deferred.
-Conflicting or unresolved uses, nested generic runtime arguments, generic functions and
-methods, and generic Extension receiver specialization still require explicit handling
-or remain unsupported.
+Constructors are emitted only when selected direct inputs determine every class type
+parameter. Concrete targets normally come from Analyzer-observed use sites. For one
+direct scalar parameter, evidence for either `String` or `int` completes the pair when
+both satisfy the Dart bound; the runtime input remains restricted to strings and safe
+integers. Multiple targets must have disjoint bridge domains. Overlapping targets such
+as `num` and `int`, nested inference such as `List<T>`, unresolved type parameters,
+invalid bounds and runtime type-token requirements fail closed or leave the shared owner
+non-constructible. `typeArguments` and `methodTypeArguments` remain for concrete cases
+that cannot be inferred safely.
 
 An explicitly selected static generic factory is inferred as deferred when it is
 synchronous, returns its generic owner directly, the result determines every method type
@@ -356,9 +341,8 @@ classes:
       resolveWith: [callback]
 ```
 
-The legacy `deferredFactories: [resolveWith]` form remains accepted and is validated
-strictly, but it is not required for inferable factories. Automatic library binding uses
-the same analyzer predicate.
+Automatic library binding and explicit selections use the same analyzer predicate; no
+public deferred-factory marker is required.
 
 The generated JS call records the factory arguments without calling Dart. The complete
 generation pass finds concrete uses of the returned generic object, emits one direct
@@ -376,14 +360,14 @@ synchronous callbacks. Generic collections, Futures, Widgets, Routes, Contexts a
 lifecycle values remain generation errors. Generalized inference for those shapes, or
 for factories whose result does not determine every type parameter, is intentionally
 deferred. Full CLI generation requires at least one concrete selected use. Partial
-fixture emission can omit consumers so parser and emitter tests can inspect one module at
-a time.
+fixture emission can omit consumers so parser and emitter tests can inspect one module
+at a time.
 
 `proposeSelection` automatically recommends `proxy: implements` for eligible contract
 surfaces and `proxy: extends` when an ordinary class has reusable concrete behavior and
-a uniquely selectable generative constructor. The proposed selection contains that
-proxy and can be parsed directly. Explicit `proxy: extends` or `proxy: implements`
-overrides the recommendation and remains fail-closed. See
+a uniquely selectable generative constructor. The proposed selection contains that proxy
+and can be parsed directly. Explicit `proxy: extends` or `proxy: implements` overrides
+the recommendation and remains fail-closed. See
 [proxy limits](interop.md#generated-implementations). The independent
 Token/Store/Evaluator/Selector fixture exercises factories, generics, collections,
 parent construction and callbacks with names unrelated to Flutter widgets.
@@ -446,27 +430,34 @@ additional engine adapters remain separate work.
 
 Mounted Widget constructor callbacks with direct synchronous `Widget`, `Widget?` or
 `List<Widget>` results use [invocation ownership](lists.md) automatically, regardless of
-whether `BuildContext` appears in the callback parameters. The
-`independentWidgetCallbacks` selection field remains accepted as compatibility metadata;
-automatic discovery does not emit it.
+whether `BuildContext` appears in the callback parameters. No public lifecycle marker is
+required.
 
 Typed List elements and Map values may contain nested callbacks. The host adapts them
 per mount, and nested Widget results always use independent invocation ownership.
 Callback keys in Maps fail generation. Collection view identifiers include full nested
 conversion types and callback signatures; nullable containers share the non-null view.
 
-## Generated host overrides
+## Flutter State variants
 
-`packages/flax/bindings/components.yaml` selects an internal `proxy: host` surface for
-State. `proxyOverrides` selects concrete overrides; `proxySuper` selects direct parent
-calls. Abstract methods remain mandatory. Host proxies emit Dart mixins and typed TS
-lifecycle bases; their embedding host supplies ownership and synchronous dispatch. They
-do not register constructible Dart objects. Required-super annotations come from
-analyzer. Signatures are public, non-generic and required-positional; unsupported
-signatures, modifiers, duplicate/unknown choices and unselected parent calls fail
-generation. Ordinary extends/implements proxies keep their existing restricted API. An
-independent Processor fixture compiles both outputs and executes parent effects and
-return values.
+`packages/flax/bindings/components.yaml` selects the exact Flutter `State<T>`
+declaration with `kind: state`. Codegen derives the component lifecycle surface and
+emits a real Flutter State host. Other State-derived classes remain ordinary borrowed
+references.
+
+`proxyVariants` declares fixed Dart mixin compositions. YAML order is Dart `with` order;
+variants do not inherit variants. Short mixin names resolve by declaration identity, and
+an ambiguous name can include a public library URI. Analyzer validation covers private
+declarations, duplicate mixins, generic bounds, `on` constraints, abstract requirements,
+concrete members and final interfaces.
+
+Generated hosts compose the selected Flutter mixins and then apply `FlaxStateProxy` as
+the final mixin. Explicit JS `super` calls therefore enter the real Dart mixin chain.
+Variant-only dependency overlays can add a third-party host without claiming a second
+State owner. A JS component State can enter a Dart interface parameter only through its
+live mounted host and only when that variant implements the requested interface; the
+reference is session-bound and is revoked on disposal. See [components](components.md)
+and [ADR 0035](../decisions/0035-generic-state-variants-and-protocol-21.md).
 
 ## Widget interface configuration
 
@@ -521,7 +512,7 @@ must preserve the provider's selected signature and public export surface. See
 
 ## Bound-only type references
 
-Generic bounds may name interfaces without runtime bindings. Manifest 11 records their
+Generic bounds may name interfaces without runtime bindings. Manifest 12 records their
 source URI, declaration name and recursively scoped generic arguments as `typeOnly`.
 They never receive an owner, wire ID, reference handle or member selection. Ordinary
 parameters, results and runtime erasure still require convertible concrete types.

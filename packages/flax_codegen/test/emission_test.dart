@@ -20,7 +20,7 @@ void main() {
         );
         final dart = FlaxCodegenBindingEmitter([module]).dart(module);
         expect(dart, contains('moduleId: "com.acme.widgets/widgets"'));
-        expect(dart, contains('uiProtocol: 20'));
+        expect(dart, contains('uiProtocol: 21'));
         expect(dart, contains('requiredCapabilities: const <String>[]'));
         expect(dart, isNot(contains('version:')));
         expect(dart, isNot(contains('flaxBindingVersion')));
@@ -48,7 +48,7 @@ void main() {
         expect(
           typescript,
           contains(
-            '_flaxInstallBindingModule("com.acme.widgets/widgets", 20, Object.freeze([]) as readonly string[])',
+            '_flaxInstallBindingModule("com.acme.widgets/widgets", 21, Object.freeze([]) as readonly string[])',
           ),
         );
         expect(typescript, contains('export const widgetsBindingModule'));
@@ -70,14 +70,14 @@ void main() {
       final emitter = FlaxCodegenBindingEmitter([module]);
       final dart = emitter.dart(module);
       expect(dart, contains('moduleId: "example.host/host"'));
-      expect(dart, contains('uiProtocol: 20'));
+      expect(dart, contains('uiProtocol: 21'));
       expect(dart, contains('requiredCapabilities: const <String>[]'));
       expect(dart, isNot(contains('version:')));
       final typescript = emitter.typescript(module);
       expect(
         typescript,
         contains(
-          '_flaxInstallBindingModule("example.host/host", 20, Object.freeze([]) as readonly string[])',
+          '_flaxInstallBindingModule("example.host/host", 21, Object.freeze([]) as readonly string[])',
         ),
       );
       expect(typescript, contains('export const hostBindingModule'));
@@ -105,7 +105,7 @@ void main() {
       expect(
         typescript,
         contains(
-          '_flaxInstallBindingModule("example.host/host", 20, Object.freeze(["alpha","zeta"]) as readonly string[])',
+          '_flaxInstallBindingModule("example.host/host", 21, Object.freeze(["alpha","zeta"]) as readonly string[])',
         ),
       );
     });

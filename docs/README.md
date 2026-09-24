@@ -11,14 +11,14 @@ Start with the [project README](../README.md) for supported scope and setup, the
 | Runtime and engines                       | [Runtime](architecture/runtime.md)                                                                                                                         |
 | Generation and authoring                  | [Binding Generation](architecture/bindings.md), [author template](../packages/flax_codegen/docs/author-template.md)                                        |
 | Capability status and remaining gaps      | [Binding Coverage Map](architecture/binding-coverage-map.md)                                                                                               |
-| Migration and verification scope          | [Migration guide](guides/external-binding-migration.md), [compatibility matrix](architecture/external-binding-compatibility.md)                            |
+| External binding verification             | [Verification scope](architecture/external-binding-verification.md)                                                                                        |
 | Flutter lifecycle and application startup | [UI](architecture/ui.md), [applications](architecture/applications.md)                                                                                     |
 | Values and ownership                      | [Interop](architecture/interop.md), [objects](architecture/objects.md)                                                                                     |
 | Navigation and components                 | [Navigation](architecture/navigation.md), [components](architecture/components.md)                                                                         |
 | Optional services                         | [Host and Fetch](architecture/host.md), [WebSocket](architecture/websocket.md), [storage](architecture/local-storage.md), [Canvas](architecture/canvas.md) |
 
-Configuration format 1, Manifest writer 10 with strict readers 2/3/4/5/6/7/8/9/10, UI
-protocol 20 and native ABI 2 are separate domains. The supported runtime scope is
+Binding selection format 2, package metadata format 1, current-only Manifest 12, UI
+protocol 21 and native ABI 2 are separate domains. The supported runtime scope is
 experimental macOS arm64 Hermes and V8; broader API coverage and public distribution are
 unfinished.
 

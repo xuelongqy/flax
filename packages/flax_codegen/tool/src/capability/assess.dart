@@ -149,14 +149,6 @@ void applyAutomaticLibraryProposal({
         !automatic.diagnostics.any(
           (diagnostic) => diagnostic.code == 'missing_export',
         );
-    final genericSpecializationResolved =
-        previous.diagnostics.any(
-          (diagnostic) => diagnostic.code == 'generic_instantiation',
-        ) &&
-        baseline != null &&
-        !baseline.diagnostics.any(
-          (diagnostic) => diagnostic.code == 'generic_instantiation',
-        );
     declaration.assessment = BindingAssessment(
       status: automatic.status,
       evidence: automatic.evidence,
@@ -173,12 +165,6 @@ void applyAutomaticLibraryProposal({
           CapabilityDiagnostic(
             code: 'public_carrier_automation',
             message: 'Automatic library routing resolved a same-package public carrier',
-          ),
-        if (genericSpecializationResolved)
-          CapabilityDiagnostic(
-            code: 'generic_specialization_automation',
-            message:
-                'Automatic library inference resolved runtime type arguments',
           ),
       ],
       selection: automatic.selection,
@@ -242,14 +228,7 @@ BindingAssessment _fromProposal(
       evidence: EvidenceLevel.e1,
       useCases: {label: CoverageStatus.unsupported.name},
       surface: _surface(declaration, proposed),
-      diagnostics: [
-        for (final skip in proposed.skips)
-          CapabilityDiagnostic(
-            code: _codeFor(skip.reason),
-            message: skip.reason,
-            target: skip.target,
-          ),
-      ],
+      diagnostics: _proposalDiagnostics(proposed, declaration),
     );
   }
   final surface = _surface(declaration, proposed);
@@ -266,16 +245,53 @@ BindingAssessment _fromProposal(
           : CoverageStatus.partial.name,
     },
     surface: surface,
-    diagnostics: [
-      for (final skip in proposed.skips)
-        CapabilityDiagnostic(
-          code: _codeFor(skip.reason),
-          message: skip.reason,
-          target: skip.target,
-        ),
-    ],
+    diagnostics: _proposalDiagnostics(proposed, declaration),
     selection: _selectionJson(proposed.selection),
   );
+}
+
+List<CapabilityDiagnostic> _proposalDiagnostics(
+  FlaxCodegenProposedBinding proposed,
+  ApiDeclarationRecord declaration,
+) {
+  final diagnostics = [
+    for (final skip in proposed.skips)
+      CapabilityDiagnostic(
+        code: skip.code ?? _codeFor(skip.reason),
+        message: skip.reason,
+        target: skip.target,
+      ),
+  ];
+  if (declaration.typeParameters.isEmpty) return diagnostics;
+
+  final codes = diagnostics.map((diagnostic) => diagnostic.code).toSet();
+  final constructorBoundary =
+      codes.contains('constructor_specialization_missing_use_site') ||
+      codes.contains('constructor_specialization_ambiguous');
+  final sharedOwnerResolved =
+      !codes.contains('complex_generic_bound') &&
+      ((proposed.selection?.typeArguments.isEmpty ?? false) ||
+          constructorBoundary);
+  if (sharedOwnerResolved) {
+    diagnostics.add(
+      const CapabilityDiagnostic(
+        code: 'shared_owner_resolved',
+        message: 'Analyzer inferred a shared Dart owner for this generic declaration',
+      ),
+    );
+  }
+  final selection = proposed.selection;
+  if (selection != null &&
+      selection.typeArguments.isEmpty &&
+      selection.constructors.isNotEmpty) {
+    diagnostics.add(
+      const CapabilityDiagnostic(
+        code: 'constructor_specialization_resolved',
+        message: 'Analyzer use sites and direct inputs resolved a concrete constructor specialization',
+      ),
+    );
+  }
+  return diagnostics;
 }
 
 BindingAssessment _finished({
@@ -422,8 +438,12 @@ String _codeFor(String reason) {
   if (reason.contains('omitWhenAbsent cap')) return 'omit_cap';
   if (reason.contains('Already adapted')) return 'already_adapted';
   if (reason.contains('Unsupported core type')) return 'unsupported_core_type';
-  if (reason.contains('Explicit runtime type arguments')) {
-    return 'generic_instantiation';
+  if (reason.contains('Complex generic bound')) return 'complex_generic_bound';
+  if (reason.contains('overlapping JS runtime domains')) {
+    return 'constructor_specialization_ambiguous';
+  }
+  if (reason.contains('Generic constructor specialization')) {
+    return 'constructor_specialization_missing_use_site';
   }
   if (reason.contains('No bindable constructors')) return 'no_constructors';
   if (reason.contains('No bindable members')) return 'no_members';

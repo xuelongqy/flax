@@ -1,4 +1,4 @@
-format: 1
+format: 2
 name: flutter
 library: package:flutter/widgets.dart
 additionalLibraries:
@@ -116,7 +116,6 @@ classes:
     kind: stream
     asyncIterableFactory: fromAsyncIterable
     typeArguments: ['Object?']
-    eraseGenerics: true
     constructors:
       empty: [broadcast]
       value: [value]
@@ -130,6 +129,16 @@ classes:
     getters: [isBroadcast, length, isEmpty, first, last, single]
     methods:
       castFrom: [source]
+    methodTypeArguments:
+      castFrom: ['Object?', 'Object?']
+      map: ['Object?']
+      asyncMap: ['Object?']
+      asyncExpand: ['Object?']
+      expand: ['Object?']
+      transform: ['Object?']
+      fold: ['Object?']
+      cast: ['Object?']
+      drain: ['Object?']
     instanceMethods:
       asBroadcastStream: [onListen, onCancel]
       listen: [onData, onError, onDone, cancelOnError]
@@ -176,7 +185,6 @@ classes:
   StreamSubscription:
     kind: object
     typeArguments: ['Object?']
-    eraseGenerics: true
     getters: [isPaused]
     instanceMethods:
       cancel: []
@@ -186,6 +194,8 @@ classes:
       pause: [resumeSignal]
       resume: []
       asFuture: [futureValue]
+    methodTypeArguments:
+      asFuture: ['Object?']
     callbackSignatures:
       onError.handleError: [Object, StackTrace]
     callbackOptionalParameters:
@@ -289,13 +299,15 @@ classes:
     kind: object
     proxy: implements
     typeArguments: ['Object?', 'Object?']
-    eraseGenerics: true
     constructors:
       '': [onListen]
       fromHandlers: [handleData, handleError, handleDone]
       fromBind: [bind]
     methods:
       castFrom: [source]
+    methodTypeArguments:
+      castFrom: ['Object?', 'Object?', 'Object?', 'Object?']
+      cast: ['Object?', 'Object?']
     instanceMethods:
       bind: [stream]
       cast: []
@@ -307,16 +319,16 @@ classes:
     kind: object
     proxy: extends
     typeArguments: ['Object?', 'Object?']
-    eraseGenerics: true
     constructors:
       '': []
     instanceMethods:
       bind: [stream]
       cast: []
+    methodTypeArguments:
+      cast: ['Object?', 'Object?']
   StreamView:
     kind: stream
     typeArguments: ['Object?']
-    eraseGenerics: true
     constructors:
       '': [stream]
   StreamIterator:
@@ -350,6 +362,8 @@ classes:
       resolve: [states]
     methods:
       resolveWith: [callback]
+  TickerProvider:
+    kind: object
   Curve:
     kind: object
     instanceMethods:
@@ -838,7 +852,6 @@ classes:
     staticGetters: [zero]
   ValueKey:
     kind: object
-    genericScalar: true
     getters: [value]
     constructors:
       '': [value]

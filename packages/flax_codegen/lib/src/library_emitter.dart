@@ -50,7 +50,10 @@ class _LibraryLayout {
   final FlaxCodegenModuleModel module;
   final List<FlaxCodegenLibraryModel> routes;
 
-  Set<String> get publicNames => {for (final route in routes) ...route.exports};
+  Set<String> get publicNames => {
+    for (final route in routes) ...route.exports,
+    ...module.stateVariants.map((variant) => variant.name),
+  };
 
   Set<String> get allNames => {
     ...module.classes.map((type) => type.name),
@@ -170,6 +173,10 @@ extension FlaxCodegenLibraryEmission on FlaxCodegenBindingEmitter {
         topLevel: getters.isEmpty && setters.isEmpty
             ? null
             : FlaxCodegenTopLevelModel('', getters, setters: setters),
+        stateVariants: [
+          for (final variant in source.stateVariants)
+            if (selected.contains(variant.name)) variant,
+        ],
       );
     }
 
@@ -341,7 +348,11 @@ extension FlaxCodegenLibraryEmission on FlaxCodegenBindingEmitter {
       for (final name in runtimeRegistrations) {
         out.writeln('import ${jsonEncode(sourceFor(name))};');
       }
-      final exports = [...route.exports]..sort();
+      final exports = <String>{
+        ...route.exports,
+        if (identical(route, layout.routes.first))
+          ...module.stateVariants.map((variant) => variant.name),
+      }.toList()..sort();
       for (final name in exports) {
         out.write(_libraryReexports(module, name, sourceFor(name)));
       }
@@ -361,7 +372,7 @@ extension FlaxCodegenLibraryEmission on FlaxCodegenBindingEmitter {
     final type =
         module.classes.where((type) => type.name == name).firstOrNull ??
         _classes[namedType?.id];
-    if (type == null || type.proxy?.kind == 'host') return false;
+    if (type == null) return false;
     return const {'context', 'state', 'object', 'stream'}.contains(type.kind);
   }
 
@@ -371,6 +382,9 @@ extension FlaxCodegenLibraryEmission on FlaxCodegenBindingEmitter {
     String from,
   ) {
     final source = jsonEncode(from);
+    if (module.stateVariants.any((variant) => variant.name == name)) {
+      return 'export { $name } from $source;\n';
+    }
     final alias = module.typedefs
         .where((alias) => alias.name == name)
         .firstOrNull;
@@ -397,8 +411,12 @@ extension FlaxCodegenLibraryEmission on FlaxCodegenBindingEmitter {
         module.classes.where((type) => type.name == name).firstOrNull ??
         _classes[namedType?.id];
     if (type != null) {
-      if (type.proxy?.kind == 'host') {
-        return 'export { ${name}Lifecycle } from $source;\n';
+      final stateVariants = module.stateVariants
+          .where((variant) => variant.stateId == type.id)
+          .map((variant) => variant.name)
+          .toList();
+      if (stateVariants.isNotEmpty) {
+        return 'export { ${stateVariants.join(', ')} } from $source;\n';
       }
       final hasValue =
           type.proxy != null ||

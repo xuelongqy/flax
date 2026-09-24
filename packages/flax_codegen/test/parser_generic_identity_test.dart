@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flax_codegen/src/config.dart';
-import 'package:flax_codegen/src/manifest_v5_codec.dart';
+import 'package:flax_codegen/src/manifest_codec.dart';
 import 'package:flax_codegen/src/model.dart';
 import 'package:flax_codegen/src/parser.dart';
 import 'package:path/path.dart' as p;
@@ -10,7 +10,7 @@ import 'package:test/test.dart';
 void main() {
   group('parser genericIdentity', () {
     test(
-      'nested capture, shadow, and data generics survive Manifest3 codec',
+      'nested capture, shadow, and data generics survive Manifest 12 codec',
       () async {
         final package = _tempGenericPackage();
         final parser = FlaxCodegenBindingParser(package.root.path);
@@ -131,9 +131,9 @@ void main() {
           same(dataToken),
         );
 
-        final diagnostics = FlaxCodegenManifestV5Diagnostics('');
-        final decoded = FlaxCodegenManifestV5Codec.decodeModule(
-          FlaxCodegenManifestV5Codec.encodeModule(module),
+        final diagnostics = FlaxCodegenManifestDiagnostics('');
+        final decoded = FlaxCodegenManifestCodec.decodeModule(
+          FlaxCodegenManifestCodec.encodeModule(module),
           diagnostics,
           '',
           module.name,
@@ -234,16 +234,16 @@ void main() {
         );
         await parser.prepare([config]);
         final module = await parser.parse(config);
-        final encoded = FlaxCodegenManifestV5Codec.encodeModule(module);
-        final diagnostics = FlaxCodegenManifestV5Diagnostics('');
-        final decoded = FlaxCodegenManifestV5Codec.decodeModule(
+        final encoded = FlaxCodegenManifestCodec.encodeModule(module);
+        final diagnostics = FlaxCodegenManifestDiagnostics('');
+        final decoded = FlaxCodegenManifestCodec.decodeModule(
           encoded,
           diagnostics,
           '',
           module.name,
         );
         diagnostics.throwIfAny();
-        expect(FlaxCodegenManifestV5Codec.encodeModule(decoded!), encoded);
+        expect(FlaxCodegenManifestCodec.encodeModule(decoded!), encoded);
         for (final model in [module, decoded]) {
           final results = model.classes.singleWhere(
             (type) => type.name == 'GenericResults',

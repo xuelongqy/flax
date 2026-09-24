@@ -1,4 +1,4 @@
-format: 1
+format: 2
 name: components
 library: package:flutter/widgets.dart
 jsPackage: '@flax/flutter/widgets'
@@ -12,22 +12,15 @@ classes:
   StatefulWidget:
     kind: object
   State:
-    kind: object
-    proxy: host
-    typeArguments: [StatefulWidget]
-    proxyOverrides:
-      - initState
-      - didChangeDependencies
-      - didUpdateWidget
-      - deactivate
-      - activate
-      - dispose
-      - reassemble
-    proxySuper:
-      - initState
-      - didChangeDependencies
-      - didUpdateWidget
-      - deactivate
-      - activate
-      - dispose
-      - reassemble
+    kind: state
+    proxyVariants:
+      SingleTickerProviderState:
+        mixins:
+          - SingleTickerProviderStateMixin
+      TickerProviderState:
+        mixins:
+          - TickerProviderStateMixin
+      KeepAliveTickerState:
+        mixins:
+          - AutomaticKeepAliveClientMixin
+          - TickerProviderStateMixin

@@ -25,7 +25,7 @@ void main() {
         'dartOutput': 'd',
         'tsOutput': 't',
         'types': ['Widget'],
-        'format': 1,
+        'format': 2,
       }).types,
       ['Widget'],
     );
@@ -46,15 +46,18 @@ void main() {
     expect(config.types, ['Widget', 'State']);
     final gauge = config.classes['Gauge']!;
     expect(gauge.kind, 'object');
-    expect(gauge.proxy, 'host');
+    expect(gauge.proxy, 'extends');
+    final variant = gauge.proxyVariants['FancyState']!;
+    expect(variant.mixins.map((mixin) => mixin.name), [
+      'FirstMixin',
+      'SecondMixin',
+    ]);
+    expect(variant.mixins.last.library, 'package:example/mixins.dart');
     expect(gauge.jsName, 'CanvasView');
-    expect(gauge.genericScalar, isTrue);
-    expect(gauge.eraseGenerics, isTrue);
     expect(gauge.asyncIterableFactory, 'fromAsyncIterable');
     expect(gauge.disposeMethod, 'dispose');
     expect(gauge.constructors['named'], ['initial']);
     expect(gauge.widgetInterfaces, ['PreferredSizeWidget']);
-    expect(gauge.independentWidgetCallbacks['builder'], ['itemBuilder']);
     expect(gauge.callbackSignatures['listen.onError'], [
       'Object',
       'StackTrace',
@@ -66,8 +69,6 @@ void main() {
     expect(gauge.data.getters, ['arguments']);
     expect(gauge.data.methods['pushNamed'], ['arguments']);
     expect(gauge.data.results, ['push']);
-    expect(gauge.proxyOverrides, ['initState']);
-    expect(gauge.proxySuper, ['initState']);
     expect(gauge.staticGetters, ['instance']);
     expect(gauge.errorGetters, ['error']);
     expect(gauge.setters, ['value']);
@@ -76,7 +77,6 @@ void main() {
     expect(gauge.pageAdapter!.function, 'createRoute');
     expect(gauge.typeArguments, ['Object?']);
     expect(gauge.methodTypeArguments['push'], ['Object?']);
-    expect(gauge.deferredFactories, ['resolveWith']);
     expect(gauge.startsRoute, ['push']);
     expect(gauge.instanceMethods['move'], ['amount']);
     expect(gauge.getters, ['reading']);
@@ -104,7 +104,7 @@ void main() {
     expect(config.callbackSnapshots, isEmpty);
   });
 
-  test('readStrict reads a format-1 file', () {
+  test('readStrict reads a format-2 file', () {
     final directory = Directory.systemTemp.createTempSync('flax-config-');
     addTearDown(() => directory.deleteSync(recursive: true));
     final file = File(p.join(directory.path, 'config.yaml'))
@@ -117,7 +117,7 @@ void main() {
     () {
       expectDiagnostic(
         _errors('''
-format: 1
+format: 2
 name: plugin
 library: package:x/x.dart
 jsPackage: '@x/x'
@@ -129,7 +129,7 @@ extra: true
       );
       expectDiagnostic(
         _errors('''
-format: 1
+format: 2
 library: package:x/x.dart
 jsPackage: '@x/x'
 dartOutput: a.dart
@@ -139,7 +139,7 @@ tsOutput: b.ts
       );
       expectDiagnostic(
         _errors('''
-format: 2
+format: 999
 name: plugin
 library: package:x/x.dart
 jsPackage: '@x/x'
@@ -150,7 +150,7 @@ tsOutput: b.ts
       );
       expectDiagnostic(
         _errors('''
-format: "1"
+format: "2"
 name: plugin
 library: package:x/x.dart
 jsPackage: '@x/x'
@@ -161,7 +161,7 @@ tsOutput: b.ts
       );
       expectDiagnostic(
         _errors('''
-format: 1
+format: 2
 name: ''
 library: package:x/x.dart
 jsPackage: '@x/x'
@@ -174,7 +174,7 @@ tsOutput: b.ts
   );
 
   test('duplicate YAML keys use the package:yaml key span', () {
-    expectDiagnostic(_errors('format: 1\nformat: 1\n'), [
+    expectDiagnostic(_errors('format: 2\nformat: 2\n'), [
       _d(FlaxCodegenDiagnosticCode.duplicateKey, '', 2, 1),
     ]);
   });
@@ -182,7 +182,7 @@ tsOutput: b.ts
   test('wrong classes container does not cascade into children', () {
     expectDiagnostic(
       _errors('''
-format: 1
+format: 2
 name: plugin
 library: package:x/x.dart
 jsPackage: '@x/x'
@@ -295,6 +295,41 @@ classes:
     );
   });
 
+  test('unknown class fields and proxy kinds fail closed', () {
+    expectDiagnostic(
+      _errors('''
+$_minimal
+classes:
+  Gauge:
+    unknownOption: true
+'''),
+      [
+        _d(
+          FlaxCodegenDiagnosticCode.unknownField,
+          '/classes/Gauge/unknownOption',
+          10,
+          5,
+        ),
+      ],
+    );
+    expectDiagnostic(
+      _errors('''
+$_minimal
+classes:
+  Gauge:
+    proxy: unsupported
+'''),
+      [
+        _d(
+          FlaxCodegenDiagnosticCode.invalidValue,
+          '/classes/Gauge/proxy',
+          10,
+          12,
+        ),
+      ],
+    );
+  });
+
   test('empty snapshot fields without extends are incompatible', () {
     expectDiagnostic(
       _errors('''
@@ -314,7 +349,7 @@ callbackSnapshots:
   });
 
   test('independent diagnostics sort by code, pointer, and span', () {
-    expectDiagnostic(_errors('format: 1\n'), [
+    expectDiagnostic(_errors('format: 2\n'), [
       _d(FlaxCodegenDiagnosticCode.missingField, '/dartOutput', 1, 1),
       _d(FlaxCodegenDiagnosticCode.missingField, '/jsPackage', 1, 1),
       _d(FlaxCodegenDiagnosticCode.missingField, '/library', 1, 1),
@@ -464,7 +499,7 @@ classes:
 
   test('automatic overrides preserve partial selection intent', () {
     final overrides = FlaxCodegenAutoOverrides.parseStrict('''
-format: 1
+format: 2
 overrides:
   classes:
     SpecialPage:
@@ -536,7 +571,7 @@ void expectDiagnostic(
 }
 
 const _minimal = '''
-format: 1
+format: 2
 name: plugin
 library: package:x/x.dart
 jsPackage: '@x/x'
@@ -545,7 +580,7 @@ tsOutput: b.ts
 ''';
 
 const _maximal = '''
-format: 1
+format: 2
 name: plugin
 library: package:example/example.dart
 additionalLibraries:
@@ -581,10 +616,6 @@ classes:
     constructors:
       named: [initial]
     widgetInterfaces: [PreferredSizeWidget]
-    independentWidgetCallbacks:
-      builder: [itemBuilder]
-    genericScalar: true
-    eraseGenerics: true
     asyncIterableFactory: fromAsyncIterable
     callbackSignatures:
       listen.onError: [Object, StackTrace]
@@ -601,9 +632,13 @@ classes:
       methods:
         pushNamed: [arguments]
       results: [push]
-    proxy: host
-    proxyOverrides: [initState]
-    proxySuper: [initState]
+    proxy: extends
+    proxyVariants:
+      FancyState:
+        mixins:
+          - FirstMixin
+          - name: SecondMixin
+            library: package:example/mixins.dart
     staticGetters: [instance]
     errorGetters: [error]
     setters: [value]
@@ -616,7 +651,6 @@ classes:
     typeArguments: ['Object?']
     methodTypeArguments:
       push: ['Object?']
-    deferredFactories: [resolveWith]
     startsRoute: [push]
     instanceMethods:
       move: [amount]

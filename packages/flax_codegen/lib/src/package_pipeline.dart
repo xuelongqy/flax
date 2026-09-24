@@ -10,9 +10,9 @@ import 'bindability.dart';
 import 'diagnostic.dart';
 import 'emitter.dart';
 import 'identity.dart';
-import 'manifest_v5.dart';
-import 'manifest_v5_codec.dart';
-import 'manifest_v5_projection.dart';
+import 'manifest.dart';
+import 'manifest_codec.dart';
+import 'manifest_projection.dart';
 import 'model.dart';
 import 'ownership.dart';
 import 'package_metadata.dart';
@@ -38,7 +38,7 @@ final class FlaxCodegenPackageValidation {
     required this.dartPackage,
     required List<String> configPaths,
     required this.metadata,
-    required Map<String, FlaxCodegenManifestV5Projection> directDependencies,
+    required Map<String, FlaxCodegenManifestProjection> directDependencies,
     required List<FlaxCodegenModuleModel> localModels,
     required this.resolvedPackage,
     required this.manifest,
@@ -60,7 +60,7 @@ final class FlaxCodegenPackageValidation {
 
   /// Projections for packages required by explicit imports or by resolved
   /// signature dependencies from direct Dart dependencies.
-  final Map<String, FlaxCodegenManifestV5Projection> directDependencies;
+  final Map<String, FlaxCodegenManifestProjection> directDependencies;
 
   final List<FlaxCodegenModuleModel> _localModels;
 
@@ -71,8 +71,8 @@ final class FlaxCodegenPackageValidation {
     for (final module in _localModels) _snapshotModule(module),
   ]);
   final FlaxCodegenResolvedPackage resolvedPackage;
-  final FlaxCodegenManifestV5 manifest;
-  final FlaxCodegenManifestV5Projection projection;
+  final FlaxCodegenManifest manifest;
+  final FlaxCodegenManifestProjection projection;
   final List<String> outputInventory;
   final List<FlaxCodegenSkip> skips;
   final List<FlaxCodegenNotice> notices;
@@ -97,8 +97,8 @@ final class FlaxCodegenPackagePipeline {
   final FlaxCodegenProcessRunner _processRunner;
 
   /// Locates the owning package for [configPath], discovers sibling binding
-  /// configs, reads package metadata plus every strict format-1 config, builds
-  /// Manifest 5 projections for each direct config import, parses local modules,
+  /// configs, reads package metadata plus every strict format-2 selection, builds
+  /// current Manifest projections for each direct config import, parses local modules,
   /// resolves ownership, and preflights the output inventory.
   ///
   /// [processRunner] is accepted so callers can prove validation never formats
@@ -182,13 +182,13 @@ final class FlaxCodegenPackagePipeline {
     final modulesByName = <String, FlaxCodegenModuleModel>{
       for (final module in frozenModels) module.name: module,
     };
-    final manifest = FlaxCodegenManifestV5.fromResolved(
+    final manifest = FlaxCodegenManifest.fromResolved(
       package: resolved,
       modules: modulesByName,
       importPackageNames: directDependencies.keys.toList()..sort(),
       source: p.join(located.packageRoot, 'bindings', 'manifest.json'),
     );
-    final projection = FlaxCodegenManifestV5Projection(
+    final projection = FlaxCodegenManifestProjection(
       root: manifest,
       directDependencies: directDependencies,
       source: p.join(located.packageRoot, 'bindings', 'manifest.json'),
@@ -352,13 +352,13 @@ final class FlaxCodegenPackagePipeline {
       for (final module in frozenModels) module.name: module,
     };
     final manifestPath = p.join(root, 'bindings', 'manifest.json');
-    final manifest = FlaxCodegenManifestV5.fromResolved(
+    final manifest = FlaxCodegenManifest.fromResolved(
       package: resolved,
       modules: modulesByName,
       importPackageNames: directDependencies.keys.toList()..sort(),
       source: manifestPath,
     );
-    final projection = FlaxCodegenManifestV5Projection(
+    final projection = FlaxCodegenManifestProjection(
       root: manifest,
       directDependencies: directDependencies,
       source: manifestPath,
@@ -485,7 +485,7 @@ final class FlaxCodegenPackagePipeline {
   ///
   /// Validates once, plans expected Dart/TS/manifest bytes (formatting Dart only
   /// in a cleaned temporary directory outside the package), then installs new
-  /// files, replacements, Manifest 5, and owned orphan deletes in one
+  /// files, replacements, the current Manifest, and owned orphan deletes in one
   /// transaction. All validation and generation finish before any package
   /// mutation. Symlink ancestors fail closed without writing. On install
   /// failure, the pre-install snapshot of affected paths is restored.
@@ -1155,14 +1155,14 @@ _readPackageConfigRoots(String packageRoot, {required String dartPackage}) {
   );
 }
 
-Map<String, FlaxCodegenManifestV5Projection> _loadProviderCandidateProjections({
+Map<String, FlaxCodegenManifestProjection> _loadProviderCandidateProjections({
   required List<String> imports,
   required List<String> dartDependencies,
   required Map<String, String> packageRoots,
 }) {
-  final cache = <String, FlaxCodegenManifestV5Projection>{};
+  final cache = <String, FlaxCodegenManifestProjection>{};
   final diagnostics = <FlaxCodegenDiagnostic>[];
-  final direct = <String, FlaxCodegenManifestV5Projection>{};
+  final direct = <String, FlaxCodegenManifestProjection>{};
   for (final name in imports) {
     try {
       direct[name] = _loadManifestProjection(
@@ -1203,12 +1203,11 @@ Map<String, FlaxCodegenManifestV5Projection> _loadProviderCandidateProjections({
   return direct;
 }
 
-Map<String, FlaxCodegenManifestV5Projection>
-_selectDirectDependencyProjections({
+Map<String, FlaxCodegenManifestProjection> _selectDirectDependencyProjections({
   required String dartPackage,
   required List<String> imports,
   required List<FlaxCodegenModuleModel> parsedModels,
-  required Map<String, FlaxCodegenManifestV5Projection> candidates,
+  required Map<String, FlaxCodegenManifestProjection> candidates,
 }) {
   final referenced = <FlaxCodegenSourceIdentity>{};
   for (final module in parsedModels) {
@@ -1220,7 +1219,7 @@ _selectDirectDependencyProjections({
     });
   }
 
-  final selected = <String, FlaxCodegenManifestV5Projection>{};
+  final selected = <String, FlaxCodegenManifestProjection>{};
   for (final name in candidates.keys.toList()..sort()) {
     final projection = candidates[name]!;
     if (imports.contains(name) ||
@@ -1234,7 +1233,7 @@ _selectDirectDependencyProjections({
 }
 
 bool _projectionProvides(
-  FlaxCodegenManifestV5Projection projection,
+  FlaxCodegenManifestProjection projection,
   FlaxCodegenSourceIdentity identity,
 ) {
   for (final manifest in projection.packageManifests) {
@@ -1249,10 +1248,10 @@ bool _projectionProvides(
   return false;
 }
 
-FlaxCodegenManifestV5Projection _loadManifestProjection(
+FlaxCodegenManifestProjection _loadManifestProjection(
   String packageName, {
   required Map<String, String> packageRoots,
-  required Map<String, FlaxCodegenManifestV5Projection> cache,
+  required Map<String, FlaxCodegenManifestProjection> cache,
   required Set<String> visiting,
 }) {
   final cached = cache[packageName];
@@ -1285,8 +1284,8 @@ FlaxCodegenManifestV5Projection _loadManifestProjection(
       _resolutionDiagnostic(manifestPath, 'Cannot read file.'),
     ]);
   }
-  final diagnostics = FlaxCodegenManifestV5Diagnostics(manifestPath);
-  final manifest = FlaxCodegenManifestV5.parse(contents, diagnostics);
+  final diagnostics = FlaxCodegenManifestDiagnostics(manifestPath);
+  final manifest = FlaxCodegenManifest.parse(contents, diagnostics);
   if (diagnostics.items.isNotEmpty || manifest == null) {
     throw FlaxCodegenException(diagnostics.items);
   }
@@ -1299,7 +1298,7 @@ FlaxCodegenManifestV5Projection _loadManifestProjection(
     ]);
   }
   final childDiagnostics = <FlaxCodegenDiagnostic>[];
-  final directDependencies = <String, FlaxCodegenManifestV5Projection>{};
+  final directDependencies = <String, FlaxCodegenManifestProjection>{};
   for (final importName in List<String>.of(manifest.imports)..sort()) {
     try {
       directDependencies[importName] = _loadManifestProjection(
@@ -1315,7 +1314,7 @@ FlaxCodegenManifestV5Projection _loadManifestProjection(
   if (childDiagnostics.isNotEmpty) {
     throw FlaxCodegenException(childDiagnostics);
   }
-  final projection = FlaxCodegenManifestV5Projection(
+  final projection = FlaxCodegenManifestProjection(
     root: manifest,
     directDependencies: directDependencies,
     source: manifestPath,
@@ -1328,7 +1327,7 @@ Future<List<FlaxCodegenModuleModel>> _parseLocalModules({
   required String workspaceRoot,
   required List<FlaxCodegenBindingConfig> configs,
   required List<String> configPaths,
-  required Map<String, FlaxCodegenManifestV5Projection> directDependencies,
+  required Map<String, FlaxCodegenManifestProjection> directDependencies,
   List<Map<String, String>>? automaticTypeCarriers,
 }) async {
   final parser = FlaxCodegenBindingParser(workspaceRoot);
@@ -1398,7 +1397,7 @@ FlaxCodegenResolvedPackage _resolveLocalOwnership({
   required List<FlaxCodegenBindingConfig> configs,
   required List<String> configPaths,
   required List<FlaxCodegenModuleModel> parsedModels,
-  required Map<String, FlaxCodegenManifestV5Projection> directDependencies,
+  required Map<String, FlaxCodegenManifestProjection> directDependencies,
 }) {
   final automaticClaims = _automaticLocalDependencyClaims(
     dartPackage: dartPackage,
@@ -1453,7 +1452,8 @@ Map<int, List<FlaxCodegenOwnerClaim>> _automaticLocalDependencyClaims({
     }
 
     for (final type in module.classes) {
-      if (config.classes.containsKey(type.name)) {
+      final selection = config.classes[type.name];
+      if (selection != null && !flaxCodegenIsStateVariantOverlay(selection)) {
         add(type.id, FlaxCodegenDeclarationKind.type);
       }
     }
@@ -1586,7 +1586,7 @@ bool _isPackageIdentity(
 ) => identity.originatingUri.startsWith('package:$dartPackage/');
 
 FlaxCodegenImportedPackage _importedPackageFromRoot(
-  FlaxCodegenManifestV5Projection projection,
+  FlaxCodegenManifestProjection projection,
 ) {
   final owners = <FlaxCodegenImportedOwner>[
     for (final module in projection.manifest.modules)
@@ -1627,7 +1627,8 @@ FlaxCodegenSiblingModuleInput _siblingInput({
   }
 
   for (final type in module.classes) {
-    if (config.classes.containsKey(type.name)) {
+    final selection = config.classes[type.name];
+    if (selection != null && !flaxCodegenIsStateVariantOverlay(selection)) {
       claim(type.name, type.id, FlaxCodegenDeclarationKind.type);
     }
   }
@@ -1771,7 +1772,7 @@ void _walkModuleEncodedIds(
     if (value is Map) {
       for (final entry in value.entries) {
         final key = entry.key as String;
-        final childPointer = flaxCodegenManifestV5Pointer(pointer, key);
+        final childPointer = flaxCodegenManifestPointer(pointer, key);
         final child = entry.value;
         if (key == 'id' && child is String) {
           visit(
@@ -1785,22 +1786,30 @@ void _walkModuleEncodedIds(
           );
           continue;
         }
+        if (child is String &&
+            ((key == 'stateId' && childPointer.contains('/stateVariants/')) ||
+                (key == 'sourceId' &&
+                    childPointer.contains('/stateVariants/') &&
+                    childPointer.contains('/interfaces/')))) {
+          visit(child, FlaxCodegenDeclarationKind.type, childPointer);
+          continue;
+        }
         walk(child, childPointer);
       }
       return;
     }
     if (value is List) {
       for (var index = 0; index < value.length; index++) {
-        walk(value[index], flaxCodegenManifestV5Pointer(pointer, '$index'));
+        walk(value[index], flaxCodegenManifestPointer(pointer, '$index'));
       }
     }
   }
 
-  walk(FlaxCodegenManifestV5Codec.encodeModule(module), '');
+  walk(FlaxCodegenManifestCodec.encodeModule(module), '');
 }
 
 Map<String, String> _wireIdToRawFromProjections(
-  Map<String, FlaxCodegenManifestV5Projection> directDependencies,
+  Map<String, FlaxCodegenManifestProjection> directDependencies,
 ) {
   final wireToRaw = <String, String>{};
   for (final projection in directDependencies.values) {
@@ -1818,7 +1827,7 @@ Map<String, String> _wireIdToRawFromProjections(
 }
 
 Map<String, String> _ownedTypeModulesFromProjections(
-  Map<String, FlaxCodegenManifestV5Projection> directDependencies,
+  Map<String, FlaxCodegenManifestProjection> directDependencies,
 ) {
   final result = <String, String>{};
   for (final projection in directDependencies.values) {
@@ -1849,7 +1858,7 @@ FlaxCodegenModuleModel _rewriteModuleIds(
   Map<String, String> idMap,
 ) {
   final rewritten = _rewriteIdEntries(
-    FlaxCodegenManifestV5Codec.encodeModule(module),
+    FlaxCodegenManifestCodec.encodeModule(module),
     idMap,
   );
   return _moduleFromEncoded(rewritten, module);
@@ -1885,8 +1894,8 @@ FlaxCodegenModuleModel _moduleFromEncoded(
   Object? encoded,
   FlaxCodegenModuleModel template,
 ) {
-  final diagnostics = FlaxCodegenManifestV5Diagnostics('');
-  final decoded = FlaxCodegenManifestV5Codec.decodeModule(
+  final diagnostics = FlaxCodegenManifestDiagnostics('');
+  final decoded = FlaxCodegenManifestCodec.decodeModule(
     encoded,
     diagnostics,
     '',
@@ -1922,11 +1931,12 @@ FlaxCodegenModuleModel _moduleFromEncoded(
     moduleId: template.moduleId,
     requiredCapabilities: template.requiredCapabilities,
     internalTypeNames: template.internalTypeNames,
+    stateVariants: module.stateVariants,
   );
 }
 
 FlaxCodegenModuleModel _snapshotModule(FlaxCodegenModuleModel module) =>
-    _moduleFromEncoded(FlaxCodegenManifestV5Codec.encodeModule(module), module);
+    _moduleFromEncoded(FlaxCodegenManifestCodec.encodeModule(module), module);
 
 List<FlaxCodegenModuleModel> _freezeLocalModels({
   required List<FlaxCodegenBindingConfig> configs,
@@ -1983,7 +1993,8 @@ FlaxCodegenModuleModel _freezeModule(
   required bool internalizeAutomaticTypes,
 }) {
   final claimedNames = <String>{
-    ...config.classes.keys,
+    for (final entry in config.classes.entries)
+      if (!flaxCodegenIsStateVariantOverlay(entry.value)) entry.key,
     ...config.functions.keys,
     ...config.extensions.keys,
     ...config.callbackSnapshots.keys,
@@ -1999,7 +2010,10 @@ FlaxCodegenModuleModel _freezeModule(
   }
 
   for (final type in parsed.classes) {
-    if (config.classes.containsKey(type.name)) addExplicitType(type.id);
+    final selection = config.classes[type.name];
+    if (selection != null && !flaxCodegenIsStateVariantOverlay(selection)) {
+      addExplicitType(type.id);
+    }
   }
   for (final snapshot in parsed.snapshots) {
     if (config.callbackSnapshots.containsKey(snapshot.name)) {
@@ -2105,10 +2119,35 @@ FlaxCodegenModuleModel _freezeModule(
     internalTypeNames: internalizeAutomaticTypes
         ? {for (final identity in automaticTypeOwners) identity.name}
         : const <String>{},
+    stateVariants: [
+      for (final variant in parsed.stateVariants)
+        FlaxCodegenStateVariantModel(
+          name: variant.name,
+          id: '${resolvedModule.moduleId.value}#stateVariant:${variant.name}',
+          stateId: variant.stateId,
+          stateWireId: rawToWire[variant.stateId] ?? variant.stateWireId,
+          mixins: variant.mixins,
+          interfaces: [
+            for (final interface in variant.interfaces)
+              FlaxCodegenStateInterfaceModel(
+                name: interface.name,
+                id: interface.id,
+                library: interface.library,
+                wireId: rawToWire[interface.id] ?? interface.wireId,
+              ),
+          ],
+          getters: variant.getters,
+          setters: variant.setters,
+          methods: variant.methods,
+          superMethods: variant.superMethods,
+          mustCallSuperMethods: variant.mustCallSuperMethods,
+          providerModule: resolvedModule.moduleId.value,
+        ),
+    ],
   );
 
   final rewritten = _rewriteIdEntries(
-    FlaxCodegenManifestV5Codec.encodeModule(filtered),
+    FlaxCodegenManifestCodec.encodeModule(filtered),
     rawToWire,
   );
   return _moduleFromEncoded(rewritten, filtered);
@@ -2222,8 +2261,8 @@ FlaxCodegenDiagnostic _outputDiagnostic(String source, String message) =>
 Future<Map<String, List<int>>> _planExpectedPackageOutputs({
   required String packageRoot,
   required List<FlaxCodegenModuleModel> modules,
-  required Map<String, FlaxCodegenManifestV5Projection> directDependencies,
-  required FlaxCodegenManifestV5 manifest,
+  required Map<String, FlaxCodegenManifestProjection> directDependencies,
+  required FlaxCodegenManifest manifest,
   required FlaxCodegenProcessRunner processRunner,
 }) async {
   final pipeline = FlaxCodegenPackagePipeline(
@@ -2244,7 +2283,7 @@ Future<Map<String, List<int>>> _planExpectedPackageOutputs({
 /// (first package in sorted package-name order wins), returned in sorted
 /// `moduleId` order.
 List<FlaxCodegenModuleModel> _flattenedDependencyModules(
-  Map<String, FlaxCodegenManifestV5Projection> directDependencies,
+  Map<String, FlaxCodegenManifestProjection> directDependencies,
 ) {
   final byModuleId = <String, FlaxCodegenModuleModel>{};
   for (final packageName in directDependencies.keys.toList()..sort()) {

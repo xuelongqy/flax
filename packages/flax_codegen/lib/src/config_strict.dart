@@ -25,9 +25,6 @@ const _autoOverrideFields = {'classes', 'functions', 'exclude'};
 const _classFields = {
   'constructors',
   'widgetInterfaces',
-  'independentWidgetCallbacks',
-  'genericScalar',
-  'eraseGenerics',
   'asyncIterableFactory',
   'callbackSignatures',
   'callbackOptionalParameters',
@@ -36,8 +33,7 @@ const _classFields = {
   'data',
   'kind',
   'proxy',
-  'proxyOverrides',
-  'proxySuper',
+  'proxyVariants',
   'staticGetters',
   'errorGetters',
   'setters',
@@ -46,7 +42,6 @@ const _classFields = {
   'pageAdapter',
   'typeArguments',
   'methodTypeArguments',
-  'deferredFactories',
   'startsRoute',
   'instanceMethods',
   'getters',
@@ -60,7 +55,9 @@ const _routeFields = {'context', 'rootNavigator', 'builders'};
 const _dataFields = {'constructors', 'getters', 'methods', 'results'};
 const _snapshotFields = {'fields', 'extends'};
 const _pageAdapterFields = {'library', 'function'};
-const _proxyKinds = {'extends', 'implements', 'host'};
+const _proxyKinds = {'extends', 'implements'};
+const _proxyVariantFields = {'mixins'};
+const _mixinFields = {'name', 'library'};
 
 final _classKinds = {
   for (final value in FlaxCodegenClassCategory.values) value.name,
@@ -84,11 +81,11 @@ FlaxCodegenBindingConfig _parseBindingConfigStrict(
   }
   final root = _StrictMap(diagnostics, rootNode, '', _configFields);
   final format = root.requiredInt('format');
-  if (format != null && format != 1) {
+  if (format != null && format != 2) {
     diagnostics.add(
       code: FlaxCodegenDiagnosticCode.invalidValue,
       pointer: root.child('format'),
-      message: 'Expected 1.',
+      message: 'Expected 2.',
       node: root.node('format'),
     );
   }
@@ -143,18 +140,13 @@ FlaxCodegenAutoOverrides _parseAutoOverridesStrict(
     diagnostics.throwIfAny();
     throw StateError('Unreachable root type mismatch');
   }
-  final root = _StrictMap(
-    diagnostics,
-    rootNode,
-    '',
-    _autoOverrideRootFields,
-  );
+  final root = _StrictMap(diagnostics, rootNode, '', _autoOverrideRootFields);
   final format = root.requiredInt('format');
-  if (format != null && format != 1) {
+  if (format != null && format != 2) {
     diagnostics.add(
       code: FlaxCodegenDiagnosticCode.invalidValue,
       pointer: root.child('format'),
-      message: 'Expected 1.',
+      message: 'Expected 2.',
       node: root.node('format'),
     );
   }
@@ -289,11 +281,6 @@ FlaxCodegenClassSelection _readClass(_StrictMap selection) {
   return FlaxCodegenClassSelection(
     selection.stringListMap('constructors', allowEmptyKeys: true),
     widgetInterfaces: selection.stringList('widgetInterfaces'),
-    independentWidgetCallbacks: selection.stringListMap(
-      'independentWidgetCallbacks',
-    ),
-    genericScalar: selection.boolean('genericScalar'),
-    eraseGenerics: selection.boolean('eraseGenerics'),
     asyncIterableFactory: selection.optionalString('asyncIterableFactory'),
     callbackSignatures: selection.stringListMap('callbackSignatures'),
     callbackOptionalParameters: selection.intListMap(
@@ -304,8 +291,7 @@ FlaxCodegenClassSelection _readClass(_StrictMap selection) {
     data: _readData(selection),
     kind: kind,
     proxy: proxy,
-    proxyOverrides: selection.stringList('proxyOverrides'),
-    proxySuper: selection.stringList('proxySuper'),
+    proxyVariants: _readProxyVariants(selection),
     staticGetters: selection.stringList('staticGetters'),
     errorGetters: selection.stringList('errorGetters'),
     setters: selection.stringList('setters'),
@@ -317,13 +303,118 @@ FlaxCodegenClassSelection _readClass(_StrictMap selection) {
       'methodTypeArguments',
       uniqueValues: false,
     ),
-    deferredFactories: selection.stringList('deferredFactories'),
     startsRoute: selection.stringList('startsRoute'),
     instanceMethods: selection.stringListMap('instanceMethods'),
     getters: selection.stringList('getters'),
     methods: selection.stringListMap('methods'),
     jsName: selection.optionalString('jsName'),
   );
+}
+
+Map<String, FlaxCodegenProxyVariantSelection> _readProxyVariants(
+  _StrictMap selection,
+) {
+  final node = selection.dynamicMap('proxyVariants');
+  if (node == null) return const {};
+  final variants = <String, FlaxCodegenProxyVariantSelection>{};
+  _forEachNamed(selection.diagnostics, node, selection.child('proxyVariants'), (
+    name,
+    value,
+    pointer,
+  ) {
+    if (!flaxCodegenIsExportName(name)) {
+      selection.diagnostics.add(
+        code: FlaxCodegenDiagnosticCode.invalidValue,
+        pointer: pointer,
+        message: 'Expected a public variant identifier.',
+        node: value,
+      );
+    }
+    final variant = _StrictMap(
+      selection.diagnostics,
+      value,
+      pointer,
+      _proxyVariantFields,
+    );
+    final mixinNode = variant.node('mixins');
+    if (mixinNode == null) {
+      selection.diagnostics.add(
+        code: FlaxCodegenDiagnosticCode.missingField,
+        pointer: variant.child('mixins'),
+        message: 'Missing field.',
+        node: value,
+      );
+      return;
+    }
+    if (mixinNode is! YamlList) {
+      selection.diagnostics.add(
+        code: FlaxCodegenDiagnosticCode.typeMismatch,
+        pointer: variant.child('mixins'),
+        message: 'Expected a list of mixin selections.',
+        node: mixinNode,
+      );
+      return;
+    }
+    if (mixinNode.nodes.isEmpty) {
+      selection.diagnostics.add(
+        code: FlaxCodegenDiagnosticCode.invalidValue,
+        pointer: variant.child('mixins'),
+        message: 'Select at least one mixin.',
+        node: mixinNode,
+      );
+    }
+    final mixins = <FlaxCodegenMixinSelection>[];
+    final seen = <String>{};
+    for (var index = 0; index < mixinNode.nodes.length; index++) {
+      final item = mixinNode.nodes[index];
+      final itemPointer = '${variant.child('mixins')}/$index';
+      String? mixinName;
+      String? library;
+      if (item.value case final String value) {
+        if (value.isEmpty) {
+          selection.diagnostics.add(
+            code: FlaxCodegenDiagnosticCode.invalidValue,
+            pointer: itemPointer,
+            message: 'Expected a nonempty mixin name.',
+            node: item,
+          );
+          continue;
+        }
+        mixinName = value;
+      } else if (item is YamlMap) {
+        final mixin = _StrictMap(
+          selection.diagnostics,
+          item,
+          itemPointer,
+          _mixinFields,
+        );
+        mixinName = mixin.requiredString('name');
+        library = mixin.optionalString('library');
+      } else {
+        selection.diagnostics.add(
+          code: FlaxCodegenDiagnosticCode.typeMismatch,
+          pointer: itemPointer,
+          message: 'Expected a mixin name or mapping.',
+          node: item,
+        );
+        continue;
+      }
+      if (mixinName == null) continue;
+      final key = '${library ?? ''}::$mixinName';
+      if (!seen.add(key)) {
+        selection.diagnostics.add(
+          code: FlaxCodegenDiagnosticCode.duplicateValue,
+          pointer: itemPointer,
+          message: 'Duplicate mixin selection.',
+          node: item,
+        );
+        continue;
+      }
+      mixins.add(FlaxCodegenMixinSelection(mixinName, library: library));
+    }
+    variants[name] = FlaxCodegenProxyVariantSelection(mixins: mixins);
+  });
+  return variants;
 }
 
 FlaxCodegenPageAdapterModel? _pageAdapter(_StrictMap adapter) {

@@ -125,12 +125,11 @@ Package integration commands own package-specific Flutter/example behavior.
 `check:aggregate` adds only cross-module embedded composition, while `check:ui` runs all
 UI-owning package integrations followed by that aggregate. Runtime, standalone,
 engine-coexistence, and release checks remain separate gates. The current acceptance
-scope is recorded in
-[External Binding Compatibility](external-binding-compatibility.md). The
-[V8 adapter](../../packages/flax_engine_v8/native/README.md) documents lifecycle and JIT
-smoke coverage; [packaging](packaging.md) defines outside-consumer and relocated-bundle
-checks. A local runtime pass does not establish other-platform, published-archive or
-complete ECMAScript conformance.
+scope is recorded in [External Binding Verification](external-binding-verification.md).
+The [V8 adapter](../../packages/flax_engine_v8/native/README.md) documents lifecycle and
+JIT smoke coverage; [packaging](packaging.md) defines outside-consumer and
+relocated-bundle checks. A local runtime pass does not establish other-platform,
+published-archive or complete ECMAScript conformance.
 
 ## Deferred concerns
 

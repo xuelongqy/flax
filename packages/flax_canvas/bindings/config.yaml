@@ -1,4 +1,4 @@
-format: 1
+format: 2
 name: canvas
 imports: [flax]
 library: package:flax_canvas/flax_canvas.dart

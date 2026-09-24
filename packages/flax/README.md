@@ -43,7 +43,7 @@ IDs are separate concerns. See
 
 Generated Builder/LayoutBuilder adapters use real Flutter callbacks. The shared UI host
 owns callback results and Context references per mounted instance; scalar member calls
-and ordinary Dart references reuse the synchronous runtime bridge. Protocol 20 extension
+and ordinary Dart references reuse the synchronous runtime bridge. Protocol 21 extension
 types include callback signatures, getters, static/instance methods, contexts,
 references, borrowed State, Routes, Pages, and selected Future results. These UI
 features do not change the pure-Dart runtime entry or native ABI.

@@ -3,9 +3,8 @@ import 'dart:io';
 
 import 'package:flax_codegen/flax_codegen.dart';
 import 'package:flax_codegen/src/identity.dart';
-import 'package:flax_codegen/src/manifest_v5.dart';
-import 'package:flax_codegen/src/manifest_v5_codec.dart';
-import 'package:flax_codegen/src/manifest_v5_projection.dart';
+import 'package:flax_codegen/src/manifest_codec.dart';
+import 'package:flax_codegen/src/manifest_projection.dart';
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
@@ -43,7 +42,7 @@ void main() {
   }
 
   const yaml = '''
-format: 1
+format: 2
 name: aliases
 library: package:example/aliases.dart
 jsPackage: '@example/aliases'
@@ -52,7 +51,7 @@ tsOutput: js/aliases.ts
 classes: {}
 ''';
 
-  test('format 1 supports optional strict typedef selection', () {
+  test('format 2 supports optional strict typedef selection', () {
     expect(FlaxCodegenBindingConfig.parseStrict(yaml).typedefs, isEmpty);
     expect(
       FlaxCodegenBindingConfig.parseStrict(
@@ -205,25 +204,9 @@ onChanged('wrong');
   });
 
   test('aliases cannot shadow generated helpers or TypeScript types', () async {
-    for (final name in [
-      'DartList',
-      'number',
-      'AliasHostLifecycle',
-      'NonNullable',
-    ]) {
+    for (final name in ['DartList', 'number', 'NonNullable']) {
       await expectLater(
-        parse(
-          config(
-            [name],
-            classes: const {
-              'AliasHost': FlaxCodegenClassSelection(
-                {},
-                kind: 'object',
-                proxy: 'host',
-              ),
-            },
-          ),
-        ),
+        parse(config([name])),
         throwsA(
           isA<StateError>().having(
             (error) => error.message,
@@ -234,36 +217,6 @@ onChanged('wrong');
       );
     }
   });
-
-  test(
-    'host proxy modules compile exported callback and collection aliases',
-    () async {
-      final module = await parse(
-        config(
-          ['Names', 'OnChanged'],
-          classes: const {
-            'AliasHost': FlaxCodegenClassSelection(
-              {},
-              kind: 'object',
-              proxy: 'host',
-            ),
-          },
-        ),
-      );
-      await compileFixture(
-        root,
-        FlaxCodegenBindingEmitter([module]),
-        module,
-        consumerSource: '''
-import { AliasHostLifecycle } from './plugin.js';
-import type { NamesInput, OnChangedInput } from './plugin.js';
-const names: NamesInput = ['one'];
-const changed: OnChangedInput = value => { const checked: number = value; };
-abstract class Host extends AliasHostLifecycle { render(): void {} }
-''',
-      );
-    },
-  );
 
   test(
     'generic aliases reuse callback scopes and compile explicit TS uses',
@@ -403,7 +356,7 @@ const invalid: RecordAliasInput = { \$1: 'wrong', \$2: 4 };
     });
   }
 
-  test('Manifest 7 preserves aliases in immutable dependency projections', () {
+  test('Manifest 12 preserves aliases in immutable dependency projections', () {
     final manifest = _manifest(const [
       FlaxCodegenTypeAliasModel(
         name: 'Names',
@@ -415,7 +368,7 @@ const invalid: RecordAliasInput = { \$1: 'wrong', \$2: 4 };
     final decoded = _decode(manifest.toJson());
     expect(decoded.encode(), manifest.encode());
     expect(decoded.modules.single.model.identities, isEmpty);
-    final projection = FlaxCodegenManifestV5Projection(
+    final projection = FlaxCodegenManifestProjection(
       root: decoded,
       directDependencies: const {},
       source: 'manifest.json',
@@ -434,68 +387,19 @@ const invalid: RecordAliasInput = { \$1: 'wrong', \$2: 4 };
     );
   });
 
-  test('strict Manifest 2 migrates to empty aliases and writes version 7', () {
-    final json = _manifest(const []).toJson();
-    json['formatVersion'] = 2;
-    _model(json).remove('typedefs');
-    final decoded = _decode(json);
-    expect(decoded.modules.single.model.module.typedefs, isEmpty);
-    expect(decoded.toJson()['formatVersion'], 11);
-    expect(_model(decoded.toJson())['typedefs'], isEmpty);
-  });
-
-  test(
-    'version 2 rejects alias fields, current requires them, unknown fails',
-    () {
-      final v2 = _manifest(const []).toJson()..['formatVersion'] = 2;
-      _reject(v2, '/modules/0/model/typedefs');
-      final missing = _manifest(const []).toJson();
-      _model(missing).remove('typedefs');
-      _reject(missing, '/modules/0/model/typedefs');
-      _reject(
-        _manifest(const []).toJson()
-          ..['formatVersion'] = FlaxCodegenManifestV5.formatVersion + 1,
-        '/formatVersion',
-      );
-    },
-  );
-
-  test('Manifest 3 validates legacy alias rules before migration', () async {
-    final module = await parse(config(['Mapper', 'HigherRank', 'Names']));
-    final aliases = [
-      for (final alias in module.typedefs)
-        FlaxCodegenTypeAliasModel(
-          name: alias.name,
-          originatingUri: 'package:alias_pkg/aliases.dart',
-          originatingName: alias.name,
-          target: alias.target,
-          typeParameters: alias.typeParameters,
-        ),
-    ];
-    final legacy = _manifest([aliases.last]).toJson()..['formatVersion'] = 3;
-    (_model(legacy)['typedefs']! as List).single.remove('typeParameters');
-    final migrated = _decode(legacy);
-    expect(migrated.toJson()['formatVersion'], 11);
-    expect(
-      migrated.modules.single.model.module.typedefs.single.typeParameters,
-      isEmpty,
-    );
-    final unknownField = _manifest([aliases.last]).toJson()
-      ..['formatVersion'] = 3;
-    _reject(unknownField, '/modules/0/model/typedefs/0/typeParameters');
-    final higher = _manifest([aliases[1]]).toJson()..['formatVersion'] = 3;
-    (_model(higher)['typedefs']! as List).single.remove('typeParameters');
-    _reject(higher, '/modules/0/model/typedefs/0');
-    final generic = _manifest([aliases.first]).toJson()..['formatVersion'] = 3;
-    (_model(generic)['typedefs']! as List).single.remove('typeParameters');
+  test('current Manifest requires aliases and rejects unknown versions', () {
+    final missing = _manifest(const []).toJson();
+    _model(missing).remove('typedefs');
+    _reject(missing, '/modules/0/model/typedefs');
     _reject(
-      generic,
-      '/modules/0/model/typedefs/0/target/parameters/0/type/declaration/slot',
+      _manifest(const []).toJson()
+        ..['formatVersion'] = FlaxCodegenManifest.formatVersion + 1,
+      '/formatVersion',
     );
   });
 
   test(
-    'Manifest 7 roundtrip preserves capture, shadowing and bound slots',
+    'Manifest 12 roundtrip preserves capture, shadowing and bound slots',
     () async {
       final module = await parse(
         config([
@@ -627,18 +531,18 @@ const invalid: RecordAliasInput = { \$1: 'wrong', \$2: 4 };
   }
 }
 
-FlaxCodegenManifestV5 _manifest(List<FlaxCodegenTypeAliasModel> aliases) =>
-    FlaxCodegenManifestV5(
+FlaxCodegenManifest _manifest(List<FlaxCodegenTypeAliasModel> aliases) =>
+    FlaxCodegenManifest(
       package: 'alias_pkg',
       bindingNamespace: FlaxCodegenBindingNamespace.parse('example.alias'),
       imports: const [],
       modules: [
-        FlaxCodegenManifestV5Module(
+        FlaxCodegenManifestModule(
           name: 'aliases',
           moduleId: FlaxCodegenModuleId.parse('example.alias/aliases'),
-          uiProtocol: 20,
+          uiProtocol: 21,
           requiredCapabilities: const [],
-          model: FlaxCodegenManifestV5Model(
+          model: FlaxCodegenManifestModel(
             identities: const [],
             module: FlaxCodegenModuleModel(
               name: 'aliases',
@@ -659,16 +563,16 @@ Map<String, Object?> _model(Map<String, Object?> json) =>
     ((json['modules']! as List).single as Map<String, Object?>)['model']!
         as Map<String, Object?>;
 
-FlaxCodegenManifestV5 _decode(Map<String, Object?> json) {
-  final diagnostics = FlaxCodegenManifestV5Diagnostics('manifest.json');
-  final result = FlaxCodegenManifestV5.parse(jsonEncode(json), diagnostics);
+FlaxCodegenManifest _decode(Map<String, Object?> json) {
+  final diagnostics = FlaxCodegenManifestDiagnostics('manifest.json');
+  final result = FlaxCodegenManifest.parse(jsonEncode(json), diagnostics);
   diagnostics.throwIfAny();
   return result!;
 }
 
 void _reject(Map<String, Object?> json, String pointer) {
-  final diagnostics = FlaxCodegenManifestV5Diagnostics('manifest.json');
-  expect(FlaxCodegenManifestV5.parse(jsonEncode(json), diagnostics), isNull);
+  final diagnostics = FlaxCodegenManifestDiagnostics('manifest.json');
+  expect(FlaxCodegenManifest.parse(jsonEncode(json), diagnostics), isNull);
   expect(diagnostics.items.map((item) => item.pointer), contains(pointer));
 }
 

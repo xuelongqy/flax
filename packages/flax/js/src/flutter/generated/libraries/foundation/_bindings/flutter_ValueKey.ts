@@ -6,7 +6,7 @@ import '@flax/flutter/foundation/_bindings/flutter_LocalKey';
 import type * as upstream1 from '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
-export interface ValueKey<T extends (string | number) = (string | number)> extends upstream0.LocalKey, upstream1.Key, Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::ValueKey": readonly [T] }> { readonly __ValueKey: unique symbol;
+export interface ValueKey<T extends unknown | null = unknown | null> extends upstream0.LocalKey, upstream1.Key, Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::ValueKey": readonly [T] }> { readonly __ValueKey: unique symbol;
 readonly value: T;
 }
 defineObject("flax.core/flutter#type:ValueKey", ["value"], [], {}, []);

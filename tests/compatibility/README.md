@@ -7,6 +7,6 @@ with either engine. This directory does not contain a second test framework.
 Run `check:runtime` / `check:runtime:v8` and `check:ui` / `check:ui:v8` through Melos.
 `check:engines` verifies both engines together. See the
 [runtime verification scope](../../docs/architecture/runtime.md#verification) and
-[current binding acceptance](../../docs/architecture/external-binding-compatibility.md)
+[current binding acceptance](../../docs/architecture/external-binding-verification.md)
 for platform evidence. Compilation or CMake configuration alone is not engine
 compatibility validation.

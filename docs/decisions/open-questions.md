@@ -1,14 +1,15 @@
 # Open Questions
 
 Current accepted contracts include explicit selection, public-provider manifests, stable
-wire identity, package-atomic generation and trusted compile-time dependencies.
-Configuration format 1, Manifest writer 11 with strict readers 2/3/4/5/6/7/8/9/10/11, UI
-protocol 20 and native ABI 2 remain separate domains. Generic typedefs use TypeScript
-relationships, upper-bound erasure and concrete Dart use-site validation; exact Dart
-inference and runtime type tokens are not requirements. See
+wire identity, package-atomic generation and trusted compile-time dependencies. Binding
+selection format 2, package metadata format 1, current-only Manifest 12, UI protocol 21
+and native ABI 2 remain separate domains. Generic declarations use shared Dart owners
+while TypeScript preserves relationships; safe constructor specializations come from
+Analyzer-observed concrete use sites plus the bounded String/safe-int scalar pair.
+Runtime type tokens are not a requirement. See
 [Binding Generation](../architecture/bindings.md) and
-[ADR 0025](0025-generic-typedef-bindings.md). Explicit top-level readonly selections use
-library-level exports with uncached `getX()` reads under
+[ADR 0035](0035-generic-state-variants-and-protocol-21.md). Explicit top-level readonly
+selections use library-level exports with uncached `getX()` reads under
 [ADR 0027](0027-public-library-module-delivery.md). Mutable top-level reads and setters
 use the function-style access contract in
 [ADR 0031](0031-mutable-top-level-bindings.md).
@@ -16,21 +17,21 @@ use the function-style access contract in
 ## Binding coverage and automation
 
 [ADR 0033](0033-automatic-public-library-bindings.md) accepts one public-library
-automatic entry, safe direct-provider reuse, unique observed generic specialization,
-annotation filtering and optional overrides. The remaining questions below concern
-broader management and composition, not the implemented `--library` workflow.
+automatic entry, safe direct-provider reuse, annotation filtering and optional
+overrides. ADR 0035 adds shared generic owners, safe constructor specialization and
+fixed Flutter State mixin variants. The remaining questions below concern broader
+management and composition, not the implemented `--library` workflow.
 
-| Decision                                            | Evidence required before choosing                                                                                                                                             |
-| --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Provider and project binding management             | Explicit provider choice, missing-member policy, version conflicts and module partitioning while retaining one canonical owner per declaration                                |
-| Mixin composition                                   | A Dart/TypeScript composition model, member precedence and lifetime rules; non-constructible mixin member selection does not settle composition                               |
-| Scalable optional omission                          | A concrete replacement for exponential `omitWhenAbsent` branches that preserves Dart defaults and explicit null                                                               |
-| Broader generic runtime specialization (deferred)   | Revisit only with concrete SDK/API demand. Current scope excludes multiple or whole-graph specialization discovery, callback erasure requiring concrete runtime specialization, generalized deferred-factory inference and generic Widget-interface declarations. Ordinary higher-rank callbacks with erasable bounds remain supported; concrete generic Extension specialization remains unsupported. |
+| Decision                                          | Evidence required before choosing                                                                                                                                                                                                                                                                                                                                                                                                        |
+| ------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Provider and project binding management           | Explicit provider choice, missing-member policy, version conflicts and module partitioning while retaining one canonical owner per declaration                                                                                                                                                                                                                                                                                           |
+| General mixin composition beyond State variants   | Revisit only with concrete demand for applying arbitrary mixins to non-State owners; fixed analyzer-validated State variants are implemented                                                                                                                                                                                                                                                                                             |
+| Scalable optional omission                        | A concrete replacement for exponential `omitWhenAbsent` branches that preserves Dart defaults and explicit null                                                                                                                                                                                                                                                                                                                          |
+| Broader generic runtime specialization (deferred) | Revisit only with concrete SDK/API demand. Current scope excludes runtime type tokens, whole-graph nested inference, overlapping constructor domains, callback erasure requiring concrete runtime specialization, generalized deferred-factory inference and generic Widget-interface declarations. Ordinary higher-rank callbacks with erasable bounds remain supported; concrete generic Extension specialization remains unsupported. |
 
-Implementation candidates and the real outside-library pilot are tracked in
-[Binding Coverage Expansion](../tasks/binding-coverage-expansion-v1.md). A proposed
-Core, Material, Cupertino or third-party slice is not implemented until its selection,
-generation and actual behavior are verified.
+A proposed Core, Material, Cupertino or third-party slice is not implemented until its
+selection, generation and actual behavior are verified. Record a durable task only when
+work has started and needs a handoff.
 
 ## Runtime, application and distribution
 

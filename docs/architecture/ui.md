@@ -67,7 +67,8 @@ Local builds may still cause ancestor layout or paint work.
 Native widgets remain in the host Flutter tree, inheriting Theme, Directionality, and
 constraints normally. Selected builder callbacks also receive a real Context reference.
 Use the standalone Material package for the example shell and generated Material
-widgets; legacy SDK Material types have distinct identities.
+widgets; SDK Material declarations and standalone package declarations have distinct
+identities.
 
 ## Contextual builders and members
 
@@ -164,7 +165,7 @@ checkpoints. UI void events may return a Promise without becoming a Dart Future.
 
 ## Experimental protocol and limits
 
-Protocol 20 generated descriptors carry `kind`, declaration-origin `type`, constructor
+Protocol 21 generated descriptors carry `kind`, declaration-origin `type`, constructor
 `ctor`, and an `args` map; enum descriptors carry type and member name. Binding
 descriptors expose `read()` and `observe(token)`, which returns cleanup.
 `__flaxMount(root, version)` checks the protocol against the Dart registry. The public
@@ -186,7 +187,7 @@ Named page factories also receive an explicit PageLifecycle argument. Its onDisp
 callbacks run after content descendants unmount. Generated Controllers use creator-owned
 object references, while Widgets borrow them. See [owned objects](objects.md).
 
-Protocol 20 retains [Dart references and callbacks](objects.md),
+Protocol 21 retains [Dart references and callbacks](objects.md),
 [collections and generics](interop.md), and
 [editing, focus and formatters](text-input.md). It includes Promise-to-Future callback
 results and the dart:async Stream/FutureOr envelope without changing object ownership or

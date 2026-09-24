@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flax_codegen/flax_codegen.dart';
-import 'package:flax_codegen/src/manifest_v5_codec.dart';
+import 'package:flax_codegen/src/manifest_codec.dart';
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
@@ -150,16 +150,16 @@ void main() {
         functions['recursiveIterable']!.result,
         functions['recursiveSet']!.result,
       ]) {
-        final encoded = FlaxCodegenManifestV5Codec.encodeTypeRef(type);
-        final diagnostics = FlaxCodegenManifestV5Diagnostics('recursive-types');
-        final decoded = FlaxCodegenManifestV5Codec.decodeTypeRef(
+        final encoded = FlaxCodegenManifestCodec.encodeTypeRef(type);
+        final diagnostics = FlaxCodegenManifestDiagnostics('recursive-types');
+        final decoded = FlaxCodegenManifestCodec.decodeTypeRef(
           encoded,
           diagnostics,
           r'$/type',
         );
         expect(diagnostics.items, isEmpty);
         expect(decoded, isNotNull);
-        expect(FlaxCodegenManifestV5Codec.encodeTypeRef(decoded!), encoded);
+        expect(FlaxCodegenManifestCodec.encodeTypeRef(decoded!), encoded);
       }
 
       final coreModule = await parser.parse(core);

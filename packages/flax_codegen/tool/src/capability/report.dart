@@ -37,72 +37,7 @@ CoverageCounts countInventory(LibraryInventory inventory) {
   return counts;
 }
 
-Map<String, Object?> legacyCensusView(LibraryInventory inventory) {
-  var exportClasses = 0;
-  var exportMixins = 0;
-  var exportEnums = 0;
-  var exportFunctions = 0;
-  var exportOther = 0;
-  var nonEmptySelection = 0;
-  var completeMembers = 0;
-  var partialMembers = 0;
-  var unsupported = 0;
-  var existingProvider = 0;
-  var notRun = 0;
-  for (final declaration in inventory.declarations) {
-    switch (declaration.kind) {
-      case 'class':
-        exportClasses++;
-      case 'mixin':
-        exportMixins++;
-      case 'enum':
-        exportEnums++;
-      case 'function':
-        exportFunctions++;
-      default:
-        exportOther++;
-    }
-    final status = declaration.assessment?.status;
-    if (status == CoverageStatus.complete) {
-      completeMembers++;
-      nonEmptySelection++;
-    } else if (status == CoverageStatus.partial) {
-      partialMembers++;
-      nonEmptySelection++;
-    } else if (status == CoverageStatus.existingProvider) {
-      existingProvider++;
-      nonEmptySelection++;
-    } else if (status == CoverageStatus.unsupported) {
-      unsupported++;
-    } else {
-      notRun++;
-    }
-  }
-  return {
-    'exports': {
-      'classes': exportClasses,
-      'mixins': exportMixins,
-      'enums': exportEnums,
-      'functions': exportFunctions,
-      'other': exportOther,
-      'total': inventory.declarations.length,
-    },
-    'legacyOkAnyMode': nonEmptySelection,
-    'legacyWouldCallOwnFull': nonEmptySelection,
-    'corrected': {
-      'completeMembers': completeMembers,
-      'partialMembers': partialMembers,
-      'existingProvider': existingProvider,
-      'unsupported': unsupported,
-      'notRun': notRun,
-    },
-    'note':
-        'The previous census counted any non-empty selection as ownFull. '
-        'That number is legacyWouldCallOwnFull, not complete member coverage.',
-  };
-}
-
-Map<String, Object?> firstBatchInsights(LibraryInventory inventory) {
+Map<String, Object?> capabilityInsights(LibraryInventory inventory) {
   var missingDependency = 0;
   var isolatedUnsupported = 0;
   var pooledUnsupported = 0;
@@ -161,6 +96,15 @@ Map<String, Object?> firstBatchInsights(LibraryInventory inventory) {
               ],
             },
       ];
+  int declarationsWith(String code) => inventory.declarations
+      .where(
+        (declaration) =>
+            declaration.assessment?.diagnostics.any(
+              (diagnostic) => diagnostic.code == code,
+            ) ==
+            true,
+      )
+      .length;
   return {
     'sourceLibraries': (sourceLibraries.toList()..sort()),
     'sourceLibraryCount': sourceLibraries.length,
@@ -170,9 +114,17 @@ Map<String, Object?> firstBatchInsights(LibraryInventory inventory) {
     'automaticBaselineUnsupported': automaticBaselineUnsupported,
     'automaticUnsupported': automaticUnsupported,
     'publicCarrierAutomation': skipCodes['public_carrier_automation'] ?? 0,
-    'genericSpecializationAutomation':
-        skipCodes['generic_specialization_automation'] ?? 0,
-    'genericInstantiationGap': skipCodes['generic_instantiation'] ?? 0,
+    'sharedOwnerResolved': declarationsWith('shared_owner_resolved'),
+    'constructorSpecializationResolved': declarationsWith(
+      'constructor_specialization_resolved',
+    ),
+    'constructorSpecializationMissingUseSite': declarationsWith(
+      'constructor_specialization_missing_use_site',
+    ),
+    'constructorSpecializationAmbiguous': declarationsWith(
+      'constructor_specialization_ambiguous',
+    ),
+    'complexGenericBound': declarationsWith('complex_generic_bound'),
     'sdkCoreTypeGap': skipCodes['unsupported_core_type'] ?? 0,
     'privateImplementationDependency':
         skipCodes['private_implementation_dependency'] ?? 0,
@@ -194,11 +146,10 @@ Map<String, Object?> firstBatchInsights(LibraryInventory inventory) {
   };
 }
 
-String firstBatchMarkdown({
+String capabilityMarkdown({
   required Map<String, Object?> baseline,
   required LibraryInventory inventory,
   required CoverageCounts counts,
-  required Map<String, Object?> legacy,
   required List<Map<String, Object?>> genericResults,
   required List<Map<String, Object?>> defaultResults,
   required List<Map<String, Object?>> flutterLibraries,
@@ -209,11 +160,10 @@ String firstBatchMarkdown({
   final git = baseline['git'] as Map;
   final sdk = baseline['sdk'] as Map;
   final dart = (sdk['dart'] as String?)?.split('\n').first ?? 'unknown';
-  final corrected = legacy['corrected'] as Map;
   final skipCodes = insights['skipCodes'] as Map? ?? const {};
   final sourceLibraries = insights['sourceLibraries'] as List? ?? const [];
   final buffer = StringBuffer()
-    ..writeln('# flax_codegen capability verification — first batch')
+    ..writeln('# flax_codegen capability verification')
     ..writeln()
     ..writeln('Status: evidence record, not a product gate.')
     ..writeln()
@@ -297,9 +247,13 @@ String firstBatchMarkdown({
       'Automatic A/B unsupported without/with public carriers: '
       '${insights['automaticBaselineUnsupported']} / '
       '${insights['automaticUnsupported']}. Carrier-resolved declarations: '
-      '${insights['publicCarrierAutomation']}; generic-specialization-resolved: '
-      '${insights['genericSpecializationAutomation']}. Remaining '
-      'generic/core/private diagnostics: ${insights['genericInstantiationGap']} / '
+      '${insights['publicCarrierAutomation']}. Generic shared-owner / constructor '
+      'resolved / missing-use-site / ambiguous / complex-bound declarations: '
+      '${insights['sharedOwnerResolved']} / '
+      '${insights['constructorSpecializationResolved']} / '
+      '${insights['constructorSpecializationMissingUseSite']} / '
+      '${insights['constructorSpecializationAmbiguous']} / '
+      '${insights['complexGenericBound']}. Remaining core/private diagnostics: '
       '${insights['sdkCoreTypeGap']} / '
       '${insights['privateImplementationDependency']}.',
     )
@@ -314,18 +268,6 @@ String firstBatchMarkdown({
     }
   }
   buffer
-    ..writeln()
-    ..writeln('## Census correction')
-    ..writeln()
-    ..writeln(
-      'Legacy `okAnyMode` / mislabeled `ownFull`: ${legacy['legacyWouldCallOwnFull']}.',
-    )
-    ..writeln(
-      'Corrected complete / partial / existingProvider / unsupported / notRun: '
-      '${corrected['completeMembers']} / ${corrected['partialMembers']} / '
-      '${corrected['existingProvider']} / ${corrected['unsupported']} / '
-      '${corrected['notRun']}.',
-    )
     ..writeln()
     ..writeln('## Generic fixtures')
     ..writeln();
@@ -355,16 +297,14 @@ String firstBatchMarkdown({
   ];
   buffer
     ..writeln()
-    ..writeln('## First-batch answers')
+    ..writeln('## Capability summary')
     ..writeln()
     ..writeln(
       '1. `${inventory.entry}` has ${counts.uniqueIdentities} unique source '
-      'identities and ${counts.exportNames} export names across '
-      '${insights['sourceLibraryCount']} source libraries. The old census '
-      'counted class/mixin exports and treated any non-empty selection as '
-      '`ownFull` (${legacy['legacyWouldCallOwnFull']}). Enums, typedefs, '
-      'extensions, extension types, and top-level variables/functions were '
-      'omitted or folded into `other` (${(legacy['exports'] as Map)['other']}).',
+      'identities, ${counts.exportNames} public export names, '
+      '${counts.declaredMembers} declared members and '
+      '${counts.declaredParameters} declared parameters across '
+      '${insights['sourceLibraryCount']} source libraries.',
     )
     ..writeln(
       '2. Isolated-only failures stored as `missing_dependency`: '
@@ -374,15 +314,10 @@ String firstBatchMarkdown({
       'capability, language, or target limits, not missing pool types.',
     )
     ..writeln(
-      '3. Full-scheme blockers already visible: dependent/recursive generic '
-      'defaults skip (${[for (final result in dependent) '${result['name']}=${result['bindable']}'].join(', ')}); omitWhenAbsent cap 6 drops parameters on ${capHits.join(', ')}. '
-      'Unconstrained generics default to Object?; simple `num` bounds keep `num`; '
-      'generic methods are not auto-instantiated.',
-    )
-    ..writeln(
-      '4. Next mechanism: keep generic instantiation and default-call scale '
-      'before SDK-wide YAML expansion. Do not add all/allowlist product config '
-      'until those two blockers have an implementation path.',
+      '3. Dependent or recursive generic bounds without concrete evidence remain '
+      'fail-closed (${[for (final result in dependent) '${result['name']}=${result['bindable']}'].join(', ')}). '
+      'The current omitWhenAbsent cap is 6; parameters are dropped on '
+      '${capHits.isEmpty ? 'no fixtures' : capHits.join(', ')} when the cap is exceeded.',
     );
 
   void writeNamed(String title, Object? raw) {

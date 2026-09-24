@@ -15,7 +15,7 @@ test('owned constructors call the host immediately and preserve wrapper identity
   let id = 0;
   globalThis.__flaxCreateObject = (version, type, descriptor) => {
     calls.push(descriptor);
-    assert.equal(version, 20);
+    assert.equal(version, 21);
     return api.object(type, ++id);
   };
   globalThis.__flaxObject = (version, type, id, operation, member, ...args) => {

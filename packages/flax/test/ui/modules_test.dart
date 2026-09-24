@@ -17,7 +17,7 @@ void main() {
     () async {
       for (final mutate in <void Function(Map<String, dynamic>)>[
         (manifest) => manifest['unknown'] = true,
-        (manifest) => manifest['formatVersion'] = 2,
+        (manifest) => manifest['formatVersion'] = 999,
         (manifest) => manifest['bootstrap'] = '../registry.js',
         (manifest) =>
             manifest['modules'][0]['dependencies'] = {'missing': '1.0.0'},
@@ -137,6 +137,47 @@ $source
     }
     expect(errors, isEmpty);
   });
+
+  testWidgets(
+    'built-in component bindings satisfy packed module requirements',
+    (tester) async {
+      final fixture = _Fixture();
+      fixture.module('@fixture/a')['bindings'] = [
+        {
+          'moduleId': 'flax.core/components',
+          'uiProtocol': flaxBindingVersion,
+          'types': [
+            'flax.core/components#type:State',
+            'flax.core/components#type:StatefulWidget',
+          ],
+          'functions': <String>[],
+        },
+      ];
+      Flax.moduleAssets = await fixture.load();
+      final runtime = RuntimeTracker();
+      final errors = <Object>[];
+      await tester.pumpWidget(
+        MaterialApp(
+          home: FlaxView(
+            createRuntime: () => runtime,
+            bindings: registry,
+            plugins: const [
+              _ModulePlugin('fixture.a', {'@fixture/a'}),
+            ],
+            source:
+                'globalThis.fixtureValue = 5;\n${fixture.business}\n$source',
+            onError: (error, _) => errors.add(error),
+          ),
+        ),
+      );
+      expect(errors, isEmpty);
+      expect(_number(runtime, 'fixtureResult.read()'), 5);
+      await tester.pumpWidget(const SizedBox());
+      await tester.pumpAndSettle();
+      expect(runtime.isDisposed, isTrue);
+      expect(runtime.handlesAtDispose, 0);
+    },
+  );
 
   for (final missingModule in [true, false]) {
     testWidgets(

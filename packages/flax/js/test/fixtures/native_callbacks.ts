@@ -94,6 +94,4 @@ registerPage('widget-list-duplicate', () =>
     ],
   }),
 );
-registerPage('widget-list-failure', () =>
-  WidgetListBatch({ render: listRender.bind }),
-);
+registerPage('widget-list-failure', () => WidgetListBatch({ render: listRender.bind }));

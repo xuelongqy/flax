@@ -25,7 +25,7 @@ class _Session {
   int _routeCount = 0;
   final _heldRoutes = <ModalRoute<Object?>>{};
   final _closed = Completer<void>();
-  final _componentStates = <int, _ComponentState>{};
+  final _componentStates = <int, FlaxComponentStateBase>{};
   final _componentDescriptions = <int, WeakReference<_ComponentDescription>>{};
   final _configurations = <_WidgetConfiguration>{};
   final _componentSessionId = _nextComponentSession++;
@@ -317,6 +317,11 @@ class _Session {
         }
         rethrow;
       }
+    }
+    if ((type.kind == 'object' || type.kind == 'state') &&
+        value is FlaxJsObject) {
+      final componentState = decodeComponentStateReference(value, type);
+      if (componentState != null) return componentState;
     }
     if (type.kind == 'object') {
       final binding = registry._types[type.id];

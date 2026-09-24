@@ -10,8 +10,9 @@ implement local property and dynamic subtree updates; see [UI lifecycle](ui.md).
 
 Synchronous generated callbacks also support Builder/LayoutBuilder, borrowed Context
 references, selected static methods, and readonly constraint references. The binding
-protocol is version 20, including the dart:async Stream/Future/FutureOr envelope in
-[ADR 0020](../decisions/0020-ui-protocol-20.md). The native ABI remains 2.
+protocol is version 21, including shared generic owners and State variants under
+[ADR 0035](../decisions/0035-generic-state-variants-and-protocol-21.md). The native ABI
+remains 2.
 
 Shared and nested Navigator bindings, explicit sessions, Route-owned callbacks, and
 Future delivery, named page entries, and declarative Pages are described in
@@ -71,11 +72,10 @@ Public Dart APIs + package-owned binding rules and dependency manifests
 ```
 
 These are separate tools and ownership boundaries; see
-[binding generation](bindings.md). Authors migrating from Manifest 1 / loose config use
-the [external binding migration guide](../guides/external-binding-migration.md). The
-[compatibility matrix](external-binding-compatibility.md) separates verified behavior
-from remaining evidence gaps. The [binding coverage map](binding-coverage-map.md)
-distinguishes current support and proposed selection growth
+[binding generation](bindings.md).
+[External Binding Verification](external-binding-verification.md) defines the current
+evidence levels. The [binding coverage map](binding-coverage-map.md) distinguishes
+current support and proposed selection growth
 ([ADR 0018](../decisions/0018-binding-coverage-strategy.md)).
 
 ## Package boundaries

@@ -2,7 +2,7 @@ import 'dart:io';
 import 'dart:convert';
 
 import 'package:flax_codegen/flax_codegen.dart';
-import 'package:flax_codegen/src/manifest_v5_codec.dart';
+import 'package:flax_codegen/src/manifest_codec.dart';
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
@@ -173,9 +173,9 @@ void main() {
           ),
         }),
       );
-      final diagnostics = FlaxCodegenManifestV5Diagnostics('fixture');
-      final json = FlaxCodegenManifestV5Codec.encodeModule(provider);
-      final decoded = FlaxCodegenManifestV5Codec.decodeModule(
+      final diagnostics = FlaxCodegenManifestDiagnostics('fixture');
+      final json = FlaxCodegenManifestCodec.encodeModule(provider);
+      final decoded = FlaxCodegenManifestCodec.decodeModule(
         json,
         diagnostics,
         '',
@@ -202,9 +202,9 @@ void main() {
           case 'duplicate':
             members.add(first);
         }
-        final errors = FlaxCodegenManifestV5Diagnostics('malformed');
+        final errors = FlaxCodegenManifestDiagnostics('malformed');
         expect(
-          FlaxCodegenManifestV5Codec.decodeModule(
+          FlaxCodegenManifestCodec.decodeModule(
             malformed,
             errors,
             '',
@@ -232,20 +232,6 @@ void main() {
         FlaxCodegenBindingEmitter([decoded, consumer]),
         consumer,
       );
-      for (final version in [2, 3, 4, 5, 6, 7]) {
-        final errors = FlaxCodegenManifestV5Diagnostics('legacy');
-        FlaxCodegenManifestV5Codec.decodeModule(
-          json,
-          errors,
-          '',
-          'contracts',
-          formatVersion: version,
-        );
-        expect(
-          errors.items.any((e) => e.message.contains('Manifest 8')),
-          isTrue,
-        );
-      }
     },
   );
   test('incompatible interface obligations fail during generation', () async {

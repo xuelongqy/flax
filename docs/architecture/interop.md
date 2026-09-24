@@ -1,6 +1,6 @@
 # Collections, Generics and Generated Proxies
 
-UI protocol 20 shares one conversion and reference mechanism across selected Dart APIs.
+UI protocol 21 shares one conversion and reference mechanism across selected Dart APIs.
 [Object ownership](objects.md) describes callbacks, GC and session shutdown.
 
 ## Ordinary objects and explicit data
@@ -92,8 +92,8 @@ remains unsupported. Direct non-null `List<Widget>` callback parameters and resu
 supported; other Widget collection callback shapes remain fail-closed. Single Widget
 arguments support Dart retention as described below. Widget references are accepted only
 at Widget positions, not ordinary Object/dynamic inputs. Flax hosts also retain their
-description resources. The application root holds the session until its subtree unmounts,
-even when it consists entirely of native Widgets.
+description resources. The application root holds the session until its subtree
+unmounts, even when it consists entirely of native Widgets.
 
 A returned builder borrows the supplied Context's existing owner and lifecycle. It does
 not manufacture an Element, extend Context lifetime or execute during conversion.
@@ -132,7 +132,7 @@ Widget unmount does not cancel an already returned Future. Session closing compl
 pending Futures with `StateError('FlaxSessionClosed')`, drops their observers and
 ignores later settlement. Promise cancellation is not inferred.
 
-## Dart Stream and FutureOr (UI protocol 20)
+## Dart Stream and FutureOr (UI protocol 21)
 
 Selected Dart `Stream<T>` / `Stream<T>?` results and parameters use the JS interop type
 **`FlaxStreamReference<T>`** (`@flax/core/bindings`). Generated Flutter bindings still
@@ -180,7 +180,7 @@ positions. Future inputs required by the selected Stream API, including
 reuse the same recursive TypeRef conversion described above. This does not expand async
 properties, lifecycle/build callbacks, Context roles, Route transport or Stream
 semantics. Protocol 18 and 19 modules are rejected. See
-[ADR 0020](../decisions/0020-ui-protocol-20.md).
+[ADR 0020](../decisions/0020-complete-dart-stream-interop.md).
 
 ## Widget configuration and mounting
 
@@ -291,8 +291,8 @@ selection can request `proxy: extends` for an eligible class or `proxy: implemen
 any class Dart permits an external library to implement. `proposeSelection` chooses
 between those modes for ordinary class contracts when the choice is unambiguous:
 interface-style contracts prefer implements, while classes with reusable concrete
-behavior and a uniquely selectable generative constructor prefer extends. Explicit
-proxy configuration wins. JS keeps `SomeType.implement(arguments, implementation)` for
+behavior and a uniquely selectable generative constructor prefer extends. Explicit proxy
+configuration wins. JS keeps `SomeType.implement(arguments, implementation)` for
 contract-style use. An extends proxy also emits a real TypeScript abstract class so
 application code can use normal `class Derived extends SomeType` syntax.
 
@@ -313,8 +313,8 @@ Proxy methods support the same positional, named and generic callback model, inc
 supported Future results. `@mustCallSuper` checks capture whether JS called the direct
 parent entry before returning control to Dart. For Future/FutureOr overrides this is the
 pre-yield boundary: calling `super` before the first `await` is valid; calling it only
-after an `await` fails. A returned Promise that rejects preserves that rejection, while a
-Promise that resolves without the required pre-yield call completes with the
+after an `await` fails. A returned Promise that rejects preserves that rejection, while
+a Promise that resolves without the required pre-yield call completes with the
 `mustCallSuper` error. A Dart super constructor may dispatch to a JS override because
 callbacks exist before the parent constructor runs, but that callback cannot call JS
 `super` until Dart object construction has returned and the object handle is attached.

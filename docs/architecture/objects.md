@@ -1,6 +1,6 @@
 # Dart Objects and Bridge References
 
-Status: implemented on macOS arm64 Hermes/V8, UI protocol 20. The native C ABI is
+Status: implemented on macOS arm64 Hermes/V8, UI protocol 21. The native C ABI is
 unchanged. See [the interop decision](../decisions/0009-dart-interop.md).
 
 ## Identity and application ownership

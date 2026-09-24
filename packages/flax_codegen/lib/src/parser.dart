@@ -18,7 +18,7 @@ import 'package:path/path.dart' as p;
 import 'bindability.dart';
 import 'config.dart';
 import 'model.dart';
-import 'manifest_v5_codec.dart';
+import 'manifest_codec.dart';
 
 part 'bindability_impl.dart';
 part 'auto_binding.dart';
@@ -241,7 +241,7 @@ String _callbackSignatureTypeName(FlaxCodegenTypeRef type) {
   return '$name$suffix';
 }
 
-/// Rebuild YAML selection maps that Manifest2 already embeds in member models.
+/// Rebuild YAML selection maps already embedded in current Manifest member models.
 /// Raw Function callbacks (no declaration) restore signatures and optional/error
 /// indexes. Scoped indexes are restored for both raw and typed callbacks.
 void _collectRawCallbackSelection(
@@ -329,7 +329,6 @@ FlaxCodegenClassSelection _selectionFromModel(FlaxCodegenClassModel type) {
     },
     kind: type.kind == 'widget' ? null : type.kind,
     jsName: type.jsName,
-    genericScalar: type.genericScalar,
     asyncIterableFactory: type.asyncIterableFactory,
     typeArguments: type.typeArguments,
     getters: [
@@ -359,27 +358,10 @@ FlaxCodegenClassSelection _selectionFromModel(FlaxCodegenClassModel type) {
         .where((method) => method.startsRoute)
         .map((method) => method.name)
         .toList(),
-    deferredFactories: type.methods
-        .where((method) => method.deferredFactory)
-        .map((method) => method.name)
-        .toList(),
-    independentWidgetCallbacks: {
-      for (final constructor in type.constructors)
-        if (constructor.parameters.any(
-          (parameter) => parameter.independentWidgetResult,
-        ))
-          constructor.name: constructor.parameters
-              .where((parameter) => parameter.independentWidgetResult)
-              .map((parameter) => parameter.name)
-              .toList(),
-    },
     widgetInterfaces: type.widgetInterfaces
         .map((interface) => interface.name!)
         .toList(),
     proxy: type.proxy?.kind,
-    proxyOverrides:
-        type.proxy?.methods.map((method) => method.name).toList() ?? const [],
-    proxySuper: type.proxy?.superMethods ?? const [],
     pageAdapter: type.pageAdapter,
     disposeMethod: type.disposeMethod,
     listenerPairs: type.listenerPairs,
@@ -578,7 +560,7 @@ class FlaxCodegenBindingParser {
   final _selections = <String, FlaxCodegenClassSelection>{};
   final _snapshots = <String, FlaxCodegenSnapshotModel>{};
 
-  /// Manifest2 dependency `typeLibraries` name → URI, filled by [prepareModules].
+  /// Dependency Manifest `typeLibraries` name → URI, filled by [prepareModules].
   final _dependencyTypeLibraries = <String, String>{};
 
   /// Lazily resolved public elements for [_dependencyTypeLibraries].
@@ -708,7 +690,7 @@ class FlaxCodegenBindingParser {
     _dependencyExportsResolved = true;
   }
 
-  /// Local config exports plus prepared Manifest2 dependency typeLibraries.
+  /// Local config exports plus prepared dependency Manifest type libraries.
   /// Does not mutate the [_publicExports] cache.
   Future<(Map<String, Element>, Map<String, String>)> _resolutionExports(
     FlaxCodegenBindingConfig config,
@@ -736,7 +718,7 @@ class FlaxCodegenBindingParser {
   /// Resolve adaptations before signatures so module argument order does not matter.
   Future<void> prepare(List<FlaxCodegenBindingConfig> configs) async {
     for (final config in configs) {
-      final (exports, libraries) = await _publicExports(config);
+      final (exports, libraries) = await _resolutionExports(config);
       for (final entry in config.classes.entries) {
         final selected = entry.value;
         final declaration = exports[entry.key];
@@ -1048,12 +1030,9 @@ class FlaxCodegenBindingParser {
     return FlaxCodegenClassSelection(
       own.constructors,
       widgetInterfaces: own.widgetInterfaces,
-      independentWidgetCallbacks: own.independentWidgetCallbacks,
       jsName: own.jsName,
       kind: kind,
-      genericScalar: own.genericScalar,
       asyncIterableFactory: own.asyncIterableFactory,
-      eraseGenerics: own.eraseGenerics || parents.any((p) => p.eraseGenerics),
       callbackSignatures: {
         for (final selection in selections) ...selection.callbackSignatures,
       },
@@ -1071,8 +1050,7 @@ class FlaxCodegenBindingParser {
       },
       typeArguments: own.typeArguments,
       proxy: own.proxy,
-      proxyOverrides: own.proxyOverrides,
-      proxySuper: own.proxySuper,
+      proxyVariants: own.proxyVariants,
       pageAdapter: own.pageAdapter,
       staticGetters: own.staticGetters,
       errorGetters: {
@@ -1080,7 +1058,6 @@ class FlaxCodegenBindingParser {
       }.toList(),
       methods: own.methods,
       methodTypeArguments: arguments,
-      deferredFactories: own.deferredFactories,
       getters: {for (final s in selections) ...s.getters}.toList(),
       setters: {for (final s in selections) ...s.setters}.toList(),
       instanceMethods: mergeParameters(
@@ -1247,11 +1224,25 @@ class FlaxCodegenBindingParser {
   }) async {
     await prepare([config]);
     final session = _contexts.contexts.first.currentSession;
+    var typeCarriers = automaticTypeCarriers;
+    if (config.classes.values.any(
+      (selection) => selection.proxyVariants.isNotEmpty,
+    )) {
+      final result = await session.getLibraryByUri(config.library);
+      if (result is! LibraryElementResult) {
+        throw StateError('Cannot resolve ${config.library}');
+      }
+      typeCarriers = {
+        ...await _discoverAutoTypeCarriers(config.library, result.element),
+        ...automaticTypeCarriers,
+      };
+    }
     final scope = await _openTypeScope(
       config,
-      automaticTypeCarriers: automaticTypeCarriers,
+      automaticTypeCarriers: typeCarriers,
     );
     final exports = scope.exports;
+    final concreteUses = _autoConcreteUses(exports.values);
     for (final name in config.types.toSet()) {
       final element = exports[name];
       if (element is! InterfaceElement || element.isPrivate) {
@@ -1261,6 +1252,7 @@ class FlaxCodegenBindingParser {
     }
     final snapshots = _parseSnapshots(config, exports);
     final classes = <FlaxCodegenClassModel>[];
+    final stateVariants = <FlaxCodegenStateVariantModel>[];
     for (final snapshot in snapshots) {
       scope.types[snapshot.id] = FlaxCodegenNamedTypeModel(
         name: snapshot.name,
@@ -1291,7 +1283,7 @@ class FlaxCodegenBindingParser {
       bool scalar = false,
       List<FormalParameterElement>? declared,
       List<String> data = const [],
-      List<String> independentWidgetCallbacks = const [],
+      bool mountedWidgetCallbacks = false,
       bool allowRecursiveErasure = false,
       Map<String, List<String>> callbackSignatures = const {},
       Map<String, List<int>> callbackOptionalParameters = const {},
@@ -1305,13 +1297,6 @@ class FlaxCodegenBindingParser {
         if (!actual.any((p) => p.name == name)) {
           throw StateError('Unknown selected parameter: $member.$name');
         }
-      }
-      if (independentWidgetCallbacks.toSet().length !=
-              independentWidgetCallbacks.length ||
-          independentWidgetCallbacks.any((name) => !chosen.contains(name))) {
-        throw StateError(
-          'Invalid independent Widget callback selection: $member',
-        );
       }
       final result = <FlaxCodegenParameterModel>[];
       for (final parameter in actual) {
@@ -1365,7 +1350,6 @@ class FlaxCodegenBindingParser {
         var type = rawSignature == null
             ? typeRef(
                 parameter.type,
-                scalar: scalar,
                 allowRecursiveErasure: allowRecursiveErasure,
               )
             : FlaxCodegenTypeRef(
@@ -1443,13 +1427,18 @@ class FlaxCodegenBindingParser {
         if (data.contains(parameter.name)) {
           type = _dataType(type, '$member.${parameter.name}');
         }
-        final independent = independentWidgetCallbacks.contains(parameter.name);
-        if (independent &&
-            (type.kind != 'callback' || type.result!.kind != 'widget')) {
+        if (mountedWidgetCallbacks &&
+            type.kind == 'callback' &&
+            type.result!.containsWidget &&
+            !type.result!.isDirectMountedWidgetResult) {
           throw StateError(
-            'Independent callbacks must return Widget or Widget?: $member.${parameter.name}',
+            'Unsupported mounted Widget callback result: $member.${parameter.name}',
           );
         }
+        final independent =
+            mountedWidgetCallbacks &&
+            type.kind == 'callback' &&
+            type.result!.isDirectMountedWidgetResult;
         FormalParameterElement defaults = parameter.baseElement;
         while (!defaults.hasDefaultValue &&
             defaults is SuperFormalParameterElement &&
@@ -1504,6 +1493,238 @@ class FlaxCodegenBindingParser {
       return result;
     }
 
+    Future<MixinElement> resolveStateMixin(
+      FlaxCodegenMixinSelection selection,
+    ) async {
+      final Element? element;
+      if (selection.library case final library?) {
+        final result = await session.getLibraryByUri(library);
+        if (result is! LibraryElementResult) {
+          throw StateError('Cannot resolve State mixin library: $library');
+        }
+        element = result.element.exportNamespace.definedNames2[selection.name];
+      } else {
+        element = exports[selection.name];
+      }
+      if (element is! MixinElement || element.isPrivate) {
+        throw StateError('Expected a public Dart mixin: ${selection.name}');
+      }
+      return element;
+    }
+
+    Future<List<FlaxCodegenStateVariantModel>> parseStateVariants(
+      InterfaceElement stateElement,
+      InterfaceType stateType,
+      List<DartType> stateArguments,
+      Map<String, FlaxCodegenProxyVariantSelection> selections,
+    ) async {
+      const lifecycle = {
+        'build',
+        'initState',
+        'didChangeDependencies',
+        'didUpdateWidget',
+        'deactivate',
+        'activate',
+        'dispose',
+        'reassemble',
+      };
+      const ignoredFrameworkMethods = {'debugFillProperties'};
+      final result = <FlaxCodegenStateVariantModel>[];
+      for (final entry in selections.entries) {
+        final mixins = <FlaxCodegenStateMixinModel>[];
+        final getterMembers = <String, (FlaxCodegenGetterModel, bool)>{};
+        final setterMembers = <String, (FlaxCodegenGetterModel, bool)>{};
+        final methodMembers = <String, (FlaxCodegenMethodModel, bool)>{};
+        final superMembers = <String>{};
+        final mustCallSuperMembers = <String>{};
+        final interfaces = <String, FlaxCodegenStateInterfaceModel>{};
+        final available = <InterfaceType>[
+          stateType,
+          ...stateType.allSupertypes,
+        ];
+        final seenMixins = <String>{};
+
+        for (final selectedMixin in entry.value.mixins) {
+          final mixin = await resolveStateMixin(selectedMixin);
+          final mixinId = identity(mixin);
+          if (!seenMixins.add(mixinId)) {
+            throw StateError(
+              'Duplicate State mixin in ${entry.key}: ${selectedMixin.name}',
+            );
+          }
+          final mixinArguments = switch (mixin.typeParameters.length) {
+            0 => const <DartType>[],
+            final count when count == stateElement.typeParameters.length =>
+              stateArguments,
+            _ => throw StateError(
+              'State mixin generic arguments cannot be inferred: '
+              '${selectedMixin.name}',
+            ),
+          };
+          _checkBounds(
+            mixin.typeParameters,
+            mixinArguments,
+            mixin.library,
+            false,
+          );
+          final mixinType = mixin.instantiate(
+            typeArguments: mixinArguments,
+            nullabilitySuffix: NullabilitySuffix.none,
+          );
+          final substitution = Substitution.fromPairs2(
+            mixin.typeParameters,
+            mixinArguments,
+          );
+          final interfaceGetters = <String>{};
+          final interfaceSetters = <String>{};
+          final interfaceMethods = <String>{};
+          for (final constraint in mixin.superclassConstraints) {
+            final required = substitution.substituteType(constraint);
+            if (!available.any(
+              (candidate) =>
+                  mixin.library.typeSystem.isSubtypeOf(candidate, required),
+            )) {
+              throw StateError(
+                'State mixin constraint is not satisfied in ${entry.key}: '
+                '${selectedMixin.name} on $required',
+              );
+            }
+          }
+
+          mixins.add(
+            FlaxCodegenStateMixinModel(
+              name: selectedMixin.name,
+              id: mixinId,
+              library:
+                  selectedMixin.library ??
+                  typeCarriers[mixinId] ??
+                  _publicLibraryFor(mixin, selectedMixin.name) ??
+                  config.library,
+              typeArguments: [
+                for (final argument in mixinArguments) '$argument',
+              ],
+            ),
+          );
+
+          for (final declared in mixin.interfaces) {
+            final interface = substitution.substituteType(declared);
+            if (interface is! InterfaceType) continue;
+            final interfaceElement = interface.element;
+            if (interfaceElement is! InterfaceElement) continue;
+            // Keep the nominal capability in the normal dependency/ownership
+            // graph so TypeScript and runtime conversion share one provider.
+            typeRef(interface)
+                .declaredAs(typeRef(interface, forTypescript: true));
+            interfaceGetters.addAll(
+              interfaceElement.getters
+                  .where((member) => !member.isStatic && !member.isPrivate)
+                  .map((member) => member.name!),
+            );
+            interfaceSetters.addAll(
+              interfaceElement.setters
+                  .where((member) => !member.isStatic && !member.isPrivate)
+                  .map(
+                    (member) => member.name!.replaceFirst(RegExp(r'=$'), ''),
+                  ),
+            );
+            interfaceMethods.addAll(
+              interfaceElement.methods
+                  .where((member) => !member.isStatic && !member.isPrivate)
+                  .map((member) => member.name!),
+            );
+            final interfaceId = identity(interfaceElement);
+            interfaces[interfaceId] = FlaxCodegenStateInterfaceModel(
+              name: interfaceElement.name!,
+              id: interfaceId,
+              library:
+                  typeCarriers[interfaceId] ??
+                  _publicLibraryFor(interfaceElement, interfaceElement.name!) ??
+                  interfaceElement.library.uri.toString(),
+            );
+          }
+
+          for (final getter in mixinType.getters) {
+            if (getter.isStatic || getter.isPrivate) continue;
+            final name = getter.name!;
+            if (interfaceGetters.contains(name)) continue;
+            final model = FlaxCodegenGetterModel(
+              name,
+              typeRef(getter.returnType)
+                  .declaredAs(typeRef(getter.returnType, forTypescript: true)),
+            );
+            getterMembers[name] = (model, getter.isAbstract);
+            if (!getter.isAbstract) superMembers.add('get:$name');
+          }
+          for (final setter in mixinType.setters) {
+            if (setter.isStatic || setter.isPrivate) continue;
+            final name = setter.name!.replaceFirst(RegExp(r'=$'), '');
+            if (interfaceSetters.contains(name)) continue;
+            final valueType = setter.formalParameters.single.type;
+            final model = FlaxCodegenGetterModel(
+              name,
+              typeRef(valueType)
+                  .declaredAs(typeRef(valueType, forTypescript: true)),
+            );
+            setterMembers[name] = (model, setter.isAbstract);
+            if (!setter.isAbstract) superMembers.add('set:$name');
+          }
+          for (final method in mixinType.methods) {
+            if (method.isStatic || method.isPrivate || method.isOperator) {
+              continue;
+            }
+            final name = method.name!;
+            if (ignoredFrameworkMethods.contains(name)) continue;
+            if (lifecycle.contains(name)) {
+              if (!method.isAbstract) {
+                final member = 'call:$name';
+                superMembers.add(member);
+                if (_requiresSuper(mixin, name)) {
+                  mustCallSuperMembers.add(member);
+                }
+              }
+              continue;
+            }
+            if (interfaceMethods.contains(name)) continue;
+            final model = FlaxCodegenMethodModel(
+              name,
+              parameters(
+                method.formalParameters,
+                method.formalParameters
+                    .map((parameter) => parameter.name!)
+                    .toList(),
+                '${entry.key}.$name',
+              ),
+              typeRef(method.returnType)
+                  .declaredAs(typeRef(method.returnType, forTypescript: true)),
+              instance: true,
+              mustCallSuper: _requiresSuper(mixin, name),
+            );
+            methodMembers[name] = (model, method.isAbstract);
+            if (!method.isAbstract) superMembers.add('call:$name');
+          }
+
+          available.add(mixinType);
+          available.addAll(mixinType.allSupertypes);
+        }
+
+        result.add(
+          FlaxCodegenStateVariantModel(
+            name: entry.key,
+            id: 'stateVariant:${entry.key}',
+            stateId: identity(stateElement),
+            mixins: mixins,
+            interfaces: interfaces.values.toList(),
+            getters: [for (final value in getterMembers.values) value.$1],
+            setters: [for (final value in setterMembers.values) value.$1],
+            methods: [for (final value in methodMembers.values) value.$1],
+            superMethods: superMembers.toList()..sort(),
+            mustCallSuperMethods: mustCallSuperMembers.toList()..sort(),
+          ),
+        );
+      }
+      return result;
+    }
+
     final nativeWidgetMembers = _WidgetInterfaceParser(
       session,
       exports,
@@ -1518,15 +1739,27 @@ class FlaxCodegenBindingParser {
         );
       }
       final selection = _effectiveSelection(element, entry.value);
+      final stateIdentity = identity(element);
+      final isComponentState =
+          stateIdentity == 'package:flutter/src/widgets/framework.dart::State';
+      final variantOverlay = flaxCodegenIsStateVariantOverlay(selection);
+      if (selection.proxyVariants.isNotEmpty && !isComponentState) {
+        throw StateError(
+          'proxyVariants are supported only by Flutter State: ${entry.key}',
+        );
+      }
+      if (isComponentState &&
+          selection.proxyVariants.isNotEmpty &&
+          selection.kind != 'state' &&
+          !variantOverlay) {
+        throw StateError('Flutter State proxyVariants require kind: state');
+      }
       final inferredDeferredFactories = <String>{
         for (final name in selection.methods.keys)
           if (element.getMethod(name) case final method?)
             if (_isInferredDeferredFactory(scope, element, method)) name,
       };
-      final effectiveDeferredFactories = <String>{
-        ...selection.deferredFactories,
-        ...inferredDeferredFactories,
-      };
+      final effectiveDeferredFactories = inferredDeferredFactories;
       if (element is MixinElement &&
           (selection.kind != 'object' ||
               selection.constructors.isNotEmpty ||
@@ -1536,53 +1769,65 @@ class FlaxCodegenBindingParser {
         );
       }
       _validateDataTargets(selection, entry.key);
+      final sharedOwner =
+          element.typeParameters.isNotEmpty && selection.typeArguments.isEmpty
+          ? _defaultTypeArguments(this, scope, element)
+          : null;
+      final ownerTypeArguments = selection.typeArguments.isNotEmpty
+          ? selection.typeArguments
+          : sharedOwner?.sources;
       if (element.typeParameters.isNotEmpty &&
-          !selection.genericScalar &&
-          effectiveDeferredFactories.isEmpty &&
-          selection.typeArguments.length != element.typeParameters.length) {
+          (sharedOwner?.supported == false || ownerTypeArguments == null)) {
         throw StateError(
-          'Explicit runtime type arguments required: ${entry.key}',
+          sharedOwner?.reason ??
+              'Explicit runtime type arguments required: ${entry.key}',
         );
       }
-      final runtimeArguments = [
-        for (final name in selection.typeArguments)
-          _runtimeType(name, exports, element.library),
-      ];
-      if (effectiveDeferredFactories.isEmpty) {
-        _checkBounds(
-          element.typeParameters,
-          runtimeArguments,
-          element.library,
-          selection.genericScalar,
-        );
-      }
-      final actualType = selection.typeArguments.isEmpty
+      final runtimeArguments = selection.typeArguments.isNotEmpty
+          ? [
+              for (final name in selection.typeArguments)
+                _runtimeType(name, exports, element.library),
+            ]
+          : sharedOwner?.arguments ?? const <DartType>[];
+      _checkBounds(
+        element.typeParameters,
+        runtimeArguments,
+        element.library,
+        false,
+      );
+      final actualType = runtimeArguments.isEmpty
           ? element.thisType
           : element.instantiate(
               typeArguments: runtimeArguments,
               nullabilitySuffix: NullabilitySuffix.none,
             );
+      if (selection.proxyVariants.isNotEmpty) {
+        stateVariants.addAll(
+          await parseStateVariants(
+            element,
+            actualType,
+            runtimeArguments,
+            selection.proxyVariants,
+          ),
+        );
+        if (variantOverlay) continue;
+      }
       final genericParameters = [
         for (var i = 0; i < element.typeParameters.length; i++)
           FlaxCodegenGenericParameter(
             element.typeParameters[i].name!,
-            selection.genericScalar
-                ? const FlaxCodegenTypeRef('scalar')
-                : typeRef(
-                    element.typeParameters[i].bound ??
-                        element.library.typeProvider.objectQuestionType,
-                    forTypescript: true,
-                    typeOnlyPosition: true,
-                  ),
-            defaultType: selection.genericScalar
-                ? const FlaxCodegenTypeRef('scalar')
-                : typeRef(
-                    runtimeArguments.length > i
-                        ? runtimeArguments[i]
-                        : element.typeParameters[i].bound ??
-                              element.library.typeProvider.objectQuestionType,
-                    erasing: {element.typeParameters[i]},
-                  ),
+            typeRef(
+              element.typeParameters[i].bound ??
+                  element.library.typeProvider.objectQuestionType,
+              forTypescript: true,
+              typeOnlyPosition: true,
+            ),
+            defaultType: typeRef(
+              runtimeArguments.length > i
+                  ? runtimeArguments[i]
+                  : element.library.typeProvider.objectQuestionType,
+              erasing: {element.typeParameters[i]},
+            ),
             genericIdentity: element.typeParameters[i],
           ),
       ];
@@ -1606,7 +1851,6 @@ class FlaxCodegenBindingParser {
         }
       }
       final widgetInterfaces = <FlaxCodegenTypeRef>[];
-      final widgetGetters = <FlaxCodegenGetterModel>[];
       final widgetMembers = <FlaxCodegenWidgetMember>[];
       if (selection.kind == 'widgetInterface') {
         widgetMembers.addAll(
@@ -1704,15 +1948,12 @@ class FlaxCodegenBindingParser {
             'Unknown public instance getter: ${entry.key}.$name',
           );
         }
-        var type = typeRef(getter.returnType, scalar: selection.genericScalar)
-            .declaredAs(
-              typeRef(
-                element.thisType
-                    .lookUpGetter(name, element.library)!
-                    .returnType,
-                forTypescript: true,
-              ),
-            );
+        var type = typeRef(getter.returnType).declaredAs(
+          typeRef(
+            element.thisType.lookUpGetter(name, element.library)!.returnType,
+            forTypescript: true,
+          ),
+        );
         if (selection.data.getters.contains(name)) {
           type = _dataType(type, '${entry.key}.$name');
         }
@@ -1881,23 +2122,16 @@ class FlaxCodegenBindingParser {
             })
             .toSet()
             .toList();
-        final configuredTypeArgs =
+        final typeArgs =
             selection.methodTypeArguments[chosen.key] ?? const <String>[];
-        final erasedTypeArgs =
-            configuredTypeArgs.isEmpty &&
-                selection.eraseGenerics &&
-                method.typeParameters.isNotEmpty
-            ? [
-                for (final parameter in method.typeParameters)
-                  (parameter.bound ??
-                          element.library.typeProvider.objectQuestionType)
-                      .getDisplayString(),
-              ]
-            : const <String>[];
-        final typeArgs = configuredTypeArgs.isNotEmpty
-            ? configuredTypeArgs
-            : erasedTypeArgs;
         final deferredFactory = effectiveDeferredFactories.contains(chosen.key);
+        if (!deferredFactory &&
+            method.typeParameters.isNotEmpty &&
+            typeArgs.isEmpty) {
+          throw StateError(
+            'Explicit runtime type arguments required: ${entry.key}.${chosen.key}',
+          );
+        }
         if (deferredFactory &&
             (instance ||
                 method.typeParameters.isEmpty ||
@@ -2073,11 +2307,6 @@ class FlaxCodegenBindingParser {
           ) ||
           selection.methodTypeArguments.keys.any(
             (name) => !selectedMethods.containsKey(name),
-          ) ||
-          selection.deferredFactories.toSet().length !=
-              selection.deferredFactories.length ||
-          selection.deferredFactories.any(
-            (name) => !selection.methods.containsKey(name),
           )) {
         throw StateError('Unknown method adaptation');
       }
@@ -2146,15 +2375,6 @@ class FlaxCodegenBindingParser {
             : typeRef(returned);
         staticGetters.add(FlaxCodegenGetterModel(name, type));
       }
-      if (((!isWidget || selection.kind != null) &&
-              selection.independentWidgetCallbacks.isNotEmpty) ||
-          selection.independentWidgetCallbacks.keys.any(
-            (name) => !selection.constructors.containsKey(name),
-          )) {
-        throw StateError(
-          'Independent callbacks require selected Widget constructors: ${entry.key}',
-        );
-      }
       for (final chosen in entry.value.constructors.entries) {
         final constructor = actualType.constructors
             .where(
@@ -2168,25 +2388,108 @@ class FlaxCodegenBindingParser {
                 selection.proxy != 'extends')) {
           throw StateError('Unknown constructor: ${entry.key}.${chosen.key}');
         }
+        var constructorParameters = parameters(
+          constructor.formalParameters,
+          chosen.value,
+          '${entry.key}.${chosen.key}',
+          data: selection.data.constructors[chosen.key] ?? const [],
+          mountedWidgetCallbacks: isWidget,
+          declared: element.thisType.constructors
+              .firstWhere((c) => c.name == constructor.name)
+              .formalParameters,
+          callbackSignatures: selection.callbackSignatures,
+          callbackOptionalParameters: selection.callbackOptionalParameters,
+          callbackErrorParameters: selection.callbackErrorParameters,
+          callbackScopedParameters: selection.callbackScopedParameters,
+        );
+        final specializations = <FlaxCodegenConstructorSpecializationModel>[];
+        if (element.typeParameters.isNotEmpty &&
+            selection.typeArguments.isEmpty) {
+          final declaredConstructor = element.thisType.constructors.firstWhere(
+            (candidate) => candidate.name == constructor.name,
+          );
+          final plan = _constructorSpecializationPlan(
+            parser: this,
+            element: element,
+            constructor: declaredConstructor,
+            selectedParameters: chosen.value,
+            concreteUses: concreteUses[identity(element)] ?? const [],
+          );
+          if (!plan.supported) {
+            throw StateError(
+              '${plan.reason ?? 'Generic constructor specialization unavailable'}: '
+              '${entry.key}.${chosen.key}',
+            );
+          }
+          if (plan.scalarParameters.isNotEmpty) {
+            constructorParameters = [
+              for (final parameter in constructorParameters)
+                if (plan.scalarParameters.contains(parameter.name))
+                  _parameterWithType(
+                    parameter,
+                    FlaxCodegenTypeRef(
+                      'scalar',
+                      nullable:
+                          declaredConstructor.formalParameters
+                              .firstWhere(
+                                (candidate) => candidate.name == parameter.name,
+                              )
+                              .type
+                              .nullabilitySuffix ==
+                          NullabilitySuffix.question,
+                    ).declaredAs(parameter.type.declaration!),
+                  )
+                else
+                  parameter,
+            ];
+          } else if (plan.targets.length == 1) {
+            final targetConstructor = plan.targets.single.type.constructors
+                .firstWhere((candidate) => candidate.name == constructor.name);
+            constructorParameters = [
+              for (final parameter in constructorParameters)
+                if (parameter.type.kind != 'data' &&
+                    parameter.type.declaration?.kind == 'parameter')
+                  _parameterWithType(
+                    parameter,
+                    typeRef(
+                      targetConstructor.formalParameters
+                          .firstWhere(
+                            (candidate) => candidate.name == parameter.name,
+                          )
+                          .type,
+                    ).declaredAs(parameter.type.declaration!),
+                  )
+                else
+                  parameter,
+            ];
+          }
+          for (final target in plan.targets) {
+            final concreteConstructor = target.type.constructors.firstWhere(
+              (candidate) => candidate.name == constructor.name,
+            );
+            specializations.add(
+              FlaxCodegenConstructorSpecializationModel(
+                typeArguments: target.typeArguments,
+                parameterTypes: [
+                  for (final parameter in constructorParameters)
+                    typeRef(
+                      concreteConstructor.formalParameters
+                          .firstWhere(
+                            (candidate) => candidate.name == parameter.name,
+                          )
+                          .type,
+                    ),
+                ],
+                runtimeDomains: target.runtimeDomains,
+              ),
+            );
+          }
+        }
         constructors.add(
           FlaxCodegenConstructorModel(
             chosen.key,
-            parameters(
-              constructor.formalParameters,
-              chosen.value,
-              '${entry.key}.${chosen.key}',
-              scalar: selection.genericScalar,
-              data: selection.data.constructors[chosen.key] ?? const [],
-              independentWidgetCallbacks:
-                  selection.independentWidgetCallbacks[chosen.key] ?? const [],
-              declared: element.thisType.constructors
-                  .firstWhere((c) => c.name == constructor.name)
-                  .formalParameters,
-              callbackSignatures: selection.callbackSignatures,
-              callbackOptionalParameters: selection.callbackOptionalParameters,
-              callbackErrorParameters: selection.callbackErrorParameters,
-              callbackScopedParameters: selection.callbackScopedParameters,
-            ),
+            constructorParameters,
+            specializations: specializations,
           ),
         );
         if (constructors.last.parameters.any(
@@ -2209,21 +2512,13 @@ class FlaxCodegenBindingParser {
       )) {
         throw StateError('Getter conflicts with a descriptor field');
       }
-      if ((selection.proxyOverrides.isNotEmpty ||
-              selection.proxySuper.isNotEmpty) &&
-          selection.proxy != 'host') {
-        throw StateError(
-          'Concrete overrides and direct super calls require a host proxy',
-        );
-      }
       FlaxCodegenProxyModel? proxy;
       if (selection.proxy != null) {
         if (element is! ClassElement) {
           throw StateError('Only classes support proxies');
         }
         if (selection.kind != 'object' ||
-            !{'extends', 'implements', 'host'}.contains(selection.proxy) ||
-            (selection.proxy == 'host' && !element.isAbstract)) {
+            !{'extends', 'implements'}.contains(selection.proxy)) {
           throw StateError(
             'Proxies require an object class compatible with extends/implements',
           );
@@ -2258,37 +2553,13 @@ class FlaxCodegenBindingParser {
                 .isFactory) {
           throw StateError('A proxy needs a generative super constructor');
         }
-        if (selection.proxy == 'host' && element.isBase) {
-          throw StateError('Host mixins on base classes are not supported');
-        }
-        if (selection.proxy == 'host' && constructors.isNotEmpty) {
-          throw StateError(
-            'Host proxies are mixins and do not select constructors',
-          );
-        }
-        for (final names in [selection.proxyOverrides, selection.proxySuper]) {
-          if (names.toSet().length != names.length) {
-            throw StateError('Duplicate proxy selection');
-          }
-          for (final name in names) {
-            final method = actualType.lookUpMethod(name, element.library);
-            if (method == null ||
-                method.isAbstract ||
-                method.isStatic ||
-                method.isPrivate ||
-                method.metadata.hasNonVirtual ||
-                selection.proxy == 'implements') {
-              throw StateError('Invalid concrete proxy method: $name');
-            }
-          }
-        }
         final hierarchy = [actualType, ...actualType.allSupertypes]
             .where(
               (t) =>
                   !(t.element.library.isDartCore && t.element.name == 'Object'),
             )
             .toList();
-        final proxySuperMembers = <String>[...selection.proxySuper];
+        final proxySuperMembers = <String>[];
         final proxyGetters = <FlaxCodegenGetterModel>[];
         final proxySetters = <FlaxCodegenGetterModel>[];
         for (final setter in [false, true]) {
@@ -2332,9 +2603,6 @@ class FlaxCodegenBindingParser {
             if (accessor == null || accessor.isPrivate) {
               throw StateError('Proxy properties must be public: $name');
             }
-            if (selection.proxy == 'host') {
-              throw StateError('Host proxy accessors are not supported: $name');
-            }
             final declared = setter
                 ? element.thisType.lookUpSetter(name, element.library)!
                 : element.thisType.lookUpGetter(name, element.library)!;
@@ -2356,14 +2624,6 @@ class FlaxCodegenBindingParser {
               }
             }
           }
-        }
-        if (selection.proxy == 'host' &&
-            hierarchy.any(
-              (t) => t.methods.any(
-                (m) => {'flaxInvoke', 'flaxSuper'}.contains(m.name),
-              ),
-            )) {
-          throw StateError('Host proxy dispatch member name collision');
         }
         final proxyMethods = <FlaxCodegenMethodModel>[];
         for (final name in {
@@ -2399,7 +2659,6 @@ class FlaxCodegenBindingParser {
               !method.metadata.hasNonVirtual;
           if (selection.proxy != 'implements' &&
               !method.isAbstract &&
-              !selection.proxyOverrides.contains(name) &&
               !concreteOverride) {
             continue;
           }
@@ -2415,10 +2674,7 @@ class FlaxCodegenBindingParser {
             typeRef(declaredMethod.returnType, forTypescript: true),
           );
           final mustCallSuper = _requiresSuper(element, name);
-          if ((selection.proxy == 'host' &&
-                  {'future', 'stream'}.contains(result.kind)) ||
-              (selection.proxy != 'host' &&
-                  {'widget', 'route'}.contains(result.kind))) {
+          if ({'widget', 'route'}.contains(result.kind)) {
             throw StateError('Unsupported proxy result: $name');
           }
           proxyMethods.add(
@@ -2439,19 +2695,6 @@ class FlaxCodegenBindingParser {
           if (concreteOverride && !proxySuperMembers.contains(name)) {
             proxySuperMembers.add(name);
           }
-        }
-        if (selection.proxySuper.any(
-          (name) => !proxyMethods.any((m) => m.name == name),
-        )) {
-          throw StateError('Super calls must select an overridden method');
-        }
-        if (selection.proxy == 'host' &&
-            proxyMethods.any(
-              (m) => m.mustCallSuper && !selection.proxySuper.contains(m.name),
-            )) {
-          throw StateError(
-            'Required super calls must have a selected parent entry',
-          );
         }
         proxy = FlaxCodegenProxyModel(
           selection.proxy!,
@@ -2520,15 +2763,13 @@ class FlaxCodegenBindingParser {
                     !_adaptations.containsKey(identity(parent.element)))
                   typeRef(parent, forTypescript: true, typeOnlyPosition: true),
           ],
-          genericScalar: entry.value.genericScalar,
           asyncIterableFactory: selection.asyncIterableFactory,
           widgetInterfaces: widgetInterfaces,
-          widgetGetters: widgetGetters,
           widgetMembers: widgetMembers,
           jsName: selection.jsName,
           typeParameters: genericParameters,
           proxy: proxy,
-          typeArguments: selection.typeArguments,
+          typeArguments: ownerTypeArguments ?? const [],
           getters: getters,
           methods: methods,
           pageAdapter: selection.pageAdapter,
@@ -2736,10 +2977,10 @@ class FlaxCodegenBindingParser {
               .firstOrNull;
           if (supplied == null ||
               jsonEncode(
-                    FlaxCodegenManifestV5Codec.encodeMethod(supplied.call),
+                    FlaxCodegenManifestCodec.encodeMethod(supplied.call),
                   ) !=
                   jsonEncode(
-                    FlaxCodegenManifestV5Codec.encodeMethod(member.call),
+                    FlaxCodegenManifestCodec.encodeMethod(member.call),
                   )) {
             throw StateError(
               'Extension provider surface does not include $name.${member.name} with the selected signature',
@@ -3074,7 +3315,7 @@ class FlaxCodegenBindingParser {
         throw StateError('Unsupported typedef $name: ${error.message}');
       }
     }
-    _validateTypeLibraryIdentityNames(scope, automaticTypeCarriers);
+    _validateTypeLibraryIdentityNames(scope, typeCarriers);
     final module = FlaxCodegenModuleModel(
       name: config.name,
       library: config.library,
@@ -3107,6 +3348,7 @@ class FlaxCodegenBindingParser {
         })
           name: _typeLibraryUri(name, scope),
       },
+      stateVariants: stateVariants,
     );
     module.validate();
     return module;

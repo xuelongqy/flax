@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 FlaxBindingModule _module(
   String name, {
   String? moduleId,
-  int uiProtocol = 20,
+  int uiProtocol = 21,
   List<String> requiredCapabilities = const <String>[],
   List<FlaxTypeBinding> types = const [],
   List<FlaxFunctionBinding> functions = const [],
@@ -20,11 +20,11 @@ FlaxBindingModule _module(
 Object? _invoke(Map<String, Object?> values) => null;
 
 void main() {
-  test('generated flutter bindings pin a literal protocol-20 tuple', () {
-    expect(flaxBindingVersion, 20);
+  test('generated flutter bindings pin a literal protocol-21 tuple', () {
+    expect(flaxBindingVersion, 21);
     expect(flutterBindings.name, 'flutter');
     expect(flutterBindings.moduleId, 'flax.core/flutter');
-    expect(flutterBindings.uiProtocol, 20);
+    expect(flutterBindings.uiProtocol, 21);
     expect(flutterBindings.requiredCapabilities, isEmpty);
     expect(FlaxBindingRegistry([flutterBindings]).modules, [flutterBindings]);
   });
@@ -57,6 +57,15 @@ void main() {
       () => FlaxBindingRegistry([
         _module('same', moduleId: 'test/left'),
         _module('same', moduleId: 'test/right'),
+      ]),
+      throwsArgumentError,
+    );
+  });
+
+  test('registry rejects overriding the built-in component module', () {
+    expect(
+      () => FlaxBindingRegistry([
+        _module('replacement', moduleId: 'flax.core/components'),
       ]),
       throwsArgumentError,
     );

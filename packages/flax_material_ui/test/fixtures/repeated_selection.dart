@@ -32,14 +32,9 @@ const repeatedSelection = {
     kind: 'context',
     getters: ['mounted'],
   ),
-  'ContextBatch': FlaxCodegenClassSelection(
-    {
-      '': ['render', 'epoch', 'count'],
-    },
-    independentWidgetCallbacks: {
-      '': ['render'],
-    },
-  ),
+  'ContextBatch': FlaxCodegenClassSelection({
+    '': ['render', 'epoch', 'count'],
+  }),
   'CallbackStore': FlaxCodegenClassSelection(
     {
       '': ['builders'],
@@ -51,14 +46,9 @@ const repeatedSelection = {
   'NestedBatch': FlaxCodegenClassSelection({
     '': ['key', 'builders', 'groups', 'keyed', 'events', 'discard', 'repeat'],
   }),
-  'TileBatch': FlaxCodegenClassSelection(
-    {
-      '': ['key', 'render', 'count', 'discard'],
-    },
-    independentWidgetCallbacks: {
-      '': ['render'],
-    },
-  ),
+  'TileBatch': FlaxCodegenClassSelection({
+    '': ['key', 'render', 'count', 'discard'],
+  }),
   'RetainedTile': FlaxCodegenClassSelection({
     '': ['key', 'label', 'child', 'keep'],
   }),

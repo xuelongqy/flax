@@ -732,160 +732,6 @@ const labels: FlaxStreamReference<string> = Pulse.instance.labels;
     }
   });
 
-  test(
-    'host proxies select concrete overrides and direct super calls',
-    () async {
-      for (final entry in {
-        'DirectProcessor': true,
-        'InterfaceProcessor': false,
-        'MixedProcessor': true,
-      }.entries) {
-        final selected = await parser.parse(
-          fixture('lifecycle.dart', {
-            entry.key: const FlaxCodegenClassSelection(
-              {},
-              kind: 'object',
-              proxy: 'host',
-              proxyOverrides: ['attach'],
-              proxySuper: ['attach'],
-            ),
-          }),
-        );
-        expect(
-          selected.classes.single.proxy!.methods.single.mustCallSuper,
-          entry.value,
-          reason: entry.key,
-        );
-      }
-      final config = fixture('lifecycle.dart', {
-        'Processor': const FlaxCodegenClassSelection(
-          {},
-          kind: 'object',
-          proxy: 'host',
-          proxyOverrides: ['attach', 'normalize'],
-          proxySuper: ['attach', 'normalize'],
-        ),
-      });
-      final module = await parser.parse(config);
-      final proxy = module.classes.single.proxy!;
-      expect(
-        proxy.methods.map((m) => m.name),
-        containsAll(['attach', 'normalize', 'calculate']),
-      );
-      expect(
-        proxy.methods.singleWhere((m) => m.name == 'attach').mustCallSuper,
-        isTrue,
-      );
-      expect(
-        proxy.methods.singleWhere((m) => m.name == 'normalize').mustCallSuper,
-        isFalse,
-      );
-      await compileFixture(
-        root,
-        FlaxCodegenBindingEmitter([module]),
-        module,
-        consumerSource: """
-import {ProcessorLifecycle} from './plugin.js';
-class Processor extends ProcessorLifecycle {
-  protected invokeSuper(name: string, args: readonly unknown[]): unknown { return 0; }
-  calculate(value: number): number { return value; }
-  attach(value: number): void { super.attach(value); }
-}
-new Processor().normalize(2);
-// @ts-expect-error The real signature remains typed.
-new Processor().attach('wrong');
-""",
-      );
-      final directory = Directory(p.join(root, '.dart_tool/flax'))
-          .createTempSync('host-proxy-');
-      try {
-        File(
-          p.join(directory.path, 'proxy.dart'),
-        ).writeAsStringSync(FlaxCodegenBindingEmitter([module]).dart(module));
-        final test = File(p.join(directory.path, 'proxy_test.dart'))
-          ..writeAsStringSync("""
-import 'package:flutter_test/flutter_test.dart';
-import '${module.library}';
-import 'proxy.dart';
-class Adapter extends Processor with FlaxProcessorProxy {
-  @override Object? flaxInvoke(String method, List<Object?> args, {bool requiresSuper = false}) {
-    if (method == 'calculate') return (args.single as int) * 2;
-    if (requiresSuper != (method == 'attach')) throw StateError('Incorrect super constraint');
-    calls.add('before');
-    final result = flaxSuper(method, args);
-    calls.add('after');
-    return result;
-  }
-}
-void main() {
-  test('typed overrides preserve parent effects and return values', () {
-    final value = Adapter();
-    value.attach(3);
-    expect(value.calls, ['before', 'middle:before', 'super:3', 'middle:after', 'after']);
-    expect(value.normalize(2), 12);
-    expect(value.calculate(5), 10);
-    expect(() => value.flaxSuper('calculate', [1]), throwsArgumentError);
-  });
-}
-""");
-        final result = await Process.run('flutter', [
-          'test',
-          '--no-pub',
-          test.path,
-        ], workingDirectory: root);
-        expect(
-          result.exitCode,
-          0,
-          reason: '${result.stdout}\n${result.stderr}',
-        );
-      } finally {
-        directory.deleteSync(recursive: true);
-      }
-      for (final bad in [
-        const FlaxCodegenClassSelection(
-          {},
-          kind: 'object',
-          proxy: 'host',
-          proxyOverrides: ['attach'],
-        ),
-        const FlaxCodegenClassSelection(
-          {},
-          kind: 'object',
-          proxy: 'host',
-          proxyOverrides: ['missing'],
-        ),
-        const FlaxCodegenClassSelection(
-          {},
-          kind: 'object',
-          proxy: 'host',
-          proxySuper: ['calculate'],
-        ),
-        const FlaxCodegenClassSelection(
-          {},
-          kind: 'object',
-          proxy: 'host',
-          proxyOverrides: ['normalize', 'normalize'],
-        ),
-        const FlaxCodegenClassSelection(
-          {},
-          kind: 'object',
-          proxy: 'host',
-          proxySuper: ['normalize'],
-        ),
-      ]) {
-        final invalid = FlaxCodegenBindingParser(root);
-        try {
-          await expectLater(
-            invalid.parse(fixture('lifecycle.dart', {'Processor': bad})),
-            throwsStateError,
-          );
-        } finally {
-          invalid.dispose();
-        }
-      }
-    },
-  );
-
   test('non-finite numeric defaults compile and execute without class adapters', () async {
     final module = await parser.parse(
       fixture('numbers.dart', {
@@ -980,17 +826,14 @@ NestedBatch({builders: [async () => null]});
       final render = batch.constructors.single.parameters.singleWhere(
         (p) => p.name == 'render',
       );
-      expect(render.independentWidgetResult, isFalse);
+      expect(render.independentWidgetResult, isTrue);
       expect(render.type.result!.nullable, isTrue);
       expect(render.type.parameters.map((p) => p.type.kind), [
         'context',
         'int',
       ]);
       final emitter = FlaxCodegenBindingEmitter([module]);
-      expect(
-        emitter.dart(module),
-        isNot(contains('independentWidgetResult: true')),
-      );
+      expect(emitter.dart(module), contains('independentWidgetResult: true'));
       await compileFixture(
         root,
         emitter,
@@ -1017,67 +860,6 @@ TileBatch({render: (context, index) => null, count: undefined});
 // @ts-expect-error A Promise cannot be returned by a synchronous builder.
 TileBatch({render: async () => null});
 """,
-      );
-      final legacy = await parser.parse(
-        fixture('repeated.dart', {
-          'BuildContext': repeatedSelection['BuildContext']!,
-          'TileBatch': const FlaxCodegenClassSelection(
-            {
-              '': ['render'],
-            },
-            independentWidgetCallbacks: {
-              '': ['render'],
-            },
-          ),
-        }),
-      );
-      expect(
-        legacy.classes
-            .singleWhere((type) => type.name == 'TileBatch')
-            .constructors
-            .single
-            .parameters
-            .single
-            .independentWidgetResult,
-        isTrue,
-      );
-      for (final invalid in [
-        {
-          'missing': ['render'],
-        },
-        {
-          '': ['missing'],
-        },
-        {
-          '': ['count'],
-        },
-        {
-          '': ['render', 'render'],
-        },
-      ]) {
-        await expectLater(
-          parser.parse(
-            fixture('repeated.dart', {
-              'BuildContext': repeatedSelection['BuildContext']!,
-              'TileBatch': FlaxCodegenClassSelection({
-                '': ['render', 'count'],
-              }, independentWidgetCallbacks: invalid),
-            }),
-          ),
-          throwsStateError,
-        );
-      }
-      await expectLater(
-        parser.parse(
-          fixture('interop.dart', {
-            'Collections': const FlaxCodegenClassSelection(
-              {'': []},
-              kind: 'object',
-              independentWidgetCallbacks: {'': []},
-            ),
-          }),
-        ),
-        throwsStateError,
       );
     },
   );
@@ -1353,7 +1135,7 @@ AlignmentGeometry();
       for (final p in list.constructors.single.parameters) p.name: p,
     };
     expect(listParams.length, 15);
-    expect(listParams['itemBuilder']!.independentWidgetResult, isFalse);
+    expect(listParams['itemBuilder']!.independentWidgetResult, isTrue);
     expect(listParams['itemBuilder']!.type.result!.nullable, isTrue);
     expect(listParams['itemBuilder']!.type.parameters.map((p) => p.type.kind), [
       'context',
@@ -1431,10 +1213,12 @@ AlignmentGeometry();
       (c) => c.name == 'ImageFilter',
     );
     expect(imageFilter.id, 'dart:ui::ImageFilter');
-    expect(
-      imageFilter.constructors.map((constructor) => constructor.name),
-      ['blur', 'dilate', 'erode', 'compose'],
-    );
+    expect(imageFilter.constructors.map((constructor) => constructor.name), [
+      'blur',
+      'dilate',
+      'erode',
+      'compose',
+    ]);
     expect(module.typeLibraries['ImageFilter'], 'package:flax/dart_ui.dart');
     final inputDecoration = material.classes.singleWhere(
       (c) => c.name == 'InputDecoration',
@@ -1900,7 +1684,6 @@ AlignmentGeometry();
         {
           '': ['value'],
         },
-        genericScalar: true,
         getters: ['value'],
       ),
     };
@@ -1914,12 +1697,32 @@ AlignmentGeometry();
     expect(params['arguments']!.type.kind, 'data');
     expect(params['onPopInvoked']!.omitWhenAbsent, isTrue);
     expect(params['onPopInvoked']!.type.parameters.last.type.kind, 'data');
+    final valueKey = module.classes.singleWhere(
+      (type) => type.name == 'ValueKey',
+    );
+    final valueKeyConstructor = valueKey.constructors.single;
+    expect(valueKeyConstructor.parameters.single.type.kind, 'scalar');
+    expect(
+      valueKeyConstructor.specializations.map(
+        (specialization) => specialization.typeArguments.single,
+      ),
+      unorderedEquals(['String', 'int']),
+    );
     final emitter = FlaxCodegenBindingEmitter([module]);
     final dart = emitter.dart(module);
     expect(dart, contains('adapterScreenSpec.adaptScreen(this)'));
     expect(dart, contains('values.containsKey("onPopInvoked")'));
     expect(dart, isNot(contains('_defaultPop')));
-    expect(emitter.typescript(module), contains('readonly value: T'));
+    expect(dart, contains('ValueKey<String>'));
+    expect(dart, contains('ValueKey<int>'));
+    final typescript = emitter.typescript(module);
+    expect(typescript, contains('readonly value: T'));
+    expect(
+      typescript,
+      contains(
+        'function ValueKey<T extends (string | number) = (string | number)>',
+      ),
+    );
     await compileFixture(root, emitter, module);
     await expectLater(
       parser.parse(
@@ -2761,10 +2564,10 @@ class CustomEvaluator extends Evaluator {
 }
 const evaluator = new CustomEvaluator(3);
 const initialResult: number = evaluator.initialResult;
-const legacy = Evaluator.implement([3], {
+const implemented = Evaluator.implement([3], {
   evaluate(value: number): number { return value + 1; },
 });
-const legacyResult: number = legacy.twice(4);
+const implementedResult: number = implemented.twice(4);
 const token = DeferredProperty.resolveWith<Token | null>(
   states => states.contains(Mode.first) ? Token(1) : null,
 );
@@ -2813,21 +2616,6 @@ DeferredConsumer({token, number});
         ], requireDeferredTargets: true),
         throwsStateError,
       );
-      await expectLater(
-        parser.parse(
-          fixture('interop.dart', {
-            'DeferredProperty': const FlaxCodegenClassSelection(
-              {},
-              kind: 'object',
-              methods: {
-                'resolveWith': ['callback'],
-              },
-              deferredFactories: ['missing'],
-            ),
-          }),
-        ),
-        throwsStateError,
-      );
     },
   );
 
@@ -2841,7 +2629,6 @@ DeferredConsumer({token, number});
             methods: {
               method: const ['callback'],
             },
-            deferredFactories: [method],
           );
       FlaxCodegenClassSelection consumer() => const FlaxCodegenClassSelection(
         {
@@ -2860,7 +2647,6 @@ DeferredConsumer({token, number});
             methods: const {
               'fromValues': ['values'],
             },
-            deferredFactories: const ['fromValues'],
           ),
           'CollectionConsumer': consumer(),
         },

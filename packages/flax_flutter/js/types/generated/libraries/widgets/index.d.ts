@@ -158,6 +158,7 @@ export { TextOverflow } from "@flax/flutter/widgets/_bindings/flutter_TextOverfl
 export { TextRange } from "@flax/flutter/services/_bindings/flutter_TextRange";
 export { TextSelection } from "@flax/flutter/services/_bindings/flutter_TextSelection";
 export { TextStyle } from "@flax/flutter/widgets/_bindings/flutter_TextStyle";
+export type { TickerProvider } from "@flax/flutter/scheduler/_bindings/flutter_TickerProvider";
 export { UnfocusDisposition } from "@flax/flutter/widgets/_bindings/flutter_UnfocusDisposition";
 export type { ValueChanged, ValueChangedInput } from "@flax/flutter/foundation/_bindings/flutter_ValueChanged";
 export type { ValueGetter, ValueGetterInput } from "@flax/flutter/foundation/_bindings/flutter_ValueGetter";

@@ -66,18 +66,6 @@ class FlaxCodegenBindingConfig {
             widgetInterfaces:
                 (selection['widgetInterfaces'] as List<dynamic>? ?? [])
                     .cast<String>(),
-            independentWidgetCallbacks:
-                (selection['independentWidgetCallbacks']
-                            as Map<String, dynamic>? ??
-                        {})
-                    .map(
-                      (name, params) => MapEntry(
-                        name,
-                        (params as List<dynamic>).cast<String>(),
-                      ),
-                    ),
-            genericScalar: selection['genericScalar'] as bool? ?? false,
-            eraseGenerics: selection['eraseGenerics'] as bool? ?? false,
             asyncIterableFactory: selection['asyncIterableFactory'] as String?,
             callbackSignatures:
                 (selection['callbackSignatures'] as Map<String, dynamic>? ?? {})
@@ -122,11 +110,9 @@ class FlaxCodegenBindingConfig {
             ),
             kind: selection['kind'] as String?,
             proxy: selection['proxy'] as String?,
-            proxyOverrides:
-                (selection['proxyOverrides'] as List<dynamic>? ?? [])
-                    .cast<String>(),
-            proxySuper: (selection['proxySuper'] as List<dynamic>? ?? [])
-                .cast<String>(),
+            proxyVariants: _proxyVariantsFromMap(
+              selection['proxyVariants'] as Map<String, dynamic>? ?? const {},
+            ),
             staticGetters: (selection['staticGetters'] as List<dynamic>? ?? [])
                 .cast<String>(),
             errorGetters: (selection['errorGetters'] as List<dynamic>? ?? [])
@@ -152,9 +138,6 @@ class FlaxCodegenBindingConfig {
                       (k, v) =>
                           MapEntry(k, (v as List<dynamic>).cast<String>()),
                     ),
-            deferredFactories:
-                (selection['deferredFactories'] as List<dynamic>? ?? [])
-                    .cast<String>(),
             startsRoute: (selection['startsRoute'] as List<dynamic>? ?? [])
                 .cast<String>(),
             instanceMethods:
@@ -382,9 +365,6 @@ class FlaxCodegenClassSelection {
   const FlaxCodegenClassSelection(
     this.constructors, {
     this.widgetInterfaces = const [],
-    this.independentWidgetCallbacks = const {},
-    this.genericScalar = false,
-    this.eraseGenerics = false,
     this.asyncIterableFactory,
     this.callbackSignatures = const {},
     this.callbackOptionalParameters = const {},
@@ -392,13 +372,11 @@ class FlaxCodegenClassSelection {
     this.callbackScopedParameters = const {},
     this.typeArguments = const [],
     this.methodTypeArguments = const {},
-    this.deferredFactories = const [],
     this.instanceMethods = const {},
     this.startsRoute = const [],
     this.kind,
     this.proxy,
-    this.proxyOverrides = const [],
-    this.proxySuper = const [],
+    this.proxyVariants = const {},
     this.staticGetters = const [],
     this.errorGetters = const [],
     this.pageAdapter,
@@ -412,13 +390,6 @@ class FlaxCodegenClassSelection {
   });
   final Map<String, List<String>> constructors;
   final List<String> widgetInterfaces;
-  final Map<String, List<String>> independentWidgetCallbacks;
-
-  /// Specialize a single unconstrained scalar type parameter as String or int.
-  final bool genericScalar;
-
-  /// Instantiate selected generic members with their analyzer upper bounds.
-  final bool eraseGenerics;
 
   /// Adds a lazy JavaScript AsyncIterable factory to a generated Stream type.
   final String? asyncIterableFactory;
@@ -430,7 +401,6 @@ class FlaxCodegenClassSelection {
   final Map<String, List<int>> callbackScopedParameters;
   final List<String> typeArguments;
   final Map<String, List<String>> methodTypeArguments;
-  final List<String> deferredFactories;
   final Map<String, List<String>> instanceMethods;
   final List<String> startsRoute;
 
@@ -438,8 +408,7 @@ class FlaxCodegenClassSelection {
   /// not assign application ownership or automatic disposal.
   final String? kind;
   final String? proxy;
-  final List<String> proxyOverrides;
-  final List<String> proxySuper;
+  final Map<String, FlaxCodegenProxyVariantSelection> proxyVariants;
   final List<String> staticGetters;
   final List<String> errorGetters;
   final FlaxCodegenPageAdapterModel? pageAdapter;
@@ -451,6 +420,63 @@ class FlaxCodegenClassSelection {
   final FlaxCodegenDataSelection data;
   final String? jsName;
 }
+
+final class FlaxCodegenMixinSelection {
+  const FlaxCodegenMixinSelection(this.name, {this.library});
+
+  final String name;
+  final String? library;
+}
+
+final class FlaxCodegenProxyVariantSelection {
+  const FlaxCodegenProxyVariantSelection({required this.mixins});
+
+  final List<FlaxCodegenMixinSelection> mixins;
+}
+
+bool flaxCodegenIsStateVariantOverlay(FlaxCodegenClassSelection selection) =>
+    selection.proxyVariants.isNotEmpty &&
+    selection.constructors.isEmpty &&
+    selection.widgetInterfaces.isEmpty &&
+    selection.asyncIterableFactory == null &&
+    selection.callbackSignatures.isEmpty &&
+    selection.callbackOptionalParameters.isEmpty &&
+    selection.callbackErrorParameters.isEmpty &&
+    selection.callbackScopedParameters.isEmpty &&
+    selection.typeArguments.isEmpty &&
+    selection.methodTypeArguments.isEmpty &&
+    selection.instanceMethods.isEmpty &&
+    selection.startsRoute.isEmpty &&
+    selection.kind == null &&
+    selection.proxy == null &&
+    selection.staticGetters.isEmpty &&
+    selection.errorGetters.isEmpty &&
+    selection.pageAdapter == null &&
+    selection.setters.isEmpty &&
+    selection.disposeMethod == null &&
+    selection.listenerPairs.isEmpty &&
+    selection.getters.isEmpty &&
+    selection.methods.isEmpty &&
+    selection.data.constructors.isEmpty &&
+    selection.data.getters.isEmpty &&
+    selection.data.methods.isEmpty &&
+    selection.data.results.isEmpty &&
+    selection.jsName == null;
+
+Map<String, FlaxCodegenProxyVariantSelection> _proxyVariantsFromMap(
+  Map<String, dynamic> values,
+) => values.map((name, value) {
+  final map = value as Map<String, dynamic>;
+  final mixins = (map['mixins'] as List<dynamic>? ?? const []).map((entry) {
+    if (entry is String) return FlaxCodegenMixinSelection(entry);
+    final item = entry as Map<String, dynamic>;
+    return FlaxCodegenMixinSelection(
+      item['name'] as String,
+      library: item['library'] as String?,
+    );
+  }).toList();
+  return MapEntry(name, FlaxCodegenProxyVariantSelection(mixins: mixins));
+});
 
 /// Selected Object/dynamic positions that copy plain application data.
 class FlaxCodegenDataSelection {

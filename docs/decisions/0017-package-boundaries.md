@@ -46,7 +46,7 @@ Keeping separate root Dart, JS, bindings, native, and test trees made each techn
 language easy to browse, but obscured distribution ownership and forced feature changes
 across unrelated roots. A new meta-framework for declaring packages was rejected in
 favor of simple directory conventions. A shared test package was deferred because the
-migration did not establish a stable public testing API.
+work did not establish a stable public testing API.
 
 ## Consequences
 
@@ -56,8 +56,8 @@ require a root package-name list.
 
 The manifest format is an explicit codegen boundary independent of the UI protocol and
 native ABI. Current versions are defined by the
-[compatibility contract](../architecture/external-binding-compatibility.md). Package
-tests cannot import another package's `test/` or `lib/src/`.
+[verification contract](../architecture/external-binding-verification.md). Package tests
+cannot import another package's `test/` or `lib/src/`.
 
 Pub and npm form a versioned pair only where metadata declares a JavaScript peer. Each
 capability pair may evolve independently. Runtime-mode npm packages contain

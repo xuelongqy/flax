@@ -3,92 +3,63 @@ import 'dart:convert';
 import 'package:flax_codegen/src/config.dart';
 import 'package:flax_codegen/src/diagnostic.dart';
 import 'package:flax_codegen/src/identity.dart';
-import 'package:flax_codegen/src/manifest_v5.dart';
-import 'package:flax_codegen/src/manifest_v5_codec.dart';
-import 'package:flax_codegen/src/manifest_v5_projection.dart';
+import 'package:flax_codegen/src/manifest.dart';
+import 'package:flax_codegen/src/manifest_codec.dart';
+import 'package:flax_codegen/src/manifest_projection.dart';
 import 'package:flax_codegen/src/model.dart';
 import 'package:flax_codegen/src/ownership.dart';
 import 'package:test/test.dart';
 
 void main() {
+  test('Manifest 12 preserves getter identity and distinct setter function identity', () {
+    final original = _manifest();
+    final decoded = _decode(original.toJson());
+    expect(decoded.encode(), original.encode());
+    expect(decoded.toJson()['formatVersion'], 12);
+    final values = decoded.modules.single.model.module.topLevel!;
+    expect(values.getters.single.id, 'example.values/values#read:answer');
+    expect(
+      values.setters.single.id,
+      'example.values/values#function:answer%3D',
+    );
+    expect(values.setters.single.exportName, 'setAnswer');
+    expect(values.setters.single.asFunction().call.name, 'setAnswer');
+    expect(
+      decoded.modules.single.model.module.callableFunctions.single.id,
+      values.setters.single.id,
+    );
+    expect(
+      decoded.modules.single.model.module.ownedFunctions.single.call.name,
+      'setAnswer',
+    );
+    expect(
+      decoded.modules.single.model.identities.first.sourceIdentity.name,
+      'answer=',
+    );
+    expect(values.setters.single.asFunction().call.result.kind, 'void');
+    expect(
+      values.setters.single.asFunction().call.parameters.single.type.kind,
+      'int',
+    );
+  });
+
   test(
-    'v10 preserves getter identity and distinct setter function identity',
+    'Manifest 12 rejects missing setter field, bad identity and extra fields',
     () {
-      final original = _manifest();
-      final decoded = _decode(original.toJson());
-      expect(decoded.encode(), original.encode());
-      expect(decoded.toJson()['formatVersion'], 11);
-      final values = decoded.modules.single.model.module.topLevel!;
-      expect(values.getters.single.id, 'example.values/values#read:answer');
-      expect(
-        values.setters.single.id,
-        'example.values/values#function:answer%3D',
-      );
-      expect(values.setters.single.exportName, 'setAnswer');
-      expect(values.setters.single.asFunction().call.name, 'setAnswer');
-      expect(
-        decoded.modules.single.model.module.callableFunctions.single.id,
-        values.setters.single.id,
-      );
-      expect(
-        decoded.modules.single.model.module.ownedFunctions.single.call.name,
-        'setAnswer',
-      );
-      expect(
-        decoded.modules.single.model.identities.first.sourceIdentity.name,
-        'answer=',
-      );
-      expect(values.setters.single.asFunction().call.result.kind, 'void');
-      expect(
-        values.setters.single.asFunction().call.parameters.single.type.kind,
-        'int',
-      );
+      for (final mutate in <void Function(Map<String, Object?>)>[
+        (model) =>
+            (model['topLevel'] as Map<String, Object?>).remove('setters'),
+        (model) => _setter(model)['id'] = 'example.values/values#read:answer',
+        (model) => _setter(model)['name'] = 'other',
+        (model) => _setter(model)['literal'] = '1',
+        (model) => (model['identities'] as List).removeAt(0),
+      ]) {
+        final json = _manifest().toJson();
+        mutate(_model(json));
+        _reject(json);
+      }
     },
   );
-
-  for (var version = 2; version <= 9; version++) {
-    test('v$version remains readable with its original schema', () {
-      final json = _manifest().toJson()..['formatVersion'] = version;
-      final model = _model(json);
-      final values = model['topLevel'] as Map<String, Object?>;
-      values.remove('setters');
-      ((values['getters'] as List).single as Map<String, Object?>)['kind'] =
-          'getter';
-      (model['identities'] as List).removeAt(0);
-      if (version < 5) {
-        model.remove('topLevel');
-        (model['identities'] as List).clear();
-      }
-      if (version == 2) model.remove('typedefs');
-      expect(_decode(json).toJson()['formatVersion'], 11);
-      if (version >= 5) {
-        expect(
-          _decode(json).modules.single.model.module.topLevel!.setters,
-          isEmpty,
-        );
-        values['setters'] = <Object?>[];
-        _reject(json);
-        values.remove('setters');
-        ((values['getters'] as List).single as Map<String, Object?>)['kind'] =
-            'mutableValue';
-        _reject(json);
-      }
-    });
-  }
-
-  test('v10 rejects missing setter field, bad identity and extra fields', () {
-    for (final mutate in <void Function(Map<String, Object?>)>[
-      (model) => (model['topLevel'] as Map<String, Object?>).remove('setters'),
-      (model) => _setter(model)['id'] = 'example.values/values#read:answer',
-      (model) => _setter(model)['name'] = 'other',
-      (model) => _setter(model)['literal'] = '1',
-      (model) => (model['identities'] as List).removeAt(0),
-    ]) {
-      final json = _manifest().toJson();
-      mutate(_model(json));
-      _reject(json);
-    }
-  });
 
   test('setter and getter identity rows require canonical kind ordering', () {
     final json = _manifest().toJson();
@@ -98,8 +69,8 @@ void main() {
       'readonly',
     ]);
     _model(json)['identities'] = rows.reversed.toList();
-    final diagnostics = FlaxCodegenManifestV5Diagnostics('manifest.json');
-    expect(FlaxCodegenManifestV5.parse(jsonEncode(json), diagnostics), isNull);
+    final diagnostics = FlaxCodegenManifestDiagnostics('manifest.json');
+    expect(FlaxCodegenManifest.parse(jsonEncode(json), diagnostics), isNull);
     expect(
       diagnostics.items.any(
         (item) =>
@@ -115,13 +86,13 @@ void main() {
     final model = _model(providerJson);
     ((model['topLevel'] as Map<String, Object?>)['setters'] as List).clear();
     (model['identities'] as List).removeAt(0);
-    final provider = FlaxCodegenManifestV5Projection(
+    final provider = FlaxCodegenManifestProjection(
       root: _decode(providerJson),
       directDependencies: const {},
       source: 'values.json',
     );
     expect(
-      () => FlaxCodegenManifestV5Projection(
+      () => FlaxCodegenManifestProjection(
         root: _decode(_manifest(reference: true).toJson()),
         directDependencies: {'values': provider},
         source: 'consumer.json',
@@ -151,13 +122,13 @@ void main() {
   });
 
   test('provider setter reference is preserved and cannot expand its type', () {
-    final provider = FlaxCodegenManifestV5Projection(
+    final provider = FlaxCodegenManifestProjection(
       root: _decode(_manifest().toJson()),
       directDependencies: const {},
       source: 'values.json',
     );
     final consumer = _decode(_manifest(reference: true).toJson());
-    final projection = FlaxCodegenManifestV5Projection(
+    final projection = FlaxCodegenManifestProjection(
       root: consumer,
       directDependencies: {'values': provider},
       source: 'consumer.json',
@@ -172,11 +143,11 @@ void main() {
       isTrue,
     );
     final changed = _manifest(reference: true).toJson();
-    _setter(_model(changed))['type'] = FlaxCodegenManifestV5Codec.encodeTypeRef(
+    _setter(_model(changed))['type'] = FlaxCodegenManifestCodec.encodeTypeRef(
       const FlaxCodegenTypeRef('num'),
     );
     expect(
-      () => FlaxCodegenManifestV5Projection(
+      () => FlaxCodegenManifestProjection(
         root: _decode(changed),
         directDependencies: {'values': provider},
         source: 'consumer.json',
@@ -240,7 +211,7 @@ FlaxCodegenSourceIdentity _identity(bool setter) => FlaxCodegenSourceIdentity(
   origin: FlaxCodegenOriginState.resolved,
 );
 
-FlaxCodegenManifestV5 _manifest({bool reference = false}) {
+FlaxCodegenManifest _manifest({bool reference = false}) {
   final namespace = FlaxCodegenBindingNamespace.parse(
     reference ? 'example.consumer' : 'example.values',
   );
@@ -252,17 +223,17 @@ FlaxCodegenManifestV5 _manifest({bool reference = false}) {
   final write = FlaxCodegenWireId.parse(
     'example.values/values#function:answer%3D',
   );
-  return FlaxCodegenManifestV5(
+  return FlaxCodegenManifest(
     package: reference ? 'consumer' : 'values',
     bindingNamespace: namespace,
     imports: reference ? ['values'] : [],
     modules: [
-      FlaxCodegenManifestV5Module(
+      FlaxCodegenManifestModule(
         name: 'values',
         moduleId: moduleId,
-        uiProtocol: 20,
+        uiProtocol: 21,
         requiredCapabilities: [],
-        model: FlaxCodegenManifestV5Model(
+        model: FlaxCodegenManifestModel(
           module: FlaxCodegenModuleModel(
             name: 'values',
             library: 'package:values/values.dart',
@@ -294,12 +265,12 @@ FlaxCodegenManifestV5 _manifest({bool reference = false}) {
             ),
           ),
           identities: [
-            FlaxCodegenManifestV5Identity(
+            FlaxCodegenManifestIdentity(
               sourceIdentity: _identity(true),
               wireId: write,
               owner: !reference,
             ),
-            FlaxCodegenManifestV5Identity(
+            FlaxCodegenManifestIdentity(
               sourceIdentity: _identity(false),
               wireId: read,
               owner: !reference,
@@ -317,15 +288,15 @@ Map<String, Object?> _setter(Map<String, Object?> model) =>
     ((model['topLevel'] as Map<String, Object?>)['setters'] as List).single
         as Map<String, Object?>;
 
-FlaxCodegenManifestV5 _decode(Map<String, Object?> json) {
-  final diagnostics = FlaxCodegenManifestV5Diagnostics('manifest.json');
-  final result = FlaxCodegenManifestV5.parse(jsonEncode(json), diagnostics);
+FlaxCodegenManifest _decode(Map<String, Object?> json) {
+  final diagnostics = FlaxCodegenManifestDiagnostics('manifest.json');
+  final result = FlaxCodegenManifest.parse(jsonEncode(json), diagnostics);
   diagnostics.throwIfAny();
   return result!;
 }
 
 void _reject(Map<String, Object?> json) {
-  final diagnostics = FlaxCodegenManifestV5Diagnostics('manifest.json');
-  expect(FlaxCodegenManifestV5.parse(jsonEncode(json), diagnostics), isNull);
+  final diagnostics = FlaxCodegenManifestDiagnostics('manifest.json');
+  expect(FlaxCodegenManifest.parse(jsonEncode(json), diagnostics), isNull);
   expect(diagnostics.items, isNotEmpty);
 }

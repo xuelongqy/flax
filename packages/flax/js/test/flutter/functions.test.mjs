@@ -14,7 +14,7 @@ test('top-level exports use one host entry and preserve argument order', () => {
   try {
     assert.equal(applyBoxFit(BoxFit.contain, input, output), expected);
     assert.deepEqual(calls, [
-      [20, 'flax.core/flutter#function:applyBoxFit', BoxFit.contain, input, output],
+      [21, 'flax.core/flutter#function:applyBoxFit', BoxFit.contain, input, output],
     ]);
     assert.throws(() => applyBoxFit(BoxFit.contain, input, output, 1), /Too many/);
   } finally {

@@ -72,9 +72,10 @@ final class FlaxCodegenSiblingModuleInput {
     Set<String> setterReferences = const {},
   }) {
     final types = List<String>.unmodifiable(List<String>.of(config.types));
-    final classNames = List<String>.unmodifiable(
-      List<String>.of(config.classes.keys),
-    );
+    final classNames = List<String>.unmodifiable([
+      for (final entry in config.classes.entries)
+        if (!flaxCodegenIsStateVariantOverlay(entry.value)) entry.key,
+    ]);
     final functionNames = List<String>.unmodifiable(
       List<String>.of(config.functions.keys),
     );
@@ -251,8 +252,8 @@ final class FlaxCodegenImportedPackage {
   final List<FlaxCodegenImportedOwner> owners;
 }
 
-/// Protocol 20 has no derived capabilities in this batch.
-List<String> flaxCodegenProtocol20RequiredCapabilities() =>
+/// Protocol 21 has no derived capabilities in this batch.
+List<String> flaxCodegenProtocol21RequiredCapabilities() =>
     List<String>.unmodifiable(const <String>[]);
 
 /// Resolves explicit local owners for one package namespace.
@@ -711,7 +712,7 @@ FlaxCodegenResolvedModule _resolveModule(
     source: module.input.source,
     owners: owners,
     references: references,
-    requiredCapabilities: flaxCodegenProtocol20RequiredCapabilities(),
+    requiredCapabilities: flaxCodegenProtocol21RequiredCapabilities(),
   );
 }
 

@@ -52,11 +52,11 @@ The imports are `signal` from `@flax/core`, component/layout types from
 `@flax/flutter/widgets`, and `TextButton` from `@flax/flutter/material`. Existing
 generated constructors retain their function syntax.
 
-Application components are class-based Flutter Widgets. An arbitrary JavaScript
-function that returns a Widget is not a component and receives no mount, State or
-lifecycle ownership. Flutter callback APIs such as builders remain ordinary functions;
-their callback/result lifetime follows the generated Flutter API contract rather than
-creating a second component model.
+Application components are class-based Flutter Widgets. An arbitrary JavaScript function
+that returns a Widget is not a component and receives no mount, State or lifecycle
+ownership. Flutter callback APIs such as builders remain ordinary functions; their
+callback/result lifetime follows the generated Flutter API contract rather than creating
+a second component model.
 
 A Widget is configuration. Its instance is shallow-frozen on acceptance, after the
 subclass constructor finishes. Its referenced signals and controllers are not frozen.
@@ -101,6 +101,41 @@ component boundary or internal type key. Flutter applies its normal type/key mat
 including unkeyed mixed-type lists. Stable application keys are still appropriate for
 logical items that move; native matching does not preserve already-unmounted State.
 Generated native Widget hosts keep their existing types.
+
+## State variants and native mixins
+
+The exact Flutter `State<T>` binding defines fixed `proxyVariants`. A JavaScript State
+chooses its variant by extending the generated TypeScript base:
+
+```typescript
+class PageState extends SingleTickerProviderState<Page> {
+  initState(): void {
+    super.initState();
+    this.controller = AnimationController({
+      vsync: this,
+      duration: Duration({ milliseconds: 300 }),
+    });
+  }
+
+  dispose(): void {
+    this.controller.dispose();
+    super.dispose();
+  }
+}
+```
+
+Flutter still creates the real State host. Its generated Dart class applies the selected
+Flutter mixins in configuration order and applies `FlaxStateProxy` last. Therefore a JS
+`super.dispose()` or `super.build(context)` enters the actual Dart mixin chain.
+`SingleTickerProviderState` and `TickerProviderState` implement the real
+`TickerProvider` interface; `KeepAliveTickerState` also exposes `wantKeepAlive`,
+`updateKeepAlive()` and the required direct-super build path.
+
+Passing `this` to a Dart interface parameter resolves the live component-State ID back
+to that real host and validates the requested interface. Plain State, arbitrary JS
+objects, foreign-session States and disposed States fail before the Dart call. The
+reference is invalid immediately after disposal. Variants are pre-generated; Flax never
+reads JavaScript source to synthesize Dart mixins at runtime.
 
 ## Queries and layout measurements
 
@@ -193,9 +228,9 @@ Existing accepted Routes may rebuild while a session closes. Component mount lea
 the runtime alive until their cleanup finishes, alongside existing Route and transition
 leases. Named-page lifecycle cleanup remains available for page-factory resources.
 
-UI protocol 20 includes component type metadata, ancestor queries, returned Dart
+UI protocol 21 includes component type metadata, ancestor queries, returned Dart
 functions and Widget references; previous protocols are rejected. The C ABI and runtime
 microtask API are unchanged. There is no arbitrary Flutter concrete-class inheritance,
-TickerProvider/mixin binding, JS GlobalKey/currentState, state restoration, JS source
-hot reload, automatic build tracking or new engine/platform. `reassemble` forwards
-Flutter's lifecycle only.
+dynamic mixin composition, JS GlobalKey/currentState, state restoration, JS source hot
+reload, automatic build tracking or new engine/platform. `reassemble` forwards Flutter's
+lifecycle only.

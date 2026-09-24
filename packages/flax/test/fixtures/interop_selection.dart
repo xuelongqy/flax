@@ -72,7 +72,6 @@ const interopSelection = {
     methods: {
       'resolveWith': ['callback'],
     },
-    deferredFactories: ['resolveWith'],
   ),
   'DeferredConsumer': FlaxCodegenClassSelection(
     {
@@ -89,7 +88,6 @@ const interopSelection = {
       'resolveWith': ['callback'],
       'reset': [],
     },
-    deferredFactories: ['resolveWith'],
   ),
   'SharedDeferredConsumer': FlaxCodegenClassSelection(
     {

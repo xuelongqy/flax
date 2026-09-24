@@ -4,9 +4,9 @@ import 'dart:io';
 import 'package:flax_codegen/src/diagnostic.dart';
 import 'package:flax_codegen/src/emitter.dart';
 import 'package:flax_codegen/src/identity.dart';
-import 'package:flax_codegen/src/manifest_v5.dart';
-import 'package:flax_codegen/src/manifest_v5_codec.dart';
-import 'package:flax_codegen/src/manifest_v5_projection.dart';
+import 'package:flax_codegen/src/manifest.dart';
+import 'package:flax_codegen/src/manifest_codec.dart';
+import 'package:flax_codegen/src/manifest_projection.dart';
 import 'package:flax_codegen/src/model.dart';
 import 'package:flax_codegen/src/ownership.dart';
 import 'package:flax_codegen/src/package_pipeline.dart';
@@ -38,7 +38,7 @@ class Consumer {
           },
           configs: {
             'api.yaml': '''
-format: 1
+format: 2
 name: api
 library: package:host_pkg/api.dart
 jsPackage: '@host/api'
@@ -112,7 +112,7 @@ class Consumer {
         },
         configs: {
           'api.yaml': '''
-format: 1
+format: 2
 name: api
 library: package:host_pkg/api.dart
 jsPackage: '@host/api'
@@ -143,7 +143,7 @@ classes:
       );
     });
 
-    test('type-only recursive bounds cross a Manifest 11 provider without creating an owner', () async {
+    test('type-only recursive bounds cross a Manifest 12 provider without creating an owner', () async {
       final workspace = _tempWorkspace();
       final base = _writeHostPackage(
         workspace: workspace,
@@ -160,7 +160,7 @@ typedef Items<T extends Comparable<T>> = List<T>;
         },
         configs: {
           'base.yaml': '''
-format: 1
+format: 2
 name: base
 library: package:base_pkg/base.dart
 jsPackage: '@base/values'
@@ -194,7 +194,7 @@ class Box<T extends Comparable<T>> {
         },
         configs: {
           'api.yaml': '''
-format: 1
+format: 2
 name: api
 library: package:host_pkg/api.dart
 jsPackage: '@host/api'
@@ -278,7 +278,7 @@ set token(Token value) {}
         },
         configs: {
           'api.yaml': '''
-format: 1
+format: 2
 name: api
 library: package:host_pkg/api.dart
 jsPackage: '@host/api'
@@ -320,7 +320,7 @@ topLevel:
         tokenId,
       );
       expect(module.typeLibraries['Token'], 'package:host_pkg/api.dart');
-      final encodedModule = FlaxCodegenManifestV5Codec.encodeModule(module);
+      final encodedModule = FlaxCodegenManifestCodec.encodeModule(module);
       expect(encodedModule, isNot(contains('internalTypeNames')));
       final rows = result.manifest.modules.single.model.identities;
       expect(rows.map((row) => row.sourceIdentity.name), ['token=', 'Token']);
@@ -373,7 +373,7 @@ topLevel:
         libraries: {'base.dart': 'int zeta = 0; int alpha = 1;'},
         configs: {
           'base.yaml': """
-format: 1
+format: 2
 name: base
 library: package:base_pkg/base.dart
 jsPackage: '@base/values'
@@ -391,7 +391,7 @@ topLevel:
         libraries: {'consumer.dart': "export 'package:base_pkg/base.dart';"},
         configs: {
           'consumer.yaml': """
-format: 1
+format: 2
 name: consumer
 library: package:host_pkg/consumer.dart
 jsPackage: '@host/consumer'
@@ -473,7 +473,7 @@ topLevel:
         },
         configs: {
           'base.yaml': """
-format: 1
+format: 2
 name: base
 library: package:base_pkg/base.dart
 jsPackage: '@base/values'
@@ -497,7 +497,7 @@ bindingNamespace: example.base
         },
         configs: {
           'consumer.yaml': """
-format: 1
+format: 2
 name: consumer
 library: package:host_pkg/consumer.dart
 jsPackage: '@host/consumer'
@@ -563,7 +563,7 @@ topLevel:
         },
         configs: {
           'base.yaml': '''
-format: 1
+format: 2
 name: base
 library: package:base_pkg/base.dart
 jsPackage: '@base/values'
@@ -593,7 +593,7 @@ bindingNamespace: example.base
         },
         configs: {
           'api.yaml': '''
-format: 1
+format: 2
 name: api
 library: package:host_pkg/api.dart
 jsPackage: '@host/api'
@@ -631,7 +631,7 @@ extensions:
       expect(module.extensions.single.name, 'ItemX');
       expect(module.classes, isEmpty);
       expect(module.extensions.single.onType.id, 'example.base/base#type:Item');
-      expect(validated.manifest.toJson()['formatVersion'], 11);
+      expect(validated.manifest.toJson()['formatVersion'], 12);
       expect(
         validated.manifest.modules.single.model.identities.where(
           (row) => row.owner,
@@ -653,8 +653,8 @@ extensions:
         outputs.values.where((text) => text.contains('export namespace ItemX')),
         hasLength(1),
       );
-      final errors = FlaxCodegenManifestV5Diagnostics('roundtrip');
-      final decoded = FlaxCodegenManifestV5.parse(
+      final errors = FlaxCodegenManifestDiagnostics('roundtrip');
+      final decoded = FlaxCodegenManifest.parse(
         validated.manifest.encode(),
         errors,
       );
@@ -673,7 +673,7 @@ extensions:
         dependencies: ['host_pkg'],
         libraries: {'api.dart': "export 'package:host_pkg/api.dart';"},
         configs: {
-          'api.yaml': '''format: 1
+          'api.yaml': '''format: 2
 name: consumer
 library: package:consumer_pkg/api.dart
 jsPackage: '@consumer/api'
@@ -745,7 +745,7 @@ extensions:
         },
         configs: {
           'base.yaml': '''
-format: 1
+format: 2
 name: base
 library: package:base_pkg/base.dart
 jsPackage: '@base/values'
@@ -780,7 +780,7 @@ bindingNamespace: example.base
         libraries: {'consumer.dart': "export 'package:base_pkg/alias.dart';\n"},
         configs: {
           'consumer.yaml': '''
-format: 1
+format: 2
 name: consumer
 library: package:host_pkg/consumer.dart
 jsPackage: '@host/consumer'
@@ -862,7 +862,7 @@ final genericIdentity = identity;
           },
           configs: {
             'base.yaml': '''
-format: 1
+format: 2
 name: base
 library: package:base_pkg/base.dart
 jsPackage: '@base/values'
@@ -896,7 +896,7 @@ const local = 9;
           },
           configs: {
             'consumer.yaml': '''
-format: 1
+format: 2
 name: consumer
 library: package:host_pkg/consumer.dart
 jsPackage: '@host/consumer'
@@ -995,15 +995,15 @@ topLevel:
           }
           expect(
             () {
-              final diagnostics = FlaxCodegenManifestV5Diagnostics(
+              final diagnostics = FlaxCodegenManifestDiagnostics(
                 'consumer/manifest.json',
               );
-              final changed = FlaxCodegenManifestV5.parse(
+              final changed = FlaxCodegenManifest.parse(
                 jsonEncode(json),
                 diagnostics,
               );
               diagnostics.throwIfAny();
-              FlaxCodegenManifestV5Projection(
+              FlaxCodegenManifestProjection(
                 root: changed!,
                 directDependencies: result.directDependencies,
                 source: 'consumer/manifest.json',
@@ -1016,7 +1016,7 @@ topLevel:
       },
     );
 
-    test('Manifest4-only dependencies preserve generic aliases and nominal ownership', () async {
+    test('current dependencies preserve generic aliases and nominal ownership', () async {
       final workspace = _tempWorkspace();
       final base = _writeHostPackage(
         workspace: workspace,
@@ -1035,7 +1035,7 @@ typedef Converter<T extends Item> = T Function<U extends T>(U value);
         },
         configs: {
           'base.yaml': '''
-format: 1
+format: 2
 name: base
 library: package:base_pkg/base.dart
 jsPackage: '@base/values'
@@ -1075,7 +1075,7 @@ class Consumer {
         },
         configs: {
           'consumer.yaml': '''
-format: 1
+format: 2
 name: consumer
 library: package:host_pkg/consumer.dart
 jsPackage: '@host/consumer'
@@ -1102,17 +1102,7 @@ classes:
       final manifestFile = File(
         p.join(base.root.path, 'bindings/manifest.json'),
       );
-      // Exercise a real legacy-v4 provider without any v5-only declarations.
-      final legacyManifest = owner.manifest.toJson()..['formatVersion'] = 4;
-      // V4 predates the nominal type-only relationships emitted by v11.
-      for (final entry in legacyManifest['modules']! as List) {
-        for (final type in (entry['model']['classes'] as List)) {
-          (type['superTypes'] as List).removeWhere(
-            (parent) => parent['kind'] == 'typeOnly',
-          );
-        }
-      }
-      manifestFile.writeAsStringSync(jsonEncode(legacyManifest));
+      manifestFile.writeAsStringSync(owner.manifest.encode());
       File(base.configPath('base.yaml')).deleteSync();
       final before = _listing(base.root);
       final consumer = await FlaxCodegenPackagePipeline.validateConfig(
@@ -1203,11 +1193,11 @@ classes:
       expect(ts, contains('<U extends T'));
       expect(emitter.dart(module), contains(itemId));
       expect(_listing(base.root), before);
-      expect(manifestFile.readAsStringSync(), jsonEncode(legacyManifest));
+      expect(manifestFile.readAsStringSync(), owner.manifest.encode());
 
       // The only nominal reference is in the alias parameter, not its target.
       File(host.configPath('consumer.yaml')).writeAsStringSync('''
-format: 1
+format: 2
 name: consumer
 library: package:host_pkg/consumer.dart
 jsPackage: '@host/consumer'
@@ -1579,7 +1569,7 @@ bindingNamespace: example.broken
         libraries: {'a.dart': 'library;\n', 'b.dart': 'library;\n'},
         configs: {
           'b.yaml': '''
-format: 1
+format: 2
 name: beta
 library: package:broken_pkg/b.dart
 jsPackage: '@broken/b'
@@ -1588,7 +1578,7 @@ tsOutput: js/b.ts
 unknown: true
 ''',
           'a.yaml': '''
-format: 1
+format: 2
 name: alpha
 library: package:broken_pkg/a.dart
 jsPackage: '@broken/a'
@@ -1706,7 +1696,7 @@ class Public {
         },
         configs: {
           'api.yaml': '''
-format: 1
+format: 2
 name: api
 library: package:host_pkg/api.dart
 jsPackage: '@host/api'
@@ -1784,7 +1774,7 @@ class Public {
         },
         configs: {
           'api.yaml': '''
-format: 1
+format: 2
 name: api
 library: package:host_pkg/api.dart
 jsPackage: '@host/api'
@@ -1855,7 +1845,7 @@ class Public {
           },
           configs: {
             'api.yaml': '''
-format: 1
+format: 2
 name: api
 library: package:host_pkg/api.dart
 jsPackage: '@host/api'
@@ -1942,7 +1932,7 @@ class B {
         },
         configs: {
           'a.yaml': '''
-format: 1
+format: 2
 name: a
 library: package:host_pkg/a.dart
 jsPackage: '@host/a'
@@ -1956,7 +1946,7 @@ classes:
     getters: [b]
 ''',
           'b.yaml': '''
-format: 1
+format: 2
 name: b
 library: package:host_pkg/b.dart
 jsPackage: '@host/b'
@@ -2012,7 +2002,7 @@ class Public {
           },
           configs: {
             'api.yaml': '''
-format: 1
+format: 2
 name: api
 library: package:host_pkg/api.dart
 jsPackage: '@host/api'
@@ -2085,7 +2075,7 @@ class Holder {
           },
           configs: {
             'api.yaml': '''
-format: 1
+format: 2
 name: api
 library: package:host_pkg/api.dart
 jsPackage: '@host/api'
@@ -2245,7 +2235,7 @@ class Counter {
           },
           configs: {
             'widgets.yaml': '''
-format: 1
+format: 2
 name: widgets
 library: package:host_pkg/widgets.dart
 jsPackage: '@host/widgets'
@@ -2357,7 +2347,7 @@ class Box<T extends Mid> {
         },
         configs: {
           'widgets.yaml': '''
-format: 1
+format: 2
 name: widgets
 library: package:host_pkg/widgets.dart
 additionalLibraries:
@@ -2406,7 +2396,7 @@ classes:
     });
 
     test(
-      'dependency Manifest2 preserves inherited raw Function callback flags',
+      'dependency Manifest 12 preserves inherited raw Function callback flags',
       () async {
         final workspace = _tempWorkspace();
         final base = _writeBaseListenManifestPackage(workspace);
@@ -2424,7 +2414,7 @@ class Child extends Base {
           },
           configs: {
             'child.yaml': '''
-format: 1
+format: 2
 name: child
 library: package:host_pkg/child.dart
 additionalLibraries:
@@ -2514,7 +2504,7 @@ classes:
       },
     );
 
-    group('dependency Manifest2 typeLibraries resolution', () {
+    group('dependency Manifest 12 typeLibraries resolution', () {
       test('name not exported by declared public library is FCG_DEPENDENCY', () async {
         final workspace = _tempWorkspace();
         final base = _writeBaseMissingExportTypeLibraryPackage(workspace);
@@ -2532,7 +2522,7 @@ class Child extends Base {
           },
           configs: {
             'child.yaml': '''
-format: 1
+format: 2
 name: child
 library: package:host_pkg/child.dart
 additionalLibraries:
@@ -2596,7 +2586,7 @@ class Child extends Base {
           },
           configs: {
             'child.yaml': '''
-format: 1
+format: 2
 name: child
 library: package:host_pkg/child.dart
 additionalLibraries:
@@ -2645,7 +2635,7 @@ classes:
     });
 
     test(
-      'dependency Manifest2 preserves inherited data callback Object leaves',
+      'dependency Manifest 12 preserves inherited data callback Object leaves',
       () async {
         final workspace = _tempWorkspace();
         final base = _writeBaseDataCallbackManifestPackage(workspace);
@@ -2663,7 +2653,7 @@ class Child extends Base {
           },
           configs: {
             'child.yaml': '''
-format: 1
+format: 2
 name: child
 library: package:host_pkg/child.dart
 additionalLibraries:
@@ -2727,7 +2717,7 @@ class Child extends Base {
         },
         configs: {
           'child.yaml': '''
-format: 1
+format: 2
 name: child
 library: package:host_pkg/child.dart
 additionalLibraries:
@@ -2792,7 +2782,7 @@ class Child extends Base {
         },
         configs: {
           'child.yaml': '''
-format: 1
+format: 2
 name: child
 library: package:host_pkg/child.dart
 additionalLibraries:
@@ -2861,7 +2851,7 @@ class Counter {
           configs: {
             'widgets.yaml':
                 '''
-format: 1
+format: 2
 name: widgets
 library: package:host_pkg/widgets.dart
 jsPackage: '@host/widgets'
@@ -2905,7 +2895,7 @@ class Counter {
         },
         configs: {
           'widgets.yaml': '''
-format: 1
+format: 2
 name: widgets
 library: package:host_pkg/widgets.dart
 jsPackage: '@host/widgets'
@@ -3290,7 +3280,7 @@ class Child extends Base {
         },
         configs: {
           'child.yaml': '''
-format: 1
+format: 2
 name: child
 library: package:host_pkg/child.dart
 additionalLibraries:
@@ -3800,10 +3790,12 @@ classes:
       return ProcessResult(0, 0, '', '');
     }
 
-    test('public library migration removes old chunks and rolls back orphan deletes', () async {
-      String config({bool alias = true, bool collision = false}) =>
-          '''
-format: 1
+    test(
+      'public library update removes orphaned chunks and rolls back deletes',
+      () async {
+        String config({bool alias = true, bool collision = false}) =>
+            '''
+format: 2
 name: api
 library: package:route_pkg/api.dart
 jsPackage: '@route/sdk'
@@ -3824,89 +3816,94 @@ classes:
     constructors:
       '': []
 ''';
-      final package = _tempPackage(
-        name: 'route_pkg',
-        configs: {'api.yaml': config()},
-        libraries: {
-          'api.dart': 'class Counter { Counter(); }\nconst answer = 42;\n',
-          'alias.dart': "export 'api.dart';\n",
-        },
-      );
-      final path = package.configPath('api.yaml');
-      Future<ProcessResult> formatter(
-        String executable,
-        List<String> arguments,
-      ) => formatRunner(executable, arguments, packageRoot: package.root.path);
-      await FlaxCodegenPackagePipeline.generateConfig(
-        path,
-        processRunner: formatter,
-      );
-      final initial = await FlaxCodegenPackagePipeline.validateConfig(path);
-      final oldFiles = initial.outputInventory
-          .where((f) => f.startsWith('js/a/'))
-          .toList();
-      expect(oldFiles, hasLength(4));
-      expect(
-        File(p.join(package.root.path, 'js/aggregate.ts')).existsSync(),
-        isFalse,
-      );
-      final manual = File(p.join(package.root.path, 'js/a/manual.ts'))
-        ..writeAsStringSync('export const manual = true;\n');
-      File(path).writeAsStringSync(config(alias: false));
-      final before = _packageFilesystemSnapshot(package.root);
-      var deletions = 0;
-      await expectLater(
-        FlaxCodegenPackagePipeline.generateConfig(
-          path,
-          processRunner: formatter,
-          beforeInstallMutation: (absolute) {
-            if (oldFiles.contains(
-                  p.relative(absolute, from: package.root.path),
-                ) &&
-                ++deletions == 2) {
-              throw StateError('injected orphan delete failure');
-            }
+        final package = _tempPackage(
+          name: 'route_pkg',
+          configs: {'api.yaml': config()},
+          libraries: {
+            'api.dart': 'class Counter { Counter(); }\nconst answer = 42;\n',
+            'alias.dart': "export 'api.dart';\n",
           },
-        ),
-        throwsA(isA<FlaxCodegenException>()),
-      );
-      expect(deletions, 2);
-      _expectPackageFilesystemContentsUnchanged(package.root, before: before);
-      await FlaxCodegenPackagePipeline.generateConfig(
-        path,
-        processRunner: formatter,
-      );
-      for (final file in oldFiles) {
-        expect(
-          File(p.join(package.root.path, file)).existsSync(),
-          isFalse,
-          reason: file,
         );
-      }
-      expect(manual.readAsStringSync(), 'export const manual = true;\n');
-      await FlaxCodegenPackagePipeline.checkConfig(
-        path,
-        processRunner: formatter,
-      );
-      File(path).writeAsStringSync(config(collision: true));
-      final beforeCollision = _packageFilesystemSnapshot(package.root);
-      await expectLater(
-        FlaxCodegenPackagePipeline.generateConfig(
+        final path = package.configPath('api.yaml');
+        Future<ProcessResult> formatter(
+          String executable,
+          List<String> arguments,
+        ) =>
+            formatRunner(executable, arguments, packageRoot: package.root.path);
+        await FlaxCodegenPackagePipeline.generateConfig(
           path,
           processRunner: formatter,
-        ),
-        throwsA(
-          isA<FlaxCodegenException>().having(
-            (error) => error.diagnostics.any(
-              (d) => d.code == FlaxCodegenDiagnosticCode.output,
-            ),
-            'output collision diagnostic',
-            true,
+        );
+        final initial = await FlaxCodegenPackagePipeline.validateConfig(path);
+        final oldFiles = initial.outputInventory
+            .where((f) => f.startsWith('js/a/'))
+            .toList();
+        expect(oldFiles, hasLength(4));
+        expect(
+          File(p.join(package.root.path, 'js/aggregate.ts')).existsSync(),
+          isFalse,
+        );
+        final manual = File(p.join(package.root.path, 'js/a/manual.ts'))
+          ..writeAsStringSync('export const manual = true;\n');
+        File(path).writeAsStringSync(config(alias: false));
+        final before = _packageFilesystemSnapshot(package.root);
+        var deletions = 0;
+        await expectLater(
+          FlaxCodegenPackagePipeline.generateConfig(
+            path,
+            processRunner: formatter,
+            beforeInstallMutation: (absolute) {
+              if (oldFiles.contains(
+                    p.relative(absolute, from: package.root.path),
+                  ) &&
+                  ++deletions == 2) {
+                throw StateError('injected orphan delete failure');
+              }
+            },
           ),
-        ),
-      );
-      _expectPackageFilesystemUnchanged(package.root, before: beforeCollision);
-    });
+          throwsA(isA<FlaxCodegenException>()),
+        );
+        expect(deletions, 2);
+        _expectPackageFilesystemContentsUnchanged(package.root, before: before);
+        await FlaxCodegenPackagePipeline.generateConfig(
+          path,
+          processRunner: formatter,
+        );
+        for (final file in oldFiles) {
+          expect(
+            File(p.join(package.root.path, file)).existsSync(),
+            isFalse,
+            reason: file,
+          );
+        }
+        expect(manual.readAsStringSync(), 'export const manual = true;\n');
+        await FlaxCodegenPackagePipeline.checkConfig(
+          path,
+          processRunner: formatter,
+        );
+        File(path).writeAsStringSync(config(collision: true));
+        final beforeCollision = _packageFilesystemSnapshot(package.root);
+        await expectLater(
+          FlaxCodegenPackagePipeline.generateConfig(
+            path,
+            processRunner: formatter,
+          ),
+          throwsA(
+            isA<FlaxCodegenException>().having(
+              (error) => error.diagnostics.any(
+                (d) => d.code == FlaxCodegenDiagnosticCode.output,
+              ),
+              'output collision diagnostic',
+              true,
+            ),
+          ),
+        );
+        _expectPackageFilesystemUnchanged(
+          package.root,
+          before: beforeCollision,
+        );
+      },
+    );
 
     test('happy path writes outputs and checkConfig agrees', () async {
       final package = _tempGeneratePackage();
@@ -4169,7 +4166,7 @@ class Extra {
     },
     configs: {
       'extra.yaml': '''
-format: 1
+format: 2
 name: extra
 library: package:generate_pkg/extra.dart
 jsPackage: '@generate/extra'
@@ -4182,7 +4179,7 @@ classes:
       create: []
 ''',
       'widgets.yaml': '''
-format: 1
+format: 2
 name: widgets
 library: package:generate_pkg/widgets.dart
 jsPackage: '@generate/widgets'
@@ -4301,7 +4298,7 @@ class Extra {
     },
     configs: {
       'extra.yaml': '''
-format: 1
+format: 2
 name: extra
 library: package:check_pkg/extra.dart
 jsPackage: '@check/extra'
@@ -4314,7 +4311,7 @@ classes:
       create: []
 ''',
       'widgets.yaml': '''
-format: 1
+format: 2
 name: widgets
 library: package:check_pkg/widgets.dart
 jsPackage: '@check/widgets'
@@ -4423,8 +4420,9 @@ Directory _tempWorkspace() {
   return root;
 }
 
-({Directory root, FlaxCodegenManifestV5 manifest})
-_writeSnapshotProviderPackage(Directory workspace) {
+({Directory root, FlaxCodegenManifest manifest}) _writeSnapshotProviderPackage(
+  Directory workspace,
+) {
   const package = 'base_pkg';
   const namespace = 'example.base';
   const moduleName = 'base';
@@ -4512,7 +4510,7 @@ class GenericValue<T> extends HiddenBase {}
       ),
     ],
   );
-  final manifest = FlaxCodegenManifestV5.fromResolved(
+  final manifest = FlaxCodegenManifest.fromResolved(
     package: FlaxCodegenResolvedPackage(
       dartPackage: package,
       namespace: ns,
@@ -4531,7 +4529,7 @@ class GenericValue<T> extends HiddenBase {}
             ),
           ],
           references: const [],
-          requiredCapabilities: flaxCodegenProtocol20RequiredCapabilities(),
+          requiredCapabilities: flaxCodegenProtocol21RequiredCapabilities(),
         ),
       ],
     ),
@@ -4578,7 +4576,7 @@ bindingNamespace: example.host
   );
 }
 
-({Directory root, FlaxCodegenManifestV5 manifest})
+({Directory root, FlaxCodegenManifest manifest})
 _writeBaseDataCallbackManifestPackage(Directory workspace) {
   const package = 'base_pkg';
   const namespace = 'example.base';
@@ -4655,7 +4653,7 @@ class Base {
     ],
     types: const [],
   );
-  final manifest = FlaxCodegenManifestV5.fromResolved(
+  final manifest = FlaxCodegenManifest.fromResolved(
     package: FlaxCodegenResolvedPackage(
       dartPackage: package,
       namespace: ns,
@@ -4670,7 +4668,7 @@ class Base {
             ),
           ],
           references: const [],
-          requiredCapabilities: flaxCodegenProtocol20RequiredCapabilities(),
+          requiredCapabilities: flaxCodegenProtocol21RequiredCapabilities(),
         ),
       ],
     ),
@@ -4682,7 +4680,7 @@ class Base {
   return (root: root, manifest: manifest);
 }
 
-({Directory root, FlaxCodegenManifestV5 manifest})
+({Directory root, FlaxCodegenManifest manifest})
 _writeBaseDataErrorScopedListenPackage(Directory workspace) {
   const package = 'base_pkg';
   const namespace = 'example.base';
@@ -4802,7 +4800,7 @@ class Base {
     types: const [],
     typeLibraries: const {'StackTrace': 'dart:core'},
   );
-  final manifest = FlaxCodegenManifestV5.fromResolved(
+  final manifest = FlaxCodegenManifest.fromResolved(
     package: FlaxCodegenResolvedPackage(
       dartPackage: package,
       namespace: ns,
@@ -4821,7 +4819,7 @@ class Base {
             ),
           ],
           references: const [],
-          requiredCapabilities: flaxCodegenProtocol20RequiredCapabilities(),
+          requiredCapabilities: flaxCodegenProtocol21RequiredCapabilities(),
         ),
       ],
     ),
@@ -4833,7 +4831,7 @@ class Base {
   return (root: root, manifest: manifest);
 }
 
-({Directory root, FlaxCodegenManifestV5 manifest})
+({Directory root, FlaxCodegenManifest manifest})
 _writeBaseListenManifestPackage(Directory workspace) {
   const package = 'base_pkg';
   const namespace = 'example.base';
@@ -5001,7 +4999,7 @@ class Base {
     types: const [],
     typeLibraries: const {'StackTrace': 'dart:core'},
   );
-  final manifest = FlaxCodegenManifestV5.fromResolved(
+  final manifest = FlaxCodegenManifest.fromResolved(
     package: FlaxCodegenResolvedPackage(
       dartPackage: package,
       namespace: ns,
@@ -5024,7 +5022,7 @@ class Base {
             ),
           ],
           references: const [],
-          requiredCapabilities: flaxCodegenProtocol20RequiredCapabilities(),
+          requiredCapabilities: flaxCodegenProtocol21RequiredCapabilities(),
         ),
       ],
     ),
@@ -5036,7 +5034,7 @@ class Base {
   return (root: root, manifest: manifest);
 }
 
-({Directory root, FlaxCodegenManifestV5 manifest})
+({Directory root, FlaxCodegenManifest manifest})
 _writeBaseMissingExportTypeLibraryPackage(Directory workspace) {
   final base = _writeBaseListenManifestPackage(workspace);
   final encoded = jsonDecode(base.manifest.encode()) as Map<String, Object?>;
@@ -5062,7 +5060,7 @@ _writeBaseMissingExportTypeLibraryPackage(Directory workspace) {
   return base;
 }
 
-({Directory root, FlaxCodegenManifestV5 manifest}) _writeManifestPackage({
+({Directory root, FlaxCodegenManifest manifest}) _writeManifestPackage({
   required Directory workspace,
   required String name,
   required String namespace,
@@ -5132,7 +5130,7 @@ ${entries.join(',\n')}
 ''';
 }
 
-FlaxCodegenManifestV5 _manifestPackage({
+FlaxCodegenManifest _manifestPackage({
   required String package,
   required String namespace,
   required String moduleName,
@@ -5171,7 +5169,7 @@ FlaxCodegenManifestV5 _manifestPackage({
     ],
     types: const [],
   );
-  return FlaxCodegenManifestV5.fromResolved(
+  return FlaxCodegenManifest.fromResolved(
     package: FlaxCodegenResolvedPackage(
       dartPackage: package,
       namespace: ns,
@@ -5186,7 +5184,7 @@ FlaxCodegenManifestV5 _manifestPackage({
             ),
           ],
           references: const [],
-          requiredCapabilities: flaxCodegenProtocol20RequiredCapabilities(),
+          requiredCapabilities: flaxCodegenProtocol21RequiredCapabilities(),
         ),
       ],
     ),
@@ -5210,7 +5208,7 @@ imports:
 ${[for (final importName in imports) '  - $importName'].join('\n')}
 ''';
   return '''
-format: 1
+format: 2
 name: $name
 library: $library
 jsPackage: '@$packageName/$name'

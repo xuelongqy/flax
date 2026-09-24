@@ -122,7 +122,7 @@ class _ComponentStateful extends StatefulWidget {
   StatefulElement createElement() => _ComponentStatefulElement(this);
   @override
   // ignore: no_logic_in_create_state
-  State<StatefulWidget> createState() => _ComponentState(description);
+  State<StatefulWidget> createState() => _createComponentState(description);
 }
 
 /// A throwing user dispose must not abort unmounting the rest of the session.
@@ -130,61 +130,125 @@ class _ComponentStatefulElement extends StatefulElement {
   _ComponentStatefulElement(_ComponentStateful super.widget);
   @override
   void unmount() {
-    final owner = state as _ComponentState;
+    final owner = state as FlaxComponentStateBase;
     try {
       super.unmount();
     } catch (error, stack) {
-      owner.scope.session.report(error, stack);
+      owner._scope.session.report(error, stack);
     } finally {
-      owner.scope.session._componentStates.remove(owner.id);
-      owner.scope.close();
+      owner._scope.session._componentStates.remove(owner.id);
+      owner._scope.close();
     }
   }
 }
 
-/// Flutter creates and owns this State; generated overrides dispatch to JS.
-class _ComponentState extends State<StatefulWidget> with FlaxStateProxy {
-  _ComponentState(_ComponentDescription description)
-    : scope = _ComponentMount(description) {
-    id = scope.session._nextComponentState++;
-    if (scope.session.active) scope.session._componentStates[id] = this;
-    try {
-      if (!scope._retained) throw StateError('Closed Flax session');
-      scope.state = scope.session.helper('createComponentState').call([
-        description.input,
-        FlaxJsNumber(id.toDouble()),
-      ]) as FlaxJsObject;
-    } catch (error, stack) {
-      failure = error;
-      scope.session.report(error, stack);
-    }
-  }
+class _ComponentStateSeed {
+  const _ComponentStateSeed({
+    required this.scope,
+    required this.id,
+    required this.state,
+    required this.variantId,
+    this.failure,
+  });
+
   final _ComponentMount scope;
+  final int id;
+  final FlaxJsObject? state;
+  final String? variantId;
+  final Object? failure;
+}
+
+State<StatefulWidget> _createComponentState(_ComponentDescription description) {
+  final scope = _ComponentMount(description);
+  final id = scope.session._nextComponentState++;
+  FlaxJsObject? state;
+  String? variantId;
+  Object? failure;
+  try {
+    if (!scope._retained) throw StateError('Closed Flax session');
+    final created = scope.session.helper('createComponentState').call([
+      description.input,
+      FlaxJsNumber(id.toDouble()),
+    ]);
+    if (created is! FlaxJsObject) {
+      throw StateError('Invalid component State creation result');
+    }
+    try {
+      state = _property(created, 'state', (value) {
+        if (value is! FlaxJsObject) throw StateError('Invalid component State');
+        return value.retain();
+      });
+      variantId = _property(created, 'variant', (value) {
+        if (value is FlaxJsNull) return null;
+        if (value is! FlaxJsString || value.value.isEmpty) {
+          throw StateError('Invalid component State variant');
+        }
+        return value.value;
+      });
+    } finally {
+      created.release();
+    }
+  } catch (error, stack) {
+    failure = error;
+    scope.session.report(error, stack);
+  }
+
+  var seed = _ComponentStateSeed(
+    scope: scope,
+    id: id,
+    state: state,
+    variantId: variantId,
+    failure: failure,
+  );
+  if (failure == null && variantId != null) {
+    final variant = scope.session.registry._stateVariants[variantId];
+    if (variant != null) return variant.create(seed);
+    failure = StateError('Unknown component State variant: $variantId');
+    scope.session.report(failure, StackTrace.current);
+    seed = _ComponentStateSeed(
+      scope: scope,
+      id: id,
+      state: state,
+      variantId: variantId,
+      failure: failure,
+    );
+  }
+  return _DefaultComponentState(seed);
+}
+
+/// Stable generator/runtime contract for a Flutter-owned component State.
+abstract class FlaxComponentStateBase extends State<StatefulWidget> {
+  FlaxComponentStateBase(Object value) {
+    final seed = value as _ComponentStateSeed;
+    _scope = seed.scope;
+    id = seed.id;
+    variantId = seed.variantId;
+    failure = seed.failure;
+    _scope.state = seed.state;
+    if (_scope.session.active) _scope.session._componentStates[id] = this;
+  }
+
+  late final _ComponentMount _scope;
   late final int id;
+  late final String? variantId;
   Object? failure;
   String? _hook;
   bool _calledSuper = false;
   List<Object?> _hookArguments = const [];
 
-  @override
   Object? flaxInvoke(
     String method,
     List<Object?> arguments, {
     bool requiresSuper = false,
-  }) => scope.run(() => _invoke(method, arguments, requiresSuper));
+  }) => _scope.run(() => _invoke(method, arguments, requiresSuper));
 
   Object? _invoke(String method, List<Object?> arguments, bool requiresSuper) {
     final previousDescription = method == 'didUpdateWidget'
-        ? scope.description
+        ? _scope.description
         : null;
     previousDescription?.retain();
-    if (method == 'activate') scope._active = true;
-    if (method == 'deactivate') scope._active = false;
-    if (method == 'build') {
-      return failure != null
-          ? _errorWidget(failure!)
-          : scope.build(arguments.single as BuildContext);
-    }
+    if (method == 'activate') _scope._active = true;
+    if (method == 'deactivate') _scope._active = false;
     final previousHook = _hook;
     final previousSuper = _calledSuper;
     final previousArguments = _hookArguments;
@@ -193,13 +257,17 @@ class _ComponentState extends State<StatefulWidget> with FlaxStateProxy {
     _hookArguments = arguments;
     try {
       if (method == 'didUpdateWidget') {
-        scope.update((widget as _ComponentStateful).description);
+        _scope.update((widget as _ComponentStateful).description);
       }
-      if (scope.state == null) {
-        // No user State exists after a failed createState. Keep the error host valid.
+      if (method == 'build') {
+        return failure != null
+            ? _errorWidget(failure!)
+            : _scope.build(arguments.single as BuildContext);
+      }
+      if (_scope.state == null) {
         return flaxSuper(method, arguments);
       }
-      final result = scope.invoke(method, arguments);
+      final result = _scope.invoke(method, arguments);
       _releaseJs(result);
       if (requiresSuper && !_calledSuper) {
         throw StateError('$method must call super.$method()');
@@ -207,41 +275,42 @@ class _ComponentState extends State<StatefulWidget> with FlaxStateProxy {
       return null;
     } catch (error, stack) {
       if (method == 'dispose') rethrow;
-      // Let Flutter finish attaching, updating or deactivating the Element so
-      // normal unmount can release its entire subtree. Never replay user hooks.
       if (method == 'initState') failure = error;
-      scope.session.report(error, stack);
+      _scope.session.report(error, stack);
       return null;
     } finally {
       _hook = previousHook;
       _calledSuper = previousSuper;
       _hookArguments = previousArguments;
       previousDescription?.release();
-      if (method == 'deactivate') scope._active = false;
+      if (method == 'deactivate') _scope._active = false;
       if (method == 'dispose') {
-        scope.session._componentStates.remove(id);
-        scope.close();
+        _scope.session._componentStates.remove(id);
+        _scope.close();
       }
     }
   }
 
   FlaxJsValue call(String operation, List<FlaxJsValue> arguments) =>
-      scope.run(() => _call(operation, arguments));
+      _scope.run(() => _call(operation, arguments));
 
   FlaxJsValue _call(String operation, List<FlaxJsValue> arguments) {
     if (operation == 'mounted') return FlaxJsBoolean(mounted);
     if (!mounted) throw StateError('Component State is not mounted');
     if (operation == 'context') {
-      return scope.session.componentContext(context, scope);
+      return _scope.session.componentContext(context, _scope);
     }
     if (operation == 'setState') {
       if (arguments.length != 1 || arguments.single is! FlaxJsFunction) {
         throw ArgumentError('Expected a setState callback');
       }
       setState(() {
-        _releaseJs(scope.session.helper('invokeSynchronous').call(arguments));
+        _releaseJs(_scope.session.helper('invokeSynchronous').call(arguments));
       });
       return const FlaxJsUndefined();
+    }
+    if (operation.startsWith('native:')) {
+      return _nativeCall(operation.substring(7), arguments);
     }
     if (operation.startsWith('super:')) {
       final method = operation.substring(6);
@@ -252,13 +321,19 @@ class _ComponentState extends State<StatefulWidget> with FlaxStateProxy {
       }
       final decoded = <_Value>[];
       try {
-        // Lifecycle Widget arguments refer to their original JS configurations.
         for (final argument in arguments) {
-          decoded.add(scope.session.decodeComponent(argument));
+          decoded.add(_scope.session.decodeComponent(argument));
         }
-        flaxSuper(method, decoded.map((v) => v.data).toList());
+        final result = flaxSuper(method, decoded.map((v) => v.data).toList());
         _calledSuper = true;
-        return const FlaxJsUndefined();
+        return result is Widget
+            ? _scope.session.holdHostResult(
+                _scope.session.memberResult(
+                  result,
+                  const FlaxTypeRef('widget'),
+                ),
+              )
+            : const FlaxJsUndefined();
       } finally {
         for (final value in decoded.reversed) {
           value.release();
@@ -267,6 +342,212 @@ class _ComponentState extends State<StatefulWidget> with FlaxStateProxy {
     }
     throw ArgumentError('Unknown component operation: $operation');
   }
+
+  FlaxJsValue _nativeCall(String member, List<FlaxJsValue> arguments) {
+    final id = variantId;
+    final variant = id == null
+        ? null
+        : _scope.session.registry._stateVariants[id];
+    if (variant == null) throw StateError('State has no native variant');
+    if (member.startsWith('get:')) {
+      if (arguments.isNotEmpty) throw ArgumentError('Invalid getter arity');
+      final name = member.substring(4);
+      final getter = variant.getters
+          .where((value) => value.name == name)
+          .firstOrNull;
+      if (getter == null) {
+        throw ArgumentError('Unknown State variant getter: $name');
+      }
+      return _scope.session.holdHostResult(
+        _scope.session.memberResult(getter.read(this), getter.type),
+      );
+    }
+    if (member.startsWith('set:')) {
+      if (arguments.length != 1) throw ArgumentError('Invalid setter arity');
+      final name = member.substring(4);
+      final setter = variant.setters
+          .where((value) => value.name == name)
+          .firstOrNull;
+      if (setter == null) {
+        throw ArgumentError('Unknown State variant setter: $name');
+      }
+      final value = _scope.session.decode(arguments.single, setter.type);
+      try {
+        setter.write(this, value.data);
+        return const FlaxJsUndefined();
+      } finally {
+        value.release();
+      }
+    }
+    final method = variant.methods[member];
+    if (method == null || arguments.length > method.parameters.length) {
+      throw ArgumentError('Unknown State variant method: $member');
+    }
+    final values = <String, _Value>{};
+    try {
+      for (var i = 0; i < method.parameters.length; i++) {
+        final parameter = method.parameters[i];
+        final input = i < arguments.length
+            ? arguments[i]
+            : const FlaxJsUndefined();
+        if (input is FlaxJsUndefined) {
+          if (parameter.required) {
+            throw ArgumentError('Missing method argument: ${parameter.name}');
+          }
+          if (!parameter.omitWhenAbsent) {
+            values[parameter.name] = _Value(parameter.defaultValue);
+          }
+        } else {
+          values[parameter.name] = _scope.session.decode(input, parameter.type);
+        }
+      }
+      final result = method.invoke(
+        this,
+        values.map((key, value) => MapEntry(key, value.data)),
+      );
+      return _scope.session.holdHostResult(
+        _scope.session.memberResult(result, method.result),
+      );
+    } finally {
+      for (final value in values.values.toList().reversed) {
+        value.release();
+      }
+    }
+  }
+
+  /// Dispatches an abstract Dart mixin member to the active JS State.
+  Object? flaxInvokeMember(
+    String member,
+    List<Object?> arguments,
+    List<FlaxTypeRef> parameterTypes,
+    FlaxTypeRef resultType,
+  ) {
+    if (arguments.length != parameterTypes.length) {
+      throw ArgumentError('Invalid State variant member arity');
+    }
+    return _scope.run(() {
+      final temporary = <FlaxJsObject>[];
+      final encoded = <FlaxJsValue>[
+        _scope.state ?? (throw StateError('State is not available')),
+        FlaxJsString(member),
+      ];
+      try {
+        for (var i = 0; i < arguments.length; i++) {
+          encoded.add(
+            _scope.session.encodeArgument(
+              arguments[i],
+              parameterTypes[i],
+              _scope,
+              temporary,
+            ),
+          );
+        }
+        final raw = _scope.session.helper('invokeComponent').call(encoded);
+        try {
+          final decoded = _scope.session.decode(raw, resultType);
+          try {
+            decoded.escapeCallbacks();
+            return decoded.data;
+          } finally {
+            decoded.release();
+          }
+        } finally {
+          _releaseJs(raw);
+        }
+      } finally {
+        for (final value in temporary.reversed) {
+          value.release();
+        }
+      }
+    });
+  }
+
+  /// Generated hosts override this when a Dart mixin has concrete build.
+  Widget flaxBuildSuper(BuildContext context) =>
+      throw StateError('The selected State variant has no super.build');
+
+  Object? flaxSuper(String method, List<Object?> args);
+}
+
+/// Last in every generated State composition so direct super enters Dart mixins.
+mixin FlaxStateProxy on FlaxComponentStateBase {
+  @override
+  // ignore: must_call_super
+  void initState() => flaxInvoke('initState', const [], requiresSuper: true);
+
+  @override
+  // ignore: must_call_super
+  void didChangeDependencies() =>
+      flaxInvoke('didChangeDependencies', const [], requiresSuper: true);
+
+  @override
+  // ignore: must_call_super
+  void didUpdateWidget(StatefulWidget oldWidget) =>
+      flaxInvoke('didUpdateWidget', [oldWidget], requiresSuper: true);
+
+  @override
+  // ignore: must_call_super
+  void deactivate() => flaxInvoke('deactivate', const [], requiresSuper: true);
+
+  @override
+  // ignore: must_call_super
+  void activate() => flaxInvoke('activate', const [], requiresSuper: true);
+
+  @override
+  // ignore: must_call_super
+  void dispose() => flaxInvoke('dispose', const [], requiresSuper: true);
+
+  @override
+  // ignore: must_call_super
+  void reassemble() => flaxInvoke('reassemble', const [], requiresSuper: true);
+
+  @override
+  Widget build(BuildContext context) =>
+      flaxInvoke('build', [context]) as Widget;
+
+  @override
+  Object? flaxSuper(String method, List<Object?> args) {
+    switch (method) {
+      case 'initState':
+        if (args.isNotEmpty) throw ArgumentError('Invalid super arity');
+        super.initState();
+        return null;
+      case 'didChangeDependencies':
+        if (args.isNotEmpty) throw ArgumentError('Invalid super arity');
+        super.didChangeDependencies();
+        return null;
+      case 'didUpdateWidget':
+        if (args.length != 1) throw ArgumentError('Invalid super arity');
+        super.didUpdateWidget(args.single as StatefulWidget);
+        return null;
+      case 'deactivate':
+        if (args.isNotEmpty) throw ArgumentError('Invalid super arity');
+        super.deactivate();
+        return null;
+      case 'activate':
+        if (args.isNotEmpty) throw ArgumentError('Invalid super arity');
+        super.activate();
+        return null;
+      case 'dispose':
+        if (args.isNotEmpty) throw ArgumentError('Invalid super arity');
+        super.dispose();
+        return null;
+      case 'reassemble':
+        if (args.isNotEmpty) throw ArgumentError('Invalid super arity');
+        super.reassemble();
+        return null;
+      case 'build':
+        if (args.length != 1) throw ArgumentError('Invalid super arity');
+        return flaxBuildSuper(args.single as BuildContext);
+      default:
+        throw ArgumentError('Unselected super method: $method');
+    }
+  }
+}
+
+class _DefaultComponentState extends FlaxComponentStateBase
+    with FlaxStateProxy {
+  _DefaultComponentState(super.seed);
 }
 
 /// One result and Context scope per actual component Element, never per JS function.
@@ -389,6 +670,42 @@ class _ComponentMount with _ContextOwner {
 }
 
 extension _ComponentCalls on _Session {
+  _Value? decodeComponentStateReference(FlaxJsObject input, FlaxTypeRef type) {
+    final target = type.id;
+    if (target == null) return null;
+    final rawId = helper('tryComponentStateId').call([input]);
+    try {
+      if (rawId is FlaxJsNull) return null;
+      if (rawId is! FlaxJsNumber ||
+          !rawId.value.isFinite ||
+          rawId.value <= 0 ||
+          rawId.value.truncateToDouble() != rawId.value) {
+        throw ArgumentError('Invalid component State reference');
+      }
+      final state = _componentStates[rawId.value.toInt()];
+      if (state == null) {
+        throw ArgumentError('Foreign or disposed component State');
+      }
+      if (registry._componentStateTypes.contains(target)) {
+        return _Value(state);
+      }
+      final variantId = state.variantId;
+      final variant = variantId == null
+          ? null
+          : registry._stateVariants[variantId];
+      final binding = registry._types[target];
+      if (variant == null ||
+          !variant.interfaces.contains(target) ||
+          binding is! FlaxObjectBinding ||
+          binding.matches?.call(state) != true) {
+        throw ArgumentError('Component State does not implement ${type.id}');
+      }
+      return _Value(state);
+    } finally {
+      _releaseJs(rawId);
+    }
+  }
+
   _ComponentType readComponentType(FlaxJsObject info) {
     final id = _property(
       info,

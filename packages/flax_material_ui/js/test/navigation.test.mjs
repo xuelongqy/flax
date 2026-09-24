@@ -59,7 +59,7 @@ test('State methods dispatch independently and validate named arguments', () => 
     calls.map((args) => args[3]),
     ['push', 'pushNamed', 'pop', 'canPop'],
   );
-  assert.deepEqual(calls[0].slice(0, 4), [20, stateType, 12, 'push']);
+  assert.deepEqual(calls[0].slice(0, 4), [21, stateType, 12, 'push']);
   assert.throws(() => state.pushNamed('/a', { extra: 1 }), /Invalid named/);
   assert.throws(() => state.canPop(1), /Too many/);
   assert.throws(() => invokeInstance({}, stateType, 'pop', []), /foreign/);

@@ -2,14 +2,13 @@ import 'dart:convert';
 
 import 'package:flax_codegen/flax_codegen.dart';
 import 'package:flax_codegen/src/identity.dart';
-import 'package:flax_codegen/src/manifest_v5.dart';
-import 'package:flax_codegen/src/manifest_v5_codec.dart';
-import 'package:flax_codegen/src/manifest_v5_projection.dart';
+import 'package:flax_codegen/src/manifest_codec.dart';
+import 'package:flax_codegen/src/manifest_projection.dart';
 import 'package:test/test.dart';
 
 void main() {
   test(
-    'Manifest 7 preserves readonly exports and canonical read identities',
+    'Manifest 12 preserves readonly exports and canonical read identities',
     () {
       final original = _manifest();
       final decoded = _decode(original.toJson());
@@ -36,28 +35,7 @@ void main() {
     },
   );
 
-  for (final version in [2, 3, 4, 5, 6, 7, 8, 9]) {
-    test('strict version $version remains readable without newer fields', () {
-      final json = _manifest(readonly: false).toJson()
-        ..['formatVersion'] = version;
-      if (version == 2) _model(json).remove('typedefs');
-      final decoded = _decode(json);
-      expect(decoded.toJson()['formatVersion'], 11);
-      expect(decoded.modules.single.model.module.topLevel, isNull);
-    });
-  }
-
-  for (final version in [2, 3, 4]) {
-    test('version $version rejects readonly fields and identity kinds', () {
-      final json = _manifest().toJson()..['formatVersion'] = version;
-      if (version == 2) _model(json).remove('typedefs');
-      _reject(json);
-      _model(json).remove('topLevel');
-      _reject(json);
-    });
-  }
-
-  test('Manifest 7 preserves public routes and named literal semantics', () {
+  test('Manifest 12 preserves public routes and named literal semantics', () {
     final json = _manifest().toJson();
     final model = _model(json);
     (model['topLevel'] as Map)['jsName'] = '';
@@ -74,24 +52,9 @@ void main() {
     expect(module.publicLibraries.single.exports, ['answer']);
     expect(module.topLevel!.getters.single.exportName, 'answer');
     expect(_decode(decoded.toJson()).encode(), decoded.encode());
-    for (final version in [2, 3, 4, 5]) {
-      final old = jsonDecode(jsonEncode(json)) as Map<String, Object?>;
-      old['formatVersion'] = version;
-      if (version == 2) _model(old).remove('typedefs');
-      _reject(old);
-    }
-    final old = jsonDecode(jsonEncode(json)) as Map<String, Object?>;
-    old['formatVersion'] = 5;
-    _model(old).remove('publicLibraries');
-    _reject(old); // Version 5 does not accept named exports or literals.
-    (_model(old)['topLevel'] as Map)['jsName'] = 'Values';
-    _reject(old); // A namespace does not make the new literal field legal.
-    _getter(_model(old)).remove('literal');
-    (_model(old)['topLevel'] as Map).remove('setters');
-    expect(_decode(old).modules.single.model.module.topLevel!.jsName, 'Values');
   });
 
-  test('Manifest 7 rejects malformed routes and unsafe literal metadata', () {
+  test('Manifest 12 rejects malformed routes and unsafe literal metadata', () {
     for (final mutate in <void Function(Map<String, Object?>)>[
       (model) => model['publicLibraries'] = [
         {
@@ -145,7 +108,7 @@ void main() {
 
   test('dependency projection keeps public readonly exports and immutable snapshots', () {
     final manifest = _decode(_manifest().toJson());
-    final projection = FlaxCodegenManifestV5Projection(
+    final projection = FlaxCodegenManifestProjection(
       root: manifest,
       directDependencies: const {},
       source: 'provider/manifest.json',
@@ -169,23 +132,23 @@ void main() {
   });
 }
 
-FlaxCodegenManifestV5 _manifest({bool readonly = true}) {
+FlaxCodegenManifest _manifest({bool readonly = true}) {
   final moduleId = FlaxCodegenModuleId.parse('example.values/values');
   final wire = FlaxCodegenWireId.read(
     moduleId: moduleId,
     publicBindingName: 'answer',
   );
-  return FlaxCodegenManifestV5(
+  return FlaxCodegenManifest(
     package: 'values',
     bindingNamespace: FlaxCodegenBindingNamespace.parse('example.values'),
     imports: const [],
     modules: [
-      FlaxCodegenManifestV5Module(
+      FlaxCodegenManifestModule(
         name: 'values',
         moduleId: moduleId,
-        uiProtocol: 20,
+        uiProtocol: 21,
         requiredCapabilities: const [],
-        model: FlaxCodegenManifestV5Model(
+        model: FlaxCodegenManifestModel(
           module: FlaxCodegenModuleModel(
             name: 'values',
             library: 'package:values/values.dart',
@@ -210,7 +173,7 @@ FlaxCodegenManifestV5 _manifest({bool readonly = true}) {
           ),
           identities: [
             if (readonly)
-              FlaxCodegenManifestV5Identity(
+              FlaxCodegenManifestIdentity(
                 sourceIdentity: FlaxCodegenSourceIdentity(
                   kind: FlaxCodegenDeclarationKind.readonly,
                   originatingUri: 'package:values/src/values.dart',
@@ -233,15 +196,15 @@ Map<String, Object?> _getter(Map<String, Object?> model) =>
     ((model['topLevel'] as Map)['getters'] as List).single
         as Map<String, Object?>;
 
-FlaxCodegenManifestV5 _decode(Map<String, Object?> json) {
-  final diagnostics = FlaxCodegenManifestV5Diagnostics('manifest.json');
-  final result = FlaxCodegenManifestV5.parse(jsonEncode(json), diagnostics);
+FlaxCodegenManifest _decode(Map<String, Object?> json) {
+  final diagnostics = FlaxCodegenManifestDiagnostics('manifest.json');
+  final result = FlaxCodegenManifest.parse(jsonEncode(json), diagnostics);
   diagnostics.throwIfAny();
   return result!;
 }
 
 void _reject(Map<String, Object?> json) {
-  final diagnostics = FlaxCodegenManifestV5Diagnostics('manifest.json');
-  expect(FlaxCodegenManifestV5.parse(jsonEncode(json), diagnostics), isNull);
+  final diagnostics = FlaxCodegenManifestDiagnostics('manifest.json');
+  expect(FlaxCodegenManifest.parse(jsonEncode(json), diagnostics), isNull);
   expect(diagnostics.items, isNotEmpty);
 }

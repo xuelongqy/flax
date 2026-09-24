@@ -3,7 +3,7 @@ import 'dart:io';
 import 'diagnostic.dart';
 import 'package_pipeline.dart';
 
-/// Canonical flax_codegen CLI usage. The old `[--check] <config>` form is gone.
+/// Canonical flax_codegen CLI usage.
 const flaxCodegenCliUsage =
     'Usage:\n'
     '  dart run flax_codegen validate --config <direct-yaml>\n'
@@ -46,15 +46,8 @@ final class FlaxCodegenCliUsageException implements Exception {
 /// Parses exactly `validate|check|generate --config <direct-yaml>` or the
 /// fail-open automatic `--library <package:...dart>` form.
 ///
-/// Rejects the legacy `[--check] <config>` form and any other shape.
+/// Rejects every other argument shape.
 FlaxCodegenCliArgs parseFlaxCodegenCliArgs(List<String> arguments) {
-  if (arguments.contains('--check') ||
-      _looksLikeLegacyConfigInvocation(arguments)) {
-    throw FlaxCodegenCliUsageException(
-      'The old "[--check] <config>" form is not supported.\n'
-      '$flaxCodegenCliUsage',
-    );
-  }
   if (arguments.isEmpty) {
     throw FlaxCodegenCliUsageException(flaxCodegenCliUsage);
   }
@@ -77,16 +70,6 @@ FlaxCodegenCliArgs parseFlaxCodegenCliArgs(List<String> arguments) {
     configPath: arguments[1] == '--config' ? arguments[2] : null,
     library: arguments[1] == '--library' ? arguments[2] : null,
   );
-}
-
-bool _looksLikeLegacyConfigInvocation(List<String> arguments) {
-  if (arguments.isEmpty) return false;
-  final first = arguments.first;
-  if (first.endsWith('.yaml') || first.endsWith('.yml')) {
-    return true;
-  }
-  // `dart run flax_codegen --check …` was the old root form.
-  return first == '--check';
 }
 
 /// Runs the flax_codegen CLI. Returns a process exit code (0 success, 1 failure).

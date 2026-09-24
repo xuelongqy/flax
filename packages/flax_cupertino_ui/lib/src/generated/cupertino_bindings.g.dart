@@ -303,8 +303,9 @@ const cupertinoBindings = FlaxBindingModule(
   ],
   functions: [],
   moduleId: "flax.cupertino/cupertino",
-  uiProtocol: 20,
+  uiProtocol: 21,
   requiredCapabilities: const <String>[],
+  stateVariants: [],
 );
 
 class _CupertinoAppHost extends FlaxWidgetHost {
@@ -410,7 +411,6 @@ class _CupertinoNavigationBarHost extends FlaxWidgetHost
   _flaxNative1.bool shouldFullyObstruct(_flaxNative2.BuildContext context) =>
       (configuration as _flaxNative2.ObstructingPreferredSizeWidget)
           .shouldFullyObstruct(context);
-
   @override
   api1.Widget buildNative(Map<String, Object?> values) =>
       _createCupertinoNavigationBar(node.ctor, values);

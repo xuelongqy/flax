@@ -1,4 +1,4 @@
-format: 1
+format: 2
 name: cupertino
 imports: [flax]
 library: package:cupertino_ui/cupertino_ui.dart

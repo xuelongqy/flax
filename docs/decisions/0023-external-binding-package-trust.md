@@ -6,11 +6,11 @@ Date: 2026-09-12
 
 ## Context
 
-External Binding Kit v1 needs a frozen package and trust contract before Codegen,
-manifests, or registration change. [ADR 0017](0017-package-boundaries.md) already makes
-`packages/*` the capability boundary. [ADR 0018](0018-binding-coverage-strategy.md)
-keeps explicit selection fail-closed. [ADR 0020](0020-ui-protocol-20.md) freezes UI
-protocol 20 with native ABI 2 unchanged.
+External bindings need a stable package and trust contract before Codegen, manifests, or
+registration change. [ADR 0017](0017-package-boundaries.md) already makes `packages/*`
+the capability boundary. [ADR 0018](0018-binding-coverage-strategy.md) keeps explicit
+selection fail-closed. [ADR 0035](0035-generic-state-variants-and-protocol-21.md)
+defines UI protocol 21 with native ABI 2 unchanged.
 [ADR 0021](0021-external-binding-version-domains.md) separates version domains.
 [ADR 0022](0022-stable-binding-identity.md) settles namespace, source identity, and wire
 identity.
@@ -26,9 +26,10 @@ boundary.
 
 ## Decision
 
-v1 is an explicit-selection, fail-closed kit for trusted compile-time Dart or Flutter
-dependencies usable outside Flax. Applications depend on packages they chose to install.
-It is not a plugin marketplace, remote loader, or untrusted mini-app host.
+The binding kit is an explicit-selection, fail-closed surface for trusted compile-time
+Dart or Flutter dependencies usable outside Flax. Applications depend on packages they
+chose to install. It is not a plugin marketplace, remote loader, or untrusted mini-app
+host.
 
 ### Binding package ownership
 
@@ -129,9 +130,9 @@ record.
 
 ### Trust boundary
 
-v1 does not add dynamic discovery, remote code loading, registry lookup, signing, a
-sandbox, a permission system, resource limits, or untrusted mini-app isolation. A
-product that needs those needs a separate security architecture.
+The binding kit does not add dynamic plugin discovery, remote code loading, registry
+lookup, signing, a sandbox, a permission system, resource limits, or untrusted mini-app
+isolation. A product that needs those needs a separate security architecture.
 
 ### Dependency direction
 
@@ -139,13 +140,15 @@ Core and extension direction stays [ADR 0017](0017-package-boundaries.md). Third
 extensions depend on public `flax` and `@flax/core` and on explicit public binding
 dependencies. They do not depend on unrelated extensions.
 
-### Protocol 20 envelope
+### Current UI protocol envelope
 
-[ADR 0020](0020-ui-protocol-20.md) remains the full protocol-20 envelope. This record
-does not expand or contract it. Later external pure-Dart and Flutter canaries cover that
-envelope. Flutter canaries must produce equivalent normalized Hermes and V8 behavior.
-Actual coverage is recorded in the
-[compatibility matrix](../architecture/external-binding-compatibility.md).
+[ADR 0020](0020-complete-dart-stream-interop.md) defines complete Dart Stream interop
+within the current UI protocol, while
+[ADR 0035](0035-generic-state-variants-and-protocol-21.md) defines protocol 21. This
+record does not expand or contract either contract. External pure-Dart and Flutter
+canaries cover the current envelope. Flutter canaries must produce equivalent normalized
+Hermes and V8 behavior. Actual coverage is recorded in the
+[verification scope](../architecture/external-binding-verification.md).
 
 ### Contract ownership
 
@@ -159,15 +162,15 @@ open product decisions.
 
 ## Alternatives
 
-**Dynamic plugins.** Rejected. v1 resolves trusted compile-time dependencies through
+**Dynamic plugins.** Rejected. Flax resolves trusted compile-time dependencies through
 Dart package config. Runtime discovery would invent a new loading and identity domain.
 
 **Automatic registration.** Rejected. Importing a Dart or npm module must not install
 host plugins or grant capabilities. Session startup stays explicit, as in
 [packaging](../architecture/packaging.md).
 
-**Treat `requiredCapabilities` as permissions.** Rejected. The list gates additive
-protocol-20 abilities an older Core can reject. It is not authorization.
+**Treat `requiredCapabilities` as permissions.** Rejected. The list gates additive UI
+protocol abilities an older Core can reject. It is not authorization.
 
 **Read dependency internals.** Rejected. Selection YAML, tests, and `lib/src` stay with
 the owner. Dependents reconstruct semantics from binding manifests and public APIs.
@@ -191,15 +194,15 @@ Tools do not consult a network, registry, or signing lookup to decide legality.
 A consumer can generate from public dependency APIs and manifests without access to a
 provider's owner-local configuration. Package-atomic discovery makes ownership and
 orphan checks reproducible. Explicit registration preserves application control, while
-compatibility gates remain separate from security permissions. See the
+contract checks remain separate from security permissions. See the
 [author guide](../../packages/flax_codegen/docs/author-template.md) for usage and the
-[compatibility matrix](../architecture/external-binding-compatibility.md) for evidence.
+[verification scope](../architecture/external-binding-verification.md) for evidence.
 
 [ADR 0021](0021-external-binding-version-domains.md) still owns version domains, binding
-manifests projection, tuple pinning, atomic registration, and compatibility bump rules.
+manifests projection, tuple pinning, atomic registration, and version-bump rules.
 [ADR 0022](0022-stable-binding-identity.md) still owns namespace grammar, source
 identity, and wire identity. [ADR 0018](0018-binding-coverage-strategy.md) still owns
-coverage strategy. This record does not change UI protocol 20 or native ABI 2.
+coverage strategy. This record does not change UI protocol 21 or native ABI 2.
 
 Publication, registry names, license, signing, and support lifetime remain blocked as in
 [ADR 0017](0017-package-boundaries.md).

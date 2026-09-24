@@ -13,7 +13,7 @@ test('showDialog forwards its builder without executing it', () => {
   };
   const promise = Promise.resolve(null);
   globalThis.__flaxTopLevel = (version, id, ...args) => {
-    assert.equal(version, 20);
+    assert.equal(version, 21);
     assert.match(id, /#function:showDialog$/);
     assert.ok(args.includes(builder));
     assert.ok(args.includes(41));

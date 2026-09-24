@@ -5,7 +5,7 @@ FlaxBindingModule testBindingModule(
   String name,
   List<FlaxTypeBinding> types, {
   String? moduleId,
-  int uiProtocol = 20,
+  int uiProtocol = 21,
   List<FlaxFunctionBinding> functions = const [],
 }) => FlaxBindingModule(
   name,

@@ -1,5 +1,5 @@
 {
-  "formatVersion": 11,
+  "formatVersion": 12,
   "package": "flax_cupertino_ui",
   "bindingNamespace": "flax.cupertino",
   "imports": [
@@ -9,7 +9,7 @@
     {
       "name": "cupertino",
       "moduleId": "flax.cupertino/cupertino",
-      "uiProtocol": 20,
+      "uiProtocol": 21,
       "requiredCapabilities": [],
       "model": {
         "library": "package:cupertino_ui/cupertino_ui.dart",
@@ -47,7 +47,6 @@
             "id": "flax.cupertino/cupertino#type:CupertinoApp",
             "kind": "widget",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -231,7 +230,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [],
@@ -239,7 +239,6 @@
             "staticGetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "flax.core/components#type:StatefulWidget",
               "package:flutter/src/widgets/framework.dart::Widget",
@@ -258,7 +257,6 @@
             "id": "flax.cupertino/cupertino#type:CupertinoPageScaffold",
             "kind": "widget",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -486,7 +484,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [],
@@ -494,7 +493,6 @@
             "staticGetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "flax.core/components#type:StatefulWidget",
               "package:flutter/src/widgets/framework.dart::Widget",
@@ -513,7 +511,6 @@
             "id": "flax.cupertino/cupertino#type:CupertinoButton",
             "kind": "widget",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -701,7 +698,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [],
@@ -709,7 +707,6 @@
             "staticGetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "flax.core/components#type:StatefulWidget",
               "package:flutter/src/widgets/framework.dart::Widget",
@@ -728,7 +725,6 @@
             "id": "flax.cupertino/cupertino#type:CupertinoThemeData",
             "kind": "object",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -824,7 +820,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [
@@ -907,7 +904,6 @@
             "staticGetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "package:cupertino_ui/src/theme.dart::NoDefaultCupertinoThemeData",
               "dart:core::Object",
@@ -982,7 +978,6 @@
             "id": "flax.cupertino/cupertino#type:ObstructingPreferredSizeWidget",
             "kind": "widgetInterface",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -992,7 +987,6 @@
             "staticGetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "widgetMembers": [
               {
                 "name": "preferredSize",
@@ -1068,7 +1062,6 @@
             "id": "flax.cupertino/cupertino#type:CupertinoNavigationBar",
             "kind": "widget",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -1428,7 +1421,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [],
@@ -1454,7 +1448,6 @@
                 "slot": null
               }
             ],
-            "widgetGetters": [],
             "widgetMembers": [
               {
                 "name": "preferredSize",
@@ -1511,6 +1504,7 @@
         "functions": [],
         "snapshots": [],
         "typedefs": [],
+        "stateVariants": [],
         "identities": [
           {
             "sourceIdentity": {

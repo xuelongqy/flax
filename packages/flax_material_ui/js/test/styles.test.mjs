@@ -75,7 +75,7 @@ test('Theme binds whole Dart values and queries only the supplied real context',
   const context = api.context('flax.core/flutter#type:BuildContext', 501);
   let queries = 0;
   globalThis.__flaxCall = (version, type, method, handle) => {
-    assert.equal(version, 20);
+    assert.equal(version, 21);
     assert.match(type, /#type:Theme$/);
     assert.equal(method, 'of');
     assert.equal(handle, 501);

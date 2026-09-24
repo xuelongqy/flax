@@ -2,7 +2,7 @@
 
 The core bindings expose selected Expanded, Flexible, Stack, Positioned and Align
 constructors. Flutter owns constraints, layout, clipping and ParentData. These additions
-use the existing generated StatefulWidget hosts and protocol 20; they add no layout
+use the existing generated StatefulWidget hosts and protocol 21; they add no layout
 engine, RenderObject wrapper or native ABI operation.
 
 ## Selected APIs

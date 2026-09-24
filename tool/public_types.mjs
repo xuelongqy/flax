@@ -109,7 +109,7 @@ await copy(
 
 const emittedDart = join(build, 'packages', 'flax', 'js', 'src', 'dart');
 const stagedDart = join(stage, 'dart');
-for (const library of ['async', 'core']) {
+for (const library of ['async', 'core', 'ui']) {
   await copy(
     join(emittedDart, 'generated', 'libraries', library),
     join(stagedDart, 'generated', 'libraries', library),

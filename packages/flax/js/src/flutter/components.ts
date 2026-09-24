@@ -9,7 +9,6 @@ import {
 } from '@flax/core/bindings';
 import type { ValueKey } from './generated/libraries/foundation/_bindings/flutter_ValueKey.js';
 import type { BuildContext } from './generated/libraries/widgets/_bindings/flutter_BuildContext.js';
-import { StateLifecycle } from './generated/libraries/widgets/components.js';
 
 export interface WidgetOptions {
   readonly key?: ValueKey | null | undefined;
@@ -37,11 +36,8 @@ export abstract class StatefulWidget implements ComponentWidget {
 }
 
 /** Paired with a Flutter-owned State only when createState returns. */
-export abstract class State<
-  T extends StatefulWidget = StatefulWidget,
-> extends StateLifecycle<T> {
+export abstract class State<T extends StatefulWidget = StatefulWidget> {
   constructor() {
-    super();
     registerComponentState(this);
   }
   get widget(): T {
@@ -58,6 +54,28 @@ export abstract class State<
       throw new TypeError('Expected a setState callback');
     componentStateCall(this, 'setState', [callback]);
   }
+  initState(): void {
+    this.invokeSuper('initState', []);
+  }
+  didChangeDependencies(): void {
+    this.invokeSuper('didChangeDependencies', []);
+  }
+  didUpdateWidget(oldWidget: T): void {
+    this.invokeSuper('didUpdateWidget', [oldWidget]);
+  }
+  deactivate(): void {
+    this.invokeSuper('deactivate', []);
+  }
+  activate(): void {
+    this.invokeSuper('activate', []);
+  }
+  dispose(): void {
+    this.invokeSuper('dispose', []);
+  }
+  reassemble(): void {
+    this.invokeSuper('reassemble', []);
+  }
+  abstract build(context: BuildContext): Widget;
   protected invokeSuper(name: string, args: readonly unknown[]): unknown {
     return componentStateCall(this, `super:${name}`, args);
   }

@@ -143,7 +143,14 @@ void main() {
             .length,
         1,
       );
-      expect(handles - baseHandles, lessThanOrEqualTo(32));
+      final componentStateHelpers = runtime.handleLabels
+          .where((label) => label == '__flaxBindings.tryComponentStateId')
+          .length;
+      expect(componentStateHelpers, 1);
+      expect(
+        handles - baseHandles - componentStateHelpers,
+        lessThanOrEqualTo(32),
+      );
       expect(calls['__flaxBaseCall'], 1); // Install the base clock origin once.
       expect(calls['__flaxMount'], 1);
       expect(calls['__flaxInvalidate'], 9);

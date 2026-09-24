@@ -1,6 +1,7 @@
 # 0019: Dart Stream Interop
 
-Status: superseded by [0020: UI Protocol 20](0020-ui-protocol-20.md).
+Status: superseded by
+[0020: Complete Dart Stream Interop](0020-complete-dart-stream-interop.md).
 
 The successor owns the accepted decision. See the
 [current contract](../architecture/interop.md) for implemented behavior and limits. This

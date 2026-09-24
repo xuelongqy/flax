@@ -46,7 +46,7 @@ void main() {
   });
 
   test(
-    'infers one concrete class specialization from a real use site',
+    'keeps a shared owner and selects its constructor from a concrete use site',
     () async {
       final box = library.getClass('GenericBox')!;
       final proposed = await parser.proposeSelection(
@@ -55,8 +55,46 @@ void main() {
         concreteUses: [useOf('StringBoxPage', 'title')],
       );
 
-      expect(proposed.selection?.typeArguments, ['String']);
-      await parser.parse(config(classes: {'GenericBox': proposed.selection!}));
+      expect(proposed.selection?.typeArguments, isEmpty);
+      expect(proposed.selection?.constructors[''], ['value']);
+      final module = await parser.parse(
+        config(classes: {'GenericBox': proposed.selection!}),
+      );
+      final genericBox = module.classes.single;
+      expect(genericBox.typeArguments, ['Object?']);
+      expect(
+        genericBox.constructors.single.parameters.single.type.kind,
+        'scalar',
+      );
+      expect(
+        genericBox.constructors.single.specializations.map(
+          (specialization) => specialization.typeArguments,
+        ),
+        containsAll(<List<String>>[
+          ['String'],
+          ['int'],
+        ]),
+      );
+    },
+  );
+
+  test(
+    'uses the concrete int transport for one numeric specialization',
+    () async {
+      final numericBox = library.getClass('NumericBox')!;
+      final proposed = await parser.proposeSelection(
+        numericBox,
+        library: config(),
+        concreteUses: [useOf('IntNumericBoxPage', 'value')],
+      );
+
+      final module = await parser.parse(
+        config(classes: {'NumericBox': proposed.selection!}),
+      );
+      final constructor = module.classes.single.constructors.single;
+      expect(constructor.parameters.single.type.kind, 'int');
+      expect(constructor.parameters.single.type.declaration?.kind, 'parameter');
+      expect(constructor.specializations.single.typeArguments, ['int']);
     },
   );
 
@@ -69,10 +107,11 @@ void main() {
       concreteUses: [stringUse, stringUse],
     );
 
-    expect(proposed.selection?.typeArguments, ['String']);
+    expect(proposed.selection?.typeArguments, isEmpty);
+    expect(proposed.selection?.constructors[''], ['value']);
   });
 
-  test('rejects conflicting concrete uses instead of defaulting', () async {
+  test('keeps disjoint String and int constructor specializations', () async {
     final proposed = await parser.proposeSelection(
       library.getClass('GenericBox')!,
       library: config(),
@@ -82,38 +121,60 @@ void main() {
       ],
     );
 
-    expect(proposed.selection, isNull);
-    expect(
-      proposed.skips.map((skip) => skip.reason),
-      contains('Explicit runtime type arguments required: GenericBox'),
-    );
+    expect(proposed.selection, isNotNull);
+    expect(proposed.selection!.typeArguments, isEmpty);
+    expect(proposed.selection!.constructors[''], ['value']);
   });
 
-  test('rejects unresolved type parameter concrete uses', () async {
+  test('keeps the shared owner but omits constructors for unresolved type parameters', () async {
     final proposed = await parser.proposeSelection(
       library.getClass('GenericBox')!,
       library: config(),
       concreteUses: [useOf('GenericBoxPage', 'value')],
     );
 
-    expect(proposed.selection, isNull);
+    expect(proposed.selection, isNotNull);
+    expect(proposed.selection!.constructors, isEmpty);
     expect(
-      proposed.skips.map((skip) => skip.reason),
-      contains('Explicit runtime type arguments required: GenericBox'),
+      proposed.skips.map((skip) => skip.code),
+      contains('constructor_specialization_missing_use_site'),
     );
   });
 
-  test('rejects nested generic runtime arguments', () async {
+  test('keeps the shared owner but omits constructors for nested generic arguments', () async {
     final proposed = await parser.proposeSelection(
       library.getClass('GenericBox')!,
       library: config(),
       concreteUses: [useOf('NestedBoxPage', 'values')],
     );
 
-    expect(proposed.selection, isNull);
+    expect(proposed.selection, isNotNull);
+    expect(proposed.selection!.constructors, isEmpty);
     expect(
-      proposed.skips.map((skip) => skip.reason),
-      contains('Explicit runtime type arguments required: GenericBox'),
+      proposed.skips.map((skip) => skip.code),
+      contains('constructor_specialization_missing_use_site'),
+    );
+  });
+
+  test('rejects overlapping num and int constructor domains', () async {
+    final box = library.getClass('GenericBox')!;
+    final proposed = await parser.proposeSelection(
+      box,
+      library: config(),
+      concreteUses: [
+        box.instantiate(
+          typeArguments: [library.typeProvider.numType],
+          nullabilitySuffix: NullabilitySuffix.none,
+        ),
+        useOf('IntBoxPage', 'count'),
+      ],
+    );
+
+    expect(proposed.selection, isNotNull);
+    expect(proposed.selection!.constructors, isEmpty);
+    expect(
+      proposed.skips.map((skip) => skip.code),
+      contains('constructor_specialization_ambiguous'),
     );
   });
 
@@ -128,22 +189,26 @@ void main() {
     expect(proposed.selection?.typeArguments, ['int']);
   });
 
-  test('preserves a concrete bound error for inferred arguments', () async {
-    final numericBox = library.getClass('NumericBox')!;
-    final invalidUse = numericBox.instantiate(
-      typeArguments: <DartType>[library.typeProvider.stringType],
-      nullabilitySuffix: NullabilitySuffix.none,
-    );
-    final proposed = await parser.proposeSelection(
-      numericBox,
-      library: config(),
-      concreteUses: [invalidUse],
-    );
+  test(
+    'keeps the shared owner and skips an invalid constructor specialization',
+    () async {
+      final numericBox = library.getClass('NumericBox')!;
+      final invalidUse = numericBox.instantiate(
+        typeArguments: <DartType>[library.typeProvider.stringType],
+        nullabilitySuffix: NullabilitySuffix.none,
+      );
+      final proposed = await parser.proposeSelection(
+        numericBox,
+        library: config(),
+        concreteUses: [invalidUse],
+      );
 
-    expect(proposed.selection, isNull);
-    expect(
-      proposed.skips.map((skip) => skip.reason).join('\n'),
-      contains('does not satisfy'),
-    );
-  });
+      expect(proposed.selection, isNotNull);
+      expect(proposed.selection!.constructors, isEmpty);
+      expect(
+        proposed.skips.map((skip) => skip.reason).join('\n'),
+        contains('does not satisfy'),
+      );
+    },
+  );
 }

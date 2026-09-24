@@ -9,6 +9,6 @@ const exampleBindings = FlaxBindingModule(
   'example',
   [],
   moduleId: 'vendor.example/example',
-  uiProtocol: 20,
+  uiProtocol: 21,
   requiredCapabilities: const <String>[],
 );

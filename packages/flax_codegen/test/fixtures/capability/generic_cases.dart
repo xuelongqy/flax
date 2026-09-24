@@ -30,6 +30,34 @@ class NumericBox<T extends num> {
   T echo(T input) => input;
 }
 
+class IntNumericBoxPage {
+  IntNumericBoxPage(this.value);
+  final NumericBox<int> value;
+}
+
+class Base {
+  int get marker => 0;
+}
+
+class Wrapper<T> {
+  T? get value => null;
+}
+
+class NominalBound<T extends Base> {
+  NominalBound();
+  T echo(T value) => value;
+}
+
+class ClosedBound<T extends Wrapper<dynamic>> {
+  ClosedBound();
+  T echo(T value) => value;
+}
+
+class NullableClosedBound<T extends Wrapper<dynamic>?> {
+  NullableClosedBound();
+  T echo(T value) => value;
+}
+
 class DependentBox<T extends num, U extends T> {
   DependentBox(this.first, this.second);
   final T first;

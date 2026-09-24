@@ -81,17 +81,6 @@ List<FlaxCodegenSkip> _providerSurfaceSkips({
     'instanceMethods',
   );
   requireNames(
-    requested.deferredFactories,
-    available.deferredFactories,
-    'deferredFactories',
-  );
-  requireNames(
-    requested.proxyOverrides,
-    available.proxyOverrides,
-    'proxyOverrides',
-  );
-  requireNames(requested.proxySuper, available.proxySuper, 'proxySuper');
-  requireNames(
     requested.widgetInterfaces,
     available.widgetInterfaces,
     'widgetInterfaces',
@@ -101,7 +90,6 @@ List<FlaxCodegenSkip> _providerSurfaceSkips({
 
   if (requested.proxy != null && requested.proxy != available.proxy ||
       requested.kind != null && requested.kind != available.kind ||
-      requested.genericScalar && !available.genericScalar ||
       requested.jsName != null && requested.jsName != available.jsName ||
       requested.asyncIterableFactory != null &&
           requested.asyncIterableFactory != available.asyncIterableFactory ||
@@ -131,8 +119,8 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
   final name = element.name!;
   final id = identity(element);
   final skips = <FlaxCodegenSkip>[];
-  void skip(String target, String reason) =>
-      skips.add(FlaxCodegenSkip(target: target, reason: reason));
+  void skip(String target, String reason, {String? code}) =>
+      skips.add(FlaxCodegenSkip(target: target, reason: reason, code: code));
 
   if (parser._dependencyOwners[id] case final owner?) {
     final surface = _selectionFromModel(
@@ -195,10 +183,9 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
   final widget = parser._isFlutterWidget(element);
   final kind = base?.kind ?? (widget ? null : 'object');
   if (base != null &&
-      (base.proxy == 'host' ||
-          base.independentWidgetCallbacks.isNotEmpty ||
-          base.pageAdapter != null ||
+      (base.pageAdapter != null ||
           base.widgetInterfaces.isNotEmpty ||
+          base.proxyVariants.isNotEmpty ||
           _hasData(base.data))) {
     skip(name, 'Overlay selections stay YAML-only');
   }
@@ -215,47 +202,21 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
           _isInferredDeferredFactory(scope, element, method))
         method.name!,
   };
-  final hasDeferredFactory =
-      inferredDeferredFactories.isNotEmpty ||
-      (base?.deferredFactories.isNotEmpty ?? false);
   final typeArguments = [...?base?.typeArguments];
   if (element.typeParameters.isNotEmpty &&
-      !((base?.genericScalar) ?? false) &&
-      !hasDeferredFactory &&
       typeArguments.length != element.typeParameters.length) {
     if (typeArguments.isNotEmpty) {
       skip(name, 'Explicit runtime type arguments required: $name');
       return FlaxCodegenProposedBinding(name: name, id: id, skips: skips);
     }
-    final uses = [
-      for (final use in concreteUses)
-        if (identity(use.element) == id) use,
-    ];
-    if (uses.isNotEmpty) {
-      final inferred = _concreteTypeArguments(parser, element, uses);
-      if (inferred == null) {
-        skip(name, 'Explicit runtime type arguments required: $name');
-        return FlaxCodegenProposedBinding(name: name, id: id, skips: skips);
-      }
-      try {
-        parser._checkBounds(
-          element.typeParameters,
-          inferred.arguments,
-          element.library,
-          false,
-        );
-      } on StateError catch (error) {
-        skip(name, error.message);
-        return FlaxCodegenProposedBinding(name: name, id: id, skips: skips);
-      }
-      typeArguments.addAll(inferred.sources);
-    } else {
-      final defaults = _defaultTypeArguments(parser, element);
-      if (defaults == null) {
-        skip(name, 'Explicit runtime type arguments required: $name');
-        return FlaxCodegenProposedBinding(name: name, id: id, skips: skips);
-      }
-      typeArguments.addAll(defaults);
+    final sharedOwner = _defaultTypeArguments(parser, scope, element);
+    if (!sharedOwner.supported) {
+      skip(
+        name,
+        sharedOwner.reason ?? 'Explicit runtime type arguments required: $name',
+        code: sharedOwner.code,
+      );
+      return FlaxCodegenProposedBinding(name: name, id: id, skips: skips);
     }
   }
 
@@ -276,6 +237,23 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
         skips: skips,
       );
       if (bound != null) {
+        if (element.typeParameters.isNotEmpty && typeArguments.isEmpty) {
+          final plan = _constructorSpecializationPlan(
+            parser: parser,
+            element: element,
+            constructor: constructor,
+            selectedParameters: bound,
+            concreteUses: concreteUses,
+          );
+          if (!plan.supported) {
+            skip(
+              '$name.$ctorName',
+              plan.reason ?? 'Generic constructor specialization unavailable',
+              code: plan.code,
+            );
+            continue;
+          }
+        }
         constructors[ctorName] = bound;
       }
     }
@@ -344,9 +322,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
           methodName == 'noSuchMethod') {
         continue;
       }
-      final deferredFactory =
-          inferredDeferredFactories.contains(methodName) ||
-          (base?.deferredFactories.contains(methodName) ?? false);
+      final deferredFactory = inferredDeferredFactories.contains(methodName);
       final bound = _bindMethod(
         parser: parser,
         scope: scope,
@@ -505,15 +481,6 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     kind: kind,
   );
   final proxyCapability = recommendation.capability;
-  if (base?.proxy == 'host') {
-    return FlaxCodegenProposedBinding(
-      name: name,
-      id: id,
-      selection: base,
-      skips: skips,
-      proxyCapability: proxyCapability,
-    );
-  }
   final explicitProxy = {'extends', 'implements'}.contains(base?.proxy)
       ? base!.proxy
       : null;
@@ -578,18 +545,6 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
       proxyCapability: proxyCapability,
     );
   }
-  if (element.typeParameters.isNotEmpty &&
-      !(base?.genericScalar ?? false) &&
-      typeArguments.length != element.typeParameters.length &&
-      deferredFactories.isEmpty) {
-    skip(name, 'Explicit runtime type arguments required: $name');
-    return FlaxCodegenProposedBinding(
-      name: name,
-      id: id,
-      skips: skips,
-      proxyCapability: proxyCapability,
-    );
-  }
   if (!widget &&
       selectedConstructors.isEmpty &&
       getters.isEmpty &&
@@ -617,9 +572,8 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     staticGetters: staticGetters,
     instanceMethods: selectedInstanceMethods,
     methods: methods,
-    deferredFactories: deferredFactories.toList()..sort(),
     disposeMethod: base?.disposeMethod ?? inferredDisposeMethod,
-    genericScalar: base?.genericScalar ?? false,
+    proxyVariants: base?.proxyVariants ?? const {},
     jsName: base?.jsName,
   );
   return FlaxCodegenProposedBinding(
@@ -699,14 +653,51 @@ bool _usableMemberName(String? name) =>
     !name.startsWith('_') &&
     RegExp(r'^[A-Za-z][A-Za-z0-9]*$').hasMatch(name);
 
-List<String>? _defaultTypeArguments(
+const _complexGenericBoundCode = 'complex_generic_bound';
+const _constructorSpecializationMissingUseSiteCode =
+    'constructor_specialization_missing_use_site';
+const _constructorSpecializationAmbiguousCode =
+    'constructor_specialization_ambiguous';
+
+final class _SharedTypeArgumentPlan {
+  const _SharedTypeArgumentPlan({
+    this.sources = const [],
+    this.arguments = const [],
+    this.reason,
+    this.code,
+  });
+
+  final List<String> sources;
+  final List<DartType> arguments;
+  final String? reason;
+  final String? code;
+
+  bool get supported => reason == null;
+}
+
+_SharedTypeArgumentPlan _defaultTypeArguments(
   FlaxCodegenBindingParser parser,
+  _FlaxCodegenTypeScope scope,
   InterfaceElement element,
+) => _sharedTypeArguments(
+  parser,
+  scope,
+  element.typeParameters,
+  element.library,
+  element.name!,
+);
+
+_SharedTypeArgumentPlan _sharedTypeArguments(
+  FlaxCodegenBindingParser parser,
+  _FlaxCodegenTypeScope scope,
+  List<TypeParameterElement> parameters,
+  LibraryElement library,
+  String ownerName,
 ) {
-  final library = element.library;
   final arguments = <DartType>[];
   final names = <String>[];
-  for (final parameter in element.typeParameters) {
+  final unresolved = parameters.toSet();
+  for (final parameter in parameters) {
     final objectQuestion = library.typeProvider.objectQuestionType;
     try {
       parser._checkBounds([parameter], [objectQuestion], library, false);
@@ -715,63 +706,323 @@ List<String>? _defaultTypeArguments(
       continue;
     } on StateError {
       final bound = parameter.bound;
-      if (bound == null) return null;
-      final name = _typeArgumentSource(parser, bound);
-      if (name == null) return null;
+      if (bound == null || _containsDeferredTypeParameter(bound, unresolved)) {
+        return _SharedTypeArgumentPlan(
+          reason:
+              'Complex generic bound requires explicit runtime type arguments: '
+              '$ownerName.${parameter.name}',
+          code: _complexGenericBoundCode,
+        );
+      }
+      final name = _closedTypeArgumentSource(bound);
+      if (name == null) {
+        return _SharedTypeArgumentPlan(
+          reason:
+              'Complex generic bound requires explicit runtime type arguments: '
+              '$ownerName.${parameter.name}',
+          code: _complexGenericBoundCode,
+        );
+      }
+      try {
+        // Register the complete bound through the normal dependency/type
+        // routing path. This preserves provider reuse and public-carrier
+        // diagnostics instead of treating a closed bound as a special import.
+        scope.typeRef(bound);
+      } on StateError catch (error) {
+        return _SharedTypeArgumentPlan(reason: error.message);
+      }
       try {
         parser._checkBounds([parameter], [bound], library, false);
       } on StateError {
-        return null;
+        return _SharedTypeArgumentPlan(
+          reason:
+              'Complex generic bound requires explicit runtime type arguments: '
+              '$ownerName.${parameter.name}',
+          code: _complexGenericBoundCode,
+        );
       }
       arguments.add(bound);
       names.add(name);
     }
   }
   try {
-    parser._checkBounds(element.typeParameters, arguments, library, false);
+    parser._checkBounds(parameters, arguments, library, false);
   } on StateError {
-    return null;
+    return _SharedTypeArgumentPlan(
+      reason:
+          'Complex generic bound requires explicit runtime type arguments: '
+          '$ownerName',
+      code: _complexGenericBoundCode,
+    );
   }
-  return names;
+  return _SharedTypeArgumentPlan(sources: names, arguments: arguments);
 }
 
-({List<String> sources, List<DartType> arguments})? _concreteTypeArguments(
-  FlaxCodegenBindingParser parser,
-  InterfaceElement element,
-  List<InterfaceType> uses,
-) {
-  List<String>? expectedKeys;
-  List<String>? expectedSources;
-  List<DartType>? expectedArguments;
+String? _closedTypeArgumentSource(DartType type) {
+  if (type is DynamicType) return 'dynamic';
+  if (type is! InterfaceType) return null;
+  final arguments = <String>[];
+  for (final argument in type.typeArguments) {
+    final source = _closedTypeArgumentSource(argument);
+    if (source == null) return null;
+    arguments.add(source);
+  }
+  final suffix = type.nullabilitySuffix == NullabilitySuffix.question
+      ? '?'
+      : '';
+  return '${type.element.name}'
+      '${arguments.isEmpty ? '' : '<${arguments.join(', ')}>'}'
+      '$suffix';
+}
 
-  for (final use in uses) {
-    if (use.typeArguments.length != element.typeParameters.length) return null;
-    final keys = <String>[];
-    final sources = <String>[];
-    final arguments = <DartType>[];
-    for (final argument in use.typeArguments) {
-      final local = _localConcreteTypeArgument(parser, element, argument);
-      if (local == null) return null;
-      final source = _typeArgumentSource(parser, local);
-      if (source == null) return null;
-      keys.add(_concreteTypeArgumentKey(local));
-      sources.add(source);
-      arguments.add(local);
+final class _ConstructorSpecializationTarget {
+  const _ConstructorSpecializationTarget({
+    required this.type,
+    required this.typeArguments,
+    required this.runtimeDomains,
+  });
+
+  final InterfaceType type;
+  final List<String> typeArguments;
+  final Map<String, String> runtimeDomains;
+}
+
+final class _ConstructorSpecializationPlan {
+  const _ConstructorSpecializationPlan(
+    this.targets, {
+    this.reason,
+    this.code,
+    this.scalarParameters = const {},
+  });
+
+  final List<_ConstructorSpecializationTarget> targets;
+  final String? reason;
+  final String? code;
+  final Set<String> scalarParameters;
+
+  bool get supported => reason == null && targets.isNotEmpty;
+}
+
+_ConstructorSpecializationPlan _constructorSpecializationPlan({
+  required FlaxCodegenBindingParser parser,
+  required InterfaceElement element,
+  required ConstructorElement constructor,
+  required List<String> selectedParameters,
+  required Iterable<InterfaceType> concreteUses,
+}) {
+  final parameters = element.typeParameters;
+  if (parameters.isEmpty) {
+    return const _ConstructorSpecializationPlan([]);
+  }
+  final directInputs = <TypeParameterElement, FormalParameterElement>{};
+  for (final typeParameter in parameters) {
+    final input = constructor.formalParameters.where((parameter) {
+      if (!selectedParameters.contains(parameter.name) ||
+          !parameter.isRequired) {
+        return false;
+      }
+      final type = parameter.type;
+      return type is TypeParameterType && type.element == typeParameter;
+    }).firstOrNull;
+    if (input == null) {
+      return _ConstructorSpecializationPlan(
+        const [],
+        reason:
+            'Generic constructor specialization requires every type parameter '
+            'as a required direct input',
+        code: _constructorSpecializationMissingUseSiteCode,
+      );
     }
-    if (expectedKeys == null) {
-      expectedKeys = keys;
-      expectedSources = sources;
-      expectedArguments = arguments;
-      continue;
-    }
-    if (keys.length != expectedKeys.length) return null;
-    for (var i = 0; i < keys.length; i++) {
-      if (keys[i] != expectedKeys[i]) return null;
-    }
+    directInputs[typeParameter] = input;
   }
 
-  if (expectedSources == null || expectedArguments == null) return null;
-  return (sources: expectedSources, arguments: expectedArguments);
+  final targets = <_ConstructorSpecializationTarget>[];
+  final seen = <String>{};
+  for (final use in concreteUses) {
+    if (identity(use.element) != identity(element) ||
+        use.typeArguments.length != parameters.length) {
+      continue;
+    }
+    final localArguments = <DartType>[];
+    final sources = <String>[];
+    var representable = true;
+    for (final argument in use.typeArguments) {
+      final local = _localConcreteTypeArgument(parser, element, argument);
+      final source = local == null ? null : _typeArgumentSource(parser, local);
+      if (local == null || source == null) {
+        representable = false;
+        break;
+      }
+      localArguments.add(local);
+      sources.add(source);
+    }
+    if (!representable) continue;
+    try {
+      parser._checkBounds(parameters, localArguments, element.library, false);
+    } on StateError catch (error) {
+      return _ConstructorSpecializationPlan(const [], reason: error.message);
+    }
+    final key = sources.join('|');
+    if (!seen.add(key)) continue;
+    final target = element.instantiate(
+      typeArguments: localArguments,
+      nullabilitySuffix: NullabilitySuffix.none,
+    );
+    final targetConstructor = target.constructors
+        .where((candidate) => candidate.name == constructor.name)
+        .firstOrNull;
+    if (targetConstructor == null) {
+      return const _ConstructorSpecializationPlan(
+        [],
+        reason: 'Generic constructor specialization target is unavailable',
+        code: _constructorSpecializationMissingUseSiteCode,
+      );
+    }
+    final domains = <String, String>{};
+    for (final entry in directInputs.entries) {
+      final concrete = targetConstructor.formalParameters
+          .firstWhere((parameter) => parameter.name == entry.value.name)
+          .type;
+      final domain = _constructorJsDomain(concrete);
+      if (domain != null) domains[entry.value.name!] = domain;
+    }
+    targets.add(
+      _ConstructorSpecializationTarget(
+        type: target,
+        typeArguments: sources,
+        runtimeDomains: domains,
+      ),
+    );
+  }
+
+  // String and safe integers are the two stable scalar bridge domains. Once
+  // Analyzer evidence selects either one for a direct generic input, complete
+  // the pair when both satisfy the declared Dart bound.
+  if (parameters.length == 1 && targets.isNotEmpty) {
+    final observed = targets
+        .map((target) => target.typeArguments.single)
+        .toSet();
+    if (observed.difference(const {'String', 'int'}).isEmpty) {
+      final provider = element.library.typeProvider;
+      for (final argument in [provider.stringType, provider.intType]) {
+        final source = _typeArgumentSource(parser, argument)!;
+        if (!seen.add(source)) continue;
+        try {
+          parser._checkBounds(parameters, [argument], element.library, false);
+        } on StateError {
+          continue;
+        }
+        final target = element.instantiate(
+          typeArguments: [argument],
+          nullabilitySuffix: NullabilitySuffix.none,
+        );
+        final targetConstructor = target.constructors
+            .where((candidate) => candidate.name == constructor.name)
+            .firstOrNull;
+        if (targetConstructor == null) continue;
+        final domains = <String, String>{};
+        for (final entry in directInputs.entries) {
+          final concrete = targetConstructor.formalParameters
+              .firstWhere((parameter) => parameter.name == entry.value.name)
+              .type;
+          final domain = _constructorJsDomain(concrete);
+          if (domain != null) domains[entry.value.name!] = domain;
+        }
+        targets.add(
+          _ConstructorSpecializationTarget(
+            type: target,
+            typeArguments: [source],
+            runtimeDomains: domains,
+          ),
+        );
+      }
+    }
+  }
+  if (targets.isEmpty) {
+    return const _ConstructorSpecializationPlan(
+      [],
+      reason: 'Generic constructor specialization needs a concrete use-site',
+      code: _constructorSpecializationMissingUseSiteCode,
+    );
+  }
+  final scalarTypeParameters = <TypeParameterElement>{};
+  if (parameters.length == 1 &&
+      targets.length == 2 &&
+      targets.map((target) => target.typeArguments.single).toSet().containsAll(
+        const {'String', 'int'},
+      )) {
+    scalarTypeParameters.add(parameters.single);
+  }
+  final scalarParameters = <String>{
+    for (final parameter in constructor.formalParameters)
+      if (selectedParameters.contains(parameter.name) &&
+          parameter.type is TypeParameterType &&
+          scalarTypeParameters.contains(
+            (parameter.type as TypeParameterType).element,
+          ))
+        parameter.name!,
+  };
+  if (targets.length == 1) {
+    return _ConstructorSpecializationPlan(
+      targets,
+      scalarParameters: scalarParameters,
+    );
+  }
+
+  for (var left = 0; left < targets.length; left++) {
+    for (var right = left + 1; right < targets.length; right++) {
+      final a = targets[left].runtimeDomains;
+      final b = targets[right].runtimeDomains;
+      var disjoint = false;
+      for (final name in directInputs.values.map(
+        (parameter) => parameter.name!,
+      )) {
+        final aDomain = a[name];
+        final bDomain = b[name];
+        if (aDomain != null &&
+            bDomain != null &&
+            !_constructorDomainsOverlap(aDomain, bDomain)) {
+          disjoint = true;
+          break;
+        }
+      }
+      if (!disjoint) {
+        return const _ConstructorSpecializationPlan(
+          [],
+          reason: 'Generic constructor specializations have overlapping JS runtime domains',
+          code: _constructorSpecializationAmbiguousCode,
+        );
+      }
+    }
+  }
+  return _ConstructorSpecializationPlan(
+    targets,
+    scalarParameters: scalarParameters,
+  );
+}
+
+String? _constructorJsDomain(DartType type) {
+  if (type is! InterfaceType || type.typeArguments.isNotEmpty) return null;
+  final element = type.element;
+  if (!element.library.isDartCore) return null;
+  final base = switch (element.name) {
+    'String' => 'string',
+    'bool' => 'boolean',
+    'int' || 'double' || 'num' => 'number',
+    _ => null,
+  };
+  if (base == null) return null;
+  return type.nullabilitySuffix == NullabilitySuffix.question ? '$base?' : base;
+}
+
+bool _constructorDomainsOverlap(String left, String right) {
+  Set<String> values(String value) {
+    final nullable = value.endsWith('?');
+    final base = nullable ? value.substring(0, value.length - 1) : value;
+    return {base, if (nullable) 'null'};
+  }
+
+  return values(left).intersection(values(right)).isNotEmpty;
 }
 
 DartType? _localConcreteTypeArgument(
@@ -817,11 +1068,6 @@ DartType? _localConcreteTypeArgument(
     nullabilitySuffix: type.nullabilitySuffix,
   );
   return _typeArgumentSource(parser, local) == null ? null : local;
-}
-
-String _concreteTypeArgumentKey(DartType type) {
-  if (type is! InterfaceType) return type.runtimeType.toString();
-  return '${identity(type.element)}|${type.nullabilitySuffix.name}';
 }
 
 String? _typeArgumentSource(FlaxCodegenBindingParser parser, DartType type) {
@@ -961,7 +1207,7 @@ List<String>? _bindConstructor({
   if (widget &&
       type.kind == 'callback' &&
       type.result!.containsWidget &&
-      !_isDirectMountedWidgetResult(type.result!)) {
+      !type.result!.isDirectMountedWidgetResult) {
     skips.add(
       FlaxCodegenSkip(
         target: location,
@@ -1159,13 +1405,6 @@ List<String>? _bindMethod({
   }
   return chosen;
 }
-
-bool _isDirectMountedWidgetResult(FlaxCodegenTypeRef type) =>
-    type.kind == 'widget' ||
-    (type.kind == 'list' &&
-        !type.nullable &&
-        type.item?.kind == 'widget' &&
-        type.item?.nullable == false);
 
 Future<
   ({

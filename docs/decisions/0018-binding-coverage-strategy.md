@@ -12,9 +12,9 @@ emitting permissive stubs. A visible export, a representable subset and a tested
 surface are different claims. Treating them as equivalent encourages incorrect protocol
 growth and false progress.
 
-This decision was introduced with UI protocol 18 and remains applicable to protocol 20.
-Version domains and package ownership are now defined by ADRs 0021–0025. This record
-settles how binding coverage is planned and accepted.
+This decision is independent of the current UI protocol. Version domains and package
+ownership are defined by ADRs 0021–0023, while ADR 0035 defines the current binding
+formats and protocol. This record settles how binding coverage is planned and accepted.
 
 ## Decision
 
@@ -96,7 +96,7 @@ acceptance rule above.
 
 This ADR does not itself change the UI protocol or native ABI. Current versions and
 verification limits are in the
-[compatibility contract](../architecture/external-binding-compatibility.md).
+[verification contract](../architecture/external-binding-verification.md).
 
 ## Appendix: census reference (non-normative)
 

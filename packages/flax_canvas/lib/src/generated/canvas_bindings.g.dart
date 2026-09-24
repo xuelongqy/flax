@@ -133,8 +133,9 @@ const canvasBindings = FlaxBindingModule(
   ],
   functions: [],
   moduleId: "flax.canvas/canvas",
-  uiProtocol: 20,
+  uiProtocol: 21,
   requiredCapabilities: const <String>[],
+  stateVariants: [],
 );
 bool _isFlaxCanvasSurface(Object value) => value is api.FlaxCanvasSurface;
 Object? _FlaxCanvasSurface_width(Object value) =>

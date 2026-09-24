@@ -130,7 +130,7 @@ function bindings(value, label) {
   return array(value, label).map((binding) => {
     object(binding, ['moduleId', 'uiProtocol', 'types', 'functions'], label);
     text(binding.moduleId, `${label}.moduleId`);
-    if (binding.uiProtocol !== 20) fail(`Unsupported binding protocol in ${label}`);
+    if (binding.uiProtocol !== 21) fail(`Unsupported binding protocol in ${label}`);
     for (const kind of ['types', 'functions']) {
       unique(
         array(binding[kind], `${label}.${kind}`).map((id) => text(id, kind)),

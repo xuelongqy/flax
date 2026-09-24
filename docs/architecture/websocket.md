@@ -130,5 +130,4 @@ is a selected subset, not a claim of complete browser or Node compatibility.
 
 See the [transport regressions](../../packages/flax_websocket/test/),
 [session host contract](host.md) and [contribution checks](../../CONTRIBUTING.md#checks)
-for reproducible verification and packaging. A historical external smoke does not
-certify the current contents of a published archive.
+for reproducible verification and packaging.

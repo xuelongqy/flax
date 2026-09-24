@@ -1,6 +1,6 @@
 # Generated Top-level Functions
 
-UI protocol 20 includes named JS exports for selected public Dart functions. Calls share
+UI protocol 21 includes named JS exports for selected public Dart functions. Calls share
 one typed host entry, `FlaxFunctionBinding`, and the existing argument/result
 conversion. The generator emits direct Dart calls; it does not register one host
 function per API, install application globals, or use reflection. The native ABI
@@ -127,8 +127,8 @@ pushing, the accepted Route still owns its resources until it actually exits; na
 side effects are not rolled back.
 
 Every failed builder invocation shows an error placeholder for that invocation. Errors
-are reported once and later valid builds can recover. Promise builders and invalid Widget
-returns are rejected. Closing rejects new dialogs and cancels pending Promise delivery,
-while accepted dialogs can still rebuild and return. The host must remove them before
-close can finish. Application disposal remains the application's responsibility. See
-[navigation ownership](navigation.md).
+are reported once and later valid builds can recover. Promise builders and invalid
+Widget returns are rejected. Closing rejects new dialogs and cancels pending Promise
+delivery, while accepted dialogs can still rebuild and return. The host must remove them
+before close can finish. Application disposal remains the application's responsibility.
+See [navigation ownership](navigation.md).

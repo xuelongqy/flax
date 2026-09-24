@@ -2,11 +2,11 @@ import 'dart:io';
 import 'dart:isolate';
 
 import 'package:flax_codegen/flax_codegen.dart';
-import 'package:flax_codegen/src/manifest_v5.dart';
-import 'package:flax_codegen/src/manifest_v5_codec.dart';
+import 'package:flax_codegen/src/manifest_codec.dart';
 
 import '../test/fixtures/functions_selection.dart';
 import '../test/fixtures/repeated_selection.dart';
+import '../test/fixtures/state_variant_selection.dart';
 import '../test/fixtures/widget_interfaces_selection.dart';
 
 Future<void> main() async {
@@ -44,6 +44,14 @@ Future<void> main() async {
     output,
     'widget_interfaces',
     widgetInterfacesSelection,
+    core,
+    rawToWire,
+  );
+  await _generate(
+    package,
+    output,
+    'state_variant',
+    stateVariantSelection,
     core,
     rawToWire,
   );
@@ -138,8 +146,8 @@ Future<void> _generate(
 (List<FlaxCodegenModuleModel>, Map<String, String>) _loadCoreManifest(
   File file,
 ) {
-  final diagnostics = FlaxCodegenManifestV5Diagnostics(file.path);
-  final manifest = FlaxCodegenManifestV5.parse(
+  final diagnostics = FlaxCodegenManifestDiagnostics(file.path);
+  final manifest = FlaxCodegenManifest.parse(
     file.readAsStringSync(),
     diagnostics,
   );
@@ -187,10 +195,10 @@ FlaxCodegenModuleModel _rewriteModuleIds(
     return value;
   }
 
-  final diagnostics = FlaxCodegenManifestV5Diagnostics('');
+  final diagnostics = FlaxCodegenManifestDiagnostics('');
   // Local fixtures use file: imports and are never published. Preserve those
   // emitter-only paths outside the manifest's public-library validation.
-  final encoded = FlaxCodegenManifestV5Codec.encodeModule(module)
+  final encoded = FlaxCodegenManifestCodec.encodeModule(module)
     ..['typeLibraries'] = <String, Object?>{};
   // Native override imports have the same local-only file URI boundary.
   for (final type in encoded['classes']! as List) {
@@ -198,7 +206,7 @@ FlaxCodegenModuleModel _rewriteModuleIds(
       (member as Map)['imports'] = <String, Object?>{};
     }
   }
-  final decoded = FlaxCodegenManifestV5Codec.decodeModule(
+  final decoded = FlaxCodegenManifestCodec.decodeModule(
     walk(encoded),
     diagnostics,
     '',

@@ -40,6 +40,7 @@
     "../packages/flax/js/src/flutter/generated/libraries/services/index.ts",
     "../packages/flax/js/src/dart/generated/libraries/async/index.ts",
     "../packages/flax/js/src/dart/generated/libraries/core/index.ts",
+    "../packages/flax/js/src/dart/generated/libraries/ui/index.ts",
     "../packages/flax_material_ui/js/src/generated/libraries/material/index.ts",
     "../packages/flax_cupertino_ui/js/src/generated/libraries/cupertino/index.ts"
   ]

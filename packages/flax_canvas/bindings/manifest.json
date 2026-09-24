@@ -1,5 +1,5 @@
 {
-  "formatVersion": 11,
+  "formatVersion": 12,
   "package": "flax_canvas",
   "bindingNamespace": "flax.canvas",
   "imports": [
@@ -9,7 +9,7 @@
     {
       "name": "canvas",
       "moduleId": "flax.canvas/canvas",
-      "uiProtocol": 20,
+      "uiProtocol": 21,
       "requiredCapabilities": [],
       "model": {
         "library": "package:flax_canvas/flax_canvas.dart",
@@ -27,7 +27,6 @@
             "id": "flax.canvas/canvas#type:FlaxCanvasSurface",
             "kind": "object",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -460,7 +459,6 @@
               }
             ],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "package:flutter/src/foundation/change_notifier.dart::ChangeNotifier",
               "dart:core::Object",
@@ -551,7 +549,6 @@
             "id": "flax.canvas/canvas#type:FlaxCanvasView",
             "kind": "widget",
             "jsName": "CanvasView",
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -735,7 +732,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [],
@@ -743,7 +741,6 @@
             "staticGetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "package:flutter/src/widgets/framework.dart::LeafRenderObjectWidget",
               "package:flutter/src/widgets/framework.dart::RenderObjectWidget",
@@ -770,6 +767,7 @@
         "functions": [],
         "snapshots": [],
         "typedefs": [],
+        "stateVariants": [],
         "identities": [
           {
             "sourceIdentity": {

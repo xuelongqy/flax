@@ -100,7 +100,7 @@ listeners; no polling is used. onstorage shares that same dispatcher.
 
 ## Supported scope
 
-Verified targets remain macOS arm64 Hermes and V8, UI protocol 20 and native ABI 2.
+Verified targets remain macOS arm64 Hermes and V8, UI protocol 21 and native ABI 2.
 There is no encryption, TTL, sessionStorage, automatic JSON or cross-isolate/process
 shared notification contract. Separate processes can reopen persisted storage after the
 previous owner closes. Applications must coordinate process and isolate ownership of a

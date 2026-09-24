@@ -1,6 +1,7 @@
 # ADR 0034: Preserve Flutter application semantics
 
-Status: accepted
+Status: accepted; codegen mechanism details amended by
+[ADR 0035](0035-generic-state-variants-and-protocol-21.md)
 
 Date: 2026-09-22
 

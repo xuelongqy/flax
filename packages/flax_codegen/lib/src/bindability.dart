@@ -13,11 +13,19 @@ enum FlaxCodegenProxyCapability {
 
 /// One member or parameter the binder refused to select.
 final class FlaxCodegenSkip {
-  const FlaxCodegenSkip({required this.target, required this.reason});
+  const FlaxCodegenSkip({
+    required this.target,
+    required this.reason,
+    this.code,
+  });
 
   /// Class, constructor, or `Class.member` path.
   final String target;
   final String reason;
+
+  /// Stable capability classification for tooling. Human diagnostics stay in
+  /// [reason]; ordinary skips do not need a code.
+  final String? code;
 }
 
 /// Informational result from automatic binding that does not exclude [target].

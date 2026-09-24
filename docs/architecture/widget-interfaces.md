@@ -1,6 +1,6 @@
 # Widget Interfaces and Material Page Shells
 
-UI protocol 20 supports selected native Widget interfaces and generated Scaffold, AppBar
+UI protocol 21 supports selected native Widget interfaces and generated Scaffold, AppBar
 and PreferredSize bindings on macOS arm64 Hermes/V8. The native ABI is unchanged.
 
 ## Fixed configuration and local children
@@ -83,10 +83,9 @@ For example, CupertinoNavigationBar forwards both `preferredSize` and
 therefore uses its real obstruction and layout behavior. AppBar's original preferredSize
 object, including its private theme-height sentinel subtype, is preserved.
 
-Manifest 8 records native member selections, Dart override source and explicit public
-imports separately from bridge TypeRefs. Readers 2 through 7 retain their original
-schemas and reject this metadata. Native members add no wire operations or owner rows;
-existing declaration IDs, UI protocol 20 and native ABI 2 remain unchanged. See
+Manifest 12 records native member selections, Dart override source and explicit public
+imports separately from bridge TypeRefs. Native members add no wire operations or owner
+rows; existing declaration IDs, UI protocol 21 and native ABI 2 remain unchanged. See
 [ADR 0029](../decisions/0029-native-widget-interface-members.md).
 
 Interface Widgets still require fixed constructor arguments without direct or
@@ -99,8 +98,8 @@ Callbacks declaring a narrower Widget-interface return type are rejected: existi
 callback result hosts do not implement arbitrary interfaces. This does not restrict
 ordinary callbacks returning Widget, whose content may be an AppBar.
 
-An old interface configuration may still be read by native didUpdateWidget even if its
-Widget was never mounted. Its cached Dart value follows the proxy's Dart lifetime;
+A previous interface configuration may still be read by native didUpdateWidget even if
+its Widget was never mounted. Its cached Dart value follows the proxy's Dart lifetime;
 releasing the bridge lease still releases every JS resource immediately.
 
 Configuration replacement uses the existing prepare, validate, commit and release

@@ -5560,6 +5560,7 @@ const flutterBindings = FlaxBindingModule(
                 id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:snapshot:object:flax.core/flutter#type:AsyncSnapshot<Object?><any?:>)->widget:",
                 invoke: _callback104Invoke,
                 matches: _callback104Matches,
+                independentWidgetResult: true,
               ),
             ),
             required: true,
@@ -5621,6 +5622,20 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isWidgetStateProperty,
+      methods: {},
+      staticGetters: {},
+    ),
+    FlaxObjectBinding(
+      "flax.core/flutter#type:TickerProvider",
+      [],
+      {},
+      constructors: {},
+      create: _createTickerProvider,
+      disposeMethod: null,
+      listenerPairs: {},
+      supertypes: ["dart:core::Object"],
+      setters: [],
+      matches: _isTickerProvider,
       methods: {},
       staticGetters: {},
     ),
@@ -5890,6 +5905,7 @@ const flutterBindings = FlaxBindingModule(
                 id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:value:any?:,p:r:child:widget?:)->widget:",
                 invoke: _callback105Invoke,
                 matches: _callback105Matches,
+                independentWidgetResult: true,
               ),
             ),
             required: true,
@@ -5958,6 +5974,7 @@ const flutterBindings = FlaxBindingModule(
                 id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:child:widget?:)->widget:",
                 invoke: _callback106Invoke,
                 matches: _callback106Matches,
+                independentWidgetResult: true,
               ),
             ),
             required: true,
@@ -9524,6 +9541,7 @@ const flutterBindings = FlaxBindingModule(
                 id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
                 invoke: _callback123Invoke,
                 matches: _callback123Matches,
+                independentWidgetResult: true,
               ),
             ),
             required: true,
@@ -9581,6 +9599,7 @@ const flutterBindings = FlaxBindingModule(
                 id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:constraints:object:flax.core/flutter#type:BoxConstraints)->widget:",
                 invoke: _callback124Invoke,
                 matches: _callback124Matches,
+                independentWidgetResult: true,
               ),
             ),
             required: true,
@@ -10321,7 +10340,13 @@ const flutterBindings = FlaxBindingModule(
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:ValueKey",
-      [FlaxGetter("value", FlaxTypeRef("scalar"), _ValueKey_value)],
+      [
+        FlaxGetter(
+          "value",
+          FlaxTypeRef("any", nullable: true),
+          _ValueKey_value,
+        ),
+      ],
       {},
       constructors: {
         "": [
@@ -10797,6 +10822,7 @@ const flutterBindings = FlaxBindingModule(
                 id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:index:int:)->widget?:",
                 invoke: _callback127Invoke,
                 matches: _callback127Matches,
+                independentWidgetResult: true,
               ),
             ),
             required: true,
@@ -12923,6 +12949,7 @@ const flutterBindings = FlaxBindingModule(
                 id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:setState:callback:<>(p:r:fn:callback:<>()->void:)->void:)->widget:",
                 invoke: _callback155Invoke,
                 matches: _callback155Matches,
+                independentWidgetResult: true,
               ),
             ),
             required: true,
@@ -12979,8 +13006,9 @@ const flutterBindings = FlaxBindingModule(
     ),
   ],
   moduleId: "flax.core/flutter",
-  uiProtocol: 20,
+  uiProtocol: 21,
   requiredCapabilities: const <String>[],
+  stateVariants: [],
 );
 Object? _function_applyBoxFit(Map<String, Object?> values) {
   return api.applyBoxFit(
@@ -14221,17 +14249,21 @@ api.Widget _createStreamBuilder(String ctor, Map<String, Object?> values) {
   }
 }
 
-bool _isWidgetStateProperty(Object value) => value is api.WidgetStateProperty;
+bool _isWidgetStateProperty(Object value) =>
+    value is api.WidgetStateProperty<Object?>;
 Object? _WidgetStateProperty_resolve(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  return (receiver as api.WidgetStateProperty).resolve(
+  return (receiver as api.WidgetStateProperty<Object?>).resolve(
     values["states"] as Set<api.WidgetState>,
   );
 }
 
 Object _createWidgetStateProperty(String ctor, Map<String, Object?> values) =>
+    throw ArgumentError('Abstract object has no constructor');
+bool _isTickerProvider(Object value) => value is api.TickerProvider;
+Object _createTickerProvider(String ctor, Map<String, Object?> values) =>
     throw ArgumentError('Abstract object has no constructor');
 bool _isCurve(Object value) => value is api.Curve;
 Object? _Curve_transform(Object receiver, Map<String, Object?> values) {
@@ -14432,7 +14464,6 @@ class _PreferredSizeHost extends FlaxWidgetHost
   @override
   _flaxNative8.Size get preferredSize =>
       (configuration as _flaxNative8.PreferredSizeWidget).preferredSize;
-
   @override
   api.Widget buildNative(Map<String, Object?> values) =>
       _createPreferredSize(node.ctor, values);
@@ -16264,14 +16295,20 @@ Object _createEdgeInsets(String ctor, Map<String, Object?> values) {
   }
 }
 
-bool _isValueKey(Object value) => value is api.ValueKey;
-Object? _ValueKey_value(Object value) => (value as api.ValueKey).value;
+bool _isValueKey(Object value) => value is api.ValueKey<Object?>;
+Object? _ValueKey_value(Object value) => (value as api.ValueKey<Object?>).value;
 Object _createValueKey(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (values["value"] is String)
+      if (values["value"] is String) {
         return api.ValueKey<String>(values["value"] as String);
-      return api.ValueKey<int>(values["value"] as int);
+      }
+      if (values["value"] is num) {
+        return api.ValueKey<int>(values["value"] as int);
+      }
+      throw ArgumentError(
+        'No matching generated generic constructor specialization: ValueKey.',
+      );
     default:
       throw ArgumentError('Unknown generated constructor');
   }

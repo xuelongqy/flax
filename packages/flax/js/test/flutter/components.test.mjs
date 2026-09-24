@@ -31,14 +31,21 @@ test('component configuration is frozen only when accepted and State is per moun
   assert.equal(api.component(widget).id, info.id);
   class Other extends Counter {}
   assert.notEqual(api.component(new Other()).type, info.type);
-  const first = api.createComponentState(widget, 1);
-  const second = api.createComponentState(widget, 2);
+  const firstResult = api.createComponentState(widget, 1);
+  const secondResult = api.createComponentState(widget, 2);
+  assert.equal(firstResult.variant, null);
+  assert.equal(secondResult.variant, null);
+  const first = firstResult.state;
+  const second = secondResult.state;
+  assert.equal(api.tryComponentStateId(first), 1);
+  assert.equal(api.tryComponentStateId(second), 2);
   assert.notEqual(first, second);
   assert.equal(first.widget, widget);
   const next = new Counter();
   api.updateComponentState(first, next);
   assert.equal(first.widget, next);
   api.releaseComponentState(first);
+  assert.throws(() => api.tryComponentStateId(first), /Disposed component State/);
   assert.equal(first.mounted, false);
   assert.throws(() => first.widget, /no mounted widget/);
   assert.throws(() => first.setState(() => {}), /disposed/);
@@ -72,7 +79,7 @@ test('strict callbacks reject Promise, reused State and foreign configurations',
 
 test('setState and explicit super dispatch through the paired host', () => {
   const widget = new Counter();
-  const state = api.createComponentState(widget, 7);
+  const { state } = api.createComponentState(widget, 7);
   const calls = [];
   globalThis.__flaxComponent = (version, id, operation, ...args) => {
     calls.push([version, id, operation]);
@@ -84,9 +91,9 @@ test('setState and explicit super dispatch through the paired host', () => {
   assert.equal(state.count, 1);
   assert.equal(state.mounted, true);
   assert.deepEqual(calls, [
-    [20, 7, 'super:initState'],
-    [20, 7, 'setState'],
-    [20, 7, 'mounted'],
+    [21, 7, 'super:initState'],
+    [21, 7, 'setState'],
+    [21, 7, 'mounted'],
   ]);
 });
 
@@ -124,7 +131,7 @@ test('Context ancestor queries send constructor identity and reject retired Cont
   const context = api.context(type, 72);
   const ancestor = new Counter();
   globalThis.__flaxAncestor = (version, contextType, id, componentType) => {
-    assert.equal(version, 20);
+    assert.equal(version, 21);
     assert.equal(contextType, type);
     assert.equal(id, 72);
     assert.equal(componentType, api.componentType(Counter).type);

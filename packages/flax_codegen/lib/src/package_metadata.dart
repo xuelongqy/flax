@@ -56,14 +56,13 @@ final class FlaxCodegenPackageMetadataProjection {
       _sameStrings(capabilities, other.capabilities);
 
   @override
-  int get hashCode =>
-      Object.hash(
-        format,
-        bindingNamespace,
-        dartEntrypoint,
-        javascriptPackage,
-        Object.hashAll(capabilities),
-      );
+  int get hashCode => Object.hash(
+    format,
+    bindingNamespace,
+    dartEntrypoint,
+    javascriptPackage,
+    Object.hashAll(capabilities),
+  );
 }
 
 bool _sameStrings(List<String> left, List<String> right) {

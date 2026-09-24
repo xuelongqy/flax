@@ -4,9 +4,14 @@ import 'package:flax_test/flax_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
 
+import '../../.dart_tool/flax/ui/state_variant_bindings.dart';
 import 'engine.dart';
 
-final registry = FlaxBindingRegistry([flutterBindings, materialBindings]);
+final registry = FlaxBindingRegistry([
+  flutterBindings,
+  materialBindings,
+  state_variantBindings,
+]);
 final source = flaxTestFixtureSource('material_ui');
 Finder host(Object key) => flaxTestHost(key);
 

@@ -1,15 +1,14 @@
 # Binding Coverage Map
 
 This is the current capability inventory for `flax_codegen`, not a percentage of the
-Flutter SDK. [Binding Generation](bindings.md) defines selection and conversion rules;
-the [active backlog](../tasks/binding-coverage-expansion-v1.md) tracks unfinished work.
-A declaration being visible to analyzer, a generated file compiling, and a binding
-passing real runtime tests are different levels of evidence.
+Flutter SDK. [Binding Generation](bindings.md) defines selection and conversion rules. A
+declaration being visible to Analyzer, a generated file compiling, and a binding passing
+real runtime tests are different levels of evidence.
 
-The version domains are configuration format **1**, Manifest writer **11** with strict
-readers **2/3/4/5/6/7/8/9/10/11**, UI protocol **20**, and native ABI **2**. Supported
-legacy manifest schemas retain their original restrictions. They do not enable older UI
-protocols.
+The current version domains are binding selection format **2**, package metadata format
+**1**, Manifest **12 only**, UI protocol **21**, and native ABI **2**. The module
+inventory uses its own current format **1**. These domains do not provide readers or
+adapters for older binding formats.
 
 ## Status vocabulary
 
@@ -17,26 +16,26 @@ protocols.
 | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | Supported              | Implemented and covered by the linked regressions for the stated surface.                                                                      |
 | Requires configuration | Existing conversion works when public libraries, members, providers and semantic roles are explicitly selected. It is not automatic discovery. |
-| Deferred               | Intentionally unsupported in the current contract because the implementation cost is not justified by demonstrated API coverage.              |
+| Deferred               | Intentionally unsupported in the current contract because the implementation cost is not justified by demonstrated API coverage.               |
 | Generator gap          | A selected declaration or signature still lacks parsing, modeling, emission or conversion support.                                             |
 | Design undecided       | The intended semantics or product configuration have not been accepted.                                                                        |
 | Not verified           | Available evidence does not establish the broader claim.                                                                                       |
 
 ## Language and declaration support
 
-| Surface                                            | Status                 | Current boundary                                                                                                                                                                                                                                                                             |
-| -------------------------------------------------- | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Classes, constructors, static and instance members | Requires configuration | Select the public members and parameters to expose. Inherited instance selections use analyzer-resolved subtype signatures; constructors and static members stay local.                                                                                                                      |
-| Class modifiers and extension-type references      | Requires configuration | Modifier fixtures and selected extension-type fields/getters/parameters compile. Extension-type discovery is not a general automatic proposal path.                                                                                                                                          |
-| Non-constructible mixin members                    | Requires configuration | Existing object/member selection can expose members. This does not implement Dart mixin application, construction or general mixin proxies.                                                                                                                                                  |
-| Mixin composition and `mixin class` application    | Design undecided       | Deferred. Do not infer composition support from member selection or internal generated host mixins.                                                                                                                                                                                          |
-| Enums                                              | Requires configuration | Existing selected enum values and typed conversion are supported. General discovery/export of every enum member is not implemented.                                                                                                                                                          |
-| Top-level functions                                | Requires configuration | The `functions` surface emits named exports and typed calls, including supported callbacks and Futures. Route-producing functions need explicit lifetime roles and observer installation.                                                                                                    |
-| Basic and generic typedefs                         | Supported              | `typedefs` emits directional `Name`/`NameInput` types, alias-owned parameters and function-local generic callbacks. Targets must already be representable.                                                                                                                                   |
-| Top-level readonly declarations                    | Supported              | Explicit `topLevel` selections export at the owning public library. Safe primitive consts may be literal exports; dynamic/object/final/late-final/getter values use uncached `getX()` reads. Existing conversions and provider identity apply.                                               |
-| Mutable top-level variables and setters            | Supported              | Independent `topLevel.getters` / `setters` generate uncached reads and synchronous writes. Setter-only exports, actual accessor signatures, provider reuse and Manifest 10 preserve Dart state and existing call semantics.                                                                  |
-| Extension declarations and extension methods       | Supported              | Explicit named extension adapters support instance/static members, setters, generics and legal operators through receiver-first functions. No prototype mutation or extension instance identity; extension types and Widget/lifecycle positions remain separate.                             |
-| Records                                            | Supported              | Positional, named and mixed Records use readonly structural TypeScript objects and real Dart Record reconstruction. They recurse through existing nullable/generic/callback/collection/Future/provider conversions, carry no wire/session identity, and are encoded by Manifest 7 and later. |
+| Surface                                               | Status                 | Current boundary                                                                                                                                                                                                                                                           |
+| ----------------------------------------------------- | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Classes, constructors, static and instance members    | Requires configuration | Select the public members and parameters to expose. Inherited instance selections use analyzer-resolved subtype signatures; constructors and static members stay local.                                                                                                    |
+| Class modifiers and extension-type references         | Requires configuration | Modifier fixtures and selected extension-type fields/getters/parameters compile. Extension-type discovery is not a general automatic proposal path.                                                                                                                        |
+| Non-constructible mixin members                       | Requires configuration | Existing object/member selection can expose members. This does not implement Dart mixin application, construction or general mixin proxies.                                                                                                                                |
+| State mixin composition and general mixin application | Partly supported       | Exact Flutter `State<T>` supports fixed analyzer-validated `proxyVariants`, ordered real Dart mixins, variant-only dependency overlays and final interface projection. Arbitrary class/mixin composition and runtime-selected mixins remain deferred.                      |
+| Enums                                                 | Requires configuration | Existing selected enum values and typed conversion are supported. General discovery/export of every enum member is not implemented.                                                                                                                                        |
+| Top-level functions                                   | Requires configuration | The `functions` surface emits named exports and typed calls, including supported callbacks and Futures. Route-producing functions need explicit lifetime roles and observer installation.                                                                                  |
+| Basic and generic typedefs                            | Supported              | `typedefs` emits directional `Name`/`NameInput` types, alias-owned parameters and function-local generic callbacks. Targets must already be representable.                                                                                                                 |
+| Top-level readonly declarations                       | Supported              | Explicit `topLevel` selections export at the owning public library. Safe primitive consts may be literal exports; dynamic/object/final/late-final/getter values use uncached `getX()` reads. Existing conversions and provider identity apply.                             |
+| Mutable top-level variables and setters               | Supported              | Independent `topLevel.getters` / `setters` generate uncached reads and synchronous writes. Setter-only exports, actual accessor signatures, provider reuse and Manifest 12 preserve Dart state and existing call semantics.                                                |
+| Extension declarations and extension methods          | Supported              | Explicit named extension adapters support instance/static members, setters, generics and legal operators through receiver-first functions. No prototype mutation or extension instance identity; extension types and Widget/lifecycle positions remain separate.           |
+| Records                                               | Supported              | Positional, named and mixed Records use readonly structural TypeScript objects and real Dart Record reconstruction. They recurse through nullable/generic/callback/collection/Future/provider conversions, carry no wire/session identity, and are encoded by Manifest 12. |
 
 Typedefs include `Mapper<T> = T Function(T)`, `Items<T> = List<T>`,
 `GenericMapper = T Function<T>(T)` and `Converter<T> = T Function<U extends T>(U)`. Real
@@ -50,26 +49,26 @@ Evidence: [typedef tests](../../packages/flax_codegen/test/typedef_test.dart),
 
 ## Types, conversion and lifetime
 
-| Surface                                                 | Status                 | Current boundary                                                                                                                                                                                          |
-| ------------------------------------------------------- | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Scalars, selected objects and enums                     | Supported              | Ordinary Dart values retain real references and declared conversion; copied navigation data is explicit.                                                                                                  |
-| Core DateTime, Uri and StringBuffer providers           | Supported              | Core owns a minimal selected surface, alongside Duration and TextRange. Consumers reuse that surface and cannot expand an imported owner's members.                                                       |
-| Inherited `void` getters                                | Supported              | The getter evaluates once, propagates errors and returns JS `undefined`, including generic inheritance instantiated with `void`.                                                                          |
-| List, Map, Iterable and Set                             | Supported              | Typed views preserve Dart identity; explicit copies have shape/cycle rules. Direct `List<Widget>` callbacks are supported; Map callback keys and other Widget collection callback shapes remain rejected. |
-| Callback parameter forms and directions                 | Supported              | Required/optional positional and named parameters, returned functions and supported generic callbacks share typed adapters and omission rules.                                                            |
-| Generic relationships                                   | Supported              | TS preserves type relationships; Dart uses supported upper-bound erasure and checks concrete use sites. Explicit TS arguments do not create Dart runtime type tokens or promise identical Dart inference. |
-| Bound-only recursive/dependent constraints              | Supported              | Manifest 11 type-only identities preserve nominal relationships without runtime owners. Explicit class/method specializations and type aliases are covered; value conversion remains separate.            |
-| Recursive, unbound or nonconvertible callback erasure   | Deferred               | Fail closed when a callback would need concrete runtime specialization instead of supported upper-bound erasure. Ordinary higher-rank callbacks with erasable bounds remain supported.                    |
-| Single concrete class/mixin use-site specialization | Supported | `proposeSelection` can infer one complete representable specialization from observed `InterfaceType` uses. Explicit `typeArguments` win. |
-| Global or multiple concrete generic specialization discovery | Deferred | No whole-graph enumeration or multiple bindings per declaration. Conflicts and unsupported uses stay explicit. |
-| Futures, FutureOr and Dart Streams                      | Supported              | Supported parameters, results, callbacks, object setters, top-level functions and typed collections use protocol 20 recursively. Stream wrapping is lazy; applications own their controllers and sinks. |
-| Nested Future/FutureOr completion values                | Supported              | Direct async chains preserve declared type/value semantics across native Promise assimilation; Future/FutureOr values inside collection, Map and Record fields remain independent async values.           |
-| Native Widget interface members                         | Supported              | Explicit getters, setters, methods, generic methods and operators forward in Dart. No JS member exposure; generic interface declarations and inaccessible signatures remain excluded.                     |
+| Surface                                                 | Status                                    | Current boundary                                                                                                                                                                                                                                                                                                                                                          |
+| ------------------------------------------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Scalars, selected objects and enums                     | Supported                                 | Ordinary Dart values retain real references and declared conversion; copied navigation data is explicit.                                                                                                                                                                                                                                                                  |
+| Core DateTime, Uri and StringBuffer providers           | Supported                                 | Core owns a minimal selected surface, alongside Duration and TextRange. Consumers reuse that surface and cannot expand an imported owner's members.                                                                                                                                                                                                                       |
+| Inherited `void` getters                                | Supported                                 | The getter evaluates once, propagates errors and returns JS `undefined`, including generic inheritance instantiated with `void`.                                                                                                                                                                                                                                          |
+| List, Map, Iterable and Set                             | Supported                                 | Typed views preserve Dart identity; explicit copies have shape/cycle rules. Direct `List<Widget>` callbacks are supported; Map callback keys and other Widget collection callback shapes remain rejected.                                                                                                                                                                 |
+| Callback parameter forms and directions                 | Supported                                 | Required/optional positional and named parameters, returned functions and supported generic callbacks share typed adapters and omission rules.                                                                                                                                                                                                                            |
+| Generic relationships                                   | Supported                                 | TS preserves declared relationships; Dart uses one shared owner (`Object?` or an analyzer-proven public, fully closed bound such as `ChangeNotifier` or `Route<dynamic>`). Existing values retain concrete runtime checks. Explicit arguments do not create runtime type tokens.                                                                                          |
+| Bound-only recursive/dependent constraints              | Supported                                 | Manifest 12 type-only identities preserve nominal relationships without runtime owners. Explicit class/method specializations and type aliases are covered; value conversion remains separate.                                                                                                                                                                            |
+| Recursive, unbound or nonconvertible callback erasure   | Deferred                                  | Fail closed when a callback would need concrete runtime specialization instead of supported upper-bound erasure. Ordinary higher-rank callbacks with erasable bounds remain supported.                                                                                                                                                                                    |
+| Shared generic owners and constructor specialization    | Supported                                 | Generic declarations share one Dart owner. Closed bounds retain nested generic arguments and source-declared `dynamic`; dependent or recursive bounds remain closed. Constructors are a separate capability: direct inputs must determine every type parameter and JS runtime domains must be disjoint. Analyzer-observed targets drive inference.                        |
+| Broader generic specialization discovery                | Deferred                                  | Whole-graph runtime token inference, callback-result or nested-input inference, overlapping constructor domains, unresolved dependent/recursive bounds, generic methods/functions and generic Extension receivers remain fail-closed.                                                                                                                                     |
+| Futures, FutureOr and Dart Streams                      | Supported                                 | Supported parameters, results, callbacks, object setters, top-level functions and typed collections use protocol 21 recursively. Stream wrapping is lazy; applications own their controllers and sinks.                                                                                                                                                                   |
+| Nested Future/FutureOr completion values                | Supported                                 | Direct async chains preserve declared type/value semantics across native Promise assimilation; Future/FutureOr values inside collection, Map and Record fields remain independent async values.                                                                                                                                                                           |
+| Native Widget interface members                         | Supported                                 | Explicit getters, setters, methods, generic methods and operators forward in Dart. No JS member exposure; generic interface declarations and inaccessible signatures remain excluded.                                                                                                                                                                                     |
 | Flutter Context, builders, Routes and Widget interfaces | Supported with Flutter-specific semantics | Automatic library binding reuses provider-owned Context types and infers mounted synchronous `Widget` / `Widget?` / `List<Widget>` callback results from Widget constructor position; `BuildContext` is not required for ownership inference. Supported non-generic Widget interfaces are attached automatically. Route/page/session roles and observers remain explicit. |
-| Async build/lifecycle and unsupported Widget traffic    | Generator gap          | Build, Route factories and lifecycle callbacks stay synchronous. Widget collection mutation, non-List Widget callback collections and proxy Widget properties remain unsupported.                         |
-| Deferred generic factories                              | Supported              | Analyzer inference recognizes synchronous static factories whose direct owner result determines every type parameter; explicit `deferredFactories` remains a compatibility override. Generic inputs stay limited to supported direct synchronous callbacks. |
-| Generalized deferred-factory inference                  | Deferred               | Factories whose result does not determine every type parameter, or whose generic inputs require collection, Future, Widget, Route, Context or lifecycle inference, remain fail-closed.                    |
-| General core types and rendering dependencies           | Not verified           | Minimal providers do not establish support for every `dart:core` type, every value constructor, `vsync` owner, painting delegate, Route position or SDK class.                                            |
+| Async build/lifecycle and unsupported Widget traffic    | Generator gap                             | Build, Route factories and lifecycle callbacks stay synchronous. Widget collection mutation, non-List Widget callback collections and proxy Widget properties remain unsupported.                                                                                                                                                                                         |
+| Deferred generic factories                              | Supported                                 | Analyzer inference recognizes synchronous static factories whose direct owner result determines every type parameter. No public YAML marker is required; generic inputs stay limited to supported direct synchronous callbacks.                                                                                                                                           |
+| Generalized deferred-factory inference                  | Deferred                                  | Factories whose result does not determine every type parameter, or whose generic inputs require collection, Future, Widget, Route, Context or lifecycle inference, remain fail-closed.                                                                                                                                                                                    |
+| General core types and rendering dependencies           | Not verified                              | Minimal providers do not establish support for every `dart:core` type, every value constructor, `vsync` owner, painting delegate, Route position or SDK class.                                                                                                                                                                                                            |
 
 Evidence: [interop contract](interop.md), [object lifetime](objects.md),
 [generic inheritance tests](../../packages/flax_codegen/test/capability_combined_getter_test.dart),
@@ -80,43 +79,54 @@ Dependent generic defaults preserve their preceding TS parameters rather than us
 broader Dart-erased defaults. Explicit TS arguments are covered by generated Dart/TS
 compilation and Dart construction in the
 [bounded generic tests](../../packages/flax_codegen/test/generic_and_defaults_test.dart).
-The [selection tests](../../packages/flax_codegen/test/bindability_test.dart) cover
-direct `List<Widget>` callback arguments/setters while keeping deferred collection and
-proxy positions fail-closed. [Native callback tests](../../packages/flax/test/ui/native_callbacks_test.dart)
-cover invocation-owned builders and bidirectional `List<Widget>` callback traffic while
+Those regressions also cover public nominal and closed generic shared owners, nested
+arguments, nullability, dependent/recursive rejection and overlapping constructor
+domains. The real Flutter proposal checks verify
+`RestorableChangeNotifier<T extends ChangeNotifier>` and
+`RouteObserver<R extends Route<dynamic>>` keep shared owners while their unresolved
+constructors stay omitted; `FutureBuilder<T>` and `AnnotatedRegion<T>` remain
+fail-closed without a concrete constructor target. Capability reports classify these
+outcomes as `shared_owner_resolved`, `constructor_specialization_resolved`,
+`constructor_specialization_missing_use_site`, `constructor_specialization_ambiguous`,
+or `complex_generic_bound`. The
+[selection tests](../../packages/flax_codegen/test/bindability_test.dart) cover direct
+`List<Widget>` callback arguments/setters while keeping deferred collection and proxy
+positions fail-closed.
+[Native callback tests](../../packages/flax/test/ui/native_callbacks_test.dart) cover
+invocation-owned builders and bidirectional `List<Widget>` callback traffic while
 rejecting Widget collection insertions and replacements without changing the existing
 collection.
 
 ## Discovery, emission and package composition
 
-| Capability                                             | Status                 | Remaining work                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| ------------------------------------------------------ | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Explicit format-1 selection and public library routing | Requires configuration | `additionalLibraries` closes known analyzer/export gaps. `publicLibraries` maps originating public Dart libraries to canonical JS/TS entry points and rejects conflicting ownership. No generated private SDK imports.                                                                                                                                                                                                                                                             |
-| `proposeSelection` / `proposeLibrary`                  | Supported              | `proposeSelection` handles one class/mixin. `proposeLibrary` inventories one public export namespace, returns an inferred config plus skip/notice diagnostics, and preserves explicit override precedence. |
-| Automatic dependency closure                           | Supported              | Selected value signatures, runtime defaults and runtime inheritance close transitively. Bound-only declarations do not create runtime owners. Same-package dependencies may become internal generated capabilities without becoming public exports; uniquely inferable direct-dependency providers reuse their Manifest identity without a YAML import. Provider member/value-construction augmentation, unsupported conversions and unsupported semantic roles still fail closed. |
-| Automatic function, enum, alias and top-level discovery | Supported             | `--library` discovers supported functions, enums, typedefs, const/final/getters and setters from the selected public export namespace, including ordinary recursive Future/FutureOr/Stream value shapes. Unsupported declarations are skipped independently. |
-| Annotation-aware selection                             | Supported              | Automatic mode excludes private, `@internal`, `@visibleForTesting`, and `@protected` declarations/members. Deprecated API remains selected and produces an informational notice. |
-| Unique concrete generic specialization                 | Supported              | One complete representable specialization may be inferred from observed public use sites. Conflicting, unresolved, or nested runtime specializations are skipped unless an explicit override supplies the type arguments. |
-| Automatic public-barrel routing                        | Supported              | One `--library package:...` invocation defines the canonical public entry. Re-exports from `lib/src/` are discovered through that barrel; direct `package:.../src/...` targets are rejected. Cross-barrel canonical arbitration is deferred. |
-| Optional omission                                      | Supported              | Direct calls preserve Dart defaults and explicit null. Independent `omitWhenAbsent` parameters produce exponential branch growth; a scalable replacement remains open.                                                                                                                                                                                                                                                                                                             |
-| Manifest ownership and lexical generic scopes          | Supported              | Writer 11 and strict readers 2/3/4/5/6/7/8/9/10/11 preserve originating declarations, alias scopes, readonly exports, public-library routing, Record fields and provider ownership. Consumers use public entries and dependency manifests, without provider YAML.                                                                                                                                                                                                                  |
-| Package-atomic CLI and registration                    | Supported              | `validate`, `generate`, and `check` accept either explicit `--config` or best-effort `--library`. Automatic mode keeps the same package ownership, manifest, output planning, and atomic install/check pipeline. |
-| Optional automatic overrides                           | Supported              | `bindings/overrides.yaml` changes only named class/function exception fields or excludes named declarations. It carries no library/output/package routing and is ignored by explicit config discovery. |
-| Package-wide all/whitelist product modes               | Deferred               | Automatic mode intentionally binds one requested public library at a time. Package-wide enumeration, multi-barrel arbitration, and broader whitelist products wait for repeated real-package demand. |
-| Broader package/project binding management             | Design undecided       | Public-library partitioning, application module inventory, plugin-selected host injection and business-bundled fallback are implemented. Provider augmentation, ambiguous provider/version ownership conflicts, and broader authoring automation remain open. |
+| Capability                                              | Status                 | Remaining work                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| ------------------------------------------------------- | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Explicit format-2 selection and public library routing  | Requires configuration | `additionalLibraries` closes known analyzer/export gaps. `publicLibraries` maps originating public Dart libraries to canonical JS/TS entry points and rejects conflicting ownership. No generated private SDK imports.                                                                                                                                                                                                                                                             |
+| `proposeSelection` / `proposeLibrary`                   | Supported              | `proposeSelection` handles one class/mixin. `proposeLibrary` inventories one public export namespace, returns an inferred config plus skip/notice diagnostics, and preserves explicit override precedence.                                                                                                                                                                                                                                                                         |
+| Automatic dependency closure                            | Supported              | Selected value signatures, runtime defaults and runtime inheritance close transitively. Bound-only declarations do not create runtime owners. Same-package dependencies may become internal generated capabilities without becoming public exports; uniquely inferable direct-dependency providers reuse their Manifest identity without a YAML import. Provider member/value-construction augmentation, unsupported conversions and unsupported semantic roles still fail closed. |
+| Automatic function, enum, alias and top-level discovery | Supported              | `--library` discovers supported functions, enums, typedefs, const/final/getters and setters from the selected public export namespace, including ordinary recursive Future/FutureOr/Stream value shapes. Unsupported declarations are skipped independently.                                                                                                                                                                                                                       |
+| Annotation-aware selection                              | Supported              | Automatic mode excludes private, `@internal`, `@visibleForTesting`, and `@protected` declarations/members. Deprecated API remains selected and produces an informational notice.                                                                                                                                                                                                                                                                                                   |
+| Shared-owner and constructor specialization inference   | Supported              | Automatic mode preserves generic declarations through `Object?` or a publicly routable, fully closed analyzer bound. Constructor emission remains independent and uses only disjoint concrete targets observed in the public binding graph. Census evidence reports shared-owner, resolved/missing/ambiguous constructor, and complex-bound outcomes separately.                                                                                                                   |
+| Automatic public-barrel routing                         | Supported              | One `--library package:...` invocation defines the canonical public entry. Re-exports from `lib/src/` are discovered through that barrel; direct `package:.../src/...` targets are rejected. Cross-barrel canonical arbitration is deferred.                                                                                                                                                                                                                                       |
+| Optional omission                                       | Supported              | Direct calls preserve Dart defaults and explicit null. Independent `omitWhenAbsent` parameters produce exponential branch growth; a scalable replacement remains open.                                                                                                                                                                                                                                                                                                             |
+| Manifest ownership and lexical generic scopes           | Supported              | Manifest 12 is current-only and preserves originating declarations, aliases, recursive TypeRefs, public-library routing, bound-only identities, shared owner arguments, constructor specializations and State variants. Consumers use public entries and dependency manifests without provider YAML.                                                                                                                                                                               |
+| Package-atomic CLI and registration                     | Supported              | `validate`, `generate`, and `check` accept either explicit `--config` or best-effort `--library`. Automatic mode keeps the same package ownership, manifest, output planning, and atomic install/check pipeline.                                                                                                                                                                                                                                                                   |
+| Optional automatic overrides                            | Supported              | `bindings/overrides.yaml` changes only named class/function exception fields or excludes named declarations. It carries no library/output/package routing and is ignored by explicit config discovery.                                                                                                                                                                                                                                                                             |
+| Package-wide all/whitelist product modes                | Deferred               | Automatic mode intentionally binds one requested public library at a time. Package-wide enumeration, multi-barrel arbitration, and broader whitelist products wait for repeated real-package demand.                                                                                                                                                                                                                                                                               |
+| Broader package/project binding management              | Design undecided       | Public-library partitioning, application module inventory, plugin-selected host injection and business-bundled fallback are implemented. Provider augmentation, ambiguous provider/version ownership conflicts, and broader authoring automation remain open.                                                                                                                                                                                                                      |
 
 Evidence:
 [additional-library tests](../../packages/flax_codegen/test/capability_additional_libraries_test.dart),
 [value-closure probes](../../packages/flax_codegen/test/capability_value_closure_test.dart),
-[manifest tests](../../packages/flax_codegen/test/manifest_v5_test.dart), and
+[manifest tests](../../packages/flax_codegen/test/manifest_test.dart),
 [manifest-only package tests](../../packages/flax_codegen/test/package_pipeline_test.dart),
 [automatic CLI tests](../../packages/flax_codegen/test/cli_test.dart), and
 [automatic proposal tests](../../packages/flax_codegen/test/bindability_test.dart), and
 [recursive type automation tests](../../packages/flax_codegen/test/recursive_type_automation_test.dart).
-Historical census artifacts are exploratory samples of older inputs. Their counts,
-percentages and first-failure diagnoses are not current coverage measurements. Use the
-checked-in [capability tools](../../packages/flax_codegen/tool/) and small fixtures to
-reproduce a disputed boundary before expanding a selection.
+Use the checked-in [capability tools](../../packages/flax_codegen/tool/) and small
+fixtures to reproduce a disputed boundary before expanding a selection. A generated
+inventory is investigation evidence; generation, compilation and runtime tests remain
+separate acceptance layers.
 
 The additional-library regressions compile public-barrel consumers and execute generated
 value construction. Imported providers retain their published constructor/member limits
@@ -144,17 +154,14 @@ output and the complete generator suite. The experimental
 supports `--stage2-mechanisms` for a bounded mechanism report and explicit `--entry`,
 `--stage3-library`, `--stage3-additional-libraries` and `--closure-probe` workflows for
 larger investigations. Its source documents the required input/output options. These
-flags are investigation tools, not accepted product selection modes. The
-[`bindability_census.dart`](../../packages/flax_codegen/tool/bindability_census.dart)
-study estimates static ceilings; it does not replace generation, compilation or runtime
-checks. Do not carry historical exclusion lists into a new measurement without
-reproducing their failures.
+flags are investigation tools, not accepted product selection modes. They do not replace
+generation, compilation or runtime checks.
 
 Mutable access evidence:
 [accessor regressions](../../packages/flax_codegen/test/top_level_mutable_test.dart)
 compile strict TypeScript and execute generated Dart adapters;
-[Manifest 10 tests](../../packages/flax_codegen/test/top_level_setter_manifest_test.dart)
-verify old-version rejection, getter identity and provider projection. JavaScript
+[Manifest 12 tests](../../packages/flax_codegen/test/top_level_setter_manifest_test.dart)
+verify unknown-version rejection, getter identity and provider projection. JavaScript
 dispatch tests cover import-time zero calls and host error forwarding. They do not claim
 fresh Hermes/V8 session certification; the shared runtime implementation is unchanged.
 
@@ -172,11 +179,9 @@ cover readonly selection, import-time zero reads, repeated reads, Dart initializ
 errors, returned references/callbacks/Futures and session cleanup. This explicit surface
 does not imply automatic discovery or a writable namespace.
 
-The four readonly runtime cases passed in both Hermes and V8 framework suites on
-2026-09-18 (UTC+8). The full static and V8 UI aggregates passed. Hermes full UI
-acceptance remains open after a standalone relocated Release timeout and a subsequent
-scoped debug navigation failure; retain the separate outcomes in
-[readonly verification](external-binding-compatibility.md#top-level-readonly-verification).
+Package-owned Hermes and V8 framework tests cover the selected readonly runtime surface.
+The current acceptance layers and their limits are defined in
+[External Binding Verification](external-binding-verification.md).
 
 Core contains selected Flutter layout, text, navigation, components, editing,
 collections and dart:async APIs. The small layout addition is Spacer (`key`, `flex`).
@@ -197,9 +202,7 @@ ButtonStyle.shape/mouseCursor/visualDensity in construction, getters and copyWit
 Material imports Core identities rather than registering duplicate shared objects.
 Existing Border/BoxBorder retain their capabilities and satisfy ShapeBorder, while
 button shape requires OutlinedBorder. State-property results retain concrete Dart
-use-site validation. See the
-[exact dependency table](../tasks/binding-coverage-expansion-v1.md#shared-object-selection)
-and [styles contract](styles.md#shapes-cursors-and-density).
+use-site validation. See the [styles contract](styles.md#shapes-cursors-and-density).
 
 The
 [shared-object UI tests](../../packages/flax_material_ui/test/ui/shared_objects_test.dart)
@@ -225,14 +228,6 @@ CupertinoNavigationBar additionally implements ObstructingPreferredSizeWidget th
 native `preferredSize` and `shouldFullyObstruct(BuildContext)` forwarding. Its package
 tests cover obstruction-driven layout and configuration replacement.
 
-The external `gap 3.0.1` pilot binds
-`Gap(mainAxisExtent, {key, crossAxisExtent, color})` as `@vendor/flutter-gap`, reusing
-Core provider identities for Key and Color. Separate declaration and runtime packages,
-host-provided and business-bundled delivery, and real Hermes/V8 execution all pass for
-this bounded case. Missing Dart bindings fail explicitly on both engines, and a
-types-only build with no implementation fails module resolution. See the
-[compatibility matrix](external-binding-compatibility.md#real-third-party-pilot-gap-301).
-
 Automatic dependency closure now turns selected APIs into a deterministic dependency
 graph. Same-package signature, generic and inheritance dependencies can be generated as
 internal capability, while direct dependency providers reuse stable Manifest identity;
@@ -240,7 +235,7 @@ dependency-only declarations do not become public TS exports. Provider surface r
 fail closed with a dependency path and suggested provider additions instead of silently
 expanding another package.
 
-Generic bound-only interfaces are supported by Manifest 11 without a runtime owner, wire
+Generic bound-only interfaces are supported by Manifest 12 without a runtime owner, wire
 ID or member surface. `RecursiveBox<ComparableLeaf>`, dependent bounds, custom recursive
 interfaces, selected generic methods/functions and generic typedefs retain nominal TS
 relations. Value positions still require conversion bindings, and Dart analyzer subtype
@@ -248,18 +243,18 @@ checks remain authoritative for concrete specializations. See
 [bound regressions](../../packages/flax_codegen/test/bound_type_only_test.dart) and
 [provider tests](../../packages/flax_codegen/test/package_pipeline_test.dart).
 
-Generic extension receiver specialization is an explicit unsupported boundary. Extensions
-whose type parameters can be erased to valid default or upper-bound Dart types remain
-supported; recursive or otherwise non-erasable receiver bounds that require a concrete
-Dart specialization fail closed. Flax does not require users to enumerate those
-specializations and does not automatically derive them from the binding type graph.
-Higher-rank callbacks with erasable bounds remain supported; callback erasure that would
-require concrete runtime specialization is deferred. The bounded mechanism matrix also
-retains method callbacks returning Widgets through BuildContext. Declaration discovery,
-full-library selection, mixin composition and generic Widget-interface declarations
-remain separate work.
+Generic extension receiver specialization is an explicit unsupported boundary.
+Extensions whose type parameters can be erased to valid default or upper-bound Dart
+types remain supported; recursive or otherwise non-erasable receiver bounds that require
+a concrete Dart specialization fail closed. Flax does not require users to enumerate
+those specializations and does not automatically derive them from the binding type
+graph. Higher-rank callbacks with erasable bounds remain supported; callback erasure
+that would require concrete runtime specialization is deferred. The bounded mechanism
+matrix also retains method callbacks returning Widgets through BuildContext. Declaration
+discovery, full-library selection, mixin composition and generic Widget-interface
+declarations remain separate work.
 
-The [compatibility matrix](external-binding-compatibility.md) separates in-repository
-Hermes/V8 acceptance, outside-template generation/type checking, historical canaries and
-the bounded real Gap pilot. None establishes complete Flutter SDK coverage, arbitrary
-third-party-library support, other platforms or a public release commitment.
+[External Binding Verification](external-binding-verification.md) separates static,
+generation, package and runtime evidence. None establishes complete Flutter SDK
+coverage, arbitrary third-party-library support, other platforms or a public release
+commitment.

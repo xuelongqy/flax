@@ -49,7 +49,7 @@ void main() {
         expect(module.requiredCapabilities, isEmpty);
         expect(
           module.requiredCapabilities,
-          flaxCodegenProtocol20RequiredCapabilities(),
+          flaxCodegenProtocol21RequiredCapabilities(),
         );
       }
     }
@@ -327,7 +327,7 @@ void main() {
       throwsUnsupportedError,
     );
     expect(
-      () => flaxCodegenProtocol20RequiredCapabilities().add('host'),
+      () => flaxCodegenProtocol21RequiredCapabilities().add('host'),
       throwsUnsupportedError,
     );
   });
@@ -1332,7 +1332,7 @@ FlaxCodegenPackageMetadataProjection _parseMetadata(String yaml) =>
     FlaxCodegenPackageMetadataProjection.parseStrict(yaml);
 
 const _fourFamilies = '''
-format: 1
+format: 2
 name: components
 library: package:flutter/src/widgets/framework.dart
 jsPackage: '@flax/components'
@@ -1351,7 +1351,7 @@ callbackSnapshots:
 ''';
 
 const _typesOnly = '''
-format: 1
+format: 2
 name: components
 library: package:flutter/src/widgets/framework.dart
 jsPackage: '@flax/components'
@@ -1362,7 +1362,7 @@ types:
 ''';
 
 const _emptyFlutter = '''
-format: 1
+format: 2
 name: flutter
 library: package:flutter/src/widgets/framework.dart
 jsPackage: '@flax/flutter'
@@ -1371,7 +1371,7 @@ tsOutput: b.ts
 ''';
 
 const _childWidgets = '''
-format: 1
+format: 2
 name: widgets
 library: package:acme_widgets/child.dart
 jsPackage: '@acme/widgets'
@@ -1382,7 +1382,7 @@ classes:
 ''';
 
 const _emptyHost = '''
-format: 1
+format: 2
 name: host
 library: package:x/x.dart
 jsPackage: '@x/x'
@@ -1391,7 +1391,7 @@ tsOutput: b.ts
 ''';
 
 const _missingListing = '''
-format: 1
+format: 2
 name: listing
 library: package:x/x.dart
 jsPackage: '@x/x'
@@ -1402,7 +1402,7 @@ classes:
 ''';
 
 const _nameMismatch = '''
-format: 1
+format: 2
 name: rename
 library: package:x/x.dart
 jsPackage: '@x/x'
@@ -1413,7 +1413,7 @@ types:
 ''';
 
 const _kindMismatch = '''
-format: 1
+format: 2
 name: kind
 library: package:x/x.dart
 jsPackage: '@x/x'
@@ -1425,7 +1425,7 @@ functions:
 ''';
 
 const _invalidModuleName = '''
-format: 1
+format: 2
 name: Components
 library: package:x/x.dart
 jsPackage: '@x/x'

@@ -143,7 +143,10 @@ void _validateModuleBindings(
   List<_PreparedModule> modules,
   List<FlaxBindingModule> bindings,
 ) {
-  final installed = {for (final binding in bindings) binding.moduleId: binding};
+  final installed = {
+    for (final binding in bindings) binding.moduleId: binding,
+    componentsBindings.moduleId: componentsBindings,
+  };
   for (final module in modules) {
     for (final required in module.bindings) {
       final binding = installed[required.moduleId];

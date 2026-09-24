@@ -342,12 +342,16 @@ test('real delivery metadata preserves public library binding topology', async (
   assert.deepEqual(widgets.helperSubpaths, ['_bindings/components.__module']);
   assert.deepEqual(
     widgets.bindings.map((binding) => binding.moduleId),
-    ['flax.core/flutter'],
+    ['flax.core/components', 'flax.core/flutter'],
   );
-  assert.ok(
-    !widgets.bindings.some((binding) => binding.moduleId === 'flax.core/components'),
-    'host proxy component types must not be projected as Dart binding requirements',
+  const widgetComponents = widgets.bindings.find(
+    (binding) => binding.moduleId === 'flax.core/components',
   );
+  assert.deepEqual(widgetComponents.types, [
+    'flax.core/components#type:State',
+    'flax.core/components#type:StatefulWidget',
+  ]);
+  assert.deepEqual(widgetComponents.functions, []);
 
   const navigation = entry(core, '@flax/core/navigation');
   assert.deepEqual(navigation.helperSubpaths, ['_bindings/flutter.__module']);

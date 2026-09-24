@@ -1,7 +1,7 @@
 import { computed, signal, type Binding, type ReadonlySignal } from './index.js';
 
 /** Experimental generated-binding extension. Independent of the native C ABI. */
-export const bindingVersion = 20;
+export const bindingVersion = 21;
 
 type CallbackParameter = {
   name: string;
@@ -225,6 +225,7 @@ let nextComponentType = 1;
 type ComponentStateInfo = {
   id: number | null;
   widget: object | null;
+  variant: string | null;
   retired: boolean;
   claimed: boolean;
 };
@@ -245,9 +246,22 @@ export function registerComponentState(instance: object): void {
   componentStates.set(instance, {
     id: null,
     widget: null,
+    variant: null,
     retired: false,
     claimed: false,
   });
+}
+
+/** Selects a pre-generated real Dart State composition before createState returns. */
+export function registerComponentStateVariant(instance: object, variant: string): void {
+  const state = componentStates.get(instance);
+  if (!state || state.claimed || state.retired)
+    throw new Error('State variant must be selected by a fresh State');
+  if (typeof variant !== 'string' || variant.length === 0)
+    throw new TypeError('Expected a State variant identity');
+  if (state.variant !== null && state.variant !== variant)
+    throw new Error('State variant is already selected');
+  state.variant = variant;
 }
 
 export function componentStateWidget(instance: object): object {
@@ -1322,7 +1336,10 @@ Object.assign(globalThis, {
       Object.freeze(value);
       return info;
     },
-    createComponentState(widget: object, id: number): object {
+    createComponentState(
+      widget: object,
+      id: number,
+    ): { state: object; variant: string | null } {
       const value = synchronous(
         Reflect.apply((widget as { createState: Function }).createState, widget, []),
       );
@@ -1335,7 +1352,12 @@ Object.assign(globalThis, {
       state.claimed = true;
       state.widget = widget;
       state.id = id;
-      return value as object;
+      return Object.freeze({ state: value as object, variant: state.variant });
+    },
+    tryComponentStateId(value: object): number | null {
+      const state = componentStates.get(value);
+      if (state?.retired) throw new Error('Disposed component State');
+      return state?.claimed ? state.id : null;
     },
     updateComponentState(value: object, widget: object): void {
       const state = componentStates.get(value);
@@ -1353,6 +1375,15 @@ Object.assign(globalThis, {
     invokeComponent(value: object, method: string, ...args: unknown[]): unknown {
       const state = componentStates.get(value);
       if (state?.retired) throw new Error('Disposed component State');
+      if (method.startsWith('get:')) {
+        if (args.length !== 0) throw new TypeError('Invalid getter arguments');
+        return (value as Record<string, unknown>)[method.slice(4)];
+      }
+      if (method.startsWith('set:')) {
+        if (args.length !== 1) throw new TypeError('Invalid setter arguments');
+        (value as Record<string, unknown>)[method.slice(4)] = args[0];
+        return undefined;
+      }
       const fn = (value as Record<string, unknown>)[method];
       if (typeof fn !== 'function')
         throw new TypeError(`Missing component method: ${method}`);

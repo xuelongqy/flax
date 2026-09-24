@@ -1,7 +1,7 @@
 # Lazy Lists and Independent Widget Results
 
 Status: generated ListView.builder on the existing macOS arm64 Hermes/V8 host, using UI
-protocol 20 and the unchanged native ABI. Flutter owns scrolling, caching, key matching
+protocol 21 and the unchanged native ABI. Flutter owns scrolling, caching, key matching
 and keep-alive. There is no JS virtual list or parallel item-state table.
 
 ## Selected API
@@ -56,13 +56,13 @@ callback does not need a `BuildContext` parameter. No constructor-specific callb
 is required:
 
 ```yaml
-# No independentWidgetCallbacks entry is needed for itemBuilder.
+# No callback ownership marker is needed for itemBuilder.
 ```
 
 The runtime derives ownership from the mounted Widget callback position and result type,
-instead of a component name, callback name, parameter list or index. Existing
-`independentWidgetCallbacks` metadata remains readable for compatibility but automatic
-discovery does not emit it. There is no new JS wire format or protocol migration.
+instead of a component name, callback name, parameter list or index. No public callback
+ownership marker is required. The role is preserved in generated semantic metadata for
+runtime delivery.
 
 JS executes synchronously when Flutter requests the child, not during descriptor
 validation or inside a deferred replacement Builder. Each non-null result is wrapped by
@@ -79,8 +79,8 @@ session destruction. No result history is indexed by item index or key.
 
 A Widget callback error, invalid return or Promise reports once through the session and
 produces a bounded error placeholder for that invocation. It never returns another
-invocation's content. Later valid calls can recover. Builder and LayoutBuilder follow the
-same invocation-isolated rule.
+invocation's content. Later valid calls can recover. Builder and LayoutBuilder follow
+the same invocation-isolated rule.
 
 Explicit null is forwarded to Flutter and may terminate construction. Undefined is not
 null and is rejected. In pinned Flutter 3.47.2, changing an already materialized middle

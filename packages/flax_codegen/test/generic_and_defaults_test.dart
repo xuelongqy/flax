@@ -49,37 +49,122 @@ void main() {
     return element as InterfaceElement;
   }
 
-  test('defaults unconstrained generics to Object? and keeps explicit YAML fail-closed', () async {
+  test(
+    'keeps unconstrained generics in TS and uses an Object? shared Dart owner',
+    () async {
+      final parser = FlaxCodegenBindingParser(repoRoot);
+      addTearDown(parser.dispose);
+      final library = config('generic_cases.dart');
+      final proposed = await parser.proposeSelection(
+        await load('generic_cases.dart', 'GenericBox'),
+        library: library,
+      );
+      expect(proposed.selection!.typeArguments, isEmpty);
+      expect(proposed.selection!.constructors, isEmpty);
+      final module = await parser.parse(
+        FlaxCodegenBindingConfig(
+          library.name,
+          library.library,
+          library.jsPackage,
+          library.dartOutput,
+          library.tsOutput,
+          {'GenericBox': proposed.selection!},
+        ),
+      );
+      final box = module.classes.single;
+      expect(box.typeParameters.map((parameter) => parameter.name), ['T']);
+      expect(box.typeArguments, ['Object?']);
+    },
+  );
+
+  test('uses a closed core bound for the shared Dart owner when Object? is illegal', () async {
     final parser = FlaxCodegenBindingParser(repoRoot);
     addTearDown(parser.dispose);
     final library = config('generic_cases.dart');
     final proposed = await parser.proposeSelection(
-      await load('generic_cases.dart', 'GenericBox'),
+      await load('generic_cases.dart', 'NumericBox'),
       library: library,
     );
-    expect(proposed.selection!.typeArguments, ['Object?']);
-    expect(proposed.selection!.constructors[''], ['value']);
-    await parser.parse(
+    expect(proposed.selection!.typeArguments, isEmpty);
+    final module = await parser.parse(
       FlaxCodegenBindingConfig(
         library.name,
         library.library,
         library.jsPackage,
         library.dartOutput,
         library.tsOutput,
-        {'GenericBox': proposed.selection!},
+        {'NumericBox': proposed.selection!},
       ),
     );
+    expect(module.classes.single.typeArguments, ['num']);
   });
 
-  test('uses a simple bound when Object? is illegal', () async {
-    final parser = FlaxCodegenBindingParser(repoRoot);
-    addTearDown(parser.dispose);
-    final proposed = await parser.proposeSelection(
-      await load('generic_cases.dart', 'NumericBox'),
-      library: config('generic_cases.dart'),
-    );
-    expect(proposed.selection!.typeArguments, ['num']);
-  });
+  test(
+    'uses public nominal and fully closed generic bounds as shared owners',
+    () async {
+      final target = config('generic_cases.dart');
+
+      Future<FlaxCodegenModuleModel> parse(String name) async {
+        final parser = FlaxCodegenBindingParser(repoRoot);
+        addTearDown(parser.dispose);
+        final dependencyName = name == 'NominalBound' ? 'Base' : 'Wrapper';
+        final dependency = await parser.proposeSelection(
+          await load('generic_cases.dart', dependencyName),
+          library: target,
+        );
+        expect(dependency.selection, isNotNull, reason: dependencyName);
+        final proposed = await parser.proposeSelection(
+          await load('generic_cases.dart', name),
+          library: target,
+        );
+        expect(proposed.selection, isNotNull, reason: name);
+        expect(proposed.selection!.constructors, isEmpty, reason: name);
+        expect(
+          proposed.skips.map((skip) => skip.code),
+          contains('constructor_specialization_missing_use_site'),
+          reason: name,
+        );
+        return parser.parse(
+          FlaxCodegenBindingConfig(
+            target.name,
+            target.library,
+            target.jsPackage,
+            target.dartOutput,
+            target.tsOutput,
+            {dependencyName: dependency.selection!, name: proposed.selection!},
+          ),
+        );
+      }
+
+      final nominal = await parse('NominalBound');
+      expect(
+        nominal.classes
+            .singleWhere((type) => type.name == 'NominalBound')
+            .typeArguments,
+        ['Base'],
+      );
+      expect(nominal.typeLibraries['Base'], target.library);
+
+      final closed = await parse('ClosedBound');
+      expect(
+        closed.classes
+            .singleWhere((type) => type.name == 'ClosedBound')
+            .typeArguments,
+        ['Wrapper<dynamic>'],
+      );
+      expect(closed.typeLibraries['Wrapper'], target.library);
+      final closedDart = FlaxCodegenBindingEmitter([closed]).dart(closed);
+      expect(closedDart, contains('api.ClosedBound<api.Wrapper<dynamic>>'));
+
+      final nullable = await parse('NullableClosedBound');
+      expect(
+        nullable.classes
+            .singleWhere((type) => type.name == 'NullableClosedBound')
+            .typeArguments,
+        ['Wrapper<dynamic>?'],
+      );
+    },
+  );
 
   test(
     'skips dependent and recursive generic bounds instead of inventing them',
@@ -93,8 +178,8 @@ void main() {
       );
       expect(dependent.bindable, isFalse);
       expect(
-        dependent.skips.map((skip) => skip.reason).join(' '),
-        contains('Explicit runtime type arguments required'),
+        dependent.skips.map((skip) => skip.code),
+        contains('complex_generic_bound'),
       );
 
       final recursive = await parser.proposeSelection(
@@ -103,8 +188,8 @@ void main() {
       );
       expect(recursive.bindable, isFalse);
       expect(
-        recursive.skips.map((skip) => skip.reason).join(' '),
-        contains('Explicit runtime type arguments required'),
+        recursive.skips.map((skip) => skip.code),
+        contains('complex_generic_bound'),
       );
     },
   );

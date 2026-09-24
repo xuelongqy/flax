@@ -7,7 +7,7 @@ import 'package:test/test.dart';
 import 'generator_test.dart' show compileFixture;
 
 const _yaml = '''
-format: 1
+format: 2
 name: values
 library: package:example/values.dart
 jsPackage: '@example/values'
@@ -67,14 +67,14 @@ void main() {
     }
   }
 
-  test('format 1 accepts an explicit readonly namespace', () {
+  test('format 2 accepts an explicit readonly namespace', () {
     expect(() => FlaxCodegenBindingConfig.parseStrict(_yaml), returnsNormally);
     final config = FlaxCodegenBindingConfig.parseStrict(_yaml);
     expect(config.topLevel!.jsName, 'TestValues');
     expect(config.topLevel!.getters, ['answer', 'changing']);
   });
 
-  test('format 1 defaults to named readonly exports', () {
+  test('format 2 defaults to named readonly exports', () {
     final config = FlaxCodegenBindingConfig.parseStrict(
       _yaml.replaceFirst('  jsName: TestValues\n', ''),
     );

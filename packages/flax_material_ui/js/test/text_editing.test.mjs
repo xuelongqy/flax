@@ -15,7 +15,7 @@ test('value references forward omission, null and every selected member access',
   const { api, calls } = objectHost();
   const value = TextEditingValue({ text: 'old', selection: undefined });
   assert.deepEqual(calls[0].descriptor.args, { text: 'old' });
-  assert.equal(calls[0].version, 20);
+  assert.equal(calls[0].version, 21);
   assert.equal(value.text, 'old');
   assert.equal(calls.at(-1).op, 'get');
   assert.equal(value, api.object(calls[0].type, 100));
@@ -39,7 +39,7 @@ test('TextField borrows bindable controllers while object setters remain explici
   const calls = [];
   globalThis.__flaxCreateObject = (version, type, descriptor) => {
     calls.push(descriptor);
-    assert.equal(version, 20);
+    assert.equal(version, 21);
     return api.object(type, 37);
   };
   globalThis.__flaxObject = (...args) => {

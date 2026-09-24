@@ -48,4 +48,4 @@ custom transitions remain separate work. This experimental protocol has no stabl
 compatibility promise.
 
 See the [contract](../architecture/navigation.md) and
-[verification scope](../architecture/external-binding-compatibility.md).
+[verification scope](../architecture/external-binding-verification.md).

@@ -1,9 +1,9 @@
 part of '../../bindings.dart';
 
 /// Active UI protocol for Core-owned code and registry comparison.
-const flaxBindingVersion = 20;
+const flaxBindingVersion = 21;
 
-/// Protocol-20 baseline has no additive capability identifiers.
+/// Protocol-21 baseline has no additive capability identifiers.
 const _supportedCapabilities = <String>{};
 
 class FlaxTypeRef {
@@ -335,6 +335,27 @@ class FlaxWidgetInterfaceBinding extends FlaxTypeBinding {
   final bool Function(Object) matches;
 }
 
+/// A pre-generated real Flutter State composition selected by a JS State.
+class FlaxStateVariantBinding {
+  const FlaxStateVariantBinding(
+    this.id,
+    this.create, {
+    required this.stateType,
+    this.interfaces = const [],
+    this.getters = const [],
+    this.setters = const [],
+    this.methods = const {},
+  });
+
+  final String id;
+  final FlaxComponentStateBase Function(Object seed) create;
+  final String stateType;
+  final List<String> interfaces;
+  final List<FlaxGetter> getters;
+  final List<FlaxSetter> setters;
+  final Map<String, FlaxInstanceMethod> methods;
+}
+
 class FlaxBindingModule {
   const FlaxBindingModule(
     this.name,
@@ -343,6 +364,7 @@ class FlaxBindingModule {
     required this.uiProtocol,
     required this.requiredCapabilities,
     this.functions = const [],
+    this.stateVariants = const [],
   });
   final String name;
   final List<FlaxTypeBinding> types;
@@ -350,6 +372,7 @@ class FlaxBindingModule {
   final int uiProtocol;
   final List<String> requiredCapabilities;
   final List<FlaxFunctionBinding> functions;
+  final List<FlaxStateVariantBinding> stateVariants;
 }
 
 /// Register generated modules explicitly. A registry never chooses an engine.
@@ -357,9 +380,15 @@ class FlaxBindingRegistry {
   FlaxBindingRegistry(List<FlaxBindingModule> modules)
     : modules = List.unmodifiable(modules) {
     final names = <String>{};
-    final moduleIds = <String>{};
+    final moduleIds = <String>{componentsBindings.moduleId};
     final types = <String, FlaxTypeBinding>{};
     final functions = <String, FlaxFunctionBinding>{};
+    final stateVariants = <String, FlaxStateVariantBinding>{};
+    final componentStateTypes = <String>{};
+    for (final variant in componentsBindings.stateVariants) {
+      stateVariants[variant.id] = variant;
+      componentStateTypes.add(variant.stateType);
+    }
     for (final module in this.modules) {
       if (module.uiProtocol != flaxBindingVersion) {
         throw ArgumentError('Incompatible binding module ${module.name}');
@@ -389,13 +418,24 @@ class FlaxBindingRegistry {
         }
         functions[function.id] = function;
       }
+      for (final variant in module.stateVariants) {
+        if (stateVariants.containsKey(variant.id)) {
+          throw ArgumentError('Duplicate State variant: ${variant.id}');
+        }
+        stateVariants[variant.id] = variant;
+        componentStateTypes.add(variant.stateType);
+      }
     }
     _types.addAll(types);
     _functions.addAll(functions);
+    _stateVariants.addAll(stateVariants);
+    _componentStateTypes.addAll(componentStateTypes);
   }
   final List<FlaxBindingModule> modules;
   final _types = <String, FlaxTypeBinding>{};
   final _functions = <String, FlaxFunctionBinding>{};
+  final _stateVariants = <String, FlaxStateVariantBinding>{};
+  final _componentStateTypes = <String>{};
 
   @override
   bool operator ==(Object other) =>

@@ -213,7 +213,7 @@ gain a general unhandled-rejection monitoring service.
 
 ## Boundaries and verification
 
-Protocol 20 rejects earlier bundles and modules; the C ABI is unchanged. Host native
+Protocol 21 rejects earlier bundles and modules; the C ABI is unchanged. Host native
 Router and JS Pages are implemented. go_router-specific adapters, system deep-link
 registration, restoration, custom transitions, and additional platforms remain deferred.
 URL parsing in the example does not register OS links.
@@ -221,7 +221,7 @@ URL parsing in the example does not register OS links.
 See the
 [navigation owner tests](../../packages/flax_material_ui/test/ui/navigation_test.dart),
 [Pages decision](../decisions/0006-pages-and-router.md), and
-[compatibility scope](external-binding-compatibility.md). Package checks own navigation
+[verification scope](external-binding-verification.md). Package checks own navigation
 behavior; full `check:ui` reuses that owner integration and then adds only the
 aggregate.
 

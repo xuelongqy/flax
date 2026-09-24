@@ -8,7 +8,7 @@ import 'package:test/test.dart';
 import 'generator_test.dart' show compileFixture;
 
 const _yaml = '''
-format: 1
+format: 2
 name: mutable
 library: package:example/mutable.dart
 jsPackage: '@example/mutable'
@@ -784,7 +784,7 @@ const hosts = helpers.map(name => (...args) => {
 });
 const output = transformSync(source.replace(imports, ''), {loader: 'ts', format: 'cjs'}).code;
 const exported = {exports: {}};
-new Function('module', 'exports', 'bindingVersion', ...helpers, output)(exported, exported.exports, 20, ...hosts);
+new Function('module', 'exports', 'bindingVersion', ...helpers, output)(exported, exported.exports, 21, ...hosts);
 const api = exported.exports;
 assert.equal(calls.length, 0);
 assert.equal(api.setCounter(3), undefined);

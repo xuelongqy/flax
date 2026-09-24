@@ -47,6 +47,6 @@ test('runApp negotiates the protocol and accepts one root per JS realm', () => {
   };
   const root = Text('root');
   runApp(root);
-  assert.deepEqual(mounted, { widget: root, version: 20 });
+  assert.deepEqual(mounted, { widget: root, version: 21 });
   assert.throws(() => runApp(root), /root/i);
 });

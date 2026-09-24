@@ -1,5 +1,5 @@
 {
-  "formatVersion": 11,
+  "formatVersion": 12,
   "package": "flax_material_ui",
   "bindingNamespace": "flax.material",
   "imports": [
@@ -9,7 +9,7 @@
     {
       "name": "material",
       "moduleId": "flax.material/material",
-      "uiProtocol": 20,
+      "uiProtocol": 21,
       "requiredCapabilities": [],
       "model": {
         "library": "package:material_ui/material_ui.dart",
@@ -140,7 +140,6 @@
             "id": "flax.material/material#type:Material",
             "kind": "widget",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -632,7 +631,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [],
@@ -640,7 +640,6 @@
             "staticGetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "flax.core/components#type:StatefulWidget",
               "package:flutter/src/widgets/framework.dart::Widget",
@@ -659,7 +658,6 @@
             "id": "flax.material/material#type:InkWell",
             "kind": "widget",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -1579,7 +1577,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [],
@@ -1587,7 +1586,6 @@
             "staticGetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "package:material_ui/src/ink_well.dart::InkResponse",
               "package:flutter/src/widgets/framework.dart::StatelessWidget",
@@ -1607,7 +1605,6 @@
             "id": "flax.material/material#type:LinearProgressIndicator",
             "kind": "widget",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -1967,7 +1964,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [],
@@ -1975,7 +1973,6 @@
             "staticGetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "package:material_ui/src/progress_indicator.dart::ProgressIndicator",
               "flax.core/components#type:StatefulWidget",
@@ -1995,7 +1992,6 @@
             "id": "flax.material/material#type:AlertDialog",
             "kind": "widget",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -2255,7 +2251,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [],
@@ -2263,7 +2260,6 @@
             "staticGetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "package:flutter/src/widgets/framework.dart::StatelessWidget",
               "package:flutter/src/widgets/framework.dart::Widget",
@@ -2282,7 +2278,6 @@
             "id": "flax.material/material#type:MaterialApp",
             "kind": "widget",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -2674,7 +2669,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [],
@@ -2682,7 +2678,6 @@
             "staticGetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "flax.core/components#type:StatefulWidget",
               "package:flutter/src/widgets/framework.dart::Widget",
@@ -2701,7 +2696,6 @@
             "id": "flax.material/material#type:Scaffold",
             "kind": "widget",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -3237,7 +3231,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [],
@@ -3245,7 +3240,6 @@
             "staticGetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "flax.core/components#type:StatefulWidget",
               "package:flutter/src/widgets/framework.dart::Widget",
@@ -3264,7 +3258,6 @@
             "id": "flax.material/material#type:RefreshIndicator",
             "kind": "widget",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -3500,7 +3493,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [],
@@ -3508,7 +3502,6 @@
             "staticGetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "flax.core/components#type:StatefulWidget",
               "package:flutter/src/widgets/framework.dart::Widget",
@@ -3527,7 +3520,6 @@
             "id": "flax.material/material#type:ButtonStyle",
             "kind": "object",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -3547,7 +3539,9 @@
                       "parameters": [],
                       "typeParameters": [],
                       "result": null,
-                      "typeArguments": [],
+                      "typeArguments": [
+                        "Object?"
+                      ],
                       "dartArguments": [
                         {
                           "kind": "object",
@@ -3578,7 +3572,9 @@
                         "parameters": [],
                         "typeParameters": [],
                         "result": null,
-                        "typeArguments": [],
+                        "typeArguments": [
+                          "Object?"
+                        ],
                         "dartArguments": [],
                         "primitiveKinds": [],
                         "declaration": null,
@@ -3627,7 +3623,9 @@
                       "parameters": [],
                       "typeParameters": [],
                       "result": null,
-                      "typeArguments": [],
+                      "typeArguments": [
+                        "Object?"
+                      ],
                       "dartArguments": [
                         {
                           "kind": "object",
@@ -3658,7 +3656,9 @@
                         "parameters": [],
                         "typeParameters": [],
                         "result": null,
-                        "typeArguments": [],
+                        "typeArguments": [
+                          "Object?"
+                        ],
                         "dartArguments": [],
                         "primitiveKinds": [],
                         "declaration": null,
@@ -3707,7 +3707,9 @@
                       "parameters": [],
                       "typeParameters": [],
                       "result": null,
-                      "typeArguments": [],
+                      "typeArguments": [
+                        "Object?"
+                      ],
                       "dartArguments": [
                         {
                           "kind": "object",
@@ -3738,7 +3740,9 @@
                         "parameters": [],
                         "typeParameters": [],
                         "result": null,
-                        "typeArguments": [],
+                        "typeArguments": [
+                          "Object?"
+                        ],
                         "dartArguments": [],
                         "primitiveKinds": [],
                         "declaration": null,
@@ -3787,7 +3791,9 @@
                       "parameters": [],
                       "typeParameters": [],
                       "result": null,
-                      "typeArguments": [],
+                      "typeArguments": [
+                        "Object?"
+                      ],
                       "dartArguments": [
                         {
                           "kind": "double",
@@ -3818,7 +3824,9 @@
                         "parameters": [],
                         "typeParameters": [],
                         "result": null,
-                        "typeArguments": [],
+                        "typeArguments": [
+                          "Object?"
+                        ],
                         "dartArguments": [],
                         "primitiveKinds": [],
                         "declaration": null,
@@ -3867,7 +3875,9 @@
                       "parameters": [],
                       "typeParameters": [],
                       "result": null,
-                      "typeArguments": [],
+                      "typeArguments": [
+                        "Object?"
+                      ],
                       "dartArguments": [
                         {
                           "kind": "object",
@@ -3898,7 +3908,9 @@
                         "parameters": [],
                         "typeParameters": [],
                         "result": null,
-                        "typeArguments": [],
+                        "typeArguments": [
+                          "Object?"
+                        ],
                         "dartArguments": [],
                         "primitiveKinds": [],
                         "declaration": null,
@@ -3947,7 +3959,9 @@
                       "parameters": [],
                       "typeParameters": [],
                       "result": null,
-                      "typeArguments": [],
+                      "typeArguments": [
+                        "Object?"
+                      ],
                       "dartArguments": [
                         {
                           "kind": "object",
@@ -3978,7 +3992,9 @@
                         "parameters": [],
                         "typeParameters": [],
                         "result": null,
-                        "typeArguments": [],
+                        "typeArguments": [
+                          "Object?"
+                        ],
                         "dartArguments": [],
                         "primitiveKinds": [],
                         "declaration": null,
@@ -4059,7 +4075,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [
@@ -4075,7 +4092,9 @@
                   "parameters": [],
                   "typeParameters": [],
                   "result": null,
-                  "typeArguments": [],
+                  "typeArguments": [
+                    "Object?"
+                  ],
                   "dartArguments": [
                     {
                       "kind": "object",
@@ -4106,7 +4125,9 @@
                     "parameters": [],
                     "typeParameters": [],
                     "result": null,
-                    "typeArguments": [],
+                    "typeArguments": [
+                      "Object?"
+                    ],
                     "dartArguments": [],
                     "primitiveKinds": [],
                     "declaration": null,
@@ -4148,7 +4169,9 @@
                   "parameters": [],
                   "typeParameters": [],
                   "result": null,
-                  "typeArguments": [],
+                  "typeArguments": [
+                    "Object?"
+                  ],
                   "dartArguments": [
                     {
                       "kind": "object",
@@ -4179,7 +4202,9 @@
                     "parameters": [],
                     "typeParameters": [],
                     "result": null,
-                    "typeArguments": [],
+                    "typeArguments": [
+                      "Object?"
+                    ],
                     "dartArguments": [],
                     "primitiveKinds": [],
                     "declaration": null,
@@ -4221,7 +4246,9 @@
                   "parameters": [],
                   "typeParameters": [],
                   "result": null,
-                  "typeArguments": [],
+                  "typeArguments": [
+                    "Object?"
+                  ],
                   "dartArguments": [
                     {
                       "kind": "object",
@@ -4252,7 +4279,9 @@
                     "parameters": [],
                     "typeParameters": [],
                     "result": null,
-                    "typeArguments": [],
+                    "typeArguments": [
+                      "Object?"
+                    ],
                     "dartArguments": [],
                     "primitiveKinds": [],
                     "declaration": null,
@@ -4294,7 +4323,9 @@
                   "parameters": [],
                   "typeParameters": [],
                   "result": null,
-                  "typeArguments": [],
+                  "typeArguments": [
+                    "Object?"
+                  ],
                   "dartArguments": [
                     {
                       "kind": "double",
@@ -4325,7 +4356,9 @@
                     "parameters": [],
                     "typeParameters": [],
                     "result": null,
-                    "typeArguments": [],
+                    "typeArguments": [
+                      "Object?"
+                    ],
                     "dartArguments": [],
                     "primitiveKinds": [],
                     "declaration": null,
@@ -4367,7 +4400,9 @@
                   "parameters": [],
                   "typeParameters": [],
                   "result": null,
-                  "typeArguments": [],
+                  "typeArguments": [
+                    "Object?"
+                  ],
                   "dartArguments": [
                     {
                       "kind": "object",
@@ -4398,7 +4433,9 @@
                     "parameters": [],
                     "typeParameters": [],
                     "result": null,
-                    "typeArguments": [],
+                    "typeArguments": [
+                      "Object?"
+                    ],
                     "dartArguments": [],
                     "primitiveKinds": [],
                     "declaration": null,
@@ -4440,7 +4477,9 @@
                   "parameters": [],
                   "typeParameters": [],
                   "result": null,
-                  "typeArguments": [],
+                  "typeArguments": [
+                    "Object?"
+                  ],
                   "dartArguments": [
                     {
                       "kind": "object",
@@ -4471,7 +4510,9 @@
                     "parameters": [],
                     "typeParameters": [],
                     "result": null,
-                    "typeArguments": [],
+                    "typeArguments": [
+                      "Object?"
+                    ],
                     "dartArguments": [],
                     "primitiveKinds": [],
                     "declaration": null,
@@ -4557,7 +4598,9 @@
                       "parameters": [],
                       "typeParameters": [],
                       "result": null,
-                      "typeArguments": [],
+                      "typeArguments": [
+                        "Object?"
+                      ],
                       "dartArguments": [
                         {
                           "kind": "object",
@@ -4588,7 +4631,9 @@
                         "parameters": [],
                         "typeParameters": [],
                         "result": null,
-                        "typeArguments": [],
+                        "typeArguments": [
+                          "Object?"
+                        ],
                         "dartArguments": [],
                         "primitiveKinds": [],
                         "declaration": null,
@@ -4637,7 +4682,9 @@
                       "parameters": [],
                       "typeParameters": [],
                       "result": null,
-                      "typeArguments": [],
+                      "typeArguments": [
+                        "Object?"
+                      ],
                       "dartArguments": [
                         {
                           "kind": "double",
@@ -4668,7 +4715,9 @@
                         "parameters": [],
                         "typeParameters": [],
                         "result": null,
-                        "typeArguments": [],
+                        "typeArguments": [
+                          "Object?"
+                        ],
                         "dartArguments": [],
                         "primitiveKinds": [],
                         "declaration": null,
@@ -4717,7 +4766,9 @@
                       "parameters": [],
                       "typeParameters": [],
                       "result": null,
-                      "typeArguments": [],
+                      "typeArguments": [
+                        "Object?"
+                      ],
                       "dartArguments": [
                         {
                           "kind": "object",
@@ -4748,7 +4799,9 @@
                         "parameters": [],
                         "typeParameters": [],
                         "result": null,
-                        "typeArguments": [],
+                        "typeArguments": [
+                          "Object?"
+                        ],
                         "dartArguments": [],
                         "primitiveKinds": [],
                         "declaration": null,
@@ -4797,7 +4850,9 @@
                       "parameters": [],
                       "typeParameters": [],
                       "result": null,
-                      "typeArguments": [],
+                      "typeArguments": [
+                        "Object?"
+                      ],
                       "dartArguments": [
                         {
                           "kind": "object",
@@ -4828,7 +4883,9 @@
                         "parameters": [],
                         "typeParameters": [],
                         "result": null,
-                        "typeArguments": [],
+                        "typeArguments": [
+                          "Object?"
+                        ],
                         "dartArguments": [],
                         "primitiveKinds": [],
                         "declaration": null,
@@ -4877,7 +4934,9 @@
                       "parameters": [],
                       "typeParameters": [],
                       "result": null,
-                      "typeArguments": [],
+                      "typeArguments": [
+                        "Object?"
+                      ],
                       "dartArguments": [
                         {
                           "kind": "object",
@@ -4908,7 +4967,9 @@
                         "parameters": [],
                         "typeParameters": [],
                         "result": null,
-                        "typeArguments": [],
+                        "typeArguments": [
+                          "Object?"
+                        ],
                         "dartArguments": [],
                         "primitiveKinds": [],
                         "declaration": null,
@@ -4957,7 +5018,9 @@
                       "parameters": [],
                       "typeParameters": [],
                       "result": null,
-                      "typeArguments": [],
+                      "typeArguments": [
+                        "Object?"
+                      ],
                       "dartArguments": [
                         {
                           "kind": "object",
@@ -4988,7 +5051,9 @@
                         "parameters": [],
                         "typeParameters": [],
                         "result": null,
-                        "typeArguments": [],
+                        "typeArguments": [
+                          "Object?"
+                        ],
                         "dartArguments": [],
                         "primitiveKinds": [],
                         "declaration": null,
@@ -5112,7 +5177,6 @@
               }
             ],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "dart:core::Object",
               "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"
@@ -5167,7 +5231,6 @@
             "id": "flax.material/material#type:VisualDensity",
             "kind": "object",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -5263,7 +5326,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [
@@ -5543,7 +5607,6 @@
               }
             ],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "dart:core::Object",
               "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"
@@ -5598,7 +5661,6 @@
             "id": "flax.material/material#type:AppBar",
             "kind": "widget",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -6166,7 +6228,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [],
@@ -6192,15 +6255,14 @@
                 "slot": null
               }
             ],
-            "widgetGetters": [],
             "widgetMembers": [
               {
                 "name": "preferredSize",
                 "kind": "getter",
                 "parameters": [],
-                "source": "@override\n_flaxNative7.Size get preferredSize => (configuration as _flaxNative7.PreferredSizeWidget).preferredSize;",
+                "source": "@override\n_flaxNative8.Size get preferredSize => (configuration as _flaxNative8.PreferredSizeWidget).preferredSize;",
                 "imports": {
-                  "package:material_ui/material_ui.dart": "_flaxNative7"
+                  "package:material_ui/material_ui.dart": "_flaxNative8"
                 }
               }
             ],
@@ -6223,7 +6285,6 @@
             "id": "flax.material/material#type:Theme",
             "kind": "widget",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -6363,7 +6424,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [],
@@ -6460,7 +6522,6 @@
               }
             ],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "package:flutter/src/widgets/framework.dart::StatelessWidget",
               "package:flutter/src/widgets/framework.dart::Widget",
@@ -6479,7 +6540,6 @@
             "id": "flax.material/material#type:ThemeData",
             "kind": "object",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -6663,7 +6723,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [
@@ -6960,7 +7021,6 @@
               }
             ],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "dart:core::Object",
               "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"
@@ -7015,7 +7075,6 @@
             "id": "flax.material/material#type:TextTheme",
             "kind": "object",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -7243,7 +7302,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [
@@ -7702,7 +7762,6 @@
               }
             ],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "dart:core::Object",
               "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"
@@ -7757,7 +7816,6 @@
             "id": "flax.material/material#type:ColorScheme",
             "kind": "object",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -7853,7 +7911,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [
@@ -8474,7 +8533,6 @@
               }
             ],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "dart:core::Object",
               "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"
@@ -8529,7 +8587,6 @@
             "id": "flax.material/material#type:InputDecoration",
             "kind": "object",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -9065,7 +9122,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [
@@ -10091,7 +10149,6 @@
               }
             ],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "dart:core::Object"
             ],
@@ -10126,7 +10183,6 @@
             "id": "flax.material/material#type:TextField",
             "kind": "widget",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -11250,7 +11306,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [],
@@ -11258,7 +11315,6 @@
             "staticGetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "flax.core/components#type:StatefulWidget",
               "package:flutter/src/widgets/framework.dart::Widget",
@@ -11277,7 +11333,6 @@
             "id": "flax.material/material#type:MaterialPageRoute",
             "kind": "route",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [
               "Object?"
@@ -11624,7 +11679,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [],
@@ -11632,7 +11688,6 @@
             "staticGetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "package:flutter/src/widgets/pages.dart::PageRoute",
               "package:flutter/src/widgets/routes.dart::ModalRoute",
@@ -12042,7 +12097,6 @@
             "id": "flax.material/material#type:MaterialPage",
             "kind": "page",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [
               "Object?"
@@ -12516,7 +12570,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [
@@ -12620,7 +12675,6 @@
             "staticGetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "flax.core/flutter#type:Page",
               "flax.core/flutter#type:RouteSettings",
@@ -12767,7 +12821,6 @@
             "id": "flax.material/material#type:TextButton",
             "kind": "widget",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -12999,7 +13052,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [],
@@ -13007,7 +13061,6 @@
             "staticGetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "package:material_ui/src/button_style_button.dart::ButtonStyleButton",
               "flax.core/components#type:StatefulWidget",
@@ -13027,7 +13080,6 @@
             "id": "flax.material/material#type:ElevatedButton",
             "kind": "widget",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -13259,7 +13311,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [],
@@ -13267,7 +13320,6 @@
             "staticGetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "package:material_ui/src/button_style_button.dart::ButtonStyleButton",
               "flax.core/components#type:StatefulWidget",
@@ -13287,7 +13339,6 @@
             "id": "flax.material/material#type:OutlinedButton",
             "kind": "widget",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -13519,7 +13570,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [],
@@ -13527,7 +13579,6 @@
             "staticGetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "package:material_ui/src/button_style_button.dart::ButtonStyleButton",
               "flax.core/components#type:StatefulWidget",
@@ -13547,7 +13598,6 @@
             "id": "flax.material/material#type:FilledButton",
             "kind": "widget",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -13779,7 +13829,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               },
               {
                 "name": "tonal",
@@ -14008,7 +14059,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [],
@@ -14016,7 +14068,6 @@
             "staticGetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "package:material_ui/src/button_style_button.dart::ButtonStyleButton",
               "flax.core/components#type:StatefulWidget",
@@ -14036,7 +14087,6 @@
             "id": "flax.material/material#type:IconButton",
             "kind": "widget",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -14708,7 +14758,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               },
               {
                 "name": "filled",
@@ -15377,7 +15428,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               },
               {
                 "name": "filledTonal",
@@ -16046,7 +16098,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               },
               {
                 "name": "outlined",
@@ -16715,7 +16768,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [],
@@ -16723,7 +16777,6 @@
             "staticGetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "package:flutter/src/widgets/framework.dart::StatelessWidget",
               "package:flutter/src/widgets/framework.dart::Widget",
@@ -16742,7 +16795,6 @@
             "id": "flax.material/material#type:FloatingActionButton",
             "kind": "widget",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -17238,7 +17290,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               },
               {
                 "name": "small",
@@ -17687,7 +17740,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               },
               {
                 "name": "large",
@@ -18136,7 +18190,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               },
               {
                 "name": "extended",
@@ -18629,7 +18684,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [],
@@ -18637,7 +18693,6 @@
             "staticGetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "package:flutter/src/widgets/framework.dart::StatelessWidget",
               "package:flutter/src/widgets/framework.dart::Widget",
@@ -18656,7 +18711,6 @@
             "id": "flax.material/material#type:Drawer",
             "kind": "widget",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -19016,7 +19070,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [],
@@ -19024,7 +19079,6 @@
             "staticGetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "package:flutter/src/widgets/framework.dart::StatelessWidget",
               "package:flutter/src/widgets/framework.dart::Widget",
@@ -19043,7 +19097,6 @@
             "id": "flax.material/material#type:Divider",
             "kind": "widget",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -19359,7 +19412,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [],
@@ -19367,7 +19421,6 @@
             "staticGetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "package:flutter/src/widgets/framework.dart::StatelessWidget",
               "package:flutter/src/widgets/framework.dart::Widget",
@@ -19386,7 +19439,6 @@
             "id": "flax.material/material#type:VerticalDivider",
             "kind": "widget",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -19702,7 +19754,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [],
@@ -19710,7 +19763,6 @@
             "staticGetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "package:flutter/src/widgets/framework.dart::StatelessWidget",
               "package:flutter/src/widgets/framework.dart::Widget",
@@ -19729,7 +19781,6 @@
             "id": "flax.material/material#type:Card",
             "kind": "widget",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -20133,7 +20184,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               },
               {
                 "name": "filled",
@@ -20534,7 +20586,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               },
               {
                 "name": "outlined",
@@ -20935,7 +20988,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [],
@@ -20943,7 +20997,6 @@
             "staticGetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "package:flutter/src/widgets/framework.dart::StatelessWidget",
               "package:flutter/src/widgets/framework.dart::Widget",
@@ -20962,7 +21015,6 @@
             "id": "flax.material/material#type:ListTile",
             "kind": "widget",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -21946,7 +21998,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [],
@@ -21954,7 +22007,6 @@
             "staticGetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "package:flutter/src/widgets/framework.dart::StatelessWidget",
               "package:flutter/src/widgets/framework.dart::Widget",
@@ -21973,7 +22025,6 @@
             "id": "flax.material/material#type:Checkbox",
             "kind": "widget",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -22335,7 +22386,9 @@
                       "parameters": [],
                       "typeParameters": [],
                       "result": null,
-                      "typeArguments": [],
+                      "typeArguments": [
+                        "Object?"
+                      ],
                       "dartArguments": [
                         {
                           "kind": "object",
@@ -22366,7 +22419,9 @@
                         "parameters": [],
                         "typeParameters": [],
                         "result": null,
-                        "typeArguments": [],
+                        "typeArguments": [
+                          "Object?"
+                        ],
                         "dartArguments": [],
                         "primitiveKinds": [],
                         "declaration": null,
@@ -22459,7 +22514,9 @@
                       "parameters": [],
                       "typeParameters": [],
                       "result": null,
-                      "typeArguments": [],
+                      "typeArguments": [
+                        "Object?"
+                      ],
                       "dartArguments": [
                         {
                           "kind": "object",
@@ -22490,7 +22547,9 @@
                         "parameters": [],
                         "typeParameters": [],
                         "result": null,
-                        "typeArguments": [],
+                        "typeArguments": [
+                          "Object?"
+                        ],
                         "dartArguments": [],
                         "primitiveKinds": [],
                         "declaration": null,
@@ -22659,7 +22718,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [],
@@ -22667,7 +22727,6 @@
             "staticGetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "flax.core/components#type:StatefulWidget",
               "package:flutter/src/widgets/framework.dart::Widget",
@@ -22686,7 +22745,6 @@
             "id": "flax.material/material#type:Switch",
             "kind": "widget",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -23212,7 +23270,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [],
@@ -23220,7 +23279,6 @@
             "staticGetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "package:flutter/src/widgets/framework.dart::StatelessWidget",
               "package:flutter/src/widgets/framework.dart::Widget",
@@ -23239,7 +23297,6 @@
             "id": "flax.material/material#type:CircularProgressIndicator",
             "kind": "widget",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -23511,7 +23568,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [],
@@ -23519,7 +23577,6 @@
             "staticGetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "package:material_ui/src/progress_indicator.dart::ProgressIndicator",
               "flax.core/components#type:StatefulWidget",
@@ -23539,7 +23596,6 @@
             "id": "flax.material/material#type:NavigationDestination",
             "kind": "widget",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -23811,7 +23867,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [],
@@ -23819,7 +23876,6 @@
             "staticGetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "package:flutter/src/widgets/framework.dart::StatelessWidget",
               "package:flutter/src/widgets/framework.dart::Widget",
@@ -23838,7 +23894,6 @@
             "id": "flax.material/material#type:NavigationBar",
             "kind": "widget",
             "jsName": null,
-            "genericScalar": false,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
@@ -24440,7 +24495,8 @@
                     "encodeKind": null,
                     "scoped": false
                   }
-                ]
+                ],
+                "specializations": []
               }
             ],
             "getters": [],
@@ -24448,7 +24504,6 @@
             "staticGetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetGetters": [],
             "supertypes": [
               "package:flutter/src/widgets/framework.dart::StatelessWidget",
               "package:flutter/src/widgets/framework.dart::Widget",
@@ -25248,6 +25303,7 @@
         ],
         "snapshots": [],
         "typedefs": [],
+        "stateVariants": [],
         "topLevel": {
           "jsName": "",
           "getters": [

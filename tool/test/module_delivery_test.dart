@@ -43,12 +43,12 @@ void main() {
         'version': '0.0.0',
       });
       _writeJson(p.join(directory, 'bindings/manifest.json'), {
-        'formatVersion': 10,
+        'formatVersion': 12,
         'modules': [
           {
             'name': target.directory,
             'moduleId': moduleId,
-            'uiProtocol': 20,
+            'uiProtocol': 21,
             'model': {
               'publicLibraries': [
                 {'jsPackage': target.specifier},
@@ -74,63 +74,42 @@ void main() {
     'tool/module_delivery.mjs',
   ], workingDirectory: temporary.path);
 
-  for (final version in [10, 11]) {
-    test(
-      'v$version delivery includes owned setters and excludes references',
-      () async {
-        for (final target in _targets) {
-          final path = p.join(
-            temporary.path,
-            'packages',
-            target.directory,
-            'bindings/manifest.json',
-          );
-          final manifest =
-              jsonDecode(File(path).readAsStringSync()) as Map<String, dynamic>;
-          manifest['formatVersion'] = version;
-          _writeJson(path, manifest);
-        }
-        final result = await run();
-        expect(
-          result.exitCode,
-          0,
-          reason: '${result.stdout}\n${result.stderr}',
-        );
-        for (final target in _targets) {
-          final output = jsonDecode(
-            File(
-              p.join(
-                temporary.path,
-                'packages',
-                target.directory,
-                'js/flax_modules.json',
-              ),
-            ).readAsStringSync(),
-          ) as Map<String, dynamic>;
-          expect(output['package'], target.package);
-          final module = (output['modules'] as List)
-              .cast<Map<String, dynamic>>()
-              .singleWhere((module) => module['specifier'] == target.specifier);
-          final moduleId = 'flax.test/${target.directory}';
-          expect(module['bindings'], [
-            {
-              'moduleId': moduleId,
-              'uiProtocol': 20,
-              'types': <String>[],
-              'functions': [
-                '$moduleId#function:a%3D',
-                '$moduleId#function:z%3D',
-              ],
-            },
-          ], reason: target.package);
-        }
-      },
-    );
-  }
+  test(
+    'Manifest 12 delivery includes owned setters and excludes references',
+    () async {
+      final result = await run();
+      expect(result.exitCode, 0, reason: '${result.stdout}\n${result.stderr}');
+      for (final target in _targets) {
+        final output = jsonDecode(
+          File(
+            p.join(
+              temporary.path,
+              'packages',
+              target.directory,
+              'js/flax_modules.json',
+            ),
+          ).readAsStringSync(),
+        ) as Map<String, dynamic>;
+        expect(output['package'], target.package);
+        final module = (output['modules'] as List)
+            .cast<Map<String, dynamic>>()
+            .singleWhere((module) => module['specifier'] == target.specifier);
+        final moduleId = 'flax.test/${target.directory}';
+        expect(module['bindings'], [
+          {
+            'moduleId': moduleId,
+            'uiProtocol': 21,
+            'types': <String>[],
+            'functions': ['$moduleId#function:a%3D', '$moduleId#function:z%3D'],
+          },
+        ], reason: target.package);
+      }
+    },
+  );
 
   test('delivery rejects an unknown manifest version', () async {
     _writeJson(p.join(temporary.path, 'packages/flax/bindings/manifest.json'), {
-      'formatVersion': 12,
+      'formatVersion': 999,
       'modules': <Map<String, Object?>>[],
     });
     final result = await run();

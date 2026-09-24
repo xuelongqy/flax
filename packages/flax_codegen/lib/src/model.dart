@@ -171,6 +171,12 @@ class FlaxCodegenTypeRef {
       (item?.containsWidget ?? false) ||
       (key?.containsWidget ?? false) ||
       recordFields.any((field) => field.type.containsWidget);
+  bool get isDirectMountedWidgetResult =>
+      kind == 'widget' ||
+      (kind == 'list' &&
+          !nullable &&
+          item?.kind == 'widget' &&
+          item?.nullable == false);
   bool get containsCallback =>
       category == FlaxCodegenTypeCategory.callback ||
       (item?.containsCallback ?? false) ||
@@ -509,10 +515,110 @@ class FlaxCodegenParameterModel {
   final bool independentWidgetResult;
 }
 
+class FlaxCodegenConstructorSpecializationModel {
+  const FlaxCodegenConstructorSpecializationModel({
+    required this.typeArguments,
+    required this.parameterTypes,
+    this.runtimeDomains = const {},
+  });
+
+  final List<String> typeArguments;
+  final List<FlaxCodegenTypeRef> parameterTypes;
+
+  /// JavaScript-observable runtime domains used only to select among multiple
+  /// concrete Dart generic constructor targets.
+  final Map<String, String> runtimeDomains;
+}
+
 class FlaxCodegenConstructorModel {
-  const FlaxCodegenConstructorModel(this.name, this.parameters);
+  const FlaxCodegenConstructorModel(
+    this.name,
+    this.parameters, {
+    this.specializations = const [],
+  });
   final String name;
   final List<FlaxCodegenParameterModel> parameters;
+  final List<FlaxCodegenConstructorSpecializationModel> specializations;
+}
+
+class FlaxCodegenStateMixinModel {
+  const FlaxCodegenStateMixinModel({
+    required this.name,
+    required this.id,
+    required this.library,
+    this.typeArguments = const [],
+  });
+
+  final String name;
+  final String id;
+  final String library;
+  final List<String> typeArguments;
+}
+
+class FlaxCodegenStateInterfaceModel {
+  const FlaxCodegenStateInterfaceModel({
+    required this.name,
+    required this.id,
+    required this.library,
+    this.wireId,
+  });
+
+  final String name;
+
+  /// Analyzer declaration identity (`originatingUri::name`).
+  final String id;
+  final String library;
+
+  /// Bound Flax provider identity after package ownership is resolved.
+  final String? wireId;
+}
+
+class FlaxCodegenStateVariantModel {
+  const FlaxCodegenStateVariantModel({
+    required this.name,
+    required this.id,
+    required this.stateId,
+    required this.mixins,
+    this.stateWireId,
+    this.interfaces = const [],
+    this.getters = const [],
+    this.setters = const [],
+    this.methods = const [],
+    this.superMethods = const [],
+    this.mustCallSuperMethods = const [],
+    this.providerModule,
+  });
+
+  final String name;
+
+  /// Stable runtime identity. The parser uses a local placeholder and package
+  /// freezing stamps the final `<moduleId>#stateVariant:<name>` identity.
+  final String id;
+
+  /// Analyzer declaration identity for Flutter State.
+  final String stateId;
+
+  /// Bound Flax State provider after package ownership is resolved.
+  final String? stateWireId;
+  final List<FlaxCodegenStateMixinModel> mixins;
+
+  /// Public nominal capabilities implemented by the final Dart composition.
+  final List<FlaxCodegenStateInterfaceModel> interfaces;
+
+  /// Members introduced by mixins. Abstract members dispatch to JS; concrete
+  /// members are invoked on the real Dart State host.
+  final List<FlaxCodegenGetterModel> getters;
+  final List<FlaxCodegenGetterModel> setters;
+  final List<FlaxCodegenMethodModel> methods;
+
+  /// Concrete members whose direct super implementation is callable from JS.
+  final List<String> superMethods;
+
+  /// Overrides whose Analyzer metadata requires an explicit direct-super call.
+  final List<String> mustCallSuperMethods;
+
+  /// Final provider module id after package ownership is frozen.
+  final String? providerModule;
 }
 
 class FlaxCodegenGetterModel {
@@ -569,7 +675,6 @@ class FlaxCodegenClassModel {
     required this.constructors,
     required this.supertypes,
     this.superTypes = const [],
-    this.genericScalar = false,
     this.asyncIterableFactory,
     this.typeArguments = const [],
     this.getters = const [],
@@ -583,7 +688,6 @@ class FlaxCodegenClassModel {
     this.typeParameters = const [],
     this.proxy,
     this.widgetInterfaces = const [],
-    this.widgetGetters = const [],
     this.widgetMembers = const [],
     this.jsName,
   });
@@ -593,13 +697,11 @@ class FlaxCodegenClassModel {
   final List<FlaxCodegenGenericParameter> typeParameters;
   final FlaxCodegenProxyModel? proxy;
   final List<FlaxCodegenTypeRef> widgetInterfaces;
-  final List<FlaxCodegenGetterModel> widgetGetters;
   final List<FlaxCodegenWidgetMember> widgetMembers;
   final String? jsName;
   final List<FlaxCodegenConstructorModel> constructors;
   final List<String> supertypes;
   final List<FlaxCodegenTypeRef> superTypes;
-  final bool genericScalar;
   final String? asyncIterableFactory;
   final List<String> typeArguments;
   final List<FlaxCodegenGetterModel> getters;
@@ -691,6 +793,7 @@ class FlaxCodegenModuleModel {
     this.moduleId,
     this.requiredCapabilities = const <String>[],
     this.internalTypeNames = const <String>{},
+    this.stateVariants = const [],
   });
   final String name;
   final String library;
@@ -739,7 +842,7 @@ class FlaxCodegenModuleModel {
   /// it; the emitter then infers from wireIds or a test fallback.
   final String? moduleId;
 
-  /// Sorted unique capability literals. Protocol 20 is empty.
+  /// Sorted unique capability literals. Protocol 21 is empty.
   final List<String> requiredCapabilities;
 
   /// Generator-only visibility for dependency-owned nominal types.
@@ -748,12 +851,54 @@ class FlaxCodegenModuleModel {
   /// have runtime owners, but aggregate TypeScript output keeps their nominal
   /// declarations private to the generated module.
   final Set<String> internalTypeNames;
+  final List<FlaxCodegenStateVariantModel> stateVariants;
 
   void validate() {
     final names = <String>{
       ...classes.map((c) => c.name),
       ...types.map((t) => t.name),
     };
+    final variantNames = <String>{};
+    final variantIds = <String>{};
+    for (final variant in stateVariants) {
+      if (!flaxCodegenIsExportName(variant.name) ||
+          !variantNames.add(variant.name) ||
+          variant.id.isEmpty ||
+          !variantIds.add(variant.id) ||
+          variant.stateId.isEmpty ||
+          (variant.stateWireId?.isEmpty ?? false) ||
+          variant.mixins.isEmpty ||
+          variant.mixins.map((m) => m.id).toSet().length !=
+              variant.mixins.length) {
+        throw StateError('Invalid State proxy variant: ${variant.name}');
+      }
+      for (final interface in variant.interfaces) {
+        if (!flaxCodegenIsExportName(interface.name) ||
+            interface.id.isEmpty ||
+            interface.library.isEmpty ||
+            (interface.wireId?.isEmpty ?? false)) {
+          throw StateError('Invalid State variant interface: ${variant.name}');
+        }
+      }
+      if (!variant.superMethods.toSet().containsAll(
+        variant.mustCallSuperMethods,
+      )) {
+        throw StateError(
+          'Invalid State variant super requirements: ${variant.name}',
+        );
+      }
+      for (final getter in [...variant.getters, ...variant.setters]) {
+        getter.type.validate('${variant.name}.${getter.name}');
+      }
+      for (final method in variant.methods) {
+        method.result.validate('${variant.name}.${method.name} result');
+        for (final parameter in method.parameters) {
+          parameter.type.validate(
+            '${variant.name}.${method.name}.${parameter.name}',
+          );
+        }
+      }
+    }
     for (final function in functions) {
       final call = function.call;
       if (!names.add(call.name)) {
@@ -772,10 +917,7 @@ class FlaxCodegenModuleModel {
     final aliasNames = <String>{
       ...names,
       ...snapshots.map((snapshot) => snapshot.name),
-      for (final type in classes) ...[
-        ?type.jsName,
-        if (type.proxy?.kind == 'host') '${type.name}Lifecycle',
-      ],
+      for (final type in classes) ...[?type.jsName],
       '${name}BindingModule',
       // Type names imported by the TypeScript emitter, and intrinsic types
       // that cannot be redeclared by a public alias.
@@ -867,27 +1009,6 @@ class FlaxCodegenModuleModel {
     if (publicLibraries.isNotEmpty && topLevel?.jsName.isNotEmpty == true) {
       throw StateError('Public libraries require named top-level exports');
     }
-    if ((functions.isNotEmpty || extensions.isNotEmpty || topLevel != null) &&
-        classes.any((c) => c.proxy?.kind == 'host')) {
-      throw StateError(
-        'Host proxy modules cannot contain functions or top-level values',
-      );
-    }
-    if (classes.any((c) => c.proxy?.kind == 'host') &&
-        classes.any(
-          (c) =>
-              c.proxy?.kind != 'host' &&
-              (c.proxy != null ||
-                  c.constructors.isNotEmpty ||
-                  c.getters.isNotEmpty ||
-                  c.setters.isNotEmpty ||
-                  c.methods.isNotEmpty ||
-                  c.staticGetters.isNotEmpty),
-        )) {
-      throw StateError(
-        'Host modules may only include host proxies and empty type identities',
-      );
-    }
     for (final type in classes) {
       final category = type.category;
       if (type.asyncIterableFactory != null &&
@@ -897,6 +1018,12 @@ class FlaxCodegenModuleModel {
                   .hasMatch(type.asyncIterableFactory!))) {
         throw StateError(
           'AsyncIterable factories require a single-parameter Stream type: ${type.name}',
+        );
+      }
+      if (type.proxy != null &&
+          !{'extends', 'implements'}.contains(type.proxy!.kind)) {
+        throw StateError(
+          'Invalid proxy kind: ${type.name}.${type.proxy!.kind}',
         );
       }
       if (type.widgetMembers.isNotEmpty) {
@@ -938,7 +1065,7 @@ class FlaxCodegenModuleModel {
               type.typeParameters.isNotEmpty ||
               type.proxy != null)) {
         throw StateError(
-          'Widget interfaces require native members (legacy readonly getters are accepted): ${type.name}',
+          'Widget interfaces require native members: ${type.name}',
         );
       }
       if ((category != FlaxCodegenClassCategory.object &&
@@ -975,8 +1102,7 @@ class FlaxCodegenModuleModel {
           if (parameter.independentWidgetResult &&
               (category != FlaxCodegenClassCategory.widget ||
                   parameter.type.category != FlaxCodegenTypeCategory.callback ||
-                  parameter.type.result!.category !=
-                      FlaxCodegenTypeCategory.widget)) {
+                  !parameter.type.result!.isDirectMountedWidgetResult)) {
             throw StateError(
               'Invalid independent Widget callback: ${type.name}.${constructor.name}.${parameter.name}',
             );
@@ -987,7 +1113,6 @@ class FlaxCodegenModuleModel {
         ...type.getters,
         ...type.setters,
         ...type.staticGetters,
-        ...type.widgetGetters,
       ]) {
         getter.type.validate('${type.name}.${getter.name}');
         if (type.setters.contains(getter)) {
@@ -1012,7 +1137,7 @@ class FlaxCodegenModuleModel {
           );
         }
       }
-      if (type.proxy case final proxy? when proxy.kind != 'host') {
+      if (type.proxy case final proxy?) {
         for (final (name, callback) in proxy.callbacks) {
           callback.validate('${type.name}.$name');
           callback.validateCallbacks('${type.name}.$name', input: true);

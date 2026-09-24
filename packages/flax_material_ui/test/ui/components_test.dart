@@ -126,6 +126,77 @@ componentApi.runApp(componentApi.Center({child: selected.bind}));
   );
 
   testWidgets(
+    'State variants pass real Dart mixin capabilities and expire on dispose',
+    (t) async {
+      final h = Harness();
+      await t.pumpWidget(
+        h.app(
+          code: script('''
+var retainedVariantState;
+var retainedPlainState;
+class AnimatedState extends componentApi.SingleTickerProviderState {
+  initState() {
+    super.initState();
+    retainedVariantState = this;
+    this.controller = componentApi.TickerProviderProbe({vsync: this});
+  }
+  build() { return componentApi.Text('variant'); }
+  dispose() {
+    this.controller.dispose();
+    super.dispose();
+  }
+}
+class Animated extends componentApi.StatefulWidget {
+  createState() { return new AnimatedState(); }
+}
+class PlainState extends componentApi.State {
+  initState() { super.initState(); retainedPlainState = this; }
+  build() { return componentApi.Text('plain'); }
+}
+class Plain extends componentApi.StatefulWidget {
+  createState() { return new PlainState(); }
+}
+var variantRoot = componentApi.signal(componentApi.Column({
+  children: [new Animated(), new Plain()],
+}));
+componentApi.runApp(componentApi.Center({child: variantRoot.bind}));
+'''),
+        ),
+      );
+      expect(find.text('variant'), findsOneWidget);
+      expect(find.text('plain'), findsOneWidget);
+      expect(h.errors, isEmpty);
+
+      h.execute('''
+var plainStateRejected = false;
+try {
+  var invalidProbe = componentApi.TickerProviderProbe({vsync: retainedPlainState});
+  invalidProbe.dispose();
+} catch (_) {
+  plainStateRejected = true;
+}
+''');
+      expect(h.number('Number(plainStateRejected)'), 1);
+
+      h.execute("variantRoot.value = componentApi.Text('gone');");
+      await t.pump();
+      expect(find.text('gone'), findsOneWidget);
+      h.execute('''
+var disposedVariantRejected = false;
+try {
+  componentApi.TickerProviderProbe({vsync: retainedVariantState});
+} catch (_) {
+  disposedVariantRejected = true;
+}
+''');
+      expect(h.number('Number(disposedVariantRejected)'), 1);
+      expect(h.errors, isEmpty);
+      await t.pumpWidget(const SizedBox());
+      expect(h.runtime.isDisposed, isTrue);
+    },
+  );
+
+  testWidgets(
     'configuration updates, type keys and multiple mounts keep the right State',
     (t) async {
       final h = Harness();

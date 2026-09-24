@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flax_codegen/flax_codegen.dart';
-import 'package:flax_codegen/src/manifest_v5_codec.dart';
+import 'package:flax_codegen/src/manifest_codec.dart';
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
@@ -21,7 +21,7 @@ void main() {
   ).toString();
   String yaml(String selection) =>
       '''
-format: 1
+format: 2
 name: extensions
 library: $uri
 jsPackage: '@example/extensions'
@@ -112,8 +112,8 @@ $selection
         );
       }
 
-      final diagnostics = FlaxCodegenManifestV5Diagnostics('extension-fixture');
-      final encoded = FlaxCodegenManifestV5Codec.encodeModule(module);
+      final diagnostics = FlaxCodegenManifestDiagnostics('extension-fixture');
+      final encoded = FlaxCodegenManifestCodec.encodeModule(module);
       encoded['typeLibraries'] = {
         'FutureOr': 'dart:async',
         'ExtensionMode': 'package:example/extensions.dart',
@@ -124,14 +124,14 @@ $selection
         (encoded['typeLibraries'] as Map<String, String>).entries.toList()
           ..sort((a, b) => a.key.compareTo(b.key)),
       );
-      final decoded = FlaxCodegenManifestV5Codec.decodeModule(
+      final decoded = FlaxCodegenManifestCodec.decodeModule(
         encoded,
         diagnostics,
         '',
         module.name,
       );
       diagnostics.throwIfAny();
-      expect(FlaxCodegenManifestV5Codec.encodeModule(decoded!), encoded);
+      expect(FlaxCodegenManifestCodec.encodeModule(decoded!), encoded);
       for (final mutate in <void Function(Map<String, dynamic>)>[
         (extension) => extension['owner'] = true,
         (extension) => (extension['members'] as List).clear(),
@@ -146,9 +146,9 @@ $selection
         final malformed =
             jsonDecode(jsonEncode(encoded)) as Map<String, dynamic>;
         mutate((malformed['extensions'] as List).first as Map<String, dynamic>);
-        final errors = FlaxCodegenManifestV5Diagnostics('malformed');
+        final errors = FlaxCodegenManifestDiagnostics('malformed');
         expect(
-          FlaxCodegenManifestV5Codec.decodeModule(
+          FlaxCodegenManifestCodec.decodeModule(
             malformed,
             errors,
             '',
@@ -157,23 +157,6 @@ $selection
           isNull,
         );
         expect(errors.items, isNotEmpty);
-      }
-      for (final version in [2, 3, 4, 5, 6, 7, 8]) {
-        final errors = FlaxCodegenManifestV5Diagnostics('legacy');
-        expect(
-          FlaxCodegenManifestV5Codec.decodeModule(
-            encoded,
-            errors,
-            '',
-            module.name,
-            formatVersion: version,
-          ),
-          isNull,
-        );
-        expect(
-          errors.items.any((e) => e.pointer.endsWith('/extensions')),
-          isTrue,
-        );
       }
       final emitter = FlaxCodegenBindingEmitter([module]);
       final dart = emitter.dart(module);
@@ -201,7 +184,7 @@ const hosts = Object.fromEntries(helpers.map(name => [name, (...args) => {
 }]));
 const output = transformSync(source.replace(imports, ''), {loader: 'ts', format: 'cjs'}).code;
 const exported = {exports: {}};
-new Function('module', 'exports', 'bindingVersion', ...helpers, output)(exported, exported.exports, 20, ...helpers.map(name => hosts[name]));
+new Function('module', 'exports', 'bindingVersion', ...helpers, output)(exported, exported.exports, 21, ...helpers.map(name => hosts[name]));
 const {StringA, StringB, ListX, ShadowX} = exported.exports;
 assert.equal(calls.length, 0);
 values.push(3, 13, true, false);

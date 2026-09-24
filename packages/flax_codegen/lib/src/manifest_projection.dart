@@ -2,21 +2,21 @@ import 'dart:convert';
 
 import 'diagnostic.dart';
 import 'identity.dart';
-import 'manifest_v5.dart';
-import 'manifest_v5_codec.dart';
+import 'manifest.dart';
+import 'manifest_codec.dart';
 import 'model.dart';
 import 'ownership.dart';
 
-/// Immutable Manifest 5 direct-dependency projection for one package root.
+/// Immutable binding Manifest direct-dependency projection for one package root.
 ///
 /// Not part of any public export. Callers supply an already-valid root envelope
 /// and projections for each direct import. The factory flattens the transitive
 /// graph fail-closed under [FlaxCodegenDiagnosticCode.manifest].
-final class FlaxCodegenManifestV5Projection {
-  FlaxCodegenManifestV5Projection._({
+final class FlaxCodegenManifestProjection {
+  FlaxCodegenManifestProjection._({
     required this.source,
     required this.manifest,
-    required List<FlaxCodegenManifestV5> packageManifests,
+    required List<FlaxCodegenManifest> packageManifests,
     required Map<String, String> packageSources,
     required Map<String, _FrozenModule> modulesByModuleId,
     required Map<FlaxCodegenSourceIdentity, _AuthoritativeOwner> ownersBySource,
@@ -31,10 +31,10 @@ final class FlaxCodegenManifestV5Projection {
   final String source;
 
   /// Root package envelope.
-  final FlaxCodegenManifestV5 manifest;
+  final FlaxCodegenManifest manifest;
 
   /// Root plus every transitive dependency manifest, sorted by Dart package name.
-  final List<FlaxCodegenManifestV5> packageManifests;
+  final List<FlaxCodegenManifest> packageManifests;
 
   /// Per Dart package diagnostic origin, including [manifest].
   final Map<String, String> _packageSources;
@@ -73,12 +73,12 @@ final class FlaxCodegenManifestV5Projection {
 
   /// Builds a projection from an already-valid root and direct dependency
   /// projections. Throws [FlaxCodegenException] with `FCG_MANIFEST` diagnostics.
-  factory FlaxCodegenManifestV5Projection({
-    required FlaxCodegenManifestV5 root,
-    required Map<String, FlaxCodegenManifestV5Projection> directDependencies,
+  factory FlaxCodegenManifestProjection({
+    required FlaxCodegenManifest root,
+    required Map<String, FlaxCodegenManifestProjection> directDependencies,
     required String source,
   }) {
-    final diagnostics = FlaxCodegenManifestV5Diagnostics(source);
+    final diagnostics = FlaxCodegenManifestDiagnostics(source);
     final built = _build(
       root: root,
       directDependencies: directDependencies,
@@ -103,8 +103,8 @@ final class _FrozenModule {
   final String semanticJson;
 
   FlaxCodegenModuleModel snapshot() {
-    final diagnostics = FlaxCodegenManifestV5Diagnostics('');
-    final decoded = FlaxCodegenManifestV5Codec.decodeModule(
+    final diagnostics = FlaxCodegenManifestDiagnostics('');
+    final decoded = FlaxCodegenManifestCodec.decodeModule(
       jsonDecode(semanticJson),
       diagnostics,
       '',
@@ -128,6 +128,7 @@ final class _FrozenModule {
       publicLibraries: decoded.publicLibraries,
       moduleId: moduleId,
       requiredCapabilities: requiredCapabilities,
+      stateVariants: decoded.stateVariants,
     );
   }
 }
@@ -156,14 +157,14 @@ final class _OwnerOccurrence {
 
   final String dartPackage;
   final String manifestSource;
-  final FlaxCodegenManifestV5Identity identity;
+  final FlaxCodegenManifestIdentity identity;
   final FlaxCodegenSourceLocation location;
 }
 
-FlaxCodegenManifestV5Projection? _build({
-  required FlaxCodegenManifestV5 root,
-  required Map<String, FlaxCodegenManifestV5Projection> directDependencies,
-  required FlaxCodegenManifestV5Diagnostics diagnostics,
+FlaxCodegenManifestProjection? _build({
+  required FlaxCodegenManifest root,
+  required Map<String, FlaxCodegenManifestProjection> directDependencies,
+  required FlaxCodegenManifestDiagnostics diagnostics,
 }) {
   final start = diagnostics.items.length;
   _diagnoseDirectDependencies(
@@ -172,7 +173,7 @@ FlaxCodegenManifestV5Projection? _build({
     diagnostics: diagnostics,
   );
 
-  final byPackage = <String, FlaxCodegenManifestV5>{};
+  final byPackage = <String, FlaxCodegenManifest>{};
   final claimedSources = <String, Set<String>>{
     root.package: {diagnostics.source},
   };
@@ -279,7 +280,7 @@ FlaxCodegenManifestV5Projection? _build({
   final modulesByModuleId = <String, _FrozenModule>{};
   for (final package in packages) {
     for (final module in package.modules) {
-      final semantic = FlaxCodegenManifestV5Codec.encodeModule(
+      final semantic = FlaxCodegenManifestCodec.encodeModule(
         module.model.module,
       );
       modulesByModuleId[module.moduleId.value] = _FrozenModule(
@@ -301,7 +302,7 @@ FlaxCodegenManifestV5Projection? _build({
         ),
   ];
 
-  return FlaxCodegenManifestV5Projection._(
+  return FlaxCodegenManifestProjection._(
     source: diagnostics.source,
     manifest: root,
     packageManifests: packages,
@@ -313,9 +314,9 @@ FlaxCodegenManifestV5Projection? _build({
 }
 
 void _diagnoseDirectDependencies({
-  required FlaxCodegenManifestV5 root,
-  required Map<String, FlaxCodegenManifestV5Projection> directDependencies,
-  required FlaxCodegenManifestV5Diagnostics diagnostics,
+  required FlaxCodegenManifest root,
+  required Map<String, FlaxCodegenManifestProjection> directDependencies,
+  required FlaxCodegenManifestDiagnostics diagnostics,
 }) {
   final expected = root.imports;
   final expectedSet = expected.toSet();
@@ -326,7 +327,7 @@ void _diagnoseDirectDependencies({
     final name = expected[index];
     if (!actualSet.contains(name)) {
       diagnostics.add(
-        pointer: flaxCodegenManifestV5Pointer('/imports', '$index'),
+        pointer: flaxCodegenManifestPointer('/imports', '$index'),
         message: 'Missing import.',
       );
     }
@@ -334,7 +335,7 @@ void _diagnoseDirectDependencies({
   for (final name in actualKeys) {
     if (!expectedSet.contains(name)) {
       diagnostics.add(
-        pointer: flaxCodegenManifestV5Pointer('/imports', name),
+        pointer: flaxCodegenManifestPointer('/imports', name),
         message: 'Unexpected import.',
       );
       continue;
@@ -345,7 +346,7 @@ void _diagnoseDirectDependencies({
     final projection = directDependencies[name]!;
     if (projection.manifest.package != name) {
       diagnostics.add(
-        pointer: flaxCodegenManifestV5Pointer('/imports', name),
+        pointer: flaxCodegenManifestPointer('/imports', name),
         message: 'Import package mismatch.',
       );
     }
@@ -353,11 +354,11 @@ void _diagnoseDirectDependencies({
 }
 
 void _addPackage(
-  Map<String, FlaxCodegenManifestV5> byPackage,
+  Map<String, FlaxCodegenManifest> byPackage,
   Map<String, Set<String>> claimedSources,
-  FlaxCodegenManifestV5 package,
+  FlaxCodegenManifest package,
   String packageSource,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
 ) {
   final prior = byPackage[package.package];
   if (prior == null) {
@@ -374,7 +375,7 @@ void _addPackage(
 
 void _diagnoseConflictingPackageSources(
   Map<String, Set<String>> claimedSources,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
 ) {
   final packages = claimedSources.keys.toList()..sort();
   for (final package in packages) {
@@ -387,16 +388,16 @@ void _diagnoseConflictingPackageSources(
 }
 
 String _packageSourceOf(
-  FlaxCodegenManifestV5Projection projection,
+  FlaxCodegenManifestProjection projection,
   String dartPackage,
 ) => projection._packageSources[dartPackage]!;
 
 void _diagnoseBindingNamespaces(
-  List<FlaxCodegenManifestV5> packages,
+  List<FlaxCodegenManifest> packages,
   Map<String, String> packageSources,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
 ) {
-  final byNamespace = <String, List<FlaxCodegenManifestV5>>{};
+  final byNamespace = <String, List<FlaxCodegenManifest>>{};
   for (final package in packages) {
     byNamespace
         .putIfAbsent(package.bindingNamespace.value, () => [])
@@ -418,11 +419,11 @@ void _diagnoseBindingNamespaces(
 }
 
 void _diagnoseDuplicateModuleIds(
-  List<FlaxCodegenManifestV5> packages,
+  List<FlaxCodegenManifest> packages,
   Map<String, String> packageSources,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
 ) {
-  final byModuleId = <String, List<(FlaxCodegenManifestV5, int)>>{};
+  final byModuleId = <String, List<(FlaxCodegenManifest, int)>>{};
   for (final package in packages) {
     for (var index = 0; index < package.modules.length; index++) {
       final module = package.modules[index];
@@ -440,7 +441,7 @@ void _diagnoseDuplicateModuleIds(
       _addForPackage(
         diagnostics,
         packageSources[package.package]!,
-        flaxCodegenManifestV5Pointer('/modules', '$index'),
+        flaxCodegenManifestPointer('/modules', '$index'),
         'Duplicate moduleId.',
       );
     }
@@ -450,7 +451,7 @@ void _diagnoseDuplicateModuleIds(
 void _diagnoseAuthoritativeOwners(
   Map<FlaxCodegenSourceIdentity, List<_OwnerOccurrence>> ownersBySource,
   Map<String, List<_OwnerOccurrence>> ownersByWire,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
 ) {
   for (final group in ownersBySource.values) {
     if (group.length < 2) continue;
@@ -483,12 +484,12 @@ void _diagnoseAuthoritativeOwners(
 }
 
 void _diagnoseDependentOwnership({
-  required List<FlaxCodegenManifestV5> packages,
+  required List<FlaxCodegenManifest> packages,
   required Map<String, String> packageSources,
   required Map<FlaxCodegenSourceIdentity, List<_OwnerOccurrence>>
   ownersBySource,
   required Map<String, List<_OwnerOccurrence>> ownersByWire,
-  required FlaxCodegenManifestV5Diagnostics diagnostics,
+  required FlaxCodegenManifestDiagnostics diagnostics,
 }) {
   final byName = {for (final package in packages) package.package: package};
   for (final package in packages) {
@@ -566,10 +567,10 @@ void _diagnoseDependentOwnership({
 }
 
 void _diagnoseReferenceOwners({
-  required List<FlaxCodegenManifestV5> packages,
+  required List<FlaxCodegenManifest> packages,
   required Map<String, String> packageSources,
   required Map<FlaxCodegenSourceIdentity, _AuthoritativeOwner> authoritative,
-  required FlaxCodegenManifestV5Diagnostics diagnostics,
+  required FlaxCodegenManifestDiagnostics diagnostics,
 }) {
   for (final package in packages) {
     final packageSource = packageSources[package.package]!;
@@ -607,9 +608,9 @@ void _diagnoseReferenceOwners({
 }
 
 void _diagnoseReadonlyReferences(
-  List<FlaxCodegenManifestV5> packages,
+  List<FlaxCodegenManifest> packages,
   Map<String, String> sources,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
 ) {
   final providers = <String, FlaxCodegenTopLevelGetterModel>{
     for (final package in packages)
@@ -631,11 +632,9 @@ void _diagnoseReadonlyReferences(
             provider.name != getter.name ||
             provider.kind != getter.kind ||
             provider.literal != getter.literal ||
-            jsonEncode(
-                  FlaxCodegenManifestV5Codec.encodeTypeRef(provider.type),
-                ) !=
+            jsonEncode(FlaxCodegenManifestCodec.encodeTypeRef(provider.type)) !=
                 jsonEncode(
-                  FlaxCodegenManifestV5Codec.encodeTypeRef(getter.type),
+                  FlaxCodegenManifestCodec.encodeTypeRef(getter.type),
                 )) {
           _addForPackage(
             diagnostics,
@@ -650,9 +649,9 @@ void _diagnoseReadonlyReferences(
 }
 
 void _diagnoseSetterReferences(
-  List<FlaxCodegenManifestV5> packages,
+  List<FlaxCodegenManifest> packages,
   Map<String, String> sources,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
 ) {
   final providers = <String, FlaxCodegenTopLevelSetterModel>{
     for (final package in packages)
@@ -672,11 +671,9 @@ void _diagnoseSetterReferences(
         final provider = providers[setter.id];
         if (provider == null ||
             provider.name != setter.name ||
-            jsonEncode(
-                  FlaxCodegenManifestV5Codec.encodeTypeRef(provider.type),
-                ) !=
+            jsonEncode(FlaxCodegenManifestCodec.encodeTypeRef(provider.type)) !=
                 jsonEncode(
-                  FlaxCodegenManifestV5Codec.encodeTypeRef(setter.type),
+                  FlaxCodegenManifestCodec.encodeTypeRef(setter.type),
                 )) {
           _addForPackage(
             diagnostics,
@@ -692,7 +689,7 @@ void _diagnoseSetterReferences(
 
 Set<String> _importClosure(
   String packageName,
-  Map<String, FlaxCodegenManifestV5> byName,
+  Map<String, FlaxCodegenManifest> byName,
 ) {
   final seen = <String>{};
   void walk(String name) {
@@ -709,7 +706,7 @@ Set<String> _importClosure(
 }
 
 FlaxCodegenImportedPackage _importedPackage({
-  required FlaxCodegenManifestV5 package,
+  required FlaxCodegenManifest package,
   required String packageSource,
   required Map<FlaxCodegenSourceIdentity, _AuthoritativeOwner> authoritative,
 }) {
@@ -749,7 +746,7 @@ int _compareImportedOwners(
 
 FlaxCodegenSourceLocation _manifestLocation(
   String packageSource,
-  FlaxCodegenManifestV5 package,
+  FlaxCodegenManifest package,
   int moduleIndex,
   int identityIndex,
 ) => FlaxCodegenSourceLocation(
@@ -761,13 +758,13 @@ FlaxCodegenSourceLocation _manifestLocation(
 );
 
 String _identityPointer(
-  FlaxCodegenManifestV5 package,
+  FlaxCodegenManifest package,
   int moduleIndex,
   int identityIndex,
-) => flaxCodegenManifestV5Pointer(
-  flaxCodegenManifestV5Pointer(
-    flaxCodegenManifestV5Pointer(
-      flaxCodegenManifestV5Pointer('/modules', '$moduleIndex'),
+) => flaxCodegenManifestPointer(
+  flaxCodegenManifestPointer(
+    flaxCodegenManifestPointer(
+      flaxCodegenManifestPointer('/modules', '$moduleIndex'),
       'model',
     ),
     'identities',
@@ -776,7 +773,7 @@ String _identityPointer(
 );
 
 void _addForPackage(
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
   String packageSource,
   String pointer,
   String message,
@@ -795,9 +792,9 @@ void _addForPackage(
 }
 
 void _diagnoseExtensionReferences(
-  List<FlaxCodegenManifestV5> packages,
+  List<FlaxCodegenManifest> packages,
   Map<String, String> sources,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
 ) {
   final providers = <String, FlaxCodegenExtensionModel>{};
   final declarations = <String>{};
@@ -841,7 +838,7 @@ void _diagnoseExtensionReferences(
               .firstOrNull;
           Map<String, Object?> declaration(
             FlaxCodegenExtensionModel extension,
-          ) => FlaxCodegenManifestV5Codec.encodeExtension(extension)
+          ) => FlaxCodegenManifestCodec.encodeExtension(extension)
             ..remove('members')
             ..remove('isReference');
           if (provider == null ||
@@ -852,11 +849,9 @@ void _diagnoseExtensionReferences(
               extension.originatingUri != provider.originatingUri ||
               member.kind != original.kind ||
               member.name != original.name ||
-              jsonEncode(
-                    FlaxCodegenManifestV5Codec.encodeMethod(member.call),
-                  ) !=
+              jsonEncode(FlaxCodegenManifestCodec.encodeMethod(member.call)) !=
                   jsonEncode(
-                    FlaxCodegenManifestV5Codec.encodeMethod(original.call),
+                    FlaxCodegenManifestCodec.encodeMethod(original.call),
                   )) {
             _addForPackage(
               diagnostics,

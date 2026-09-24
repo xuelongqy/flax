@@ -478,15 +478,13 @@ Future<void> main(List<String> args) async {
     _writeOmitScale(out.path, omitScale);
 
     final counts = countInventory(inventory);
-    final legacy = legacyCensusView(inventory);
-    final insights = firstBatchInsights(inventory);
+    final insights = capabilityInsights(inventory);
     File(p.join(out.path, 'inventory.json'))
         .writeAsStringSync(prettyJson(inventory.toJson()));
     File(p.join(out.path, 'summary.json')).writeAsStringSync(
       prettyJson({
         'entry': entry,
         'counts': counts.toJson(),
-        'legacyCensus': legacy,
         'insights': insights,
         'flutterPublicLibraries': flutterLibraries,
         'generics': genericResults,
@@ -495,11 +493,10 @@ Future<void> main(List<String> args) async {
         'omitScale': omitScale,
       }),
     );
-    final markdown = firstBatchMarkdown(
+    final markdown = capabilityMarkdown(
       baseline: baseline,
       inventory: inventory,
       counts: counts,
-      legacy: legacy,
       genericResults: genericResults,
       defaultResults: defaultResults,
       flutterLibraries: flutterLibraries,
@@ -507,7 +504,7 @@ Future<void> main(List<String> args) async {
       explicitGenerics: explicitGenerics,
       omitScale: omitScale,
     );
-    File(p.join(out.path, 'FIRST_BATCH.md')).writeAsStringSync(markdown);
+    File(p.join(out.path, 'REPORT.md')).writeAsStringSync(markdown);
     stdout.writeln(markdown);
     if (!skipStage3) {
       await _runStage3(

@@ -53,3 +53,8 @@ export {
   State,
   type WidgetOptions,
 } from './components.js';
+export {
+  SingleTickerProviderState,
+  TickerProviderState,
+  KeepAliveTickerState,
+} from './generated/libraries/widgets/components.js';

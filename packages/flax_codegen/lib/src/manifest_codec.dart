@@ -42,7 +42,12 @@ const _genericKeys = {'name', 'bound', 'defaultType', 'slot'};
 
 const _getterKeys = {'name', 'type', 'encodeKind'};
 
-const _constructorKeys = {'name', 'parameters'};
+const _constructorKeys = {'name', 'parameters', 'specializations'};
+const _constructorSpecializationKeys = {
+  'typeArguments',
+  'parameterTypes',
+  'runtimeDomains',
+};
 
 const _methodKeys = {
   'name',
@@ -57,6 +62,22 @@ const _methodKeys = {
 };
 
 const _proxyKeys = {'kind', 'methods', 'superMethods', 'getters', 'setters'};
+const _stateMixinKeys = {'name', 'sourceId', 'library', 'typeArguments'};
+const _stateInterfaceKeys = {'name', 'sourceId', 'wireId', 'library'};
+const _stateVariantKeys = {
+  'name',
+  'variantId',
+  'stateId',
+  'stateWireId',
+  'mixins',
+  'interfaces',
+  'getters',
+  'setters',
+  'methods',
+  'superMethods',
+  'mustCallSuperMethods',
+  'providerModule',
+};
 
 const _pageAdapterKeys = {'library', 'function'};
 
@@ -67,7 +88,6 @@ const _classKeys = {
   'id',
   'kind',
   'jsName',
-  'genericScalar',
   'asyncIterableFactory',
   'typeArguments',
   'typeParameters',
@@ -77,7 +97,6 @@ const _classKeys = {
   'staticGetters',
   'methods',
   'widgetInterfaces',
-  'widgetGetters',
   'widgetMembers',
   'supertypes',
   'superTypes',
@@ -120,17 +139,18 @@ const _moduleKeys = {
   'functions',
   'snapshots',
   'typedefs',
+  'stateVariants',
 };
 
 const _sourceIdentityKeys = {'kind', 'originatingUri', 'name'};
 
 const _identityKeys = {'sourceIdentity', 'wireId', 'owner'};
 
-/// Manifest 5 ownership row: originating source, authoritative wireId, and
+/// binding Manifest ownership row: originating source, authoritative wireId, and
 /// whether this module owns the identity. Module-wide ownership and duplicate
 /// checks remain on the envelope slice.
-final class FlaxCodegenManifestV5Identity {
-  const FlaxCodegenManifestV5Identity({
+final class FlaxCodegenManifestIdentity {
+  const FlaxCodegenManifestIdentity({
     required this.sourceIdentity,
     required this.wireId,
     required this.owner,
@@ -143,8 +163,8 @@ final class FlaxCodegenManifestV5Identity {
 
 /// Fail-closed manifest diagnostics. JSON values have no spans; [source]
 /// and the RFC 6901 [FlaxCodegenDiagnostic.pointer] locate each issue.
-final class FlaxCodegenManifestV5Diagnostics {
-  FlaxCodegenManifestV5Diagnostics(this.source);
+final class FlaxCodegenManifestDiagnostics {
+  FlaxCodegenManifestDiagnostics(this.source);
 
   final String source;
   final List<FlaxCodegenDiagnostic> items = [];
@@ -170,19 +190,19 @@ final class FlaxCodegenManifestV5Diagnostics {
 }
 
 /// Joins [parent] and one RFC 6901 reference token.
-String flaxCodegenManifestV5Pointer(String parent, String token) =>
+String flaxCodegenManifestPointer(String parent, String token) =>
     '$parent/${FlaxCodegenDiagnostic.jsonPointerToken(token)}';
 
-/// Closed-key JSON object reader shared by Manifest 5 codecs.
-final class FlaxCodegenManifestV5Object {
-  FlaxCodegenManifestV5Object._(this.diagnostics, this.pointer, this._fields);
+/// Closed-key JSON object reader shared by binding Manifest codecs.
+final class FlaxCodegenManifestObject {
+  FlaxCodegenManifestObject._(this.diagnostics, this.pointer, this._fields);
 
-  final FlaxCodegenManifestV5Diagnostics diagnostics;
+  final FlaxCodegenManifestDiagnostics diagnostics;
   final String pointer;
   final Map<String, Object?> _fields;
 
-  static FlaxCodegenManifestV5Object? read(
-    FlaxCodegenManifestV5Diagnostics diagnostics,
+  static FlaxCodegenManifestObject? read(
+    FlaxCodegenManifestDiagnostics diagnostics,
     Object? value,
     String pointer,
     Set<String> keys,
@@ -204,16 +224,16 @@ final class FlaxCodegenManifestV5Object {
       }
       if (!keys.contains(key)) {
         diagnostics.add(
-          pointer: flaxCodegenManifestV5Pointer(pointer, key),
+          pointer: flaxCodegenManifestPointer(pointer, key),
           message: 'Unknown field.',
         );
       }
       fields[key] = entry.value;
     }
-    return FlaxCodegenManifestV5Object._(diagnostics, pointer, fields);
+    return FlaxCodegenManifestObject._(diagnostics, pointer, fields);
   }
 
-  String child(String key) => flaxCodegenManifestV5Pointer(pointer, key);
+  String child(String key) => flaxCodegenManifestPointer(pointer, key);
 
   String? requiredString(String key) {
     final value = _required(key);
@@ -284,7 +304,7 @@ final class FlaxCodegenManifestV5Object {
     for (var index = 0; index < items.length; index++) {
       final item = read(
         items[index],
-        flaxCodegenManifestV5Pointer(child(key), '$index'),
+        flaxCodegenManifestPointer(child(key), '$index'),
       );
       if (item == null) {
         ok = false;
@@ -325,7 +345,7 @@ final class _Missing {
   const _Missing();
 }
 
-abstract final class FlaxCodegenManifestV5Codec {
+abstract final class FlaxCodegenManifestCodec {
   static Map<String, Object?> encodeExtension(
     FlaxCodegenExtensionModel extension,
   ) => _encodeExtension(extension);
@@ -335,7 +355,7 @@ abstract final class FlaxCodegenManifestV5Codec {
 
   static FlaxCodegenTypeRef? decodeTypeRef(
     Object? value,
-    FlaxCodegenManifestV5Diagnostics diagnostics,
+    FlaxCodegenManifestDiagnostics diagnostics,
     String pointer,
   ) => _decodeType(value, diagnostics, pointer);
 
@@ -345,7 +365,7 @@ abstract final class FlaxCodegenManifestV5Codec {
 
   static FlaxCodegenParameterModel? decodeParameter(
     Object? value,
-    FlaxCodegenManifestV5Diagnostics diagnostics,
+    FlaxCodegenManifestDiagnostics diagnostics,
     String pointer,
   ) => _decodeParameter(value, diagnostics, pointer);
 
@@ -355,7 +375,7 @@ abstract final class FlaxCodegenManifestV5Codec {
 
   static FlaxCodegenGenericParameter? decodeGenericParameter(
     Object? value,
-    FlaxCodegenManifestV5Diagnostics diagnostics,
+    FlaxCodegenManifestDiagnostics diagnostics,
     String pointer,
   ) => _decodeGeneric(value, diagnostics, pointer);
 
@@ -364,7 +384,7 @@ abstract final class FlaxCodegenManifestV5Codec {
 
   static FlaxCodegenGetterModel? decodeGetter(
     Object? value,
-    FlaxCodegenManifestV5Diagnostics diagnostics,
+    FlaxCodegenManifestDiagnostics diagnostics,
     String pointer,
   ) => _decodeGetter(value, diagnostics, pointer);
 
@@ -374,7 +394,7 @@ abstract final class FlaxCodegenManifestV5Codec {
 
   static FlaxCodegenConstructorModel? decodeConstructor(
     Object? value,
-    FlaxCodegenManifestV5Diagnostics diagnostics,
+    FlaxCodegenManifestDiagnostics diagnostics,
     String pointer,
   ) => _decodeConstructor(value, diagnostics, pointer);
 
@@ -383,7 +403,7 @@ abstract final class FlaxCodegenManifestV5Codec {
 
   static FlaxCodegenMethodModel? decodeMethod(
     Object? value,
-    FlaxCodegenManifestV5Diagnostics diagnostics,
+    FlaxCodegenManifestDiagnostics diagnostics,
     String pointer,
   ) => _decodeMethod(value, diagnostics, pointer);
 
@@ -392,7 +412,7 @@ abstract final class FlaxCodegenManifestV5Codec {
 
   static FlaxCodegenProxyModel? decodeProxy(
     Object? value,
-    FlaxCodegenManifestV5Diagnostics diagnostics,
+    FlaxCodegenManifestDiagnostics diagnostics,
     String pointer,
   ) => _decodeProxy(value, diagnostics, pointer);
 
@@ -402,7 +422,7 @@ abstract final class FlaxCodegenManifestV5Codec {
 
   static FlaxCodegenPageAdapterModel? decodePageAdapter(
     Object? value,
-    FlaxCodegenManifestV5Diagnostics diagnostics,
+    FlaxCodegenManifestDiagnostics diagnostics,
     String pointer,
   ) => _decodePageAdapter(value, diagnostics, pointer);
 
@@ -412,7 +432,7 @@ abstract final class FlaxCodegenManifestV5Codec {
 
   static FlaxCodegenRouteCallModel? decodeRouteCall(
     Object? value,
-    FlaxCodegenManifestV5Diagnostics diagnostics,
+    FlaxCodegenManifestDiagnostics diagnostics,
     String pointer,
   ) => _decodeRouteCall(value, diagnostics, pointer);
 
@@ -421,7 +441,7 @@ abstract final class FlaxCodegenManifestV5Codec {
 
   static FlaxCodegenClassModel? decodeClass(
     Object? value,
-    FlaxCodegenManifestV5Diagnostics diagnostics,
+    FlaxCodegenManifestDiagnostics diagnostics,
     String pointer,
   ) => _decodeClass(value, diagnostics, pointer);
 
@@ -430,7 +450,7 @@ abstract final class FlaxCodegenManifestV5Codec {
 
   static FlaxCodegenNamedTypeModel? decodeNamedType(
     Object? value,
-    FlaxCodegenManifestV5Diagnostics diagnostics,
+    FlaxCodegenManifestDiagnostics diagnostics,
     String pointer,
   ) => _decodeNamedType(value, diagnostics, pointer);
 
@@ -440,7 +460,7 @@ abstract final class FlaxCodegenManifestV5Codec {
 
   static FlaxCodegenFunctionModel? decodeFunction(
     Object? value,
-    FlaxCodegenManifestV5Diagnostics diagnostics,
+    FlaxCodegenManifestDiagnostics diagnostics,
     String pointer,
   ) => _decodeFunction(value, diagnostics, pointer);
 
@@ -450,7 +470,7 @@ abstract final class FlaxCodegenManifestV5Codec {
 
   static FlaxCodegenSnapshotModel? decodeSnapshot(
     Object? value,
-    FlaxCodegenManifestV5Diagnostics diagnostics,
+    FlaxCodegenManifestDiagnostics diagnostics,
     String pointer,
   ) => _decodeSnapshot(value, diagnostics, pointer);
 
@@ -460,7 +480,7 @@ abstract final class FlaxCodegenManifestV5Codec {
 
   static FlaxCodegenSnapshotFieldModel? decodeSnapshotField(
     Object? value,
-    FlaxCodegenManifestV5Diagnostics diagnostics,
+    FlaxCodegenManifestDiagnostics diagnostics,
     String pointer,
   ) => _decodeSnapshotField(value, diagnostics, pointer);
 
@@ -471,11 +491,10 @@ abstract final class FlaxCodegenManifestV5Codec {
   /// module entry; reconstructed models use empty owner-local output paths.
   static FlaxCodegenModuleModel? decodeModule(
     Object? value,
-    FlaxCodegenManifestV5Diagnostics diagnostics,
+    FlaxCodegenManifestDiagnostics diagnostics,
     String pointer,
-    String name, {
-    int formatVersion = 11,
-  }) => _decodeModule(value, diagnostics, pointer, name, formatVersion);
+    String name,
+  ) => _decodeModule(value, diagnostics, pointer, name);
 
   static Map<String, Object?> encodeSourceIdentity(
     FlaxCodegenSourceIdentity identity,
@@ -483,17 +502,17 @@ abstract final class FlaxCodegenManifestV5Codec {
 
   static FlaxCodegenSourceIdentity? decodeSourceIdentity(
     Object? value,
-    FlaxCodegenManifestV5Diagnostics diagnostics,
+    FlaxCodegenManifestDiagnostics diagnostics,
     String pointer,
   ) => _decodeSourceIdentity(value, diagnostics, pointer);
 
   static Map<String, Object?> encodeIdentity(
-    FlaxCodegenManifestV5Identity identity,
+    FlaxCodegenManifestIdentity identity,
   ) => _encodeIdentity(identity);
 
-  static FlaxCodegenManifestV5Identity? decodeIdentity(
+  static FlaxCodegenManifestIdentity? decodeIdentity(
     Object? value,
-    FlaxCodegenManifestV5Diagnostics diagnostics,
+    FlaxCodegenManifestDiagnostics diagnostics,
     String pointer,
   ) => _decodeIdentity(value, diagnostics, pointer);
 }
@@ -679,12 +698,12 @@ List<int> _namedParameterIndexes(List<FlaxCodegenParameterModel> parameters) {
 
 FlaxCodegenTypeRef? _decodeType(
   Object? value,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
   String pointer, [
   _SlotDecodeScope? scope,
 ]) {
   final start = diagnostics.items.length;
-  final object = FlaxCodegenManifestV5Object.read(diagnostics, value, pointer, {
+  final object = FlaxCodegenManifestObject.read(diagnostics, value, pointer, {
     ..._typeKeys,
     if (value is Map && value['kind'] == 'typeOnly') ...{
       'originatingUri',
@@ -765,7 +784,7 @@ FlaxCodegenTypeRef? _decodeType(
       recordFields == null) {
     return null;
   }
-  final slotPointer = flaxCodegenManifestV5Pointer(pointer, 'slot');
+  final slotPointer = flaxCodegenManifestPointer(pointer, 'slot');
   Object? genericIdentity;
   if (kind == 'parameter') {
     genericIdentity = _resolveParameterSlot(
@@ -810,12 +829,12 @@ FlaxCodegenTypeRef? _decodeType(
 
 FlaxCodegenRecordFieldModel? _decodeRecordField(
   Object? value,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
   String pointer,
   _SlotDecodeScope? scope,
 ) {
   final start = diagnostics.items.length;
-  final object = FlaxCodegenManifestV5Object.read(
+  final object = FlaxCodegenManifestObject.read(
     diagnostics,
     value,
     pointer,
@@ -839,8 +858,8 @@ FlaxCodegenRecordFieldModel? _decodeRecordField(
 }
 
 FlaxCodegenTypeRef? _decodeCallbackType(
-  FlaxCodegenManifestV5Object object,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestObject object,
+  FlaxCodegenManifestDiagnostics diagnostics,
   String pointer,
   _SlotDecodeScope? parent,
   int start,
@@ -850,7 +869,7 @@ FlaxCodegenTypeRef? _decodeCallbackType(
   final name = object.nullableString('name');
   final nullable = object.requiredBool('nullable');
   final slot = object.nullableString('slot');
-  final slotPointer = flaxCodegenManifestV5Pointer(pointer, 'slot');
+  final slotPointer = flaxCodegenManifestPointer(pointer, 'slot');
   if (slot != null) {
     diagnostics.add(pointer: slotPointer, message: 'Unexpected slot.');
   }
@@ -858,14 +877,14 @@ FlaxCodegenTypeRef? _decodeCallbackType(
   final typeParametersValue = object._fields['typeParameters'];
   if (!object._fields.containsKey('typeParameters')) {
     diagnostics.add(
-      pointer: flaxCodegenManifestV5Pointer(pointer, 'typeParameters'),
+      pointer: flaxCodegenManifestPointer(pointer, 'typeParameters'),
       message: 'Missing field.',
     );
   }
   final typeParametersJson = _jsonList(typeParametersValue);
   if (typeParametersValue != null && typeParametersJson == null) {
     diagnostics.add(
-      pointer: flaxCodegenManifestV5Pointer(pointer, 'typeParameters'),
+      pointer: flaxCodegenManifestPointer(pointer, 'typeParameters'),
       message: 'Expected a list.',
     );
   }
@@ -873,12 +892,12 @@ FlaxCodegenTypeRef? _decodeCallbackType(
   final reservedIndexes = <int>[];
   final pendingGenerics = <_PendingGeneric>[];
   if (typeParametersJson != null) {
-    final typeParametersPointer = flaxCodegenManifestV5Pointer(
+    final typeParametersPointer = flaxCodegenManifestPointer(
       pointer,
       'typeParameters',
     );
     for (var index = 0; index < typeParametersJson.length; index++) {
-      final genericPointer = flaxCodegenManifestV5Pointer(
+      final genericPointer = flaxCodegenManifestPointer(
         typeParametersPointer,
         '$index',
       );
@@ -902,7 +921,7 @@ FlaxCodegenTypeRef? _decodeCallbackType(
       _decodeType(
         pending.boundJson,
         diagnostics,
-        flaxCodegenManifestV5Pointer(pending.pointer, 'bound'),
+        flaxCodegenManifestPointer(pending.pointer, 'bound'),
         scope,
       ),
   ];
@@ -913,7 +932,7 @@ FlaxCodegenTypeRef? _decodeCallbackType(
           : _decodeType(
               pending.defaultTypeJson,
               diagnostics,
-              flaxCodegenManifestV5Pointer(pending.pointer, 'defaultType'),
+              flaxCodegenManifestPointer(pending.pointer, 'defaultType'),
               scope,
             ),
   ];
@@ -926,26 +945,23 @@ FlaxCodegenTypeRef? _decodeCallbackType(
   final parametersValue = object._fields['parameters'];
   if (!object._fields.containsKey('parameters')) {
     diagnostics.add(
-      pointer: flaxCodegenManifestV5Pointer(pointer, 'parameters'),
+      pointer: flaxCodegenManifestPointer(pointer, 'parameters'),
       message: 'Missing field.',
     );
   }
   final parametersJson = _jsonList(parametersValue);
   if (parametersValue != null && parametersJson == null) {
     diagnostics.add(
-      pointer: flaxCodegenManifestV5Pointer(pointer, 'parameters'),
+      pointer: flaxCodegenManifestPointer(pointer, 'parameters'),
       message: 'Expected a list.',
     );
   }
 
   final pendingParameters = <_PendingParameter>[];
   if (parametersJson != null) {
-    final parametersPointer = flaxCodegenManifestV5Pointer(
-      pointer,
-      'parameters',
-    );
+    final parametersPointer = flaxCodegenManifestPointer(pointer, 'parameters');
     for (var index = 0; index < parametersJson.length; index++) {
-      final parameterPointer = flaxCodegenManifestV5Pointer(
+      final parameterPointer = flaxCodegenManifestPointer(
         parametersPointer,
         '$index',
       );
@@ -968,7 +984,7 @@ FlaxCodegenTypeRef? _decodeCallbackType(
     parameterTypes[index] = _decodeType(
       pending.typeJson,
       diagnostics,
-      flaxCodegenManifestV5Pointer(pending.pointer, 'type'),
+      flaxCodegenManifestPointer(pending.pointer, 'type'),
       scope,
     );
   }
@@ -990,7 +1006,7 @@ FlaxCodegenTypeRef? _decodeCallbackType(
     parameterTypes[index] = _decodeType(
       pending.typeJson,
       diagnostics,
-      flaxCodegenManifestV5Pointer(pending.pointer, 'type'),
+      flaxCodegenManifestPointer(pending.pointer, 'type'),
       scope,
     );
   }
@@ -1094,11 +1110,11 @@ FlaxCodegenTypeRef? _decodeCallbackType(
 
 _PendingParameter? _readParameterShell(
   Object? value,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
   String pointer,
 ) {
   final start = diagnostics.items.length;
-  final object = FlaxCodegenManifestV5Object.read(
+  final object = FlaxCodegenManifestObject.read(
     diagnostics,
     value,
     pointer,
@@ -1108,7 +1124,7 @@ _PendingParameter? _readParameterShell(
   final name = object.requiredString('name');
   if (!object._fields.containsKey('type')) {
     diagnostics.add(
-      pointer: flaxCodegenManifestV5Pointer(pointer, 'type'),
+      pointer: flaxCodegenManifestPointer(pointer, 'type'),
       message: 'Missing field.',
     );
   }
@@ -1150,12 +1166,12 @@ _PendingParameter? _readParameterShell(
 
 _PendingGeneric? _reserveGenericDeclaration(
   Object? value,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
   String pointer,
   _SlotDecodeScope scope,
 ) {
   final start = diagnostics.items.length;
-  final object = FlaxCodegenManifestV5Object.read(
+  final object = FlaxCodegenManifestObject.read(
     diagnostics,
     value,
     pointer,
@@ -1166,19 +1182,19 @@ _PendingGeneric? _reserveGenericDeclaration(
   final slot = object.nullableString('slot');
   if (!object._fields.containsKey('bound')) {
     diagnostics.add(
-      pointer: flaxCodegenManifestV5Pointer(pointer, 'bound'),
+      pointer: flaxCodegenManifestPointer(pointer, 'bound'),
       message: 'Missing field.',
     );
   }
   if (!object._fields.containsKey('defaultType')) {
     diagnostics.add(
-      pointer: flaxCodegenManifestV5Pointer(pointer, 'defaultType'),
+      pointer: flaxCodegenManifestPointer(pointer, 'defaultType'),
       message: 'Missing field.',
     );
   }
   final boundJson = object._fields['bound'];
   final defaultTypeJson = object._fields['defaultType'];
-  final slotPointer = flaxCodegenManifestV5Pointer(pointer, 'slot');
+  final slotPointer = flaxCodegenManifestPointer(pointer, 'slot');
   final index = scope.declare(diagnostics, slot, slotPointer);
   if (diagnostics.items.length != start || name == null || index == null) {
     return null;
@@ -1211,12 +1227,12 @@ Map<String, Object?> _encodeParameter(
 
 FlaxCodegenParameterModel? _decodeParameter(
   Object? value,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
   String pointer, [
   _SlotDecodeScope? scope,
 ]) {
   final start = diagnostics.items.length;
-  final object = FlaxCodegenManifestV5Object.read(
+  final object = FlaxCodegenManifestObject.read(
     diagnostics,
     value,
     pointer,
@@ -1274,12 +1290,12 @@ Map<String, Object?> _encodeGeneric(
 
 FlaxCodegenGenericParameter? _decodeGeneric(
   Object? value,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
   String pointer, [
   _SlotDecodeScope? scope,
 ]) {
   final start = diagnostics.items.length;
-  final object = FlaxCodegenManifestV5Object.read(
+  final object = FlaxCodegenManifestObject.read(
     diagnostics,
     value,
     pointer,
@@ -1296,7 +1312,7 @@ FlaxCodegenGenericParameter? _decodeGeneric(
     _decodeTypeFn(diagnostics, scope),
   );
   final slot = object.nullableString('slot');
-  final slotPointer = flaxCodegenManifestV5Pointer(pointer, 'slot');
+  final slotPointer = flaxCodegenManifestPointer(pointer, 'slot');
   if (slot != null) {
     diagnostics.add(pointer: slotPointer, message: 'Unexpected slot.');
   }
@@ -1317,12 +1333,12 @@ Map<String, Object?> _encodeGetter(
 
 FlaxCodegenGetterModel? _decodeGetter(
   Object? value,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
   String pointer, [
   _SlotDecodeScope? scope,
 ]) {
   final start = diagnostics.items.length;
-  final object = FlaxCodegenManifestV5Object.read(
+  final object = FlaxCodegenManifestObject.read(
     diagnostics,
     value,
     pointer,
@@ -1347,16 +1363,27 @@ Map<String, Object?> _encodeConstructor(
     for (final parameter in constructor.parameters)
       _encodeParameter(parameter, scope),
   ],
+  'specializations': [
+    for (final specialization in constructor.specializations)
+      {
+        'typeArguments': List<String>.of(specialization.typeArguments),
+        'parameterTypes': [
+          for (final type in specialization.parameterTypes)
+            _encodeType(type, scope),
+        ],
+        'runtimeDomains': _encodeStringMap(specialization.runtimeDomains),
+      },
+  ],
 };
 
 FlaxCodegenConstructorModel? _decodeConstructor(
   Object? value,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
   String pointer, [
   _SlotDecodeScope? scope,
 ]) {
   final start = diagnostics.items.length;
-  final object = FlaxCodegenManifestV5Object.read(
+  final object = FlaxCodegenManifestObject.read(
     diagnostics,
     value,
     pointer,
@@ -1368,10 +1395,55 @@ FlaxCodegenConstructorModel? _decodeConstructor(
     'parameters',
     _decodeParameterFn(diagnostics, scope),
   );
-  if (diagnostics.items.length != start || name == null || parameters == null) {
+  final specializations = object.requiredList('specializations', (
+    value,
+    pointer,
+  ) {
+    final entry = FlaxCodegenManifestObject.read(
+      diagnostics,
+      value,
+      pointer,
+      _constructorSpecializationKeys,
+    );
+    if (entry == null) return null;
+    final typeArguments = entry.requiredStringList('typeArguments');
+    final parameterTypes = entry.requiredList(
+      'parameterTypes',
+      _decodeTypeFn(diagnostics, scope),
+    );
+    final runtimeDomains = entry.requiredStringMap('runtimeDomains');
+    if (typeArguments == null ||
+        parameterTypes == null ||
+        runtimeDomains == null) {
+      return null;
+    }
+    return FlaxCodegenConstructorSpecializationModel(
+      typeArguments: typeArguments,
+      parameterTypes: parameterTypes,
+      runtimeDomains: runtimeDomains,
+    );
+  });
+  if (diagnostics.items.length != start ||
+      name == null ||
+      parameters == null ||
+      specializations == null) {
     return null;
   }
-  return FlaxCodegenConstructorModel(name, parameters);
+  if (specializations.any(
+    (specialization) =>
+        specialization.parameterTypes.length != parameters.length,
+  )) {
+    diagnostics.add(
+      pointer: flaxCodegenManifestPointer(pointer, 'specializations'),
+      message: 'Constructor specialization parameter count mismatch.',
+    );
+    return null;
+  }
+  return FlaxCodegenConstructorModel(
+    name,
+    parameters,
+    specializations: specializations,
+  );
 }
 
 Map<String, Object?> _encodeMethod(
@@ -1443,12 +1515,12 @@ Map<String, Object?> _encodeMethod(
 
 FlaxCodegenMethodModel? _decodeMethod(
   Object? value,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
   String pointer, [
   _SlotDecodeScope? parent,
 ]) {
   final start = diagnostics.items.length;
-  final object = FlaxCodegenManifestV5Object.read(
+  final object = FlaxCodegenManifestObject.read(
     diagnostics,
     value,
     pointer,
@@ -1466,14 +1538,14 @@ FlaxCodegenMethodModel? _decodeMethod(
   final typeParametersValue = object._fields['typeParameters'];
   if (!object._fields.containsKey('typeParameters')) {
     diagnostics.add(
-      pointer: flaxCodegenManifestV5Pointer(pointer, 'typeParameters'),
+      pointer: flaxCodegenManifestPointer(pointer, 'typeParameters'),
       message: 'Missing field.',
     );
   }
   final typeParametersJson = _jsonList(typeParametersValue);
   if (typeParametersValue != null && typeParametersJson == null) {
     diagnostics.add(
-      pointer: flaxCodegenManifestV5Pointer(pointer, 'typeParameters'),
+      pointer: flaxCodegenManifestPointer(pointer, 'typeParameters'),
       message: 'Expected a list.',
     );
   }
@@ -1481,12 +1553,12 @@ FlaxCodegenMethodModel? _decodeMethod(
   final reservedIndexes = <int>[];
   final pendingGenerics = <_PendingGeneric>[];
   if (typeParametersJson != null) {
-    final typeParametersPointer = flaxCodegenManifestV5Pointer(
+    final typeParametersPointer = flaxCodegenManifestPointer(
       pointer,
       'typeParameters',
     );
     for (var index = 0; index < typeParametersJson.length; index++) {
-      final genericPointer = flaxCodegenManifestV5Pointer(
+      final genericPointer = flaxCodegenManifestPointer(
         typeParametersPointer,
         '$index',
       );
@@ -1507,7 +1579,7 @@ FlaxCodegenMethodModel? _decodeMethod(
       _decodeType(
         pending.boundJson,
         diagnostics,
-        flaxCodegenManifestV5Pointer(pending.pointer, 'bound'),
+        flaxCodegenManifestPointer(pending.pointer, 'bound'),
         scope,
       ),
   ];
@@ -1518,7 +1590,7 @@ FlaxCodegenMethodModel? _decodeMethod(
           : _decodeType(
               pending.defaultTypeJson,
               diagnostics,
-              flaxCodegenManifestV5Pointer(pending.pointer, 'defaultType'),
+              flaxCodegenManifestPointer(pending.pointer, 'defaultType'),
               scope,
             ),
   ];
@@ -1526,26 +1598,23 @@ FlaxCodegenMethodModel? _decodeMethod(
   final parametersValue = object._fields['parameters'];
   if (!object._fields.containsKey('parameters')) {
     diagnostics.add(
-      pointer: flaxCodegenManifestV5Pointer(pointer, 'parameters'),
+      pointer: flaxCodegenManifestPointer(pointer, 'parameters'),
       message: 'Missing field.',
     );
   }
   final parametersJson = _jsonList(parametersValue);
   if (parametersValue != null && parametersJson == null) {
     diagnostics.add(
-      pointer: flaxCodegenManifestV5Pointer(pointer, 'parameters'),
+      pointer: flaxCodegenManifestPointer(pointer, 'parameters'),
       message: 'Expected a list.',
     );
   }
 
   final pendingParameters = <_PendingParameter>[];
   if (parametersJson != null) {
-    final parametersPointer = flaxCodegenManifestV5Pointer(
-      pointer,
-      'parameters',
-    );
+    final parametersPointer = flaxCodegenManifestPointer(pointer, 'parameters');
     for (var index = 0; index < parametersJson.length; index++) {
-      final parameterPointer = flaxCodegenManifestV5Pointer(
+      final parameterPointer = flaxCodegenManifestPointer(
         parametersPointer,
         '$index',
       );
@@ -1568,7 +1637,7 @@ FlaxCodegenMethodModel? _decodeMethod(
     parameterTypes[index] = _decodeType(
       pending.typeJson,
       diagnostics,
-      flaxCodegenManifestV5Pointer(pending.pointer, 'type'),
+      flaxCodegenManifestPointer(pending.pointer, 'type'),
       scope,
     );
   }
@@ -1590,7 +1659,7 @@ FlaxCodegenMethodModel? _decodeMethod(
     parameterTypes[index] = _decodeType(
       pending.typeJson,
       diagnostics,
-      flaxCodegenManifestV5Pointer(pending.pointer, 'type'),
+      flaxCodegenManifestPointer(pending.pointer, 'type'),
       scope,
     );
   }
@@ -1682,12 +1751,12 @@ Map<String, Object?> _encodeProxy(
 
 FlaxCodegenProxyModel? _decodeProxy(
   Object? value,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
   String pointer, [
   _SlotDecodeScope? scope,
 ]) {
   final start = diagnostics.items.length;
-  final object = FlaxCodegenManifestV5Object.read(
+  final object = FlaxCodegenManifestObject.read(
     diagnostics,
     value,
     pointer,
@@ -1725,16 +1794,177 @@ FlaxCodegenProxyModel? _decodeProxy(
   );
 }
 
+Map<String, Object?> _encodeStateMixin(FlaxCodegenStateMixinModel mixin) => {
+  'name': mixin.name,
+  'sourceId': mixin.id,
+  'library': mixin.library,
+  'typeArguments': List<String>.of(mixin.typeArguments),
+};
+
+FlaxCodegenStateMixinModel? _decodeStateMixin(
+  Object? value,
+  FlaxCodegenManifestDiagnostics diagnostics,
+  String pointer,
+) {
+  final start = diagnostics.items.length;
+  final object = FlaxCodegenManifestObject.read(
+    diagnostics,
+    value,
+    pointer,
+    _stateMixinKeys,
+  );
+  if (object == null) return null;
+  final name = object.requiredString('name');
+  final id = object.requiredString('sourceId');
+  final library = object.requiredString('library');
+  final typeArguments = object.requiredStringList('typeArguments');
+  if (diagnostics.items.length != start ||
+      name == null ||
+      id == null ||
+      library == null ||
+      typeArguments == null) {
+    return null;
+  }
+  return FlaxCodegenStateMixinModel(
+    name: name,
+    id: id,
+    library: library,
+    typeArguments: typeArguments,
+  );
+}
+
+Map<String, Object?> _encodeStateInterface(
+  FlaxCodegenStateInterfaceModel interface,
+) => {
+  'name': interface.name,
+  'sourceId': interface.id,
+  'wireId': interface.wireId,
+  'library': interface.library,
+};
+
+FlaxCodegenStateInterfaceModel? _decodeStateInterface(
+  Object? value,
+  FlaxCodegenManifestDiagnostics diagnostics,
+  String pointer,
+) {
+  final start = diagnostics.items.length;
+  final object = FlaxCodegenManifestObject.read(
+    diagnostics,
+    value,
+    pointer,
+    _stateInterfaceKeys,
+  );
+  if (object == null) return null;
+  final name = object.requiredString('name');
+  final id = object.requiredString('sourceId');
+  final wireId = object.nullableString('wireId');
+  final library = object.requiredString('library');
+  if (diagnostics.items.length != start ||
+      name == null ||
+      id == null ||
+      library == null) {
+    return null;
+  }
+  return FlaxCodegenStateInterfaceModel(
+    name: name,
+    id: id,
+    library: library,
+    wireId: wireId,
+  );
+}
+
+Map<String, Object?> _encodeStateVariant(
+  FlaxCodegenStateVariantModel variant,
+) => {
+  'name': variant.name,
+  'variantId': variant.id,
+  'stateId': variant.stateId,
+  'stateWireId': variant.stateWireId,
+  'mixins': [for (final mixin in variant.mixins) _encodeStateMixin(mixin)],
+  'interfaces': [
+    for (final interface in variant.interfaces)
+      _encodeStateInterface(interface),
+  ],
+  'getters': [for (final getter in variant.getters) _encodeGetter(getter)],
+  'setters': [for (final setter in variant.setters) _encodeGetter(setter)],
+  'methods': [for (final method in variant.methods) _encodeMethod(method)],
+  'superMethods': List<String>.of(variant.superMethods),
+  'mustCallSuperMethods': List<String>.of(variant.mustCallSuperMethods),
+  'providerModule': variant.providerModule,
+};
+
+FlaxCodegenStateVariantModel? _decodeStateVariant(
+  Object? value,
+  FlaxCodegenManifestDiagnostics diagnostics,
+  String pointer,
+) {
+  final start = diagnostics.items.length;
+  final object = FlaxCodegenManifestObject.read(
+    diagnostics,
+    value,
+    pointer,
+    _stateVariantKeys,
+  );
+  if (object == null) return null;
+  final name = object.requiredString('name');
+  final id = object.requiredString('variantId');
+  final stateId = object.requiredString('stateId');
+  final stateWireId = object.nullableString('stateWireId');
+  final mixins = object.requiredList(
+    'mixins',
+    (value, pointer) => _decodeStateMixin(value, diagnostics, pointer),
+  );
+  final interfaces = object.requiredList(
+    'interfaces',
+    (value, pointer) => _decodeStateInterface(value, diagnostics, pointer),
+  );
+  final getters = object.requiredList('getters', _decodeGetterFn(diagnostics));
+  final setters = object.requiredList('setters', _decodeGetterFn(diagnostics));
+  final methods = object.requiredList('methods', _decodeMethodFn(diagnostics));
+  final superMethods = object.requiredStringList('superMethods');
+  final mustCallSuperMethods = object.requiredStringList(
+    'mustCallSuperMethods',
+  );
+  final providerModule = object.nullableString('providerModule');
+  if (diagnostics.items.length != start ||
+      name == null ||
+      id == null ||
+      stateId == null ||
+      mixins == null ||
+      interfaces == null ||
+      getters == null ||
+      setters == null ||
+      methods == null ||
+      superMethods == null ||
+      mustCallSuperMethods == null) {
+    return null;
+  }
+  return FlaxCodegenStateVariantModel(
+    name: name,
+    id: id,
+    stateId: stateId,
+    stateWireId: stateWireId,
+    mixins: mixins,
+    interfaces: interfaces,
+    getters: getters,
+    setters: setters,
+    methods: methods,
+    superMethods: superMethods,
+    mustCallSuperMethods: mustCallSuperMethods,
+    providerModule: providerModule,
+  );
+}
+
 Map<String, Object?> _encodePageAdapter(FlaxCodegenPageAdapterModel adapter) =>
     {'library': adapter.library, 'function': adapter.function};
 
 FlaxCodegenPageAdapterModel? _decodePageAdapter(
   Object? value,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
   String pointer,
 ) {
   final start = diagnostics.items.length;
-  final object = FlaxCodegenManifestV5Object.read(
+  final object = FlaxCodegenManifestObject.read(
     diagnostics,
     value,
     pointer,
@@ -1759,11 +1989,11 @@ Map<String, Object?> _encodeRouteCall(FlaxCodegenRouteCallModel route) => {
 
 FlaxCodegenRouteCallModel? _decodeRouteCall(
   Object? value,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
   String pointer,
 ) {
   final start = diagnostics.items.length;
-  final object = FlaxCodegenManifestV5Object.read(
+  final object = FlaxCodegenManifestObject.read(
     diagnostics,
     value,
     pointer,
@@ -1821,9 +2051,6 @@ Map<String, Object?> _encodeClass(FlaxCodegenClassModel type) {
       for (final interface in type.widgetInterfaces)
         _encodeType(interface, scope),
     ];
-    final widgetGetterJsons = [
-      for (final getter in type.widgetGetters) _encodeGetter(getter, scope),
-    ];
     final superTypeJsons = [
       for (final superType in type.superTypes) _encodeType(superType, scope),
     ];
@@ -1835,7 +2062,6 @@ Map<String, Object?> _encodeClass(FlaxCodegenClassModel type) {
       'id': type.id,
       'kind': type.kind,
       'jsName': type.jsName,
-      'genericScalar': type.genericScalar,
       'asyncIterableFactory': type.asyncIterableFactory,
       'typeArguments': List<String>.of(type.typeArguments),
       'typeParameters': [
@@ -1853,7 +2079,6 @@ Map<String, Object?> _encodeClass(FlaxCodegenClassModel type) {
       'staticGetters': staticGetterJsons,
       'methods': methodJsons,
       'widgetInterfaces': widgetInterfaceJsons,
-      'widgetGetters': widgetGetterJsons,
       if (type.widgetMembers.isNotEmpty)
         'widgetMembers': [
           for (final m in type.widgetMembers)
@@ -1881,11 +2106,11 @@ Map<String, Object?> _encodeClass(FlaxCodegenClassModel type) {
 
 FlaxCodegenClassModel? _decodeClass(
   Object? value,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
   String pointer,
 ) {
   final start = diagnostics.items.length;
-  final object = FlaxCodegenManifestV5Object.read(
+  final object = FlaxCodegenManifestObject.read(
     diagnostics,
     value,
     pointer,
@@ -1897,21 +2122,20 @@ FlaxCodegenClassModel? _decodeClass(
   final id = object.requiredString('id');
   final kind = object.requiredString('kind');
   final jsName = object.nullableString('jsName');
-  final genericScalar = object.requiredBool('genericScalar');
   final asyncIterableFactory = object.nullableString('asyncIterableFactory');
   final typeArguments = object.requiredStringList('typeArguments');
 
   final typeParametersValue = object._fields['typeParameters'];
   if (!object._fields.containsKey('typeParameters')) {
     diagnostics.add(
-      pointer: flaxCodegenManifestV5Pointer(pointer, 'typeParameters'),
+      pointer: flaxCodegenManifestPointer(pointer, 'typeParameters'),
       message: 'Missing field.',
     );
   }
   final typeParametersJson = _jsonList(typeParametersValue);
   if (typeParametersValue != null && typeParametersJson == null) {
     diagnostics.add(
-      pointer: flaxCodegenManifestV5Pointer(pointer, 'typeParameters'),
+      pointer: flaxCodegenManifestPointer(pointer, 'typeParameters'),
       message: 'Expected a list.',
     );
   }
@@ -1919,12 +2143,12 @@ FlaxCodegenClassModel? _decodeClass(
   final reservedIndexes = <int>[];
   final pendingGenerics = <_PendingGeneric>[];
   if (typeParametersJson != null) {
-    final typeParametersPointer = flaxCodegenManifestV5Pointer(
+    final typeParametersPointer = flaxCodegenManifestPointer(
       pointer,
       'typeParameters',
     );
     for (var index = 0; index < typeParametersJson.length; index++) {
-      final genericPointer = flaxCodegenManifestV5Pointer(
+      final genericPointer = flaxCodegenManifestPointer(
         typeParametersPointer,
         '$index',
       );
@@ -1945,7 +2169,7 @@ FlaxCodegenClassModel? _decodeClass(
       _decodeType(
         pending.boundJson,
         diagnostics,
-        flaxCodegenManifestV5Pointer(pending.pointer, 'bound'),
+        flaxCodegenManifestPointer(pending.pointer, 'bound'),
         scope,
       ),
   ];
@@ -1956,7 +2180,7 @@ FlaxCodegenClassModel? _decodeClass(
           : _decodeType(
               pending.defaultTypeJson,
               diagnostics,
-              flaxCodegenManifestV5Pointer(pending.pointer, 'defaultType'),
+              flaxCodegenManifestPointer(pending.pointer, 'defaultType'),
               scope,
             ),
   ];
@@ -1985,13 +2209,9 @@ FlaxCodegenClassModel? _decodeClass(
     'widgetInterfaces',
     _decodeTypeFn(diagnostics, scope),
   );
-  final widgetGetters = object.requiredList(
-    'widgetGetters',
-    _decodeGetterFn(diagnostics, scope),
-  );
   final widgetMembers = value is Map && value.containsKey('widgetMembers')
       ? object.requiredList('widgetMembers', (value, pointer) {
-          final member = FlaxCodegenManifestV5Object.read(
+          final member = FlaxCodegenManifestObject.read(
             diagnostics,
             value,
             pointer,
@@ -2075,7 +2295,6 @@ FlaxCodegenClassModel? _decodeClass(
       name == null ||
       id == null ||
       kind == null ||
-      genericScalar == null ||
       typeArguments == null ||
       typeParametersJson == null ||
       typeParameters.length != pendingGenerics.length ||
@@ -2085,7 +2304,6 @@ FlaxCodegenClassModel? _decodeClass(
       staticGetters == null ||
       methods == null ||
       widgetInterfaces == null ||
-      widgetGetters == null ||
       widgetMembers == null ||
       supertypes == null ||
       superTypes == null ||
@@ -2097,7 +2315,6 @@ FlaxCodegenClassModel? _decodeClass(
     id: id,
     kind: kind,
     jsName: jsName,
-    genericScalar: genericScalar,
     asyncIterableFactory: asyncIterableFactory,
     typeArguments: typeArguments,
     typeParameters: typeParameters,
@@ -2107,7 +2324,6 @@ FlaxCodegenClassModel? _decodeClass(
     staticGetters: staticGetters,
     methods: methods,
     widgetInterfaces: widgetInterfaces,
-    widgetGetters: widgetGetters,
     widgetMembers: widgetMembers,
     supertypes: supertypes,
     superTypes: superTypes,
@@ -2157,11 +2373,11 @@ Map<String, Object?> _encodeNamedType(FlaxCodegenNamedTypeModel type) {
 
 FlaxCodegenNamedTypeModel? _decodeNamedType(
   Object? value,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
   String pointer,
 ) {
   final start = diagnostics.items.length;
-  final object = FlaxCodegenManifestV5Object.read(
+  final object = FlaxCodegenManifestObject.read(
     diagnostics,
     value,
     pointer,
@@ -2176,14 +2392,14 @@ FlaxCodegenNamedTypeModel? _decodeNamedType(
   final typeParametersValue = object._fields['typeParameters'];
   if (!object._fields.containsKey('typeParameters')) {
     diagnostics.add(
-      pointer: flaxCodegenManifestV5Pointer(pointer, 'typeParameters'),
+      pointer: flaxCodegenManifestPointer(pointer, 'typeParameters'),
       message: 'Missing field.',
     );
   }
   final typeParametersJson = _jsonList(typeParametersValue);
   if (typeParametersValue != null && typeParametersJson == null) {
     diagnostics.add(
-      pointer: flaxCodegenManifestV5Pointer(pointer, 'typeParameters'),
+      pointer: flaxCodegenManifestPointer(pointer, 'typeParameters'),
       message: 'Expected a list.',
     );
   }
@@ -2191,12 +2407,12 @@ FlaxCodegenNamedTypeModel? _decodeNamedType(
   final reservedIndexes = <int>[];
   final pendingGenerics = <_PendingGeneric>[];
   if (typeParametersJson != null) {
-    final typeParametersPointer = flaxCodegenManifestV5Pointer(
+    final typeParametersPointer = flaxCodegenManifestPointer(
       pointer,
       'typeParameters',
     );
     for (var index = 0; index < typeParametersJson.length; index++) {
-      final genericPointer = flaxCodegenManifestV5Pointer(
+      final genericPointer = flaxCodegenManifestPointer(
         typeParametersPointer,
         '$index',
       );
@@ -2217,7 +2433,7 @@ FlaxCodegenNamedTypeModel? _decodeNamedType(
       _decodeType(
         pending.boundJson,
         diagnostics,
-        flaxCodegenManifestV5Pointer(pending.pointer, 'bound'),
+        flaxCodegenManifestPointer(pending.pointer, 'bound'),
         scope,
       ),
   ];
@@ -2228,7 +2444,7 @@ FlaxCodegenNamedTypeModel? _decodeNamedType(
           : _decodeType(
               pending.defaultTypeJson,
               diagnostics,
-              flaxCodegenManifestV5Pointer(pending.pointer, 'defaultType'),
+              flaxCodegenManifestPointer(pending.pointer, 'defaultType'),
               scope,
             ),
   ];
@@ -2276,11 +2492,11 @@ Map<String, Object?> _encodeFunction(FlaxCodegenFunctionModel function) => {
 
 FlaxCodegenFunctionModel? _decodeFunction(
   Object? value,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
   String pointer,
 ) {
   final start = diagnostics.items.length;
-  final object = FlaxCodegenManifestV5Object.read(
+  final object = FlaxCodegenManifestObject.read(
     diagnostics,
     value,
     pointer,
@@ -2305,11 +2521,11 @@ Map<String, Object?> _encodeSnapshot(FlaxCodegenSnapshotModel snapshot) => {
 
 FlaxCodegenSnapshotModel? _decodeSnapshot(
   Object? value,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
   String pointer,
 ) {
   final start = diagnostics.items.length;
-  final object = FlaxCodegenManifestV5Object.read(
+  final object = FlaxCodegenManifestObject.read(
     diagnostics,
     value,
     pointer,
@@ -2349,11 +2565,11 @@ Map<String, Object?> _encodeSnapshotField(
 
 FlaxCodegenSnapshotFieldModel? _decodeSnapshotField(
   Object? value,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
   String pointer,
 ) {
   final start = diagnostics.items.length;
-  final object = FlaxCodegenManifestV5Object.read(
+  final object = FlaxCodegenManifestObject.read(
     diagnostics,
     value,
     pointer,
@@ -2422,37 +2638,32 @@ Map<String, Object?> _encodeTypedef(FlaxCodegenTypeAliasModel alias) {
 
 FlaxCodegenTypeAliasModel? _decodeTypedef(
   Object? value,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
   String pointer,
-  int formatVersion,
 ) {
   final start = diagnostics.items.length;
-  final object = FlaxCodegenManifestV5Object.read(
+  final object = FlaxCodegenManifestObject.read(
     diagnostics,
     value,
     pointer,
-    formatVersion == 3
-        ? _typedefKeys.difference({'typeParameters'})
-        : _typedefKeys,
+    _typedefKeys,
   );
   if (object == null) return null;
   final name = object.requiredString('name');
   final originatingUri = object.requiredString('originatingUri');
   final originatingName = object.requiredString('originatingName');
   final scope = _SlotDecodeScope();
-  final pending = formatVersion == 3
-      ? <_PendingGeneric>[]
-      : object.requiredList(
-          'typeParameters',
-          (value, pointer) =>
-              _reserveGenericDeclaration(value, diagnostics, pointer, scope),
-        );
+  final pending = object.requiredList(
+    'typeParameters',
+    (value, pointer) =>
+        _reserveGenericDeclaration(value, diagnostics, pointer, scope),
+  );
   final bounds = [
     for (final parameter in pending ?? <_PendingGeneric>[])
       _decodeType(
         parameter.boundJson,
         diagnostics,
-        flaxCodegenManifestV5Pointer(parameter.pointer, 'bound'),
+        flaxCodegenManifestPointer(parameter.pointer, 'bound'),
         scope,
       ),
   ];
@@ -2463,7 +2674,7 @@ FlaxCodegenTypeAliasModel? _decodeTypedef(
           : _decodeType(
               parameter.defaultTypeJson,
               diagnostics,
-              flaxCodegenManifestV5Pointer(parameter.pointer, 'defaultType'),
+              flaxCodegenManifestPointer(parameter.pointer, 'defaultType'),
               scope,
             ),
   ];
@@ -2481,14 +2692,6 @@ FlaxCodegenTypeAliasModel? _decodeTypedef(
       pending == null ||
       bounds.any((bound) => bound == null) ||
       target == null) {
-    return null;
-  }
-  // Enforce the old semantic restriction before normalizing the model.
-  if (formatVersion == 3 && _hasGenericTypedefTarget(target)) {
-    diagnostics.add(
-      pointer: pointer,
-      message: 'Generic typedef targets are not supported by Manifest 3.',
-    );
     return null;
   }
   final alias = FlaxCodegenTypeAliasModel(
@@ -2518,20 +2721,6 @@ FlaxCodegenTypeAliasModel? _decodeTypedef(
   }
 }
 
-bool _hasGenericTypedefTarget(FlaxCodegenTypeRef type) =>
-    type.kind == 'parameter' ||
-    type.typeParameters.isNotEmpty ||
-    [
-      ?type.item,
-      ?type.key,
-      ?type.result,
-      ?type.declaration,
-      ...type.dartArguments,
-      ...type.tsArguments,
-      ...type.parameters.map((parameter) => parameter.type),
-      ...type.recordFields.map((field) => field.type),
-    ].any(_hasGenericTypedefTarget);
-
 Map<String, Object?> _encodeModule(FlaxCodegenModuleModel module) => {
   if (module.extensions.isNotEmpty)
     'extensions': [
@@ -2558,6 +2747,9 @@ Map<String, Object?> _encodeModule(FlaxCodegenModuleModel module) => {
     for (final snapshot in module.snapshots) _encodeSnapshot(snapshot),
   ],
   'typedefs': [for (final alias in module.typedefs) _encodeTypedef(alias)],
+  'stateVariants': [
+    for (final variant in module.stateVariants) _encodeStateVariant(variant),
+  ],
   if (module.topLevel case final values?)
     'topLevel': {
       'jsName': values.jsName,
@@ -2586,37 +2778,25 @@ Map<String, Object?> _encodeModule(FlaxCodegenModuleModel module) => {
 
 FlaxCodegenTopLevelModel? _decodeTopLevel(
   Object? value,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
   String pointer,
-  int formatVersion,
 ) {
-  final object = FlaxCodegenManifestV5Object.read(diagnostics, value, pointer, {
+  final object = FlaxCodegenManifestObject.read(diagnostics, value, pointer, {
     'jsName',
     'getters',
-    if (formatVersion >= 10) 'setters',
+    'setters',
   });
   if (object == null) return null;
   final jsName = object.requiredString('jsName');
-  if (formatVersion < 6 && jsName == '') {
-    diagnostics.add(
-      pointer: object.child('jsName'),
-      message: 'Named top-level exports require Manifest 6.',
-    );
-  }
   final getters = object.requiredList('getters', (value, pointer) {
-    final getter = FlaxCodegenManifestV5Object.read(
-      diagnostics,
-      value,
-      pointer,
-      {
-        'id',
-        'name',
-        'type',
-        'kind',
-        'isReference',
-        if (formatVersion >= 6) 'literal',
-      },
-    );
+    final getter = FlaxCodegenManifestObject.read(diagnostics, value, pointer, {
+      'id',
+      'name',
+      'type',
+      'kind',
+      'isReference',
+      'literal',
+    });
     if (getter == null) return null;
     final id = getter.requiredString('id');
     final name = getter.requiredString('name');
@@ -2631,7 +2811,7 @@ FlaxCodegenTopLevelModel? _decodeTopLevel(
     final kind = FlaxCodegenReadonlyKind.values
         .where((kind) => kind.name == kindName)
         .firstOrNull;
-    if (kind == null || (formatVersion < 10 && kind.name == 'mutableValue')) {
+    if (kind == null) {
       diagnostics.add(
         pointer: getter.child('kind'),
         message: 'Invalid readonly declaration kind.',
@@ -2655,112 +2835,62 @@ FlaxCodegenTopLevelModel? _decodeTopLevel(
           : null,
     );
   });
-  final setters = formatVersion >= 10
-      ? object.requiredList('setters', (value, pointer) {
-          final setter = FlaxCodegenManifestV5Object.read(
-            diagnostics,
-            value,
-            pointer,
-            {'id', 'name', 'type', 'isReference'},
-          );
-          if (setter == null) return null;
-          final id = setter.requiredString('id');
-          final name = setter.requiredString('name');
-          final type = setter.requiredValue(
-            'type',
-            (value, pointer) => _decodeType(value, diagnostics, pointer),
-          );
-          final isReference = value is Map && value.containsKey('isReference')
-              ? setter.requiredBool('isReference')
-              : false;
-          if (id == null ||
-              name == null ||
-              type == null ||
-              isReference == null) {
-            return null;
-          }
-          return FlaxCodegenTopLevelSetterModel(
-            id,
-            name,
-            type,
-            isReference: isReference,
-          );
-        })
-      : <FlaxCodegenTopLevelSetterModel>[];
+  final setters = object.requiredList('setters', (value, pointer) {
+    final setter = FlaxCodegenManifestObject.read(diagnostics, value, pointer, {
+      'id',
+      'name',
+      'type',
+      'isReference',
+    });
+    if (setter == null) return null;
+    final id = setter.requiredString('id');
+    final name = setter.requiredString('name');
+    final type = setter.requiredValue(
+      'type',
+      (value, pointer) => _decodeType(value, diagnostics, pointer),
+    );
+    final isReference = value is Map && value.containsKey('isReference')
+        ? setter.requiredBool('isReference')
+        : false;
+    if (id == null || name == null || type == null || isReference == null) {
+      return null;
+    }
+    return FlaxCodegenTopLevelSetterModel(
+      id,
+      name,
+      type,
+      isReference: isReference,
+    );
+  });
   if (jsName == null || getters == null || setters == null) return null;
   return FlaxCodegenTopLevelModel(jsName, getters, setters: setters);
 }
 
 FlaxCodegenModuleModel? _decodeModule(
   Object? value,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
   String pointer,
   String name,
-  int formatVersion,
 ) {
   final start = diagnostics.items.length;
-  if (formatVersion < 8 && value is Map && value['classes'] is List) {
-    final classes = value['classes'] as List;
-    for (var index = 0; index < classes.length; index++) {
-      if (classes[index] is Map &&
-          (classes[index] as Map).containsKey('widgetMembers')) {
-        diagnostics.add(
-          pointer: '$pointer/classes/$index/widgetMembers',
-          message: 'Native Widget members require Manifest 8.',
-        );
-      }
-    }
-  }
-  if (formatVersion < 11) {
-    void rejectTypeOnly(Object? node, String path) {
-      if (node is List) {
-        for (var i = 0; i < node.length; i++) {
-          rejectTypeOnly(node[i], '$path/$i');
-        }
-      } else if (node is Map) {
-        if (node['kind'] == 'typeOnly') {
-          diagnostics.add(
-            pointer: '$path/kind',
-            message: 'Type-only references require Manifest 11.',
-          );
-        }
-        for (final entry in node.entries) {
-          rejectTypeOnly(
-            entry.value,
-            flaxCodegenManifestV5Pointer(path, '${entry.key}'),
-          );
-        }
-      }
-    }
-
-    rejectTypeOnly(value, pointer);
-  }
-  if (formatVersion < 7) {
-    _diagnoseLegacyRecordTypes(value, diagnostics, pointer);
-  }
-  final object = FlaxCodegenManifestV5Object.read(
+  final object = FlaxCodegenManifestObject.read(
     diagnostics,
     value,
     pointer,
-    _moduleKeys.difference({
-      if (formatVersion < 9) 'extensions',
-      if (formatVersion < 5) 'topLevel',
-      if (formatVersion < 6) 'publicLibraries',
-    }),
+    _moduleKeys,
   );
   if (object == null) return null;
   final library = object.requiredString('library');
   final topLevel = value is Map && value.containsKey('topLevel')
       ? object.requiredValue(
           'topLevel',
-          (value, pointer) =>
-              _decodeTopLevel(value, diagnostics, pointer, formatVersion),
+          (value, pointer) => _decodeTopLevel(value, diagnostics, pointer),
         )
       : null;
   final jsPackage = object.requiredString('jsPackage');
   final publicLibraries = value is Map && value.containsKey('publicLibraries')
       ? object.requiredList('publicLibraries', (value, pointer) {
-          final route = FlaxCodegenManifestV5Object.read(
+          final route = FlaxCodegenManifestObject.read(
             diagnostics,
             value,
             pointer,
@@ -2801,8 +2931,11 @@ FlaxCodegenModuleModel? _decodeModule(
   );
   final typedefs = object.requiredList(
     'typedefs',
-    (value, pointer) =>
-        _decodeTypedef(value, diagnostics, pointer, formatVersion),
+    (value, pointer) => _decodeTypedef(value, diagnostics, pointer),
+  );
+  final stateVariants = object.requiredList(
+    'stateVariants',
+    (value, pointer) => _decodeStateVariant(value, diagnostics, pointer),
   );
   if (diagnostics.items.length != start ||
       library == null ||
@@ -2812,7 +2945,8 @@ FlaxCodegenModuleModel? _decodeModule(
       types == null ||
       functions == null ||
       snapshots == null ||
-      typedefs == null) {
+      typedefs == null ||
+      stateVariants == null) {
     return null;
   }
   final typeLibrariesPointer = object.child('typeLibraries');
@@ -2820,7 +2954,7 @@ FlaxCodegenModuleModel? _decodeModule(
   for (final entry in typeLibraries.entries) {
     if (!_isPublicTypeLibraryUri(entry.value)) {
       diagnostics.add(
-        pointer: flaxCodegenManifestV5Pointer(typeLibrariesPointer, entry.key),
+        pointer: flaxCodegenManifestPointer(typeLibrariesPointer, entry.key),
         message: 'Invalid type library URI.',
       );
       typeLibrariesOk = false;
@@ -2842,6 +2976,7 @@ FlaxCodegenModuleModel? _decodeModule(
     typedefs: typedefs,
     topLevel: topLevel,
     publicLibraries: publicLibraries ?? const [],
+    stateVariants: stateVariants,
   );
   try {
     module.validate();
@@ -2852,40 +2987,7 @@ FlaxCodegenModuleModel? _decodeModule(
   }
 }
 
-void _diagnoseLegacyRecordTypes(
-  Object? value,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
-  String pointer,
-) {
-  if (value is List) {
-    for (var index = 0; index < value.length; index++) {
-      _diagnoseLegacyRecordTypes(
-        value[index],
-        diagnostics,
-        flaxCodegenManifestV5Pointer(pointer, '$index'),
-      );
-    }
-    return;
-  }
-  if (value is! Map) return;
-  for (final entry in value.entries) {
-    if (entry.key is! String) continue;
-    final key = entry.key as String;
-    final child = flaxCodegenManifestV5Pointer(pointer, key);
-    if (key == 'recordFields') {
-      diagnostics.add(pointer: child, message: 'Unknown field.');
-    }
-    _diagnoseLegacyRecordTypes(entry.value, diagnostics, child);
-  }
-  if (value['kind'] == 'record') {
-    diagnostics.add(
-      pointer: flaxCodegenManifestV5Pointer(pointer, 'kind'),
-      message: 'Record types require Manifest 7.',
-    );
-  }
-}
-
-/// Canonical public `package:` / `dart:` URI for Manifest2 `typeLibraries`.
+/// Canonical public `package:` / `dart:` URI for Manifest `typeLibraries`.
 /// Cross-package package URIs are allowed. Only `package:<name>/src/...`
 /// (`pathSegments[1] == src`) is treated as a private package library path;
 /// underscore path segments remain public. Private dart libraries are not.
@@ -2934,11 +3036,11 @@ Map<String, Object?> _encodeSourceIdentity(
 
 FlaxCodegenSourceIdentity? _decodeSourceIdentity(
   Object? value,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
   String pointer,
 ) {
   final start = diagnostics.items.length;
-  final object = FlaxCodegenManifestV5Object.read(
+  final object = FlaxCodegenManifestObject.read(
     diagnostics,
     value,
     pointer,
@@ -2990,20 +3092,19 @@ FlaxCodegenSourceIdentity? _decodeSourceIdentity(
   }
 }
 
-Map<String, Object?> _encodeIdentity(FlaxCodegenManifestV5Identity identity) =>
-    {
-      'sourceIdentity': _encodeSourceIdentity(identity.sourceIdentity),
-      'wireId': identity.wireId.value,
-      'owner': identity.owner,
-    };
+Map<String, Object?> _encodeIdentity(FlaxCodegenManifestIdentity identity) => {
+  'sourceIdentity': _encodeSourceIdentity(identity.sourceIdentity),
+  'wireId': identity.wireId.value,
+  'owner': identity.owner,
+};
 
-FlaxCodegenManifestV5Identity? _decodeIdentity(
+FlaxCodegenManifestIdentity? _decodeIdentity(
   Object? value,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
   String pointer,
 ) {
   final start = diagnostics.items.length;
-  final object = FlaxCodegenManifestV5Object.read(
+  final object = FlaxCodegenManifestObject.read(
     diagnostics,
     value,
     pointer,
@@ -3049,7 +3150,7 @@ FlaxCodegenManifestV5Identity? _decodeIdentity(
     ok = false;
   }
   if (!ok) return null;
-  return FlaxCodegenManifestV5Identity(
+  return FlaxCodegenManifestIdentity(
     sourceIdentity: sourceIdentity,
     wireId: wireId,
     owner: owner,
@@ -3073,7 +3174,7 @@ Map<String, String> _encodeStringMap(Map<String, String> values) {
 }
 
 Map<String, String>? _decodeStringMap(
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
   Object? value,
   String pointer,
 ) {
@@ -3098,7 +3199,7 @@ Map<String, String>? _decodeStringMap(
     final mapped = entry.value;
     if (mapped is! String) {
       diagnostics.add(
-        pointer: flaxCodegenManifestV5Pointer(pointer, key),
+        pointer: flaxCodegenManifestPointer(pointer, key),
         message: 'Expected a string.',
       );
       ok = false;
@@ -3121,81 +3222,81 @@ bool _stringKeysUnsorted(List<String> keys) {
 }
 
 FlaxCodegenTypeRef? Function(Object? value, String pointer) _decodeTypeFn(
-  FlaxCodegenManifestV5Diagnostics diagnostics, [
+  FlaxCodegenManifestDiagnostics diagnostics, [
   _SlotDecodeScope? scope,
 ]) =>
     (value, pointer) => _decodeType(value, diagnostics, pointer, scope);
 
 FlaxCodegenParameterModel? Function(Object? value, String pointer)
 _decodeParameterFn(
-  FlaxCodegenManifestV5Diagnostics diagnostics, [
+  FlaxCodegenManifestDiagnostics diagnostics, [
   _SlotDecodeScope? scope,
 ]) =>
     (value, pointer) => _decodeParameter(value, diagnostics, pointer, scope);
 
 FlaxCodegenGenericParameter? Function(Object? value, String pointer)
 _decodeGenericFn(
-  FlaxCodegenManifestV5Diagnostics diagnostics, [
+  FlaxCodegenManifestDiagnostics diagnostics, [
   _SlotDecodeScope? scope,
 ]) =>
     (value, pointer) => _decodeGeneric(value, diagnostics, pointer, scope);
 
 FlaxCodegenGetterModel? Function(Object? value, String pointer) _decodeGetterFn(
-  FlaxCodegenManifestV5Diagnostics diagnostics, [
+  FlaxCodegenManifestDiagnostics diagnostics, [
   _SlotDecodeScope? scope,
 ]) =>
     (value, pointer) => _decodeGetter(value, diagnostics, pointer, scope);
 
 FlaxCodegenMethodModel? Function(Object? value, String pointer) _decodeMethodFn(
-  FlaxCodegenManifestV5Diagnostics diagnostics, [
+  FlaxCodegenManifestDiagnostics diagnostics, [
   _SlotDecodeScope? scope,
 ]) =>
     (value, pointer) => _decodeMethod(value, diagnostics, pointer, scope);
 
 FlaxCodegenConstructorModel? Function(Object? value, String pointer)
 _decodeConstructorFn(
-  FlaxCodegenManifestV5Diagnostics diagnostics, [
+  FlaxCodegenManifestDiagnostics diagnostics, [
   _SlotDecodeScope? scope,
 ]) =>
     (value, pointer) => _decodeConstructor(value, diagnostics, pointer, scope);
 
 FlaxCodegenProxyModel? Function(Object? value, String pointer) _decodeProxyFn(
-  FlaxCodegenManifestV5Diagnostics diagnostics, [
+  FlaxCodegenManifestDiagnostics diagnostics, [
   _SlotDecodeScope? scope,
 ]) =>
     (value, pointer) => _decodeProxy(value, diagnostics, pointer, scope);
 
 FlaxCodegenPageAdapterModel? Function(Object? value, String pointer)
-_decodePageAdapterFn(FlaxCodegenManifestV5Diagnostics diagnostics) =>
+_decodePageAdapterFn(FlaxCodegenManifestDiagnostics diagnostics) =>
     (value, pointer) => _decodePageAdapter(value, diagnostics, pointer);
 
 FlaxCodegenRouteCallModel? Function(Object? value, String pointer)
-_decodeRouteCallFn(FlaxCodegenManifestV5Diagnostics diagnostics) =>
+_decodeRouteCallFn(FlaxCodegenManifestDiagnostics diagnostics) =>
     (value, pointer) => _decodeRouteCall(value, diagnostics, pointer);
 
 FlaxCodegenSnapshotFieldModel? Function(Object? value, String pointer)
-_decodeSnapshotFieldFn(FlaxCodegenManifestV5Diagnostics diagnostics) =>
+_decodeSnapshotFieldFn(FlaxCodegenManifestDiagnostics diagnostics) =>
     (value, pointer) => _decodeSnapshotField(value, diagnostics, pointer);
 
 FlaxCodegenClassModel? Function(Object? value, String pointer) _decodeClassFn(
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
 ) =>
     (value, pointer) => _decodeClass(value, diagnostics, pointer);
 
 FlaxCodegenNamedTypeModel? Function(Object? value, String pointer)
-_decodeNamedTypeFn(FlaxCodegenManifestV5Diagnostics diagnostics) =>
+_decodeNamedTypeFn(FlaxCodegenManifestDiagnostics diagnostics) =>
     (value, pointer) => _decodeNamedType(value, diagnostics, pointer);
 
 FlaxCodegenFunctionModel? Function(Object? value, String pointer)
-_decodeFunctionFn(FlaxCodegenManifestV5Diagnostics diagnostics) =>
+_decodeFunctionFn(FlaxCodegenManifestDiagnostics diagnostics) =>
     (value, pointer) => _decodeFunction(value, diagnostics, pointer);
 
 FlaxCodegenSnapshotModel? Function(Object? value, String pointer)
-_decodeSnapshotFn(FlaxCodegenManifestV5Diagnostics diagnostics) =>
+_decodeSnapshotFn(FlaxCodegenManifestDiagnostics diagnostics) =>
     (value, pointer) => _decodeSnapshot(value, diagnostics, pointer);
 
 FlaxCodegenSourceIdentity? Function(Object? value, String pointer)
-_decodeSourceIdentityFn(FlaxCodegenManifestV5Diagnostics diagnostics) =>
+_decodeSourceIdentityFn(FlaxCodegenManifestDiagnostics diagnostics) =>
     (value, pointer) => _decodeSourceIdentity(value, diagnostics, pointer);
 
 List<MapEntry<Object?, Object?>>? _jsonObjectEntries(Object? value) {
@@ -3232,7 +3333,7 @@ int? _parseSlotIndex(String? slot) {
 }
 
 Object? _resolveParameterSlot(
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
   _SlotDecodeScope? scope,
   String? slot,
   String slotPointer,
@@ -3361,7 +3462,7 @@ final class _SlotDecodeScope {
   final _declared = <int>{};
 
   int? declare(
-    FlaxCodegenManifestV5Diagnostics diagnostics,
+    FlaxCodegenManifestDiagnostics diagnostics,
     String? slot,
     String slotPointer,
   ) {
@@ -3406,7 +3507,7 @@ final class _SlotDecodeScope {
   }
 
   Object? resolve(
-    FlaxCodegenManifestV5Diagnostics diagnostics,
+    FlaxCodegenManifestDiagnostics diagnostics,
     int index,
     String slotPointer,
   ) {
@@ -3453,10 +3554,10 @@ Map<String, Object?> _encodeExtension(FlaxCodegenExtensionModel extension) {
 
 FlaxCodegenExtensionModel? _decodeExtension(
   Object? value,
-  FlaxCodegenManifestV5Diagnostics diagnostics,
+  FlaxCodegenManifestDiagnostics diagnostics,
   String pointer,
 ) {
-  final object = FlaxCodegenManifestV5Object.read(diagnostics, value, pointer, {
+  final object = FlaxCodegenManifestObject.read(diagnostics, value, pointer, {
     'name',
     'originatingUri',
     'typeParameters',
@@ -3475,15 +3576,14 @@ FlaxCodegenExtensionModel? _decodeExtension(
     },
     diagnostics,
     pointer,
-    9,
   );
   final members = object.requiredList('members', (value, pointer) {
-    final member = FlaxCodegenManifestV5Object.read(
-      diagnostics,
-      value,
-      pointer,
-      {'id', 'name', 'kind', 'call'},
-    );
+    final member = FlaxCodegenManifestObject.read(diagnostics, value, pointer, {
+      'id',
+      'name',
+      'kind',
+      'call',
+    });
     if (member == null) return null;
     final id = member.requiredString('id');
     final name = member.requiredString('name');
