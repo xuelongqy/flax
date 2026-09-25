@@ -6,6 +6,7 @@ import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
 import '../tool/src/capability/mechanisms.dart';
+import '../tool/src/capability/model.dart';
 
 /// The recorded matrix. Every value below is an observed result, not an
 /// expectation about how the binder "should" behave: the probe re-runs the real
@@ -53,7 +54,7 @@ void main() {
       'callback/future-value-param',
     ]) {
       final result = await probe(label);
-      expect(result.verdict, 'supported', reason: label);
+      expect(result.verdict, CapabilityVerdict.supported, reason: label);
       expect(result.propose['bindable'], isTrue, reason: label);
       expect(
         result.propose['memberStatus'],
@@ -73,7 +74,11 @@ void main() {
       expect(shapes, hasLength(6));
       for (final expected in shapes) {
         final result = await probe(expected.label);
-        expect(result.verdict, 'supported', reason: expected.label);
+        expect(
+          result.verdict,
+          CapabilityVerdict.supported,
+          reason: expected.label,
+        );
         expect(result.propose['bindable'], isTrue, reason: expected.label);
         expect(
           result.propose['memberStatus'],
@@ -85,30 +90,32 @@ void main() {
     },
   );
 
-  test('extension type declaration is an automation gap', () async {
+  test('extension type declaration uses representation semantics', () async {
     final result = await probe('extensionType/declaration');
-    expect(result.verdict, 'automation gap');
-    expect(result.propose['bindable'], isFalse);
-    expect(result.propose['status'], 'unsupported');
+    expect(result.verdict, CapabilityVerdict.limited);
+    expect(result.reasonKind, CapabilityReasonKind.intentionalBoundary);
+    expect(result.propose['bindable'], isTrue);
+    expect(result.propose['selectionState'], 'representation');
     expect(
-      result.propose['skips'],
-      contains('Meters: Expected a class or mixin'),
+      result.propose['skipCodes'],
+      contains('extension_type_representation_only'),
     );
     expect(result.classWide['ok'], isTrue);
-    expect(
-      result.classWide['classes'],
-      containsAll(<String>['MetersBox', 'Meters']),
-    );
+    expect(result.classWide['classes'], <String>['MetersBox']);
   });
 
   test('class modifiers stay selectable and parsable', () async {
     final shapes = _recordedShapes
         .where((expected) => expected.label.startsWith('classModifier/'))
         .toList();
-    expect(shapes, hasLength(9));
+    expect(shapes, hasLength(11));
     for (final expected in shapes) {
       final result = await probe(expected.label);
-      expect(result.verdict, 'supported', reason: expected.label);
+      expect(
+        result.verdict,
+        CapabilityVerdict.supported,
+        reason: expected.label,
+      );
       expect(result.propose['bindable'], isTrue, reason: expected.label);
       expect(result.classWide['ok'], isTrue, reason: expected.label);
     }
@@ -160,8 +167,37 @@ void main() {
     });
   });
 
+  group('stage2MechanismsClosureError', () {
+    test('accepts a closed matrix', () {
+      expect(
+        stage2MechanismsClosureError({
+          'closure': {
+            'automationGap': 0,
+            'generatorGap': 0,
+            'environmentBlocked': 0,
+          },
+        }),
+        isNull,
+      );
+    });
+
+    test('reports unresolved or blocked stages', () {
+      expect(
+        stage2MechanismsClosureError({
+          'closure': {
+            'automationGap': 1,
+            'generatorGap': 2,
+            'environmentBlocked': 3,
+          },
+        }),
+        'Stage 2 mechanism closure failed: automationGap=1, '
+        'generatorGap=2, environmentBlocked=3',
+      );
+    });
+  });
+
   test('the flat shape list covers five mechanisms with unique labels', () {
-    expect(stage2MechanismShapes, hasLength(35));
+    expect(stage2MechanismShapes, hasLength(37));
     expect(stage2MechanismShapes.map((shape) => shape.group).toSet(), <String>{
       'callback',
       'record',
@@ -176,6 +212,32 @@ void main() {
     expect(stage2MechanismFlutterFixtures, <String>{
       'widget_callback_shapes.dart',
     });
+  });
+
+  test('every intentional boundary has a stable code and fixture', () {
+    expect(
+      stage2MechanismBoundaries.map((boundary) => boundary['id']).toSet(),
+      hasLength(stage2MechanismBoundaries.length),
+    );
+    for (final boundary in stage2MechanismBoundaries) {
+      expect(boundary['code'], isNotEmpty, reason: boundary['id'] as String);
+      expect(
+        boundary['reasonKind'],
+        isNot(anyOf('automationGap', 'generatorGap')),
+        reason: boundary['id'] as String,
+      );
+      expect(
+        File(
+          p.join(
+            repoRoot,
+            'packages/flax_codegen',
+            boundary['fixture'] as String,
+          ),
+        ).existsSync(),
+        isTrue,
+        reason: boundary['id'] as String,
+      );
+    }
   });
 
   group('aggregateWidgetsEvidence', () {
@@ -199,15 +261,15 @@ void main() {
       expect((records['resultPosition']! as List), hasLength(1));
       expect((records['parameterPosition']! as List), hasLength(1));
       expect((records['insideCallbackSignature']! as List), hasLength(1));
-      expect(evidence['callbackDiagnostics'], {
-        'context inputs are currently callback-only': 1,
-        'unsupported member type: BuildContext': 1,
+      expect(evidence['mechanismDiagnostics'], {
+        'context_input_callback_only': 1,
+        'unsupported_binding_type': 1,
       });
-      expect(evidence['callbackDiagnosticIdentityCount'], 2);
+      expect(evidence['mechanismDiagnosticIdentityCount'], 2);
     });
   });
 
-  test('renders the matrix, widgets evidence and not-run list', () {
+  test('renders the matrix, structured stages and explicit boundaries', () {
     final markdown = stage2MechanismsMarkdown(<String, Object?>{
       'denominators': <String, Object?>{'matrix': '1 shape'},
       'shapes': <Map<String, Object?>>[
@@ -230,6 +292,8 @@ void main() {
           'memberInModule': true,
           'emit': null,
           'verdict': 'supported',
+          'reasonKind': 'none',
+          'stages': const CapabilityStages().toJson(),
         },
       ],
       'widgetsEvidence': <String, Object?>{
@@ -245,23 +309,30 @@ void main() {
           'parameterPosition': <Object?>[],
           'insideCallbackSignature': <Object?>[],
         },
-        'callbackDiagnostics': <String, Object?>{},
-        'callbackDiagnosticIdentityCount': 0,
+        'mechanismDiagnostics': <String, Object?>{},
+        'mechanismDiagnosticIdentityCount': 0,
       },
-      'notRun': <String>['mixin and mixin class (not run this round)'],
+      'closure': <String, Object?>{
+        'automationGap': 0,
+        'generatorGap': 0,
+        'environmentBlocked': 0,
+      },
+      'boundaries': stage2MechanismBoundaries,
     });
 
-    expect(markdown, contains('# Stage 2 — remaining mechanism matrix'));
+    expect(markdown, contains('# Stage 2 — mechanism matrix'));
     expect(
       markdown,
       contains(
-        '| mechanism | shape | propose | explicit parse | verdict | E |',
+        '| mechanism | shape | propose | explicit parse | verdict | reason | E |',
       ),
     );
     expect(markdown, contains('| callback | callback/sync-callback-param |'));
     expect(markdown, contains('## Widgets evidence (read-only aggregation)'));
-    expect(markdown, contains('## Not run'));
-    expect(markdown, contains('- mixin and mixin class (not run this round)'));
+    expect(markdown, contains('## Closure gates'));
+    expect(markdown, contains('- automationGap: 0'));
+    expect(markdown, contains('## Explicit boundaries'));
+    expect(markdown, contains('`async_mounted_widget_result`'));
   });
 }
 
@@ -269,10 +340,15 @@ void _assertShape(Stage2MechanismProbe probe, _ShapeExpectation expected) {
   final label = expected.label;
   final propose = probe.propose;
   expect(probe.verdict, expected.verdict, reason: label);
+  expect(probe.reasonKind, expected.reasonKind, reason: '$label reasonKind');
   expect(probe.effectiveRoute, expected.route, reason: label);
   expect(propose['bindable'], expected.bindable, reason: label);
-  if (expected.proposeStatus != null) {
-    expect(propose['status'], expected.proposeStatus, reason: label);
+  if (expected.proposeSelectionState != null) {
+    expect(
+      propose['selectionState'],
+      expected.proposeSelectionState,
+      reason: label,
+    );
   }
   if (expected.member != null) {
     expect(propose['memberStatus'], expected.memberStatus, reason: label);
@@ -345,9 +421,10 @@ final class _ShapeExpectation {
     this.member,
     this.proposeTarget,
     required this.verdict,
+    this.reasonKind = CapabilityReasonKind.none,
     required this.route,
     required this.bindable,
-    this.proposeStatus,
+    this.proposeSelectionState,
     this.memberStatus,
     this.skips,
     required this.classWideOk,
@@ -365,10 +442,11 @@ final class _ShapeExpectation {
   final String type;
   final String? member;
   final String? proposeTarget;
-  final String verdict;
+  final CapabilityVerdict verdict;
+  final CapabilityReasonKind reasonKind;
   final String route;
   final bool bindable;
-  final String? proposeStatus;
+  final String? proposeSelectionState;
   final String? memberStatus;
   final List<String>? skips;
   final bool classWideOk;
@@ -398,9 +476,12 @@ const Map<String, Object?> _syntheticInventory = {
         },
       ],
       'assessment': {
-        'status': 'partial',
+        'verdict': 'limited',
         'diagnostics': <Map<String, Object?>>[
-          {'message': 'Context inputs are currently callback-only'},
+          {
+            'code': 'context_input_callback_only',
+            'message': 'Context inputs are currently callback-only',
+          },
         ],
       },
     },
@@ -425,9 +506,12 @@ const Map<String, Object?> _syntheticInventory = {
         },
       ],
       'assessment': {
-        'status': 'unsupported',
+        'verdict': 'unsupported',
         'diagnostics': <Map<String, Object?>>[
-          {'message': 'Unsupported member type: BuildContext'},
+          {
+            'code': 'unsupported_binding_type',
+            'message': 'Unsupported member type: BuildContext',
+          },
         ],
       },
     },
@@ -442,7 +526,7 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'callback_shapes.dart',
     type: 'SyncCallbackBox',
     member: 'run',
-    verdict: 'supported',
+    verdict: CapabilityVerdict.supported,
     route: 'classWide',
     bindable: true,
     memberStatus: 'selected',
@@ -456,7 +540,7 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'callback_shapes.dart',
     type: 'FutureArgCallback',
     member: 'onEach',
-    verdict: 'supported',
+    verdict: CapabilityVerdict.supported,
     route: 'classWide',
     bindable: true,
     memberStatus: 'selected',
@@ -470,7 +554,7 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'callback_shapes.dart',
     type: 'FutureArgCallback',
     member: 'whenDone',
-    verdict: 'supported',
+    verdict: CapabilityVerdict.supported,
     route: 'classWide',
     bindable: true,
     memberStatus: 'selected',
@@ -484,7 +568,7 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'callback_shapes.dart',
     type: 'FutureResultCallback',
     member: 'schedule',
-    verdict: 'supported',
+    verdict: CapabilityVerdict.supported,
     route: 'classWide',
     bindable: true,
     memberStatus: 'selected',
@@ -498,7 +582,7 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'callback_shapes.dart',
     type: 'FutureOrCallback',
     member: 'scheduleOrValue',
-    verdict: 'supported',
+    verdict: CapabilityVerdict.supported,
     route: 'classWide',
     bindable: true,
     memberStatus: 'selected',
@@ -512,7 +596,7 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'callback_shapes.dart',
     type: 'FutureOrCallback',
     member: 'echoOrValue',
-    verdict: 'supported',
+    verdict: CapabilityVerdict.supported,
     route: 'classWide',
     bindable: true,
     memberStatus: 'selected',
@@ -526,7 +610,7 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'callback_shapes.dart',
     type: 'NestedFutureCallback',
     member: 'nested',
-    verdict: 'supported',
+    verdict: CapabilityVerdict.supported,
     route: 'classWide',
     bindable: true,
     memberStatus: 'selected',
@@ -540,7 +624,7 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'callback_shapes.dart',
     type: 'StreamCallback',
     member: 'listenAll',
-    verdict: 'supported',
+    verdict: CapabilityVerdict.supported,
     route: 'classWide',
     bindable: true,
     memberStatus: 'selected',
@@ -554,7 +638,7 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'callback_shapes.dart',
     type: 'StreamCallback',
     member: 'watch',
-    verdict: 'supported',
+    verdict: CapabilityVerdict.supported,
     route: 'classWide',
     bindable: true,
     memberStatus: 'selected',
@@ -568,7 +652,7 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'record_shapes.dart',
     type: 'RecordBox',
     member: 'seed',
-    verdict: 'supported',
+    verdict: CapabilityVerdict.supported,
     route: 'classWide',
     bindable: true,
     memberStatus: 'selected',
@@ -582,7 +666,7 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'record_shapes.dart',
     type: 'RecordBox',
     member: 'take',
-    verdict: 'supported',
+    verdict: CapabilityVerdict.supported,
     route: 'classWide',
     bindable: true,
     memberStatus: 'selected',
@@ -596,7 +680,7 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'record_shapes.dart',
     type: 'RecordBox',
     member: 'pair',
-    verdict: 'supported',
+    verdict: CapabilityVerdict.supported,
     route: 'classWide',
     bindable: true,
     memberStatus: 'selected',
@@ -610,7 +694,7 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'record_shapes.dart',
     type: 'RecordBox',
     member: 'takeNamed',
-    verdict: 'supported',
+    verdict: CapabilityVerdict.supported,
     route: 'classWide',
     bindable: true,
     memberStatus: 'selected',
@@ -624,7 +708,7 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'record_shapes.dart',
     type: 'RecordBox',
     member: 'takeAll',
-    verdict: 'supported',
+    verdict: CapabilityVerdict.supported,
     route: 'classWide',
     bindable: true,
     memberStatus: 'selected',
@@ -638,7 +722,7 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'record_shapes.dart',
     type: 'RecordBox',
     member: 'takeFuture',
-    verdict: 'supported',
+    verdict: CapabilityVerdict.supported,
     route: 'classWide',
     bindable: true,
     memberStatus: 'selected',
@@ -652,13 +736,13 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'extension_type_shapes.dart',
     type: 'MetersBox',
     proposeTarget: 'Meters',
-    verdict: 'automation gap',
+    verdict: CapabilityVerdict.limited,
+    reasonKind: CapabilityReasonKind.intentionalBoundary,
     route: 'classWide',
-    bindable: false,
-    proposeStatus: 'unsupported',
-    skips: <String>['Meters: Expected a class or mixin'],
+    bindable: true,
+    proposeSelectionState: 'representation',
     classWideOk: true,
-    classWideClasses: <String>['MetersBox', 'Meters'],
+    classWideClasses: <String>['MetersBox'],
     memberInModule: true,
   ),
   _ShapeExpectation(
@@ -666,12 +750,13 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'extension_type_shapes.dart',
     type: 'MetersBox',
     member: 'meters',
-    verdict: 'supported',
+    verdict: CapabilityVerdict.limited,
+    reasonKind: CapabilityReasonKind.intentionalBoundary,
     route: 'classWide',
     bindable: true,
     memberStatus: 'selected',
     classWideOk: true,
-    classWideClasses: <String>['MetersBox', 'Meters'],
+    classWideClasses: <String>['MetersBox'],
     classWideMemberSelected: true,
     memberInModule: true,
   ),
@@ -680,12 +765,13 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'extension_type_shapes.dart',
     type: 'MetersBox',
     member: 'total',
-    verdict: 'supported',
+    verdict: CapabilityVerdict.limited,
+    reasonKind: CapabilityReasonKind.intentionalBoundary,
     route: 'classWide',
     bindable: true,
     memberStatus: 'selected',
     classWideOk: true,
-    classWideClasses: <String>['MetersBox', 'Meters'],
+    classWideClasses: <String>['MetersBox'],
     classWideMemberSelected: true,
     memberInModule: true,
   ),
@@ -694,12 +780,13 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'extension_type_shapes.dart',
     type: 'MetersBox',
     member: 'double',
-    verdict: 'supported',
+    verdict: CapabilityVerdict.limited,
+    reasonKind: CapabilityReasonKind.intentionalBoundary,
     route: 'classWide',
     bindable: true,
     memberStatus: 'selected',
     classWideOk: true,
-    classWideClasses: <String>['MetersBox', 'Meters'],
+    classWideClasses: <String>['MetersBox'],
     classWideMemberSelected: true,
     memberInModule: true,
   ),
@@ -708,7 +795,8 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'widget_callback_shapes.dart',
     type: 'WidgetBuilderBox',
     member: 'configure',
-    verdict: 'capability gap',
+    verdict: CapabilityVerdict.unsupported,
+    reasonKind: CapabilityReasonKind.intentionalBoundary,
     route: 'failed',
     bindable: true,
     memberStatus: 'selected',
@@ -731,7 +819,8 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'widget_callback_shapes.dart',
     type: 'WidgetBuilderBox',
     member: 'buildOnce',
-    verdict: 'automation gap',
+    verdict: CapabilityVerdict.unsupported,
+    reasonKind: CapabilityReasonKind.intentionalBoundary,
     route: 'memberIsolated',
     bindable: true,
     memberStatus: 'skipped',
@@ -752,7 +841,7 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'widget_callback_shapes.dart',
     type: 'WidgetSinkBox',
     member: 'sink',
-    verdict: 'supported',
+    verdict: CapabilityVerdict.supported,
     route: 'classWide',
     bindable: true,
     memberStatus: 'selected',
@@ -766,7 +855,7 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'widget_callback_shapes.dart',
     type: 'WidgetSinkBox',
     member: 'sinkAll',
-    verdict: 'supported',
+    verdict: CapabilityVerdict.supported,
     route: 'classWide',
     bindable: true,
     memberStatus: 'selected',
@@ -780,7 +869,7 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'widget_callback_shapes.dart',
     type: 'WidgetSinkBox',
     member: 'children',
-    verdict: 'supported',
+    verdict: CapabilityVerdict.supported,
     route: 'classWide',
     bindable: true,
     memberStatus: 'selected',
@@ -794,7 +883,7 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'widget_callback_shapes.dart',
     type: 'WidgetFutureBox',
     member: 'later',
-    verdict: 'supported',
+    verdict: CapabilityVerdict.supported,
     route: 'classWide',
     bindable: true,
     memberStatus: 'selected',
@@ -808,7 +897,7 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'widget_callback_shapes.dart',
     type: 'WidgetNullableBox',
     member: 'maybe',
-    verdict: 'supported',
+    verdict: CapabilityVerdict.supported,
     route: 'classWide',
     bindable: true,
     memberStatus: 'selected',
@@ -823,7 +912,7 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'class_modifier_shapes.dart',
     type: 'AbstractBox',
     member: 'value',
-    verdict: 'supported',
+    verdict: CapabilityVerdict.supported,
     route: 'classWide',
     bindable: true,
     memberStatus: 'selected',
@@ -834,11 +923,39 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     memberInModule: true,
   ),
   _ShapeExpectation(
+    label: 'classModifier/mixin',
+    fixture: 'class_modifier_shapes.dart',
+    type: 'PlainMixin',
+    member: 'value',
+    verdict: CapabilityVerdict.supported,
+    route: 'classWide',
+    bindable: true,
+    memberStatus: 'selected',
+    classWideOk: true,
+    classWideClasses: <String>['PlainMixin'],
+    classWideMemberSelected: true,
+    memberInModule: true,
+  ),
+  _ShapeExpectation(
+    label: 'classModifier/mixin-class',
+    fixture: 'class_modifier_shapes.dart',
+    type: 'UtilityMixinClass',
+    member: 'value',
+    verdict: CapabilityVerdict.supported,
+    route: 'classWide',
+    bindable: true,
+    memberStatus: 'selected',
+    classWideOk: true,
+    classWideClasses: <String>['UtilityMixinClass'],
+    classWideMemberSelected: true,
+    memberInModule: true,
+  ),
+  _ShapeExpectation(
     label: 'classModifier/base',
     fixture: 'class_modifier_shapes.dart',
     type: 'BaseBox',
     member: 'value',
-    verdict: 'supported',
+    verdict: CapabilityVerdict.supported,
     route: 'classWide',
     bindable: true,
     memberStatus: 'selected',
@@ -852,7 +969,7 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'class_modifier_shapes.dart',
     type: 'FinalBox',
     member: 'value',
-    verdict: 'supported',
+    verdict: CapabilityVerdict.supported,
     route: 'classWide',
     bindable: true,
     memberStatus: 'selected',
@@ -866,7 +983,7 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'class_modifier_shapes.dart',
     type: 'InterfaceBox',
     member: 'value',
-    verdict: 'supported',
+    verdict: CapabilityVerdict.supported,
     route: 'classWide',
     bindable: true,
     memberStatus: 'selected',
@@ -880,7 +997,7 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'class_modifier_shapes.dart',
     type: 'InterfaceBoxImpl',
     member: 'value',
-    verdict: 'supported',
+    verdict: CapabilityVerdict.supported,
     route: 'classWide',
     bindable: true,
     memberStatus: 'selected',
@@ -894,7 +1011,7 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'class_modifier_shapes.dart',
     type: 'SealedBox',
     member: 'value',
-    verdict: 'supported',
+    verdict: CapabilityVerdict.supported,
     route: 'classWide',
     bindable: true,
     memberStatus: 'selected',
@@ -910,7 +1027,7 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     label: 'classModifier/sealed-child',
     fixture: 'class_modifier_shapes.dart',
     type: 'SealedBoxChild',
-    verdict: 'supported',
+    verdict: CapabilityVerdict.supported,
     route: 'classWide',
     bindable: true,
     classWideOk: true,
@@ -922,7 +1039,7 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'class_modifier_shapes.dart',
     type: 'AbstractInterfaceBox',
     member: 'value',
-    verdict: 'supported',
+    verdict: CapabilityVerdict.supported,
     route: 'classWide',
     bindable: true,
     memberStatus: 'selected',
@@ -937,7 +1054,7 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'class_modifier_shapes.dart',
     type: 'AbstractInterfaceBoxImpl',
     member: 'value',
-    verdict: 'supported',
+    verdict: CapabilityVerdict.supported,
     route: 'classWide',
     bindable: true,
     memberStatus: 'selected',

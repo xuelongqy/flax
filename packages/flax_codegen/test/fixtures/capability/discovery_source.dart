@@ -27,6 +27,8 @@ mixin PublicMixin {
   int mixinMethod() => 1;
 }
 
+enum Simple { first, second }
+
 enum Enhanced {
   one(1),
   two(2);

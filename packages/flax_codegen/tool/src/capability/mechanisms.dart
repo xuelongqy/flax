@@ -1,10 +1,8 @@
-// Stage 2 remaining-mechanism matrix (verification only).
+// Stage 2 mechanism matrix (verification only).
 //
-// This probe measures the four language mechanisms that were not quantified in
-// the earlier stage 2 rounds: callback shapes, records, extension types, and
-// class modifiers (mixin is out of scope this round). It changes no generator
-// behaviour: every probe is read-only and every artifact is written under the
-// caller's `--out` directory.
+// This probe measures callback shapes, records, extension types, and class
+// modifiers. It changes no generator behaviour: every probe is read-only and
+// every artifact is written under the caller's `--out` directory.
 //
 // Each shape is measured on three layers:
 //   L1  `proposeSelection` (fail-open): can the automatic selector bind the
@@ -16,11 +14,9 @@
 //       `with_official` when the emitter reports an emit dependency, and then
 //       `dart analyze` plus `tsc` through the shared stage 3 compile path.
 //
-// Verdict vocabulary (fixed):
-//   supported       - explicit parse works and the automatic selector picked it
-//   automation gap  - explicit parse works but the automatic selector skipped it
-//   capability gap  - the explicit fail-closed path cannot bind the shape
-//   not run         - intentionally out of scope this round
+// Verdict and reason vocabulary is shared with the declaration inventory:
+// supported / limited / unsupported / excluded / environmentBlocked plus a
+// structured reasonKind. There is no unassessed bucket.
 //
 // Evidence levels: L1/L2 only = E1, emit succeeds = E2, emit plus analyze with
 // zero errors plus tsc = E3. Nothing here replaces barrel-level E2/E3.
@@ -275,12 +271,26 @@ const List<Stage2MechanismShape> stage2MechanismShapes = [
     member: 'maybe',
   ),
 
-  // Class modifiers. No `mixin` or `mixin class` here by design.
+  // Class modifiers.
   Stage2MechanismShape(
     label: 'classModifier/abstract',
     group: 'classModifier',
     fixture: 'class_modifier_shapes.dart',
     type: 'AbstractBox',
+    member: 'value',
+  ),
+  Stage2MechanismShape(
+    label: 'classModifier/mixin',
+    group: 'classModifier',
+    fixture: 'class_modifier_shapes.dart',
+    type: 'PlainMixin',
+    member: 'value',
+  ),
+  Stage2MechanismShape(
+    label: 'classModifier/mixin-class',
+    group: 'classModifier',
+    fixture: 'class_modifier_shapes.dart',
+    type: 'UtilityMixinClass',
     member: 'value',
   ),
   Stage2MechanismShape(
@@ -345,6 +355,59 @@ const Set<String> stage2MechanismFlutterFixtures = {
   'widget_callback_shapes.dart',
 };
 
+/// Intentional boundaries that use existing regression fixtures and stable
+/// diagnostic codes. These are assessed, not left in an unmeasured bucket.
+const List<Map<String, Object?>> stage2MechanismBoundaries = [
+  {
+    'id': 'async_mounted_widget_result',
+    'verdict': 'unsupported',
+    'reasonKind': 'intentionalBoundary',
+    'code': 'unsupported_mounted_widget_result',
+    'fixture': 'test/fixtures/bindability/auto_library.dart',
+    'example': 'Future<Widget> Function() on a Widget constructor',
+  },
+  {
+    'id': 'mounted_widget_collection_shape',
+    'verdict': 'unsupported',
+    'reasonKind': 'intentionalBoundary',
+    'code': 'unsupported_mounted_widget_result',
+    'fixture': 'test/fixtures/bindability/auto_library.dart',
+    'example': 'Set<Widget> or List<Widget?> returned by a mounted callback',
+  },
+  {
+    'id': 'arbitrary_mixin_composition',
+    'verdict': 'unsupported',
+    'reasonKind': 'intentionalBoundary',
+    'code': 'state_variant_only_mixin_composition',
+    'fixture': 'test/fixtures/capability/class_modifier_shapes.dart',
+    'example': 'Applying a runtime-selected mixin to an ordinary class proxy',
+  },
+  {
+    'id': 'recursive_generic_bound',
+    'verdict': 'unsupported',
+    'reasonKind': 'intentionalBoundary',
+    'code': 'complex_generic_bound',
+    'fixture': 'test/fixtures/capability/generic_cases.dart',
+    'example': 'T extends Comparable<T> without concrete evidence',
+  },
+  {
+    'id': 'unnamed_extension',
+    'verdict': 'excluded',
+    'reasonKind': 'visibility',
+    'code': 'unnamed_extension',
+    'fixture': 'test/fixtures/capability/extension_shapes.dart',
+    'example': 'extension on String { ... }',
+  },
+  {
+    'id': 'concrete_generic_extension_receiver',
+    'verdict': 'unsupported',
+    'reasonKind': 'intentionalBoundary',
+    'code': 'generic_receiver_specialization_required',
+    'fixture': 'test/fixtures/capability/extension_shapes.dart',
+    'example': 'extension RecursiveX<T extends Comparable<T>> on List<T>',
+  },
+];
+
 /// Reports the mutually exclusive CLI misuse, or `null` when the flags agree.
 String? stage2MechanismsArgsError({
   required bool stage2Mechanisms,
@@ -378,8 +441,8 @@ Map<String, Object?> aggregateWidgetsEvidence(Object? inventoryJson) {
   final recordResultPosition = <Map<String, Object?>>[];
   final recordParameterPosition = <Map<String, Object?>>[];
   final recordInsideCallbackSignature = <Map<String, Object?>>[];
-  final callbackDiagnostics = <String, int>{};
-  final callbackDiagnosticIdentities = <String>{};
+  final mechanismDiagnostics = <String, int>{};
+  final mechanismDiagnosticIdentities = <String>{};
   final classLikeIdentities = <String>{};
 
   for (final raw in declarations) {
@@ -442,12 +505,12 @@ Map<String, Object?> aggregateWidgetsEvidence(Object? inventoryJson) {
       for (final rawDiagnostic
           in (assessment['diagnostics'] as List? ?? const [])) {
         if (rawDiagnostic is! Map) continue;
-        final message = rawDiagnostic['message'] as String? ?? '';
-        final category = widgetMechanismDiagnosticCategory(message);
-        if (category == null) continue;
-        callbackDiagnostics[category] =
-            (callbackDiagnostics[category] ?? 0) + 1;
-        callbackDiagnosticIdentities.add(id);
+        final code = rawDiagnostic['code'] as String?;
+        if (code == null || !_widgetMechanismDiagnosticCodes.contains(code)) {
+          continue;
+        }
+        mechanismDiagnostics[code] = (mechanismDiagnostics[code] ?? 0) + 1;
+        mechanismDiagnosticIdentities.add(id);
       }
     }
   }
@@ -464,43 +527,21 @@ Map<String, Object?> aggregateWidgetsEvidence(Object? inventoryJson) {
       'parameterPosition': recordParameterPosition,
       'insideCallbackSignature': recordInsideCallbackSignature,
     },
-    'callbackDiagnostics': callbackDiagnostics,
-    'callbackDiagnosticIdentityCount': callbackDiagnosticIdentities.length,
-    'callbackDiagnosticIdentities': callbackDiagnosticIdentities.toList()
+    'mechanismDiagnostics': mechanismDiagnostics,
+    'mechanismDiagnosticIdentityCount': mechanismDiagnosticIdentities.length,
+    'mechanismDiagnosticIdentities': mechanismDiagnosticIdentities.toList()
       ..sort(),
   };
 }
 
-/// Maps a widgets diagnostic message to the mechanism bucket it belongs to.
-String? widgetMechanismDiagnosticCategory(String message) {
-  const exact = {
-    'Independent Widget-result callbacks stay YAML-only':
-        'independent Widget-result callbacks stay YAML-only',
-    'Context inputs are currently callback-only':
-        'context inputs are currently callback-only',
-  };
-  if (exact[message] case final category?) return category;
-  if (message.startsWith('Unsupported input callback signature')) {
-    return 'unsupported input callback signature';
-  }
-  if (message.startsWith('Unsupported callback signature')) {
-    return 'unsupported callback signature';
-  }
-  if (message.startsWith('Unsupported member type:')) {
-    final type = message.substring('Unsupported member type:'.length).trim();
-    if (type.startsWith('BuildContext')) {
-      return 'unsupported member type: BuildContext';
-    }
-    return null;
-  }
-  if (message.startsWith('Missing callback signature')) {
-    return 'missing callback signature';
-  }
-  if (message.startsWith('Unsupported binding type')) {
-    return 'unsupported binding type';
-  }
-  return null;
-}
+const Set<String> _widgetMechanismDiagnosticCodes = {
+  'missing_callback_signature',
+  'unsupported_binding_type',
+  'unsupported_input_shape',
+  'context_input_callback_only',
+  'unsupported_mounted_widget_result',
+  'stored_callback_owner_required',
+};
 
 bool _isRecordTypeText(String type) {
   final trimmed = type.trimLeft();
@@ -526,6 +567,7 @@ final class Stage2MechanismProbe {
     required this.module,
     required this.effectiveRoute,
     required this.verdict,
+    required this.reasonKind,
   });
 
   final Stage2MechanismShape shape;
@@ -544,8 +586,8 @@ final class Stage2MechanismProbe {
   /// `classWide`, `memberIsolated`, or `failed`.
   final String effectiveRoute;
 
-  /// `supported`, `automation gap`, or `capability gap`.
-  final String verdict;
+  final CapabilityVerdict verdict;
+  final CapabilityReasonKind reasonKind;
 }
 
 /// Measures one shape without emitting. Exposed so tests assert the recorded
@@ -593,6 +635,11 @@ Future<Stage2MechanismProbe> probeStage2MechanismShape({
   final effective = classWide['ok'] == true
       ? classWide
       : (memberIsolated ?? classWide);
+  final classification = _classification(
+    shape: shape,
+    propose: propose,
+    effective: effective,
+  );
   return Stage2MechanismProbe(
     shape: shape,
     propose: propose,
@@ -604,7 +651,8 @@ Future<Stage2MechanismProbe> probeStage2MechanismShape({
     effectiveRoute: effective['ok'] == true
         ? (classWide['ok'] == true ? 'classWide' : 'memberIsolated')
         : 'failed',
-    verdict: _verdict(propose: propose, effective: effective),
+    verdict: classification.verdict,
+    reasonKind: classification.reasonKind,
   );
 }
 
@@ -679,6 +727,8 @@ Future<Map<String, Object?>> runStage2Mechanisms({
       emit = {...emitted, 'compile': ?compile};
     }
 
+    final classification = _completedClassification(probe, emit);
+
     rows.add({
       ...shape.toJson(),
       'propose': probe.propose,
@@ -687,11 +737,21 @@ Future<Map<String, Object?>> runStage2Mechanisms({
       'explicitEffective': probe.effectiveRoute,
       'memberInModule': _memberInModule(module, shape),
       'emit': emit,
-      'verdict': probe.verdict,
+      'verdict': classification.verdict.name,
+      'reasonKind': classification.reasonKind.name,
+      'stages': _mechanismStages(probe, emit).toJson(),
     });
   }
 
   final widgets = _loadWidgetsEvidence(workspaceRoot, inventoryPath);
+  final reasonCounts = <String, int>{};
+  final verdictCounts = <String, int>{};
+  for (final row in rows) {
+    final reason = row['reasonKind'] as String;
+    reasonCounts[reason] = (reasonCounts[reason] ?? 0) + 1;
+    final verdict = row['verdict'] as String;
+    verdictCounts[verdict] = (verdictCounts[verdict] ?? 0) + 1;
+  }
   final result = <String, Object?>{
     'generatedAt': DateTime.now().toUtc().toIso8601String(),
     'denominators': {
@@ -705,19 +765,160 @@ Future<Map<String, Object?>> runStage2Mechanisms({
     },
     'shapes': rows,
     'widgetsEvidence': widgets,
-    'notRun': [
-      'mixin / mixin class (mechanism undecided)',
-      'blacklist prototype',
-      'E4 lifecycle',
-      'dual provider composition',
-      'E5 AOT / publishing',
-    ],
+    'boundaries': stage2MechanismBoundaries,
+    'verdictCounts': verdictCounts,
+    'reasonCounts': reasonCounts,
+    'closure': {
+      'automationGap':
+          reasonCounts[CapabilityReasonKind.automationGap.name] ?? 0,
+      'generatorGap': reasonCounts[CapabilityReasonKind.generatorGap.name] ?? 0,
+      'environmentBlocked':
+          verdictCounts[CapabilityVerdict.environmentBlocked.name] ?? 0,
+    },
   };
   File(p.join(out.path, 'stage2-mechanisms.json'))
       .writeAsStringSync(prettyJson(result));
   File(p.join(out.path, 'STAGE2-MECHANISMS.md'))
       .writeAsStringSync(stage2MechanismsMarkdown(result));
   return result;
+}
+
+({CapabilityVerdict verdict, CapabilityReasonKind reasonKind})
+_completedClassification(
+  Stage2MechanismProbe probe,
+  Map<String, Object?>? emit,
+) {
+  if ({
+    CapabilityVerdict.unsupported,
+    CapabilityVerdict.excluded,
+    CapabilityVerdict.environmentBlocked,
+  }.contains(probe.verdict)) {
+    return (verdict: probe.verdict, reasonKind: probe.reasonKind);
+  }
+  if (emit == null) {
+    return (
+      verdict: CapabilityVerdict.unsupported,
+      reasonKind: CapabilityReasonKind.generatorGap,
+    );
+  }
+  if (emit['ok'] != true) {
+    return _stageFailureClassification(
+      code: emit['code']?.toString(),
+      timedOut: emit['timedOut'] == true,
+      skipped: emit['skipped'] == true,
+    );
+  }
+  final compile = emit['compile'];
+  if (compile is! Map) {
+    return (
+      verdict: CapabilityVerdict.unsupported,
+      reasonKind: CapabilityReasonKind.generatorGap,
+    );
+  }
+  if (compile['ok'] != true) {
+    return _stageFailureClassification(
+      code: compile['code']?.toString() ?? compile['dartCode']?.toString(),
+      timedOut:
+          compile['dartTimedOut'] == true || compile['tscTimedOut'] == true,
+      skipped: compile['skipped'] == true,
+    );
+  }
+  return (verdict: probe.verdict, reasonKind: probe.reasonKind);
+}
+
+({CapabilityVerdict verdict, CapabilityReasonKind reasonKind})
+_stageFailureClassification({
+  required String? code,
+  required bool timedOut,
+  required bool skipped,
+}) {
+  if (timedOut || skipped || _environmentStageCodes.contains(code)) {
+    return (
+      verdict: CapabilityVerdict.environmentBlocked,
+      reasonKind: CapabilityReasonKind.none,
+    );
+  }
+  return (
+    verdict: CapabilityVerdict.unsupported,
+    reasonKind: CapabilityReasonKind.generatorGap,
+  );
+}
+
+String? stage2MechanismsClosureError(Map<String, Object?> result) {
+  final closure = result['closure'];
+  if (closure is! Map) return 'Stage 2 mechanism report has no closure summary';
+  final automation = closure['automationGap'] as int? ?? 0;
+  final generator = closure['generatorGap'] as int? ?? 0;
+  final blocked = closure['environmentBlocked'] as int? ?? 0;
+  if (automation == 0 && generator == 0 && blocked == 0) return null;
+  return 'Stage 2 mechanism closure failed: '
+      'automationGap=$automation, generatorGap=$generator, '
+      'environmentBlocked=$blocked';
+}
+
+CapabilityStages _mechanismStages(
+  Stage2MechanismProbe probe,
+  Map<String, Object?>? emit,
+) {
+  final effective = probe.effectiveRoute == 'memberIsolated'
+      ? probe.memberIsolated
+      : probe.classWide;
+  final automaticCode = (probe.propose['skipCodes'] as List?)?.firstOrNull
+      ?.toString();
+  final automaticPassed =
+      probe.propose['bindable'] == true &&
+      probe.propose['memberStatus'] != 'skipped';
+  final automatic = automaticPassed
+      ? const CapabilityStageResult(CapabilityStageStatus.passed)
+      : CapabilityStageResult(
+          CapabilityStageStatus.failed,
+          code: automaticCode ?? 'automatic_proposal_failed',
+          detail:
+              probe.propose['error']?.toString() ??
+              probe.propose['memberSkipReason']?.toString(),
+        );
+  final explicit = effective?['ok'] == true
+      ? const CapabilityStageResult(CapabilityStageStatus.passed)
+      : CapabilityStageResult(
+          CapabilityStageStatus.failed,
+          code: effective?['code']?.toString() ?? 'explicit_parse_failed',
+          detail: effective?['error']?.toString(),
+        );
+  CapabilityStageResult emitStage;
+  CapabilityStageResult compileStage;
+  if (emit == null) {
+    emitStage = const CapabilityStageResult(
+      CapabilityStageStatus.notApplicable,
+    );
+    compileStage = const CapabilityStageResult(
+      CapabilityStageStatus.notApplicable,
+    );
+  } else {
+    emitStage = emit['ok'] == true
+        ? const CapabilityStageResult(CapabilityStageStatus.passed)
+        : CapabilityStageResult(
+            CapabilityStageStatus.failed,
+            code: emit['code']?.toString() ?? 'emit_failed',
+            detail: (emit['error'] ?? emit['reason'])?.toString(),
+          );
+    final compile = emit['compile'];
+    compileStage = compile is! Map
+        ? const CapabilityStageResult(CapabilityStageStatus.notApplicable)
+        : compile['ok'] == true
+        ? const CapabilityStageResult(CapabilityStageStatus.passed)
+        : CapabilityStageResult(
+            CapabilityStageStatus.failed,
+            code: compile['code']?.toString() ?? 'compile_failed',
+            detail: (compile['error'] ?? compile['reason'])?.toString(),
+          );
+  }
+  return CapabilityStages(
+    automatic: automatic,
+    explicit: explicit,
+    parse: explicit,
+    emit: emitStage,
+    compile: compileStage,
+  );
 }
 
 FlaxCodegenBindingConfig _fixtureConfig(String workspaceRoot, String fixture) =>
@@ -780,12 +981,42 @@ Future<Map<String, Object?>> _proposeShape({
       'error': '${shape.proposeTarget} is not exported by the fixture',
     };
   }
+  if (element is ExtensionTypeElement) {
+    final parser = FlaxCodegenBindingParser(workspaceRoot);
+    try {
+      await parser.prepare([official, fixture]);
+      final proposal = await parser.proposeLibrary(fixture);
+      final selected = proposal.config.types.contains(shape.proposeTarget);
+      final skips = [
+        for (final skip in proposal.skips)
+          if (skip.target == shape.proposeTarget ||
+              skip.target.startsWith('${shape.proposeTarget}.'))
+            skip,
+      ];
+      return {
+        'bindable': selected,
+        'selectionState': selected ? 'representation' : 'unsupported',
+        'skips': [for (final skip in skips) '${skip.target}: ${skip.reason}'],
+        'skipCodes': [for (final skip in skips) skip.code],
+      };
+    } on Object catch (error) {
+      return {
+        'bindable': false,
+        'selectionState': 'error',
+        'error': error.toString().split('\n').first,
+        'skipCodes': const <String>['automatic_proposal_failed'],
+      };
+    } finally {
+      parser.dispose();
+    }
+  }
   if (element is! InterfaceElement) {
     return {
       'bindable': false,
-      'status': 'notApplicable',
+      'selectionState': 'notApplicable',
       'error':
           '${shape.proposeTarget} is ${element.runtimeType}, not an InterfaceElement',
+      'skipCodes': const <String>['unsupported_declaration_kind'],
     };
   }
   final parser = FlaxCodegenBindingParser(workspaceRoot);
@@ -800,6 +1031,7 @@ Future<Map<String, Object?>> _proposeShape({
     };
     String? memberStatus;
     String? memberSkipReason;
+    String? memberSkipCode;
     if (shape.member != null) {
       if (selectedGetters.contains(shape.member) ||
           selectedMethods.contains(shape.member)) {
@@ -810,6 +1042,7 @@ Future<Map<String, Object?>> _proposeShape({
           if (skip.target.endsWith('.${shape.member}') ||
               skip.target == shape.member) {
             memberSkipReason = skip.reason;
+            memberSkipCode = skip.code;
             break;
           }
         }
@@ -817,24 +1050,27 @@ Future<Map<String, Object?>> _proposeShape({
     }
     return {
       'bindable': proposal.bindable,
-      'status': selection == null
+      'selectionState': selection == null
           ? 'unsupported'
           : selection.typeArguments.isEmpty
           ? 'proposed'
           : 'genericDefault',
       if (shape.member != null) 'memberStatus': memberStatus,
       'memberSkipReason': ?memberSkipReason,
+      'memberSkipCode': ?memberSkipCode,
       'selectedGetters': selectedGetters.toList()..sort(),
       'selectedMethods': selectedMethods.toList()..sort(),
       'skips': [
         for (final skip in proposal.skips) '${skip.target}: ${skip.reason}',
       ],
+      'skipCodes': [for (final skip in proposal.skips) skip.code],
     };
   } on Object catch (error) {
     return {
       'bindable': false,
-      'status': 'error',
+      'selectionState': 'error',
       'error': error.toString().split('\n').first,
+      'skipCodes': const <String>['automatic_proposal_failed'],
     };
   } finally {
     parser.dispose();
@@ -848,21 +1084,26 @@ Future<Map<String, Object?>> _explicitParse({
   required FlaxCodegenBindingConfig official,
   required FlaxCodegenBindingConfig fixture,
   required Stage2MechanismShape shape,
-  required _ExplicitSelection Function(ClassElement element, String? member)
+  required _ExplicitSelection Function(InterfaceElement element, String? member)
   selection,
   required String label,
 }) async {
   final libraryResult = await resolveLibrary(collection, fixture.library);
   if (libraryResult is! LibraryElementResult) {
-    return {'ok': false, 'error': 'fixture library did not resolve'};
+    return {
+      'ok': false,
+      'error': 'fixture library did not resolve',
+      'code': 'fixture_library_unresolved',
+    };
   }
   final element =
       libraryResult.element.exportNamespace.definedNames2[shape.type];
-  if (element is! ClassElement) {
+  if (element is! InterfaceElement) {
     return {
       'ok': false,
       'error':
-          '${shape.type} is ${element?.runtimeType ?? 'missing'}, not a class',
+          '${shape.type} is ${element?.runtimeType ?? 'missing'}, not an interface declaration',
+      'code': 'fixture_declaration_not_interface',
     };
   }
   final built = selection(element, shape.member);
@@ -899,7 +1140,10 @@ final class _ExplicitSelection {
 
 /// Every selectable public constructor plus every public getter and instance
 /// method.
-_ExplicitSelection _allMemberSelection(ClassElement element, String? member) {
+_ExplicitSelection _allMemberSelection(
+  InterfaceElement element,
+  String? member,
+) {
   final constructors = _constructors(element);
   final selection = FlaxCodegenClassSelection(
     constructors.selected,
@@ -918,7 +1162,7 @@ _ExplicitSelection _allMemberSelection(ClassElement element, String? member) {
 }
 
 /// The selectable public constructors plus the single member under test.
-_ExplicitSelection _memberSelection(ClassElement element, String? member) {
+_ExplicitSelection _memberSelection(InterfaceElement element, String? member) {
   final constructors = _constructors(element);
   _ExplicitSelection wrap(FlaxCodegenClassSelection selection) =>
       _ExplicitSelection(selection, constructors.skipped);
@@ -955,10 +1199,13 @@ _ExplicitSelection _memberSelection(ClassElement element, String? member) {
 /// abstract class is unreachable from both routes and is reported through
 /// [skipped] instead of failing the whole class.
 ({Map<String, List<String>> selected, List<String> skipped}) _constructors(
-  ClassElement element,
+  InterfaceElement element,
 ) {
   final selected = <String, List<String>>{};
   final skipped = <String>[];
+  if (element is! ClassElement) {
+    return (selected: selected, skipped: skipped);
+  }
   for (final constructor in element.constructors) {
     if (constructor.isPrivate) continue;
     // The parser keys constructors by the YAML name, where an unnamed
@@ -1010,7 +1257,6 @@ Future<Map<String, Object?>> _compileShape({
   required String targetName,
   Duration? analyzeTimeout,
 }) async {
-  _cleanCompileDirectory(workspaceRoot);
   return compileEmitted(
     workspaceRoot: workspaceRoot,
     directory: directory,
@@ -1019,46 +1265,108 @@ Future<Map<String, Object?>> _compileShape({
   );
 }
 
-/// Removes the previous shape's generated files. `compileEmitted` copies every
-/// `.dart`/`.ts`/`tsconfig.json` it finds, so stale files would be analyzed as
-/// part of the next shape.
-void _cleanCompileDirectory(String workspaceRoot) {
-  final directory = Directory(
-    p.join(workspaceRoot, '.dart_tool', 'flax', 'capability-stage3'),
-  );
-  if (!directory.existsSync()) return;
-  for (final entity in directory.listSync()) {
-    if (entity is! File) continue;
-    final path = entity.path;
-    if (path.endsWith('.dart') ||
-        path.endsWith('.ts') ||
-        path.endsWith('tsconfig.json')) {
-      entity.deleteSync();
-    }
-  }
-}
-
-/// `supported` when both routes bind the shape, `automation gap` when only the
-/// explicit route does, and `capability gap` when the explicit route fails too.
-String _verdict({
+({CapabilityVerdict verdict, CapabilityReasonKind reasonKind}) _classification({
+  required Stage2MechanismShape shape,
   required Map<String, Object?> propose,
   required Map<String, Object?> effective,
 }) {
-  if (effective['ok'] != true) return 'capability gap';
+  final codes = {
+    for (final code in propose['skipCodes'] as List? ?? const [])
+      code.toString(),
+  };
+  if (effective['ok'] != true) {
+    if (codes.any(_intentionalBoundaryCodes.contains)) {
+      return (
+        verdict: CapabilityVerdict.unsupported,
+        reasonKind: CapabilityReasonKind.intentionalBoundary,
+      );
+    }
+    final effectiveCode = effective['code']?.toString();
+    if (_environmentStageCodes.contains(effectiveCode)) {
+      return (
+        verdict: CapabilityVerdict.environmentBlocked,
+        reasonKind: CapabilityReasonKind.none,
+      );
+    }
+    return (
+      verdict: CapabilityVerdict.unsupported,
+      reasonKind: CapabilityReasonKind.generatorGap,
+    );
+  }
+  if (shape.group == 'extensionType') {
+    return (
+      verdict: CapabilityVerdict.limited,
+      reasonKind: CapabilityReasonKind.intentionalBoundary,
+    );
+  }
   final proposeOk =
       propose['bindable'] == true && propose['memberStatus'] != 'skipped';
-  return proposeOk ? 'supported' : 'automation gap';
+  if (proposeOk) {
+    return (
+      verdict: CapabilityVerdict.supported,
+      reasonKind: CapabilityReasonKind.none,
+    );
+  }
+  if (codes.any(_visibilityBoundaryCodes.contains)) {
+    return (
+      verdict: CapabilityVerdict.excluded,
+      reasonKind: CapabilityReasonKind.visibility,
+    );
+  }
+  if (codes.any(_intentionalBoundaryCodes.contains)) {
+    return (
+      verdict: CapabilityVerdict.unsupported,
+      reasonKind: CapabilityReasonKind.intentionalBoundary,
+    );
+  }
+  if (codes.contains('automatic_proposal_failed')) {
+    return (
+      verdict: CapabilityVerdict.unsupported,
+      reasonKind: CapabilityReasonKind.generatorGap,
+    );
+  }
+  return (
+    verdict: CapabilityVerdict.unsupported,
+    reasonKind: CapabilityReasonKind.automationGap,
+  );
 }
+
+const _environmentStageCodes = {
+  'fixture_library_unresolved',
+  'generated_files_missing',
+  'generated_typescript_missing',
+  'workspace_pubspec_missing',
+  'dart_analyze_unavailable',
+  'dart_analyze_timeout',
+  'tsc_unavailable',
+  'tsc_timeout',
+};
+
+const _visibilityBoundaryCodes = {'visibility_annotation', 'unnamed_extension'};
+
+const _intentionalBoundaryCodes = {
+  'context_input_callback_only',
+  'unsupported_mounted_widget_result',
+  'stored_callback_owner_required',
+  'generic_receiver_specialization_required',
+  'extension_receiver_shape',
+  'extension_type_representation_only',
+  'complex_generic_bound',
+  'constructor_specialization_missing_use_site',
+  'constructor_specialization_ambiguous',
+  'unsupported_core_type',
+  'unsupported_input_shape',
+};
 
 /// Renders the English markdown report for [result].
 String stage2MechanismsMarkdown(Map<String, Object?> result) {
   final buffer = StringBuffer()
-    ..writeln('# Stage 2 — remaining mechanism matrix')
+    ..writeln('# Stage 2 — mechanism matrix')
     ..writeln()
     ..writeln(
-      'Verification only. No generator, YAML, or decision record changed: this '
-      'record measures how the current binder behaves on callback shapes, '
-      'records, extension types, and class modifiers.',
+      'This record measures the current binder on callback shapes, records, '
+      'extension types, and class modifiers. Every shape has a structured '
+      'verdict and reason.',
     )
     ..writeln()
     ..writeln('## Denominators')
@@ -1079,14 +1387,16 @@ String stage2MechanismsMarkdown(Map<String, Object?> result) {
       'evidence level counts L1/L2 as E1.',
     )
     ..writeln()
-    ..writeln('| mechanism | shape | propose | explicit parse | verdict | E |')
-    ..writeln('| --- | --- | --- | --- | --- | --- |');
+    ..writeln(
+      '| mechanism | shape | propose | explicit parse | verdict | reason | E |',
+    )
+    ..writeln('| --- | --- | --- | --- | --- | --- | --- |');
   for (final raw in result['shapes'] as List? ?? const []) {
     final row = Map<String, Object?>.from(raw as Map);
     buffer.writeln(
       '| ${row['group']} | ${row['label']} | '
       '${_proposeCell(row)} | ${_explicitCell(row)} | ${row['verdict']} | '
-      '${_evidenceCell(row)} |',
+      '${row['reasonKind']} | ${_evidenceCell(row)} |',
     );
   }
 
@@ -1116,7 +1426,10 @@ String stage2MechanismsMarkdown(Map<String, Object?> result) {
     }
     buffer.writeln('- member in module: ${row['memberInModule']}');
     buffer.writeln('- emit: ${_emitDetail(row['emit'])}');
-    buffer.writeln('- verdict: **${row['verdict']}** (${_evidenceCell(row)})');
+    buffer.writeln(
+      '- verdict: **${row['verdict']}** · reason: `${row['reasonKind']}` '
+      '(${_evidenceCell(row)})',
+    );
     buffer.writeln();
   }
 
@@ -1157,11 +1470,11 @@ String stage2MechanismsMarkdown(Map<String, Object?> result) {
     }
     buffer.writeln(
       '- callback/record diagnostics: '
-      '${jsonEncode(widgets['callbackDiagnostics'])}',
+      '${jsonEncode(widgets['mechanismDiagnostics'])}',
     );
     buffer.writeln(
       '- identities hit by those diagnostics: '
-      '${widgets['callbackDiagnosticIdentityCount']} / '
+      '${widgets['mechanismDiagnosticIdentityCount']} / '
       '${widgets['identityCount']}',
     );
   } else {
@@ -1170,12 +1483,29 @@ String stage2MechanismsMarkdown(Map<String, Object?> result) {
     );
   }
 
+  final closure = result['closure'];
   buffer
     ..writeln()
-    ..writeln('## Not run')
+    ..writeln('## Closure gates')
     ..writeln();
-  for (final item in result['notRun'] as List? ?? const []) {
-    buffer.writeln('- $item');
+  if (closure is Map) {
+    buffer.writeln('- automationGap: ${closure['automationGap']}');
+    buffer.writeln('- generatorGap: ${closure['generatorGap']}');
+  } else {
+    buffer.writeln('- unavailable');
+  }
+
+  buffer
+    ..writeln()
+    ..writeln('## Explicit boundaries')
+    ..writeln();
+  for (final raw in result['boundaries'] as List? ?? const []) {
+    final boundary = Map<String, Object?>.from(raw as Map);
+    buffer.writeln(
+      '- `${boundary['id']}`: ${boundary['verdict']} / '
+      '${boundary['reasonKind']} / `${boundary['code']}` — '
+      '${boundary['example']} (`${boundary['fixture']}`)',
+    );
   }
   return buffer.toString();
 }
@@ -1219,14 +1549,14 @@ String _explicitDetail(Object? value) {
         '$unreachable';
   }
   return 'fail — ${value['error']}'
-      '${value['category'] == null ? '' : ' [${value['category']}]'}';
+      '${value['code'] == null ? '' : ' [${value['code']}]'}';
 }
 
 String _emitDetail(Object? value) {
   if (value is! Map) return 'not attempted';
   if (value['ok'] != true) {
     return 'fail — ${value['error'] ?? value['reason']}'
-        '${value['category'] == null ? '' : ' [${value['category']}]'}';
+        '${value['code'] == null ? '' : ' [${value['code']}]'}';
   }
   final compile = value['compile'];
   final bytes =
@@ -1240,7 +1570,7 @@ String _emitDetail(Object? value) {
   }
   return '$bytes · compile failed — '
       '${compile['dartError'] ?? compile['error'] ?? compile['reason']} '
-      '[${compile['dartCategory'] ?? compile['category']}]';
+      '[${compile['code'] ?? compile['dartCode'] ?? 'compile_failed'}]';
 }
 
 String _evidenceCell(Map<String, Object?> row) {

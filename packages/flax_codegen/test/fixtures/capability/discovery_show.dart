@@ -10,6 +10,7 @@ export 'discovery_source.dart'
         Parent,
         Child,
         PublicMixin,
+        Simple,
         Enhanced,
         PublicExtension,
         PublicExtensionType,

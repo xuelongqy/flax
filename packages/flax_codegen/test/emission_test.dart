@@ -165,6 +165,63 @@ void main() {
     );
   });
 
+  group('intrinsic Stream emission', () {
+    test('signature-only Stream uses the dedicated bridge adapter', () {
+      const streamId = 'dart:async::Stream';
+      const streamType = FlaxCodegenTypeRef(
+        'stream',
+        id: streamId,
+        name: 'Stream',
+        item: FlaxCodegenTypeRef('int'),
+      );
+      const module = FlaxCodegenModuleModel(
+        name: 'streams',
+        library: 'package:example/streams.dart',
+        jsPackage: '@example/streams',
+        dartOutput: 'streams.dart',
+        tsOutput: 'streams.ts',
+        classes: [
+          FlaxCodegenClassModel(
+            name: 'Watcher',
+            id: 'example.streams/streams#type:Watcher',
+            kind: 'object',
+            constructors: [FlaxCodegenConstructorModel('', [])],
+            supertypes: [],
+            methods: [
+              FlaxCodegenMethodModel('watch', [], streamType, instance: true),
+            ],
+          ),
+        ],
+        types: [
+          FlaxCodegenNamedTypeModel(
+            name: 'Stream',
+            id: streamId,
+            typeParameters: [
+              FlaxCodegenGenericParameter(
+                'T',
+                FlaxCodegenTypeRef('any', nullable: true),
+              ),
+            ],
+          ),
+        ],
+        typeLibraries: {'Stream': 'dart:async'},
+      );
+
+      final emitter = FlaxCodegenBindingEmitter([module]);
+      final dart = emitter.dart(module);
+      final typescript = emitter.typescript(module);
+
+      expect(
+        dart,
+        contains('stream: FlaxStreamBinding("stream:dart:async::Stream'),
+      );
+      expect(typescript, contains('interface Stream'));
+      expect(typescript, contains('extends FlaxStreamReference<T>'));
+      expect(typescript, contains('watch(): Stream<number>'));
+      expect(typescript, isNot(contains('defineStream("dart:async::Stream"')));
+    });
+  });
+
   group('FlaxCodegenBindingEmitter determinism', () {
     test('repeated dart and typescript calls are byte-identical', () {
       final module = _richModule(

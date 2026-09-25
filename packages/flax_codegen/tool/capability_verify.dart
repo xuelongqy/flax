@@ -47,7 +47,7 @@ import 'src/capability/workspace.dart';
 ///   --core-type-probe             aggregate `unsupported_core_type`
 ///                                 diagnostics by core type name.
 ///
-/// Stage 2 remaining-mechanism matrix (verification only):
+/// Stage 2 mechanism closure matrix:
 ///   dart run packages/flax_codegen/tool/capability_verify.dart --stage2-mechanisms --out .local/flax-capability-stage2-mechanisms
 ///   Measures callback shapes, records, extension types, and class modifiers on
 ///   three layers (automatic `proposeSelection`, explicit YAML parse, best-effort
@@ -193,7 +193,7 @@ Future<void> main(List<String> args) async {
       exitCode = 64;
       return;
     }
-    await runStage2Mechanisms(
+    final result = await runStage2Mechanisms(
       workspaceRoot: root,
       outDir: out.path,
       inventoryPath: _resolveInventoryPath(
@@ -204,6 +204,11 @@ Future<void> main(List<String> args) async {
       analyzeTimeout: analyzeTimeout,
       log: stdout.writeln,
     );
+    final closureError = stage2MechanismsClosureError(result);
+    if (closureError != null) {
+      stderr.writeln(closureError);
+      exitCode = 1;
+    }
     return;
   }
 
@@ -638,7 +643,7 @@ Future<void> _runClosureProbe({
 
 /// Runs the whole-batch Stage 3 path for an arbitrary barrel inventory.
 ///
-/// This is the "auto full-mode" probe: the batch is every complete/partial
+/// This is the "auto full-mode" probe: the batch is every supported/limited
 /// class-like selection in the inventory. A failing batch shrinks to a minimal
 /// failing set so the residual failure class can be named instead of assumed.
 Future<void> _runStage3ForLibrary({
@@ -719,7 +724,7 @@ List<Map<String, Object?>>? _readInventoryDeclarationsAt(String path) {
   return stage3DeclarationMapsFromJson(Map<String, dynamic>.from(decoded));
 }
 
-/// Parses the complete+partial batch without the void-getter classes.
+/// Parses the supported/limited batch without the void-getter classes.
 ///
 /// The denominator stays the full foundation inventory. A successful subset is
 /// labeled `subset`; it is not whole-library E2.
@@ -824,6 +829,11 @@ Future<void> _assess({
           final element = result.element.exportNamespace.definedNames2[name];
           if (element != null) return element;
         }
+        if (current.kind == 'extension' && current.exportNames.isEmpty) {
+          for (final extension in result.element.extensions) {
+            if (declarationId(extension) == current.id) return extension;
+          }
+        }
         return null;
       },
     );
@@ -853,7 +863,8 @@ Future<List<Map<String, Object?>>> _fixtureProposals({
       results.add({
         'name': name,
         'bindable': false,
-        'status': 'notRun',
+        'verdict': 'environmentBlocked',
+        'reasonKind': 'generatorGap',
         'detail': 'unresolved',
       });
       continue;
@@ -863,7 +874,8 @@ Future<List<Map<String, Object?>>> _fixtureProposals({
       results.add({
         'name': name,
         'bindable': false,
-        'status': 'notRun',
+        'verdict': 'environmentBlocked',
+        'reasonKind': 'generatorGap',
         'detail': 'missing',
       });
       continue;
@@ -873,22 +885,34 @@ Future<List<Map<String, Object?>>> _fixtureProposals({
       results.add({
         'name': name,
         'bindable': proposed.bindable,
-        'status': proposed.selection == null
+        'verdict': proposed.selection == null
             ? 'unsupported'
+            : proposed.skips.isEmpty
+            ? 'supported'
+            : 'limited',
+        'reasonKind': proposed.selection == null
+            ? 'intentionalBoundary'
+            : proposed.skips.isEmpty
+            ? 'none'
+            : 'intentionalBoundary',
+        'proposal': proposed.selection == null
+            ? 'unselected'
             : proposed.selection!.typeArguments.isEmpty
-            ? 'proposed'
-            : 'genericDefault',
+            ? 'sharedOwner'
+            : 'explicitTypeArguments',
         'detail': proposed.selection == null
             ? (proposed.skips.firstOrNull?.reason ?? 'unselected')
             : 'typeArguments=${proposed.selection!.typeArguments.join(',')}',
         'constructors': proposed.selection?.constructors,
         'skips': [for (final skip in proposed.skips) skip.reason],
+        'codes': [for (final skip in proposed.skips) skip.code],
       });
     } catch (error) {
       results.add({
         'name': name,
         'bindable': false,
-        'status': 'unsupported',
+        'verdict': 'unsupported',
+        'reasonKind': 'generatorGap',
         'detail': error.toString().split('\n').first,
       });
     }

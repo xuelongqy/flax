@@ -40,6 +40,7 @@ void main() {
           FlaxCodegenSkip(
             target: 'CarrierType',
             reason: 'package:fixture/main.dart must publicly export the referenced type Dependency',
+            code: 'missing_export',
           ),
         ],
       );
@@ -194,7 +195,9 @@ ApiDeclarationRecord _declaration(
   modifiers: const {},
   isDeprecated: false,
   assessment: BindingAssessment(
-    status: CoverageStatus.unsupported,
+    verdict: CapabilityVerdict.unsupported,
+    reasonKind: CapabilityReasonKind.intentionalBoundary,
+    source: CapabilitySource.automatic,
     evidence: EvidenceLevel.e1,
     useCases: const {'pooled': 'unsupported'},
     surface: const {},

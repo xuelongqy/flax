@@ -24,44 +24,12 @@ FlaxCodegenClassSelection? selectionFromJson(Object? raw) {
   );
 }
 
-/// Classifies a parse/emit error without treating pool misses as generator bugs.
-String classifyCapabilityFailure(String error) {
-  final text = error.split('\n').first;
-  if (text.contains('Unknown adapted class') ||
-      text.contains('must publicly export') ||
-      text.contains('not exported by') ||
-      text.contains('Unbound runtime type argument') ||
-      text.contains('Cannot omit required') ||
-      text.contains('Unknown selected parameter') ||
-      text.contains('Unknown type adaptation') ||
-      text.contains('prepared type pool') ||
-      text.contains('Conflicting adaptation')) {
-    return 'planner';
-  }
-  if (text.contains('Missing callback signature') ||
-      text.contains('Callback metadata requires')) {
-    return 'adapter';
-  }
-  if (text.contains('No selected value constructor implements')) {
-    return 'emit_dependency';
-  }
-  if (text.contains('Unsupported core type') ||
-      text.contains('does not satisfy') ||
-      text.contains('Recursive generic') ||
-      text.contains('Unsupported binding type') ||
-      text.contains('Unsupported callback signature') ||
-      text.contains('Unsupported getter type')) {
-    return 'capability';
-  }
-  return 'generator';
-}
-
 final class Stage3Candidate {
   const Stage3Candidate({
     required this.id,
     required this.exportName,
     required this.kind,
-    required this.proposeStatus,
+    required this.proposeVerdict,
     required this.inBatch,
     this.selection,
     this.attemptSelection,
@@ -70,7 +38,7 @@ final class Stage3Candidate {
   final String id;
   final String exportName;
   final String kind;
-  final String proposeStatus;
+  final String proposeVerdict;
   final bool inBatch;
   final FlaxCodegenClassSelection? selection;
   final FlaxCodegenClassSelection? attemptSelection;
@@ -79,7 +47,7 @@ final class Stage3Candidate {
     'id': id,
     'exportName': exportName,
     'kind': kind,
-    'proposeStatus': proposeStatus,
+    'proposeVerdict': proposeVerdict,
     'inBatch': inBatch,
     'hasSelection': selection != null,
     'hasAttempt': attemptSelection != null,
@@ -97,24 +65,22 @@ List<Stage3Candidate> stage3CandidatesFromDeclarations(
     if (kind != 'class' && kind != 'mixin' && kind != 'extensionType') {
       continue;
     }
+    final verdict = stage3DeclarationVerdict(declaration);
     final assessment = declaration['assessment'];
-    final status = assessment is Map
-        ? assessment['status'] as String? ?? 'notRun'
-        : 'notRun';
     final selection = assessment is Map
         ? selectionFromJson(assessment['selection'])
         : null;
     final inBatch =
-        (status == 'complete' || status == 'partial') && selection != null;
+        (verdict == 'supported' || verdict == 'limited') && selection != null;
     candidates.add(
       Stage3Candidate(
         id: declaration['id'] as String,
         exportName: declaration['name'] as String,
         kind: kind,
-        proposeStatus: status,
+        proposeVerdict: verdict,
         inBatch: inBatch,
         selection: inBatch ? selection : null,
-        attemptSelection: status == 'unsupported'
+        attemptSelection: verdict == 'unsupported'
             ? _attemptSelection(declaration)
             : null,
       ),
@@ -157,12 +123,12 @@ List<Map<String, Object?>> stage3DeclarationMapsFromJson(
   ];
 }
 
-String stage3DeclarationStatus(Map<String, Object?> declaration) {
+String stage3DeclarationVerdict(Map<String, Object?> declaration) {
   final assessment = declaration['assessment'];
-  if (assessment is Map) {
-    return assessment['status'] as String? ?? 'notRun';
+  if (assessment is Map && assessment['verdict'] is String) {
+    return assessment['verdict'] as String;
   }
-  return 'notRun';
+  throw StateError('Missing capability verdict for ${declaration['id']}');
 }
 
 /// Inventory identities that were not present in a generated module.
@@ -182,9 +148,9 @@ List<Map<String, Object?>> stage3NotGenerated({
           'id': declaration['id'],
           'exportName': declaration['name'],
           'kind': declaration['kind'],
-          'proposeStatus':
-              byName[declaration['name'] as String]?.proposeStatus ??
-              stage3DeclarationStatus(declaration),
+          'proposeVerdict':
+              byName[declaration['name'] as String]?.proposeVerdict ??
+              stage3DeclarationVerdict(declaration),
           'inBatch': byName[declaration['name'] as String]?.inBatch ?? false,
         },
   ];
@@ -207,7 +173,7 @@ Map<String, FlaxCodegenClassSelection> stage3BatchClasses(
 ///
 /// Prefers the recorded assessment selection; falls back to the same attempt
 /// shape used for unsupported declarations (constructor parameters plus
-/// `Object?` type arguments) so an `existingProvider`/`unsupported` candidate
+/// `Object?` type arguments) so a provider-backed or unsupported candidate
 /// can still be probed. Returns null when the declaration cannot be turned
 /// into a selection.
 FlaxCodegenClassSelection? stage3SelectionForDeclaration(
@@ -336,10 +302,10 @@ Future<Map<String, Object?>> runFoundationStage3({
     for (final declaration in declarations)
       if (declaration['id'] is String) declaration['id'] as String: declaration,
   };
-  final byStatus = <String, int>{};
+  final byVerdict = <String, int>{};
   for (final candidate in candidates) {
-    byStatus[candidate.proposeStatus] =
-        (byStatus[candidate.proposeStatus] ?? 0) + 1;
+    byVerdict[candidate.proposeVerdict] =
+        (byVerdict[candidate.proposeVerdict] ?? 0) + 1;
   }
   log(
     'Stage 3 $libraryUri: denominator=$denominator classLike=${candidates.length} '
@@ -619,7 +585,7 @@ Future<Map<String, Object?>> runFoundationStage3({
     'isolatedFailed': perClass.length - isolatedParsed,
     'subset': generatedNames.length != denominator,
     'evidence': evidence.toUpperCase(),
-    'proposeStatus': byStatus,
+    'proposeVerdict': byVerdict,
     'candidates': [for (final candidate in candidates) candidate.toJson()],
     'attempts': attempts,
     'perClass': perClass,
@@ -635,7 +601,7 @@ Future<Map<String, Object?>> runFoundationStage3({
     'compile': compileResult,
     'generatedNames': generatedNames,
     'notGenerated': notGenerated,
-    'failureCategories': _countCategories([
+    'failureCodes': _countFailureCodes([
       ...attempts,
       ...perClass,
       ...unsupportedAttempts,
@@ -689,7 +655,7 @@ final class Stage3ParseResult {
     required this.names,
     this.module,
     this.error,
-    this.category,
+    this.code,
   });
 
   final String label;
@@ -698,7 +664,7 @@ final class Stage3ParseResult {
   final List<String> names;
   final FlaxCodegenModuleModel? module;
   final String? error;
-  final String? category;
+  final String? code;
 
   Map<String, Object?> toJson() => {
     'label': label,
@@ -706,7 +672,7 @@ final class Stage3ParseResult {
     'elapsedMilliseconds': elapsedMilliseconds,
     'classCount': names.length,
     if (error != null) 'error': error,
-    if (category != null) 'category': category,
+    if (code != null) 'code': code,
     if (ok) 'classes': names,
   };
 }
@@ -748,7 +714,7 @@ Future<Stage3ParseResult> parseClassSelectionSet({
       elapsedMilliseconds: stopwatch.elapsedMilliseconds,
       names: const [],
       error: message,
-      category: classifyCapabilityFailure(message),
+      code: 'parse_failed',
     );
   } finally {
     parser.dispose();
@@ -778,7 +744,7 @@ Future<Stage3ParseResult> _parseOfficial({
       elapsedMilliseconds: stopwatch.elapsedMilliseconds,
       names: const [],
       error: message,
-      category: classifyCapabilityFailure(message),
+      code: 'official_parse_failed',
     );
   } finally {
     parser.dispose();
@@ -848,26 +814,30 @@ Future<Map<String, Object?>> emitModuleSet({
     return await write([target], 'subset_only');
   } on Object catch (error) {
     final subsetError = error.toString().split('\n').first;
-    if (official == null ||
-        classifyCapabilityFailure(subsetError) != 'emit_dependency') {
+    if (official == null) {
       return {
         'ok': false,
         'mode': 'subset_only',
         'error': subsetError,
-        'category': classifyCapabilityFailure(subsetError),
+        'code': 'emit_failed',
       };
     }
     try {
       final emitted = await write([official, target], 'with_official');
-      return {...emitted, 'subsetOnlyError': subsetError};
+      return {
+        ...emitted,
+        'subsetOnlyError': subsetError,
+        'subsetOnlyCode': 'emit_requires_dependency_module',
+      };
     } on Object catch (retry) {
       final message = retry.toString().split('\n').first;
       return {
         'ok': false,
         'mode': 'with_official',
         'error': message,
-        'category': classifyCapabilityFailure(message),
+        'code': 'emit_with_dependency_failed',
         'subsetOnlyError': subsetError,
+        'subsetOnlyCode': 'emit_failed',
       };
     }
   }
@@ -886,11 +856,25 @@ Future<Map<String, Object?>> compileEmitted({
       'ok': false,
       'skipped': true,
       'reason': 'generated files missing',
-      'category': 'environment',
+      'code': 'generated_files_missing',
+    };
+  }
+  if (!File(p.join(workspaceRoot, 'pubspec.yaml')).existsSync()) {
+    return {
+      'ok': false,
+      'skipped': true,
+      'reason': 'workspace pubspec.yaml missing',
+      'code': 'workspace_pubspec_missing',
     };
   }
   final compileDir = Directory(
-    p.join(workspaceRoot, '.dart_tool', 'flax', 'capability-stage3'),
+    p.join(
+      workspaceRoot,
+      '.dart_tool',
+      'flax',
+      'capability-stage3',
+      DateTime.now().microsecondsSinceEpoch.toString(),
+    ),
   )..createSync(recursive: true);
   for (final entity in Directory(directory).listSync(recursive: true)) {
     if (entity is! File) continue;
@@ -909,11 +893,17 @@ Future<Map<String, Object?>> compileEmitted({
     timeout: analyzeTimeout,
   );
   final analyzeText = '${analyzed.stdout}\n${analyzed.stderr}';
-  final dartClean = analyzed.exitCode == 0 && !analyzed.timedOut;
-  final environment =
-      analyzeText.contains('is not a Dart package') ||
-      analyzeText.contains('does not belong') ||
-      analyzeText.contains('No pubspec.yaml');
+  final dartClean =
+      analyzed.exitCode == 0 &&
+      !analyzed.timedOut &&
+      analyzed.startError == null;
+  final dartCode = analyzed.startError != null
+      ? 'dart_analyze_unavailable'
+      : analyzed.timedOut
+      ? 'dart_analyze_timeout'
+      : analyzed.exitCode != 0
+      ? 'dart_analyze_failed'
+      : null;
   final dartCounts = {
     'errors': _severityCount(analyzeText, 'error'),
     'warnings': _severityCount(analyzeText, 'warning'),
@@ -929,7 +919,7 @@ Future<Map<String, Object?>> compileEmitted({
       'ok': false,
       'skipped': true,
       'reason': 'generated TypeScript files missing',
-      'category': 'environment',
+      'code': 'generated_typescript_missing',
     };
   }
   final dependencyPaths = <String, List<String>>{
@@ -963,28 +953,36 @@ Future<Map<String, Object?>> compileEmitted({
     workingDirectory: workspaceRoot,
     timeout: analyzeTimeout,
   );
+  final tscClean =
+      compiled.exitCode == 0 &&
+      !compiled.timedOut &&
+      compiled.startError == null;
+  final tscCode = compiled.startError != null
+      ? 'tsc_unavailable'
+      : compiled.timedOut
+      ? 'tsc_timeout'
+      : compiled.exitCode != 0
+      ? 'tsc_failed'
+      : null;
   return {
-    'ok': dartClean && compiled.exitCode == 0,
+    'ok': dartClean && tscClean,
     'stage': 'dart+tsc',
+    if (tscCode != null || dartCode != null) 'code': tscCode ?? dartCode,
     'dartExitCode': analyzed.exitCode,
     'dartErrors': dartCounts['errors'],
     'dartWarnings': dartCounts['warnings'],
     'dartInfos': dartCounts['infos'],
     'analyzeMilliseconds': analyzed.elapsedMilliseconds,
     if (analyzed.timedOut) 'dartTimedOut': true,
-    if (!dartClean)
-      'dartCategory': environment
-          ? 'environment'
-          : analyzed.timedOut
-          ? 'budget-exceeded'
-          : 'generator',
+    'dartCode': ?dartCode,
+    'dartStartError': ?analyzed.startError,
     if (!dartClean) 'dartError': _firstIssue(analyzeText),
     'tscExitCode': compiled.exitCode,
     'tscMilliseconds': compiled.elapsedMilliseconds,
     if (compiled.timedOut) 'tscTimedOut': true,
-    if (compiled.exitCode != 0) 'error': _processError(compiled),
-    if (compiled.exitCode != 0)
-      'category': compiled.timedOut ? 'budget-exceeded' : 'generator',
+    'tscStartError': ?compiled.startError,
+    if (!tscClean) 'error': _processError(compiled),
+    'tscCode': ?tscCode,
     'tsconfig': config.path,
   };
 }
@@ -1008,24 +1006,47 @@ Future<_ProcessOutcome> _runProcess(
 }) async {
   final watch = Stopwatch()..start();
   if (timeout == null) {
-    final result = await Process.run(
+    try {
+      final result = await Process.run(
+        executable,
+        arguments,
+        workingDirectory: workingDirectory,
+      );
+      watch.stop();
+      return _ProcessOutcome(
+        exitCode: result.exitCode,
+        stdout: '${result.stdout}',
+        stderr: '${result.stderr}',
+        elapsedMilliseconds: watch.elapsedMilliseconds,
+      );
+    } on ProcessException catch (error) {
+      watch.stop();
+      return _ProcessOutcome(
+        exitCode: 127,
+        stdout: '',
+        stderr: '',
+        elapsedMilliseconds: watch.elapsedMilliseconds,
+        startError: error.toString(),
+      );
+    }
+  }
+  late final Process process;
+  try {
+    process = await Process.start(
       executable,
       arguments,
       workingDirectory: workingDirectory,
     );
+  } on ProcessException catch (error) {
     watch.stop();
     return _ProcessOutcome(
-      exitCode: result.exitCode,
-      stdout: '${result.stdout}',
-      stderr: '${result.stderr}',
+      exitCode: 127,
+      stdout: '',
+      stderr: '',
       elapsedMilliseconds: watch.elapsedMilliseconds,
+      startError: error.toString(),
     );
   }
-  final process = await Process.start(
-    executable,
-    arguments,
-    workingDirectory: workingDirectory,
-  );
   final stdoutFuture = utf8.decodeStream(process.stdout);
   final stderrFuture = utf8.decodeStream(process.stderr);
   int exitCode;
@@ -1054,6 +1075,7 @@ final class _ProcessOutcome {
     required this.stderr,
     required this.elapsedMilliseconds,
     this.timedOut = false,
+    this.startError,
   });
 
   final int exitCode;
@@ -1061,6 +1083,7 @@ final class _ProcessOutcome {
   final String stderr;
   final int elapsedMilliseconds;
   final bool timedOut;
+  final String? startError;
 }
 
 int _severityCount(String text, String severity) =>
@@ -1074,18 +1097,19 @@ String _firstIssue(String text) {
 }
 
 String _processError(_ProcessOutcome result) {
+  if (result.startError != null) return result.startError!;
   final text = '${result.stdout}\n${result.stderr}'.trim();
   if (text.length <= 800) return text;
   return text.substring(0, 800);
 }
 
-Map<String, int> _countCategories(List<Map<String, Object?>> rows) {
+Map<String, int> _countFailureCodes(List<Map<String, Object?>> rows) {
   final counts = <String, int>{};
   for (final row in rows) {
     if (row['ok'] == true) continue;
-    final category = row['category'] as String?;
-    if (category == null) continue;
-    counts[category] = (counts[category] ?? 0) + 1;
+    final code = row['code'] as String?;
+    if (code == null) continue;
+    counts[code] = (counts[code] ?? 0) + 1;
   }
   return counts;
 }
@@ -1244,6 +1268,119 @@ void _collectTypeRefIds(FlaxCodegenTypeRef? ref, Set<String> out) {
   for (final parameter in ref.parameters) {
     _collectTypeRefIds(parameter.type, out);
   }
+  for (final field in ref.recordFields) {
+    _collectTypeRefIds(field.type, out);
+  }
+  for (final parameter in ref.typeParameters) {
+    _collectTypeRefIds(parameter.bound, out);
+    _collectTypeRefIds(parameter.defaultType, out);
+  }
+}
+
+void _collectIntrinsicStreamTypeIds(FlaxCodegenTypeRef? ref, Set<String> out) {
+  if (ref == null) return;
+  if (ref.kind == 'stream' && ref.id != null) out.add(ref.id!);
+  _collectIntrinsicStreamTypeIds(ref.item, out);
+  _collectIntrinsicStreamTypeIds(ref.key, out);
+  _collectIntrinsicStreamTypeIds(ref.result, out);
+  _collectIntrinsicStreamTypeIds(ref.declaration, out);
+  for (final argument in ref.dartArguments) {
+    _collectIntrinsicStreamTypeIds(argument, out);
+  }
+  for (final argument in ref.tsArguments) {
+    _collectIntrinsicStreamTypeIds(argument, out);
+  }
+  for (final parameter in ref.parameters) {
+    _collectIntrinsicStreamTypeIds(parameter.type, out);
+  }
+  for (final field in ref.recordFields) {
+    _collectIntrinsicStreamTypeIds(field.type, out);
+  }
+  for (final parameter in ref.typeParameters) {
+    _collectIntrinsicStreamTypeIds(parameter.bound, out);
+    _collectIntrinsicStreamTypeIds(parameter.defaultType, out);
+  }
+}
+
+Set<String> _moduleIntrinsicStreamTypeIds(FlaxCodegenModuleModel module) {
+  final ids = <String>{};
+  void collect(FlaxCodegenTypeRef? type) =>
+      _collectIntrinsicStreamTypeIds(type, ids);
+  void collectGenerics(List<FlaxCodegenGenericParameter> parameters) {
+    for (final parameter in parameters) {
+      collect(parameter.bound);
+      collect(parameter.defaultType);
+    }
+  }
+
+  for (final getter
+      in module.topLevel?.getters ?? <FlaxCodegenTopLevelGetterModel>[]) {
+    collect(getter.type);
+  }
+  for (final alias in module.typedefs) {
+    collect(alias.target);
+    collectGenerics(alias.typeParameters);
+  }
+  for (final type in module.classes) {
+    collectGenerics(type.typeParameters);
+    for (final constructor in type.constructors) {
+      for (final parameter in constructor.parameters) {
+        collect(parameter.type);
+      }
+      for (final specialization in constructor.specializations) {
+        for (final parameterType in specialization.parameterTypes) {
+          collect(parameterType);
+        }
+      }
+    }
+    for (final getter in [
+      ...type.getters,
+      ...type.setters,
+      ...type.staticGetters,
+    ]) {
+      collect(getter.type);
+    }
+    for (final method in type.methods) {
+      collect(method.result);
+      collectGenerics(method.typeParameters);
+      for (final parameter in method.parameters) {
+        collect(parameter.type);
+      }
+    }
+    for (final parent in type.superTypes) {
+      collect(parent);
+    }
+    for (final interface in type.widgetInterfaces) {
+      collect(interface);
+    }
+    for (final (_, callback)
+        in type.proxy?.callbacks ?? const <(String, FlaxCodegenTypeRef)>[]) {
+      collect(callback);
+    }
+  }
+  for (final variant in module.stateVariants) {
+    for (final getter in [...variant.getters, ...variant.setters]) {
+      collect(getter.type);
+    }
+    for (final method in variant.methods) {
+      collect(method.result);
+      collectGenerics(method.typeParameters);
+      for (final parameter in method.parameters) {
+        collect(parameter.type);
+      }
+    }
+  }
+  for (final type in module.types) {
+    collectGenerics(type.typeParameters);
+  }
+  for (final function in module.callableFunctions) {
+    collect(function.call.result);
+    collectGenerics(function.call.typeParameters);
+    for (final parameter in function.call.parameters) {
+      collect(parameter.type);
+    }
+  }
+  return ids;
 }
 
 /// Named type ids mentioned anywhere in one selected class value.
@@ -1289,8 +1426,9 @@ Set<String> _classReferencedTypeIds(FlaxCodegenClassModel value) {
 ///
 /// For each module set (`subset_only` = target only, `with_official` = official
 /// + target) every non-enum type id referenced by `module.types` must be
-/// implemented by a selected class (`id` or one of its `supertypes`) or covered
-/// by a snapshot. The full gap list is reported, not just the first failure.
+/// implemented by a selected class (`id` or one of its `supertypes`), covered
+/// by a snapshot, or carried by the intrinsic Stream adapter. The full gap list
+/// is reported, not just the first failure.
 ///
 /// This never throws and never mutates modules, so it can run before or after
 /// an actual emit attempt without changing any existing conclusion.
@@ -1336,6 +1474,9 @@ Map<String, Object?> stage3GapProbe({
       for (final module in modules) ...module.snapshots.map((s) => s.id),
     };
     final covered = coveredIds(modules);
+    final intrinsicStreamIds = <String>{
+      for (final module in modules) ..._moduleIntrinsicStreamTypeIds(module),
+    };
     final typeLibraries = <String, String>{
       for (final module in modules) ...module.typeLibraries,
     };
@@ -1345,6 +1486,7 @@ Map<String, Object?> stage3GapProbe({
       final type = types[id]!;
       if (type.isEnum) continue;
       if (snapshotIds.contains(id)) continue;
+      if (intrinsicStreamIds.contains(id)) continue;
       if (covered.contains(id)) continue;
       final declaration = declarationById[id];
       final assessment = declaration?['assessment'];
@@ -1354,7 +1496,7 @@ Map<String, Object?> stage3GapProbe({
         'id': id,
         'typeLibrary': typeLibraries[id],
         'inInventory': declaration != null,
-        'inventoryStatus': assessment is Map ? assessment['status'] : null,
+        'inventoryVerdict': assessment is Map ? assessment['verdict'] : null,
         'officialCovered': officialCovered.contains(id),
         'referencedBy': referencedBy,
       });
@@ -1410,7 +1552,7 @@ Future<List<Map<String, Object?>>> stage3SelectProbe({
       'name': name,
       'selectable': parsed.ok,
       if (!parsed.ok) 'reason': parsed.error,
-      if (!parsed.ok) 'category': parsed.category,
+      if (!parsed.ok) 'code': parsed.code,
       'constructors': selection.constructors,
       'typeArguments': selection.typeArguments,
       'elapsedMilliseconds': parsed.elapsedMilliseconds,
@@ -1451,7 +1593,7 @@ Future<List<Map<String, Object?>>> stage3SoloParse({
       'ok': parsed.ok,
       'classification': parsed.ok ? 'combined-only-fail' : 'alone-fail',
       if (!parsed.ok) 'error': parsed.error,
-      if (!parsed.ok) 'category': parsed.category,
+      if (!parsed.ok) 'code': parsed.code,
     });
   }
   final aloneFail = rows

@@ -33,6 +33,9 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     final concreteUses = _autoConcreteUses(exports.values);
     final classes = <String, FlaxCodegenClassSelection>{...seed.classes};
     final functions = <String, FlaxCodegenFunctionSelection>{...seed.functions};
+    final extensions = <String, FlaxCodegenExtensionSelection>{
+      ...seed.extensions,
+    };
     final types = <String>{...seed.types};
     final typedefs = <String>{...seed.typedefs};
     final getters = <String>{...?seed.topLevel?.getters};
@@ -55,7 +58,11 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
         if (element is InterfaceElement) hiddenTypes.add(identity(element));
         seenOverrides.add(name);
         skips.add(
-          FlaxCodegenSkip(target: name, reason: 'Excluded by auto override'),
+          FlaxCodegenSkip(
+            target: name,
+            reason: 'Excluded by auto override',
+            code: 'excluded_by_override',
+          ),
         );
         continue;
       }
@@ -65,6 +72,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
           FlaxCodegenSkip(
             target: name,
             reason: 'Excluded by API visibility annotation',
+            code: 'visibility_annotation',
           ),
         );
         continue;
@@ -80,6 +88,31 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
 
       if (element is EnumElement) {
         types.add(name);
+        continue;
+      }
+      if (element is ExtensionTypeElement) {
+        if (_autoExtensionTypeSupported(scope, element, name, skips)) {
+          types.add(name);
+          skips.add(
+            FlaxCodegenSkip(
+              target: name,
+              reason: 'Extension types use their representation and do not expose an independent runtime identity',
+              code: 'extension_type_representation_only',
+            ),
+          );
+        }
+        continue;
+      }
+      if (element is ExtensionElement) {
+        if (extensions.containsKey(name)) continue;
+        final selection = _autoExtensionSelection(
+          scope: scope,
+          extension: element,
+          name: name,
+          skips: skips,
+          notices: notices,
+        );
+        if (selection != null) extensions[name] = selection;
         continue;
       }
       if (element is TypeAliasElement) {
@@ -145,6 +178,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
             reason:
                 'Custom core collection subclasses require explicit binding; '
                 'their native members can conflict with collection bridge methods',
+            code: 'custom_core_collection',
           ),
         );
         continue;
@@ -180,6 +214,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
             FlaxCodegenSkip(
               target: name,
               reason: 'Reuses existing provider ${proposed.provider}',
+              code: 'existing_provider',
             ),
           );
         }
@@ -250,6 +285,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
           FlaxCodegenSkip(
             target: entry.key,
             reason: 'Signature depends on a skipped declaration',
+            code: 'signature_depends_on_skipped',
           ),
         );
         changed = true;
@@ -268,6 +304,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
           FlaxCodegenSkip(
             target: name,
             reason: 'Signature depends on a skipped declaration',
+            code: 'signature_depends_on_skipped',
           ),
         );
       }
@@ -282,6 +319,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
           FlaxCodegenSkip(
             target: name,
             reason: 'Alias depends on a skipped declaration',
+            code: 'alias_depends_on_skipped',
           ),
         );
       }
@@ -300,6 +338,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
             FlaxCodegenSkip(
               target: name,
               reason: 'Value depends on a skipped declaration',
+              code: 'value_depends_on_skipped',
             ),
           );
         }
@@ -355,7 +394,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
         classes,
         additionalLibraries: seed.additionalLibraries,
         functions: functions,
-        extensions: seed.extensions,
+        extensions: extensions,
         callbackSnapshots: seed.callbackSnapshots,
         imports: seed.imports,
         types: types.toList()..sort(),
@@ -605,7 +644,13 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       await native.parse(element.thisType, selection);
       return selection;
     } on StateError catch (error) {
-      skips.add(FlaxCodegenSkip(target: element.name!, reason: error.message));
+      skips.add(
+        FlaxCodegenSkip(
+          target: element.name!,
+          reason: error.message,
+          code: 'widget_interface_shape',
+        ),
+      );
       return null;
     }
   }
@@ -623,6 +668,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
           FlaxCodegenSkip(
             target: target,
             reason: 'Excluded by API visibility annotation',
+            code: 'visibility_annotation',
           ),
         );
         return false;
@@ -757,9 +803,298 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       alias.validate();
       return true;
     } on StateError catch (error) {
-      skips.add(FlaxCodegenSkip(target: name, reason: error.message));
+      skips.add(
+        FlaxCodegenSkip(
+          target: name,
+          reason: error.message,
+          code: 'typedef_shape',
+        ),
+      );
       return false;
     }
+  }
+
+  bool _autoExtensionTypeSupported(
+    _FlaxCodegenTypeScope scope,
+    ExtensionTypeElement element,
+    String name,
+    List<FlaxCodegenSkip> skips,
+  ) {
+    try {
+      final representation = scope.typeRef(element.thisType);
+      representation.validate('$name representation');
+      representation.validateCallbacks('$name representation', input: true);
+      if (_unsupportedExtensionSemantic(representation)) {
+        throw StateError(
+          'Extension type representation uses Flutter lifecycle semantics',
+        );
+      }
+      return true;
+    } on StateError catch (error) {
+      skips.add(
+        FlaxCodegenSkip(
+          target: name,
+          reason: error.message,
+          code: 'extension_type_representation',
+        ),
+      );
+      return false;
+    }
+  }
+
+  bool _unsupportedExtensionSemantic(FlaxCodegenTypeRef type) {
+    if ({
+      'widget',
+      'widgetInterface',
+      'context',
+      'state',
+      'page',
+      'route',
+    }.contains(type.kind)) {
+      return true;
+    }
+    return [
+      ?type.item,
+      ?type.key,
+      ?type.result,
+      ...type.parameters.map((parameter) => parameter.type),
+      ...type.recordFields.map((field) => field.type),
+    ].any(_unsupportedExtensionSemantic);
+  }
+
+  FlaxCodegenExtensionSelection? _autoExtensionSelection({
+    required _FlaxCodegenTypeScope scope,
+    required ExtensionElement extension,
+    required String name,
+    required List<FlaxCodegenSkip> skips,
+    required List<FlaxCodegenNotice> notices,
+  }) {
+    try {
+      final receiver = scope.typeRef(extension.extendedType);
+      receiver.validate('$name receiver');
+      if (_unsupportedExtensionSemantic(receiver)) {
+        throw StateError('Extension receiver uses Flutter lifecycle semantics');
+      }
+    } on StateError catch (error) {
+      skips.add(
+        FlaxCodegenSkip(
+          target: name,
+          reason: error.message,
+          code: extension.typeParameters.isEmpty
+              ? 'extension_receiver_shape'
+              : 'generic_receiver_specialization_required',
+        ),
+      );
+      return null;
+    }
+
+    final getters = <String>[];
+    final setters = <String>[];
+    final methods = <String, List<String>>{};
+    final staticGetters = <String>[];
+    final staticMethods = <String, List<String>>{};
+    final operators = <String, List<String>>{};
+    final generatedNames = <String>{};
+
+    bool visible(ExecutableElement member, String target) {
+      if (_autoHidden(member)) {
+        skips.add(
+          FlaxCodegenSkip(
+            target: target,
+            reason: 'Excluded by API visibility annotation',
+            code: 'visibility_annotation',
+          ),
+        );
+        return false;
+      }
+      if (member.metadata.hasDeprecated) {
+        notices.add(
+          FlaxCodegenNotice(
+            target: target,
+            message: 'Deprecated API remains selected',
+          ),
+        );
+      }
+      return true;
+    }
+
+    bool reserve(String generated, String target) {
+      if (generatedNames.add(generated)) return true;
+      skips.add(
+        FlaxCodegenSkip(
+          target: target,
+          reason: 'Generated extension export collides: $generated',
+          code: 'extension_export_collision',
+        ),
+      );
+      return false;
+    }
+
+    bool resultSupported(ExecutableElement member, String target) {
+      try {
+        for (final parameter in member.typeParameters) {
+          final bound =
+              parameter.bound ??
+              extension.library.typeProvider.objectQuestionType;
+          scope.typeRef(bound, forTypescript: true, typeOnlyPosition: true);
+          scope.typeRef(bound, erasing: {parameter});
+        }
+        final result = scope.typeRef(member.returnType);
+        result.validateResult('$target result');
+        if (_unsupportedExtensionSemantic(result)) {
+          throw StateError('Unsupported extension semantic position: $target');
+        }
+        if (result.kind == 'void' &&
+            member.fragments.any(
+              (fragment) => fragment.isAsynchronous || fragment.isGenerator,
+            )) {
+          throw StateError(
+            'Extension void members must execute synchronously: $target',
+          );
+        }
+        return true;
+      } on StateError catch (error) {
+        skips.add(
+          FlaxCodegenSkip(
+            target: target,
+            reason: error.message,
+            code: member.typeParameters.isEmpty
+                ? 'extension_member_shape'
+                : 'generic_member_specialization_required',
+          ),
+        );
+        return false;
+      }
+    }
+
+    List<String>? parameters(ExecutableElement member, String target) {
+      final selected = <String>[];
+      for (final parameter in member.formalParameters) {
+        final parameterName = parameter.name;
+        if (!_usableMemberName(parameterName)) {
+          if (parameter.isRequired || parameter.isPositional) {
+            skips.add(
+              FlaxCodegenSkip(
+                target: '$target.$parameterName',
+                reason: 'Cannot omit required or positional parameter',
+                code: 'required_parameter_name',
+              ),
+            );
+            return null;
+          }
+          continue;
+        }
+        final localSkips = <FlaxCodegenSkip>[];
+        final bound = _bindParameter(
+          parser: this,
+          scope: scope,
+          parameter: parameter,
+          location: '$target.$parameterName',
+          widget: false,
+          kind: 'object',
+          skips: localSkips,
+        );
+        if (bound == null) {
+          skips.addAll(localSkips);
+          if (parameter.isRequired || parameter.isPositional) return null;
+          continue;
+        }
+        selected.add(parameterName!);
+      }
+      return selected;
+    }
+
+    for (final getter in extension.getters) {
+      final memberName = getter.name!;
+      final target = '$name.$memberName';
+      if (getter.isPrivate ||
+          {'hashCode', 'runtimeType'}.contains(memberName) ||
+          !_usableMemberName(memberName) ||
+          !visible(getter, target) ||
+          !resultSupported(getter, target)) {
+        continue;
+      }
+      final generated =
+          'get${memberName[0].toUpperCase()}${memberName.substring(1)}';
+      if (!reserve(generated, target)) continue;
+      (getter.isStatic ? staticGetters : getters).add(memberName);
+    }
+    for (final setter in extension.setters) {
+      final memberName = setter.name!.replaceFirst(RegExp(r'=$'), '');
+      final target = '$name.$memberName=';
+      if (setter.isPrivate ||
+          setter.isStatic ||
+          !_usableMemberName(memberName) ||
+          !visible(setter, target)) {
+        continue;
+      }
+      final selected = parameters(setter, target);
+      if (selected == null) continue;
+      final generated =
+          'set${memberName[0].toUpperCase()}${memberName.substring(1)}';
+      if (!reserve(generated, target)) continue;
+      setters.add(memberName);
+    }
+    for (final method in extension.methods) {
+      final memberName = method.name!;
+      final target = '$name.$memberName';
+      if (method.isPrivate ||
+          {'toString', 'noSuchMethod', '=='}.contains(memberName) ||
+          !visible(method, target) ||
+          !resultSupported(method, target)) {
+        continue;
+      }
+      final selected = parameters(method, target);
+      if (selected == null) continue;
+      if (method.isOperator) {
+        final operatorName =
+            method.formalParameters.isEmpty && memberName == '-'
+            ? 'unary-'
+            : memberName;
+        final generated = flaxCodegenExtensionOperators[operatorName];
+        if (generated == null) {
+          skips.add(
+            FlaxCodegenSkip(
+              target: target,
+              reason: 'Unsupported extension operator: $operatorName',
+              code: 'extension_operator',
+            ),
+          );
+          continue;
+        }
+        if (!reserve(generated, target)) continue;
+        operators[operatorName] = selected;
+        continue;
+      }
+      if (!_usableMemberName(memberName) || !reserve(memberName, target)) {
+        continue;
+      }
+      (method.isStatic ? staticMethods : methods)[memberName] = selected;
+    }
+
+    if (getters.isEmpty &&
+        setters.isEmpty &&
+        methods.isEmpty &&
+        staticGetters.isEmpty &&
+        staticMethods.isEmpty &&
+        operators.isEmpty) {
+      skips.add(
+        FlaxCodegenSkip(
+          target: name,
+          reason: 'No bindable extension members',
+          code: 'no_members',
+        ),
+      );
+      return null;
+    }
+    return FlaxCodegenExtensionSelection(
+      getters: getters,
+      setters: setters,
+      methods: methods,
+      staticGetters: staticGetters,
+      staticMethods: staticMethods,
+      operators: operators,
+    );
   }
 
   FlaxCodegenFunctionSelection? _autoFunctionSelection({
@@ -768,11 +1103,21 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     required String name,
     required List<FlaxCodegenSkip> skips,
   }) {
-    if (function.typeParameters.isNotEmpty) {
+    final sharedArguments = function.typeParameters.isEmpty
+        ? null
+        : _sharedTypeArguments(
+            this,
+            scope,
+            function.typeParameters,
+            function.library,
+            name,
+          );
+    if (sharedArguments?.supported == false) {
       skips.add(
         FlaxCodegenSkip(
           target: name,
-          reason: 'Explicit runtime type arguments required: $name',
+          reason: sharedArguments!.reason!,
+          code: sharedArguments.code!,
         ),
       );
       return null;
@@ -787,7 +1132,13 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
         throw StateError('Top-level void functions must execute synchronously');
       }
     } on StateError catch (error) {
-      skips.add(FlaxCodegenSkip(target: name, reason: error.message));
+      skips.add(
+        FlaxCodegenSkip(
+          target: name,
+          reason: error.message,
+          code: 'function_result_shape',
+        ),
+      );
       return null;
     }
 
@@ -800,6 +1151,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
             FlaxCodegenSkip(
               target: '$name.$paramName',
               reason: 'Cannot omit required or positional parameter',
+              code: 'required_parameter_name',
             ),
           );
           return null;
@@ -830,6 +1182,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
             FlaxCodegenSkip(
               target: '$name.$paramName',
               reason: 'Unsupported automatic function input',
+              code: 'flutter_semantics_configuration_required',
             ),
           );
         }
@@ -838,7 +1191,10 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       }
       selected.add(paramName!);
     }
-    return FlaxCodegenFunctionSelection(selected);
+    return FlaxCodegenFunctionSelection(
+      selected,
+      typeArguments: sharedArguments?.sources ?? const [],
+    );
   }
 
   void _autoTopLevel({
@@ -860,7 +1216,13 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
         scope.typeRef(getter.returnType).validateResult('$name getter');
         getters.add(name);
       } on StateError catch (error) {
-        skips.add(FlaxCodegenSkip(target: name, reason: error.message));
+        skips.add(
+          FlaxCodegenSkip(
+            target: name,
+            reason: error.message,
+            code: 'top_level_getter_shape',
+          ),
+        );
       }
     }
     final setterElement = exports['$name='] ?? element;
@@ -888,7 +1250,13 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       }
       setters.add(name);
     } on StateError catch (error) {
-      skips.add(FlaxCodegenSkip(target: '$name=', reason: error.message));
+      skips.add(
+        FlaxCodegenSkip(
+          target: '$name=',
+          reason: error.message,
+          code: 'top_level_setter_shape',
+        ),
+      );
     }
   }
 
@@ -957,6 +1325,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
             FlaxCodegenSkip(
               target: '${entry.key}.${constructorEntry.key}.$name',
               reason: 'Fixed Widget interface inputs exclude callbacks',
+              code: 'widget_interface_callback_input',
             ),
           );
         }
@@ -969,6 +1338,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
             target: entry.key,
             reason:
                 'Widget interface requires a fixed-input constructor surface',
+            code: 'widget_interface_constructor_shape',
           ),
         );
         continue;

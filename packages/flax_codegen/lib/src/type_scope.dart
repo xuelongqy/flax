@@ -20,6 +20,7 @@ final class _FlaxCodegenTypeScope {
   final InterfaceType objectQuestionType;
 
   final types = <String, FlaxCodegenNamedTypeModel>{};
+  final extensionTypeDeclarations = <String, ({String name, String library})>{};
   final _callbackIdentities = Map<TypeParameterElement, Object>.identity();
   var usesWidget = false;
   var usesFutureOr = false;
@@ -358,6 +359,57 @@ final class _FlaxCodegenTypeScope {
     }
     final element = type.element;
     final name = element.name!;
+    if (element is ExtensionTypeElement) {
+      final id = identity(element);
+      final automaticCarrier = automaticTypeCarriers[id];
+      String? carrier;
+      if (exports[name] == element) {
+        carrier = publicLibraries[name] ?? config.library;
+      } else if (automaticCarrier != null) {
+        publicLibraries.putIfAbsent(name, () => automaticCarrier);
+        carrier = automaticCarrier;
+      } else if (!parser._isPoolType(element)) {
+        throw StateError(
+          '${config.library} must publicly export the referenced type $name',
+        );
+      } else {
+        carrier = parser._publicLibraryFor(element, name);
+        if (carrier != null) publicLibraries.putIfAbsent(name, () => carrier!);
+      }
+      carrier ??= publicLibraries[name];
+      if (carrier == null) {
+        throw StateError(
+          '${config.library} must publicly export the referenced type $name',
+        );
+      }
+      extensionTypeDeclarations[id] = (name: name, library: carrier);
+      final representation = Substitution.fromPairs2(
+        element.typeParameters,
+        type.typeArguments,
+      ).substituteType(element.typeErasure);
+      final converted = typeRef(
+        representation,
+        scalar: scalar,
+        forTypescript: forTypescript,
+        typeOnlyPosition: typeOnlyPosition,
+        erasing: erasing,
+        allowRecursiveErasure: allowRecursiveErasure,
+      );
+      final represented = nullable ? converted.asNullable() : converted;
+      final source = typeOnlyReference(type);
+      return represented.declaredAs(
+        FlaxCodegenTypeRef(
+          'typeOnly',
+          name: source.name,
+          nullable: source.nullable,
+          item: represented,
+          primitiveKinds: source.primitiveKinds,
+          tsArguments: source.tsArguments,
+          originatingUri: source.originatingUri,
+          originatingName: source.originatingName,
+        ),
+      );
+    }
     if (typeOnlyPosition &&
         !parser._adaptations.containsKey(identity(element)) &&
         !(element.library.isDartCore &&

@@ -94,6 +94,28 @@ void main() {
     expect(config.types, contains('AutoMode'));
     expect(config.typedefs, contains('LabelBuilder'));
     expect(config.functions.keys, contains('autoGreeting'));
+    expect(config.functions['autoIdentity']!.typeArguments, ['Object?']);
+    expect(config.extensions['AutoTextExtension']!.getters, ['isBlank']);
+    expect(config.extensions['AutoTextExtension']!.methods['repeatText'], [
+      'count',
+    ]);
+    expect(
+      config.extensions['AutoNumbersExtension']!.methods['transformFirst'],
+      ['transform'],
+    );
+    expect(config.extensions, isNot(contains('AutoRecursiveExtension')));
+    expect(
+      proposal.skips
+          .where((skip) => skip.target == 'AutoRecursiveExtension')
+          .single
+          .code,
+      'generic_receiver_specialization_required',
+    );
+    expect(config.types, contains('AutoMeters'));
+    expect(
+      proposal.skips.where((skip) => skip.target == 'AutoMeters').single.code,
+      'extension_type_representation_only',
+    );
     expect(config.classes['AutoStore']!.typeArguments, isEmpty);
     expect(config.classes, contains('ConflictedStore'));
     expect(config.classes, contains('ConflictedStoreUser'));
@@ -212,7 +234,34 @@ void main() {
       specializations.map((value) => value.runtimeDomains['value']),
       unorderedEquals(['string', 'number']),
     );
-    expect(module.functions.single.call.name, 'autoGreeting');
+    expect(
+      module.functions.map((function) => function.call.name),
+      containsAll(['autoGreeting', 'autoIdentity']),
+    );
+    final identityFunction = module.functions.singleWhere(
+      (function) => function.call.name == 'autoIdentity',
+    );
+    expect(identityFunction.call.typeArguments, ['Object?']);
+    expect(identityFunction.call.typeParameters.single.name, 'T');
+    expect(
+      module.extensions.map((extension) => extension.name),
+      containsAll(['AutoTextExtension', 'AutoNumbersExtension']),
+    );
+    expect(
+      module.types.map((type) => type.name),
+      isNot(contains('AutoMeters')),
+    );
+    final metersUser = module.classes.singleWhere(
+      (type) => type.name == 'AutoMetersUser',
+    );
+    expect(metersUser.constructors.single.parameters.single.type.kind, 'int');
+    expect(
+      metersUser.methods
+          .singleWhere((method) => method.name == 'echo')
+          .result
+          .kind,
+      'int',
+    );
     expect(module.typedefs.single.name, 'LabelBuilder');
     expect(
       module.topLevel!.getters.map((getter) => getter.name),

@@ -16,7 +16,7 @@ void main() {
           _constructor('value', ['ignored']),
         ],
         'assessment': {
-          'status': 'complete',
+          'verdict': 'supported',
           'selection': {
             'kind': 'object',
             'typeArguments': <String>[],
@@ -40,7 +40,7 @@ void main() {
         'declaredMembers': <Map<String, Object?>>[
           _constructor('named', ['size', 'mode']),
         ],
-        'assessment': {'status': 'unsupported'},
+        'assessment': {'verdict': 'unsupported'},
       });
       expect(selection, isNotNull);
       expect(selection!.kind, 'object');
@@ -55,7 +55,7 @@ void main() {
         'name': 'Abstract',
         'typeParameters': <String>[],
         'declaredMembers': <Map<String, Object?>>[],
-        'assessment': {'status': 'existingProvider'},
+        'assessment': {'verdict': 'supported', 'source': 'provider'},
       });
       expect(selection, isNotNull);
       expect(selection!.constructors, isEmpty);
@@ -124,7 +124,7 @@ void main() {
       depId: {
         'id': depId,
         'name': 'Dep',
-        'assessment': {'status': 'partial'},
+        'assessment': {'verdict': 'limited'},
       },
     };
 
@@ -145,7 +145,7 @@ void main() {
       final dep = _gap(subsetOnly, 'Dep');
       expect(dep['typeLibrary'], 'package:example/dep.dart');
       expect(dep['inInventory'], isTrue);
-      expect(dep['inventoryStatus'], 'partial');
+      expect(dep['inventoryVerdict'], 'limited');
       // Covered by the official provider, but not by the target alone.
       expect(dep['officialCovered'], isTrue);
       expect(dep['referencedBy'], ['Holder']);
@@ -157,6 +157,55 @@ void main() {
       expect(other['officialCovered'], isFalse);
       expect(other['referencedBy'], ['Holder']);
       expect(((other['typeLibrary'] as String?) ?? ''), isEmpty);
+    });
+
+    test('treats an adapted Stream as an intrinsic bridge value', () {
+      const streamId = 'dart:async::Stream';
+      final streamTarget = _module(
+        name: 'stream_target',
+        classes: const [
+          FlaxCodegenClassModel(
+            name: 'Watcher',
+            id: 'a::Watcher',
+            kind: 'object',
+            constructors: [],
+            supertypes: [],
+            methods: [
+              FlaxCodegenMethodModel(
+                'watch',
+                [],
+                FlaxCodegenTypeRef(
+                  'stream',
+                  id: streamId,
+                  name: 'Stream',
+                  item: FlaxCodegenTypeRef('int'),
+                ),
+              ),
+            ],
+          ),
+        ],
+        types: const [
+          FlaxCodegenNamedTypeModel(
+            name: 'Stream',
+            id: streamId,
+            typeParameters: [
+              FlaxCodegenGenericParameter(
+                'T',
+                FlaxCodegenTypeRef('any', nullable: true),
+              ),
+            ],
+          ),
+        ],
+      );
+
+      final result = stage3GapProbe(
+        target: streamTarget,
+        official: null,
+        declarationById: const {},
+      );
+      final subsetOnly = (result['modes'] as List).single as Map;
+      expect(subsetOnly['gapCount'], 0);
+      expect(subsetOnly['gaps'], isEmpty);
     });
 
     test('reports no with_official mode without an official module', () {
@@ -182,7 +231,7 @@ void main() {
           {
             'name': 'Gamma',
             'assessment': {
-              'status': 'partial',
+              'verdict': 'limited',
               'diagnostics': [
                 {'code': 'missing_dependency', 'message': 'Type'},
               ],
@@ -224,7 +273,7 @@ void main() {
               _constructor('', ['dep']),
             ],
             'assessment': {
-              'status': 'complete',
+              'verdict': 'supported',
               'selection': {
                 'kind': 'object',
                 'typeArguments': <String>[],
@@ -308,7 +357,7 @@ Map<String, Object?> _constructor(String name, List<String> parameters) => {
 Map<String, Object?> _coreTypeDeclaration(String name, List<String> types) => {
   'name': name,
   'assessment': {
-    'status': 'partial',
+    'verdict': 'limited',
     'diagnostics': [
       for (final type in types)
         {

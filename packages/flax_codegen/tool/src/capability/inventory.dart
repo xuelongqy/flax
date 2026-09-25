@@ -24,6 +24,9 @@ String publicElementName(Element element) {
 
 String declarationId(Element element) {
   final library = element.library?.uri.toString() ?? '<unknown>';
+  if (element is ExtensionElement && element.name == null) {
+    return '$library::<unnamed-extension@${element.firstFragment.offset}>';
+  }
   return '$library::${publicElementName(element)}';
 }
 
@@ -74,6 +77,14 @@ Future<LibraryInventory> inventoryLibrary({
       pending.elements.add(element);
     }
     pending.exportNames.add(entry.key);
+  }
+  for (final extension in result.element.extensions) {
+    if (extension.name != null) continue;
+    final id = declarationId(extension);
+    grouped.putIfAbsent(
+      id,
+      () => _PendingDeclaration(id: id, element: extension),
+    );
   }
   final declarations = [
     for (final pending in grouped.values) _record(pending, publicEntry: uri),

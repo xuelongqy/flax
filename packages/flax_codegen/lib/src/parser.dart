@@ -3008,10 +3008,26 @@ class FlaxCodegenBindingParser {
         throw StateError('Expected a public top-level function: ${entry.key}');
       }
       final selection = entry.value;
-      final typeArguments = [
+      final explicitTypeArguments = [
         for (final name in selection.typeArguments)
           _runtimeType(name, exports, function.library),
       ];
+      final sharedArguments =
+          explicitTypeArguments.isEmpty && function.typeParameters.isNotEmpty
+          ? _sharedTypeArguments(
+              this,
+              scope,
+              function.typeParameters,
+              function.library,
+              entry.key,
+            )
+          : null;
+      if (sharedArguments?.supported == false) {
+        throw StateError(sharedArguments!.reason!);
+      }
+      final typeArguments = explicitTypeArguments.isNotEmpty
+          ? explicitTypeArguments
+          : sharedArguments?.arguments ?? const <DartType>[];
       _checkBounds(
         function.typeParameters,
         typeArguments,
@@ -3120,7 +3136,9 @@ class FlaxCodegenBindingParser {
             entry.key,
             args,
             result,
-            typeArguments: selection.typeArguments,
+            typeArguments: selection.typeArguments.isNotEmpty
+                ? selection.typeArguments
+                : sharedArguments?.sources ?? const [],
             typeParameters: generics,
           ),
           route: route,
@@ -3341,6 +3359,7 @@ class FlaxCodegenBindingParser {
           ...classes.map((c) => c.name),
           ...functions.map((f) => f.call.name),
           ...extensions.map((e) => e.name),
+          ...scope.extensionTypeDeclarations.values.map((type) => type.name),
           ...?topLevel?.getters.where((g) => !g.isReference).map((g) => g.name),
           ...?topLevel?.setters.where((s) => !s.isReference).map((s) => s.name),
           ...scope.types.values.map((t) => t.name),
@@ -3370,6 +3389,12 @@ class FlaxCodegenBindingParser {
         type.name,
         () => <String, String>{},
       )[type.id] = carrier;
+    }
+    for (final entry in scope.extensionTypeDeclarations.entries) {
+      identitiesByName.putIfAbsent(
+        entry.value.name,
+        () => <String, String>{},
+      )[entry.key] = entry.value.library;
     }
     for (final entry in identitiesByName.entries) {
       if (entry.value.length < 2) continue;
@@ -3444,6 +3469,9 @@ class FlaxCodegenBindingParser {
     if (providerLibrary != null) return providerLibrary;
     final uri = scope.publicLibraries[name] ?? scope.publicLibraries['$name='];
     if (uri != null) return uri;
+    for (final extension in scope.extensionTypeDeclarations.values) {
+      if (extension.name == name) return extension.library;
+    }
     for (final type in scope.types.values) {
       if (type.name == name) {
         final recorded = _libraryByIdentity[type.id];

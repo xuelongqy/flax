@@ -14,6 +14,33 @@ int autoMutable = 1;
 
 String autoGreeting(String name) => 'Hello $name';
 
+T autoIdentity<T>(T value) => value;
+
+extension AutoTextExtension on String {
+  bool get isBlank => trim().isEmpty;
+  String repeatText(int count) => List.filled(count, this).join();
+  static int get version => 1;
+}
+
+extension AutoNumbersExtension<T extends num> on List<T> {
+  T get firstNumber => first;
+  T transformFirst(T Function(T value) transform) => transform(first);
+}
+
+extension AutoRecursiveExtension<T extends Comparable<T>> on T {
+  T get recursiveValue => this;
+}
+
+extension type AutoMeters(int value) {
+  int get doubled => value * 2;
+}
+
+class AutoMetersUser {
+  AutoMetersUser(this.value);
+  final AutoMeters value;
+  AutoMeters echo(AutoMeters input) => input;
+}
+
 class AutoStore<T> {
   AutoStore(this.value);
   final T value;

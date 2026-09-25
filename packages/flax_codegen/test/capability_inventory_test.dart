@@ -1,11 +1,15 @@
 import 'dart:io';
 
 import 'package:analyzer/dart/analysis/analysis_context_collection.dart';
+import 'package:analyzer/dart/analysis/results.dart';
+import 'package:flax_codegen/flax_codegen.dart';
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
+import '../tool/src/capability/assess.dart';
 import '../tool/src/capability/inventory.dart';
 import '../tool/src/capability/libraries.dart';
+import '../tool/src/capability/model.dart';
 import '../tool/src/capability/report.dart';
 
 void main() {
@@ -43,6 +47,7 @@ void main() {
         'Parent',
         'Child',
         'PublicMixin',
+        'Simple',
         'Enhanced',
         'PublicExtension',
         'PublicExtensionType',
@@ -119,15 +124,122 @@ void main() {
     );
   });
 
-  test('countInventory reports unassessed declarations as notRun', () async {
+  test('inventories unnamed extensions with an excluded verdict', () async {
+    final uri = fixture('extension_shapes.dart');
+    final inventory = await inventoryLibrary(collection: collection, uri: uri);
+    final unnamed = inventory.declarations.singleWhere(
+      (declaration) =>
+          declaration.kind == 'extension' && declaration.exportNames.isEmpty,
+    );
+    expect(unnamed.name, '<unnamed>');
+    expect(unnamed.id, contains('<unnamed-extension@'));
+
+    final resolved = await collection.contexts.first.currentSession
+        .getLibraryByUri(uri);
+    expect(resolved, isA<LibraryElementResult>());
+    final element = (resolved as LibraryElementResult).element.extensions
+        .singleWhere((extension) => extension.name == null);
+    final parser = FlaxCodegenBindingParser(repoRoot);
+    addTearDown(parser.dispose);
+    final assessment = await assessDeclaration(
+      parser: parser,
+      library: FlaxCodegenBindingConfig(
+        'extensions',
+        uri,
+        '@example/extensions',
+        'unused.dart',
+        'unused.ts',
+        const {},
+      ),
+      declaration: unnamed,
+      lookup: (_) async => element,
+    );
+    expect(assessment.verdict, CapabilityVerdict.excluded);
+    expect(assessment.reasonKind, CapabilityReasonKind.visibility);
+    expect(
+      assessment.diagnostics.map((diagnostic) => diagnostic.code),
+      contains('unnamed_extension'),
+    );
+  });
+
+  test('an inventory lookup failure is a generator gap', () async {
+    final uri = fixture('discovery_show.dart');
+    final inventory = await inventoryLibrary(collection: collection, uri: uri);
+    final parser = FlaxCodegenBindingParser(repoRoot);
+    addTearDown(parser.dispose);
+    final assessment = await assessDeclaration(
+      parser: parser,
+      library: FlaxCodegenBindingConfig(
+        'discovery',
+        uri,
+        '@example/discovery',
+        'unused.dart',
+        'unused.ts',
+        const {},
+      ),
+      declaration: inventory.declarations.first,
+      lookup: (_) async => null,
+    );
+    expect(assessment.verdict, CapabilityVerdict.unsupported);
+    expect(assessment.reasonKind, CapabilityReasonKind.generatorGap);
+    expect(assessment.stages.automatic.status, CapabilityStageStatus.failed);
+    expect(assessment.diagnostics.single.code, 'analysis_element_unavailable');
+  });
+
+  test(
+    'assesses ordinary and enhanced enums with structured verdicts',
+    () async {
+      final uri = fixture('discovery_show.dart');
+      final inventory = await inventoryLibrary(
+        collection: collection,
+        uri: uri,
+      );
+      final parser = FlaxCodegenBindingParser(repoRoot);
+      addTearDown(parser.dispose);
+      final config = FlaxCodegenBindingConfig(
+        'discovery',
+        uri,
+        '@example/discovery',
+        'unused.dart',
+        'unused.ts',
+        const {},
+      );
+      final proposal = await parser.proposeLibrary(config);
+      applyAutomaticLibraryProposal(
+        inventory: inventory,
+        baselineProposal: proposal,
+        proposal: proposal,
+      );
+
+      final simple = inventory.declarations.singleWhere(
+        (declaration) => declaration.name == 'Simple',
+      );
+      expect(simple.assessment!.verdict, CapabilityVerdict.supported);
+      expect(simple.assessment!.reasonKind, CapabilityReasonKind.none);
+
+      final enhanced = inventory.declarations.singleWhere(
+        (declaration) => declaration.name == 'Enhanced',
+      );
+      expect(enhanced.assessment!.verdict, CapabilityVerdict.limited);
+      expect(
+        enhanced.assessment!.reasonKind,
+        CapabilityReasonKind.intentionalBoundary,
+      );
+      expect(
+        enhanced.assessment!.diagnostics.map((diagnostic) => diagnostic.code),
+        contains('enhanced_enum_members_not_bound'),
+      );
+    },
+  );
+
+  test('countInventory rejects unassessed declarations', () async {
     final inventory = await inventoryLibrary(
       collection: collection,
       uri: fixture('discovery_show.dart'),
     );
     final child = inventory.declarations.singleWhere((d) => d.name == 'Child');
     child.assessment = null;
-    final counts = countInventory(inventory);
-    expect(counts.byStatus['notRun'], inventory.declarations.length);
+    expect(() => countInventory(inventory), throwsStateError);
     expect(
       child.declaredMembers.any(
         (member) => !isJsLegalName(member.name) && member.name.isNotEmpty,

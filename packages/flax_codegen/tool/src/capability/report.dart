@@ -15,11 +15,12 @@ CoverageCounts countInventory(LibraryInventory inventory) {
     ].length;
     final assessment = declaration.assessment;
     if (assessment == null) {
-      counts.byStatus['notRun'] = (counts.byStatus['notRun'] ?? 0) + 1;
-      continue;
+      throw StateError('Missing capability assessment for ${declaration.id}');
     }
-    counts.byStatus[assessment.status.name] =
-        (counts.byStatus[assessment.status.name] ?? 0) + 1;
+    counts.byVerdict[assessment.verdict.name] =
+        (counts.byVerdict[assessment.verdict.name] ?? 0) + 1;
+    counts.byReasonKind[assessment.reasonKind.name] =
+        (counts.byReasonKind[assessment.reasonKind.name] ?? 0) + 1;
     counts.byEvidence[assessment.evidence.name] =
         (counts.byEvidence[assessment.evidence.name] ?? 0) + 1;
     final surface = assessment.surface;
@@ -62,19 +63,19 @@ Map<String, Object?> capabilityInsights(LibraryInventory inventory) {
       skipCodes[diagnostic.code] = (skipCodes[diagnostic.code] ?? 0) + 1;
       if (diagnostic.code == 'missing_dependency') missingDependency++;
     }
-    final isolated = assessment.surface['isolatedStatus'];
-    final pooled = assessment.surface['pooledStatus'];
-    final automaticBaseline = assessment.surface['automaticBaselineStatus'];
-    final automatic = assessment.surface['automaticStatus'];
-    if (isolated == CoverageStatus.unsupported.name) isolatedUnsupported++;
-    if (pooled == CoverageStatus.unsupported.name ||
-        assessment.status == CoverageStatus.unsupported) {
+    final isolated = assessment.surface['isolatedVerdict'];
+    final pooled = assessment.surface['pooledVerdict'];
+    final automaticBaseline = assessment.surface['automaticBaselineVerdict'];
+    final automatic = assessment.surface['automaticVerdict'];
+    if (isolated == CapabilityVerdict.unsupported.name) isolatedUnsupported++;
+    if (pooled == CapabilityVerdict.unsupported.name ||
+        assessment.verdict == CapabilityVerdict.unsupported) {
       pooledUnsupported++;
     }
-    if (automaticBaseline == CoverageStatus.unsupported.name) {
+    if (automaticBaseline == CapabilityVerdict.unsupported.name) {
       automaticBaselineUnsupported++;
     }
-    if (automatic == CoverageStatus.unsupported.name) automaticUnsupported++;
+    if (automatic == CapabilityVerdict.unsupported.name) automaticUnsupported++;
   }
   final codes = skipCodes.entries.toList()
     ..sort((a, b) => b.value.compareTo(a.value));
@@ -85,7 +86,9 @@ Map<String, Object?> capabilityInsights(LibraryInventory inventory) {
             {
               'id': declaration.id,
               'kind': declaration.kind,
-              'status': declaration.assessment!.status.name,
+              'verdict': declaration.assessment!.verdict.name,
+              'reasonKind': declaration.assessment!.reasonKind.name,
+              'source': declaration.assessment!.source.name,
               'codes': [
                 for (final diagnostic in declaration.assessment!.diagnostics)
                   diagnostic.code,
@@ -132,16 +135,16 @@ Map<String, Object?> capabilityInsights(LibraryInventory inventory) {
     'skipCodes': {for (final entry in codes) entry.key: entry.value},
     'namedUnsupported': named(
       (declaration) =>
-          declaration.assessment!.status == CoverageStatus.unsupported,
+          declaration.assessment!.verdict == CapabilityVerdict.unsupported,
     ),
     'namedMissingDependency': named(
       (declaration) => declaration.assessment!.diagnostics.any(
         (diagnostic) => diagnostic.code == 'missing_dependency',
       ),
     ),
-    'namedExistingProvider': named(
+    'namedProvider': named(
       (declaration) =>
-          declaration.assessment!.status == CoverageStatus.existingProvider,
+          declaration.assessment!.source == CapabilitySource.provider,
     ),
   };
 }
@@ -214,11 +217,20 @@ String capabilityMarkdown({
     ..writeln()
     ..writeln('## Assessment (E1, automatic library + proposeSelection)')
     ..writeln()
-    ..writeln('| Status | Count |')
+    ..writeln('| Verdict | Count |')
     ..writeln('| --- | ---: |');
-  final statuses = counts.byStatus.entries.toList()
+  final statuses = counts.byVerdict.entries.toList()
     ..sort((a, b) => a.key.compareTo(b.key));
   for (final entry in statuses) {
+    buffer.writeln('| ${entry.key} | ${entry.value} |');
+  }
+  buffer
+    ..writeln()
+    ..writeln('| Reason kind | Count |')
+    ..writeln('| --- | ---: |');
+  final reasons = counts.byReasonKind.entries.toList()
+    ..sort((a, b) => a.key.compareTo(b.key));
+  for (final entry in reasons) {
     buffer.writeln('| ${entry.key} | ${entry.value} |');
   }
   buffer
@@ -274,7 +286,8 @@ String capabilityMarkdown({
   for (final result in genericResults) {
     buffer.writeln(
       '- ${result['name']}: bindable=${result['bindable']} '
-      'status=${result['status']} ${result['detail']}',
+      'verdict=${result['verdict']} proposal=${result['proposal'] ?? 'none'} '
+      '${result['detail']}',
     );
   }
   buffer
@@ -333,7 +346,8 @@ String capabilityMarkdown({
     for (final item in items) {
       final row = item as Map;
       buffer.writeln(
-        '- `${row['id']}` (${row['status']}; '
+        '- `${row['id']}` (${row['verdict']}; ${row['reasonKind']}; '
+        'source=${row['source']}; '
         '${((row['codes'] as List?) ?? const []).join(', ')}): '
         '${((row['messages'] as List?) ?? const []).join(' | ')}',
       );
@@ -348,7 +362,7 @@ String capabilityMarkdown({
     'Named missing_dependency (isolated vs pooled)',
     insights['namedMissingDependency'],
   );
-  writeNamed('Named existingProvider', insights['namedExistingProvider']);
+  writeNamed('Named provider-backed declarations', insights['namedProvider']);
 
   if (explicitGenerics.isNotEmpty) {
     buffer
@@ -418,10 +432,10 @@ String stage3Markdown(Map<String, Object?> result) {
     ..writeln('- subset: ${result['subset']}')
     ..writeln('- evidence: ${result['evidence']}')
     ..writeln();
-  final propose = result['proposeStatus'];
+  final propose = result['proposeVerdict'];
   if (propose is Map) {
     buffer
-      ..writeln('## Propose status among class-like candidates')
+      ..writeln('## Propose verdict among class-like candidates')
       ..writeln();
     final entries = propose.entries.toList()
       ..sort((a, b) => a.key.toString().compareTo(b.key.toString()));
@@ -441,7 +455,7 @@ String stage3Markdown(Map<String, Object?> result) {
       buffer.writeln(
         '- ${row['label']}: ok=${row['ok']} classes=${row['classCount']} '
         '${row['error'] ?? ''}'
-        '${row['category'] != null ? ' category=${row['category']}' : ''}',
+        '${row['code'] != null ? ' code=${row['code']}' : ''}',
       );
     }
   }
@@ -469,7 +483,7 @@ String stage3Markdown(Map<String, Object?> result) {
       final row = Map<String, Object?>.from(item as Map);
       buffer.writeln(
         '- ${row['label']}: ok=${row['ok']} ${row['error'] ?? 'parsed'} '
-        '${row['category'] ?? ''}',
+        '${row['code'] ?? ''}',
       );
     }
   }
@@ -485,7 +499,7 @@ String stage3Markdown(Map<String, Object?> result) {
       final row = Map<String, Object?>.from(item as Map);
       buffer.writeln(
         '- ${row['label']}: ok=${row['ok']} ${row['error'] ?? 'parsed'} '
-        '${row['category'] ?? ''}',
+        '${row['code'] ?? ''}',
       );
     }
   }
@@ -500,7 +514,7 @@ String stage3Markdown(Map<String, Object?> result) {
     for (final row in unsupported) {
       buffer.writeln(
         '- ${row['label']}: ok=${row['ok']} ${row['error'] ?? 'parsed'} '
-        '${row['category'] ?? ''}',
+        '${row['code'] ?? ''}',
       );
     }
   }
@@ -556,7 +570,7 @@ String stage3Markdown(Map<String, Object?> result) {
       for (final gap in gaps) {
         buffer.writeln(
           '  - ${gap['name']} (`${gap['id']}`, lib=${gap['typeLibrary']}, '
-          'inventory=${gap['inventoryStatus']}, '
+          'inventory=${gap['inventoryVerdict']}, '
           'officialCovered=${gap['officialCovered']})',
         );
       }
@@ -586,7 +600,7 @@ String stage3Markdown(Map<String, Object?> result) {
     for (final row in selectProbe) {
       buffer.writeln(
         '- ${row['name']}: selectable=${row['selectable']} '
-        '${row['reason'] ?? ''} ${row['category'] ?? ''}',
+        '${row['reason'] ?? ''} ${row['code'] ?? ''}',
       );
     }
   }
@@ -621,15 +635,15 @@ String stage3Markdown(Map<String, Object?> result) {
       );
     }
   }
-  final categories = result['failureCategories'];
+  final codes = result['failureCodes'];
   buffer
     ..writeln()
-    ..writeln('## Failure categories')
+    ..writeln('## Failure codes')
     ..writeln();
-  if (categories is! Map || categories.isEmpty) {
+  if (codes is! Map || codes.isEmpty) {
     buffer.writeln('- none');
   } else {
-    final entries = categories.entries.toList()
+    final entries = codes.entries.toList()
       ..sort((a, b) => a.key.toString().compareTo(b.key.toString()));
     for (final entry in entries) {
       buffer.writeln('- ${entry.key}: ${entry.value}');
@@ -658,7 +672,7 @@ String stage3Markdown(Map<String, Object?> result) {
     for (final row in classLike.take(40)) {
       buffer.writeln(
         '- `${row['id']}` inBatch=${row['inBatch']} '
-        'status=${row['proposeStatus']}',
+        'verdict=${row['proposeVerdict']}',
       );
     }
     if (classLike.length > 40) {

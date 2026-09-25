@@ -12,6 +12,7 @@ List<FlaxCodegenSkip> _providerSurfaceSkips({
     skips.add(
       FlaxCodegenSkip(
         target: target,
+        code: 'provider_surface_insufficient',
         reason:
             'Provider surface insufficient: $provider\n'
             'Dependency path: $target -> provider $provider\n'
@@ -99,6 +100,7 @@ List<FlaxCodegenSkip> _providerSurfaceSkips({
     skips.add(
       FlaxCodegenSkip(
         target: typeName,
+        code: 'provider_adaptation_incompatible',
         reason:
             'Owner adaptation is incompatible: $provider\n'
             'Dependency path: $typeName -> provider $provider',
@@ -119,7 +121,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
   final name = element.name!;
   final id = identity(element);
   final skips = <FlaxCodegenSkip>[];
-  void skip(String target, String reason, {String? code}) =>
+  void skip(String target, String reason, {required String code}) =>
       skips.add(FlaxCodegenSkip(target: target, reason: reason, code: code));
 
   if (parser._dependencyOwners[id] case final owner?) {
@@ -146,7 +148,11 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
 
   if (parser._dependencyTypeOwners[id] case final owner?) {
     if (base != null) {
-      skip(name, 'Existing provider type is not expanded');
+      skip(
+        name,
+        'Existing provider type is not expanded',
+        code: 'existing_provider_type',
+      );
     }
     return FlaxCodegenProposedBinding(
       name: name,
@@ -159,7 +165,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
   if (parser._adaptations.containsKey(id) ||
       parser._selections.containsKey(id)) {
     if (base != null) {
-      skip(name, 'Owned type is not expanded');
+      skip(name, 'Owned type is not expanded', code: 'owned_type_not_expanded');
       return FlaxCodegenProposedBinding(
         name: name,
         id: id,
@@ -167,16 +173,20 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
         skips: skips,
       );
     }
-    skip(name, 'Already adapted');
+    skip(name, 'Already adapted', code: 'already_adapted');
     return FlaxCodegenProposedBinding(name: name, id: id, skips: skips);
   }
 
   if (element is EnumElement) {
-    skip(name, 'Enums use types selection');
+    skip(name, 'Enums use types selection', code: 'enum_uses_type_selection');
     return FlaxCodegenProposedBinding(name: name, id: id, skips: skips);
   }
   if (element is! ClassElement && element is! MixinElement) {
-    skip(name, 'Expected a class or mixin');
+    skip(
+      name,
+      'Expected a class or mixin',
+      code: 'unsupported_interface_declaration',
+    );
     return FlaxCodegenProposedBinding(name: name, id: id, skips: skips);
   }
 
@@ -187,7 +197,11 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
           base.widgetInterfaces.isNotEmpty ||
           base.proxyVariants.isNotEmpty ||
           _hasData(base.data))) {
-    skip(name, 'Overlay selections stay YAML-only');
+    skip(
+      name,
+      'Overlay selections stay YAML-only',
+      code: 'overlay_configuration_required',
+    );
   }
 
   final scope = await parser._openTypeScope(
@@ -206,7 +220,11 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
   if (element.typeParameters.isNotEmpty &&
       typeArguments.length != element.typeParameters.length) {
     if (typeArguments.isNotEmpty) {
-      skip(name, 'Explicit runtime type arguments required: $name');
+      skip(
+        name,
+        'Explicit runtime type arguments required: $name',
+        code: 'explicit_runtime_type_arguments',
+      );
       return FlaxCodegenProposedBinding(name: name, id: id, skips: skips);
     }
     final sharedOwner = _defaultTypeArguments(parser, scope, element);
@@ -214,7 +232,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
       skip(
         name,
         sharedOwner.reason ?? 'Explicit runtime type arguments required: $name',
-        code: sharedOwner.code,
+        code: sharedOwner.code!,
       );
       return FlaxCodegenProposedBinding(name: name, id: id, skips: skips);
     }
@@ -249,7 +267,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
             skip(
               '$name.$ctorName',
               plan.reason ?? 'Generic constructor specialization unavailable',
-              code: plan.code,
+              code: plan.code!,
             );
             continue;
           }
@@ -258,7 +276,11 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
       }
     }
   } else if (widget) {
-    skip(name, 'Mixins require a non-constructible object selection');
+    skip(
+      name,
+      'Mixins require a non-constructible object selection',
+      code: 'mixin_non_constructible',
+    );
     return FlaxCodegenProposedBinding(name: name, id: id, skips: skips);
   }
 
@@ -450,6 +472,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
         skip(
           '$name.$getterName',
           'Value getters require selected constructor fields',
+          code: 'widget_getter_requires_constructor_field',
         );
       }
     }
@@ -464,6 +487,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
       skip(
         '$name.$methodName',
         'Widget instance methods are not auto-selected',
+        code: 'widget_instance_method',
       );
     }
   }
@@ -531,13 +555,14 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
         skip(
           '$name.${entry.key}',
           'Abstract generative constructor requires an extends proxy',
+          code: 'abstract_constructor_requires_extends',
         );
       }
     }
   }
 
   if (widget && constructors.isEmpty) {
-    skip(name, 'No bindable constructors');
+    skip(name, 'No bindable constructors', code: 'no_constructors');
     return FlaxCodegenProposedBinding(
       name: name,
       id: id,
@@ -553,7 +578,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
       instanceMethods.isEmpty &&
       methods.isEmpty &&
       proxy == null) {
-    skip(name, 'No bindable members');
+    skip(name, 'No bindable members', code: 'no_members');
     return FlaxCodegenProposedBinding(
       name: name,
       id: id,
@@ -665,7 +690,7 @@ final class _SharedTypeArgumentPlan {
     this.arguments = const [],
     this.reason,
     this.code,
-  });
+  }) : assert((reason == null) == (code == null));
 
   final List<String> sources;
   final List<DartType> arguments;
@@ -729,7 +754,10 @@ _SharedTypeArgumentPlan _sharedTypeArguments(
         // diagnostics instead of treating a closed bound as a special import.
         scope.typeRef(bound);
       } on StateError catch (error) {
-        return _SharedTypeArgumentPlan(reason: error.message);
+        return _SharedTypeArgumentPlan(
+          reason: error.message,
+          code: 'unsupported_binding_type',
+        );
       }
       try {
         parser._checkBounds([parameter], [bound], library, false);
@@ -793,7 +821,7 @@ final class _ConstructorSpecializationPlan {
     this.reason,
     this.code,
     this.scalarParameters = const {},
-  });
+  }) : assert((reason == null) == (code == null));
 
   final List<_ConstructorSpecializationTarget> targets;
   final String? reason;
@@ -860,7 +888,11 @@ _ConstructorSpecializationPlan _constructorSpecializationPlan({
     try {
       parser._checkBounds(parameters, localArguments, element.library, false);
     } on StateError catch (error) {
-      return _ConstructorSpecializationPlan(const [], reason: error.message);
+      return _ConstructorSpecializationPlan(
+        const [],
+        reason: error.message,
+        code: 'constructor_specialization_bound_failure',
+      );
     }
     final key = sources.join('|');
     if (!seen.add(key)) continue;
@@ -1107,6 +1139,7 @@ List<String>? _bindConstructor({
         skips.add(
           FlaxCodegenSkip(
             target: '$location.$paramName',
+            code: 'required_parameter_name',
             reason:
                 'Cannot omit required or positional parameter $location.$paramName',
           ),
@@ -1142,6 +1175,7 @@ List<String>? _bindConstructor({
       skips.add(
         FlaxCodegenSkip(
           target: '$location.$name',
+          code: 'omit_cap',
           reason:
               'omitWhenAbsent cap ${FlaxCodegenBindability.omitWhenAbsentCap}',
         ),
@@ -1168,6 +1202,7 @@ List<String>? _bindConstructor({
       FlaxCodegenSkip(
         target: location,
         reason: 'Missing callback signature: $location',
+        code: 'missing_callback_signature',
       ),
     );
     return null;
@@ -1181,6 +1216,7 @@ List<String>? _bindConstructor({
       FlaxCodegenSkip(
         target: location,
         reason: converted.skip ?? 'Unsupported binding type',
+        code: 'unsupported_binding_type',
       ),
     );
     return null;
@@ -1192,7 +1228,13 @@ List<String>? _bindConstructor({
       type.validateCallbacks(location, input: true);
     }
   } on StateError catch (error) {
-    skips.add(FlaxCodegenSkip(target: location, reason: error.message));
+    skips.add(
+      FlaxCodegenSkip(
+        target: location,
+        reason: error.message,
+        code: 'unsupported_input_shape',
+      ),
+    );
     return null;
   }
   if (type.kind == 'context' || type.kind == 'void') {
@@ -1200,6 +1242,7 @@ List<String>? _bindConstructor({
       FlaxCodegenSkip(
         target: location,
         reason: 'Context inputs are currently callback-only',
+        code: 'context_input_callback_only',
       ),
     );
     return null;
@@ -1212,6 +1255,7 @@ List<String>? _bindConstructor({
       FlaxCodegenSkip(
         target: location,
         reason: 'Unsupported mounted Widget callback result: $location',
+        code: 'unsupported_mounted_widget_result',
       ),
     );
     return null;
@@ -1226,6 +1270,7 @@ List<String>? _bindConstructor({
       FlaxCodegenSkip(
         target: location,
         reason: 'Stored callbacks currently require a mounted Widget owner',
+        code: 'stored_callback_owner_required',
       ),
     );
     return null;
@@ -1271,7 +1316,13 @@ List<String>? _bindConstructor({
     try {
       parser._default(constant, type);
     } on StateError catch (error) {
-      skips.add(FlaxCodegenSkip(target: location, reason: error.message));
+      skips.add(
+        FlaxCodegenSkip(
+          target: location,
+          reason: error.message,
+          code: 'unsupported_default_value',
+        ),
+      );
       return null;
     }
   }
@@ -1296,6 +1347,7 @@ FlaxCodegenTypeRef? _tryMemberType(
       FlaxCodegenSkip(
         target: location,
         reason: converted.skip ?? 'Unsupported binding type',
+        code: 'unsupported_binding_type',
       ),
     );
     return null;
@@ -1307,7 +1359,13 @@ FlaxCodegenTypeRef? _tryMemberType(
       result.validateCallbacks(location, input: input);
     }
   } on StateError catch (error) {
-    skips.add(FlaxCodegenSkip(target: location, reason: error.message));
+    skips.add(
+      FlaxCodegenSkip(
+        target: location,
+        reason: error.message,
+        code: 'unsupported_member_shape',
+      ),
+    );
     return null;
   }
   if (allowed != null && !allowed.contains(result.kind)) {
@@ -1315,6 +1373,7 @@ FlaxCodegenTypeRef? _tryMemberType(
       FlaxCodegenSkip(
         target: location,
         reason: 'Unsupported member type: $type',
+        code: 'unsupported_member_type',
       ),
     );
     return null;
@@ -1336,6 +1395,7 @@ List<String>? _bindMethod({
       FlaxCodegenSkip(
         target: location,
         reason: 'Explicit runtime type arguments required: ${method.name}',
+        code: 'explicit_runtime_type_arguments',
       ),
     );
     return null;
@@ -1379,6 +1439,7 @@ List<String>? _bindMethod({
         skips.add(
           FlaxCodegenSkip(
             target: '$location.$paramName',
+            code: 'required_parameter_name',
             reason:
                 'Cannot omit required or positional parameter $location.$paramName',
           ),

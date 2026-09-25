@@ -1,7 +1,4 @@
 // Class modifier fixtures for the Stage 2 mechanism matrix.
-//
-// `mixin` and `mixin class` are intentionally absent: that mechanism is not
-// part of this round.
 
 abstract class AbstractBox {
   const AbstractBox();
@@ -11,6 +8,16 @@ abstract class AbstractBox {
 
 abstract class PureContract {
   int read();
+}
+
+mixin PlainMixin {
+  int get value => 1;
+  int normalize(int input) => input;
+}
+
+mixin class UtilityMixinClass {
+  int get value => 1;
+  int normalize(int input) => input;
 }
 
 base class BaseBox {

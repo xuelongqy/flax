@@ -16,7 +16,7 @@ final class FlaxCodegenSkip {
   const FlaxCodegenSkip({
     required this.target,
     required this.reason,
-    this.code,
+    required this.code,
   });
 
   /// Class, constructor, or `Class.member` path.
@@ -24,8 +24,8 @@ final class FlaxCodegenSkip {
   final String reason;
 
   /// Stable capability classification for tooling. Human diagnostics stay in
-  /// [reason]; ordinary skips do not need a code.
-  final String? code;
+  /// [reason] and must never be parsed to recover this value.
+  final String code;
 }
 
 /// Informational result from automatic binding that does not exclude [target].

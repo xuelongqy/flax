@@ -2,14 +2,74 @@ import 'dart:convert';
 
 enum EvidenceLevel { e0, e1, e2, e3, e4, e5 }
 
-enum CoverageStatus {
-  complete,
-  partial,
+enum CapabilityVerdict {
+  supported,
+  limited,
   unsupported,
-  existingProvider,
   excluded,
-  notRun,
   environmentBlocked,
+}
+
+enum CapabilityReasonKind {
+  none,
+  automationGap,
+  generatorGap,
+  configurationRequired,
+  intentionalBoundary,
+  dependencyBoundary,
+  visibility,
+}
+
+enum CapabilitySource { automatic, explicit, provider, inventory }
+
+enum CapabilityStageStatus {
+  passed,
+  failed,
+  notApplicable,
+  notEvaluated,
+  blocked,
+}
+
+final class CapabilityStageResult {
+  const CapabilityStageResult(this.status, {this.code, this.detail});
+
+  static const notEvaluated = CapabilityStageResult(
+    CapabilityStageStatus.notEvaluated,
+  );
+
+  final CapabilityStageStatus status;
+  final String? code;
+  final String? detail;
+
+  Map<String, Object?> toJson() => {
+    'status': status.name,
+    if (code != null) 'code': code,
+    if (detail != null) 'detail': detail,
+  };
+}
+
+final class CapabilityStages {
+  const CapabilityStages({
+    this.automatic = CapabilityStageResult.notEvaluated,
+    this.explicit = CapabilityStageResult.notEvaluated,
+    this.parse = CapabilityStageResult.notEvaluated,
+    this.emit = CapabilityStageResult.notEvaluated,
+    this.compile = CapabilityStageResult.notEvaluated,
+  });
+
+  final CapabilityStageResult automatic;
+  final CapabilityStageResult explicit;
+  final CapabilityStageResult parse;
+  final CapabilityStageResult emit;
+  final CapabilityStageResult compile;
+
+  Map<String, Object?> toJson() => {
+    'automatic': automatic.toJson(),
+    'explicit': explicit.toJson(),
+    'parse': parse.toJson(),
+    'emit': emit.toJson(),
+    'compile': compile.toJson(),
+  };
 }
 
 final class CapabilityDiagnostic {
@@ -122,31 +182,40 @@ final class ApiCallableRecord {
 
 final class BindingAssessment {
   const BindingAssessment({
-    required this.status,
+    required this.verdict,
+    required this.reasonKind,
+    required this.source,
     required this.evidence,
     required this.useCases,
     required this.surface,
     required this.diagnostics,
+    this.stages = const CapabilityStages(),
     this.selection,
     this.iteration,
     this.provider,
   });
 
-  final CoverageStatus status;
+  final CapabilityVerdict verdict;
+  final CapabilityReasonKind reasonKind;
+  final CapabilitySource source;
   final EvidenceLevel evidence;
   final Map<String, String> useCases;
   final Map<String, Object?> surface;
   final List<CapabilityDiagnostic> diagnostics;
+  final CapabilityStages stages;
   final Map<String, Object?>? selection;
   final int? iteration;
   final String? provider;
 
   Map<String, Object?> toJson() => {
-    'status': status.name,
+    'verdict': verdict.name,
+    'reasonKind': reasonKind.name,
+    'source': source.name,
     'evidence': evidence.name.toUpperCase(),
     'useCases': useCases,
     'surface': surface,
     'diagnostics': diagnostics.map((value) => value.toJson()).toList(),
+    'stages': stages.toJson(),
     if (selection != null) 'selection': selection,
     if (iteration != null) 'iteration': iteration,
     if (provider != null) 'provider': provider,
@@ -258,7 +327,8 @@ final class CoverageCounts {
   int visibleForTestingDeclared = 0;
   int deprecatedDeclared = 0;
   final Map<String, int> byKind = {};
-  final Map<String, int> byStatus = {};
+  final Map<String, int> byVerdict = {};
+  final Map<String, int> byReasonKind = {};
   final Map<String, int> byEvidence = {};
 
   Map<String, Object?> toJson() => {
@@ -275,7 +345,8 @@ final class CoverageCounts {
     'visibleForTestingDeclared': visibleForTestingDeclared,
     'deprecatedDeclared': deprecatedDeclared,
     'byKind': byKind,
-    'byStatus': byStatus,
+    'byVerdict': byVerdict,
+    'byReasonKind': byReasonKind,
     'byEvidence': byEvidence,
   };
 }

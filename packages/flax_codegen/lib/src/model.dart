@@ -108,6 +108,13 @@ class FlaxCodegenTypeRef {
   final String? originatingUri;
   final String? originatingName;
 
+  /// A type-only declaration whose [item] is the erased Dart representation.
+  ///
+  /// Extension types have no runtime identity, so the wire shape remains the
+  /// outer representation while this declaration retains the static Dart type
+  /// needed by generated callback signatures and direct calls.
+  bool get isExtensionTypeDeclaration => kind == 'typeOnly' && item != null;
+
   FlaxCodegenTypeRef declaredAs(FlaxCodegenTypeRef type) => FlaxCodegenTypeRef(
     kind,
     id: id,
@@ -217,7 +224,8 @@ class FlaxCodegenTypeRef {
                 name != null ||
                 typeArguments.isNotEmpty ||
                 dartArguments.isNotEmpty)) ||
-        (collection != (item != null)) ||
+        (category != FlaxCodegenTypeCategory.typeOnly &&
+            collection != (item != null)) ||
         ((category == FlaxCodegenTypeCategory.map) != (key != null)) ||
         (callback != (result != null)) ||
         (!callback && parameters.isNotEmpty) ||
@@ -241,7 +249,8 @@ class FlaxCodegenTypeRef {
           uri.normalizePath().toString() != originatingUri ||
           typeArguments.isNotEmpty ||
           dartArguments.isNotEmpty ||
-          declaration != null) {
+          declaration != null ||
+          (item != null && item!.nullable != nullable)) {
         throw StateError('Invalid type-only reference at $location');
       }
     } else if (originatingUri != null || originatingName != null) {

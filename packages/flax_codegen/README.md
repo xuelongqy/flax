@@ -45,8 +45,10 @@ barrel URI. Direct `package:.../src/...` targets are rejected. Unsupported decla
 do not abort the library: the CLI prints `SKIP <target>: <reason>` and continues.
 Deprecated declarations remain selected and are reported as `NOTE` entries.
 
-Automatic discovery covers classes and mixins, enums, typedefs, top-level functions and
-top-level values/getters/setters. Generic declarations use one analyzer-validated shared
+Automatic discovery covers classes and mixins, enums, typedefs, named extensions,
+extension types, top-level functions, and top-level values/getters/setters. Extension
+types use their representation without a separate runtime identity. Generic declarations
+use one analyzer-validated shared
 Dart owner while TypeScript preserves the generic relationship. The owner is `Object?`
 or a publicly routable, fully closed analyzer bound such as `Route<dynamic>`.
 Constructors are selected separately and only when observed concrete targets can be
@@ -77,9 +79,10 @@ setup and registering the generated bindings remain the normal author workflow.
 
 Custom core collection subclasses are skipped because native collection members can
 conflict with bridge copy methods. Ordinary collection parameters/results remain
-supported. Declarations depending on a skipped runtime type are also skipped. Multiple
-generic runtime specializations, automatic extension discovery and cross-barrel
-arbitration remain deferred.
+supported. Declarations depending on a skipped runtime type are also skipped. Generic
+runtime specialization beyond observed constructor targets with disjoint input domains
+remains deferred, as does cross-barrel arbitration. Generic extension receivers that
+require concrete runtime specialization are also deferred.
 
 Most packages need no binding YAML in automatic mode. If analyzer types cannot express a
 lifecycle or product decision, an optional `bindings/overrides.yaml` can change only the
