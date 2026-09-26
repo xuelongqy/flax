@@ -142,9 +142,11 @@ jobs:
           flutter pub get --enforce-lockfile
           pnpm install --frozen-lockfile
 
+      - name: Prepare Hermes assets required by workspace build hooks
+        run: dart run melos run native:build
+
       - name: Verify runtimes, owner UI modules, aggregate, and standalone release UI
         run: |
-          dart run melos run native:build
           dart run melos run check:runtime:v8
           dart run melos run check:ui:v8
           dart run melos run check:standalone:v8
