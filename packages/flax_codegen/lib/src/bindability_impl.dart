@@ -124,6 +124,38 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
   void skip(String target, String reason, {required String code}) =>
       skips.add(FlaxCodegenSkip(target: target, reason: reason, code: code));
 
+  // Keep the current emitter naming boundary, but never silently lose a
+  // public API that needs an escaped name or an operator adapter.
+  bool usableMemberName(String? member) {
+    if (_usableMemberName(member)) return true;
+    if (member != null && member.isNotEmpty && !member.startsWith('_')) {
+      final target = '$name.$member';
+      if (!skips.any((skip) =>
+          skip.target == target && skip.code == 'unsupported_public_member_name')) {
+        skip(
+          target,
+          'Public member requires an export-name or operator mapping',
+          code: 'unsupported_public_member_name',
+        );
+      }
+    }
+    return false;
+  }
+
+  bool reservedDescriptorField(String member) {
+    if (!{'kind', 'type', 'ctor', 'args'}.contains(member)) return false;
+    final target = '$name.$member';
+    if (!skips.any((skip) =>
+        skip.target == target && skip.code == 'descriptor_field_conflict')) {
+      skip(
+        target,
+        'Public getter conflicts with a generated descriptor field',
+        code: 'descriptor_field_conflict',
+      );
+    }
+    return true;
+  }
+
   if (parser._dependencyOwners[id] case final owner?) {
     final surface = _selectionFromModel(
       owner.classes.singleWhere((type) => type.id == id),
@@ -243,7 +275,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     for (final constructor in element.constructors) {
       if (!constructor.isPublic) continue;
       final ctorName = constructor.name == 'new' ? '' : constructor.name!;
-      if (!_usableMemberName(ctorName) && ctorName.isNotEmpty) continue;
+      if (!usableMemberName(ctorName) && ctorName.isNotEmpty) continue;
       final bound = _bindConstructor(
         parser: parser,
         scope: scope,
@@ -297,13 +329,20 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     for (final getter in element.getters) {
       if (!getter.isPublic) continue;
       final getterName = getter.name!;
-      if (!_usableMemberName(getterName) ||
+      if (!usableMemberName(getterName) ||
           {'hashCode', 'runtimeType'}.contains(getterName) ||
-          {'kind', 'type', 'ctor', 'args'}.contains(getterName)) {
+          reservedDescriptorField(getterName)) {
         continue;
       }
       if (getter.isStatic) {
-        if (getter.variable.setter != null) continue;
+        if (getter.variable.setter != null) {
+          skip(
+            '$name.$getterName',
+            'Mutable static fields require a class-level read/write binding',
+            code: 'static_mutable_member',
+          );
+          continue;
+        }
         final converted = _tryMemberType(
           scope,
           getter.returnType,
@@ -323,9 +362,17 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
       if (converted != null) getters.add(getterName);
     }
     for (final setter in element.setters) {
-      if (!setter.isPublic || setter.isStatic) continue;
+      if (!setter.isPublic) continue;
       final setterName = setter.name!.replaceFirst(RegExp(r'=$'), '');
-      if (!_usableMemberName(setterName)) continue;
+      if (setter.isStatic) {
+        skip(
+          '$name.$setterName=',
+          'Static setters require a class-level read/write binding',
+          code: 'static_mutable_member',
+        );
+        continue;
+      }
+      if (!usableMemberName(setterName)) continue;
       final converted = _tryMemberType(
         scope,
         setter.formalParameters.single.type,
@@ -339,7 +386,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     for (final method in element.methods) {
       if (!method.isPublic) continue;
       final methodName = method.name!;
-      if (!_usableMemberName(methodName) ||
+      if (!usableMemberName(methodName) ||
           methodName == 'toString' ||
           methodName == 'noSuchMethod') {
         continue;
@@ -371,9 +418,9 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
       for (final declared in parent.getters) {
         final getterName = declared.name!;
         if (getters.contains(getterName) ||
-            !_usableMemberName(getterName) ||
+            !usableMemberName(getterName) ||
             {'hashCode', 'runtimeType'}.contains(getterName) ||
-            {'kind', 'type', 'ctor', 'args'}.contains(getterName)) {
+            reservedDescriptorField(getterName)) {
           continue;
         }
         final getter = element.thisType.lookUpGetter(
@@ -392,7 +439,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
       }
       for (final declared in parent.setters) {
         final setterName = declared.name!.replaceFirst(RegExp(r'=$'), '');
-        if (setters.contains(setterName) || !_usableMemberName(setterName)) {
+        if (setters.contains(setterName) || !usableMemberName(setterName)) {
           continue;
         }
         final setter = element.thisType.lookUpSetter(
@@ -413,7 +460,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
       for (final declared in parent.methods) {
         final methodName = declared.name!;
         if (instanceMethods.containsKey(methodName) ||
-            !_usableMemberName(methodName) ||
+            !usableMemberName(methodName) ||
             {'toString', 'noSuchMethod'}.contains(methodName)) {
           continue;
         }
@@ -464,7 +511,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     for (final getter in element.getters) {
       if (!getter.isPublic || getter.isStatic) continue;
       final getterName = getter.name!;
-      if (!_usableMemberName(getterName) ||
+      if (!usableMemberName(getterName) ||
           {'hashCode', 'runtimeType'}.contains(getterName)) {
         continue;
       }
@@ -479,7 +526,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     for (final method in element.methods) {
       if (!method.isPublic || method.isStatic) continue;
       final methodName = method.name!;
-      if (!_usableMemberName(methodName) ||
+      if (!usableMemberName(methodName) ||
           methodName == 'toString' ||
           methodName == 'noSuchMethod') {
         continue;
@@ -492,6 +539,27 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     }
   }
 
+  final methodTypeArguments = <String, List<String>>{};
+  for (final methodName in {...methods.keys, ...instanceMethods.keys}) {
+    if (deferredFactories.contains(methodName)) continue;
+    final method = instanceMethods.containsKey(methodName)
+        ? element.thisType.lookUpMethod(methodName, element.library)
+        : element.getMethod(methodName);
+    if (method == null || method.typeParameters.isEmpty) continue;
+    final plan = _sharedTypeArguments(
+      parser,
+      scope,
+      method.typeParameters,
+      element.library,
+      '$name.$methodName',
+    );
+    if (!plan.supported) {
+      // _bindMethod checked the same plan before selecting this member.
+      throw StateError('Selected method has no runtime type arguments: $name.$methodName');
+    }
+    methodTypeArguments[methodName] = plan.sources;
+  }
+
   final recommendation = await _proxyRecommendation(
     parser: parser,
     element: element,
@@ -502,6 +570,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     getters: getters,
     setters: setters,
     instanceMethods: instanceMethods,
+    methodTypeArguments: methodTypeArguments,
     kind: kind,
   );
   final proxyCapability = recommendation.capability;
@@ -596,6 +665,12 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     setters: selectedSetters,
     staticGetters: staticGetters,
     instanceMethods: selectedInstanceMethods,
+    methodTypeArguments: {
+      for (final entry in methodTypeArguments.entries)
+        if (selectedInstanceMethods.containsKey(entry.key) ||
+            methods.containsKey(entry.key))
+          entry.key: entry.value,
+    },
     methods: methods,
     disposeMethod: base?.disposeMethod ?? inferredDisposeMethod,
     proxyVariants: base?.proxyVariants ?? const {},
@@ -1390,19 +1465,32 @@ List<String>? _bindMethod({
   required List<FlaxCodegenSkip> skips,
   bool deferredFactory = false,
 }) {
+  var signature = method.type;
   if (method.typeParameters.isNotEmpty && !deferredFactory) {
-    skips.add(
-      FlaxCodegenSkip(
-        target: location,
-        reason: 'Explicit runtime type arguments required: ${method.name}',
-        code: 'explicit_runtime_type_arguments',
-      ),
+    final plan = _sharedTypeArguments(
+      parser,
+      scope,
+      method.typeParameters,
+      element.library,
+      location,
     );
-    return null;
+    if (!plan.supported) {
+      skips.add(
+        FlaxCodegenSkip(
+          target: location,
+          reason: plan.reason!,
+          code: plan.code!,
+        ),
+      );
+      return null;
+    }
+    // Match the actual signature that the fail-closed parser will emit.
+    // Deferred factories keep their separate, existing inference path.
+    signature = method.type.instantiate(plan.arguments);
   }
   final result = _tryMemberType(
     scope,
-    method.returnType,
+    signature.returnType,
     '$location result',
     skips,
     allowed: {
@@ -1432,7 +1520,7 @@ List<String>? _bindMethod({
   );
   if (result == null) return null;
   final chosen = <String>[];
-  for (final parameter in method.formalParameters) {
+  for (final parameter in signature.formalParameters) {
     final paramName = parameter.name;
     if (!_usableMemberName(paramName)) {
       if (parameter.isRequired || parameter.isPositional) {
@@ -1484,6 +1572,7 @@ _proxyRecommendation({
   required List<String> getters,
   required List<String> setters,
   required Map<String, List<String>> instanceMethods,
+  required Map<String, List<String>> methodTypeArguments,
   required String? kind,
 }) async {
   if (_requiresFlutterSemantics(parser, element)) {
@@ -1538,6 +1627,10 @@ _proxyRecommendation({
         getters: extendGetters,
         setters: extendSetters,
         instanceMethods: extendMethods,
+        methodTypeArguments: {
+          for (final entry in methodTypeArguments.entries)
+            if (extendMethods.containsKey(entry.key)) entry.key: entry.value,
+        },
       ),
     );
   }
@@ -1590,6 +1683,10 @@ _proxyRecommendation({
         getters: getters,
         setters: setters,
         instanceMethods: instanceMethods,
+        methodTypeArguments: {
+          for (final entry in methodTypeArguments.entries)
+            if (instanceMethods.containsKey(entry.key)) entry.key: entry.value,
+        },
       ),
     );
     if (canImplement) {
