@@ -241,42 +241,14 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
         }
         final element = elements[entry.key];
         if (element == null) continue;
-        final selection = entry.value;
-        final signatures = <DartType>[];
-        if (element is ClassElement) {
-          for (final constructor in element.constructors) {
-            final params =
-                selection.constructors[constructor.name == 'new'
-                    ? ''
-                    : constructor.name];
-            if (params == null) continue;
-            signatures.addAll(
-              constructor.formalParameters
-                  .where((p) => params.contains(p.name))
-                  .map((p) => p.type),
-            );
-          }
-        }
-        for (final getter in element.getters) {
-          if (selection.getters.contains(getter.name) ||
-              selection.staticGetters.contains(getter.name)) {
-            signatures.add(getter.returnType);
-          }
-        }
-        for (final setter in element.setters) {
-          if (selection.setters.contains(setter.name)) {
-            signatures.add(setter.type);
-          }
-        }
-        for (final method in element.methods) {
-          if (selection.instanceMethods.containsKey(method.name) ||
-              selection.methods.containsKey(method.name)) {
-            signatures.add(method.type);
-          }
-        }
-        if (!signatures.any(
-          (type) => _autoUsesUnavailable(type, unavailable),
-        )) {
+        final selection = _pruneAutoUnavailableMembers(
+          element: element,
+          selection: entry.value,
+          unavailable: unavailable,
+          skips: skips,
+        );
+        if (selection != null) {
+          classes[entry.key] = selection;
           continue;
         }
         classes.remove(entry.key);
@@ -411,6 +383,100 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       typeCarriers: typeCarriers,
       skips: skips,
       notices: notices,
+    );
+  }
+
+  // Trim only independent ordinary-object surfaces. Required proxy contracts,
+  // inheritance dependencies, explicit overrides and Flutter owners remain
+  // fail-closed rather than producing incomplete Dart classes.
+  FlaxCodegenClassSelection? _pruneAutoUnavailableMembers({
+    required InterfaceElement element,
+    required FlaxCodegenClassSelection selection,
+    required Set<String> unavailable,
+    required List<FlaxCodegenSkip> skips,
+  }) {
+    if (element.allSupertypes.any(
+      (type) => _autoUsesUnavailable(type, unavailable),
+    )) {
+      return null;
+    }
+    final blocked = <String>{};
+    bool keep(String member, Iterable<DartType> types) {
+      if (!types.any((type) => _autoUsesUnavailable(type, unavailable))) {
+        return true;
+      }
+      blocked.add('${element.name}.$member');
+      return false;
+    }
+
+    final constructors = <String, List<String>>{};
+    for (final entry in selection.constructors.entries) {
+      final constructor = element.thisType.constructors.firstWhere(
+        (candidate) =>
+            (candidate.name == 'new' ? '' : candidate.name) == entry.key,
+      );
+      if (keep(
+        entry.key,
+        constructor.formalParameters
+            .where((parameter) => entry.value.contains(parameter.name))
+            .map((parameter) => parameter.type),
+      )) {
+        constructors[entry.key] = entry.value;
+      }
+    }
+    final getters = [
+      for (final name in selection.getters)
+        if (keep(name, [
+          element.thisType.lookUpGetter(name, element.library)!.returnType,
+        ])) name,
+    ];
+    final setters = [
+      for (final name in selection.setters)
+        if (keep('$name=', [
+          element.thisType
+              .lookUpSetter(name, element.library)!
+              .formalParameters.single.type,
+        ])) name,
+    ];
+    final staticGetters = [
+      for (final name in selection.staticGetters)
+        if (keep(name, [element.getGetter(name)!.returnType])) name,
+    ];
+    Map<String, List<String>> methods(
+      Map<String, List<String>> selected, {
+      required bool instance,
+    }) => {
+      for (final entry in selected.entries)
+        if (keep(entry.key, [
+          (instance
+              ? element.thisType.lookUpMethod(entry.key, element.library)!
+              : element.getMethod(entry.key)!).type,
+        ])) entry.key: entry.value,
+    };
+    final instanceMethods = methods(selection.instanceMethods, instance: true);
+    final staticMethods = methods(selection.methods, instance: false);
+    if (blocked.isEmpty) return selection;
+    if (selection.proxy != null || selection.kind != 'object') return null;
+
+    for (final target in blocked.toList()..sort()) {
+      skips.add(FlaxCodegenSkip(
+        target: target,
+        reason: 'Member signature depends on a skipped declaration',
+        code: 'signature_depends_on_skipped',
+      ));
+    }
+    if (constructors.isEmpty && getters.isEmpty && setters.isEmpty &&
+        staticGetters.isEmpty && instanceMethods.isEmpty && staticMethods.isEmpty) {
+      return null;
+    }
+    return _copyClassSelection(
+      selection,
+      constructors: constructors,
+      getters: getters,
+      setters: setters,
+      staticGetters: staticGetters,
+      instanceMethods: instanceMethods,
+      methods: staticMethods,
     );
   }
 
@@ -1419,7 +1485,15 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
           : source.typeArguments,
       methodTypeArguments: has('methodTypeArguments')
           ? value.methodTypeArguments
-          : source.methodTypeArguments,
+          : {
+              for (final entry in source.methodTypeArguments.entries)
+                if ((has('instanceMethods')
+                        ? value.instanceMethods : source.instanceMethods)
+                    .containsKey(entry.key) ||
+                    (has('methods') ? value.methods : source.methods)
+                    .containsKey(entry.key))
+                  entry.key: entry.value,
+            },
       instanceMethods: has('instanceMethods')
           ? value.instanceMethods
           : source.instanceMethods,
@@ -1489,7 +1563,12 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     callbackErrorParameters: source.callbackErrorParameters,
     callbackScopedParameters: source.callbackScopedParameters,
     typeArguments: source.typeArguments,
-    methodTypeArguments: source.methodTypeArguments,
+    methodTypeArguments: {
+      for (final entry in source.methodTypeArguments.entries)
+        if ((instanceMethods ?? source.instanceMethods).containsKey(entry.key) ||
+            (methods ?? source.methods).containsKey(entry.key))
+          entry.key: entry.value,
+    },
     instanceMethods: instanceMethods ?? source.instanceMethods,
     startsRoute: source.startsRoute,
     kind: source.kind,
