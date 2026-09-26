@@ -31,17 +31,15 @@ Future<void> main(List<String> arguments) => command(() async {
   if (!archive.existsSync()) {
     final partial = File('${archive.path}.part');
     final url = 'https://github.com/$repository/releases/download/v$version/$asset';
-    final token = Platform.environment['FLAX_RUNTIME_GITHUB_TOKEN'] ??
-        Platform.environment['GITHUB_TOKEN'];
-    final curl = <String>[
-      '--fail', '--location', '--retry', '2',
-      if (token != null && token.isNotEmpty) ...[
-        '--header', 'Authorization: Bearer $token',
-        '--header', 'X-GitHub-Api-Version: 2022-11-28',
-      ],
-      '--output', partial.path, url,
-    ];
-    await run('curl', curl);
+    await run('curl', [
+      '--fail',
+      '--location',
+      '--retry',
+      '2',
+      '--output',
+      partial.path,
+      url,
+    ]);
     partial.renameSync(archive.path);
   }
 
