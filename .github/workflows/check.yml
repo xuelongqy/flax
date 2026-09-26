@@ -88,6 +88,9 @@ jobs:
           flutter pub get --enforce-lockfile
           pnpm install --frozen-lockfile
 
+      - name: Build JavaScript package outputs required by workspace checks
+        run: dart run melos run js:build
+
       - name: Check workspace, generated constructors, and JS bundles
         run: dart run melos run check
 
