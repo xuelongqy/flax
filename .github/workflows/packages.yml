@@ -70,9 +70,6 @@ jobs:
           flutter pub get --enforce-lockfile
           pnpm install --frozen-lockfile
 
-      - name: Prepare published native runtime assets
-        run: dart run melos run native:prepare
-
       - name: Build JavaScript package outputs
         run: dart run melos run js:build
 
