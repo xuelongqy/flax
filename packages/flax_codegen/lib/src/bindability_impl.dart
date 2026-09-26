@@ -1209,7 +1209,7 @@ List<String>? _bindConstructor({
   final omit = <String>[];
   for (final parameter in constructor.formalParameters) {
     final paramName = parameter.name;
-    if (!usableMemberName(paramName)) {
+    if (!_usableMemberName(paramName)) {
       if (parameter.isRequired || parameter.isPositional) {
         skips.add(
           FlaxCodegenSkip(
