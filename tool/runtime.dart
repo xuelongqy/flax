@@ -68,13 +68,25 @@ Future<void> main(List<String> arguments) => command(() async {
   final output = Directory(p.join(package.directory.path, 'native/generated/macos_arm64'));
   if (output.existsSync()) output.deleteSync(recursive: true);
   output.createSync(recursive: true);
-  for (final entity in staging.listSync()) {
-    final target = p.join(output.path, p.basename(entity.path));
-    if (entity is File) {
-      entity.copySync(target);
-    } else if (entity is Directory) {
-      await run('cp', ['-R', entity.path, target]);
-    }
+  // The distribution manifest wraps the engine-specific manifest under
+  // engineMetadata. Package hooks intentionally keep validating their existing
+  // engine contract, so install that metadata as the package-local manifest.
+  final packageManifest = Map<String, dynamic>.from(
+    (manifest['engineMetadata'] as Map).cast<String, dynamic>(),
+  )
+    ..['abiVersion'] = manifest['abiVersion']
+    ..['os'] = manifest['os']
+    ..['architecture'] = manifest['architecture']
+    ..['minimumOSVersion'] = manifest['minimumOSVersion']
+    ..['entrySymbol'] = manifest['entrySymbol']
+    ..['sha256'] = manifest['sha256'];
+  File(p.join(output.path, 'manifest.json')).writeAsStringSync(
+    '${const JsonEncoder.withIndent('  ').convert(packageManifest)}\n',
+  );
+  library.copySync(p.join(output.path, libraryName));
+  final notices = Directory(p.join(staging.path, 'notices'));
+  if (notices.existsSync()) {
+    await run('cp', ['-R', notices.path, p.join(output.path, 'notices')]);
   }
   stdout.writeln('Prepared $engine $version from $repository.');
 });
