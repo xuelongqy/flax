@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "repository": "xuelongqy/flax_js_runtime",
+  "version": "0.1.0",
+  "abiVersion": 2,
+  "engines": {
+    "hermes": "flax-js-runtime-0.1.0-hermes-macos-arm64.tar.gz",
+    "v8": "flax-js-runtime-0.1.0-v8-macos-arm64.tar.gz"
+  }
+}
