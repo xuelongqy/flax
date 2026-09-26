@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - 'packages/**'
+      - '!packages/flax_codegen/**'
       - 'tool/check_packages.dart'
       - 'tool/check_release.dart'
       - 'tool/pack_archives.dart'
