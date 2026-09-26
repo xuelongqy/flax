@@ -1,7 +1,30 @@
-name: macOS runtime and UI checks
+name: macOS native runtime and UI checks
 
 on:
   pull_request:
+    paths:
+      - 'packages/flax_engine_*/**'
+      - 'packages/flax/native/**'
+      - 'packages/flax/lib/src/native/**'
+      - 'packages/flax/lib/src/engine/**'
+      - 'packages/flax/lib/src/session/**'
+      - 'packages/flax/lib/src/ui/**'
+      - 'packages/flax_material_ui/**'
+      - 'packages/flax_cupertino_ui/**'
+      - 'examples/**'
+      - 'tests/runtime/**'
+      - 'tool/native.dart'
+      - 'tool/check_runtime.dart'
+      - 'tool/check_engines.dart'
+      - 'tool/check_ui.dart'
+      - 'tool/check_standalone.dart'
+      - 'tool/ui_test.dart'
+      - 'tool/example_run.dart'
+      - 'tool/standalone_run.dart'
+      - 'tool/benchmark_engines.dart'
+      - 'pubspec.yaml'
+      - 'pubspec.lock'
+      - '.github/workflows/runtime.yml'
   push:
     branches: [main]
 
