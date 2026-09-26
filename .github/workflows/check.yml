@@ -43,6 +43,9 @@ jobs:
           flutter pub get --enforce-lockfile
           pnpm install --frozen-lockfile
 
+      - name: Build JavaScript package outputs required by generated bindings
+        run: dart run melos run js:build
+
       - name: Verify reproducible bindings and flax_codegen
         run: dart run melos run bindings:check
 
