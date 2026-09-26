@@ -182,7 +182,7 @@ melos:
         - dart run melos run host:check
         - dart run tool/package.dart bindings --check
         - dart run melos run example:bundle
-        - node tool/ui_bundle.mjs
+        - node tool/ui_bundle.mjs --static
         - dart run melos run js:test
         - dart test tool/test
         - dart run tool/package.dart tests
