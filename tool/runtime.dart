@@ -10,9 +10,6 @@ import 'src/process.dart';
 
 Future<void> main(List<String> arguments) => command(() async {
   final engine = selectedEngine(arguments);
-  if (!Platform.isMacOS) {
-    throw UnsupportedError('Prebuilt runtimes currently target macOS arm64.');
-  }
   final root = Directory.fromUri(Platform.script.resolve('../')).path;
   final config = jsonDecode(File(p.join(root, 'runtime.json')).readAsStringSync())
       as Map<String, dynamic>;
