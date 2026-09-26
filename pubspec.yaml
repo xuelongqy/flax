@@ -86,6 +86,12 @@ melos:
     ffi:check:
       description: Regenerate FFI declarations in a temporary directory and compare.
       run: dart run tool/ffi.dart --check
+    native:prepare:
+      description: Download and verify prebuilt JavaScript runtime artifacts.
+      run: dart run tool/runtime.dart
+    native:prepare:v8:
+      description: Download and verify the prebuilt V8 runtime artifact.
+      run: dart run tool/runtime.dart --engine=v8
     native:build:v8:
       description: Build pinned V8 with JIT and prepare native assets.
       run: dart run tool/native.dart --engine=v8
