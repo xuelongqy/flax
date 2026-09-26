@@ -6,10 +6,13 @@ import { pathToFileURL } from 'node:url';
 import { bundleOptionsFor, prepareBundleModulesFor, root } from './src/bundle.mjs';
 
 const args = process.argv.slice(2);
-if (args.length !== 0 && (args.length !== 2 || args[0] !== '--package')) {
-  throw new Error('Usage: node tool/ui_bundle.mjs [--package <dart-package>]');
+const staticOnly = args.includes('--static');
+const packageIndex = args.indexOf('--package');
+const selected = packageIndex >= 0 ? args[packageIndex + 1] : undefined;
+const known = new Set(['--static', '--package', selected].filter(Boolean));
+if (args.some((arg) => !known.has(arg)) || (packageIndex >= 0 && !selected)) {
+  throw new Error('Usage: node tool/ui_bundle.mjs [--static] [--package <dart-package>]');
 }
-const selected = args[1];
 const packages = (await readdir(resolve(root, 'packages'), { withFileTypes: true }))
   .filter((item) => item.isDirectory() && (!selected || item.name === selected))
   .map((item) => ({
@@ -21,7 +24,7 @@ if (selected && packages.length === 0) {
 }
 
 let bundled = 0;
-for (const owner of packages) {
+if (!staticOnly) for (const owner of packages) {
   const generator = resolve(owner.root, 'tool/ui_fixture.dart');
   try {
     await access(generator);
