@@ -10,7 +10,7 @@ Future<void> main(List<String> arguments) async {
     if (!input.config.buildCodeAssets) return;
     if (input.config.code.targetOS != OS.macOS ||
         input.config.code.targetArchitecture != Architecture.arm64) {
-      throw UnsupportedError('Flax v8 supports macOS arm64 only.');
+      return;
     }
     final entry = Isolate.resolvePackageUriSync(
       Uri.parse('package:flax/native_sdk.dart'),

@@ -87,7 +87,7 @@ melos:
       description: Regenerate FFI declarations in a temporary directory and compare.
       run: dart run tool/ffi.dart --check
     native:build:v8:
-      description: Build pinned V8 with JIT and prepare native assets.
+      description: Prepare the pinned V8 SDK and build the local bridge.
       run: dart run tool/native.dart --engine=v8
     check:runtime:v8:
       description: Verify V8 native, Dart, and relocated package behavior.
@@ -118,7 +118,7 @@ melos:
       description: Run the embedded example with prepared V8 assets.
       run: dart run tool/example_run.dart --engine=v8
     native:build:
-      description: Build pinned Hermes and prepare macOS arm64 package assets.
+      description: Prepare the pinned Hermes SDK and build the local bridge.
       run: dart run tool/native.dart
     check:runtime:
       description:
