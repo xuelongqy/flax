@@ -69,6 +69,8 @@ current language support is in the
 - [0035: Shared generic owners, State variants and UI protocol 21](0035-generic-state-variants-and-protocol-21.md)
   is accepted. Binding selection format 2 and Manifest 12 are current-only; native ABI 2
   is unchanged.
+- [0036: Shared engine SDK and locally compiled ABI](0036-shared-engine-sdk.md) is
+  accepted and supersedes the native distribution details of ADR 0002 and ADR 0012.
 
 [Open Questions](open-questions.md) records decisions that have not been made. Use the
 [decision template](TEMPLATE.md) for a new significant decision. Record the decision,

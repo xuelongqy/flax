@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 2,
+  "engine": "hermes",
+  "sdkVersion": "0.2.0",
+  "os": "macos",
+  "architecture": "arm64",
+  "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.2.0/flax-engine-sdk-0.2.0-hermes-macos-arm64.tar.gz",
+  "sha256": "c3df7fe8f9e176bc5339a1ad3a9dfacb6ff43d0e76b5002a08f364c89c2a8d64"
+}

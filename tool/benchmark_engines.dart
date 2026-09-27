@@ -148,21 +148,10 @@ Future<void> main(List<String> arguments) => command(() async {
     metadata['loadAtPreparation'] = await info('sysctl', ['-n', 'vm.loadavg']);
     metadata['assets'] = {
       for (final name in engines)
-        name: {
-          ...jsonDecode(
-            File(
-              '${root.path}/packages/flax_engine_$name/native/generated/macos_arm64/manifest.json',
-            ).readAsStringSync(),
-          ) as Map<String, dynamic>,
-          'actualSha256': digest(
-            File(
-              '${root.path}/packages/flax_engine_$name/native/generated/macos_arm64/libflax_$name.dylib',
-            ),
-          ),
-          'libraryBytes': File(
-            '${root.path}/packages/flax_engine_$name/native/generated/macos_arm64/libflax_$name.dylib',
-          ).lengthSync(),
-        },
+        name: jsonDecode(
+          File('${root.path}/packages/flax_engine_$name/native/sdk.lock.json')
+              .readAsStringSync(),
+        ),
     };
     metadata['inputHashes'] = {
       for (final name in [

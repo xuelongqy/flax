@@ -109,6 +109,7 @@ Future<void> verifyStandalone(
         'path': p.relative(p.join(packages.path, name), from: consumer),
       };
     }
+    addCandidateSdk(pubspec, engine);
     manifest.writeAsStringSync(jsonEncode(pubspec));
     selectExampleEngine(root, flutter, engine);
     final artifacts = Directory('${temporary.path}/artifacts')..createSync();

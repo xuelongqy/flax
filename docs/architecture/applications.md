@@ -35,7 +35,7 @@ guarantee that Flutter calls dispose. Deterministic cleanup is tested through un
 
 ## Outside-repository verification
 
-check:standalone uses already prepared Hermes assets (or V8 through
+check:standalone uses the locked Hermes SDK (or V8 through
 `tool/check_standalone.dart --engine=v8`) and copies source files into a system
 temporary directory. Dart flax, flax_material_ui, flax_fetch and the selected engine
 package copies use relative path dependencies without workspace resolution. Native

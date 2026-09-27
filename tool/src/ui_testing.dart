@@ -14,15 +14,10 @@ void requireUiAssets(String root, {String engine = defaultFlaxEngine}) {
   if (!Platform.isMacOS || Abi.current() != Abi.macosArm64) {
     throw UnsupportedError('UI validation requires macOS arm64');
   }
-  final assets =
-      '$root/packages/flax_engine_$engine/native/generated/macos_arm64';
-  if (!File('$assets/manifest.json').existsSync() ||
-      !File('$assets/libflax_$engine.dylib').existsSync()) {
-    throw StateError(
-      '$engine assets are missing. Run `dart run tool/native.dart --engine=$engine` first.',
-    );
+  final lock = '$root/packages/flax_engine_$engine/native/sdk.lock.json';
+  if (!File(lock).existsSync()) {
+    throw StateError('$engine SDK lock is missing: $lock');
   }
-  // The engine build hook validates the manifest and checksum when Flutter runs.
 }
 
 Future<int> runFrameworkTests(
@@ -121,7 +116,8 @@ void _copyTree(Directory source, Directory target, {bool packageRoot = false}) {
           'dist',
           'node_modules',
         }.contains(name) ||
-        packageRoot && {'example', 'js', 'native'}.contains(name)) {
+        packageRoot && {'example', 'js'}.contains(name) ||
+        entity.path.endsWith('/native/generated')) {
       continue;
     }
     final destination = p.join(target.path, name);
@@ -162,16 +158,26 @@ Future<void> _runIsolated(
       selected.map((package) => package.name),
       replaceEngineWith: engine,
     ).toList()..sort();
-    File(p.join(temporary.path, 'pubspec.yaml')).writeAsStringSync('''
-name: flax_ui_$engine
-version: 0.0.0
-publish_to: none
-environment:
-  sdk: ^3.13.2
-  flutter: '>=3.47.2'
-workspace:
-  - packages/*
-''');
+    final localArchive = Platform.environment['FLAX_ENGINE_SDK_ARCHIVE'];
+    final localDigest = Platform.environment['FLAX_ENGINE_SDK_SHA256'];
+    File(p.join(temporary.path, 'pubspec.yaml')).writeAsStringSync(
+      jsonEncode({
+        'name': 'flax_ui_$engine',
+        'version': '0.0.0',
+        'publish_to': 'none',
+        'environment': {'sdk': '^3.13.2', 'flutter': '>=3.47.2'},
+        'workspace': ['packages/*'],
+        if (localArchive != null && localDigest != null)
+          'hooks': {
+            'user_defines': {
+              'flax_engine_$engine': {
+                'sdkArchive': localArchive,
+                'sdkSha256': localDigest,
+              },
+            },
+          },
+      }),
+    );
     final targetPackages = Directory(p.join(temporary.path, 'packages'))
       ..createSync();
     final sourcePackages = {
@@ -218,20 +224,6 @@ workspace:
       _copyAll(source, destination);
       rewriteDartDirectiveUris(destination, Directory(root), temporary);
     }
-    _copyAll(
-      Directory(
-        p.join(root, 'packages', 'flax_engine_$engine', 'native', 'generated'),
-      ),
-      Directory(
-        p.join(
-          temporary.path,
-          'packages',
-          'flax_engine_$engine',
-          'native',
-          'generated',
-        ),
-      ),
-    );
     await run('flutter', ['pub', 'get'], directory: temporary.path);
     for (final package in selected) {
       final directory = p.join(

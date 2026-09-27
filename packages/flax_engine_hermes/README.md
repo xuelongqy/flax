@@ -14,14 +14,15 @@ flutter pub get --enforce-lockfile
 dart run melos run native:build
 ```
 
-The build prepares assets in the ignored `native/generated/macos_arm64/` directory
-inside this package. The build hook only validates and registers them. Missing assets or
-unsupported targets fail explicitly; no implicit download, build, or absolute-path
-fallback exists.
+The build hook downloads the locked Hermes SDK on the first build, verifies its SHA-256,
+compiles this package's adapter and Flax's shared ABI, and registers both dynamic
+libraries. Later builds reuse the cached SDK. Missing or unsupported targets fail
+explicitly. `native:build` exercises the same SDK and bridge build plus native tests.
 
-A distributable archive contains the Dart API, asset hook, prepared dylib and manifest,
-and the consolidated root `THIRD_PARTY_NOTICES.txt`. CMake files, adapter source,
-download inputs, patches, and the detailed generated notice tree remain repository-only.
+A distributable archive contains the Dart API, asset hook, CMake files, adapter source,
+SDK lock, and `THIRD_PARTY_NOTICES.txt`. It contains no built dylib or upstream engine
+source. For a candidate archive before release, set `sdkArchive` and `sdkSha256` under
+`hooks.user_defines.flax_engine_hermes` in the consuming application's `pubspec.yaml`.
 The package metadata has the `engine` capability and no npm peer.
 
 A consumer can use the shared runtime API:
@@ -65,5 +66,5 @@ From the root, `dart run melos run check:runtime` runs native tests, this packag
 [loop closure regressions](integration_test/loop_closures_test.dart), and
 outside-repository JIT/AOT loading verification. See
 [packaging](../../docs/architecture/packaging.md) for what is copied and checked. A
-temporary package validation carries prepared assets and consolidated upstream notices;
-registry publication and other platforms are not validated here.
+temporary package validation compiles its own bridge against the locked SDK; registry
+publication and other platforms are not validated here.

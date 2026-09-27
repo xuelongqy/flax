@@ -6,13 +6,8 @@
 /js/
 bindings/*
 !bindings/manifest.json
-native/*
-!native/generated/
-native/generated/*
-!native/generated/macos_arm64/
-native/generated/macos_arm64/*
-!native/generated/macos_arm64/libflax_v8.dylib
-!native/generated/macos_arm64/manifest.json
+/native/generated/
+/native/ffigen.yaml
 *.iml
 
 /tool/

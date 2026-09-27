@@ -38,42 +38,42 @@ dart run melos bootstrap --enforce-lockfile
 
 Run commands from the repository root.
 
-| Change                                             | Command                                                       |
-| -------------------------------------------------- | ------------------------------------------------------------- |
-| Dart packages or manifests                         | `dart run melos run analyze`                                  |
-| Formatting across the repository                   | `dart run melos run format:check`                             |
-| JS types, exports, or dependencies                 | `dart run melos run js:typecheck`                             |
-| JS package output                                  | `dart run melos run js:build`                                 |
-| Markdown or local documentation links              | `dart run melos run docs:check`                               |
-| Native CMake configuration                         | `dart run melos run native:configure`                         |
-| C ABI header changes                               | `dart run melos run ffi:generate`                             |
-| FFI declaration reproducibility                    | `dart run melos run ffi:check`                                |
-| Explicit Hermes build and asset preparation        | `dart run melos run native:build`                             |
-| Runtime, callbacks, or native packaging            | `dart run melos run check:runtime`                            |
-| Binding rules or generator                         | `dart run melos run bindings:check`                           |
-| Regenerate Dart and TS bindings                    | `dart run melos run bindings:generate`                        |
-| JS behavior (after ui:bundle)                      | `dart run melos run js:test`                                  |
-| JS example bundle                                  | `dart run melos run example:bundle`                           |
-| JS framework test bundles                          | `dart run melos run ui:bundle`                                |
-| Framework UI with prepared Hermes assets           | `dart run melos run ui:test`                                  |
-| Cross-module aggregate with prepared Hermes assets | `dart run melos run check:aggregate`                          |
-| All UI-owning packages plus aggregate              | `dart run melos run check:ui`                                 |
-| Launch prepared macOS example                      | `dart run melos run example:run`                              |
-| Standalone source and release with prepared assets | `dart run melos run check:standalone`                         |
-| Launch standalone macOS app                        | `dart run melos run standalone:run`                           |
-| Workspace-wide or cross-layer changes              | `dart run melos run check`                                    |
-| One package's static checks                        | `dart run tool/package.dart check NAME`                       |
-| One package's real UI checks                       | `dart run tool/package.dart integration NAME --engine=hermes` |
-| Temporary Dart/npm archive contents                | `dart run melos run packages:check`                           |
-| Stage packable archives with receipt (no publish)  | `dart run melos run packages:pack`                            |
-| Pre-release archive dry-run (no engines/publish)   | `dart run melos run release:check`                            |
+| Change                                            | Command                                                       |
+| ------------------------------------------------- | ------------------------------------------------------------- |
+| Dart packages or manifests                        | `dart run melos run analyze`                                  |
+| Formatting across the repository                  | `dart run melos run format:check`                             |
+| JS types, exports, or dependencies                | `dart run melos run js:typecheck`                             |
+| JS package output                                 | `dart run melos run js:build`                                 |
+| Markdown or local documentation links             | `dart run melos run docs:check`                               |
+| Native CMake configuration                        | `dart run melos run native:configure`                         |
+| C ABI header changes                              | `dart run melos run ffi:generate`                             |
+| FFI declaration reproducibility                   | `dart run melos run ffi:check`                                |
+| Hermes SDK bridge build and native test           | `dart run melos run native:build`                             |
+| Runtime, callbacks, or native packaging           | `dart run melos run check:runtime`                            |
+| Binding rules or generator                        | `dart run melos run bindings:check`                           |
+| Regenerate Dart and TS bindings                   | `dart run melos run bindings:generate`                        |
+| JS behavior (after ui:bundle)                     | `dart run melos run js:test`                                  |
+| JS example bundle                                 | `dart run melos run example:bundle`                           |
+| JS framework test bundles                         | `dart run melos run ui:bundle`                                |
+| Framework UI with locked Hermes SDK               | `dart run melos run ui:test`                                  |
+| Cross-module aggregate with locked Hermes SDK     | `dart run melos run check:aggregate`                          |
+| All UI-owning packages plus aggregate             | `dart run melos run check:ui`                                 |
+| Launch prepared macOS example                     | `dart run melos run example:run`                              |
+| Standalone source and release with locked SDK     | `dart run melos run check:standalone`                         |
+| Launch standalone macOS app                       | `dart run melos run standalone:run`                           |
+| Workspace-wide or cross-layer changes             | `dart run melos run check`                                    |
+| One package's static checks                       | `dart run tool/package.dart check NAME`                       |
+| One package's real UI checks                      | `dart run tool/package.dart integration NAME --engine=hermes` |
+| Temporary Dart/npm archive contents               | `dart run melos run packages:check`                           |
+| Stage packable archives with receipt (no publish) | `dart run melos run packages:pack`                            |
+| Pre-release archive dry-run (no engines/publish)  | `dart run melos run release:check`                            |
 
 V8 is explicit: use `native:build:v8`, `check:runtime:v8`, `ui:test:v8`,
 `check:aggregate:v8`, or `check:ui:v8`. The corresponding Dart tools accept
 `--engine=v8`. Build both assets before `check:engines`, which verifies coexistence.
 Independent measurements use `bench:engines`. V8 requires the exact host tools in
-[its manifest](packages/flax_engine_v8/native/v8.json); normal consumers use prepared
-assets and do not need those build tools.
+[the SDK build manifest](https://github.com/xuelongqy/flax_js_runtime/blob/main/engines/v8/engine.json);
+normal consumers compile only the bridge and do not need GN or Rust.
 
 The full check executes these checks sequentially and stops on failure. `docs:check`
 also runs real tests for the documentation checker. Ordinary `check` and
@@ -106,10 +106,9 @@ Keep build outputs, dependencies, SDK caches, and local notes out of Git. `js:bu
 writes each package-owned JS project's `dist/`; `native:configure` writes
 `packages/flax/build/native/`. Both locations are ignored.
 
-Engine source caches and native builds live in each engine package's `.cache/native/`
-and `build/native/`. The isolated ffigen installation remains in the root `.cache/`.
-Generated binary assets are ignored inside the engine package. The asset hook validates
-and registers prepared files; it never builds or downloads them. C ABI headers are
+SDK caches and native bridge builds live in each engine package's `.cache/sdk/` and
+`build/sdk-bridge/`. The isolated ffigen installation remains in the root `.cache/`. The
+asset hook downloads a verified SDK and compiles the bridge locally. C ABI headers are
 canonical, and their generated Dart declarations are committed. The Flutter API
 generator emits committed Dart/TS output. Cupertino remains a scaffold. Example IIFEs
 and package-local test bundles are ignored; build them with `example:bundle` and
@@ -117,8 +116,7 @@ and package-local test bundles are ignored; build them with `example:bundle` and
 `.dart_tool/flax/ui`. JS behavior tests also execute the loop-closure framework bundle
 in Node; prepare it with `ui:bundle` before a standalone `js:test` run. Ordinary `check`
 already prepares it. `ui:test` builds package-owned test JS and runs package UI tests
-using prepared Hermes assets. Missing assets report the explicit `native:build` command;
-no implicit native download or build occurs.
+using the locked Hermes SDK; a cold cache downloads it during the hook build.
 
 ## Documentation and handoff
 
@@ -158,14 +156,14 @@ manual framework test invocations should include `--enable-vmservice`. These GC 
 are distinct from deterministic session-close checks and do not run during `check`.
 
 `check:standalone` owns standalone application tests, outside-repository Flutter/JS
-package installation, macOS integration and relocated release UI validation. It uses
-already prepared assets and stays separate from package UI and aggregate checks.
+package installation, macOS integration and relocated release UI validation. It uses the
+locked SDK and stays separate from package UI and aggregate checks.
 
 ## Engine performance checks
 
 Run `dart run melos run bench:engines:test` for engine-free scheduling and report tests.
-With both native assets prepared, `bench:engines:smoke` validates all small workloads
-and `bench:engines` runs the complete comparison. See
+With both SDK locks configured, `bench:engines:smoke` validates all small workloads and
+`bench:engines` runs the complete comparison. See
 [benchmark instructions](benchmarks/engines/README.md) for filtering, output paths,
 sampling boundaries and interpretation. These commands never build an engine.
 

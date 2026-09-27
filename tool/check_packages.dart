@@ -248,26 +248,27 @@ void _checkDartArchive(FlaxWorkspacePackage package, Set<String> paths) {
   }
   if (capabilities.contains('engine')) {
     require('THIRD_PARTY_NOTICES.txt');
-    require('native/generated/macos_arm64/manifest.json');
-    if (!paths.any((path) => path.endsWith('.dylib'))) {
-      throw StateError('Missing engine library for ${package.name}');
+    require('hook/build.dart');
+    require('native/CMakeLists.txt');
+    require('native/sdk.lock.json');
+    require(
+      'native/${package.name == 'flax_engine_v8' ? 'v8_engine.cpp' : 'hermes_engine.cpp'}',
+    );
+    if (package.name == 'flax_engine_v8') {
+      require('native/jsi/jsi/jsi.cpp');
+      require('native/v8-jsi/src/v8_core.cpp');
     }
-    for (final path in [
-      'native/CMakeLists.txt',
-      'native/ffigen.yaml',
-      'native/generated/macos_arm64/notices',
-    ]) {
+    for (final path in ['native/ffigen.yaml', 'native/generated']) {
       reject(path);
     }
-    if (paths.any(
-      (path) => path.endsWith('.patch') || path.endsWith('_engine.cpp'),
-    )) {
-      throw StateError('Engine development source leaked into ${package.name}');
+    if (paths.any((path) => path.endsWith('.dylib'))) {
+      throw StateError('Built engine library leaked into ${package.name}');
     }
   }
   if (capabilities.contains('core')) {
     require('native/include/flax/runtime.h');
-    reject('native/src/');
+    require('native/src/runtime.cpp');
+    require('lib/native_sdk.dart');
     reject('native/tests/');
     reject('native/ffigen.yaml');
     reject('native/CMakeLists.txt');

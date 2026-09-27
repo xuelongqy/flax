@@ -5,18 +5,15 @@ ABI implementation and consumer-side JSI wrapper with the existing Hermes JSI he
 Flax's C ABI and shared bridge are unchanged. Hermes remains the default for repository
 commands and examples.
 
-Build with `dart run tool/native.dart` from the package directory or
-`dart run melos run native:build:v8` from the repository root. Inputs and host tool
-versions are fixed in [v8.json](v8.json); the build checks exact revisions and applies
-[the adapter patch](v8-jsi.patch). V8's pinned DEPS controls Clang, Rust, GN, CIPD
-packages, and source dependencies. CMake and Ninja are checked against the manifest;
-Xcode supplies the pinned macOS SDK. Source archive checksums record prototype
-provenance; the production builder uses exact Git checkouts.
+Build with `dart run melos run native:build:v8` from the repository root. The hook and
+command use [sdk.lock.json](sdk.lock.json) to fetch a versioned V8 SDK. The adapted
+v8-jsi and JSI sources are packaged here; [v8.json](v8.json) and
+[the adapter patch](v8-jsi.patch) record their upstream provenance. V8 source, GN,
+depot_tools, Rust, and host tool pinning live in the SDK repository.
 
-GN builds a release monolith with embedded startup data, JIT enabled, Intl disabled, no
-pointer compression and no V8 sandbox. This is not a security isolation boundary. V8's
-Temporal Rust archives and compiler runtime are linked using its pinned LLD. Only
-`flax_v8_get_api` is exported. There is no external snapshot or ICU data file.
+The SDK builds shared V8 components with embedded startup data, JIT enabled, Intl
+disabled, no pointer compression and no V8 sandbox. This is not a security isolation
+boundary. The bridge exports only `flax_v8_get_api` and links the SDK dynamically.
 
 The process owns one default V8 Platform; each runtime owns an Isolate, Context,
 allocator and references. Locker/Isolate scopes cover operations, persistent-reference
@@ -39,7 +36,7 @@ is independent of Flax ABI 2 and UI protocol versions. Both sides compile into t
 dylib, with no new exported symbol. Deprecated V8 setter APIs still produce upstream
 compiler warnings.
 
-Native asset hooks validate prepared files and never build or download an engine. The
+Native asset hooks download and validate the SDK, then compile the Flax bridge. The
 release app needs `com.apple.security.cs.allow-jit`; the V8 example staging tool adds it
 to debug/profile and release entitlements. `FLAX_VERIFY_V8_JIT=1` enables an internal
 verification workload and logs actual machine-code events for its function. It does not

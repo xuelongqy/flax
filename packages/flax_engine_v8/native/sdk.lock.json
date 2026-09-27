@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 2,
+  "engine": "v8",
+  "sdkVersion": "0.2.0",
+  "os": "macos",
+  "architecture": "arm64",
+  "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.2.0/flax-engine-sdk-0.2.0-v8-macos-arm64.tar.gz",
+  "sha256": "8af195db8754934d8c8d985993a0532de9902af7b8e2ffb75cefc482dc10d63f"
+}

@@ -16,18 +16,10 @@ endif()
 if(NOT EXISTS "${FLAX_CORE_NATIVE}/include/flax/runtime.h")
   message(FATAL_ERROR "FLAX_CORE_NATIVE must point to the flax package native directory.")
 endif()
-if(NOT EXISTS "${FLAX_HERMES_SOURCE}/CMakeLists.txt")
-  message(FATAL_ERROR "Run the repository native:build command to prepare pinned Hermes sources.")
+if(NOT EXISTS "${FLAX_ENGINE_SDK}/manifest.json")
+  message(FATAL_ERROR "FLAX_ENGINE_SDK must point to a verified Hermes SDK.")
 endif()
-
-set(HERMES_ENABLE_DEBUGGER OFF CACHE BOOL "" FORCE)
-set(HERMES_ENABLE_TOOLS ON CACHE BOOL "" FORCE)
-set(HERMES_ENABLE_TEST_SUITE OFF CACHE BOOL "" FORCE)
-set(HERMES_ENABLE_INTL OFF CACHE BOOL "" FORCE)
-set(HERMES_BUILD_SHARED_JSI OFF CACHE BOOL "" FORCE)
-set(HERMES_BUILD_APPLE_FRAMEWORK OFF CACHE BOOL "" FORCE)
-set(HERMESVM_ALLOW_JIT 0 CACHE STRING "" FORCE)
-add_subdirectory("${FLAX_HERMES_SOURCE}" "${CMAKE_BINARY_DIR}/hermes" EXCLUDE_FROM_ALL)
+find_package(FlaxEngineSDK CONFIG REQUIRED PATHS "${FLAX_ENGINE_SDK}/cmake" NO_DEFAULT_PATH)
 
 add_library(flax_hermes SHARED
   hermes_engine.cpp
@@ -36,11 +28,9 @@ target_include_directories(flax_hermes PRIVATE
   "${FLAX_CORE_NATIVE}/include"
   "${FLAX_CORE_NATIVE}/src"
   include
-  "${FLAX_HERMES_SOURCE}/API"
-  "${FLAX_HERMES_SOURCE}/API/jsi"
-  "${FLAX_HERMES_SOURCE}/public")
+  "${FLAX_ENGINE_SDK}/include")
 target_compile_definitions(flax_hermes PRIVATE FLAX_ENGINE_ID=1)
-target_link_libraries(flax_hermes PRIVATE hermesvm_a)
+target_link_libraries(flax_hermes PRIVATE FlaxEngineSDK::hermes)
 target_link_options(flax_hermes PRIVATE "LINKER:-exported_symbol,_flax_hermes_get_api")
 set_target_properties(flax_hermes PROPERTIES
   CXX_VISIBILITY_PRESET hidden
@@ -49,10 +39,13 @@ set_target_properties(flax_hermes PROPERTIES
   BUILD_WITH_INSTALL_RPATH YES
   INSTALL_RPATH "@loader_path")
 
-enable_testing()
-add_executable(flax_runtime_test "${FLAX_CORE_NATIVE}/tests/runtime_test.cpp")
-target_include_directories(flax_runtime_test PRIVATE
-  "${FLAX_CORE_NATIVE}/include" include)
-target_link_libraries(flax_runtime_test PRIVATE flax_hermes)
-add_test(NAME flax_runtime COMMAND flax_runtime_test)
-set_tests_properties(flax_runtime PROPERTIES TIMEOUT 30)
+if(EXISTS "${FLAX_CORE_NATIVE}/tests/runtime_test.cpp")
+  enable_testing()
+  add_executable(flax_runtime_test "${FLAX_CORE_NATIVE}/tests/runtime_test.cpp")
+  target_include_directories(flax_runtime_test PRIVATE
+    "${FLAX_CORE_NATIVE}/include" include)
+  target_link_libraries(flax_runtime_test PRIVATE flax_hermes)
+  add_test(NAME flax_runtime COMMAND flax_runtime_test)
+  set_tests_properties(flax_runtime PROPERTIES TIMEOUT 30
+    ENVIRONMENT "DYLD_LIBRARY_PATH=${FLAX_ENGINE_SDK}/lib")
+endif()

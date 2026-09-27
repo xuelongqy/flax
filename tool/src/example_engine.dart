@@ -76,21 +76,7 @@ void selectExampleEngine(String root, String flutter, String engine) {
     }
     file.writeAsStringSync(source);
   }
-  final manifest = File(
-    p.join(
-      root,
-      'packages',
-      'flax_engine_$engine',
-      'native',
-      'generated',
-      'macos_arm64',
-      'manifest.json',
-    ),
-  );
-  final jit =
-      manifest.existsSync() &&
-      (jsonDecode(manifest.readAsStringSync()) as Map)['jit'] == true;
-  if (jit) {
+  if (engine == 'v8') {
     for (final name in ['DebugProfile', 'Release']) {
       final entitlement = File('$flutter/macos/Runner/$name.entitlements');
       if (!entitlement.existsSync()) continue;
@@ -105,6 +91,22 @@ void selectExampleEngine(String root, String flutter, String engine) {
       }
     }
   }
+}
+
+void addCandidateSdk(Map<String, dynamic> pubspec, String engine) {
+  final archive = Platform.environment['FLAX_ENGINE_SDK_ARCHIVE'];
+  final digest = Platform.environment['FLAX_ENGINE_SDK_SHA256'];
+  if (archive == null && digest == null) return;
+  if (archive == null || digest == null) {
+    throw StateError(
+      'Set both FLAX_ENGINE_SDK_ARCHIVE and FLAX_ENGINE_SDK_SHA256',
+    );
+  }
+  pubspec['hooks'] = {
+    'user_defines': {
+      'flax_engine_$engine': {'sdkArchive': archive, 'sdkSha256': digest},
+    },
+  };
 }
 
 Future<void> withExample(
@@ -176,6 +178,7 @@ Future<void> withExample(
         'path': p.relative('${temporary.path}/packages/$name', from: flutter),
       };
     }
+    addCandidateSdk(pubspec, engine);
     manifest.writeAsStringSync(jsonEncode(pubspec));
     selectExampleEngine(root, flutter, engine);
     await run('flutter', ['pub', 'get'], directory: flutter);
@@ -236,6 +239,7 @@ Future<void> withPackageExample(
         };
       }
     }
+    addCandidateSdk(pubspec, engine);
     manifest.writeAsStringSync(jsonEncode(pubspec));
     selectExampleEngine(root, flutter.path, engine);
     await run('flutter', ['pub', 'get'], directory: flutter.path);

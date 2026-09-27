@@ -35,24 +35,23 @@ generation.
 
 ## Native build and verification
 
-`native.dart` discovers the selected `flax_engine_<name>` package and invokes its
-`tool/native.dart`. Each engine package owns source acquisition, pins, patches, CMake,
-CTest, asset preparation, and notices. Its source cache is `.cache/native`, its build
-directory is `build/native`, and both are ignored inside that package. `FLAX_BUILD_JOBS`
-controls parallel compiler jobs (default two). macOS arm64 is required.
+`native.dart` discovers the selected engine package, obtains its locked shared SDK,
+compiles the adapter with Flax's ABI, and runs CTest. The same SDK preparation helper is
+used by native asset hooks. SDK caches and bridge builds are ignored inside the engine
+package. macOS arm64 is required.
 
 `check_runtime.dart` executes, in order:
 
 1. Reproducible FFI generation check.
 2. Explicit native build and CTest.
-3. Package-local asset preparation.
+3. Hook registration of the bridge and engine libraries.
 4. Shared Dart integration tests through the selected engine package.
 5. Standalone package verification through `src/package_verification.dart`.
 
-The last step stages package copies outside the repository, checks JIT and missing or
-corrupt asset rejection, builds an AOT CLI bundle, relocates it, deletes the source
-staging tree, and executes the copy with library-search environment variables removed.
-Its consumer source stays with engine integration test fixtures. Workspace pubspec edits
+The last step stages package copies outside the repository, checks JIT and corrupt SDK
+checksum rejection, builds an AOT CLI bundle, relocates it, deletes the source staging
+tree, and executes the copy with library-search environment variables removed. Its
+consumer source stays with engine integration test fixtures. Workspace pubspec edits
 apply only to temporary copies. There is no second runtime implementation in tooling.
 
 Commands return nonzero on failure. Ordinary `check` and `native:configure` do not
@@ -71,7 +70,7 @@ or `--dry-run` for a disposable receipt). `check_release.dart` asserts
 `package.dart` discovers Pub packages under `packages/`. `check <name>` runs that
 package's analysis, Dart/Flutter unit tests, binding check, JS build/type/tests, host
 bundle check, and example static checks when present. `integration <name>` runs its
-real-engine UI tests and package example with prepared assets. The tool has no list of
+real-engine UI tests and package example with the locked SDK. The tool has no list of
 Material, Fetch, WebSocket, storage, or Canvas packages.
 
 Flutter example checks require a root `example/pubspec.yaml` with a Flutter SDK
@@ -106,23 +105,21 @@ engine.
 before invoking it separately; the ordinary `check` sequence already does this.
 
 `ui:test` prepares test JS and discovers package-owned UI suites. It requires macOS
-arm64 and prepared Hermes assets; missing assets report
-`dart run melos run native:build`. The hook remains the authority for manifest/checksum
-validation. This command does not launch aggregate applications, build native code, or
-publish anything.
+arm64 and the engine SDK lock; the hook verifies and builds the native assets. This
+command does not launch aggregate applications or publish anything.
 
 `check_aggregate.dart` builds the minimal embedded aggregate bundle, runs its framework
 test, drives its macOS integration scenario, and validates the resulting receipt for the
-selected engine. It requires prepared native assets and verifies only behavior created
-by composing multiple modules.
+selected engine. It uses the locked SDK and verifies only behavior created by composing
+multiple modules.
 
 `check_ui.dart` sequentially invokes `package.dart integration` for every UI-owning
 package, then invokes `check_aggregate.dart` for the selected engine. It does not build
-an engine or rerun runtime, standalone, engine-coexistence, archive, or release gates.
-`example_run.dart` bundles and launches the embedded app.
+engine source or rerun runtime, standalone, engine-coexistence, archive, or release
+gates. `example_run.dart` bundles and launches the embedded app.
 
 `standalone_run.dart` bundles and launches the independent application.
-`check_standalone.dart` verifies it with prepared native assets, including external
+`check_standalone.dart` verifies it with the locked native SDK, including external
 source consumption, real macOS integration and relocated release assertions. See
 [application packaging](../docs/architecture/applications.md).
 
@@ -131,10 +128,9 @@ source consumption, real macOS integration and relocated release assertions. See
 `native.dart`, `check_runtime.dart`, `ui_test.dart`, `check_ui.dart`,
 `example_run.dart`, `standalone_run.dart`, and `check_standalone.dart` accept
 `--engine=<name>`. Omitting the option preserves the default Hermes behavior. Engine
-packages are discovered by package name and their package-owned native tool. Example
-staging rewrites the existing runtime factory boundary and reads JIT requirements from
-the selected package's prepared manifest. No consumer hook performs a source download or
-build.
+packages are discovered by package name. Example staging rewrites the existing runtime
+factory boundary and reads JIT requirements from the selected package's SDK lock. Hooks
+download the SDK and compile only the bridge.
 
 Use `native:build:v8`, `check:runtime:v8`, `ui:test:v8`, `check:aggregate:v8`, and
 `check:ui:v8` for the V8 Melos entries. After preparing both assets, `check:engines`

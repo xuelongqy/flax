@@ -1,6 +1,7 @@
 # 0002: Experimental Runtime and Native Assets
 
-Status: accepted for the initial macOS arm64 implementation.
+Status: accepted for the initial macOS arm64 implementation. Native packaging and static
+linking are superseded by [ADR 0036](0036-shared-engine-sdk.md).
 
 ## Context
 

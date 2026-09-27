@@ -24,6 +24,21 @@ Future<void> main() => command(() async {
   try {
     copyDartPackages(root, temporary, packages);
     final consumer = Directory('${temporary.path}/consumer')..createSync();
+    final sdkDefines = <String, Object?>{};
+    for (final engine in engines) {
+      final prefix = 'FLAX_${engine.toUpperCase()}_SDK_';
+      final archive = Platform.environment['${prefix}ARCHIVE'];
+      final digest = Platform.environment['${prefix}SHA256'];
+      if ((archive == null) != (digest == null)) {
+        throw StateError('Set both ${prefix}ARCHIVE and ${prefix}SHA256');
+      }
+      if (archive != null) {
+        sdkDefines['flax_engine_$engine'] = {
+          'sdkArchive': archive,
+          'sdkSha256': digest,
+        };
+      }
+    }
     File('${consumer.path}/pubspec.yaml').writeAsStringSync(
       jsonEncode({
         'name': 'flax_engine_comparison',
@@ -31,6 +46,7 @@ Future<void> main() => command(() async {
         'dependencies': {
           for (final name in packages) name: {'path': '../$name'},
         },
+        if (sdkDefines.isNotEmpty) 'hooks': {'user_defines': sdkDefines},
       }),
     );
     final fixture = File('${root.path}/tests/runtime/engines.dart')
@@ -72,7 +88,7 @@ Future<void> main() => command(() async {
     ]);
     await run(nativeTest, [
       for (final engine in engines) ...[
-        '${temporary.path}/flax_engine_$engine/native/generated/macos_arm64/libflax_$engine.dylib',
+        _builtBridge(consumer, engine).path,
         engineEntrySymbol(root.path, engine),
       ],
     ]);
@@ -80,3 +96,20 @@ Future<void> main() => command(() async {
     temporary.deleteSync(recursive: true);
   }
 });
+
+File _builtBridge(Directory consumer, String engine) {
+  final outputs = Directory(
+    '${consumer.path}/.dart_tool/hooks_runner/shared/flax_engine_$engine/build',
+  );
+  final matches = outputs
+      .listSync(recursive: true, followLinks: false)
+      .whereType<File>()
+      .where((file) => file.path.endsWith('/assets/libflax_$engine.dylib'))
+      .toList();
+  if (matches.length != 1) {
+    throw StateError(
+      'Expected one built $engine bridge, found ${matches.length}',
+    );
+  }
+  return matches.single;
+}

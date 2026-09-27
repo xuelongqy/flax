@@ -15,11 +15,12 @@ endif()
 if(NOT EXISTS "${FLAX_CORE_NATIVE}/include/flax/runtime.h")
   message(FATAL_ERROR "FLAX_CORE_NATIVE must point to the flax package native directory.")
 endif()
-if(NOT EXISTS "${FLAX_V8_INPUTS}")
-  message(FATAL_ERROR "Run the repository native:build:v8 command first.")
+if(NOT EXISTS "${FLAX_ENGINE_SDK}/manifest.json")
+  message(FATAL_ERROR "FLAX_ENGINE_SDK must point to a verified V8 SDK.")
 endif()
-
-include("${FLAX_V8_INPUTS}")
+find_package(FlaxEngineSDK CONFIG REQUIRED PATHS "${FLAX_ENGINE_SDK}/cmake" NO_DEFAULT_PATH)
+set(FLAX_JSI_SOURCE "${CMAKE_CURRENT_SOURCE_DIR}/jsi")
+set(FLAX_V8_ADAPTER "${CMAKE_CURRENT_SOURCE_DIR}/v8-jsi")
 add_library(flax_v8 SHARED
   v8_engine.cpp
   "${FLAX_CORE_NATIVE}/src/runtime.cpp"
@@ -34,13 +35,13 @@ target_include_directories(flax_v8 PRIVATE
   "${FLAX_CORE_NATIVE}/src"
   include
   "${FLAX_V8_ADAPTER}/src"
-  "${FLAX_V8_SOURCE}/include")
-target_compile_definitions(flax_v8 PRIVATE ${FLAX_V8_DEFINES}
+  "${FLAX_ENGINE_SDK}/include")
+target_compile_definitions(flax_v8 PRIVATE
   JSI_VERSION=20 JSI_NOEXCEPT_15=noexcept JSI_CONST_10=const JSI_NO_CONST_3=)
 target_compile_options(flax_v8 PRIVATE -fno-rtti)
 target_compile_definitions(flax_v8 PRIVATE FLAX_ENGINE_ID=2)
-target_link_libraries(flax_v8 PRIVATE ${FLAX_V8_LIBRARIES} "-framework Foundation")
-target_link_options(flax_v8 PRIVATE -fuse-ld=lld "LINKER:-exported_symbol,_flax_v8_get_api")
+target_link_libraries(flax_v8 PRIVATE FlaxEngineSDK::v8 "-framework Foundation")
+target_link_options(flax_v8 PRIVATE "LINKER:-exported_symbol,_flax_v8_get_api")
 set_target_properties(flax_v8 PROPERTIES
   CXX_VISIBILITY_PRESET hidden
   VISIBILITY_INLINES_HIDDEN YES
@@ -56,21 +57,24 @@ add_executable(flax_v8_lifecycle_test lifecycle_test.cpp
 target_include_directories(flax_v8_lifecycle_test PRIVATE
   "${FLAX_JSI_SOURCE}"
   "${FLAX_V8_ADAPTER}/src"
-  "${FLAX_V8_SOURCE}/include")
-target_compile_definitions(flax_v8_lifecycle_test PRIVATE ${FLAX_V8_DEFINES}
+  "${FLAX_ENGINE_SDK}/include")
+target_compile_definitions(flax_v8_lifecycle_test PRIVATE
   JSI_VERSION=20 JSI_NOEXCEPT_15=noexcept JSI_CONST_10=const JSI_NO_CONST_3=)
 target_compile_options(flax_v8_lifecycle_test PRIVATE -fno-rtti)
-target_link_options(flax_v8_lifecycle_test PRIVATE -fuse-ld=lld)
-target_link_libraries(flax_v8_lifecycle_test PRIVATE ${FLAX_V8_LIBRARIES} "-framework Foundation")
+target_link_libraries(flax_v8_lifecycle_test PRIVATE FlaxEngineSDK::v8 "-framework Foundation")
 
 enable_testing()
-add_executable(flax_v8_runtime_test "${FLAX_CORE_NATIVE}/tests/runtime_test.cpp")
-target_include_directories(flax_v8_runtime_test PRIVATE
-  "${FLAX_CORE_NATIVE}/include" include)
-target_compile_definitions(flax_v8_runtime_test PRIVATE
-  FLAX_ENGINE_HEADER="flax_v8.h" FLAX_ENGINE_API=flax_v8_get_api)
-target_link_libraries(flax_v8_runtime_test PRIVATE flax_v8)
-add_test(NAME flax_v8_runtime COMMAND flax_v8_runtime_test)
-set_tests_properties(flax_v8_runtime PROPERTIES TIMEOUT 60)
+if(EXISTS "${FLAX_CORE_NATIVE}/tests/runtime_test.cpp")
+  add_executable(flax_v8_runtime_test "${FLAX_CORE_NATIVE}/tests/runtime_test.cpp")
+  target_include_directories(flax_v8_runtime_test PRIVATE
+    "${FLAX_CORE_NATIVE}/include" include)
+  target_compile_definitions(flax_v8_runtime_test PRIVATE
+    FLAX_ENGINE_HEADER="flax_v8.h" FLAX_ENGINE_API=flax_v8_get_api)
+  target_link_libraries(flax_v8_runtime_test PRIVATE flax_v8)
+  add_test(NAME flax_v8_runtime COMMAND flax_v8_runtime_test)
+  set_tests_properties(flax_v8_runtime PROPERTIES TIMEOUT 60
+    ENVIRONMENT "DYLD_LIBRARY_PATH=${FLAX_ENGINE_SDK}/lib")
+endif()
 add_test(NAME flax_v8_lifecycle COMMAND flax_v8_lifecycle_test)
-set_tests_properties(flax_v8_lifecycle PROPERTIES TIMEOUT 60)
+set_tests_properties(flax_v8_lifecycle PROPERTIES TIMEOUT 60
+  ENVIRONMENT "DYLD_LIBRARY_PATH=${FLAX_ENGINE_SDK}/lib")

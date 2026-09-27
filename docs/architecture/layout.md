@@ -80,7 +80,7 @@ defaults and Flutter diagnostics. Example tests verify editing/focus identity,
 scrolling, filtering and reentry. macOS integration exercises the same bundled JS page.
 
 Use `dart run tool/package.dart check flax` for static coverage and its integration
-command for real UI verification with prepared assets. Full `check:ui` invokes the same
+command for real UI verification with the locked SDK. Full `check:ui` invokes the same
 owner suite before the aggregate. Fixture counters are not a general performance
 guarantee.
 

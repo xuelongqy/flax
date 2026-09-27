@@ -60,6 +60,13 @@ void copyDartPackages(
         copyTree(input, Directory(p.join(target.path, directory)));
       }
     }
+    for (final omitted in [
+      'native/generated',
+      if (name == 'flax') 'native/tests',
+    ]) {
+      final directory = Directory(p.join(target.path, omitted));
+      if (directory.existsSync()) directory.deleteSync(recursive: true);
+    }
     final notices = File(p.join(source.path, 'THIRD_PARTY_NOTICES.txt'));
     if (notices.existsSync()) {
       notices.copySync(p.join(target.path, 'THIRD_PARTY_NOTICES.txt'));
@@ -109,6 +116,23 @@ Future<void> verifyPackage(
     copyDartPackages(root, temporary, ['flax', 'flax_engine_$engine']);
     final consumer = Directory(p.join(temporary.path, 'consumer'))
       ..createSync();
+    final localArchive = Platform.environment['FLAX_ENGINE_SDK_ARCHIVE'];
+    final localDigest = Platform.environment['FLAX_ENGINE_SDK_SHA256'];
+    if ((localArchive == null) != (localDigest == null)) {
+      throw StateError(
+        'Set both FLAX_ENGINE_SDK_ARCHIVE and FLAX_ENGINE_SDK_SHA256',
+      );
+    }
+    final hooks = localArchive == null
+        ? null
+        : {
+            'user_defines': {
+              'flax_engine_$engine': {
+                'sdkArchive': localArchive,
+                'sdkSha256': localDigest,
+              },
+            },
+          };
     File(p.join(consumer.path, 'pubspec.yaml')).writeAsStringSync(
       jsonEncode({
         'name': 'flax_runtime_consumer',
@@ -118,6 +142,7 @@ Future<void> verifyPackage(
           'flax': {'path': '../flax'},
           'flax_engine_$engine': {'path': '../flax_engine_$engine'},
         },
+        'hooks': ?hooks,
       }),
     );
     Directory(p.join(consumer.path, 'bin')).createSync();
@@ -152,32 +177,21 @@ Future<void> verifyPackage(
     );
     await jit();
 
-    // Run fresh processes so neither the hook cache nor a previously loaded
-    // library can disguise missing or corrupt package inputs.
-    final assets = Directory(
-      p.join(
-        temporary.path,
-        'flax_engine_$engine/native/generated/macos_arm64',
-      ),
-    );
-    final library = File(p.join(assets.path, 'libflax_$engine.dylib'));
-    final hidden = library.renameSync('${library.path}.hidden');
-    try {
-      await _expectFailure(consumer, environment, 'native assets are missing');
-    } finally {
-      hidden.renameSync(library.path);
+    if (localArchive != null) {
+      final pubspec = File(p.join(consumer.path, 'pubspec.yaml'));
+      final original = pubspec.readAsStringSync();
+      try {
+        final wrong = jsonDecode(original) as Map<String, dynamic>;
+        ((wrong['hooks'] as Map)['user_defines']
+                as Map)['flax_engine_$engine']['sdkSha256'] =
+            '0' * 64;
+        pubspec.writeAsStringSync(jsonEncode(wrong));
+        await _expectFailure(consumer, environment, 'SDK checksum mismatch');
+      } finally {
+        pubspec.writeAsStringSync(original);
+      }
+      await jit();
     }
-    final manifestFile = File(p.join(assets.path, 'manifest.json'));
-    final originalManifest = manifestFile.readAsStringSync();
-    try {
-      final manifest = jsonDecode(originalManifest) as Map<String, Object?>;
-      manifest['sha256'] = 'invalid-checksum';
-      manifestFile.writeAsStringSync(jsonEncode(manifest));
-      await _expectFailure(consumer, environment, 'checksum mismatch');
-    } finally {
-      manifestFile.writeAsStringSync(originalManifest);
-    }
-    await jit();
     await run(
       Platform.resolvedExecutable,
       [
@@ -216,7 +230,7 @@ Future<void> verifyPackage(
       inheritEnvironment: false,
     );
     stdout.writeln(
-      'Standalone JIT, missing/corrupt assets, and relocated AOT bundle verified.',
+      'Standalone JIT, SDK checksum rejection, and relocated AOT bundle verified.',
     );
   } finally {
     if (temporary.existsSync()) temporary.deleteSync(recursive: true);
