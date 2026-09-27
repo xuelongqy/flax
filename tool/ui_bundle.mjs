@@ -28,10 +28,18 @@ for (const owner of packages) {
   } catch {
     continue;
   }
-  execFileSync('dart', ['run', 'tool/ui_fixture.dart'], {
-    cwd: owner.root,
-    stdio: 'inherit',
-  });
+  // Static fixture generation must not invoke macOS-only native build hooks.
+  execFileSync(
+    'dart',
+    [
+      '--packages=' + resolve(root, '.dart_tool/package_config.json'),
+      'tool/ui_fixture.dart',
+    ],
+    {
+      cwd: owner.root,
+      stdio: 'inherit',
+    },
+  );
   bundled++;
 }
 
