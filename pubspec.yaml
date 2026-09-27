@@ -174,8 +174,8 @@ melos:
       description: Run static workspace checks without fetching or building an engine.
       steps:
         - dart run melos run host:check
-        - dart run tool/package.dart bindings --check
         - dart run melos run example:bundle
+        - dart run tool/package.dart bindings --check
         - node tool/ui_bundle.mjs
         - dart run melos run js:test
         - dart test tool/test

@@ -80,21 +80,6 @@ jobs:
           command -v cmake || brew install cmake
           command -v ninja || brew install ninja
 
-      - name: Select pinned V8 host tools
-        run: |
-          sudo xcode-select --switch /Applications/Xcode_26.6.app/Contents/Developer
-          cmake --version
-          ninja --version
-
-      - name: Cache pinned V8 inputs and build outputs
-        uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4.2.4
-        with:
-          path: packages/flax_engine_v8/.cache/native
-          key:
-            v8-macos-arm64-${{ hashFiles('packages/flax_engine_v8/native/v8.json',
-            'packages/flax_engine_v8/native/v8-jsi.patch',
-            'packages/flax_engine_v8/tool/native.dart') }}
-
       - name: Set up Flutter and Dart
         uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
         with:
@@ -118,7 +103,6 @@ jobs:
 
       - name: Verify runtimes, owner UI modules, aggregate, and standalone release UI
         run: |
-          dart run melos run native:build
           dart run melos run check:runtime:v8
           dart run melos run check:ui:v8
           dart run melos run check:standalone:v8

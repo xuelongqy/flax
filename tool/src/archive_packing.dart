@@ -102,6 +102,7 @@ void prepareNpmArchiveManifest(
   final manifest = File(p.join(copy.path, 'package.json'));
   final data = jsonDecode(manifest.readAsStringSync()) as Map<String, dynamic>;
   data.remove('private');
+  (data['devDependencies'] as Map<String, dynamic>?)?.remove('@flax/tools');
 
   void rewrite(Map<String, dynamic>? section) {
     if (section == null) return;

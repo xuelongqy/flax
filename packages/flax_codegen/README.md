@@ -48,16 +48,15 @@ Deprecated declarations remain selected and are reported as `NOTE` entries.
 Automatic discovery covers classes and mixins, enums, typedefs, named extensions,
 extension types, top-level functions, and top-level values/getters/setters. Extension
 types use their representation without a separate runtime identity. Generic declarations
-use one analyzer-validated shared
-Dart owner while TypeScript preserves the generic relationship. The owner is `Object?`
-or a publicly routable, fully closed analyzer bound such as `Route<dynamic>`.
-Constructors are selected separately and only when observed concrete targets can be
-distinguished from their direct runtime inputs. Widget constructor callbacks with direct
-synchronous `Widget`, `Widget?` or `List<Widget>` results reuse mounted invocation
-ownership; `BuildContext` is an ordinary callback parameter. Public, non-generic,
-implementable Widget interfaces reuse the existing native interface forwarding path.
-Private, `@internal`, `@visibleForTesting`, and `@protected` API is excluded from
-automatic exposure.
+use one analyzer-validated shared Dart owner while TypeScript preserves the generic
+relationship. The owner is `Object?` or a publicly routable, fully closed analyzer bound
+such as `Route<dynamic>`. Constructors are selected separately and only when observed
+concrete targets can be distinguished from their direct runtime inputs. Widget
+constructor callbacks with direct synchronous `Widget`, `Widget?` or `List<Widget>`
+results reuse mounted invocation ownership; `BuildContext` is an ordinary callback
+parameter. Public, non-generic, implementable Widget interfaces reuse the existing
+native interface forwarding path. Private, `@internal`, `@visibleForTesting`, and
+`@protected` API is excluded from automatic exposure.
 
 Run automatic mode from the owning binding package (the package receiving generated
 files). Its `pubspec.yaml` resolves the target Dart package and any Flax providers.
