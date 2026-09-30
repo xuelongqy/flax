@@ -140,6 +140,7 @@ void main() {
           .map((j) => j['target']),
       ['linux-arm64'],
     );
+    expect(platformJobs(['tool/ui_bundle.mjs']), hasLength(11));
   });
   test(
     'published locks contain precisely the 12 targets and separate tag/version',

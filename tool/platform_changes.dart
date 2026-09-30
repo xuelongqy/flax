@@ -49,6 +49,7 @@ List<Map<String, Object>> platformJobs(Iterable<String> paths) {
         path == 'packages/flax_test/lib/src/fixtures.dart' ||
         path == 'packages/flax_test/lib/src/gc.dart' ||
         path == 'tool/start_simulator.py' ||
+        path == 'tool/ui_bundle.mjs' ||
         path == 'tool/src/example_engine.dart' ||
         path == 'tool/src/package_verification.dart' ||
         path == 'tool/src/ui_testing.dart' ||

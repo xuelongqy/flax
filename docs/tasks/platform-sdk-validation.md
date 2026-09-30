@@ -71,6 +71,20 @@ above.
 
 ## Handoff
 
+The first hosted run exposed missing `jq` in the baseline container and unavailable
+Flutter ARM64 release archives. CI now installs `jq` and uses Flutter's exact pinned
+stable Git tag for Linux/Windows ARM64 bootstrap; target process ABI checks remain
+mandatory. The rerun must verify these preparation changes.
+
+Windows fixture bundling also used a POSIX slash to derive output names. It now uses
+Node's platform-aware `basename`, and shared fixture bundling changes trigger the
+platform matrix.
+
+Apple's Xcode 26.6 `lipo` requires the input path before `-verify_arch`; asset
+inspection now uses that order. The disposable application declares `integration_test`
+as a runtime dependency because it also runs release assertions; this fixes Android's
+release plugin-registration compilation without changing production package manifests.
+
 1. Resolve the Hermes rc.1 transfer-constructor behavior in the SDK release process;
    then intentionally update its lock. Current Linux full CI will expose this failure.
 2. Resolve shared widget test binding/clock conditions on devices without weakening

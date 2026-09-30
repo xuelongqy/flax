@@ -1,7 +1,7 @@
 import { execFileSync } from 'node:child_process';
 import { build } from 'esbuild';
 import { access, readdir } from 'node:fs/promises';
-import { resolve } from 'node:path';
+import { basename, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { bundleOptionsFor, prepareBundleModulesFor, root } from './src/bundle.mjs';
 
@@ -64,7 +64,7 @@ for (const owner of packages) {
     await build({
       ...options,
       entryPoints: Object.fromEntries(
-        entries.map((entry) => [entry.slice(entry.lastIndexOf('/') + 1, -3), entry]),
+        entries.map((entry) => [basename(entry, '.ts'), entry]),
       ),
       outdir,
     });

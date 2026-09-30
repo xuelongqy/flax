@@ -223,7 +223,7 @@ Future<Map<String, Object?>> verifyApplicationAssets(
     files.add(file);
     if (target.apple) {
       final arch = target.architecture == 'x64' ? 'x86_64' : 'arm64';
-      await _inspect('lipo', ['-verify_arch', arch, file.path]);
+      await _inspect('lipo', [file.path, '-verify_arch', arch]);
       for (final dependency in await _dependencies(target, file)) {
         if (flaxSdkSystemDependency(target.os, dependency)) continue;
         if (!dependency.startsWith('@rpath/') ||

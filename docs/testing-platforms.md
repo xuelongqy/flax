@@ -76,6 +76,10 @@ never rewritten. DLL import libraries are link inputs, not code assets. The fina
 package is checked for the complete runtime closure and the selected architecture, and
 copied applications are executed independently of original build outputs.
 
+The pinned Flutter release has no Linux/Windows ARM64 SDK archive. Those CI hosts
+install Flutter from its exact stable Git tag and download the matching native Dart SDK
+through Flutter's bootstrap scripts. No Flutter or JavaScript engine is compiled.
+
 Consumer projects must set their deployment minima to macOS/iOS 15.0 or Android API 24.
 The bridge uses those SDK minima even when Dart's hook input has an older default. An
 Android ARM64 device can also verify ARM32 when `ro.product.cpu.abilist` includes

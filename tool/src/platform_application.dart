@@ -111,8 +111,11 @@ Future<Map<String, Object?>> verifyPlatformApplication(
     )..remove('resolution');
     manifest['dependencies'] = {
       'flutter': {'sdk': 'flutter'},
+      // This disposable consumer also runs integration assertions in release.
+      'integration_test': {'sdk': 'flutter'},
       for (final name in names) name: {'path': '../packages/$name'},
     };
+    (manifest['dev_dependencies'] as Map?)?.remove('integration_test');
     manifest['hooks'] = {
       'user_defines': {
         'flax_engine_$engine': {'testContracts': true},
