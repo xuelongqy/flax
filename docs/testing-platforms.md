@@ -123,6 +123,9 @@ FLAX_IOS_TEAM=<team-id> dart run tool/check_platform.dart --target=ios-device-ar
 ```
 
 Evidence is written to `build/platform/<target>/verification.json` and uploaded by CI.
-Each engine records build, runtime and application stages independently. A green
-build-only job means built, not accepted. A failed full assertion blocks full acceptance
-even when platform smoke succeeds.
+Preparation failures also write a receipt with `failedStage` and no successful engine
+stages. Each engine records build, runtime and application stages independently. CI
+uploads installation and emulator diagnostics from `build/platform/<target>/ci/`;
+Android x64 boot has a 10-minute deadline with each ADB call limited to 30 seconds. A
+green build-only job means built, not accepted. A failed full assertion blocks full
+acceptance even when platform smoke succeeds.

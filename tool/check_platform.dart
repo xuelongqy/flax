@@ -49,16 +49,39 @@ Future<void> main(List<String> arguments) => command(() async {
     return;
   }
   final target = options.target;
-  if (!options.buildOnly &&
-      !target.mobile &&
-      target.name != FlaxNativeTarget.host().name) {
-    throw StateError(
-      'Current process ABI is ${FlaxNativeTarget.host().name}, expected ${target.name}',
+  final results = <Map<String, Object?>>[
+    for (final engine in options.engines)
+      {
+        'target': target.name,
+        'engine': engine,
+        'scope': options.scope,
+        'built': false,
+        'ran': false,
+        'applicationDelivered': false,
+        'buildOnly': options.buildOnly,
+      },
+  ];
+  final assets = <FlaxNativeSdkResult>[];
+  final errors = <String>[];
+  Map<String, Object?>? coexistence;
+  var sharedLibrariesVerified = false;
+  String? failedStage;
+  void writeReceipt() {
+    final receipt = File(
+      '$root/build/platform/${target.name}/verification.json',
+    )..parent.createSync(recursive: true);
+    receipt.writeAsStringSync(
+      const JsonEncoder.withIndent('  ').convert({
+        'results': results,
+        'errors': errors,
+        'failedStage': failedStage,
+        'sharedLibrariesVerified': sharedLibrariesVerified,
+        'coexistence': coexistence,
+      }),
     );
+    stdout.writeln('Evidence: ${receipt.path}');
   }
-  if (!options.buildOnly && target.mobile) {
-    await _requireDevice(target, options.device!);
-  }
+
   final environment = {
     'FLAX_CHECK_TARGET': target.name,
     'FLAX_CHECK_PREPARED': '1',
@@ -70,35 +93,42 @@ Future<void> main(List<String> arguments) => command(() async {
     directory: root,
     environment: environment,
   );
-  if (options.scope == 'all' && !options.buildOnly) {
-    await run(Platform.resolvedExecutable, [
-      'run',
-      'melos',
-      'run',
-      'check',
-    ], directory: root);
-    await dart('tool/ffi.dart', ['--check']);
-  } else {
-    await run('pnpm', ['--silent', 'run', 'js:build'], directory: root);
-    await run('node', ['tool/ui_bundle.mjs'], directory: root);
-    await run('node', ['tool/example_bundle.mjs'], directory: root);
+  try {
+    failedStage = 'target';
+    if (!options.buildOnly &&
+        !target.mobile &&
+        target.name != FlaxNativeTarget.host().name) {
+      throw StateError(
+        'Current process ABI is ${FlaxNativeTarget.host().name}, expected ${target.name}',
+      );
+    }
+    failedStage = 'device';
+    if (!options.buildOnly && target.mobile) {
+      await _requireDevice(target, options.device!);
+    }
+    failedStage = 'prepare';
+    if (options.scope == 'all' && !options.buildOnly) {
+      await run(Platform.resolvedExecutable, [
+        'run',
+        'melos',
+        'run',
+        'check',
+      ], directory: root);
+      await dart('tool/ffi.dart', ['--check']);
+    } else {
+      await run('pnpm', ['--silent', 'run', 'js:build'], directory: root);
+      await run('node', ['tool/ui_bundle.mjs'], directory: root);
+      await run('node', ['tool/example_bundle.mjs'], directory: root);
+    }
+    failedStage = null;
+  } catch (error) {
+    errors.add(error.toString());
+    writeReceipt();
+    rethrow;
   }
-  final results = <Map<String, Object?>>[];
-  final assets = <FlaxNativeSdkResult>[];
-  final errors = <String>[];
-  Map<String, Object?>? coexistence;
-  var sharedLibrariesVerified = false;
-  for (final engine in options.engines) {
-    final record = <String, Object?>{
-      'target': target.name,
-      'engine': engine,
-      'scope': options.scope,
-      'built': false,
-      'ran': false,
-      'applicationDelivered': false,
-      'buildOnly': options.buildOnly,
-    };
-    results.add(record);
+  for (final record in results) {
+    final engine = record['engine']! as String;
+    var stage = 'build';
     try {
       final package = findPackage(root, 'flax_engine_$engine').directory;
       final output = Directory('${package.path}/build/platform/${target.name}');
@@ -120,6 +150,7 @@ Future<void> main(List<String> arguments) => command(() async {
       record['sdk'] = jsonDecode(
         File('${output.path}/sdk-receipt.json').readAsStringSync(),
       );
+      stage = 'runtime';
       if (!options.buildOnly && !target.mobile) {
         await run('cmake', [
           '--build',
@@ -151,9 +182,11 @@ Future<void> main(List<String> arguments) => command(() async {
         }
         record['ran'] = true;
         if (options.scope == 'all') {
+          stage = 'ui';
           await dart('tool/check_ui.dart', ['--engine=$engine']);
         }
       }
+      stage = 'application';
       final application = await verifyPlatformApplication(
         root,
         target,
@@ -164,15 +197,18 @@ Future<void> main(List<String> arguments) => command(() async {
       );
       record.addAll(application);
     } catch (error) {
+      record['failedStage'] = stage;
       record['error'] = error.toString();
       errors.add('$engine: $error');
       stderr.writeln('$engine ${target.name}: $error');
     }
   }
   if (assets.length == options.engines.length) {
+    var stage = 'sharedLibraries';
     try {
       await verifySharedLibraries(assets);
       sharedLibrariesVerified = true;
+      stage = 'coexistence';
       if (options.engines.length == 2 && !options.buildOnly) {
         coexistence = await verifyPlatformApplication(
           root,
@@ -187,20 +223,11 @@ Future<void> main(List<String> arguments) => command(() async {
         await dart('tool/check_engines.dart');
       }
     } catch (error) {
+      failedStage = stage;
       errors.add(error.toString());
     }
   }
-  final receipt = File('$root/build/platform/${target.name}/verification.json')
-    ..parent.createSync(recursive: true);
-  receipt.writeAsStringSync(
-    const JsonEncoder.withIndent('  ').convert({
-      'results': results,
-      'errors': errors,
-      'sharedLibrariesVerified': sharedLibrariesVerified,
-      'coexistence': coexistence,
-    }),
-  );
-  stdout.writeln('Evidence: ${receipt.path}');
+  writeReceipt();
   if (errors.isNotEmpty) {
     throw StateError('Platform verification failed: ${errors.join('\n')}');
   }

@@ -7,6 +7,7 @@ import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
 import 'generator_test.dart' show compileFixture;
+import 'fixtures/widget_interfaces_selection.dart';
 
 const _contract = FlaxCodegenClassSelection(
   {},
@@ -54,6 +55,64 @@ void main() {
     'unused.ts',
     classes,
   );
+  test('file imports ignore private-looking checkout ancestors', () async {
+    final temporary = Directory(p.join(Directory.current.path, 'test/fixtures'))
+        .createTempSync('__w-');
+    addTearDown(() => temporary.deleteSync(recursive: true));
+    final target = File(p.join(temporary.path, 'src/_checkout/contracts.dart'))
+      ..parent.createSync(recursive: true);
+    File(
+      p.join(
+        Directory.current.path,
+        'test/fixtures/plugin/widget_interfaces.dart',
+      ),
+    ).copySync(target.path);
+    final privateLibrary = File(p.join(temporary.path, 'private_package.dart'))
+      ..writeAsStringSync('''
+import 'package:flutter/src/widgets/framework.dart' show Widget;
+abstract class PrivateLibraryContract implements Widget {
+  Widget get child;
+}
+''');
+    final parser = FlaxCodegenBindingParser(root);
+    addTearDown(parser.dispose);
+    final module = await parser.parse(
+      FlaxCodegenBindingConfig(
+        'plugin',
+        target.uri.toString(),
+        '@example/plugin',
+        'unused.dart',
+        'unused.ts',
+        widgetInterfacesSelection,
+      ),
+    );
+    await compileFixture(root, FlaxCodegenBindingEmitter([module]), module);
+    await expectLater(
+      parser.parse(
+        FlaxCodegenBindingConfig(
+          'private',
+          privateLibrary.uri.toString(),
+          '@example/private',
+          'unused.dart',
+          'unused.ts',
+          const {
+            'PrivateLibraryContract': FlaxCodegenClassSelection(
+              {},
+              kind: 'widgetInterface',
+              getters: ['child'],
+            ),
+          },
+        ),
+      ),
+      throwsA(
+        isA<StateError>().having(
+          (error) => error.toString(),
+          'message',
+          contains('No public export'),
+        ),
+      ),
+    );
+  });
   test(
     'native interface signatures compile and forward without bridge conversion',
     () async {

@@ -4,6 +4,13 @@ import { dirname, join } from 'node:path';
 import { build } from 'esbuild';
 import { flaxHostModulesPlugin, prepareModules } from '../src/modules.mjs';
 
+// Execute npm's JS entry point on Windows; .cmd files are not executables.
+const npm = process.platform === 'win32' ? process.execPath : 'npm';
+const npmArgs =
+  process.platform === 'win32'
+    ? [join(dirname(process.execPath), 'node_modules/npm/bin/npm-cli.js')]
+    : [];
+
 async function write(path, value) {
   await mkdir(dirname(path), { recursive: true });
   await writeFile(
@@ -19,8 +26,8 @@ async function pack(root, name, files, manifest) {
     await write(join(directory, path), value);
   const result = JSON.parse(
     execFileSync(
-      'npm',
-      ['pack', '--json', '--ignore-scripts', '--pack-destination', root],
+      npm,
+      [...npmArgs, 'pack', '--json', '--ignore-scripts', '--pack-destination', root],
       { cwd: directory, encoding: 'utf8' },
     ),
   );
@@ -29,8 +36,9 @@ async function pack(root, name, files, manifest) {
 
 function install(directory, archives) {
   execFileSync(
-    'npm',
+    npm,
     [
+      ...npmArgs,
       'install',
       '--offline',
       '--ignore-scripts',

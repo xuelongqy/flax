@@ -16,9 +16,6 @@ on:
 permissions:
   contents: read
 
-env:
-  FLAX_ENGINE_SDK_CACHE: ${{ github.workspace }}/.cache/engine-sdk
-
 jobs:
   linux:
     if: startsWith(inputs.target, 'linux-')
@@ -45,13 +42,22 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+      - name: Prepare verification paths
+        shell: bash
+        run: |
+          mkdir -p 'build/platform/${{ inputs.target }}/ci'
+          echo "FLAX_ENGINE_SDK_CACHE=$(pwd)/.cache/engine-sdk" >> "$GITHUB_ENV"
       - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
+        id: flutter
+        timeout-minutes: 15
         with:
           # ARM64 has no Linux release archive; main selects source installation,
           # then the action checks out the exact stable tag from .fvmrc.
           channel: ${{ runner.arch == 'ARM64' && 'main' || 'stable' }}
           flutter-version-file: .fvmrc
           architecture: ${{ runner.arch == 'ARM64' && 'arm64' || 'x64' }}
+          cache: true
+          pub-cache: false
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version-file: .node-version
@@ -71,20 +77,40 @@ jobs:
             bridge-${{ inputs.target }}-${{ hashFiles('.fvmrc', 'packages/*/native/**',
             'packages/flax/lib/native_*.dart', 'packages/flax_engine_*/hook/**') }}
       - name: Install locked dependencies
+        id: dependencies
+        shell: bash
         run: |
-          git config --global --add safe.directory "$GITHUB_WORKSPACE"
-          npm install --global "$(node -p 'require("./package.json").packageManager')"
-          flutter pub get --enforce-lockfile
-          pnpm install --frozen-lockfile
+          {
+            git config --global --add safe.directory "$(pwd)"
+            git config --global --add safe.directory "$FLUTTER_ROOT"
+            npm install --global "$(node -p 'require("./package.json").packageManager')"
+            flutter pub get --enforce-lockfile
+            pnpm install --frozen-lockfile
+          } 2>&1 | tee 'build/platform/${{ inputs.target }}/ci/dependencies.log'
+      - name: Check emulator startup handling
+        if: inputs.target == 'linux-x64'
+        run:
+          python3 -B -m unittest discover -s tool/test -p
+          'start_android_emulator_test.py'
       - name: Verify on the baseline system
         run:
           xvfb-run -a dart run tool/check_platform.dart --target=${{ inputs.target }}
           --engine=${{ inputs.engine }} --scope=${{ inputs.scope }}
+      - name: Record preparation failures
+        if: always()
+        shell: bash
+        run: |
+          if [ ! -f 'build/platform/${{ inputs.target }}/verification.json' ]; then
+            mkdir -p 'build/platform/${{ inputs.target }}/ci'
+            echo 'Verification did not produce a receipt. Flutter: ${{ steps.flutter.outcome }}; dependencies: ${{ steps.dependencies.outcome }}. No runtime acceptance.' | tee 'build/platform/${{ inputs.target }}/ci/status.txt' >> "$GITHUB_STEP_SUMMARY"
+          fi
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         if: always()
         with:
           name: verification-${{ inputs.target }}-${{ inputs.engine }}
-          path: build/platform/${{ inputs.target }}/verification.json
+          path: |
+            build/platform/${{ inputs.target }}/verification.json
+            build/platform/${{ inputs.target }}/ci/
           if-no-files-found: warn
 
   native:
@@ -99,6 +125,13 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+      - name: Prepare verification paths
+        shell: bash
+        run: |
+          mkdir -p 'build/platform/${{ inputs.target }}/ci'
+          cache_root="$(pwd)"
+          if [ "$RUNNER_OS" = Windows ]; then cache_root="$(pwd -W)"; fi
+          echo "FLAX_ENGINE_SDK_CACHE=$cache_root/.cache/engine-sdk" >> "$GITHUB_ENV"
       - name: Apple tools
         if: runner.os == 'macOS'
         run: |
@@ -124,6 +157,9 @@ jobs:
           cmake --version
           ninja --version
       - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
+        id: flutter
+        timeout-minutes: 15
+        continue-on-error: ${{ inputs.target == 'macos-x64' }}
         with:
           # Windows ARM64 also bootstraps the pinned stable tag from source.
           channel:
@@ -131,6 +167,19 @@ jobs:
             }}
           flutter-version-file: .fvmrc
           architecture: ${{ runner.arch == 'ARM64' && 'arm64' || 'x64' }}
+          cache: true
+          pub-cache: false
+      - name: Retry macOS x64 Flutter installation
+        if: inputs.target == 'macos-x64' && steps.flutter.outcome == 'failure'
+        id: flutter_retry
+        timeout-minutes: 15
+        uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
+        with:
+          channel: stable
+          flutter-version-file: .fvmrc
+          architecture: x64
+          cache: true
+          pub-cache: false
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version-file: .node-version
@@ -150,11 +199,20 @@ jobs:
             bridge-${{ inputs.target }}-${{ hashFiles('.fvmrc', 'packages/*/native/**',
             'packages/flax/lib/native_*.dart', 'packages/flax_engine_*/hook/**') }}
       - name: Install locked dependencies
+        id: dependencies
         shell: bash
         run: |
-          npm install --global "$(node -p 'require("./package.json").packageManager')"
-          flutter pub get --enforce-lockfile
-          pnpm install --frozen-lockfile
+          {
+            npm install --global "$(node -p 'require("./package.json").packageManager')"
+            flutter pub get --enforce-lockfile
+            pnpm install --frozen-lockfile
+          } 2>&1 | tee 'build/platform/${{ inputs.target }}/ci/dependencies.log'
+      - name: Check Windows module delivery
+        id: module_delivery
+        if: runner.os == 'Windows'
+        shell: bash
+        run: |
+          node --test packages/flax_tools/js/test/modules.test.mjs 2>&1 | tee 'build/platform/${{ inputs.target }}/ci/modules.log'
       - name: Start iOS simulator
         if: startsWith(inputs.target, 'ios-simulator-')
         shell: bash
@@ -162,18 +220,17 @@ jobs:
           test "$(uname -m)" = '${{ endsWith(inputs.target, '-x64') && 'x86_64' || 'arm64' }}'
           python3 tool/start_simulator.py >> "$GITHUB_ENV"
       - name: Start Android x64 emulator
+        id: emulator
         if: inputs.target == 'android-x64'
+        timeout-minutes: 12
         shell: bash
         run: |
-          sudo chmod 666 /dev/kvm
-          echo no | "$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager" create avd --force -n flax-ci -k 'system-images;android-36;google_apis;x86_64'
-          "$ANDROID_HOME/emulator/emulator" -avd flax-ci -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect > /tmp/emulator.log 2>&1 &
-          "$ANDROID_HOME/platform-tools/adb" wait-for-device
-          for ((attempt=0; attempt<120; attempt++)); do
-            if [ "$("$ANDROID_HOME/platform-tools/adb" shell getprop sys.boot_completed | tr -d '\r')" = 1 ]; then break; fi
-            sleep 2
-          done
-          test "$("$ANDROID_HOME/platform-tools/adb" shell getprop sys.boot_completed | tr -d '\r')" = 1
+          {
+            ls -l /dev/kvm
+            sudo chmod 666 /dev/kvm
+            echo no | timeout 60 "$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager" create avd --force -n flax-ci -k 'system-images;android-36;google_apis;x86_64'
+            python3 tool/start_android_emulator.py
+          } 2>&1 | tee 'build/platform/android-x64/ci/startup.log'
           echo FLAX_CHECK_DEVICE=emulator-5554 >> "$GITHUB_ENV"
       - name: Verify selected target
         shell: bash
@@ -184,9 +241,19 @@ jobs:
           esac
           if [ -n "${FLAX_CHECK_DEVICE:-}" ]; then args+=(--device="$FLAX_CHECK_DEVICE"); fi
           dart run tool/check_platform.dart --target=${{ inputs.target }} --engine=${{ inputs.engine }} --scope=${{ inputs.scope }} "${args[@]}"
+      - name: Record preparation failures
+        if: always()
+        shell: bash
+        run: |
+          if [ ! -f 'build/platform/${{ inputs.target }}/verification.json' ]; then
+            mkdir -p 'build/platform/${{ inputs.target }}/ci'
+            echo 'Verification did not produce a receipt. Flutter: ${{ steps.flutter.outcome }}; Flutter retry: ${{ steps.flutter_retry.outcome }}; dependencies: ${{ steps.dependencies.outcome }}; modules: ${{ steps.module_delivery.outcome }}; emulator: ${{ steps.emulator.outcome }}. No runtime acceptance.' | tee 'build/platform/${{ inputs.target }}/ci/status.txt' >> "$GITHUB_STEP_SUMMARY"
+          fi
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         if: always()
         with:
           name: verification-${{ inputs.target }}-${{ inputs.engine }}
-          path: build/platform/${{ inputs.target }}/verification.json
+          path: |
+            build/platform/${{ inputs.target }}/verification.json
+            build/platform/${{ inputs.target }}/ci/
           if-no-files-found: warn

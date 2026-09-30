@@ -46,9 +46,13 @@ final class _WidgetInterfaceParser {
     final uri = exports[name]?.baseElement == element.baseElement
         ? publicLibraries[name] ?? library.uri.toString()
         : library.uri.toString();
-    // Private implementation libraries are only used through a public export.
-    if (uri.contains('/src/') ||
-        Uri.parse(uri).pathSegments.any((s) => s.startsWith('_'))) {
+    // Package privacy concerns the import URI, not file-system ancestors such
+    // as Actions' /__w/ checkout directory. Local fixtures use file: imports.
+    final parsed = Uri.parse(uri);
+    if ((parsed.scheme == 'package' &&
+            parsed.pathSegments.length > 1 &&
+            parsed.pathSegments[1] == 'src') ||
+        (parsed.scheme == 'dart' && parsed.path.startsWith('_'))) {
       _fail('No public export for Dart declaration: $name ($uri)');
     }
     final prefix = _prefixes.putIfAbsent(

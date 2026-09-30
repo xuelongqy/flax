@@ -13,6 +13,61 @@ import '../src/platform_selection.dart';
 import '../src/platform_binary.dart';
 
 void main() {
+  test('preparation failure writes a receipt without runtime acceptance', () async {
+    final root = Directory.current;
+    final temporary = Directory.systemTemp.createTempSync(
+      'flax prepare failure ',
+    );
+    addTearDown(() => temporary.deleteSync(recursive: true));
+    final tool = Directory('${temporary.path}/tool')..createSync();
+    File('${root.path}/tool/check_platform.dart')
+        .copySync('${tool.path}/check_platform.dart');
+    final sources = Directory('${tool.path}/src')..createSync();
+    for (final source in Directory(
+      '${root.path}/tool/src',
+    ).listSync().whereType<File>()) {
+      if (source.path.endsWith('.dart')) {
+        source.copySync('${sources.path}/${source.uri.pathSegments.last}');
+      }
+    }
+    final bin = Directory('${temporary.path}/bin')..createSync();
+    final pnpm = File('${bin.path}/pnpm${Platform.isWindows ? '.cmd' : ''}')
+      ..writeAsStringSync(
+        Platform.isWindows ? '@exit /b 7\n' : '#!/bin/sh\nexit 7\n',
+      );
+    if (!Platform.isWindows) {
+      final chmod = await Process.run('chmod', ['+x', pnpm.path]);
+      expect(chmod.exitCode, 0);
+    }
+    final target = FlaxNativeTarget.host().name;
+    final result = await Process.run(
+      Platform.resolvedExecutable,
+      [
+        '--packages=${root.path}/.dart_tool/package_config.json',
+        '${tool.path}/check_platform.dart',
+        '--target=$target',
+        '--engine=all',
+        '--scope=platform',
+      ],
+      environment: {
+        'PATH':
+            '${bin.path}${Platform.isWindows ? ';' : ':'}${Platform.environment['PATH']}',
+      },
+    );
+    expect(result.exitCode, 1, reason: '${result.stdout}\n${result.stderr}');
+    final receipt = jsonDecode(
+      File('${temporary.path}/build/platform/$target/verification.json')
+          .readAsStringSync(),
+    ) as Map<String, dynamic>;
+    expect(receipt['failedStage'], 'prepare');
+    expect(receipt['errors'], isNotEmpty);
+    expect(receipt['sharedLibrariesVerified'], isFalse);
+    for (final record in receipt['results'] as List) {
+      expect((record as Map)['built'], isFalse);
+      expect(record['ran'], isFalse);
+      expect(record['applicationDelivered'], isFalse);
+    }
+  });
   test(
     'rejects a wrong process architecture and different shared CRT bytes',
     () async {
@@ -141,6 +196,9 @@ void main() {
       ['linux-arm64'],
     );
     expect(platformJobs(['tool/ui_bundle.mjs']), hasLength(11));
+    expect(platformJobs(['tool/start_android_emulator.py']), [
+      {'target': 'android-x64', 'engine': 'all'},
+    ]);
   });
   test(
     'published locks contain precisely the 12 targets and separate tag/version',
