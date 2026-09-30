@@ -33,6 +33,10 @@ List<Map<String, Object>> platformJobs(Iterable<String> paths) {
 
   for (final path in paths) {
     if (path.endsWith('.md') || path.startsWith('docs/')) continue;
+    if (path == '.gitattributes') {
+      add(['windows-x64', 'windows-arm64'], ['hermes', 'v8']);
+      continue;
+    }
     if (path == 'tool/start_android_emulator.py' ||
         path == 'tool/test/start_android_emulator_test.py') {
       add(['android-x64'], ['hermes', 'v8']);

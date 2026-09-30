@@ -199,6 +199,10 @@ void main() {
     expect(platformJobs(['tool/start_android_emulator.py']), [
       {'target': 'android-x64', 'engine': 'all'},
     ]);
+    expect(platformJobs(['.gitattributes']).map((job) => job['target']), [
+      'windows-x64',
+      'windows-arm64',
+    ]);
   });
   test(
     'published locks contain precisely the 12 targets and separate tag/version',

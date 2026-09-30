@@ -327,7 +327,8 @@ Future<void> _download(String url, File archive, String digest) async {
       '--location',
       '--retry',
       '2',
-      '--retry-all-errors',
+      // Supported by Ubuntu 20.04's curl; --retry-all-errors is not.
+      '--retry-connrefused',
       '--connect-timeout',
       '15',
       '--silent',

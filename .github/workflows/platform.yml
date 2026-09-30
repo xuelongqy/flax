@@ -222,13 +222,19 @@ jobs:
       - name: Start Android x64 emulator
         id: emulator
         if: inputs.target == 'android-x64'
-        timeout-minutes: 12
+        timeout-minutes: 13
         shell: bash
         run: |
           {
             ls -l /dev/kvm
             sudo chmod 666 /dev/kvm
-            echo no | timeout 60 "$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager" create avd --force -n flax-ci -k 'system-images;android-36;google_apis;x86_64'
+            export ANDROID_USER_HOME="$RUNNER_TEMP/flax-android"
+            export ANDROID_EMULATOR_HOME="$ANDROID_USER_HOME"
+            export ANDROID_AVD_HOME="$ANDROID_USER_HOME/avd"
+            mkdir -p "$ANDROID_AVD_HOME"
+            echo no | timeout 60 "$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager" create avd --force -n flax-ci -p "$ANDROID_AVD_HOME/flax-ci.avd" -k 'system-images;android-36;google_apis;x86_64'
+            test -f "$ANDROID_AVD_HOME/flax-ci.ini"
+            "$ANDROID_HOME/emulator/emulator" -list-avds
             python3 tool/start_android_emulator.py
           } 2>&1 | tee 'build/platform/android-x64/ci/startup.log'
           echo FLAX_CHECK_DEVICE=emulator-5554 >> "$GITHUB_ENV"
