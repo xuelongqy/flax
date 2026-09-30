@@ -138,3 +138,7 @@ consumption and relocated release validation are described in
 
 Optional [localStorage](docs/architecture/local-storage.md) uses Hive CE and session
 namespaces. Applications explicitly initialize persistence before creating sessions.
+
+Native SDK target selection and Linux-default/manual platform validation are described
+in the [platform test guide](docs/testing-platforms.md). Target wiring and completed
+runtime acceptance are tracked separately.

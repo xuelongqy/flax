@@ -34,6 +34,9 @@
 #include "../v8_core.h"
 #include "../MurmurHash.h"
 #include "v8-profiler.h"
+#include <atomic>
+static std::atomic<unsigned> flaxJitEvents{0};
+unsigned flaxV8JitEventCount() { return flaxJitEvents.load(); }
 
 #if defined(_WIN32) && defined(V8JSI_ENABLE_INSPECTOR)
 #include "../inspector/inspector_agent.h"
@@ -534,11 +537,11 @@ struct JsiRuntimeState : public jsi_runtime {
       return nullptr;
     }
     void *tag = context->GetAlignedPointerFromEmbedderData(
-        v8rt::ContextEmbedderIndex::kContextTag);
+        v8rt::ContextEmbedderIndex::kContextTag, v8::kEmbedderDataTypeTagDefault);
     if (tag != v8rt::RuntimeContextTagPtr) return nullptr;
     return static_cast<JsiRuntimeState *>(
         context->GetAlignedPointerFromEmbedderData(
-            v8rt::ContextEmbedderIndex::kRuntime));
+            v8rt::ContextEmbedderIndex::kRuntime, v8::kEmbedderDataTypeTagDefault));
   }
 
   /// V8 PromiseRejectCallback. Finds the runtime via the context embedder
@@ -694,7 +697,7 @@ struct AbiHostObjectProxy {
 
   static v8::Intercepted
   Set(v8::Local<v8::Name> v8PropName, v8::Local<v8::Value> value,
-      const v8::PropertyCallbackInfo<void> &info) {
+      const v8::PropertyCallbackInfo<v8::Boolean> &info) {
     AbiHostObjectProxy *proxy = GetProxy(info);
     if (!proxy || !proxy->hostObject)
       return v8::Intercepted::kNo;
@@ -726,6 +729,7 @@ struct AbiHostObjectProxy {
       }
     }
 
+    info.GetReturnValue().Set(true);
     return v8::Intercepted::kYes;
   }
 
@@ -741,7 +745,7 @@ struct AbiHostObjectProxy {
 
   static v8::Intercepted
   SetIndexed(uint32_t index, v8::Local<v8::Value> value,
-             const v8::PropertyCallbackInfo<void> &info) {
+             const v8::PropertyCallbackInfo<v8::Boolean> &info) {
     v8::Isolate *isolate = info.GetIsolate();
     v8::Local<v8::String> indexStr =
         v8::String::NewFromUtf8(isolate, std::to_string(index).c_str())
@@ -793,7 +797,7 @@ private:
   static AbiHostObjectProxy *GetProxyFromThis(v8::Local<v8::Object> obj,
                                                v8::Isolate * /*isolate*/) {
     while (obj->InternalFieldCount() != 1) {
-      v8::Local<v8::Value> proto = obj->GetPrototypeV2();
+      v8::Local<v8::Value> proto = obj->GetPrototype();
       if (proto.IsEmpty() || !proto->IsObject())
         return nullptr;
       obj = v8::Local<v8::Object>::Cast(proto);
@@ -830,6 +834,14 @@ JsiRuntimeState *JsiRuntimeState::create(const jsi_config_s *config) {
     flags += flag;
   };
 
+#ifdef V8_JITLESS
+  appendFlag("--jitless");
+#else
+  if (!useDefaults && config->enable_jit_tracing) {
+    appendFlag("--allow-natives-syntax");
+    appendFlag("--no-concurrent-recompilation");
+  }
+#endif
   if (useDefaults) {
     appendFlag("--expose_gc");
   } else {
@@ -898,7 +910,7 @@ JsiRuntimeState *JsiRuntimeState::create(const jsi_config_s *config) {
           if (event->type == v8::JitCodeEvent::CODE_ADDED &&
               event->code_type == v8::JitCodeEvent::JIT_CODE &&
               std::string(event->name.str, event->name.len).find("flaxJitProbe") != std::string::npos) {
-            std::puts("FLAX_V8_JIT: machine code generated for flaxJitProbe");
+            if (++flaxJitEvents == 1) std::puts("FLAX_V8_JIT: machine code generated for flaxJitProbe");
             std::fflush(stdout);
           }
         });
@@ -926,9 +938,9 @@ JsiRuntimeState *JsiRuntimeState::create(const jsi_config_s *config) {
   // marker tag. The PromiseRejectCallback (and any future static V8 callback
   // that only has a context handle) walks slot 0 to recover the runtime.
   context->SetAlignedPointerInEmbedderData(
-      v8rt::ContextEmbedderIndex::kRuntime, state);
+      v8rt::ContextEmbedderIndex::kRuntime, state, v8::kEmbedderDataTypeTagDefault);
   context->SetAlignedPointerInEmbedderData(
-      v8rt::ContextEmbedderIndex::kContextTag, v8rt::RuntimeContextTagPtr);
+      v8rt::ContextEmbedderIndex::kContextTag, v8rt::RuntimeContextTagPtr, v8::kEmbedderDataTypeTagDefault);
 
   // install the unhandled-promise-rejection tracker unless the consumer
   // explicitly opted out. Mirrors legacy V8Runtime behavior — Node-API's
@@ -1911,7 +1923,7 @@ jsi_value_or_error JSI_CDECL jsi_get_prototype_of(jsi_runtime *rt,
   auto *state = getState(rt);
   V8Scope scope(state);
   v8::Local<v8::Object> v8obj = toObjectHandle(obj)->get(state->isolate);
-  v8::Local<v8::Value> proto = v8obj->GetPrototypeV2();
+  v8::Local<v8::Value> proto = v8obj->GetPrototype();
   return abi::create_value_or_error(createJsiValue(state->isolate, proto));
 }
 
@@ -1929,7 +1941,7 @@ jsi_error_code JSI_CDECL jsi_set_prototype_of(jsi_runtime *rt,
                                     : v8::Null(isolate).As<v8::Value>();
 
   v8::Maybe<bool> success =
-      v8obj->SetPrototypeV2(state->getContextLocal(), proto);
+      v8obj->SetPrototype(state->getContextLocal(), proto);
   if (success.IsNothing())
     return jsi_error_js;
   if (!success.FromJust()) {

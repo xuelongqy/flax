@@ -91,7 +91,10 @@ void copyDartPackages(
       ),
     ) as Map<String, Object?>;
     pubspec.remove('resolution');
-    final dependencies = pubspec['dependencies'] as Map<String, Object?>;
+    final dependencies =
+        (pubspec['dependencies'] as Map<String, Object?>?) ??
+        <String, Object?>{};
+    pubspec['dependencies'] = dependencies;
     for (final local in names) {
       if (dependencies.containsKey(local)) {
         dependencies[local] = {'path': '../$local'};

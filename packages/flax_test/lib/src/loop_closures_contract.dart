@@ -1,12 +1,25 @@
 import 'dart:convert';
 
 import 'package:flax/runtime.dart';
-import 'package:test/test.dart';
+import 'package:test/test.dart' hide test;
+import 'package:test/test.dart' as tests;
 
-void flaxLoopClosureContract(FlaxJsRuntime Function() createRuntime) {
+void flaxLoopClosureContract(
+  FlaxJsRuntime Function() createRuntime, {
+  void Function(String, dynamic Function())? registerTest,
+}) {
   late FlaxJsRuntime runtime;
-  setUp(() => runtime = createRuntime());
-  tearDown(() => runtime.dispose());
+  final register = registerTest ?? tests.test;
+  void test(String name, dynamic Function() body) {
+    register(name, () async {
+      runtime = createRuntime();
+      try {
+        await body();
+      } finally {
+        runtime.dispose();
+      }
+    });
+  }
 
   final loops = <String, (String, String)>{
     'for-of const': (

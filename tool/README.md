@@ -38,7 +38,7 @@ generation.
 `native.dart` discovers the selected engine package, obtains its locked shared SDK,
 compiles the adapter with Flax's ABI, and runs CTest. The same SDK preparation helper is
 used by native asset hooks. SDK caches and bridge builds are ignored inside the engine
-package. macOS arm64 is required.
+package. The current host desktop target is selected explicitly.
 
 `check_runtime.dart` executes, in order:
 
@@ -104,14 +104,14 @@ engine.
 `js:test` also executes the loop-closure framework bundle in Node. Run `ui:bundle`
 before invoking it separately; the ordinary `check` sequence already does this.
 
-`ui:test` prepares test JS and discovers package-owned UI suites. It requires macOS
-arm64 and the engine SDK lock; the hook verifies and builds the native assets. This
-command does not launch aggregate applications or publish anything.
+`ui:test` prepares test JS and discovers package-owned UI suites. It requires a
+supported native desktop host and the engine SDK lock; the hook verifies and builds the
+native assets. This command does not launch aggregate applications or publish anything.
 
 `check_aggregate.dart` builds the minimal embedded aggregate bundle, runs its framework
-test, drives its macOS integration scenario, and validates the resulting receipt for the
-selected engine. It uses the locked SDK and verifies only behavior created by composing
-multiple modules.
+test, drives its selected desktop integration scenario, and validates the resulting
+receipt for the selected engine. It uses the locked SDK and verifies only behavior
+created by composing multiple modules.
 
 `check_ui.dart` sequentially invokes `package.dart integration` for every UI-owning
 package, then invokes `check_aggregate.dart` for the selected engine. It does not build
@@ -166,3 +166,14 @@ Run `dart test packages/flax_websocket/test` for local transport, TLS and proxy 
 without an engine. Run the package integration command for its real host path;
 `check:ui` and `check:ui:v8` compose all UI owners plus the aggregate, serially because
 they drive desktop apps.
+
+## Platform selection and CI
+
+`check_platform.dart` is the single native target validation owner. Legacy tools keep
+their Hermes default and share target/device selection. `--list` displays discovered
+assertions; mobile execution requires `--device`, and `--build-only` is a distinct
+result. The SDK helper and CMake builds are reused rather than introducing another cache
+or build system. `platform_changes.dart` runs before dependency installation, reads a
+complete Git diff and emits target/engine specialty jobs. Unit checks cover ordinary
+changes, platform changes, engine locks, shared ABI, deletions and renames. See
+[test categories and target commands](../docs/testing-platforms.md).

@@ -2,7 +2,9 @@
 
 ## Implemented scope
 
-The experimental runtime supports macOS arm64, targeting macOS 15 or newer. It executes
+The experimental runtime has SDK/bridge target wiring for twelve native variants. Actual
+acceptance is recorded in the
+[platform validation record](../tasks/platform-sdk-validation.md). It executes
 JavaScript synchronously through Dart FFI, a versioned C ABI, JSI, and Hermes or V8.
 This is the engine layer used by the [Flutter application host](ui.md), not broad
 platform certification.
@@ -11,7 +13,8 @@ Public Dart interfaces live in `package:flax/runtime.dart`. Engine authors use t
 separate `package:flax/native_runtime.dart` extension entry. The Hermes package returns
 `FlaxJsRuntime` through `FlaxHermesEngine.createRuntime()`. The optional V8 package
 exposes `FlaxV8Engine.createRuntime()` with the same return type and unchanged ABI. V8
-is pinned to 15.2.124.21, requires JIT, and uses the existing JSI revision. See
+is pinned to 15.4.80.15, uses JIT outside iOS and jitless on iOS, and retains the
+existing JSI revision. See
 [adapter configuration and lifetime](../../packages/flax_engine_v8/native/README.md).
 
 ## Source compilation
@@ -145,3 +148,6 @@ public runtime API from a Dart AOT host. Workload processes isolate engines, sou
 loading, execution, bridge calls, lifecycle and RSS observations. Timing includes the
 stated Flax boundary; it is not an engine-internal profiler. Runtime correctness and
 Flutter frame measurements remain separate from these results.
+
+The [platform test guide](../testing-platforms.md) defines shared/platform scopes,
+Linux-default CI, device conditions and the SDK schema 3 contract.

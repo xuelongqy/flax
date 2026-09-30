@@ -5,15 +5,23 @@ import 'dart:io';
 import 'package:crypto/crypto.dart';
 import 'package:path/path.dart' as p;
 
+import 'native_target.dart';
+
 final Map<String, Future<void>> _localSdkLocks = {};
 
 /// Build-time input for the native asset hooks. Not part of the runtime API.
 final class FlaxNativeSdkResult {
-  const FlaxNativeSdkResult(this.bridge, this.libraries, this.sources);
+  const FlaxNativeSdkResult(
+    this.bridge,
+    this.libraries,
+    this.sources, {
+    this.testLibrary,
+  });
 
   final File bridge;
   final List<File> libraries;
   final List<File> sources;
+  final File? testLibrary;
 }
 
 Future<FlaxNativeSdkResult> buildFlaxNativeSdk({
@@ -22,28 +30,45 @@ Future<FlaxNativeSdkResult> buildFlaxNativeSdk({
   required Uri coreRoot,
   required Uri cacheRoot,
   required Uri outputRoot,
+  FlaxNativeTarget? target,
+  Uri? compiler,
+  Uri? compilerEnvironmentScript,
+  List<String> compilerEnvironmentArguments = const [],
+  bool buildTests = false,
+  bool testContracts = false,
   Uri? sdkArchive,
   String? sdkSha256,
 }) async {
   if (!const {'hermes', 'v8'}.contains(engine)) {
     throw ArgumentError.value(engine, 'engine');
   }
+  target ??= FlaxNativeTarget.host();
   final package = Directory.fromUri(packageRoot);
   final core = Directory.fromUri(coreRoot);
   final cache = Directory.fromUri(cacheRoot)..createSync(recursive: true);
   final output = Directory.fromUri(outputRoot)..createSync(recursive: true);
   final lock = File(p.join(package.path, 'native', 'sdk.lock.json'));
   final pinned = jsonDecode(lock.readAsStringSync()) as Map<String, dynamic>;
-  if (pinned['schemaVersion'] != 2 ||
+  if (pinned['schemaVersion'] != 3 ||
       pinned['engine'] != engine ||
-      pinned['os'] != 'macos' ||
-      pinned['architecture'] != 'arm64') {
+      pinned['targets'] is! Map ||
+      !(pinned['targets'] as Map).containsKey(target.name)) {
     throw StateError('Invalid $engine SDK lock: ${lock.path}');
+  }
+  final pin = <String, dynamic>{
+    ...pinned,
+    ...Map<String, dynamic>.from(pinned['targets'][target.name] as Map),
+    'target': target.name,
+  };
+  if (pin['os'] != target.os ||
+      pin['architecture'] != target.architecture ||
+      pin['appleSdk'] != target.appleSdk) {
+    throw StateError('SDK lock metadata does not match ${target.name}');
   }
   if ((sdkArchive == null) != (sdkSha256 == null)) {
     throw StateError('Set both sdkArchive and sdkSha256');
   }
-  final expectedDigest = sdkSha256 ?? pinned['sha256'] as String;
+  final expectedDigest = sdkSha256 ?? pin['sha256'] as String;
   _requireDigestShape(expectedDigest);
   final archive = sdkArchive == null
       ? File(p.join(cache.path, '$expectedDigest.tar.gz'))
@@ -60,10 +85,10 @@ Future<FlaxNativeSdkResult> buildFlaxNativeSdk({
       await cacheLock.lock(FileLock.exclusive);
       if (sdk.existsSync()) {
         if (sdkArchive != null) await _verifyHash(archive, expectedDigest);
-        await _verifySdk(sdk, pinned);
+        await _verifySdk(sdk, pin);
       } else {
         if (sdkArchive == null && !archive.existsSync()) {
-          await _download(pinned['url'] as String, archive, expectedDigest);
+          await _download(pin['url'] as String, archive, expectedDigest);
         }
         await _verifyHash(archive, expectedDigest);
         final temporary = Directory(
@@ -73,7 +98,7 @@ Future<FlaxNativeSdkResult> buildFlaxNativeSdk({
         temporary.createSync(recursive: true);
         try {
           await _extract(archive, temporary);
-          await _verifySdk(temporary, pinned);
+          await _verifySdk(temporary, pin);
           temporary.renameSync(sdk.path);
         } finally {
           if (temporary.existsSync()) temporary.deleteSync(recursive: true);
@@ -100,6 +125,8 @@ Future<FlaxNativeSdkResult> buildFlaxNativeSdk({
   }
   final sources = [
     lock,
+    File(p.join(core.path, 'lib', 'native_sdk.dart')),
+    File(p.join(core.path, 'lib', 'native_target.dart')),
     if (sdkArchive != null) archive,
     ...native
         .listSync(recursive: true, followLinks: false)
@@ -112,22 +139,63 @@ Future<FlaxNativeSdkResult> buildFlaxNativeSdk({
         .whereType<File>()
         .where((f) => f.path.endsWith('.cpp') || f.path.endsWith('.h')),
   ];
+  final environment = <String, String>{};
+  if (compilerEnvironmentScript != null) {
+    // The compiler configuration supplies this trusted Visual Studio script.
+    String quote(String value) {
+      if (RegExp(r'["%\r\n&|<>^]').hasMatch(value)) {
+        throw ArgumentError('Invalid compiler environment argument');
+      }
+      return '"$value"';
+    }
+
+    final result = await _run('cmd', [
+      '/d',
+      '/s',
+      '/c',
+      'call ${quote(compilerEnvironmentScript.toFilePath())} '
+          '${compilerEnvironmentArguments.map(quote).join(' ')} >nul && set',
+    ], capture: true);
+    for (final line in const LineSplitter().convert(result)) {
+      final split = line.indexOf('=');
+      if (split > 0) {
+        environment[line.substring(0, split)] = line.substring(split + 1);
+      }
+    }
+  }
+  final options = await flaxNativeCmakeOptions(target, compiler: compiler);
   final build = Directory(p.join(output.path, 'cmake'));
   await _run('cmake', [
     '-S',
     native.path,
     '-B',
     build.path,
-    '-G',
-    'Ninja',
+    if (target.os == 'windows' && compiler == null) ...[
+      '-G',
+      'Visual Studio 17 2022',
+      '-A',
+      target.architecture == 'arm64' ? 'ARM64' : 'x64',
+    ] else ...[
+      '-G',
+      'Ninja',
+    ],
     '-DFLAX_CORE_NATIVE=${coreNative.path}',
     '-DFLAX_ENGINE_SDK=${sdk.path}',
+    '-DFlaxEngineSDK_DIR=${sdk.path}/cmake',
     '-DCMAKE_BUILD_TYPE=Release',
-    '-DCMAKE_OSX_ARCHITECTURES=arm64',
-    '-DCMAKE_OSX_DEPLOYMENT_TARGET=15.0',
-  ]);
-  await _run('cmake', ['--build', build.path, '--target', 'flax_$engine']);
-  final bridge = File(p.join(build.path, 'lib', 'libflax_$engine.dylib'));
+    '-DBUILD_TESTING=${buildTests ? 'ON' : 'OFF'}',
+    '-DFLAX_TEST_CONTRACTS=${testContracts ? 'ON' : 'OFF'}',
+    ...options,
+  ], environment: environment);
+  await _run('cmake', [
+    '--build',
+    build.path,
+    '--config',
+    'Release',
+    '--target',
+    'flax_$engine',
+  ], environment: environment);
+  final bridge = File(p.join(build.path, 'lib', target.bridgeName(engine)));
   if (!bridge.existsSync()) throw StateError('Missing built $engine bridge');
   final assetDir = Directory(p.join(output.path, 'assets'))
     ..createSync(recursive: true);
@@ -139,7 +207,108 @@ Future<FlaxNativeSdkResult> buildFlaxNativeSdk({
     final source = File(p.join(sdk.path, relative));
     libraries.add(source.copySync(p.join(assetDir.path, p.basename(relative))));
   }
-  return FlaxNativeSdkResult(bridgeAsset, libraries, sources);
+  File(p.join(output.path, 'sdk-receipt.json')).writeAsStringSync(
+    jsonEncode({
+      'target': target.name,
+      'engine': engine,
+      'sdkSha256': expectedDigest,
+      'sdkVersion': manifest['sdkVersion'],
+      'libraries': {
+        for (final relative in (manifest['libraries'] as List).cast<String>())
+          p.posix.basename(relative): manifest['files'][relative],
+      },
+    }),
+  );
+  File? testLibrary;
+  if (testContracts) {
+    await _run('cmake', [
+      '--build',
+      build.path,
+      '--config',
+      'Release',
+      '--target',
+      'flax_test_contracts',
+    ], environment: environment);
+    testLibrary =
+        File(
+          p.join(
+            build.path,
+            'lib',
+            target.bridgeName('${engine}_test_contracts'),
+          ),
+        ).copySync(
+          p.join(assetDir.path, target.bridgeName('${engine}_test_contracts')),
+        );
+  }
+  return FlaxNativeSdkResult(
+    bridgeAsset,
+    libraries,
+    sources,
+    testLibrary: testLibrary,
+  );
+}
+
+Future<List<String>> flaxNativeCmakeOptions(
+  FlaxNativeTarget target, {
+  Uri? compiler,
+}) async {
+  final options = <String>[];
+  if (target.apple) {
+    options.addAll([
+      '-DCMAKE_OSX_ARCHITECTURES=${target.architecture == 'x64' ? 'x86_64' : 'arm64'}',
+      '-DCMAKE_OSX_DEPLOYMENT_TARGET=15.0',
+    ]);
+    if (target.os == 'ios') {
+      options.addAll([
+        '-DCMAKE_SYSTEM_NAME=iOS',
+        '-DCMAKE_OSX_SYSROOT=${(await _run('xcrun', ['--sdk', target.appleSdk!, '--show-sdk-path'], capture: true)).trim()}',
+      ]);
+    }
+  } else if (target.os == 'android') {
+    final home =
+        Platform.environment['ANDROID_HOME'] ??
+        Platform.environment['ANDROID_SDK_ROOT'];
+    final ndk =
+        Platform.environment['ANDROID_NDK_HOME'] ??
+        (home == null ? null : p.join(home, 'ndk', '30.0.16248370'));
+    if (ndk == null ||
+        !File(p.join(ndk, 'build', 'cmake', 'android.toolchain.cmake'))
+            .existsSync() ||
+        !File(p.join(ndk, 'source.properties'))
+            .readAsStringSync()
+            .contains('30.0.16248370')) {
+      throw StateError(
+        'Android requires NDK 30.0.16248370 (ANDROID_NDK_HOME or ANDROID_HOME)',
+      );
+    }
+    options.addAll([
+      '-DCMAKE_TOOLCHAIN_FILE=$ndk/build/cmake/android.toolchain.cmake',
+      '-DANDROID_ABI=${target.androidAbi}',
+      '-DANDROID_PLATFORM=android-24',
+      '-DANDROID_STL=c++_shared',
+    ]);
+  }
+  if (target.os == 'linux' || target.os == 'windows' || target.apple) {
+    if (compiler != null) {
+      final cc = compiler.toFilePath();
+      final name = p.basename(cc);
+      final cxxName = name.startsWith('clang') && name != 'clang-cl.exe'
+          ? name.replaceFirst('clang', 'clang++')
+          : name.startsWith('gcc')
+          ? name.replaceFirst('gcc', 'g++')
+          : name;
+      options.addAll([
+        '-DCMAKE_C_COMPILER=$cc',
+        '-DCMAKE_CXX_COMPILER=${p.join(p.dirname(cc), cxxName)}',
+      ]);
+    } else if (target.os == 'linux') {
+      options.addAll([
+        '-DCMAKE_C_COMPILER=${Platform.environment['CC'] ?? 'clang-23'}',
+        '-DCMAKE_CXX_COMPILER=${Platform.environment['CXX'] ?? 'clang++-23'}',
+      ]);
+    }
+  }
+  return options;
 }
 
 Future<void> _download(String url, File archive, String digest) async {
@@ -186,7 +355,10 @@ Future<void> _extract(File archive, Directory destination) async {
   for (final name in const LineSplitter().convert(names)) {
     if (name.isEmpty) continue;
     final components = p.posix.split(name);
-    if (p.posix.isAbsolute(name) || components.contains('..')) {
+    if (p.posix.isAbsolute(name) ||
+        p.windows.isAbsolute(name) ||
+        name.contains('\\') ||
+        components.contains('..')) {
       throw StateError('Unsafe SDK archive path: $name');
     }
   }
@@ -197,12 +369,15 @@ Future<void> _verifySdk(Directory sdk, Map<String, dynamic> pinned) async {
   final file = File(p.join(sdk.path, 'manifest.json'));
   if (!file.existsSync()) throw StateError('SDK manifest is missing');
   final data = jsonDecode(file.readAsStringSync()) as Map<String, dynamic>;
-  if (data['schemaVersion'] != 2 ||
+  if (data['schemaVersion'] != 3 ||
       data['engine'] != pinned['engine'] ||
       data['sdkVersion'] != pinned['sdkVersion'] ||
       data['os'] != pinned['os'] ||
       data['architecture'] != pinned['architecture'] ||
-      data['minimumOSVersion'] != '15.0' ||
+      data['target'] != pinned['target'] ||
+      data['appleSdk'] != pinned['appleSdk'] ||
+      data['minimumOSVersion'] != pinned['minimumOSVersion'] ||
+      data['minimumGlibcVersion'] != pinned['minimumGlibcVersion'] ||
       data.containsKey('abiVersion') ||
       data.containsKey('entrySymbol')) {
     throw StateError(
@@ -218,6 +393,8 @@ Future<void> _verifySdk(Directory sdk, Map<String, dynamic> pinned) async {
   }
   for (final entry in files.entries) {
     if (p.posix.isAbsolute(entry.key) ||
+        p.windows.isAbsolute(entry.key) ||
+        entry.key.contains('\\') ||
         p.posix.split(entry.key).contains('..')) {
       throw StateError('Unsafe SDK file path: ${entry.key}');
     }
@@ -228,7 +405,67 @@ Future<void> _verifySdk(Directory sdk, Map<String, dynamic> pinned) async {
       throw StateError('Unhashed SDK library: $library');
     }
   }
+  final libraries = (data['libraries'] as List).cast<String>();
+  String dependencyName(String name) => pinned['os'] == 'windows'
+      ? p.posix.basename(name).toLowerCase()
+      : p.posix.basename(name);
+  final basenames = libraries.map(dependencyName).toSet();
+  if (basenames.length != libraries.length ||
+      data['dynamicDependencies'] is! Map ||
+      data['cmakeTarget'] != 'FlaxEngineSDK::${pinned['engine']}') {
+    throw StateError('Invalid SDK dependency or link configuration');
+  }
+  for (final library in libraries) {
+    final dependencies = data['dynamicDependencies'][library];
+    if (dependencies is! List) {
+      throw StateError('Missing SDK dependencies: $library');
+    }
+    for (final dependency in dependencies.cast<String>()) {
+      final name = dependencyName(dependency);
+      if (!basenames.contains(name) &&
+          !flaxSdkSystemDependency(pinned['os'] as String, dependency)) {
+        throw StateError('Missing SDK dependency: $library -> $dependency');
+      }
+    }
+  }
+  if (pinned['os'] == 'windows') {
+    final imports = Map<String, String>.from(data['importLibraries'] as Map);
+    if (imports.isEmpty ||
+        imports.entries.any(
+          (e) => !libraries.contains(e.key) || !files.containsKey(e.value),
+        )) {
+      throw StateError('Missing Windows SDK import library');
+    }
+  }
+  if (pinned['engine'] == 'v8' &&
+      data['metadata']?['jit'] != (pinned['os'] != 'ios')) {
+    throw StateError(
+      'V8 SDK JIT configuration does not match ${pinned['target']}',
+    );
+  }
 }
+
+/// System libraries supplied by the minimum supported operating system.
+bool flaxSdkSystemDependency(String os, String dependency) => switch (os) {
+  'macos' || 'ios' =>
+    dependency.startsWith('/usr/lib/') ||
+        dependency.startsWith('/System/Library/'),
+  'windows' => RegExp(
+    r'^(api-ms-.*|ext-ms-.*|kernel32|user32|advapi32|ole32|oleaut32|shell32|ws2_32|bcrypt|ntdll|dbghelp|winmm|version|psapi|secur32|crypt32|ucrtbase|icuuc|icuin)\.dll$',
+    caseSensitive: false,
+  ).hasMatch(dependency),
+  'linux' => RegExp(
+    r'^(lib(c|m|dl|pthread|rt|gcc_s|stdc\+\+)\.so(\..*)?|ld-linux.*\.so(\..*)?)$',
+  ).hasMatch(dependency),
+  'android' => const {
+    'libc.so',
+    'libm.so',
+    'libdl.so',
+    'liblog.so',
+    'libandroid.so',
+  }.contains(dependency),
+  _ => false,
+};
 
 void _requireDigestShape(String digest) {
   if (!RegExp(r'^[0-9a-f]{64}$').hasMatch(digest)) {
@@ -248,8 +485,13 @@ Future<String> _run(
   String executable,
   List<String> arguments, {
   bool capture = false,
+  Map<String, String>? environment,
 }) async {
-  final result = await Process.run(executable, arguments);
+  final result = await Process.run(
+    executable,
+    arguments,
+    environment: environment,
+  );
   if (result.exitCode != 0) {
     throw ProcessException(
       executable,

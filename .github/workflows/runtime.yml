@@ -1,128 +1,45 @@
-name: macOS runtime and UI checks
+name: Manual platform verification
 
 on:
-  pull_request:
-  push:
-    branches: [main]
+  workflow_dispatch:
+    inputs:
+      target:
+        type: choice
+        required: true
+        default: macos-arm64
+        options:
+          - linux-x64
+          - linux-arm64
+          - macos-arm64
+          - macos-x64
+          - windows-x64
+          - windows-arm64
+          - android-x64
+          - android-arm32
+          - android-arm64
+          - ios-simulator-arm64
+          - ios-simulator-x64
+          - ios-device-arm64
+      engine:
+        type: choice
+        default: all
+        options: [all, hermes, v8]
+      scope:
+        type: choice
+        default: all
+        options: [all, platform]
 
 permissions:
   contents: read
 
 concurrency:
-  group: runtime-${{ github.workflow }}-${{ github.ref }}
+  group: runtime-${{ github.ref }}-${{ inputs.target }}
   cancel-in-progress: true
 
 jobs:
-  hermes:
-    runs-on: macos-15
-    timeout-minutes: 120
-    steps:
-      - name: Check out source
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-
-      - name: Verify host and build tools
-        run: |
-          test "$(uname -m)" = arm64
-          xcrun --find clang
-          command -v cmake || brew install cmake
-          command -v ninja || brew install ninja
-
-      - name: Set up Flutter and Dart
-        uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
-        with:
-          channel: stable
-          flutter-version-file: .fvmrc
-
-      - name: Set up Node.js
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-        with:
-          node-version-file: .node-version
-          package-manager-cache: false
-
-      - name: Set up pnpm
-        run:
-          npm install --global "$(node -p 'require("./package.json").packageManager')"
-
-      - name: Install locked dependencies
-        run: |
-          flutter pub get --enforce-lockfile
-          pnpm install --frozen-lockfile
-
-      - name: Verify runtime, owner UI modules, aggregate, and standalone release UI
-        run: |
-          dart run melos run check:runtime
-          dart run melos run check:ui
-          dart run melos run check:standalone
-
-      - name: Verify source files are unchanged
-        run: |
-          git diff --exit-code
-          if [ -n "$(git status --porcelain)" ]; then
-            git status --short
-            exit 1
-          fi
-
-  v8:
-    runs-on: macos-26
-    timeout-minutes: 180
-    steps:
-      - name: Check out source
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-
-      - name: Verify host and build tools
-        run: |
-          test "$(uname -m)" = arm64
-          xcrun --find clang
-          command -v cmake || brew install cmake
-          command -v ninja || brew install ninja
-
-      - name: Set up Flutter and Dart
-        uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
-        with:
-          channel: stable
-          flutter-version-file: .fvmrc
-
-      - name: Set up Node.js
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-        with:
-          node-version-file: .node-version
-          package-manager-cache: false
-
-      - name: Set up pnpm
-        run:
-          npm install --global "$(node -p 'require("./package.json").packageManager')"
-
-      - name: Install locked dependencies
-        run: |
-          flutter pub get --enforce-lockfile
-          pnpm install --frozen-lockfile
-
-      - name: Verify runtimes, owner UI modules, aggregate, and standalone release UI
-        run: |
-          dart run melos run check:runtime:v8
-          dart run melos run check:ui:v8
-          dart run melos run check:standalone:v8
-          dart run melos run check:engines
-
-      - name: Smoke-test independent engine benchmarks
-        run: dart run melos run bench:engines:smoke
-
-      - name: Upload benchmark evidence
-        if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
-        with:
-          name: engine-benchmark-smoke
-          path: build/benchmarks/engines/smoke/
-          if-no-files-found: warn
-
-      - name: Verify source files are unchanged
-        run: |
-          git diff --exit-code
-          if [ -n "$(git status --porcelain)" ]; then
-            git status --short
-            exit 1
-          fi
+  platform:
+    uses: ./.github/workflows/platform.yml
+    with:
+      target: ${{ inputs.target }}
+      engine: ${{ inputs.engine }}
+      scope: ${{ inputs.scope }}

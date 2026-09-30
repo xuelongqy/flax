@@ -1,8 +1,10 @@
 import 'dart:convert';
-import 'dart:ffi';
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
+import 'package:flax/native_target.dart';
+
+import 'platform_selection.dart';
 
 import 'package_discovery.dart';
 import 'package_verification.dart';
@@ -11,8 +13,15 @@ import 'example_engine.dart';
 import 'engine_selection.dart';
 
 void requireUiAssets(String root, {String engine = defaultFlaxEngine}) {
-  if (!Platform.isMacOS || Abi.current() != Abi.macosArm64) {
-    throw UnsupportedError('UI validation requires macOS arm64');
+  if (currentCheckTarget().mobile) {
+    throw UnsupportedError(
+      'Use check_platform.dart with --device for mobile UI tests',
+    );
+  }
+  if (currentCheckTarget().name != FlaxNativeTarget.host().name) {
+    throw StateError(
+      'The test process ABI must match ${currentCheckTarget().name}',
+    );
   }
   final lock = '$root/packages/flax_engine_$engine/native/sdk.lock.json';
   if (!File(lock).existsSync()) {
@@ -76,12 +85,12 @@ Future<int> runPackageExampleTests(
       await runCommand('flutter', [
         'test',
         '--no-pub',
-        if (entry.$2) ...['-d', 'macos'],
+        if (entry.$2) ...['-d', currentCheckDevice()],
         ...tests,
       ], directory: example);
       count += tests.length;
     }
-  });
+  }, runCommand: runCommand);
   return count;
 }
 

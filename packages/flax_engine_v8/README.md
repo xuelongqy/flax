@@ -1,8 +1,10 @@
 # V8 engine
 
-Experimental macOS arm64 runtime (macOS 15+) using V8 15.2.124.21 with JIT. Create a
-runtime with `FlaxV8Engine.createRuntime()`. The native asset hook downloads the
-version-locked V8 shared SDK, verifies it, and compiles the local Flax ABI and adapter.
+Experimental native runtime using V8 15.4.80.15, with JIT outside iOS and jitless on
+iOS. The lock covers all twelve native target variants; see
+[acceptance and platform commands](../../docs/testing-platforms.md). Create a runtime
+with `FlaxV8Engine.createRuntime()`. The native asset hook downloads the version-locked
+V8 shared SDK, verifies it, and compiles the local Flax ABI and adapter.
 `dart run melos run native:build:v8` exercises that same path and native tests.
 
 A distributable archive contains the Dart API, asset hook, CMake files, patched adapter,

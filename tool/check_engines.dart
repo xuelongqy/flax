@@ -5,11 +5,15 @@ import 'src/package_discovery.dart';
 import 'src/package_verification.dart';
 import 'src/process.dart';
 
+import 'package:flax/native_target.dart';
+import 'package:path/path.dart' as p;
+
 Future<void> main() => command(() async {
   final root = Directory.fromUri(Platform.script.resolve('../'));
   final temporary = Directory.systemTemp.createTempSync('flax-engines-');
   // Use the same prepared libraries as the independent Dart consumer below.
-  final nativeTest = '${temporary.path}/engines_test';
+  final nativeTest =
+      '${temporary.path}/engines_test${Platform.isWindows ? '.exe' : ''}';
   final engines = discoverEngineIds(root.path);
   if (engines.length < 2) {
     throw StateError(
@@ -77,15 +81,22 @@ Future<void> main() => command(() async {
       'run',
       'main.dart',
     ], directory: consumer.path);
-    await run('xcrun', [
-      'clang++',
-      '-std=c++17',
-      '-I',
-      '${root.path}/packages/flax/native/include',
-      '${root.path}/tests/runtime/native/engines_test.cpp',
-      '-o',
-      nativeTest,
-    ]);
+    await run(
+      Platform.isWindows
+          ? 'clang++'
+          : Platform.isLinux
+          ? 'clang++-23'
+          : 'clang++',
+      [
+        '-std=c++17',
+        '-I',
+        '${root.path}/packages/flax/native/include',
+        '${root.path}/tests/runtime/native/engines_test.cpp',
+        '-o',
+        nativeTest,
+        if (Platform.isLinux) '-ldl',
+      ],
+    );
     await run(nativeTest, [
       for (final engine in engines) ...[
         _builtBridge(consumer, engine).path,
@@ -104,7 +115,12 @@ File _builtBridge(Directory consumer, String engine) {
   final matches = outputs
       .listSync(recursive: true, followLinks: false)
       .whereType<File>()
-      .where((file) => file.path.endsWith('/assets/libflax_$engine.dylib'))
+      .where(
+        (file) =>
+            p.basename(file.path) ==
+                FlaxNativeTarget.host().bridgeName(engine) &&
+            p.basename(p.dirname(file.path)) == 'assets',
+      )
       .toList();
   if (matches.length != 1) {
     throw StateError(

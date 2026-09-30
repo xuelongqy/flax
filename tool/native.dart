@@ -1,7 +1,7 @@
-import 'dart:ffi';
 import 'dart:io';
 
 import 'package:flax/native_sdk.dart';
+import 'package:flax/native_target.dart';
 import 'package:path/path.dart' as p;
 
 import 'src/engine_selection.dart';
@@ -9,9 +9,6 @@ import 'src/package_discovery.dart';
 import 'src/process.dart';
 
 Future<void> main(List<String> arguments) => command(() async {
-  if (!Platform.isMacOS || Abi.current() != Abi.macosArm64) {
-    throw UnsupportedError('Native runtime verification requires macOS arm64');
-  }
   final engine = selectedEngine(arguments);
   final root = Directory.fromUri(Platform.script.resolve('../'));
   final package = findPackage(root.path, 'flax_engine_$engine').directory;
@@ -21,9 +18,14 @@ Future<void> main(List<String> arguments) => command(() async {
   final localDigest = Platform.environment['FLAX_ENGINE_SDK_SHA256'];
   await buildFlaxNativeSdk(
     engine: engine,
+    target: FlaxNativeTarget.host(),
+    buildTests: true,
     packageRoot: package.uri,
     coreRoot: core.uri,
-    cacheRoot: Directory(p.join(package.path, '.cache', 'sdk')).uri,
+    cacheRoot: Directory(
+      Platform.environment['FLAX_ENGINE_SDK_CACHE'] ??
+          p.join(package.path, '.cache', 'sdk'),
+    ).absolute.uri,
     outputRoot: output.uri,
     sdkArchive: localArchive == null ? null : File(localArchive).absolute.uri,
     sdkSha256: localDigest,
@@ -32,6 +34,8 @@ Future<void> main(List<String> arguments) => command(() async {
   await run('cmake', [
     '--build',
     build,
+    '--config',
+    'Release',
     '--target',
     if (engine == 'v8') ...[
       'flax_v8_runtime_test',
@@ -39,5 +43,11 @@ Future<void> main(List<String> arguments) => command(() async {
     ] else
       'flax_runtime_test',
   ]);
-  await run('ctest', ['--test-dir', build, '--output-on-failure']);
+  await run('ctest', [
+    '--test-dir',
+    build,
+    '-C',
+    'Release',
+    '--output-on-failure',
+  ]);
 });

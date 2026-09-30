@@ -7,6 +7,7 @@ import 'package:yaml/yaml.dart';
 import 'package_verification.dart';
 import 'package_discovery.dart';
 import 'process.dart';
+import 'platform_selection.dart';
 
 void _copyExampleTree(Directory source, Directory target) {
   target.createSync(recursive: true);
@@ -119,7 +120,10 @@ Future<void> withExample(
     File(p.join(root, 'examples', kind, 'pubspec.yaml')),
   );
   final sourceEngines = _engineDependencies(sourcePubspec);
-  if (sourceEngines.length == 1 && sourceEngines.single == engine) {
+  if (sourceEngines.length == 1 &&
+      sourceEngines.single == engine &&
+      Directory('$root/examples/$kind/${currentCheckTarget().os}')
+          .existsSync()) {
     await action('$root/examples/$kind');
     return;
   }
@@ -180,6 +184,7 @@ Future<void> withExample(
     }
     addCandidateSdk(pubspec, engine);
     manifest.writeAsStringSync(jsonEncode(pubspec));
+    await _ensurePlatformProject(flutter);
     selectExampleEngine(root, flutter, engine);
     await run('flutter', ['pub', 'get'], directory: flutter);
     await action(flutter);
@@ -192,13 +197,18 @@ Future<void> withPackageExample(
   String root,
   FlaxWorkspacePackage package,
   String engine,
-  Future<void> Function(String flutter) action,
-) async {
+  Future<void> Function(String flutter) action, {
+  Future<void> Function(String, List<String>, {String? directory}) runCommand =
+      run,
+}) async {
   final sourcePubspec = readYamlFile(
     File(p.join(package.example.path, 'pubspec.yaml')),
   );
   final sourceEngines = _engineDependencies(sourcePubspec);
-  if (sourceEngines.length == 1 && sourceEngines.single == engine) {
+  if (sourceEngines.length == 1 &&
+      sourceEngines.single == engine &&
+      Directory('${package.example.path}/${currentCheckTarget().os}')
+          .existsSync()) {
     await action(package.example.path);
     return;
   }
@@ -241,10 +251,27 @@ Future<void> withPackageExample(
     }
     addCandidateSdk(pubspec, engine);
     manifest.writeAsStringSync(jsonEncode(pubspec));
+    await _ensurePlatformProject(flutter.path, runCommand: runCommand);
     selectExampleEngine(root, flutter.path, engine);
-    await run('flutter', ['pub', 'get'], directory: flutter.path);
+    await runCommand('flutter', ['pub', 'get'], directory: flutter.path);
     await action(flutter.path);
   } finally {
     temporary.deleteSync(recursive: true);
   }
+}
+
+Future<void> _ensurePlatformProject(
+  String app, {
+  Future<void> Function(String, List<String>, {String? directory}) runCommand =
+      run,
+}) async {
+  final os = currentCheckTarget().os;
+  if (Directory('$app/$os').existsSync()) return;
+  await runCommand('flutter', [
+    'create',
+    '--no-pub',
+    '--platforms=$os',
+    '--project-name=${readYamlFile(File('$app/pubspec.yaml'))['name']}',
+    '.',
+  ], directory: app);
 }

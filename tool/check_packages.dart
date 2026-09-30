@@ -269,6 +269,7 @@ void _checkDartArchive(FlaxWorkspacePackage package, Set<String> paths) {
     require('native/include/flax/runtime.h');
     require('native/src/runtime.cpp');
     require('lib/native_sdk.dart');
+    require('lib/native_target.dart');
     reject('native/tests/');
     reject('native/ffigen.yaml');
     reject('native/CMakeLists.txt');

@@ -3,15 +3,25 @@ import 'dart:isolate';
 
 import 'package:code_assets/code_assets.dart';
 import 'package:flax/native_sdk.dart';
+import 'package:flax/native_target.dart';
 import 'package:hooks/hooks.dart';
 
 Future<void> main(List<String> arguments) async {
   await build(arguments, (input, output) async {
     if (!input.config.buildCodeAssets) return;
-    if (input.config.code.targetOS != OS.macOS ||
-        input.config.code.targetArchitecture != Architecture.arm64) {
-      return;
-    }
+    final code = input.config.code;
+    final target = FlaxNativeTarget.fromBuild(
+      code.targetOS.name,
+      code.targetArchitecture.name,
+      appleSdk: code.targetOS == OS.iOS ? code.iOS.targetSdk.type : null,
+    );
+    // Linux V8 needs the SDK's libc++ and a compatible Clang, not Dart's GCC.
+    final compiler = code.targetOS == OS.linux
+        ? null
+        : code.cCompiler?.compiler;
+    final prompt = code.targetOS == OS.windows
+        ? code.cCompiler?.windows.developerCommandPrompt
+        : null;
     final entry = Isolate.resolvePackageUriSync(
       Uri.parse('package:flax/native_sdk.dart'),
     );
@@ -19,9 +29,18 @@ Future<void> main(List<String> arguments) async {
     final coreRoot = File.fromUri(entry).parent.parent.uri;
     final assets = await buildFlaxNativeSdk(
       engine: 'hermes',
+      target: target,
+      testContracts: input.userDefines['testContracts'] == true,
+      compiler: compiler,
+      compilerEnvironmentScript: prompt?.script,
+      compilerEnvironmentArguments: prompt?.arguments ?? const [],
       packageRoot: input.packageRoot,
       coreRoot: coreRoot,
-      cacheRoot: input.outputDirectoryShared,
+      cacheRoot: Platform.environment['FLAX_ENGINE_SDK_CACHE'] == null
+          ? input.outputDirectoryShared
+          : Directory(Platform.environment['FLAX_ENGINE_SDK_CACHE']!)
+                .absolute
+                .uri,
       outputRoot: input.outputDirectory,
       sdkArchive: input.userDefines.path('sdkArchive'),
       sdkSha256: input.userDefines['sdkSha256'] as String?,
@@ -37,6 +56,16 @@ Future<void> main(List<String> arguments) async {
         file: assets.bridge.uri,
       ),
     );
+    if (assets.testLibrary case final library?) {
+      output.assets.code.add(
+        CodeAsset(
+          package: input.packageName,
+          name: 'test_contracts',
+          linkMode: DynamicLoadingBundled(),
+          file: library.uri,
+        ),
+      );
+    }
     for (final library in assets.libraries) {
       output.assets.code.add(
         CodeAsset(

@@ -17,6 +17,9 @@ Future<void> run(
     environment: environment,
     includeParentEnvironment: inheritEnvironment,
     mode: ProcessStartMode.inheritStdio,
+    runInShell:
+        Platform.isWindows &&
+        const {'flutter', 'pnpm', 'npm'}.contains(executable),
   );
   final code = await process.exitCode.timeout(
     timeout,

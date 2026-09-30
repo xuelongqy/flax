@@ -79,13 +79,17 @@ The full check executes these checks sequentially and stops on failure. `docs:ch
 also runs real tests for the documentation checker. Ordinary `check` and
 `native:configure` never download or build an engine.
 
-`check:runtime` requires macOS arm64, macOS 15 or newer, Xcode command-line tools,
-CMake, and Ninja. It checks generated FFI, explicitly builds Hermes, runs CTest,
-prepares assets, runs Dart integration tests, and verifies an outside-repository JIT
-consumer and a relocated AOT bundle. Unsupported platforms fail explicitly. Use
-`FLAX_BUILD_JOBS` to override the default two compiler jobs. The first build requires
-network access for the pinned source and generation tool; later builds reuse ignored
-caches. See [tool ownership](tool/README.md).
+`check:runtime` selects the host desktop target and checks generated FFI, builds the
+locked Hermes SDK bridge, runs CTest and shared Dart contracts, and verifies an external
+Dart JIT consumer plus relocated AOT bundle. `check:runtime:v8` selects V8. Use
+`FLAX_BUILD_JOBS` to override the default two compiler jobs. First use downloads only
+the locked SDK, never upstream engine sources.
+
+For a complete target check, use
+`dart run tool/check_platform.dart --target=linux-x64 --engine=all --scope=all` (one
+command line). `--scope=platform` selects specialty checks; `--list` displays
+conditions, and mobile targets require `--device` or explicit `--build-only`. See
+[platform tests and toolchains](docs/testing-platforms.md).
 
 Formatting fixes are explicit:
 
@@ -140,15 +144,16 @@ decisions.
 
 ## CI
 
-The workspace workflow uses Ubuntu and the pinned Flutter, Node, pnpm, and Melos
-versions. It installs locked dependencies, runs the same full check, and checks for
-unexpected working-tree changes.
+The default workflow runs common logic and both engines' complete Linux x64 checks in an
+Ubuntu 20.04 baseline container, including Xvfb application tests. The full-diff
+selector adds affected platforms' specialty checks for native/build/platform changes.
+Ordinary Dart/JS/UI changes do not trigger other platforms' full suites.
 
-A separate macOS arm64 workflow explicitly composes runtime, UI, and standalone gates
-using the same pinned tools. `check:ui` itself runs each UI-owning package integration
-and then the cross-module aggregate. A desktop GUI session and full Xcode are needed.
-Neither workflow publishes artifacts. These tests do not certify other platforms,
-security isolation, or performance budgets.
+The manual runtime workflow selects target, engine and scope through the same reusable
+platform workflow. Android x64 and iOS simulators execute on hosted CI; Android
+arm32/arm64 and real iOS jobs are explicitly build-only and require local device
+verification. CI uploads stage evidence; it does not publish packages or rebuild
+engines. See [the platform matrix](docs/testing-platforms.md#ci-policy).
 
 Framework tests use generated interop fixture outputs from `ui:bundle`. The `ui:test`
 entry enables the Flutter test VM service for actual Dart GC/Finalizer observation;

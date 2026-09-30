@@ -1,9 +1,9 @@
 # V8 adapter
 
-Experimental macOS arm64 runtime targeting macOS 15+. The adapter uses Microsoft's JSI
-ABI implementation and consumer-side JSI wrapper with the existing Hermes JSI headers.
-Flax's C ABI and shared bridge are unchanged. Hermes remains the default for repository
-commands and examples.
+Experimental native runtime with target-specific schema 3 SDK locks. The adapter uses
+Microsoft's JSI ABI implementation and consumer-side JSI wrapper with the existing
+Hermes JSI headers. Flax's C ABI and shared bridge are unchanged. Hermes remains the
+default for repository commands and examples.
 
 Build with `dart run melos run native:build:v8` from the repository root. The hook and
 command use [sdk.lock.json](sdk.lock.json) to fetch a versioned V8 SDK. The adapted
@@ -11,9 +11,10 @@ v8-jsi and JSI sources are packaged here; [v8.json](v8.json) and
 [the adapter patch](v8-jsi.patch) record their upstream provenance. V8 source, GN,
 depot_tools, Rust, and host tool pinning live in the SDK repository.
 
-The SDK builds shared V8 components with embedded startup data, JIT enabled, Intl
-disabled, no pointer compression and no V8 sandbox. This is not a security isolation
-boundary. The bridge exports only `flax_v8_get_api` and links the SDK dynamically.
+The SDK builds shared V8 components with embedded startup data and JIT outside iOS. iOS
+uses a jitless monolith linked as a dynamic library. Intl, pointer compression and the
+V8 sandbox are disabled. This is not a security isolation boundary. The bridge exports
+only `flax_v8_get_api` and links the SDK dynamically.
 
 The process owns one default V8 Platform; each runtime owns an Isolate, Context,
 allocator and references. Locker/Isolate scopes cover operations, persistent-reference
@@ -33,15 +34,15 @@ operations. It never evaluates application code to convert non-ASCII strings or 
 The patch appends an internal ArrayBuffer detachment query using V8 `WasDetached()` and
 increments Microsoft's library-internal JSI ABI to 2; wrappers reject older tables. This
 is independent of Flax ABI 2 and UI protocol versions. Both sides compile into the same
-dylib, with no new exported symbol. Deprecated V8 setter APIs still produce upstream
-compiler warnings.
+bridge library, with no new production ABI export.
 
-Native asset hooks download and validate the SDK, then compile the Flax bridge. The
+Native asset hooks download and validate the SDK, then compile the Flax bridge. A macOS
 release app needs `com.apple.security.cs.allow-jit`; the V8 example staging tool adds it
 to debug/profile and release entitlements. `FLAX_VERIFY_V8_JIT=1` enables an internal
-verification workload and logs actual machine-code events for its function. It does not
-enable native syntax, expose a JS API, change JIT flags or permit JITless fallback.
-Normal runtime creation does not execute that workload.
+verification workload and logs actual machine-code events for its function. This
+test-only initialization enables V8 native syntax to force optimization and fails if the
+probe produces no machine code. It does not expose a Flax JS API or permit a jitless
+fallback outside iOS. Normal runtime creation does not execute that workload.
 
 See the [runtime verification scope](../../../docs/architecture/runtime.md#verification)
 and [contribution checks](../../../CONTRIBUTING.md#checks).

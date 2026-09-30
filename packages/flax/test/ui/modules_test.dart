@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flax/flax.dart';
+import 'package:flax_test/flax_test.dart' show flaxTestFixtureFile;
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
@@ -353,7 +353,7 @@ void _execute(RuntimeTracker runtime, String script) {
 class _Fixture {
   _Fixture() {
     final data = jsonDecode(
-      File('.dart_tool/flax/ui/module_delivery.json').readAsStringSync(),
+      flaxTestFixtureFile('module_delivery.json'),
     ) as Map<String, dynamic>;
     manifest = data['manifest'] as Map<String, dynamic>;
     assets = (data['assets'] as Map<String, dynamic>).cast<String, String>();

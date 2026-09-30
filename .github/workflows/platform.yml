@@ -1,0 +1,187 @@
+name: Platform SDK consumer
+
+on:
+  workflow_call:
+    inputs:
+      target:
+        type: string
+        required: true
+      engine:
+        type: string
+        required: true
+      scope:
+        type: string
+        required: true
+
+permissions:
+  contents: read
+
+env:
+  FLAX_ENGINE_SDK_CACHE: ${{ github.workspace }}/.cache/engine-sdk
+
+jobs:
+  linux:
+    if: startsWith(inputs.target, 'linux-')
+    runs-on:
+      ${{ inputs.target == 'linux-arm64' && 'ubuntu-24.04-arm' || 'ubuntu-24.04' }}
+    container: ubuntu:20.04
+    timeout-minutes: 120
+    env:
+      CC: clang-23
+      CXX: clang++-23
+      DEBIAN_FRONTEND: noninteractive
+    steps:
+      - name: Install baseline tools
+        run: |
+          apt-get update
+          apt-get install -y git curl ca-certificates unzip xz-utils python3-pip ninja-build build-essential pkg-config libgtk-3-dev liblzma-dev libglu1-mesa xvfb openssl
+          curl --fail --location --retry 2 --output /etc/apt/trusted.gpg.d/apt.llvm.org.asc https://apt.llvm.org/llvm-snapshot.gpg.key
+          echo 'deb https://apt.llvm.org/focal/ llvm-toolchain-focal-23 main' > /etc/apt/sources.list.d/llvm.list
+          apt-get update
+          apt-get install -y clang-23 llvm-23
+          python3 -m pip install 'cmake>=3.24,<5'
+          ln -s /usr/bin/llvm-nm-23 /usr/local/bin/llvm-nm
+          ln -s /usr/bin/llvm-readobj-23 /usr/local/bin/llvm-readobj
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
+        with:
+          channel: stable
+          flutter-version-file: .fvmrc
+          architecture: ${{ runner.arch == 'ARM64' && 'arm64' || 'x64' }}
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+          package-manager-cache: false
+      - uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+        with:
+          path: .cache/engine-sdk
+          key:
+            sdk-${{ inputs.target }}-${{
+            hashFiles('packages/flax_engine_*/native/sdk.lock.json') }}
+      - uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+        with:
+          path: |
+            packages/flax_engine_*/build/platform/
+            .dart_tool/hooks_runner/
+          key:
+            bridge-${{ inputs.target }}-${{ hashFiles('.fvmrc', 'packages/*/native/**',
+            'packages/flax/lib/native_*.dart', 'packages/flax_engine_*/hook/**') }}
+      - name: Install locked dependencies
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          npm install --global "$(node -p 'require("./package.json").packageManager')"
+          flutter pub get --enforce-lockfile
+          pnpm install --frozen-lockfile
+      - name: Verify on the baseline system
+        run:
+          xvfb-run -a dart run tool/check_platform.dart --target=${{ inputs.target }}
+          --engine=${{ inputs.engine }} --scope=${{ inputs.scope }}
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: always()
+        with:
+          name: verification-${{ inputs.target }}-${{ inputs.engine }}
+          path: build/platform/${{ inputs.target }}/verification.json
+          if-no-files-found: warn
+
+  native:
+    if: ${{ !startsWith(inputs.target, 'linux-') }}
+    runs-on:
+      ${{ startsWith(inputs.target, 'windows-') && (inputs.target == 'windows-arm64' &&
+      'windows-11-arm' || 'windows-2025') || startsWith(inputs.target, 'android-') &&
+      'ubuntu-24.04' || (endsWith(inputs.target, '-x64') && 'macos-26-intel' ||
+      'macos-26') }}
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Apple tools
+        if: runner.os == 'macOS'
+        run: |
+          sudo xcode-select --switch /Applications/Xcode_26.6.app/Contents/Developer
+          command -v cmake || brew install cmake
+          command -v ninja || brew install ninja
+      - name: Android tools
+        if: startsWith(inputs.target, 'android-')
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake ninja-build llvm openssl
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --install 'ndk;30.0.16248370' 'platforms;android-36'
+          if [ '${{ inputs.target }}' = android-x64 ]; then
+            "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --install 'system-images;android-36;google_apis;x86_64' 'emulator'
+          fi
+          echo "ANDROID_NDK_HOME=$ANDROID_HOME/ndk/30.0.16248370" >> "$GITHUB_ENV"
+      - name: Windows tools
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          echo 'C:\Program Files\LLVM\bin' >> $env:GITHUB_PATH
+          cmake --version
+          ninja --version
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
+        with:
+          channel: stable
+          flutter-version-file: .fvmrc
+          architecture: ${{ runner.arch == 'ARM64' && 'arm64' || 'x64' }}
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+          package-manager-cache: false
+      - uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+        with:
+          path: .cache/engine-sdk
+          key:
+            sdk-${{ inputs.target }}-${{
+            hashFiles('packages/flax_engine_*/native/sdk.lock.json') }}
+      - uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+        with:
+          path: |
+            packages/flax_engine_*/build/platform/
+            .dart_tool/hooks_runner/
+          key:
+            bridge-${{ inputs.target }}-${{ hashFiles('.fvmrc', 'packages/*/native/**',
+            'packages/flax/lib/native_*.dart', 'packages/flax_engine_*/hook/**') }}
+      - name: Install locked dependencies
+        shell: bash
+        run: |
+          npm install --global "$(node -p 'require("./package.json").packageManager')"
+          flutter pub get --enforce-lockfile
+          pnpm install --frozen-lockfile
+      - name: Start iOS simulator
+        if: startsWith(inputs.target, 'ios-simulator-')
+        shell: bash
+        run: |
+          test "$(uname -m)" = '${{ endsWith(inputs.target, '-x64') && 'x86_64' || 'arm64' }}'
+          python3 tool/start_simulator.py >> "$GITHUB_ENV"
+      - name: Start Android x64 emulator
+        if: inputs.target == 'android-x64'
+        shell: bash
+        run: |
+          sudo chmod 666 /dev/kvm
+          echo no | "$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager" create avd --force -n flax-ci -k 'system-images;android-36;google_apis;x86_64'
+          "$ANDROID_HOME/emulator/emulator" -avd flax-ci -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect > /tmp/emulator.log 2>&1 &
+          "$ANDROID_HOME/platform-tools/adb" wait-for-device
+          for ((attempt=0; attempt<120; attempt++)); do
+            if [ "$("$ANDROID_HOME/platform-tools/adb" shell getprop sys.boot_completed | tr -d '\r')" = 1 ]; then break; fi
+            sleep 2
+          done
+          test "$("$ANDROID_HOME/platform-tools/adb" shell getprop sys.boot_completed | tr -d '\r')" = 1
+          echo FLAX_CHECK_DEVICE=emulator-5554 >> "$GITHUB_ENV"
+      - name: Verify selected target
+        shell: bash
+        run: |
+          args=()
+          case '${{ inputs.target }}' in
+            android-arm32|android-arm64|ios-device-arm64) args+=(--build-only) ;;
+          esac
+          if [ -n "${FLAX_CHECK_DEVICE:-}" ]; then args+=(--device="$FLAX_CHECK_DEVICE"); fi
+          dart run tool/check_platform.dart --target=${{ inputs.target }} --engine=${{ inputs.engine }} --scope=${{ inputs.scope }} "${args[@]}"
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: always()
+        with:
+          name: verification-${{ inputs.target }}-${{ inputs.engine }}
+          path: build/platform/${{ inputs.target }}/verification.json
+          if-no-files-found: warn

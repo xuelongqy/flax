@@ -1,7 +1,8 @@
 # flax_engine_hermes
 
 Provides `FlaxHermesEngine.createRuntime()` and a Dart native asset hook for the
-experimental macOS arm64 runtime, targeting macOS 15 or newer. Hermes is the first
+experimental native runtime. The lock covers twelve native target variants; see
+[acceptance and platform commands](../../docs/testing-platforms.md). Hermes is the first
 adapter, not the default-engine choice. Version 0.0.0 is non-publishable.
 
 ## Prepare and run
