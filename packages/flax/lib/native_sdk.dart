@@ -171,8 +171,6 @@ Future<FlaxNativeSdkResult> buildFlaxNativeSdk({
     '-B',
     build.path,
     if (target.os == 'windows' && compiler == null) ...[
-      '-G',
-      'Visual Studio 17 2022',
       '-A',
       target.architecture == 'arm64' ? 'ARM64' : 'x64',
     ] else ...[

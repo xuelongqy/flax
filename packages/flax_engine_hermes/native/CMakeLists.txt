@@ -17,6 +17,7 @@ if(NOT EXISTS "${FLAX_ENGINE_SDK}/manifest.json")
   message(FATAL_ERROR "FLAX_ENGINE_SDK must point to a verified Hermes SDK.")
 endif()
 find_package(FlaxEngineSDK CONFIG REQUIRED PATHS "${FLAX_ENGINE_SDK}/cmake" NO_DEFAULT_PATH)
+find_package(Threads REQUIRED)
 
 add_library(flax_hermes SHARED
   hermes_engine.cpp
@@ -27,7 +28,7 @@ target_include_directories(flax_hermes PRIVATE
   include
   "${FLAX_ENGINE_SDK}/include")
 target_compile_definitions(flax_hermes PRIVATE FLAX_BUILDING_BRIDGE FLAX_ENGINE_ID=1)
-target_link_libraries(flax_hermes PRIVATE FlaxEngineSDK::hermes)
+target_link_libraries(flax_hermes PRIVATE FlaxEngineSDK::hermes Threads::Threads)
 if(APPLE)
   target_link_options(flax_hermes PRIVATE "LINKER:-exported_symbol,_flax_hermes_get_api")
 endif()
@@ -58,7 +59,7 @@ if(BUILD_TESTING AND EXISTS "${FLAX_CORE_NATIVE}/tests/runtime_test.cpp")
   add_executable(flax_runtime_test "${FLAX_CORE_NATIVE}/tests/runtime_test.cpp")
   target_include_directories(flax_runtime_test PRIVATE
     "${FLAX_CORE_NATIVE}/include" include)
-  target_link_libraries(flax_runtime_test PRIVATE flax_hermes)
+  target_link_libraries(flax_runtime_test PRIVATE flax_hermes Threads::Threads)
   add_test(NAME flax_runtime COMMAND flax_runtime_test)
   set_tests_properties(flax_runtime PROPERTIES TIMEOUT 30
     ENVIRONMENT "DYLD_LIBRARY_PATH=${CMAKE_BINARY_DIR}/lib;LD_LIBRARY_PATH=${CMAKE_BINARY_DIR}/lib")
@@ -83,7 +84,7 @@ if(FLAX_TEST_CONTRACTS)
   target_include_directories(flax_test_contracts PRIVATE "${FLAX_CORE_NATIVE}/include" include)
   target_compile_definitions(flax_test_contracts PRIVATE
     FLAX_ENGINE_HEADER="flax_hermes.h" FLAX_ENGINE_API=flax_hermes_get_api)
-  target_link_libraries(flax_test_contracts PRIVATE flax_hermes)
+  target_link_libraries(flax_test_contracts PRIVATE flax_hermes Threads::Threads)
   if(MSVC)
     target_compile_options(flax_test_contracts PRIVATE /UNDEBUG)
   else()

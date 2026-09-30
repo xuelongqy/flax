@@ -41,7 +41,7 @@ certify bridge compilation or execution.
 | Local stage                           | Observed result                                                                                                                                                                                                    |
 | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Apple bridge builds                   | 10/24 target-engine groups built: macOS arm64/x64, iOS device arm64 and simulator arm64/x64, both engines; cross builds do not certify execution                                                                   |
-| Tooling checks                        | 56/56 tool tests passed; workspace analysis reported no issues; formatting, workflow lint, documentation and package-content checks passed                                                                         |
+| Tooling checks                        | 57/57 tool tests passed; workspace analysis reported no issues; formatting, workflow lint, documentation and package-content checks passed                                                                         |
 | macOS arm64 platform scope            | Both engines passed native contracts, independent Dart JIT/AOT, external Flutter debug/release, signatures/dependencies and relocated release execution; both-engine coexistence passed                            |
 | V8 shared runtime                     | 39/39 contracts passed on macOS arm64                                                                                                                                                                              |
 | V8 desktop UI                         | 346/346 package-owned UI cases passed; changed Core assertions were rerun, 131/131 passed plus its package example                                                                                                 |
@@ -62,36 +62,41 @@ further individual device assertions were not patched: the assumption that a hea
 suite can run unchanged under a live integration binding needs a separate resolution.
 These failures remain visible, not skipped or marked passed.
 
-Linux and Windows bridges have not been compiled locally. Android compilation was
-blocked by repeated TLS failures downloading the exact NDK `30.0.16248370`; no old NDK
-fallback was used. Android arm32, Android arm64, iOS real-device release execution and
-both x64 Apple target executions remain pending. Hosted CI results for this
-implementation remain pending and must be recorded separately from the local evidence
-above.
+## Hosted verification
 
-## Handoff
+Run [36736730811](https://github.com/xuelongqy/flax/actions/runs/36736730811)
+validated commit `01cc2a3`. Target receipts distinguish build, execution and delivery:
 
-The first hosted run exposed missing `jq` in the baseline container and unavailable
-Flutter ARM64 release archives. CI now installs `jq` and uses Flutter's exact pinned
-stable Git tag for Linux/Windows ARM64 bootstrap; target process ABI checks remain
-mandatory. The rerun must verify these preparation changes.
+| Target | Observed result |
+| --- | --- |
+| macOS arm64 | Both engines and coexistence passed runtime, application and relocation checks |
+| Android x64 | Both engines individually passed runtime, debug/release and relocated APK execution; coexistence failed because both hooks registered `libc++_shared.so` |
+| Android arm32/arm64, iOS device arm64 | Both bridges and application bundles built; physical-device execution remains unverified |
+| iOS simulator arm64 | V8 and coexistence passed runtime and relocated bundle checks; the individual Hermes Flutter drive timed out |
+| Linux arm64 | Both bridges built; native test links lacked pthread and the external Flutter build could not find unversioned clang++ |
+| Windows x64/arm64 | Module delivery passed 14/14; bridge configuration failed because the forced Visual Studio 2022 generator was unavailable |
+| Linux x64 | Host checks reached TLS tests; four failed with certificates generated using system OpenSSL configuration |
+| macOS x64 | The hosted runner lost communication; no verification receipt was uploaded |
+| iOS simulator x64 | Still running when these results were recorded; no acceptance claimed |
 
-Windows fixture bundling also used a POSIX slash to derive output names. It now uses
-Node's platform-aware `basename`, and shared fixture bundling changes trigger the
-platform matrix.
+The follow-up uses CMake Threads targets, exposes the pinned Clang under Flutter's
+compiler names, and lets CMake select the installed Windows Visual Studio generator.
+TLS fixtures use their own request configuration instead of inheriting system
+`x509_extensions`. Local regression results: 57/57 tool tests and 28/28 TLS/transport
+tests; analysis, formatting and workflow lint passed. Native CTest passed 1/1 for
+Hermes and 2/2 for V8. V8's 39/39 runtime contracts, independent Dart JIT/AOT and
+relocation checks passed; Hermes retains its 38/39 transfer-constructor failure.
+These follow-up changes still require hosted verification.
 
-Apple's Xcode 26.6 `lipo` requires the input path before `-verify_arch`; asset
-inspection now uses that order. The disposable application declares `integration_test`
-as a runtime dependency because it also runs release assertions; this fixes Android's
-release plugin-registration compilation without changing production package manifests.
+## Remaining acceptance work
 
-1. Resolve the Hermes rc.1 transfer-constructor behavior in the SDK release process;
-   then intentionally update its lock. Current Linux full CI will expose this failure.
-2. Resolve shared widget test binding/clock conditions on devices without weakening
-   lifecycle, timing or resource assertions. Rerun Material and then WebSocket.
-3. Run the implemented hosted matrix after the local change is reviewed and pushed;
-   retain failed target records and address actual build/toolchain failures.
-4. Obtain NDK 30 and run Android devices, and configure `FLAX_IOS_TEAM` for signed iOS
-   device execution using the commands in the platform guide.
+1. Verify the follow-up on Linux and both Windows architectures; preserve failures
+   from the default Linux full scope, including the Hermes transfer assertion.
+2. Assign a single native asset owner to byte-identical Android C++/Windows CRT
+   dependencies before validating both-engine application packaging.
+3. Recheck Apple runner/device startup failures using diagnostic evidence; do not
+   treat a build or smoke scope as full Material/UI acceptance.
+4. Run Android arm32/arm64 and signed iOS device checks using the platform guide;
+   these targets remain build-only until actual device execution passes.
 5. Require all 24 build records and each supported runtime/application record before
    considering platform acceptance complete; PR #2 remains unmerged.

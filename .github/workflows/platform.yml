@@ -36,6 +36,8 @@ jobs:
           echo 'deb https://apt.llvm.org/focal/ llvm-toolchain-focal-23 main' > /etc/apt/sources.list.d/llvm.list
           apt-get update
           apt-get install -y clang-23 llvm-23
+          ln -s /usr/bin/clang-23 /usr/local/bin/clang
+          ln -s /usr/bin/clang++-23 /usr/local/bin/clang++
           python3 -m pip install 'cmake>=3.24,<5'
           ln -s /usr/bin/llvm-nm-23 /usr/local/bin/llvm-nm
           ln -s /usr/bin/llvm-readobj-23 /usr/local/bin/llvm-readobj
