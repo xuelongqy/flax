@@ -81,10 +81,12 @@ Future<void> main() => command(() async {
     );
     File('${root.path}/pubspec.lock').copySync('${consumer.path}/pubspec.lock');
     await run('flutter', ['pub', 'get'], directory: consumer.path);
-    await run(Platform.resolvedExecutable, [
-      'run',
-      'main.dart',
-    ], directory: consumer.path);
+    await run(
+      Platform.resolvedExecutable,
+      ['run', 'main.dart'],
+      directory: consumer.path,
+      captureWindowsCrash: true,
+    );
     await run(
       Platform.isWindows
           ? 'clang++'

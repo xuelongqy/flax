@@ -1,97 +1,97 @@
 {
   "schemaVersion": 3,
   "engine": "v8",
-  "releaseTag": "v0.3.0-rc.1",
+  "releaseTag": "v0.3.0-rc.2",
   "sdkVersion": "0.3.0",
   "targets": {
     "android-arm32": {
       "os": "android",
       "architecture": "arm32",
       "minimumOSVersion": "24",
-      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.1/flax-engine-sdk-0.3.0-v8-android-arm32.tar.gz",
-      "sha256": "7a8ac892289bfac3dffe4a2b301fb663f4e4107349e4d97897d7a6cf610d9d44"
+      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.2/flax-engine-sdk-0.3.0-v8-android-arm32.tar.gz",
+      "sha256": "ada2322d2088aca58f69869fc8b92d5ffab9bc76c3c37e80ac0ef1d028dcd0c6"
     },
     "android-arm64": {
       "os": "android",
       "architecture": "arm64",
       "minimumOSVersion": "24",
-      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.1/flax-engine-sdk-0.3.0-v8-android-arm64.tar.gz",
-      "sha256": "90653503ed9b6d1501afc9f4bb325decc23613c17e67bf48859c4af0bd49a08d"
+      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.2/flax-engine-sdk-0.3.0-v8-android-arm64.tar.gz",
+      "sha256": "a78360cca19dcb3c843f77883ac201913252b743cfc4feee07588ccc9f1e803f"
     },
     "android-x64": {
       "os": "android",
       "architecture": "x64",
       "minimumOSVersion": "24",
-      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.1/flax-engine-sdk-0.3.0-v8-android-x64.tar.gz",
-      "sha256": "e3161a292ef3401a1a2b5beb6e9796aaafaae47b5955f90bc82f53f572dfc0e7"
+      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.2/flax-engine-sdk-0.3.0-v8-android-x64.tar.gz",
+      "sha256": "849851c213c81a700ceea106ddc9f791140aa3ee8ca897a6a7ee5c4ebd638364"
     },
     "ios-device-arm64": {
       "os": "ios",
       "architecture": "arm64",
       "minimumOSVersion": "15.0",
       "appleSdk": "iphoneos",
-      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.1/flax-engine-sdk-0.3.0-v8-ios-device-arm64.tar.gz",
-      "sha256": "3ed6e58ec944cfb053a856988361c2bfb726bb06568d52ca13cd6f9d06a5d964"
+      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.2/flax-engine-sdk-0.3.0-v8-ios-device-arm64.tar.gz",
+      "sha256": "2eebd1845ed5e04f6b247aa3dbebe16e8c9add56f05dfe23906de31311c5906a"
     },
     "ios-simulator-arm64": {
       "os": "ios",
       "architecture": "arm64",
       "minimumOSVersion": "15.0",
       "appleSdk": "iphonesimulator",
-      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.1/flax-engine-sdk-0.3.0-v8-ios-simulator-arm64.tar.gz",
-      "sha256": "56522ce4c7d34c2b9f21a4ea87df656599247232df19fb5c451cbf374e75734a"
+      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.2/flax-engine-sdk-0.3.0-v8-ios-simulator-arm64.tar.gz",
+      "sha256": "971df944f96c0f08bbeebecf6131de4c960cdd7d785eac25a7132e1c090ee884"
     },
     "ios-simulator-x64": {
       "os": "ios",
       "architecture": "x64",
       "minimumOSVersion": "15.0",
       "appleSdk": "iphonesimulator",
-      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.1/flax-engine-sdk-0.3.0-v8-ios-simulator-x64.tar.gz",
-      "sha256": "c5cb4a0e14c73967d5306f63c8056d3e76b7a693e7ac304734a24cebd288bf03"
+      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.2/flax-engine-sdk-0.3.0-v8-ios-simulator-x64.tar.gz",
+      "sha256": "2227b6cf59e3b362a9ddbed83e8c38582fdc56aadaf3984b09e283186ca52d2f"
     },
     "linux-arm64": {
       "os": "linux",
       "architecture": "arm64",
       "minimumOSVersion": "20.04",
       "minimumGlibcVersion": "2.31",
-      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.1/flax-engine-sdk-0.3.0-v8-linux-arm64.tar.gz",
-      "sha256": "ccd7f018eb9cd7d881277e89f1010a6ec287e8ecb8dd3991aef71d27ee405a69"
+      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.2/flax-engine-sdk-0.3.0-v8-linux-arm64.tar.gz",
+      "sha256": "bde1f7f521f643d3fb570a302bda261f5f5314c30a99fdc35cce4339cf8f4f4c"
     },
     "linux-x64": {
       "os": "linux",
       "architecture": "x64",
       "minimumOSVersion": "20.04",
       "minimumGlibcVersion": "2.31",
-      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.1/flax-engine-sdk-0.3.0-v8-linux-x64.tar.gz",
-      "sha256": "7ecb931c5abbf3739aeba8cab7a1437ea96f3bddad921e850acc57702f4824fb"
+      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.2/flax-engine-sdk-0.3.0-v8-linux-x64.tar.gz",
+      "sha256": "8ffe6683d00d9c05613d9feb67f82fed97fd4209986cbf52e22dc86036a4671d"
     },
     "macos-arm64": {
       "os": "macos",
       "architecture": "arm64",
       "minimumOSVersion": "15.0",
-      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.1/flax-engine-sdk-0.3.0-v8-macos-arm64.tar.gz",
-      "sha256": "8801d9d08879f9d953f92cdf2cba2780e9db018f5a569e4168fb9aa328b3781b"
+      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.2/flax-engine-sdk-0.3.0-v8-macos-arm64.tar.gz",
+      "sha256": "83cf3a2c06d1043791eb0618b058c2f560a66fd908f53878d79a8f2652c48b24"
     },
     "macos-x64": {
       "os": "macos",
       "architecture": "x64",
       "minimumOSVersion": "15.0",
-      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.1/flax-engine-sdk-0.3.0-v8-macos-x64.tar.gz",
-      "sha256": "b02d31ca268a2ef81d1b84c2b9626c8f4d147e4890ebf11225377cf326bd15ff"
+      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.2/flax-engine-sdk-0.3.0-v8-macos-x64.tar.gz",
+      "sha256": "a4821e02e65eeac4a38ea1683d68f87e8886b33fd95be2963c0c55eaec12e2a6"
     },
     "windows-arm64": {
       "os": "windows",
       "architecture": "arm64",
       "minimumOSVersion": "11",
-      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.1/flax-engine-sdk-0.3.0-v8-windows-arm64.tar.gz",
-      "sha256": "31989bc986eefa21ac9b64965c199af0958604210720e200cd02bc81bec3c491"
+      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.2/flax-engine-sdk-0.3.0-v8-windows-arm64.tar.gz",
+      "sha256": "2a9fef2c8aaa31e20ab43e5097e8bed81372f1b1dc54e69f7ed49d9f89d26eb6"
     },
     "windows-x64": {
       "os": "windows",
       "architecture": "x64",
       "minimumOSVersion": "11",
-      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.1/flax-engine-sdk-0.3.0-v8-windows-x64.tar.gz",
-      "sha256": "c7285caa0ecc1ba3bb32761c40e1f047086e56edb394c851eba7d753623b821b"
+      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.2/flax-engine-sdk-0.3.0-v8-windows-x64.tar.gz",
+      "sha256": "81759bd91f3ff4525ae06e9c789e6be1bb86ba619522ff95289ed68cdb68a665"
     }
   }
 }

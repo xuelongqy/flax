@@ -1,10 +1,17 @@
 # Native platform verification
 
-Flax consumes the 24 engine SDK archives from `flax_js_runtime` release `v0.3.0-rc.1`.
+Flax consumes the 24 engine SDK archives from `flax_js_runtime` release `v0.3.0-rc.2`.
 Their manifest version is `0.3.0`, schema 3. The engine hooks select by the **build
 target**, including the iOS device/simulator SDK. They compile Flax's ABI 2 and adapter;
 no engine source build occurs here. Target wiring is distinct from runtime or
 application acceptance. See [the validation record](tasks/platform-sdk-validation.md).
+
+Windows CI prepares CDB before validation. Failed independent Dart JIT/AOT or engine
+coexistence consumers are replayed under the debugger before their temporary inputs are
+deleted. Up to three attempts, each limited to two minutes, preserve first-chance access
+violations, stacks, loaded modules and minidumps in the verification artifact's
+`ci/windows-crash-*` directories. `crash.json` records the original exit code; debugger
+replay never changes a failed test into runtime acceptance.
 
 ## One entry point
 

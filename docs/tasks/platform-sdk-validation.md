@@ -4,10 +4,11 @@ Status: implementation in progress; local stages passed, full acceptance blocked
 
 ## Goal and scope
 
-Consume the published `flax_js_runtime v0.3.0-rc.1` archives (SDK version `0.3.0`,
+Consume the published `flax_js_runtime v0.3.0-rc.2` archives (SDK version `0.3.0`,
 manifest schema 3) for twelve targets and both engines. Flax compiles only its
-ABI/adapter. Keep ABI 2, Hermes as the default, and PR #2 unmerged. Do not rebuild or
-change the engine release or publish Flax.
+ABI/adapter. Keep ABI 2, Hermes as the default, and PR #2 unmerged. The separately
+authorized engine fix was published as a new candidate; rc.1 assets and toolchain locks
+remain unchanged. Do not publish Flax.
 
 ## Acceptance criteria
 
@@ -26,6 +27,25 @@ builds. Reuse package-owned assertions and `flax_test` contracts through
 
 ## Results and validation
 
+Candidate
+[36900847345](https://github.com/xuelongqy/flax_js_runtime/actions/runs/36900847345)
+passed all eight jobs at `f4eb742dbf17832347e936ced9485c3553a27a9f`. All 24 SDKs passed
+architecture, dependency and export checks; twelve desktop SDK consumers executed after
+relocation and twelve mobile consumers only compiled/linked. Publication
+[36908791197](https://github.com/xuelongqy/flax_js_runtime/actions/runs/36908791197)
+published the same bytes as
+[rc.2](https://github.com/xuelongqy/flax_js_runtime/releases/tag/v0.3.0-rc.2). All 24
+release asset digests and the published checksums match the candidate hashes. SDK
+application delivery and physical device execution are not certified by those runs.
+
+Both engines' twelve-target Flax locks now consume rc.2. On macOS arm64, the official
+release archives passed native CTest, all 39 runtime contracts per engine, independent
+Dart JIT, checksum rejection and relocated AOT execution. Tooling passed 66/66 tests,
+scoped static analysis, formatting and workflow lint. Independent Dart and native
+dual-engine consumers passed coexistence, foreign-object rejection, reentry and
+recreation. This round did not rerun UI or device suites; their earlier results below
+used rc.1.
+
 The SDK locks cover all 24 published archive URLs/hashes. Hook target selection handles
 iOS device/simulator differences. Bridges register full runtime closures, Windows
 exports/import libraries, Linux SDK libc++, Android NDK 30/API 24 and Apple deployment
@@ -34,7 +54,7 @@ references/signatures, shared runtime byte equality and relocation. The device
 release/AOT launch path is implemented but not yet run on a physical Android/iOS device.
 Local Apple builds used Xcode 27.0; CI pins Xcode 26.6.
 
-All 24 extracted SDKs passed Flax's manifest/file-hash validation and actual
+All 24 extracted rc.1 SDKs passed Flax's manifest/file-hash validation and actual
 Mach-O/ELF/PE architecture/dependency inspection. This SDK consumption check does not
 certify bridge compilation or execution.
 
@@ -50,10 +70,13 @@ certify bridge compilation or execution.
 | iOS V8 full attempt                | Shared/runtime application reported 42 passing checks. Core 131, Canvas 3, Cupertino 2, Fetch 20 and Storage 4 UI cases passed. Material: 166 passed, 11 failed; WebSocket was not reached. Full acceptance failed |
 | Hermes shared runtime              | 38/39 passed; constructing Uint8Array from a detached buffer did not throw the required TypeError                                                                                                                  |
 
-The Hermes behavior is reproduced in an independent C++ consumer linking only the
-checksum-locked rc.1 SDK: `new Uint8Array(buffer)` succeeds after `buffer.transfer()`.
-This establishes an engine SDK defect independent of Flax ABI. The assertion remains
-enabled; this task does not change rc.1 or hide the failure with a JS shim.
+The earlier Hermes failure was reproduced in an independent C++ consumer linking only
+the checksum-locked rc.1 SDK: `new Uint8Array(buffer)` succeeds after
+`buffer.transfer()`. This established an engine SDK defect independent of Flax ABI. The
+rc.2 transfer patch checks attachment during typed-array construction and copying,
+including detachment during length conversion. Its independent consumer retains 101
+regression assertions. Flax's original detached-buffer assertion remains enabled and now
+passes locally with rc.2.
 
 Device UI registration now runs synchronously and fixture loading uses `setUpAll`.
 Viewport, widget search and fake-clock assumptions exposed by early device attempts were
@@ -64,6 +87,14 @@ suite can run unchanged under a live integration binding needs a separate resolu
 These failures remain visible, not skipped or marked passed.
 
 ## Hosted verification
+
+The subsequent rc.1 run
+[36882647105](https://github.com/xuelongqy/flax/actions/runs/36882647105) finished for
+`e223f4e913ceda1a1a996dfb5e9655098ddb959e`. Its twelve artifacts contain 24 bridge
+builds, 15 successful runtimes and 15 application-delivery records; six groups remain
+build-only. Linux V8 full and macOS x64 delivery passed. Linux Hermes still failed the
+now-fixed SDK assertion; Windows Hermes and the summary remained failed. The package
+archive workflow passed. These records do not certify rc.2.
 
 Run [36863277958](https://github.com/xuelongqy/flax/actions/runs/36863277958) completed
 for `0aaa3888b42ece7e04b36c84145a28bf806a387f`: eight target jobs passed and four
@@ -110,14 +141,15 @@ Windows diagnostics before engine creation show only operating-system CRT module
 do not establish the CRT loaded later with the engine or the crash cause. The doubtful
 assumption is that native C++ or Flutter success certifies independent Dart FFI
 creation. Further Windows fixes require actual loaded-module/debugger evidence rather
-than speculative compiler flags. The independently proven Hermes transfer SDK defect
-also remains. SDK/toolchain locks and rc.1 archives are unchanged.
+than speculative compiler flags. CI now captures first-chance access violations and
+module/stack/minidump evidence before deleting failed Dart consumer inputs, retaining
+the original exit code even if debugger reproduction succeeds. The SDK transfer fix does
+not establish a fix for Windows engine creation.
 
 ## Remaining acceptance work
 
-1. Verify the follow-up on Linux, Windows and macOS x64; keep default Linux full scope
-   and the Hermes transfer assertion. Updating the defective engine requires separately
-   authorized work and a new candidate SDK, leaving rc.1 unchanged.
+1. Verify rc.2 through Flax on all applicable CI targets; keep default Linux full scope
+   and the original Hermes transfer assertion. Other targets run platform scope.
 2. Diagnose Windows Hermes Dart creation using actual process module evidence; retain
    both native and independent Dart checks even when the Flutter application passes.
 3. Complete default Linux package-owned UI, example and aggregate checks; platform smoke

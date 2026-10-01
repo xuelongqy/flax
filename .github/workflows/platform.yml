@@ -159,6 +159,11 @@ jobs:
           echo 'C:\Program Files\LLVM\bin' >> $env:GITHUB_PATH
           cmake --version
           ninja --version
+      - name: Prepare Windows crash debugger
+        if: runner.os == 'Windows'
+        timeout-minutes: 15
+        shell: pwsh
+        run: ./tool/prepare_windows_debugger.ps1
       - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
         id: flutter
         timeout-minutes: 15

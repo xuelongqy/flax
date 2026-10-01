@@ -167,6 +167,7 @@ Future<void> verifyPackage(
       directory: consumer.path,
       environment: environment,
       inheritEnvironment: false,
+      captureWindowsCrash: true,
     );
     await jit();
 
@@ -221,6 +222,7 @@ Future<void> verifyPackage(
       directory: relocated.path,
       environment: environment,
       inheritEnvironment: false,
+      captureWindowsCrash: true,
     );
     stdout.writeln(
       'Standalone JIT, SDK checksum rejection, and relocated AOT bundle verified.',
