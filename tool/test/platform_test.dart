@@ -199,6 +199,21 @@ void main() {
     expect(platformJobs(['tool/start_android_emulator.py']), [
       {'target': 'android-x64', 'engine': 'all'},
     ]);
+    expect(
+      platformJobs(['packages/flax_native_assets/hook/build.dart'])
+          .map((job) => job['target']),
+      containsAll([
+        'android-arm32',
+        'android-arm64',
+        'android-x64',
+        'windows-x64',
+        'windows-arm64',
+      ]),
+    );
+    expect(
+      platformJobs(['packages/flax_native_assets/hook/build.dart']),
+      hasLength(5),
+    );
     expect(platformJobs(['.gitattributes']).map((job) => job['target']), [
       'windows-x64',
       'windows-arm64',

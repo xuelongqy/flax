@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:crypto/crypto.dart';
 import 'package:flax/native_sdk.dart';
 import 'package:flax/native_target.dart';
+import 'package:flax_native_assets/flax_native_assets.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -86,6 +87,36 @@ void main() {
       );
   Matcher failure(String message) => throwsA(
     isA<StateError>().having((e) => e.toString(), 'stage', contains(message)),
+  );
+  test('shared runtimes have one owner and mismatched copies fail', () async {
+    final shared = File('${work.path}/MSVCP140.dll')..writeAsStringSync('same');
+    final engine = File('${work.path}/engine.dll')..writeAsStringSync('engine');
+    final hashes = {
+      'msvcp140.dll': sha256.convert(shared.readAsBytesSync()).toString(),
+    };
+    expect(await flaxUniqueEngineLibraries([shared, engine], hashes), [engine]);
+    shared.writeAsStringSync('different');
+    await expectLater(
+      flaxUniqueEngineLibraries([shared, engine], hashes),
+      throwsStateError,
+    );
+  });
+  test(
+    'preparation can validate an SDK without ABI sources or a compiler',
+    () async {
+      await pack();
+      final (sdk, sources) = await prepareFlaxEngineSdk(
+        engine: 'hermes',
+        target: FlaxNativeTarget('macos-arm64'),
+        packageRoot: Directory('${work.path}/engine').uri,
+        cacheRoot: Directory('${work.path}/cache').uri,
+        sdkArchive: archive.uri,
+        sdkSha256: digest,
+      );
+      expect(File('${sdk.path}/manifest.json').existsSync(), isTrue);
+      expect(sources.map((f) => f.path), contains(archive.path));
+      expect(Directory('${work.path}/output').existsSync(), isFalse);
+    },
   );
   test('checksum failure occurs before extraction or compilation', () async {
     await pack();

@@ -26,14 +26,16 @@ The white-box lifecycle test verifies migration, delayed/immediate task cancella
 and the behavior of a task runner retained past runtime destruction.
 
 The adapter patch also updates V8 external pointer tags and property receivers, removes
-obsolete Promise event names, and fixes the drained-queue result. The actual JSI headers
-are not upgraded. The compatibility defines select the adapter's complete JSI v20
-implementation; compilation against the pinned header verifies its abstract interface.
-The consumer wrapper overrides UTF-16 creation/reading with the existing native ABI
-operations. It never evaluates application code to convert non-ASCII strings or keys.
-The patch appends an internal ArrayBuffer detachment query using V8 `WasDetached()` and
-increments Microsoft's library-internal JSI ABI to 2; wrappers reject older tables. This
-is independent of Flax ABI 2 and UI protocol versions. Both sides compile into the same
+obsolete Promise event names, and fixes the drained-queue result. The runtime vtable
+declaration is in the defining anonymous namespace so MSVC resolves it to that table
+rather than an undefined global symbol. The JSI headers are not upgraded. The
+compatibility defines select the adapter's complete JSI v20 implementation; compilation
+against the pinned header verifies its abstract interface. The consumer wrapper
+overrides UTF-16 creation/reading with the existing native ABI operations. It never
+evaluates application code to convert non-ASCII strings or keys. The patch appends an
+internal ArrayBuffer detachment query using V8 `WasDetached()` and increments
+Microsoft's library-internal JSI ABI to 2; wrappers reject older tables. This is
+independent of Flax ABI 2 and UI protocol versions. Both sides compile into the same
 bridge library, with no new production ABI export.
 
 Native asset hooks download and validate the SDK, then compile the Flax bridge. A macOS

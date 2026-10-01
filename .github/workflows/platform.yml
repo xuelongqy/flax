@@ -77,7 +77,8 @@ jobs:
             .dart_tool/hooks_runner/
           key:
             bridge-${{ inputs.target }}-${{ hashFiles('.fvmrc', 'packages/*/native/**',
-            'packages/flax/lib/native_*.dart', 'packages/flax_engine_*/hook/**') }}
+            'packages/flax/lib/native_*.dart', 'packages/flax_engine_*/hook/**',
+            'packages/flax_native_assets/**') }}
       - name: Install locked dependencies
         id: dependencies
         shell: bash
@@ -199,7 +200,8 @@ jobs:
             .dart_tool/hooks_runner/
           key:
             bridge-${{ inputs.target }}-${{ hashFiles('.fvmrc', 'packages/*/native/**',
-            'packages/flax/lib/native_*.dart', 'packages/flax_engine_*/hook/**') }}
+            'packages/flax/lib/native_*.dart', 'packages/flax_engine_*/hook/**',
+            'packages/flax_native_assets/**') }}
       - name: Install locked dependencies
         id: dependencies
         shell: bash

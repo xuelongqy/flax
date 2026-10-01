@@ -41,6 +41,9 @@ Future<void> main() => command(() async {
           'sdkArchive': archive,
           'sdkSha256': digest,
         };
+        if (engine == 'hermes') {
+          sdkDefines['flax_native_assets'] = sdkDefines['flax_engine_$engine'];
+        }
       }
     }
     File('${consumer.path}/pubspec.yaml').writeAsStringSync(
@@ -76,6 +79,7 @@ Future<void> main() => command(() async {
                 .join('\n'),
           ),
     );
+    File('${root.path}/pubspec.lock').copySync('${consumer.path}/pubspec.lock');
     await run('flutter', ['pub', 'get'], directory: consumer.path);
     await run(Platform.resolvedExecutable, [
       'run',
@@ -94,7 +98,7 @@ Future<void> main() => command(() async {
         '${root.path}/tests/runtime/native/engines_test.cpp',
         '-o',
         nativeTest,
-        if (Platform.isLinux) '-ldl',
+        if (Platform.isLinux) ...['-pthread', '-ldl'],
       ],
     );
     await run(nativeTest, [

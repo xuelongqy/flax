@@ -1,0 +1,14 @@
+name: flax_native_assets
+description: Shared C++ runtime native assets for Flax engine build hooks.
+version: 0.0.0
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ^3.13.2
+
+dependencies:
+  code_assets: 1.2.1
+  crypto: 3.0.7
+  flax: 0.0.0
+  hooks: 2.2.0

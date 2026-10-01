@@ -42,6 +42,12 @@ and a relocated release/AOT test bundle; the real iOS bundle must be signed. V8'
 verified by actual machine-code events on non-iOS targets; iOS uses the SDK's jitless
 build. Dart JIT/AOT and V8 JIT/jitless are recorded separately.
 
+Android and iOS simulator tests prebuild the requested ABI, launch through ADB or
+simctl, and collect a unique completion marker from fresh device logs. They do not
+depend on Flutter Driver's VM-service discovery. Real iOS debug tests retain Flutter
+Driver because Dart JIT requires a debugger. Native contract failures participate in the
+integration binding's failure report; launch/marker timeouts fail the check.
+
 ## Test ownership and conditions
 
 | Classification       | Owner and behavior                                                                                             | Execution and conditions                                                                                                                      |
@@ -61,13 +67,13 @@ and the production ABI do not gain test exports.
 
 ## Toolchains and delivery
 
-| Target                  | Minimum runtime          | Bridge toolchain                                                           |
-| ----------------------- | ------------------------ | -------------------------------------------------------------------------- |
-| Linux x64/arm64         | Ubuntu 20.04, glibc 2.31 | Clang 23, CMake 3.24+, Ninja; V8 uses SDK libc++                           |
-| Windows x64/arm64       | Windows 11               | Visual Studio 2022 C++ and matching Windows SDK; LLVM tools for inspection |
-| macOS x64/arm64         | macOS 15.0               | Xcode 26.6 in CI, CMake 3.24+, Ninja                                       |
-| Android arm32/arm64/x64 | API 24                   | NDK `30.0.16248370`, CMake 3.24+, Ninja, LLVM inspection tools             |
-| iOS device/simulator    | iOS 15.0                 | Xcode 26.6 in CI; device execution requires signing                        |
+| Target                  | Minimum runtime          | Bridge toolchain                                                                |
+| ----------------------- | ------------------------ | ------------------------------------------------------------------------------- |
+| Linux x64/arm64         | Ubuntu 20.04, glibc 2.31 | Clang 23, CMake 3.24+, Ninja; V8 uses SDK libc++                                |
+| Windows x64/arm64       | Windows 11               | Installed Visual Studio C++ and matching Windows SDK; LLVM tools for inspection |
+| macOS x64/arm64         | macOS 15.0               | Xcode 26.6 in CI, CMake 3.24+, Ninja                                            |
+| Android arm32/arm64/x64 | API 24                   | NDK `30.0.16248370`, CMake 3.24+, Ninja, LLVM inspection tools                  |
+| iOS device/simulator    | iOS 15.0                 | Xcode 26.6 in CI; device execution requires signing                             |
 
 Set `ANDROID_NDK_HOME` to the exact NDK. Local device signing can use
 `FLAX_IOS_TEAM=<10-character-team-id>`; it only changes staged test projects. Flutter's
@@ -90,7 +96,9 @@ SDK cache keys use archive hashes and targets. Set `FLAX_ENGINE_SDK_CACHE` for a
 verified download cache; default hook caches stay under the hook output. Bridge builds
 remain CMake incremental builds with hook source dependencies. `sdkArchive` plus
 `sdkSha256` under the engine's `hooks.user_defines` supports a local candidate archive
-with identical validation. No fallback source engine build is attempted.
+with identical validation. No fallback source engine build is attempted. On
+Android/Windows, also set those candidate inputs for `flax_native_assets`. This shared
+dependency registers C++/CRT assets once and each engine checks byte equality.
 `dart test tool/test/native_sdk_test.dart` checks corrupt archives, wrong targets,
 missing dependencies, unsafe paths, atomic/concurrent preparation and offline cache
 behavior.

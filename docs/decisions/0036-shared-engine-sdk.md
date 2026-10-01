@@ -27,6 +27,13 @@ Android arm32/arm64/x64, and iOS device arm64 and simulator arm64/x64. Target se
 uses build configuration, not the host. V8 is jitless on iOS and requires actual JIT
 verification elsewhere.
 
+`flax_native_assets` owns Android `libc++_shared.so` and Windows CRT code assets. Both
+engine packages depend on its build hook. It reuses one installed engine's locked SDK
+and sends file hashes to dependent hooks; each engine verifies its copy before omitting
+shared assets. Flutter therefore receives one bundled asset per filename, including
+debug builds. SDK mismatches fail rather than choosing a copy. This package has no
+JavaScript or runtime registration API.
+
 ## Consequences
 
 Changing Flax's ABI or adapter rebuilds only the bridge. Engine source builds remain in

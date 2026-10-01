@@ -50,6 +50,11 @@ void copyDartPackages(
   Directory targetRoot,
   List<String> names,
 ) {
+  names = packageDependencyClosure(
+    root.path,
+    names,
+    includeDevDependencies: false,
+  ).toList()..sort();
   for (final name in names) {
     final source = Directory(p.join(root.path, 'packages', name));
     final target = Directory(p.join(targetRoot.path, name))
@@ -130,6 +135,10 @@ Future<void> verifyPackage(
         ? null
         : {
             'user_defines': {
+              'flax_native_assets': {
+                'sdkArchive': localArchive,
+                'sdkSha256': localDigest,
+              },
               'flax_engine_$engine': {
                 'sdkArchive': localArchive,
                 'sdkSha256': localDigest,
@@ -164,6 +173,7 @@ Future<void> verifyPackage(
           .replaceAll('{{enginePackage}}', enginePackage)
           .replaceAll('{{engineClass}}', engineFactoryClass(root.path, engine)),
     );
+    File('${root.path}/pubspec.lock').copySync('${consumer.path}/pubspec.lock');
     await run(
       'flutter',
       ['pub', 'get'],

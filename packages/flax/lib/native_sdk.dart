@@ -24,29 +24,20 @@ final class FlaxNativeSdkResult {
   final File? testLibrary;
 }
 
-Future<FlaxNativeSdkResult> buildFlaxNativeSdk({
+/// Download and verify an engine SDK without compiling a bridge.
+Future<(Directory, List<File>)> prepareFlaxEngineSdk({
   required String engine,
   required Uri packageRoot,
-  required Uri coreRoot,
   required Uri cacheRoot,
-  required Uri outputRoot,
-  FlaxNativeTarget? target,
-  Uri? compiler,
-  Uri? compilerEnvironmentScript,
-  List<String> compilerEnvironmentArguments = const [],
-  bool buildTests = false,
-  bool testContracts = false,
+  required FlaxNativeTarget target,
   Uri? sdkArchive,
   String? sdkSha256,
 }) async {
   if (!const {'hermes', 'v8'}.contains(engine)) {
     throw ArgumentError.value(engine, 'engine');
   }
-  target ??= FlaxNativeTarget.host();
   final package = Directory.fromUri(packageRoot);
-  final core = Directory.fromUri(coreRoot);
   final cache = Directory.fromUri(cacheRoot)..createSync(recursive: true);
-  final output = Directory.fromUri(outputRoot)..createSync(recursive: true);
   final lock = File(p.join(package.path, 'native', 'sdk.lock.json'));
   final pinned = jsonDecode(lock.readAsStringSync()) as Map<String, dynamic>;
   if (pinned['schemaVersion'] != 3 ||
@@ -115,6 +106,42 @@ Future<FlaxNativeSdkResult> buildFlaxNativeSdk({
     gate.complete();
   }
 
+  return (sdk, [lock, if (sdkArchive != null) archive]);
+}
+
+Future<FlaxNativeSdkResult> buildFlaxNativeSdk({
+  required String engine,
+  required Uri packageRoot,
+  required Uri coreRoot,
+  required Uri cacheRoot,
+  required Uri outputRoot,
+  FlaxNativeTarget? target,
+  Uri? compiler,
+  Uri? compilerEnvironmentScript,
+  List<String> compilerEnvironmentArguments = const [],
+  bool buildTests = false,
+  bool testContracts = false,
+  Uri? sdkArchive,
+  String? sdkSha256,
+}) async {
+  target ??= FlaxNativeTarget.host();
+  final (sdk, sdkSources) = await prepareFlaxEngineSdk(
+    engine: engine,
+    packageRoot: packageRoot,
+    cacheRoot: cacheRoot,
+    target: target,
+    sdkArchive: sdkArchive,
+    sdkSha256: sdkSha256,
+  );
+  final package = Directory.fromUri(packageRoot);
+  final core = Directory.fromUri(coreRoot);
+  final output = Directory.fromUri(outputRoot)..createSync(recursive: true);
+  final pinned = jsonDecode(
+    File(p.join(package.path, 'native', 'sdk.lock.json')).readAsStringSync(),
+  ) as Map;
+  final expectedDigest =
+      sdkSha256 ?? pinned['targets'][target.name]['sha256'] as String;
+
   final manifest = jsonDecode(
     File(p.join(sdk.path, 'manifest.json')).readAsStringSync(),
   ) as Map<String, dynamic>;
@@ -124,10 +151,9 @@ Future<FlaxNativeSdkResult> buildFlaxNativeSdk({
     throw StateError('Flax ABI source is missing from ${coreNative.path}');
   }
   final sources = [
-    lock,
+    ...sdkSources,
     File(p.join(core.path, 'lib', 'native_sdk.dart')),
     File(p.join(core.path, 'lib', 'native_target.dart')),
-    if (sdkArchive != null) archive,
     ...native
         .listSync(recursive: true, followLinks: false)
         .whereType<File>()
@@ -165,7 +191,16 @@ Future<FlaxNativeSdkResult> buildFlaxNativeSdk({
   }
   final options = await flaxNativeCmakeOptions(target, compiler: compiler);
   final build = Directory(p.join(output.path, 'cmake'));
+  final previousConfig = File(p.join(build.path, 'CMakeCache.txt'));
   await _run('cmake', [
+    // Migrate hook caches created before Windows used the validated VS build.
+    if (target.os == 'windows' &&
+        compiler == null &&
+        previousConfig.existsSync() &&
+        previousConfig.readAsStringSync().contains(
+          'CMAKE_GENERATOR:INTERNAL=Ninja',
+        ))
+      '--fresh',
     '-S',
     native.path,
     '-B',

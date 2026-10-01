@@ -129,31 +129,47 @@ Future<Map<String, Object?>> verifyPlatformApplication(
       "import 'package:integration_test/integration_test_driver.dart';\nFuture<void> main() async { await integrationDriver(); }\n",
     );
     final integration = Directory('$app/integration_test')..createSync();
+    final marker = 'FLAX_PLATFORM_${DateTime.now().microsecondsSinceEpoch}';
+    // Real iOS debug builds still need Flutter's debugger for Dart JIT.
+    final directLaunch =
+        target.os == 'android' || target.name.contains('simulator');
     Future<void> drive(String entry) async {
-      // Flutter drive otherwise selects the device's preferred Android ABI.
-      // Prebuild the requested ABI, including ARM32 on a compatible ARM64 device.
-      if (target.os == 'android') {
+      if (directLaunch) {
         await run('flutter', [
           'build',
-          ...platformBuildArguments(target, release: false),
+          ...platformBuildArguments(target, release: false, signed: true),
           '--no-pub',
           '--target=integration_test/$entry',
         ], directory: app);
+        final product = platformProduct(app, target, release: false);
+        await _runMobileApplication(
+          target,
+          device!,
+          product,
+          await _applicationBundle(app, target, product),
+          marker,
+          timeout: Duration(minutes: full ? 10 : 3),
+        );
+      } else {
+        await run('flutter', [
+          'drive',
+          '--no-pub',
+          '-d',
+          device ?? target.os,
+          '--driver=test_driver/platform.dart',
+          '--target=integration_test/$entry',
+        ], directory: app);
       }
-      await run('flutter', [
-        'drive',
-        '--no-pub',
-        '-d',
-        device ?? target.os,
-        if (target.os == 'android')
-          '--use-application-binary=${platformProduct(app, target, release: false)}',
-        '--driver=test_driver/platform.dart',
-        '--target=integration_test/$entry',
-      ], directory: app);
     }
 
     File('${integration.path}/platform_test.dart').writeAsStringSync(
-      _platformTest(target, engine, coexistence: coexistence, full: full),
+      _platformTest(
+        target,
+        engine,
+        coexistence: coexistence,
+        full: full,
+        marker: marker,
+      ),
     );
     if (coexistence) {
       final source = File('$root/tests/runtime/engines.dart')
@@ -176,6 +192,7 @@ Future<Map<String, Object?>> verifyPlatformApplication(
             ),
       );
     }
+    File('$root/pubspec.lock').copySync('$app/pubspec.lock');
     await run('flutter', ['pub', 'get'], directory: app);
     final buildArgs = platformBuildArguments(
       target,
@@ -267,6 +284,7 @@ Future<Map<String, Object?>> verifyPlatformApplication(
       File('${integration.path}/owner_test.dart').writeAsStringSync('''
 import 'dart:convert';
 import 'dart:async';
+import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
@@ -288,6 +306,7 @@ void main() {
     flaxTestLoadFixtures((jsonDecode(await rootBundle.loadString('assets/test-fixtures.json')) as Map).cast<String,String>());
   });
   ${[for (var i = 0; i < tests.length; i++) "group('${tests[i]}', t$i.main);"].join('\n  ')}
+  ${directLaunch ? "binding.allTestsPassed.future.then((passed) { print(passed ? '$marker' : 'FLAX_PLATFORM_FAILED'); exit(passed ? 0 : 1); });" : ''}
 }
 ''');
       await drive('owner_test.dart');
@@ -351,12 +370,14 @@ void main() {
       }
       result['applicationDelivered'] = true;
     } else {
-      await run('flutter', [
-        'build',
-        ...platformBuildArguments(target, release: false, signed: true),
-        '--target=integration_test/platform_test.dart',
-        '--no-pub',
-      ], directory: app);
+      if (!directLaunch || (full && owners.isNotEmpty)) {
+        await run('flutter', [
+          'build',
+          ...platformBuildArguments(target, release: false, signed: true),
+          '--target=integration_test/platform_test.dart',
+          '--no-pub',
+        ], directory: app);
+      }
       final relocated = target.os == 'android'
           ? '${work.path}/relocated.apk'
           : '${work.path}/relocated/Runner.app';
@@ -370,15 +391,26 @@ void main() {
         ]);
       }
       Directory('$app/build').deleteSync(recursive: true);
-      await run('flutter', [
-        'drive',
-        '--no-pub',
-        '-d',
-        device!,
-        '--use-application-binary=$relocated',
-        '--driver=test_driver/platform.dart',
-        '--target=integration_test/platform_test.dart',
-      ], directory: app);
+      if (directLaunch) {
+        await _runMobileApplication(
+          target,
+          device!,
+          relocated,
+          await _applicationBundle(app, target, relocated),
+          marker,
+          timeout: Duration(minutes: full ? 10 : 3),
+        );
+      } else {
+        await run('flutter', [
+          'drive',
+          '--no-pub',
+          '-d',
+          device!,
+          '--use-application-binary=$relocated',
+          '--driver=test_driver/platform.dart',
+          '--target=integration_test/platform_test.dart',
+        ], directory: app);
+      }
       result['applicationDelivered'] = true;
       result['relocatedDeviceBundle'] = true;
       if (target.name.contains('simulator')) {
@@ -426,7 +458,7 @@ void main() {
         }
         Directory(app).deleteSync(recursive: true);
         packages.deleteSync(recursive: true);
-        await _runMobileRelease(target, device, released, bundle, marker);
+        await _runMobileApplication(target, device, released, bundle, marker);
         result['releaseRuntime'] = 'passed';
         result['dartMode'] = 'JIT and AOT';
       }
@@ -572,6 +604,7 @@ import 'dart:ffi';
 import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
+import 'package:integration_test/common.dart';
 import 'package:flax_engine_$engine/flax_engine_$engine.dart';
 import 'package:flax_test/flax_test.dart';
 import '../test/support/scenario.dart';
@@ -581,12 +614,18 @@ external int flax_test_contracts_run();
 void main() {
   final binding = IntegrationTestWidgetsFlutterBinding.ensureInitialized();
   test('process ABI and native contracts', () {
+    try {
     expect(Abi.current(), Abi.${target.os}${target.architecture == 'arm32'
         ? 'Arm'
         : target.architecture == 'x64'
         ? 'X64'
         : 'Arm64'});
     expect(flax_test_contracts_run(), 0);
+    } catch (error, stack) {
+      binding.results['process ABI and native contracts'] = Failure(
+        'process ABI and native contracts', '\$error\\n\$stack');
+      rethrow;
+    }
   });
   void register(String name, dynamic Function() body) {
     if (${full || coexistence} || name.startsWith('loop closures:') ||
@@ -603,17 +642,69 @@ void main() {
   flaxLoopClosureContract(${engine == 'v8' ? 'FlaxV8Engine' : 'FlaxHermesEngine'}.createRuntime, registerTest: register);
   });
   ${coexistence ? "testWidgets('engine coexistence and callback reentry', (_) async { engines.main(); });" : "testWidgets('external application UI', applicationScenario);"}
-  ${release ? "binding.allTestsPassed.future.then((passed) { print(passed ? '$marker' : 'FLAX_PLATFORM_FAILED'); exit(passed ? 0 : 1); });" : "binding.reportData = {'target': '${target.name}', 'engine': '$engine'};"}
+  ${release || target.os == 'android' || target.name.contains('simulator') ? "binding.allTestsPassed.future.then((passed) { print(passed ? '$marker' : 'FLAX_PLATFORM_FAILED'); exit(passed ? 0 : 1); });" : "binding.reportData = {'target': '${target.name}', 'engine': '$engine'};"}
 }
 ''';
 
-Future<void> _runMobileRelease(
+Future<String> _applicationBundle(
+  String app,
+  FlaxNativeTarget target,
+  String product,
+) async {
+  if (target.os == 'android') {
+    return RegExp(r'applicationId = "([^"]+)"').firstMatch(
+      File('$app/android/app/build.gradle.kts').readAsStringSync(),
+    )![1]!;
+  }
+  final info = await Process.run('/usr/libexec/PlistBuddy', [
+    '-c',
+    'Print CFBundleIdentifier',
+    '$product/Info.plist',
+  ]);
+  if (info.exitCode != 0) throw StateError('Cannot read device bundle id');
+  return (info.stdout as String).trim();
+}
+
+Future<void> _runMobileApplication(
   FlaxNativeTarget target,
   String device,
   String product,
   String bundle,
-  String marker,
-) async {
+  String marker, {
+  Duration timeout = const Duration(minutes: 3),
+}) async {
+  if (target.name.contains('simulator')) {
+    await run('xcrun', ['simctl', 'install', device, product]);
+    // Flutter print output is sent to os_log, not the launched process's pipes.
+    final monitor = await Process.start('xcrun', [
+      'simctl',
+      'spawn',
+      device,
+      'log',
+      'stream',
+      '--style',
+      'compact',
+      '--level',
+      'debug',
+      '--predicate',
+      'process == "Runner" AND (eventMessage CONTAINS "flutter:" OR messageType >= 16)',
+    ]);
+    final waiting = _waitForMarker(monitor, marker, timeout: timeout);
+    try {
+      await run('xcrun', [
+        'simctl',
+        'launch',
+        '--terminate-running-process',
+        device,
+        bundle,
+      ]);
+      await waiting;
+    } finally {
+      monitor.kill();
+      await Process.run('xcrun', ['simctl', 'terminate', device, bundle]);
+    }
+    return;
+  }
   if (target.os == 'ios') {
     await run('xcrun', [
       'devicectl',
@@ -635,7 +726,7 @@ Future<void> _runMobileRelease(
       '--terminate-existing',
       bundle,
     ]);
-    await _waitForMarker(process, marker);
+    await _waitForMarker(process, marker, timeout: timeout);
     return;
   }
   final sdk =
@@ -645,6 +736,18 @@ Future<void> _runMobileRelease(
       ? 'adb'
       : '$sdk/platform-tools/adb${Platform.isWindows ? '.exe' : ''}';
   await run(adb, ['-s', device, 'install', '-r', product]);
+  final time = await Process.run(adb, [
+    '-s',
+    device,
+    'shell',
+    'date',
+    '+%m-%d %H:%M:%S.%3N',
+  ]);
+  final since = (time.stdout as String).trim();
+  if (time.exitCode != 0 ||
+      !RegExp(r'^\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}$').hasMatch(since)) {
+    throw StateError('Cannot obtain device log start time');
+  }
   final monitor = await Process.start(adb, [
     '-s',
     device,
@@ -652,11 +755,13 @@ Future<void> _runMobileRelease(
     '-v',
     'raw',
     '-T',
-    '1',
+    since,
     'flutter:I',
+    'AndroidRuntime:E',
+    'libc:F',
     '*:S',
   ]);
-  final waiting = _waitForMarker(monitor, marker);
+  final waiting = _waitForMarker(monitor, marker, timeout: timeout);
   // Start monitoring before launch; the unique marker excludes older device logs.
   try {
     await run(adb, ['-s', device, 'shell', 'am', 'force-stop', bundle]);
@@ -673,10 +778,15 @@ Future<void> _runMobileRelease(
     await waiting;
   } finally {
     monitor.kill();
+    await Process.run(adb, ['-s', device, 'shell', 'am', 'force-stop', bundle]);
   }
 }
 
-Future<void> _waitForMarker(Process process, String marker) async {
+Future<void> _waitForMarker(
+  Process process,
+  String marker, {
+  required Duration timeout,
+}) async {
   final completed = Completer<bool>();
   final log = StringBuffer();
   void collect(String line) {
@@ -701,10 +811,10 @@ Future<void> _waitForMarker(Process process, String marker) async {
     if (!completed.isCompleted) completed.complete(false);
   });
   try {
-    final passed = await completed.future.timeout(const Duration(minutes: 3));
-    stdout.write(log);
-    if (!passed) throw StateError('Release device application failed: $log');
+    final passed = await completed.future.timeout(timeout);
+    if (!passed) throw StateError('Device application failed: $log');
   } finally {
+    stdout.write(log);
     process.kill();
     await out.cancel();
     await err.cancel();

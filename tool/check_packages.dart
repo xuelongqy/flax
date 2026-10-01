@@ -149,14 +149,9 @@ Map<String, Directory> _prepareDartPackages(
     final overrides =
         (data['dependency_overrides'] as Map<String, dynamic>?) ??
         <String, dynamic>{};
-    for (final field in ['dependencies', 'dev_dependencies']) {
-      final dependencies = data[field] as Map<String, dynamic>?;
-      if (dependencies == null) continue;
-      for (final name in packageNames) {
-        if (dependencies.containsKey(name)) {
-          overrides[name] = {'path': '../$name'};
-        }
-      }
+    // Root overrides must also cover local transitive dependencies.
+    for (final name in packageNames) {
+      if (name != data['name']) overrides[name] = {'path': '../$name'};
     }
     if (overrides.isNotEmpty) data['dependency_overrides'] = overrides;
     pubspec.writeAsStringSync(

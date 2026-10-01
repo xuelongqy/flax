@@ -37,6 +37,15 @@ List<Map<String, Object>> platformJobs(Iterable<String> paths) {
       add(['windows-x64', 'windows-arm64'], ['hermes', 'v8']);
       continue;
     }
+    if (path.startsWith('packages/flax_native_assets/')) {
+      add(
+        FlaxNativeTarget.names.where(
+          (t) => t.startsWith('android-') || t.startsWith('windows-'),
+        ),
+        ['hermes', 'v8'],
+      );
+      continue;
+    }
     if (path == 'tool/start_android_emulator.py' ||
         path == 'tool/test/start_android_emulator_test.py') {
       add(['android-x64'], ['hermes', 'v8']);

@@ -154,7 +154,15 @@ diff --git a/src/jsi_abi/jsi_abi_v8.cpp b/src/jsi_abi/jsi_abi_v8.cpp
 
  #if defined(_WIN32) && defined(V8JSI_ENABLE_INSPECTOR)
  #include "../inspector/inspector_agent.h"
-@@ -220,14 +223,19 @@
+@@ -145,6 +148,7 @@
+ };
+
+ namespace {
++extern const jsi_runtime_vtable g_vtable;
+
+ //==============================================================================
+ // Forward Declarations
+@@ -220,14 +224,19 @@
    }
    static constexpr jsi_pointer_vtable pointerVt{invalidate};
 
@@ -176,7 +184,7 @@ diff --git a/src/jsi_abi/jsi_abi_v8.cpp b/src/jsi_abi/jsi_abi_v8.cpp
 
    v8::Local<V8Type> get(v8::Isolate *isolate) const {
      return persistent.Get(isolate);
-@@ -248,14 +256,19 @@
+@@ -248,14 +257,19 @@
    }
    static constexpr jsi_prepared_javascript_vtable preparedVt{release};
 
@@ -198,7 +206,7 @@ diff --git a/src/jsi_abi/jsi_abi_v8.cpp b/src/jsi_abi/jsi_abi_v8.cpp
 
    v8::Local<v8::UnboundScript> get(v8::Isolate *isolate) const {
      return persistent.Get(isolate);
-@@ -269,14 +282,19 @@
+@@ -269,14 +283,19 @@
    }
    static constexpr jsi_pointer_vtable pointerVt{invalidate};
 
@@ -220,7 +228,7 @@ diff --git a/src/jsi_abi/jsi_abi_v8.cpp b/src/jsi_abi/jsi_abi_v8.cpp
 
    v8::Local<v8::Value> get(v8::Isolate *isolate) const {
      return persistent.Get(isolate);
-@@ -290,15 +308,20 @@
+@@ -290,15 +309,20 @@
    }
    static constexpr jsi_pointer_vtable pointerVt{invalidate};
 
@@ -243,7 +251,7 @@ diff --git a/src/jsi_abi/jsi_abi_v8.cpp b/src/jsi_abi/jsi_abi_v8.cpp
 
    v8::Local<v8::Object> get(v8::Isolate *isolate) const {
      return persistent.Get(isolate);
-@@ -514,11 +537,11 @@
+@@ -514,11 +538,11 @@
        return nullptr;
      }
      void *tag = context->GetAlignedPointerFromEmbedderData(
@@ -257,7 +265,7 @@ diff --git a/src/jsi_abi/jsi_abi_v8.cpp b/src/jsi_abi/jsi_abi_v8.cpp
    }
 
    /// V8 PromiseRejectCallback. Finds the runtime via the context embedder
-@@ -674,7 +697,7 @@
+@@ -674,7 +698,7 @@
 
    static v8::Intercepted
    Set(v8::Local<v8::Name> v8PropName, v8::Local<v8::Value> value,
@@ -266,7 +274,7 @@ diff --git a/src/jsi_abi/jsi_abi_v8.cpp b/src/jsi_abi/jsi_abi_v8.cpp
      AbiHostObjectProxy *proxy = GetProxy(info);
      if (!proxy || !proxy->hostObject)
        return v8::Intercepted::kNo;
-@@ -706,6 +729,7 @@
+@@ -706,6 +730,7 @@
        }
      }
 
@@ -274,7 +282,7 @@ diff --git a/src/jsi_abi/jsi_abi_v8.cpp b/src/jsi_abi/jsi_abi_v8.cpp
      return v8::Intercepted::kYes;
    }
 
-@@ -721,7 +745,7 @@
+@@ -721,7 +746,7 @@
 
    static v8::Intercepted
    SetIndexed(uint32_t index, v8::Local<v8::Value> value,
@@ -283,7 +291,7 @@ diff --git a/src/jsi_abi/jsi_abi_v8.cpp b/src/jsi_abi/jsi_abi_v8.cpp
      v8::Isolate *isolate = info.GetIsolate();
      v8::Local<v8::String> indexStr =
          v8::String::NewFromUtf8(isolate, std::to_string(index).c_str())
-@@ -731,7 +755,7 @@
+@@ -731,7 +756,7 @@
 
    static void Enumerator(const v8::PropertyCallbackInfo<v8::Array> &info) {
      AbiHostObjectProxy *proxy =
@@ -292,7 +300,7 @@ diff --git a/src/jsi_abi/jsi_abi_v8.cpp b/src/jsi_abi/jsi_abi_v8.cpp
      if (!proxy || !proxy->hostObject) {
        info.GetReturnValue().Set(v8::Array::New(info.GetIsolate()));
        return;
-@@ -767,13 +791,13 @@
+@@ -767,13 +792,13 @@
    template <typename T>
    static AbiHostObjectProxy *
    GetProxy(const v8::PropertyCallbackInfo<T> &info) {
@@ -308,7 +316,7 @@ diff --git a/src/jsi_abi/jsi_abi_v8.cpp b/src/jsi_abi/jsi_abi_v8.cpp
        if (proto.IsEmpty() || !proto->IsObject())
          return nullptr;
        obj = v8::Local<v8::Object>::Cast(proto);
-@@ -785,7 +809,7 @@
+@@ -785,7 +810,7 @@
        return nullptr;
 
      v8::Local<v8::External> data = v8::Local<v8::External>::Cast(externalValue);
@@ -317,7 +325,7 @@ diff --git a/src/jsi_abi/jsi_abi_v8.cpp b/src/jsi_abi/jsi_abi_v8.cpp
    }
  };
 
-@@ -810,6 +834,14 @@
+@@ -810,6 +835,14 @@
      flags += flag;
    };
 
@@ -332,7 +340,7 @@ diff --git a/src/jsi_abi/jsi_abi_v8.cpp b/src/jsi_abi/jsi_abi_v8.cpp
    if (useDefaults) {
      appendFlag("--expose_gc");
    } else {
-@@ -871,6 +903,18 @@
+@@ -871,6 +904,18 @@
    if (!isolate)
      return nullptr;
 
@@ -351,6 +359,14 @@ diff --git a/src/jsi_abi/jsi_abi_v8.cpp b/src/jsi_abi/jsi_abi_v8.cpp
    v8::Isolate::Scope isolate_scope(isolate);
    v8::HandleScope handle_scope(isolate);
    const bool fromSnapshot =
+@@ -879,7 +924,6 @@
+   v8::Local<v8::Context> context = v8rt::createContext(isolate, fromSnapshot);
+
+   // Forward-declare the vtable (defined below)
+-  extern const jsi_runtime_vtable g_vtable;
+
+   auto *state = new JsiRuntimeState();
+   state->vt = &g_vtable;
 @@ -894,9 +938,9 @@
    // marker tag. The PromiseRejectCallback (and any future static V8 callback
    // that only has a context handle) walks slot 0 to recover the runtime.

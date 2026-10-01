@@ -30,6 +30,7 @@ package has no concrete engine dependency.
 | `flax_canvas` / `@flax/canvas`               | Canvas host plugin and CanvasView binding                                                                |
 | `flax_engine_hermes`                         | Hermes adapter, locked shared SDK, and engine tests                                                      |
 | `flax_engine_v8`                             | Experimental V8 adapter, locked shared SDK, and engine tests                                             |
+| `flax_native_assets`                         | Build-only owner of shared Android C++ and Windows CRT native assets                                     |
 | `flax_codegen`                               | Analyzer model, manifest format, and Dart/TypeScript emitters                                            |
 | `flax_test`                                  | Development-only engine-neutral runtime contracts and shared test harnesses                              |
 

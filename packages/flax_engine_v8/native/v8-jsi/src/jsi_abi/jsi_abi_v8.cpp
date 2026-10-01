@@ -148,6 +148,7 @@ struct jsi_config_s {
 };
 
 namespace {
+extern const jsi_runtime_vtable g_vtable;
 
 //==============================================================================
 // Forward Declarations
@@ -923,7 +924,6 @@ JsiRuntimeState *JsiRuntimeState::create(const jsi_config_s *config) {
   v8::Local<v8::Context> context = v8rt::createContext(isolate, fromSnapshot);
 
   // Forward-declare the vtable (defined below)
-  extern const jsi_runtime_vtable g_vtable;
 
   auto *state = new JsiRuntimeState();
   state->vt = &g_vtable;

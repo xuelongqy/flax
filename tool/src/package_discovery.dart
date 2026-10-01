@@ -456,6 +456,7 @@ Set<String> packageDependencyClosure(
   String root,
   Iterable<String> roots, {
   String? replaceEngineWith,
+  bool includeDevDependencies = true,
 }) {
   final packages = {
     for (final package in discoverPackages(root)) package.name: package,
@@ -469,7 +470,10 @@ Set<String> packageDependencyClosure(
     }
     final package = packages[name];
     if (package == null || !result.add(name)) continue;
-    for (final section in ['dependencies', 'dev_dependencies']) {
+    for (final section in [
+      'dependencies',
+      if (includeDevDependencies) 'dev_dependencies',
+    ]) {
       final dependencies = package.pubspec[section];
       if (dependencies is! Map) continue;
       pending.addAll(
