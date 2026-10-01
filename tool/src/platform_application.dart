@@ -116,11 +116,26 @@ Future<Map<String, Object?>> verifyPlatformApplication(
       for (final name in names) name: {'path': '../packages/$name'},
     };
     (manifest['dev_dependencies'] as Map?)?.remove('integration_test');
-    manifest['hooks'] = {
-      'user_defines': {
-        'flax_engine_$engine': {'testContracts': true},
-      },
-    };
+    final defines = <String, Object?>{};
+    manifest['hooks'] = {'user_defines': defines};
+    for (final selected in coexistence ? ['hermes', 'v8'] : [engine]) {
+      final package = '$root/packages/flax_engine_$selected';
+      final lock = jsonDecode(
+        File('$package/native/sdk.lock.json').readAsStringSync(),
+      ) as Map;
+      final digest = lock['targets'][target.name]['sha256'] as String;
+      final cache =
+          Platform.environment['FLAX_ENGINE_SDK_CACHE'] ??
+          '$package/.cache/sdk';
+      final archive = File('$cache/$digest.tar.gz').absolute;
+      // Flutter filters custom environment variables when executing build hooks.
+      // Reuse the archive already downloaded and verified by the native build.
+      final sdk = {'sdkArchive': archive.path, 'sdkSha256': digest};
+      defines['flax_engine_$selected'] = {'testContracts': true, ...sdk};
+      if (selected == (coexistence ? 'hermes' : engine)) {
+        defines['flax_native_assets'] = sdk;
+      }
+    }
     File('$app/pubspec.yaml').writeAsStringSync(jsonEncode(manifest));
     configurePlatformProject(app, target);
     final driver = File('$app/test_driver/platform.dart')
@@ -313,6 +328,7 @@ import 'package:flax_test/flax_test.dart';
 ${[for (var i = 0; i < tests.length; i++) "import '../../packages/${owner.name}/${tests[i]}' as t$i;"].join('\n')}
 void main() {
   final binding = IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+  ${target.os == 'ios' ? _semanticsSetup : ''}
   // Match the headless viewport; these shared comparisons are not device screenshots.
   setUp(() {
     final view = binding.platformDispatcher.implicitView!;
@@ -456,7 +472,7 @@ void main() {
       final diagnostics = Directory(
         '${evidence.path}/../ci/hooks-${coexistence ? 'coexistence' : engine}',
       )..createSync(recursive: true);
-      for (final file in hooks.listSync(recursive: true).whereType<File>()) {
+      for (final file in hookBuildFiles(hooks)) {
         if (!['.log', '.json', '.txt'].contains(p.extension(file.path))) {
           continue;
         }
@@ -537,7 +553,10 @@ void configurePlatformProject(String app, FlaxNativeTarget target) {
   if (target.os == 'macos') {
     final config = File('$app/macos/Runner/Configs/AppInfo.xcconfig');
     config.writeAsStringSync(
-      '${config.readAsStringSync()}\nARCHS = ${target.architecture == 'x64' ? 'x86_64' : 'arm64'}\n',
+      '${config.readAsStringSync()}\n'
+      'ARCHS = ${target.architecture == 'x64' ? 'x86_64' : 'arm64'}\n'
+      // Flutter forwards exclusions to every Xcode target, including its hook build.
+      'EXCLUDED_ARCHS = ${target.architecture == 'x64' ? 'arm64' : 'x86_64'}\n',
     );
     for (final name in ['DebugProfile', 'Release']) {
       final file = File('$app/macos/Runner/$name.entitlements');
@@ -616,6 +635,7 @@ ${coexistence ? "import '../coexistence.dart' as engines;" : ''}
 external int flax_test_contracts_run();
 void main() {
   final binding = IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+  ${target.os == 'ios' ? _semanticsSetup : ''}
   void contract(String name, FutureOr<void> Function() body) {
     test(name, () async {
       try {
@@ -651,6 +671,32 @@ void main() {
   ${coexistence ? "contract('engine coexistence and callback reentry', engines.main);" : "testWidgets('external application UI', applicationScenario);"}
   ${release || target.os != 'ios' || target.name.contains('simulator') ? "binding.allTestsPassed.future.then((passed) { print(passed ? '$marker' : 'FLAX_PLATFORM_FAILED'); exit(passed ? 0 : 1); });" : "binding.reportData = {'target': '${target.name}', 'engine': '$engine'};"}
 }
+''';
+
+const _semanticsSetup = '''
+  setUpAll(() async {
+    // iOS can request its own semantics handle after the first rendered tree.
+    // Complete that platform handshake before testWidgets records its leak baseline.
+    // runTest establishes inTest, which LiveTestWidgetsFlutterBinding.pump requires.
+    try {
+      await binding.runTest(() async {
+        final handle = binding.ensureSemantics();
+        try {
+          for (var i = 0; i < 100; i++) {
+            await binding.pump(const Duration(milliseconds: 20));
+            if (binding.platformDispatcher.semanticsEnabled) break;
+          }
+        } finally {
+          handle.dispose();
+        }
+      }, () {
+        expect(binding.debugOutstandingSemanticsHandles,
+          binding.platformDispatcher.semanticsEnabled ? 1 : 0);
+      }, description: 'platform semantics initialization');
+    } finally {
+      binding.postTest();
+    }
+  });
 ''';
 
 Future<void> runDesktopApplication(

@@ -142,6 +142,23 @@ Future<void> verifyNativeDependencies(
   }
 }
 
+Iterable<File> hookBuildFiles(Directory hooks) sync* {
+  if (!hooks.existsSync()) return;
+  for (final entry in hooks.listSync(followLinks: false)) {
+    if (entry is File) {
+      yield entry;
+    } else if (entry is Directory) {
+      // SDK caches are inputs, not build receipts or diagnostics. Their deeply
+      // nested license paths can exceed Windows' MAX_PATH.
+      if (RegExp(r'^sdk-[a-f0-9]{64}(?:\.part)?$')
+          .hasMatch(p.basename(entry.path))) {
+        continue;
+      }
+      yield* hookBuildFiles(entry);
+    }
+  }
+}
+
 /// Check the final Flutter bundle, where Apple assets have been renamed and signed.
 Future<Map<String, Object?>> verifyApplicationAssets(
   FlaxNativeTarget target,
@@ -150,9 +167,7 @@ Future<Map<String, Object?>> verifyApplicationAssets(
   List<String> engines, {
   required bool signed,
 }) async {
-  final receipts = Directory('$app/.dart_tool')
-      .listSync(recursive: true, followLinks: false)
-      .whereType<File>()
+  final receipts = hookBuildFiles(Directory('$app/.dart_tool/hooks_runner'))
       .where((f) => f.path.endsWith('sdk-receipt.json'))
       .map((f) => jsonDecode(f.readAsStringSync()) as Map)
       .where((r) => r['target'] == target.name && engines.contains(r['engine']))

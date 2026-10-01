@@ -13,6 +13,61 @@ import '../src/platform_selection.dart';
 import '../src/platform_binary.dart';
 
 void main() {
+  test(
+    'macOS consumers build hooks only for the selected SDK architecture',
+    () {
+      final app = Directory.systemTemp.createTempSync('flax macos target ');
+      addTearDown(() => app.deleteSync(recursive: true));
+      final project = File('${app.path}/macos/Runner.xcodeproj/project.pbxproj')
+        ..parent.createSync(recursive: true)
+        ..writeAsStringSync('MACOSX_DEPLOYMENT_TARGET = 10.15;');
+      final config = File('${app.path}/macos/Runner/Configs/AppInfo.xcconfig')
+        ..parent.createSync(recursive: true);
+      for (final name in ['DebugProfile', 'Release']) {
+        File('${app.path}/macos/Runner/$name.entitlements')
+            .writeAsStringSync('<dict></dict>');
+      }
+      for (final arch in ['arm64', 'x64']) {
+        config.writeAsStringSync('PRODUCT_NAME = flax_standalone\n');
+        configurePlatformProject(app.path, FlaxNativeTarget('macos-$arch'));
+        final settings = config.readAsStringSync();
+        expect(
+          settings,
+          contains('ARCHS = ${arch == 'x64' ? 'x86_64' : 'arm64'}\n'),
+        );
+        expect(
+          settings,
+          contains('EXCLUDED_ARCHS = ${arch == 'x64' ? 'arm64' : 'x86_64'}\n'),
+        );
+        expect(
+          project.readAsStringSync(),
+          contains('MACOSX_DEPLOYMENT_TARGET = 15.0;'),
+        );
+      }
+    },
+  );
+  test('hook receipts and diagnostics exclude SDK cache inputs', () {
+    final hooks = Directory.systemTemp.createTempSync('flax hook receipts ');
+    addTearDown(() => hooks.deleteSync(recursive: true));
+    final receipt = File('${hooks.path}/flax_engine_v8/build/sdk-receipt.json')
+      ..parent.createSync(recursive: true)
+      ..writeAsStringSync('{}');
+    final stderr = File('${receipt.parent.path}/stderr.txt')
+      ..writeAsStringSync('build failure');
+    final shared = Directory('${hooks.path}/shared/flax_engine_v8/build/123')
+      ..createSync(recursive: true);
+    final sharedReceipt = File('${shared.path}/sdk-receipt.json')
+      ..writeAsStringSync('{}');
+    // SDK cache trees must not be traversed (Windows notices exceed MAX_PATH).
+    final sdk = Directory(
+      '${shared.parent.path}/sdk-${List.filled(64, 'a').join()}/notices',
+    )..createSync(recursive: true);
+    File('${sdk.path}/sdk-receipt.json').writeAsStringSync('invalid receipt');
+    expect(
+      hookBuildFiles(hooks).map((f) => f.path),
+      unorderedEquals([receipt.path, stderr.path, sharedReceipt.path]),
+    );
+  });
   test('preparation failure writes a receipt without runtime acceptance', () async {
     final root = Directory.current;
     final temporary = Directory.systemTemp.createTempSync(

@@ -292,6 +292,7 @@ void main() {
         consumer,
       );
     },
+    timeout: const Timeout(Duration(minutes: 3)),
   );
   test('incompatible interface obligations fail during generation', () async {
     final parser = FlaxCodegenBindingParser(root);

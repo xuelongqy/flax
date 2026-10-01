@@ -206,15 +206,16 @@ static int runContract() {
 
 int main() {
 #ifdef FLAX_TEST_DYNAMIC_LIBRARY
-  const auto initial = runContract();
-  if (initial != 0)
-    return initial;
-  std::cout << "Dynamic loading contracts passed on the loader thread."
-            << std::endl;
+  // The first load must happen on the worker, as it does in a Dart isolate.
+  // Loading on main first would hide dependency initialization differences.
   int result = 1;
   std::thread owner([&] { result = runContract(); });
   owner.join();
-  return result;
+  if (result != 0)
+    return result;
+  std::cout << "First dynamic load and contracts passed on the worker thread."
+            << std::endl;
+  return runContract();
 #else
   return runContract();
 #endif

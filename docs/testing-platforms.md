@@ -48,6 +48,11 @@ depend on Flutter Driver's VM-service discovery. Real iOS debug tests retain Flu
 Driver because Dart JIT requires a debugger. Native contract failures participate in the
 integration binding's failure report; launch/marker timeouts fail the check.
 
+iOS integration setup renders a semantics tree inside the live binding's `runTest`
+before widget tests record their handle baseline. It disposes its own handle and checks
+that only a platform-owned handle remains, if requested. The UI tests retain their
+normal semantics and leak assertions.
+
 ## Test ownership and conditions
 
 | Classification       | Owner and behavior                                                                                             | Execution and conditions                                                                                                                      |
@@ -96,15 +101,22 @@ Consumer projects must set their deployment minima to macOS/iOS 15.0 or Android 
 The bridge uses those SDK minima even when Dart's hook input has an older default. An
 Android ARM64 device can also verify ARM32 when `ro.product.cpu.abilist` includes
 `armeabi-v7a`; the checker prebuilds the requested APK ABI and verifies the running
-process ABI. It never substitutes the device's preferred architecture.
+process ABI. It never substitutes the device's preferred architecture. The disposable
+macOS project explicitly excludes the other architecture, so Flutter's release hook
+build consumes only the SDK selected by `--target`.
 
 SDK cache keys use archive hashes and targets. Set `FLAX_ENGINE_SDK_CACHE` for a shared
-verified download cache; default hook caches stay under the hook output. Bridge builds
-remain CMake incremental builds with hook source dependencies. `sdkArchive` plus
-`sdkSha256` under the engine's `hooks.user_defines` supports a local candidate archive
-with identical validation. No fallback source engine build is attempted. On
-Android/Windows, also set those candidate inputs for `flax_native_assets`. This shared
-dependency registers C++/CRT assets once and each engine checks byte equality.
+verified download cache in native/Dart commands; default hook caches stay under the hook
+output. Flutter can filter custom environment variables when running hooks, so platform
+application verification supplies the already downloaded archive and locked hash using
+the existing `sdkArchive`/`sdkSha256` inputs. It still validates that archive and the
+extracted SDK. Receipt and diagnostic discovery excludes extracted SDK cache trees,
+whose notice paths can exceed Windows' path limit. Bridge builds remain CMake
+incremental builds with hook source dependencies. `sdkArchive` plus `sdkSha256` under
+the engine's `hooks.user_defines` supports a local candidate archive with identical
+validation. No fallback source engine build is attempted. On Android/Windows, also set
+those candidate inputs for `flax_native_assets`. This shared dependency registers
+C++/CRT assets once and each engine checks byte equality.
 `dart test tool/test/native_sdk_test.dart` checks corrupt archives, wrong targets,
 missing dependencies, unsafe paths, atomic/concurrent preparation and offline cache
 behavior.
