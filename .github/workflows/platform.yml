@@ -222,6 +222,13 @@ jobs:
         shell: bash
         run: |
           node --test packages/flax_tools/js/test/modules.test.mjs 2>&1 | tee 'build/platform/${{ inputs.target }}/ci/modules.log'
+      - name: Check Windows debugger child-process capture
+        id: debugger
+        if: runner.os == 'Windows'
+        timeout-minutes: 8
+        shell: bash
+        run: |
+          dart test tool/test/windows_crash_test.dart --reporter expanded 2>&1 | tee 'build/platform/${{ inputs.target }}/ci/debugger.log'
       - name: Start iOS simulator
         if: startsWith(inputs.target, 'ios-simulator-')
         shell: bash
@@ -262,7 +269,7 @@ jobs:
         run: |
           if [ ! -f 'build/platform/${{ inputs.target }}/verification.json' ]; then
             mkdir -p 'build/platform/${{ inputs.target }}/ci'
-            echo 'Verification did not produce a receipt. Flutter: ${{ steps.flutter.outcome }}; Flutter retry: ${{ steps.flutter_retry.outcome }}; dependencies: ${{ steps.dependencies.outcome }}; modules: ${{ steps.module_delivery.outcome }}; emulator: ${{ steps.emulator.outcome }}. No runtime acceptance.' | tee 'build/platform/${{ inputs.target }}/ci/status.txt' >> "$GITHUB_STEP_SUMMARY"
+            echo 'Verification did not produce a receipt. Flutter: ${{ steps.flutter.outcome }}; Flutter retry: ${{ steps.flutter_retry.outcome }}; dependencies: ${{ steps.dependencies.outcome }}; modules: ${{ steps.module_delivery.outcome }}; debugger: ${{ steps.debugger.outcome }}; emulator: ${{ steps.emulator.outcome }}. No runtime acceptance.' | tee 'build/platform/${{ inputs.target }}/ci/status.txt' >> "$GITHUB_STEP_SUMMARY"
           fi
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         if: always()

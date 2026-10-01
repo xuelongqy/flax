@@ -75,10 +75,16 @@ Future<void> _captureWindowsCrash(
     for (var attempt = 1; attempt <= 3; attempt++) {
       final script = File('${capture.path}/attempt-$attempt.txt');
       // Catch first-chance AVs before Dart handles the exception itself.
+      final captureCommands =
+          '.exr -1; .ecxr; r; kv; lm f; '
+          'lm v m hermesvm; lm v m flax_hermes; !teb; '
+          'u @\$ip-20 @\$ip+40; .dump /m /u $prefix-$attempt.dmp; gn';
       script.writeAsStringSync(
-        'sxe -c ".exr -1; .ecxr; r; kv; lm f; '
-        'lm v m hermesvm; lm v m flax_hermes; !teb; '
-        'u @\$ip-20 @\$ip+40; .dump /m /u $prefix-$attempt.dmp; gn" av\n'
+        // Child processes also stop at their initial loader breakpoint. CI has
+        // no debugger stdin, so continue those events without hiding real AVs.
+        'sxi ibp\n'
+        'sxe -c "$captureCommands" av\n'
+        'sxe -c "$captureCommands" c0000409\n'
         'g\n',
       );
       final result = <String, Object?>{'attempt': attempt};

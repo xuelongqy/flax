@@ -88,6 +88,29 @@ These failures remain visible, not skipped or marked passed.
 
 ## Hosted verification
 
+The first rc.2 run
+[36913521058](https://github.com/xuelongqy/flax/actions/runs/36913521058) completed at
+`cf4bc090fb5f8b7e74c7eb869f8544048e487670`: ten target jobs passed; Windows x64, Windows
+arm64 and the summary failed. The package archive workflow
+[36913520278](https://github.com/xuelongqy/flax/actions/runs/36913520278) passed. All
+twelve receipts match rc.2's locked hashes: 24 groups built, 16 ran and passed
+application delivery, and six remain device build-only. The twelve skipped branches
+belong to the opposite host family. Default Linux x64 passed both engines' 39 runtime
+contracts, 346 package-owned UI cases per engine, examples and aggregate application.
+Its original Hermes detached-buffer assertion now passes. Windows V8 passed; Hermes x64
+still faults during standalone Dart JIT creation and arm64 during relocated AOT
+creation. Independent Dart coexistence still fails on both Windows architectures.
+
+All four Windows crash captures stopped at a child process's initial loader breakpoint;
+CDB exited with `0x8007006d` without producing a dump. The observed Hermes exception is
+`0xc0000005`; the original process's final exit `0xc0000409` alone does not explain its
+cause. The capture script now ignores child initial breakpoints and records both AV and
+fail-fast events. A real native child-fault check on each Windows CI host must produce a
+nonempty dump while preserving the original failing exit code before consumer checks
+run. Self-test and consumer evidence are retained in the verification artifact. The
+change addresses the observed debugger interruption; actual Windows capture and the
+Hermes root cause remain pending.
+
 The subsequent rc.1 run
 [36882647105](https://github.com/xuelongqy/flax/actions/runs/36882647105) finished for
 `e223f4e913ceda1a1a996dfb5e9655098ddb959e`. Its twelve artifacts contain 24 bridge
@@ -141,19 +164,20 @@ Windows diagnostics before engine creation show only operating-system CRT module
 do not establish the CRT loaded later with the engine or the crash cause. The doubtful
 assumption is that native C++ or Flutter success certifies independent Dart FFI
 creation. Further Windows fixes require actual loaded-module/debugger evidence rather
-than speculative compiler flags. CI now captures first-chance access violations and
+than speculative compiler flags. CI attempts first-chance access-violation and
 module/stack/minidump evidence before deleting failed Dart consumer inputs, retaining
-the original exit code even if debugger reproduction succeeds. The SDK transfer fix does
-not establish a fix for Windows engine creation.
+the original exit code even if debugger reproduction succeeds. The first rc.2 run did
+not capture the fault because of the child breakpoint described above. The SDK transfer
+fix does not establish a fix for Windows engine creation.
 
 ## Remaining acceptance work
 
-1. Verify rc.2 through Flax on all applicable CI targets; keep default Linux full scope
-   and the original Hermes transfer assertion. Other targets run platform scope.
+1. Verify the corrected CDB capture on both Windows architectures, then diagnose and fix
+   the actual Hermes fault without changing passing assertions or toolchain locks.
 2. Diagnose Windows Hermes Dart creation using actual process module evidence; retain
    both native and independent Dart checks even when the Flutter application passes.
-3. Complete default Linux package-owned UI, example and aggregate checks; platform smoke
-   does not certify the full Material/device suite.
+3. Keep default Linux full checks passing; platform smoke does not certify the full
+   Material/device suite.
 4. Run Android arm32/arm64 and signed iOS device checks using the platform guide; these
    targets remain build-only until actual device execution passes.
 5. Require all 24 build records and each supported runtime/application record before
