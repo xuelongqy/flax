@@ -101,15 +101,28 @@ Its original Hermes detached-buffer assertion now passes. Windows V8 passed; Her
 still faults during standalone Dart JIT creation and arm64 during relocated AOT
 creation. Independent Dart coexistence still fails on both Windows architectures.
 
-All four Windows crash captures stopped at a child process's initial loader breakpoint;
-CDB exited with `0x8007006d` without producing a dump. The observed Hermes exception is
-`0xc0000005`; the original process's final exit `0xc0000409` alone does not explain its
-cause. The capture script now ignores child initial breakpoints and records both AV and
-fail-fast events. A real native child-fault check on each Windows CI host must produce a
-nonempty dump while preserving the original failing exit code before consumer checks
-run. Self-test and consumer evidence are retained in the verification artifact. The
-change addresses the observed debugger interruption; actual Windows capture and the
-Hermes root cause remain pending.
+The capture follow-up
+[36930825044](https://github.com/xuelongqy/flax/actions/runs/36930825044) completed at
+`20e5d48a7f9a4fc5f6542a87bd1fd1f0b4808aef`: nine target jobs passed; Windows x64,
+Windows arm64, macOS x64 and the summary failed. The package archive workflow
+[36930824534](https://github.com/xuelongqy/flax/actions/runs/36930824534) passed. All
+eleven available receipts match rc.2: 22 groups built, 14 ran and passed application
+delivery, and six remain device build-only. macOS x64 lost communication with the hosted
+runner and produced neither logs nor a receipt; its current acceptance is unknown. The
+twelve skipped branches still belong to the opposite host family.
+
+Both Windows native child-fault checks passed and all four actual Hermes failures now
+have minidumps, loaded-module paths, exceptions and stacks. `hermesvm.dll` faults with
+`0xc0000005` during runtime initialization's property lookup; the final original Dart
+exit is `0xc0000409`. The SDK's own MSVC runtime DLLs are loaded from the consumer
+closure, at version 14.51.36247.0. Both SDK and bridge use Release builds. These facts
+do not establish the source of the invalid object/property-map pointer. Export-only
+symbol names must not be interpreted as exact internal function names. The current
+stack-only dumps omit the pointed-to heap objects; capture now requests secondary memory
+and the virtual-memory layout. The native child-fault check requires its allocated heap
+pattern in the dump while retaining the original AV exit. Actual extended capture and
+the Hermes root cause remain pending; native C++ and Flutter coexistence success do not
+replace the failing standalone Dart checks.
 
 The subsequent rc.1 run
 [36882647105](https://github.com/xuelongqy/flax/actions/runs/36882647105) finished for
@@ -172,10 +185,10 @@ fix does not establish a fix for Windows engine creation.
 
 ## Remaining acceptance work
 
-1. Verify the corrected CDB capture on both Windows architectures, then diagnose and fix
-   the actual Hermes fault without changing passing assertions or toolchain locks.
-2. Diagnose Windows Hermes Dart creation using actual process module evidence; retain
-   both native and independent Dart checks even when the Flutter application passes.
+1. Verify the extended CDB heap capture on both Windows architectures, then diagnose and
+   fix the actual Hermes fault without changing passing assertions or toolchain locks.
+2. Revalidate macOS x64 after the hosted runner loss; missing logs and a missing receipt
+   cannot be recorded as a test pass.
 3. Keep default Linux full checks passing; platform smoke does not certify the full
    Material/device suite.
 4. Run Android arm32/arm64 and signed iOS device checks using the platform guide; these

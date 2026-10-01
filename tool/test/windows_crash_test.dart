@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:test/test.dart';
 
@@ -18,7 +19,14 @@ void main() {
       addTearDown(() => work.deleteSync(recursive: true));
       final source = File('${work.path}/fault.cpp')
         ..writeAsStringSync(
-          'int main() { volatile int *p = nullptr; *p = 42; }\n',
+          '#include <cstdlib>\n'
+          'int main() {\n'
+          '  volatile unsigned char *heap = '
+          'static_cast<unsigned char *>(std::malloc(4096));\n'
+          '  if (!heap) return 1;\n'
+          '  for (int i = 0; i < 4096; ++i) heap[i] = i % 251;\n'
+          '  volatile int *p = nullptr; *p = heap[0] + 42;\n'
+          '}\n',
         );
       final executable = '${work.path}/flax_debugger_fault.exe';
       await run('clang++', [
@@ -61,7 +69,34 @@ void main() {
       final dumps = receipt['attempts'][0]['dumps'] as List;
       expect(dumps, isNotEmpty);
       for (final dump in dumps) {
-        expect(File(dump as String).lengthSync(), greaterThan(0));
+        final bytes = File(dump as String).readAsBytesSync();
+        expect(ascii.decode(bytes.sublist(0, 4)), 'MDMP');
+        final data = ByteData.sublistView(bytes);
+        final count = data.getUint32(8, Endian.little);
+        final directory = data.getUint32(12, Endian.little);
+        final streams = <int, int>{
+          for (var i = 0; i < count; ++i)
+            data.getUint32(directory + i * 12, Endian.little): data.getUint32(
+              directory + i * 12 + 8,
+              Endian.little,
+            ),
+        };
+        expect(streams, contains(16), reason: 'Memory layout must be retained');
+        final memory = streams[5]!;
+        final ranges = data.getUint32(memory, Endian.little);
+        final heapPattern = latin1.decode(List.generate(128, (i) => i));
+        expect(
+          List.generate(ranges, (i) {
+            final entry = memory + 4 + i * 16;
+            final size = data.getUint32(entry + 8, Endian.little);
+            final offset = data.getUint32(entry + 12, Endian.little);
+            return latin1
+                .decode(bytes.sublist(offset, offset + size))
+                .contains(heapPattern);
+          }).any((found) => found),
+          true,
+          reason: 'The faulting child\'s heap contents must be captured',
+        );
       }
       final log = File('${capture.path}/attempt-1.log').readAsStringSync();
       expect(log, contains('flax_debugger_fault'));
@@ -139,7 +174,7 @@ exit 0
 while [ "$#" -gt 0 ]; do
   if [ "$1" = '-cf' ]; then
     shift
-    name=$(sed -n 's/.*\.dump \/m \/u \([^;]*\);.*/\1/p' "$1" | head -n 1)
+    name=$(sed -n 's/.*\.dump \/miF \/u \([^;]*\);.*/\1/p' "$1" | head -n 1)
     printf 'fault dump' > "$name"
   fi
   shift
