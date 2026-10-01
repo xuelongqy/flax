@@ -156,7 +156,7 @@ Future<void> applicationScenario(WidgetTester t) async {
     expect(t.state(find.byType(Navigator)), same(navigator));
   }
   await press('Open details');
-  await t.tap(find.byTooltip('Back'));
+  await t.tap(find.byType(BackButton));
   await _pumpApplicationFrame(t);
   expect(find.text('Returned without a result'), findsOneWidget);
   expect(editing.text, 'Independent 中文🙂');

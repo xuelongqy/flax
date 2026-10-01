@@ -64,6 +64,7 @@ List<Map<String, Object>> platformJobs(Iterable<String> paths) {
         path.startsWith('tool/check_platform') ||
         path.startsWith('tool/src/platform_application') ||
         path.startsWith('tests/platform/') ||
+        path.startsWith('examples/standalone/test/support/') ||
         path == 'packages/flax_test/lib/src/fixtures.dart' ||
         path == 'packages/flax_test/lib/src/gc.dart' ||
         path == 'tool/start_simulator.py' ||

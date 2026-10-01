@@ -251,6 +251,11 @@ void main() {
       ['linux-arm64'],
     );
     expect(platformJobs(['tool/ui_bundle.mjs']), hasLength(11));
+    final application = platformJobs([
+      'examples/standalone/test/support/scenario.dart',
+    ]);
+    expect(application, hasLength(11));
+    expect(application.map((job) => job['engine']), everyElement('all'));
     expect(platformJobs(['tool/start_android_emulator.py']), [
       {'target': 'android-x64', 'engine': 'all'},
     ]);
