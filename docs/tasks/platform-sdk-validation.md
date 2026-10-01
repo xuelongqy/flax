@@ -65,47 +65,47 @@ These failures remain visible, not skipped or marked passed.
 
 ## Hosted verification
 
-Run [36834625461](https://github.com/xuelongqy/flax/actions/runs/36834625461) completed
-for `e32ddac2ae0968fef9d43c687cd99030d48fa45d`: eight target jobs passed and four
-failed. The package archive workflow
-[36834625184](https://github.com/xuelongqy/flax/actions/runs/36834625184) passed. All 24
-target/engine bridge build records are present. The twelve conditionally skipped
-Linux/native branches belong to the opposite host family; they are not missing target
-tests. Every workflow/job/check was terminal before repairs started.
+Run [36848319474](https://github.com/xuelongqy/flax/actions/runs/36848319474) completed
+for `cacdba4ed45d1fb52d12aaacf16602472c41d5ca`: eight target jobs passed, three failed
+and macOS x64 hit its two-hour job limit. The package archive workflow
+[36848319175](https://github.com/xuelongqy/flax/actions/runs/36848319175) passed. All
+twelve verification artifacts were collected, including the cancelled target's partial
+receipt. There are 22 bridge build records in this round; Linux x64 failed preparation
+before either engine was built. The earlier round built all 24 bridges. The twelve
+skipped Linux/native branches belong to the opposite host family. Every
+workflow/job/check was terminal before repairs started.
 
-| Target                                                         | Observed result                                                                                                                                                                                                                                                                                                |
-| -------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| macOS arm64, Linux arm64, Android x64, iOS simulator arm64/x64 | Both engines and coexistence passed platform runtime, dependency/signature inspection where applicable, and relocated application delivery                                                                                                                                                                     |
-| Android arm32/arm64, iOS device arm64                          | Both bridges and applications built; physical device execution remains pending                                                                                                                                                                                                                                 |
-| Linux x64                                                      | Engine-free preparation passed. Hermes shared runtime passed 38/39, retaining the detached-buffer failure. V8 shared runtime passed 39/39, then Core UI hit a build-hook dependency cycle. The coexistence application passed, but full scope failed                                                           |
-| Windows x64/arm64                                              | Worker-first native DLL tests passed, but Hermes crashed in the independent Dart consumer. V8 standalone JIT/AOT passed; its application reached UI and failed localStorage's directory check. The coexistence application passed, then the separate Dart coexistence check crashed; the target remains failed |
-| macOS x64                                                      | Hermes completed platform delivery. V8 native tests passed, then the independent consumer redundantly downloaded its SDK and failed DNS resolution. The coexistence application passed; the target remains failed                                                                                              |
+| Target                                                         | Observed result                                                                                                                                                                                                                                                                                                                                                                    |
+| -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| macOS arm64, Linux arm64, Android x64, iOS simulator arm64/x64 | Both engines and coexistence passed platform runtime and relocated application delivery, with dependency/signature inspection where applicable                                                                                                                                                                                                                                     |
+| Android arm32/arm64, iOS device arm64                          | Both bridges and applications built; physical device execution remains pending                                                                                                                                                                                                                                                                                                     |
+| Linux x64                                                      | Preparation passed all 478 generator tests, then storage passed 13/14. Flutter's test VM rejected `Isolate.resolvePackageUriSync` in the fresh-process persistence test. Neither engine's full scope ran in this round; the receipt records `failedStage: prepare`                                                                                                                 |
+| Windows x64/arm64                                              | V8 passed standalone Dart JIT/AOT and application delivery, confirming the storage path fix. Native worker-first DLL tests and the Flutter coexistence application passed. Hermes failed in the independent Dart path: x64 at JIT creation, arm64 after successful JIT at relocated AOT creation. The separate Dart coexistence check also crashed; both target jobs remain failed |
+| macOS x64                                                      | Both engines passed standalone Dart JIT/AOT and separate Flutter application delivery. The coexistence application ran, but the job was cancelled during the final independent Dart check at 120 minutes. The partial receipt retains the two engine results and `coexistence: null`; complete target acceptance remains pending                                                   |
 
-The Core UI runner stages unchanged tests as an independent consumer of package copies.
-This removes the cycle between Flax's dev engine and shared native assets without
-removing dependencies or assertions. Canonical test paths preserve generated provider
-identity on macOS. The local Core suite passed all 131 cases with each engine. Both
-independent SDK consumers passed Dart JIT, checksum rejection and relocated AOT
-execution using the cached archive inputs.
+The Core UI runner stages unchanged tests as an independent consumer of package copies,
+removing the dev-engine hook cycle. Canonical paths preserve generated provider
+identity. Local V8 verification passed all 346 package-owned UI cases, all examples and
+the aggregate application. Hermes Core passed 131 cases. Both independent consumers
+passed Dart JIT, checksum rejection and relocated AOT using locked cached archives.
 
-Storage compares normalized native paths with the existing `path` dependency, retaining
-foreign-directory and concurrent-open rejection. A trailing-directory-separator test
-reproduces the previous failure; all 14 storage tests now pass. Its subprocess fixture
-is resolved through the package URI so the documented repository-root command works. All
-four storage UI cases and its persistence application example passed with each engine on
-macOS arm64.
+Storage retains foreign-directory/concurrent-open rejection and compares normalized
+native paths. All four storage UI cases and its persistence application example passed
+with each engine on macOS arm64. The fresh-process fixture now resolves from the two
+supported command roots without the package-URI API unavailable in Flutter's test VM.
+The previous failure was reproduced locally under Flutter; both the repository-root Dart
+command and package-root Flutter command now pass all 14 storage tests.
 
-External runtime/UI/example consumers pass the already downloaded, locked archive into
-both engine and shared-asset hooks, avoiding repeated network downloads when Flutter
-filters custom cache environment variables. Hash and target validation still run.
-Missing platform projects use Flutter's empty template to avoid generating unrelated
-counter-app tests; original example tests remain selected.
+The macOS x64 hosted job needs more than 120 minutes for six debug/release application
+builds plus independent consumers. Only this target's job limit increases to 180
+minutes; command/device timeouts and all assertions remain unchanged. Other targets
+retain their existing job limits.
 
-Windows diagnostics record the actual CRT modules and versions loaded by the Dart CLI
-before opening the engine. The worker-first C++ and Flutter application results do not
-establish why Dart creation crashes; no speculative engine or toolchain change is made.
-The next hosted run must validate Windows and Linux fixes. The SDK/toolchain locks and
-released rc.1 archives remain unchanged.
+Windows diagnostics before engine creation show only operating-system CRT modules; they
+do not establish the CRT loaded later with the engine or the crash cause. Native C++
+success does not certify Dart FFI creation. Further Windows fixes require stronger
+evidence rather than speculative compiler flags. The independently proven Hermes
+transfer SDK defect also remains. SDK/toolchain locks and rc.1 archives are unchanged.
 
 ## Remaining acceptance work
 

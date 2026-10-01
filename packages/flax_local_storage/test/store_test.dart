@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:isolate';
 
 import 'package:flax_local_storage/src/store.dart';
 import 'package:hive_ce/hive_ce.dart';
@@ -320,13 +319,14 @@ void main() {
       const key = 'key\ud800', value = 'value\udfff';
       store.setItem('process', key, value, owner, report);
       await store.close();
+      // Run from either the package or workspace root, including Flutter's test VM.
+      final script = [
+        File('test/support/read_process.dart'),
+        File('packages/flax_local_storage/test/support/read_process.dart'),
+      ].firstWhere((file) => file.existsSync());
       final result = await Process.run('dart', [
         'run',
-        File.fromUri(
-          Isolate.resolvePackageUriSync(
-            Uri.parse('package:flax_local_storage/flax_local_storage.dart'),
-          )!.resolve('../test/support/read_process.dart'),
-        ).path,
+        script.absolute.path,
         directory.path,
       ], workingDirectory: Directory.current.path);
       expect(result.exitCode, 0, reason: '${result.stdout}\n${result.stderr}');
