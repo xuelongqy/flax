@@ -10,6 +10,12 @@ timeout. The root `dart run melos run check:runtime` command builds and runs the
 before Dart integration and package loading verification. Tests never substitute a stub
 engine. Toolchain-only CMake configuration is not runtime coverage.
 
+On Windows, the CTest executable dynamically loads the bridge after process startup,
+then runs the contracts on both the loader and a worker thread, covering Dart isolate
+loading rather than linking the DLL at startup. The same contracts still run through the
+exported C API; test libraries embedded in Flutter applications keep their normal bridge
+dependency.
+
 The same C ABI test body runs against either bootstrap, including serialized thread
 migration with reference release and destruction on the new thread. V8 additionally runs
 [its adapter lifecycle test](../../../flax_engine_v8/native/lifecycle_test.cpp), which

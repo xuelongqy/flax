@@ -604,11 +604,7 @@ Future<void> _checkNpmConsumers(
       'overrides': {for (final archive in archives.values) archive.name: 'file:${p.relative(archive.file.path, from: root.path)}'},
     })}\n',
   );
-  await run('pnpm', [
-    'install',
-    '--offline',
-    '--ignore-scripts',
-  ], directory: root.path);
+  await installOfflineNpmConsumer(workspaceRoot, root.path);
   final nodeLoader = File(
     p.join(
       workspaceRoot,
@@ -633,6 +629,29 @@ Future<void> _checkNpmConsumers(
       p.join(consumer.path, 'tsconfig.json'),
     ], directory: workspaceRoot);
   }
+}
+
+Future<void> installOfflineNpmConsumer(
+  String workspaceRoot,
+  String consumerRoot,
+) async {
+  // Temporary consumers may live on a different mount, with another default store.
+  final modules = readYamlFile(
+    File(p.join(workspaceRoot, 'node_modules', '.modules.yaml')),
+  );
+  final store = modules['storeDir'];
+  if (store is! String || store.isEmpty) {
+    throw StateError(
+      'Workspace pnpm store is missing; install dependencies first',
+    );
+  }
+  await run('pnpm', [
+    'install',
+    '--offline',
+    '--ignore-scripts',
+    '--store-dir',
+    store,
+  ], directory: consumerRoot);
 }
 
 List<String> _npmExportSpecifiers(

@@ -21,9 +21,6 @@ Future<void> main(List<String> arguments) async {
     final compiler = code.targetOS == OS.linux || code.targetOS == OS.windows
         ? null
         : code.cCompiler?.compiler;
-    final prompt = code.targetOS == OS.windows
-        ? code.cCompiler?.windows.developerCommandPrompt
-        : null;
     final entry = Isolate.resolvePackageUriSync(
       Uri.parse('package:flax/native_sdk.dart'),
     );
@@ -34,8 +31,6 @@ Future<void> main(List<String> arguments) async {
       target: target,
       testContracts: input.userDefines['testContracts'] == true,
       compiler: compiler,
-      compilerEnvironmentScript: prompt?.script,
-      compilerEnvironmentArguments: prompt?.arguments ?? const [],
       packageRoot: input.packageRoot,
       coreRoot: coreRoot,
       cacheRoot: Platform.environment['FLAX_ENGINE_SDK_CACHE'] == null

@@ -82,6 +82,12 @@ never rewritten. DLL import libraries are link inputs, not code assets. The fina
 package is checked for the complete runtime closure and the selected architecture, and
 copied applications are executed independently of original build outputs.
 
+Desktop checks launch prebuilt debug applications directly and execute a relocated copy
+of the release test application after removing its source and build trees. They do not
+depend on a Flutter Driver VM-service connection or rebuild the same release entrypoint.
+Runtime-only contracts use ordinary tests and record failures explicitly in the
+integration receipt; UI assertions retain Flutter's widget and semantics checks.
+
 The pinned Flutter release has no Linux/Windows ARM64 SDK archive. Those CI hosts
 install Flutter from its exact stable Git tag and download the matching native Dart SDK
 through Flutter's bootstrap scripts. No Flutter or JavaScript engine is compiled.
@@ -133,7 +139,10 @@ FLAX_IOS_TEAM=<team-id> dart run tool/check_platform.dart --target=ios-device-ar
 Evidence is written to `build/platform/<target>/verification.json` and uploaded by CI.
 Preparation failures also write a receipt with `failedStage` and no successful engine
 stages. Each engine records build, runtime and application stages independently. CI
-uploads installation and emulator diagnostics from `build/platform/<target>/ci/`;
-Android x64 boot has a 10-minute deadline with each ADB call limited to 30 seconds. A
-green build-only job means built, not accepted. A failed full assertion blocks full
-acceptance even when platform smoke succeeds.
+updates that receipt after each completed stage, so a job timeout retains partial
+evidence without claiming application acceptance. Failed application builds retain hook
+input/output and stdout/stderr diagnostics alongside the receipt. CI uploads
+installation and emulator diagnostics from `build/platform/<target>/ci/`; Android x64
+boot has a 10-minute deadline with each ADB call limited to 30 seconds. A green
+build-only job means built, not accepted. A failed full assertion blocks full acceptance
+even when platform smoke succeeds.

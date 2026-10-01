@@ -8,6 +8,11 @@
 #include <iostream>
 #include <stdexcept>
 #include <thread>
+#ifdef FLAX_TEST_DYNAMIC_LIBRARY
+#include <windows.h>
+#define FLAX_STRINGIFY_INNER(value) #value
+#define FLAX_STRINGIFY(value) FLAX_STRINGIFY_INNER(value)
+#endif
 
 namespace {
 const FlaxApi *api;
@@ -73,10 +78,20 @@ int32_t host(void *, FlaxRuntime *runtime, FlaxValueId, const FlaxValueId *args,
 }
 } // namespace
 
-int main() {
+static int runContract() {
   try {
-    require(FLAX_ENGINE_API(999) == nullptr, "Unknown ABI accepted");
-    api = static_cast<const FlaxApi *>(FLAX_ENGINE_API(FLAX_ABI_VERSION));
+#ifdef FLAX_TEST_DYNAMIC_LIBRARY
+    // Match a Dart isolate: load the DLL after startup, on its owning worker.
+    const auto library = LoadLibraryA(FLAX_TEST_DYNAMIC_LIBRARY);
+    require(library != nullptr, "Cannot dynamically load the bridge");
+    const auto bootstrap = reinterpret_cast<decltype(&FLAX_ENGINE_API)>(
+        GetProcAddress(library, FLAX_STRINGIFY(FLAX_ENGINE_API)));
+    require(bootstrap != nullptr, "Missing bridge bootstrap export");
+#else
+    const auto bootstrap = FLAX_ENGINE_API;
+#endif
+    require(bootstrap(999) == nullptr, "Unknown ABI accepted");
+    api = static_cast<const FlaxApi *>(bootstrap(FLAX_ABI_VERSION));
     require(api && api->version == FLAX_ABI_VERSION &&
                 api->struct_size == sizeof(FlaxApi),
             "ABI layout mismatch");
@@ -106,7 +121,7 @@ int main() {
     require(api->make_bytes(runtime, bytes, SIZE_MAX, &transferred, &error.value) == FLAX_ARGUMENT_ERROR, "Unsafe byte length accepted");
     error.check(api->release_value(runtime, byteValue, &error.value));
     require(api->read_bytes(runtime, byteValue, &copied, &byteLength, &error.value) == FLAX_STATE_ERROR, "Released byte handle accepted");
-    require(FLAX_ENGINE_API(1) == nullptr, "Old ABI accepted");
+    require(bootstrap(1) == nullptr, "Old ABI accepted");
     require(number(runtime, eval(runtime, "(() => { const b = new ArrayBuffer(4); const v = new Uint8Array(b); v[0] = 42; const moved = b.transfer(8); return b.byteLength + v.byteLength + new Uint8Array(moved)[0]; })()")) == 42, "Transfer did not detach the original views");
 
     auto captured = eval(runtime, R"JS(
@@ -187,4 +202,20 @@ int main() {
     std::cerr << error.what() << '\n';
     return 1;
   }
+}
+
+int main() {
+#ifdef FLAX_TEST_DYNAMIC_LIBRARY
+  const auto initial = runContract();
+  if (initial != 0)
+    return initial;
+  std::cout << "Dynamic loading contracts passed on the loader thread."
+            << std::endl;
+  int result = 1;
+  std::thread owner([&] { result = runContract(); });
+  owner.join();
+  return result;
+#else
+  return runContract();
+#endif
 }

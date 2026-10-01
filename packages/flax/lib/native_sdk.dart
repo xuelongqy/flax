@@ -117,8 +117,6 @@ Future<FlaxNativeSdkResult> buildFlaxNativeSdk({
   required Uri outputRoot,
   FlaxNativeTarget? target,
   Uri? compiler,
-  Uri? compilerEnvironmentScript,
-  List<String> compilerEnvironmentArguments = const [],
   bool buildTests = false,
   bool testContracts = false,
   Uri? sdkArchive,
@@ -165,30 +163,6 @@ Future<FlaxNativeSdkResult> buildFlaxNativeSdk({
         .whereType<File>()
         .where((f) => f.path.endsWith('.cpp') || f.path.endsWith('.h')),
   ];
-  final environment = <String, String>{};
-  if (compilerEnvironmentScript != null) {
-    // The compiler configuration supplies this trusted Visual Studio script.
-    String quote(String value) {
-      if (RegExp(r'["%\r\n&|<>^]').hasMatch(value)) {
-        throw ArgumentError('Invalid compiler environment argument');
-      }
-      return '"$value"';
-    }
-
-    final result = await _run('cmd', [
-      '/d',
-      '/s',
-      '/c',
-      'call ${quote(compilerEnvironmentScript.toFilePath())} '
-          '${compilerEnvironmentArguments.map(quote).join(' ')} >nul && set',
-    ], capture: true);
-    for (final line in const LineSplitter().convert(result)) {
-      final split = line.indexOf('=');
-      if (split > 0) {
-        environment[line.substring(0, split)] = line.substring(split + 1);
-      }
-    }
-  }
   final options = await flaxNativeCmakeOptions(target, compiler: compiler);
   final build = Directory(p.join(output.path, 'cmake'));
   final previousConfig = File(p.join(build.path, 'CMakeCache.txt'));
@@ -219,7 +193,7 @@ Future<FlaxNativeSdkResult> buildFlaxNativeSdk({
     '-DBUILD_TESTING=${buildTests ? 'ON' : 'OFF'}',
     '-DFLAX_TEST_CONTRACTS=${testContracts ? 'ON' : 'OFF'}',
     ...options,
-  ], environment: environment);
+  ]);
   await _run('cmake', [
     '--build',
     build.path,
@@ -227,7 +201,7 @@ Future<FlaxNativeSdkResult> buildFlaxNativeSdk({
     'Release',
     '--target',
     'flax_$engine',
-  ], environment: environment);
+  ]);
   final bridge = File(p.join(build.path, 'lib', target.bridgeName(engine)));
   if (!bridge.existsSync()) throw StateError('Missing built $engine bridge');
   final assetDir = Directory(p.join(output.path, 'assets'))
@@ -261,7 +235,7 @@ Future<FlaxNativeSdkResult> buildFlaxNativeSdk({
       'Release',
       '--target',
       'flax_test_contracts',
-    ], environment: environment);
+    ]);
     testLibrary =
         File(
           p.join(
@@ -519,13 +493,8 @@ Future<String> _run(
   String executable,
   List<String> arguments, {
   bool capture = false,
-  Map<String, String>? environment,
 }) async {
-  final result = await Process.run(
-    executable,
-    arguments,
-    environment: environment,
-  );
+  final result = await Process.run(executable, arguments);
   if (result.exitCode != 0) {
     throw ProcessException(
       executable,

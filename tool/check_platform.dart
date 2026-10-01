@@ -150,6 +150,7 @@ Future<void> main(List<String> arguments) => command(() async {
       record['sdk'] = jsonDecode(
         File('${output.path}/sdk-receipt.json').readAsStringSync(),
       );
+      writeReceipt();
       stage = 'runtime';
       if (!options.buildOnly && !target.mobile) {
         await run('cmake', [
@@ -181,6 +182,7 @@ Future<void> main(List<String> arguments) => command(() async {
           ], directory: '$root/packages/flax_engine_$engine');
         }
         record['ran'] = true;
+        writeReceipt();
         if (options.scope == 'all') {
           stage = 'ui';
           await dart('tool/check_ui.dart', ['--engine=$engine']);
@@ -202,12 +204,14 @@ Future<void> main(List<String> arguments) => command(() async {
       errors.add('$engine: $error');
       stderr.writeln('$engine ${target.name}: $error');
     }
+    writeReceipt();
   }
   if (assets.length == options.engines.length) {
     var stage = 'sharedLibraries';
     try {
       await verifySharedLibraries(assets);
       sharedLibrariesVerified = true;
+      writeReceipt();
       stage = 'coexistence';
       if (options.engines.length == 2 && !options.buildOnly) {
         coexistence = await verifyPlatformApplication(

@@ -38,17 +38,17 @@ All 24 extracted SDKs passed Flax's manifest/file-hash validation and actual
 Mach-O/ELF/PE architecture/dependency inspection. This SDK consumption check does not
 certify bridge compilation or execution.
 
-| Local stage                           | Observed result                                                                                                                                                                                                    |
-| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Apple bridge builds                   | 10/24 target-engine groups built: macOS arm64/x64, iOS device arm64 and simulator arm64/x64, both engines; cross builds do not certify execution                                                                   |
-| Tooling checks                        | 59/59 tool tests passed; workspace analysis reported no issues; formatting, workflow lint, documentation and package-content checks passed                                                                         |
-| macOS arm64 platform scope            | Both engines passed native contracts, independent Dart JIT/AOT, external Flutter debug/release, signatures/dependencies and relocated release execution; both-engine coexistence passed                            |
-| V8 shared runtime                     | 39/39 contracts passed on macOS arm64                                                                                                                                                                              |
-| V8 desktop UI                         | 346/346 package-owned UI cases passed; changed Core assertions were rerun, 131/131 passed plus its package example                                                                                                 |
-| SDK/bridge caching                    | Repeated build reused bridge objects; editing an isolated ABI source rebuilt only bridge objects/linking; all SDK library hashes remained unchanged                                                                |
-| iOS arm64 simulator V8 platform scope | 14 reported checks passed, including ABI/native, identity/UTF-16/reentry, loop closures and UI; copied device bundle passed again; Dart JIT, V8 jitless                                                            |
-| iOS V8 full attempt                   | Shared/runtime application reported 42 passing checks. Core 131, Canvas 3, Cupertino 2, Fetch 20 and Storage 4 UI cases passed. Material: 166 passed, 11 failed; WebSocket was not reached. Full acceptance failed |
-| Hermes shared runtime                 | 38/39 passed; constructing Uint8Array from a detached buffer did not throw the required TypeError                                                                                                                  |
+| Local stage                        | Observed result                                                                                                                                                                                                    |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Apple bridge builds                | 10/24 target-engine groups built: macOS arm64/x64, iOS device arm64 and simulator arm64/x64, both engines; cross builds do not certify execution                                                                   |
+| Tooling checks                     | 61/61 tool tests passed; workspace analysis reported no issues; formatting, workflow lint, documentation and package-content checks passed                                                                         |
+| macOS arm64 platform scope         | Both engines passed native contracts, independent Dart JIT/AOT, external Flutter debug/release, signatures/dependencies and relocated release execution; both-engine coexistence passed                            |
+| V8 shared runtime                  | 39/39 contracts passed on macOS arm64                                                                                                                                                                              |
+| V8 desktop UI                      | 346/346 package-owned UI cases passed; changed Core assertions were rerun, 131/131 passed plus its package example                                                                                                 |
+| SDK/bridge caching                 | Repeated build reused bridge objects; editing an isolated ABI source rebuilt only bridge objects/linking; all SDK library hashes remained unchanged                                                                |
+| iOS arm64 simulator platform scope | Both engines and coexistence passed ABI/native, identity/UTF-16/reentry, loop closures, UI, signatures/dependencies and relocated bundles; Dart JIT, V8 jitless                                                    |
+| iOS V8 full attempt                | Shared/runtime application reported 42 passing checks. Core 131, Canvas 3, Cupertino 2, Fetch 20 and Storage 4 UI cases passed. Material: 166 passed, 11 failed; WebSocket was not reached. Full acceptance failed |
+| Hermes shared runtime              | 38/39 passed; constructing Uint8Array from a detached buffer did not throw the required TypeError                                                                                                                  |
 
 The Hermes behavior is reproduced with a minimal JS expression through rc.1. The
 contract is retained. Its precise engine/patch cause is not established here, and this
@@ -64,46 +64,43 @@ These failures remain visible, not skipped or marked passed.
 
 ## Hosted verification
 
-Run [36747208661](https://github.com/xuelongqy/flax/actions/runs/36747208661) validated
-commit `bb13f09`. Five target jobs passed, six failed and one timed out. Its package
-archive workflow passed. Target receipts distinguish build, execution and delivery:
+Run [36809367826](https://github.com/xuelongqy/flax/actions/runs/36809367826) validated
+`3d2962e`: six target jobs passed, five failed and one exceeded the two-hour limit. The
+package archive workflow passed. Receipts establish the following stages:
 
-| Target                                | Observed result                                                                                                                             |
-| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| macOS arm64/x64                       | Both engines and coexistence passed runtime, application and relocation checks                                                              |
-| Linux arm64                           | Both engines and coexistence passed Flutter application checks; the separate C++ consumer lacked pthread linkage                            |
-| Linux x64                             | TLS/transport 28/28 and analysis passed; documentation formatting stopped the common checks before engine validation                        |
-| Windows x64/arm64                     | Native Hermes CTest passed; hook-built Hermes crashed during runtime creation; V8 failed to link its incorrectly scoped vtable declaration  |
-| Android x64                           | V8 passed runtime and application delivery; Hermes Flutter Driver waited for VM service; coexistence failed on duplicate `libc++_shared.so` |
-| Android arm32/arm64, iOS device arm64 | Both bridges and application bundles built; physical-device execution remains unverified                                                    |
-| iOS simulator arm64                   | V8 passed runtime and relocation; Hermes driver timed out; coexistence could not obtain Xcode build settings                                |
-| iOS simulator x64                     | Hermes and coexistence assertions passed in raw logs; V8 driver timed out and the job ended before a final receipt                          |
+| Target                                      | Observed result                                                                                                                                 |
+| ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| macOS arm64, Linux arm64, iOS simulator x64 | Both engines and coexistence passed platform-scope runtime and application delivery                                                             |
+| Android arm32/arm64, iOS device arm64       | Both engines built; device execution remains pending                                                                                            |
+| Linux x64                                   | Common preparation failed because the temporary offline npm consumer selected a different pnpm store mount; engine verification was not reached |
+| Windows x64/arm64                           | Both bridges built; Hermes crashed during Dart runtime creation; V8 passed standalone JIT/AOT but Flutter application hooks failed              |
+| Android x64                                 | Both APKs built; unquoted remote date arguments prevented fresh log monitoring and runtime acceptance                                           |
+| iOS simulator arm64                         | Hermes and coexistence passed; the individual V8 runtime assertion hit the widget semantics-handle check                                        |
+| macOS x64                                   | Individual application tests progressed, but the job timed out during coexistence without a final receipt                                       |
 
-The follow-up links standalone Linux consumers with pthread/dl, corrects the vtable
-namespace and makes Windows hooks use the same Visual Studio generator as native
-contracts. It migrates existing Ninja caches when necessary. A shared build hook owns
-Android C++/Windows CRT assets; both engines verify byte equality before omitting their
-copies. Android and simulator tests use native launch and fresh completion logs while
-real iOS debug tests keep the debugger-based driver.
+The current fixes reuse the installed workspace pnpm store for offline archive consumers
+and quote the Android timestamp command for the device shell. Pure runtime contracts use
+plain tests with explicit integration failure records; UI tests retain semantics checks.
+Desktop applications launch prebuilt binaries with bounded execution and reuse the
+already checked release bundle for source-independent relocation, removing one release
+build per application and the Flutter Driver connection. Windows hooks use CMake's
+Visual Studio generator directly, without a redundant batch environment step.
+Application failures retain hook diagnostics; stage receipts are written incrementally.
+Windows native contracts additionally test dynamic DLL loading on loader/worker threads.
 
-Local follow-up checks: 59/59 tool tests and isolated package archive/consumer checks
-passed. V8 passed 2/2 native CTests, 39/39 runtime contracts, independent Dart JIT/AOT,
-checksum rejection and relocation. Hermes native CTest passed 1/1; its released SDK
-retains the 38/39 transfer-constructor failure. Actual SDK hook inputs produced one
-Android C++ asset and ten Windows CRT assets; that validates ownership, not target
-execution. Windows and Android runtime fixes still require hosted verification.
+Local regression passed 61 tool tests, three emulator-startup checks, four documentation
+tests, analysis, workflow lint and isolated Dart/npm archive consumers. Both-engine
+macOS arm64 and iOS arm64 simulator platform checks passed, including coexistence and
+relocation. Native Hermes CTest passed 1/1; V8 passed 2/2 CTests and 39/39 runtime
+contracts. Hermes still fails its released SDK's detached-buffer constructor contract
+(38/39). No SDK/toolchain lock or production ABI was changed.
 
-The latest local iOS arm64 simulator application check passed Hermes, V8 and
-coexistence, including native contracts, shared smoke assertions, signatures, dependency
-closure and execution of relocated bundles. Simulator evidence is Dart JIT/V8 jitless.
-An earlier V8 attempt reported an intermittent platform SemanticsHandle failure;
-pre-test frame warming stalled and was removed. That failure is retained as a risk, not
-bypassed. Independent desktop Dart/native coexistence also passed.
-
-Disposable runtime/application consumers now start from the repository lockfile.
-Otherwise a fresh resolution selected jni_flutter 1.0.4, whose generated JNI version
-check failed against the installed 1.0.x JNI dependency. The existing locked 1.0.3
-dependencies and all SDK/toolchain pins are unchanged.
+Windows Hermes creation remains unresolved: a passing linked native executable does not
+establish Dart dynamic-loading compatibility. The new DLL test and retained hook logs
+require hosted Windows verification; they are diagnostic coverage, not a claim that the
+crash has been repaired. Android runtime, macOS x64 completion and the baseline Linux
+full scope likewise require the new hosted run. Physical device execution remains
+pending.
 
 ## Remaining acceptance work
 

@@ -132,7 +132,7 @@ Future<Map<String, Object?>> verifyPlatformApplication(
     final marker = 'FLAX_PLATFORM_${DateTime.now().microsecondsSinceEpoch}';
     // Real iOS debug builds still need Flutter's debugger for Dart JIT.
     final directLaunch =
-        target.os == 'android' || target.name.contains('simulator');
+        target.os != 'ios' || target.name.contains('simulator');
     Future<void> drive(String entry) async {
       if (directLaunch) {
         await run('flutter', [
@@ -142,14 +142,18 @@ Future<Map<String, Object?>> verifyPlatformApplication(
           '--target=integration_test/$entry',
         ], directory: app);
         final product = platformProduct(app, target, release: false);
-        await _runMobileApplication(
-          target,
-          device!,
-          product,
-          await _applicationBundle(app, target, product),
-          marker,
-          timeout: Duration(minutes: full ? 10 : 3),
-        );
+        if (target.mobile) {
+          await _runMobileApplication(
+            target,
+            device!,
+            product,
+            await _applicationBundle(app, target, product),
+            marker,
+            timeout: Duration(minutes: full ? 10 : 3),
+          );
+        } else {
+          await runDesktopApplication(target, product, marker);
+        }
       } else {
         await run('flutter', [
           'drive',
@@ -171,6 +175,17 @@ Future<Map<String, Object?>> verifyPlatformApplication(
         marker: marker,
       ),
     );
+    if (!target.mobile) {
+      File('${integration.path}/release_test.dart').writeAsStringSync(
+        _platformTest(
+          target,
+          engine,
+          release: true,
+          coexistence: coexistence,
+          full: full,
+        ),
+      );
+    }
     if (coexistence) {
       final source = File('$root/tests/runtime/engines.dart')
           .readAsStringSync();
@@ -199,7 +214,13 @@ Future<Map<String, Object?>> verifyPlatformApplication(
       release: true,
       signed: !buildOnly,
     );
-    await run('flutter', ['build', ...buildArgs, '--no-pub'], directory: app);
+    await run('flutter', [
+      'build',
+      ...buildArgs,
+      '--no-pub',
+      if (!target.mobile) '--target=integration_test/release_test.dart',
+      if (target.os == 'windows') '--verbose',
+    ], directory: app);
     final production = platformProduct(app, target, release: true);
     final copied = '${evidence.path}/application';
     final previous = Directory(copied);
@@ -314,60 +335,24 @@ void main() {
     result['ran'] = true;
     // Desktop relocation launches the copied application after deleting its sources.
     if (!target.mobile) {
-      File('${integration.path}/release_test.dart').writeAsStringSync(
-        _platformTest(
-          target,
-          engine,
-          release: true,
-          coexistence: coexistence,
-          full: full,
-        ),
-      );
-      await run('flutter', [
-        'build',
-        ...buildArgs,
-        '--no-pub',
-        '--target=integration_test/release_test.dart',
-      ], directory: app);
       final relocated = Directory('${work.path}/relocated');
       if (target.apple) {
         relocated.createSync();
         await run('ditto', [
-          platformProduct(app, target, release: true),
+          '$copied/flax_standalone.app',
           '${relocated.path}/flax_standalone.app',
         ]);
       } else {
-        copyTree(
-          Directory(platformProduct(app, target, release: true)),
-          relocated,
-        );
+        copyTree(Directory(copied), relocated);
       }
       // Remove inputs and build outputs before executing the relocated application.
       Directory(app).deleteSync(recursive: true);
       packages.deleteSync(recursive: true);
-      final binary = target.os == 'windows'
-          ? '${relocated.path}/flax_standalone.exe'
-          : target.os == 'macos'
-          ? '${relocated.path}/flax_standalone.app/Contents/MacOS/flax_standalone'
-          : '${relocated.path}/flax_standalone';
-      final process = await Process.start(
-        binary,
-        [],
-        workingDirectory: relocated.path,
-        environment: {'LD_LIBRARY_PATH': '', 'DYLD_LIBRARY_PATH': ''},
+      await runDesktopApplication(
+        target,
+        target.apple ? '${relocated.path}/flax_standalone.app' : relocated.path,
+        'FLAX_PLATFORM_PASSED',
       );
-      final output = process.stdout.transform(utf8.decoder).join();
-      final errors = process.stderr.transform(utf8.decoder).join();
-      final code = await process.exitCode.timeout(
-        const Duration(minutes: 2),
-        onTimeout: () {
-          process.kill();
-          throw StateError('Relocated application did not finish');
-        },
-      );
-      if (code != 0 || !(await output).contains('FLAX_PLATFORM_PASSED')) {
-        throw StateError('Relocated application failed: $code ${await errors}');
-      }
       result['applicationDelivered'] = true;
     } else {
       if (!directLaunch || (full && owners.isNotEmpty)) {
@@ -465,6 +450,23 @@ void main() {
     }
 
     return result;
+  } catch (_) {
+    final hooks = Directory('${work.path}/app/.dart_tool/hooks_runner');
+    if (hooks.existsSync()) {
+      final diagnostics = Directory(
+        '${evidence.path}/../ci/hooks-${coexistence ? 'coexistence' : engine}',
+      )..createSync(recursive: true);
+      for (final file in hooks.listSync(recursive: true).whereType<File>()) {
+        if (!['.log', '.json', '.txt'].contains(p.extension(file.path))) {
+          continue;
+        }
+        final copy = File(
+          p.join(diagnostics.path, p.relative(file.path, from: hooks.path)),
+        )..parent.createSync(recursive: true);
+        file.copySync(copy.path);
+      }
+    }
+    rethrow;
   } finally {
     if (work.existsSync()) work.deleteSync(recursive: true);
   }
@@ -601,6 +603,7 @@ String _platformTest(
 }) =>
     '''
 import 'dart:ffi';
+import 'dart:async';
 import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
@@ -613,26 +616,30 @@ ${coexistence ? "import '../coexistence.dart' as engines;" : ''}
 external int flax_test_contracts_run();
 void main() {
   final binding = IntegrationTestWidgetsFlutterBinding.ensureInitialized();
-  test('process ABI and native contracts', () {
-    try {
+  void contract(String name, FutureOr<void> Function() body) {
+    test(name, () async {
+      try {
+        await body();
+      } catch (error, stack) {
+        binding.results[name] = Failure(name, '\$error\\n\$stack');
+        rethrow;
+      }
+    });
+  }
+  contract('process ABI and native contracts', () {
     expect(Abi.current(), Abi.${target.os}${target.architecture == 'arm32'
         ? 'Arm'
         : target.architecture == 'x64'
         ? 'X64'
         : 'Arm64'});
     expect(flax_test_contracts_run(), 0);
-    } catch (error, stack) {
-      binding.results['process ABI and native contracts'] = Failure(
-        'process ABI and native contracts', '\$error\\n\$stack');
-      rethrow;
-    }
   });
   void register(String name, dynamic Function() body) {
     if (${full || coexistence} || name.startsWith('loop closures:') ||
         name == 'JS calls Dart synchronously, including nested Dart and JS calls' ||
         name == 'UTF-16 strings and property names preserve unpaired surrogates' ||
         name == 'objects retain identity and support properties') {
-      testWidgets(name, (_) async { await body(); });
+      contract(name, () async { await body(); });
     }
   }
   group('shared runtime', () {
@@ -641,10 +648,46 @@ void main() {
   group('engine loop closures', () {
   flaxLoopClosureContract(${engine == 'v8' ? 'FlaxV8Engine' : 'FlaxHermesEngine'}.createRuntime, registerTest: register);
   });
-  ${coexistence ? "testWidgets('engine coexistence and callback reentry', (_) async { engines.main(); });" : "testWidgets('external application UI', applicationScenario);"}
-  ${release || target.os == 'android' || target.name.contains('simulator') ? "binding.allTestsPassed.future.then((passed) { print(passed ? '$marker' : 'FLAX_PLATFORM_FAILED'); exit(passed ? 0 : 1); });" : "binding.reportData = {'target': '${target.name}', 'engine': '$engine'};"}
+  ${coexistence ? "contract('engine coexistence and callback reentry', engines.main);" : "testWidgets('external application UI', applicationScenario);"}
+  ${release || target.os != 'ios' || target.name.contains('simulator') ? "binding.allTestsPassed.future.then((passed) { print(passed ? '$marker' : 'FLAX_PLATFORM_FAILED'); exit(passed ? 0 : 1); });" : "binding.reportData = {'target': '${target.name}', 'engine': '$engine'};"}
 }
 ''';
+
+Future<void> runDesktopApplication(
+  FlaxNativeTarget target,
+  String product,
+  String marker, {
+  Duration timeout = const Duration(minutes: 10),
+}) async {
+  final binary = switch (target.os) {
+    'macos' => '$product/Contents/MacOS/flax_standalone',
+    'windows' => '$product/flax_standalone.exe',
+    'linux' => '$product/flax_standalone',
+    _ => throw UnsupportedError('Desktop application required'),
+  };
+  final process = await Process.start(
+    binary,
+    [],
+    workingDirectory: product,
+    environment: {'LD_LIBRARY_PATH': '', 'DYLD_LIBRARY_PATH': ''},
+  );
+  final output = process.stdout.transform(utf8.decoder).join();
+  final errors = process.stderr.transform(utf8.decoder).join();
+  final code = await process.exitCode.timeout(
+    timeout,
+    onTimeout: () {
+      process.kill(ProcessSignal.sigkill);
+      throw TimeoutException('Application did not finish: $binary', timeout);
+    },
+  );
+  final out = await output;
+  final err = await errors;
+  stdout.write(out);
+  stderr.write(err);
+  if (code != 0 || !out.contains(marker)) {
+    throw StateError('Application failed: $code $out $err');
+  }
+}
 
 Future<String> _applicationBundle(
   String app,
@@ -740,13 +783,15 @@ Future<void> _runMobileApplication(
     '-s',
     device,
     'shell',
-    'date',
-    '+%m-%d %H:%M:%S.%3N',
+    "date '+%m-%d %H:%M:%S.%3N'",
   ]);
   final since = (time.stdout as String).trim();
   if (time.exitCode != 0 ||
       !RegExp(r'^\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}$').hasMatch(since)) {
-    throw StateError('Cannot obtain device log start time');
+    throw StateError(
+      'Cannot obtain device log start time: '
+      '${time.exitCode} ${time.stdout} ${time.stderr}',
+    );
   }
   final monitor = await Process.start(adb, [
     '-s',
