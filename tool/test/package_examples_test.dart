@@ -146,6 +146,7 @@ dependencies:
         contains('--platforms=${currentCheckTarget().os}'),
       );
       expect(commands.map((c) => c.$2.first), ['create', 'pub', 'test']);
+      expect(commands.first.$2, contains('--empty'));
       expect(commands.last.$3, isNot(runnable.example.path));
       expect(
         File('${runnable.example.path}/pubspec.yaml').readAsStringSync(),

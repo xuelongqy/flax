@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:hive_ce/hive_ce.dart';
+import 'package:path/path.dart' as p;
 
 typedef FlaxStorageChange = ({String? key, String? oldValue, String? newValue});
 typedef _StorageKey = (String?, String);
@@ -35,8 +36,10 @@ class FlaxLocalStorageStore {
     final box = await Hive.openBox<List<dynamic>>(boxName, path: directory);
     // Hive also deduplicates concurrently opening boxes by name, regardless of path.
     if (box.path == null ||
-        File(box.path!).absolute.path !=
-            File('$directory/$boxName.hive').absolute.path) {
+        !p.equals(
+          p.absolute(box.path!),
+          p.absolute(p.join(directory, '$boxName.hive')),
+        )) {
       throw StateError(
         'The Flax localStorage box name belongs to another directory',
       );

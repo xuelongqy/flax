@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:isolate';
 
 import 'package:flax_local_storage/src/store.dart';
 import 'package:hive_ce/hive_ce.dart';
@@ -21,6 +22,20 @@ void main() {
     if (store.box.isOpen) await store.close();
     await directory.delete(recursive: true);
   });
+
+  test(
+    'storage accepts native separators and a trailing directory separator',
+    () async {
+      await store.close();
+      store = await FlaxLocalStorageStore.open(
+        '${directory.path}${Platform.pathSeparator}',
+        10485760,
+      );
+      store.setItem(null, 'same-directory', 'value', owner, report);
+      await store.flush();
+      expect(store.getItem(null, 'same-directory'), 'value');
+    },
+  );
 
   test(
     'areas share one box and support arbitrary UTF-16 keys and values',
@@ -307,7 +322,11 @@ void main() {
       await store.close();
       final result = await Process.run('dart', [
         'run',
-        'test/support/read_process.dart',
+        File.fromUri(
+          Isolate.resolvePackageUriSync(
+            Uri.parse('package:flax_local_storage/flax_local_storage.dart'),
+          )!.resolve('../test/support/read_process.dart'),
+        ).path,
         directory.path,
       ], workingDirectory: Directory.current.path);
       expect(result.exitCode, 0, reason: '${result.stdout}\n${result.stderr}');

@@ -8,6 +8,7 @@ import 'package:yaml/yaml.dart';
 import 'engine_selection.dart';
 import 'package_discovery.dart';
 import 'process.dart';
+import 'example_engine.dart';
 
 void copyTree(Directory source, Directory target) {
   target.createSync(recursive: true);
@@ -124,39 +125,18 @@ Future<void> verifyPackage(
     copyDartPackages(root, temporary, ['flax', 'flax_engine_$engine']);
     final consumer = Directory(p.join(temporary.path, 'consumer'))
       ..createSync();
-    final localArchive = Platform.environment['FLAX_ENGINE_SDK_ARCHIVE'];
-    final localDigest = Platform.environment['FLAX_ENGINE_SDK_SHA256'];
-    if ((localArchive == null) != (localDigest == null)) {
-      throw StateError(
-        'Set both FLAX_ENGINE_SDK_ARCHIVE and FLAX_ENGINE_SDK_SHA256',
-      );
-    }
-    final hooks = localArchive == null
-        ? null
-        : {
-            'user_defines': {
-              'flax_native_assets': {
-                'sdkArchive': localArchive,
-                'sdkSha256': localDigest,
-              },
-              'flax_engine_$engine': {
-                'sdkArchive': localArchive,
-                'sdkSha256': localDigest,
-              },
-            },
-          };
-    File(p.join(consumer.path, 'pubspec.yaml')).writeAsStringSync(
-      jsonEncode({
-        'name': 'flax_runtime_consumer',
-        'publish_to': 'none',
-        'environment': {'sdk': '^3.13.2'},
-        'dependencies': {
-          'flax': {'path': '../flax'},
-          'flax_engine_$engine': {'path': '../flax_engine_$engine'},
-        },
-        'hooks': ?hooks,
-      }),
-    );
+    final manifest = <String, dynamic>{
+      'name': 'flax_runtime_consumer',
+      'publish_to': 'none',
+      'environment': {'sdk': '^3.13.2'},
+      'dependencies': {
+        'flax': {'path': '../flax'},
+        'flax_engine_$engine': {'path': '../flax_engine_$engine'},
+      },
+    };
+    addCandidateSdk(manifest, engine, root: root.path);
+    File(p.join(consumer.path, 'pubspec.yaml'))
+        .writeAsStringSync(jsonEncode(manifest));
     Directory(p.join(consumer.path, 'bin')).createSync();
     final enginePackage = 'flax_engine_$engine';
     final fixture = File(
@@ -190,7 +170,7 @@ Future<void> verifyPackage(
     );
     await jit();
 
-    if (localArchive != null) {
+    if (manifest.containsKey('hooks')) {
       final pubspec = File(p.join(consumer.path, 'pubspec.yaml'));
       final original = pubspec.readAsStringSync();
       try {

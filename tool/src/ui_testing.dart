@@ -48,6 +48,15 @@ Future<int> runFrameworkTests(
   }
   for (final test in tests) {
     final package = Directory(test).parent.parent.path;
+    if (p.basename(package) == 'flax') {
+      await _runIsolated(
+        root,
+        packages.where((p) => p.name == 'flax').toList(),
+        engine,
+        testPaths,
+      );
+      continue;
+    }
     await run('flutter', [
       'test',
       '--enable-vmservice',
@@ -167,26 +176,23 @@ Future<void> _runIsolated(
       selected.map((package) => package.name),
       replaceEngineWith: engine,
     ).toList()..sort();
-    final localArchive = Platform.environment['FLAX_ENGINE_SDK_ARCHIVE'];
-    final localDigest = Platform.environment['FLAX_ENGINE_SDK_SHA256'];
-    File(p.join(temporary.path, 'pubspec.yaml')).writeAsStringSync(
-      jsonEncode({
-        'name': 'flax_ui_$engine',
-        'version': '0.0.0',
-        'publish_to': 'none',
-        'environment': {'sdk': '^3.13.2', 'flutter': '>=3.47.2'},
-        'workspace': ['packages/*'],
-        if (localArchive != null && localDigest != null)
-          'hooks': {
-            'user_defines': {
-              'flax_engine_$engine': {
-                'sdkArchive': localArchive,
-                'sdkSha256': localDigest,
-              },
-            },
-          },
-      }),
-    );
+    final manifest = <String, dynamic>{
+      'name': 'flax_ui_$engine',
+      'version': '0.0.0',
+      'publish_to': 'none',
+      'environment': {'sdk': '^3.13.2', 'flutter': '>=3.47.2'},
+      'workspace': ['packages/*'],
+      'dependencies': {
+        'flutter': {'sdk': 'flutter'},
+        for (final name in copiedNames) name: {'path': 'packages/$name'},
+      },
+      'dev_dependencies': {
+        'flutter_test': {'sdk': 'flutter'},
+      },
+    };
+    addCandidateSdk(manifest, engine, root: root);
+    File(p.join(temporary.path, 'pubspec.yaml'))
+        .writeAsStringSync(jsonEncode(manifest));
     final targetPackages = Directory(p.join(temporary.path, 'packages'))
       ..createSync();
     final sourcePackages = {
@@ -235,18 +241,31 @@ Future<void> _runIsolated(
     }
     await run('flutter', ['pub', 'get'], directory: temporary.path);
     for (final package in selected) {
-      final directory = p.join(
-        targetPackages.path,
-        p.basename(package.directory.path),
-      );
+      final directory = Directory(
+        p.join(targetPackages.path, p.basename(package.directory.path)),
+      ).resolveSymbolicLinksSync();
+      // flax's own dev engine depends back on flax through shared native assets.
+      // Run its unchanged tests as a consumer so test-only edges cannot form a hook cycle.
+      final core = package.name == 'flax';
+      if (core) {
+        final fixtures = Directory(
+          p.join(directory, '.dart_tool', 'flax', 'ui'),
+        );
+        if (fixtures.existsSync()) {
+          _copyAll(
+            fixtures,
+            Directory(p.join(temporary.path, '.dart_tool', 'flax', 'ui')),
+          );
+        }
+      }
       await run('flutter', [
         'test',
         '--enable-vmservice',
         '--no-pub',
         '--reporter',
         'expanded',
-        ...testPaths,
-      ], directory: directory);
+        ...testPaths.map((path) => core ? p.join(directory, path) : path),
+      ], directory: core ? temporary.path : directory);
     }
   } finally {
     temporary.deleteSync(recursive: true);

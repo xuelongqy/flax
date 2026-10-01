@@ -63,6 +63,11 @@ normal semantics and leak assertions.
 | Engine-specific      | Engine-native CTest and test-only native entry                                                                 | Hermes block scoping/transfer, V8 lifecycle and actual JIT or iOS jitless; native assertions remain enabled in release builds                 |
 | Platform/application | `tool/src/platform_binary.dart`, external app, package examples and aggregate                                  | ELF/Mach-O/PE ABI and dependency checks, Linux glibc baseline, Windows DLL/CRT, APK ABI, Apple framework references/signatures and relocation |
 
+Core headless UI tests run unchanged from a temporary consumer root, avoiding the
+build-hook cycle from Flax's own dev engine. Canonical test paths keep their generated
+provider identity. Staged platform projects use Flutter's empty template and retain
+existing example tests.
+
 A mocked `TargetPlatform` remains a shared assertion. Fake-clock timing assertions run
 with `AutomatedTestWidgetsFlutterBinding`; live device tests assert asynchronous
 completion without assuming a real frame finishes in 19 ms. VM-service GC runs in
@@ -107,16 +112,16 @@ build consumes only the SDK selected by `--target`.
 
 SDK cache keys use archive hashes and targets. Set `FLAX_ENGINE_SDK_CACHE` for a shared
 verified download cache in native/Dart commands; default hook caches stay under the hook
-output. Flutter can filter custom environment variables when running hooks, so platform
-application verification supplies the already downloaded archive and locked hash using
-the existing `sdkArchive`/`sdkSha256` inputs. It still validates that archive and the
-extracted SDK. Receipt and diagnostic discovery excludes extracted SDK cache trees,
-whose notice paths can exceed Windows' path limit. Bridge builds remain CMake
-incremental builds with hook source dependencies. `sdkArchive` plus `sdkSha256` under
-the engine's `hooks.user_defines` supports a local candidate archive with identical
-validation. No fallback source engine build is attempted. On Android/Windows, also set
-those candidate inputs for `flax_native_assets`. This shared dependency registers
-C++/CRT assets once and each engine checks byte equality.
+output. Flutter can filter custom environment variables when running hooks, so external
+runtime/UI/example/application verification supplies an available cached archive and
+locked hash using the existing `sdkArchive`/`sdkSha256` inputs. It still validates that
+archive and the extracted SDK. Receipt and diagnostic discovery excludes extracted SDK
+cache trees, whose notice paths can exceed Windows' path limit. Bridge builds remain
+CMake incremental builds with hook source dependencies. `sdkArchive` plus `sdkSha256`
+under the engine's `hooks.user_defines` supports a local candidate archive with
+identical validation. No fallback source engine build is attempted. On Android/Windows,
+also set those candidate inputs for `flax_native_assets`. This shared dependency
+registers C++/CRT assets once and each engine checks byte equality.
 `dart test tool/test/native_sdk_test.dart` checks corrupt archives, wrong targets,
 missing dependencies, unsafe paths, atomic/concurrent preparation and offline cache
 behavior.

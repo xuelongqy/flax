@@ -41,18 +41,19 @@ certify bridge compilation or execution.
 | Local stage                        | Observed result                                                                                                                                                                                                    |
 | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Apple bridge builds                | 10/24 target-engine groups built: macOS arm64/x64, iOS device arm64 and simulator arm64/x64, both engines; cross builds do not certify execution                                                                   |
-| Tooling checks                     | 61/61 tool tests passed; workspace analysis reported no issues; formatting, workflow lint, documentation and package-content checks passed                                                                         |
+| Tooling checks                     | 64/64 tool tests passed; changed tooling/storage analysis reported no issues; earlier formatting, workflow lint, documentation and package-content checks passed                                                   |
 | macOS arm64 platform scope         | Both engines passed native contracts, independent Dart JIT/AOT, external Flutter debug/release, signatures/dependencies and relocated release execution; both-engine coexistence passed                            |
 | V8 shared runtime                  | 39/39 contracts passed on macOS arm64                                                                                                                                                                              |
-| V8 desktop UI                      | 346/346 package-owned UI cases passed; changed Core assertions were rerun, 131/131 passed plus its package example                                                                                                 |
+| V8 desktop UI                      | 346/346 package-owned UI cases, all package examples and the aggregate application passed after the hook/cache/scaffolding fixes; Hermes Core passed 131/131                                                       |
 | SDK/bridge caching                 | Repeated build reused bridge objects; editing an isolated ABI source rebuilt only bridge objects/linking; all SDK library hashes remained unchanged                                                                |
 | iOS arm64 simulator platform scope | Both engines and coexistence passed ABI/native, identity/UTF-16/reentry, loop closures, UI, signatures/dependencies and relocated bundles; Dart JIT, V8 jitless                                                    |
 | iOS V8 full attempt                | Shared/runtime application reported 42 passing checks. Core 131, Canvas 3, Cupertino 2, Fetch 20 and Storage 4 UI cases passed. Material: 166 passed, 11 failed; WebSocket was not reached. Full acceptance failed |
 | Hermes shared runtime              | 38/39 passed; constructing Uint8Array from a detached buffer did not throw the required TypeError                                                                                                                  |
 
-The Hermes behavior is reproduced with a minimal JS expression through rc.1. The
-contract is retained. Its precise engine/patch cause is not established here, and this
-task does not alter the released engine or hide the failure with a JS shim.
+The Hermes behavior is reproduced in an independent C++ consumer linking only the
+checksum-locked rc.1 SDK: `new Uint8Array(buffer)` succeeds after `buffer.transfer()`.
+This establishes an engine SDK defect independent of Flax ABI. The assertion remains
+enabled; this task does not change rc.1 or hide the failure with a JS shim.
 
 Device UI registration now runs synchronously and fixture loading uses `setUpAll`.
 Viewport, widget search and fake-clock assumptions exposed by early device attempts were
@@ -64,61 +65,58 @@ These failures remain visible, not skipped or marked passed.
 
 ## Hosted verification
 
-Run [36822347189](https://github.com/xuelongqy/flax/actions/runs/36822347189) completed
-for `7f2e13b`: six target jobs passed and six failed. The package archive workflow
-[36822347014](https://github.com/xuelongqy/flax/actions/runs/36822347014) passed.
-Conditionally skipped Linux/native branches belong to the opposite host family and are
-not missing target tests.
+Run [36834625461](https://github.com/xuelongqy/flax/actions/runs/36834625461) completed
+for `e32ddac2ae0968fef9d43c687cd99030d48fa45d`: eight target jobs passed and four
+failed. The package archive workflow
+[36834625184](https://github.com/xuelongqy/flax/actions/runs/36834625184) passed. All 24
+target/engine bridge build records are present. The twelve conditionally skipped
+Linux/native branches belong to the opposite host family; they are not missing target
+tests. Every workflow/job/check was terminal before repairs started.
 
-| Target                                                     | Observed result                                                                                                                                                                         |
-| ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| macOS arm64, Linux arm64, Android x64, iOS simulator arm64 | Both engines and coexistence passed platform runtime and application delivery                                                                                                           |
-| Android arm32/arm64                                        | Both engines built; physical device execution remains pending                                                                                                                           |
-| Linux x64                                                  | Preparation reached generator tests, then the SDK projection/compilation fixture exceeded the default 30-second timeout                                                                 |
-| Windows x64/arm64                                          | Native DLL contracts passed; Hermes crashed during Dart creation. V8 passed standalone JIT/AOT and built the release application, but SDK receipt discovery traversed long notice paths |
-| iOS device arm64                                           | Both bridges built; the Hermes application hook received HTTP 500 downloading the same SDK again. V8's unsigned application built; neither engine ran on a device                       |
-| iOS simulator x64                                          | Hermes and coexistence passed; V8's application UI hit the semantics-handle check                                                                                                       |
-| macOS x64                                                  | The hosted runner lost communication; GitHub exposes no final log or verification artifact for this job                                                                                 |
+| Target                                                         | Observed result                                                                                                                                                                                                                                                                                                |
+| -------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| macOS arm64, Linux arm64, Android x64, iOS simulator arm64/x64 | Both engines and coexistence passed platform runtime, dependency/signature inspection where applicable, and relocated application delivery                                                                                                                                                                     |
+| Android arm32/arm64, iOS device arm64                          | Both bridges and applications built; physical device execution remains pending                                                                                                                                                                                                                                 |
+| Linux x64                                                      | Engine-free preparation passed. Hermes shared runtime passed 38/39, retaining the detached-buffer failure. V8 shared runtime passed 39/39, then Core UI hit a build-hook dependency cycle. The coexistence application passed, but full scope failed                                                           |
+| Windows x64/arm64                                              | Worker-first native DLL tests passed, but Hermes crashed in the independent Dart consumer. V8 standalone JIT/AOT passed; its application reached UI and failed localStorage's directory check. The coexistence application passed, then the separate Dart coexistence check crashed; the target remains failed |
+| macOS x64                                                      | Hermes completed platform delivery. V8 native tests passed, then the independent consumer redundantly downloaded its SDK and failed DNS resolution. The coexistence application passed; the target remains failed                                                                                              |
 
-The follow-up uses the existing three-minute fixture timeout, excludes extracted SDK
-cache directories when finding hook receipts/diagnostics, and supplies verified local
-archive inputs to external application hooks. This avoids repeated network downloads
-when Flutter filters the shared-cache environment. iOS setup runs its semantics frame
-inside the live binding's `runTest`, disposes its own handle and verifies platform
-ownership before widget leak baselines are recorded. No assertion is disabled. Windows
-native contracts now load the DLL on the worker first, before the main thread, so main
-initialization cannot mask the isolate's first-load behavior.
+The Core UI runner stages unchanged tests as an independent consumer of package copies.
+This removes the cycle between Flax's dev engine and shared native assets without
+removing dependencies or assertions. Canonical test paths preserve generated provider
+identity on macOS. The local Core suite passed all 131 cases with each engine. Both
+independent SDK consumers passed Dart JIT, checksum rejection and relocated AOT
+execution using the cached archive inputs.
 
-The disposable macOS project excludes the non-selected architecture from every Xcode
-target, preventing the release hook from treating a single-target SDK as a universal
-binary.
+Storage compares normalized native paths with the existing `path` dependency, retaining
+foreign-directory and concurrent-open rejection. A trailing-directory-separator test
+reproduces the previous failure; all 14 storage tests now pass. Its subprocess fixture
+is resolved through the package URI so the documented repository-root command works. All
+four storage UI cases and its persistence application example passed with each engine on
+macOS arm64.
 
-Local regression passed 63 tool tests, all five widget-interface generator tests,
-analysis and workflow lint. The updated iOS arm64 simulator platform check passed both
-engines and coexistence, including signature/dependency inspection and relocated
-execution. The updated macOS arm64 platform check also passed both engines and
-coexistence, including independent Dart JIT/AOT and relocated applications. Both iOS
-device arm64 unsigned applications built and passed dependency inspection; neither
-engine is recorded as run on a physical device. Windows/x64 execution requires the
-hosted run.
+External runtime/UI/example consumers pass the already downloaded, locked archive into
+both engine and shared-asset hooks, avoiding repeated network downloads when Flutter
+filters custom cache environment variables. Hash and target validation still run.
+Missing platform projects use Flutter's empty template to avoid generating unrelated
+counter-app tests; original example tests remain selected.
 
-The Hermes detached-buffer constructor failure was reproduced in an independent C++
-consumer linking only the checksum-locked rc.1 SDK: `new Uint8Array(buffer)` succeeds
-after `buffer.transfer()`. This establishes an engine SDK defect, independent of Flax's
-ABI. The 38/39 runtime assertion remains enabled. Fixing it requires an updated engine
-candidate; rc.1 and SDK/toolchain locks remain unchanged in this Flax follow-up. Windows
-Hermes creation also remains unresolved; worker-first loading and unmasked application
-diagnostics need hosted evidence before assigning a cause.
+Windows diagnostics record the actual CRT modules and versions loaded by the Dart CLI
+before opening the engine. The worker-first C++ and Flutter application results do not
+establish why Dart creation crashes; no speculative engine or toolchain change is made.
+The next hosted run must validate Windows and Linux fixes. The SDK/toolchain locks and
+released rc.1 archives remain unchanged.
 
 ## Remaining acceptance work
 
-1. Verify the follow-up on Linux and both Windows architectures; preserve failures from
-   the default Linux full scope, including the Hermes transfer assertion.
-2. Validate the shared Android C++/Windows CRT asset owner in both-engine hosted
-   application packaging and execution.
-3. Recheck Apple runner/device startup failures using diagnostic evidence; do not treat
-   a build or smoke scope as full Material/UI acceptance.
+1. Verify the follow-up on Linux, Windows and macOS x64; keep default Linux full scope
+   and the Hermes transfer assertion. Updating the defective engine requires separately
+   authorized work and a new candidate SDK, leaving rc.1 unchanged.
+2. Diagnose Windows Hermes Dart creation using actual process module evidence; retain
+   both native and independent Dart checks even when the Flutter application passes.
+3. Complete default Linux package-owned UI, example and aggregate checks; platform smoke
+   does not certify the full Material/device suite.
 4. Run Android arm32/arm64 and signed iOS device checks using the platform guide; these
    targets remain build-only until actual device execution passes.
 5. Require all 24 build records and each supported runtime/application record before
-   considering platform acceptance complete; PR #2 remains unmerged.
+   considering acceptance complete; PR #2 remains unmerged.
