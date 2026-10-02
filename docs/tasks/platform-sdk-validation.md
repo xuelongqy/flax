@@ -59,26 +59,34 @@ pins Xcode 26.6. SDK manifests retain version `0.3.0`.
 
 ## Latest completed Flax round
 
-The rc.3 round at `c7a3a7708b6c2bf0e8a37557883d6d01486e499d` completed
-[Workspace 36960661615](https://github.com/xuelongqy/flax/actions/runs/36960661615) and
-[Package 36960661268](https://github.com/xuelongqy/flax/actions/runs/36960661268). Ten
-target jobs and the package workflow passed; Windows x64, Windows arm64 and the summary
-failed. All 27 jobs/checks were terminal: twelve successful, three failed and twelve
-inapplicable opposite-host branches skipped; no commit statuses remained. All twelve
-receipts matched rc.3: 24 groups built, eighteen ran and passed application delivery,
-and six device groups remained build-only. macOS x64 passed in this round. Linux x64
+The rc.3 round at `8faa5b6e2f858ecef75ce608c479ef30b792c010` completed
+[Workspace 36971516575](https://github.com/xuelongqy/flax/actions/runs/36971516575) and
+[Package 36971516282](https://github.com/xuelongqy/flax/actions/runs/36971516282). Nine
+target jobs and the package workflow passed; Windows x64, Windows arm64, macOS x64 and
+the summary failed. All 27 jobs/checks were terminal: eleven successful, four failed and
+twelve inapplicable opposite-host branches skipped; no commit statuses remained. All
+eleven available receipts matched rc.3: 22 groups built, sixteen ran and passed
+application delivery, and six device groups remained build-only. The macOS x64 hosted
+runner lost communication with GitHub; its job log and artifact are unavailable, so this
+round cannot certify that target or establish the cause of the disconnection. Linux x64
 full passed both engines' 39 runtime contracts, 346 package-owned UI cases per engine,
 examples and aggregate application, retaining the original Hermes assertion.
 
 Both Windows architectures passed both engines' standalone Dart JIT, checksum rejection,
 relocated AOT, independent Dart coexistence and single/dual-engine Flutter application
-delivery. Their remaining failure occurred before native coexistence execution: bridge
-discovery recursively traversed SDK input notices and exceeded Windows' path limit. The
-finder now reuses the existing hook-output scanner, which excludes SDK cache inputs; its
-regression rejects missing/duplicate real outputs and ignores matching input files. The
-fixed Dart and native consumers passed locally on macOS arm64. Windows native execution
-remains pending. Both debugger self-tests passed; this round produced no actual Hermes
-crash dumps.
+delivery. The hook-output scanner fix avoided SDK input notices and allowed the native
+consumer to compile and start. Both architectures then exited with
+`Cannot load engine DLL` before engine initialization. The bridges and SDK dependencies
+occupy the same assets directory, outside the consumer EXE directory, but the fixture
+used Windows' standard `LoadLibraryA` search, which does not search that DLL directory
+for dependencies. The fixture now uses
+[LoadLibraryExA](https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibraryexa)
+with an absolute native path and `LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR` plus
+`LOAD_LIBRARY_SEARCH_DEFAULT_DIRS`; failures retain the DLL path and Windows error code.
+The old error did not record the exact dependency or loader error. Changes to either
+coexistence fixture now select both engines on every desktop target; Windows acceptance
+of this loader fix remains pending. Both debugger self-tests passed; this round produced
+no actual Hermes crash dumps.
 
 Four rc.2 heap minidumps established the Hermes root cause: Dart's isolate stack is
 fully committed without a guard page. Hermes counted an adjacent allocation's reserved
@@ -93,10 +101,10 @@ certify Dart FFI acceptance.
 
 ## Remaining acceptance work
 
-1. Rerun the Flax matrix with the bridge-discovery fix and require Windows native
-   coexistence to execute and pass alongside the retained Dart and application checks.
-   Collect all failure logs and verification artifacts after the whole round is
-   terminal.
+1. Rerun the Flax matrix with the native DLL-loader fix and require Windows native
+   coexistence to pass alongside the retained Dart and application checks. Require new
+   macOS x64 execution evidence after the hosted-runner disconnection. Collect all
+   failure logs and verification artifacts after the whole round is terminal.
 2. Keep Linux's default full checks passing. Earlier rc.1 iOS V8 full Material execution
    had 166 passes and eleven failures; WebSocket was not reached. Headless/fake-clock
    assumptions under the live integration binding remain unresolved. Platform smoke does

@@ -51,7 +51,8 @@ List<Map<String, Object>> platformJobs(Iterable<String> paths) {
       add(['android-x64'], ['hermes', 'v8']);
       continue;
     }
-    if (path == 'tool/check_engines.dart') {
+    if (path == 'tool/check_engines.dart' ||
+        path == 'tests/runtime/native/engines_test.cpp') {
       add(FlaxNativeTarget.names.where((t) => !FlaxNativeTarget(t).mobile), [
         'hermes',
         'v8',

@@ -279,16 +279,21 @@ void main() {
       ['linux-arm64'],
     );
     expect(platformJobs(['tool/ui_bundle.mjs']), hasLength(11));
-    expect(platformJobs(['tool/check_engines.dart']), [
-      for (final target in [
-        'macos-arm64',
-        'macos-x64',
-        'linux-arm64',
-        'windows-x64',
-        'windows-arm64',
-      ])
-        {'target': target, 'engine': 'all'},
-    ]);
+    for (final path in [
+      'tool/check_engines.dart',
+      'tests/runtime/native/engines_test.cpp',
+    ]) {
+      expect(platformJobs([path]), [
+        for (final target in [
+          'macos-arm64',
+          'macos-x64',
+          'linux-arm64',
+          'windows-x64',
+          'windows-arm64',
+        ])
+          {'target': target, 'engine': 'all'},
+      ]);
+    }
     final application = platformJobs([
       'examples/standalone/test/support/scenario.dart',
     ]);
