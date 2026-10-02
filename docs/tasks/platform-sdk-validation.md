@@ -1,13 +1,14 @@
 # Task: Native SDK integration and platform validation
 
-Status: rc.3 SDK published and locally verified; Flax platform acceptance pending.
+Status: rc.3 Windows Dart and application checks passed; native coexistence rerun
+pending.
 
 ## Goal and scope
 
 Consume the published `flax_js_runtime v0.3.0-rc.3` archives (SDK version `0.3.0`,
 manifest schema 3) for twelve targets and both engines. Flax compiles only its
-ABI/adapter. Keep ABI 2, Hermes as the default, and PR #2 unmerged. Published rc.1 and
-rc.2 assets and toolchain locks remain unchanged. Do not publish Flax.
+ABI/adapter. Keep ABI 2, Hermes as the default, and PR #2 unmerged. Published rc.1, rc.2
+and rc.3 assets and toolchain locks remain unchanged. Do not publish Flax.
 
 ## Acceptance criteria and approach
 
@@ -51,46 +52,51 @@ macOS arm64 checks:
 | Native CTest               | Hermes 1/1 and V8 2/2                                                                            |
 | Independent Dart consumers | Both engines passed JIT, checksum rejection and relocated AOT execution                          |
 | Dual-engine consumers      | Independent Dart and native coexistence, foreign-object rejection, reentry and recreation passed |
-| Tooling                    | 66 tests passed; one Windows-only real-crash self-test is inapplicable on macOS                  |
+| Tooling                    | 67 tests passed; one Windows-only real-crash self-test is inapplicable on macOS                  |
 
 This local round did not rerun UI or device suites. Local Apple builds used Xcode 27; CI
 pins Xcode 26.6. SDK manifests retain version `0.3.0`.
 
 ## Latest completed Flax round
 
-The rc.2 baseline at `ca7f98ffb3e28e8d5b6e64e111b25929f9537c1e` completed
-[Workspace 36942161323](https://github.com/xuelongqy/flax/actions/runs/36942161323) and
-[Package 36942161063](https://github.com/xuelongqy/flax/actions/runs/36942161063). Ten
+The rc.3 round at `c7a3a7708b6c2bf0e8a37557883d6d01486e499d` completed
+[Workspace 36960661615](https://github.com/xuelongqy/flax/actions/runs/36960661615) and
+[Package 36960661268](https://github.com/xuelongqy/flax/actions/runs/36960661268). Ten
 target jobs and the package workflow passed; Windows x64, Windows arm64 and the summary
 failed. All 27 jobs/checks were terminal: twelve successful, three failed and twelve
 inapplicable opposite-host branches skipped; no commit statuses remained. All twelve
-receipts matched rc.2: 24 groups built, sixteen ran and passed application delivery, and
-six device groups remained build-only. macOS x64 passed in this round. Linux x64 full
-passed both engines' 39 runtime contracts, 346 package-owned UI cases per engine,
-examples and aggregate application, retaining the original Hermes assertion. These rc.2
-receipts do not certify rc.3.
+receipts matched rc.3: 24 groups built, eighteen ran and passed application delivery,
+and six device groups remained build-only. macOS x64 passed in this round. Linux x64
+full passed both engines' 39 runtime contracts, 346 package-owned UI cases per engine,
+examples and aggregate application, retaining the original Hermes assertion.
 
-Windows V8 and the Flutter coexistence application passed, but standalone Hermes Dart
-JIT/AOT and independent Dart coexistence failed. Four actual heap minidumps contain
-loaded modules, `0xc0000005` exceptions, stacks and memory layout; the original Dart
-process ultimately exited with `0xc0000409`. Both Windows debugger heap-capture
-self-tests passed while preserving the original child AV exit code.
+Both Windows architectures passed both engines' standalone Dart JIT, checksum rejection,
+relocated AOT, independent Dart coexistence and single/dual-engine Flutter application
+delivery. Their remaining failure occurred before native coexistence execution: bridge
+discovery recursively traversed SDK input notices and exceeded Windows' path limit. The
+finder now reuses the existing hook-output scanner, which excludes SDK cache inputs; its
+regression rejects missing/duplicate real outputs and ignores matching input files. The
+fixed Dart and native consumers passed locally on macOS arm64. Windows native execution
+remains pending. Both debugger self-tests passed; this round produced no actual Hermes
+crash dumps.
 
-The dumps establish the Hermes root cause: Dart's isolate stack is fully committed
-without a guard page. Hermes counted an adjacent allocation's reserved pages as this
-thread's guard, leaving zero usable native stack. Internal JavaScript reported a false
-stack overflow; Release then read an unsuccessful CallResult's uninitialized storage and
-faulted during initialization. The SDK patch handles committed stacks and makes
-internal-bytecode failure fatal before accessing its result. This is not a proven CRT or
-compiler-flag defect; nearby exported names do not identify exact internal functions.
-The rc.3 native worker regression passed, but actual Flax Windows Dart acceptance is
-still pending. Native C++ or Flutter success cannot replace it.
+Four rc.2 heap minidumps established the Hermes root cause: Dart's isolate stack is
+fully committed without a guard page. Hermes counted an adjacent allocation's reserved
+pages as this thread's guard, leaving zero usable native stack. Internal JavaScript
+reported a false stack overflow; Release then read an unsuccessful CallResult's
+uninitialized storage and faulted during initialization. The SDK patch handles committed
+stacks and makes internal-bytecode failure fatal before accessing its result. This is
+not a proven CRT or compiler-flag defect; nearby exported names do not identify exact
+internal functions. The rc.3 native worker regression and actual Flax Windows Dart
+JIT/AOT now pass on both architectures. Native C++ or Flutter success alone cannot
+certify Dart FFI acceptance.
 
 ## Remaining acceptance work
 
-1. Run the rc.3 Flax matrix and require Windows x64/arm64 standalone Dart JIT/AOT,
-   independent dual-engine coexistence and application delivery to pass. Collect all
-   failure logs and verification artifacts only after the whole round is terminal.
+1. Rerun the Flax matrix with the bridge-discovery fix and require Windows native
+   coexistence to execute and pass alongside the retained Dart and application checks.
+   Collect all failure logs and verification artifacts after the whole round is
+   terminal.
 2. Keep Linux's default full checks passing. Earlier rc.1 iOS V8 full Material execution
    had 166 passes and eleven failures; WebSocket was not reached. Headless/fake-clock
    assumptions under the live integration binding remain unresolved. Platform smoke does

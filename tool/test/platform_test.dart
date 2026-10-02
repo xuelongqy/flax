@@ -7,6 +7,7 @@ import 'package:flax/native_sdk.dart';
 import 'package:flax/native_target.dart';
 import 'package:test/test.dart';
 
+import '../check_engines.dart' show builtBridge;
 import '../platform_changes.dart';
 import '../src/platform_application.dart';
 import '../src/platform_selection.dart';
@@ -67,6 +68,33 @@ void main() {
       hookBuildFiles(hooks).map((f) => f.path),
       unorderedEquals([receipt.path, stderr.path, sharedReceipt.path]),
     );
+  });
+  test('native coexistence finds bridges outside SDK cache inputs', () {
+    final consumer = Directory.systemTemp.createTempSync('flax bridge lookup ');
+    addTearDown(() => consumer.deleteSync(recursive: true));
+    for (final engine in ['hermes', 'v8']) {
+      final outputs = Directory(
+        '${consumer.path}/.dart_tool/hooks_runner/shared/flax_engine_$engine/build',
+      )..createSync(recursive: true);
+      final name = FlaxNativeTarget.host().bridgeName(engine);
+      expect(() => builtBridge(consumer, engine), throwsStateError);
+      final bridge = File('${outputs.path}/123/assets/$name')
+        ..parent.createSync(recursive: true)
+        ..writeAsStringSync('bridge output');
+      // Input notices can contain matching names and exceed Windows' MAX_PATH.
+      final cached =
+          File(
+              '${outputs.path}/sdk-${List.filled(64, 'a').join()}/notices/assets/$name',
+            )
+            ..parent.createSync(recursive: true)
+            ..writeAsStringSync('SDK input');
+      expect(builtBridge(consumer, engine).path, bridge.path);
+      expect(cached.readAsStringSync(), 'SDK input');
+      File('${outputs.path}/456/assets/$name')
+        ..parent.createSync(recursive: true)
+        ..writeAsStringSync('duplicate output');
+      expect(() => builtBridge(consumer, engine), throwsStateError);
+    }
   });
   test('preparation failure writes a receipt without runtime acceptance', () async {
     final root = Directory.current;
@@ -251,6 +279,16 @@ void main() {
       ['linux-arm64'],
     );
     expect(platformJobs(['tool/ui_bundle.mjs']), hasLength(11));
+    expect(platformJobs(['tool/check_engines.dart']), [
+      for (final target in [
+        'macos-arm64',
+        'macos-x64',
+        'linux-arm64',
+        'windows-x64',
+        'windows-arm64',
+      ])
+        {'target': target, 'engine': 'all'},
+    ]);
     final application = platformJobs([
       'examples/standalone/test/support/scenario.dart',
     ]);

@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'src/package_discovery.dart';
 import 'src/package_verification.dart';
+import 'src/platform_binary.dart';
 import 'src/process.dart';
 
 import 'package:flax/native_target.dart';
@@ -105,7 +106,7 @@ Future<void> main() => command(() async {
     );
     await run(nativeTest, [
       for (final engine in engines) ...[
-        _builtBridge(consumer, engine).path,
+        builtBridge(consumer, engine).path,
         engineEntrySymbol(root.path, engine),
       ],
     ]);
@@ -114,13 +115,11 @@ Future<void> main() => command(() async {
   }
 });
 
-File _builtBridge(Directory consumer, String engine) {
+File builtBridge(Directory consumer, String engine) {
   final outputs = Directory(
     '${consumer.path}/.dart_tool/hooks_runner/shared/flax_engine_$engine/build',
   );
-  final matches = outputs
-      .listSync(recursive: true, followLinks: false)
-      .whereType<File>()
+  final matches = hookBuildFiles(outputs)
       .where(
         (file) =>
             p.basename(file.path) ==

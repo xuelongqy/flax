@@ -51,6 +51,13 @@ List<Map<String, Object>> platformJobs(Iterable<String> paths) {
       add(['android-x64'], ['hermes', 'v8']);
       continue;
     }
+    if (path == 'tool/check_engines.dart') {
+      add(FlaxNativeTarget.names.where((t) => !FlaxNativeTarget(t).mobile), [
+        'hermes',
+        'v8',
+      ]);
+      continue;
+    }
     final engine = RegExp(
       r'^packages/flax_engine_(hermes|v8)/(native/|hook/|lib/|pubspec.yaml)',
     ).firstMatch(path)?.group(1);
