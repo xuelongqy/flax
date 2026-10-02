@@ -1,6 +1,6 @@
 # Native platform verification
 
-Flax consumes the 24 engine SDK archives from `flax_js_runtime` release `v0.3.0-rc.2`.
+Flax consumes the 24 engine SDK archives from `flax_js_runtime` release `v0.3.0-rc.3`.
 Their manifest version is `0.3.0`, schema 3. The engine hooks select by the **build
 target**, including the iOS device/simulator SDK. They compile Flax's ABI 2 and adapter;
 no engine source build occurs here. Target wiring is distinct from runtime or

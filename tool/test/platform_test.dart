@@ -288,14 +288,14 @@ void main() {
               .readAsStringSync(),
         ) as Map;
         expect(lock['sdkVersion'], '0.3.0');
-        expect(lock['releaseTag'], 'v0.3.0-rc.2');
+        expect(lock['releaseTag'], 'v0.3.0-rc.3');
         final targets = lock['targets'] as Map;
         expect(targets.keys.toSet(), FlaxNativeTarget.names.toSet());
         for (final entry in targets.entries) {
           expect(
             entry.value['url'],
             endsWith(
-              '/v0.3.0-rc.2/flax-engine-sdk-0.3.0-$engine-${entry.key}.tar.gz',
+              '/v0.3.0-rc.3/flax-engine-sdk-0.3.0-$engine-${entry.key}.tar.gz',
             ),
           );
           expect(entry.value['sha256'], matches(RegExp(r'^[a-f0-9]{64}$')));
