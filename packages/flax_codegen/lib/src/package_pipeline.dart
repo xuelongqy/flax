@@ -313,7 +313,7 @@ final class FlaxCodegenPackagePipeline {
         _resolutionDiagnostic(library, error.message),
       ]);
     } finally {
-      proposalParser.dispose();
+      await proposalParser.dispose();
     }
 
     final config = proposal.config;
@@ -1386,7 +1386,7 @@ Future<List<FlaxCodegenModuleModel>> _parseLocalModules({
     }
     return models;
   } finally {
-    parser.dispose();
+    await parser.dispose();
   }
 }
 

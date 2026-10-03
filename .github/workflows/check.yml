@@ -1,4 +1,4 @@
-name: Workspace checks
+name: Workspace and Linux runtime checks
 
 on:
   pull_request:
@@ -9,47 +9,60 @@ permissions:
   contents: read
 
 concurrency:
-  group: scaffold-${{ github.workflow }}-${{ github.ref }}
+  group: check-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  check:
+  changes:
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    outputs:
+      matrix: ${{ steps.targets.outputs.matrix }}
+      run: ${{ steps.targets.outputs.run }}
     steps:
-      - name: Check out source
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-
-      - name: Set up Node.js
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+          fetch-depth: 0
+      - uses: dart-lang/setup-dart@6afc89df92d6eb3834022f73cd65adc8cdfcb92d # v1
         with:
-          node-version-file: .node-version
-          package-manager-cache: false
-
-      - name: Set up pnpm
-        run:
-          npm install --global "$(node -p 'require("./package.json").packageManager')"
-
-      - name: Set up Flutter and Dart
-        uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
-        with:
-          channel: stable
-          flutter-version-file: .fvmrc
-
-      - name: Install locked dependencies
+          sdk: 3.13.2
+      - id: targets
+        env:
+          BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+          HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
         run: |
-          flutter pub get --enforce-lockfile
-          pnpm install --frozen-lockfile
+          if [ "$BASE" = 0000000000000000000000000000000000000000 ]; then BASE=$(git hash-object -t tree /dev/null); fi
+          dart tool/platform_changes.dart "$BASE" "$HEAD"
 
-      - name: Check workspace, generated constructors, and JS bundles
-        run: dart run melos run check
+  linux:
+    uses: ./.github/workflows/platform.yml
+    with:
+      target: linux-x64
+      engine: all
+      scope: all
 
-      - name: Verify source files are unchanged
+  platforms:
+    needs: changes
+    if: needs.changes.outputs.run == 'true'
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.changes.outputs.matrix) }}
+    uses: ./.github/workflows/platform.yml
+    with:
+      target: ${{ matrix.target }}
+      engine: ${{ matrix.engine }}
+      scope: platform
+
+  result:
+    if: always()
+    needs: [changes, linux, platforms]
+    runs-on: ubuntu-24.04
+    steps:
+      - env:
+          CHANGES: ${{ needs.changes.result }}
+          LINUX: ${{ needs.linux.result }}
+          PLATFORMS: ${{ needs.platforms.result }}
         run: |
-          git diff --exit-code
-          if [ -n "$(git status --porcelain)" ]; then
-            git status --short
-            exit 1
-          fi
+          test "$CHANGES" = success
+          test "$LINUX" = success
+          test "$PLATFORMS" = success || test "$PLATFORMS" = skipped

@@ -59,9 +59,9 @@ dart run melos run native:build
 dart run melos run check:ui
 ```
 
-`native:build` downloads checksum-pinned Hermes source, builds the native library, and
-prepares package-local assets. `check:ui` then runs every UI-owning package integration
-plus the cross-module aggregate. Runtime, standalone, engine-coexistence, and release
+`native:build` downloads the checksum-locked Hermes shared SDK and compiles the Flax
+bridge locally. `check:ui` then runs every UI-owning package integration plus the
+cross-module aggregate. Runtime, standalone, engine-coexistence, and release
 verification remain separate gates. To launch the example afterward, run
 `dart run melos run example:run`. Hermes remains the default for repository commands and
 examples. Experimental V8 15.2.124.21 is available explicitly with `native:build:v8` and
@@ -132,9 +132,13 @@ interfaces. Interface-bearing Widgets use fixed arguments and bind their contain
 property for changes. See [Widget interfaces](docs/architecture/widget-interfaces.md).
 
 The [standalone application](examples/standalone/README.md) creates its MaterialApp in
-JS. Use `dart run melos run standalone:run` with prepared Hermes assets. External source
+JS. Use `dart run melos run standalone:run` with the locked Hermes SDK. External source
 consumption and relocated release validation are described in
 [application startup](docs/architecture/applications.md).
 
 Optional [localStorage](docs/architecture/local-storage.md) uses Hive CE and session
 namespaces. Applications explicitly initialize persistence before creating sessions.
+
+Native SDK target selection and Linux-default/manual platform validation are described
+in the [platform test guide](docs/testing-platforms.md). Target wiring and completed
+runtime acceptance are tracked separately.

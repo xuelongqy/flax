@@ -100,7 +100,7 @@ fixed at creation/mount, while node updates prepare and validate before committi
 Nodes without binding or callback parameters, including nested callbacks, reuse their
 validated native Widget; Element state and subscriptions still belong to each mount. See
 the [UI contract](../../docs/architecture/ui.md) and run `dart run melos run ui:test`
-for framework regression tests with already prepared Hermes assets.
+for framework regression tests with the locked Hermes SDK.
 
 FlaxObjectBinding and FlaxSetter extend generated registration for immediately
 constructed Dart objects. ScrollController and SingleChildScrollView use this path.

@@ -8,6 +8,7 @@ import 'package:yaml/yaml.dart';
 import 'engine_selection.dart';
 import 'package_discovery.dart';
 import 'process.dart';
+import 'example_engine.dart';
 
 void copyTree(Directory source, Directory target) {
   target.createSync(recursive: true);
@@ -50,6 +51,11 @@ void copyDartPackages(
   Directory targetRoot,
   List<String> names,
 ) {
+  names = packageDependencyClosure(
+    root.path,
+    names,
+    includeDevDependencies: false,
+  ).toList()..sort();
   for (final name in names) {
     final source = Directory(p.join(root.path, 'packages', name));
     final target = Directory(p.join(targetRoot.path, name))
@@ -59,6 +65,13 @@ void copyDartPackages(
       if (input.existsSync()) {
         copyTree(input, Directory(p.join(target.path, directory)));
       }
+    }
+    for (final omitted in [
+      'native/generated',
+      if (name == 'flax') 'native/tests',
+    ]) {
+      final directory = Directory(p.join(target.path, omitted));
+      if (directory.existsSync()) directory.deleteSync(recursive: true);
     }
     final notices = File(p.join(source.path, 'THIRD_PARTY_NOTICES.txt'));
     if (notices.existsSync()) {
@@ -84,7 +97,10 @@ void copyDartPackages(
       ),
     ) as Map<String, Object?>;
     pubspec.remove('resolution');
-    final dependencies = pubspec['dependencies'] as Map<String, Object?>;
+    final dependencies =
+        (pubspec['dependencies'] as Map<String, Object?>?) ??
+        <String, Object?>{};
+    pubspec['dependencies'] = dependencies;
     for (final local in names) {
       if (dependencies.containsKey(local)) {
         dependencies[local] = {'path': '../$local'};
@@ -109,17 +125,18 @@ Future<void> verifyPackage(
     copyDartPackages(root, temporary, ['flax', 'flax_engine_$engine']);
     final consumer = Directory(p.join(temporary.path, 'consumer'))
       ..createSync();
-    File(p.join(consumer.path, 'pubspec.yaml')).writeAsStringSync(
-      jsonEncode({
-        'name': 'flax_runtime_consumer',
-        'publish_to': 'none',
-        'environment': {'sdk': '^3.13.2'},
-        'dependencies': {
-          'flax': {'path': '../flax'},
-          'flax_engine_$engine': {'path': '../flax_engine_$engine'},
-        },
-      }),
-    );
+    final manifest = <String, dynamic>{
+      'name': 'flax_runtime_consumer',
+      'publish_to': 'none',
+      'environment': {'sdk': '^3.13.2'},
+      'dependencies': {
+        'flax': {'path': '../flax'},
+        'flax_engine_$engine': {'path': '../flax_engine_$engine'},
+      },
+    };
+    addCandidateSdk(manifest, engine, root: root.path);
+    File(p.join(consumer.path, 'pubspec.yaml'))
+        .writeAsStringSync(jsonEncode(manifest));
     Directory(p.join(consumer.path, 'bin')).createSync();
     final enginePackage = 'flax_engine_$engine';
     final fixture = File(
@@ -136,6 +153,7 @@ Future<void> verifyPackage(
           .replaceAll('{{enginePackage}}', enginePackage)
           .replaceAll('{{engineClass}}', engineFactoryClass(root.path, engine)),
     );
+    File('${root.path}/pubspec.lock').copySync('${consumer.path}/pubspec.lock');
     await run(
       'flutter',
       ['pub', 'get'],
@@ -149,35 +167,25 @@ Future<void> verifyPackage(
       directory: consumer.path,
       environment: environment,
       inheritEnvironment: false,
+      captureWindowsCrash: true,
     );
     await jit();
 
-    // Run fresh processes so neither the hook cache nor a previously loaded
-    // library can disguise missing or corrupt package inputs.
-    final assets = Directory(
-      p.join(
-        temporary.path,
-        'flax_engine_$engine/native/generated/macos_arm64',
-      ),
-    );
-    final library = File(p.join(assets.path, 'libflax_$engine.dylib'));
-    final hidden = library.renameSync('${library.path}.hidden');
-    try {
-      await _expectFailure(consumer, environment, 'native assets are missing');
-    } finally {
-      hidden.renameSync(library.path);
+    if (manifest.containsKey('hooks')) {
+      final pubspec = File(p.join(consumer.path, 'pubspec.yaml'));
+      final original = pubspec.readAsStringSync();
+      try {
+        final wrong = jsonDecode(original) as Map<String, dynamic>;
+        ((wrong['hooks'] as Map)['user_defines']
+                as Map)['flax_engine_$engine']['sdkSha256'] =
+            '0' * 64;
+        pubspec.writeAsStringSync(jsonEncode(wrong));
+        await _expectFailure(consumer, environment, 'SDK checksum mismatch');
+      } finally {
+        pubspec.writeAsStringSync(original);
+      }
+      await jit();
     }
-    final manifestFile = File(p.join(assets.path, 'manifest.json'));
-    final originalManifest = manifestFile.readAsStringSync();
-    try {
-      final manifest = jsonDecode(originalManifest) as Map<String, Object?>;
-      manifest['sha256'] = 'invalid-checksum';
-      manifestFile.writeAsStringSync(jsonEncode(manifest));
-      await _expectFailure(consumer, environment, 'checksum mismatch');
-    } finally {
-      manifestFile.writeAsStringSync(originalManifest);
-    }
-    await jit();
     await run(
       Platform.resolvedExecutable,
       [
@@ -214,9 +222,10 @@ Future<void> verifyPackage(
       directory: relocated.path,
       environment: environment,
       inheritEnvironment: false,
+      captureWindowsCrash: true,
     );
     stdout.writeln(
-      'Standalone JIT, missing/corrupt assets, and relocated AOT bundle verified.',
+      'Standalone JIT, SDK checksum rejection, and relocated AOT bundle verified.',
     );
   } finally {
     if (temporary.existsSync()) temporary.deleteSync(recursive: true);

@@ -7,6 +7,7 @@ import 'package:yaml/yaml.dart';
 import 'package_verification.dart';
 import 'package_discovery.dart';
 import 'process.dart';
+import 'platform_selection.dart';
 
 void _copyExampleTree(Directory source, Directory target) {
   target.createSync(recursive: true);
@@ -76,21 +77,7 @@ void selectExampleEngine(String root, String flutter, String engine) {
     }
     file.writeAsStringSync(source);
   }
-  final manifest = File(
-    p.join(
-      root,
-      'packages',
-      'flax_engine_$engine',
-      'native',
-      'generated',
-      'macos_arm64',
-      'manifest.json',
-    ),
-  );
-  final jit =
-      manifest.existsSync() &&
-      (jsonDecode(manifest.readAsStringSync()) as Map)['jit'] == true;
-  if (jit) {
+  if (engine == 'v8') {
     for (final name in ['DebugProfile', 'Release']) {
       final entitlement = File('$flutter/macos/Runner/$name.entitlements');
       if (!entitlement.existsSync()) continue;
@@ -107,6 +94,43 @@ void selectExampleEngine(String root, String flutter, String engine) {
   }
 }
 
+void addCandidateSdk(
+  Map<String, dynamic> pubspec,
+  String engine, {
+  required String root,
+}) {
+  var archive = Platform.environment['FLAX_ENGINE_SDK_ARCHIVE'];
+  var digest = Platform.environment['FLAX_ENGINE_SDK_SHA256'];
+  final cache = Platform.environment['FLAX_ENGINE_SDK_CACHE'];
+  if (archive == null && digest == null && cache != null) {
+    final file = File(
+      '$root/packages/flax_engine_$engine/native/sdk.lock.json',
+    );
+    if (file.existsSync()) {
+      final lock = jsonDecode(file.readAsStringSync()) as Map;
+      final pinned =
+          lock['targets'][currentCheckTarget().name]['sha256'] as String;
+      final cached = File(p.join(cache, '$pinned.tar.gz')).absolute;
+      if (cached.existsSync()) {
+        archive = cached.path;
+        digest = pinned;
+      }
+    }
+  }
+  if (archive == null && digest == null) return;
+  if (archive == null || digest == null) {
+    throw StateError(
+      'Set both FLAX_ENGINE_SDK_ARCHIVE and FLAX_ENGINE_SDK_SHA256',
+    );
+  }
+  pubspec['hooks'] = {
+    'user_defines': {
+      'flax_native_assets': {'sdkArchive': archive, 'sdkSha256': digest},
+      'flax_engine_$engine': {'sdkArchive': archive, 'sdkSha256': digest},
+    },
+  };
+}
+
 Future<void> withExample(
   String root,
   String engine,
@@ -117,7 +141,10 @@ Future<void> withExample(
     File(p.join(root, 'examples', kind, 'pubspec.yaml')),
   );
   final sourceEngines = _engineDependencies(sourcePubspec);
-  if (sourceEngines.length == 1 && sourceEngines.single == engine) {
+  if (sourceEngines.length == 1 &&
+      sourceEngines.single == engine &&
+      Directory('$root/examples/$kind/${currentCheckTarget().os}')
+          .existsSync()) {
     await action('$root/examples/$kind');
     return;
   }
@@ -176,7 +203,9 @@ Future<void> withExample(
         'path': p.relative('${temporary.path}/packages/$name', from: flutter),
       };
     }
+    addCandidateSdk(pubspec, engine, root: root);
     manifest.writeAsStringSync(jsonEncode(pubspec));
+    await _ensurePlatformProject(flutter);
     selectExampleEngine(root, flutter, engine);
     await run('flutter', ['pub', 'get'], directory: flutter);
     await action(flutter);
@@ -189,13 +218,18 @@ Future<void> withPackageExample(
   String root,
   FlaxWorkspacePackage package,
   String engine,
-  Future<void> Function(String flutter) action,
-) async {
+  Future<void> Function(String flutter) action, {
+  Future<void> Function(String, List<String>, {String? directory}) runCommand =
+      run,
+}) async {
   final sourcePubspec = readYamlFile(
     File(p.join(package.example.path, 'pubspec.yaml')),
   );
   final sourceEngines = _engineDependencies(sourcePubspec);
-  if (sourceEngines.length == 1 && sourceEngines.single == engine) {
+  if (sourceEngines.length == 1 &&
+      sourceEngines.single == engine &&
+      Directory('${package.example.path}/${currentCheckTarget().os}')
+          .existsSync()) {
     await action(package.example.path);
     return;
   }
@@ -236,11 +270,30 @@ Future<void> withPackageExample(
         };
       }
     }
+    addCandidateSdk(pubspec, engine, root: root);
     manifest.writeAsStringSync(jsonEncode(pubspec));
+    await _ensurePlatformProject(flutter.path, runCommand: runCommand);
     selectExampleEngine(root, flutter.path, engine);
-    await run('flutter', ['pub', 'get'], directory: flutter.path);
+    await runCommand('flutter', ['pub', 'get'], directory: flutter.path);
     await action(flutter.path);
   } finally {
     temporary.deleteSync(recursive: true);
   }
+}
+
+Future<void> _ensurePlatformProject(
+  String app, {
+  Future<void> Function(String, List<String>, {String? directory}) runCommand =
+      run,
+}) async {
+  final os = currentCheckTarget().os;
+  if (Directory('$app/$os').existsSync()) return;
+  await runCommand('flutter', [
+    'create',
+    '--empty',
+    '--no-pub',
+    '--platforms=$os',
+    '--project-name=${readYamlFile(File('$app/pubspec.yaml'))['name']}',
+    '.',
+  ], directory: app);
 }

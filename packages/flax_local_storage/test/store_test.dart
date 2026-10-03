@@ -23,6 +23,20 @@ void main() {
   });
 
   test(
+    'storage accepts native separators and a trailing directory separator',
+    () async {
+      await store.close();
+      store = await FlaxLocalStorageStore.open(
+        '${directory.path}${Platform.pathSeparator}',
+        10485760,
+      );
+      store.setItem(null, 'same-directory', 'value', owner, report);
+      await store.flush();
+      expect(store.getItem(null, 'same-directory'), 'value');
+    },
+  );
+
+  test(
     'areas share one box and support arbitrary UTF-16 keys and values',
     () async {
       final key = '汉😀\u0000\ud800' * 100;
@@ -305,9 +319,14 @@ void main() {
       const key = 'key\ud800', value = 'value\udfff';
       store.setItem('process', key, value, owner, report);
       await store.close();
+      // Run from either the package or workspace root, including Flutter's test VM.
+      final script = [
+        File('test/support/read_process.dart'),
+        File('packages/flax_local_storage/test/support/read_process.dart'),
+      ].firstWhere((file) => file.existsSync());
       final result = await Process.run('dart', [
         'run',
-        'test/support/read_process.dart',
+        script.absolute.path,
         directory.path,
       ], workingDirectory: Directory.current.path);
       expect(result.exitCode, 0, reason: '${result.stdout}\n${result.stderr}');

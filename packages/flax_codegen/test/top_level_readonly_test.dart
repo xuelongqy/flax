@@ -63,7 +63,7 @@ void main() {
     try {
       return await parser.parse(config);
     } finally {
-      parser.dispose();
+      await parser.dispose();
     }
   }
 

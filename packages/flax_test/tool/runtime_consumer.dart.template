@@ -5,6 +5,19 @@ import 'package:flax/runtime.dart';
 import 'package:{{enginePackage}}/{{enginePackage}}.dart';
 
 void main() {
+  if (Platform.isWindows) {
+    // A Dart CLI may already have loaded CRT DLLs before the engine is opened.
+    final modules = Process.runSync('powershell.exe', [
+      '-NoProfile',
+      '-Command',
+      '(Get-Process -Id $pid).Modules | '
+          r"Where-Object { $_.ModuleName -match '^(msvcp|vcruntime|ucrtbase)' } | "
+          r"Select-Object ModuleName, FileName, @{Name='Version';Expression={$_.FileVersionInfo.FileVersion}} | "
+          'ConvertTo-Json -Compress',
+    ]);
+    stdout.writeln('Windows loaded C++ runtimes: ${modules.stdout}');
+    stderr.write(modules.stderr);
+  }
   final runtime = {{engineClass}}.createRuntime();
   try {
     final bytes = runtime.createArrayBuffer(Uint8List.fromList([0, 255, 42]));

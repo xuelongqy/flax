@@ -1,6 +1,7 @@
 # ADR 0012: Experimental V8 beside Hermes
 
-Status: Accepted for experimental macOS arm64 implementation.
+Status: Accepted for experimental macOS arm64 implementation. Native packaging and
+monolith linking are superseded by [ADR 0036](0036-shared-engine-sdk.md).
 
 ## Context
 

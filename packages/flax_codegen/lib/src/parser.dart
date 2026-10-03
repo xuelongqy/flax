@@ -553,7 +553,11 @@ FlaxCodegenGenericParameter _dataGeneric(
 
 class FlaxCodegenBindingParser {
   FlaxCodegenBindingParser(String root)
-    : _contexts = AnalysisContextCollection(includedPaths: [p.absolute(root)]);
+    // Resolve requested libraries in the root's package environment without
+    // rediscovering every unrelated project in the workspace for each parser.
+    : _contexts = AnalysisContextCollection(
+        includedPaths: [p.absolute(root, 'pubspec.yaml')],
+      );
   final AnalysisContextCollection _contexts;
   final _adaptations = <String, String>{};
   final _argumentsByType = <String, List<String>>{};
@@ -3621,7 +3625,7 @@ class FlaxCodegenBindingParser {
     _publicInputs.clear();
   }
 
-  void dispose() => _contexts.dispose();
+  Future<void> dispose() => _contexts.dispose();
 }
 
 /// Mutable parser tables captured by [FlaxCodegenBindingParser.checkpoint].

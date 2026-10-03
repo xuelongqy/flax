@@ -1,0 +1,3 @@
+# Vendored WPT hashes cover the upstream bytes, including line endings.
+packages/flax_fetch/js/test/wpt/** -text
+packages/flax_websocket/js/test/wpt/** -text

@@ -389,7 +389,7 @@ List<String> discoverEngineIds(String root) => discoverPackages(root)
       (package) =>
           package.metadata.capabilities.contains('engine') &&
           package.name.startsWith('flax_engine_') &&
-          File(p.join(package.directory.path, 'tool', 'native.dart'))
+          File(p.join(package.directory.path, 'native', 'sdk.lock.json'))
               .existsSync(),
     )
     .map((package) => package.name.substring('flax_engine_'.length))
@@ -412,51 +412,29 @@ String engineFactoryClass(String root, String engine) {
   return match.group(1)!;
 }
 
-Map<String, dynamic> engineManifest(String root, String engine) {
-  final file = File(
-    p.join(
-      root,
-      'packages',
-      'flax_engine_$engine',
-      'native',
-      'generated',
-      'macos_arm64',
-      'manifest.json',
-    ),
-  );
-  if (!file.existsSync()) {
-    throw StateError('Prepared assets are missing for flax_engine_$engine');
-  }
-  return (jsonDecode(file.readAsStringSync()) as Map).cast<String, dynamic>();
-}
-
 String engineEntrySymbol(String root, String engine) {
-  final symbol = engineManifest(root, engine)['entrySymbol'];
-  if (symbol is! String || symbol.isEmpty) {
-    throw StateError('Engine $engine has no native entry symbol');
-  }
-  return symbol;
+  _requireEngineSdkLock(root, engine);
+  return 'flax_${engine}_get_api';
 }
-
-bool engineUsesJit(String root, String engine) =>
-    engineManifest(root, engine)['jit'] == true;
 
 ({String environment, String marker})? engineJitVerification(
   String root,
   String engine,
 ) {
-  final manifest = engineManifest(root, engine);
-  if (manifest['jit'] != true) return null;
-  final verification = manifest['jitVerification'];
-  if (verification is! Map ||
-      verification['environment'] is! String ||
-      verification['marker'] is! String) {
-    throw StateError('JIT engine $engine has no verification metadata');
-  }
-  return (
-    environment: verification['environment'] as String,
-    marker: verification['marker'] as String,
+  _requireEngineSdkLock(root, engine);
+  return engine == 'v8'
+      ? (
+          environment: 'FLAX_VERIFY_V8_JIT',
+          marker: 'FLAX_V8_JIT: machine code generated',
+        )
+      : null;
+}
+
+void _requireEngineSdkLock(String root, String engine) {
+  final lock = File(
+    p.join(root, 'packages', 'flax_engine_$engine', 'native', 'sdk.lock.json'),
   );
+  if (!lock.existsSync()) throw StateError('Missing $engine SDK lock');
 }
 
 List<String> bindingConfigs(FlaxWorkspacePackage package) {
@@ -478,6 +456,7 @@ Set<String> packageDependencyClosure(
   String root,
   Iterable<String> roots, {
   String? replaceEngineWith,
+  bool includeDevDependencies = true,
 }) {
   final packages = {
     for (final package in discoverPackages(root)) package.name: package,
@@ -491,7 +470,10 @@ Set<String> packageDependencyClosure(
     }
     final package = packages[name];
     if (package == null || !result.add(name)) continue;
-    for (final section in ['dependencies', 'dev_dependencies']) {
+    for (final section in [
+      'dependencies',
+      if (includeDevDependencies) 'dev_dependencies',
+    ]) {
       final dependencies = package.pubspec[section];
       if (dependencies is! Map) continue;
       pending.addAll(

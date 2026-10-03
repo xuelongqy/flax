@@ -58,9 +58,15 @@ void main() {
     final delayed = fixture.callbacks.apply(3)
       ..then((_) => delayedCompleted = true);
     expect(harness.runtime.pendingPromises, 1);
-    await _pumpAsync(tester, const Duration(milliseconds: 19));
     expect(delayedCompleted, isFalse);
-    await _pumpAsync(tester, const Duration(milliseconds: 1));
+    if (tester.binding is AutomatedTestWidgetsFlutterBinding) {
+      await _pumpAsync(tester, const Duration(milliseconds: 19));
+      expect(delayedCompleted, isFalse);
+      await _pumpAsync(tester, const Duration(milliseconds: 1));
+    } else {
+      // A real device frame can exceed 20 ms; only fake time has a 19 ms boundary.
+      await _pumpAsync(tester, const Duration(milliseconds: 20));
+    }
     expect(await delayed, 5);
     expect(harness.runtime.pendingPromises, 0);
 
@@ -174,9 +180,14 @@ void main() {
     expect(harness.number('asyncHooks.nestedAlias'), 71);
 
     harness.execute('void asyncHooks.nestedListTiming()');
-    await _pumpAsync(tester, const Duration(milliseconds: 19));
     expect(harness.boolean('asyncHooks.nestedListDone === true'), isFalse);
-    await _pumpAsync(tester, const Duration(milliseconds: 1));
+    if (tester.binding is AutomatedTestWidgetsFlutterBinding) {
+      await _pumpAsync(tester, const Duration(milliseconds: 19));
+      expect(harness.boolean('asyncHooks.nestedListDone === true'), isFalse);
+      await _pumpAsync(tester, const Duration(milliseconds: 1));
+    } else {
+      await _pumpAsync(tester, const Duration(milliseconds: 20));
+    }
     expect(harness.boolean('asyncHooks.nestedListDone'), isTrue);
     expect(harness.number('asyncHooks.nestedListFirst'), 1);
     expect(harness.number('asyncHooks.nestedListSecond'), 2);

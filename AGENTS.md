@@ -69,9 +69,9 @@ dependency changes without frozen flags only when intentionally updating the man
 and lockfiles together.
 
 Runtime changes also require `dart run melos run check:runtime` on macOS arm64. This
-explicitly builds Hermes. Shared runtime changes also require `check:runtime:v8`; V8 is
-experimental and explicitly selected. Ordinary `check` and `native:configure` never
-fetch an engine.
+builds the Flax bridge against the locked Hermes SDK. Shared runtime changes also
+require `check:runtime:v8`; V8 is experimental and explicitly selected. Ordinary `check`
+and `native:configure` never fetch an engine.
 
 ## Editing rules
 

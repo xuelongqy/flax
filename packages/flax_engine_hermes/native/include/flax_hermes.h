@@ -9,7 +9,16 @@ extern "C" {
 
 /* Returns the FlaxApi table for the requested ABI, or NULL if unsupported.
  * The table has static lifetime. Engine-specific C++ types never cross it. */
-__attribute__((visibility("default"))) const void *
+#if defined(_WIN32)
+#if defined(FLAX_BUILDING_BRIDGE)
+#define FLAX_ENGINE_EXPORT __declspec(dllexport)
+#else
+#define FLAX_ENGINE_EXPORT __declspec(dllimport)
+#endif
+#else
+#define FLAX_ENGINE_EXPORT __attribute__((visibility("default")))
+#endif
+FLAX_ENGINE_EXPORT const void *
 flax_hermes_get_api(uint32_t version);
 
 #ifdef __cplusplus

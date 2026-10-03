@@ -38,7 +38,7 @@ Run one package's static checks with:
 dart run tool/package.dart check flax_fetch
 ```
 
-Run its real UI tests and macOS example with prepared assets using:
+Run its real UI tests and macOS example with the locked SDK using:
 
 ```sh
 dart run tool/package.dart integration flax_fetch --engine=hermes

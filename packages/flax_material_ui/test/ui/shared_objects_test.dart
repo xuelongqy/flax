@@ -250,10 +250,17 @@ void main() {
         ''');
           await t.pump();
           expect(h.runtime.pendingFutures, greaterThan(0));
+          final started = t.binding.currentSystemFrameTimeStamp;
           await t.pump(const Duration(milliseconds: 500));
+          final elapsed = t.binding.currentSystemFrameTimeStamp - started;
+          // Live tests use real frames; headless tests advance exactly 500 ms.
+          expect(elapsed.inMicroseconds, inInclusiveRange(500000, 999999));
           expect(
             h.number('shared.${entry.$1}.offset'),
-            closeTo(300 * entry.$3.transform(0.5), 0.01),
+            closeTo(
+              300 * entry.$3.transform(elapsed.inMicroseconds / 1000000),
+              0.01,
+            ),
           );
           expect(h.number('shared.completed'), completed);
           await t.pump(const Duration(milliseconds: 500));

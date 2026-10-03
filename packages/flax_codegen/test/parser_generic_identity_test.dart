@@ -8,6 +8,30 @@ import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
 void main() {
+  test('disposing cancels pending analysis and a fresh parser still resolves package URIs', () async {
+    final package = _tempGenericPackage();
+    final config = FlaxCodegenBindingConfig(
+      'generics',
+      'package:generic_pkg/generics.dart',
+      '@example/generics',
+      'unused.dart',
+      'unused.ts',
+      const {
+        'Bound': FlaxCodegenClassSelection({'create': []}, kind: 'object'),
+      },
+    );
+    final parser = FlaxCodegenBindingParser(package.root.path);
+    final cancelled = expectLater(parser.parse(config), throwsStateError);
+    await parser.dispose();
+    await cancelled;
+
+    final fresh = FlaxCodegenBindingParser(package.root.path);
+    addTearDown(fresh.dispose);
+    final module = await fresh.parse(config);
+    expect(module.classes.single.name, 'Bound');
+    expect(module.classes.single.constructors.single.name, 'create');
+  });
+
   group('parser genericIdentity', () {
     test(
       'nested capture, shadow, and data generics survive Manifest 12 codec',

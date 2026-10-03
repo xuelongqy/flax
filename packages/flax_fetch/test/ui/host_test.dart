@@ -781,26 +781,7 @@ void main() {
       final temp = Directory.systemTemp.createTempSync('flax-host-tls-');
       final cert = '${temp.path}/certificate.pem', key = '${temp.path}/key.pem';
       final server = await tester.runAsync(() async {
-        final result = await Process.run('openssl', [
-          'req',
-          '-x509',
-          '-newkey',
-          'rsa:2048',
-          '-nodes',
-          '-keyout',
-          key,
-          '-out',
-          cert,
-          '-days',
-          '1',
-          '-subj',
-          '/CN=localhost',
-          '-addext',
-          'subjectAltName=DNS:localhost,IP:127.0.0.1',
-        ]);
-        if (result.exitCode != 0) {
-          throw StateError('Cannot create local TLS fixture: ${result.stderr}');
-        }
+        await flaxTestPrepareTls(cert, key);
         final context = SecurityContext()
           ..useCertificateChain(cert)
           ..usePrivateKey(key);

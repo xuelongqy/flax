@@ -26,7 +26,7 @@ const repository = fileURLToPath(new URL('../../../../', import.meta.url));
 let root;
 let fixture;
 before(async () => {
-  root = await mkdtemp(join(tmpdir(), 'flax-module-delivery-'));
+  root = await mkdtemp(join(tmpdir(), 'flax module delivery-'));
   fixture = await createMixedFixture(root);
 });
 after(async () => {

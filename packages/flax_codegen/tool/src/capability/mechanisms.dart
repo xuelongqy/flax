@@ -1007,7 +1007,7 @@ Future<Map<String, Object?>> _proposeShape({
         'skipCodes': const <String>['automatic_proposal_failed'],
       };
     } finally {
-      parser.dispose();
+      await parser.dispose();
     }
   }
   if (element is! InterfaceElement) {
@@ -1073,7 +1073,7 @@ Future<Map<String, Object?>> _proposeShape({
       'skipCodes': const <String>['automatic_proposal_failed'],
     };
   } finally {
-    parser.dispose();
+    await parser.dispose();
   }
 }
 

@@ -1,8 +1,14 @@
 #include "flax/runtime.h"
+#ifdef _WIN32
+#include <windows.h>
+#include <filesystem>
+#else
 #include <dlfcn.h>
+#endif
 #include <cstring>
 #include <iostream>
 #include <stdexcept>
+#include <string>
 #include <vector>
 
 namespace {
@@ -11,9 +17,22 @@ void require(bool condition, const char *message) {
 }
 const FlaxApi *load(const char *path, const char *entry) {
   // Libraries own process-lifetime engine state; never unload them during use.
+#ifdef _WIN32
+  const auto filename = std::filesystem::absolute(path).make_preferred().string();
+  // The SDK dependency closure lives beside the bridge, outside the EXE directory.
+  auto library = LoadLibraryExA(filename.c_str(), nullptr,
+      LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR | LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
+  if (!library) {
+    const auto error = GetLastError();
+    throw std::runtime_error("Cannot load engine DLL " + filename +
+                            " (Windows error " + std::to_string(error) + ")");
+  }
+  auto bootstrap = reinterpret_cast<const void *(*)(uint32_t)>(GetProcAddress(library, entry));
+#else
   auto *library = dlopen(path, RTLD_NOW | RTLD_LOCAL);
   if (!library) throw std::runtime_error(dlerror());
   auto bootstrap = reinterpret_cast<const void *(*)(uint32_t)>(dlsym(library, entry));
+#endif
   require(bootstrap != nullptr, "Missing engine entry");
   auto *api = static_cast<const FlaxApi *>(bootstrap(FLAX_ABI_VERSION));
   require(api && api->version == FLAX_ABI_VERSION && api->struct_size == sizeof(FlaxApi),

@@ -319,7 +319,9 @@ void main() {
       );
       await t.pumpAndSettle();
       expect((h.runtime.hostCalls['__flaxObject'] ?? 0) - calls, 100);
-      expect(h.runtime.handles, handles);
+      // Real frame scheduling can collect unrelated temporary handles. Identity
+      // stays strict above; retained handles must not grow.
+      expect(h.runtime.handles, lessThanOrEqualTo(handles));
       await h.finish(t);
       expect(h.errors, isEmpty);
     },

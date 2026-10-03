@@ -417,11 +417,11 @@ editing snapshot restorer or fallback formatter remains.
 
 Framework fixture generation runs from `ui:bundle` into each owning package's
 `.dart_tool/flax/ui`, including temporary Dart bindings. `ui:test` executes each
-package's own UI tests with only that package's fixture and dependency closure, and
-requires prepared native assets. `package.dart integration NAME` is the owner-level real
-UI gate. `check:aggregate` verifies only cross-module composition, while `check:ui` runs
-all UI owner integrations plus that aggregate. Runtime, standalone, engine coexistence,
-and release verification use their dedicated commands. See
+package's own UI tests with only that package's fixture and dependency closure, and uses
+the locked native SDK. `package.dart integration NAME` is the owner-level real UI gate.
+`check:aggregate` verifies only cross-module composition, while `check:ui` runs all UI
+owner integrations plus that aggregate. Runtime, standalone, engine coexistence, and
+release verification use their dedicated commands. See
 [contributing](../../CONTRIBUTING.md#checks).
 
 C-header FFI generation is separate (`ffi:generate` / `ffi:check`). JS tree shaking does

@@ -5,23 +5,26 @@ import 'src/engine_selection.dart';
 import 'src/example_engine.dart';
 import 'src/process.dart';
 import 'src/ui_testing.dart';
+import 'src/platform_selection.dart';
 
 Future<void> main(List<String> arguments) => command(() async {
   final engine = selectedEngine(arguments);
   final root = Directory.fromUri(Platform.script.resolve('../')).path;
   requireUiAssets(root, engine: engine);
 
-  await run('pnpm', [
-    '--silent',
-    '--filter',
-    '@flax/example-embedded...',
-    'run',
-    'build',
-  ], directory: root);
-  await run('node', [
-    'tool/example_bundle.mjs',
-    '--aggregate',
-  ], directory: root);
+  if (Platform.environment['FLAX_CHECK_PREPARED'] != '1') {
+    await run('pnpm', [
+      '--silent',
+      '--filter',
+      '@flax/example-embedded...',
+      'run',
+      'build',
+    ], directory: root);
+    await run('node', [
+      'tool/example_bundle.mjs',
+      '--aggregate',
+    ], directory: root);
+  }
 
   await withExample(root, engine, 'embedded', (example) async {
     await run('flutter', [
@@ -38,7 +41,7 @@ Future<void> main(List<String> arguments) => command(() async {
       'drive',
       '--no-pub',
       '-d',
-      'macos',
+      currentCheckDevice(),
       '--driver',
       'test_driver/integration_test.dart',
       '--target',

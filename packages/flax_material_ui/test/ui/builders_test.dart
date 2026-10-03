@@ -307,8 +307,8 @@ void main() {
     var deactivations = 0;
     onDeactivate = () {
       deactivations++;
-      expect(h.number('Number(hooks.context.mounted)'), 1);
-      expect(
+      expectSync(h.number('Number(hooks.context.mounted)'), 1);
+      expectSync(
         () => h.execute('hooks.lookup()'),
         throwsA(isA<FlaxJsException>()),
       );
