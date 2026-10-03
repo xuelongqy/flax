@@ -34,14 +34,17 @@ Supported target names are macOS/Linux/Windows with `-x64` or `-arm64`, Android 
 `-arm32`, `-arm64` or `-x64`, and `ios-device-arm64`, `ios-simulator-arm64`,
 `ios-simulator-x64`.
 
-`all` prepares engine-free checks once, runs each engine's shared contracts and UI
-tests, native assertions, platform checks and an external Flutter application. Desktop
-checks include package examples and the aggregate application. Mobile checks import the
-same package-owned UI assertions into a device application; fixtures and TLS material
-are prepared on the host. `platform` runs the native contracts,
-ABI/architecture/dependency checks, a small identity/UTF-16/reentry smoke subset,
-loop-closure checks and application startup/delivery. Both engines also undergo
-shared-library byte comparison and coexistence/callback reentry.
+`all` runs each engine's shared contracts and UI tests, native assertions, platform
+checks and an external Flutter application. Linux x64 also runs the common engine-free
+`melos check` and FFI reproducibility gate once. Other targets prepare their JS/test
+bundles and use the same-head Linux CI gate for common logic; for standalone local
+validation, run `dart run melos run check` separately. Desktop checks include package
+examples and the aggregate application. Mobile checks import the same package-owned UI
+assertions into a device application; fixtures and TLS material are prepared on the
+host. `platform` runs the native contracts, ABI/architecture/dependency checks, a small
+identity/UTF-16/reentry smoke subset, loop-closure checks and application
+startup/delivery. Both engines also undergo shared-library byte comparison and
+coexistence/callback reentry.
 
 `--build-only` compiles bridges and an external application, checks their native assets
 and records `ran: false` and `applicationDelivered: false`. It never substitutes for

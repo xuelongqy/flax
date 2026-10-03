@@ -46,6 +46,9 @@ ABI-containing artifacts. Native ABI 2 and the Dart runtime API are unchanged.
 Common test semantics retain their package owners and run once on Linux by default, with
 both engines for runtime/UI assertions. Relevant native/platform changes add only
 platform specialty checks; full target validation is manual. Mobile assertions reuse
-shared sources through a test application and a separate test-only native library.
-Build-only evidence cannot certify device execution or application delivery. See
-[platform verification](../testing-platforms.md) for commands, routing and conditions.
+shared sources through a test application and a separate test-only native library. Full
+checks outside Linux x64 prepare target bundles and execute every shared runtime and UI
+assertion; they do not repeat the host-only common gate. Standalone local validation
+runs `melos check` separately. Build-only evidence cannot certify device execution or
+application delivery. See [platform verification](../testing-platforms.md) for commands,
+routing and conditions.

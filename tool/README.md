@@ -67,6 +67,11 @@ or `--dry-run` for a disposable receipt). `check_release.dart` asserts
 `publish_to: none` / `private: true`, then runs both checks. Melos entries:
 `packages:check`, `packages:pack`, and `release:check`. None of these publish.
 
+`check_platform.dart --scope=all` runs complete runtime/UI and application checks for
+the selected target. The Linux x64 invocation also owns the common `melos check` and FFI
+gate; other targets prepare bundles without repeating host-only checks. Use
+`dart run melos run check` separately for standalone local common validation.
+
 `package.dart` discovers Pub packages under `packages/`. `check <name>` runs that
 package's analysis, Dart/Flutter unit tests, binding check, JS build/type/tests, host
 bundle check, and example static checks when present. `integration <name>` runs its

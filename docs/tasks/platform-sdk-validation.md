@@ -1,7 +1,8 @@
 # Task: Native SDK integration and platform validation
 
-Status: rc.3 integration reviewed. Full iOS simulator follow-up passed locally on arm64;
-its CI preparation and the current head's macOS x64 evidence remain pending.
+Status: rc.3 integration and all twelve regular CI targets passed at `7a6aaf1`. Full iOS
+arm64 passed CI; full iOS x64 still requires actual UI execution after its host-only
+preparation failure. Common-gate routing follow-up awaits new CI.
 
 ## Goal and scope
 
@@ -131,20 +132,27 @@ certify Dart FFI acceptance.
    original/relocated debug application delivery. Three synchronous callbacks use
    synchronous matchers; animation samples use the actual live frame time; normalized
    test viewports reset device insets. Assertions remain enabled. This is local evidence
-   with Xcode 27; hosted CI pins Xcode 26.6, and local execution does not certify x64.
+   with Xcode 27 and now also hosted CI at `7a6aaf1` with Xcode 26.6. Neither execution
+   certifies full x64 UI coverage.
 3. Execute Android arm32/arm64 and signed iOS device checks using the platform guide.
    Their six engine/target groups remain build-only until actual runtime and application
    delivery pass. These require devices outside the completed hosted-CI scope.
 
-At `1f7d004d6fa371a9b8ef1b257bd3af810f8c269f`, Package CI and eleven regular targets
-passed. The macOS x64 hosted runner lost communication; its job-log endpoint returned
-404 and the full run archive contained no job log or artifact. The underlying cause is
-unconfirmed. Full iOS arm64/x64 checks both failed during common Codegen preparation,
-before native/UI execution: two and ten cases timed out respectively, and x64 also hit
-the one-hour preparation limit. All thirteen available verification ZIPs passed digest,
-size, CRC and safe extraction checks. The 22 regular SDK groups matched rc.3 archive and
-library hashes: 22 built, sixteen ran and delivered applications, six remained
-build-only. The two full-iOS receipts recorded no build/runtime/application acceptance.
+At `7a6aaf148c5ef1a6dae558dac3079fe03b99aaec`, Workspace `37126044253`, Package
+`37126044102` and full iOS arm64 `37126118310` passed. macOS x64 job `111211480526` has
+fresh runtime/application evidence; the earlier runner loss did not recur, and its
+underlying cause remains unconfirmed. All fourteen available verification ZIPs passed
+digest, size, CRC and safe extraction checks. All 24 regular SDK groups matched rc.3
+archive and library hashes: 24 built, eighteen ran and delivered applications, six
+remained build-only. Full iOS arm64 job `111211638325` ran all 346 UI and 41
+runtime/startup cases per engine, including original/relocated debug delivery.
+
+Full iOS x64 run `37126120933`, job `111211641990`, failed before native/UI execution.
+The generic-proposal and top-level-function Codegen cases exceeded three- and two-minute
+case budgets; the package test command then hit its thirty-minute limit. The
+post-timeout resolution error does not establish an independently missing source file.
+The full-x64 receipt records no build/runtime/application acceptance; its regular
+platform-scope success does not certify the complete UI suite.
 
 The Codegen follow-up avoids repeated recursive workspace discovery, returns and awaits
 analyzer disposal, and releases each generic-proposal parser before starting the next.
@@ -152,5 +160,15 @@ Compiler-backed cases now share the existing finite three-minute fixture budget 
 package test configuration; no cases or assertions are skipped. A local comparison of
 seven affected test files at concurrency two versus one found serial execution slower
 with similar peak process-tree RSS, so the default concurrency policy is retained. These
-corrections require new terminal CI and artifact evidence; they do not establish the
-cause of hosted-runner loss or resource exhaustion.
+corrections passed Linux and full iOS arm64 CI, but did not make the duplicated x64
+common check complete within its existing budgets. They do not establish the cause of
+hosted-runner loss or resource exhaustion.
+
+The routing follow-up implements ADR 0036's single Linux common gate. Linux x64 `all`
+retains `melos check` and FFI reproducibility. Other full targets prepare bundles and
+execute all runtime/UI/native/application assertions, relying on same-head Linux CI for
+common logic. Standalone local validation runs `melos check` separately. No test
+assertions, SDK bytes, toolchain pins or workflow definitions change. This removes the
+duplicated host-only preparation from the device gate; it does not claim that Codegen
+performance on an Intel hosted runner has been repaired. Full x64 UI acceptance still
+requires the next terminal run and its artifacts.

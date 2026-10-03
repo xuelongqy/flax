@@ -14,13 +14,21 @@ import 'src/process.dart';
 Future<void> main(List<String> arguments) => command(() async {
   final options = PlatformCheckOptions(arguments);
   final root = Directory.fromUri(Platform.script.resolve('../')).path;
+  // Common logic has one Linux gate; full target checks retain every runtime/UI
+  // assertion without repeating host-only generator and archive tests.
+  final commonChecks =
+      options.scope == 'all' &&
+      !options.buildOnly &&
+      options.target.name == 'linux-x64';
   if (options.list) {
     stdout.writeln(
       '${options.target.name}: ${options.engines.join(', ')}; ${options.scope}',
     );
     if (options.scope == 'all') {
       stdout.writeln(
-        'Host: melos check (JS/Dart logic, generated files, static analysis; once)',
+        commonChecks
+            ? 'Host: melos check (JS/Dart logic, generated files, static analysis; once on Linux)'
+            : 'Host: JS and device test bundles; common logic uses melos check separately or the Linux CI gate',
       );
       for (final package in discoverPackages(root)) {
         if (!package.uiTests.existsSync()) continue;
@@ -107,7 +115,7 @@ Future<void> main(List<String> arguments) => command(() async {
       await _requireDevice(target, options.device!);
     }
     failedStage = 'prepare';
-    if (options.scope == 'all' && !options.buildOnly) {
+    if (commonChecks) {
       // Budget for the complete generation, test, analysis and packaging sequence.
       await run(
         Platform.resolvedExecutable,

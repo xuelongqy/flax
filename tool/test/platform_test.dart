@@ -15,6 +15,43 @@ import '../src/platform_binary.dart';
 
 void main() {
   test(
+    'full target plans retain every UI owner and one Linux common gate',
+    () async {
+      for (final target in [
+        'linux-x64',
+        'ios-simulator-arm64',
+        'ios-simulator-x64',
+      ]) {
+        final result = await Process.run(Platform.resolvedExecutable, [
+          'run',
+          'tool/check_platform.dart',
+          '--target=$target',
+          '--engine=all',
+          '--scope=all',
+          '--list',
+        ]);
+        expect(result.exitCode, 0, reason: result.stderr.toString());
+        final plan = result.stdout.toString();
+        expect(plan, contains('$target: hermes, v8; all'));
+        expect(plan.contains('Host: melos check'), target == 'linux-x64');
+        if (target != 'linux-x64') {
+          expect(plan, contains('common logic uses melos check separately'));
+        }
+        for (final owner in [
+          'flax',
+          'flax_canvas',
+          'flax_cupertino_ui',
+          'flax_fetch',
+          'flax_local_storage',
+          'flax_material_ui',
+          'flax_websocket',
+        ]) {
+          expect(plan, contains('UI $owner:'), reason: target);
+        }
+      }
+    },
+  );
+  test(
     'macOS consumers build hooks only for the selected SDK architecture',
     () {
       final app = Directory.systemTemp.createTempSync('flax macos target ');
@@ -123,32 +160,39 @@ void main() {
       expect(chmod.exitCode, 0);
     }
     final target = FlaxNativeTarget.host().name;
-    final result = await Process.run(
-      Platform.resolvedExecutable,
-      [
-        '--packages=${root.path}/.dart_tool/package_config.json',
-        '${tool.path}/check_platform.dart',
-        '--target=$target',
-        '--engine=all',
-        '--scope=platform',
-      ],
-      environment: {
-        'PATH':
-            '${bin.path}${Platform.isWindows ? ';' : ':'}${Platform.environment['PATH']}',
-      },
-    );
-    expect(result.exitCode, 1, reason: '${result.stdout}\n${result.stderr}');
-    final receipt = jsonDecode(
-      File('${temporary.path}/build/platform/$target/verification.json')
-          .readAsStringSync(),
-    ) as Map<String, dynamic>;
-    expect(receipt['failedStage'], 'prepare');
-    expect(receipt['errors'], isNotEmpty);
-    expect(receipt['sharedLibrariesVerified'], isFalse);
-    for (final record in receipt['results'] as List) {
-      expect((record as Map)['built'], isFalse);
-      expect(record['ran'], isFalse);
-      expect(record['applicationDelivered'], isFalse);
+    for (final scope in ['platform', if (target != 'linux-x64') 'all']) {
+      final result = await Process.run(
+        Platform.resolvedExecutable,
+        [
+          '--packages=${root.path}/.dart_tool/package_config.json',
+          '${tool.path}/check_platform.dart',
+          '--target=$target',
+          '--engine=all',
+          '--scope=$scope',
+        ],
+        environment: {
+          'PATH':
+              '${bin.path}${Platform.isWindows ? ';' : ':'}${Platform.environment['PATH']}',
+        },
+      );
+      expect(result.exitCode, 1, reason: '${result.stdout}\n${result.stderr}');
+      expect(
+        result.stdout.toString(),
+        contains('> pnpm --silent run js:build'),
+      );
+      final receipt = jsonDecode(
+        File('${temporary.path}/build/platform/$target/verification.json')
+            .readAsStringSync(),
+      ) as Map<String, dynamic>;
+      expect(receipt['failedStage'], 'prepare');
+      expect(receipt['errors'], isNotEmpty);
+      expect(receipt['sharedLibrariesVerified'], isFalse);
+      for (final record in receipt['results'] as List) {
+        expect((record as Map)['scope'], scope);
+        expect(record['built'], isFalse);
+        expect(record['ran'], isFalse);
+        expect(record['applicationDelivered'], isFalse);
+      }
     }
   });
   test(
