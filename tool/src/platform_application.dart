@@ -329,15 +329,23 @@ ${[for (var i = 0; i < tests.length; i++) "import '../../packages/${owner.name}/
 void main() {
   final binding = IntegrationTestWidgetsFlutterBinding.ensureInitialized();
   ${target.os == 'ios' ? _semanticsSetup : ''}
-  // Match the headless viewport; these shared comparisons are not device screenshots.
+  // Match the headless viewport, including safe areas and keyboard insets.
+  // Native pixel insets must not be combined with this fixed DPR and size.
   setUp(() {
     final view = binding.platformDispatcher.implicitView!;
     view.devicePixelRatio = 1;
     view.physicalSize = const Size(800, 600);
+    view.padding = FakeViewPadding.zero;
+    view.viewPadding = FakeViewPadding.zero;
+    view.viewInsets = FakeViewPadding.zero;
   });
   tearDown(() {
-    binding.platformDispatcher.implicitView!.resetPhysicalSize();
-    binding.platformDispatcher.implicitView!.resetDevicePixelRatio();
+    final view = binding.platformDispatcher.implicitView!;
+    view.resetPadding();
+    view.resetViewPadding();
+    view.resetViewInsets();
+    view.resetPhysicalSize();
+    view.resetDevicePixelRatio();
   });
   setUpAll(() async {
     flaxTestLoadFixtures((jsonDecode(await rootBundle.loadString('assets/test-fixtures.json')) as Map).cast<String,String>());

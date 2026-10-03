@@ -454,7 +454,7 @@ __flaxCall($flaxBindingVersion, 'test:Async', 'later').then(
           expect(h.runtime.pendingFutures, 1);
           SchedulerBinding.instance.scheduleFrameCallback((_) {
             final closing = h.session.close();
-            expect(h.session.close(), same(closing));
+            expectSync(h.session.close(), same(closing));
             if (fail) {
               completion.completeError(StateError('late failure'));
             } else {

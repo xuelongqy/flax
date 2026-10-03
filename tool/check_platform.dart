@@ -108,12 +108,13 @@ Future<void> main(List<String> arguments) => command(() async {
     }
     failedStage = 'prepare';
     if (options.scope == 'all' && !options.buildOnly) {
-      await run(Platform.resolvedExecutable, [
-        'run',
-        'melos',
-        'run',
-        'check',
-      ], directory: root);
+      // Budget for the complete generation, test, analysis and packaging sequence.
+      await run(
+        Platform.resolvedExecutable,
+        ['run', 'melos', 'run', 'check'],
+        directory: root,
+        timeout: const Duration(hours: 1),
+      );
       await dart('tool/ffi.dart', ['--check']);
     } else {
       await run('pnpm', ['--silent', 'run', 'js:build'], directory: root);
