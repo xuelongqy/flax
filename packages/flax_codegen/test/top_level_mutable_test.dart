@@ -77,7 +77,7 @@ void main() {
       parser.prepareModules(providers);
       return await parser.parse(selection);
     } finally {
-      parser.dispose();
+      await parser.dispose();
     }
   }
 

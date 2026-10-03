@@ -65,7 +65,7 @@ Future<List<Map<String, Object?>>> runExplicitGenericExperiments({
       );
       results.add({'title': title, ...parsed});
     } finally {
-      parser.dispose();
+      await parser.dispose();
     }
   }
 
@@ -253,7 +253,7 @@ Future<List<Map<String, Object?>>> runOmitScaleExperiments({
         generatedBaseline = measurement;
       }
     } finally {
-      parser.dispose();
+      await parser.dispose();
     }
   }
   return results;

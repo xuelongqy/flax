@@ -1225,27 +1225,30 @@ void main() {
       >
       inspect(String name, {required bool parse}) async {
         final parser = FlaxCodegenBindingParser(repoRoot);
-        addTearDown(parser.dispose);
-        await parser.prepare([core]);
-        final proposal = await parser.proposeSelection(
-          await loadType('package:flutter/widgets.dart', name),
-          library: core,
-        );
-        if (!parse) return (proposal: proposal, module: null);
-        final module = await parser.parse(
-          FlaxCodegenBindingConfig(
-            'generic_$name',
-            core.library,
-            '@example/generic',
-            'unused.dart',
-            'unused.ts',
-            {name: proposal.selection!},
-            additionalLibraries: core.additionalLibraries,
-            imports: core.imports,
-            publicLibraries: core.publicLibraries,
-          ),
-        );
-        return (proposal: proposal, module: module);
+        try {
+          await parser.prepare([core]);
+          final proposal = await parser.proposeSelection(
+            await loadType('package:flutter/widgets.dart', name),
+            library: core,
+          );
+          if (!parse) return (proposal: proposal, module: null);
+          final module = await parser.parse(
+            FlaxCodegenBindingConfig(
+              'generic_$name',
+              core.library,
+              '@example/generic',
+              'unused.dart',
+              'unused.ts',
+              {name: proposal.selection!},
+              additionalLibraries: core.additionalLibraries,
+              imports: core.imports,
+              publicLibraries: core.publicLibraries,
+            ),
+          );
+          return (proposal: proposal, module: module);
+        } finally {
+          await parser.dispose();
+        }
       }
 
       final restorable = await inspect('RestorableChangeNotifier', parse: true);

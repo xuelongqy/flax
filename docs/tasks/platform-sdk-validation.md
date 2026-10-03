@@ -1,7 +1,7 @@
 # Task: Native SDK integration and platform validation
 
-Status: rc.3 integration reviewed. Completed CI evidence, the cache-lock correction and
-remaining acceptance boundaries are recorded below.
+Status: rc.3 integration reviewed. Full iOS simulator follow-up passed locally on arm64;
+its CI preparation and the current head's macOS x64 evidence remain pending.
 
 ## Goal and scope
 
@@ -126,10 +126,31 @@ certify Dart FFI acceptance.
 
 1. Require the review follow-up's applicable CI, summary and matching SDK/stage receipts
    to pass. Do not reuse the earlier head's green results as this change's acceptance.
-2. Earlier rc.1 iOS V8 full Material execution had 166 passes and eleven failures;
-   WebSocket was not reached. Headless/fake-clock assumptions under the live integration
-   binding remain unresolved. Platform smoke does not certify those full assertions,
-   which remain enabled.
+2. Full iOS arm64 execution with rc.3 now passes all 346 owner UI cases per engine,
+   including Material 177/177 and WebSocket 9/9, plus 41 runtime/startup cases and
+   original/relocated debug application delivery. Three synchronous callbacks use
+   synchronous matchers; animation samples use the actual live frame time; normalized
+   test viewports reset device insets. Assertions remain enabled. This is local evidence
+   with Xcode 27; hosted CI pins Xcode 26.6, and local execution does not certify x64.
 3. Execute Android arm32/arm64 and signed iOS device checks using the platform guide.
    Their six engine/target groups remain build-only until actual runtime and application
    delivery pass. These require devices outside the completed hosted-CI scope.
+
+At `1f7d004d6fa371a9b8ef1b257bd3af810f8c269f`, Package CI and eleven regular targets
+passed. The macOS x64 hosted runner lost communication; its job-log endpoint returned
+404 and the full run archive contained no job log or artifact. The underlying cause is
+unconfirmed. Full iOS arm64/x64 checks both failed during common Codegen preparation,
+before native/UI execution: two and ten cases timed out respectively, and x64 also hit
+the one-hour preparation limit. All thirteen available verification ZIPs passed digest,
+size, CRC and safe extraction checks. The 22 regular SDK groups matched rc.3 archive and
+library hashes: 22 built, sixteen ran and delivered applications, six remained
+build-only. The two full-iOS receipts recorded no build/runtime/application acceptance.
+
+The Codegen follow-up avoids repeated recursive workspace discovery, returns and awaits
+analyzer disposal, and releases each generic-proposal parser before starting the next.
+Compiler-backed cases now share the existing finite three-minute fixture budget through
+package test configuration; no cases or assertions are skipped. A local comparison of
+seven affected test files at concurrency two versus one found serial execution slower
+with similar peak process-tree RSS, so the default concurrency policy is retained. These
+corrections require new terminal CI and artifact evidence; they do not establish the
+cause of hosted-runner loss or resource exhaustion.

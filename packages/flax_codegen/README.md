@@ -19,6 +19,13 @@ Run `dart run melos run bindings:generate` after changing inputs, then
 constructor-default tests without downloading or running an engine. `ui:bundle` also
 generates the independent interop fixture into ignored output for real `ui:test` use.
 
+The parser resolves requested libraries and dependencies in the supplied root's package
+environment without recursively discovering unrelated workspace projects. Await
+`parser.dispose()` when analysis finishes; test teardown callbacks can return this
+Future directly. Codegen tests use a three-minute default budget because analyzer-backed
+fixtures also compile Dart/TypeScript and launch Flutter tests. Explicit longer fixture
+budgets and all failure assertions remain in force.
+
 The package CLI is:
 
 ```sh
