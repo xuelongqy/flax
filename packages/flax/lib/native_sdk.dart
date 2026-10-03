@@ -73,7 +73,7 @@ Future<(Directory, List<File>)> prepareFlaxEngineSdk({
     if (previous != null) await previous;
     final cacheLock = await lockFile.open(mode: FileMode.append);
     try {
-      await cacheLock.lock(FileLock.exclusive);
+      await cacheLock.lock(FileLock.blockingExclusive);
       if (sdk.existsSync()) {
         if (sdkArchive != null) await _verifyHash(archive, expectedDigest);
         await _verifySdk(sdk, pin);

@@ -164,4 +164,60 @@ void main() {
     await pack();
     await expectLater(prepare(), failure('Unsafe SDK file path'));
   });
+  test(
+    'preparation waits for another process holding the cache lock',
+    () async {
+      await pack();
+      final cache = Directory('${work.path}/cache')..createSync();
+      final holder = File('${work.path}/hold.dart')
+        ..writeAsStringSync('''
+import 'dart:io';
+Future<void> main(List<String> args) async {
+  final lock = await File(args.single).open(mode: FileMode.append);
+  try {
+    await lock.lock(FileLock.exclusive);
+    stdout.writeln('locked');
+    await stdin.first;
+    await lock.unlock();
+  } finally {
+    await lock.close();
+  }
+}
+''');
+      final process = await Process.start(Platform.resolvedExecutable, [
+        holder.path,
+        '${cache.path}/sdk-$digest.lock',
+      ]);
+      addTearDown(() => process.kill());
+      final errors = process.stderr.transform(utf8.decoder).join();
+      expect(await process.stdout.transform(utf8.decoder).first, 'locked\n');
+      Directory? sdk;
+      Object? error;
+      final preparation =
+          prepareFlaxEngineSdk(
+            engine: 'hermes',
+            target: FlaxNativeTarget('macos-arm64'),
+            packageRoot: Directory('${work.path}/engine').uri,
+            cacheRoot: cache.uri,
+            sdkArchive: archive.uri,
+            sdkSha256: digest,
+          ).then<void>(
+            (result) => sdk = result.$1,
+            onError: (Object e) {
+              error = e;
+            },
+          );
+      try {
+        await Future<void>.delayed(const Duration(milliseconds: 200));
+        expect(sdk, isNull);
+      } finally {
+        process.stdin.writeln('release');
+        await process.stdin.close();
+        expect(await process.exitCode, 0, reason: await errors);
+      }
+      await preparation;
+      expect(error, isNull);
+      expect(File('${sdk!.path}/manifest.json').existsSync(), isTrue);
+    },
+  );
 }

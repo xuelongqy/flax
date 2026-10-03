@@ -1,7 +1,7 @@
 # Task: Native SDK integration and platform validation
 
-Status: rc.3 Windows Dart and application checks passed; native coexistence rerun
-pending.
+Status: rc.3 integration reviewed. Completed CI evidence, the cache-lock correction and
+remaining acceptance boundaries are recorded below.
 
 ## Goal and scope
 
@@ -57,34 +57,59 @@ macOS arm64 checks:
 This local round did not rerun UI or device suites. Local Apple builds used Xcode 27; CI
 pins Xcode 26.6. SDK manifests retain version `0.3.0`.
 
-## Latest completed Flax round
+## Completed Flax acceptance
 
-The rc.3 round at `4d49cdd2fadeca6c440282afbd68ee8779030463` completed
-[Workspace 36988124008](https://github.com/xuelongqy/flax/actions/runs/36988124008) and
-[Package 36988123896](https://github.com/xuelongqy/flax/actions/runs/36988123896). Ten
-target jobs and the package workflow passed; Windows x64, Windows arm64 and the summary
-failed. All 27 jobs/checks were terminal: twelve successful, three failed and twelve
-inapplicable opposite-host branches skipped; no commit statuses remained. All twelve
-receipts matched rc.3: 24 groups built, eighteen ran and passed application delivery,
-and six device groups remained build-only. macOS x64 passed with an artifact and actual
-Dart/native coexistence execution; the previous runner disconnection did not recur.
-Linux x64 full passed both engines' 39 runtime contracts, 346 package-owned UI cases per
-engine, examples and aggregate application, retaining the original Hermes assertion.
+At `2636d9bd149432c4d99c67bd3f98fb1931e85419`,
+[Workspace 37000526994](https://github.com/xuelongqy/flax/actions/runs/37000526994)
+(attempt 2) and
+[Package 37000526672](https://github.com/xuelongqy/flax/actions/runs/37000526672)
+passed. All 27 effective jobs/checks were terminal: fifteen successful and twelve
+inapplicable opposite-host branches skipped; no commit statuses remained.
 
-Both Windows architectures passed both engines' standalone Dart JIT, checksum rejection,
-relocated AOT, independent Dart coexistence and single/dual-engine Flutter application
-delivery. Native coexistence compilation failed on both architectures at
-`std::to_string`: the Windows-only loader diagnostic omitted its `<string>` header. That
-header is now included explicitly; this round never executed the revised Windows loader.
-The fixture uses
-[LoadLibraryExA](https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibraryexa)
-with an absolute native path and `LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR` plus
-`LOAD_LIBRARY_SEARCH_DEFAULT_DIRS`; failures retain the DLL path and Windows error code.
-The earlier `LoadLibraryA` failure did not record the exact dependency or loader error;
-the SDK dependency closure lives beside the bridge, outside the consumer EXE directory.
-Changes to either coexistence fixture select both engines on every desktop target;
-Windows acceptance of this loader fix remains pending. Both debugger self-tests passed;
-this round produced no actual Hermes crash dumps.
+All twelve verification ZIPs matched GitHub digests and sizes and passed CRC and safe
+extraction checks. All 24 SDK archive/library hashes and versions matched rc.3 locks and
+candidate manifests: 24 groups built, eighteen actually ran and passed application
+delivery, and six physical-device groups remained build-only. Evidence combines eleven
+attempt-1 artifacts with the new macOS x64 attempt-2 artifact from the same head.
+
+| Acceptance                                                                   | Successful job |
+| ---------------------------------------------------------------------------- | -------------- |
+| Windows x64 Dart JIT/AOT, Dart/native coexistence and application delivery   | `110817006636` |
+| Windows arm64 Dart JIT/AOT, Dart/native coexistence and application delivery | `110817006885` |
+| macOS x64 actual execution and artifact after hosted-runner disconnection    | `110876972993` |
+| Linux x64 default full checks for both engines                               | `110816943667` |
+| Final workflow summary                                                       | `110928813617` |
+
+Both Windows jobs compiled and executed the native coexistence consumer using the
+absolute native-path `LoadLibraryExA` loader and its SDK dependency directory. All
+foreign-handle rejection and destruction/recreation assertions passed. Both real CDB
+self-tests passed; only their expected self-test dumps were produced. No actual Hermes
+crash occurred in this round. macOS x64's first attempt lost hosted-runner
+communication; its job log was unavailable and it produced no artifact. The successful
+second attempt provides current-head runtime evidence; the first failure remains
+recorded.
+
+Linux x64 full passed both engines' 39 runtime contracts and 346 package-owned UI cases
+per engine, examples, aggregate application and native/Dart coexistence, retaining the
+original Hermes detached-buffer assertion. Other targets used platform scope.
+
+## Review follow-up
+
+Independent build processes sharing the SDK cache previously used a nonblocking
+exclusive file lock. A second process failed with `Resource temporarily unavailable`
+instead of waiting for the active extraction. The shared SDK helper now uses Dart's
+blocking exclusive lock. The existing SDK tests include a real child process holding the
+cache lock; preparation must wait and then return a verified SDK. All seven SDK contract
+tests and 68 tool tests pass locally; the real Windows debugger self-test is
+inapplicable on macOS. Scoped analysis, formatting, documentation checks and both
+engines' runtime checks pass, including 39 contracts per engine, native CTest and
+standalone JIT/checksum-rejection/relocated-AOT consumers. UI and device suites were not
+rerun locally for this correction. The SDK bytes, ABI and toolchain locks are unchanged.
+
+This follow-up requires its own completed CI evidence. Its current workflow status and
+artifact audit are recorded in [PR #2](https://github.com/xuelongqy/flax/pull/2); the
+accepted head above remains explicit. The monitoring timer stays closed and the PR stays
+unmerged.
 
 Four rc.2 heap minidumps established the Hermes root cause: Dart's isolate stack is
 fully committed without a guard page. Hermes counted an adjacent allocation's reserved
@@ -97,18 +122,14 @@ internal functions. The rc.3 native worker regression and actual Flax Windows Da
 JIT/AOT now pass on both architectures. Native C++ or Flutter success alone cannot
 certify Dart FFI acceptance.
 
-## Remaining acceptance work
+## Acceptance boundaries and next checks
 
-1. Rerun the Flax matrix with the missing header restored and require Windows native
-   coexistence to compile and pass using the revised loader, alongside the retained
-   Dart/application checks and macOS x64 execution. Collect all failure logs and
-   verification artifacts after the whole round is terminal.
-2. Keep Linux's default full checks passing. Earlier rc.1 iOS V8 full Material execution
-   had 166 passes and eleven failures; WebSocket was not reached. Headless/fake-clock
-   assumptions under the live integration binding remain unresolved. Platform smoke does
-   not certify those full assertions, which remain enabled.
+1. Require the review follow-up's applicable CI, summary and matching SDK/stage receipts
+   to pass. Do not reuse the earlier head's green results as this change's acceptance.
+2. Earlier rc.1 iOS V8 full Material execution had 166 passes and eleven failures;
+   WebSocket was not reached. Headless/fake-clock assumptions under the live integration
+   binding remain unresolved. Platform smoke does not certify those full assertions,
+   which remain enabled.
 3. Execute Android arm32/arm64 and signed iOS device checks using the platform guide.
    Their six engine/target groups remain build-only until actual runtime and application
-   delivery pass.
-4. Require all applicable CI and summary checks plus matching SDK and stage receipts
-   before completing acceptance. Leave PR #2 unmerged.
+   delivery pass. These require devices outside the completed hosted-CI scope.
