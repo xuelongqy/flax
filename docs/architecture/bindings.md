@@ -208,29 +208,38 @@ and Dart use the same model; unsupported signatures fail generation. See
 
 Constructors and methods preserve optional omission and explicit null. Optional JS
 undefined means omitted; collection undefined is rejected. Non-null constant objects,
-collections and private callback defaults remain omitted from actual Dart calls.
-Generated direct branches cover presence combinations; no private default is copied or
-reimplemented. N independent omission parameters still require 2^N combinations.
+collections and private callback defaults remain omitted from actual Dart calls. Direct
+typed branches cover up to five independent omission parameters (at most 32
+combinations). From six, typed constructor/method/function tear-offs use
+`Function.apply` with static Symbols for provided named parameters and the same argument
+conversions. All bindable parameters remain selected. Default resolution follows super
+parameters and redirecting factory chains, matching names or positional indexes;
+unresolved targets, mismatches and cycles fail closed. Generative redirects retain their
+own defaults. Route, Page and extends-proxy adapters use super formals, preserving
+private defaults without copying them. Optional positional parameters permit only
+trailing omission; provided arguments after a hole are rejected.
 
 Widget parameters except key may bind. Ordinary object construction and writes do not
 bind. Callbacks support required/optional positional parameters, required/optional named
 parameters, and analyzer-validated generic parameters. Named arguments use a final JS
-options object. Generated direct calls preserve omitted defaults in both directions.
-Generic callback calls convert through erased upper bounds while TS keeps the declared
-relationship. A callback declared to return Future requires a JS Promise or thenable and
-produces the typed Dart Future awaited by the caller. Future-returning Dart members use
-the reverse conversion and the same UI checkpoint. Future and FutureOr values compose
-recursively through supported collection, Record and callback positions under protocol
-20; nested completion values retain their own declared async semantics. Asynchronous
-lifecycle/build callbacks and Map callback keys remain unsupported. Direct non-null
-`List<Widget>` callback parameters and results are supported; nullable-element lists and
-other Widget collection shapes remain fail-closed. Dart Stream references can appear in
-parameters, results, callbacks and typed collections, including nested ordinary value
-shapes; they follow [ADR 0020](../decisions/0020-complete-dart-stream-interop.md). The
-JS interop handle is `FlaxStreamReference` (not a `Dart*` alias and not Web
-`ReadableStream`). Generated Flutter bindings expose the selected dart:async Stream
-family and call real Dart operators. Widget builders and Route factories stay
-synchronous and retain their Flutter lifecycle-specific ownership.
+options object. The same five/six threshold preserves omitted named defaults in proxy
+and returned Dart callback calls; optional positional callbacks retain linear prefix
+dispatch. Generic callback calls convert through erased upper bounds while TS keeps the
+declared relationship. A callback declared to return Future requires a JS Promise or
+thenable and produces the typed Dart Future awaited by the caller. Future-returning Dart
+members use the reverse conversion and the same UI checkpoint. Future and FutureOr
+values compose recursively through supported collection, Record and callback positions
+under protocol 20; nested completion values retain their own declared async semantics.
+Asynchronous lifecycle/build callbacks and Map callback keys remain unsupported. Direct
+non-null `List<Widget>` callback parameters and results are supported; nullable-element
+lists and other Widget collection shapes remain fail-closed. Dart Stream references can
+appear in parameters, results, callbacks and typed collections, including nested
+ordinary value shapes; they follow
+[ADR 0020](../decisions/0020-complete-dart-stream-interop.md). The JS interop handle is
+`FlaxStreamReference` (not a `Dart*` alias and not Web `ReadableStream`). Generated
+Flutter bindings expose the selected dart:async Stream family and call real Dart
+operators. Widget builders and Route factories stay synchronous and retain their Flutter
+lifecycle-specific ownership.
 
 ## Example object selection
 

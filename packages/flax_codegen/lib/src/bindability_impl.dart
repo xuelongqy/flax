@@ -1131,7 +1131,6 @@ List<String>? _bindConstructor({
 }) {
   final location = '${element.name}.$ctorName';
   final chosen = <String>[];
-  final omit = <String>[];
   for (final parameter in constructor.formalParameters) {
     final paramName = parameter.name;
     if (!_usableMemberName(paramName)) {
@@ -1162,27 +1161,8 @@ List<String>? _bindConstructor({
       continue;
     }
     chosen.add(paramName!);
-    if (bound.omitWhenAbsent) omit.add(paramName);
   }
-  var kept = chosen;
-  if (omit.length > FlaxCodegenBindability.omitWhenAbsentCap) {
-    final extra = omit.skip(FlaxCodegenBindability.omitWhenAbsentCap).toSet();
-    kept = [
-      for (final name in chosen)
-        if (!extra.contains(name)) name,
-    ];
-    for (final name in extra) {
-      skips.add(
-        FlaxCodegenSkip(
-          target: '$location.$name',
-          code: 'omit_cap',
-          reason:
-              'omitWhenAbsent cap ${FlaxCodegenBindability.omitWhenAbsentCap}',
-        ),
-      );
-    }
-  }
-  return kept;
+  return chosen;
 }
 
 ({bool omitWhenAbsent})? _bindParameter({
@@ -1275,11 +1255,18 @@ List<String>? _bindConstructor({
     );
     return null;
   }
-  FormalParameterElement defaults = parameter.baseElement;
-  while (!defaults.hasDefaultValue &&
-      defaults is SuperFormalParameterElement &&
-      defaults.superConstructorParameter != null) {
-    defaults = defaults.superConstructorParameter!;
+  final FormalParameterElement defaults;
+  try {
+    defaults = parser._effectiveDefaults(parameter);
+  } on StateError catch (error) {
+    skips.add(
+      FlaxCodegenSkip(
+        target: location,
+        reason: error.message,
+        code: 'unresolved_default_value',
+      ),
+    );
+    return null;
   }
   final constant = defaults.computeConstantValue();
   final callbackDefault =

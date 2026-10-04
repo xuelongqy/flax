@@ -4,6 +4,7 @@ import 'package:flax_codegen/flax_codegen.dart';
 import 'package:flax_codegen/src/manifest_codec.dart';
 
 import '../test/fixtures/interop_selection.dart';
+import '../test/fixtures/default_omission_selection.dart';
 import '../test/fixtures/repeated_selection.dart';
 
 Future<void> main() async {
@@ -38,6 +39,17 @@ Future<void> main() async {
   await _generate(
     package,
     output,
+    'default_omission',
+    defaultOmissionSelection,
+    core,
+    rawToWire,
+    functions: const {
+      'omissionTotal': FlaxCodegenFunctionSelection(omissionParameters),
+    },
+  );
+  await _generate(
+    package,
+    output,
     'repeated',
     repeatedSelection,
     core,
@@ -53,6 +65,7 @@ Future<void> _generate(
   List<FlaxCodegenModuleModel> dependencies,
   Map<String, String> rawToWire, {
   List<String> typedefs = const [],
+  Map<String, FlaxCodegenFunctionSelection> functions = const {},
 }) async {
   final parser = FlaxCodegenBindingParser(package.path);
   try {
@@ -71,6 +84,7 @@ Future<void> _generate(
       'unused.ts',
       selected,
       typedefs: typedefs,
+      functions: functions,
     );
     await parser.prepare([config]);
     final wireToRaw = {

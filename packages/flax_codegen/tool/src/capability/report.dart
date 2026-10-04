@@ -292,22 +292,18 @@ String capabilityMarkdown({
   }
   buffer
     ..writeln()
-    ..writeln('## Default-parameter omit cap')
+    ..writeln('## Default-parameter selection')
     ..writeln();
   for (final result in defaultResults) {
     buffer.writeln(
       '- ${result['name']}: selected=${result['selected']} '
-      'dropped=${result['dropped']} capHit=${result['capHit']}',
+      'skipped=${result['skipped']}',
     );
   }
   final dependent = genericResults.where(
     (result) =>
         result['name'] == 'DependentBox' || result['name'] == 'RecursiveBox',
   );
-  final capHits = [
-    for (final result in defaultResults)
-      if (result['capHit'] == true) result['name'],
-  ];
   buffer
     ..writeln()
     ..writeln('## Capability summary')
@@ -329,8 +325,8 @@ String capabilityMarkdown({
     ..writeln(
       '3. Dependent or recursive generic bounds without concrete evidence remain '
       'fail-closed (${[for (final result in dependent) '${result['name']}=${result['bindable']}'].join(', ')}). '
-      'The current omitWhenAbsent cap is 6; parameters are dropped on '
-      '${capHits.isEmpty ? 'no fixtures' : capHits.join(', ')} when the cap is exceeded.',
+      'Omission dispatch uses direct calls through five independent parameters '
+      'and Function.apply from six, retaining all bindable parameters.',
     );
 
   void writeNamed(String title, Object? raw) {
@@ -385,7 +381,8 @@ String capabilityMarkdown({
       buffer.writeln(
         '- ${result['name']}: requested=${result['requested']} '
         'ok=${result['ok']} estimated=${result['estimated']} '
-        'branches=${result['dartBranches']}/${result['expectedBranches']} '
+        'strategy=${result['strategy']} directBranches=${result['dartBranches']} '
+        'applyCalls=${result['applyCalls']} '
         'dartBytes=${result['dartBytes']} tsBytes=${result['tsBytes']} '
         'emitMs=${result['emitMilliseconds']}'
         '${result['error'] != null ? ' error=${result['error']}' : ''}'

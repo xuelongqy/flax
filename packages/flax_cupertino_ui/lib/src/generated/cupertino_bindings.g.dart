@@ -449,10 +449,10 @@ api1.Widget _createCupertinoNavigationBar(
   }
 }
 
-Object _callback0(FlaxCallback callback) => () {
+Object _callback0(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  callback.call(positional, named);
+  _flaxBridgeCallback.call(positional, named);
 };
 bool _callback0Matches(Object value) => value is void Function();
 Object? _callback0Invoke(

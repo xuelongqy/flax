@@ -83,10 +83,3 @@ final class FlaxCodegenAutoBindingProposal {
   final List<FlaxCodegenSkip> skips;
   final List<FlaxCodegenNotice> notices;
 }
-
-/// Limits used when proposing selections. Generate stays fail-closed.
-abstract final class FlaxCodegenBindability {
-  /// Optional [FlaxCodegenParameterModel.omitWhenAbsent] parameters kept per
-  /// constructor. Extra optional named parameters are dropped.
-  static const omitWhenAbsentCap = 6;
-}

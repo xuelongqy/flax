@@ -195,10 +195,10 @@ api1.Widget _createFlaxCanvasView(String ctor, Map<String, Object?> values) {
   }
 }
 
-Object _callback0(FlaxCallback callback) => () {
+Object _callback0(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  callback.call(positional, named);
+  _flaxBridgeCallback.call(positional, named);
 };
 bool _callback0Matches(Object value) => value is void Function();
 Object? _callback0Invoke(
@@ -210,10 +210,10 @@ Object? _callback0Invoke(
   return null;
 }
 
-Object _callback1(FlaxCallback callback) => () {
+Object _callback1(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  callback.call(positional, named);
+  _flaxBridgeCallback.call(positional, named);
 };
 bool _callback1Matches(Object value) => value is void Function();
 Object? _callback1Invoke(

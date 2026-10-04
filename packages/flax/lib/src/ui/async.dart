@@ -88,6 +88,9 @@ extension _AsyncCalls on _Session {
     if (closing) throw StateError('FlaxSessionClosed');
     final id = _nextPromise++;
     final pending = _PendingPromise(type.item!);
+    // JS may consume a Promise-valued Stream event after it has settled. Keep
+    // this bridge-owned Future observed without changing its rejection result.
+    pending.completer.future.ignore();
     _promises[id] = pending;
     try {
       _releaseJs(
@@ -104,6 +107,14 @@ extension _AsyncCalls on _Session {
     final settlement = _promiseSettlementLeaf(pending.result);
     if (settlement.kind == 'void') {
       pending.completer.complete();
+      return;
+    }
+    // Erased Promise-valued Stream events may represent Future<void>. Their
+    // undefined completion becomes null until the concrete adapter selects void.
+    if (settlement.kind == 'any' &&
+        settlement.nullable &&
+        value is FlaxJsUndefined) {
+      pending.completer.complete(null);
       return;
     }
     if (value is FlaxJsNull && _promiseSettlementAllowsNull(pending.result)) {

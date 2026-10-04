@@ -213,51 +213,123 @@ void main() {
     );
   });
 
+  test('automatic selection retains every omission parameter', () async {
+    final parser = FlaxCodegenBindingParser(repoRoot);
+    addTearDown(parser.dispose);
+    final library = config('default_cases.dart');
+    for (final count in [3, 5, 6, 8, 10]) {
+      final proposed = await parser.proposeSelection(
+        await load('default_cases.dart', 'Default$count'),
+        library: library,
+      );
+      expect(proposed.selection!.constructors[''], hasLength(count));
+      expect(proposed.skips, isEmpty);
+    }
+  });
+
   test(
-    'caps omitWhenAbsent parameters at 6 and keeps smaller ctors intact',
+    'redirecting factories resolve private defaults along the whole chain',
     () async {
       final parser = FlaxCodegenBindingParser(repoRoot);
       addTearDown(parser.dispose);
-      final library = config('default_cases.dart');
-      Future<FlaxCodegenProposedBinding> propose(String name) async =>
-          parser.proposeSelection(
-            await load('default_cases.dart', name),
-            library: library,
-          );
-
-      final three = await propose('Default3');
-      expect(three.selection!.constructors[''], ['p1', 'p2', 'p3']);
-      expect(
-        three.skips.any((skip) => skip.reason.contains('omitWhenAbsent cap')),
-        isFalse,
-      );
-      await parser.parse(
+      final target = config('default_cases.dart');
+      final module = await parser.parse(
         FlaxCodegenBindingConfig(
-          library.name,
-          library.library,
-          library.jsPackage,
-          library.dartOutput,
-          library.tsOutput,
-          {'Default3': three.selection!},
+          target.name,
+          target.library,
+          target.jsPackage,
+          target.dartOutput,
+          target.tsOutput,
+          const {
+            'RedirectDefaults': FlaxCodegenClassSelection({
+              'named': ['token'],
+              'positional': ['token'],
+            }, kind: 'object'),
+            'OwnDefaults': FlaxCodegenClassSelection({
+              'redirect': ['token'],
+              'factory': ['token'],
+            }, kind: 'object'),
+          },
         ),
       );
-
-      final six = await propose('Default6');
-      expect(six.selection!.constructors[''], hasLength(6));
-
-      final eight = await propose('Default8');
-      expect(eight.selection!.constructors[''], hasLength(6));
+      final redirected = module.classes.singleWhere(
+        (t) => t.name == 'RedirectDefaults',
+      );
       expect(
-        eight.skips.any((skip) => skip.reason.contains('omitWhenAbsent cap')),
+        redirected.constructors.every(
+          (c) => c.parameters.single.omitWhenAbsent,
+        ),
         isTrue,
       );
-
-      final ten = await propose('Default10');
-      expect(ten.selection!.constructors[''], hasLength(6));
+      final own = module.classes.singleWhere((t) => t.name == 'OwnDefaults');
       expect(
-        ten.skips.where((skip) => skip.reason.contains('omitWhenAbsent cap')),
-        hasLength(4),
+        own.constructors.every((c) => !c.parameters.single.omitWhenAbsent),
+        isTrue,
       );
+      await compileFixture(
+        repoRoot,
+        FlaxCodegenBindingEmitter([module]),
+        module,
+        dartTestSource: """
+void main() {
+  test('factory defaults and explicit null', () {
+    for (final name in ['named', 'positional']) {
+      final expected = name == 'named' ? api.RedirectDefaults.named() : api.RedirectDefaults.positional();
+      expect((_createRedirectDefaults(name, {}) as api.RedirectDefaults).token, same(expected.token));
+      expect((_createRedirectDefaults(name, {'token': null}) as api.RedirectDefaults).token, isNull);
+    }
+    expect((_createOwnDefaults('redirect', {}) as api.OwnDefaults).token, isNull);
+    expect((_createOwnDefaults('factory', {}) as api.OwnDefaults).token, isNull);
+  });
+}
+""",
+      );
+    },
+  );
+
+  test(
+    'unresolved, mismatched and cyclic factory defaults fail closed',
+    () async {
+      for (final name in [
+        'MissingDefault',
+        'CyclicDefault',
+        'MismatchedDefault',
+      ]) {
+        final parser = FlaxCodegenBindingParser(repoRoot);
+        addTearDown(parser.dispose);
+        final target = config('invalid_defaults.dart');
+        await expectLater(
+          parser.parse(
+            FlaxCodegenBindingConfig(
+              target.name,
+              target.library,
+              target.jsPackage,
+              target.dartOutput,
+              target.tsOutput,
+              {
+                name: const FlaxCodegenClassSelection({
+                  '': ['token'],
+                }, kind: 'object'),
+              },
+            ),
+          ),
+          throwsStateError,
+        );
+        final autoParser = FlaxCodegenBindingParser(repoRoot);
+        addTearDown(autoParser.dispose);
+        final proposed = await autoParser.proposeSelection(
+          await load('invalid_defaults.dart', name),
+          library: target,
+        );
+        expect(
+          proposed.skips.map((s) => s.code),
+          contains('unresolved_default_value'),
+        );
+        expect(
+          proposed.selection?.constructors[''] ?? [],
+          isNot(contains('token')),
+        );
+      }
     },
   );
 
@@ -384,8 +456,9 @@ void main() {
         RegExp(r'return api\.NullableDefault6\(')
             .allMatches(emitter.dart(module))
             .length,
-        64,
+        0,
       );
+      expect(emitter.dart(module), contains('Function.apply'));
       await compileFixture(
         repoRoot,
         emitter,
@@ -422,50 +495,78 @@ void main() {
   );
 
   test(
-    'omitWhenAbsent emission grows as 2^N and Default10 is estimated',
+    'all 3/5/6/8/10 constructor masks execute with provided values and null',
+    () async {
+      final parser = FlaxCodegenBindingParser(repoRoot);
+      addTearDown(parser.dispose);
+      final target = config('default_cases.dart');
+      final classes = <String, FlaxCodegenClassSelection>{
+        for (final count in [3, 5, 6, 8, 10])
+          for (final prefix in ['', 'Nullable'])
+            '${prefix}Default$count': FlaxCodegenClassSelection({
+              '': [for (var i = 1; i <= count; i++) 'p$i'],
+            }, kind: 'object'),
+      };
+      final module = await parser.parse(
+        FlaxCodegenBindingConfig(
+          target.name,
+          target.library,
+          target.jsPackage,
+          target.dartOutput,
+          target.tsOutput,
+          classes,
+        ),
+      );
+      final tests = StringBuffer('void main() {');
+      for (final count in [3, 5, 6, 8, 10]) {
+        for (final prefix in ['', 'Nullable']) {
+          final name = '${prefix}Default$count';
+          final fields = [for (var i = 1; i <= count; i++) 'p$i'];
+          tests.writeln("""
+  test('$name executes every presence subset', () {
+    const defaults = api.$name();
+    final expected = [${fields.map((f) => 'defaults.$f').join(', ')}];
+    for (var mask = 0; mask < ${1 << count}; mask++) {
+      final values = <String, Object?>{for (var i = 0; i < $count; i++)
+        if (mask & (1 << i) != 0) 'p\${i + 1}': ${prefix.isEmpty ? '100 + i' : 'null'}};
+      final value = _create$name('', values) as api.$name;
+      final actual = [${fields.map((f) => 'value.$f').join(', ')}];
+      for (var i = 0; i < $count; i++) {
+        expect(actual[i], same(mask & (1 << i) == 0 ? expected[i] : ${prefix.isEmpty ? '100 + i' : 'null'}), reason: 'mask=\$mask field=\$i');
+      }
+    }
+  });
+""");
+        }
+      }
+      tests.writeln('}');
+      await compileFixture(
+        repoRoot,
+        FlaxCodegenBindingEmitter([module]),
+        module,
+        dartTestSource: tests.toString(),
+      );
+    },
+  );
+
+  test(
+    'actual emission uses direct calls through five and apply from six',
     () async {
       final library = config('default_cases.dart');
       final parser = FlaxCodegenBindingParser(repoRoot);
       addTearDown(parser.dispose);
-      final three = await measureOmitEmission(
-        parser: parser,
-        library: library,
-        name: 'Default3',
-        parameters: const ['p1', 'p2', 'p3'],
-      );
-      expect(three['ok'], isTrue);
-      expect(three['dartBranches'], 8);
-      expect(three['expectedBranches'], 8);
-
-      final sixParser = FlaxCodegenBindingParser(repoRoot);
-      addTearDown(sixParser.dispose);
-      final six = await measureOmitEmission(
-        parser: sixParser,
-        library: library,
-        name: 'Default6',
-        parameters: const ['p1', 'p2', 'p3', 'p4', 'p5', 'p6'],
-      );
-      expect(six['ok'], isTrue);
-      expect(six['dartBranches'], 64);
-      expect(six['dartBytes'] as int, greaterThan(three['dartBytes'] as int));
-
-      final estimatedEight = estimateOmitEmission(
-        name: 'Default8',
-        requested: 8,
-        baseline: six,
-      );
-      expect(estimatedEight['estimated'], isTrue);
-      expect(estimatedEight['dartBranches'], 256);
-      final estimatedTen = estimateOmitEmission(
-        name: 'Default10',
-        requested: 10,
-        baseline: six,
-      );
-      expect(estimatedTen['dartBranches'], 1024);
-      expect(
-        estimatedTen['dartBytes'] as int,
-        greaterThan(six['dartBytes'] as int),
-      );
+      for (final count in [3, 5, 6, 8, 10]) {
+        final measured = await measureOmitEmission(
+          parser: parser,
+          library: library,
+          name: 'Default$count',
+          parameters: [for (var i = 1; i <= count; i++) 'p$i'],
+        );
+        expect(measured['ok'], isTrue, reason: '$measured');
+        expect(measured['estimated'], isFalse);
+        expect(measured['dartBranches'], count <= 5 ? 1 << count : 0);
+        expect(measured['applyCalls'], count >= 6 ? 1 : 0);
+      }
     },
   );
 }

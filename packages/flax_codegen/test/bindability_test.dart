@@ -648,7 +648,7 @@ void main() {
     },
   );
 
-  test('caps omitWhenAbsent parameters per constructor', () async {
+  test('retains all omitWhenAbsent parameters per constructor', () async {
     final parser = FlaxCodegenBindingParser(repoRoot);
     addTearDown(parser.dispose);
     final config = fixture('objects.dart', const {});
@@ -663,17 +663,13 @@ void main() {
       'd',
       'e',
       'f',
+      'g',
     ]);
-    expect(
-      proposed.skips.map((skip) => skip.reason),
-      contains(
-        'omitWhenAbsent cap ${FlaxCodegenBindability.omitWhenAbsentCap}',
-      ),
-    );
+    expect(proposed.skips, isEmpty);
     final parsed = await parser.parse(
       fixture('objects.dart', {'Fat': proposed.selection!}),
     );
-    expect(parsed.classes.single.constructors.single.parameters, hasLength(6));
+    expect(parsed.classes.single.constructors.single.parameters, hasLength(7));
   });
 
   test('skips File and keeps remaining bindable parameters', () async {

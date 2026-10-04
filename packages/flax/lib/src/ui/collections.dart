@@ -25,6 +25,32 @@ class _CollectionCopy {
   final values = <List<FlaxJsValue>>[];
 }
 
+// Only erased copies of raw JS collections may be reconstructed at a concrete
+// Stream use site. Weak keys add no session or collection ownership.
+final _jsCollectionShapes = Expando<String>();
+
+/// Restores an erased JS collection for generated Stream event adapters.
+///
+/// Callers preserve already-compatible Dart values before using this helper.
+/// Existing Dart references must fail closed instead of being narrowed by a copy.
+T flaxRestoreJsCollection<T>(
+  Object value,
+  String kind,
+  T Function(Object) restore,
+) {
+  final shape = _jsCollectionShapes[value];
+  final compatible = switch (kind) {
+    'list' => shape == 'list',
+    'set' => shape == 'set',
+    'iterable' => shape == 'list' || shape == 'set' || shape == 'iterable',
+    'map' => shape == 'map' || shape == 'record',
+    'record' => shape == 'record',
+    _ => false,
+  };
+  if (!compatible) throw ArgumentError('Incompatible $kind completion');
+  return restore(value);
+}
+
 extension _Collections on _Session {
   _Value decodeCollection(
     FlaxJsObject input,
@@ -156,6 +182,17 @@ extension _Collections on _Session {
       }
       return _Value(record.value, [_ObjectBorrow(record, input.retain())]);
     }
+    // References take precedence over thenable detection: a bound Dart object
+    // may expose an ordinary method named then. Erased JS Stream events still
+    // preserve real Promise events for concrete-use-site adaptation.
+    if (_property(input, 'then', (then) => then is FlaxJsFunction)) {
+      return _Value(
+        promiseResult(
+          input,
+          const FlaxTypeRef('future', item: FlaxTypeRef('any', nullable: true)),
+        )!,
+      );
+    }
     final details = helper('errorDetails').call([input]);
     if (details is FlaxJsObject) {
       try {
@@ -172,12 +209,14 @@ extension _Collections on _Session {
     final shape = helper('collectionShape').call([input]);
     if (shape is FlaxJsString &&
         {'list', 'map', 'record', 'set', 'iterable'}.contains(shape.value)) {
-      return decodeCollection(input, switch (shape.value) {
+      final decoded = decodeCollection(input, switch (shape.value) {
         'list' => _anyList,
         'map' || 'record' => _anyMap,
         'set' => _anySet,
         _ => _anyIterable,
       }, memo);
+      _jsCollectionShapes[decoded.data as Object] = shape.value;
+      return decoded;
     }
     throw ArgumentError('Expected a supported value or Dart reference');
   }
@@ -187,6 +226,9 @@ extension _Collections on _Session {
     if (!definition.matches(value)) {
       throw ArgumentError('Incompatible collection result');
     }
+    // Once exposed as a Dart reference, even a former JS copy obeys the Dart
+    // collection contract on every subsequent round-trip.
+    _jsCollectionShapes[value] = null;
     var record = _collectionViews[value]?[definition.id];
     final created = record == null;
     if (record == null) {
@@ -367,6 +409,9 @@ extension _Collections on _Session {
     if (value is num) {
       _checkInteropNumber(value);
       return FlaxJsNumber(value.toDouble());
+    }
+    if (value is Future<Object?>) {
+      return futureResult(value, const FlaxTypeRef('any', nullable: true));
     }
     if (value is List) return collectionResult(value, _anyList);
     if (value is Map) return collectionResult(value, _anyMap);

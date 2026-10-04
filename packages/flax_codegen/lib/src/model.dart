@@ -338,18 +338,12 @@ class FlaxCodegenTypeRef {
         String position, {
         required bool toDart,
         bool argument = false,
-        bool insideFuture = false,
+        bool insideStream = false,
       }) {
         if (type.kind == 'future' || type.kind == 'futureOr') {
           final item = type.item!;
           final itemPosition = '$position item';
-          if ({
-                'context',
-                'state',
-                'route',
-                'page',
-                'stream',
-              }.contains(item.kind) ||
+          if ({'context', 'state', 'route', 'page'}.contains(item.kind) ||
               (item.containsWidget && item.kind != 'widget')) {
             return itemPosition;
           }
@@ -357,11 +351,11 @@ class FlaxCodegenTypeRef {
             item,
             itemPosition,
             toDart: toDart,
-            insideFuture: true,
+            insideStream: insideStream,
           );
         }
         if (type.kind == 'stream') {
-          if (insideFuture) return position;
+          if (insideStream) return position;
           final item = type.item!;
           final itemPosition = '$position item';
           if ({
@@ -370,8 +364,6 @@ class FlaxCodegenTypeRef {
                 'route',
                 'page',
                 'parameter',
-                'future',
-                'futureOr',
                 'stream',
               }.contains(item.kind) ||
               (item.containsWidget && item.kind != 'widget')) {
@@ -381,7 +373,7 @@ class FlaxCodegenTypeRef {
             item,
             itemPosition,
             toDart: toDart,
-            insideFuture: true,
+            insideStream: true,
           );
         }
         if ({'iterable', 'list', 'map', 'set'}.contains(type.kind)) {
@@ -396,7 +388,7 @@ class FlaxCodegenTypeRef {
             '$position item',
             toDart: toDart,
             argument: argument,
-            insideFuture: insideFuture,
+            insideStream: insideStream,
           );
           if (itemError != null) return itemError;
           if (type.key != null) {
@@ -405,7 +397,7 @@ class FlaxCodegenTypeRef {
               '$position key',
               toDart: toDart,
               argument: argument,
-              insideFuture: insideFuture,
+              insideStream: insideStream,
             );
           }
           return null;
@@ -417,7 +409,7 @@ class FlaxCodegenTypeRef {
               '$position.${field.name}',
               toDart: toDart,
               argument: argument,
-              insideFuture: insideFuture,
+              insideStream: insideStream,
             );
             if (error != null) return error;
           }

@@ -7414,16 +7414,11 @@ class _MaterialPageRoute extends api.MaterialPageRoute<Object?> {
   final FlaxRouteLease _lease;
   _MaterialPageRoute(
     this._lease, {
-    required api1.Widget Function(api1.BuildContext context) builder,
-    required api1.RouteSettings? settings,
-    required bool maintainState,
-    required bool fullscreenDialog,
-  }) : super(
-         builder: builder,
-         settings: settings,
-         maintainState: maintainState,
-         fullscreenDialog: fullscreenDialog,
-       ) {
+    required api1.Widget Function(api1.BuildContext context) super.builder,
+    api1.RouteSettings? super.settings,
+    bool super.maintainState,
+    bool super.fullscreenDialog,
+  }) {
     _lease.onDiscard = dispose;
   }
   @override
@@ -7443,13 +7438,13 @@ class _MaterialPage extends api.MaterialPage<Object?>
   _MaterialPage(
     this.flaxPageLease, {
     required api1.Widget super.child,
-    required bool super.maintainState,
-    required bool super.fullscreenDialog,
-    required api1.LocalKey? super.key,
-    required bool super.canPop,
+    bool super.maintainState,
+    bool super.fullscreenDialog,
+    api1.LocalKey? super.key,
+    bool super.canPop,
     void Function(bool didPop, Object? result) super.onPopInvoked,
-    required String? super.name,
-    required Object? super.arguments,
+    String? super.name,
+    Object? super.arguments,
   });
   @override
   FlaxPageRoute createRoute(api1.BuildContext context) =>
@@ -7482,10 +7477,10 @@ Object _deferred3(Map<String, Object?> values) {
   );
 }
 
-Object _callback0(FlaxCallback callback) => () {
+Object _callback0(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  callback.call(positional, named);
+  _flaxBridgeCallback.call(positional, named);
 };
 bool _callback0Matches(Object value) => value is void Function();
 Object? _callback0Invoke(
@@ -7497,10 +7492,10 @@ Object? _callback0Invoke(
   return null;
 }
 
-Object _callback1(FlaxCallback callback) => () {
+Object _callback1(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  callback.call(positional, named);
+  _flaxBridgeCallback.call(positional, named);
 };
 bool _callback1Matches(Object value) => value is void Function();
 Object? _callback1Invoke(
@@ -7512,11 +7507,11 @@ Object? _callback1Invoke(
   return null;
 }
 
-Object _callback2(FlaxCallback callback) => (bool p0) {
+Object _callback2(FlaxCallback _flaxBridgeCallback) => (bool p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
-  callback.call(positional, named);
+  _flaxBridgeCallback.call(positional, named);
 };
 bool _callback2Matches(Object value) => value is void Function(bool value);
 Object? _callback2Invoke(
@@ -7528,11 +7523,11 @@ Object? _callback2Invoke(
   return null;
 }
 
-Object _callback3(FlaxCallback callback) => (bool p0) {
+Object _callback3(FlaxCallback _flaxBridgeCallback) => (bool p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
-  callback.call(positional, named);
+  _flaxBridgeCallback.call(positional, named);
 };
 bool _callback3Matches(Object value) => value is void Function(bool value);
 Object? _callback3Invoke(
@@ -7544,12 +7539,11 @@ Object? _callback3Invoke(
   return null;
 }
 
-Object _callback4(FlaxCallback callback) => () {
+Object _callback4(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  return (callback.call(positional, named) as Future<Object?>).then<void>(
-    (value) => null,
-  );
+  return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
+      .then<void>((value) => null);
 };
 bool _callback4Matches(Object value) => value is Future<void> Function();
 Object? _callback4Invoke(
@@ -7560,12 +7554,13 @@ Object? _callback4Invoke(
   return (function as Future<void> Function())();
 }
 
-Object _callback5(FlaxCallback callback) => (Set<api.WidgetState> p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return callback.call(positional, named) as api1.Color?;
-};
+Object _callback5(FlaxCallback _flaxBridgeCallback) =>
+    (Set<api.WidgetState> p0) {
+      final positional = <Object?>[];
+      final named = <String, Object?>{};
+      positional.add(p0);
+      return _flaxBridgeCallback.call(positional, named) as api1.Color?;
+    };
 bool _callback5Matches(Object value) =>
     value is api1.Color? Function(Set<api.WidgetState> states);
 Object? _callback5Invoke(
@@ -7578,12 +7573,13 @@ Object? _callback5Invoke(
   );
 }
 
-Object _callback6(FlaxCallback callback) => (Set<api.WidgetState> p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return callback.call(positional, named) as api1.Color?;
-};
+Object _callback6(FlaxCallback _flaxBridgeCallback) =>
+    (Set<api.WidgetState> p0) {
+      final positional = <Object?>[];
+      final named = <String, Object?>{};
+      positional.add(p0);
+      return _flaxBridgeCallback.call(positional, named) as api1.Color?;
+    };
 bool _callback6Matches(Object value) =>
     value is api1.Color? Function(Set<api.WidgetState> states);
 Object? _callback6Invoke(
@@ -7596,12 +7592,13 @@ Object? _callback6Invoke(
   );
 }
 
-Object _callback7(FlaxCallback callback) => (Set<api.WidgetState> p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return callback.call(positional, named) as api1.Color?;
-};
+Object _callback7(FlaxCallback _flaxBridgeCallback) =>
+    (Set<api.WidgetState> p0) {
+      final positional = <Object?>[];
+      final named = <String, Object?>{};
+      positional.add(p0);
+      return _flaxBridgeCallback.call(positional, named) as api1.Color?;
+    };
 bool _callback7Matches(Object value) =>
     value is api1.Color? Function(Set<api.WidgetState> states);
 Object? _callback7Invoke(
@@ -7614,12 +7611,13 @@ Object? _callback7Invoke(
   );
 }
 
-Object _callback8(FlaxCallback callback) => (Set<api.WidgetState> p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return callback.call(positional, named) as double?;
-};
+Object _callback8(FlaxCallback _flaxBridgeCallback) =>
+    (Set<api.WidgetState> p0) {
+      final positional = <Object?>[];
+      final named = <String, Object?>{};
+      positional.add(p0);
+      return _flaxBridgeCallback.call(positional, named) as double?;
+    };
 bool _callback8Matches(Object value) =>
     value is double? Function(Set<api.WidgetState> states);
 Object? _callback8Invoke(
@@ -7632,12 +7630,14 @@ Object? _callback8Invoke(
   );
 }
 
-Object _callback9(FlaxCallback callback) => (Set<api.WidgetState> p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return callback.call(positional, named) as api1.OutlinedBorder?;
-};
+Object _callback9(FlaxCallback _flaxBridgeCallback) =>
+    (Set<api.WidgetState> p0) {
+      final positional = <Object?>[];
+      final named = <String, Object?>{};
+      positional.add(p0);
+      return _flaxBridgeCallback.call(positional, named)
+          as api1.OutlinedBorder?;
+    };
 bool _callback9Matches(Object value) =>
     value is api1.OutlinedBorder? Function(Set<api.WidgetState> states);
 Object? _callback9Invoke(
@@ -7651,12 +7651,13 @@ Object? _callback9Invoke(
   );
 }
 
-Object _callback10(FlaxCallback callback) => (Set<api.WidgetState> p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return callback.call(positional, named) as api1.MouseCursor?;
-};
+Object _callback10(FlaxCallback _flaxBridgeCallback) =>
+    (Set<api.WidgetState> p0) {
+      final positional = <Object?>[];
+      final named = <String, Object?>{};
+      positional.add(p0);
+      return _flaxBridgeCallback.call(positional, named) as api1.MouseCursor?;
+    };
 bool _callback10Matches(Object value) =>
     value is api1.MouseCursor? Function(Set<api.WidgetState> states);
 Object? _callback10Invoke(
@@ -7669,12 +7670,13 @@ Object? _callback10Invoke(
   );
 }
 
-Object _callback11(FlaxCallback callback) => (Set<api.WidgetState> p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return callback.call(positional, named) as api1.Color?;
-};
+Object _callback11(FlaxCallback _flaxBridgeCallback) =>
+    (Set<api.WidgetState> p0) {
+      final positional = <Object?>[];
+      final named = <String, Object?>{};
+      positional.add(p0);
+      return _flaxBridgeCallback.call(positional, named) as api1.Color?;
+    };
 bool _callback11Matches(Object value) =>
     value is api1.Color? Function(Set<api.WidgetState> states);
 Object? _callback11Invoke(
@@ -7687,12 +7689,13 @@ Object? _callback11Invoke(
   );
 }
 
-Object _callback12(FlaxCallback callback) => (Set<api.WidgetState> p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return callback.call(positional, named) as double?;
-};
+Object _callback12(FlaxCallback _flaxBridgeCallback) =>
+    (Set<api.WidgetState> p0) {
+      final positional = <Object?>[];
+      final named = <String, Object?>{};
+      positional.add(p0);
+      return _flaxBridgeCallback.call(positional, named) as double?;
+    };
 bool _callback12Matches(Object value) =>
     value is double? Function(Set<api.WidgetState> states);
 Object? _callback12Invoke(
@@ -7705,12 +7708,13 @@ Object? _callback12Invoke(
   );
 }
 
-Object _callback13(FlaxCallback callback) => (Set<api.WidgetState> p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return callback.call(positional, named) as api1.Color?;
-};
+Object _callback13(FlaxCallback _flaxBridgeCallback) =>
+    (Set<api.WidgetState> p0) {
+      final positional = <Object?>[];
+      final named = <String, Object?>{};
+      positional.add(p0);
+      return _flaxBridgeCallback.call(positional, named) as api1.Color?;
+    };
 bool _callback13Matches(Object value) =>
     value is api1.Color? Function(Set<api.WidgetState> states);
 Object? _callback13Invoke(
@@ -7723,12 +7727,13 @@ Object? _callback13Invoke(
   );
 }
 
-Object _callback14(FlaxCallback callback) => (Set<api.WidgetState> p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return callback.call(positional, named) as api1.MouseCursor?;
-};
+Object _callback14(FlaxCallback _flaxBridgeCallback) =>
+    (Set<api.WidgetState> p0) {
+      final positional = <Object?>[];
+      final named = <String, Object?>{};
+      positional.add(p0);
+      return _flaxBridgeCallback.call(positional, named) as api1.MouseCursor?;
+    };
 bool _callback14Matches(Object value) =>
     value is api1.MouseCursor? Function(Set<api.WidgetState> states);
 Object? _callback14Invoke(
@@ -7741,12 +7746,13 @@ Object? _callback14Invoke(
   );
 }
 
-Object _callback15(FlaxCallback callback) => (Set<api.WidgetState> p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return callback.call(positional, named) as api1.Color?;
-};
+Object _callback15(FlaxCallback _flaxBridgeCallback) =>
+    (Set<api.WidgetState> p0) {
+      final positional = <Object?>[];
+      final named = <String, Object?>{};
+      positional.add(p0);
+      return _flaxBridgeCallback.call(positional, named) as api1.Color?;
+    };
 bool _callback15Matches(Object value) =>
     value is api1.Color? Function(Set<api.WidgetState> states);
 Object? _callback15Invoke(
@@ -7759,12 +7765,14 @@ Object? _callback15Invoke(
   );
 }
 
-Object _callback16(FlaxCallback callback) => (Set<api.WidgetState> p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return callback.call(positional, named) as api1.OutlinedBorder?;
-};
+Object _callback16(FlaxCallback _flaxBridgeCallback) =>
+    (Set<api.WidgetState> p0) {
+      final positional = <Object?>[];
+      final named = <String, Object?>{};
+      positional.add(p0);
+      return _flaxBridgeCallback.call(positional, named)
+          as api1.OutlinedBorder?;
+    };
 bool _callback16Matches(Object value) =>
     value is api1.OutlinedBorder? Function(Set<api.WidgetState> states);
 Object? _callback16Invoke(
@@ -7778,12 +7786,13 @@ Object? _callback16Invoke(
   );
 }
 
-Object _callback17(FlaxCallback callback) => (Set<api.WidgetState> p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return callback.call(positional, named) as api1.Color?;
-};
+Object _callback17(FlaxCallback _flaxBridgeCallback) =>
+    (Set<api.WidgetState> p0) {
+      final positional = <Object?>[];
+      final named = <String, Object?>{};
+      positional.add(p0);
+      return _flaxBridgeCallback.call(positional, named) as api1.Color?;
+    };
 bool _callback17Matches(Object value) =>
     value is api1.Color? Function(Set<api.WidgetState> states);
 Object? _callback17Invoke(
@@ -7796,12 +7805,13 @@ Object? _callback17Invoke(
   );
 }
 
-Object _callback18(FlaxCallback callback) => (Set<api.WidgetState> p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return callback.call(positional, named) as api1.Color?;
-};
+Object _callback18(FlaxCallback _flaxBridgeCallback) =>
+    (Set<api.WidgetState> p0) {
+      final positional = <Object?>[];
+      final named = <String, Object?>{};
+      positional.add(p0);
+      return _flaxBridgeCallback.call(positional, named) as api1.Color?;
+    };
 bool _callback18Matches(Object value) =>
     value is api1.Color? Function(Set<api.WidgetState> states);
 Object? _callback18Invoke(
@@ -7814,12 +7824,13 @@ Object? _callback18Invoke(
   );
 }
 
-Object _callback19(FlaxCallback callback) => (Set<api.WidgetState> p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return callback.call(positional, named) as api1.Color?;
-};
+Object _callback19(FlaxCallback _flaxBridgeCallback) =>
+    (Set<api.WidgetState> p0) {
+      final positional = <Object?>[];
+      final named = <String, Object?>{};
+      positional.add(p0);
+      return _flaxBridgeCallback.call(positional, named) as api1.Color?;
+    };
 bool _callback19Matches(Object value) =>
     value is api1.Color? Function(Set<api.WidgetState> states);
 Object? _callback19Invoke(
@@ -7832,12 +7843,13 @@ Object? _callback19Invoke(
   );
 }
 
-Object _callback20(FlaxCallback callback) => (Set<api.WidgetState> p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return callback.call(positional, named) as double?;
-};
+Object _callback20(FlaxCallback _flaxBridgeCallback) =>
+    (Set<api.WidgetState> p0) {
+      final positional = <Object?>[];
+      final named = <String, Object?>{};
+      positional.add(p0);
+      return _flaxBridgeCallback.call(positional, named) as double?;
+    };
 bool _callback20Matches(Object value) =>
     value is double? Function(Set<api.WidgetState> states);
 Object? _callback20Invoke(
@@ -7850,12 +7862,14 @@ Object? _callback20Invoke(
   );
 }
 
-Object _callback21(FlaxCallback callback) => (Set<api.WidgetState> p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return callback.call(positional, named) as api1.OutlinedBorder?;
-};
+Object _callback21(FlaxCallback _flaxBridgeCallback) =>
+    (Set<api.WidgetState> p0) {
+      final positional = <Object?>[];
+      final named = <String, Object?>{};
+      positional.add(p0);
+      return _flaxBridgeCallback.call(positional, named)
+          as api1.OutlinedBorder?;
+    };
 bool _callback21Matches(Object value) =>
     value is api1.OutlinedBorder? Function(Set<api.WidgetState> states);
 Object? _callback21Invoke(
@@ -7869,12 +7883,13 @@ Object? _callback21Invoke(
   );
 }
 
-Object _callback22(FlaxCallback callback) => (Set<api.WidgetState> p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return callback.call(positional, named) as api1.MouseCursor?;
-};
+Object _callback22(FlaxCallback _flaxBridgeCallback) =>
+    (Set<api.WidgetState> p0) {
+      final positional = <Object?>[];
+      final named = <String, Object?>{};
+      positional.add(p0);
+      return _flaxBridgeCallback.call(positional, named) as api1.MouseCursor?;
+    };
 bool _callback22Matches(Object value) =>
     value is api1.MouseCursor? Function(Set<api.WidgetState> states);
 Object? _callback22Invoke(
@@ -7887,11 +7902,11 @@ Object? _callback22Invoke(
   );
 }
 
-Object _callback23(FlaxCallback callback) => (String p0) {
+Object _callback23(FlaxCallback _flaxBridgeCallback) => (String p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
-  callback.call(positional, named);
+  _flaxBridgeCallback.call(positional, named);
 };
 bool _callback23Matches(Object value) => value is void Function(String value);
 Object? _callback23Invoke(
@@ -7903,10 +7918,10 @@ Object? _callback23Invoke(
   return null;
 }
 
-Object _callback24(FlaxCallback callback) => () {
+Object _callback24(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  callback.call(positional, named);
+  _flaxBridgeCallback.call(positional, named);
 };
 bool _callback24Matches(Object value) => value is void Function();
 Object? _callback24Invoke(
@@ -7918,11 +7933,11 @@ Object? _callback24Invoke(
   return null;
 }
 
-Object _callback25(FlaxCallback callback) => (String p0) {
+Object _callback25(FlaxCallback _flaxBridgeCallback) => (String p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
-  callback.call(positional, named);
+  _flaxBridgeCallback.call(positional, named);
 };
 bool _callback25Matches(Object value) => value is void Function(String value);
 Object? _callback25Invoke(
@@ -7934,11 +7949,11 @@ Object? _callback25Invoke(
   return null;
 }
 
-Object _callback26(FlaxCallback callback) => (api1.BuildContext p0) {
+Object _callback26(FlaxCallback _flaxBridgeCallback) => (api1.BuildContext p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
-  return callback.call(positional, named) as api1.Widget;
+  return _flaxBridgeCallback.call(positional, named) as api1.Widget;
 };
 bool _callback26Matches(Object value) =>
     value is api1.Widget Function(api1.BuildContext context);
@@ -7952,12 +7967,12 @@ Object? _callback26Invoke(
   );
 }
 
-Object _callback27(FlaxCallback callback) => (bool p0, Object? p1) {
+Object _callback27(FlaxCallback _flaxBridgeCallback) => (bool p0, Object? p1) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
   positional.add(p1);
-  callback.call(positional, named);
+  _flaxBridgeCallback.call(positional, named);
 };
 bool _callback27Matches(Object value) =>
     value is void Function(bool didPop, Object? result);
@@ -7973,10 +7988,10 @@ Object? _callback27Invoke(
   return null;
 }
 
-Object _callback28(FlaxCallback callback) => () {
+Object _callback28(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  callback.call(positional, named);
+  _flaxBridgeCallback.call(positional, named);
 };
 bool _callback28Matches(Object value) => value is void Function();
 Object? _callback28Invoke(
@@ -7988,10 +8003,10 @@ Object? _callback28Invoke(
   return null;
 }
 
-Object _callback29(FlaxCallback callback) => () {
+Object _callback29(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  callback.call(positional, named);
+  _flaxBridgeCallback.call(positional, named);
 };
 bool _callback29Matches(Object value) => value is void Function();
 Object? _callback29Invoke(
@@ -8003,10 +8018,10 @@ Object? _callback29Invoke(
   return null;
 }
 
-Object _callback30(FlaxCallback callback) => () {
+Object _callback30(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  callback.call(positional, named);
+  _flaxBridgeCallback.call(positional, named);
 };
 bool _callback30Matches(Object value) => value is void Function();
 Object? _callback30Invoke(
@@ -8018,10 +8033,10 @@ Object? _callback30Invoke(
   return null;
 }
 
-Object _callback31(FlaxCallback callback) => () {
+Object _callback31(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  callback.call(positional, named);
+  _flaxBridgeCallback.call(positional, named);
 };
 bool _callback31Matches(Object value) => value is void Function();
 Object? _callback31Invoke(
@@ -8033,10 +8048,10 @@ Object? _callback31Invoke(
   return null;
 }
 
-Object _callback32(FlaxCallback callback) => () {
+Object _callback32(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  callback.call(positional, named);
+  _flaxBridgeCallback.call(positional, named);
 };
 bool _callback32Matches(Object value) => value is void Function();
 Object? _callback32Invoke(
@@ -8048,10 +8063,10 @@ Object? _callback32Invoke(
   return null;
 }
 
-Object _callback33(FlaxCallback callback) => () {
+Object _callback33(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  callback.call(positional, named);
+  _flaxBridgeCallback.call(positional, named);
 };
 bool _callback33Matches(Object value) => value is void Function();
 Object? _callback33Invoke(
@@ -8063,10 +8078,10 @@ Object? _callback33Invoke(
   return null;
 }
 
-Object _callback34(FlaxCallback callback) => () {
+Object _callback34(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  callback.call(positional, named);
+  _flaxBridgeCallback.call(positional, named);
 };
 bool _callback34Matches(Object value) => value is void Function();
 Object? _callback34Invoke(
@@ -8078,10 +8093,10 @@ Object? _callback34Invoke(
   return null;
 }
 
-Object _callback35(FlaxCallback callback) => () {
+Object _callback35(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  callback.call(positional, named);
+  _flaxBridgeCallback.call(positional, named);
 };
 bool _callback35Matches(Object value) => value is void Function();
 Object? _callback35Invoke(
@@ -8093,10 +8108,10 @@ Object? _callback35Invoke(
   return null;
 }
 
-Object _callback36(FlaxCallback callback) => () {
+Object _callback36(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  callback.call(positional, named);
+  _flaxBridgeCallback.call(positional, named);
 };
 bool _callback36Matches(Object value) => value is void Function();
 Object? _callback36Invoke(
@@ -8108,10 +8123,10 @@ Object? _callback36Invoke(
   return null;
 }
 
-Object _callback37(FlaxCallback callback) => () {
+Object _callback37(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  callback.call(positional, named);
+  _flaxBridgeCallback.call(positional, named);
 };
 bool _callback37Matches(Object value) => value is void Function();
 Object? _callback37Invoke(
@@ -8123,10 +8138,10 @@ Object? _callback37Invoke(
   return null;
 }
 
-Object _callback38(FlaxCallback callback) => () {
+Object _callback38(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  callback.call(positional, named);
+  _flaxBridgeCallback.call(positional, named);
 };
 bool _callback38Matches(Object value) => value is void Function();
 Object? _callback38Invoke(
@@ -8138,10 +8153,10 @@ Object? _callback38Invoke(
   return null;
 }
 
-Object _callback39(FlaxCallback callback) => () {
+Object _callback39(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  callback.call(positional, named);
+  _flaxBridgeCallback.call(positional, named);
 };
 bool _callback39Matches(Object value) => value is void Function();
 Object? _callback39Invoke(
@@ -8153,10 +8168,10 @@ Object? _callback39Invoke(
   return null;
 }
 
-Object _callback40(FlaxCallback callback) => () {
+Object _callback40(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  callback.call(positional, named);
+  _flaxBridgeCallback.call(positional, named);
 };
 bool _callback40Matches(Object value) => value is void Function();
 Object? _callback40Invoke(
@@ -8168,10 +8183,10 @@ Object? _callback40Invoke(
   return null;
 }
 
-Object _callback41(FlaxCallback callback) => () {
+Object _callback41(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  callback.call(positional, named);
+  _flaxBridgeCallback.call(positional, named);
 };
 bool _callback41Matches(Object value) => value is void Function();
 Object? _callback41Invoke(
@@ -8183,10 +8198,10 @@ Object? _callback41Invoke(
   return null;
 }
 
-Object _callback42(FlaxCallback callback) => () {
+Object _callback42(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  callback.call(positional, named);
+  _flaxBridgeCallback.call(positional, named);
 };
 bool _callback42Matches(Object value) => value is void Function();
 Object? _callback42Invoke(
@@ -8198,11 +8213,11 @@ Object? _callback42Invoke(
   return null;
 }
 
-Object _callback43(FlaxCallback callback) => (bool? p0) {
+Object _callback43(FlaxCallback _flaxBridgeCallback) => (bool? p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
-  callback.call(positional, named);
+  _flaxBridgeCallback.call(positional, named);
 };
 bool _callback43Matches(Object value) => value is void Function(bool? value);
 Object? _callback43Invoke(
@@ -8214,12 +8229,13 @@ Object? _callback43Invoke(
   return null;
 }
 
-Object _callback44(FlaxCallback callback) => (Set<api.WidgetState> p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return callback.call(positional, named) as api1.Color?;
-};
+Object _callback44(FlaxCallback _flaxBridgeCallback) =>
+    (Set<api.WidgetState> p0) {
+      final positional = <Object?>[];
+      final named = <String, Object?>{};
+      positional.add(p0);
+      return _flaxBridgeCallback.call(positional, named) as api1.Color?;
+    };
 bool _callback44Matches(Object value) =>
     value is api1.Color? Function(Set<api.WidgetState> states);
 Object? _callback44Invoke(
@@ -8232,12 +8248,13 @@ Object? _callback44Invoke(
   );
 }
 
-Object _callback45(FlaxCallback callback) => (Set<api.WidgetState> p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return callback.call(positional, named) as api1.Color?;
-};
+Object _callback45(FlaxCallback _flaxBridgeCallback) =>
+    (Set<api.WidgetState> p0) {
+      final positional = <Object?>[];
+      final named = <String, Object?>{};
+      positional.add(p0);
+      return _flaxBridgeCallback.call(positional, named) as api1.Color?;
+    };
 bool _callback45Matches(Object value) =>
     value is api1.Color? Function(Set<api.WidgetState> states);
 Object? _callback45Invoke(
@@ -8250,11 +8267,11 @@ Object? _callback45Invoke(
   );
 }
 
-Object _callback46(FlaxCallback callback) => (bool p0) {
+Object _callback46(FlaxCallback _flaxBridgeCallback) => (bool p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
-  callback.call(positional, named);
+  _flaxBridgeCallback.call(positional, named);
 };
 bool _callback46Matches(Object value) => value is void Function(bool value);
 Object? _callback46Invoke(
@@ -8266,11 +8283,11 @@ Object? _callback46Invoke(
   return null;
 }
 
-Object _callback47(FlaxCallback callback) => (int p0) {
+Object _callback47(FlaxCallback _flaxBridgeCallback) => (int p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
-  callback.call(positional, named);
+  _flaxBridgeCallback.call(positional, named);
 };
 bool _callback47Matches(Object value) => value is void Function(int value);
 Object? _callback47Invoke(
@@ -8282,11 +8299,11 @@ Object? _callback47Invoke(
   return null;
 }
 
-Object _callback48(FlaxCallback callback) => (api1.BuildContext p0) {
+Object _callback48(FlaxCallback _flaxBridgeCallback) => (api1.BuildContext p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
-  return callback.call(positional, named) as api1.Widget;
+  return _flaxBridgeCallback.call(positional, named) as api1.Widget;
 };
 bool _callback48Matches(Object value) =>
     value is api1.Widget Function(api1.BuildContext context);

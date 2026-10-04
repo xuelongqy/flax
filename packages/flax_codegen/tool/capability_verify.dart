@@ -935,7 +935,13 @@ Future<List<Map<String, Object?>>> _defaultProposals({
     const {},
   );
   final results = <Map<String, Object?>>[];
-  for (final name in ['Default3', 'Default6', 'Default8', 'Default10']) {
+  for (final name in [
+    'Default3',
+    'Default5',
+    'Default6',
+    'Default8',
+    'Default10',
+  ]) {
     final result = await resolveLibrary(collection, uri);
     if (result is! LibraryElementResult) continue;
     final element = result.element.exportNamespace.definedNames2[name];
@@ -946,13 +952,7 @@ Future<List<Map<String, Object?>>> _defaultProposals({
       'name': name,
       'bindable': proposed.bindable,
       'selected': selected.length,
-      'dropped': [
-        for (final skip in proposed.skips)
-          if (skip.reason.contains('omitWhenAbsent cap')) skip.target,
-      ].length,
-      'capHit': proposed.skips.any(
-        (skip) => skip.reason.contains('omitWhenAbsent cap'),
-      ),
+      'skipped': proposed.skips.length,
     });
   }
   return results;

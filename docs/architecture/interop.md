@@ -182,6 +182,54 @@ properties, lifecycle/build callbacks, Context roles, Route transport or Stream
 semantics. Protocol 18 and 19 modules are rejected. See
 [ADR 0020](../decisions/0020-complete-dart-stream-interop.md).
 
+### Future and Stream callback combinations
+
+Ordinary incoming and returned callbacks support `Future<Stream<T>>`,
+`FutureOr<Stream<T>>`, `Stream<Future<T>>` and `Stream<FutureOr<T>>` in both their
+arguments and results. The same shapes can appear inside supported Lists, Map values and
+Records. TypeScript uses Promise and typed Dart Stream references recursively; this adds
+no binding configuration or protocol version.
+
+A `Future<Stream<T>>` waits for the stream reference, not its events. For example, a
+connection callback can establish the connection before delivering messages:
+
+```dart
+Future<void> showMessages(Future<Stream<String>> Function() connect) async {
+  final messages = await connect();
+  await for (final message in messages) {
+    print(message);
+  }
+}
+```
+
+A `Stream<Future<T>>` delivers each Future as an independent event. It does not await or
+flatten events into `Stream<T>`; tasks may complete in a different order from their
+arrival. Consumers choose whether to wait serially or observe tasks concurrently:
+
+```dart
+final subscription = tasks.listen((task) {
+  task.then(showResult, onError: showTaskError);
+}, onError: showStreamError);
+// When the application no longer needs the subscription:
+await subscription.cancel();
+```
+
+`FutureOr` preserves immediate and asynchronous branches. Erased JS-created event
+sources convert Promise events to typed Dart Futures at concrete Stream use sites. Only
+copies of raw JS collections may be reconstructed there, and their collection kind must
+match the requested position. Compatible Dart collections retain their original
+references; incompatible Dart references fail instead of being narrowed by copying.
+Bound Dart objects with an ordinary `then` method also retain their reference identity.
+Invalid completion values fail their Future; Stream errors retain Dart's normal
+nonterminal behavior unless the subscription requests `cancelOnError`. Wrapping stays
+lazy, and cancellation and session cleanup keep the ownership rules above.
+
+These combinations do not expand async Widget ownership, Context/State/Route/Page
+lifetimes, unbound generic callbacks or nested Stream event types. To create a JS source
+with Promise-valued events, use a StreamController or an explicit AsyncIterator whose
+`next()` returns `{ value: promise, done: false }`; an async generator's `yield promise`
+awaits that Promise and therefore describes a different event type.
+
 ## Widget configuration and mounting
 
 A selected single `Widget` or `Widget?` input accepts generated descriptions, custom JS

@@ -610,7 +610,7 @@ extension _StreamCalls on _Session {
     });
 
     runtime.registerHostFunction('__flaxCreateStreamIterator', (_, args) {
-      _checkCall(args, 2);
+      _checkCall(args, 2, numericReceiver: true);
       if (args[1] is! FlaxJsNumber) {
         throw ArgumentError('Invalid Stream iterator');
       }
@@ -625,7 +625,7 @@ extension _StreamCalls on _Session {
     });
 
     runtime.registerHostFunction('__flaxStreamIterator', (_, args) {
-      _checkCall(args, 3);
+      _checkCall(args, 3, numericReceiver: true);
       if (args[1] is! FlaxJsNumber || args[2] is! FlaxJsString) {
         throw ArgumentError('Invalid Stream iterator call');
       }

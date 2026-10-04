@@ -82,12 +82,18 @@ extension _MemberCalls on _Session {
     }
   });
 
-  void _checkCall(List<FlaxJsValue> args, int minimum) {
+  void _checkCall(
+    List<FlaxJsValue> args,
+    int minimum, {
+    bool numericReceiver = false,
+  }) {
     if (!active) throw StateError('Closed Flax session');
     if (args.length < minimum ||
         args[0] is! FlaxJsNumber ||
         (args[0] as FlaxJsNumber).value != flaxBindingVersion ||
-        args[1] is! FlaxJsString) {
+        (numericReceiver
+            ? args[1] is! FlaxJsNumber
+            : args[1] is! FlaxJsString)) {
       throw ArgumentError('Invalid or incompatible Dart member call');
     }
     // A synchronous Dart member may request close before returning to JS.

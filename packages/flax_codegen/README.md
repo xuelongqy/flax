@@ -130,12 +130,15 @@ Route adapter.
 `additionalLibraries` merges public exports by actual declaration identity. Generic
 bounds and inheritance are resolved before emission; TS keeps type relationships while
 Dart calls use configured legal concrete types. Private defaults remain omitted in real
-calls. N independently omitted parameters require 2^N direct call combinations; the
-fixtures execute all eight combinations for three parameters and all 64 combinations for
-six parameters, checking omitted defaults separately from explicit null. Selection
-proposals cap independently omitted parameters at six; this does not remove exponential
-growth from explicit selections. No reflection, class-specific object adapters or
-snapshot restoration remain.
+calls. Each concrete signature uses direct typed calls through five independently
+omitted parameters and `Function.apply` from six, with explicit typed tear-offs, static
+named Symbols and the same argument conversions. Selection keeps all bindable
+parameters. Missing or undefined arguments omit defaults; explicit null remains
+provided. Optional positional arguments may only omit a trailing suffix. Redirecting
+factories and super parameters resolve defaults from their target declarations;
+unresolved or cyclic targets fail closed. Route, Page and extends-proxy constructors
+forward super parameters without copying private defaults. No reflection, class-specific
+object adapters or snapshot restoration remain.
 
 Dependent TypeScript generic defaults follow preceding type parameters instead of their
 Dart runtime erasure. Explicit generic arguments preserve the declared relationships;
@@ -308,6 +311,17 @@ Future/FutureOr values inside collections, Maps and Records remain independent a
 values. Asynchronous properties and lifecycle/build callbacks remain rejected. A
 returned function is a new invocation boundary and may have its own supported Future
 result.
+
+Ordinary callbacks compose Future/FutureOr and Stream conversions in both directions:
+`Future<Stream<T>>`, `FutureOr<Stream<T>>`, `Stream<Future<T>>` and
+`Stream<FutureOr<T>>` work in callback arguments and results, including supported
+collection and Record positions. A Stream of Futures delivers independently completing
+Future events rather than flattening them. Typed views remain lazy and validate erased
+source events at concrete use sites. Erased collection restoration only copies
+compatible raw JS collection shapes. Existing Dart collections retain identity or fail
+their concrete type check. Async Flutter lifetime exclusions and nested Stream event
+exclusions remain unchanged. See the
+[interop examples](../../docs/architecture/interop.md#future-and-stream-callback-combinations).
 
 Protocol 21 callback models also preserve optional positional parameters, named
 parameters and function-local generics. Generated Dart adapters use a private omission

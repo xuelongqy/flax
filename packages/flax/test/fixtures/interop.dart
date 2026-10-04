@@ -1,7 +1,15 @@
 import 'dart:async';
 
+export 'async_stream_callbacks.dart';
+
 import 'package:flutter/foundation.dart'
     show ValueChanged, ValueGetter, mustCallSuper;
+
+class CodegenThenObject {
+  CodegenThenObject();
+  int calls = 0;
+  int then() => ++calls;
+}
 
 class Box<T> {
   Box(T? value) : _value = value;

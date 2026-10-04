@@ -1,6 +1,32 @@
 import 'package:flax_codegen/flax_codegen.dart';
 
 const interopSelection = {
+  'CodegenThenObject': FlaxCodegenClassSelection(
+    {'': []},
+    kind: 'object',
+    getters: ['calls'],
+    instanceMethods: {'then': []},
+  ),
+  'AsyncStreamCallbacks': FlaxCodegenClassSelection(
+    {'': []},
+    kind: 'object',
+    instanceMethods: {
+      'echoFutureStream': ['callback'],
+      'echoFutureOrStream': ['callback'],
+      'echoStreamFuture': ['callback'],
+      'echoStreamFutureOr': ['callback'],
+      'echoNullable': ['callback'],
+      'echoList': ['callback'],
+      'echoMap': ['callback'],
+      'echoRecord': ['callback'],
+      'echoStreamFutureList': ['callback'],
+      'echoStreamFutureMap': ['callback'],
+      'echoStreamFutureSet': ['callback'],
+      'echoStreamFutureIterable': ['callback'],
+      'echoStreamFutureRecord': ['callback'],
+      'echoStreamFutureVoid': ['callback'],
+    },
+  ),
   'CodegenGenericAliasConsumer': FlaxCodegenClassSelection(
     {'': []},
     kind: 'object',

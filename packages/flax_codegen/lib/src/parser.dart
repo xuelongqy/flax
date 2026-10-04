@@ -586,6 +586,62 @@ class FlaxCodegenBindingParser {
   final _elementsByIdentity = <String, InterfaceElement>{};
   final _literalLibraries = <LibraryElement, SomeParsedLibraryResult>{};
 
+  /// Resolve the declaration whose Dart default is used by this callable.
+  FormalParameterElement _effectiveDefaults(FormalParameterElement parameter) {
+    var current = parameter.baseElement;
+    final visited = <FormalParameterElement>{};
+    while (visited.add(current)) {
+      if (current is SuperFormalParameterElement && !current.hasDefaultValue) {
+        final parent = current.superConstructorParameter;
+        if (parent == null) {
+          throw StateError(
+            'Unresolved super parameter default: ${parameter.name}',
+          );
+        }
+        current = parent.baseElement;
+        continue;
+      }
+      final owner = current.enclosingElement;
+      if (owner is! ConstructorElement || !owner.isFactory) return current;
+      final target = owner.redirectedConstructor;
+      if (target == null) {
+        final parsed = _literalLibraries.putIfAbsent(
+          owner.library,
+          () => _contexts.contexts.first.currentSession
+              .getParsedLibraryByElement(owner.library),
+        );
+        final node = parsed is ParsedLibraryResult
+            ? parsed.getFragmentDeclaration(owner.firstFragment)?.node
+            : null;
+        if (node is! ConstructorDeclaration ||
+            node.redirectedConstructor != null) {
+          throw StateError('Unresolved factory default: ${parameter.name}');
+        }
+        return current;
+      }
+      FormalParameterElement? match;
+      if (current.isNamed) {
+        match = target.formalParameters
+            .where((p) => p.isNamed && p.name == current.name)
+            .firstOrNull;
+      } else {
+        final index = owner.formalParameters
+            .where((p) => p.isPositional)
+            .toList()
+            .indexOf(current);
+        final positional = target.formalParameters
+            .where((p) => p.isPositional)
+            .toList();
+        if (index >= 0 && index < positional.length) match = positional[index];
+      }
+      if (match == null) {
+        throw StateError('Unmatched factory default: ${parameter.name}');
+      }
+      current = match.baseElement;
+    }
+    throw StateError('Cyclic parameter default: ${parameter.name}');
+  }
+
   String? _safeConstantLiteral(TopLevelVariableElement variable) {
     if (!variable.isConst) return null;
     final parsed = _literalLibraries.putIfAbsent(
@@ -1303,6 +1359,7 @@ class FlaxCodegenBindingParser {
         }
       }
       final result = <FlaxCodegenParameterModel>[];
+      var omitPositionalTail = false;
       for (final parameter in actual) {
         if (!chosen.contains(parameter.name)) {
           if (parameter.isRequired || parameter.isPositional) {
@@ -1443,12 +1500,7 @@ class FlaxCodegenBindingParser {
             mountedWidgetCallbacks &&
             type.kind == 'callback' &&
             type.result!.isDirectMountedWidgetResult;
-        FormalParameterElement defaults = parameter.baseElement;
-        while (!defaults.hasDefaultValue &&
-            defaults is SuperFormalParameterElement &&
-            defaults.superConstructorParameter != null) {
-          defaults = defaults.superConstructorParameter!;
-        }
+        final defaults = _effectiveDefaults(parameter);
         final constant = defaults.computeConstantValue();
         final callbackDefault =
             type.kind == 'callback' && constant?.toFunctionValue() != null;
@@ -1460,13 +1512,17 @@ class FlaxCodegenBindingParser {
         // Preserve upstream sentinel identity as well as private callback defaults.
         final omitWhenAbsent =
             !parameter.isRequired &&
-            (hiddenDefault ||
+            (omitPositionalTail && parameter.isPositional ||
+                hiddenDefault ||
                 callbackDefault ||
                 constant?.toListValue() != null ||
                 constant?.toMapValue() != null ||
                 ({'object', 'any', 'data'}.contains(type.kind) &&
                     constant != null &&
                     !constant.isNull));
+        // Once a positional default requires real omission, its suffix must
+        // remain omitted too; filling later scalar defaults would shift values.
+        if (parameter.isPositional && omitWhenAbsent) omitPositionalTail = true;
         result.add(
           FlaxCodegenParameterModel(
             name: parameter.name!,

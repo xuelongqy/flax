@@ -936,7 +936,7 @@ Container({transform: null});
     );
     stdout.writeln(
       'Decoration constructor combinations: ${{
-        for (final name in ['Container', 'DecoratedBox', 'BorderSide', 'Border', 'BorderDirectional', 'BorderRadius', 'BorderRadiusDirectional', 'BoxConstraints']) name: {for (final ctor in selected(name).constructors) ctor.name: 1 << ctor.parameters.where((p) => p.omitWhenAbsent).length},
+        for (final name in ['Container', 'DecoratedBox', 'BorderSide', 'Border', 'BorderDirectional', 'BorderRadius', 'BorderRadiusDirectional', 'BoxConstraints']) name: {for (final ctor in selected(name).constructors) ctor.name: (ctor.parameters.where((p) => p.omitWhenAbsent).length <= 5 ? 1 << ctor.parameters.where((p) => p.omitWhenAbsent).length : 1)},
       }}; Dart bytes=${utf8.encode(emitter.dart(module)).length}, TS bytes=${utf8.encode(emitter.typescript(module)).length}',
     );
   });
@@ -1272,10 +1272,12 @@ AlignmentGeometry();
       ])
         for (final ctor in type.constructors)
           '${type.name}.${ctor.name}':
-              1 << ctor.parameters.where((p) => p.omitWhenAbsent).length,
+              (ctor.parameters.where((p) => p.omitWhenAbsent).length <= 5
+              ? 1 << ctor.parameters.where((p) => p.omitWhenAbsent).length
+              : 1),
     };
-    // Measure selected direct-call growth without adding a runtime dispatch path.
-    stdout.writeln('Selected constructor call combinations: $calls');
+    // Report bounded direct/apply constructor dispatch for the current selection.
+    stdout.writeln('Selected constructor dispatch branches: $calls');
     for (final (owner, current) in [
       (p.join(root, 'packages/flax'), module),
       (p.join(root, 'packages/flax_material_ui'), material),

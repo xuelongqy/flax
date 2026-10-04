@@ -2,12 +2,6 @@ import 'dart:convert';
 
 import 'package:flax_codegen/flax_codegen.dart';
 
-/// Stop generating larger omitWhenAbsent combinations past this Dart size.
-const flaxCapabilityOmitDartByteBudget = 400000;
-
-/// Stop generating larger omitWhenAbsent combinations past this emit time.
-const flaxCapabilityOmitEmitMsBudget = 8000;
-
 FlaxCodegenBindingConfig capabilitySelectionConfig(
   FlaxCodegenBindingConfig library,
   Map<String, FlaxCodegenClassSelection> classes,
@@ -163,6 +157,9 @@ Future<Map<String, Object?>> measureOmitEmission({
     final typescript = emitter.typescript(module);
     final elapsed = stopwatch.elapsedMilliseconds;
     final branches = RegExp('return api\\.$name\\(').allMatches(dart).length;
+    final applyCalls = RegExp('Function.apply\\(api\\.$name\\.new')
+        .allMatches(dart)
+        .length;
     return {
       'name': name,
       'requested': parameters.length,
@@ -171,7 +168,9 @@ Future<Map<String, Object?>> measureOmitEmission({
       'dartBytes': utf8.encode(dart).length,
       'tsBytes': utf8.encode(typescript).length,
       'dartBranches': branches,
-      'expectedBranches': 1 << parameters.length,
+      'applyCalls': applyCalls,
+      'strategy': applyCalls == 0 ? 'direct' : 'apply',
+      'expectedBranches': parameters.length <= 5 ? 1 << parameters.length : 0,
       'emitMilliseconds': elapsed,
     };
   } on Object catch (error) {
@@ -186,60 +185,15 @@ Future<Map<String, Object?>> measureOmitEmission({
   }
 }
 
-Map<String, Object?> estimateOmitEmission({
-  required String name,
-  required int requested,
-  required Map<String, Object?> baseline,
-}) {
-  final from = baseline['requested'] as int;
-  final scale = (1 << requested) / (1 << from);
-  int scaled(String key) => ((baseline[key] as num).toDouble() * scale).round();
-  return {
-    'name': name,
-    'requested': requested,
-    'ok': true,
-    'estimated': true,
-    'dartBytes': scaled('dartBytes'),
-    'tsBytes': scaled('tsBytes'),
-    'dartBranches': 1 << requested,
-    'expectedBranches': 1 << requested,
-    'emitMilliseconds': scaled('emitMilliseconds'),
-    'note':
-        'Estimated from ${baseline['name']} using 2^N constructor combinations; '
-        'not generated.',
-  };
-}
-
-bool exceedsOmitBudget(Map<String, Object?> measurement) {
-  if (measurement['ok'] != true || measurement['estimated'] == true) {
-    return false;
-  }
-  final dartBytes = measurement['dartBytes'] as int? ?? 0;
-  final emitMs = measurement['emitMilliseconds'] as int? ?? 0;
-  return dartBytes > flaxCapabilityOmitDartByteBudget ||
-      emitMs > flaxCapabilityOmitEmitMsBudget;
-}
-
 Future<List<Map<String, Object?>>> runOmitScaleExperiments({
   required String workspaceRoot,
   required FlaxCodegenBindingConfig library,
 }) async {
   final results = <Map<String, Object?>>[];
-  Map<String, Object?>? generatedBaseline;
 
-  for (final count in [3, 6, 8, 10]) {
+  for (final count in [3, 5, 6, 8, 10]) {
     final name = 'Default$count';
     final parameters = [for (var i = 1; i <= count; i++) 'p$i'];
-    if (generatedBaseline != null && exceedsOmitBudget(generatedBaseline)) {
-      results.add(
-        estimateOmitEmission(
-          name: name,
-          requested: count,
-          baseline: generatedBaseline,
-        ),
-      );
-      continue;
-    }
     final parser = FlaxCodegenBindingParser(workspaceRoot);
     try {
       final measurement = await measureOmitEmission(
@@ -249,9 +203,6 @@ Future<List<Map<String, Object?>>> runOmitScaleExperiments({
         parameters: parameters,
       );
       results.add(measurement);
-      if (measurement['ok'] == true) {
-        generatedBaseline = measurement;
-      }
     } finally {
       await parser.dispose();
     }

@@ -9,6 +9,7 @@ readonly host: string;
 defineObject("flax.core/flutter#type:Uri", ["scheme","host"], [], {}, []);
 export namespace Uri { export function parse(uri: string, start?: number, end?: number | null): Uri {
 if (arguments.length > 3) throw new TypeError('Too many method arguments');
+if (start === undefined && (end !== undefined)) throw new TypeError('Optional positional arguments must omit a trailing suffix');
 const _flaxResult = invokeStatic("flax.core/flutter#type:Uri", "parse", [uri, start, end]);
 return _flaxResult as Uri;
 } }
