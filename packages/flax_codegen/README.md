@@ -19,6 +19,13 @@ Run `dart run melos run bindings:generate` after changing inputs, then
 constructor-default tests without downloading or running an engine. `ui:bundle` also
 generates the independent interop fixture into ignored output for real `ui:test` use.
 
+The parser resolves requested libraries and dependencies in the supplied root's package
+environment without recursively discovering unrelated workspace projects. Await
+`parser.dispose()` when analysis finishes; test teardown callbacks can return this
+Future directly. Codegen tests use a three-minute default budget because analyzer-backed
+fixtures also compile Dart/TypeScript and launch Flutter tests. Explicit longer fixture
+budgets and all failure assertions remain in force.
+
 The package CLI is:
 
 ```sh
@@ -48,16 +55,15 @@ Deprecated declarations remain selected and are reported as `NOTE` entries.
 Automatic discovery covers classes and mixins, enums, typedefs, named extensions,
 extension types, top-level functions, and top-level values/getters/setters. Extension
 types use their representation without a separate runtime identity. Generic declarations
-use one analyzer-validated shared
-Dart owner while TypeScript preserves the generic relationship. The owner is `Object?`
-or a publicly routable, fully closed analyzer bound such as `Route<dynamic>`.
-Constructors are selected separately and only when observed concrete targets can be
-distinguished from their direct runtime inputs. Widget constructor callbacks with direct
-synchronous `Widget`, `Widget?` or `List<Widget>` results reuse mounted invocation
-ownership; `BuildContext` is an ordinary callback parameter. Public, non-generic,
-implementable Widget interfaces reuse the existing native interface forwarding path.
-Private, `@internal`, `@visibleForTesting`, and `@protected` API is excluded from
-automatic exposure.
+use one analyzer-validated shared Dart owner while TypeScript preserves the generic
+relationship. The owner is `Object?` or a publicly routable, fully closed analyzer bound
+such as `Route<dynamic>`. Constructors are selected separately and only when observed
+concrete targets can be distinguished from their direct runtime inputs. Widget
+constructor callbacks with direct synchronous `Widget`, `Widget?` or `List<Widget>`
+results reuse mounted invocation ownership; `BuildContext` is an ordinary callback
+parameter. Public, non-generic, implementable Widget interfaces reuse the existing
+native interface forwarding path. Private, `@internal`, `@visibleForTesting`, and
+`@protected` API is excluded from automatic exposure.
 
 Run automatic mode from the owning binding package (the package receiving generated
 files). Its `pubspec.yaml` resolves the target Dart package and any Flax providers.

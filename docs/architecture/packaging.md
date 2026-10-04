@@ -28,8 +28,9 @@ package has no concrete engine dependency.
 | `flax_websocket` / `@flax/websocket`         | WebSocket session plugin                                                                                 |
 | `flax_local_storage` / `@flax/local-storage` | Persistent localStorage session plugin                                                                   |
 | `flax_canvas` / `@flax/canvas`               | Canvas host plugin and CanvasView binding                                                                |
-| `flax_engine_hermes`                         | Hermes adapter, pinned source, prepared assets, and engine tests                                         |
-| `flax_engine_v8`                             | Experimental V8 adapter, pinned source, prepared assets, and engine tests                                |
+| `flax_engine_hermes`                         | Hermes adapter, locked shared SDK, and engine tests                                                      |
+| `flax_engine_v8`                             | Experimental V8 adapter, locked shared SDK, and engine tests                                             |
+| `flax_native_assets`                         | Build-only owner of shared Android C++ and Windows CRT native assets                                     |
 | `flax_codegen`                               | Analyzer model, manifest format, and Dart/TypeScript emitters                                            |
 | `flax_test`                                  | Development-only engine-neutral runtime contracts and shared test harnesses                              |
 
@@ -229,10 +230,12 @@ The FFI generator reads `packages/flax/native/include/flax/runtime.h` and writes
 committed core Dart declarations. Engine CMake projects locate the core native directory
 through the workspace/package tools; they do not depend on an old root `native/` path.
 
-Explicit native build commands verify pinned upstream inputs, build the selected dylib,
-and prepare `native/generated/macos_arm64` inside its engine package. Asset hooks only
-validate and register prepared files. They never download, compile, or fall back to a
-machine-local library. Hermes remains the default; V8 stays explicit.
+The engine SDK repository pins upstream sources and patches, then publishes relocatable
+macOS arm64 shared-library SDKs. Each engine package locks one SDK URL and SHA-256. Its
+asset hook downloads and verifies the SDK on a cold cache, compiles the Flax ABI and
+adapter from the package's source, and registers the bridge and all engine libraries.
+`native:build` exercises that same bridge build and its native tests. There is no
+engine-source fallback. Hermes remains the default; V8 stays explicit.
 
 `check:runtime` and `check:runtime:v8` verify native tests, the public Dart entry,
 outside-repository JIT loading, relocated AOT loading, missing/corrupt asset rejection,
@@ -248,10 +251,10 @@ fixtures.
 
 Generated UI fixtures also stay with their owner at
 `packages/<owner>/.dart_tool/flax/ui`. Package checks build only that owner and its JS
-dependency closure. Aggregate checks discover each owner and build them separately, so
-fixture names need only be unique inside one package. Non-default-engine isolation
-copies the selected package, its Dart dependency closure, and that package's fixture; it
-does not stage every extension.
+dependency closure. The full UI entry imports original test files and invokes their
+`main()` functions in owner/file groups, inside one test process per engine. Fixtures
+are preloaded by owner before registration, so names need only be unique inside one
+package. Focused execution stages only selected owners and their dependency closure.
 
 Shared engine-neutral runtime contracts and deterministic test helpers live in the
 development-only [`flax_test`](../../packages/flax_test/README.md) package. It imports
@@ -276,8 +279,8 @@ Discovery follows directory conventions. Adding a conforming package does not re
 new package-name array in the root tools.
 
 The core FFI selection lives at `packages/flax/native/ffigen.yaml`. Each engine's
-download, patch, build, notices, and prepared-asset workflow lives in its own
-`tool/native.dart`; the root command only discovers and dispatches to that owner.
+adapter, SDK lock, and hook live in each engine package. The root `tool/native.dart`
+uses the shared Flax SDK preparation path and runs native tests.
 
 ## Archive validation
 
@@ -290,8 +293,8 @@ remove workspace and publication blockers. It runs Dart publish-content validati
 npm pack inspection, rejects source/tests/build/cache leakage, and validates package
 dependencies without modifying repository manifests. Metadata capabilities select the
 checks: binding archives need a manifest, host plugins need their generated host script,
-core needs the public ABI header, and engine archives need their hook, prepared dylib
-and manifest, and consolidated notices.
+core needs the ABI header and implementation, and engine archives need their hook,
+adapter source, SDK lock, and consolidated notices.
 
 The check also validates paired versions, compiles a minimal outside-repository Dart
 consumer that references every declared registration symbol, and installs each npm
@@ -310,14 +313,14 @@ tests/examples from consumer trees. Repository manifests keep `publish_to: none`
 `release:check` (`tool/check_release.dart`) is the in-repo pre-release checklist: assert
 unpublished manifests, run `packages:check`, then `pack_archives --dry-run`. It never
 publishes to pub.dev or npm and does not build engines. GitHub Actions runs the same
-sequence on Ubuntu via `.github/workflows/packages.yml` without the macOS runtime job.
+sequence on Ubuntu via reusable `.github/workflows/packages.yml`, called once by the
+main workflow with a shared preparation artifact. Its manual entry remains available.
 
 Pub archives include Dart implementation, generated bindings, required embedded host
-scripts, and runtime assets. They exclude JavaScript source, binding selection YAML,
-tests, examples, CMake projects, patches, engine downloads, and detailed notice trees.
-Core keeps only its public ABI header from `native/`. Engine tools consolidate upstream
-notices into one root `THIRD_PARTY_NOTICES.txt`; detailed provenance stays in the
-repository build tree. npm archives contain only files reachable from their exports,
+scripts, Flax ABI source, and engine adapter sources with CMake and SDK locks. They
+exclude prebuilt dylibs, JavaScript source, binding selection YAML, tests, examples,
+engine source downloads, and detailed notice trees. Engine packages retain a root
+`THIRD_PARTY_NOTICES.txt`. npm archives contain only files reachable from their exports,
 their declarations and maps, and the package README.
 
 The standalone verifier separately copies Dart packages and packs npm packages for a
@@ -341,6 +344,6 @@ dart run melos run check:ui:v8
 For daily package work, use `dart run tool/package.dart check NAME` and add
 `integration NAME --engine=hermes|v8` only when real UI behavior is needed.
 `check:aggregate` verifies the minimal cross-module application. `check:ui` runs every
-UI owner integration plus the aggregate. Ordinary `check` never fetches or builds an
-engine; UI commands require prepared macOS arm64 assets and run serially because they
-drive desktop apps.
+UI owner's original assertions in one entry, examples and the aggregate once each.
+Ordinary `check` never fetches or builds an engine; UI commands use the locked macOS
+arm64 SDK and run serially because they drive desktop apps.

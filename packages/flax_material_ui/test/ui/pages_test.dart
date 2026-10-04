@@ -7,7 +7,10 @@ import 'package:flax_test/flax_test.dart';
 import '../support/harness.dart' show registry;
 import '../support/runtime_tracker.dart';
 
-final pagesSource = flaxTestFixtureSource('pages');
+final pagesSource = flaxTestFixtureSource(
+  'pages',
+  packageName: 'flax_material_ui',
+);
 
 class PagesHarness {
   final runtime = RuntimeTracker();

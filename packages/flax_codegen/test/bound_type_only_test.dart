@@ -33,7 +33,7 @@ $selection
 '''),
       );
     } finally {
-      parser.dispose();
+      await parser.dispose();
     }
   }
 

@@ -62,8 +62,8 @@ bootstrap, notices, and native code that the package owns.
 | Package              | Focus                                                                           |
 | -------------------- | ------------------------------------------------------------------------------- |
 | `flax`               | Engine-independent runtime, sessions/views, shared native ABI/JSI, `@flax/core` |
-| `flax_engine_hermes` | Hermes adapter, engine assets/build, engine-specific tests                      |
-| `flax_engine_v8`     | V8 adapter, engine assets/build, engine-specific tests                          |
+| `flax_engine_hermes` | Hermes adapter, SDK consumption, bridge build, engine-specific tests            |
+| `flax_engine_v8`     | V8 adapter, SDK consumption, bridge build, engine-specific tests                |
 | `flax_material_ui`   | Generated Material bindings and package-local verification                      |
 | `flax_cupertino_ui`  | Cupertino bindings (scaffold today; keep ownership even while empty)            |
 | `flax_codegen`       | Binding/declaration generator and its package tests                             |

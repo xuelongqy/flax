@@ -14,5 +14,3 @@ PRODUCT_BUNDLE_IDENTIFIER = dev.flax.flaxEmbedded
 PRODUCT_COPYRIGHT = Copyright © 2026 dev.flax. All rights reserved.
 
 // The prepared Hermes native asset supports this architecture only.
-ARCHS = arm64
-EXCLUDED_ARCHS = x86_64

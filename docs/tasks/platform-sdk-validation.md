@@ -1,0 +1,212 @@
+# Task: Native SDK integration and platform validation
+
+Status: combined UI/CI implementation was pushed at `09fda0a`. Its terminal Workspace
+run `37172394396` passed shared preparation, archives and eleven platform targets, but
+Linux's negative preparation test inherited an artifact belonging to the real checkout.
+The failure was reproduced locally. Full iOS run `37172391594` passed arm64 and
+cancelled x64 at the two-hour job limit during coexistence compilation. The x64 V8 UI
+artifact retains two Fetch failures and incomplete coverage; cancellation does not
+certify acceptance. PR #2 remains unmerged. Monitoring pauses during repairs and resumes
+only after the next CI batch starts.
+
+The collector imports all 48 original UI files from seven owners into one entry per
+engine. Local desktop Hermes and V8 each passed 346 cases with identical display names
+to the old iOS-arm full baseline. Owner/file filters, same-name fixtures, strict owner
+lookup and preparation digest rejection have regression coverage. Shared preparation, a
+reusable archive gate, partial UI scope and stable compiler caches are implemented;
+local iOS arm64 Hermes and V8 also passed the same 346 cases each, runtime contracts,
+relocation and coexistence. The complete local command built two UI applications instead
+of fourteen, and ten applications overall instead of the baseline twenty-two. Reversed
+owner order retained all 346 desktop cases. A focused twenty-case Fetch run passed on
+both cold and warm stable paths (17.0s and 7.4s for the test command); this is not a
+forecast of complete CI duration. Tooling passed 81 tests with one Windows-only
+self-test inapplicable on macOS, and scoped analysis had no issues. Final-head Linux and
+iOS arm/x64 CI and artifact evidence are still required.
+
+The first combined CI round supplied seventeen artifacts; all ZIP digests, sizes, CRCs
+and safe extraction checks passed. The regular receipts verify 22 SDK groups with
+matching rc.3 archive/library hashes: 22 built, sixteen ran and delivered applications,
+and six remained build-only. Linux did not reach SDK/UI execution. Both Windows
+architectures retained independent Dart JIT/checksum-rejection/AOT and native
+coexistence evidence. Full iOS arm64 ran all 346 cases per engine in a 42-minute job
+with two UI builds and ten application builds; the old 47m26s arm64 baseline used
+fourteen UI builds and twenty-two builds overall. This single comparison is not a
+runner-independent speed guarantee.
+
+The correction isolates the temporary preparation-failure fixture from workspace
+artifacts. Fetch's asynchronous script helper uses a finite real-time budget rather than
+a frame-count deadline, reports stages without casting undefined, and closes
+views/servers even when assertions fail. Original network and resource assertions are
+retained. Intel full UI receives fifteen minutes for application execution, separate
+from the three-hour job budget: the failed run was still at 230 cases after eight
+minutes and later exhausted the old job budget compiling coexistence. The next head
+still requires Linux and both iOS simulators' complete CI and artifact evidence.
+
+## Goal and scope
+
+Consume the published `flax_js_runtime v0.3.0-rc.3` archives (SDK version `0.3.0`,
+manifest schema 3) for twelve targets and both engines. Flax compiles only its
+ABI/adapter. Keep ABI 2, Hermes as the default, and PR #2 unmerged. Published rc.1, rc.2
+and rc.3 assets and toolchain locks remain unchanged. Do not publish Flax.
+
+## Acceptance criteria and approach
+
+Record bridge build, actual runtime and external application delivery independently.
+Build-only jobs and missing devices cannot certify runtime or application acceptance.
+Default CI runs Linux x64 full checks for both engines; SDK changes select platform
+checks for all affected targets. Full checks on other targets remain explicit.
+
+Reuse target-table locks, the verified SDK cache, incremental bridge builds and
+package-owned assertions through
+[the unified platform entry](../../tool/check_platform.dart). See
+[the platform guide](../testing-platforms.md) and
+[ADR 0036](../decisions/0036-shared-engine-sdk.md).
+
+## Published SDK evidence
+
+Candidate
+[36954561632](https://github.com/xuelongqy/flax_js_runtime/actions/runs/36954561632)
+passed all eight jobs at `b76a32068192467c2fcdd18ee65f3229219c36ac`. All twelve
+artifacts and 24 archives passed ZIP/archive digests, safe extraction, per-file manifest
+hashes, upstream/patch locks and architecture checks. Native-host SDK verification
+passed architecture, exports and dependency-closure checks. Twelve desktop consumers
+executed after relocation; twelve mobile consumers only compiled/linked. Both Windows
+architectures actually exercised a fully committed 1 MiB worker stack, recursive
+RangeError handling and the retained 101 detached-buffer assertions.
+
+Publication
+[36958864919](https://github.com/xuelongqy/flax_js_runtime/actions/runs/36958864919)
+reused those candidate bytes as
+[rc.3](https://github.com/xuelongqy/flax_js_runtime/releases/tag/v0.3.0-rc.3). All 24
+asset digests and published checksums match the candidate. Publication repeated safe
+extraction and all file-hash checks before creating the release. These SDK runs do not
+certify Flax Dart FFI or application delivery.
+
+Flax's 24 target locks now select rc.3. Official release archives passed these local
+macOS arm64 checks:
+
+| Stage                      | Observed result                                                                                  |
+| -------------------------- | ------------------------------------------------------------------------------------------------ |
+| Runtime contracts          | Hermes 39/39 and V8 39/39, including the original detached-buffer assertion                      |
+| Native CTest               | Hermes 1/1 and V8 2/2                                                                            |
+| Independent Dart consumers | Both engines passed JIT, checksum rejection and relocated AOT execution                          |
+| Dual-engine consumers      | Independent Dart and native coexistence, foreign-object rejection, reentry and recreation passed |
+| Tooling                    | 67 tests passed; one Windows-only real-crash self-test is inapplicable on macOS                  |
+
+This local round did not rerun UI or device suites. Local Apple builds used Xcode 27; CI
+pins Xcode 26.6. SDK manifests retain version `0.3.0`.
+
+## Completed Flax acceptance
+
+At `2636d9bd149432c4d99c67bd3f98fb1931e85419`,
+[Workspace 37000526994](https://github.com/xuelongqy/flax/actions/runs/37000526994)
+(attempt 2) and
+[Package 37000526672](https://github.com/xuelongqy/flax/actions/runs/37000526672)
+passed. All 27 effective jobs/checks were terminal: fifteen successful and twelve
+inapplicable opposite-host branches skipped; no commit statuses remained.
+
+All twelve verification ZIPs matched GitHub digests and sizes and passed CRC and safe
+extraction checks. All 24 SDK archive/library hashes and versions matched rc.3 locks and
+candidate manifests: 24 groups built, eighteen actually ran and passed application
+delivery, and six physical-device groups remained build-only. Evidence combines eleven
+attempt-1 artifacts with the new macOS x64 attempt-2 artifact from the same head.
+
+| Acceptance                                                                   | Successful job |
+| ---------------------------------------------------------------------------- | -------------- |
+| Windows x64 Dart JIT/AOT, Dart/native coexistence and application delivery   | `110817006636` |
+| Windows arm64 Dart JIT/AOT, Dart/native coexistence and application delivery | `110817006885` |
+| macOS x64 actual execution and artifact after hosted-runner disconnection    | `110876972993` |
+| Linux x64 default full checks for both engines                               | `110816943667` |
+| Final workflow summary                                                       | `110928813617` |
+
+Both Windows jobs compiled and executed the native coexistence consumer using the
+absolute native-path `LoadLibraryExA` loader and its SDK dependency directory. All
+foreign-handle rejection and destruction/recreation assertions passed. Both real CDB
+self-tests passed; only their expected self-test dumps were produced. No actual Hermes
+crash occurred in this round. macOS x64's first attempt lost hosted-runner
+communication; its job log was unavailable and it produced no artifact. The successful
+second attempt provides current-head runtime evidence; the first failure remains
+recorded.
+
+Linux x64 full passed both engines' 39 runtime contracts and 346 package-owned UI cases
+per engine, examples, aggregate application and native/Dart coexistence, retaining the
+original Hermes detached-buffer assertion. Other targets used platform scope.
+
+## Review follow-up
+
+Independent build processes sharing the SDK cache previously used a nonblocking
+exclusive file lock. A second process failed with `Resource temporarily unavailable`
+instead of waiting for the active extraction. The shared SDK helper now uses Dart's
+blocking exclusive lock. The existing SDK tests include a real child process holding the
+cache lock; preparation must wait and then return a verified SDK. All seven SDK contract
+tests and 68 tool tests pass locally; the real Windows debugger self-test is
+inapplicable on macOS. Scoped analysis, formatting, documentation checks and both
+engines' runtime checks pass, including 39 contracts per engine, native CTest and
+standalone JIT/checksum-rejection/relocated-AOT consumers. UI and device suites were not
+rerun locally for this correction. The SDK bytes, ABI and toolchain locks are unchanged.
+
+This follow-up requires its own completed CI evidence. Its current workflow status and
+artifact audit are recorded in [PR #2](https://github.com/xuelongqy/flax/pull/2); the
+accepted head above remains explicit. The monitoring timer stays closed and the PR stays
+unmerged.
+
+Four rc.2 heap minidumps established the Hermes root cause: Dart's isolate stack is
+fully committed without a guard page. Hermes counted an adjacent allocation's reserved
+pages as this thread's guard, leaving zero usable native stack. Internal JavaScript
+reported a false stack overflow; Release then read an unsuccessful CallResult's
+uninitialized storage and faulted during initialization. The SDK patch handles committed
+stacks and makes internal-bytecode failure fatal before accessing its result. This is
+not a proven CRT or compiler-flag defect; nearby exported names do not identify exact
+internal functions. The rc.3 native worker regression and actual Flax Windows Dart
+JIT/AOT now pass on both architectures. Native C++ or Flutter success alone cannot
+certify Dart FFI acceptance.
+
+## Acceptance boundaries and next checks
+
+1. Require the review follow-up's applicable CI, summary and matching SDK/stage receipts
+   to pass. Do not reuse the earlier head's green results as this change's acceptance.
+2. Full iOS arm64 execution with rc.3 now passes all 346 owner UI cases per engine,
+   including Material 177/177 and WebSocket 9/9, plus 41 runtime/startup cases and
+   original/relocated debug application delivery. Three synchronous callbacks use
+   synchronous matchers; animation samples use the actual live frame time; normalized
+   test viewports reset device insets. Assertions remain enabled. This is local evidence
+   with Xcode 27 and now also hosted CI at `7a6aaf1` with Xcode 26.6. Neither execution
+   certifies full x64 UI coverage.
+3. Execute Android arm32/arm64 and signed iOS device checks using the platform guide.
+   Their six engine/target groups remain build-only until actual runtime and application
+   delivery pass. These require devices outside the completed hosted-CI scope.
+
+At `7a6aaf148c5ef1a6dae558dac3079fe03b99aaec`, Workspace `37126044253`, Package
+`37126044102` and full iOS arm64 `37126118310` passed. macOS x64 job `111211480526` has
+fresh runtime/application evidence; the earlier runner loss did not recur, and its
+underlying cause remains unconfirmed. All fourteen available verification ZIPs passed
+digest, size, CRC and safe extraction checks. All 24 regular SDK groups matched rc.3
+archive and library hashes: 24 built, eighteen ran and delivered applications, six
+remained build-only. Full iOS arm64 job `111211638325` ran all 346 UI and 41
+runtime/startup cases per engine, including original/relocated debug delivery.
+
+Full iOS x64 run `37126120933`, job `111211641990`, failed before native/UI execution.
+The generic-proposal and top-level-function Codegen cases exceeded three- and two-minute
+case budgets; the package test command then hit its thirty-minute limit. The
+post-timeout resolution error does not establish an independently missing source file.
+The full-x64 receipt records no build/runtime/application acceptance; its regular
+platform-scope success does not certify the complete UI suite.
+
+The Codegen follow-up avoids repeated recursive workspace discovery, returns and awaits
+analyzer disposal, and releases each generic-proposal parser before starting the next.
+Compiler-backed cases now share the existing finite three-minute fixture budget through
+package test configuration; no cases or assertions are skipped. A local comparison of
+seven affected test files at concurrency two versus one found serial execution slower
+with similar peak process-tree RSS, so the default concurrency policy is retained. These
+corrections passed Linux and full iOS arm64 CI, but did not make the duplicated x64
+common check complete within its existing budgets. They do not establish the cause of
+hosted-runner loss or resource exhaustion.
+
+The routing follow-up implements ADR 0036's single Linux common gate. Linux x64 `all`
+retains `melos check` and FFI reproducibility. Other full targets prepare bundles and
+execute all runtime/UI/native/application assertions, relying on same-head Linux CI for
+common logic. Standalone local validation runs `melos check` separately. No test
+assertions, SDK bytes, toolchain pins or workflow definitions change. This removes the
+duplicated host-only preparation from the device gate; it does not claim that Codegen
+performance on an Intel hosted runner has been repaired. Full x64 UI acceptance still
+requires the next terminal run and its artifacts.

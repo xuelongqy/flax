@@ -11,7 +11,10 @@ import '../support/harness.dart' show registry;
 import '../support/test_module.dart';
 import '../support/runtime_tracker.dart';
 
-final navigationSource = flaxTestFixtureSource('navigation');
+final navigationSource = flaxTestFixtureSource(
+  'navigation',
+  packageName: 'flax_material_ui',
+);
 
 class NavigationHarness {
   NavigationHarness({FlaxBindingRegistry? bindings})
@@ -454,7 +457,7 @@ __flaxCall($flaxBindingVersion, 'test:Async', 'later').then(
           expect(h.runtime.pendingFutures, 1);
           SchedulerBinding.instance.scheduleFrameCallback((_) {
             final closing = h.session.close();
-            expect(h.session.close(), same(closing));
+            expectSync(h.session.close(), same(closing));
             if (fail) {
               completion.completeError(StateError('late failure'));
             } else {

@@ -5,6 +5,7 @@ import 'package:path/path.dart' as p;
 
 import 'src/package_discovery.dart';
 import 'src/process.dart';
+import 'src/prepared_checks.dart';
 
 /// In-repo pre-release checklist without publishing.
 ///
@@ -19,10 +20,16 @@ Future<void> main(List<String> arguments) => command(() async {
   _assertUnpublished(root);
   stdout.writeln('Confirmed repository packages remain unpublished.');
 
-  await run(Platform.resolvedExecutable, [
-    'run',
-    'tool/check_packages.dart',
-  ], directory: root);
+  await run(
+    Platform.resolvedExecutable,
+    ['run', 'tool/check_packages.dart'],
+    directory: root,
+    inheritEnvironment: false,
+    environment: {
+      for (final entry in Platform.environment.entries)
+        if (entry.key != 'FLAX_ARCHIVE_PROOF') entry.key: entry.value,
+    },
+  );
 
   await run(Platform.resolvedExecutable, [
     'run',
@@ -30,6 +37,9 @@ Future<void> main(List<String> arguments) => command(() async {
     '--dry-run',
     if (options.skipNpm) '--skip-npm',
   ], directory: root);
+
+  final proof = Platform.environment['FLAX_ARCHIVE_PROOF_OUTPUT'];
+  if (proof != null) writeArchiveProof(root, File(proof));
 
   stdout.writeln('''
 Release check passed.

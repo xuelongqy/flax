@@ -148,21 +148,10 @@ Future<void> main(List<String> arguments) => command(() async {
     metadata['loadAtPreparation'] = await info('sysctl', ['-n', 'vm.loadavg']);
     metadata['assets'] = {
       for (final name in engines)
-        name: {
-          ...jsonDecode(
-            File(
-              '${root.path}/packages/flax_engine_$name/native/generated/macos_arm64/manifest.json',
-            ).readAsStringSync(),
-          ) as Map<String, dynamic>,
-          'actualSha256': digest(
-            File(
-              '${root.path}/packages/flax_engine_$name/native/generated/macos_arm64/libflax_$name.dylib',
-            ),
-          ),
-          'libraryBytes': File(
-            '${root.path}/packages/flax_engine_$name/native/generated/macos_arm64/libflax_$name.dylib',
-          ).lengthSync(),
-        },
+        name: jsonDecode(
+          File('${root.path}/packages/flax_engine_$name/native/sdk.lock.json')
+              .readAsStringSync(),
+        ),
     };
     metadata['inputHashes'] = {
       for (final name in [
@@ -234,7 +223,9 @@ Future<void> main(List<String> arguments) => command(() async {
       '-e',
       '''
 import {build} from 'esbuild';
-await build({stdin:{contents:"export * from './packages/flax/js/src/runtime/index.ts'; export {Text,Column} from './packages/flax/js/src/flutter/index.ts';",resolveDir:process.cwd()},alias:{'@flax/core/bindings':process.cwd()+'/packages/flax/js/src/runtime/bindings.ts','@flax/core':process.cwd()+'/packages/flax/js/src/runtime/index.ts'},bundle:true,format:'iife',globalName:'FlaxBench',outfile:${jsonEncode('${consumer.path}/bundle.js')}});
+import {bundleOptionsFor,root} from './tool/src/bundle.mjs';
+const options = await bundleOptionsFor(root);
+await build({...options,stdin:{contents:'export {signal,batch} from "@flax/core"; export {Text,Column} from "@flax/flutter/widgets";',resolveDir:root},globalName:'FlaxBench',outfile:${jsonEncode('${consumer.path}/bundle.js')}});
 ''',
     ], directory: root.path);
     metadata['consumerLockSha256'] = digest(

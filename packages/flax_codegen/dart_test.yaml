@@ -1,0 +1,4 @@
+# Analyzer-backed cases also compile Dart/TypeScript and start Flutter tests.
+# Use the existing compilation-fixture budget for cold CI hosts, retaining a
+# finite timeout and every assertion. Longer explicit fixture budgets still apply.
+timeout: 3m

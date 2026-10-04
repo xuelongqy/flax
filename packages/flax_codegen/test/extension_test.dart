@@ -38,7 +38,7 @@ $selection
         FlaxCodegenBindingConfig.parseStrict(yaml(selection)),
       );
     } finally {
-      parser.dispose();
+      await parser.dispose();
     }
   }
 
@@ -308,7 +308,7 @@ StringA.size(1);
         ),
       );
     } finally {
-      parser.dispose();
+      await parser.dispose();
     }
   });
 

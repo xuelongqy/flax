@@ -12,7 +12,10 @@ final registry = FlaxBindingRegistry([
   materialBindings,
   state_variantBindings,
 ]);
-final source = flaxTestFixtureSource('material_ui');
+final source = flaxTestFixtureSource(
+  'material_ui',
+  packageName: 'flax_material_ui',
+);
 Finder host(Object key) => flaxTestHost(key);
 
 class Harness extends FlaxTestHarness {

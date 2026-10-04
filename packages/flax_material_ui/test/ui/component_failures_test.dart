@@ -22,7 +22,8 @@ void main() {
       createRuntime: () => runtime,
       bindings: registry,
       onError: (error, _) => errors.add(error),
-      source: '''${flaxTestFixtureSource('components')}
+      source:
+          '''${flaxTestFixtureSource('components', packageName: 'flax_material_ui')}
 class Parent extends componentApi.StatefulWidget { createState() { return new ParentState(); } }
 class Child extends componentApi.StatefulWidget { createState() { return new ChildState(); } }
 class ParentState extends componentApi.State {
@@ -81,7 +82,7 @@ componentApi.runApp(new Parent());
           bindings: registry,
           onError: (error, _) => errors.add(error),
           source:
-              '''${flaxTestFixtureSource('components')}
+              '''${flaxTestFixtureSource('components', packageName: 'flax_material_ui')}
 var armed = ${hook == 'initialDependencies'};
 class Probe extends componentApi.Counter {
   createState() { return new ProbeState(); }

@@ -6,13 +6,9 @@
 /js/
 bindings/*
 !bindings/manifest.json
-native/*
-!native/include/
-native/include/*
-!native/include/flax/
-native/include/flax/*
-!native/include/flax/README.md
-!native/include/flax/runtime.h
+/native/tests/
+/native/ffigen.yaml
+/native/CMakeLists.txt
 *.iml
 
 /tool/

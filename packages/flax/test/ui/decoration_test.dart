@@ -516,7 +516,7 @@ void main() {
       ]);
       final session = FlaxSession(
         createRuntime: () => runtime,
-        source: flaxTestFixtureSource('decoration'),
+        source: flaxTestFixtureSource('decoration', packageName: 'flax'),
         bindings: bindings,
         onError: (e, _) => errors.add(e),
       );

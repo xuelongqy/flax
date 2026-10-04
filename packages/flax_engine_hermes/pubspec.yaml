@@ -13,6 +13,7 @@ dependencies:
   code_assets: 1.2.1
   crypto: 3.0.7
   flax: 0.0.0
+  flax_native_assets: 0.0.0
   hooks: 2.2.0
 
 dev_dependencies:

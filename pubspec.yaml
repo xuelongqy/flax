@@ -16,6 +16,8 @@ workspace:
 dev_dependencies:
   flax:
     path: packages/flax
+  flax_native_assets:
+    path: packages/flax_native_assets
   crypto: 3.0.7
   flutter_lints: 6.0.0
   melos: 8.6.0
@@ -55,7 +57,7 @@ melos:
       run: pnpm --silent run js:typecheck
     js:build:
       description: Emit ESM modules and declarations for all JavaScript packages.
-      run: pnpm --silent run js:build
+      run: dart run tool/build_js.dart
     docs:check:
       description: Check Markdown, local links, and documentation checker behavior.
       steps:
@@ -87,7 +89,7 @@ melos:
       description: Regenerate FFI declarations in a temporary directory and compare.
       run: dart run tool/ffi.dart --check
     native:build:v8:
-      description: Build pinned V8 with JIT and prepare native assets.
+      description: Prepare the pinned V8 SDK and build the local bridge.
       run: dart run tool/native.dart --engine=v8
     check:runtime:v8:
       description: Verify V8 native, Dart, and relocated package behavior.
@@ -118,7 +120,7 @@ melos:
       description: Run the embedded example with prepared V8 assets.
       run: dart run tool/example_run.dart --engine=v8
     native:build:
-      description: Build pinned Hermes and prepare macOS arm64 package assets.
+      description: Prepare the pinned Hermes SDK and build the local bridge.
       run: dart run tool/native.dart
     check:runtime:
       description:
@@ -139,12 +141,12 @@ melos:
     example:bundle:
       description: Build workspace modules and bundle both example applications.
       steps:
-        - pnpm --silent run js:build
+        - dart run tool/build_js.dart
         - node tool/example_bundle.mjs
     ui:bundle:
       description: Build workspace modules and bundle framework test fixtures.
       steps:
-        - pnpm --silent run js:build
+        - dart run tool/build_js.dart
         - node tool/ui_bundle.mjs
     ui:test:
       description: Run real framework tests using prepared Hermes native assets.
@@ -174,8 +176,8 @@ melos:
       description: Run static workspace checks without fetching or building an engine.
       steps:
         - dart run melos run host:check
-        - dart run tool/package.dart bindings --check
         - dart run melos run example:bundle
+        - dart run tool/package.dart bindings --check
         - node tool/ui_bundle.mjs
         - dart run melos run js:test
         - dart test tool/test

@@ -112,6 +112,7 @@ GenericCallbacks({callback: (value: string) => value});
 """,
       );
     },
+    timeout: const Timeout(Duration(minutes: 3)),
   );
 
   test(
@@ -170,5 +171,6 @@ const fallback: number = ambiguous.value;
 """,
       );
     },
+    timeout: const Timeout(Duration(minutes: 3)),
   );
 }

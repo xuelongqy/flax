@@ -1,58 +1,56 @@
 import 'dart:convert';
-import 'dart:ffi';
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
+import 'package:flax/native_target.dart';
+
+import 'platform_selection.dart';
 
 import 'package_discovery.dart';
 import 'package_verification.dart';
 import 'process.dart';
 import 'example_engine.dart';
 import 'engine_selection.dart';
+import 'ui_suite.dart';
+import 'consumer_workspace.dart';
 
 void requireUiAssets(String root, {String engine = defaultFlaxEngine}) {
-  if (!Platform.isMacOS || Abi.current() != Abi.macosArm64) {
-    throw UnsupportedError('UI validation requires macOS arm64');
-  }
-  final assets =
-      '$root/packages/flax_engine_$engine/native/generated/macos_arm64';
-  if (!File('$assets/manifest.json').existsSync() ||
-      !File('$assets/libflax_$engine.dylib').existsSync()) {
-    throw StateError(
-      '$engine assets are missing. Run `dart run tool/native.dart --engine=$engine` first.',
+  if (currentCheckTarget().mobile) {
+    throw UnsupportedError(
+      'Use check_platform.dart with --device for mobile UI tests',
     );
   }
-  // The engine build hook validates the manifest and checksum when Flutter runs.
+  if (currentCheckTarget().name != FlaxNativeTarget.host().name) {
+    throw StateError(
+      'The test process ABI must match ${currentCheckTarget().name}',
+    );
+  }
+  final lock = '$root/packages/flax_engine_$engine/native/sdk.lock.json';
+  if (!File(lock).existsSync()) {
+    throw StateError('$engine SDK lock is missing: $lock');
+  }
 }
 
 Future<int> runFrameworkTests(
   String root, {
   String engine = defaultFlaxEngine,
   String? packageName,
-  List<String> testPaths = const ['test/ui'],
+  String? file,
+  bool reverseOwners = false,
 }) async {
   requireUiAssets(root, engine: engine);
+  final tests = collectUiTests(root, packageName: packageName, file: file);
+  if (reverseOwners) {
+    tests.sort((a, b) {
+      final owner = b.packageName.compareTo(a.packageName);
+      return owner == 0 ? a.path.compareTo(b.path) : owner;
+    });
+  }
+  final names = tests.map((t) => t.packageName).toSet();
   final packages = discoverPackages(root)
-      .where((package) => packageName == null || package.name == packageName)
-      .where((package) => package.uiTests.existsSync())
+      .where((p) => names.contains(p.name))
       .toList();
-  final tests = packages.map((package) => package.uiTests.path).toList();
-  if (tests.isEmpty) return 0;
-  if (engine != defaultFlaxEngine) {
-    await _runIsolated(root, packages, engine, testPaths);
-    return tests.length;
-  }
-  for (final test in tests) {
-    final package = Directory(test).parent.parent.path;
-    await run('flutter', [
-      'test',
-      '--enable-vmservice',
-      '--no-pub',
-      '--reporter',
-      'expanded',
-      ...testPaths,
-    ], directory: package);
-  }
+  await _runIsolated(root, packages, engine, tests);
   return tests.length;
 }
 
@@ -81,12 +79,12 @@ Future<int> runPackageExampleTests(
       await runCommand('flutter', [
         'test',
         '--no-pub',
-        if (entry.$2) ...['-d', 'macos'],
+        if (entry.$2) ...['-d', currentCheckDevice()],
         ...tests,
       ], directory: example);
       count += tests.length;
     }
-  });
+  }, runCommand: runCommand);
   return count;
 }
 
@@ -121,7 +119,8 @@ void _copyTree(Directory source, Directory target, {bool packageRoot = false}) {
           'dist',
           'node_modules',
         }.contains(name) ||
-        packageRoot && {'example', 'js', 'native'}.contains(name)) {
+        packageRoot && {'example', 'js'}.contains(name) ||
+        entity.path.endsWith('/native/generated')) {
       continue;
     }
     final destination = p.join(target.path, name);
@@ -153,27 +152,38 @@ Future<void> _runIsolated(
   String root,
   List<FlaxWorkspacePackage> selected,
   String engine,
-  List<String> testPaths,
+  List<UiTestFile> tests,
 ) async {
-  final temporary = Directory.systemTemp.createTempSync('flax-ui-$engine-');
+  final workspace = ConsumerWorkspace(
+    'ui-${currentCheckTarget().name}-$engine',
+  );
+  final temporary = workspace.directory;
   try {
     final copiedNames = packageDependencyClosure(
       root,
       selected.map((package) => package.name),
       replaceEngineWith: engine,
     ).toList()..sort();
-    File(p.join(temporary.path, 'pubspec.yaml')).writeAsStringSync('''
-name: flax_ui_$engine
-version: 0.0.0
-publish_to: none
-environment:
-  sdk: ^3.13.2
-  flutter: '>=3.47.2'
-workspace:
-  - packages/*
-''');
-    final targetPackages = Directory(p.join(temporary.path, 'packages'))
-      ..createSync();
+    final manifest = <String, dynamic>{
+      'name': 'flax_ui_$engine',
+      'version': '0.0.0',
+      'publish_to': 'none',
+      'environment': {'sdk': '^3.13.2', 'flutter': '>=3.47.2'},
+      'workspace': ['packages/*'],
+      'dependencies': {
+        'flutter': {'sdk': 'flutter'},
+        for (final name in copiedNames) name: {'path': 'packages/$name'},
+      },
+      'dev_dependencies': {
+        'flutter_test': {'sdk': 'flutter'},
+      },
+    };
+    addCandidateSdk(manifest, engine, root: root);
+    File(p.join(temporary.path, 'pubspec.yaml'))
+        .writeAsStringSync(jsonEncode(manifest));
+    final targetPackages = Directory(p.join(temporary.path, 'packages'));
+    if (targetPackages.existsSync()) targetPackages.deleteSync(recursive: true);
+    targetPackages.createSync(recursive: true);
     final sourcePackages = {
       for (final package in discoverPackages(root)) package.name: package,
     };
@@ -218,36 +228,24 @@ workspace:
       _copyAll(source, destination);
       rewriteDartDirectiveUris(destination, Directory(root), temporary);
     }
-    _copyAll(
-      Directory(
-        p.join(root, 'packages', 'flax_engine_$engine', 'native', 'generated'),
-      ),
-      Directory(
-        p.join(
-          temporary.path,
-          'packages',
-          'flax_engine_$engine',
-          'native',
-          'generated',
-        ),
-      ),
-    );
+    rewriteDartDirectiveUris(targetPackages, Directory(root), temporary);
+    File(p.join(temporary.path, 'ui-fixtures.json'))
+        .writeAsStringSync(jsonEncode(await prepareUiFixtures(root, tests)));
+    final entry = File(p.join(temporary.path, 'test', 'ui_suite_test.dart'))
+      ..parent.createSync();
+    entry.writeAsStringSync(uiSuiteSource(tests, importPrefix: '../packages/'));
+    Directory('$root/build/ui/$engine').createSync(recursive: true);
     await run('flutter', ['pub', 'get'], directory: temporary.path);
-    for (final package in selected) {
-      final directory = p.join(
-        targetPackages.path,
-        p.basename(package.directory.path),
-      );
-      await run('flutter', [
-        'test',
-        '--enable-vmservice',
-        '--no-pub',
-        '--reporter',
-        'expanded',
-        ...testPaths,
-      ], directory: directory);
-    }
+    await run('flutter', [
+      'test',
+      '--enable-vmservice',
+      '--no-pub',
+      '--reporter',
+      'expanded',
+      '--file-reporter=json:$root/build/ui/$engine/results.json',
+      'test/ui_suite_test.dart',
+    ], directory: temporary.path);
   } finally {
-    temporary.deleteSync(recursive: true);
+    workspace.finish();
   }
 }

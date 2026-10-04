@@ -521,8 +521,8 @@ Future<void> main(List<String> args) async {
     }
     stdout.writeln('Wrote ${out.path}');
   } finally {
-    parser.dispose();
-    collection.dispose();
+    await parser.dispose();
+    await collection.dispose();
   }
 }
 

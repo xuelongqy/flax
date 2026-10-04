@@ -1,4 +1,5 @@
 import { build } from 'esbuild';
+import { execFileSync } from 'node:child_process';
 import { access, readdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import {
@@ -15,6 +16,20 @@ if (option.length !== 0 && !aggregateOnly && !selectedPackage)
   throw new Error(
     'Usage: node tool/example_bundle.mjs [--aggregate | --package <dart-package>]',
   );
+
+if (process.env.FLAX_PREPARED_CHECKS && process.env.FLAX_CHECK_PREPARED === '1') {
+  execFileSync(
+    'dart',
+    [
+      '--packages=' +
+        resolve(bundleOptions.absWorkingDir, '.dart_tool/package_config.json'),
+      resolve(bundleOptions.absWorkingDir, 'tool/prepare_checks.dart'),
+      '--consume=' + process.env.FLAX_PREPARED_CHECKS,
+    ],
+    { cwd: bundleOptions.absWorkingDir, stdio: 'inherit' },
+  );
+  process.exit(0);
+}
 
 if (!selectedPackage) {
   const embeddedRoot = resolve(bundleOptions.absWorkingDir, 'examples/embedded/js');

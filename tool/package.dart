@@ -3,10 +3,11 @@ import 'dart:io';
 
 import 'package:path/path.dart' as p;
 
-import 'src/engine_selection.dart';
+import 'src/ui_suite.dart';
 import 'src/package_discovery.dart';
 import 'src/process.dart';
 import 'src/ui_testing.dart';
+import 'src/platform_selection.dart';
 
 Future<void> main(List<String> arguments) => command(() async {
   final root = Directory.fromUri(Platform.script.resolve('../')).path;
@@ -72,8 +73,8 @@ Future<void> main(List<String> arguments) => command(() async {
     return;
   }
   if (action == 'integration') {
-    final engine = selectedEngine(extra);
-    await _integration(root, package, engine);
+    final options = UiTestOptions(extra, packageName: package.name);
+    await _integration(root, package, options.engine, file: options.file);
     return;
   }
   throw ArgumentError('Unknown package action: $action');
@@ -205,38 +206,44 @@ Future<int> _runTests(
 Future<void> _integration(
   String root,
   FlaxWorkspacePackage package,
-  String engine,
-) async {
+  String engine, {
+  String? file,
+}) async {
+  if (file != null) collectUiTests(root, packageName: package.name, file: file);
   requireUiAssets(root, engine: engine);
   var testCount = 0;
   if (package.uiTests.existsSync()) {
-    await _buildJsDependencies(root, package.js);
-    await run('node', [
-      'tool/ui_bundle.mjs',
-      '--package',
-      p.basename(package.directory.path),
-    ], directory: root);
+    if (Platform.environment['FLAX_CHECK_PREPARED'] != '1') {
+      await _buildJsDependencies(root, package.js);
+      await run('node', [
+        'tool/ui_bundle.mjs',
+        '--package',
+        p.basename(package.directory.path),
+      ], directory: root);
+    }
     testCount += await runFrameworkTests(
       root,
       engine: engine,
       packageName: package.name,
+      file: file,
     );
   }
-  final hasPackageMacosRunner = Directory(
-    p.join(package.directory.path, 'macos'),
+  final hasPackageRunner = Directory(
+    p.join(package.directory.path, currentCheckTarget().os),
   ).existsSync();
   testCount += await _runTests(
     package.directory,
     // A package-level integration_test without a platform project is a Dart
     // runtime contract. Device tests belong to the package example, where the
     // platform runner and application under test live together.
-    usesFlutter: hasPackageMacosRunner,
+    usesFlutter: hasPackageRunner,
     path: 'integration_test',
-    device: hasPackageMacosRunner ? 'macos' : null,
+    device: hasPackageRunner ? currentCheckDevice() : null,
   );
   if (package.hasFlutterExample) {
     final exampleJs = Directory(p.join(package.example.path, 'js'));
-    if (File(p.join(exampleJs.path, 'package.json')).existsSync()) {
+    if (File(p.join(exampleJs.path, 'package.json')).existsSync() &&
+        Platform.environment['FLAX_CHECK_PREPARED'] != '1') {
       await _buildJsDependencies(root, exampleJs);
       await run('node', [
         'tool/example_bundle.mjs',

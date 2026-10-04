@@ -15,12 +15,14 @@ void main() {
   late SecurityContext clientSecurity;
   setUpAll(() async {
     certificates = Directory.systemTemp.createTempSync('flax-websocket-tls-');
+    // OpenSSL 1.1 appends -addext to system x509_extensions, creating duplicates.
+    File('${certificates.path}/openssl.cnf')
+        .writeAsStringSync('[req]\ndistinguished_name=dn\n[dn]\n');
     Future<void> openssl(List<String> args) async {
-      final result = await Process.run(
-        'openssl',
-        args,
-        workingDirectory: certificates.path,
-      );
+      final result = await Process.run('openssl', [
+        ...args,
+        if (args.first == 'req') ...['-config', 'openssl.cnf'],
+      ], workingDirectory: certificates.path);
       if (result.exitCode != 0) throw StateError('${result.stderr}');
     }
 

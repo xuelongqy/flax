@@ -4,7 +4,10 @@ import 'package:flax_engine_hermes/flax_engine_hermes.dart';
 import 'package:flax_test/flax_test.dart';
 import 'package:flutter/widgets.dart';
 
-final _source = flaxTestFixtureSource('cupertino');
+final _source = flaxTestFixtureSource(
+  'cupertino',
+  packageName: 'flax_cupertino_ui',
+);
 final _registry = FlaxBindingRegistry([flutterBindings]);
 
 class CupertinoHarness {

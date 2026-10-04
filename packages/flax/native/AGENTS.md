@@ -14,8 +14,8 @@ Follow the root [AGENTS.md](../../../AGENTS.md) and
 - Separate borrowed callback references from owned handles. Reject active destruction
   and expire references before they can reach freed memory. Destroy the engine before
   closing Dart callbacks. A failed global assignment can still retain a host function.
-- Pin upstream revision, archive checksum, compatible JSI, licenses, and patches in
-  `third_party`. Keep upstream source and generated binaries ignored.
+- Keep engine source pins, patches, and build tools in the engine SDK repository. Engine
+  packages lock its archive URL and SHA-256; keep generated binaries ignored.
 - `native:configure` must stay a toolchain-only check with no engine fetch. Use
   `check:runtime` for real macOS arm64 behavior and standalone package loading. Never
   claim support by skipping tests on an unsupported platform.

@@ -37,7 +37,7 @@ void main() {
     try {
       return await parser.parse(input);
     } finally {
-      parser.dispose();
+      await parser.dispose();
     }
   }
 

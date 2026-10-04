@@ -2,7 +2,8 @@ import 'dart:isolate';
 import 'dart:typed_data';
 
 import 'package:flax/runtime.dart';
-import 'package:test/test.dart';
+import 'package:test/test.dart' hide test;
+import 'package:test/test.dart' as tests;
 
 const _jobsSource = r'''globalThis.events = ['sync'];
 Promise.resolve()
@@ -18,10 +19,22 @@ undefined;
 double _number(FlaxJsValue value) => (value as FlaxJsNumber).value;
 String _string(FlaxJsValue value) => (value as FlaxJsString).value;
 
-void flaxRuntimeContract(FlaxJsRuntime Function() createRuntime) {
+void flaxRuntimeContract(
+  FlaxJsRuntime Function() createRuntime, {
+  void Function(String, dynamic Function())? registerTest,
+}) {
   late FlaxJsRuntime runtime;
-  setUp(() => runtime = createRuntime());
-  tearDown(() => runtime.dispose());
+  final register = registerTest ?? tests.test;
+  void test(String name, dynamic Function() body) {
+    register(name, () async {
+      runtime = createRuntime();
+      try {
+        await body();
+      } finally {
+        runtime.dispose();
+      }
+    });
+  }
 
   test('bulk bytes copy views and transfer actually detaches every view', () {
     final bytes = Uint8List.fromList([0, 127, 255, 8]);

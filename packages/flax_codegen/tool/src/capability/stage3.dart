@@ -717,7 +717,7 @@ Future<Stage3ParseResult> parseClassSelectionSet({
       code: 'parse_failed',
     );
   } finally {
-    parser.dispose();
+    await parser.dispose();
   }
 }
 
@@ -747,7 +747,7 @@ Future<Stage3ParseResult> _parseOfficial({
       code: 'official_parse_failed',
     );
   } finally {
-    parser.dispose();
+    await parser.dispose();
   }
 }
 

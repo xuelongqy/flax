@@ -108,7 +108,7 @@ void main() {
       ]);
       final session = FlaxSession(
         createRuntime: () => runtime,
-        source: flaxTestFixtureSource('layout'),
+        source: flaxTestFixtureSource('layout', packageName: 'flax'),
         bindings: bindings,
         onError: (e, _) => errors.add(e),
       );
@@ -343,13 +343,21 @@ void main() {
             direction: direction,
           ),
         );
-        final stack = t.widget<Stack>(find.byType(Stack));
-        final align = t.widgetList<Align>(find.byType(Align)).last;
+        final scene = find.byKey(const ValueKey('flax-scene'));
+        final stackFinder = find.descendant(
+          of: scene,
+          matching: find.byType(Stack),
+        );
+        final stack = t.widget<Stack>(stackFinder);
+        final align = t
+            .widgetList<Align>(
+              find.descendant(of: scene, matching: find.byType(Align)),
+            )
+            .last;
         expect(stack.alignment, same(AlignmentDirectional.topStart));
         expect(align.alignment, same(Alignment.center));
         expect(
-          t.getTopLeft(host('default-stack')).dx -
-              t.getTopLeft(find.byType(Stack)).dx,
+          t.getTopLeft(host('default-stack')).dx - t.getTopLeft(stackFinder).dx,
           direction == TextDirection.ltr ? 0 : 80,
         );
       }

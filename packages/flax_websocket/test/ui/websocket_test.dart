@@ -168,7 +168,9 @@ void main() {
       FlaxWebSocketPlugin(baseUrl: 'ws://127.0.0.1:${server!.port}'),
     ]);
     await tester.pumpWidget(h.app());
-    h.execute(flaxTestFixtureSource('websocket_wpt'));
+    h.execute(
+      flaxTestFixtureSource('websocket_wpt', packageName: 'flax_websocket'),
+    );
     expect(h.number('wptResults.length'), 4);
     final baseline = h.tracker.handles;
     await flaxTestRunHostScript(tester, h, r'''

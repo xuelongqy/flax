@@ -9,7 +9,8 @@ import 'package:flax_test/flax_test.dart';
 import '../support/harness.dart';
 import '../support/runtime_tracker.dart';
 
-String script(String main) => '${flaxTestFixtureSource('components')}\n$main';
+String script(String main) =>
+    '${flaxTestFixtureSource('components', packageName: 'flax_material_ui')}\n$main';
 Widget app(
   Harness h,
   String code, {

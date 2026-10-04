@@ -16,10 +16,13 @@ import '../support/runtime_tracker.dart';
 
 Future<void> runScript(WidgetTester tester, Harness h, String script) async {
   h.execute(
-    'globalThis.hostResult = null; (async () => {$script})().then(() => hostResult = "ok", e => hostResult = String(e.stack || e)); undefined;',
+    'globalThis.hostStage = "script started"; globalThis.hostResult = null; (async () => {$script})().then(() => hostResult = "ok", e => hostResult = String(e.stack || e)); undefined;',
   );
   h.execute('queueMicrotask(() => {}); undefined;');
-  for (var i = 0; i < 500; i++) {
+  // Network work uses the real event loop; frame counts are not a time budget
+  // on a loaded simulator. Keep the wait bounded while still pumping JS jobs.
+  final elapsed = Stopwatch()..start();
+  while (elapsed.elapsed < const Duration(minutes: 1)) {
     await tester.pump(const Duration(milliseconds: 10));
     final value = h.runtime.getGlobal('hostResult');
     if (value is FlaxJsString) {
@@ -30,8 +33,10 @@ Future<void> runScript(WidgetTester tester, Harness h, String script) async {
       () => Future<void>.delayed(const Duration(milliseconds: 10)),
     );
   }
+  final stage = h.runtime.getGlobal('hostStage');
   fail(
-    'Host script did not complete at ${(h.runtime.getGlobal('hostStage') as FlaxJsString).value}: ${h.errors}',
+    'Host script did not complete after ${elapsed.elapsed} at '
+    '${stage is FlaxJsString ? stage.value : "unreported stage"}: ${h.errors}',
   );
 }
 
@@ -64,7 +69,7 @@ void main() {
           ),
         ),
       );
-      h.execute(flaxTestFixtureSource('host_body'));
+      h.execute(flaxTestFixtureSource('host_body', packageName: 'flax_fetch'));
       await runScript(
         tester,
         h,
@@ -85,7 +90,7 @@ void main() {
     (tester) async {
       final h = _TrackedHarness();
       await tester.pumpWidget(h.app());
-      h.execute(flaxTestFixtureSource('host_body'));
+      h.execute(flaxTestFixtureSource('host_body', packageName: 'flax_fetch'));
       h.execute('prepareAbortProbes(); undefined;');
       Future<void> collect() async {
         h.runtime.drainMicrotasks();
@@ -515,164 +520,178 @@ void main() {
           }
         });
       });
-      final h = _TrackedHarness();
-      await tester.pumpWidget(
-        MaterialApp(
-          home: FlaxView(
-            createRuntime: h.create,
-            source: source,
-            bindings: registry,
-            plugins: [
-              FlaxFetchPlugin(baseUrl: 'http://127.0.0.1:${server!.port}/'),
-            ],
-            onError: (e, _) => h.errors.add(e),
+      try {
+        final h = _TrackedHarness();
+        await tester.pumpWidget(
+          MaterialApp(
+            home: FlaxView(
+              createRuntime: h.create,
+              source: source,
+              bindings: registry,
+              plugins: [
+                FlaxFetchPlugin(baseUrl: 'http://127.0.0.1:${server!.port}/'),
+              ],
+              onError: (e, _) => h.errors.add(e),
+            ),
           ),
-        ),
-      );
-      expect(h.errors, isEmpty);
-      final frozenBuffer = h.runtime.createArrayBuffer(Uint8List(6));
-      final globals = h.runtime.evaluate('globalThis') as FlaxJsObject;
-      globals.setProperty('bridgeBuffer', frozenBuffer);
-      globals.release();
-      frozenBuffer.release();
-      await runScript(tester, h, r'''
-      function check(value, message) { globalThis.hostStage = message; if (!value) throw Error(message); }
-      globalThis.hostStage = 'fetch'; const response = await fetch('/json');globalThis.hostStage = 'json';
-      check((await response.json()).ok && response.bodyUsed, 'JSON');
-      let duplicate = false; try { await response.text(); } catch { duplicate = true; }
-      check(duplicate, 'single consumption');
-      check((await (await fetch('/json')).json()).cookie === null, 'cookie jar absent');
-      const redirect = await fetch('/redirect'); check(redirect.redirected && redirect.url.endsWith('/json'), 'follow'); await redirect.body.cancel();
-      const manual = await fetch('/redirect', {redirect:'manual'}); check(manual.status === 302, 'manual'); await manual.body.cancel();
-      check((await fetch('/missing')).status === 418, 'HTTP error is a response');
-      const input = new Uint8Array([9,0,128,255,9]);
-      const binary = await fetch('/echo', {method:'POST', body:input.subarray(1,4)});
-      const reader = binary.body.getReader({mode:'byob'});
-      const target = new Uint8Array(Object.freeze(bridgeBuffer)); const sibling = new DataView(target.buffer);
-      const first = await reader.read(target);
-      check(target.byteLength === 0 && sibling.buffer.byteLength === 0, 'real BYOB detach');
-      check([...first.value].join() === '0,128,255', 'view bytes');
-      const last = await reader.read(new Uint8Array(4)); check(last.done, 'BYOB EOF');
-      const form = new FormData(); form.append('x','one'); form.append('x','two');
-      form.append('file', new File([new Uint8Array([0,255,2])], 'a.bin'));
-      const posted = await fetch('/echo', {method:'POST', body:form});
-      const received = await posted.formData();
-      check(received.getAll('x').join() === 'one,two', 'repeated fields');
-      check([...(await received.get('file').bytes())].join() === '0,255,2', 'multipart file');
-      const streamed = await fetch('/echo', {method:'POST', duplex:'half', body:new ReadableStream({start(c){c.enqueue(new Uint8Array([1]));c.enqueue(new Uint8Array([2]));c.close();}})});
-      const copy = streamed.clone(); check([...await streamed.bytes()].join() === '1,2' && [...await copy.bytes()].join() === '1,2', 'upload and clone');
-      const ac = new AbortController(); const reason = {custom:true};
-      const slow = await fetch('/slow', {signal:ac.signal}); const slowReader = slow.body.getReader();
-      check(!(await slowReader.read()).done, 'headers before body completion'); ac.abort(reason);
-      let caught; try { await slowReader.read(); } catch (e) {caught=e;} check(caught === reason, 'abort reason');
-    ''');
-      expect(requests.where((p) => p == '/echo').length, 3);
-      final writesBefore =
-          h.tracker.hostOperations['__flaxFetchCall:write'] ?? 0;
-      final bytesBefore = h.tracker.copiedFromJs;
-      await runScript(tester, h, r'''
-        const chunks = [[], [], [65], [], [66], []];
-        const buffers = chunks.map(chunk => new Uint8Array(chunk));
-        let index=0;
-        const body = new ReadableStream({pull(c) {
-          if(index===buffers.length) c.close(); else c.enqueue(buffers[index++]);
-        }});
-        const result = await fetch('/echo', {method:'POST', body});
-        if(await result.text() !== 'AB') throw Error('Empty upload progress');
-        if(buffers[2].byteLength !== 1 || buffers[4].byteLength !== 1) throw Error('Upload detached producer buffers');
-      ''');
-      expect(
-        (h.tracker.hostOperations['__flaxFetchCall:write'] ?? 0) - writesBefore,
-        2,
-      );
-      expect(h.tracker.copiedFromJs - bytesBefore, 2);
-      stdout.writeln('Empty upload: 6 chunks, 2 writes, 2 copied bytes.');
-      await runScript(tester, h, r'''
-        function check(v,m){globalThis.hostStage=m;if(!v)throw Error(m);}
-        globalThis.hostStage='redirect error start';
-        let rejected=false;try{await fetch('/redirect',{redirect:'error'});}catch(e){rejected=e instanceof TypeError;}
-        check(rejected,'redirect error');
-        const rewritten=await (await fetch('/redirect-post',{method:'POST',body:'payload'})).json();
-        check(rewritten.method==='GET' && rewritten.body==='','303 method and body');
-        const replay=await (await fetch('/redirect-stream',{method:'POST',body:'payload'})).json();
-        check(replay.method==='POST' && replay.body==='payload','307 replayable body');
-        rejected=false;try{await fetch('/redirect-stream',{method:'POST',body:new ReadableStream({start(c){c.enqueue(new Uint8Array([1]));c.close();}})});}catch(e){rejected=e instanceof TypeError;}
-        check(rejected,'307 streamed body cannot replay');
-        const stripped=await (await fetch('/cross-origin',{headers:{Authorization:'secret',Cookie:'explicit=1'}})).json();
-        check(stripped.authorization===null && stripped.cookie===null,'cross-origin sensitive headers');
-        rejected=false;try{await (await fetch('/disconnect')).bytes();}catch(e){rejected=e instanceof TypeError;}
-        check(rejected,'partial response body error');
-        const reason={upload:true};
-        let failure;try{await fetch('/echo',{method:'POST',body:new ReadableStream({start(c){c.error(reason);}})});}catch(e){failure=e;}
-        check(failure===reason,'upload source error');
-      ''');
-
-      final beforeRead = h.tracker.hostOperations['__flaxFetchCall:read'] ?? 0;
-      final beforeCopy = h.tracker.copiedToJs;
-      await runScript(
-        tester,
-        h,
-        "globalThis.slowDownload = await fetch('/large');",
-      );
-      for (var i = 0; i < 5; i++) {
-        await tester.pump(const Duration(milliseconds: 10));
-        await tester.runAsync(
-          () => Future<void>.delayed(const Duration(milliseconds: 10)),
         );
-      }
-      expect(h.tracker.hostOperations['__flaxFetchCall:read'] ?? 0, beforeRead);
-      expect(h.tracker.copiedToJs, beforeCopy);
-      await runScript(tester, h, r'''
-        const reader = slowDownload.body.getReader({mode:'byob'});
-        for(let i=0;i<5;i++) {
-          const {value,done}=await reader.read(new Uint8Array(1024));
-          if(done || value.some(byte=>byte!==42)) throw Error('Slow download bytes');
-        }
-        await reader.cancel();
+        expect(h.errors, isEmpty);
+        final frozenBuffer = h.runtime.createArrayBuffer(Uint8List(6));
+        final globals = h.runtime.evaluate('globalThis') as FlaxJsObject;
+        globals.setProperty('bridgeBuffer', frozenBuffer);
+        globals.release();
+        frozenBuffer.release();
+        await runScript(tester, h, r'''
+        function check(value, message) { globalThis.hostStage = message; if (!value) throw Error(message); }
+        globalThis.hostStage = 'fetch'; const response = await fetch('/json');globalThis.hostStage = 'json';
+        check((await response.json()).ok && response.bodyUsed, 'JSON');
+        let duplicate = false; try { await response.text(); } catch { duplicate = true; }
+        check(duplicate, 'single consumption');
+        check((await (await fetch('/json')).json()).cookie === null, 'cookie jar absent');
+        const redirect = await fetch('/redirect'); check(redirect.redirected && redirect.url.endsWith('/json'), 'follow'); await redirect.body.cancel();
+        const manual = await fetch('/redirect', {redirect:'manual'}); check(manual.status === 302, 'manual'); await manual.body.cancel();
+        check((await fetch('/missing')).status === 418, 'HTTP error is a response');
+        const input = new Uint8Array([9,0,128,255,9]);
+        const binary = await fetch('/echo', {method:'POST', body:input.subarray(1,4)});
+        const reader = binary.body.getReader({mode:'byob'});
+        const target = new Uint8Array(Object.freeze(bridgeBuffer)); const sibling = new DataView(target.buffer);
+        const first = await reader.read(target);
+        check(target.byteLength === 0 && sibling.buffer.byteLength === 0, 'real BYOB detach');
+        check([...first.value].join() === '0,128,255', 'view bytes');
+        const last = await reader.read(new Uint8Array(4)); check(last.done, 'BYOB EOF');
+        const form = new FormData(); form.append('x','one'); form.append('x','two');
+        form.append('file', new File([new Uint8Array([0,255,2])], 'a.bin'));
+        const posted = await fetch('/echo', {method:'POST', body:form});
+        const received = await posted.formData();
+        check(received.getAll('x').join() === 'one,two', 'repeated fields');
+        check([...(await received.get('file').bytes())].join() === '0,255,2', 'multipart file');
+        const streamed = await fetch('/echo', {method:'POST', duplex:'half', body:new ReadableStream({start(c){c.enqueue(new Uint8Array([1]));c.enqueue(new Uint8Array([2]));c.close();}})});
+        const copy = streamed.clone(); check([...await streamed.bytes()].join() === '1,2' && [...await copy.bytes()].join() === '1,2', 'upload and clone');
+        const ac = new AbortController(); const reason = {custom:true};
+        const slow = await fetch('/slow', {signal:ac.signal}); const slowReader = slow.body.getReader();
+        check(!(await slowReader.read()).done, 'headers before body completion'); ac.abort(reason);
+        let caught; try { await slowReader.read(); } catch (e) {caught=e;} check(caught === reason, 'abort reason');
       ''');
-      expect(
-        (h.tracker.hostOperations['__flaxFetchCall:read'] ?? 0) - beforeRead,
-        lessThanOrEqualTo(5),
-      );
-      expect(h.tracker.copiedToJs - beforeCopy, lessThanOrEqualTo(5 * 65536));
+        expect(requests.where((p) => p == '/echo').length, 3);
+        final writesBefore =
+            h.tracker.hostOperations['__flaxFetchCall:write'] ?? 0;
+        final bytesBefore = h.tracker.copiedFromJs;
+        await runScript(tester, h, r'''
+          const chunks = [[], [], [65], [], [66], []];
+          const buffers = chunks.map(chunk => new Uint8Array(chunk));
+          let index=0;
+          const body = new ReadableStream({pull(c) {
+            if(index===buffers.length) c.close(); else c.enqueue(buffers[index++]);
+          }});
+          const result = await fetch('/echo', {method:'POST', body});
+          if(await result.text() !== 'AB') throw Error('Empty upload progress');
+          if(buffers[2].byteLength !== 1 || buffers[4].byteLength !== 1) throw Error('Upload detached producer buffers');
+        ''');
+        expect(
+          (h.tracker.hostOperations['__flaxFetchCall:write'] ?? 0) -
+              writesBefore,
+          2,
+        );
+        expect(h.tracker.copiedFromJs - bytesBefore, 2);
+        stdout.writeln('Empty upload: 6 chunks, 2 writes, 2 copied bytes.');
+        await runScript(tester, h, r'''
+          function check(v,m){globalThis.hostStage=m;if(!v)throw Error(m);}
+          globalThis.hostStage='redirect error start';
+          let rejected=false;try{await fetch('/redirect',{redirect:'error'});}catch(e){rejected=e instanceof TypeError;}
+          check(rejected,'redirect error');
+          const rewritten=await (await fetch('/redirect-post',{method:'POST',body:'payload'})).json();
+          check(rewritten.method==='GET' && rewritten.body==='','303 method and body');
+          const replay=await (await fetch('/redirect-stream',{method:'POST',body:'payload'})).json();
+          check(replay.method==='POST' && replay.body==='payload','307 replayable body');
+          rejected=false;try{await fetch('/redirect-stream',{method:'POST',body:new ReadableStream({start(c){c.enqueue(new Uint8Array([1]));c.close();}})});}catch(e){rejected=e instanceof TypeError;}
+          check(rejected,'307 streamed body cannot replay');
+          globalThis.hostStage='cross-origin redirect';
+          const stripped=await (await fetch('/cross-origin',{headers:{Authorization:'secret',Cookie:'explicit=1'}})).json();
+          check(stripped.authorization===null && stripped.cookie===null,'cross-origin sensitive headers');
+          rejected=false;try{await (await fetch('/disconnect')).bytes();}catch(e){rejected=e instanceof TypeError;}
+          check(rejected,'partial response body error');
+          const reason={upload:true};
+          let failure;try{await fetch('/echo',{method:'POST',body:new ReadableStream({start(c){c.error(reason);}})});}catch(e){failure=e;}
+          check(failure===reason,'upload source error');
+        ''');
 
-      h.execute(flaxTestFixtureSource('host_wpt'));
-      expect(h.number('wptResults.length'), greaterThan(20));
-      h.execute(flaxTestFixtureSource('host_axios'));
-      await runScript(tester, h, r'''
-      function check(v,m){globalThis.hostStage=m;if(!v)throw Error(m);}
-      const client = axios.create({adapter:'fetch'});
-      let intercepted=0; client.interceptors.response.use(r => {intercepted++;return r;});
-      check((await client.get('/json', {params:{query:'中文'}})).data.ok, 'Axios JSON');
-      let up=0,down=0;
-      const payload = new Uint8Array(150000).fill(42);
-      const binary = await client.post('/echo', payload, {responseType:'arraybuffer',
-        onUploadProgress:e=>{up=e.loaded;},onDownloadProgress:e=>{down=e.loaded;}});
-      check(binary.data.byteLength===payload.length,'Axios bytes');
-      await new Promise(r=>setTimeout(r,50));
-      check(up===150000 && down===150000, 'Axios upload/download progress');
-      const fd=new FormData();fd.append('field','value');
-      const form=await client.postForm('/echo',fd,{responseType:'formData'});
-      check(form.data.get('field')==='value','Axios multipart');
-      let timeout=false;try{await client.get('/slow',{timeout:10});}catch(e){timeout=e.code==='ETIMEDOUT';}
-      check(timeout,'Axios timeout');
-      const controller = new AbortController();
-      const tasks=[1,2].map(()=>client.get('/slow',{signal:controller.signal}).catch(e=>axios.isCancel(e)));
-      controller.abort();check((await Promise.all(tasks)).every(Boolean),'Axios concurrent cancellation');
-      check(intercepted===3,'Axios interceptors');
-    ''');
-      await tester.pumpWidget(const SizedBox());
-      for (var i = 0; i < 4; i++) {
-        await tester.pump(const Duration(milliseconds: 1));
+        final beforeRead =
+            h.tracker.hostOperations['__flaxFetchCall:read'] ?? 0;
+        final beforeCopy = h.tracker.copiedToJs;
+        await runScript(
+          tester,
+          h,
+          "globalThis.slowDownload = await fetch('/large');",
+        );
+        for (var i = 0; i < 5; i++) {
+          await tester.pump(const Duration(milliseconds: 10));
+          await tester.runAsync(
+            () => Future<void>.delayed(const Duration(milliseconds: 10)),
+          );
+        }
+        expect(
+          h.tracker.hostOperations['__flaxFetchCall:read'] ?? 0,
+          beforeRead,
+        );
+        expect(h.tracker.copiedToJs, beforeCopy);
+        await runScript(tester, h, r'''
+          const reader = slowDownload.body.getReader({mode:'byob'});
+          for(let i=0;i<5;i++) {
+            const {value,done}=await reader.read(new Uint8Array(1024));
+            if(done || value.some(byte=>byte!==42)) throw Error('Slow download bytes');
+          }
+          await reader.cancel();
+        ''');
+        expect(
+          (h.tracker.hostOperations['__flaxFetchCall:read'] ?? 0) - beforeRead,
+          lessThanOrEqualTo(5),
+        );
+        expect(h.tracker.copiedToJs - beforeCopy, lessThanOrEqualTo(5 * 65536));
+
+        h.execute(flaxTestFixtureSource('host_wpt', packageName: 'flax_fetch'));
+        expect(h.number('wptResults.length'), greaterThan(20));
+        h.execute(
+          flaxTestFixtureSource('host_axios', packageName: 'flax_fetch'),
+        );
+        await runScript(tester, h, r'''
+        function check(v,m){globalThis.hostStage=m;if(!v)throw Error(m);}
+        const client = axios.create({adapter:'fetch'});
+        let intercepted=0; client.interceptors.response.use(r => {intercepted++;return r;});
+        check((await client.get('/json', {params:{query:'中文'}})).data.ok, 'Axios JSON');
+        let up=0,down=0;
+        const payload = new Uint8Array(150000).fill(42);
+        const binary = await client.post('/echo', payload, {responseType:'arraybuffer',
+          onUploadProgress:e=>{up=e.loaded;},onDownloadProgress:e=>{down=e.loaded;}});
+        check(binary.data.byteLength===payload.length,'Axios bytes');
+        await new Promise(r=>setTimeout(r,50));
+        check(up===150000 && down===150000, 'Axios upload/download progress');
+        const fd=new FormData();fd.append('field','value');
+        const form=await client.postForm('/echo',fd,{responseType:'formData'});
+        check(form.data.get('field')==='value','Axios multipart');
+        let timeout=false;try{await client.get('/slow',{timeout:10});}catch(e){timeout=e.code==='ETIMEDOUT';}
+        check(timeout,'Axios timeout');
+        const controller = new AbortController();
+        const tasks=[1,2].map(()=>client.get('/slow',{signal:controller.signal}).catch(e=>axios.isCancel(e)));
+        controller.abort();check((await Promise.all(tasks)).every(Boolean),'Axios concurrent cancellation');
+        check(intercepted===3,'Axios interceptors');
+      ''');
+        await tester.pumpWidget(const SizedBox());
+        for (var i = 0; i < 4; i++) {
+          await tester.pump(const Duration(milliseconds: 1));
+        }
+        expect(h.errors, isEmpty);
+        expect(h.runtimes.single.isDisposed, isTrue);
+        expect(h.tracker.handlesAtDispose, 0);
+        // Test-only evidence distinguishes transport copies from Widget rebuilds.
+        stdout.writeln(
+          'Host copies: upload=${h.tracker.copiedFromJs}/${h.tracker.byteReads} calls; download=${h.tracker.copiedToJs}/${h.tracker.byteWrites} calls; final handles=${h.tracker.handlesAtDispose}',
+        );
+      } finally {
+        // Failures must not leave requests running into the next owner's tests.
+        await tester.pumpWidget(const SizedBox());
+        await tester.pump();
+        await tester.runAsync(() => server!.close(force: true));
       }
-      await tester.runAsync(() => server.close(force: true));
-      expect(h.errors, isEmpty);
-      expect(h.runtimes.single.isDisposed, isTrue);
-      expect(h.tracker.handlesAtDispose, 0);
-      // Test-only evidence distinguishes transport copies from Widget rebuilds.
-      stdout.writeln(
-        'Host copies: upload=${h.tracker.copiedFromJs}/${h.tracker.byteReads} calls; download=${h.tracker.copiedToJs}/${h.tracker.byteWrites} calls; final handles=${h.tracker.handlesAtDispose}',
-      );
     },
   );
   testWidgets('close wins over response headers queued for JS delivery', (
@@ -781,26 +800,7 @@ void main() {
       final temp = Directory.systemTemp.createTempSync('flax-host-tls-');
       final cert = '${temp.path}/certificate.pem', key = '${temp.path}/key.pem';
       final server = await tester.runAsync(() async {
-        final result = await Process.run('openssl', [
-          'req',
-          '-x509',
-          '-newkey',
-          'rsa:2048',
-          '-nodes',
-          '-keyout',
-          key,
-          '-out',
-          cert,
-          '-days',
-          '1',
-          '-subj',
-          '/CN=localhost',
-          '-addext',
-          'subjectAltName=DNS:localhost,IP:127.0.0.1',
-        ]);
-        if (result.exitCode != 0) {
-          throw StateError('Cannot create local TLS fixture: ${result.stderr}');
-        }
+        await flaxTestPrepareTls(cert, key, packageName: 'flax_fetch');
         final context = SecurityContext()
           ..useCertificateChain(cert)
           ..usePrivateKey(key);
@@ -849,6 +849,10 @@ void main() {
           expect(h.errors, isEmpty);
         }
       } finally {
+        await tester.pumpWidget(const SizedBox());
+        for (var i = 0; i < 4; i++) {
+          await tester.pump(const Duration(milliseconds: 1));
+        }
         HttpOverrides.global = previous;
         await tester.runAsync(() => server!.close(force: true));
         temp.deleteSync(recursive: true);

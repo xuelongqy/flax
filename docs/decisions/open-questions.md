@@ -42,7 +42,7 @@ work has started and needs a handoff.
 | Public-release compatibility policy          | Release artifacts, support lifetime and historical manifest comparison; current-graph validation does not establish released-ID immutability |
 | Default engine and per-platform selection    | Additional adapter builds, debugging, loading and memory measurements                                                                        |
 | Native ABI evolution after ABI 2             | Evidence for changing the `FlaxApi` table, size or call semantics                                                                            |
-| Remote native artifact distribution          | Platform packaging, signing, hosting and release verification                                                                                |
+| SDK distribution beyond macOS arm64          | Platform packaging, signing, hosting and release verification for each additional target                                                     |
 | Runtime module loading and hot replacement   | Identity, callback/resource ownership and unload behavior beyond compile-time dependency installation                                        |
 | Mini-app isolation and host capabilities     | A trust model, execution limits and resource constraints                                                                                     |
 | Navigation restoration and system deep links | Host platform registration, restoration and transition/lifetime tests; Router path parsing alone is insufficient                             |

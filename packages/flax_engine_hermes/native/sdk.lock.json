@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 3,
+  "engine": "hermes",
+  "releaseTag": "v0.3.0-rc.3",
+  "sdkVersion": "0.3.0",
+  "targets": {
+    "android-arm32": {
+      "os": "android",
+      "architecture": "arm32",
+      "minimumOSVersion": "24",
+      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.3/flax-engine-sdk-0.3.0-hermes-android-arm32.tar.gz",
+      "sha256": "12f076890ae284ff0bc4b538eaf80c01216039595665d6f8e9649756b4f78a3e"
+    },
+    "android-arm64": {
+      "os": "android",
+      "architecture": "arm64",
+      "minimumOSVersion": "24",
+      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.3/flax-engine-sdk-0.3.0-hermes-android-arm64.tar.gz",
+      "sha256": "4db5d322843300b6b0622e16ea6d4c22ddc371fae7e755b128aee38e2ec2422a"
+    },
+    "android-x64": {
+      "os": "android",
+      "architecture": "x64",
+      "minimumOSVersion": "24",
+      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.3/flax-engine-sdk-0.3.0-hermes-android-x64.tar.gz",
+      "sha256": "9cb5f213b559325b418486d1e413fcb1d0bc2a40a8fcf8b1d4ee652d4bd692f9"
+    },
+    "ios-device-arm64": {
+      "os": "ios",
+      "architecture": "arm64",
+      "minimumOSVersion": "15.0",
+      "appleSdk": "iphoneos",
+      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.3/flax-engine-sdk-0.3.0-hermes-ios-device-arm64.tar.gz",
+      "sha256": "07993f21791bf9324d017946405f242b5aaad1810d1c583c7138d62559ddb9af"
+    },
+    "ios-simulator-arm64": {
+      "os": "ios",
+      "architecture": "arm64",
+      "minimumOSVersion": "15.0",
+      "appleSdk": "iphonesimulator",
+      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.3/flax-engine-sdk-0.3.0-hermes-ios-simulator-arm64.tar.gz",
+      "sha256": "364af9dc057b8c3cc6b1a4621db3e475d3d0ad64a0773f0c779dcd4d4e9f6cac"
+    },
+    "ios-simulator-x64": {
+      "os": "ios",
+      "architecture": "x64",
+      "minimumOSVersion": "15.0",
+      "appleSdk": "iphonesimulator",
+      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.3/flax-engine-sdk-0.3.0-hermes-ios-simulator-x64.tar.gz",
+      "sha256": "53a1e30d10e003eb500e98b39950fda59cae8e02aae2a30754b3dc646c1f084e"
+    },
+    "linux-arm64": {
+      "os": "linux",
+      "architecture": "arm64",
+      "minimumOSVersion": "20.04",
+      "minimumGlibcVersion": "2.31",
+      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.3/flax-engine-sdk-0.3.0-hermes-linux-arm64.tar.gz",
+      "sha256": "454a14cd2d331fd4a43cecc6a294124e37942fbf8fc9f232f912057bd1ba1570"
+    },
+    "linux-x64": {
+      "os": "linux",
+      "architecture": "x64",
+      "minimumOSVersion": "20.04",
+      "minimumGlibcVersion": "2.31",
+      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.3/flax-engine-sdk-0.3.0-hermes-linux-x64.tar.gz",
+      "sha256": "1dc6d515f6dc6f7b4c6d2a0f9136f73f6b5f651ec38fe182ad92b19aaf877a5a"
+    },
+    "macos-arm64": {
+      "os": "macos",
+      "architecture": "arm64",
+      "minimumOSVersion": "15.0",
+      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.3/flax-engine-sdk-0.3.0-hermes-macos-arm64.tar.gz",
+      "sha256": "54d7de6edc4bd30224dae445c4f9b8c5d44021d8b5106d9960138f7353c7b530"
+    },
+    "macos-x64": {
+      "os": "macos",
+      "architecture": "x64",
+      "minimumOSVersion": "15.0",
+      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.3/flax-engine-sdk-0.3.0-hermes-macos-x64.tar.gz",
+      "sha256": "3bfa80bd8a701e5f4084912371530accedcaa128bb50ccc1bde849521aa05680"
+    },
+    "windows-arm64": {
+      "os": "windows",
+      "architecture": "arm64",
+      "minimumOSVersion": "11",
+      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.3/flax-engine-sdk-0.3.0-hermes-windows-arm64.tar.gz",
+      "sha256": "07eb7453931923ef8721ba28077ceebfc3f05a616144e417dd5a69982c8ef7f9"
+    },
+    "windows-x64": {
+      "os": "windows",
+      "architecture": "x64",
+      "minimumOSVersion": "11",
+      "url": "https://github.com/xuelongqy/flax_js_runtime/releases/download/v0.3.0-rc.3/flax-engine-sdk-0.3.0-hermes-windows-x64.tar.gz",
+      "sha256": "a32a18b5f2958ca68bea6b465ed3bb88982d83c2bf416c1af6b7980bd9d99e31"
+    }
+  }
+}
