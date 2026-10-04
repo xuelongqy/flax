@@ -64,7 +64,7 @@ void main() {
           ),
         ),
       );
-      h.execute(flaxTestFixtureSource('host_body'));
+      h.execute(flaxTestFixtureSource('host_body', packageName: 'flax_fetch'));
       await runScript(
         tester,
         h,
@@ -85,7 +85,7 @@ void main() {
     (tester) async {
       final h = _TrackedHarness();
       await tester.pumpWidget(h.app());
-      h.execute(flaxTestFixtureSource('host_body'));
+      h.execute(flaxTestFixtureSource('host_body', packageName: 'flax_fetch'));
       h.execute('prepareAbortProbes(); undefined;');
       Future<void> collect() async {
         h.runtime.drainMicrotasks();
@@ -636,9 +636,9 @@ void main() {
       );
       expect(h.tracker.copiedToJs - beforeCopy, lessThanOrEqualTo(5 * 65536));
 
-      h.execute(flaxTestFixtureSource('host_wpt'));
+      h.execute(flaxTestFixtureSource('host_wpt', packageName: 'flax_fetch'));
       expect(h.number('wptResults.length'), greaterThan(20));
-      h.execute(flaxTestFixtureSource('host_axios'));
+      h.execute(flaxTestFixtureSource('host_axios', packageName: 'flax_fetch'));
       await runScript(tester, h, r'''
       function check(v,m){globalThis.hostStage=m;if(!v)throw Error(m);}
       const client = axios.create({adapter:'fetch'});
@@ -781,7 +781,7 @@ void main() {
       final temp = Directory.systemTemp.createTempSync('flax-host-tls-');
       final cert = '${temp.path}/certificate.pem', key = '${temp.path}/key.pem';
       final server = await tester.runAsync(() async {
-        await flaxTestPrepareTls(cert, key);
+        await flaxTestPrepareTls(cert, key, packageName: 'flax_fetch');
         final context = SecurityContext()
           ..useCertificateChain(cert)
           ..usePrivateKey(key);

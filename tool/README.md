@@ -118,10 +118,44 @@ test, drives its selected desktop integration scenario, and validates the result
 receipt for the selected engine. It uses the locked SDK and verifies only behavior
 created by composing multiple modules.
 
-`check_ui.dart` sequentially invokes `package.dart integration` for every UI-owning
-package, then invokes `check_aggregate.dart` for the selected engine. It does not build
+`ui_suite.dart` discovers `test/ui/**/*_test.dart`, sorts owners and files, and imports
+the original test files into one generated entry. Each group invokes the original
+`main()`; assertions remain package-owned. Every owner's fixtures are loaded before
+registration, with explicit package lookup preventing same-name collisions. Mobile
+entries embed prepared fixture data synchronously, retain real GC and semantics setup,
+and use the same 800x600 viewport as headless tests. TLS certificates are generated on
+the host and each test still owns its server, connections and temporary directory.
+
+`ui:test` runs UI only, in one test process per engine. `check_ui.dart` runs that entry,
+each selected package's example once, and `check_aggregate.dart` once. It does not build
 engine source or rerun runtime, standalone, engine-coexistence, archive, or release
 gates. `example_run.dart` bundles and launches the embedded app.
+
+Both UI commands accept `--package=<owner>` and `--file=test/ui/<file>_test.dart`. Files
+require an explicit owner; unknown, empty and outside-owner selections fail. The
+existing `package.dart integration <owner>` command uses the same collector.
+
+## Shared preparation and compiler caches
+
+`prepare_checks.dart --output=build/prepared` builds JavaScript, owner UI fixtures and
+example assets once. Its manifest binds checkout SHA, PR revisions, all source inputs
+and toolchain/lock files to every output digest. `--consume=build/prepared` verifies all
+inputs and outputs before restoring anything, and rewrites generated Dart import URIs
+for the consuming checkout. Missing or mismatched artifacts fail. Machine-local package
+configuration and compiler caches are excluded.
+
+Automatic CI calls the package archive workflow once after preparation. Linux's common
+gate consumes its same-checkout archive proof, while standalone `check` and
+`release:check` retain independent archive validation. The package workflow also has a
+manual entry. No archive proof certifies runtime or application delivery.
+
+`FLAX_CONSUMER_CACHE` enables stable disposable-consumer paths. CI cache keys include
+target, engine, scope, checkout, source/fixture digests and pinned tools/locks. Cached
+compiler intermediates accelerate rebuilding; tests always execute. Relocation removes
+original build paths before launching copied applications and restores intermediates
+only afterwards. Desktop JSON results live under `build/ui/<engine>/`; mobile results
+and selected file lists accompany the target verification receipt. Command logs record
+preparation, compilation, installation and test durations separately.
 
 `standalone_run.dart` bundles and launches the independent application.
 `check_standalone.dart` verifies it with the locked native SDK, including external

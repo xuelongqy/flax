@@ -20,6 +20,19 @@ if (selected && packages.length === 0) {
   throw new Error(`Unknown package: ${selected}`);
 }
 
+if (process.env.FLAX_PREPARED_CHECKS && process.env.FLAX_CHECK_PREPARED === '1') {
+  execFileSync(
+    'dart',
+    [
+      '--packages=' + resolve(root, '.dart_tool/package_config.json'),
+      resolve(root, 'tool/prepare_checks.dart'),
+      '--consume=' + process.env.FLAX_PREPARED_CHECKS,
+    ],
+    { cwd: root, stdio: 'inherit' },
+  );
+  process.exit(0);
+}
+
 let bundled = 0;
 for (const owner of packages) {
   const generator = resolve(owner.root, 'tool/ui_fixture.dart');

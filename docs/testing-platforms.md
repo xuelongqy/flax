@@ -25,7 +25,7 @@ dart run tool/check_platform.dart --target=ios-device-arm64 --build-only
 ```
 
 The default is the current desktop process target, both engines, and `all`.
-`--engine=hermes|v8|all`, `--scope=all|platform`, `--list`, `--device` and
+`--engine=hermes|v8|all`, `--scope=all|platform|ui`, `--list`, `--device` and
 `--build-only` are explicit options. A missing tool, incompatible process ABI, missing
 device or failed assertion is an error. `--list` does not build or fetch. Mobile
 execution requires a device ID from `flutter devices --machine`.
@@ -45,6 +45,14 @@ host. `platform` runs the native contracts, ABI/architecture/dependency checks, 
 identity/UTF-16/reentry smoke subset, loop-closure checks and application
 startup/delivery. Both engines also undergo shared-library byte comparison and
 coexistence/callback reentry.
+
+`ui` is explicitly partial coverage: it runs selected UI assertions and the existing
+platform/runtime/application safety checks, without the common full gate, complete
+runtime suite or desktop examples/aggregate. `--package=<owner>` and
+`--file=test/ui/<name>_test.dart` are accepted only with `ui`; `all` rejects filters.
+Both full and focused commands use the same collector and original assertions. Each
+engine runs one combined desktop test process or one mobile UI application. Additional
+runtime, coexistence and relocation applications remain separate.
 
 `--build-only` compiles bridges and an external application, checks their native assets
 and records `ran: false` and `applicationDelivered: false`. It never substitutes for
@@ -145,6 +153,14 @@ on an Ubuntu 24.04 runner. Xvfb supplies desktop display access. The lightweight
 full-diff selector handles additions, deletions and both sides of renames; the summary
 job always returns a result.
 
+Shared JavaScript, fixture and example preparation runs once before platform jobs.
+Consumers reject missing artifacts or mismatched checkout, source, toolchain/lock and
+output digests. Package archive validation is a reusable dependency of the main
+workflow; Linux reuses its successful same-checkout proof. Compiler caches use stable
+consumer paths and keys covering target, engine, scope, source, fixtures and pinned
+tools. Cache hits still execute tests. Failed/missing jobs can be rerun on the same
+head; successful evidence from that head remains valid and earlier attempts are kept.
+
 | Changed files                                                       | Additional automatic checks                             |
 | ------------------------------------------------------------------- | ------------------------------------------------------- |
 | Ordinary Dart/JS/UI assertions or docs                              | None; default Linux full check covers common behavior   |
@@ -155,9 +171,10 @@ job always returns a result.
 
 `.github/workflows/runtime.yml` is manual: select target, engine and scope. It reuses
 `.github/workflows/platform.yml`, as do automatic checks. No workflow publishes Flax or
-rebuilds an engine. Android x64 runs on an emulator; iOS simulators run on matching CPU
-runners. Hosted Android arm32/arm64 and iOS real-device jobs are **build-only**.
-Complete their runtime acceptance locally:
+rebuilds an engine. The `ios-simulators` workflow target runs arm64 and x64 together
+after one shared preparation; individual target choices remain available. Android x64
+uses an emulator; iOS simulators run on matching CPU runners. Hosted Android arm32/arm64
+and iOS real-device jobs are **build-only**. Complete their runtime acceptance locally:
 
 ```sh
 dart run tool/check_platform.dart --target=android-arm32 --engine=all --device=<id>

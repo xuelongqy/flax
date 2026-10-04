@@ -6,7 +6,7 @@ import 'package:material_ui/material_ui.dart';
 import 'engine.dart';
 
 final registry = FlaxBindingRegistry([flutterBindings]);
-final source = flaxTestFixtureSource('ui');
+final source = flaxTestFixtureSource('ui', packageName: 'flax');
 Finder host(Object key) => flaxTestHost(key);
 
 class Harness extends FlaxTestHarness {

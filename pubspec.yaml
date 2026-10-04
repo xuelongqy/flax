@@ -57,7 +57,7 @@ melos:
       run: pnpm --silent run js:typecheck
     js:build:
       description: Emit ESM modules and declarations for all JavaScript packages.
-      run: pnpm --silent run js:build
+      run: dart run tool/build_js.dart
     docs:check:
       description: Check Markdown, local links, and documentation checker behavior.
       steps:
@@ -141,12 +141,12 @@ melos:
     example:bundle:
       description: Build workspace modules and bundle both example applications.
       steps:
-        - pnpm --silent run js:build
+        - dart run tool/build_js.dart
         - node tool/example_bundle.mjs
     ui:bundle:
       description: Build workspace modules and bundle framework test fixtures.
       steps:
-        - pnpm --silent run js:build
+        - dart run tool/build_js.dart
         - node tool/ui_bundle.mjs
     ui:test:
       description: Run real framework tests using prepared Hermes native assets.

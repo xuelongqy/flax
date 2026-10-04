@@ -60,12 +60,13 @@ dart run melos run check:ui
 ```
 
 `native:build` downloads the checksum-locked Hermes shared SDK and compiles the Flax
-bridge locally. `check:ui` then runs every UI-owning package integration plus the
-cross-module aggregate. Runtime, standalone, engine-coexistence, and release
-verification remain separate gates. To launch the example afterward, run
-`dart run melos run example:run`. Hermes remains the default for repository commands and
-examples. Experimental V8 15.2.124.21 is available explicitly with `native:build:v8` and
-`check:ui:v8`; see the [V8 adapter](packages/flax_engine_v8/native/README.md) and
+bridge locally. `check:ui` then runs one combined entry importing every UI owner's
+original tests, their examples, and the cross-module aggregate once each. Runtime,
+standalone, engine-coexistence, and release verification remain separate gates. To
+launch the example afterward, run `dart run melos run example:run`. Hermes remains the
+default for repository commands and examples. Experimental V8 15.2.124.21 is available
+explicitly with `native:build:v8` and `check:ui:v8`; see the
+[V8 adapter](packages/flax_engine_v8/native/README.md) and
 [verification scope](docs/architecture/runtime.md#verification). See the
 [runtime package](packages/flax_engine_hermes/README.md) and
 [packaging instructions](docs/architecture/packaging.md).

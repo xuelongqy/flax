@@ -11,6 +11,8 @@ import 'package_verification.dart';
 import 'process.dart';
 import 'example_engine.dart';
 import 'engine_selection.dart';
+import 'ui_suite.dart';
+import 'consumer_workspace.dart';
 
 void requireUiAssets(String root, {String engine = defaultFlaxEngine}) {
   if (currentCheckTarget().mobile) {
@@ -33,39 +35,22 @@ Future<int> runFrameworkTests(
   String root, {
   String engine = defaultFlaxEngine,
   String? packageName,
-  List<String> testPaths = const ['test/ui'],
+  String? file,
+  bool reverseOwners = false,
 }) async {
   requireUiAssets(root, engine: engine);
+  final tests = collectUiTests(root, packageName: packageName, file: file);
+  if (reverseOwners) {
+    tests.sort((a, b) {
+      final owner = b.packageName.compareTo(a.packageName);
+      return owner == 0 ? a.path.compareTo(b.path) : owner;
+    });
+  }
+  final names = tests.map((t) => t.packageName).toSet();
   final packages = discoverPackages(root)
-      .where((package) => packageName == null || package.name == packageName)
-      .where((package) => package.uiTests.existsSync())
+      .where((p) => names.contains(p.name))
       .toList();
-  final tests = packages.map((package) => package.uiTests.path).toList();
-  if (tests.isEmpty) return 0;
-  if (engine != defaultFlaxEngine) {
-    await _runIsolated(root, packages, engine, testPaths);
-    return tests.length;
-  }
-  for (final test in tests) {
-    final package = Directory(test).parent.parent.path;
-    if (p.basename(package) == 'flax') {
-      await _runIsolated(
-        root,
-        packages.where((p) => p.name == 'flax').toList(),
-        engine,
-        testPaths,
-      );
-      continue;
-    }
-    await run('flutter', [
-      'test',
-      '--enable-vmservice',
-      '--no-pub',
-      '--reporter',
-      'expanded',
-      ...testPaths,
-    ], directory: package);
-  }
+  await _runIsolated(root, packages, engine, tests);
   return tests.length;
 }
 
@@ -167,9 +152,12 @@ Future<void> _runIsolated(
   String root,
   List<FlaxWorkspacePackage> selected,
   String engine,
-  List<String> testPaths,
+  List<UiTestFile> tests,
 ) async {
-  final temporary = Directory.systemTemp.createTempSync('flax-ui-$engine-');
+  final workspace = ConsumerWorkspace(
+    'ui-${currentCheckTarget().name}-$engine',
+  );
+  final temporary = workspace.directory;
   try {
     final copiedNames = packageDependencyClosure(
       root,
@@ -193,8 +181,9 @@ Future<void> _runIsolated(
     addCandidateSdk(manifest, engine, root: root);
     File(p.join(temporary.path, 'pubspec.yaml'))
         .writeAsStringSync(jsonEncode(manifest));
-    final targetPackages = Directory(p.join(temporary.path, 'packages'))
-      ..createSync();
+    final targetPackages = Directory(p.join(temporary.path, 'packages'));
+    if (targetPackages.existsSync()) targetPackages.deleteSync(recursive: true);
+    targetPackages.createSync(recursive: true);
     final sourcePackages = {
       for (final package in discoverPackages(root)) package.name: package,
     };
@@ -239,35 +228,24 @@ Future<void> _runIsolated(
       _copyAll(source, destination);
       rewriteDartDirectiveUris(destination, Directory(root), temporary);
     }
+    rewriteDartDirectiveUris(targetPackages, Directory(root), temporary);
+    File(p.join(temporary.path, 'ui-fixtures.json'))
+        .writeAsStringSync(jsonEncode(await prepareUiFixtures(root, tests)));
+    final entry = File(p.join(temporary.path, 'test', 'ui_suite_test.dart'))
+      ..parent.createSync();
+    entry.writeAsStringSync(uiSuiteSource(tests, importPrefix: '../packages/'));
+    Directory('$root/build/ui/$engine').createSync(recursive: true);
     await run('flutter', ['pub', 'get'], directory: temporary.path);
-    for (final package in selected) {
-      final directory = Directory(
-        p.join(targetPackages.path, p.basename(package.directory.path)),
-      ).resolveSymbolicLinksSync();
-      // flax's own dev engine depends back on flax through shared native assets.
-      // Run its unchanged tests as a consumer so test-only edges cannot form a hook cycle.
-      final core = package.name == 'flax';
-      if (core) {
-        final fixtures = Directory(
-          p.join(directory, '.dart_tool', 'flax', 'ui'),
-        );
-        if (fixtures.existsSync()) {
-          _copyAll(
-            fixtures,
-            Directory(p.join(temporary.path, '.dart_tool', 'flax', 'ui')),
-          );
-        }
-      }
-      await run('flutter', [
-        'test',
-        '--enable-vmservice',
-        '--no-pub',
-        '--reporter',
-        'expanded',
-        ...testPaths.map((path) => core ? p.join(directory, path) : path),
-      ], directory: core ? temporary.path : directory);
-    }
+    await run('flutter', [
+      'test',
+      '--enable-vmservice',
+      '--no-pub',
+      '--reporter',
+      'expanded',
+      '--file-reporter=json:$root/build/ui/$engine/results.json',
+      'test/ui_suite_test.dart',
+    ], directory: temporary.path);
   } finally {
-    temporary.deleteSync(recursive: true);
+    workspace.finish();
   }
 }

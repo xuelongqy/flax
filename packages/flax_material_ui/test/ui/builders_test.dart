@@ -8,7 +8,10 @@ import '../support/harness.dart' show Harness, host, registry;
 import '../support/test_module.dart';
 import '../support/runtime_tracker.dart';
 
-final builderSource = flaxTestFixtureSource('builders');
+final builderSource = flaxTestFixtureSource(
+  'builders',
+  packageName: 'flax_material_ui',
+);
 
 Widget app(
   Harness h, {

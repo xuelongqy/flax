@@ -1,35 +1,12 @@
 name: Package archive checks
 
 on:
-  pull_request:
-    paths:
-      - 'packages/**'
-      - 'tool/check_packages.dart'
-      - 'tool/check_release.dart'
-      - 'tool/pack_archives.dart'
-      - 'tool/src/archive_packing.dart'
-      - 'tool/src/package_discovery.dart'
-      - 'tool/src/package_metadata_strict.dart'
-      - 'pubspec.yaml'
-      - 'pubspec.lock'
-      - 'pnpm-lock.yaml'
-      - 'pnpm-workspace.yaml'
-      - '.github/workflows/packages.yml'
-  push:
-    branches: [main]
-    paths:
-      - 'packages/**'
-      - 'tool/check_packages.dart'
-      - 'tool/check_release.dart'
-      - 'tool/pack_archives.dart'
-      - 'tool/src/archive_packing.dart'
-      - 'tool/src/package_discovery.dart'
-      - 'tool/src/package_metadata_strict.dart'
-      - 'pubspec.yaml'
-      - 'pubspec.lock'
-      - 'pnpm-lock.yaml'
-      - 'pnpm-workspace.yaml'
-      - '.github/workflows/packages.yml'
+  workflow_call:
+    inputs:
+      prepared:
+        type: boolean
+        default: false
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -37,6 +14,10 @@ permissions:
 concurrency:
   group: packages-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
+
+env:
+  FLAX_PR_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+  FLAX_PR_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
 
 jobs:
   packages:
@@ -69,12 +50,30 @@ jobs:
           flutter pub get --enforce-lockfile
           pnpm install --frozen-lockfile
 
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
+        if: inputs.prepared
+        with:
+          name: prepared-checks
+          path: build/prepared
+      - name: Consume shared preparation
+        if: inputs.prepared
+        run:
+          dart --packages=.dart_tool/package_config.json tool/prepare_checks.dart
+          --consume=build/prepared
       - name: Build JavaScript package outputs
+        if: ${{ !inputs.prepared }}
         run: dart run melos run js:build
 
       - name: Validate archives and pack receipt (no publish)
+        env:
+          FLAX_ARCHIVE_PROOF_OUTPUT: build/archive-proof.json
         run: dart run melos run release:check
 
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: archive-proof
+          path: build/archive-proof.json
+          if-no-files-found: error
       - name: Verify source files are unchanged
         run: |
           git diff --exit-code

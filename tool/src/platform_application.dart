@@ -10,6 +10,8 @@ import 'package_discovery.dart';
 import 'package_verification.dart';
 import 'process.dart';
 import 'platform_binary.dart';
+import 'ui_suite.dart';
+import 'consumer_workspace.dart';
 
 /// Build an external Flutter consumer from source packages, without repository paths.
 Future<Map<String, Object?>> verifyPlatformApplication(
@@ -20,13 +22,25 @@ Future<Map<String, Object?>> verifyPlatformApplication(
   required String? device,
   bool full = false,
   bool coexistence = false,
+  List<UiTestFile>? uiTests,
 }) async {
-  final owners = full && target.mobile
-      ? discoverPackages(root).where((p) => p.uiTests.existsSync()).toList()
-      : <FlaxWorkspacePackage>[];
-  final work = Directory.systemTemp.createTempSync(
-    'flax-${target.name}-$engine-',
+  final tests = target.mobile && !coexistence
+      ? uiTests ?? (full ? collectUiTests(root) : <UiTestFile>[])
+      : <UiTestFile>[];
+  final ownerNames = tests.map((t) => t.packageName).toSet();
+  final owners = discoverPackages(root)
+      .where((p) => ownerNames.contains(p.name))
+      .toList();
+  final workspace = ConsumerWorkspace(
+    'platform-${target.name}-$engine-${coexistence
+        ? 'coexistence'
+        : full
+        ? 'all'
+        : tests.isEmpty
+        ? 'platform'
+        : 'ui'}',
   );
+  final work = workspace.directory;
   final evidence = Directory(
     '$root/build/platform/${target.name}/${coexistence ? 'coexistence' : engine}',
   )..createSync(recursive: true);
@@ -47,6 +61,7 @@ Future<Map<String, Object?>> verifyPlatformApplication(
       names.add('flax_engine_hermes');
     }
     final packages = Directory('${work.path}/packages');
+    if (packages.existsSync()) packages.deleteSync(recursive: true);
     copyDartPackages(Directory(root), packages, names);
     copyTree(
       Directory('$root/packages/flax/native/tests'),
@@ -143,7 +158,8 @@ Future<Map<String, Object?>> verifyPlatformApplication(
     driver.writeAsStringSync(
       "import 'package:integration_test/integration_test_driver.dart';\nFuture<void> main() async { await integrationDriver(); }\n",
     );
-    final integration = Directory('$app/integration_test')..createSync();
+    final integration = Directory('$app/integration_test')
+      ..createSync(recursive: true);
     final marker = 'FLAX_PLATFORM_${DateTime.now().microsecondsSinceEpoch}';
     // Real iOS debug builds still need Flutter's debugger for Dart JIT.
     final directLaunch =
@@ -164,7 +180,10 @@ Future<Map<String, Object?>> verifyPlatformApplication(
             product,
             await _applicationBundle(app, target, product),
             marker,
-            timeout: Duration(minutes: full ? 10 : 3),
+            timeout: Duration(minutes: tests.isNotEmpty || full ? 10 : 3),
+            uiResultsPath: entry == 'ui_suite_test.dart'
+                ? '${evidence.path}/../ci/ui-$engine-results.json'
+                : null,
           );
         } else {
           await runDesktopApplication(target, product, marker);
@@ -268,98 +287,29 @@ Future<Map<String, Object?>> verifyPlatformApplication(
     };
     if (buildOnly) return result;
     await drive('platform_test.dart');
-    // Mobile shared assertions run on the selected device, not flutter-tester.
-    for (final owner in owners) {
-      final fixtures = Directory('$app/assets/fixtures')
-        ..createSync(recursive: true);
-      for (final old in fixtures.listSync()) {
-        old.deleteSync(recursive: true);
-      }
-      final fixtureSource = Directory(
-        '${owner.directory.path}/.dart_tool/flax/ui',
+    // One entry compiles the unchanged assertions of every selected UI owner.
+    if (tests.isNotEmpty) {
+      final fixtures = await prepareUiFixtures(root, tests);
+      File('${integration.path}/ui_suite_test.dart').writeAsStringSync(
+        uiSuiteSource(
+          tests,
+          importPrefix: '../../packages/',
+          mobile: true,
+          ios: target.os == 'ios',
+          directLaunch: directLaunch,
+          marker: marker,
+          fixtures: fixtures,
+        ),
       );
-      if (fixtureSource.existsSync()) copyTree(fixtureSource, fixtures);
-      await run('openssl', [
-        'req',
-        '-x509',
-        '-newkey',
-        'rsa:2048',
-        '-nodes',
-        '-keyout',
-        '${fixtures.path}/key.pem',
-        '-out',
-        '${fixtures.path}/certificate.pem',
-        '-days',
-        '1',
-        '-subj',
-        '/CN=localhost',
-        '-addext',
-        'subjectAltName=DNS:localhost,IP:127.0.0.1',
-      ]);
-      final texts = {
-        for (final file in fixtures.listSync(recursive: true).whereType<File>())
-          p.relative(file.path, from: fixtures.path).replaceAll('\\', '/'): file
-              .readAsStringSync(),
-      };
-      File('$app/assets/test-fixtures.json')
-          .writeAsStringSync(jsonEncode(texts));
-      final paths =
-          owner.uiTests
-              .listSync(recursive: true)
-              .whereType<File>()
-              .where((f) => f.path.endsWith('_test.dart'))
-              .toList()
-            ..sort((a, b) => a.path.compareTo(b.path));
-      final tests = paths
-          .map(
-            (f) => p
-                .relative(f.path, from: owner.directory.path)
-                .replaceAll('\\', '/'),
-          )
-          .toList();
-      File('${integration.path}/owner_test.dart').writeAsStringSync('''
-import 'dart:convert';
-import 'dart:async';
-import 'dart:io';
-import 'package:flutter/services.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:integration_test/integration_test.dart';
-import 'package:flax_test/flax_test.dart';
-${[for (var i = 0; i < tests.length; i++) "import '../../packages/${owner.name}/${tests[i]}' as t$i;"].join('\n')}
-void main() {
-  final binding = IntegrationTestWidgetsFlutterBinding.ensureInitialized();
-  ${target.os == 'ios' ? _semanticsSetup : ''}
-  // Match the headless viewport, including safe areas and keyboard insets.
-  // Native pixel insets must not be combined with this fixed DPR and size.
-  setUp(() {
-    final view = binding.platformDispatcher.implicitView!;
-    view.devicePixelRatio = 1;
-    view.physicalSize = const Size(800, 600);
-    view.padding = FakeViewPadding.zero;
-    view.viewPadding = FakeViewPadding.zero;
-    view.viewInsets = FakeViewPadding.zero;
-  });
-  tearDown(() {
-    final view = binding.platformDispatcher.implicitView!;
-    view.resetPadding();
-    view.resetViewPadding();
-    view.resetViewInsets();
-    view.resetPhysicalSize();
-    view.resetDevicePixelRatio();
-  });
-  setUpAll(() async {
-    flaxTestLoadFixtures((jsonDecode(await rootBundle.loadString('assets/test-fixtures.json')) as Map).cast<String,String>());
-  });
-  ${[for (var i = 0; i < tests.length; i++) "group('${tests[i]}', t$i.main);"].join('\n  ')}
-  ${directLaunch ? "binding.allTestsPassed.future.then((passed) { print(passed ? '$marker' : 'FLAX_PLATFORM_FAILED'); exit(passed ? 0 : 1); });" : ''}
-}
-''');
-      await drive('owner_test.dart');
+      await drive('ui_suite_test.dart');
+      result['uiFiles'] = [for (final t in tests) '${t.packageName}/${t.path}'];
+      result['uiApplicationRuns'] = 1;
     }
     result['ran'] = true;
     // Desktop relocation launches the copied application after deleting its sources.
     if (!target.mobile) {
       final relocated = Directory('${work.path}/relocated');
+      if (relocated.existsSync()) relocated.deleteSync(recursive: true);
       if (target.apple) {
         relocated.createSync();
         await run('ditto', [
@@ -370,6 +320,8 @@ void main() {
         copyTree(Directory(copied), relocated);
       }
       // Remove inputs and build outputs before executing the relocated application.
+      workspace.removeBuild(Directory('$app/build'));
+      workspace.removeBuild(Directory('$app/.dart_tool'));
       Directory(app).deleteSync(recursive: true);
       packages.deleteSync(recursive: true);
       await runDesktopApplication(
@@ -379,7 +331,7 @@ void main() {
       );
       result['applicationDelivered'] = true;
     } else {
-      if (!directLaunch || (full && owners.isNotEmpty)) {
+      if (!directLaunch || tests.isNotEmpty) {
         await run('flutter', [
           'build',
           ...platformBuildArguments(target, release: false, signed: true),
@@ -393,13 +345,15 @@ void main() {
       if (target.os == 'android') {
         File(platformProduct(app, target, release: false)).copySync(relocated);
       } else {
-        Directory('${work.path}/relocated').createSync();
+        final directory = Directory('${work.path}/relocated');
+        if (directory.existsSync()) directory.deleteSync(recursive: true);
+        directory.createSync();
         await run('ditto', [
           platformProduct(app, target, release: false),
           relocated,
         ]);
       }
-      Directory('$app/build').deleteSync(recursive: true);
+      workspace.removeBuild(Directory('$app/build'));
       if (directLaunch) {
         await _runMobileApplication(
           target,
@@ -453,7 +407,9 @@ void main() {
             File('$app/android/app/build.gradle.kts').readAsStringSync(),
           )![1]!;
         } else {
-          Directory('${work.path}/release').createSync();
+          final directory = Directory('${work.path}/release');
+          if (directory.existsSync()) directory.deleteSync(recursive: true);
+          directory.createSync();
           await run('ditto', [source, released]);
           final info = await Process.run('/usr/libexec/PlistBuddy', [
             '-c',
@@ -465,6 +421,8 @@ void main() {
           }
           bundle = (info.stdout as String).trim();
         }
+        workspace.removeBuild(Directory('$app/build'));
+        workspace.removeBuild(Directory('$app/.dart_tool'));
         Directory(app).deleteSync(recursive: true);
         packages.deleteSync(recursive: true);
         await _runMobileApplication(target, device, released, bundle, marker);
@@ -492,7 +450,7 @@ void main() {
     }
     rethrow;
   } finally {
-    if (work.existsSync()) work.deleteSync(recursive: true);
+    workspace.finish();
   }
 }
 
@@ -643,7 +601,7 @@ ${coexistence ? "import '../coexistence.dart' as engines;" : ''}
 external int flax_test_contracts_run();
 void main() {
   final binding = IntegrationTestWidgetsFlutterBinding.ensureInitialized();
-  ${target.os == 'ios' ? _semanticsSetup : ''}
+  ${target.os == 'ios' ? iosSemanticsSetup : ''}
   void contract(String name, FutureOr<void> Function() body) {
     test(name, () async {
       try {
@@ -679,32 +637,6 @@ void main() {
   ${coexistence ? "contract('engine coexistence and callback reentry', engines.main);" : "testWidgets('external application UI', applicationScenario);"}
   ${release || target.os != 'ios' || target.name.contains('simulator') ? "binding.allTestsPassed.future.then((passed) { print(passed ? '$marker' : 'FLAX_PLATFORM_FAILED'); exit(passed ? 0 : 1); });" : "binding.reportData = {'target': '${target.name}', 'engine': '$engine'};"}
 }
-''';
-
-const _semanticsSetup = '''
-  setUpAll(() async {
-    // iOS can request its own semantics handle after the first rendered tree.
-    // Complete that platform handshake before testWidgets records its leak baseline.
-    // runTest establishes inTest, which LiveTestWidgetsFlutterBinding.pump requires.
-    try {
-      await binding.runTest(() async {
-        final handle = binding.ensureSemantics();
-        try {
-          for (var i = 0; i < 100; i++) {
-            await binding.pump(const Duration(milliseconds: 20));
-            if (binding.platformDispatcher.semanticsEnabled) break;
-          }
-        } finally {
-          handle.dispose();
-        }
-      }, () {
-        expect(binding.debugOutstandingSemanticsHandles,
-          binding.platformDispatcher.semanticsEnabled ? 1 : 0);
-      }, description: 'platform semantics initialization');
-    } finally {
-      binding.postTest();
-    }
-  });
 ''';
 
 Future<void> runDesktopApplication(
@@ -769,6 +701,7 @@ Future<void> _runMobileApplication(
   String bundle,
   String marker, {
   Duration timeout = const Duration(minutes: 3),
+  String? uiResultsPath,
 }) async {
   if (target.name.contains('simulator')) {
     await run('xcrun', ['simctl', 'install', device, product]);
@@ -786,7 +719,12 @@ Future<void> _runMobileApplication(
       '--predicate',
       'process == "Runner" AND (eventMessage CONTAINS "flutter:" OR messageType >= 16)',
     ]);
-    final waiting = _waitForMarker(monitor, marker, timeout: timeout);
+    final waiting = _waitForMarker(
+      monitor,
+      marker,
+      timeout: timeout,
+      uiResultsPath: uiResultsPath,
+    );
     try {
       await run('xcrun', [
         'simctl',
@@ -823,7 +761,12 @@ Future<void> _runMobileApplication(
       '--terminate-existing',
       bundle,
     ]);
-    await _waitForMarker(process, marker, timeout: timeout);
+    await _waitForMarker(
+      process,
+      marker,
+      timeout: timeout,
+      uiResultsPath: uiResultsPath,
+    );
     return;
   }
   final sdk =
@@ -860,7 +803,12 @@ Future<void> _runMobileApplication(
     'libc:F',
     '*:S',
   ]);
-  final waiting = _waitForMarker(monitor, marker, timeout: timeout);
+  final waiting = _waitForMarker(
+    monitor,
+    marker,
+    timeout: timeout,
+    uiResultsPath: uiResultsPath,
+  );
   // Start monitoring before launch; the unique marker excludes older device logs.
   try {
     await run(adb, ['-s', device, 'shell', 'am', 'force-stop', bundle]);
@@ -885,13 +833,33 @@ Future<void> _waitForMarker(
   Process process,
   String marker, {
   required Duration timeout,
+  String? uiResultsPath,
 }) async {
   final completed = Completer<bool>();
   final log = StringBuffer();
+  final uiResults = <String, String>{};
+  final journal = UiResultJournal();
+  void saveResults() {
+    if (uiResultsPath == null) return;
+    File(uiResultsPath)
+      ..parent.createSync(recursive: true)
+      ..writeAsStringSync(
+        jsonEncode({'cases': journal.cases, 'binding': uiResults}),
+      );
+  }
+
   void collect(String line) {
     log.writeln(line);
+    if (journal.collect(line)) saveResults();
+    final results = line.indexOf('FLAX_UI_RESULT:');
+    if (results >= 0 && uiResultsPath != null) {
+      final data =
+          jsonDecode(line.substring(results + 'FLAX_UI_RESULT:'.length)) as Map;
+      uiResults[data['name'] as String] = data['status'] as String;
+      saveResults();
+    }
     if (line.contains(marker) && !completed.isCompleted) {
-      completed.complete(true);
+      completed.complete(!journal.hasFailure);
     }
     if (line.contains('FLAX_PLATFORM_FAILED') && !completed.isCompleted) {
       completed.complete(false);

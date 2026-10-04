@@ -10,10 +10,19 @@ import 'src/platform_application.dart';
 import 'src/platform_binary.dart';
 import 'src/platform_selection.dart';
 import 'src/process.dart';
+import 'src/ui_suite.dart';
+import 'src/prepared_checks.dart';
 
 Future<void> main(List<String> arguments) => command(() async {
   final options = PlatformCheckOptions(arguments);
   final root = Directory.fromUri(Platform.script.resolve('../')).path;
+  final uiTests = options.scope == 'platform'
+      ? <UiTestFile>[]
+      : collectUiTests(
+          root,
+          packageName: options.packageName,
+          file: options.file,
+        );
   // Common logic has one Linux gate; full target checks retain every runtime/UI
   // assertion without repeating host-only generator and archive tests.
   final commonChecks =
@@ -30,19 +39,14 @@ Future<void> main(List<String> arguments) => command(() async {
             ? 'Host: melos check (JS/Dart logic, generated files, static analysis; once on Linux)'
             : 'Host: JS and device test bundles; common logic uses melos check separately or the Linux CI gate',
       );
-      for (final package in discoverPackages(root)) {
-        if (!package.uiTests.existsSync()) continue;
-        for (final test
-            in package.uiTests
-                .listSync(recursive: true)
-                .whereType<File>()
-                .where((f) => f.path.endsWith('_test.dart'))) {
-          stdout.writeln(
-            'UI ${package.name}: ${test.path} (${options.target.mobile ? 'device debug app' : 'headless widget'}; VM-service GC enabled)',
-          );
-        }
-      }
     }
+    for (final test in uiTests) {
+      stdout.writeln(
+        'UI ${test.packageName}: ${test.path} '
+        '(${options.target.mobile ? 'device debug app' : 'headless widget'}; VM-service GC enabled)',
+      );
+    }
+
     stdout.writeln(
       'Each engine: native ABI/contracts, SDK architecture/exports, runtime and loop closures, external application',
     );
@@ -63,6 +67,7 @@ Future<void> main(List<String> arguments) => command(() async {
         'target': target.name,
         'engine': engine,
         'scope': options.scope,
+        'uiFiles': [for (final t in uiTests) '${t.packageName}/${t.path}'],
         'built': false,
         'ran': false,
         'applicationDelivered': false,
@@ -115,6 +120,8 @@ Future<void> main(List<String> arguments) => command(() async {
       await _requireDevice(target, options.device!);
     }
     failedStage = 'prepare';
+    final prepared = Platform.environment['FLAX_PREPARED_CHECKS'];
+    if (prepared != null) consumePreparedChecks(root, Directory(prepared));
     if (commonChecks) {
       // Budget for the complete generation, test, analysis and packaging sequence.
       await run(
@@ -122,9 +129,10 @@ Future<void> main(List<String> arguments) => command(() async {
         ['run', 'melos', 'run', 'check'],
         directory: root,
         timeout: const Duration(hours: 1),
+        environment: {if (prepared != null) 'FLAX_CHECK_PREPARED': '1'},
       );
       await dart('tool/ffi.dart', ['--check']);
-    } else {
+    } else if (prepared == null) {
       await run('pnpm', ['--silent', 'run', 'js:build'], directory: root);
       await run('node', ['tool/ui_bundle.mjs'], directory: root);
       await run('node', ['tool/example_bundle.mjs'], directory: root);
@@ -192,9 +200,17 @@ Future<void> main(List<String> arguments) => command(() async {
         }
         record['ran'] = true;
         writeReceipt();
-        if (options.scope == 'all') {
+        if (uiTests.isNotEmpty) {
           stage = 'ui';
-          await dart('tool/check_ui.dart', ['--engine=$engine']);
+          await dart(
+            options.scope == 'all' ? 'tool/check_ui.dart' : 'tool/ui_test.dart',
+            [
+              '--engine=$engine',
+              if (options.packageName != null)
+                '--package=${options.packageName}',
+              if (options.file != null) '--file=${options.file}',
+            ],
+          );
         }
       }
       stage = 'application';
@@ -205,6 +221,7 @@ Future<void> main(List<String> arguments) => command(() async {
         buildOnly: options.buildOnly,
         device: options.device,
         full: options.scope == 'all',
+        uiTests: uiTests,
       );
       record.addAll(application);
     } catch (error) {

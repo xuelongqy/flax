@@ -7,7 +7,10 @@ import 'package:flax_test/flax_test.dart';
 import '../support/harness.dart' show registry;
 import '../support/runtime_tracker.dart';
 
-final namedSource = flaxTestFixtureSource('named_pages');
+final namedSource = flaxTestFixtureSource(
+  'named_pages',
+  packageName: 'flax_material_ui',
+);
 
 void main() {
   testWidgets(

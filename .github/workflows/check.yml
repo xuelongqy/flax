@@ -34,15 +34,27 @@ jobs:
           if [ "$BASE" = 0000000000000000000000000000000000000000 ]; then BASE=$(git hash-object -t tree /dev/null); fi
           dart tool/platform_changes.dart "$BASE" "$HEAD"
 
+  prepare:
+    uses: ./.github/workflows/prepare.yml
+
+  archives:
+    needs: prepare
+    uses: ./.github/workflows/packages.yml
+    with:
+      prepared: true
+
   linux:
+    needs: [prepare, archives]
     uses: ./.github/workflows/platform.yml
     with:
       target: linux-x64
       engine: all
       scope: all
+      prepared: true
+      archive-proof: true
 
   platforms:
-    needs: changes
+    needs: [changes, prepare]
     if: needs.changes.outputs.run == 'true'
     strategy:
       fail-fast: false
@@ -52,17 +64,22 @@ jobs:
       target: ${{ matrix.target }}
       engine: ${{ matrix.engine }}
       scope: platform
+      prepared: true
 
   result:
     if: always()
-    needs: [changes, linux, platforms]
+    needs: [changes, prepare, archives, linux, platforms]
     runs-on: ubuntu-24.04
     steps:
       - env:
           CHANGES: ${{ needs.changes.result }}
+          PREPARE: ${{ needs.prepare.result }}
+          ARCHIVES: ${{ needs.archives.result }}
           LINUX: ${{ needs.linux.result }}
           PLATFORMS: ${{ needs.platforms.result }}
         run: |
           test "$CHANGES" = success
+          test "$PREPARE" = success
+          test "$ARCHIVES" = success
           test "$LINUX" = success
           test "$PLATFORMS" = success || test "$PLATFORMS" = skipped

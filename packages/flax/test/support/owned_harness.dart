@@ -9,7 +9,7 @@ class OwnedHarness extends FlaxOwnedTestHarness {
     : super(
         createRuntime: createTestRuntime,
         bindings: registry,
-        source: flaxTestFixtureSource(fixture),
+        source: flaxTestFixtureSource(fixture, packageName: 'flax'),
       );
 
   Widget app(String name, {Object? arguments}) => MaterialApp(

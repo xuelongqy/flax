@@ -11,7 +11,10 @@ import '../support/harness.dart' show registry;
 import '../support/test_module.dart';
 import '../support/runtime_tracker.dart';
 
-final navigationSource = flaxTestFixtureSource('navigation');
+final navigationSource = flaxTestFixtureSource(
+  'navigation',
+  packageName: 'flax_material_ui',
+);
 
 class NavigationHarness {
   NavigationHarness({FlaxBindingRegistry? bindings})

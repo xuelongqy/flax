@@ -5,9 +5,16 @@ import 'package:path/path.dart' as p;
 
 import 'src/package_discovery.dart';
 import 'src/process.dart';
+import 'src/prepared_checks.dart';
 
-Future<void> main() => command(() async {
+Future<void> main(List<String> arguments) => command(() async {
   final root = Directory.fromUri(Platform.script.resolve('../')).path;
+  final proof = Platform.environment['FLAX_ARCHIVE_PROOF'];
+  if (proof != null) {
+    validateArchiveProof(root, File(proof));
+    stdout.writeln('Archive checks already passed for this checkout: $proof');
+    return;
+  }
   final packages = discoverPackages(root);
   final npmDeliverables = discoverNpmPackages(root);
   for (final package in packages) {

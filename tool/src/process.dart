@@ -11,6 +11,7 @@ Future<void> run(
   bool captureWindowsCrash = false,
   Duration timeout = const Duration(minutes: 30),
 }) async {
+  final elapsed = Stopwatch()..start();
   stdout.writeln('> $executable ${arguments.join(' ')}');
   final process = await Process.start(
     executable,
@@ -29,6 +30,10 @@ Future<void> run(
       process.kill(ProcessSignal.sigkill);
       throw TimeoutException('Command timed out: $executable', timeout);
     },
+  );
+  stdout.writeln(
+    'Completed $executable ${arguments.take(2).join(' ')}: '
+    '${elapsed.elapsedMilliseconds} ms, exit $code',
   );
   if (code != 0) {
     final error = ProcessException(

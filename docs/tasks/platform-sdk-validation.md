@@ -1,8 +1,24 @@
 # Task: Native SDK integration and platform validation
 
-Status: rc.3 integration and all twelve regular CI targets passed at `7a6aaf1`. Full iOS
-arm64 passed CI; full iOS x64 still requires actual UI execution after its host-only
-preparation failure. Common-gate routing follow-up awaits new CI.
+Status: combined UI/CI implementation is in local validation at baseline `ae300ec`. The
+baseline terminal round passed Package and full iOS arm64; macOS x64 failed artifact
+upload with DNS `ENOTFOUND`, and full iOS x64 reached its two-hour job limit. Neither
+missing artifacts nor cancelled full execution certify complete acceptance. Timers
+remain disabled and PR #2 remains unmerged.
+
+The collector imports all 48 original UI files from seven owners into one entry per
+engine. Local desktop Hermes and V8 each passed 346 cases with identical display names
+to the old iOS-arm full baseline. Owner/file filters, same-name fixtures, strict owner
+lookup and preparation digest rejection have regression coverage. Shared preparation, a
+reusable archive gate, partial UI scope and stable compiler caches are implemented;
+local iOS arm64 Hermes and V8 also passed the same 346 cases each, runtime contracts,
+relocation and coexistence. The complete local command built two UI applications instead
+of fourteen, and ten applications overall instead of the baseline twenty-two. Reversed
+owner order retained all 346 desktop cases. A focused twenty-case Fetch run passed on
+both cold and warm stable paths (17.0s and 7.4s for the test command); this is not a
+forecast of complete CI duration. Tooling passed 81 tests with one Windows-only
+self-test inapplicable on macOS, and scoped analysis had no issues. Final-head Linux and
+iOS arm/x64 CI and artifact evidence are still required.
 
 ## Goal and scope
 

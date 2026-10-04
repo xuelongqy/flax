@@ -251,10 +251,10 @@ fixtures.
 
 Generated UI fixtures also stay with their owner at
 `packages/<owner>/.dart_tool/flax/ui`. Package checks build only that owner and its JS
-dependency closure. Aggregate checks discover each owner and build them separately, so
-fixture names need only be unique inside one package. Non-default-engine isolation
-copies the selected package, its Dart dependency closure, and that package's fixture; it
-does not stage every extension.
+dependency closure. The full UI entry imports original test files and invokes their
+`main()` functions in owner/file groups, inside one test process per engine. Fixtures
+are preloaded by owner before registration, so names need only be unique inside one
+package. Focused execution stages only selected owners and their dependency closure.
 
 Shared engine-neutral runtime contracts and deterministic test helpers live in the
 development-only [`flax_test`](../../packages/flax_test/README.md) package. It imports
@@ -313,7 +313,8 @@ tests/examples from consumer trees. Repository manifests keep `publish_to: none`
 `release:check` (`tool/check_release.dart`) is the in-repo pre-release checklist: assert
 unpublished manifests, run `packages:check`, then `pack_archives --dry-run`. It never
 publishes to pub.dev or npm and does not build engines. GitHub Actions runs the same
-sequence on Ubuntu via `.github/workflows/packages.yml` without the macOS runtime job.
+sequence on Ubuntu via reusable `.github/workflows/packages.yml`, called once by the
+main workflow with a shared preparation artifact. Its manual entry remains available.
 
 Pub archives include Dart implementation, generated bindings, required embedded host
 scripts, Flax ABI source, and engine adapter sources with CMake and SDK locks. They
@@ -343,6 +344,6 @@ dart run melos run check:ui:v8
 For daily package work, use `dart run tool/package.dart check NAME` and add
 `integration NAME --engine=hermes|v8` only when real UI behavior is needed.
 `check:aggregate` verifies the minimal cross-module application. `check:ui` runs every
-UI owner integration plus the aggregate. Ordinary `check` never fetches or builds an
-engine; UI commands use the locked macOS arm64 SDK and run serially because they drive
-desktop apps.
+UI owner's original assertions in one entry, examples and the aggregate once each.
+Ordinary `check` never fetches or builds an engine; UI commands use the locked macOS
+arm64 SDK and run serially because they drive desktop apps.

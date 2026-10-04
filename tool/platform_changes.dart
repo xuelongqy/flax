@@ -80,6 +80,13 @@ List<Map<String, Object>> platformJobs(Iterable<String> paths) {
         path == 'tool/src/example_engine.dart' ||
         path == 'tool/src/package_verification.dart' ||
         path == 'tool/src/ui_testing.dart' ||
+        path == 'tool/src/ui_suite.dart' ||
+        path == 'tool/src/consumer_workspace.dart' ||
+        path == 'tool/src/prepared_checks.dart' ||
+        path == 'tool/prepare_checks.dart' ||
+        path == 'tool/build_js.dart' ||
+        path == '.github/workflows/prepare.yml' ||
+        path == '.github/workflows/packages.yml' ||
         path == '.github/workflows/check.yml' ||
         path == 'tool/platform_changes.dart' ||
         path == '.fvmrc' ||

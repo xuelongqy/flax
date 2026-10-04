@@ -9,7 +9,8 @@ import '../support/runtime_tracker.dart';
 
 FlaxSession makeSession(Harness h, String code) => FlaxSession(
   createRuntime: h.create,
-  source: '${flaxTestFixtureSource('components')}\n$code',
+  source:
+      '${flaxTestFixtureSource('components', packageName: 'flax_material_ui')}\n$code',
   bindings: registry,
   onError: (error, _) => h.errors.add(error),
 );
@@ -30,7 +31,8 @@ void main() {
     final h = Harness();
     await t.pumpWidget(
       h.app(
-        code: '''${flaxTestFixtureSource('components')}
+        code:
+            '''${flaxTestFixtureSource('components', packageName: 'flax_material_ui')}
 globalThis.__flaxBindings = {...globalThis.__flaxBindings, version: 11};
 componentApi.runApp(new componentApi.Caption('old protocol'));
 ''',
@@ -381,7 +383,8 @@ componentApi.runApp(new Probe());
     final errors = <Object>[];
     final session = FlaxSession(
       createRuntime: () => runtime,
-      source: '''${flaxTestFixtureSource('components')}
+      source:
+          '''${flaxTestFixtureSource('components', packageName: 'flax_material_ui')}
 componentApi.runApp(new componentApi.Counter('types'));
 ''',
       bindings: registry,

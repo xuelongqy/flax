@@ -19,6 +19,7 @@ on:
           - android-arm64
           - ios-simulator-arm64
           - ios-simulator-x64
+          - ios-simulators
           - ios-device-arm64
       engine:
         type: choice
@@ -27,7 +28,13 @@ on:
       scope:
         type: choice
         default: all
-        options: [all, platform]
+        options: [all, platform, ui]
+      package:
+        type: string
+        description: UI owner for scope ui; empty selects all owners
+      file:
+        type: string
+        description: Owner-relative UI test file; requires package
 
 permissions:
   contents: read
@@ -37,9 +44,23 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  prepare:
+    uses: ./.github/workflows/prepare.yml
+
   platform:
+    needs: prepare
+    strategy:
+      fail-fast: false
+      matrix:
+        target:
+          ${{ fromJSON(inputs.target == 'ios-simulators' &&
+          '["ios-simulator-arm64","ios-simulator-x64"]' || format('["{0}"]',
+          inputs.target)) }}
     uses: ./.github/workflows/platform.yml
     with:
-      target: ${{ inputs.target }}
+      target: ${{ matrix.target }}
       engine: ${{ inputs.engine }}
       scope: ${{ inputs.scope }}
+      package: ${{ inputs.package }}
+      file: ${{ inputs.file }}
+      prepared: true

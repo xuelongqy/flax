@@ -15,7 +15,10 @@ void main() {
     final errors = <Object>[];
     final view = FlaxView(
       createRuntime: () => runtime,
-      source: flaxTestFixtureSource('loop_closures'),
+      source: flaxTestFixtureSource(
+        'loop_closures',
+        packageName: 'flax_material_ui',
+      ),
       sourceUrl: 'loop_closures.js',
       bindings: registry,
       onError: (error, _) => errors.add(error),

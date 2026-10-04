@@ -21,6 +21,8 @@ final class PlatformCheckOptions {
             '--engine',
             '--scope',
             '--device',
+            '--package',
+            '--file',
           }.contains(key) ||
           values.containsKey(key)) {
         throw ArgumentError('Unknown or duplicate option: $argument');
@@ -30,6 +32,9 @@ final class PlatformCheckOptions {
                 ? arguments[i]
                 : throw ArgumentError('Missing $key value'))
           : argument.substring(split + 1);
+      if (values[key]!.isEmpty || values[key]!.startsWith('--')) {
+        throw ArgumentError('Missing $key value');
+      }
     }
     target = FlaxNativeTarget(
       values['--target'] ?? FlaxNativeTarget.host().name,
@@ -40,12 +45,25 @@ final class PlatformCheckOptions {
     }
     engines = engine == 'all' ? ['hermes', 'v8'] : [engine];
     scope = values['--scope'] ?? 'all';
-    if (!const {'all', 'platform'}.contains(scope)) {
+    if (!const {'all', 'platform', 'ui'}.contains(scope)) {
       throw ArgumentError('Unknown scope: $scope');
+    }
+    packageName = values['--package'];
+    file = values['--file'];
+    if (scope != 'ui' && (packageName != null || file != null)) {
+      throw ArgumentError(
+        'UI selection requires --scope=ui; all is complete coverage',
+      );
+    }
+    if (file != null && packageName == null) {
+      throw ArgumentError('--file requires --package');
     }
     device = values['--device'];
     list = values['--list'] == 'true';
     buildOnly = values['--build-only'] == 'true';
+    if (scope == 'ui' && buildOnly) {
+      throw ArgumentError('--scope=ui requires execution');
+    }
     if (target.mobile && device == null && !list && !buildOnly) {
       throw ArgumentError(
         '${target.name} requires --device, or explicit --build-only',
@@ -57,6 +75,8 @@ final class PlatformCheckOptions {
   late final List<String> engines;
   late final String scope;
   late final String? device;
+  late final String? packageName;
+  late final String? file;
   late final bool list;
   late final bool buildOnly;
 }

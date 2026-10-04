@@ -150,6 +150,16 @@ void main() {
         source.copySync('${sources.path}/${source.uri.pathSegments.last}');
       }
     }
+    // Full scope now discovers its combined UI entry before preparation.
+    final owner = Directory('${temporary.path}/packages/owner')
+      ..createSync(recursive: true);
+    File('${owner.path}/pubspec.yaml').writeAsStringSync('name: owner\n');
+    File('${owner.path}/flax_package.yaml').writeAsStringSync(
+      'format: 1\ndart:\n  entrypoint: package:owner/owner.dart\ncapabilities: [codegen]\n',
+    );
+    File('${owner.path}/test/ui/example_test.dart')
+      ..parent.createSync(recursive: true)
+      ..writeAsStringSync('void main() {}');
     final bin = Directory('${temporary.path}/bin')..createSync();
     final pnpm = File('${bin.path}/pnpm${Platform.isWindows ? '.cmd' : ''}')
       ..writeAsStringSync(
@@ -262,6 +272,12 @@ void main() {
       ['--target=android-x64'],
       ['--target'],
       ['--device=x', '--device=y'],
+      ['--scope=all', '--package=flax'],
+      ['--scope=platform', '--file=test/ui/flax_view_test.dart'],
+      ['--scope=ui', '--file=test/ui/flax_view_test.dart'],
+      ['--scope=ui', '--build-only'],
+      ['--scope=ui', '--package='],
+      ['--scope=ui', '--package', '--file=test/ui/a_test.dart'],
     ]) {
       expect(() => PlatformCheckOptions(args), throwsArgumentError);
     }
@@ -323,6 +339,14 @@ void main() {
       ['linux-arm64'],
     );
     expect(platformJobs(['tool/ui_bundle.mjs']), hasLength(11));
+    for (final path in [
+      'tool/src/ui_suite.dart',
+      'tool/src/prepared_checks.dart',
+      'tool/src/consumer_workspace.dart',
+      '.github/workflows/prepare.yml',
+    ]) {
+      expect(platformJobs([path]), hasLength(11), reason: path);
+    }
     for (final path in [
       'tool/check_engines.dart',
       'tests/runtime/native/engines_test.cpp',

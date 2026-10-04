@@ -12,6 +12,22 @@ on:
       scope:
         type: string
         required: true
+      prepared:
+        type: boolean
+        default: false
+      archive-proof:
+        type: boolean
+        default: false
+      package:
+        type: string
+        default: ''
+      file:
+        type: string
+        default: ''
+
+env:
+  FLAX_PR_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+  FLAX_PR_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
 
 permissions:
   contents: read
@@ -79,6 +95,18 @@ jobs:
             bridge-${{ inputs.target }}-${{ hashFiles('.fvmrc', 'packages/*/native/**',
             'packages/flax/lib/native_*.dart', 'packages/flax_engine_*/hook/**',
             'packages/flax_native_assets/**') }}
+      - uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae
+        with:
+          path: |
+            ~/.pub-cache
+            ~/AppData/Local/Pub/Cache
+          key:
+            pub-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('.fvmrc',
+            'pubspec.lock') }}
+      - uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae
+        with:
+          path: ${{ runner.temp }}/flax-pnpm-store
+          key: pnpm-${{ runner.os }}-${{ hashFiles('.node-version', 'pnpm-lock.yaml') }}
       - name: Install locked dependencies
         id: dependencies
         shell: bash
@@ -88,17 +116,46 @@ jobs:
             git config --global --add safe.directory "$FLUTTER_ROOT"
             npm install --global "$(node -p 'require("./package.json").packageManager')"
             flutter pub get --enforce-lockfile
-            pnpm install --frozen-lockfile
+            pnpm install --frozen-lockfile --store-dir="$RUNNER_TEMP/flax-pnpm-store"
           } 2>&1 | tee 'build/platform/${{ inputs.target }}/ci/dependencies.log'
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
+        if: inputs.prepared
+        with:
+          name: prepared-checks
+          path: build/prepared
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
+        if: inputs.archive-proof
+        with:
+          name: archive-proof
+          path: build/archive-proof
+      - name: Configure verified preparation and stable consumer paths
+        shell: bash
+        run: |
+          echo "FLAX_CONSUMER_CACHE=$RUNNER_TEMP/flax-consumers" >> "$GITHUB_ENV"
+          if [ '${{ inputs.prepared }}' = true ]; then echo 'FLAX_PREPARED_CHECKS=build/prepared' >> "$GITHUB_ENV"; fi
+          if [ '${{ inputs.archive-proof }}' = true ]; then echo 'FLAX_ARCHIVE_PROOF=build/archive-proof/archive-proof.json' >> "$GITHUB_ENV"; fi
+      - uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae
+        with:
+          path: ${{ runner.temp }}/flax-consumers
+          key:
+            consumer-${{ inputs.target }}-${{ inputs.engine }}-${{ inputs.scope }}-${{
+            github.sha }}-${{ hashFiles('.fvmrc', '.node-version', 'pubspec.lock',
+            'pnpm-lock.yaml', 'build/prepared/cache-key.txt') }}
       - name: Check emulator startup handling
         if: inputs.target == 'linux-x64'
         run:
           python3 -B -m unittest discover -s tool/test -p
           'start_android_emulator_test.py'
       - name: Verify on the baseline system
-        run:
-          xvfb-run -a dart run tool/check_platform.dart --target=${{ inputs.target }}
-          --engine=${{ inputs.engine }} --scope=${{ inputs.scope }}
+        shell: bash
+        env:
+          UI_PACKAGE: ${{ inputs.package }}
+          UI_FILE: ${{ inputs.file }}
+        run: |
+          args=(--target='${{ inputs.target }}' --engine='${{ inputs.engine }}' --scope='${{ inputs.scope }}')
+          if [ -n "$UI_PACKAGE" ]; then args+=(--package="$UI_PACKAGE"); fi
+          if [ -n "$UI_FILE" ]; then args+=(--file="$UI_FILE"); fi
+          xvfb-run -a dart run tool/check_platform.dart "${args[@]}"
       - name: Record preparation failures
         if: always()
         shell: bash
@@ -114,6 +171,7 @@ jobs:
           path: |
             build/platform/${{ inputs.target }}/verification.json
             build/platform/${{ inputs.target }}/ci/
+            build/ui/
           if-no-files-found: warn
 
   native:
@@ -207,6 +265,18 @@ jobs:
             bridge-${{ inputs.target }}-${{ hashFiles('.fvmrc', 'packages/*/native/**',
             'packages/flax/lib/native_*.dart', 'packages/flax_engine_*/hook/**',
             'packages/flax_native_assets/**') }}
+      - uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae
+        with:
+          path: |
+            ~/.pub-cache
+            ~/AppData/Local/Pub/Cache
+          key:
+            pub-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('.fvmrc',
+            'pubspec.lock') }}
+      - uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae
+        with:
+          path: ${{ runner.temp }}/flax-pnpm-store
+          key: pnpm-${{ runner.os }}-${{ hashFiles('.node-version', 'pnpm-lock.yaml') }}
       - name: Install locked dependencies
         id: dependencies
         shell: bash
@@ -214,8 +284,31 @@ jobs:
           {
             npm install --global "$(node -p 'require("./package.json").packageManager')"
             flutter pub get --enforce-lockfile
-            pnpm install --frozen-lockfile
+            pnpm install --frozen-lockfile --store-dir="$RUNNER_TEMP/flax-pnpm-store"
           } 2>&1 | tee 'build/platform/${{ inputs.target }}/ci/dependencies.log'
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
+        if: inputs.prepared
+        with:
+          name: prepared-checks
+          path: build/prepared
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
+        if: inputs.archive-proof
+        with:
+          name: archive-proof
+          path: build/archive-proof
+      - name: Configure verified preparation and stable consumer paths
+        shell: bash
+        run: |
+          echo "FLAX_CONSUMER_CACHE=$RUNNER_TEMP/flax-consumers" >> "$GITHUB_ENV"
+          if [ '${{ inputs.prepared }}' = true ]; then echo 'FLAX_PREPARED_CHECKS=build/prepared' >> "$GITHUB_ENV"; fi
+          if [ '${{ inputs.archive-proof }}' = true ]; then echo 'FLAX_ARCHIVE_PROOF=build/archive-proof/archive-proof.json' >> "$GITHUB_ENV"; fi
+      - uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae
+        with:
+          path: ${{ runner.temp }}/flax-consumers
+          key:
+            consumer-${{ inputs.target }}-${{ inputs.engine }}-${{ inputs.scope }}-${{
+            github.sha }}-${{ hashFiles('.fvmrc', '.node-version', 'pubspec.lock',
+            'pnpm-lock.yaml', 'build/prepared/cache-key.txt') }}
       - name: Check Windows module delivery
         id: module_delivery
         if: runner.os == 'Windows'
@@ -256,8 +349,13 @@ jobs:
           echo FLAX_CHECK_DEVICE=emulator-5554 >> "$GITHUB_ENV"
       - name: Verify selected target
         shell: bash
+        env:
+          UI_PACKAGE: ${{ inputs.package }}
+          UI_FILE: ${{ inputs.file }}
         run: |
           args=()
+          if [ -n "$UI_PACKAGE" ]; then args+=(--package="$UI_PACKAGE"); fi
+          if [ -n "$UI_FILE" ]; then args+=(--file="$UI_FILE"); fi
           case '${{ inputs.target }}' in
             android-arm32|android-arm64|ios-device-arm64) args+=(--build-only) ;;
           esac
@@ -278,4 +376,5 @@ jobs:
           path: |
             build/platform/${{ inputs.target }}/verification.json
             build/platform/${{ inputs.target }}/ci/
+            build/ui/
           if-no-files-found: warn

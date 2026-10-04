@@ -44,7 +44,7 @@ void main() {
         home: Scaffold(
           body: FlaxView(
             createRuntime: h.create,
-            source: flaxTestFixtureSource('canvas'),
+            source: flaxTestFixtureSource('canvas', packageName: 'flax_canvas'),
             bindings: registry,
             plugins: const [FlaxCanvasPlugin()],
             onError: (e, _) => h.errors.add(e),
@@ -114,7 +114,7 @@ void main() {
       MaterialApp(
         home: FlaxView(
           createRuntime: h.create,
-          source: flaxTestFixtureSource('canvas'),
+          source: flaxTestFixtureSource('canvas', packageName: 'flax_canvas'),
           bindings: registry,
           plugins: const [FlaxCanvasPlugin()],
           onError: (e, _) => h.errors.add(e),

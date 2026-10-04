@@ -125,7 +125,10 @@ void main() {
         return runtime;
       }
 
-      final source = flaxTestFixtureSource('application');
+      final source = flaxTestFixtureSource(
+        'application',
+        packageName: 'flax_material_ui',
+      );
       Widget view(String code) => FlaxView(
         createRuntime: create,
         source: code,

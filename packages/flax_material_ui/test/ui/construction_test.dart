@@ -74,7 +74,10 @@ void main() {
       ]);
       final view = FlaxView(
         createRuntime: () => runtime,
-        source: flaxTestFixtureSource('construction'),
+        source: flaxTestFixtureSource(
+          'construction',
+          packageName: 'flax_material_ui',
+        ),
         bindings: bindings,
         onError: (error, _) => errors.add(error),
       );

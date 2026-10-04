@@ -70,8 +70,11 @@ Run commands from the repository root.
 
 V8 is explicit: use `native:build:v8`, `check:runtime:v8`, `ui:test:v8`,
 `check:aggregate:v8`, or `check:ui:v8`. The corresponding Dart tools accept
-`--engine=v8`. Build both assets before `check:engines`, which verifies coexistence.
-Independent measurements use `bench:engines`. V8 requires the exact host tools in
+`--engine=v8`. Build both assets before `check:engines`, which verifies coexistence. For
+focused UI execution, use `dart run tool/ui_test.dart --package=flax_fetch` or add
+`--file=test/ui/host_test.dart`. Single-owner and full commands import the same original
+assertions; `ui:test` excludes examples and aggregate application checks. Independent
+measurements use `bench:engines`. V8 requires the exact host tools in
 [the SDK build manifest](https://github.com/xuelongqy/flax_js_runtime/blob/main/engines/v8/engine.json);
 normal consumers compile only the bridge and do not need GN or Rust.
 
@@ -87,9 +90,10 @@ the locked SDK, never upstream engine sources.
 
 For a complete target check, use
 `dart run tool/check_platform.dart --target=linux-x64 --engine=all --scope=all` (one
-command line). `--scope=platform` selects specialty checks; `--list` displays
-conditions, and mobile targets require `--device` or explicit `--build-only`. See
-[platform tests and toolchains](docs/testing-platforms.md).
+command line). `--scope=platform` selects specialty checks; `--scope=ui` selects
+explicitly partial UI coverage and accepts `--package`/`--file`. `all` rejects filters.
+`--list` displays conditions, and mobile targets require `--device` or explicit
+`--build-only`. See [platform tests and toolchains](docs/testing-platforms.md).
 
 Formatting fixes are explicit:
 

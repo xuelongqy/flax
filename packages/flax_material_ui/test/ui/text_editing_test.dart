@@ -380,7 +380,7 @@ void main() {
       }
 
       final source =
-          "${flaxTestFixtureSource('text_editing')}\nediting.mount();";
+          "${flaxTestFixtureSource('text_editing', packageName: 'flax_material_ui')}\nediting.mount();";
       Widget app(String suffix) => MaterialApp(
         home: Material(
           child: FlaxView(

@@ -7,7 +7,10 @@ import 'package:flax_test/flax_test.dart';
 import '../support/harness.dart' show Harness, registry;
 import '../support/test_module.dart';
 
-final builderSource = flaxTestFixtureSource('builders');
+final builderSource = flaxTestFixtureSource(
+  'builders',
+  packageName: 'flax_material_ui',
+);
 
 const nullableString = FlaxTypeRef('String', nullable: true);
 const _omitted = Object();

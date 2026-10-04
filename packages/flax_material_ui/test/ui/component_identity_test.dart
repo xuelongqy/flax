@@ -16,7 +16,7 @@ void main() {
       ];
       final h = Harness();
       final code =
-          '''${flaxTestFixtureSource('components')}
+          '''${flaxTestFixtureSource('components', packageName: 'flax_material_ui')}
 class Notice extends componentApi.Counter {}
 class Counter extends componentApi.Counter {}
 var makeNotice = () => new Notice('notice');

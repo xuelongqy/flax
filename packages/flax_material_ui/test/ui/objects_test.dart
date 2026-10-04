@@ -423,7 +423,8 @@ void main() {
     (t) async {
       final first = OwnedHarness();
       final second = OwnedHarness();
-      final source = '${flaxTestFixtureSource('objects')}\nobjects.mount();';
+      final source =
+          '${flaxTestFixtureSource('objects', packageName: 'flax_material_ui')}\nobjects.mount();';
       Widget app(OwnedHarness h, String code) => MaterialApp(
         home: Material(
           child: FlaxView(

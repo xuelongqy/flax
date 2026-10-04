@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:path/path.dart' as p;
 
-import 'src/engine_selection.dart';
+import 'src/ui_suite.dart';
 import 'src/package_discovery.dart';
 import 'src/process.dart';
 import 'src/ui_testing.dart';
@@ -73,8 +73,8 @@ Future<void> main(List<String> arguments) => command(() async {
     return;
   }
   if (action == 'integration') {
-    final engine = selectedEngine(extra);
-    await _integration(root, package, engine);
+    final options = UiTestOptions(extra, packageName: package.name);
+    await _integration(root, package, options.engine, file: options.file);
     return;
   }
   throw ArgumentError('Unknown package action: $action');
@@ -206,8 +206,10 @@ Future<int> _runTests(
 Future<void> _integration(
   String root,
   FlaxWorkspacePackage package,
-  String engine,
-) async {
+  String engine, {
+  String? file,
+}) async {
+  if (file != null) collectUiTests(root, packageName: package.name, file: file);
   requireUiAssets(root, engine: engine);
   var testCount = 0;
   if (package.uiTests.existsSync()) {
@@ -223,6 +225,7 @@ Future<void> _integration(
       root,
       engine: engine,
       packageName: package.name,
+      file: file,
     );
   }
   final hasPackageRunner = Directory(

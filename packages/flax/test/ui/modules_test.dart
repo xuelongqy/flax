@@ -353,7 +353,7 @@ void _execute(RuntimeTracker runtime, String script) {
 class _Fixture {
   _Fixture() {
     final data = jsonDecode(
-      flaxTestFixtureFile('module_delivery.json'),
+      flaxTestFixtureFile('module_delivery.json', packageName: 'flax'),
     ) as Map<String, dynamic>;
     manifest = data['manifest'] as Map<String, dynamic>;
     assets = (data['assets'] as Map<String, dynamic>).cast<String, String>();
