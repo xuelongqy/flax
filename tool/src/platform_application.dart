@@ -180,7 +180,18 @@ Future<Map<String, Object?>> verifyPlatformApplication(
             product,
             await _applicationBundle(app, target, product),
             marker,
-            timeout: Duration(minutes: tests.isNotEmpty || full ? 10 : 3),
+            // The Intel full suite was still at case 230 after eight minutes.
+            // Keep its application deadline separate from the build/job budget.
+            timeout: Duration(
+              minutes:
+                  full &&
+                      target.name == 'ios-simulator-x64' &&
+                      entry == 'ui_suite_test.dart'
+                  ? 15
+                  : tests.isNotEmpty || full
+                  ? 10
+                  : 3,
+            ),
             uiResultsPath: entry == 'ui_suite_test.dart'
                 ? '${evidence.path}/../ci/ui-$engine-results.json'
                 : null,

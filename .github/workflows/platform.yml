@@ -181,7 +181,11 @@ jobs:
       'windows-11-arm' || 'windows-2025') || startsWith(inputs.target, 'android-') &&
       'ubuntu-24.04' || (endsWith(inputs.target, '-x64') && 'macos-26-intel' ||
       'macos-26') }}
-    timeout-minutes: ${{ inputs.target == 'macos-x64' && 180 || 120 }}
+    # Intel full iOS includes two UI apps and relocation/coexistence builds.
+    # The previous run reached the 120-minute job limit during coexistence.
+    timeout-minutes:
+      ${{ (inputs.target == 'macos-x64' || (inputs.target == 'ios-simulator-x64' &&
+      inputs.scope == 'all')) && 180 || 120 }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:

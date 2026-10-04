@@ -1,10 +1,13 @@
 # Task: Native SDK integration and platform validation
 
-Status: combined UI/CI implementation is in local validation at baseline `ae300ec`. The
-baseline terminal round passed Package and full iOS arm64; macOS x64 failed artifact
-upload with DNS `ENOTFOUND`, and full iOS x64 reached its two-hour job limit. Neither
-missing artifacts nor cancelled full execution certify complete acceptance. Timers
-remain disabled and PR #2 remains unmerged.
+Status: combined UI/CI implementation was pushed at `09fda0a`. Its terminal Workspace
+run `37172394396` passed shared preparation, archives and eleven platform targets, but
+Linux's negative preparation test inherited an artifact belonging to the real checkout.
+The failure was reproduced locally. Full iOS run `37172391594` passed arm64 and
+cancelled x64 at the two-hour job limit during coexistence compilation. The x64 V8 UI
+artifact retains two Fetch failures and incomplete coverage; cancellation does not
+certify acceptance. PR #2 remains unmerged. Monitoring pauses during repairs and resumes
+only after the next CI batch starts.
 
 The collector imports all 48 original UI files from seven owners into one entry per
 engine. Local desktop Hermes and V8 each passed 346 cases with identical display names
@@ -19,6 +22,25 @@ both cold and warm stable paths (17.0s and 7.4s for the test command); this is n
 forecast of complete CI duration. Tooling passed 81 tests with one Windows-only
 self-test inapplicable on macOS, and scoped analysis had no issues. Final-head Linux and
 iOS arm/x64 CI and artifact evidence are still required.
+
+The first combined CI round supplied seventeen artifacts; all ZIP digests, sizes, CRCs
+and safe extraction checks passed. The regular receipts verify 22 SDK groups with
+matching rc.3 archive/library hashes: 22 built, sixteen ran and delivered applications,
+and six remained build-only. Linux did not reach SDK/UI execution. Both Windows
+architectures retained independent Dart JIT/checksum-rejection/AOT and native
+coexistence evidence. Full iOS arm64 ran all 346 cases per engine in a 42-minute job
+with two UI builds and ten application builds; the old 47m26s arm64 baseline used
+fourteen UI builds and twenty-two builds overall. This single comparison is not a
+runner-independent speed guarantee.
+
+The correction isolates the temporary preparation-failure fixture from workspace
+artifacts. Fetch's asynchronous script helper uses a finite real-time budget rather than
+a frame-count deadline, reports stages without casting undefined, and closes
+views/servers even when assertions fail. Original network and resource assertions are
+retained. Intel full UI receives fifteen minutes for application execution, separate
+from the three-hour job budget: the failed run was still at 230 cases after eight
+minutes and later exhausted the old job budget compiling coexistence. The next head
+still requires Linux and both iOS simulators' complete CI and artifact evidence.
 
 ## Goal and scope
 

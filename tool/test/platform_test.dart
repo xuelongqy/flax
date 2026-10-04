@@ -170,6 +170,11 @@ void main() {
       expect(chmod.exitCode, 0);
     }
     final target = FlaxNativeTarget.host().name;
+    // This fake repository has no matching workspace preparation artifact.
+    final environment = Map<String, String>.of(Platform.environment)
+      ..remove('FLAX_PREPARED_CHECKS')
+      ..['PATH'] =
+          '${bin.path}${Platform.isWindows ? ';' : ':'}${Platform.environment['PATH']}';
     for (final scope in ['platform', if (target != 'linux-x64') 'all']) {
       final result = await Process.run(
         Platform.resolvedExecutable,
@@ -180,10 +185,8 @@ void main() {
           '--engine=all',
           '--scope=$scope',
         ],
-        environment: {
-          'PATH':
-              '${bin.path}${Platform.isWindows ? ';' : ':'}${Platform.environment['PATH']}',
-        },
+        environment: environment,
+        includeParentEnvironment: false,
       );
       expect(result.exitCode, 1, reason: '${result.stdout}\n${result.stderr}');
       expect(
