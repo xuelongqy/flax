@@ -1,12 +1,13 @@
-# @flax/fetch
+# @flax/fetch-runtime
 
-Type declarations and source ownership for the optional Dart `flax_fetch` plugin. Import
-`@flax/fetch/globals` as a type-only import to declare installed globals. The package
-root exports types only; it does not create a second set of constructors.
+Runtime source for the optional Dart `flax_fetch` plugin. Public declarations live in
+the declaration-only `@flax/fetch` package. Import `@flax/fetch/globals` as a type-only
+import to declare installed globals. The package root exports types only; it does not
+create a second set of constructors.
 
-Install it at the same version as Dart `flax_fetch`. Both ESM exports load the same
-side-effect-free empty entry; the `.d.ts` files describe globals installed by the Dart
-plugin.
+Install both npm packages at the same version as Dart `flax_fetch`. This source package
+delivers prepared modules and the generated host bootstrap. Public imports resolve
+through the plugin inventory; private implementation imports are rejected.
 
 Dart plugin registration installs the prebuilt script once per session. Application code
 uses the standard global names. See the

@@ -1,3 +1,4 @@
+import 'package:flax_test/flax_test.dart';
 import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
@@ -27,7 +28,7 @@ void main() {
         await t.pumpAndSettle();
         final foreign = fixture.CallbackStore.lastCreated!.target!;
         // Retire the first host Route before closing that session later.
-        await t.pumpWidget(const SizedBox());
+        await flaxTestUnmount(t);
         await t.pumpAndSettle();
         await t.pumpWidget(second.app('nested'));
         await t.pumpAndSettle();
@@ -41,7 +42,7 @@ void main() {
           contains('Foreign JS callback'),
         );
         expect(find.text('Nested 0: 0'), findsOneWidget);
-        await first.session.close();
+        await flaxTestCloseSession(t, first.session);
         expect(first.runtime.handlesAtDispose, 0);
         second.execute('nested.count.value++');
         await t.pump();

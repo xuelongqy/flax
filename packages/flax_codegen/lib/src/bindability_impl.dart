@@ -89,6 +89,65 @@ List<FlaxCodegenSkip> _providerSurfaceSkips({
   requireNames(requested.startsRoute, available.startsRoute, 'startsRoute');
   requireNames(requested.errorGetters, available.errorGetters, 'errorGetters');
 
+  void requireMetadata(
+    Map<String, Object?> requested,
+    Map<String, Object?> available,
+    String section,
+  ) {
+    for (final entry in requested.entries) {
+      if (jsonEncode(available[entry.key]) != jsonEncode(entry.value)) {
+        missingName('$typeName.${entry.key}', section, entry.key.toString());
+      }
+    }
+  }
+
+  requireMetadata(
+    requested.callbackSignatures,
+    available.callbackSignatures,
+    'callbackSignatures',
+  );
+  requireMetadata(
+    requested.callbackOptionalParameters,
+    available.callbackOptionalParameters,
+    'callbackOptionalParameters',
+  );
+  requireMetadata(
+    requested.callbackErrorParameters,
+    available.callbackErrorParameters,
+    'callbackErrorParameters',
+  );
+  requireMetadata(
+    requested.callbackScopedParameters,
+    available.callbackScopedParameters,
+    'callbackScopedParameters',
+  );
+  requireMetadata(
+    requested.methodTypeArguments,
+    available.methodTypeArguments,
+    'methodTypeArguments',
+  );
+  requireMetadata(
+    requested.listenerPairs,
+    available.listenerPairs,
+    'listenerPairs',
+  );
+  requireMetadata(
+    requested.data.constructors,
+    available.data.constructors,
+    'data.constructors',
+  );
+  requireMetadata(
+    requested.data.methods,
+    available.data.methods,
+    'data.methods',
+  );
+  requireNames(requested.data.getters, available.data.getters, 'data.getters');
+  requireNames(requested.data.results, available.data.results, 'data.results');
+  if (requested.disposeMethod != null &&
+      requested.disposeMethod != available.disposeMethod) {
+    missingName(typeName, 'disposeMethod', requested.disposeMethod!);
+  }
+
   if (requested.proxy != null && requested.proxy != available.proxy ||
       requested.kind != null && requested.kind != available.kind ||
       requested.jsName != null && requested.jsName != available.jsName ||
@@ -117,6 +176,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
   FlaxCodegenClassSelection? base,
   Iterable<InterfaceType> concreteUses = const [],
   Map<String, String> automaticTypeCarriers = const {},
+  bool ignoreProvider = false,
 }) async {
   final name = element.name!;
   final id = identity(element);
@@ -124,29 +184,64 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
   void skip(String target, String reason, {required String code}) =>
       skips.add(FlaxCodegenSkip(target: target, reason: reason, code: code));
 
-  if (parser._dependencyOwners[id] case final owner?) {
-    final surface = _selectionFromModel(
+  if (!ignoreProvider && parser._dependencyOwners[id] != null) {
+    final owner = parser._dependencyOwners[id]!;
+    final available = _selectionFromModel(
       owner.classes.singleWhere((type) => type.id == id),
     );
-    if (base != null) {
-      skips.addAll(
+    final core = (owner.moduleId ?? '').startsWith('flax.core/');
+    if (core) {
+      if (base != null) {
+        skips.addAll(
+          _providerSurfaceSkips(
+            typeName: name,
+            provider: owner.jsPackage,
+            requested: base,
+            available: available,
+          ),
+        );
+      }
+      return FlaxCodegenProposedBinding(
+        name: name,
+        id: id,
+        provider: owner.jsPackage,
+        skips: skips,
+      );
+    }
+    // Determine the requested local surface before deciding whether to reuse.
+    final requested = await _proposeSelection(
+      parser,
+      element,
+      library: library,
+      base: base,
+      concreteUses: concreteUses,
+      automaticTypeCarriers: automaticTypeCarriers,
+      ignoreProvider: true,
+    );
+    if (requested.selection != null &&
         _providerSurfaceSkips(
           typeName: name,
           provider: owner.jsPackage,
-          requested: base,
-          available: surface,
-        ),
+          requested: requested.selection!,
+          available: available,
+        ).isEmpty) {
+      return FlaxCodegenProposedBinding(
+        name: name,
+        id: id,
+        provider: owner.jsPackage,
+        skips: requested.skips,
       );
     }
-    return FlaxCodegenProposedBinding(
-      name: name,
-      id: id,
-      provider: owner.jsPackage,
-      skips: skips,
-    );
+    parser._dependencyOwners.remove(id);
+    parser._dependencyTypeOwners.remove(id);
+    parser._selections.remove(id);
+    parser._adaptations.remove(id);
+    parser._argumentsByType.remove(id);
+    return requested;
   }
 
-  if (parser._dependencyTypeOwners[id] case final owner?) {
+  if (!ignoreProvider && parser._dependencyTypeOwners[id] != null) {
+    final owner = parser._dependencyTypeOwners[id]!;
     if (base != null) {
       skip(
         name,
@@ -162,8 +257,9 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     );
   }
 
-  if (parser._adaptations.containsKey(id) ||
-      parser._selections.containsKey(id)) {
+  if (!ignoreProvider &&
+      (parser._adaptations.containsKey(id) ||
+          parser._selections.containsKey(id))) {
     if (base != null) {
       skip(name, 'Owned type is not expanded', code: 'owned_type_not_expanded');
       return FlaxCodegenProposedBinding(

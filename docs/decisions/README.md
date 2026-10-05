@@ -43,7 +43,7 @@ current language support is in the
 - [0020: Complete Dart Stream interop](0020-complete-dart-stream-interop.md) is
   accepted.
 - [0021: External binding version domains](0021-external-binding-version-domains.md) is
-  accepted with the current values defined by ADR 0035.
+  accepted with the current values defined by ADR 0037.
 - [0022: Stable binding identity and dependency ownership](0022-stable-binding-identity.md)
   is accepted.
 - [0023: External binding package and trust boundary](0023-external-binding-package-trust.md)
@@ -67,10 +67,13 @@ current language support is in the
 - [0034: Preserve Flutter application semantics](0034-flutter-application-semantics.md)
   is accepted; ADR 0035 amends its codegen mechanism details.
 - [0035: Shared generic owners, State variants and UI protocol 21](0035-generic-state-variants-and-protocol-21.md)
-  is accepted. Binding selection format 2 and Manifest 12 are current-only; native ABI 2
-  is unchanged.
+  is accepted; ADR 0037 updates the package and protocol domains.
 - [0036: Shared engine SDK and locally compiled ABI](0036-shared-engine-sdk.md) is
   accepted and supersedes the native distribution details of ADR 0002 and ADR 0012.
+
+- [0037: Package-scoped binding providers and plugin delivery](0037-package-scoped-binding-providers.md)
+  is accepted. Metadata 2, Manifest 13 and UI protocol 22 are current-only; native ABI 2
+  is unchanged.
 
 [Open Questions](open-questions.md) records decisions that have not been made. Use the
 [decision template](TEMPLATE.md) for a new significant decision. Record the decision,

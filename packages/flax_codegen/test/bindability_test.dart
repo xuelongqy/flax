@@ -410,7 +410,7 @@ void main() {
     () async {
       final ownerParser = FlaxCodegenBindingParser(repoRoot);
       addTearDown(ownerParser.dispose);
-      final owner = await ownerParser.parse(
+      final rawOwner = await ownerParser.parse(
         FlaxCodegenBindingConfig(
           'core',
           'dart:core',
@@ -446,6 +446,7 @@ void main() {
           },
         ),
       );
+      final owner = _withModuleId(rawOwner, 'flax.core/core');
       for (final consumer in ['first', 'second']) {
         final parser = FlaxCodegenBindingParser(repoRoot);
         addTearDown(parser.dispose);
@@ -485,7 +486,7 @@ void main() {
     addTearDown(parser.dispose);
     final ownerParser = FlaxCodegenBindingParser(repoRoot);
     addTearDown(ownerParser.dispose);
-    final owner = await ownerParser.parse(
+    final rawOwner = await ownerParser.parse(
       FlaxCodegenBindingConfig(
         'core',
         'dart:core',
@@ -501,6 +502,7 @@ void main() {
         },
       ),
     );
+    final owner = _withModuleId(rawOwner, 'flax.core/core');
     parser.prepareModules([owner]);
     final config = fixture('core_values.dart', const {});
     final element = await loadType('dart:core', 'DateTime');
@@ -556,6 +558,78 @@ void main() {
     );
     expect(incompatible.skips.single.reason, contains('Dependency path:'));
   });
+
+  test(
+    'non-core providers reuse complete surfaces or bind independently',
+    () async {
+      final seed = fixture('money.dart', const {});
+      final element = await loadType(seed.library, 'Money');
+      Future<FlaxCodegenModuleModel> provider(
+        String namespace, {
+        bool complete = false,
+      }) async {
+        final parser = FlaxCodegenBindingParser(repoRoot);
+        try {
+          final selection = complete
+              ? (await parser.proposeSelection(
+                  element,
+                  library: seed,
+                )).selection!
+              : const FlaxCodegenClassSelection(
+                  {
+                    '': ['amount'],
+                  },
+                  kind: 'object',
+                  getters: ['amount'],
+                );
+          final model = await parser.parse(
+            fixture('money.dart', {'Money': selection}),
+          );
+          return _withModuleId(model, '$namespace/money');
+        } finally {
+          await parser.dispose();
+        }
+      }
+
+      final partial = await provider('example.a');
+      final complete = await provider('example.b', complete: true);
+      for (final modules in [
+        [partial],
+        [complete],
+        [partial, complete],
+        [complete, partial],
+      ]) {
+        final parser = FlaxCodegenBindingParser(repoRoot);
+        try {
+          parser.prepareModules(modules);
+          final proposed = await parser.proposeSelection(
+            element,
+            library: seed,
+          );
+          if (modules.length == 1 && identical(modules.single, complete)) {
+            expect(proposed.reusesProvider, isTrue);
+            expect(proposed.selection, isNull);
+          } else {
+            expect(proposed.reusesProvider, isFalse);
+            expect(
+              proposed.selection!.getters,
+              containsAll(['amount', 'doubled']),
+            );
+            expect(proposed.selection!.instanceMethods['echo'], ['value']);
+            final model = await parser.parse(
+              fixture('money.dart', {'Money': proposed.selection!}),
+            );
+            expect(
+              model.classes.single.getters.map((getter) => getter.name),
+              containsAll(['amount', 'doubled']),
+            );
+          }
+        } finally {
+          await parser.dispose();
+        }
+      }
+    },
+  );
 
   test('skips a bad optional parameter and parses the rest', () async {
     final parser = FlaxCodegenBindingParser(repoRoot);
@@ -1303,3 +1377,25 @@ String _repoRoot() {
     'Cannot locate the Flax repository from ${Directory.current.path}',
   );
 }
+
+FlaxCodegenModuleModel _withModuleId(FlaxCodegenModuleModel model, String id) =>
+    FlaxCodegenModuleModel(
+      name: model.name,
+      library: model.library,
+      jsPackage: model.jsPackage,
+      dartOutput: model.dartOutput,
+      tsOutput: model.tsOutput,
+      classes: model.classes,
+      types: model.types,
+      typeLibraries: model.typeLibraries,
+      functions: model.functions,
+      extensions: model.extensions,
+      snapshots: model.snapshots,
+      typedefs: model.typedefs,
+      topLevel: model.topLevel,
+      publicLibraries: model.publicLibraries,
+      moduleId: id,
+      requiredCapabilities: model.requiredCapabilities,
+      internalTypeNames: model.internalTypeNames,
+      stateVariants: model.stateVariants,
+    );

@@ -11,6 +11,11 @@ Future<void> main() => startApplication();
 Future<void> startApplication() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  Flax.moduleAssets = await FlaxModuleAssets.load(
+    bundle: rootBundle,
+    manifest: 'assets/flax_modules/modules.json',
+  );
+
   final source = await rootBundle.loadString('assets/app.js');
   runApp(
     FlaxView(
@@ -18,6 +23,7 @@ Future<void> startApplication() async {
       source: source,
       sourceUrl: 'flax:flax_material_ui:example',
       bindings: bindings,
+      plugins: const [FlaxMaterialPlugin()],
     ),
   );
 }

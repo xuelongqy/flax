@@ -1,3 +1,4 @@
+import 'package:flax_test/flax_test.dart';
 import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
@@ -46,7 +47,7 @@ void main() {
     expect(errors, hasLength(1));
     expect(runtime.isDisposed, isTrue);
     expect(runtime.handlesAtDispose, 0);
-    await tester.pumpWidget(const SizedBox());
+    await flaxTestUnmount(tester);
     final closing = session.close();
     expect(session.close(), same(closing));
     await closing;
@@ -56,6 +57,6 @@ void main() {
     expect(errors, hasLength(2));
     expect(creations, 1);
     expect(errors.last.toString(), contains('Closed Flax session'));
-    await tester.pumpWidget(const SizedBox());
+    await flaxTestUnmount(tester);
   });
 }

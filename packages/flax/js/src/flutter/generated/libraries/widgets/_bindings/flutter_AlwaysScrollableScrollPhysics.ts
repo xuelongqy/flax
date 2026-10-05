@@ -8,7 +8,7 @@ export interface AlwaysScrollableScrollPhysics extends upstream0.ScrollPhysics, 
 readonly parent: upstream0.ScrollPhysics | null;
 }
 defineObject("flax.core/flutter#type:AlwaysScrollableScrollPhysics", ["parent"], [], {}, []);
-export function AlwaysScrollableScrollPhysics(options: { parent?: upstream0.ScrollPhysics | null | undefined } = {}): AlwaysScrollableScrollPhysics {
+export function AlwaysScrollableScrollPhysics(options: { parent?: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [] }> | null | undefined } = {}): AlwaysScrollableScrollPhysics {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:AlwaysScrollableScrollPhysics", "", [{"name":"parent","required":false,"positional":false}], [], options) as AlwaysScrollableScrollPhysics;
 }

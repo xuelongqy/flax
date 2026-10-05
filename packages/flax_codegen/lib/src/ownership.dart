@@ -480,7 +480,18 @@ FlaxCodegenResolvedPackage _resolve({
   for (final owner in importedOwners) {
     importedBySource.putIfAbsent(owner.sourceIdentity, () => []).add(owner);
   }
-  for (final group in importedBySource.values) {
+  // A declaration may have one owner in each package, independently.
+  final importedByPackageSource =
+      <(String, FlaxCodegenSourceIdentity), List<FlaxCodegenImportedOwner>>{};
+  for (final owner in importedOwners) {
+    importedByPackageSource
+        .putIfAbsent((
+          owner.wireId.moduleId.namespace.value,
+          owner.sourceIdentity,
+        ), () => [])
+        .add(owner);
+  }
+  for (final group in importedByPackageSource.values) {
     if (group.length < 2) continue;
     final wires = {for (final owner in group) owner.wireId.value};
     final message = wires.length > 1
@@ -508,7 +519,11 @@ FlaxCodegenResolvedPackage _resolve({
 
   for (final module in prepared) {
     for (final claim in module.claims) {
-      if (!importedBySource.containsKey(claim.sourceIdentity)) continue;
+      if (!(importedBySource[claim.sourceIdentity] ?? const []).any(
+        (owner) => owner.wireId.moduleId.namespace.value == 'flax.core',
+      )) {
+        continue;
+      }
       diagnostics.add(
         _locationDiagnostic(claim.location, 'Dependent republish.'),
       );
@@ -517,11 +532,14 @@ FlaxCodegenResolvedPackage _resolve({
   final republished = <FlaxCodegenSourceIdentity>{
     for (final module in prepared)
       for (final claim in module.claims)
-        if (importedBySource.containsKey(claim.sourceIdentity))
+        if ((importedBySource[claim.sourceIdentity] ?? const []).any(
+          (owner) => owner.wireId.moduleId.namespace.value == 'flax.core',
+        ))
           claim.sourceIdentity,
   };
   for (final source in republished) {
     for (final owner in importedBySource[source]!) {
+      if (owner.wireId.moduleId.namespace.value != 'flax.core') continue;
       diagnostics.add(
         _locationDiagnostic(owner.location, 'Dependent republish.'),
       );
@@ -549,6 +567,19 @@ FlaxCodegenResolvedPackage _resolve({
       final local = ownersBySource[reference.sourceIdentity];
       final importedGroup = importedBySource[reference.sourceIdentity];
       if ((local == null || local.isEmpty) &&
+          importedGroup != null &&
+          importedGroup.map((owner) => owner.wireId.value).toSet().length > 1 &&
+          !importedGroup.any(
+            (owner) => owner.wireId.moduleId.namespace.value == 'flax.core',
+          )) {
+        diagnostics.add(
+          _locationDiagnostic(
+            reference.location,
+            'Ambiguous imported owner; bind this declaration locally.',
+          ),
+        );
+      }
+      if ((local == null || local.isEmpty) &&
           (importedGroup == null || importedGroup.isEmpty)) {
         diagnostics.add(
           _locationDiagnostic(reference.location, 'Missing owner.'),
@@ -563,6 +594,9 @@ FlaxCodegenResolvedPackage _resolve({
 
   final wireBySource = <FlaxCodegenSourceIdentity, FlaxCodegenWireId>{
     for (final owner in importedOwners) owner.sourceIdentity: owner.wireId,
+    for (final owner in importedOwners)
+      if (owner.wireId.moduleId.namespace.value == 'flax.core')
+        owner.sourceIdentity: owner.wireId,
     for (final claim in recorded) claim.claim.sourceIdentity: claim.wireId,
   };
   final resolved = [

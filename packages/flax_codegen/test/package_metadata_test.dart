@@ -41,7 +41,7 @@ void main() {
 
   test('unknown capability names are kept and sorted', () {
     final projection = FlaxCodegenPackageMetadataProjection.parseStrict('''
-format: 1
+format: 2
 capabilities:
   - mystery
   - codegen
@@ -56,7 +56,7 @@ capabilities:
         p.join(corpus.path, 'tooling-invalid-dart.yaml'),
       ),
       {
-        'format': 1,
+        'format': 2,
         'capabilities': ['codegen'],
         'bindingNamespace': null,
       },
@@ -66,7 +66,7 @@ capabilities:
         p.join(corpus.path, 'tooling-invalid-javascript.yaml'),
       ),
       {
-        'format': 1,
+        'format': 2,
         'capabilities': ['codegen'],
         'bindingNamespace': null,
       },
@@ -76,7 +76,7 @@ capabilities:
         p.join(corpus.path, 'tooling-invalid-registration.yaml'),
       ),
       {
-        'format': 1,
+        'format': 2,
         'capabilities': ['codegen'],
         'bindingNamespace': null,
       },
@@ -85,7 +85,7 @@ capabilities:
 
   test('parsed capabilities cannot be mutated', () {
     final projection = FlaxCodegenPackageMetadataProjection.parseStrict('''
-format: 1
+format: 2
 capabilities:
   - codegen
 ''');
@@ -108,7 +108,7 @@ capabilities:
 
     for (final namespace in ['a.b', 'a.$label63', valid253]) {
       final projection = FlaxCodegenPackageMetadataProjection.parseStrict('''
-format: 1
+format: 2
 capabilities:
   - bindings
 bindingNamespace: $namespace
@@ -129,7 +129,7 @@ bindingNamespace: $namespace
       expect(
         _records(
           _errors('''
-format: 1
+format: 2
 capabilities:
   - bindings
 bindingNamespace: $namespace
@@ -155,7 +155,7 @@ bindingNamespace: $namespace
     addTearDown(() => directory.deleteSync(recursive: true));
     final first = File(p.join(directory.path, 'a.yaml'))
       ..writeAsStringSync('''
-format: 2
+format: 1
 dart:
   entrypoint: package:example/example.dart
 capabilities:
@@ -163,7 +163,7 @@ capabilities:
 ''');
     final second = File(p.join(directory.path, 'b.yaml'))
       ..writeAsStringSync('''
-format: 1
+format: 2
 dart:
   entrypoint: package:example/example.dart
 capabilities:

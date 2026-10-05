@@ -16,16 +16,16 @@ readonly color: upstream1.Color | null;
 readonly border: upstream2.BoxBorder | null;
 readonly borderRadius: upstream3.BorderRadiusGeometry | null;
 readonly shape: upstream4.BoxShape;
-copyWith(options?: {border?: upstream2.BoxBorder | null | undefined; borderRadius?: upstream3.BorderRadiusGeometry | null | undefined; color?: upstream1.Color | null | undefined; shape?: upstream4.BoxShape | null | undefined}): BoxDecoration;
+copyWith(options?: {border?: Readonly<{ "__flaxBound:package:flutter/src/painting/box_border.dart::BoxBorder": readonly [] }> | null | undefined; borderRadius?: Readonly<{ "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [] }> | null | undefined; color?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; shape?: upstream4.BoxShape | null | undefined}): BoxDecoration;
 }
-defineObject("flax.core/flutter#type:BoxDecoration", ["color","border","borderRadius","shape"], [], {copyWith(this: object, options: { border?: upstream2.BoxBorder | null | undefined; borderRadius?: upstream3.BorderRadiusGeometry | null | undefined; color?: upstream1.Color | null | undefined; shape?: upstream4.BoxShape | null | undefined } = {}): BoxDecoration {
+defineObject("flax.core/flutter#type:BoxDecoration", ["color","border","borderRadius","shape"], [], {copyWith(this: object, options: { border?: Readonly<{ "__flaxBound:package:flutter/src/painting/box_border.dart::BoxBorder": readonly [] }> | null | undefined; borderRadius?: Readonly<{ "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [] }> | null | undefined; color?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; shape?: upstream4.BoxShape | null | undefined } = {}): BoxDecoration {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["border","borderRadius","color","shape"].includes(k))) throw new TypeError('Invalid named method arguments');
 const _flaxResult = invokeObject(this, "flax.core/flutter#type:BoxDecoration", "copyWith", [options.border, options.borderRadius, options.color, options.shape]);
 return _flaxResult as BoxDecoration;
 },
 }, []);
-export function BoxDecoration(options: { color?: upstream1.Color | null | undefined; border?: upstream2.BoxBorder | null | undefined; borderRadius?: upstream3.BorderRadiusGeometry | null | undefined; shape?: upstream4.BoxShape | undefined } = {}): BoxDecoration {
+export function BoxDecoration(options: { color?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; border?: Readonly<{ "__flaxBound:package:flutter/src/painting/box_border.dart::BoxBorder": readonly [] }> | null | undefined; borderRadius?: Readonly<{ "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [] }> | null | undefined; shape?: upstream4.BoxShape | undefined } = {}): BoxDecoration {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:BoxDecoration", "", [{"name":"color","required":false,"positional":false},{"name":"border","required":false,"positional":false},{"name":"borderRadius","required":false,"positional":false},{"name":"shape","required":false,"positional":false}], [], options) as BoxDecoration;
 }

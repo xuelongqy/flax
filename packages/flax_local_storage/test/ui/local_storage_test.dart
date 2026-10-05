@@ -1,3 +1,5 @@
+import 'package:flax_test/flax_test.dart';
+
 import 'dart:io';
 
 import 'package:flax/flax.dart';
@@ -46,7 +48,7 @@ void main() {
     final failed = h.session();
     await t.pumpWidget(MaterialApp(home: FlaxView.session(session: failed)));
     expect(h.errors.single.toString(), contains('initialize()'));
-    await t.pumpWidget(const SizedBox());
+    await flaxTestUnmount(t);
     await t.pumpAndSettle();
     final failedClose = failed.close();
     await t.pumpAndSettle();
@@ -79,7 +81,7 @@ void main() {
     final live = h.session('shop');
     await t.pumpWidget(MaterialApp(home: FlaxView.session(session: live)));
     expect(() => FlaxLocalStoragePlugin.shutdown(), throwsStateError);
-    await t.pumpWidget(const SizedBox());
+    await flaxTestUnmount(t);
     final liveClose = live.close();
     await t.pumpAndSettle();
     await liveClose;
@@ -121,7 +123,7 @@ void main() {
       expect(h.number("localStorage.getItem('x') === null ? 1 : 0"), 1);
       await t.pumpWidget(view('shop'));
       expect(h.number("localStorage.getItem('x') === 'shop' ? 1 : 0"), 1);
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       await t.pumpAndSettle();
       await t.pumpWidget(view(null, plugins: const []));
       expect(
@@ -130,7 +132,7 @@ void main() {
         ),
         1,
       );
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       await t.pumpAndSettle();
       expect(h.errors, isEmpty);
       await flushStorage(t);
@@ -199,7 +201,7 @@ void main() {
       );
       a.execute("localStorage.late = 'cancel delivery'; undefined;");
       final closing = sessions[1].close();
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       final closes = sessions.map((session) => session.close()).toList();
       await t.pumpAndSettle();
       await Future.wait(closes);
@@ -262,7 +264,7 @@ void main() {
         h.tracker.hostCalls['__flaxLocalStorageCall']! - calls,
         lessThan(6),
       );
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       final close = session.close();
       await t.pumpAndSettle();
       await close;

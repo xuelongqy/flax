@@ -157,14 +157,14 @@ test('fromAsyncIterable acquires lazily and return cancels the JS iterator', asy
     assert.equal(version, bindingVersion);
     assert.equal(actualType, 'flax.core/flutter#type:Stream');
     sourceId = id;
-    return api.streamObject(actualType, 'test:async-iterable', 21);
+    return api.streamObject(actualType, 'test:async-iterable', 22);
   };
 
   const result = Stream.fromAsyncIterable(source);
   assert.equal(acquired, 0);
   assert.equal(
     result,
-    api.streamObject('flax.core/flutter#type:Stream', 'test:async-iterable', 21),
+    api.streamObject('flax.core/flutter#type:Stream', 'test:async-iterable', 22),
   );
   assert.deepEqual(await api.asyncIterableNext(sourceId), [false, 1]);
   assert.equal(acquired, 1);

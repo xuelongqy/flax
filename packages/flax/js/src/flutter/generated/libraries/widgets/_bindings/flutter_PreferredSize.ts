@@ -8,7 +8,7 @@ import type * as upstream2 from '@flax/flutter/services/_bindings/flutter_Size';
 import '@flax/flutter/services/_bindings/flutter_Size';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export type PreferredSize = WidgetDescription & { readonly type: "flax.core/flutter#type:PreferredSize"; } & upstream0.PreferredSizeWidget;
-export function PreferredSize(options: { key?: upstream1.Key | null | undefined; preferredSize: upstream2.Size; child: Widget }): PreferredSize {
+export function PreferredSize(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; preferredSize: Readonly<{ "__flaxBound:dart:ui::Size": readonly [] }>; child: Widget }): PreferredSize {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return construct("widget", "flax.core/flutter#type:PreferredSize", "", [{"name":"key","fixed":true,"required":false,"positional":false},{"name":"preferredSize","fixed":true,"required":true,"positional":false},{"name":"child","fixed":true,"required":true,"positional":false}], [], options) as PreferredSize;
 }

@@ -229,7 +229,8 @@ extension _Collections on _Session {
     // Once exposed as a Dart reference, even a former JS copy obeys the Dart
     // collection contract on every subsequent round-trip.
     _jsCollectionShapes[value] = null;
-    var record = _collectionViews[value]?[definition.id];
+    final viewId = _bindingViewKey(definition.id, _usesBindingContext(type));
+    var record = _collectionViews[value]?[viewId];
     final created = record == null;
     if (record == null) {
       final item = type.item!;
@@ -362,7 +363,7 @@ extension _Collections on _Session {
         });
       }
       final binding = FlaxObjectBinding(
-        definition.id,
+        viewId,
         [
           FlaxGetter(
             'length',
@@ -383,13 +384,13 @@ extension _Collections on _Session {
       );
       record = _CollectionReference(this, _nextObject++, binding, value);
       _objects[record.id] = record;
-      (_collectionViews[value] ??= {})[definition.id] = record;
+      (_collectionViews[value] ??= {})[viewId] = record;
     }
     try {
       if (created) {
         _releaseJs(
           helper('defineCollection')
-              .call([FlaxJsString(definition.id), FlaxJsString(type.kind)]),
+              .call([FlaxJsString(viewId), FlaxJsString(type.kind)]),
         );
       }
       return helper('object').call([
@@ -417,18 +418,50 @@ extension _Collections on _Session {
     if (value is Map) return collectionResult(value, _anyMap);
     if (value is Set) return collectionResult(value, _anySet);
     if (value is Iterable) return collectionResult(value, _anyIterable);
-    for (final binding in registry._types.values.whereType<FlaxEnumBinding>()) {
-      for (final entry in binding.values.entries) {
-        if (identical(entry.value, value)) {
-          return enumResult(value, FlaxTypeRef('enum', id: binding.id));
+    final candidates = <FlaxTypeBinding>[
+      for (final binding in registry._types.values)
+        if (binding is FlaxEnumBinding &&
+                binding.values.values.any((entry) => identical(entry, value)) ||
+            binding is FlaxObjectBinding &&
+                binding.matches?.call(value) == true)
+          binding,
+    ];
+    if (candidates.isNotEmpty) {
+      int priority(FlaxTypeBinding candidate) {
+        final module = registry._bindingOwners[candidate.id]!;
+        final namespace = module.moduleId.split('/').first;
+        if (namespace == 'flax.core') return 0;
+        if (namespace == _bindingContext?.namespace) return 1;
+        if (_bindingContext?.dependencies.contains(module.moduleId) == true) {
+          return 2;
         }
+        return 3;
       }
-    }
-    for (final binding
-        in registry._types.values.whereType<FlaxObjectBinding>()) {
-      if (binding.matches?.call(value) == true) {
-        return objectResult(value, FlaxTypeRef('object', id: binding.id));
+
+      final best = candidates.map(priority).reduce((a, b) => a < b ? a : b);
+      final selected = candidates
+          .where((candidate) => priority(candidate) == best)
+          .toList();
+      // Prefer specific interfaces within the selected provider priority.
+      final lessSpecific = selected
+          .where(
+            (candidate) => selected.any(
+              (other) =>
+                  other is FlaxObjectBinding &&
+                  other.supertypes.contains(candidate.id),
+            ),
+          )
+          .toSet();
+      selected.removeWhere(lessSpecific.contains);
+      if (selected.length != 1) {
+        throw ArgumentError(
+          'Ambiguous Dart value binding: ${selected.map((binding) => binding.id).toList()..sort()}',
+        );
       }
+      final binding = selected.single;
+      return binding is FlaxEnumBinding
+          ? enumResult(value, FlaxTypeRef('enum', id: binding.id))
+          : objectResult(value, FlaxTypeRef('object', id: binding.id));
     }
     throw ArgumentError('Unbound Dart value: ${value.runtimeType}');
   }

@@ -10,7 +10,12 @@
     "@flax/fetch": "workspace:*",
     "@flax/websocket": "workspace:*",
     "@flax/local-storage": "workspace:*",
-    "@flax/canvas": "workspace:*"
+    "@flax/canvas": "workspace:*",
+    "@flax/core-runtime": "workspace:*",
+    "@flax/fetch-runtime": "workspace:*",
+    "@flax/websocket-runtime": "workspace:*",
+    "@flax/local-storage-runtime": "workspace:*",
+    "@flax/canvas-runtime": "workspace:*"
   },
   "devDependencies": {
     "@flax/tools": "workspace:*",

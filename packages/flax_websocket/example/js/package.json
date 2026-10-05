@@ -10,6 +10,8 @@
   "dependencies": {
     "@flax/core": "workspace:*",
     "@flax/flutter": "workspace:*",
-    "@flax/websocket": "workspace:*"
+    "@flax/websocket": "workspace:*",
+    "@flax/core-runtime": "workspace:*",
+    "@flax/websocket-runtime": "workspace:*"
   }
 }

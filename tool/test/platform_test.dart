@@ -155,7 +155,7 @@ void main() {
       ..createSync(recursive: true);
     File('${owner.path}/pubspec.yaml').writeAsStringSync('name: owner\n');
     File('${owner.path}/flax_package.yaml').writeAsStringSync(
-      'format: 1\ndart:\n  entrypoint: package:owner/owner.dart\ncapabilities: [codegen]\n',
+      'format: 2\ndart:\n  entrypoint: package:owner/owner.dart\ncapabilities: [codegen]\n',
     );
     File('${owner.path}/test/ui/example_test.dart')
       ..parent.createSync(recursive: true)

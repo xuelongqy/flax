@@ -185,6 +185,10 @@ Future<Map<String, Map<String, String>>> prepareUiFixtures(
                 )
                 .replaceAll('\\', '/'): source
                 .readAsStringSync(),
+          for (final file in Directory(
+            '$root/.local/ui-module-inventory/modules',
+          ).listSync().whereType<File>())
+            'modules/${p.basename(file.path)}': file.readAsStringSync(),
           ..._tlsFixtures!,
         },
     };
@@ -214,6 +218,9 @@ void main() {
   final fixtures = jsonDecode(${mobile ? jsonEncode(jsonEncode(fixtures ?? (throw ArgumentError('Mobile fixtures must be preloaded')))).replaceAll(r'$', r'\$') : "File('ui-fixtures.json').readAsStringSync()"}) as Map;
   flaxTestLoadFixturePackages({for (final entry in fixtures.entries)
     entry.key as String: (entry.value as Map).cast<String, String>()});
+  setUpAll(() async {
+    await flaxTestLoadModuleAssets((fixtures.values.first as Map).cast<String, String>());
+  });
   ${ios ? iosSemanticsSetup : ''}
   ${mobile ? mobileViewportSetup : ''}
   ${[for (var i = 0; i < tests.length; i++) "group(${jsonEncode('${tests[i].packageName}/${tests[i].path}')}, t$i.main);"].join('\n  ')}

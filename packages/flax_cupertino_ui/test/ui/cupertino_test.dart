@@ -1,3 +1,4 @@
+import 'package:flax_test/flax_test.dart';
 import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -60,7 +61,7 @@ void main() {
     // Flutter may retain the previous configuration during didUpdateWidget.
     expect(scaffold.navigationBar!.shouldFullyObstruct(context), isTrue);
 
-    await tester.pumpWidget(const SizedBox());
+    await flaxTestUnmount(tester);
     await tester.pumpAndSettle();
     expect(harness.runtime.isDisposed, isTrue);
     expect(harness.runtime.handlesAtDispose, 0);
@@ -76,7 +77,7 @@ void main() {
     await tester.pumpAndSettle();
     expect(first.number('cupertinoPilot.presses'), 1);
 
-    await tester.pumpWidget(const SizedBox());
+    await flaxTestUnmount(tester);
     await tester.pumpAndSettle();
     expect(first.runtime.isDisposed, isTrue);
     expect(first.runtime.handlesAtDispose, 0);
@@ -88,7 +89,7 @@ void main() {
     expect(second.number('cupertinoPilot.presses'), 0);
     expect(find.text('Opaque bar'), findsOneWidget);
 
-    await tester.pumpWidget(const SizedBox());
+    await flaxTestUnmount(tester);
     await tester.pumpAndSettle();
     expect(second.runtime.isDisposed, isTrue);
     expect(second.runtime.handlesAtDispose, 0);

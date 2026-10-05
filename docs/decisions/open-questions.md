@@ -2,7 +2,7 @@
 
 Current accepted contracts include explicit selection, public-provider manifests, stable
 wire identity, package-atomic generation and trusted compile-time dependencies. Binding
-selection format 2, package metadata format 1, current-only Manifest 12, UI protocol 21
+selection format 2, package metadata format 2, current-only Manifest 13, UI protocol 22
 and native ABI 2 remain separate domains. Generic declarations use shared Dart owners
 while TypeScript preserves relationships; safe constructor specializations come from
 Analyzer-observed concrete use sites plus the bounded String/safe-int scalar pair.
@@ -20,13 +20,14 @@ use the function-style access contract in
 automatic entry, safe direct-provider reuse, annotation filtering and optional
 overrides. ADR 0035 adds shared generic owners, safe constructor specialization and
 fixed Flutter State mixin variants. The remaining questions below concern broader
-management and composition, not the implemented `--library` workflow.
+composition and specialization. Package-scoped provider selection is defined by
+[ADR 0037](0037-package-scoped-binding-providers.md), and scalable default omission uses
+the five/six-parameter hybrid described in
+[Binding Generation](../architecture/bindings.md).
 
 | Decision                                          | Evidence required before choosing                                                                                                                                                                                                                                                                                                                                                                                                        |
 | ------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Provider and project binding management           | Explicit provider choice, missing-member policy, version conflicts and module partitioning while retaining one canonical owner per declaration                                                                                                                                                                                                                                                                                           |
 | General mixin composition beyond State variants   | Revisit only with concrete demand for applying arbitrary mixins to non-State owners; fixed analyzer-validated State variants are implemented                                                                                                                                                                                                                                                                                             |
-| Scalable optional omission                        | A concrete replacement for exponential `omitWhenAbsent` branches that preserves Dart defaults and explicit null                                                                                                                                                                                                                                                                                                                          |
 | Broader generic runtime specialization (deferred) | Revisit only with concrete SDK/API demand. Current scope excludes runtime type tokens, whole-graph nested inference, overlapping constructor domains, callback erasure requiring concrete runtime specialization, generalized deferred-factory inference and generic Widget-interface declarations. Ordinary higher-rank callbacks with erasable bounds remain supported; concrete generic Extension specialization remains unsupported. |
 
 A proposed Core, Material, Cupertino or third-party slice is not implemented until its

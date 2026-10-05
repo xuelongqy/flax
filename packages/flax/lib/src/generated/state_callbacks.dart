@@ -35,7 +35,8 @@ const componentsBindings = FlaxBindingModule(
   ],
   functions: [],
   moduleId: "flax.core/components",
-  uiProtocol: 21,
+  dependencyModules: ["flax.core/flutter"],
+  uiProtocol: 22,
   requiredCapabilities: const <String>[],
   stateVariants: [
     _stateVariant_SingleTickerProviderState,

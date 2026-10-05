@@ -1,5 +1,6 @@
 packages:
   - packages/*/js
+  - packages/*/js-types
   - packages/*/example/js
   - examples/*/js
 

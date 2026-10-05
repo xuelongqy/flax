@@ -13,9 +13,9 @@ readonly surface: upstream0.Color;
 readonly onSurface: upstream0.Color;
 readonly error: upstream0.Color;
 readonly onError: upstream0.Color;
-copyWith(options?: {brightness?: upstream1.Brightness | null | undefined; error?: upstream0.Color | null | undefined; onError?: upstream0.Color | null | undefined; onPrimary?: upstream0.Color | null | undefined; onSurface?: upstream0.Color | null | undefined; primary?: upstream0.Color | null | undefined; surface?: upstream0.Color | null | undefined}): ColorScheme;
+copyWith(options?: {brightness?: upstream1.Brightness | null | undefined; error?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; onError?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; onPrimary?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; onSurface?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; primary?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; surface?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined}): ColorScheme;
 }
-defineObject("flax.material/material#type:ColorScheme", ["brightness","primary","onPrimary","surface","onSurface","error","onError"], [], {copyWith(this: object, options: { brightness?: upstream1.Brightness | null | undefined; error?: upstream0.Color | null | undefined; onError?: upstream0.Color | null | undefined; onPrimary?: upstream0.Color | null | undefined; onSurface?: upstream0.Color | null | undefined; primary?: upstream0.Color | null | undefined; surface?: upstream0.Color | null | undefined } = {}): ColorScheme {
+defineObject("flax.material/material#type:ColorScheme", ["brightness","primary","onPrimary","surface","onSurface","error","onError"], [], {copyWith(this: object, options: { brightness?: upstream1.Brightness | null | undefined; error?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; onError?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; onPrimary?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; onSurface?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; primary?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; surface?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined } = {}): ColorScheme {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["brightness","error","onError","onPrimary","onSurface","primary","surface"].includes(k))) throw new TypeError('Invalid named method arguments');
 const _flaxResult = invokeObject(this, "flax.material/material#type:ColorScheme", "copyWith", [options.brightness, options.error, options.onError, options.onPrimary, options.onSurface, options.primary, options.surface]);
@@ -23,7 +23,7 @@ return _flaxResult as ColorScheme;
 },
 }, []);
 export namespace ColorScheme {
-export function fromSeed(options: { seedColor: upstream0.Color; brightness?: upstream1.Brightness | undefined }): ColorScheme {
+export function fromSeed(options: { seedColor: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }>; brightness?: upstream1.Brightness | undefined }): ColorScheme {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:ColorScheme", "fromSeed", [{"name":"seedColor","required":true,"positional":false},{"name":"brightness","required":false,"positional":false}], [], options) as ColorScheme;
 }

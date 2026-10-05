@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/flutter/foundation/_bindings/flutter_Key'
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface PopScope<T extends unknown | null = unknown | null> extends WidgetDescription { readonly type: "flax.core/flutter#type:PopScope";  }
-export function PopScope<T extends unknown | null = unknown | null>(options: { key?: upstream0.Key | null | undefined; child: Bindable<Widget>; canPop?: Bindable<boolean> | undefined; onPopInvokedWithResult?: Bindable<((didPop: boolean, result: NavigationData | null) => void) | null> | undefined }): PopScope<T> {
+export function PopScope<T extends unknown | null = unknown | null>(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; child: Bindable<Widget>; canPop?: Bindable<boolean> | undefined; onPopInvokedWithResult?: Bindable<((didPop: boolean, result: NavigationData | null) => void) | null> | undefined }): PopScope<T> {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return construct("widget", "flax.core/flutter#type:PopScope", "", [{"name":"key","required":false,"positional":false},{"name":"child","required":true,"positional":false},{"name":"canPop","required":false,"positional":false},{"name":"onPopInvokedWithResult","required":false,"positional":false}], [], options) as PopScope<T>;
 }

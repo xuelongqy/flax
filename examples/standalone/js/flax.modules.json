@@ -2,12 +2,40 @@
   "formatVersion": 1,
   "modules": [
     {
+      "specifier": "@flax/core/navigation",
+      "package": "@flax/core-runtime"
+    },
+    {
+      "specifier": "@flax/core/host",
+      "package": "@flax/core-runtime"
+    },
+    {
+      "specifier": "@flax/core",
+      "package": "@flax/core-runtime"
+    },
+    {
       "specifier": "@flax/flutter/widgets",
-      "package": "@flax/core"
+      "package": "@flax/core-runtime"
     },
     {
       "specifier": "@flax/flutter/material",
       "package": "@flax/material-ui"
+    },
+    {
+      "specifier": "@flax/fetch",
+      "package": "@flax/fetch-runtime"
+    },
+    {
+      "specifier": "@flax/websocket",
+      "package": "@flax/websocket-runtime"
+    },
+    {
+      "specifier": "@flax/local-storage",
+      "package": "@flax/local-storage-runtime"
+    },
+    {
+      "specifier": "@flax/canvas",
+      "package": "@flax/canvas-runtime"
     }
   ],
   "flutterProject": "..",

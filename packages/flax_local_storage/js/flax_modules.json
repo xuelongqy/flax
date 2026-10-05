@@ -1,0 +1,17 @@
+{
+  "formatVersion": 2,
+  "package": "@flax/local-storage-runtime",
+  "version": "0.0.0",
+  "modules": [
+    {
+      "bindings": [],
+      "specifier": "@flax/local-storage",
+      "source": "dist/index.js"
+    },
+    {
+      "bindings": [],
+      "specifier": "@flax/local-storage/globals",
+      "source": "dist/globals.js"
+    }
+  ]
+}

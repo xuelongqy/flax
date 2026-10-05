@@ -10,16 +10,16 @@ import '@flax/flutter/widgets/_bindings/flutter_BorderSide';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface StadiumBorder extends upstream0.OutlinedBorder, upstream1.ShapeBorder, Readonly<{ "__flaxBound:package:flutter/src/painting/stadium_border.dart::StadiumBorder": readonly [] }> { readonly __StadiumBorder: unique symbol;
 readonly side: upstream2.BorderSide;
-copyWith(options?: {side?: upstream2.BorderSide | null | undefined}): StadiumBorder;
+copyWith(options?: {side?: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [] }> | null | undefined}): StadiumBorder;
 }
-defineObject("flax.core/flutter#type:StadiumBorder", ["side"], [], {copyWith(this: object, options: { side?: upstream2.BorderSide | null | undefined } = {}): StadiumBorder {
+defineObject("flax.core/flutter#type:StadiumBorder", ["side"], [], {copyWith(this: object, options: { side?: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [] }> | null | undefined } = {}): StadiumBorder {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["side"].includes(k))) throw new TypeError('Invalid named method arguments');
 const _flaxResult = invokeObject(this, "flax.core/flutter#type:StadiumBorder", "copyWith", [options.side]);
 return _flaxResult as StadiumBorder;
 },
 }, []);
-export function StadiumBorder(options: { side?: upstream2.BorderSide | undefined } = {}): StadiumBorder {
+export function StadiumBorder(options: { side?: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [] }> | undefined } = {}): StadiumBorder {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:StadiumBorder", "", [{"name":"side","required":false,"positional":false}], [], options) as StadiumBorder;
 }

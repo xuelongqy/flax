@@ -8,7 +8,7 @@ import '@flax/flutter/widgets/_bindings/flutter_Decoration';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_DecorationPosition';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface DecoratedBox extends WidgetDescription { readonly type: "flax.core/flutter#type:DecoratedBox";  }
-export function DecoratedBox(options: { key?: upstream0.Key | null | undefined; decoration: Bindable<upstream1.Decoration>; position?: Bindable<upstream2.DecorationPosition> | undefined; child?: Bindable<Widget | null> | undefined }): DecoratedBox {
+export function DecoratedBox(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; decoration: Bindable<Readonly<{ "__flaxBound:package:flutter/src/painting/decoration.dart::Decoration": readonly [] }>>; position?: Bindable<upstream2.DecorationPosition> | undefined; child?: Bindable<Widget | null> | undefined }): DecoratedBox {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return construct("widget", "flax.core/flutter#type:DecoratedBox", "", [{"name":"key","required":false,"positional":false},{"name":"decoration","required":true,"positional":false},{"name":"position","required":false,"positional":false},{"name":"child","required":false,"positional":false}], [], options) as DecoratedBox;
 }

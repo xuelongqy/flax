@@ -11,6 +11,7 @@ import 'package:flutter/widgets.dart';
 
 import 'runtime.dart';
 import 'src/generated/state_callbacks.dart';
+import 'src/generated/flutter_bindings.g.dart';
 import 'src/generated/host_bootstrap.g.dart';
 
 part 'src/ui/definitions.dart';

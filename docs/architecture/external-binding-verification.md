@@ -8,14 +8,14 @@ only the formats and checks implemented by this repository.
 | Domain            | Current value | Validation                                                               |
 | ----------------- | ------------- | ------------------------------------------------------------------------ |
 | Binding selection | Format 2      | Strict YAML schema; unknown fields and unsupported semantics fail closed |
-| Package metadata  | Format 1      | `flax_package.yaml`; separate from binding selections                    |
-| Binding Manifest  | Format 12     | The reader and writer accept format 12 only                              |
-| UI protocol       | 21            | Every generated module must match the runtime exactly                    |
+| Package metadata  | Format 2      | `flax_package.yaml`; separate from binding selections                    |
+| Binding Manifest  | Format 13     | The reader and writer accept format 13 only                              |
+| UI protocol       | 22            | Every generated module must match the runtime exactly                    |
 | Native ABI        | 2             | Unchanged by binding generation                                          |
-| Module inventory  | Format 1      | `flax_modules.json`; separate from the Binding Manifest                  |
+| Module inventory  | Format 2      | `flax_modules.json`; separate from the Binding Manifest                  |
 
 The generator has no reader, adapter, alias or normalization path for earlier binding
-selection or Manifest formats. Package metadata format 1 and module inventory format 1
+selection or Manifest formats. Package metadata format 2 and module inventory format 2
 are current independent formats, not compatibility modes.
 
 ## Verification layers
@@ -47,5 +47,6 @@ support, other operating systems or published-package compatibility. Automatic
 selections remain fail closed.
 
 Current manifests are compile-time trusted inputs from direct Dart dependencies. Stable
-declaration identity prevents duplicate owners, but the module system is not a security
-sandbox and does not support runtime replacement of binding providers.
+declaration identity prevents duplicate full identities within a namespace, but the
+module system is not a security sandbox and does not support runtime replacement of
+binding providers.

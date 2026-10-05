@@ -11,9 +11,9 @@ readonly topLeft: upstream1.Radius;
 readonly topRight: upstream1.Radius;
 readonly bottomLeft: upstream1.Radius;
 readonly bottomRight: upstream1.Radius;
-copyWith(options?: {bottomLeft?: upstream1.Radius | null | undefined; bottomRight?: upstream1.Radius | null | undefined; topLeft?: upstream1.Radius | null | undefined; topRight?: upstream1.Radius | null | undefined}): BorderRadius;
+copyWith(options?: {bottomLeft?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | null | undefined; bottomRight?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | null | undefined; topLeft?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | null | undefined; topRight?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | null | undefined}): BorderRadius;
 }
-defineObject("flax.core/flutter#type:BorderRadius", ["topLeft","topRight","bottomLeft","bottomRight"], [], {copyWith(this: object, options: { bottomLeft?: upstream1.Radius | null | undefined; bottomRight?: upstream1.Radius | null | undefined; topLeft?: upstream1.Radius | null | undefined; topRight?: upstream1.Radius | null | undefined } = {}): BorderRadius {
+defineObject("flax.core/flutter#type:BorderRadius", ["topLeft","topRight","bottomLeft","bottomRight"], [], {copyWith(this: object, options: { bottomLeft?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | null | undefined; bottomRight?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | null | undefined; topLeft?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | null | undefined; topRight?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | null | undefined } = {}): BorderRadius {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["bottomLeft","bottomRight","topLeft","topRight"].includes(k))) throw new TypeError('Invalid named method arguments');
 const _flaxResult = invokeObject(this, "flax.core/flutter#type:BorderRadius", "copyWith", [options.bottomLeft, options.bottomRight, options.topLeft, options.topRight]);
@@ -21,7 +21,7 @@ return _flaxResult as BorderRadius;
 },
 }, []);
 export namespace BorderRadius {
-export function all(radius: upstream1.Radius): BorderRadius {
+export function all(radius: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }>): BorderRadius {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:BorderRadius", "all", [{"name":"radius","required":true,"positional":true}], [radius], {}) as BorderRadius;
 }
@@ -33,7 +33,7 @@ return constructObject("object", "flax.core/flutter#type:BorderRadius", "circula
 }
 }
 export namespace BorderRadius {
-export function only(options: { topLeft?: upstream1.Radius | undefined; topRight?: upstream1.Radius | undefined; bottomLeft?: upstream1.Radius | undefined; bottomRight?: upstream1.Radius | undefined } = {}): BorderRadius {
+export function only(options: { topLeft?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined; topRight?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined; bottomLeft?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined; bottomRight?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined } = {}): BorderRadius {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:BorderRadius", "only", [{"name":"topLeft","required":false,"positional":false},{"name":"topRight","required":false,"positional":false},{"name":"bottomLeft","required":false,"positional":false},{"name":"bottomRight","required":false,"positional":false}], [], options) as BorderRadius;
 }

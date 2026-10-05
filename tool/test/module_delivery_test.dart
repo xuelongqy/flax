@@ -7,7 +7,7 @@ import 'package:test/test.dart';
 const _targets = [
   (
     directory: 'flax',
-    package: '@flax/core',
+    package: '@flax/core-runtime',
     specifier: '@flax/flutter/widgets',
   ),
   (
@@ -35,6 +35,21 @@ void main() {
     final script = File(p.join(temporary.path, 'tool/module_delivery.mjs'));
     script.parent.createSync(recursive: true);
     File(p.join(root, 'tool/module_delivery.mjs')).copySync(script.path);
+    for (final owner in [
+      'flax_fetch',
+      'flax_websocket',
+      'flax_local_storage',
+      'flax_canvas',
+    ]) {
+      _writeJson(p.join(temporary.path, 'packages', owner, 'js/package.json'), {
+        'name': '@fixture/$owner-runtime',
+        'version': '0.0.0',
+      });
+    }
+    _writeJson(
+      p.join(temporary.path, 'packages/flax_canvas/bindings/manifest.json'),
+      {'formatVersion': 13, 'modules': <Map<String, Object?>>[]},
+    );
     for (final target in _targets) {
       final directory = p.join(temporary.path, 'packages', target.directory);
       final moduleId = 'flax.test/${target.directory}';
@@ -43,12 +58,12 @@ void main() {
         'version': '0.0.0',
       });
       _writeJson(p.join(directory, 'bindings/manifest.json'), {
-        'formatVersion': 12,
+        'formatVersion': 13,
         'modules': [
           {
             'name': target.directory,
             'moduleId': moduleId,
-            'uiProtocol': 21,
+            'uiProtocol': 22,
             'model': {
               'publicLibraries': [
                 {'jsPackage': target.specifier},
@@ -75,7 +90,7 @@ void main() {
   ], workingDirectory: temporary.path);
 
   test(
-    'Manifest 12 delivery includes owned setters and excludes references',
+    'Manifest 13 delivery includes owned setters and excludes references',
     () async {
       final result = await run();
       expect(result.exitCode, 0, reason: '${result.stdout}\n${result.stderr}');
@@ -98,7 +113,7 @@ void main() {
         expect(module['bindings'], [
           {
             'moduleId': moduleId,
-            'uiProtocol': 21,
+            'uiProtocol': 22,
             'types': <String>[],
             'functions': ['$moduleId#function:a%3D', '$moduleId#function:z%3D'],
           },

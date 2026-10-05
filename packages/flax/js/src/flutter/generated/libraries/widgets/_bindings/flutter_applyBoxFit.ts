@@ -7,7 +7,7 @@ import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_BoxFit'
 import type * as upstream2 from '@flax/flutter/services/_bindings/flutter_Size';
 import '@flax/flutter/services/_bindings/flutter_Size';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
-function _flaxTopLevel_applyBoxFit(fit: upstream1.BoxFit, inputSize: upstream2.Size, outputSize: upstream2.Size): upstream0.FittedSizes {
+function _flaxTopLevel_applyBoxFit(fit: upstream1.BoxFit, inputSize: Readonly<{ "__flaxBound:dart:ui::Size": readonly [] }>, outputSize: Readonly<{ "__flaxBound:dart:ui::Size": readonly [] }>): upstream0.FittedSizes {
 if (arguments.length > 3) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/flutter#function:applyBoxFit", [fit, inputSize, outputSize]);
 return _flaxResult as upstream0.FittedSizes;

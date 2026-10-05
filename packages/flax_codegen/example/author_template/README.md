@@ -8,7 +8,7 @@ Replace before use:
 
 - Dart package name `your_package`
 - `bindingNamespace` `vendor.example` (must not use `flax.*`)
-- npm package `@your-scope/your-package`
+- Public npm package `@your-scope/your-package` and source package with `-runtime`
 - License / registry / support policy (open product decisions)
 
 Do not hand-edit files under `lib/src/generated/` or `js/src/generated/` after the first
@@ -18,3 +18,8 @@ The config's `name: example` generates the exported module `exampleBindings`; it
 `publicLibraries` mapping exposes the selected Dart public library as the matching npm
 subpath. Keep `registration.bindings`, public-library routes and application
 registration aligned when renaming the module or public entry.
+
+After generation, `js/` builds runtime JavaScript and `js-types/` receives declarations
+only. Keep both versions aligned with Dart. Update `js/flax_modules.json` when changing
+the selected surface or module tuple. Business bundles use prepared plugin modules;
+register a Dart plugin that requests the public API module before running the bundle.

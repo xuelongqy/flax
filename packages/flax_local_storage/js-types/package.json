@@ -1,0 +1,26 @@
+{
+  "name": "@flax/local-storage",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Declaration-only public types for @flax/local-storage.",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts"
+    },
+    "./globals": {
+      "types": "./types/globals.d.ts"
+    }
+  },
+  "files": [
+    "types/**/*.d.ts",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node ../../../tool/public_types.mjs",
+    "typecheck": "node ../../../tool/public_types.mjs --check"
+  },
+  "dependencies": {
+    "@flax/core": "workspace:*"
+  }
+}

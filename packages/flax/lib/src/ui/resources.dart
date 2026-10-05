@@ -223,11 +223,14 @@ class _Callback extends _Resource implements FlaxCallback {
     this.signature, {
     this.scope = _CallbackScope.member,
     this.owner,
-  }) : _handle = _CallbackHandle(session, function) {
+    _BindingContext? bindingContext,
+  }) : context = bindingContext ?? _bindingContext,
+       _handle = _CallbackHandle(session, function) {
     _callbackFinalizer.attach(this, _handle, detach: this);
   }
   final _Session session;
   final _CallbackHandle _handle;
+  final _BindingContext? context;
   FlaxJsFunction get function => _handle.function;
   bool escaped = false;
   final FlaxCallbackBinding signature;
@@ -259,6 +262,7 @@ class _Callback extends _Resource implements FlaxCallback {
       signature,
       scope: _CallbackScope.ui,
       owner: owner,
+      bindingContext: context,
     );
   }
 
@@ -270,6 +274,13 @@ class _Callback extends _Resource implements FlaxCallback {
 
   @override
   Object? call(
+    List<Object?> positionalArguments,
+    Map<String, Object?> namedArguments,
+  ) => context == null
+      ? _call(positionalArguments, namedArguments)
+      : context!.run(() => _call(positionalArguments, namedArguments));
+
+  Object? _call(
     List<Object?> positionalArguments,
     Map<String, Object?> namedArguments,
   ) {

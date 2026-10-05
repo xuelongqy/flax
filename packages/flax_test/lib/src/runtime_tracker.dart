@@ -53,10 +53,7 @@ class FlaxTestRuntimeTracker implements FlaxJsRuntime {
   FlaxJsValue evaluate(String source, {String sourceUrl = 'flax:eval'}) {
     final watch = Stopwatch()..start();
     try {
-      return wrap(
-        inner.evaluate(source, sourceUrl: sourceUrl),
-        sourceUrl == 'flax:base' ? sourceUrl : 'evaluate',
-      );
+      return wrap(inner.evaluate(source, sourceUrl: sourceUrl), sourceUrl);
     } finally {
       evaluationMicroseconds.update(
         sourceUrl,

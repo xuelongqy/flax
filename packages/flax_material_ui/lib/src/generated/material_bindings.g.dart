@@ -6207,7 +6207,8 @@ const materialBindings = FlaxBindingModule(
     ),
   ],
   moduleId: "flax.material/material",
-  uiProtocol: 21,
+  dependencyModules: ["flax.core/flutter"],
+  uiProtocol: 22,
   requiredCapabilities: const <String>[],
   stateVariants: [],
 );

@@ -16,17 +16,31 @@ export interface ColorScheme extends Readonly<{
     readonly onError: upstream0.Color;
     copyWith(options?: {
         brightness?: upstream1.Brightness | null | undefined;
-        error?: upstream0.Color | null | undefined;
-        onError?: upstream0.Color | null | undefined;
-        onPrimary?: upstream0.Color | null | undefined;
-        onSurface?: upstream0.Color | null | undefined;
-        primary?: upstream0.Color | null | undefined;
-        surface?: upstream0.Color | null | undefined;
+        error?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        onError?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        onPrimary?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        onSurface?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        primary?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        surface?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
     }): ColorScheme;
 }
 export declare namespace ColorScheme {
     function fromSeed(options: {
-        seedColor: upstream0.Color;
+        seedColor: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
         brightness?: upstream1.Brightness | undefined;
     }): ColorScheme;
 }

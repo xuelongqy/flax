@@ -8,7 +8,7 @@ export interface ClampingScrollPhysics extends upstream0.ScrollPhysics, Readonly
 readonly parent: upstream0.ScrollPhysics | null;
 }
 defineObject("flax.core/flutter#type:ClampingScrollPhysics", ["parent"], [], {}, []);
-export function ClampingScrollPhysics(options: { parent?: upstream0.ScrollPhysics | null | undefined } = {}): ClampingScrollPhysics {
+export function ClampingScrollPhysics(options: { parent?: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [] }> | null | undefined } = {}): ClampingScrollPhysics {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:ClampingScrollPhysics", "", [{"name":"parent","required":false,"positional":false}], [], options) as ClampingScrollPhysics;
 }

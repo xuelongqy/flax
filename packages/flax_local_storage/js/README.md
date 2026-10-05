@@ -1,12 +1,14 @@
-# @flax/local-storage
+# @flax/local-storage-runtime
 
-Implementation and opt-in types for the Dart `flax_local_storage` session plugin. Dart
+Runtime implementation for the Dart `flax_local_storage` session plugin. Public
+declarations live in the declaration-only `@flax/local-storage` package. Dart
 registration installs Storage, localStorage, StorageEvent and onstorage before
 application code. Importing this package does not install a plugin.
 
-Install it at the same version as Dart `flax_local_storage`. Its ESM exports load a
-side-effect-free empty entry and expose only declarations; persistent storage code ships
-in the Dart package.
+Install both npm packages at the same version as Dart `flax_local_storage`. This source
+package delivers prepared modules and the generated host bootstrap. Business code uses
+the public imports; private implementation imports are rejected. Persistent storage
+remains owned by Dart.
 
 ```typescript
 import type {} from '@flax/local-storage/globals';
@@ -24,6 +26,6 @@ Named-property definitions require a supported data descriptor with `value` or
 `writable`. Rejected generic, accessor and non-configurable descriptors do not mutate
 storage.
 
-`host:generate` embeds the implementation into its Dart package. The npm exports are
-side-effect-free type entry points; standalone tarball consumption is verified by the
-existing outside-repository application tests.
+`host:generate` embeds the implementation into its Dart package. Public npm exports are
+type entry points; standalone tarball consumption is verified by the existing
+outside-repository application tests.

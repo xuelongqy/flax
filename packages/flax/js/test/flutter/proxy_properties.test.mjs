@@ -7,7 +7,7 @@ function capture(t) {
   const original = globalThis.__flaxCreateObject;
   const calls = [];
   globalThis.__flaxCreateObject = (version, type, descriptor) => {
-    assert.equal(version, 21);
+    assert.equal(version, 22);
     calls.push(descriptor);
     return descriptor;
   };

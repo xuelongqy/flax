@@ -19,12 +19,12 @@ readonly left: upstream2.BorderSide;
 readonly isUniform: boolean;
 }
 defineObject("flax.core/flutter#type:Border", ["top","right","bottom","left","isUniform"], [], {}, []);
-export function Border(options: { top?: upstream2.BorderSide | undefined; right?: upstream2.BorderSide | undefined; bottom?: upstream2.BorderSide | undefined; left?: upstream2.BorderSide | undefined } = {}): Border {
+export function Border(options: { top?: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [] }> | undefined; right?: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [] }> | undefined; bottom?: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [] }> | undefined; left?: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [] }> | undefined } = {}): Border {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:Border", "", [{"name":"top","required":false,"positional":false},{"name":"right","required":false,"positional":false},{"name":"bottom","required":false,"positional":false},{"name":"left","required":false,"positional":false}], [], options) as Border;
 }
 export namespace Border {
-export function all(options: { color?: upstream3.Color | undefined; width?: number | undefined; style?: upstream4.BorderStyle | undefined; strokeAlign?: number | undefined } = {}): Border {
+export function all(options: { color?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | undefined; width?: number | undefined; style?: upstream4.BorderStyle | undefined; strokeAlign?: number | undefined } = {}): Border {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:Border", "all", [{"name":"color","required":false,"positional":false},{"name":"width","required":false,"positional":false},{"name":"style","required":false,"positional":false},{"name":"strokeAlign","required":false,"positional":false}], [], options) as Border;
 }

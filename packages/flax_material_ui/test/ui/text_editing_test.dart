@@ -1,3 +1,4 @@
+import 'package:flax_material_ui/flax_material_ui.dart';
 import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
@@ -266,7 +267,7 @@ void main() {
       await t.pump();
       await t.enterText(find.byType(TextField), 'Flutter owned');
       await t.pump();
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       await t.pumpAndSettle();
       expect(h.number('editing.cleanups'), 1);
       expect(
@@ -384,6 +385,7 @@ void main() {
       Widget app(String suffix) => MaterialApp(
         home: Material(
           child: FlaxView(
+            plugins: const [FlaxMaterialPlugin()],
             createRuntime: create,
             source: '$source\n$suffix',
             bindings: registry,
@@ -406,7 +408,7 @@ void main() {
       );
       expect(runtimes.first.activeSubscriptions, 0);
       expect(find.text('Text: '), findsOneWidget);
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       await t.pumpAndSettle();
       expect(runtimes.first.handlesAtDispose, 0);
       expect(runtimes.last.handlesAtDispose, 0);

@@ -18,6 +18,8 @@ examples/*/assets/*.js.map
 examples/*/assets/flax_modules/
 packages/*/example/assets/*.js
 packages/*/example/assets/*.js.map
+packages/*/example/assets/flax_modules/
+packages/*/js-types/types/
 
 packages/flax_engine_v8/native/generated/
 
@@ -38,3 +40,5 @@ packages/flax_material_ui/js/src/generated/bindings.ts
 packages/flax_material_ui/js/src/generated/libraries/
 packages/flax_flutter/js/types/
 packages/flax_dart/js/types/
+packages/flax_codegen/example/author_template/bindings/manifest.json
+packages/flax_codegen/example/author_template/js/src/generated/

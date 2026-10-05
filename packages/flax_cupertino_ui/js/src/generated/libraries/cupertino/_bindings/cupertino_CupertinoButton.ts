@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/flutter/foundation/_bindings/flutter_Key'
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/cupertino/_bindings/cupertino.__module";
 export interface CupertinoButton extends WidgetDescription { readonly type: "flax.cupertino/cupertino#type:CupertinoButton";  }
-export function CupertinoButton(options: { key?: upstream0.Key | null | undefined; child: Bindable<Widget>; onPressed: Bindable<(() => void) | null> }): CupertinoButton {
+export function CupertinoButton(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; child: Bindable<Widget>; onPressed: Bindable<(() => void) | null> }): CupertinoButton {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return construct("widget", "flax.cupertino/cupertino#type:CupertinoButton", "", [{"name":"key","required":false,"positional":false},{"name":"child","required":true,"positional":false},{"name":"onPressed","required":true,"positional":false}], [], options) as CupertinoButton;
 }

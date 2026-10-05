@@ -7,7 +7,7 @@ import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_BoxCons
 import '@flax/flutter/widgets/_bindings/flutter_BoxConstraints';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface ConstrainedBox extends WidgetDescription { readonly type: "flax.core/flutter#type:ConstrainedBox";  }
-export function ConstrainedBox(options: { key?: upstream0.Key | null | undefined; constraints: Bindable<upstream1.BoxConstraints>; child?: Bindable<Widget | null> | undefined }): ConstrainedBox {
+export function ConstrainedBox(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; constraints: Bindable<Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [] }>>; child?: Bindable<Widget | null> | undefined }): ConstrainedBox {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return construct("widget", "flax.core/flutter#type:ConstrainedBox", "", [{"name":"key","required":false,"positional":false},{"name":"constraints","required":true,"positional":false},{"name":"child","required":false,"positional":false}], [], options) as ConstrainedBox;
 }

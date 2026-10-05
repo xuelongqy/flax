@@ -1,3 +1,4 @@
+import 'package:flax_material_ui/flax_material_ui.dart';
 import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
@@ -210,6 +211,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: FlaxView(
+              plugins: const [FlaxMaterialPlugin()],
               createRuntime: h.create,
               source: builderSource,
               bindings: FlaxBindingRegistry([...registry.modules, members]),
@@ -250,7 +252,7 @@ void main() {
         "if (__flaxCall($flaxBindingVersion, 'test:Members', 'apply', n => String(n), 9) !== '9') throw Error('recovery');",
       );
       expect(h.errors, isEmpty);
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
     },
   );
 }

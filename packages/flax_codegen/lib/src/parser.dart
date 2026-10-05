@@ -562,6 +562,7 @@ class FlaxCodegenBindingParser {
   final _adaptations = <String, String>{};
   final _argumentsByType = <String, List<String>>{};
   final _selections = <String, FlaxCodegenClassSelection>{};
+  final _localSelections = <String>{};
   final _snapshots = <String, FlaxCodegenSnapshotModel>{};
 
   /// Dependency Manifest `typeLibraries` name → URI, filled by [prepareModules].
@@ -573,9 +574,10 @@ class FlaxCodegenBindingParser {
   final _dependencyTypeOwners = <String, FlaxCodegenModuleModel>{};
   final _privateDependencyExtensions = <String>{};
   final _dependencyExtensions = <String, FlaxCodegenExtensionModel>{};
+  final _coreDependencyExtensions = <String>{};
   final _dependencyReadonly = <String, FlaxCodegenTopLevelGetterModel>{};
   final _dependencySetters = <String, FlaxCodegenTopLevelSetterModel>{};
-  final _dependencyTopLevelDeclarations = <String>{};
+  final _coreDependencyTopLevelDeclarations = <String>{};
   final _privateDependencyTopLevelOperations = <String>{};
   final _dependencyExportLibraries = <String, String>{};
   var _dependencyExportsResolved = false;
@@ -798,9 +800,11 @@ class FlaxCodegenBindingParser {
             (element is! ClassElement && element is! MixinElement)) {
           throw StateError('Unknown adapted class: ${entry.key}');
         }
+        if (flaxCodegenIsStateVariantOverlay(selected)) continue;
         final id = identity(element);
         _validateDuplicates(entry.value, id);
         _selections[id] = entry.value;
+        _localSelections.add(id);
         _elementsByIdentity[id] = element;
         _libraryByIdentity[id] = libraries[entry.key] ?? config.library;
         final previous = _adaptations[id];
@@ -818,12 +822,62 @@ class FlaxCodegenBindingParser {
     Iterable<FlaxCodegenModuleModel> modules, {
     Map<String, String> dependencyTypeOwnerModules = const {},
   }) {
-    for (final module in modules) {
+    final snapshots = modules.toList();
+    final candidates = <String, List<FlaxCodegenModuleModel>>{};
+    for (final module in snapshots) {
+      for (final type in module.classes) {
+        candidates.putIfAbsent(type.id, () => []).add(module);
+      }
+    }
+    final operationProviders = <String, List<FlaxCodegenModuleModel>>{};
+    for (final module in snapshots) {
+      for (final id in [
+        for (final extension in module.extensions)
+          if (!extension.isReference)
+            'extension:${extension.originatingUri}::${extension.name}',
+        for (final getter
+            in module.topLevel?.getters ?? <FlaxCodegenTopLevelGetterModel>[])
+          if (!getter.isReference) 'getter:${getter.id}',
+        for (final setter
+            in module.topLevel?.setters ?? <FlaxCodegenTopLevelSetterModel>[])
+          if (!setter.isReference) 'setter:${setter.id}',
+      ]) {
+        operationProviders.putIfAbsent(id, () => []).add(module);
+      }
+    }
+    bool useOperation(FlaxCodegenModuleModel module, String id) {
+      final providers = operationProviders[id]!;
+      final core = providers
+          .where(
+            (provider) => (provider.moduleId ?? '').startsWith('flax.core/'),
+          )
+          .singleOrNull;
+      return identical(module, core ?? providers.singleOrNull);
+    }
+
+    bool useClass(FlaxCodegenModuleModel module, String id) {
+      if (_localSelections.contains(id)) {
+        if ((module.moduleId ?? '').startsWith('flax.core/')) {
+          throw StateError('Core bindings cannot be republished: $id');
+        }
+        return false;
+      }
+      final providers = candidates[id]!;
+      final core = providers
+          .where(
+            (candidate) => (candidate.moduleId ?? '').startsWith('flax.core/'),
+          )
+          .singleOrNull;
+      return identical(module, core ?? providers.singleOrNull);
+    }
+
+    for (final module in snapshots) {
       for (final extension in module.extensions) {
         if (extension.isReference) continue;
         final identity = '${extension.originatingUri}::${extension.name}';
-        if (_dependencyExtensions.containsKey(identity)) {
-          throw StateError('Duplicate extension provider: $identity');
+        if (!useOperation(module, 'extension:$identity')) continue;
+        if ((module.moduleId ?? '').startsWith('flax.core/')) {
+          _coreDependencyExtensions.add(identity);
         }
         _dependencyExtensions[identity] = extension;
         if (module.publicLibraries.isNotEmpty &&
@@ -855,15 +909,15 @@ class FlaxCodegenBindingParser {
     _dependencyExportsResolved = false;
     _dependencyExports.clear();
     _dependencyExportLibraries.clear();
-    for (final module in modules) {
+    for (final module in snapshots) {
       for (final getter
           in module.topLevel?.getters ?? <FlaxCodegenTopLevelGetterModel>[]) {
         if (getter.isReference) continue;
-        if (_dependencyReadonly.containsKey(getter.id)) {
-          throw StateError('Duplicate readonly provider: ${getter.id}');
-        }
+        if (!useOperation(module, 'getter:${getter.id}')) continue;
         _dependencyReadonly[getter.id] = getter;
-        _dependencyTopLevelDeclarations.add(getter.id);
+        if ((module.moduleId ?? '').startsWith('flax.core/')) {
+          _coreDependencyTopLevelDeclarations.add(getter.id);
+        }
         if (module.publicLibraries.isNotEmpty &&
             !module.publicLibraries.any(
               (route) => route.exports.contains(getter.name),
@@ -874,13 +928,12 @@ class FlaxCodegenBindingParser {
       for (final setter
           in module.topLevel?.setters ?? <FlaxCodegenTopLevelSetterModel>[]) {
         if (setter.isReference) continue;
-        if (_dependencySetters.containsKey(setter.id)) {
-          throw StateError('Duplicate top-level setter provider: ${setter.id}');
-        }
+        if (!useOperation(module, 'setter:${setter.id}')) continue;
         _dependencySetters[setter.id] = setter;
-        _dependencyTopLevelDeclarations.add(
-          setter.id.substring(0, setter.id.length - 1),
-        );
+        final declarationId = setter.id.substring(0, setter.id.length - 1);
+        if ((module.moduleId ?? '').startsWith('flax.core/')) {
+          _coreDependencyTopLevelDeclarations.add(declarationId);
+        }
         if (module.publicLibraries.isNotEmpty &&
             !module.publicLibraries.any(
               (route) => route.exports.contains(setter.name),
@@ -889,6 +942,7 @@ class FlaxCodegenBindingParser {
         }
       }
       for (final type in module.classes) {
+        if (!useClass(module, type.id)) continue;
         _dependencyOwners[type.id] = module;
         _dependencyTypeOwners.putIfAbsent(type.id, () => module);
         final selection = _selectionFromModel(type);
@@ -2874,12 +2928,15 @@ class FlaxCodegenBindingParser {
           ),
       ];
       final extensionIdentity = '${element.library.uri}::$name';
-      if (_privateDependencyExtensions.contains(extensionIdentity)) {
+      if (_privateDependencyExtensions.contains(extensionIdentity) &&
+          _coreDependencyExtensions.contains(extensionIdentity)) {
         throw StateError(
           'Extension is not publicly exported by its provider: $name',
         );
       }
-      final provider = _dependencyExtensions[extensionIdentity];
+      var provider = _privateDependencyExtensions.contains(extensionIdentity)
+          ? null
+          : _dependencyExtensions[extensionIdentity];
       final extensionGenerics = generics(element.typeParameters);
       final onType = ref(element.extendedType);
       final members = <FlaxCodegenExtensionMemberModel>[];
@@ -3030,23 +3087,33 @@ class FlaxCodegenBindingParser {
         add(operator.key, 'operator', operator.value);
       }
       if (provider != null) {
-        for (var index = 0; index < members.length; index++) {
-          final member = members[index];
-          final supplied = provider.members
+        final supplied = <FlaxCodegenExtensionMemberModel>[];
+        for (final member in members) {
+          final candidate = provider!.members
               .where((m) => m.kind == member.kind && m.name == member.name)
               .firstOrNull;
-          if (supplied == null ||
+          if (candidate == null ||
               jsonEncode(
-                    FlaxCodegenManifestCodec.encodeMethod(supplied.call),
+                    FlaxCodegenManifestCodec.encodeMethod(candidate.call),
                   ) !=
                   jsonEncode(
                     FlaxCodegenManifestCodec.encodeMethod(member.call),
                   )) {
-            throw StateError(
-              'Extension provider surface does not include $name.${member.name} with the selected signature',
-            );
+            if (_coreDependencyExtensions.contains(extensionIdentity)) {
+              throw StateError(
+                'Core extension provider surface does not include '
+                '$name.${member.name} with the selected signature',
+              );
+            }
+            provider = null;
+            break;
           }
-          members[index] = supplied;
+          supplied.add(candidate);
+        }
+        if (provider != null) {
+          members
+            ..clear()
+            ..addAll(supplied);
         }
       }
       members.sort((a, b) => a.call.name.compareTo(b.call.name));
@@ -3245,10 +3312,12 @@ class FlaxCodegenBindingParser {
         }
         try {
           final id = '${variable.library.uri}::${variable.name}';
-          final provider = _dependencyReadonly[id];
-          if ((_dependencyTopLevelDeclarations.contains(id) &&
-                  provider == null) ||
-              _privateDependencyTopLevelOperations.contains(id)) {
+          final provider = _privateDependencyTopLevelOperations.contains(id)
+              ? null
+              : _dependencyReadonly[id];
+          if (_coreDependencyTopLevelDeclarations.contains(id) &&
+              (provider == null ||
+                  _privateDependencyTopLevelOperations.contains(id))) {
             throw StateError(
               'Provider does not expose top-level getter: $name',
             );
@@ -3307,10 +3376,12 @@ class FlaxCodegenBindingParser {
         final variable = setter.variable as TopLevelVariableElement;
         final declarationId = '${variable.library.uri}::${variable.name}';
         final id = '$declarationId=';
-        final provider = _dependencySetters[id];
-        if ((_dependencyTopLevelDeclarations.contains(declarationId) &&
-                provider == null) ||
-            _privateDependencyTopLevelOperations.contains(id)) {
+        final provider = _privateDependencyTopLevelOperations.contains(id)
+            ? null
+            : _dependencySetters[id];
+        if (_coreDependencyTopLevelDeclarations.contains(declarationId) &&
+            (provider == null ||
+                _privateDependencyTopLevelOperations.contains(id))) {
           throw StateError('Provider does not expose top-level setter: $name');
         }
         try {

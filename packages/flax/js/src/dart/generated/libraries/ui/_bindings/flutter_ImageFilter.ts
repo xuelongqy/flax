@@ -24,7 +24,7 @@ return constructObject("object", "flax.core/flutter#type:ImageFilter", "erode", 
 }
 }
 export namespace ImageFilter {
-export function compose(options: { outer: ImageFilter; inner: ImageFilter }): ImageFilter {
+export function compose(options: { outer: Readonly<{ "__flaxBound:dart:ui::ImageFilter": readonly [] }>; inner: Readonly<{ "__flaxBound:dart:ui::ImageFilter": readonly [] }> }): ImageFilter {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:ImageFilter", "compose", [{"name":"outer","required":true,"positional":false},{"name":"inner","required":true,"positional":false}], [], options) as ImageFilter;
 }

@@ -22,21 +22,49 @@ export interface ButtonStyle extends Readonly<{
     readonly mouseCursor: upstream0.WidgetStateProperty<upstream3.MouseCursor | null> | null;
     readonly visualDensity: upstream4.VisualDensity | null;
     copyWith(options?: {
-        backgroundColor?: upstream0.WidgetStateProperty<upstream1.Color | null> | null | undefined;
-        elevation?: upstream0.WidgetStateProperty<number | null> | null | undefined;
-        foregroundColor?: upstream0.WidgetStateProperty<upstream1.Color | null> | null | undefined;
-        mouseCursor?: upstream0.WidgetStateProperty<upstream3.MouseCursor | null> | null | undefined;
-        overlayColor?: upstream0.WidgetStateProperty<upstream1.Color | null> | null | undefined;
-        shape?: upstream0.WidgetStateProperty<upstream2.OutlinedBorder | null> | null | undefined;
-        visualDensity?: upstream4.VisualDensity | null | undefined;
+        backgroundColor?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream1.Color | null];
+        }> | null | undefined;
+        elevation?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [number | null];
+        }> | null | undefined;
+        foregroundColor?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream1.Color | null];
+        }> | null | undefined;
+        mouseCursor?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream3.MouseCursor | null];
+        }> | null | undefined;
+        overlayColor?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream1.Color | null];
+        }> | null | undefined;
+        shape?: Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.OutlinedBorder | null];
+        }> | null | undefined;
+        visualDensity?: Readonly<{
+            "__flaxBound:package:material_ui/src/theme_data.dart::VisualDensity": readonly [];
+        }> | null | undefined;
     }): ButtonStyle;
 }
 export declare function ButtonStyle(options?: {
-    backgroundColor?: upstream0.WidgetStateProperty<upstream1.Color | null> | null | undefined;
-    foregroundColor?: upstream0.WidgetStateProperty<upstream1.Color | null> | null | undefined;
-    overlayColor?: upstream0.WidgetStateProperty<upstream1.Color | null> | null | undefined;
-    elevation?: upstream0.WidgetStateProperty<number | null> | null | undefined;
-    shape?: upstream0.WidgetStateProperty<upstream2.OutlinedBorder | null> | null | undefined;
-    mouseCursor?: upstream0.WidgetStateProperty<upstream3.MouseCursor | null> | null | undefined;
-    visualDensity?: upstream4.VisualDensity | null | undefined;
+    backgroundColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream1.Color | null];
+    }> | null | undefined;
+    foregroundColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream1.Color | null];
+    }> | null | undefined;
+    overlayColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream1.Color | null];
+    }> | null | undefined;
+    elevation?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [number | null];
+    }> | null | undefined;
+    shape?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.OutlinedBorder | null];
+    }> | null | undefined;
+    mouseCursor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream3.MouseCursor | null];
+    }> | null | undefined;
+    visualDensity?: Readonly<{
+        "__flaxBound:package:material_ui/src/theme_data.dart::VisualDensity": readonly [];
+    }> | null | undefined;
 }): ButtonStyle;

@@ -1,3 +1,5 @@
+import 'package:flax_material_ui/flax_material_ui.dart';
+
 import 'dart:async';
 
 import 'package:flax/flax.dart';
@@ -23,6 +25,7 @@ class NavigationHarness {
   final runtime = RuntimeTracker();
   final errors = <Object>[];
   late final session = FlaxSession(
+    plugins: const [FlaxMaterialPlugin()],
     createRuntime: () => runtime,
     source: navigationSource,
     bindings: bindings,
@@ -73,9 +76,9 @@ class NavigationHarness {
   }
 
   Future<void> finish(WidgetTester t) async {
-    await t.pumpWidget(const SizedBox());
+    await flaxTestUnmount(t);
     await t.pumpAndSettle();
-    await session.close();
+    await flaxTestCloseSession(t, session);
     expect(runtime.isDisposed, isTrue);
     expect(runtime.handlesAtDispose, 0);
     expect(runtime.activeSubscriptions, 0);
@@ -104,6 +107,7 @@ void main() {
       }),
     ]);
     session = FlaxSession(
+      plugins: const [FlaxMaterialPlugin()],
       createRuntime: () => runtime,
       source:
           "$navigationSource\n__flaxCall($flaxBindingVersion, 'test:Lifetime', 'stop');",
@@ -120,7 +124,7 @@ void main() {
     expect(errors, isEmpty);
     expect(find.text('JS home'), findsOneWidget);
     expect(runtime.isDisposed, isFalse);
-    await t.pumpWidget(const SizedBox());
+    await flaxTestUnmount(t);
     await t.pumpAndSettle();
     await closing;
     expect(runtime.isDisposed, isTrue);
@@ -543,7 +547,8 @@ __flaxCall($flaxBindingVersion, 'test:Async', 'later').then(
       await t.pumpAndSettle();
       first.key.currentState!.pop();
       await t.pumpAndSettle();
-      await second.session.close();
+      await flaxTestCloseSession(t, second.session);
+      await flaxTestWaitForRuntimeDisposal(t, second.runtime);
       expect(second.runtime.isDisposed, isTrue);
       expect(first.runtime.isDisposed, isFalse);
       expect(find.text('Root count 4'), findsOneWidget);

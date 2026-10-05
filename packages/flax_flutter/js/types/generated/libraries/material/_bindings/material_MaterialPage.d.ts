@@ -15,7 +15,9 @@ export declare function MaterialPage<T extends unknown | null = unknown | null>(
     child: Widget;
     maintainState?: boolean | undefined;
     fullscreenDialog?: boolean | undefined;
-    key?: upstream1.LocalKey | null | undefined;
+    key?: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/key.dart::LocalKey": readonly [];
+    }> | null | undefined;
     canPop?: boolean | undefined;
     onPopInvoked?: ((didPop: boolean, result: NavigationData | null) => void) | undefined;
     name?: string | null | undefined;

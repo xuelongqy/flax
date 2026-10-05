@@ -1,7 +1,7 @@
 import { computed, signal, type Binding, type ReadonlySignal } from './index.js';
 
 /** Experimental generated-binding extension. Independent of the native C ABI. */
-export const bindingVersion = 21;
+export const bindingVersion = 22;
 
 type CallbackParameter = {
   name: string;

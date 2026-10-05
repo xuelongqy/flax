@@ -43,6 +43,51 @@ $selection
   }
 
   test(
+    'extension providers reuse one complete surface or emit local members',
+    () async {
+      final full = await parse(
+        '  StringA:\n    methods: {size: [], repeat: [count]}',
+      );
+      final partial = await parse('  StringA:\n    methods: {size: []}');
+      FlaxCodegenModuleModel provider(
+        FlaxCodegenModuleModel source,
+        String id,
+      ) => FlaxCodegenModuleModel(
+        name: source.name,
+        library: source.library,
+        jsPackage: '@example/$id',
+        dartOutput: '',
+        tsOutput: '',
+        classes: const [],
+        types: source.types,
+        extensions: source.extensions,
+        typeLibraries: source.typeLibraries,
+        moduleId: '$id/extensions',
+      );
+      for (final (providers, reused) in [
+        ([provider(full, 'example.a')], true),
+        ([provider(partial, 'example.a')], false),
+        ([provider(full, 'example.a'), provider(full, 'example.b')], false),
+        ([provider(full, 'example.b'), provider(full, 'example.a')], false),
+      ]) {
+        final parser = FlaxCodegenBindingParser(root.path);
+        try {
+          parser.prepareModules(providers);
+          final actual = await parser.parse(
+            FlaxCodegenBindingConfig.parseStrict(
+              yaml('  StringA:\n    methods: {size: [], repeat: [count]}'),
+            ),
+          );
+          expect(actual.extensions.single.isReference, reused);
+          expect(actual.extensions.single.members, hasLength(2));
+        } finally {
+          await parser.dispose();
+        }
+      }
+    },
+  );
+
+  test(
     'explicit overrides, getters, setters, generics and operators compile',
     () async {
       final module = await parse('''
@@ -184,7 +229,7 @@ const hosts = Object.fromEntries(helpers.map(name => [name, (...args) => {
 }]));
 const output = transformSync(source.replace(imports, ''), {loader: 'ts', format: 'cjs'}).code;
 const exported = {exports: {}};
-new Function('module', 'exports', 'bindingVersion', ...helpers, output)(exported, exported.exports, 21, ...helpers.map(name => hosts[name]));
+new Function('module', 'exports', 'bindingVersion', ...helpers, output)(exported, exported.exports, 22, ...helpers.map(name => hosts[name]));
 const {StringA, StringB, ListX, ShadowX} = exported.exports;
 assert.equal(calls.length, 0);
 values.push(3, 13, true, false);

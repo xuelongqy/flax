@@ -1,8 +1,9 @@
-format: 1
+format: 2
 dart:
   entrypoint: package:flax/flax.dart
 javascript:
-  package: '@flax/core'
+  package: '@flax/core-runtime'
+  types: '@flax/core'
   version: same
   mode: runtime
 capabilities:

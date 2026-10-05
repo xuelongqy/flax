@@ -1,0 +1,309 @@
+{
+  "formatVersion": 13,
+  "package": "your_package",
+  "bindingNamespace": "vendor.example",
+  "imports": [
+    "flax"
+  ],
+  "modules": [
+    {
+      "name": "example",
+      "moduleId": "vendor.example/example",
+      "uiProtocol": 22,
+      "requiredCapabilities": [],
+      "model": {
+        "library": "package:your_package/api.dart",
+        "jsPackage": "@your-scope/your-package",
+        "publicLibraries": [
+          {
+            "library": "package:your_package/api.dart",
+            "jsPackage": "@your-scope/your-package/api",
+            "exports": [
+              "Gauge"
+            ]
+          }
+        ],
+        "typeLibraries": {
+          "Gauge": "package:your_package/api.dart"
+        },
+        "classes": [
+          {
+            "name": "Gauge",
+            "id": "vendor.example/example#type:Gauge",
+            "kind": "object",
+            "jsName": null,
+            "asyncIterableFactory": null,
+            "typeArguments": [],
+            "typeParameters": [],
+            "constructors": [
+              {
+                "name": "",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": {
+                      "kind": "int",
+                      "id": null,
+                      "name": null,
+                      "nullable": false,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": {
+                        "kind": "int",
+                        "id": null,
+                        "name": null,
+                        "nullable": false,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": null,
+                        "tsArguments": [],
+                        "slot": null
+                      },
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "required": false,
+                    "positional": false,
+                    "defaultCode": "0",
+                    "omitWhenAbsent": false,
+                    "independentWidgetResult": false,
+                    "snapshot": null,
+                    "encodeKind": null,
+                    "scoped": false
+                  }
+                ],
+                "specializations": []
+              }
+            ],
+            "getters": [
+              {
+                "name": "value",
+                "type": {
+                  "kind": "int",
+                  "id": null,
+                  "name": null,
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "int",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "encodeKind": null
+              }
+            ],
+            "setters": [
+              {
+                "name": "value",
+                "type": {
+                  "kind": "int",
+                  "id": null,
+                  "name": null,
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "int",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "encodeKind": null
+              }
+            ],
+            "staticGetters": [],
+            "methods": [
+              {
+                "name": "increment",
+                "parameters": [
+                  {
+                    "name": "by",
+                    "type": {
+                      "kind": "int",
+                      "id": null,
+                      "name": null,
+                      "nullable": false,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": {
+                        "kind": "int",
+                        "id": null,
+                        "name": null,
+                        "nullable": false,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": null,
+                        "tsArguments": [],
+                        "slot": null
+                      },
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "required": false,
+                    "positional": true,
+                    "defaultCode": "1",
+                    "omitWhenAbsent": false,
+                    "independentWidgetResult": false,
+                    "snapshot": null,
+                    "encodeKind": null,
+                    "scoped": false
+                  }
+                ],
+                "result": {
+                  "kind": "void",
+                  "id": null,
+                  "name": null,
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "void",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "instance": true,
+                "typeArguments": [],
+                "startsRoute": false,
+                "typeParameters": [],
+                "mustCallSuper": false,
+                "deferredFactory": false
+              }
+            ],
+            "widgetInterfaces": [],
+            "supertypes": [
+              "dart:core::Object"
+            ],
+            "superTypes": [
+              {
+                "originatingUri": "package:your_package/src/gauge.dart",
+                "originatingName": "Gauge",
+                "kind": "typeOnly",
+                "id": null,
+                "name": "Gauge",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            ],
+            "proxy": null,
+            "pageAdapter": null,
+            "disposeMethod": null,
+            "listenerPairs": {}
+          }
+        ],
+        "types": [],
+        "functions": [],
+        "snapshots": [],
+        "typedefs": [],
+        "stateVariants": [],
+        "identities": [
+          {
+            "sourceIdentity": {
+              "kind": "type",
+              "originatingUri": "package:your_package/src/gauge.dart",
+              "name": "Gauge"
+            },
+            "wireId": "vendor.example/example#type:Gauge",
+            "owner": true
+          }
+        ]
+      }
+    }
+  ]
+}

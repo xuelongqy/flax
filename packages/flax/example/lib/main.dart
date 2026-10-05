@@ -10,6 +10,11 @@ Future<void> main() => startApplication();
 Future<void> startApplication() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  Flax.moduleAssets = await FlaxModuleAssets.load(
+    bundle: rootBundle,
+    manifest: 'assets/flax_modules/modules.json',
+  );
+
   final source = await rootBundle.loadString('assets/app.js');
   runApp(
     Directionality(

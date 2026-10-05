@@ -95,6 +95,38 @@ void main() {
     }
   }
 
+  test(
+    'single-file consumers import public providers instead of private chunks',
+    () async {
+      final provider = await parse(config());
+      final alpha = provider.classes.singleWhere(
+        (type) => type.name == 'Alpha',
+      );
+      final consumer = FlaxCodegenModuleModel(
+        name: 'consumer',
+        library: 'package:consumer/consumer.dart',
+        jsPackage: '@example/consumer',
+        dartOutput: 'lib/consumer.dart',
+        tsOutput: 'src/consumer.ts',
+        classes: const [],
+        types: provider.types.where((type) => type.id == alpha.id).toList(),
+        topLevel: FlaxCodegenTopLevelModel('', [
+          FlaxCodegenTopLevelGetterModel(
+            'consumer/value',
+            'value',
+            FlaxCodegenTypeRef('object', id: alpha.id, name: alpha.name),
+            FlaxCodegenReadonlyKind.getter,
+          ),
+        ]),
+      );
+      final source = FlaxCodegenBindingEmitter([provider, consumer])
+          .typescript(consumer);
+      expect(source, contains("from '@example/libraries/alpha'"));
+      expect(source, contains("import '@example/libraries/alpha';"));
+      expect(source, isNot(contains('/_bindings/')));
+    },
+  );
+
   test('public libraries preserve reexports, show/hide and deterministic ownership', () async {
     final module = await parse(config());
     final reversed = await parse(config(reverse: true));

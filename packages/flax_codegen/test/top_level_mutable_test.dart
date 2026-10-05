@@ -265,31 +265,25 @@ void main() {
   });
 
   test(
-    'consumers cannot expand a known provider read or write surface',
+    'missing or ambiguous operation providers generate local surfaces',
     () async {
       final readonly = await parse(config(getters: ['counter']));
-      await expectLater(
-        parse(
-          config(name: 'consumer', setters: ['counter']),
-          providers: [readonly],
-        ),
-        throwsStateError,
+      final write = await parse(
+        config(name: 'consumer', setters: ['counter']),
+        providers: [readonly],
       );
+      expect(write.topLevel!.setters.single.isReference, isFalse);
       final writeonly = await parse(config(setters: ['counter']));
-      await expectLater(
-        parse(
-          config(name: 'consumer', getters: ['counter']),
-          providers: [writeonly],
-        ),
-        throwsStateError,
+      final read = await parse(
+        config(name: 'consumer', getters: ['counter']),
+        providers: [writeonly],
       );
-      await expectLater(
-        parse(
-          config(name: 'consumer', setters: ['counter']),
-          providers: [writeonly, writeonly],
-        ),
-        throwsStateError,
+      expect(read.topLevel!.getters.single.isReference, isFalse);
+      final ambiguous = await parse(
+        config(name: 'consumer', setters: ['counter']),
+        providers: [writeonly, writeonly],
       );
+      expect(ambiguous.topLevel!.setters.single.isReference, isFalse);
     },
   );
 
@@ -784,7 +778,7 @@ const hosts = helpers.map(name => (...args) => {
 });
 const output = transformSync(source.replace(imports, ''), {loader: 'ts', format: 'cjs'}).code;
 const exported = {exports: {}};
-new Function('module', 'exports', 'bindingVersion', ...helpers, output)(exported, exported.exports, 21, ...hosts);
+new Function('module', 'exports', 'bindingVersion', ...helpers, output)(exported, exported.exports, 22, ...hosts);
 const api = exported.exports;
 assert.equal(calls.length, 0);
 assert.equal(api.setCounter(3), undefined);

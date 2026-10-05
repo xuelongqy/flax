@@ -49,7 +49,7 @@ void main() {
       ..createSync(recursive: true);
     File('${directory.path}/pubspec.yaml').writeAsStringSync('name: $name\n');
     File('${directory.path}/flax_package.yaml').writeAsStringSync(
-      'format: 1\ndart:\n  entrypoint: package:$name/$name.dart\ncapabilities: [codegen]\n',
+      'format: 2\ndart:\n  entrypoint: package:$name/$name.dart\ncapabilities: [codegen]\n',
     );
     for (final path in files) {
       File('${directory.path}/$path')

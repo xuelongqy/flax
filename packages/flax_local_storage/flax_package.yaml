@@ -1,10 +1,11 @@
-format: 1
+format: 2
 dart:
   entrypoint: package:flax_local_storage/flax_local_storage.dart
 javascript:
-  package: '@flax/local-storage'
+  package: '@flax/local-storage-runtime'
+  types: '@flax/local-storage'
   version: same
-  mode: declarations
+  mode: runtime
 capabilities:
   - host-plugin
 registration:

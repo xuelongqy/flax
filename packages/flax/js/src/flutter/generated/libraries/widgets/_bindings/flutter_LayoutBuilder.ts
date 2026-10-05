@@ -9,7 +9,7 @@ import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_BoxCons
 import '@flax/flutter/widgets/_bindings/flutter_BoxConstraints';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface LayoutBuilder extends WidgetDescription { readonly type: "flax.core/flutter#type:LayoutBuilder";  }
-export function LayoutBuilder(options: { key?: upstream0.Key | null | undefined; builder: Bindable<((context: upstream1.BuildContext, constraints: upstream2.BoxConstraints) => Widget)> }): LayoutBuilder {
+export function LayoutBuilder(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; builder: Bindable<((context: upstream1.BuildContext, constraints: upstream2.BoxConstraints) => Widget)> }): LayoutBuilder {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return construct("widget", "flax.core/flutter#type:LayoutBuilder", "", [{"name":"key","required":false,"positional":false},{"name":"builder","required":true,"positional":false}], [], options) as LayoutBuilder;
 }

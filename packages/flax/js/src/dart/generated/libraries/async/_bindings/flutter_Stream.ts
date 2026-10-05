@@ -31,8 +31,8 @@ asyncMap<E extends unknown | null = unknown | null>(convert: ((event: T) => E | 
 asyncExpand<E extends unknown | null = unknown | null>(convert: ((event: T) => Stream<E> | null)): Stream<E>;
 handleError(onError: ((p0: {}, p1?: upstream0.StackTrace) => void), options?: {test?: ((error: unknown | null) => boolean) | null | undefined}): Stream<T>;
 expand<S extends unknown | null = unknown | null>(convert: ((element: T) => DartIterableInput<S, S>)): Stream<S>;
-pipe(streamConsumer: upstream5.StreamConsumer<T>): Promise<unknown | null>;
-transform<S extends unknown | null = unknown | null>(streamTransformer: upstream6.StreamTransformer<T, S>): Stream<S>;
+pipe(streamConsumer: Readonly<{ "__flaxBound:dart:async::StreamConsumer": readonly [T] }>): Promise<unknown | null>;
+transform<S extends unknown | null = unknown | null>(streamTransformer: Readonly<{ "__flaxBound:dart:async::StreamTransformer": readonly [T, S] }>): Stream<S>;
 reduce(combine: ((previous: T, element: T) => T)): Promise<T>;
 fold<S extends unknown | null = unknown | null>(initialValue: S, combine: ((previous: S, element: T) => S)): Promise<S>;
 join(separator?: string): Promise<string>;
@@ -53,7 +53,7 @@ firstWhere(test: ((element: T) => boolean), options?: {orElse?: (() => T) | null
 lastWhere(test: ((element: T) => boolean), options?: {orElse?: (() => T) | null | undefined}): Promise<T>;
 singleWhere(test: ((element: T) => boolean), options?: {orElse?: (() => T) | null | undefined}): Promise<T>;
 elementAt(index: number): Promise<T>;
-timeout(timeLimit: upstream2.Duration, options?: {onTimeout?: ((sink: upstream3.EventSink<T>) => void) | null | undefined}): Stream<T>;
+timeout(timeLimit: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }>, options?: {onTimeout?: ((sink: upstream3.EventSink<T>) => void) | null | undefined}): Stream<T>;
 }
 defineStream("flax.core/flutter#type:Stream", ["isBroadcast","length","isEmpty","first","last","single"], {asBroadcastStream(this: object, options: { onCancel?: ((subscription: upstream4.StreamSubscription<unknown | null>) => void) | null | undefined; onListen?: ((subscription: upstream4.StreamSubscription<unknown | null>) => void) | null | undefined } = {}): Stream<unknown | null> {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
@@ -98,12 +98,12 @@ if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "expand", [convert]);
 return _flaxResult as Stream<unknown | null>;
 },
-pipe(this: object, streamConsumer: upstream5.StreamConsumer<unknown | null>): Promise<unknown | null> {
+pipe(this: object, streamConsumer: Readonly<{ "__flaxBound:dart:async::StreamConsumer": readonly [unknown | null] }>): Promise<unknown | null> {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "pipe", [streamConsumer]);
 return _flaxResult as Promise<unknown | null>;
 },
-transform(this: object, streamTransformer: upstream6.StreamTransformer<unknown | null, unknown | null>): Stream<unknown | null> {
+transform(this: object, streamTransformer: Readonly<{ "__flaxBound:dart:async::StreamTransformer": readonly [unknown | null, unknown | null] }>): Stream<unknown | null> {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "transform", [streamTransformer]);
 return _flaxResult as Stream<unknown | null>;
@@ -211,7 +211,7 @@ if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "elementAt", [index]);
 return _flaxResult as Promise<unknown | null>;
 },
-timeout(this: object, timeLimit: upstream2.Duration, options: { onTimeout?: ((sink: upstream3.EventSink<unknown | null>) => void) | null | undefined } = {}): Stream<unknown | null> {
+timeout(this: object, timeLimit: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }>, options: { onTimeout?: ((sink: upstream3.EventSink<unknown | null>) => void) | null | undefined } = {}): Stream<unknown | null> {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["onTimeout"].includes(k))) throw new TypeError('Invalid named method arguments');
 const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "timeout", [timeLimit, options.onTimeout]);
@@ -235,7 +235,7 @@ return constructStream("stream", "flax.core/flutter#type:Stream", "value", [{"na
 }
 }
 export namespace Stream {
-export function error<T extends unknown | null = unknown | null>(error: {}, stackTrace?: upstream0.StackTrace | null): Stream<T> {
+export function error<T extends unknown | null = unknown | null>(error: {}, stackTrace?: Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }> | null): Stream<T> {
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
 return constructStream("stream", "flax.core/flutter#type:Stream", "error", [{"name":"error","required":true,"positional":true},{"name":"stackTrace","required":false,"positional":true}], [error, stackTrace], {}) as Stream<T>;
 }
@@ -265,13 +265,13 @@ return constructStream("stream", "flax.core/flutter#type:Stream", "multi", [{"na
 }
 }
 export namespace Stream {
-export function periodic<T extends unknown | null = unknown | null>(period: upstream2.Duration, computation?: ((computationCount: number) => T) | null): Stream<T> {
+export function periodic<T extends unknown | null = unknown | null>(period: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }>, computation?: ((computationCount: number) => T) | null): Stream<T> {
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
 return constructStream("stream", "flax.core/flutter#type:Stream", "periodic", [{"name":"period","required":true,"positional":true},{"name":"computation","required":false,"positional":true}], [period, computation], {}) as Stream<T>;
 }
 }
 export namespace Stream {
-export function eventTransformed<T extends unknown | null = unknown | null>(source: Stream<unknown | null>, mapSink: ((sink: upstream3.EventSink<T>) => upstream3.EventSink<unknown | null>)): Stream<T> {
+export function eventTransformed<T extends unknown | null = unknown | null>(source: Stream<unknown | null>, mapSink: ((sink: upstream3.EventSink<T>) => Readonly<{ "__flaxBound:dart:async::EventSink": readonly [unknown | null] }>)): Stream<T> {
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
 return constructStream("stream", "flax.core/flutter#type:Stream", "eventTransformed", [{"name":"source","required":true,"positional":true},{"name":"mapSink","required":true,"positional":true}], [source, mapSink], {}) as Stream<T>;
 }

@@ -1,8 +1,9 @@
-format: 1
+format: 2
 dart:
   entrypoint: package:flax_cupertino_ui/flax_cupertino_ui.dart
 javascript:
   package: '@flax/cupertino-ui'
+  types: '@flax/flutter'
   version: same
   mode: runtime
 capabilities:

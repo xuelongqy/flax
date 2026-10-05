@@ -124,6 +124,16 @@ const targets = [
   ],
   [stagedDart, join(root, 'packages', 'flax_dart', 'js', 'types'), '@flax/dart'],
 ];
+for (const [owner, label] of [
+  ['flax', '@flax/core'],
+  ['flax_fetch', '@flax/fetch'],
+  ['flax_websocket', '@flax/websocket'],
+  ['flax_local_storage', '@flax/local-storage'],
+  ['flax_canvas', '@flax/canvas'],
+]) {
+  const emitted = join(build, 'packages', owner, 'js', 'src');
+  targets.push([emitted, join(root, 'packages', owner, 'js-types', 'types'), label]);
+}
 for (const [expected, actual, label] of targets) {
   if (check) {
     await verify(expected, actual, label);

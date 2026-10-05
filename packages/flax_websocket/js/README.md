@@ -1,11 +1,12 @@
-# @flax/websocket
+# @flax/websocket-runtime
 
-Types and source for the optional Flax WebSocket host plugin. Dart registration installs
-the generated script; importing this package does not install globals.
+Runtime source for the optional Flax WebSocket host plugin. Public declarations live in
+the declaration-only `@flax/websocket` package. Dart registration installs the generated
+script; importing this package does not install globals.
 
-Install it at the same version as Dart `flax_websocket`. Its ESM entries are
-side-effect-free placeholders backed by exported declarations; no host implementation is
-duplicated in the npm archive.
+Install both npm packages at the same version as Dart `flax_websocket`. This source
+package delivers prepared modules and the generated host bootstrap. Business code uses
+the public imports; private implementation imports are rejected.
 
 ```typescript
 import type {} from '@flax/websocket/globals';

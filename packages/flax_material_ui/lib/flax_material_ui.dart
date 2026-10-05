@@ -3,6 +3,8 @@ library;
 
 import 'package:flax/flax.dart';
 
+import 'src/generated/material_bindings.g.dart';
+
 export 'src/generated/material_bindings.g.dart';
 
 /// Enables host delivery of the public Flutter Material JavaScript module.
@@ -17,6 +19,9 @@ class FlaxMaterialPlugin extends FlaxPlugin {
 
   @override
   Set<String> get jsModules => const {'@flax/flutter/material'};
+
+  @override
+  List<FlaxBindingModule> get bindingModules => const [materialBindings];
 
   @override
   FlaxPluginInstance install(FlaxHostContext context) =>

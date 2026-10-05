@@ -1,6 +1,6 @@
-format: 1
+format: 2
 dart:
   entrypoint: package:example/example.dart
 capabilities:
   - codegen
-format: 1
+format: 2

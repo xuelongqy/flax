@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/flutter/foundation/_bindings/flutter_Key'
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface Opacity extends WidgetDescription { readonly type: "flax.core/flutter#type:Opacity";  }
-export function Opacity(options: { key?: upstream0.Key | null | undefined; opacity: Bindable<number>; alwaysIncludeSemantics?: Bindable<boolean> | undefined; child?: Bindable<Widget | null> | undefined }): Opacity {
+export function Opacity(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; opacity: Bindable<number>; alwaysIncludeSemantics?: Bindable<boolean> | undefined; child?: Bindable<Widget | null> | undefined }): Opacity {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return construct("widget", "flax.core/flutter#type:Opacity", "", [{"name":"key","required":false,"positional":false},{"name":"opacity","required":true,"positional":false},{"name":"alwaysIncludeSemantics","required":false,"positional":false},{"name":"child","required":false,"positional":false}], [], options) as Opacity;
 }

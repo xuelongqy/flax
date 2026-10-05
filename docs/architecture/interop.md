@@ -1,6 +1,6 @@
 # Collections, Generics and Generated Proxies
 
-UI protocol 21 shares one conversion and reference mechanism across selected Dart APIs.
+UI protocol 22 shares one conversion and reference mechanism across selected Dart APIs.
 [Object ownership](objects.md) describes callbacks, GC and session shutdown.
 
 ## Ordinary objects and explicit data
@@ -132,7 +132,7 @@ Widget unmount does not cancel an already returned Future. Session closing compl
 pending Futures with `StateError('FlaxSessionClosed')`, drops their observers and
 ignores later settlement. Promise cancellation is not inferred.
 
-## Dart Stream and FutureOr (UI protocol 21)
+## Dart Stream and FutureOr (UI protocol 22)
 
 Selected Dart `Stream<T>` / `Stream<T>?` results and parameters use the JS interop type
 **`FlaxStreamReference<T>`** (`@flax/core/bindings`). Generated Flutter bindings still

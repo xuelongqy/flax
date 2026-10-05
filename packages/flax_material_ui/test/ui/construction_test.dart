@@ -1,3 +1,4 @@
+import 'package:flax_material_ui/flax_material_ui.dart';
 import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
@@ -56,6 +57,7 @@ void main() {
                   type,
             ],
             moduleId: module.moduleId,
+            dependencyModules: module.dependencyModules,
             uiProtocol: module.uiProtocol,
             requiredCapabilities: module.requiredCapabilities,
             functions: module.functions,
@@ -73,6 +75,11 @@ void main() {
         ]),
       ]);
       final view = FlaxView(
+        plugins: [
+          FlaxTestBindingPlugin(const FlaxMaterialPlugin(), {
+            for (final module in bindings.modules) module.moduleId,
+          }),
+        ],
         createRuntime: () => runtime,
         source: flaxTestFixtureSource(
           'construction',
@@ -150,8 +157,12 @@ void main() {
           .where((label) => label == '__flaxBindings.tryComponentStateId')
           .length;
       expect(componentStateHelpers, 1);
+      final moduleHandles = runtime.handleLabels
+          .where((label) => label == 'modules/registry.js')
+          .length;
+      expect(moduleHandles, 1);
       expect(
-        handles - baseHandles - componentStateHelpers,
+        handles - baseHandles - componentStateHelpers - moduleHandles,
         lessThanOrEqualTo(32),
       );
       expect(calls['__flaxBaseCall'], 1); // Install the base clock origin once.
@@ -163,7 +174,7 @@ void main() {
         '__flaxCreateObject',
         '__flaxBaseCall',
       });
-      await tester.pumpWidget(const SizedBox());
+      await flaxTestUnmount(tester);
       await tester.pumpAndSettle();
       expect(runtime.handlesAtDispose, 0);
       expect(runtime.activeSubscriptions, 0);

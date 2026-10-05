@@ -29,7 +29,7 @@ void main() {
     h.execute(
       'if (typeof OffscreenCanvas !== "function") throw Error("missing canvas")',
     );
-    await tester.pumpWidget(const SizedBox());
+    await flaxTestUnmount(tester);
     for (var i = 0; i < 4; i++) {
       await tester.pump(const Duration(milliseconds: 1));
     }
@@ -102,7 +102,7 @@ void main() {
     expect(read('canvasHooks.keys.join()'), contains('keydown'));
 
     h.execute('canvasHooks.focus.dispose()');
-    await tester.pumpWidget(const SizedBox());
+    await flaxTestUnmount(tester);
     for (var i = 0; i < 4; i++) {
       await tester.pump(const Duration(milliseconds: 1));
     }
@@ -146,7 +146,7 @@ void main() {
       if (drawn.data[3] === 0) throw Error('blob bitmap did not draw');
     ''');
     expect(h.errors, isEmpty);
-    await tester.pumpWidget(const SizedBox());
+    await flaxTestUnmount(tester);
     for (var i = 0; i < 4; i++) {
       await tester.pump(const Duration(milliseconds: 1));
     }

@@ -12,17 +12,37 @@ export interface TextTheme extends Readonly<{
     readonly bodyMedium: upstream0.TextStyle | null;
     readonly labelLarge: upstream0.TextStyle | null;
     copyWith(options?: {
-        bodyLarge?: upstream0.TextStyle | null | undefined;
-        bodyMedium?: upstream0.TextStyle | null | undefined;
-        labelLarge?: upstream0.TextStyle | null | undefined;
-        titleLarge?: upstream0.TextStyle | null | undefined;
-        titleMedium?: upstream0.TextStyle | null | undefined;
+        bodyLarge?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> | null | undefined;
+        bodyMedium?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> | null | undefined;
+        labelLarge?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> | null | undefined;
+        titleLarge?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> | null | undefined;
+        titleMedium?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> | null | undefined;
     }): TextTheme;
 }
 export declare function TextTheme(options?: {
-    titleLarge?: upstream0.TextStyle | null | undefined;
-    titleMedium?: upstream0.TextStyle | null | undefined;
-    bodyLarge?: upstream0.TextStyle | null | undefined;
-    bodyMedium?: upstream0.TextStyle | null | undefined;
-    labelLarge?: upstream0.TextStyle | null | undefined;
+    titleLarge?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> | null | undefined;
+    titleMedium?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> | null | undefined;
+    bodyLarge?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> | null | undefined;
+    bodyMedium?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> | null | undefined;
+    labelLarge?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> | null | undefined;
 }): TextTheme;

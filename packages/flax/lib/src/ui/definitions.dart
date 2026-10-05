@@ -1,9 +1,9 @@
 part of '../../bindings.dart';
 
 /// Active UI protocol for Core-owned code and registry comparison.
-const flaxBindingVersion = 21;
+const flaxBindingVersion = 22;
 
-/// Protocol-21 baseline has no additive capability identifiers.
+/// The active protocol has no additive capability identifiers.
 const _supportedCapabilities = <String>{};
 
 class FlaxTypeRef {
@@ -365,6 +365,7 @@ class FlaxBindingModule {
     required this.requiredCapabilities,
     this.functions = const [],
     this.stateVariants = const [],
+    this.dependencyModules = const [],
   });
   final String name;
   final List<FlaxTypeBinding> types;
@@ -373,13 +374,13 @@ class FlaxBindingModule {
   final List<String> requiredCapabilities;
   final List<FlaxFunctionBinding> functions;
   final List<FlaxStateVariantBinding> stateVariants;
+  final List<String> dependencyModules;
 }
 
 /// Register generated modules explicitly. A registry never chooses an engine.
 class FlaxBindingRegistry {
   FlaxBindingRegistry(List<FlaxBindingModule> modules)
     : modules = List.unmodifiable(modules) {
-    final names = <String>{};
     final moduleIds = <String>{componentsBindings.moduleId};
     final types = <String, FlaxTypeBinding>{};
     final functions = <String, FlaxFunctionBinding>{};
@@ -403,20 +404,19 @@ class FlaxBindingRegistry {
       if (!moduleIds.add(module.moduleId)) {
         throw ArgumentError('Duplicate binding module id ${module.moduleId}');
       }
-      if (!names.add(module.name)) {
-        throw ArgumentError('Duplicate binding module ${module.name}');
-      }
       for (final type in module.types) {
         if (types.containsKey(type.id)) {
           throw ArgumentError('Duplicate binding: ${type.id}');
         }
         types[type.id] = type;
+        _bindingOwners[type.id] = module;
       }
       for (final function in module.functions) {
         if (functions.containsKey(function.id)) {
           throw ArgumentError('Duplicate function binding: ${function.id}');
         }
         functions[function.id] = function;
+        _bindingOwners[function.id] = module;
       }
       for (final variant in module.stateVariants) {
         if (stateVariants.containsKey(variant.id)) {
@@ -432,6 +432,7 @@ class FlaxBindingRegistry {
     _componentStateTypes.addAll(componentStateTypes);
   }
   final List<FlaxBindingModule> modules;
+  final _bindingOwners = <String, FlaxBindingModule>{};
   final _types = <String, FlaxTypeBinding>{};
   final _functions = <String, FlaxFunctionBinding>{};
   final _stateVariants = <String, FlaxStateVariantBinding>{};

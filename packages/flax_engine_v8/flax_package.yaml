@@ -1,4 +1,4 @@
-format: 1
+format: 2
 dart:
   entrypoint: package:flax_engine_v8/flax_engine_v8.dart
 capabilities:

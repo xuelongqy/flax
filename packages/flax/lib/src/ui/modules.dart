@@ -22,7 +22,7 @@ class FlaxModuleAssets {
       const {'formatVersion', 'runtimeFormat', 'bootstrap', 'lock', 'modules'},
       'manifest',
     );
-    if (data['formatVersion'] != 1 || data['runtimeFormat'] != 'flax-cjs-1') {
+    if (data['formatVersion'] != 2 || data['runtimeFormat'] != 'flax-cjs-1') {
       throw FormatException('Unsupported Flax module manifest');
     }
     final bootstrapPath = _moduleAssetPath(data['bootstrap']);
@@ -40,8 +40,10 @@ class FlaxModuleAssets {
     final paths = <String>{bootstrapPath};
     for (final value in _moduleList(data['modules'], 'modules')) {
       final module = _PreparedModule.parse(value);
-      if (!names.add(module.specifier)) {
-        throw FormatException('Duplicate Flax module: ${module.specifier}');
+      for (final name in [module.specifier, ...module.subpaths]) {
+        if (!names.add(name)) {
+          throw FormatException('Duplicate Flax module: $name');
+        }
       }
       if (!owners.add(module.owner)) {
         throw FormatException('Duplicate Flax module owner: ${module.owner}');
@@ -84,7 +86,10 @@ class FlaxModuleAssets {
 
     void include(String specifier) {
       final module = available[specifier];
-      if (module == null || !selected.add(specifier)) return;
+      if (module == null) {
+        throw StateError('Missing prepared Flax module: $specifier');
+      }
+      if (!selected.add(specifier)) return;
       for (final dependency in module.dependencies.keys) {
         include(dependency);
       }
@@ -102,7 +107,9 @@ class FlaxModuleAssets {
 
 extension _SessionModules on _Session {
   void installModules(FlaxModuleAssets? assets, List<FlaxPlugin> plugins) {
-    if (assets == null) return;
+    if (assets == null) {
+      throw StateError('Missing prepared Flax module assets');
+    }
     final requested = <String>{
       for (final plugin in _pluginsWithBase(plugins)) ...plugin.jsModules,
     };
@@ -301,6 +308,7 @@ class _PreparedModule {
     required this.asset,
     required this.dependencies,
     required this.bindings,
+    this.subpaths = const [],
     this.source = '',
   });
 
@@ -311,6 +319,7 @@ class _PreparedModule {
   final String asset;
   final Map<String, String> dependencies;
   final List<_RequiredModuleBindings> bindings;
+  final List<String> subpaths;
   final String source;
 
   Map<String, Object> get expectation => {
@@ -329,22 +338,39 @@ class _PreparedModule {
     asset: asset,
     dependencies: dependencies,
     bindings: bindings,
+    subpaths: subpaths,
     source: value,
   );
 
   factory _PreparedModule.parse(Object? value) {
-    final data = _moduleObject(value, const {
-      'specifier',
-      'owner',
-      'version',
-      'artifact',
-      'asset',
-      'package',
-      'source',
-      'dependencies',
-      'bindings',
-    }, 'module');
+    final data = _moduleObject(
+      value,
+      const {
+        'specifier',
+        'owner',
+        'version',
+        'artifact',
+        'asset',
+        'package',
+        'source',
+        'dependencies',
+        'bindings',
+        'subpaths',
+      },
+      'module',
+      optional: const {'subpaths'},
+    );
     final name = _moduleSpecifier(data['specifier']);
+    final subpaths = _moduleStrings(
+      data.containsKey('subpaths') ? data['subpaths'] : const [],
+      'subpaths',
+    );
+    for (final subpath in subpaths) {
+      if (!_moduleSpecifier(subpath).startsWith('$name/') ||
+          subpath.split('/').contains('_bindings')) {
+        throw FormatException('Invalid Flax module subpath: $subpath');
+      }
+    }
     final package = _moduleSpecifier(data['package']);
     final packageRoot = package.startsWith('@')
         ? package.split('/').take(2).join('/')
@@ -367,6 +393,7 @@ class _PreparedModule {
       version: _moduleVersion(data['version']),
       artifact: artifact,
       asset: _moduleAssetPath(data['asset']),
+      subpaths: subpaths,
       dependencies: Map.unmodifiable({
         for (final entry in deps.entries)
           _moduleSpecifier(entry.key): _moduleVersion(entry.value),
@@ -392,11 +419,12 @@ final _moduleSpecifierPattern = RegExp(
 Map<String, dynamic> _moduleObject(
   Object? value,
   Set<String> keys,
-  String label,
-) {
+  String label, {
+  Set<String> optional = const {},
+}) {
   if (value is! Map<String, dynamic> ||
-      value.length != keys.length ||
-      !keys.containsAll(value.keys)) {
+      !keys.containsAll(value.keys) ||
+      !value.keys.toSet().containsAll(keys.difference(optional))) {
     throw FormatException('Invalid fields in Flax module $label');
   }
   return value;

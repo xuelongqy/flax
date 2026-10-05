@@ -4,6 +4,12 @@
     "module": "Node16",
     "moduleResolution": "Node16",
     "strict": true,
+    "rootDir": "src",
+    "outDir": "dist",
+    "paths": {
+      "@your-scope/your-package/api": ["./src/generated/libraries/api/index.ts"],
+      "@your-scope/your-package/api/*": ["./src/generated/libraries/api/*.ts"]
+    },
     "skipLibCheck": true,
     "noEmit": true
   },

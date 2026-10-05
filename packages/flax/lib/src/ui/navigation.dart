@@ -177,7 +177,10 @@ extension _Navigation on _Session {
     if (parameters == null) {
       throw ArgumentError('Unsupported Route constructor');
     }
-    final sources = _arguments(descriptor, parameters, allowBindings: false);
+    final sources = _inBindingContext(
+      definition.id,
+      () => _arguments(descriptor, parameters, allowBindings: false),
+    );
     final lease = FlaxRouteLease._(this, sources);
     try {
       final route = definition.create(

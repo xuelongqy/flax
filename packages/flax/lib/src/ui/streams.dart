@@ -12,6 +12,7 @@ class _StreamReference {
   );
 
   final _Session session;
+  final _BindingContext? context = _bindingContext;
   final int id;
   final FlaxStreamTypeBinding binding;
   final FlaxTypeRef type;
@@ -23,7 +24,11 @@ class _StreamReference {
     value = null;
     session._streamReferences.remove(id);
     final views = session._streamViews[source];
-    views?.remove(type.stream!.id);
+    views?.remove(
+      context != null && _usesBindingContext(type)
+          ? '${type.stream!.id}@${context!.moduleId}'
+          : type.stream!.id,
+    );
     if (views?.isEmpty ?? false) session._streamViews.remove(source);
   }
 }
@@ -436,7 +441,8 @@ extension _StreamCalls on _Session {
       throw ArgumentError('Unknown Dart Stream type');
     }
     final views = _streamViews.putIfAbsent(source, () => {});
-    final existing = views[adapter.id];
+    final viewKey = _bindingViewKey(adapter.id, _usesBindingContext(type));
+    final existing = views[viewKey];
     if (existing != null && existing.value != null) {
       return helper('streamObject').call([
         FlaxJsString(binding.id),
@@ -458,7 +464,7 @@ extension _StreamCalls on _Session {
       source,
       adapted,
     );
-    views[adapter.id] = reference;
+    views[viewKey] = reference;
     _streamReferences[reference.id] = reference;
     return helper('streamObject').call([
       FlaxJsString(binding.id),
@@ -489,7 +495,7 @@ extension _StreamCalls on _Session {
   }
 
   void registerStreams() {
-    runtime.registerHostFunction('__flaxCreateStream', (_, args) {
+    _registerBindingHostFunction('__flaxCreateStream', (_, args) {
       _checkCall(args, 3);
       if (args.length != 3 || args[2] is! FlaxJsObject) {
         throw ArgumentError('Invalid Stream constructor');
@@ -520,7 +526,7 @@ extension _StreamCalls on _Session {
       }
     });
 
-    runtime.registerHostFunction('__flaxCreateAsyncIterableStream', (_, args) {
+    _registerBindingHostFunction('__flaxCreateAsyncIterableStream', (_, args) {
       _checkCall(args, 3);
       if (args[1] is! FlaxJsString || args[2] is! FlaxJsNumber) {
         throw ArgumentError('Invalid AsyncIterable Stream');
@@ -543,7 +549,7 @@ extension _StreamCalls on _Session {
       }
     });
 
-    runtime.registerHostFunction('__flaxStream', (_, args) {
+    _registerBindingHostFunction('__flaxStream', (_, args) {
       _checkCall(args, 5);
       if (args[2] is! FlaxJsNumber ||
           args[3] is! FlaxJsString ||
@@ -609,7 +615,7 @@ extension _StreamCalls on _Session {
       }
     });
 
-    runtime.registerHostFunction('__flaxCreateStreamIterator', (_, args) {
+    _registerBindingHostFunction('__flaxCreateStreamIterator', (_, args) {
       _checkCall(args, 2, numericReceiver: true);
       if (args[1] is! FlaxJsNumber) {
         throw ArgumentError('Invalid Stream iterator');
@@ -624,7 +630,7 @@ extension _StreamCalls on _Session {
       return FlaxJsNumber(id.toDouble());
     });
 
-    runtime.registerHostFunction('__flaxStreamIterator', (_, args) {
+    _registerBindingHostFunction('__flaxStreamIterator', (_, args) {
       _checkCall(args, 3, numericReceiver: true);
       if (args[1] is! FlaxJsNumber || args[2] is! FlaxJsString) {
         throw ArgumentError('Invalid Stream iterator call');

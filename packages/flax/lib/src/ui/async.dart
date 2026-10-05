@@ -3,6 +3,7 @@ part of '../../bindings.dart';
 class _PendingFuture {
   _PendingFuture(this.result);
   final FlaxTypeRef result;
+  final _BindingContext? context = _bindingContext;
   bool ready = false;
   Object? value;
   Object? error;
@@ -242,7 +243,11 @@ extension _AsyncCalls on _Session {
         FlaxJsValue? result;
         try {
           if (pending.error == null) {
-            result = memberResult(pending.value, pending.result);
+            result = pending.context == null
+                ? memberResult(pending.value, pending.result)
+                : pending.context!.run(
+                    () => memberResult(pending.value, pending.result),
+                  );
           }
         } catch (error) {
           pending.error = error;

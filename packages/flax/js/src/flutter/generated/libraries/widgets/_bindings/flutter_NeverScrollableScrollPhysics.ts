@@ -8,7 +8,7 @@ export interface NeverScrollableScrollPhysics extends upstream0.ScrollPhysics, R
 readonly parent: upstream0.ScrollPhysics | null;
 }
 defineObject("flax.core/flutter#type:NeverScrollableScrollPhysics", ["parent"], [], {}, []);
-export function NeverScrollableScrollPhysics(options: { parent?: upstream0.ScrollPhysics | null | undefined } = {}): NeverScrollableScrollPhysics {
+export function NeverScrollableScrollPhysics(options: { parent?: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [] }> | null | undefined } = {}): NeverScrollableScrollPhysics {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:NeverScrollableScrollPhysics", "", [{"name":"parent","required":false,"positional":false}], [], options) as NeverScrollableScrollPhysics;
 }

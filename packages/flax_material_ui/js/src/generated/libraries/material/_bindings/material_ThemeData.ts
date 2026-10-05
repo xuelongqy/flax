@@ -13,16 +13,16 @@ export interface ThemeData extends Readonly<{ "__flaxBound:package:material_ui/s
 readonly brightness: upstream1.Brightness;
 readonly colorScheme: upstream0.ColorScheme;
 readonly textTheme: upstream3.TextTheme;
-copyWith(options?: {brightness?: upstream1.Brightness | null | undefined; colorScheme?: upstream0.ColorScheme | null | undefined; textTheme?: upstream3.TextTheme | null | undefined}): ThemeData;
+copyWith(options?: {brightness?: upstream1.Brightness | null | undefined; colorScheme?: Readonly<{ "__flaxBound:package:material_ui/src/color_scheme.dart::ColorScheme": readonly [] }> | null | undefined; textTheme?: Readonly<{ "__flaxBound:package:material_ui/src/text_theme.dart::TextTheme": readonly [] }> | null | undefined}): ThemeData;
 }
-defineObject("flax.material/material#type:ThemeData", ["brightness","colorScheme","textTheme"], [], {copyWith(this: object, options: { brightness?: upstream1.Brightness | null | undefined; colorScheme?: upstream0.ColorScheme | null | undefined; textTheme?: upstream3.TextTheme | null | undefined } = {}): ThemeData {
+defineObject("flax.material/material#type:ThemeData", ["brightness","colorScheme","textTheme"], [], {copyWith(this: object, options: { brightness?: upstream1.Brightness | null | undefined; colorScheme?: Readonly<{ "__flaxBound:package:material_ui/src/color_scheme.dart::ColorScheme": readonly [] }> | null | undefined; textTheme?: Readonly<{ "__flaxBound:package:material_ui/src/text_theme.dart::TextTheme": readonly [] }> | null | undefined } = {}): ThemeData {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["brightness","colorScheme","textTheme"].includes(k))) throw new TypeError('Invalid named method arguments');
 const _flaxResult = invokeObject(this, "flax.material/material#type:ThemeData", "copyWith", [options.brightness, options.colorScheme, options.textTheme]);
 return _flaxResult as ThemeData;
 },
 }, []);
-export function ThemeData(options: { colorScheme?: upstream0.ColorScheme | null | undefined; brightness?: upstream1.Brightness | null | undefined; colorSchemeSeed?: upstream2.Color | null | undefined; textTheme?: upstream3.TextTheme | null | undefined } = {}): ThemeData {
+export function ThemeData(options: { colorScheme?: Readonly<{ "__flaxBound:package:material_ui/src/color_scheme.dart::ColorScheme": readonly [] }> | null | undefined; brightness?: upstream1.Brightness | null | undefined; colorSchemeSeed?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; textTheme?: Readonly<{ "__flaxBound:package:material_ui/src/text_theme.dart::TextTheme": readonly [] }> | null | undefined } = {}): ThemeData {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:ThemeData", "", [{"name":"colorScheme","required":false,"positional":false},{"name":"brightness","required":false,"positional":false},{"name":"colorSchemeSeed","required":false,"positional":false},{"name":"textTheme","required":false,"positional":false}], [], options) as ThemeData;
 }

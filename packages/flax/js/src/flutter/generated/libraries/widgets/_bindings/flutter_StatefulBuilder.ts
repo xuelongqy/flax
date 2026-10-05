@@ -7,7 +7,7 @@ import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_BuildCo
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface StatefulBuilder extends WidgetDescription { readonly type: "flax.core/flutter#type:StatefulBuilder";  }
-export function StatefulBuilder(options: { key?: upstream0.Key | null | undefined; builder: Bindable<((context: upstream1.BuildContext, setState: ((fn: (() => void)) => void)) => Widget)> }): StatefulBuilder {
+export function StatefulBuilder(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; builder: Bindable<((context: upstream1.BuildContext, setState: ((fn: (() => void)) => void)) => Widget)> }): StatefulBuilder {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return construct("widget", "flax.core/flutter#type:StatefulBuilder", "", [{"name":"key","required":false,"positional":false},{"name":"builder","required":true,"positional":false}], [], options) as StatefulBuilder;
 }

@@ -58,6 +58,106 @@ void main() {
     expectResolved(resolve([components, flutter]));
   });
 
+  test('independent packages may own the same source and short module name', () {
+    final money = FlaxCodegenSourceIdentity(
+      kind: FlaxCodegenDeclarationKind.type,
+      originatingUri: 'package:money/money.dart',
+      name: 'Money',
+      origin: FlaxCodegenOriginState.resolved,
+    );
+    final a = _importedPackage(
+      dartPackage: 'a',
+      namespace: 'example.a',
+      source: 'a/manifest.json',
+      owners: [
+        _importedOwner(
+          identity: money,
+          wireId: 'example.a/money#type:Money',
+          source: 'a/manifest.json',
+          pointer: '/owners/Money',
+        ),
+      ],
+    );
+    final b = _importedPackage(
+      dartPackage: 'b',
+      namespace: 'example.b',
+      source: 'b/manifest.json',
+      owners: [
+        _importedOwner(
+          identity: money,
+          wireId: 'example.b/money#type:Money',
+          source: 'b/manifest.json',
+          pointer: '/owners/Money',
+        ),
+      ],
+    );
+    for (final imports in [
+      [a, b],
+      [b, a],
+    ]) {
+      final result = FlaxCodegenOwnership.resolvePackage(
+        dartPackage: 'c',
+        metadata: _parseMetadata(
+          'format: 2\ncapabilities: [bindings]\nbindingNamespace: example.c\n',
+        ),
+        metadataSource: 'c/flax_package.yaml',
+        modules: [
+          _module(
+            name: 'money',
+            source: 'money.yaml',
+            claims: [
+              _claim(money, _location('money.yaml', pointer: '/classes/Money')),
+            ],
+            references: [
+              _reference(
+                money,
+                _location('money.yaml', pointer: '/types/Money'),
+              ),
+            ],
+          ),
+        ],
+        importedPackages: imports,
+      );
+      expect(
+        result.modules.single.owners.single.wireId.value,
+        'example.c/money#type:Money',
+      );
+      expect(
+        result.modules.single.references.single.ownerWireId.value,
+        'example.c/money#type:Money',
+      );
+    }
+    expect(
+      () => FlaxCodegenOwnership.resolvePackage(
+        dartPackage: 'c',
+        metadata: _parseMetadata(
+          'format: 2\ncapabilities: [bindings]\nbindingNamespace: example.c\n',
+        ),
+        metadataSource: 'c/flax_package.yaml',
+        modules: [
+          _module(
+            name: 'money',
+            source: 'money.yaml',
+            references: [
+              _reference(
+                money,
+                _location('money.yaml', pointer: '/types/Money'),
+              ),
+            ],
+          ),
+        ],
+        importedPackages: [a, b],
+      ),
+      throwsA(
+        isA<FlaxCodegenException>().having(
+          (error) => error.diagnostics.single.message,
+          'ambiguity',
+          'Ambiguous imported owner; bind this declaration locally.',
+        ),
+      ),
+    );
+  });
+
   test('missing owner uses the reference location', () {
     final location = _location(
       'flutter.yaml',
@@ -333,7 +433,7 @@ void main() {
   });
 
   final metadata = _parseMetadata('''
-format: 1
+format: 2
 capabilities:
   - bindings
 bindingNamespace: flax.core
@@ -563,7 +663,7 @@ bindingNamespace: flax.core
 
   test('non-bindings metadata fails resolvePackage atomically', () {
     final projection = _parseMetadata('''
-format: 1
+format: 2
 capabilities:
   - codegen
 ''');
@@ -744,7 +844,7 @@ capabilities:
       ],
     );
     final acme = _parseMetadata('''
-format: 1
+format: 2
 capabilities:
   - bindings
 bindingNamespace: com.acme.widgets
@@ -870,7 +970,7 @@ bindingNamespace: com.acme.widgets
     final package = FlaxCodegenOwnership.resolvePackage(
       dartPackage: 'acme_widgets',
       metadata: _parseMetadata('''
-format: 1
+format: 2
 capabilities:
   - bindings
 bindingNamespace: com.acme.widgets
@@ -923,7 +1023,7 @@ bindingNamespace: com.acme.widgets
 
   group('imported owner negatives', () {
     final acme = _parseMetadata('''
-format: 1
+format: 2
 capabilities:
   - bindings
 bindingNamespace: com.acme.widgets

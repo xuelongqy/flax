@@ -16,7 +16,7 @@ readonly bottom: upstream2.BorderSide;
 readonly isUniform: boolean;
 }
 defineObject("flax.core/flutter#type:BorderDirectional", ["top","start","end","bottom","isUniform"], [], {}, []);
-export function BorderDirectional(options: { top?: upstream2.BorderSide | undefined; start?: upstream2.BorderSide | undefined; end?: upstream2.BorderSide | undefined; bottom?: upstream2.BorderSide | undefined } = {}): BorderDirectional {
+export function BorderDirectional(options: { top?: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [] }> | undefined; start?: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [] }> | undefined; end?: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [] }> | undefined; bottom?: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [] }> | undefined } = {}): BorderDirectional {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:BorderDirectional", "", [{"name":"top","required":false,"positional":false},{"name":"start","required":false,"positional":false},{"name":"end","required":false,"positional":false},{"name":"bottom","required":false,"positional":false}], [], options) as BorderDirectional;
 }

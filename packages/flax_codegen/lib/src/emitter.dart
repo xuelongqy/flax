@@ -7,8 +7,8 @@ import 'model.dart';
 
 part 'library_emitter.dart';
 
-/// Generated modules pin UI protocol 21. Do not read Core `flaxBindingVersion`.
-const _generatedUiProtocol = 21;
+/// Generated modules pin UI protocol 22. Do not read Core `flaxBindingVersion`.
+const _generatedUiProtocol = 22;
 
 // Bound direct dispatch to 32 branches; larger signatures keep Dart defaults
 // through a typed tear-off without duplicating private constants.
@@ -1805,6 +1805,13 @@ import 'package:flax/bindings.dart';
     }
     out.writeln(
       '], moduleId: ${_quote(_literalModuleId(module))}, '
+      'dependencyModules: ${jsonEncode(({for (final type in _typescriptSignatureTypes(module))
+        if (_owners[type.id] != null && _owners[type.id] != module) _literalModuleId(_owners[type.id]!), for (final type in module.types)
+        if (_owners[type.id] != null && _owners[type.id] != module) _literalModuleId(_owners[type.id]!), for (final extension in module.extensions.where((value) => value.isReference))
+        for (final member in extension.members)
+          if (_owners[member.id] != null) _literalModuleId(_owners[member.id]!), for (final getter in module.topLevel?.getters ?? const <FlaxCodegenTopLevelGetterModel>[])
+        if (getter.isReference && _owners[getter.id] != null) _literalModuleId(_owners[getter.id]!), for (final setter in module.topLevel?.setters ?? const <FlaxCodegenTopLevelSetterModel>[])
+        if (setter.isReference && _owners[setter.id] != null) _literalModuleId(_owners[setter.id]!)}.toList()..sort()))}, '
       'uiProtocol: $_generatedUiProtocol, '
       'requiredCapabilities: ${_capabilitiesDartLiteral(module.requiredCapabilities)}, '
       'stateVariants: [${module.stateVariants.map((variant) => '_stateVariant_${variant.name}').join(', ')}]);',
@@ -3193,7 +3200,7 @@ Future<Object?> ${name}Adapt(Future<Object?> value) {
       String callback(FlaxCodegenTypeRef callback) {
         final generic = callback.typeParameters.isEmpty
             ? ''
-            : '<${callback.typeParameters.map((p) => '${p.name} extends ${child(p.bound)}').join(', ')}>';
+            : '<${callback.typeParameters.map((p) => '${p.name} extends ${child(p.bound, asInput: false)}').join(', ')}>';
         final arguments = callback.parameters
             .where((p) => p.positional)
             .map(
@@ -3222,6 +3229,29 @@ Future<Object?> ${name}Adapt(Future<Object?> value) {
         return inputItem == outputItem
             ? output
             : '($output | $name<$inputItem>)';
+      }
+
+      if (input && !nominal && type.kind == 'object') {
+        final owner = _classes[type.id];
+        final identity = owner?.superTypes
+            .where(
+              (parent) =>
+                  parent.kind == 'typeOnly' &&
+                  parent.originatingName == owner.name,
+            )
+            .firstOrNull;
+        if (identity != null) {
+          final arguments = type.tsArguments.isNotEmpty
+              ? type.tsArguments
+              : type.dartArguments;
+          final marker =
+              'Readonly<{ ${jsonEncode('__flaxBound:${identity.originatingUri}::${identity.originatingName}')}: readonly [${arguments.map((argument) => child(argument, asInput: false)).join(', ')}] }>';
+          return '$marker${type.primitiveKinds.map((kind) => kind == 'String'
+              ? ' | string'
+              : kind == 'bool'
+              ? ' | boolean'
+              : ' | number').toSet().join()}${type.nullable ? ' | null' : ''}';
+        }
       }
 
       final base = switch (type.category) {

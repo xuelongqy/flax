@@ -14,7 +14,7 @@ readonly offset: number;
 addListener(listener: (() => void)): void;
 removeListener(listener: (() => void)): void;
 jumpTo(value: number): void;
-animateTo(offset: number, options: {curve: upstream1.Curve; duration: upstream2.Duration}): Promise<void>;
+animateTo(offset: number, options: {curve: Readonly<{ "__flaxBound:package:flutter/src/animation/curves.dart::Curve": readonly [] }>; duration: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }>}): Promise<void>;
 dispose(): void;
 }
 defineObject("flax.core/flutter#type:ScrollController", ["hasClients","offset"], [], {addListener(this: object, listener: (() => void)): void {
@@ -29,7 +29,7 @@ jumpTo(this: object, value: number): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeObject(this, "flax.core/flutter#type:ScrollController", "jumpTo", [value]);
 },
-animateTo(this: object, offset: number, options: { curve: upstream1.Curve; duration: upstream2.Duration }): Promise<void> {
+animateTo(this: object, offset: number, options: { curve: Readonly<{ "__flaxBound:package:flutter/src/animation/curves.dart::Curve": readonly [] }>; duration: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }> }): Promise<void> {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["curve","duration"].includes(k))) throw new TypeError('Invalid named method arguments');
 const _flaxResult = invokeObject(this, "flax.core/flutter#type:ScrollController", "animateTo", [offset, options.curve, options.duration]);

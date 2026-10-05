@@ -24,6 +24,7 @@ class Harness extends FlaxTestHarness {
         createRuntime: createTestRuntime,
         source: source,
         bindings: registry,
+        plugins: const [FlaxMaterialPlugin()],
       );
 
   Widget app({String? code}) => MaterialApp(

@@ -1,7 +1,8 @@
+import 'package:flax_test/flax_test.dart';
+
 import 'dart:convert';
 
 import 'package:flax/flax.dart';
-import 'package:flax_test/flax_test.dart' show flaxTestFixtureFile;
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
@@ -10,7 +11,9 @@ import '../support/harness.dart' show registry, source;
 import '../support/runtime_tracker.dart';
 
 void main() {
-  tearDown(() => Flax.moduleAssets = null);
+  late FlaxModuleAssets? defaultAssets;
+  setUpAll(() => defaultAssets = Flax.moduleAssets);
+  tearDown(() => Flax.moduleAssets = defaultAssets);
 
   test(
     'module assets reject invalid inventories before loading factories',
@@ -23,6 +26,28 @@ void main() {
             manifest['modules'][0]['dependencies'] = {'missing': '1.0.0'},
         (manifest) => manifest['modules'][0]['version'] = '^1.0.0',
         (manifest) => manifest['modules'][0]['artifact'] = 'invalid',
+        (manifest) => manifest['modules'][0]['subpaths'] = null,
+        (manifest) => manifest['modules'][0]['subpaths'] = ['@fixture/other'],
+        (manifest) =>
+            manifest['modules'][0]['subpaths'] = ['@fixture/a/../escape'],
+        (manifest) => manifest['modules'][0]['subpaths'] = [
+          '@fixture/a/_bindings/private',
+        ],
+        (manifest) => manifest['modules'][0]['subpaths'] = [
+          '@fixture/a/alias',
+          '@fixture/a/alias',
+        ],
+        (manifest) {
+          manifest['modules'][0]['subpaths'] = ['@fixture/a/alias'];
+          final alias = Map<String, dynamic>.from(
+            manifest['modules'][0] as Map,
+          );
+          alias['specifier'] = '@fixture/a/alias';
+          alias['owner'] = 'other-owner';
+          alias['asset'] = 'assets/modules/alias.js';
+          alias.remove('subpaths');
+          manifest['modules'].add(alias);
+        },
         (manifest) => manifest['modules'].add(manifest['modules'][0]),
       ]) {
         final fixture = _Fixture();
@@ -44,6 +69,16 @@ void main() {
     final fixture = _Fixture();
     fixture.assets.remove(fixture.manifest['modules'][0]['asset']);
     await expectLater(fixture.load(), throwsStateError);
+  });
+
+  test('module assets accept recorded public subpaths without additional factories', () async {
+    final fixture = _Fixture();
+    fixture.module('@fixture/a')['subpaths'] = ['@fixture/a/public'];
+    final assets = await fixture.load();
+    expect(
+      assets.moduleSpecifiers,
+      fixture.manifest['modules'].map((dynamic entry) => entry['specifier']),
+    );
   });
 
   testWidgets(
@@ -92,7 +127,8 @@ $source
           predicate((error) => error.toString().contains('FlaxSessionClosed')),
         ),
       );
-      await tester.pumpWidget(const SizedBox());
+      await flaxTestUnmount(tester);
+      await flaxTestWaitForRuntimeDisposal(tester, runtime);
       await tester.pumpAndSettle();
       await closing;
       expect(runtime.isDisposed, isTrue);
@@ -130,7 +166,8 @@ $source
       );
       expect(_number(runtime, 'fixtureInitializations'), 1);
       expect(_number(runtime, 'fixtureResult.readFromB()'), value);
-      await tester.pumpWidget(const SizedBox());
+      await flaxTestUnmount(tester);
+      await flaxTestWaitForRuntimeDisposal(tester, runtime);
       await tester.pumpAndSettle();
       expect(runtime.isDisposed, isTrue);
       expect(runtime.handlesAtDispose, 0);
@@ -172,7 +209,8 @@ $source
       );
       expect(errors, isEmpty);
       expect(_number(runtime, 'fixtureResult.read()'), 5);
-      await tester.pumpWidget(const SizedBox());
+      await flaxTestUnmount(tester);
+      await flaxTestWaitForRuntimeDisposal(tester, runtime);
       await tester.pumpAndSettle();
       expect(runtime.isDisposed, isTrue);
       expect(runtime.handlesAtDispose, 0);
@@ -221,12 +259,13 @@ $source
         );
         expect(runtime.isDisposed, isTrue);
         expect(runtime.handlesAtDispose, 0);
-        await tester.pumpWidget(const SizedBox());
+        await flaxTestUnmount(tester);
+        await flaxTestWaitForRuntimeDisposal(tester, runtime);
       },
     );
   }
 
-  testWidgets('missing host request ignores unselected binding requirements', (
+  testWidgets('missing host request fails before business source executes', (
     tester,
   ) async {
     final fixture = _Fixture();
@@ -254,14 +293,12 @@ $source
         ),
       ),
     );
-    expect(errors, isEmpty);
-    expect(_boolean(runtime, 'absentRequestRan'), isTrue);
-    expect(_string(runtime, 'typeof globalThis.__flaxModules'), 'undefined');
-    expect(
-      _string(runtime, 'typeof globalThis.fixtureInitializations'),
-      'undefined',
-    );
-    await tester.pumpWidget(const SizedBox());
+    expect(errors, hasLength(1));
+    expect(errors.single.toString(), contains('Missing prepared Flax module'));
+    expect(runtime.isDisposed, isTrue);
+    expect(runtime.handlesAtDispose, 0);
+    await flaxTestUnmount(tester);
+    await flaxTestWaitForRuntimeDisposal(tester, runtime);
     await tester.pumpAndSettle();
     expect(runtime.isDisposed, isTrue);
     expect(runtime.handlesAtDispose, 0);
@@ -288,7 +325,8 @@ $source
     expect(errors, isEmpty);
     expect(_number(runtime, 'fixtureInitializations'), 1);
     expect(_number(runtime, 'fixtureResult.readFromB()'), 23);
-    await tester.pumpWidget(const SizedBox());
+    await flaxTestUnmount(tester);
+    await flaxTestWaitForRuntimeDisposal(tester, runtime);
     await tester.pumpAndSettle();
     expect(runtime.isDisposed, isTrue);
     expect(runtime.handlesAtDispose, 0);
@@ -330,7 +368,8 @@ $source
         expect(errors.single.toString(), contains(expected));
         expect(runtime.isDisposed, isTrue);
         expect(runtime.handlesAtDispose, 0);
-        await tester.pumpWidget(const SizedBox());
+        await flaxTestUnmount(tester);
+        await flaxTestWaitForRuntimeDisposal(tester, runtime);
       },
     );
   }
@@ -341,9 +380,6 @@ bool _boolean(RuntimeTracker runtime, String expression) =>
 
 num _number(RuntimeTracker runtime, String expression) =>
     (runtime.evaluate(expression) as FlaxJsNumber).value;
-
-String _string(RuntimeTracker runtime, String expression) =>
-    (runtime.evaluate(expression) as FlaxJsString).value;
 
 void _execute(RuntimeTracker runtime, String script) {
   final result = runtime.evaluate('$script\nundefined;');
@@ -374,7 +410,7 @@ class _Fixture {
           .singleWhere((module) => module['specifier'] == specifier);
 
   void addDependencyCycle() {
-    final core = module('@flax/core/bindings');
+    final core = module('@fixture/base/bindings');
     core['dependencies'] = {'@fixture/a': '1.0.0'};
     final asset = core['asset'] as String;
     assets[asset] = assets[asset]!.replaceFirst(
@@ -388,6 +424,12 @@ class _Bundle extends CachingAssetBundle {
   _Bundle(this.sources);
   final Map<String, String> sources;
   final reads = <String>[];
+
+  @override
+  Future<String> loadString(String key, {bool cache = true}) async {
+    reads.add(key);
+    return sources[key] ?? (throw StateError('Missing module asset: $key'));
+  }
 
   @override
   Future<ByteData> load(String key) async {

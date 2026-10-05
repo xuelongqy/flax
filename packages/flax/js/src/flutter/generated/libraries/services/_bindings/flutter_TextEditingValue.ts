@@ -11,16 +11,16 @@ readonly text: string;
 readonly selection: upstream0.TextSelection;
 readonly composing: upstream1.TextRange;
 readonly isComposingRangeValid: boolean;
-copyWith(options?: {composing?: upstream1.TextRange | null | undefined; selection?: upstream0.TextSelection | null | undefined; text?: string | null | undefined}): TextEditingValue;
+copyWith(options?: {composing?: Readonly<{ "__flaxBound:dart:ui::TextRange": readonly [] }> | null | undefined; selection?: Readonly<{ "__flaxBound:package:flutter/src/services/text_editing.dart::TextSelection": readonly [] }> | null | undefined; text?: string | null | undefined}): TextEditingValue;
 }
-defineObject("flax.core/flutter#type:TextEditingValue", ["text","selection","composing","isComposingRangeValid"], [], {copyWith(this: object, options: { composing?: upstream1.TextRange | null | undefined; selection?: upstream0.TextSelection | null | undefined; text?: string | null | undefined } = {}): TextEditingValue {
+defineObject("flax.core/flutter#type:TextEditingValue", ["text","selection","composing","isComposingRangeValid"], [], {copyWith(this: object, options: { composing?: Readonly<{ "__flaxBound:dart:ui::TextRange": readonly [] }> | null | undefined; selection?: Readonly<{ "__flaxBound:package:flutter/src/services/text_editing.dart::TextSelection": readonly [] }> | null | undefined; text?: string | null | undefined } = {}): TextEditingValue {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["composing","selection","text"].includes(k))) throw new TypeError('Invalid named method arguments');
 const _flaxResult = invokeObject(this, "flax.core/flutter#type:TextEditingValue", "copyWith", [options.composing, options.selection, options.text]);
 return _flaxResult as TextEditingValue;
 },
 }, []);
-export function TextEditingValue(options: { text?: string | undefined; selection?: upstream0.TextSelection | undefined; composing?: upstream1.TextRange | undefined } = {}): TextEditingValue {
+export function TextEditingValue(options: { text?: string | undefined; selection?: Readonly<{ "__flaxBound:package:flutter/src/services/text_editing.dart::TextSelection": readonly [] }> | undefined; composing?: Readonly<{ "__flaxBound:dart:ui::TextRange": readonly [] }> | undefined } = {}): TextEditingValue {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:TextEditingValue", "", [{"name":"text","required":false,"positional":false},{"name":"selection","required":false,"positional":false},{"name":"composing","required":false,"positional":false}], [], options) as TextEditingValue;
 }

@@ -6,7 +6,8 @@
   "dependencies": {
     "@flax/core": "workspace:*",
     "@flax/flutter": "workspace:*",
-    "@flax/material-ui": "workspace:*"
+    "@flax/material-ui": "workspace:*",
+    "@flax/core-runtime": "workspace:*"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",

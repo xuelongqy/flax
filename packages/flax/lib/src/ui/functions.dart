@@ -16,6 +16,10 @@ class _FunctionReference extends _ObjectReference {
         value,
       );
   final FlaxCallbackBinding signature;
+  String get _bindingViewKeyForReference =>
+      context != null && _usesBindingContext(signature.result)
+      ? '${signature.id}@${context!.moduleId}'
+      : signature.id;
 
   @override
   void release() {
@@ -23,7 +27,7 @@ class _FunctionReference extends _ObjectReference {
     _value = null;
     session._objects.remove(id);
     final views = session._functionViews[function];
-    views?.remove(signature.id);
+    views?.remove(_bindingViewKeyForReference);
     if (views != null && views.isEmpty) session._functionViews.remove(function);
   }
 }
@@ -59,12 +63,16 @@ extension _FunctionCalls on _Session {
     if (!signature.matches(value)) {
       throw ArgumentError('Incompatible Dart function');
     }
-    var reference = _functionViews[value]?[signature.id];
+    final viewKey = _bindingViewKey(
+      signature.id,
+      _usesBindingContext(signature.result),
+    );
+    var reference = _functionViews[value]?[viewKey];
     final created = reference == null;
     if (reference == null) {
       reference = _FunctionReference(this, _nextObject++, value, signature);
       _objects[reference.id] = reference;
-      (_functionViews[value] ??= {})[signature.id] = reference;
+      (_functionViews[value] ??= {})[viewKey] = reference;
     }
     try {
       return helper('function').call([
@@ -88,7 +96,7 @@ extension _FunctionCalls on _Session {
   }
 
   void registerFunctions() {
-    runtime.registerHostFunction('__flaxFunction', (_, args) {
+    _registerBindingHostFunction('__flaxFunction', (_, args) {
       _checkCall(args, 3);
       if (args[2] is! FlaxJsNumber) {
         throw ArgumentError('Invalid Dart function');

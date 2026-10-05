@@ -24,6 +24,13 @@
     "markdown-it": "15.0.1",
     "markdownlint-cli2": "0.23.2",
     "prettier": "3.9.6",
-    "typescript": "7.0.2"
+    "typescript": "7.0.2",
+    "@flax/core-runtime": "workspace:*",
+    "@flax/material-ui": "workspace:*",
+    "@flax/cupertino-ui": "workspace:*",
+    "@flax/fetch-runtime": "workspace:*",
+    "@flax/websocket-runtime": "workspace:*",
+    "@flax/local-storage-runtime": "workspace:*",
+    "@flax/canvas-runtime": "workspace:*"
   }
 }

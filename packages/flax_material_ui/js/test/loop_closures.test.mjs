@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { runInNewContext } from 'node:vm';
+import { createContext, runInContext } from 'node:vm';
 
 test('bundled loop callbacks retain independent signals and subscriptions', () => {
   const source = readFileSync(
@@ -10,18 +10,34 @@ test('bundled loop callbacks retain independent signals and subscriptions', () =
   );
   const notifications = [];
   let root;
-  runInNewContext(source, {
+  const context = createContext({
     __flaxCreateObject(version, type, descriptor) {
-      assert.equal(version, 21);
+      assert.equal(version, 22);
       assert.match(type, /#type:ValueKey$/);
       return Object.freeze({ value: descriptor.args.value });
     },
     __flaxMount(widget, version) {
-      assert.equal(version, 21);
+      assert.equal(version, 22);
       root = widget;
     },
     __flaxInvalidate: (token) => notifications.push(token),
   });
+  const inventoryRoot = new URL(
+    '../../../../.local/ui-module-inventory/',
+    import.meta.url,
+  );
+  const manifest = JSON.parse(
+    readFileSync(new URL('modules/modules.json', inventoryRoot), 'utf8'),
+  );
+  runInContext(
+    readFileSync(new URL(manifest.bootstrap, inventoryRoot), 'utf8'),
+    context,
+  );
+  for (const entry of manifest.modules) {
+    runInContext(readFileSync(new URL(entry.asset, inventoryRoot), 'utf8'), context);
+  }
+  context.__flaxModules.seal(manifest.modules);
+  runInContext(source, context);
   const child = (key) => root.args.children.find((w) => w.args.key.value === key);
   const labels = [1, 2, 3].map((i) => child(`loop-label-${i}`).args.data);
   const stops = labels.map((binding, i) => binding.observe(i + 1));

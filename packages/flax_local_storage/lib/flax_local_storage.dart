@@ -96,6 +96,8 @@ class FlaxLocalStoragePlugin extends FlaxPlugin {
   @override
   String get id => 'flax.localStorage';
   @override
+  Set<String> get jsModules => const {'@flax/local-storage'};
+  @override
   Set<String> get globals => const {
     'localStorage',
     'Storage',

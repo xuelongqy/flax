@@ -8,7 +8,7 @@
       "toolingOutcome": {
         "valid": true,
         "projection": {
-          "format": 1,
+          "format": 2,
           "capabilities": ["bindings"],
           "bindingNamespace": "com.acme.flax.widgets"
         }
@@ -16,7 +16,7 @@
       "codegenProjectionOutcome": {
         "valid": true,
         "projection": {
-          "format": 1,
+          "format": 2,
           "capabilities": ["bindings"],
           "bindingNamespace": "com.acme.flax.widgets"
         }
@@ -30,7 +30,7 @@
       "toolingOutcome": {
         "valid": true,
         "projection": {
-          "format": 1,
+          "format": 2,
           "capabilities": ["codegen"],
           "bindingNamespace": null
         }
@@ -38,7 +38,7 @@
       "codegenProjectionOutcome": {
         "valid": true,
         "projection": {
-          "format": 1,
+          "format": 2,
           "capabilities": ["codegen"],
           "bindingNamespace": null
         }
@@ -52,7 +52,7 @@
       "toolingOutcome": {
         "valid": true,
         "projection": {
-          "format": 1,
+          "format": 2,
           "capabilities": ["bindings", "host-plugin"],
           "bindingNamespace": "flax.canvas"
         }
@@ -60,7 +60,7 @@
       "codegenProjectionOutcome": {
         "valid": true,
         "projection": {
-          "format": 1,
+          "format": 2,
           "capabilities": ["bindings", "host-plugin"],
           "bindingNamespace": "flax.canvas"
         }
@@ -169,7 +169,7 @@
             "pointer": "/format",
             "line": 1,
             "column": 9,
-            "message": "Expected 1."
+            "message": "Expected 2."
           }
         ]
       },
@@ -181,7 +181,7 @@
             "pointer": "/format",
             "line": 1,
             "column": 9,
-            "message": "Expected 1."
+            "message": "Expected 2."
           }
         ]
       }
@@ -471,7 +471,7 @@
       "codegenProjectionOutcome": {
         "valid": true,
         "projection": {
-          "format": 1,
+          "format": 2,
           "capabilities": ["codegen"],
           "bindingNamespace": null
         }
@@ -492,7 +492,7 @@
       "codegenProjectionOutcome": {
         "valid": true,
         "projection": {
-          "format": 1,
+          "format": 2,
           "capabilities": ["codegen"],
           "bindingNamespace": null
         }
@@ -513,7 +513,7 @@
       "codegenProjectionOutcome": {
         "valid": true,
         "projection": {
-          "format": 1,
+          "format": 2,
           "capabilities": ["codegen"],
           "bindingNamespace": null
         }

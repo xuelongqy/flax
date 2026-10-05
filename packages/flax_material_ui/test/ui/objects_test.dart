@@ -1,3 +1,4 @@
+import 'package:flax_material_ui/flax_material_ui.dart';
 import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
@@ -62,7 +63,7 @@ void main() {
       await t.pumpWidget(h.app('scroll', arguments: {'changed': true}));
       await t.pumpAndSettle();
       expect(h.number('objects.factories'), 1);
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       await t.pumpAndSettle();
       expect(h.boolean('objects.detached'), isTrue);
       expect(h.number('objects.disposed'), 1);
@@ -428,6 +429,12 @@ void main() {
       Widget app(OwnedHarness h, String code) => MaterialApp(
         home: Material(
           child: FlaxView(
+            plugins: [
+              FlaxTestBindingPlugin(const FlaxMaterialPlugin(), {
+                for (final module in h.session.bindings.modules)
+                  module.moduleId,
+              }),
+            ],
             createRuntime: () => h.runtime,
             source: code,
             bindings: h.session.bindings,

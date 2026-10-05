@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 FlaxBindingModule _module(
   String name, {
   String? moduleId,
-  int uiProtocol = 21,
+  int uiProtocol = 22,
   List<String> requiredCapabilities = const <String>[],
   List<FlaxTypeBinding> types = const [],
   List<FlaxFunctionBinding> functions = const [],
@@ -20,11 +20,11 @@ FlaxBindingModule _module(
 Object? _invoke(Map<String, Object?> values) => null;
 
 void main() {
-  test('generated flutter bindings pin a literal protocol-21 tuple', () {
-    expect(flaxBindingVersion, 21);
+  test('generated flutter bindings pin a literal protocol-22 tuple', () {
+    expect(flaxBindingVersion, 22);
     expect(flutterBindings.name, 'flutter');
     expect(flutterBindings.moduleId, 'flax.core/flutter');
-    expect(flutterBindings.uiProtocol, 21);
+    expect(flutterBindings.uiProtocol, 22);
     expect(flutterBindings.requiredCapabilities, isEmpty);
     expect(FlaxBindingRegistry([flutterBindings]).modules, [flutterBindings]);
   });
@@ -45,22 +45,26 @@ void main() {
     );
   });
 
-  test('registry rejects duplicate moduleId and duplicate name', () {
-    expect(
-      () => FlaxBindingRegistry([
-        _module('left', moduleId: 'test/shared'),
-        _module('right', moduleId: 'test/shared'),
-      ]),
-      throwsArgumentError,
-    );
-    expect(
-      () => FlaxBindingRegistry([
-        _module('same', moduleId: 'test/left'),
-        _module('same', moduleId: 'test/right'),
-      ]),
-      throwsArgumentError,
-    );
-  });
+  test(
+    'registry rejects duplicate moduleId but allows package-local names',
+    () {
+      expect(
+        () => FlaxBindingRegistry([
+          _module('left', moduleId: 'test/shared'),
+          _module('right', moduleId: 'test/shared'),
+        ]),
+        throwsArgumentError,
+      );
+      final registry = FlaxBindingRegistry([
+        _module('same', moduleId: 'package.a/same'),
+        _module('same', moduleId: 'package.b/same'),
+      ]);
+      expect(registry.modules.map((module) => module.moduleId), [
+        'package.a/same',
+        'package.b/same',
+      ]);
+    },
+  );
 
   test('registry rejects overriding the built-in component module', () {
     expect(

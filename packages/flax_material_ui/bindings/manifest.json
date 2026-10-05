@@ -1,5 +1,5 @@
 {
-  "formatVersion": 12,
+  "formatVersion": 13,
   "package": "flax_material_ui",
   "bindingNamespace": "flax.material",
   "imports": [
@@ -9,7 +9,7 @@
     {
       "name": "material",
       "moduleId": "flax.material/material",
-      "uiProtocol": 21,
+      "uiProtocol": 22,
       "requiredCapabilities": [],
       "model": {
         "library": "package:material_ui/material_ui.dart",

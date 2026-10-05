@@ -143,9 +143,9 @@ void main() {
       print(
         'Align native constructions: $counts; handles=$handles; subscriptions=1; host calls=${runtime.hostCalls}.',
       );
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       await t.pumpAndSettle();
-      await session.close();
+      await flaxTestCloseSession(t, session);
       expect(runtime.handlesAtDispose, 0);
       expect(runtime.activeSubscriptions, 0);
     },
@@ -496,7 +496,7 @@ void main() {
           reports.any((e) => e.exceptionAsString().contains(message)),
           isTrue,
         );
-        await t.pumpWidget(const SizedBox());
+        await flaxTestUnmount(t);
         reports.clear();
         await pump(FlaxView.page(session: h.session, name: name));
         expect(

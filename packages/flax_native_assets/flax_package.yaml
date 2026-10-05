@@ -1,4 +1,4 @@
-format: 1
+format: 2
 dart:
   entrypoint: package:flax_native_assets/flax_native_assets.dart
 capabilities: []

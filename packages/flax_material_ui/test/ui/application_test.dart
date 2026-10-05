@@ -1,3 +1,4 @@
+import 'package:flax_material_ui/flax_material_ui.dart';
 import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
@@ -130,6 +131,7 @@ void main() {
         packageName: 'flax_material_ui',
       );
       Widget view(String code) => FlaxView(
+        plugins: const [FlaxMaterialPlugin()],
         createRuntime: create,
         source: code,
         bindings: registry,
@@ -150,7 +152,7 @@ void main() {
       expect(find.byType(MaterialApp), findsOneWidget);
       expect(errors, hasLength(1));
       expect(errors.single.toString(), contains('FlaxSessionClosed'));
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       await t.pumpAndSettle();
       expect(runtimes.last.handlesAtDispose, 0);
       expect(t.takeException(), isNull);
@@ -170,7 +172,7 @@ void main() {
         final closing = h.session.close().then((_) => closed = true);
         await t.pump();
         expect(closed, isFalse);
-        await t.pumpWidget(const SizedBox());
+        await flaxTestUnmount(t);
         await t.pumpAndSettle();
         await closing;
         expect(closed, isTrue);
@@ -195,7 +197,7 @@ void main() {
         expect(find.byType(ErrorWidget), findsOneWidget);
         expect(h.errors, hasLength(1));
         expect(h.errors.single.toString(), contains('first application build'));
-        await t.pumpWidget(const SizedBox());
+        await flaxTestUnmount(t);
         await t.pumpAndSettle();
         expect(h.actualDisposals, 1);
       } finally {
@@ -216,6 +218,7 @@ void main() {
       }
 
       Widget view(String source) => FlaxView(
+        plugins: const [FlaxMaterialPlugin()],
         createRuntime: create,
         source: source,
         bindings: registry,
@@ -227,7 +230,7 @@ void main() {
       await t.pumpWidget(view("throw new Error('replacement')"));
       await t.pumpAndSettle();
       expect(runtimes.first.handlesAtDispose, 0);
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       await t.pumpAndSettle();
       expect(runtimes.last.handlesAtDispose, 0);
       expect(t.takeException(), isNull);

@@ -1,7 +1,8 @@
+import 'package:flax_test/flax_test.dart';
+
 import 'dart:async';
 
 import 'package:flax/flax.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../support/owned_harness.dart';
@@ -266,7 +267,7 @@ void main() {
       expect(harness.number('streamHooks.closeValues.length'), 0);
 
       unawaited(controller.close());
-      await tester.pumpWidget(const SizedBox());
+      await flaxTestUnmount(tester);
       await tester.pumpAndSettle();
       await closed;
       expect(harness.runtime.handlesAtDispose, 0);

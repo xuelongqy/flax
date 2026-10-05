@@ -19,12 +19,12 @@ final class FlaxCodegenManifestProjection {
     required List<FlaxCodegenManifest> packageManifests,
     required Map<String, String> packageSources,
     required Map<String, _FrozenModule> modulesByModuleId,
-    required Map<FlaxCodegenSourceIdentity, _AuthoritativeOwner> ownersBySource,
+    required Map<String, _AuthoritativeOwner> ownersByWire,
     required List<FlaxCodegenImportedPackage> importedPackages,
   }) : packageManifests = List.unmodifiable(packageManifests),
        _packageSources = Map.unmodifiable(packageSources),
        _modulesByModuleId = Map.unmodifiable(modulesByModuleId),
-       _ownersBySource = Map.unmodifiable(ownersBySource),
+       _ownersByWire = Map.unmodifiable(ownersByWire),
        importedPackages = List.unmodifiable(importedPackages);
 
   /// Diagnostic source for this projection build.
@@ -40,7 +40,7 @@ final class FlaxCodegenManifestProjection {
   final Map<String, String> _packageSources;
 
   final Map<String, _FrozenModule> _modulesByModuleId;
-  final Map<FlaxCodegenSourceIdentity, _AuthoritativeOwner> _ownersBySource;
+  final Map<String, _AuthoritativeOwner> _ownersByWire;
 
   /// Transitive packages excluding [manifest], diamond-deduplicated, sorted by
   /// Dart package name. Suitable for [FlaxCodegenOwnership.resolvePackage].
@@ -56,13 +56,29 @@ final class FlaxCodegenManifestProjection {
   /// Authoritative owner wire for [sourceIdentity], if any.
   FlaxCodegenWireId? authoritativeWireId(
     FlaxCodegenSourceIdentity sourceIdentity,
-  ) => _ownersBySource[sourceIdentity]?.wireId;
+  ) => _ownerForSource(sourceIdentity)?.wireId;
+
+  _AuthoritativeOwner? _ownerForSource(
+    FlaxCodegenSourceIdentity sourceIdentity,
+  ) {
+    final candidates = _ownersByWire.values
+        .where((owner) => owner.sourceIdentity == sourceIdentity)
+        .toList();
+    final core = candidates
+        .where((owner) => owner.dartPackage == 'flax')
+        .singleOrNull;
+    if (core != null) return core;
+    final local = candidates
+        .where((owner) => owner.dartPackage == manifest.package)
+        .singleOrNull;
+    return local ?? candidates.singleOrNull;
+  }
 
   /// Authoritative imported-owner record for [sourceIdentity], if any.
   FlaxCodegenImportedOwner? authoritativeOwner(
     FlaxCodegenSourceIdentity sourceIdentity,
   ) {
-    final owner = _ownersBySource[sourceIdentity];
+    final owner = _ownerForSource(sourceIdentity);
     if (owner == null) return null;
     return FlaxCodegenImportedOwner(
       sourceIdentity: owner.sourceIdentity,
@@ -254,10 +270,9 @@ FlaxCodegenManifestProjection? _build({
     diagnostics: diagnostics,
   );
 
-  final authoritative = <FlaxCodegenSourceIdentity, _AuthoritativeOwner>{};
-  for (final entry in ownersBySource.entries) {
-    if (entry.value.length != 1) continue;
-    final occurrence = entry.value.single;
+  final authoritative = <String, _AuthoritativeOwner>{};
+  for (final entry in ownersByWire.entries) {
+    final occurrence = entry.value.first;
     authoritative[entry.key] = _AuthoritativeOwner(
       dartPackage: occurrence.dartPackage,
       sourceIdentity: occurrence.identity.sourceIdentity,
@@ -308,7 +323,7 @@ FlaxCodegenManifestProjection? _build({
     packageManifests: packages,
     packageSources: packageSources,
     modulesByModuleId: modulesByModuleId,
-    ownersBySource: authoritative,
+    ownersByWire: authoritative,
     importedPackages: importedPackages,
   );
 }
@@ -453,7 +468,19 @@ void _diagnoseAuthoritativeOwners(
   Map<String, List<_OwnerOccurrence>> ownersByWire,
   FlaxCodegenManifestDiagnostics diagnostics,
 ) {
+  final scoped =
+      <(String, FlaxCodegenSourceIdentity), List<_OwnerOccurrence>>{};
   for (final group in ownersBySource.values) {
+    for (final owner in group) {
+      scoped
+          .putIfAbsent((
+            owner.dartPackage,
+            owner.identity.sourceIdentity,
+          ), () => [])
+          .add(owner);
+    }
+  }
+  for (final group in scoped.values) {
     if (group.length < 2) continue;
     final wires = {for (final owner in group) owner.identity.wireId.value};
     final message = wires.length > 1
@@ -471,13 +498,15 @@ void _diagnoseAuthoritativeOwners(
   for (final group in ownersByWire.values) {
     if (group.length < 2) continue;
     final sources = {for (final owner in group) owner.identity.sourceIdentity};
-    if (sources.length < 2) continue;
+    final message = sources.length < 2
+        ? 'Duplicate wireId.'
+        : 'Conflicting wireId.';
     for (final owner in group) {
       _addForPackage(
         diagnostics,
         owner.manifestSource,
         owner.location.pointer,
-        'Conflicting wireId.',
+        message,
       );
     }
   }
@@ -502,7 +531,9 @@ void _diagnoseDependentOwnership({
       for (final module in dependency.modules) {
         for (final identity in module.model.identities) {
           if (!identity.owner) continue;
-          importedSources.add(identity.sourceIdentity);
+          if (dependency.package == 'flax') {
+            importedSources.add(identity.sourceIdentity);
+          }
           importedWires.add(identity.wireId.value);
         }
       }
@@ -569,7 +600,7 @@ void _diagnoseDependentOwnership({
 void _diagnoseReferenceOwners({
   required List<FlaxCodegenManifest> packages,
   required Map<String, String> packageSources,
-  required Map<FlaxCodegenSourceIdentity, _AuthoritativeOwner> authoritative,
+  required Map<String, _AuthoritativeOwner> authoritative,
   required FlaxCodegenManifestDiagnostics diagnostics,
 }) {
   for (final package in packages) {
@@ -588,9 +619,17 @@ void _diagnoseReferenceOwners({
         final identity = module.model.identities[identityIndex];
         if (identity.owner) continue;
         final pointer = _identityPointer(package, moduleIndex, identityIndex);
-        final owner = authoritative[identity.sourceIdentity];
+        final owner = authoritative[identity.wireId.value];
         if (owner == null) {
-          _addForPackage(diagnostics, packageSource, pointer, 'Missing owner.');
+          final sourceExists = authoritative.values.any(
+            (candidate) => candidate.sourceIdentity == identity.sourceIdentity,
+          );
+          _addForPackage(
+            diagnostics,
+            packageSource,
+            pointer,
+            sourceExists ? 'Owner mismatch.' : 'Missing owner.',
+          );
           continue;
         }
         if (owner.wireId != identity.wireId ||
@@ -708,7 +747,7 @@ Set<String> _importClosure(
 FlaxCodegenImportedPackage _importedPackage({
   required FlaxCodegenManifest package,
   required String packageSource,
-  required Map<FlaxCodegenSourceIdentity, _AuthoritativeOwner> authoritative,
+  required Map<String, _AuthoritativeOwner> authoritative,
 }) {
   final owners = <FlaxCodegenImportedOwner>[
     for (final entry in authoritative.entries)

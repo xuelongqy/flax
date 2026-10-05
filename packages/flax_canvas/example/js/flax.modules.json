@@ -1,0 +1,27 @@
+{
+  "formatVersion": 1,
+  "modules": [
+    {
+      "specifier": "@flax/core",
+      "package": "@flax/core-runtime"
+    },
+    {
+      "specifier": "@flax/core/host",
+      "package": "@flax/core-runtime"
+    },
+    {
+      "specifier": "@flax/core/navigation",
+      "package": "@flax/core-runtime"
+    },
+    {
+      "specifier": "@flax/flutter/widgets",
+      "package": "@flax/core-runtime"
+    },
+    {
+      "specifier": "@flax/canvas",
+      "package": "@flax/canvas-runtime"
+    }
+  ],
+  "flutterProject": "..",
+  "output": "assets/flax_modules"
+}

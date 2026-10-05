@@ -1,3 +1,5 @@
+import 'package:flax_test/flax_test.dart';
+
 import 'dart:ui' show PointerDeviceKind;
 
 import 'package:flax/flax.dart';
@@ -270,7 +272,7 @@ void main() {
           expect(h.runtime.pendingFutures, 0);
         }
         expect(h.errors, isEmpty);
-        await t.pumpWidget(const SizedBox());
+        await flaxTestUnmount(t);
         await t.pumpAndSettle();
         expect(h.number('shared.disposed'), 2);
         expect(h.actualDisposals, 2);
@@ -467,7 +469,7 @@ void main() {
         expect(h.number('shared.presses'), 1);
         await mouse.removePointer();
         final closed = h.session.close();
-        await t.pumpWidget(const SizedBox());
+        await flaxTestUnmount(t);
         await t.pumpAndSettle();
         await closed;
         final calls = Map<String, int>.from(h.runtime.jsCalls);
@@ -536,7 +538,7 @@ void main() {
       expect(h.runtime.pendingFutures, 1);
       expect(h.number('shared.completed'), 0);
       final closed = h.session.close();
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       await t.pumpAndSettle();
       await closed;
       final calls = Map<String, int>.from(h.runtime.jsCalls);

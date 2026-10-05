@@ -143,6 +143,7 @@ final class FlaxCodegenPackagePipeline {
     );
     final dartDependencies = _readPubspecDirectDependencyNames(
       located.packageRoot,
+      requireFlax: !metadata!.capabilities.contains('core'),
     );
     final imports = <String>{
       for (final config in configs) ...config.imports,
@@ -162,12 +163,13 @@ final class FlaxCodegenPackagePipeline {
     final directDependencies = _selectDirectDependencyProjections(
       dartPackage: dartPackage,
       imports: imports,
+      configs: configs,
       parsedModels: parsedModels,
       candidates: providerCandidates,
     );
     final resolved = _resolveLocalOwnership(
       dartPackage: dartPackage,
-      metadata: metadata!,
+      metadata: metadata,
       packageRoot: located.packageRoot,
       configs: configs,
       configPaths: configPaths,
@@ -263,7 +265,10 @@ final class FlaxCodegenPackagePipeline {
       ]);
     }
 
-    final dartDependencies = _readPubspecDirectDependencyNames(root);
+    final dartDependencies = _readPubspecDirectDependencyNames(
+      root,
+      requireFlax: !metadata.capabilities.contains('core'),
+    );
     final providerCandidates = _loadProviderCandidateProjections(
       imports: const [],
       dartDependencies: dartDependencies,
@@ -330,6 +335,7 @@ final class FlaxCodegenPackagePipeline {
     final directDependencies = _selectDirectDependencyProjections(
       dartPackage: dartPackage,
       imports: const [],
+      configs: configs,
       parsedModels: parsedModels,
       candidates: providerCandidates,
     );
@@ -898,7 +904,10 @@ String _readPubspecPackageName(String packageRoot) {
   return name;
 }
 
-List<String> _readPubspecDirectDependencyNames(String packageRoot) {
+List<String> _readPubspecDirectDependencyNames(
+  String packageRoot, {
+  required bool requireFlax,
+}) {
   final path = p.join(packageRoot, 'pubspec.yaml');
   final Object? loaded;
   try {
@@ -920,14 +929,13 @@ List<String> _readPubspecDirectDependencyNames(String packageRoot) {
   }
   if (loaded is! YamlMap) return const [];
   final dependencies = loaded['dependencies'];
-  if (dependencies == null) return const [];
-  if (dependencies is! YamlMap) {
+  if (dependencies != null && dependencies is! YamlMap) {
     throw FlaxCodegenException([
       _pathDiagnostic(path, 'Invalid Dart dependencies.'),
     ]);
   }
   final names = <String>[];
-  for (final key in dependencies.keys) {
+  for (final key in dependencies is YamlMap ? dependencies.keys : const []) {
     if (key is! String || key.isEmpty) {
       throw FlaxCodegenException([
         _pathDiagnostic(path, 'Invalid Dart dependency name.'),
@@ -936,6 +944,11 @@ List<String> _readPubspecDirectDependencyNames(String packageRoot) {
     names.add(key);
   }
   names.sort();
+  if (requireFlax && !names.contains('flax')) {
+    throw FlaxCodegenException([
+      _dependencyDiagnostic(path, 'Binding packages must depend on Dart flax.'),
+    ]);
+  }
   return names;
 }
 
@@ -1163,7 +1176,11 @@ Map<String, FlaxCodegenManifestProjection> _loadProviderCandidateProjections({
   final cache = <String, FlaxCodegenManifestProjection>{};
   final diagnostics = <FlaxCodegenDiagnostic>[];
   final direct = <String, FlaxCodegenManifestProjection>{};
-  for (final name in imports) {
+  final requiredImports = {
+    ...imports,
+    if (dartDependencies.contains('flax')) 'flax',
+  };
+  for (final name in requiredImports) {
     try {
       direct[name] = _loadManifestProjection(
         name,
@@ -1207,13 +1224,41 @@ Map<String, FlaxCodegenManifestProjection> _selectDirectDependencyProjections({
   required String dartPackage,
   required List<String> imports,
   required List<FlaxCodegenModuleModel> parsedModels,
+  required List<FlaxCodegenBindingConfig> configs,
   required Map<String, FlaxCodegenManifestProjection> candidates,
 }) {
+  final localIds = <String>{};
+  for (final (index, module) in parsedModels.indexed) {
+    for (final type in module.classes) {
+      final selection = configs[index].classes[type.name];
+      if (selection != null && !flaxCodegenIsStateVariantOverlay(selection)) {
+        localIds.add(type.id);
+      }
+    }
+    localIds.addAll(module.functions.map((function) => function.id));
+    localIds.addAll(
+      module.extensions
+          .where((extension) => !extension.isReference)
+          .expand((extension) => extension.members.map((member) => member.id)),
+    );
+    localIds.addAll(
+      (module.topLevel?.getters ?? <FlaxCodegenTopLevelGetterModel>[])
+          .where((getter) => !getter.isReference)
+          .map((getter) => getter.id),
+    );
+    localIds.addAll(
+      (module.topLevel?.setters ?? <FlaxCodegenTopLevelSetterModel>[])
+          .where((setter) => !setter.isReference)
+          .map((setter) => setter.id),
+    );
+  }
   final referenced = <FlaxCodegenSourceIdentity>{};
   for (final module in parsedModels) {
     _walkModuleEncodedIds(module, (rawId, kind, pointer) {
       final identity = _sourceIdentityFromRawId(rawId, kind);
-      if (identity != null && !_isPackageIdentity(identity, dartPackage)) {
+      if (identity != null &&
+          !localIds.contains(rawId) &&
+          !_isPackageIdentity(identity, dartPackage)) {
         referenced.add(identity);
       }
     });
@@ -1222,7 +1267,8 @@ Map<String, FlaxCodegenManifestProjection> _selectDirectDependencyProjections({
   final selected = <String, FlaxCodegenManifestProjection>{};
   for (final name in candidates.keys.toList()..sort()) {
     final projection = candidates[name]!;
-    if (imports.contains(name) ||
+    if (name == 'flax' ||
+        imports.contains(name) ||
         referenced.any(
           (identity) => _projectionProvides(projection, identity),
         )) {
@@ -1829,7 +1875,7 @@ Map<String, String> _wireIdToRawFromProjections(
 Map<String, String> _ownedTypeModulesFromProjections(
   Map<String, FlaxCodegenManifestProjection> directDependencies,
 ) {
-  final result = <String, String>{};
+  final candidates = <String, Set<String>>{};
   for (final projection in directDependencies.values) {
     for (final manifest in projection.packageManifests) {
       for (final module in manifest.modules) {
@@ -1839,18 +1885,20 @@ Map<String, String> _ownedTypeModulesFromProjections(
             continue;
           }
           final rawId =
-              '${identity.sourceIdentity.originatingUri}::'
-              '${identity.sourceIdentity.name}';
-          final previous = result[rawId];
-          if (previous != null && previous != module.moduleId.value) {
-            throw StateError('Conflicting dependency type provider: $rawId');
-          }
-          result[rawId] = module.moduleId.value;
+              '${identity.sourceIdentity.originatingUri}::${identity.sourceIdentity.name}';
+          candidates.putIfAbsent(rawId, () => {}).add(module.moduleId.value);
         }
       }
     }
   }
-  return result;
+  final owners = <String, String>{};
+  for (final entry in candidates.entries) {
+    final owner =
+        entry.value.where((id) => id.startsWith('flax.core/')).singleOrNull ??
+        entry.value.singleOrNull;
+    if (owner != null) owners[entry.key] = owner;
+  }
+  return owners;
 }
 
 FlaxCodegenModuleModel _rewriteModuleIds(
@@ -1957,8 +2005,13 @@ List<FlaxCodegenModuleModel> _freezeLocalModels({
       mapIdentity(reference.sourceIdentity, reference.ownerWireId);
     }
   }
+  // References and local owners already select their package-scoped provider.
+  // Imported alternatives must not overwrite that selection.
   for (final owner in resolved.importedOwners) {
-    mapIdentity(owner.sourceIdentity, owner.wireId);
+    rawToWire.putIfAbsent(
+      '${owner.sourceIdentity.originatingUri}::${owner.sourceIdentity.name}',
+      () => owner.wireId.value,
+    );
   }
 
   final resolvedByName = <String, FlaxCodegenResolvedModule>{
@@ -1976,7 +2029,15 @@ List<FlaxCodegenModuleModel> _freezeLocalModels({
       _freezeModule(
         parsed,
         configs[index],
-        rawToWire,
+        {
+          ...rawToWire,
+          for (final reference in resolvedModule.references)
+            '${reference.sourceIdentity.originatingUri}::${reference.sourceIdentity.name}':
+                reference.ownerWireId.value,
+          for (final owner in resolvedModule.owners)
+            '${owner.sourceIdentity.originatingUri}::${owner.sourceIdentity.name}':
+                owner.wireId.value,
+        },
         resolvedModule,
         internalizeAutomaticTypes: internalizeAutomaticTypes,
       ),

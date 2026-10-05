@@ -335,7 +335,7 @@ void main() {
       await t.pumpAndSettle();
       expect(h.errors.single.toString(), contains('Closed Flax session'));
       expect(find.byType(ErrorWidget), findsOneWidget);
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       expect(t.takeException(), isNull);
       cache.clear();
     },
@@ -394,7 +394,7 @@ void main() {
     await t.pumpAndSettle();
     expect(h.errors.single.toString(), contains('Closed Flax session'));
     expect(find.byType(ErrorWidget), findsOneWidget);
-    await t.pumpWidget(const SizedBox());
+    await flaxTestUnmount(t);
     expect(t.takeException(), isNull);
     cache.clear();
   });
@@ -492,7 +492,7 @@ void main() {
       await t.pumpWidget(MaterialApp(home: cache.child));
       await t.pumpAndSettle();
       expect(h.errors.single.toString(), contains('Closed Flax session'));
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       expect(t.takeException(), isNull);
       cache.clear();
     },

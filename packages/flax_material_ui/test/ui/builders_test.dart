@@ -1,3 +1,4 @@
+import 'package:flax_material_ui/flax_material_ui.dart';
 import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
@@ -67,7 +68,7 @@ void main() {
       expect(h.number('Number(Object.isFrozen(hooks.constraints))'), 1);
       expect(h.number('hooks.constraints.maxHeight'), double.infinity);
       expect(h.runtimes, hasLength(1));
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       expect(h.runtime.isDisposed, isTrue);
       expect(h.errors, isEmpty);
     },
@@ -128,7 +129,7 @@ void main() {
         1,
       );
       expect(h.number('hooks.active'), 1);
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       expect(h.runtime.isDisposed, isTrue);
     },
   );
@@ -159,7 +160,7 @@ void main() {
       await t.pump();
       expect(find.text('Count 5'), findsNWidgets(2));
       expect(h.number('hooks.active'), 2);
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       expect(h.errors, isEmpty);
     },
   );
@@ -194,7 +195,7 @@ void main() {
       await t.pump();
       expect(find.text('Count 2'), findsOneWidget);
       expect(h.errors, hasLength(1));
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
     },
   );
 
@@ -213,14 +214,15 @@ void main() {
       expect(find.text('LTR'), findsOneWidget);
       final old = h.runtime;
       await t.pumpWidget(app(h));
+      await flaxTestWaitForRuntimeDisposal(t, old);
       expect(old.isDisposed, isTrue);
       expect(h.runtimes, hasLength(2));
       expect(h.number('hooks.active'), 1);
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       await t.pumpWidget(app(h, code: '__flaxMount({}, 1)'));
       expect(h.errors.last.toString(), contains('protocol'));
       expect(h.runtime.isDisposed, isTrue);
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
     },
   );
 
@@ -230,6 +232,7 @@ void main() {
       final runtime = RuntimeTracker();
       final errors = <Object>[];
       final view = FlaxView(
+        plugins: const [FlaxMaterialPlugin()],
         createRuntime: () => runtime,
         source: builderSource,
         bindings: registry,
@@ -278,7 +281,7 @@ void main() {
         await t.pump();
         expect(runtime.handles, unmounted);
       }
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       expect(runtime.handlesAtDispose, 0);
       expect(errors, isEmpty);
       // Evidence for the task handoff; counts wrap the real runtime.
@@ -301,6 +304,7 @@ void main() {
       ]),
     ]);
     final view = FlaxView(
+      plugins: const [FlaxMaterialPlugin()],
       createRuntime: h.create,
       source: 'globalThis.scenario = "probe";\n$builderSource',
       bindings: bindings,
@@ -322,7 +326,7 @@ void main() {
     expect(deactivations, 1);
     expect(h.number('Number(hooks.context.mounted)'), 0);
     expect(h.errors, isEmpty);
-    await t.pumpWidget(const SizedBox());
+    await flaxTestUnmount(t);
   });
 
   testWidgets(
@@ -360,12 +364,13 @@ void main() {
       expect(find.text('Count 7'), findsOneWidget);
       expect(find.text('Count 0'), findsOneWidget);
       await t.pumpWidget(regions(false));
+      await flaxTestWaitForRuntimeDisposal(t, a.runtime);
       expect(a.runtime.isDisposed, isTrue);
       expect(b.number('Number(hooks.context.mounted)'), 1);
       await t.tap(find.text('Read context'));
       await t.pump();
       expect(find.text('Count 1'), findsOneWidget);
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       expect(a.errors, isEmpty);
       expect(b.errors, isEmpty);
     },

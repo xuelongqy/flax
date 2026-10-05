@@ -68,16 +68,16 @@ export async function createMixedFixture(root) {
 };
 `,
       'flax_modules.json': {
-        formatVersion: 1,
-        package: '@flax/core',
+        formatVersion: 2,
+        package: '@fixture/base',
         version: '1.0.0',
         modules: [
-          { specifier: '@flax/core/bindings', source: 'bindings.js', bindings: [] },
+          { specifier: '@fixture/base/bindings', source: 'bindings.js', bindings: [] },
         ],
       },
     },
     {
-      name: '@flax/core',
+      name: '@fixture/base',
       version: '1.0.0',
       type: 'module',
       exports: {
@@ -91,7 +91,7 @@ export async function createMixedFixture(root) {
     root,
     'a-impl',
     {
-      'index.js': `import { bindingState } from '@flax/core/bindings/_bindings/state';
+      'index.js': `import { bindingState } from '@fixture/base/bindings/_bindings/state';
 globalThis.fixtureInitializations = (globalThis.fixtureInitializations ?? 0) + 1;
 export const shared = bindingState.shared;
 export function getValue() { bindingState.reads++; return globalThis.fixtureValue; }
@@ -99,7 +99,7 @@ export function getBindingState() { return bindingState; }
 `,
       'unused.js': "throw new Error('UNSELECTED_MODULE_MUST_NOT_SHIP');\n",
       'flax_modules.json': {
-        formatVersion: 1,
+        formatVersion: 2,
         package: '@fixture/a-impl',
         version: '1.0.0',
         modules: [
@@ -137,12 +137,9 @@ export function getBindingState(): { readonly shared: Shared; reads: number };
     root,
     'core-types',
     {
-      'index.d.ts': `declare module '@flax/core/bindings/_bindings/state' {
+      'index.d.ts': `declare module '@fixture/base/bindings' {
   export interface BindingState { readonly shared: import('@fixture/a').Shared; reads: number; }
   export const bindingState: BindingState;
-}
-declare module '@flax/core/bindings' {
-  export { bindingState, type BindingState } from '@flax/core/bindings/_bindings/state';
 }
 `,
     },
@@ -216,13 +213,12 @@ export function readFromB(): number;
     },
     files: ['main.ts'],
   });
-  const source = `import { bindingState } from '@flax/core/bindings';
-import { bindingState as internalBindingState } from '@flax/core/bindings/_bindings/state';
+  const source = `import { bindingState } from '@fixture/base/bindings';
 import { shared, getValue, getBindingState } from '@fixture/a';
 import { shared as throughB, fromB, readFromB } from '@fixture/b';
 const value: typeof shared = fromB();
 (globalThis as unknown as { fixtureResult: unknown }).fixtureResult = {
-  same: value === shared && throughB === shared && bindingState === internalBindingState && getBindingState() === bindingState,
+  same: value === shared && throughB === shared && getBindingState() === bindingState,
   bindingState,
   read: getValue,
   readFromB,
@@ -273,7 +269,7 @@ export async function createBundledProviderFixture(root) {
       'generated/index.js': `import { shared } from '@fixture/c/_bindings/shared';\nexport { shared };\n`,
       'generated/_bindings/shared.js': `export const shared = Object.freeze({ tag: 'C_IMPL_MARKER' });\n`,
       'flax_modules.json': {
-        formatVersion: 1,
+        formatVersion: 2,
         package: '@fixture/c-impl',
         version: '1.0.0',
         modules: [
@@ -356,7 +352,7 @@ export const shared = {};
 `,
       'unused.js': "throw Error('UNSELECTED_GRAPH_ENTRY');\n",
       'flax_modules.json': {
-        formatVersion: 1,
+        formatVersion: 2,
         package: '@fixture/graph',
         version: '1.0.0',
         modules: entries.map((name) => ({
@@ -417,7 +413,7 @@ export const value = internalValue;
       'provider/index.js': `export const publicValue = 'PUBLIC_MARKER';\n`,
       'provider/_bindings/internal.js': `export const internalValue = 'INTERNAL_MARKER';\n`,
       'flax_modules.json': {
-        formatVersion: 1,
+        formatVersion: 2,
         package: '@fixture/internal-impl',
         version: '1.0.0',
         modules: [
@@ -476,7 +472,7 @@ export const value = internalValue;
       ].map(async (asset) => [asset, await readFile(join(host, asset), 'utf8')]),
     ),
   );
-  return { ...prepared, assets };
+  return { ...prepared, assets, hostJs };
 }
 
 /** A concrete binding subpath must load its owning public module exactly once. */
@@ -498,7 +494,7 @@ export const typeValue = 'TYPE_BINDING_MARKER';
 `,
       'provider/_bindings/helper.js': `export const helperValue = 'HELPER_MARKER';\n`,
       'flax_modules.json': {
-        formatVersion: 1,
+        formatVersion: 2,
         package: '@fixture/owned-impl',
         version: '1.0.0',
         modules: [

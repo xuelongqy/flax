@@ -1,0 +1,13 @@
+{
+  "formatVersion": 2,
+  "package": "@flax/fetch-runtime",
+  "version": "0.0.0",
+  "modules": [
+    { "bindings": [], "specifier": "@flax/fetch", "source": "dist/index.js" },
+    {
+      "bindings": [],
+      "specifier": "@flax/fetch/globals",
+      "source": "dist/globals.js"
+    }
+  ]
+}

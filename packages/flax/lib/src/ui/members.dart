@@ -115,7 +115,7 @@ extension _MemberCalls on _Session {
 
   void registerMembers() {
     registerStateMembers();
-    runtime.registerHostFunction('__flaxTopLevel', (_, args) {
+    _registerBindingHostFunction('__flaxTopLevel', (_, args) {
       _checkCall(args, 2);
       final definition = registry._functions[(args[1] as FlaxJsString).value];
       if (definition == null) throw ArgumentError('Unknown top-level function');
@@ -180,7 +180,7 @@ extension _MemberCalls on _Session {
         checkpoint();
       }
     });
-    runtime.registerHostFunction('__flaxGet', (_, args) {
+    _registerBindingHostFunction('__flaxGet', (_, args) {
       _checkCall(args, 4);
       if (args.length != 4 || args[3] is! FlaxJsString) {
         throw ArgumentError('Invalid getter arguments');
@@ -199,7 +199,7 @@ extension _MemberCalls on _Session {
           : reference.requireActive();
       return holdHostResult(memberResult(getter.read(context), getter.type));
     });
-    runtime.registerHostFunction('__flaxCall', (_, args) {
+    _registerBindingHostFunction('__flaxCall', (_, args) {
       _checkCall(args, 3);
       if (args[2] is! FlaxJsString) throw ArgumentError('Invalid method name');
       final type = (args[1] as FlaxJsString).value;
@@ -340,7 +340,7 @@ extension _MemberCalls on _Session {
   }
 
   void registerStateMembers() {
-    runtime.registerHostFunction('__flaxStateGet', (_, args) {
+    _registerBindingHostFunction('__flaxStateGet', (_, args) {
       _checkCall(args, 4);
       if (args.length != 4 ||
           args[2] is! FlaxJsNumber ||
@@ -362,7 +362,7 @@ extension _MemberCalls on _Session {
       if (state == null) throw StateError('Unmounted State');
       return holdHostResult(memberResult(getter.read(state), getter.type));
     });
-    runtime.registerHostFunction('__flaxInstance', (_, args) {
+    _registerBindingHostFunction('__flaxInstance', (_, args) {
       _checkCall(args, 4);
       if (args[2] is! FlaxJsNumber || args[3] is! FlaxJsString) {
         throw ArgumentError('Invalid instance call');

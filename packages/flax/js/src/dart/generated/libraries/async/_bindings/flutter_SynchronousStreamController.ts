@@ -27,7 +27,7 @@ readonly isPaused: boolean;
 readonly hasListener: boolean;
 readonly done: Promise<unknown | null>;
 add(data: T): void;
-addError(error: {}, stackTrace?: upstream6.StackTrace | null): void;
+addError(error: {}, stackTrace?: Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }> | null): void;
 close(): Promise<unknown | null>;
 addStream(source: upstream5.Stream<T>, options?: {cancelOnError?: boolean | null | undefined}): Promise<unknown | null>;
 set onListen(value: (() => void) | null);
@@ -39,7 +39,7 @@ defineObject("flax.core/flutter#type:SynchronousStreamController", ["onListen","
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeObject(this, "flax.core/flutter#type:SynchronousStreamController", "add", [data]);
 },
-addError(this: object, error: {}, stackTrace?: upstream6.StackTrace | null): void {
+addError(this: object, error: {}, stackTrace?: Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }> | null): void {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeObject(this, "flax.core/flutter#type:SynchronousStreamController", "addError", [error, stackTrace]);
 },

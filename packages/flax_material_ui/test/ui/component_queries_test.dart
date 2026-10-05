@@ -1,3 +1,4 @@
+import 'package:flax_material_ui/flax_material_ui.dart';
 import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
@@ -8,6 +9,7 @@ import '../support/harness.dart';
 import '../support/runtime_tracker.dart';
 
 FlaxSession makeSession(Harness h, String code) => FlaxSession(
+  plugins: const [FlaxMaterialPlugin()],
   createRuntime: h.create,
   source:
       '${flaxTestFixtureSource('components', packageName: 'flax_material_ui')}\n$code',
@@ -44,7 +46,7 @@ componentApi.runApp(new componentApi.Caption('old protocol'));
     );
     expect(h.runtime.isDisposed, isTrue);
     expect(find.text('old protocol:ltr'), findsNothing);
-    await t.pumpWidget(const SizedBox());
+    await flaxTestUnmount(t);
   });
 
   testWidgets(
@@ -101,9 +103,9 @@ componentApi.runApp(componentApi.Column({children: [new Label(), new Label({key:
       final unloaded = makeSession(Harness(), '');
       expect(() => unloaded.componentType(function), throwsStateError);
       function.release();
-      await unloaded.close();
-      await t.pumpWidget(const SizedBox());
-      await session.close();
+      await flaxTestCloseSession(t, unloaded);
+      await flaxTestUnmount(t);
+      await flaxTestCloseSession(t, session);
       expect(type.toString(), startsWith('Label@'));
       expect(h.errors, isEmpty);
       expect(h.runtime.isDisposed, isTrue);
@@ -139,9 +141,9 @@ componentApi.runApp(componentApi.Column({children: [new Label(), new Label({key:
     foreign.release();
     final retired =
         a.runtime.evaluate('componentApi.Caption') as FlaxJsFunction;
-    await t.pumpWidget(const SizedBox());
-    await first.close();
-    await second.close();
+    await flaxTestUnmount(t);
+    await flaxTestCloseSession(t, first);
+    await flaxTestCloseSession(t, second);
     expect(() => first.componentType(retired), throwsStateError);
     expect(a.errors, isEmpty);
     expect(b.errors, isEmpty);
@@ -194,13 +196,13 @@ componentApi.runApp(root);
       h.execute('changed.value++');
       await t.pump();
       expect(h.number('builds'), 1);
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       expect(h.number('Number(contexts[3].mounted)'), 0);
       expect(
         () => h.execute('contexts[3].findAncestorWidgetOfExactType(Outer)'),
         throwsA(isA<FlaxJsException>()),
       );
-      await session.close();
+      await flaxTestCloseSession(t, session);
       expect(h.errors, isEmpty);
     },
   );
@@ -249,10 +251,10 @@ componentApi.runApp(new Measuring());
       expect(h.number('measured.length'), 3);
       expect(h.number('measured[2][0]'), 240);
       h.execute('state.readLater()');
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       await t.pumpAndSettle();
       expect(h.number('Number(measured[3] === "unmounted")'), 1);
-      await session.close();
+      await flaxTestCloseSession(t, session);
       expect(h.errors, isEmpty);
     },
   );
@@ -303,9 +305,9 @@ componentApi.runApp(componentApi.Center({child: parent.bind}));
         1,
       );
       expect(h.number('builds'), 1);
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       expect(h.number('inactive'), 2);
-      await session.close();
+      await flaxTestCloseSession(t, session);
       expect(h.errors, isEmpty);
     },
   );
@@ -371,8 +373,8 @@ componentApi.runApp(new Probe());
       () => h.execute('sliverContext.size'),
       throwsA(isA<FlaxJsException>()),
     );
-    await t.pumpWidget(const SizedBox());
-    await session.close();
+    await flaxTestUnmount(t);
+    await flaxTestCloseSession(t, session);
     expect(h.errors, isEmpty);
   });
 
@@ -382,6 +384,7 @@ componentApi.runApp(new Probe());
     final runtime = RuntimeTracker();
     final errors = <Object>[];
     final session = FlaxSession(
+      plugins: const [FlaxMaterialPlugin()],
       createRuntime: () => runtime,
       source:
           '''${flaxTestFixtureSource('components', packageName: 'flax_material_ui')}
@@ -409,8 +412,8 @@ componentApi.runApp(new componentApi.Counter('types'));
     }
     expect(runtime.handles, handles);
     constructor.release();
-    await t.pumpWidget(const SizedBox());
-    await session.close();
+    await flaxTestUnmount(t);
+    await flaxTestCloseSession(t, session);
     expect(runtime.handlesAtDispose, 0);
     expect(errors, isEmpty);
     // Test-only cost evidence.
@@ -438,7 +441,7 @@ componentApi.runApp(new componentApi.Caption('closing'));
     expect(h.number('delivered'), 0);
     await t.pump();
     expect(h.number('delivered'), 0);
-    await t.pumpWidget(const SizedBox());
+    await flaxTestUnmount(t);
     await closed;
     await t.pump();
     expect(h.runtime.isDisposed, isTrue);

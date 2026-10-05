@@ -9,7 +9,7 @@ import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_BuildCo
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface ListenableBuilder extends WidgetDescription { readonly type: "flax.core/flutter#type:ListenableBuilder";  }
-export function ListenableBuilder(options: { key?: upstream0.Key | null | undefined; listenable: Bindable<upstream1.Listenable>; builder: Bindable<((context: upstream2.BuildContext, child: Widget | null) => Widget)>; child?: Bindable<Widget | null> | undefined }): ListenableBuilder {
+export function ListenableBuilder(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; listenable: Bindable<Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }>>; builder: Bindable<((context: upstream2.BuildContext, child: Widget | null) => Widget)>; child?: Bindable<Widget | null> | undefined }): ListenableBuilder {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return construct("widget", "flax.core/flutter#type:ListenableBuilder", "", [{"name":"key","required":false,"positional":false},{"name":"listenable","required":true,"positional":false},{"name":"builder","required":true,"positional":false},{"name":"child","required":false,"positional":false}], [], options) as ListenableBuilder;
 }

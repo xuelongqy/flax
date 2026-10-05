@@ -4,8 +4,8 @@ English guide for authors who ship a Flax binding package **outside** the Flax
 repository. Follow this layout, then run the three-command Codegen CLI against a direct
 YAML config.
 
-This template targets binding selection format **2**, package metadata format **1**,
-Manifest format **12**, UI protocol **21**, and native ABI **2**. These are separate
+This template targets binding selection format **2**, package metadata format **2**,
+Manifest format **13**, UI protocol **22**, and native ABI **2**. These are separate
 current domains; binding authors do not add readers or adapters for other formats.
 
 Open product decisions (do **not** invent values here): license text, Pub/npm package
@@ -18,7 +18,7 @@ Generated Dart and JS modules must register and install with literal `moduleId`,
 [literal module tuple](../../../docs/architecture/bindings.md#literal-module-tuple-and-registration)
 and the
 [verification scope](../../../docs/architecture/external-binding-verification.md).
-Codegen emits `moduleId: '<bindingNamespace>/<name>'`, `uiProtocol: 21`, and
+Codegen emits `moduleId: '<bindingNamespace>/<name>'`, `uiProtocol: 22`, and
 `requiredCapabilities: const <String>[]` (or sorted unique literals). Generated JS
 validates that tuple before `defineObject` / `defineStream` / `defineContext` /
 `defineState` or host calls. There is no parallel ambient version field.
@@ -38,12 +38,18 @@ your_package/
         your_bindings.g.dart   # Codegen output (do not hand-edit)
   bindings/
     config.yaml                # format: 2 selection (direct child only)
-    manifest.json              # Manifest 12 output (do not hand-edit)
+    manifest.json              # Manifest 13 output (do not hand-edit)
+  js-types/
+    package.json               # public exports contain only types conditions
+    types/**/*.d.ts            # built declarations; no JavaScript
   js/
-    package.json
+    package.json               # physical source package with -runtime name
+    flax_modules.json          # delivery format 2, public modules and Dart tuple
     src/
       generated/
-        bindings.ts            # Codegen output (do not hand-edit)
+        libraries/api/
+          index.ts             # public library output (do not hand-edit)
+          _bindings/*.ts        # generated bindings and module installer
 ```
 
 Rules:
@@ -51,23 +57,24 @@ Rules:
 - Binding configs must be **direct children** of `bindings/` (`*.yaml` / `*.yml`).
   Nested paths are rejected.
 - `library:` in the config must be a **public** `package:<name>/...` URI. Do not point
-  Codegen at `package:<name>/src/...` (Manifest 12 rejects private `src/` type library
+  Codegen at `package:<name>/src/...` (Manifest 13 rejects private `src/` type library
   URIs).
 - Prefer a small `lib/api.dart` that exports only the selected API (not the generated
   file) so the config library URI does not create an import cycle with generated output.
 
 Copyable stubs live under [`example/author_template/`](../example/author_template/).
 
-## `flax_package.yaml` (format 1)
+## `flax_package.yaml` (format 2)
 
 ```yaml
-format: 1
+format: 2
 dart:
   entrypoint: package:your_package/your_package.dart
 javascript:
-  package: '@your-scope/your-package' # product decision: npm name
+  package: '@your-scope/your-package-runtime' # physical implementation
+  types: '@your-scope/your-package' # public declaration package
   version: same
-  mode: runtime # or declarations for host-only npm shells
+  mode: runtime
 capabilities:
   - bindings
 bindingNamespace: vendor.example # must NOT collide with flax.*
@@ -78,7 +85,7 @@ registration:
 
 Requirements:
 
-- `format: 1` is required.
+- `format: 2` is required.
 - `capabilities` that include `bindings` **require** `bindingNamespace`.
 - Packages **without** `bindings` must **omit** `bindingNamespace`.
 - Do not use official Flax namespaces (`flax.core`, `flax.material`, `flax.canvas`, …).
@@ -126,7 +133,7 @@ Notes:
 - Optional `typedefs: [AliasName]` exports aliases as `AliasName<T>` and directional
   `AliasNameInput<T>`, preserving alias and function-local parameters, bounds and
   defaults. Targets use existing conversions and owners; aliases create no runtime
-  identity. Manifest 12 preserves alias parameters, bounds and targets. See
+  identity. Manifest 13 preserves alias parameters, bounds and targets. See
   [ADR 0035](../../../docs/decisions/0035-generic-state-variants-and-protocol-21.md).
 - Optional `topLevel: {getters: [name]}` selects public const, final, late final and
   getters without setters. `publicLibraries` determines the public JS/TS module. Safe
@@ -134,20 +141,21 @@ Notes:
   values use uncached `getX()` functions. Importing a module does not perform dynamic
   reads. The return type must use an existing conversion and ownership model. A
   declaration already owned by a dependency reuses that provider's public module.
-  Manifest 12 represents this routing; see
+  Manifest 13 represents this routing; see
   [ADR 0027](../../../docs/decisions/0027-public-library-module-delivery.md).
 
 Direct Dart dependencies that publish binding Manifests are considered automatically.
-When exactly one provider owns a required signature type, codegen reuses that provider
-identity without an explicit YAML import. Explicit imports remain supported for
-deliberate provider dependencies and are required when dependency metadata is not enough
-to choose the intended provider:
+Core is reused by default. Automatic binding reuses one adequate dependency provider;
+missing, insufficient or ambiguous non-Core providers generate a complete local binding.
+Explicit local selections stay local, even when another package binds the same source.
+Full namespace and wire IDs must remain unique. Explicit dependency imports remain
+supported:
 
 ```yaml
 imports: [flax]
 ```
 
-Codegen resolves Manifest 12 providers through the consumer's package config. It does
+Codegen resolves Manifest 13 providers through the consumer's package config. It does
 not read another package’s selection YAML or private sources, and it never auto-expands
 another provider's public/member surface.
 
@@ -164,7 +172,7 @@ dart run flax_codegen check --config bindings/config.yaml
 - `validate` — strict YAML + package metadata + ownership / Manifest projection; no
   writes.
 - `generate` — package-atomic write of Dart, TypeScript, and `bindings/manifest.json`
-  (Manifest formatVersion **12**).
+  (Manifest formatVersion **13**).
 - `check` — read-only reproducibility / orphan check; does not modify the tree.
 
 The old form `dart run flax_codegen [--check] <config> ...` is not supported.
@@ -187,7 +195,7 @@ import 'package:flax/flax.dart';
 import 'package:your_package/your_package.dart';
 
 final bindings = FlaxBindingRegistry([
-  flutterBindings, // from Core, if used
+  // Core is injected by default.
   exampleBindings, // generated from this package's name: example config
 ]);
 ```
@@ -199,6 +207,29 @@ final bindings = FlaxBindingRegistry([
   `<bindingNamespace>/<module>#type:<Name>` form.
 - Host packages that return Dart objects to JS must pass the **wire id** string (not the
   Codegen-only `sourceIdentity`) when exposing objects through the host API.
+
+## Source, public types and plugin delivery
+
+Dart binding packages depend on `flax`; public declaration packages depend on
+`@flax/core`. The source package also depends on `@flax/core-runtime` so preparation can
+discover the Core implementations without changing public import paths. Run
+`pnpm run build` from `js/` after generation. It emits JavaScript under `js/dist/` and
+declarations under `js-types/types/`. The source package's `tsconfig.json` maps its own
+public imports to generated source, so its first build does not need prebuilt sibling
+declarations. Update those `paths` entries when replacing the npm scope placeholders.
+
+The template delivers `@your-scope/your-package/api`. Keep its `js/flax_modules.json`
+binding tuple and IDs aligned with the generated Manifest. Application Dart plugins
+expose `bindingModules: [exampleBindings]` and
+`jsModules: {'@your-scope/your-package/api'}`. The host prepares this source package,
+loads `FlaxModuleAssets`, and passes that plugin to the session. Core is already
+injected. Installing a source package alone does not activate it. See
+[plugin delivery](../../../docs/architecture/packaging.md#application-module-inventory-and-host-delivery).
+
+Business bundlers use `flaxHostModulesPlugin` with that prepared inventory. Missing
+plugins, unavailable public modules and private source imports fail instead of inlining
+another implementation. The template is a package skeleton, not a prebuilt runtime
+plugin or an application.
 
 ## Minimal walkthrough
 

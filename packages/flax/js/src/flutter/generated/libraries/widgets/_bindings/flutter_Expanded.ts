@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/flutter/foundation/_bindings/flutter_Key'
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface Expanded extends WidgetDescription { readonly type: "flax.core/flutter#type:Expanded";  }
-export function Expanded(options: { key?: upstream0.Key | null | undefined; flex?: Bindable<number> | undefined; child: Bindable<Widget> }): Expanded {
+export function Expanded(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; flex?: Bindable<number> | undefined; child: Bindable<Widget> }): Expanded {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return construct("widget", "flax.core/flutter#type:Expanded", "", [{"name":"key","required":false,"positional":false},{"name":"flex","required":false,"positional":false},{"name":"child","required":true,"positional":false}], [], options) as Expanded;
 }

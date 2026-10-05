@@ -1,6 +1,5 @@
 import 'package:flax/flax.dart';
 import 'package:flax_local_storage/flax_local_storage.dart';
-import 'package:flax_material_ui/flax_material_ui.dart';
 import 'package:flutter/services.dart';
 
 import 'dart:io';
@@ -14,7 +13,6 @@ Future<void> applicationScenario(WidgetTester t) async {
     () => Directory.systemTemp.createTemp('flax-standalone-storage-'),
   );
   FlaxJsRuntime? baseRuntime;
-  final source = await t.runAsync(() => rootBundle.loadString('assets/app.js'));
   final moduleAssets = await t.runAsync(
     () => FlaxModuleAssets.load(
       bundle: rootBundle,
@@ -25,9 +23,12 @@ Future<void> applicationScenario(WidgetTester t) async {
   await t.pumpWidget(
     FlaxView(
       createRuntime: () => baseRuntime = app.createRuntime(),
-      source: source!,
+      source: '''
+const {runApp, SizedBox} = globalThis.__flaxModules.require('@flax/flutter/widgets');
+runApp(SizedBox());
+''',
       bindings: app.bindings,
-      plugins: [const FlaxMaterialPlugin()],
+      plugins: const [],
     ),
   );
   await t.pumpAndSettle();
@@ -47,6 +48,7 @@ Future<void> applicationScenario(WidgetTester t) async {
     isTrue,
   );
   await t.pumpWidget(const SizedBox());
+  await t.pump(const Duration(milliseconds: 1));
   await t.pumpAndSettle();
   expect(baseRuntime!.isDisposed, isTrue);
   await t.runAsync(

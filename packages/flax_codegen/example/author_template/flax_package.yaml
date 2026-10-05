@@ -1,8 +1,9 @@
-format: 1
+format: 2
 dart:
   entrypoint: package:your_package/your_package.dart
 javascript:
-  package: '@your-scope/your-package'
+  package: '@your-scope/your-package-runtime'
+  types: '@your-scope/your-package'
   version: same
   mode: runtime
 capabilities:

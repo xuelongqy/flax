@@ -1326,7 +1326,7 @@ void main() {
     }
   });
 
-  group('Manifest 12 typeLibraries URI semantics', () {
+  group('Manifest 13 typeLibraries URI semantics', () {
     test('accepts public package URIs, cross-package names, and dart:core', () {
       final module = _typeLibrariesModule({
         'Core': 'dart:core',
@@ -1573,7 +1573,7 @@ void main() {
     );
   });
 
-  group('Manifest 12 envelope positives', () {
+  group('Manifest 13 envelope positives', () {
     test('fromResolved round-trips rich and zero-entry modules', () {
       final fixture = _envelopeFixture();
       final manifest = FlaxCodegenManifest.fromResolved(
@@ -1734,16 +1734,16 @@ void main() {
     });
   });
 
-  group('Manifest 12 envelope negatives', () {
+  group('Manifest 13 envelope negatives', () {
     test('invalid JSON and duplicate keys fail closed', () {
       _expectEnvelopeFailure('{', [_record('', 'Invalid JSON.')]);
       _expectEnvelopeFailure(
-        '{\n  "formatVersion": 12,\n  "package": "a",\n  "package": "b"\n}\n',
+        '{\n  "formatVersion": 13,\n  "package": "a",\n  "package": "b"\n}\n',
         [_record('', 'Duplicate mapping key.')],
       );
       final withModuleDup =
           '{\n'
-          '  "formatVersion": 12,\n'
+          '  "formatVersion": 13,\n'
           '  "package": "acme_widgets",\n'
           '  "bindingNamespace": "com.acme.widgets",\n'
           '  "imports": [],\n'
@@ -1752,7 +1752,7 @@ void main() {
           '      "name": "host",\n'
           '      "name": "host",\n'
           '      "moduleId": "com.acme.widgets/host",\n'
-          '      "uiProtocol": 21,\n'
+          '      "uiProtocol": 22,\n'
           '      "requiredCapabilities": [],\n'
           '      "model": {"library":"package:acme_widgets/host.dart","jsPackage":"@acme/host","typeLibraries":{},"classes":[],"types":[],"functions":[],"snapshots":[],"identities":[]}\n'
           '    }\n'
@@ -1763,7 +1763,7 @@ void main() {
       ]);
       final withModelDup =
           '{\n'
-          '  "formatVersion": 12,\n'
+          '  "formatVersion": 13,\n'
           '  "package": "acme_widgets",\n'
           '  "bindingNamespace": "com.acme.widgets",\n'
           '  "imports": [],\n'
@@ -1771,7 +1771,7 @@ void main() {
           '    {\n'
           '      "name": "host",\n'
           '      "moduleId": "com.acme.widgets/host",\n'
-          '      "uiProtocol": 21,\n'
+          '      "uiProtocol": 22,\n'
           '      "requiredCapabilities": [],\n'
           '      "model": {"library":"package:acme_widgets/host.dart","library":"package:acme_widgets/host.dart","jsPackage":"@acme/host","typeLibraries":{},"classes":[],"types":[],"functions":[],"snapshots":[],"identities":[]}\n'
           '    }\n'
@@ -1991,7 +1991,7 @@ void main() {
     });
   });
 
-  group('Manifest 12 ownership model and fromResolved negatives', () {
+  group('Manifest 13 ownership model and fromResolved negatives', () {
     test('declaration owner rows are required at id pointers', () {
       const gauge = 'com.acme.widgets/widgets#type:Gauge';
       const axis = 'com.acme.widgets/widgets#type:Axis';
@@ -2454,7 +2454,7 @@ void main() {
     });
   });
 
-  group('Manifest 12 generic lexical slot positives', () {
+  group('Manifest 13 generic lexical slot positives', () {
     test(
       'fresh decoded tokens preserve declaration/reference identity sharing',
       () {
@@ -2752,7 +2752,7 @@ void main() {
     });
   });
 
-  group('Manifest 12 generic lexical slot negatives', () {
+  group('Manifest 13 generic lexical slot negatives', () {
     test('missing declaration slot fails closed', () {
       final json = _cloneJsonMap(
         _slotCallbackJson(_slotSharingCallback(Object())),
@@ -2963,7 +2963,7 @@ void main() {
     });
   });
 
-  group('Manifest 12 Quality P1 maximal projection', () {
+  group('Manifest 13 Quality P1 maximal projection', () {
     test('independently constructed maximal module survives fromResolved encode parse projection and input mutation', () {
       final inIntType = FlaxCodegenTypeRef('int');
       final inStringType = FlaxCodegenTypeRef('String', nullable: true);
@@ -4544,7 +4544,7 @@ void main() {
     });
   });
 
-  group('Manifest 12 direct dependency projection positives', () {
+  group('Manifest 13 direct dependency projection positives', () {
     test('A→B→C flattens packages owners modules and importedPackages', () {
       final chain = _projectionChain();
       final a = chain.aProjection;
@@ -4640,7 +4640,7 @@ void main() {
       );
 
       final metadata = FlaxCodegenPackageMetadataProjection.parseStrict('''
-format: 1
+format: 2
 capabilities:
   - bindings
 bindingNamespace: com.example.local
@@ -4868,7 +4868,7 @@ bindingNamespace: com.example.local
     );
   });
 
-  group('Manifest 12 direct dependency projection negatives', () {
+  group('Manifest 13 direct dependency projection negatives', () {
     test('missing direct import fails closed', () {
       final b = _packageB(_packageC());
       final a = _packageA(b);
@@ -5264,7 +5264,7 @@ bindingNamespace: com.example.local
     });
 
     test(
-      'sibling conflicting and duplicate authoritative sourceIdentity fail',
+      'independent source owners are legal but full wire ids remain unique',
       () {
         final shared = FlaxCodegenSourceIdentity(
           kind: FlaxCodegenDeclarationKind.type,
@@ -5301,25 +5301,20 @@ bindingNamespace: com.example.local
           ownerSource: shared,
         );
         final root = _rootImporting(const ['pkg_b', 'pkg_d']);
-        _expectProjectionFailure(
+        final independent = FlaxCodegenManifestProjection(
           root: root,
           directDependencies: {
             'pkg_b': leftConflict.projection,
             'pkg_d': rightConflict.projection,
           },
           source: 'package:pkg_a/manifest.json',
-          records: [
-            _projectionRecord(
-              source: 'package:pkg_b/manifest.json',
-              pointer: '/modules/0/model/identities/0',
-              message: 'Conflicting sourceIdentity.',
-            ),
-            _projectionRecord(
-              source: 'package:pkg_d/manifest.json',
-              pointer: '/modules/0/model/identities/0',
-              message: 'Conflicting sourceIdentity.',
-            ),
-          ],
+        );
+        expect(independent.authoritativeWireId(shared), isNull);
+        expect(
+          independent.importedPackages
+              .expand((package) => package.owners)
+              .where((owner) => owner.sourceIdentity == shared),
+          hasLength(2),
         );
 
         final leftDup = _ownedPackage(
@@ -5357,12 +5352,12 @@ bindingNamespace: com.example.local
             _projectionRecord(
               source: 'package:pkg_b/manifest.json',
               pointer: '/modules/0/model/identities/0',
-              message: 'Duplicate sourceIdentity.',
+              message: 'Duplicate wireId.',
             ),
             _projectionRecord(
               source: 'package:pkg_d/manifest.json',
               pointer: '/modules/0/model/identities/0',
-              message: 'Duplicate sourceIdentity.',
+              message: 'Duplicate wireId.',
             ),
           ],
         );
@@ -5436,124 +5431,86 @@ bindingNamespace: com.example.local
       );
     });
 
-    test('dependent republish along a dependency edge fails closed', () {
-      final c = _packageC();
-      final b = _packageB(c);
-      final a = _packageA(b);
-      final aLeafWire = FlaxCodegenWireId.type(
-        moduleId: a.moduleId,
-        publicBindingName: 'Leaf',
-      );
-      final republishRoot = _manifestWithIdentities(a.projection.manifest, [
-        FlaxCodegenManifestIdentity(
-          sourceIdentity: a.ownerSource,
-          wireId: a.ownerWire,
-          owner: true,
-        ),
-        FlaxCodegenManifestIdentity(
-          sourceIdentity: b.ownerSource,
-          wireId: b.ownerWire,
-          owner: false,
-        ),
-        FlaxCodegenManifestIdentity(
-          sourceIdentity: c.ownerSource,
-          wireId: aLeafWire,
-          owner: true,
-        ),
-      ]);
-      _expectProjectionFailure(
-        root: republishRoot,
-        directDependencies: {'pkg_b': b.projection},
-        source: 'package:pkg_a/manifest.json',
-        records: [
-          _projectionRecord(
-            source: 'package:pkg_a/manifest.json',
-            pointer: '/modules/0/model/identities/2',
-            message: 'Conflicting sourceIdentity.',
+    test(
+      'dependent non-core republish is legal but wire shadow fails closed',
+      () {
+        final c = _packageC();
+        final b = _packageB(c);
+        final a = _packageA(b);
+        final aLeafWire = FlaxCodegenWireId.type(
+          moduleId: a.moduleId,
+          publicBindingName: 'Leaf',
+        );
+        final republishRoot = _manifestWithIdentities(a.projection.manifest, [
+          FlaxCodegenManifestIdentity(
+            sourceIdentity: a.ownerSource,
+            wireId: a.ownerWire,
+            owner: true,
           ),
-          _projectionRecord(
-            source: 'package:pkg_a/manifest.json',
-            pointer: '/modules/0/model/identities/2',
-            message: 'Dependent republish.',
+          FlaxCodegenManifestIdentity(
+            sourceIdentity: b.ownerSource,
+            wireId: b.ownerWire,
+            owner: false,
           ),
-          _projectionRecord(
-            source: 'package:pkg_b/manifest.json',
-            pointer: '/modules/0/model/identities/1',
-            message: 'Missing owner.',
+          FlaxCodegenManifestIdentity(
+            sourceIdentity: c.ownerSource,
+            wireId: aLeafWire,
+            owner: true,
           ),
-          _projectionRecord(
-            source: 'package:pkg_c/manifest.json',
-            pointer: '/modules/0/model/identities/0',
-            message: 'Conflicting sourceIdentity.',
-          ),
-          _projectionRecord(
-            source: 'package:pkg_c/manifest.json',
-            pointer: '/modules/0/model/identities/0',
-            message: 'Dependent republish.',
-          ),
-        ],
-      );
+        ]);
+        final projection = FlaxCodegenManifestProjection(
+          root: republishRoot,
+          directDependencies: {'pkg_b': b.projection},
+          source: 'package:pkg_a/manifest.json',
+        );
+        expect(projection.authoritativeWireId(c.ownerSource), aLeafWire);
 
-      final duplicateRoot = _manifestWithIdentities(a.projection.manifest, [
-        FlaxCodegenManifestIdentity(
-          sourceIdentity: a.ownerSource,
-          wireId: a.ownerWire,
-          owner: true,
-        ),
-        FlaxCodegenManifestIdentity(
-          sourceIdentity: b.ownerSource,
-          wireId: b.ownerWire,
-          owner: false,
-        ),
-        FlaxCodegenManifestIdentity(
-          sourceIdentity: c.ownerSource,
-          wireId: c.ownerWire,
-          owner: true,
-        ),
-      ]);
-      _expectProjectionFailure(
-        root: duplicateRoot,
-        directDependencies: {'pkg_b': b.projection},
-        source: 'package:pkg_a/manifest.json',
-        records: [
-          _projectionRecord(
-            source: 'package:pkg_a/manifest.json',
-            pointer: '/modules/0/model/identities/2',
-            message: 'Duplicate sourceIdentity.',
+        final duplicateRoot = _manifestWithIdentities(a.projection.manifest, [
+          FlaxCodegenManifestIdentity(
+            sourceIdentity: a.ownerSource,
+            wireId: a.ownerWire,
+            owner: true,
           ),
-          _projectionRecord(
-            source: 'package:pkg_a/manifest.json',
-            pointer: '/modules/0/model/identities/2',
-            message: 'Dependent republish.',
+          FlaxCodegenManifestIdentity(
+            sourceIdentity: b.ownerSource,
+            wireId: b.ownerWire,
+            owner: false,
           ),
-          _projectionRecord(
-            source: 'package:pkg_a/manifest.json',
-            pointer: '/modules/0/model/identities/2',
-            message: 'Dependent shadow.',
+          FlaxCodegenManifestIdentity(
+            sourceIdentity: c.ownerSource,
+            wireId: c.ownerWire,
+            owner: true,
           ),
-          _projectionRecord(
-            source: 'package:pkg_b/manifest.json',
-            pointer: '/modules/0/model/identities/1',
-            message: 'Missing owner.',
-          ),
-          _projectionRecord(
-            source: 'package:pkg_c/manifest.json',
-            pointer: '/modules/0/model/identities/0',
-            message: 'Duplicate sourceIdentity.',
-          ),
-          _projectionRecord(
-            source: 'package:pkg_c/manifest.json',
-            pointer: '/modules/0/model/identities/0',
-            message: 'Dependent republish.',
-          ),
-          _projectionRecord(
-            source: 'package:pkg_c/manifest.json',
-            pointer: '/modules/0/model/identities/0',
-            message: 'Dependent shadow.',
-          ),
-        ],
-      );
-    });
+        ]);
+        _expectProjectionFailure(
+          root: duplicateRoot,
+          directDependencies: {'pkg_b': b.projection},
+          source: 'package:pkg_a/manifest.json',
+          records: [
+            _projectionRecord(
+              source: 'package:pkg_a/manifest.json',
+              pointer: '/modules/0/model/identities/2',
+              message: 'Duplicate wireId.',
+            ),
+            _projectionRecord(
+              source: 'package:pkg_a/manifest.json',
+              pointer: '/modules/0/model/identities/2',
+              message: 'Dependent shadow.',
+            ),
+            _projectionRecord(
+              source: 'package:pkg_c/manifest.json',
+              pointer: '/modules/0/model/identities/0',
+              message: 'Duplicate wireId.',
+            ),
+            _projectionRecord(
+              source: 'package:pkg_c/manifest.json',
+              pointer: '/modules/0/model/identities/0',
+              message: 'Dependent shadow.',
+            ),
+          ],
+        );
+      },
+    );
 
     test('dependent shadow along a dependency edge fails closed', () {
       final c = _packageC();
@@ -5596,6 +5553,11 @@ bindingNamespace: com.example.local
             source: 'package:pkg_a/manifest.json',
             pointer: '/modules/0/model/identities/0',
             message: 'Dependent shadow.',
+          ),
+          _projectionRecord(
+            source: 'package:pkg_b/manifest.json',
+            pointer: '/modules/0/model/identities/1',
+            message: 'Owner mismatch.',
           ),
           _projectionRecord(
             source: 'package:pkg_c/manifest.json',
@@ -7357,18 +7319,18 @@ void _expectEnvelopeShape(
   expect(manifest.package, 'acme_widgets');
   expect(manifest.bindingNamespace.value, 'com.acme.widgets');
   expect(manifest.imports, ['flax', 'flax_material']);
-  expect(FlaxCodegenManifest.formatVersion, 12);
-  expect(FlaxCodegenManifest.uiProtocol, 21);
+  expect(FlaxCodegenManifest.formatVersion, 13);
+  expect(FlaxCodegenManifest.uiProtocol, 22);
   final encoded = manifest.toJson();
   _expectExactKeys(encoded, _envelopeKeys);
-  expect(encoded['formatVersion'], 12);
+  expect(encoded['formatVersion'], 13);
   expect(encoded['modules'], isA<List<Object?>>());
   final modules = encoded['modules']! as List<Object?>;
   expect(modules, hasLength(2));
   for (final moduleJson in modules) {
     final module = _expectObject(moduleJson);
     _expectExactKeys(module, _moduleEntryKeys);
-    expect(module['uiProtocol'], 21);
+    expect(module['uiProtocol'], 22);
     expect(module['requiredCapabilities'], isEmpty);
     final model = _expectObject(module['model']);
     _expectExactKeys(model, _modelProjectionKeys);

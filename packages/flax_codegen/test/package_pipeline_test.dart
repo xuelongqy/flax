@@ -16,6 +16,162 @@ import 'package:test/test.dart';
 void main() {
   group('FlaxCodegenPackagePipeline.validateConfig', () {
     test(
+      'both generation modes require a direct Dart flax dependency',
+      () async {
+        final package = _tempPackage(
+          name: 'host_pkg',
+          libraries: {'api.dart': 'class Value { Value(); }'},
+          configs: {
+            'api.yaml': _minimalConfig(
+              packageName: 'host_pkg',
+              name: 'api',
+              library: 'package:host_pkg/api.dart',
+              dartOutput: 'lib/api.g.dart',
+              tsOutput: 'js/api.ts',
+            ),
+          },
+          metadata: '''
+format: 2
+capabilities: [bindings]
+bindingNamespace: example.host
+javascript: {package: '@host/api', version: same, mode: runtime}
+''',
+        );
+        for (final dependency in ['', 'dev_dependencies:\n  flax: any\n']) {
+          File(p.join(package.root.path, 'pubspec.yaml'))
+              .writeAsStringSync('name: host_pkg\n$dependency');
+          for (final validate in [
+            () => FlaxCodegenPackagePipeline.validateConfig(
+              package.configPath('api.yaml'),
+            ),
+            () => FlaxCodegenPackagePipeline.validateLibrary(
+              'package:host_pkg/api.dart',
+              packageRoot: package.root.path,
+            ),
+          ]) {
+            await expectLater(
+              validate(),
+              throwsA(
+                isA<FlaxCodegenException>().having(
+                  (error) => error.diagnostics.single.message,
+                  'message',
+                  contains('must depend on Dart flax'),
+                ),
+              ),
+            );
+          }
+        }
+      },
+    );
+    test('independent packages bind one source and accept each other in TypeScript', () async {
+      final workspace = _tempWorkspace();
+      final source = _writeHostPackage(
+        workspace: workspace,
+        name: 'money_source',
+        bindingNamespace: 'example.source',
+        configs: const {},
+        libraries: {
+          'money.dart':
+              'class Money { Money(this.amount); final int amount; '
+              'Money echo(Money value) => value; }',
+        },
+      );
+      String selection(String package) =>
+          """
+format: 2
+name: money
+library: package:money_source/money.dart
+jsPackage: '@example/$package'
+dartOutput: lib/money.g.dart
+tsOutput: js/money.ts
+classes:
+  Money:
+    kind: object
+    constructors: {'': [amount]}
+    getters: [amount]
+    instanceMethods: {echo: [value]}
+""";
+      final a = _writeHostPackage(
+        workspace: workspace,
+        name: 'money_a',
+        bindingNamespace: 'example.a',
+        dependencies: ['money_source'],
+        configs: {'money.yaml': selection('a')},
+      );
+      final b = _writeHostPackage(
+        workspace: workspace,
+        name: 'money_b',
+        bindingNamespace: 'example.b',
+        dependencies: ['money_source', 'money_a'],
+        configs: {'money.yaml': selection('b')},
+      );
+      _writePackageConfig(workspace, {
+        'money_source': source.root,
+        'money_a': a.root,
+        'money_b': b.root,
+      });
+      final first = await FlaxCodegenPackagePipeline.validateConfig(
+        a.configPath('money.yaml'),
+      );
+      File(p.join(a.root.path, 'bindings/manifest.json'))
+          .writeAsStringSync(first.manifest.encode());
+      final second = await FlaxCodegenPackagePipeline.validateConfig(
+        b.configPath('money.yaml'),
+      );
+      final models = [first.localModels.single, second.localModels.single];
+      expect(models[0].classes.single.id, 'example.a/money#type:Money');
+      expect(models[1].classes.single.id, 'example.b/money#type:Money');
+      expect(second.directDependencies.keys, ['flax']);
+      final emitter = FlaxCodegenBindingEmitter(models);
+      final paths = <String, List<String>>{};
+      for (final (index, model) in models.indexed) {
+        final file = File(p.join(workspace.path, 'binding$index.ts'));
+        file.writeAsStringSync(emitter.typescript(model));
+        paths[model.jsPackage] = [file.path];
+      }
+      final consumer = File(p.join(workspace.path, 'consumer.ts'));
+      consumer.writeAsStringSync("""
+import { Money as A } from '@example/a';
+import { Money as B } from '@example/b';
+const a = A(3); const b = B(4);
+a.echo(b); b.echo(a);
+// @ts-expect-error An ordinary shape is not a Dart reference.
+a.echo({ amount: 3 });
+""");
+      var root = Directory.current;
+      while (!Directory(p.join(root.path, 'packages/flax_codegen'))
+          .existsSync()) {
+        root = root.parent;
+      }
+      paths['@flax/core/bindings'] = [
+        p.join(root.path, 'packages/flax/js/src/runtime/bindings.ts'),
+      ];
+      final tsconfig = File(p.join(workspace.path, 'tsconfig.json'));
+      tsconfig.writeAsStringSync(
+        jsonEncode({
+          'compilerOptions': {
+            'strict': true,
+            'exactOptionalPropertyTypes': true,
+            'noEmit': true,
+            'target': 'ES2022',
+            'lib': ['ES2022'],
+            'module': 'ESNext',
+            'moduleResolution': 'Bundler',
+            'paths': paths,
+          },
+          'files': [consumer.path],
+        }),
+      );
+      final result = await Process.run('pnpm', [
+        'exec',
+        'tsc',
+        '--project',
+        tsconfig.path,
+      ], workingDirectory: root.path);
+      expect(result.exitCode, 0, reason: '${result.stdout}\n${result.stderr}');
+    });
+
+    test(
       'dependency snapshot owner stops recursive superclass binding',
       () async {
         final workspace = _tempWorkspace();
@@ -175,7 +331,7 @@ classes:
         },
       );
       File(p.join(base.root.path, 'flax_package.yaml')).writeAsStringSync('''
-format: 1
+format: 2
 capabilities: [bindings]
 bindingNamespace: example.base
 ''');
@@ -365,11 +521,12 @@ topLevel:
       expect(_listing(host.root), before);
     });
 
-    test('setter ordering is canonical and readonly providers cannot expand', () async {
+    test('setter ordering is canonical and missing provider operations bind locally', () async {
       final workspace = _tempWorkspace();
       final base = _writeHostPackage(
         workspace: workspace,
         name: 'base_pkg',
+        bindingNamespace: 'example.base',
         libraries: {'base.dart': 'int zeta = 0; int alpha = 1;'},
         configs: {
           'base.yaml': """
@@ -447,18 +604,12 @@ topLevel:
           .writeAsStringSync(readonly.manifest.encode());
       configFile.deleteSync();
       final before = _listing(base.root);
-      await expectLater(
-        FlaxCodegenPackagePipeline.validateConfig(
-          host.configPath('consumer.yaml'),
-        ),
-        throwsA(
-          isA<FlaxCodegenException>().having(
-            (error) => error.diagnostics.map((item) => item.message).join(),
-            'provider surface',
-            contains('Provider does not expose top-level setter: alpha'),
-          ),
-        ),
+      final consumer = await FlaxCodegenPackagePipeline.validateConfig(
+        host.configPath('consumer.yaml'),
       );
+      final setter = consumer.localModels.single.topLevel!.setters.single;
+      expect(setter.isReference, isFalse);
+      expect(setter.id, startsWith('example.host/consumer#'));
       expect(_listing(base.root), before);
     });
 
@@ -485,7 +636,7 @@ topLevel:
         },
       );
       File(p.join(base.root.path, 'flax_package.yaml')).writeAsStringSync("""
-format: 1
+format: 2
 capabilities: [bindings]
 bindingNamespace: example.base
 """);
@@ -578,7 +729,7 @@ classes:
         },
       );
       File(p.join(base.root.path, 'flax_package.yaml')).writeAsStringSync('''
-format: 1
+format: 2
 capabilities: [bindings]
 bindingNamespace: example.base
 ''');
@@ -631,7 +782,7 @@ extensions:
       expect(module.extensions.single.name, 'ItemX');
       expect(module.classes, isEmpty);
       expect(module.extensions.single.onType.id, 'example.base/base#type:Item');
-      expect(validated.manifest.toJson()['formatVersion'], 12);
+      expect(validated.manifest.toJson()['formatVersion'], 13);
       expect(
         validated.manifest.modules.single.model.identities.where(
           (row) => row.owner,
@@ -688,7 +839,7 @@ extensions:
         },
       );
       File(p.join(consumer.root.path, 'flax_package.yaml')).writeAsStringSync(
-        'format: 1\ncapabilities: [bindings]\nbindingNamespace: example.consumer\n',
+        'format: 2\ncapabilities: [bindings]\nbindingNamespace: example.consumer\n',
       );
       _writePackageConfig(workspace, {
         'base_pkg': base.root,
@@ -770,7 +921,7 @@ classes:
         },
       );
       File(p.join(base.root.path, 'flax_package.yaml')).writeAsStringSync('''
-format: 1
+format: 2
 capabilities: [bindings]
 bindingNamespace: example.base
 ''');
@@ -881,7 +1032,7 @@ classes:
           },
         );
         File(p.join(base.root.path, 'flax_package.yaml')).writeAsStringSync('''
-format: 1
+format: 2
 capabilities: [bindings]
 bindingNamespace: example.base
 ''');
@@ -1052,7 +1203,7 @@ classes:
         },
       );
       File(p.join(base.root.path, 'flax_package.yaml')).writeAsStringSync('''
-format: 1
+format: 2
 capabilities: [bindings]
 bindingNamespace: example.base
 ''');
@@ -1285,7 +1436,7 @@ classes: {}
           ['host', 'widgets'],
         );
         expect(viaHost.configPaths, viaWidgets.configPaths);
-        expect(viaWidgets.directDependencies, isEmpty);
+        expect(viaWidgets.directDependencies.keys, ['flax']);
         expect(viaWidgets.outputInventory, [
           'bindings/manifest.json',
           'js/host.ts',
@@ -1466,7 +1617,7 @@ name: pkg_root_link_pkg
 ''');
       File(p.join(realPackageRoot.path, 'flax_package.yaml'))
           .writeAsStringSync('''
-format: 1
+format: 2
 capabilities:
   - bindings
 bindingNamespace: example.host
@@ -1523,7 +1674,7 @@ name: ancestor_link_pkg
 ''');
       File(p.join(nestedPackage.path, 'flax_package.yaml'))
           .writeAsStringSync('''
-format: 1
+format: 2
 capabilities:
   - bindings
 bindingNamespace: example.host
@@ -1561,7 +1712,7 @@ bindingNamespace: example.host
       final package = _tempPackage(
         name: 'broken_pkg',
         metadata: '''
-format: 2
+format: 1
 capabilities:
   - bindings
 bindingNamespace: example.broken
@@ -1623,7 +1774,7 @@ dartOutput: lib/a.g.dart
               p.join(package.root.path, 'flax_package.yaml'),
               'FCG_INVALID_VALUE',
               '/format',
-              'Expected 1.',
+              'Expected 2.',
             ),
           ],
         );
@@ -2100,8 +2251,8 @@ classes:
           host.configPath('api.yaml'),
         );
 
-        expect(result.directDependencies.keys.toList(), ['base_pkg']);
-        expect(result.manifest.imports, ['base_pkg']);
+        expect(result.directDependencies.keys.toList(), ['base_pkg', 'flax']);
+        expect(result.manifest.imports, ['base_pkg', 'flax']);
         expect(
           result.localModels.single.types.map((value) => value.name),
           isNot(contains('Item')),
@@ -2185,8 +2336,8 @@ classes:
           processRunner: runner,
         );
 
-        expect(forward.directDependencies.keys.toList(), ['mid_pkg']);
-        expect(reversed.directDependencies.keys.toList(), ['mid_pkg']);
+        expect(forward.directDependencies.keys.toList(), ['flax', 'mid_pkg']);
+        expect(reversed.directDependencies.keys.toList(), ['flax', 'mid_pkg']);
         final midProjection = forward.directDependencies['mid_pkg']!;
         expect(midProjection.modulesByModuleId.keys.toList()..sort(), [
           'example.leaf/core',
@@ -4374,11 +4525,13 @@ _tempPackage({
   });
   File(p.join(root.path, 'pubspec.yaml')).writeAsStringSync('''
 name: $name
+dependencies:
+  flax: any
 ''');
   File(p.join(root.path, 'flax_package.yaml')).writeAsStringSync(
     metadata ??
         '''
-format: 1
+format: 2
 capabilities:
   - bindings
 bindingNamespace: example.host
@@ -4547,17 +4700,20 @@ class GenericValue<T> extends HiddenBase {}
   required Map<String, String> configs,
   Map<String, String> libraries = const {},
   List<String> dependencies = const [],
+  String bindingNamespace = 'example.host',
 }) {
   final root = Directory(p.join(workspace.path, name))..createSync();
+  final allDependencies = {'flax', ...dependencies}.toList()..sort();
   File(p.join(root.path, 'pubspec.yaml')).writeAsStringSync('''
 name: $name
-${dependencies.isEmpty ? '' : 'dependencies:\n${dependencies.map((dependency) => '  $dependency: any').join('\n')}\n'}
+dependencies:
+${allDependencies.map((dependency) => '  $dependency: any').join('\n')}
 ''');
   File(p.join(root.path, 'flax_package.yaml')).writeAsStringSync('''
-format: 1
+format: 2
 capabilities:
   - bindings
-bindingNamespace: example.host
+bindingNamespace: $bindingNamespace
 ''');
   final lib = Directory(p.join(root.path, 'lib'))..createSync();
   for (final entry in libraries.entries) {
@@ -5102,6 +5258,27 @@ String _packageConfigJson(
   Map<String, Directory> packages, {
   required Directory packageConfigDir,
 }) {
+  packages = Map.of(packages);
+  if (!packages.containsKey('flax')) {
+    // These isolated pipeline fixtures do not consume Flutter's Core API.
+    final core = Directory(p.join(packageConfigDir.parent.path, 'core_fixture'))
+      ..createSync(recursive: true);
+    File(p.join(core.path, 'pubspec.yaml')).writeAsStringSync('name: flax\n');
+    Directory(p.join(core.path, 'lib')).createSync();
+    final bindings = Directory(p.join(core.path, 'bindings'))..createSync();
+    final manifest = FlaxCodegenManifest.fromResolved(
+      package: FlaxCodegenResolvedPackage(
+        dartPackage: 'flax',
+        namespace: FlaxCodegenBindingNamespace.parse('flax.core'),
+        modules: const [],
+      ),
+      modules: const {},
+      importPackageNames: const [],
+    );
+    File(p.join(bindings.path, 'manifest.json'))
+        .writeAsStringSync(manifest.encode());
+    packages['flax'] = core;
+  }
   final entries = [
     for (final name in packages.keys.toList()..sort())
       () {

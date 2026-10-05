@@ -6,7 +6,7 @@ export interface ScrollPhysics extends Readonly<{ "__flaxBound:package:flutter/s
 readonly parent: ScrollPhysics | null;
 }
 defineObject("flax.core/flutter#type:ScrollPhysics", ["parent"], [], {}, []);
-export function ScrollPhysics(options: { parent?: ScrollPhysics | null | undefined } = {}): ScrollPhysics {
+export function ScrollPhysics(options: { parent?: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [] }> | null | undefined } = {}): ScrollPhysics {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:ScrollPhysics", "", [{"name":"parent","required":false,"positional":false}], [], options) as ScrollPhysics;
 }

@@ -130,7 +130,7 @@ function bindings(value, label) {
   return array(value, label).map((binding) => {
     object(binding, ['moduleId', 'uiProtocol', 'types', 'functions'], label);
     text(binding.moduleId, `${label}.moduleId`);
-    if (binding.uiProtocol !== 21) fail(`Unsupported binding protocol in ${label}`);
+    if (binding.uiProtocol !== 22) fail(`Unsupported binding protocol in ${label}`);
     for (const kind of ['types', 'functions']) {
       unique(
         array(binding[kind], `${label}.${kind}`).map((id) => text(id, kind)),
@@ -148,7 +148,7 @@ export function validateModuleManifest(value) {
     ['formatVersion', 'runtimeFormat', 'bootstrap', 'lock', 'modules'],
     'module manifest',
   );
-  if (value.formatVersion !== 1 || value.runtimeFormat !== runtimeFormat)
+  if (value.formatVersion !== 2 || value.runtimeFormat !== runtimeFormat)
     fail('Unsupported Flax module manifest');
   assetPath(value.bootstrap, 'bootstrap');
   object(value.lock, ['manager', 'digest'], 'lock');
@@ -173,8 +173,20 @@ export function validateModuleManifest(value) {
         'source',
         'dependencies',
         'bindings',
+        'subpaths',
       ],
       'module',
+      [
+        'specifier',
+        'owner',
+        'version',
+        'artifact',
+        'asset',
+        'package',
+        'source',
+        'dependencies',
+        'bindings',
+      ],
     );
     specifier(entry.specifier);
     implementationPackage(entry.package);
@@ -197,7 +209,21 @@ export function validateModuleManifest(value) {
     }
     bindings(entry.bindings, `bindings for ${entry.specifier}`);
   }
+  const publicNames = new Set(names.keys());
   for (const entry of names.values()) {
+    for (const name of array(
+      entry.subpaths === undefined ? [] : entry.subpaths,
+      'module subpaths',
+    )) {
+      specifier(name);
+      if (
+        !name.startsWith(`${entry.specifier}/`) ||
+        name.split('/').includes('_bindings')
+      )
+        fail(`Invalid module subpath: ${name}`);
+      if (publicNames.has(name)) fail(`Duplicate Flax module subpath: ${name}`);
+      publicNames.add(name);
+    }
     for (const [name, requirement] of Object.entries(entry.dependencies)) {
       if (!names.has(name)) fail(`Missing Flax module: ${name}`);
       if (names.get(name).version !== requirement)
@@ -316,7 +342,7 @@ class DeliveryPackages {
         ['formatVersion', 'package', 'version', 'modules'],
         'npm module delivery',
       );
-      if (delivery.formatVersion !== 1)
+      if (delivery.formatVersion !== 2)
         fail(`Unsupported module delivery format in ${directory}`);
       if (delivery.package !== npm.name || delivery.version !== npm.version)
         fail(`Module delivery package/version mismatch: ${directory}`);
@@ -442,11 +468,14 @@ class DeliveryPackages {
       if (!entry && required) fail(`Module ${name} is not delivered by ${provider}`);
       return entry;
     }
-    let entry = owningEntry(this.entries, name);
+    // A cached parent must not hide an exact child from another delivery package
+    // or a package whose asynchronous inventory load is still in progress.
+    let entry = this.entries.get(name);
     if (entry) return entry;
     const entries = await this.loadPackage(packageName(name), from);
     entry = entries && owningEntry(entries, name);
     if (!entry) entry = await this.dependencyProvider(name, from);
+    if (!entry) entry = owningEntry(this.entries, name);
     if (!entry && required)
       fail(`Module is not a declared public delivery entry: ${name}`);
     return entry;
@@ -470,6 +499,15 @@ class DeliveryPackages {
     if (!name.startsWith(`${entry.specifier}/`)) return false;
     const suffix = name.slice(entry.specifier.length + 1);
     return entry.helperSubpaths.includes(suffix);
+  }
+
+  async isImplementationFile(filename) {
+    await this.atFile(filename);
+    const directory = this.nearest.get(dirname(await realpath(filename)));
+    if (!directory) return false;
+    const entries = await this.packages.get(directory);
+    const local = relative(directory, filename).split(sep).join('/');
+    return entries?.size > 0 && /\.(?:[cm]?js|tsx?)$/.test(local);
   }
 
   async atFile(filename) {
@@ -569,6 +607,25 @@ async function installAssets(directory, files, check) {
     await rm(stage, { recursive: true, force: true });
   }
   if (moved) await rm(backup, { recursive: true, force: true });
+}
+
+async function publicSubpaths(entry) {
+  if (!entry.subpathRoot) return [];
+  const paths = [];
+  async function visit(directory, prefix = '') {
+    for (const file of await readdir(directory, { withFileTypes: true })) {
+      const path = `${prefix}${file.name}`;
+      if (file.isDirectory() && file.name !== '_bindings') {
+        await visit(join(directory, file.name), `${path}/`);
+      } else if (file.isFile() && file.name.endsWith('.js')) {
+        const subpath = path.slice(0, -3);
+        if (!entry.helperSubpaths.includes(subpath))
+          paths.push(`${entry.specifier}/${subpath}`);
+      }
+    }
+  }
+  await visit(entry.subpathRoot);
+  return paths.sort();
 }
 
 /** Resolve installed locked packages into local, factory-only Flutter assets. */
@@ -694,6 +751,7 @@ export async function prepareModules({ configPath, check = false }) {
         [...dependencies].sort(([a], [b]) => a.localeCompare(b)),
       ),
       bindings: entry.bindings,
+      subpaths: await publicSubpaths(entry),
     };
     files.set(
       filename,
@@ -702,7 +760,7 @@ export async function prepareModules({ configPath, check = false }) {
     completed.set(entry.specifier, metadata);
   }
   const manifest = validateModuleManifest({
-    formatVersion: 1,
+    formatVersion: 2,
     runtimeFormat,
     bootstrap: `${output}/registry.js`,
     lock: { manager: lock.manager, digest: lock.digest },
@@ -719,15 +777,14 @@ export async function prepareModules({ configPath, check = false }) {
   return { manifest, manifestPath: resolve(flutterRoot, output, 'modules.json') };
 }
 
-/** Resolve public Flax imports to either host instances or installed implementations. */
+/** Resolve public Flax imports exclusively to prepared plugin-owned host instances. */
 export function flaxHostModulesPlugin(manifest = null) {
   const provided = new Map(
     manifest === null
       ? []
-      : validateModuleManifest(manifest).modules.map((entry) => [
-          entry.specifier,
-          entry,
-        ]),
+      : validateModuleManifest(manifest).modules.flatMap((entry) =>
+          [entry.specifier, ...(entry.subpaths ?? [])].map((name) => [name, entry]),
+        ),
   );
   return {
     name: 'flax-host-modules',
@@ -740,7 +797,9 @@ export function flaxHostModulesPlugin(manifest = null) {
           args.kind === 'entry-point'
         )
           return;
-        let entry = owningEntry(provided, args.path);
+        const entry = provided.get(args.path);
+        if (!entry && owningEntry(provided, args.path))
+          fail(`Missing prepared Flax module or public subpath: ${args.path}`);
         if (
           !entry &&
           !args.path.startsWith('.') &&
@@ -751,12 +810,12 @@ export function flaxHostModulesPlugin(manifest = null) {
             await packages.atFile(args.importer);
           const bundled = await packages.resolve(args.path, args.resolveDir);
           if (bundled) {
-            const path = await packages.internalPath(bundled, args.path);
-            if (!path) fail(`Module subpath is not delivered: ${args.path}`);
-            return { path };
+            fail(
+              `Missing prepared Flax module: ${args.path}. Register its Dart plugin and prepare its source package.`,
+            );
           }
         }
-        if (!entry && (args.path.startsWith('.') || isAbsolute(args.path))) {
+        if (!entry) {
           const resolved = await builder.resolve(args.path, {
             kind: args.kind,
             resolveDir: args.resolveDir,
@@ -766,9 +825,11 @@ export function flaxHostModulesPlugin(manifest = null) {
           if (resolved.errors.length > 0) return { errors: resolved.errors };
           if (!resolved.external && resolved.namespace === 'file') {
             const descriptor = await packages.atFile(resolved.path);
-            entry = descriptor && provided.get(descriptor.specifier);
-            if (entry && entry.version !== descriptor.version)
-              fail(`Host module version mismatch: ${entry.specifier}`);
+            if (descriptor || (await packages.isImplementationFile(resolved.path))) {
+              fail(
+                `Flax implementation cannot be bundled into application code: ${args.path}`,
+              );
+            }
           }
         }
         if (entry) return { path: entry.specifier, namespace: 'flax-host-module' };

@@ -133,7 +133,8 @@ const canvasBindings = FlaxBindingModule(
   ],
   functions: [],
   moduleId: "flax.canvas/canvas",
-  uiProtocol: 21,
+  dependencyModules: ["flax.core/flutter"],
+  uiProtocol: 22,
   requiredCapabilities: const <String>[],
   stateVariants: [],
 );

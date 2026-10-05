@@ -596,9 +596,9 @@ void main() {
       print(
         'Decoration costs: constructions=$counts; handles=$handles; subscriptions=${runtime.activeSubscriptions}; bridge=${runtime.hostCalls}; layout/paint=$work.',
       );
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       await t.pumpAndSettle();
-      await session.close();
+      await flaxTestCloseSession(t, session);
       expect(runtime.handlesAtDispose, 0);
       expect(runtime.activeSubscriptions, 0);
     },
@@ -662,7 +662,7 @@ void main() {
           reports.any((e) => e.exceptionAsString().contains('uniform')),
           isTrue,
         );
-        await t.pumpWidget(const SizedBox());
+        await flaxTestUnmount(t);
         reports.clear();
         final paint = harness();
         await t.pumpWidget(

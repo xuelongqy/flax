@@ -87,11 +87,11 @@ void validateFlaxPackageMetadataProjection(
   }
   final root = _ProjectedMap(diagnostics, rootNode);
   final format = root.requiredInt('format');
-  if (format != null && format != 1) {
+  if (format != null && format != 2) {
     diagnostics.add(
       code: 'FCG_INVALID_VALUE',
       pointer: '/format',
-      message: 'Expected 1.',
+      message: 'Expected 2.',
       node: root.node('format'),
     );
   }

@@ -2,9 +2,100 @@ part of '../../bindings.dart';
 
 enum _SessionStatus { open, closing, closed }
 
+final _bindingContextKey = Object();
+
+class _BindingContext {
+  _BindingContext(this.moduleId, Iterable<String> dependencies)
+    : dependencies = Set<String>.unmodifiable(dependencies);
+  final String moduleId;
+  String get namespace => moduleId.split('/').first;
+  final Set<String> dependencies;
+  T run<T>(T Function() action) => identical(_bindingContext, this)
+      ? action()
+      : runZoned(action, zoneValues: {_bindingContextKey: this});
+}
+
+_BindingContext? get _bindingContext =>
+    Zone.current[_bindingContextKey] as _BindingContext?;
+
+// Erased nested values need the origin even when a lazy view is reused later.
+bool _usesBindingContext(FlaxTypeRef type) =>
+    type.kind == 'any' ||
+    (type.item != null && _usesBindingContext(type.item!)) ||
+    (type.key != null && _usesBindingContext(type.key!)) ||
+    (type.record?.fields.any((field) => _usesBindingContext(field.type)) ??
+        false) ||
+    (type.callback != null && _usesBindingContext(type.callback!.result));
+
+String _bindingViewKey(String id, bool usesContext) =>
+    usesContext && _bindingContext != null
+    ? '$id@${_bindingContext!.moduleId}'
+    : id;
+
 class _Session {
   _Session(this.runtime, this.registry, this.onError, {this.namespace});
   final String? namespace;
+  _BindingContext? _contextForBinding(String id) {
+    final module = registry._bindingOwners[id];
+    if (module != null) {
+      return _bindingContexts.putIfAbsent(
+        module.moduleId,
+        () => _BindingContext(module.moduleId, module.dependencyModules),
+      );
+    }
+    return null;
+  }
+
+  final _bindingContexts = <String, _BindingContext>{};
+
+  T _inBindingContext<T>(String id, T Function() action) {
+    final context = _contextForBinding(id);
+    // Built-in page content has no generated module and keeps the caller's context.
+    return context == null ? action() : context.run(action);
+  }
+
+  void _registerBindingHostFunction(String name, FlaxJsHostFunction callback) {
+    runtime.registerHostFunction(name, (receiver, arguments) {
+      _BindingContext? context;
+      if (arguments.length > 1 && arguments[1] is FlaxJsString) {
+        context = _contextForBinding((arguments[1] as FlaxJsString).value);
+      }
+      if (context == null &&
+          arguments.length > 2 &&
+          arguments[2] is FlaxJsNumber) {
+        context =
+            _objects[(arguments[2] as FlaxJsNumber).value.toInt()]?.context;
+      }
+      if (name == '__flaxStream' &&
+          arguments.length > 2 &&
+          arguments[2] is FlaxJsNumber) {
+        context =
+            _streamReferences[(arguments[2] as FlaxJsNumber).value.toInt()]
+                ?.context ??
+            context;
+      }
+      if (name == '__flaxCreateStreamIterator' &&
+          arguments.length > 1 &&
+          arguments[1] is FlaxJsNumber) {
+        context =
+            _streamReferences[(arguments[1] as FlaxJsNumber).value.toInt()]
+                ?.context ??
+            context;
+      }
+      if (context == null &&
+          name == '__flaxStreamIterator' &&
+          arguments.length > 1 &&
+          arguments[1] is FlaxJsNumber) {
+        context = _streamIterators[(arguments[1] as FlaxJsNumber).value.toInt()]
+            ?.reference
+            .context;
+      }
+      return context == null
+          ? callback(receiver, arguments)
+          : context.run(() => callback(receiver, arguments));
+    });
+  }
+
   final _hostInstallations = <_HostInstallation>[];
   _ModuleInstallation? _moduleInstallation;
   // These entries are installed after plugins or by the application UI bundle.
@@ -501,13 +592,18 @@ class _Session {
         : registry._types[id];
     if (type.kind == 'enum' &&
         kind == 'enum' &&
-        id == type.id &&
         definition is FlaxEnumBinding) {
       final name = _textProperty(value, 'name');
       if (!definition.values.containsKey(name)) {
         throw ArgumentError('Unknown enum value: $id.$name');
       }
-      return _Value(definition.values[name]);
+      final expected = registry._types[type.id];
+      final entry = definition.values[name];
+      if (expected is! FlaxEnumBinding ||
+          !expected.values.values.any((value) => identical(value, entry))) {
+        throw ArgumentError('Incompatible Dart enum');
+      }
+      return _Value(entry);
     }
     if (type.kind == 'widget' &&
         kind == 'widget' &&
@@ -517,10 +613,13 @@ class _Session {
       if (parameters == null) {
         throw ArgumentError('Unsupported constructor: $id.$ctor');
       }
-      final sources = _arguments(
-        value,
-        parameters,
-        allowBindings: !definition.fixedArguments,
+      final sources = _inBindingContext(
+        definition.id,
+        () => _arguments(
+          value,
+          parameters,
+          allowBindings: !definition.fixedArguments,
+        ),
       );
       final node = FlaxNode._(this, definition, ctor, sources);
       try {

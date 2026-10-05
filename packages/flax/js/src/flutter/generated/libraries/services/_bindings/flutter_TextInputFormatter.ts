@@ -8,7 +8,7 @@ export interface TextInputFormatter extends Readonly<{ "__flaxBound:package:flut
 }
 defineObject("flax.core/flutter#type:TextInputFormatter", [], [], {}, []);
 export namespace TextInputFormatter {
-export function withFunction(formatFunction: ((oldValue: upstream0.TextEditingValue, newValue: upstream0.TextEditingValue) => upstream0.TextEditingValue)): TextInputFormatter {
+export function withFunction(formatFunction: ((oldValue: upstream0.TextEditingValue, newValue: upstream0.TextEditingValue) => Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [] }>)): TextInputFormatter {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:TextInputFormatter", "withFunction", [{"name":"formatFunction","required":true,"positional":true}], [formatFunction], {}) as TextInputFormatter;
 }

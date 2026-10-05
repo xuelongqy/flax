@@ -9,7 +9,7 @@ readonly primaryColor: upstream0.Color;
 readonly scaffoldBackgroundColor: upstream0.Color;
 }
 defineObject("flax.cupertino/cupertino#type:CupertinoThemeData", ["primaryColor","scaffoldBackgroundColor"], [], {}, []);
-export function CupertinoThemeData(options: { primaryColor?: upstream0.Color | null | undefined; scaffoldBackgroundColor?: upstream0.Color | null | undefined } = {}): CupertinoThemeData {
+export function CupertinoThemeData(options: { primaryColor?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; scaffoldBackgroundColor?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined } = {}): CupertinoThemeData {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.cupertino/cupertino#type:CupertinoThemeData", "", [{"name":"primaryColor","required":false,"positional":false},{"name":"scaffoldBackgroundColor","required":false,"positional":false}], [], options) as CupertinoThemeData;
 }

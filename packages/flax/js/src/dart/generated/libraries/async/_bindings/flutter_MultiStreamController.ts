@@ -27,11 +27,11 @@ readonly isPaused: boolean;
 readonly hasListener: boolean;
 readonly done: Promise<unknown | null>;
 add(event: T): void;
-addError(error: {}, stackTrace?: upstream6.StackTrace | null): void;
+addError(error: {}, stackTrace?: Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }> | null): void;
 close(): Promise<unknown | null>;
 addStream(source: upstream5.Stream<T>, options?: {cancelOnError?: boolean | null | undefined}): Promise<unknown | null>;
 addSync(value: T): void;
-addErrorSync(error: {}, stackTrace?: upstream6.StackTrace | null): void;
+addErrorSync(error: {}, stackTrace?: Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }> | null): void;
 closeSync(): void;
 set onListen(value: (() => void) | null);
 set onPause(value: (() => void) | null);
@@ -42,7 +42,7 @@ defineObject("flax.core/flutter#type:MultiStreamController", ["onListen","onPaus
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeObject(this, "flax.core/flutter#type:MultiStreamController", "add", [event]);
 },
-addError(this: object, error: {}, stackTrace?: upstream6.StackTrace | null): void {
+addError(this: object, error: {}, stackTrace?: Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }> | null): void {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeObject(this, "flax.core/flutter#type:MultiStreamController", "addError", [error, stackTrace]);
 },
@@ -61,7 +61,7 @@ addSync(this: object, value: unknown | null): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeObject(this, "flax.core/flutter#type:MultiStreamController", "addSync", [value]);
 },
-addErrorSync(this: object, error: {}, stackTrace?: upstream6.StackTrace | null): void {
+addErrorSync(this: object, error: {}, stackTrace?: Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }> | null): void {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeObject(this, "flax.core/flutter#type:MultiStreamController", "addErrorSync", [error, stackTrace]);
 },

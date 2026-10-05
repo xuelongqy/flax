@@ -1,3 +1,5 @@
+import 'package:flax_test/flax_test.dart';
+
 import 'dart:ui' show PointerDeviceKind;
 
 import 'package:flutter/rendering.dart';
@@ -206,7 +208,7 @@ void main() {
       await t.pumpAndSettle();
       final last = t.widget<InkWell>(inkFinder);
       final closed = h.session.close();
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       await t.pumpAndSettle();
       await closed;
       expect(h.runtime.handlesAtDispose, 0);
@@ -218,7 +220,7 @@ void main() {
       last.onHover!(true);
       last.onHighlightChanged!(true);
       expect(h.runtime.jsCalls, calls);
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       await t.pumpAndSettle();
       expect(h.errors, isEmpty);
     } finally {

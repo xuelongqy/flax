@@ -1,3 +1,4 @@
+import 'package:flax_material_ui/flax_material_ui.dart';
 import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
@@ -14,6 +15,7 @@ void main() {
     final runtime = RuntimeTracker();
     final errors = <Object>[];
     final view = FlaxView(
+      plugins: const [FlaxMaterialPlugin()],
       createRuntime: () => runtime,
       source: flaxTestFixtureSource(
         'loop_closures',
@@ -61,7 +63,7 @@ void main() {
       expect(tester.widget(host('loop-root')), same(rootWidget));
     } finally {
       debugOnRebuildDirtyWidget = null;
-      await tester.pumpWidget(const SizedBox());
+      await flaxTestUnmount(tester);
       await tester.pumpAndSettle();
     }
     expect(errors, isEmpty);

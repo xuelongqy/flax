@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/flutter/foundation/_bindings/flutter_Key'
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface AspectRatio extends WidgetDescription { readonly type: "flax.core/flutter#type:AspectRatio";  }
-export function AspectRatio(options: { key?: upstream0.Key | null | undefined; aspectRatio: Bindable<number>; child?: Bindable<Widget | null> | undefined }): AspectRatio {
+export function AspectRatio(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; aspectRatio: Bindable<number>; child?: Bindable<Widget | null> | undefined }): AspectRatio {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return construct("widget", "flax.core/flutter#type:AspectRatio", "", [{"name":"key","required":false,"positional":false},{"name":"aspectRatio","required":true,"positional":false},{"name":"child","required":false,"positional":false}], [], options) as AspectRatio;
 }

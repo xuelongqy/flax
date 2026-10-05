@@ -1250,7 +1250,11 @@ AlignmentGeometry();
       textTheme.getters.every((g) => g.type.id == style.id && g.type.nullable),
       isTrue,
     );
-    expect(emitter.typescript(material), contains('data: Bindable<ThemeData>'));
+    expect(emitter.typescript(material), contains('data: Bindable<Readonly<{'));
+    expect(
+      emitter.typescript(material),
+      contains('::ThemeData": readonly [] }>>'),
+    );
     expect(
       emitter.typescript(material),
       isNot(contains('export interface Color ')),

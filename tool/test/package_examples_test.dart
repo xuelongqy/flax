@@ -35,7 +35,7 @@ environment:
   sdk: ^3.13.2
 ''');
     _write(directory, 'flax_package.yaml', '''
-format: 1
+format: 2
 dart:
   entrypoint: package:$name/$name.dart
 capabilities: [codegen]

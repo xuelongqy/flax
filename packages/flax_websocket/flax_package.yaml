@@ -1,10 +1,11 @@
-format: 1
+format: 2
 dart:
   entrypoint: package:flax_websocket/flax_websocket.dart
 javascript:
-  package: '@flax/websocket'
+  package: '@flax/websocket-runtime'
+  types: '@flax/websocket'
   version: same
-  mode: declarations
+  mode: runtime
 capabilities:
   - host-plugin
 registration:

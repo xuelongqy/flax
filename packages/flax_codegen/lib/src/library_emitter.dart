@@ -214,7 +214,11 @@ extension FlaxCodegenLibraryEmission on FlaxCodegenBindingEmitter {
         final chunk = chunkForNames(
           source,
           [name],
-          jsPackage: layout.specifier(name),
+          // Single-file consumers import the public provider, while prepared
+          // split implementations retain their internal declaration imports.
+          jsPackage: module.publicLibraries.isEmpty
+              ? layout.route(name).jsPackage
+              : layout.specifier(name),
           tsOutput: layout.path(name),
         );
         named[name] = chunk;

@@ -375,9 +375,11 @@ overrides:
   });
   File(p.join(root.path, 'pubspec.yaml')).writeAsStringSync('''
 name: cli_pkg
+dependencies:
+  flax: any
 ''');
   File(p.join(root.path, 'flax_package.yaml')).writeAsStringSync('''
-format: 1
+format: 2
 dart:
   entrypoint: package:cli_pkg/widgets.dart
 javascript:
@@ -466,24 +468,7 @@ classes:
     constructors:
       create: []
 ''');
-  final tool = Directory(p.join(root.path, '.dart_tool'))..createSync();
-  File(p.join(tool.path, 'package_config.json')).writeAsStringSync('''
-{
-  "configVersion": 2,
-  "packages": [
-    {
-      "name": "cli_pkg",
-      "rootUri": "../",
-      "packageUri": "lib/"
-    },
-    {
-      "name": "api_pkg",
-      "rootUri": "../api_pkg/",
-      "packageUri": "lib/"
-    }
-  ]
-}
-''');
+  _copyWorkspacePackageConfig(root, 'cli_pkg', extra: {'api_pkg': apiPackage});
   return (
     root: root,
     configPath: p.normalize(p.join(bindings.path, 'widgets.yaml')),
@@ -505,7 +490,7 @@ dependencies:
   flax: any
 ''');
   File(p.join(root.path, 'flax_package.yaml')).writeAsStringSync('''
-format: 1
+format: 2
 dart:
   entrypoint: package:widget_cli_pkg/widget_package.dart
 javascript:
@@ -578,9 +563,11 @@ Directory _tempCarrierCliPackage() {
   });
   File(p.join(root.path, 'pubspec.yaml')).writeAsStringSync('''
 name: carrier_cli_pkg
+dependencies:
+  flax: any
 ''');
   File(p.join(root.path, 'flax_package.yaml')).writeAsStringSync('''
-format: 1
+format: 2
 dart:
   entrypoint: package:carrier_cli_pkg/main.dart
 javascript:
@@ -604,23 +591,15 @@ class Consumer {
   File(p.join(lib.path, 'dependency.dart')).writeAsStringSync('''
 class PublicType {}
 ''');
-  final tool = Directory(p.join(root.path, '.dart_tool'))..createSync();
-  File(p.join(tool.path, 'package_config.json')).writeAsStringSync('''
-{
-  "configVersion": 2,
-  "packages": [
-    {
-      "name": "carrier_cli_pkg",
-      "rootUri": "../",
-      "packageUri": "lib/"
-    }
-  ]
-}
-''');
+  _copyWorkspacePackageConfig(root, 'carrier_cli_pkg');
   return root;
 }
 
-void _copyWorkspacePackageConfig(Directory packageRoot, String packageName) {
+void _copyWorkspacePackageConfig(
+  Directory packageRoot,
+  String packageName, {
+  Map<String, Directory> extra = const {},
+}) {
   final repoRoot = p.normalize(p.join(Directory.current.path, '../..'));
   final sourcePath = p.join(repoRoot, '.dart_tool', 'package_config.json');
   final decoded = jsonDecode(File(sourcePath).readAsStringSync()) as Map;
@@ -628,7 +607,9 @@ void _copyWorkspacePackageConfig(Directory packageRoot, String packageName) {
   final packages = <Map<String, Object?>>[];
   for (final raw in decoded['packages'] as List) {
     final entry = Map<String, Object?>.from(raw as Map);
-    if (entry['name'] == packageName) continue;
+    if (entry['name'] == packageName || extra.containsKey(entry['name'])) {
+      continue;
+    }
     entry['rootUri'] = sourceUri
         .resolve(entry['rootUri']! as String)
         .toString();
@@ -639,6 +620,13 @@ void _copyWorkspacePackageConfig(Directory packageRoot, String packageName) {
     'rootUri': packageRoot.uri.toString(),
     'packageUri': 'lib/',
   });
+  for (final entry in extra.entries) {
+    packages.add({
+      'name': entry.key,
+      'rootUri': entry.value.uri.toString(),
+      'packageUri': 'lib/',
+    });
+  }
   final tool = Directory(p.join(packageRoot.path, '.dart_tool'))..createSync();
   File(
     p.join(tool.path, 'package_config.json'),

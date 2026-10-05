@@ -1,0 +1,21 @@
+{
+  "name": "@your-scope/your-package",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./api": {
+      "types": "./types/generated/libraries/api/index.d.ts"
+    },
+    "./api/*": {
+      "types": "./types/generated/libraries/api/*.d.ts"
+    }
+  },
+  "files": [
+    "types/**/*.d.ts",
+    "README.md"
+  ],
+  "dependencies": {
+    "@flax/core": "0.0.0"
+  }
+}

@@ -1,13 +1,25 @@
 {
-  "name": "@your-scope/your-package",
+  "name": "@your-scope/your-package-runtime",
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "exports": {
+    "./api": "./dist/generated/libraries/api/index.js",
+    "./api/*": "./dist/generated/libraries/api/*.js",
+    "./flax_modules.json": "./flax_modules.json"
+  },
+  "files": [
+    "dist/**/*.js",
+    "flax_modules.json",
+    "README.md"
+  ],
   "scripts": {
+    "build": "tsc -p tsconfig.json --noEmit false && tsc -p tsconfig.json --noEmit false --declaration --emitDeclarationOnly --outDir ../js-types/types",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@flax/core": "0.0.0"
+    "@flax/core": "0.0.0",
+    "@flax/core-runtime": "0.0.0"
   },
   "devDependencies": {
     "typescript": "5.9.2"

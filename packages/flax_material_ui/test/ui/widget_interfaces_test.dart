@@ -1,3 +1,4 @@
+import 'package:flax_test/flax_test.dart';
 import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
@@ -335,7 +336,7 @@ void main() {
         h.execute('interfaces.height.value = 80');
         await t.pump();
         expect(t.widget<AppBar>(find.byType(AppBar)).toolbarHeight, 80);
-        await t.pumpWidget(const SizedBox());
+        await flaxTestUnmount(t);
         await t.pumpAndSettle();
         await closing;
         expect(closed, isTrue);

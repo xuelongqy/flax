@@ -1,0 +1,36 @@
+{
+  "name": "@flax/core",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Declaration-only public types for @flax/core.",
+  "exports": {
+    ".": {
+      "types": "./types/runtime/index.d.ts"
+    },
+    "./bindings": {
+      "types": "./types/runtime/bindings.d.ts"
+    },
+    "./navigation": {
+      "types": "./types/flutter/generated/libraries/navigation/index.d.ts"
+    },
+    "./navigation/*": {
+      "types": "./types/flutter/generated/libraries/navigation/*.d.ts"
+    },
+    "./host": {
+      "types": "./types/host/index.d.ts"
+    }
+  },
+  "files": [
+    "types/**/*.d.ts",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node ../../../tool/public_types.mjs",
+    "typecheck": "node ../../../tool/public_types.mjs --check"
+  },
+  "dependencies": {
+    "@preact/signals-core": "1.14.4",
+    "web-streams-polyfill": "4.3.0"
+  }
+}

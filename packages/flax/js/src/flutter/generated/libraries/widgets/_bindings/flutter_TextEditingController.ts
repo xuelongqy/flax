@@ -20,8 +20,8 @@ clear(): void;
 clearComposing(): void;
 dispose(): void;
 set text(value: string);
-set value(value: upstream2.TextEditingValue);
-set selection(value: upstream3.TextSelection);
+set value(value: Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [] }>);
+set selection(value: Readonly<{ "__flaxBound:package:flutter/src/services/text_editing.dart::TextSelection": readonly [] }>);
 }
 defineObject("flax.core/flutter#type:TextEditingController", ["value","text","selection"], ["text","value","selection"], {addListener(this: object, listener: (() => void)): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
@@ -49,7 +49,7 @@ if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:TextEditingController", "", [{"name":"text","required":false,"positional":false}], [], options) as TextEditingController;
 }
 export namespace TextEditingController {
-export function fromValue(value: upstream2.TextEditingValue | null): TextEditingController {
+export function fromValue(value: Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [] }> | null): TextEditingController {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:TextEditingController", "fromValue", [{"name":"value","required":true,"positional":true}], [value], {}) as TextEditingController;
 }

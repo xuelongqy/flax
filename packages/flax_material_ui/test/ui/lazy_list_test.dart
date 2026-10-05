@@ -1,3 +1,4 @@
+import 'package:flax_test/flax_test.dart';
 import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
@@ -117,7 +118,7 @@ void main() {
       await t.pump(const Duration(milliseconds: 8));
     }
     expect(h.number('lazy.refreshCalls.length'), 1);
-    await t.pumpWidget(const SizedBox());
+    await flaxTestUnmount(t);
     await t.pump(const Duration(milliseconds: 30));
     await t.pump();
     expect(h.string('lazy.refreshCompleted[0]'), 'first');
@@ -256,7 +257,7 @@ void main() {
     );
     await t.pumpAndSettle();
     expect(native, [0, 1]);
-    await t.pumpWidget(const SizedBox());
+    await flaxTestUnmount(t);
     final h = harness();
     await t.pumpWidget(h.app('lazy', arguments: {'count': 0}));
     await t.pumpAndSettle();
@@ -285,7 +286,7 @@ void main() {
       (h.created.single as ScrollController).jumpTo(1000);
       await t.pumpAndSettle();
       expect(h.boolean('lazy.firstContext.mounted'), isTrue);
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       await t.pumpAndSettle();
       expect(h.boolean('lazy.firstContext.mounted'), isFalse);
       expect(h.errors, isEmpty);

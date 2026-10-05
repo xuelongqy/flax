@@ -10,6 +10,7 @@
   "dependencies": {
     "@flax/core": "workspace:*",
     "@flax/cupertino-ui": "workspace:*",
-    "@flax/flutter": "workspace:*"
+    "@flax/flutter": "workspace:*",
+    "@flax/core-runtime": "workspace:*"
   }
 }

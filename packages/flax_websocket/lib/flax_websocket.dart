@@ -18,6 +18,8 @@ class FlaxWebSocketPlugin extends FlaxPlugin {
   @override
   String get id => 'flax.websocket';
   @override
+  Set<String> get jsModules => const {'@flax/websocket'};
+  @override
   Set<String> get globals => const {'WebSocket', 'CloseEvent'};
   @override
   FlaxPluginInstance install(FlaxHostContext context) {

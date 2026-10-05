@@ -8,7 +8,7 @@ import '@flax/flutter/widgets/_bindings/flutter_BorderRadiusGeometry';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_Clip';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface ClipRRect extends WidgetDescription { readonly type: "flax.core/flutter#type:ClipRRect";  }
-export function ClipRRect(options: { key?: upstream0.Key | null | undefined; borderRadius?: Bindable<upstream1.BorderRadiusGeometry> | undefined; clipBehavior?: Bindable<upstream2.Clip> | undefined; child?: Bindable<Widget | null> | undefined } = {}): ClipRRect {
+export function ClipRRect(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; borderRadius?: Bindable<Readonly<{ "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [] }>> | undefined; clipBehavior?: Bindable<upstream2.Clip> | undefined; child?: Bindable<Widget | null> | undefined } = {}): ClipRRect {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return construct("widget", "flax.core/flutter#type:ClipRRect", "", [{"name":"key","required":false,"positional":false},{"name":"borderRadius","required":false,"positional":false},{"name":"clipBehavior","required":false,"positional":false},{"name":"child","required":false,"positional":false}], [], options) as ClipRRect;
 }

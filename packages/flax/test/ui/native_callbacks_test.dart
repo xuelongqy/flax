@@ -1,3 +1,4 @@
+import 'package:flax_test/flax_test.dart';
 import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
@@ -58,7 +59,7 @@ void main() {
       await t.pumpAndSettle();
       expect(h.errors, isEmpty);
       h.execute('var savedResult = savedNative(savedContext, 8)');
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       await t.pumpAndSettle();
       expect(
         () => h.execute('savedNative(savedContext, 8)'),
@@ -233,7 +234,7 @@ void main() {
       await t.pumpAndSettle();
       expect(closed, isFalse);
       h.execute('var stillAlive = 1');
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       await t.pumpAndSettle();
       await closing;
       expect(closed, isTrue);

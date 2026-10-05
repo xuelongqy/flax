@@ -1,5 +1,5 @@
 {
-  "formatVersion": 1,
+  "formatVersion": 2,
   "package": "@flax/cupertino-ui",
   "version": "0.0.0",
   "modules": [
@@ -11,7 +11,7 @@
       "bindings": [
         {
           "moduleId": "flax.cupertino/cupertino",
-          "uiProtocol": 21,
+          "uiProtocol": 22,
           "types": [
             "flax.cupertino/cupertino#type:CupertinoApp",
             "flax.cupertino/cupertino#type:CupertinoButton",

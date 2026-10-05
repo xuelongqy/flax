@@ -14,7 +14,7 @@ import { construct, constructProxy, constructObject, constructDeferredObject, co
 export interface StreamSink<S extends unknown | null = unknown | null> extends upstream0.EventSink<S>, upstream1.Sink<S>, upstream2.StreamConsumer<S>, Readonly<{ "__flaxBound:dart:async::StreamSink": readonly [S] }> { readonly __StreamSink: unique symbol;
 readonly done: Promise<unknown | null>;
 add(event: S): void;
-addError(error: {}, stackTrace?: upstream3.StackTrace | null): void;
+addError(error: {}, stackTrace?: Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }> | null): void;
 close(): Promise<unknown | null>;
 addStream(stream: upstream4.Stream<S>): Promise<unknown | null>;
 }
@@ -22,7 +22,7 @@ defineObject("flax.core/flutter#type:StreamSink", ["done"], [], {add(this: objec
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeObject(this, "flax.core/flutter#type:StreamSink", "add", [event]);
 },
-addError(this: object, error: {}, stackTrace?: upstream3.StackTrace | null): void {
+addError(this: object, error: {}, stackTrace?: Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }> | null): void {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeObject(this, "flax.core/flutter#type:StreamSink", "addError", [error, stackTrace]);
 },

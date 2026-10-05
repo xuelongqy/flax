@@ -2,7 +2,6 @@ import { type DartValue, type Widget } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_Route';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
-import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_RouteSettings';
 import '@flax/flutter/widgets/_bindings/flutter_RouteSettings';
 export interface MaterialPageRoute<T extends unknown | null = unknown | null> extends DartValue, Omit<upstream0.Route<T>, 'type'>, Omit<Readonly<{
     "__flaxBound:package:material_ui/src/page.dart::MaterialPageRoute": readonly [T];
@@ -28,7 +27,9 @@ export interface MaterialPageRoute<T extends unknown | null = unknown | null> ex
 }
 export declare function MaterialPageRoute<T extends unknown | null = unknown | null>(options: {
     builder: ((context: upstream1.BuildContext) => Widget);
-    settings?: upstream2.RouteSettings | null | undefined;
+    settings?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/navigator.dart::RouteSettings": readonly [];
+    }> | null | undefined;
     maintainState?: boolean | undefined;
     fullscreenDialog?: boolean | undefined;
 }): MaterialPageRoute<T>;

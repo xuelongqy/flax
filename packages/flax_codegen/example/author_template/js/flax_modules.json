@@ -1,0 +1,21 @@
+{
+  "formatVersion": 2,
+  "package": "@your-scope/your-package-runtime",
+  "version": "0.0.0",
+  "modules": [
+    {
+      "specifier": "@your-scope/your-package/api",
+      "source": "dist/generated/libraries/api/index.js",
+      "subpathRoot": "dist/generated/libraries/api",
+      "helperSubpaths": ["_bindings/example.__module"],
+      "bindings": [
+        {
+          "moduleId": "vendor.example/example",
+          "uiProtocol": 22,
+          "types": ["vendor.example/example#type:Gauge"],
+          "functions": []
+        }
+      ]
+    }
+  ]
+}

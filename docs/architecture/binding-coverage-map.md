@@ -6,13 +6,21 @@ be supported by the generator while a particular SDK library still needs its own
 selection and runtime verification.
 
 The current version domains are binding selection format **2**, package metadata format
-**1**, Manifest **12**, UI protocol **21**, and native ABI **2**. Only the current
+**2**, Manifest **13**, UI protocol **22**, and native ABI **2**. Only the current
 formats are read and written.
 
 ## Capability assessment model
 
 Every declaration in a public-library inventory receives one verdict. Provider reuse is
 recorded as a source, not as a capability level.
+
+Core is reused by default. Outside Core, independent packages may bind the same Dart
+declaration. Automatic selection reuses one adequate dependency provider; missing,
+insufficient or ambiguous providers produce a complete local binding. Typed results
+follow the selected signature, while erased results retain their originating package
+through callbacks, Futures, collections and Streams. Cross-package views check actual
+Dart types and share disposal and listeners. See
+[ADR 0037](../decisions/0037-package-scoped-binding-providers.md).
 
 | Field        | Values                                                                                                                      | Meaning                                        |
 | ------------ | --------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
@@ -75,6 +83,11 @@ Evidence:
 | Provider-owned nominal type           | Supported | A dependency Manifest owner is a recursion boundary. The consumer preserves identity, nullability, and type arguments without expanding provider inheritance.                                                           |
 | Public carrier and dependency closure | Supported | Declaration identity chooses a same-package public carrier. Same-name different identities fail closed. Dependency-only types stay internal in automatic mode.                                                          |
 
+Default omission preserves missing/`undefined` separately from explicit `null`. Up to
+five independently omitted parameters use direct calls; six or more use `Function.apply`
+without trimming the selected surface. Optional positional parameters keep linear tail
+dispatch and reject holes.
+
 The generator does not infer `T` from callback results, `List<T>` contents, nested
 object contents, or a runtime `Type` token. Overlapping runtime domains such as `num`
 and `int` are rejected. Dependent or recursive bounds without concrete evidence are
@@ -125,9 +138,8 @@ Evidence: [component contract](components.md), [interop contract](interop.md),
 | `unsupported_core_type`                       | `unsupported / intentionalBoundary`            | Dart `Type` reflection or another core type with no bridge representation.                             |
 | `missing_export`                              | `unsupported / dependencyBoundary`             | No public carrier exposes the referenced declaration identity.                                         |
 | `private_implementation_dependency`           | `unsupported / dependencyBoundary`             | A public signature depends on a private nominal type.                                                  |
-| `provider_surface_insufficient`               | `unsupported / dependencyBoundary`             | A dependency owns the type but does not expose the requested member or constructor.                    |
+| `provider_surface_insufficient`               | `unsupported / dependencyBoundary`             | Core owns the type but does not expose the requested member or constructor; it cannot be republished.  |
 | `flutter_semantics_configuration_required`    | `limited / configurationRequired`              | A Route, Page, or lifecycle role cannot be inferred from type shape alone.                             |
-| `omit_cap`                                    | `limited / intentionalBoundary`                | Automatic omission is capped at six independent parameters and reports the branch count.               |
 
 A new unsupported case must reuse an accurate code or add a code, fixture, and current
 example. Error message text is presentation only and is not used to infer the primary

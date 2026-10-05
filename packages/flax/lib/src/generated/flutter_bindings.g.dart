@@ -13006,7 +13006,8 @@ const flutterBindings = FlaxBindingModule(
     ),
   ],
   moduleId: "flax.core/flutter",
-  uiProtocol: 21,
+  dependencyModules: [],
+  uiProtocol: 22,
   requiredCapabilities: const <String>[],
   stateVariants: [],
 );

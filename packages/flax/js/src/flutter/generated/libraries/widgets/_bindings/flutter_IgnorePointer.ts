@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/flutter/foundation/_bindings/flutter_Key'
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface IgnorePointer extends WidgetDescription { readonly type: "flax.core/flutter#type:IgnorePointer";  }
-export function IgnorePointer(options: { key?: upstream0.Key | null | undefined; ignoring?: Bindable<boolean> | undefined; child?: Bindable<Widget | null> | undefined } = {}): IgnorePointer {
+export function IgnorePointer(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; ignoring?: Bindable<boolean> | undefined; child?: Bindable<Widget | null> | undefined } = {}): IgnorePointer {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return construct("widget", "flax.core/flutter#type:IgnorePointer", "", [{"name":"key","required":false,"positional":false},{"name":"ignoring","required":false,"positional":false},{"name":"child","required":false,"positional":false}], [], options) as IgnorePointer;
 }

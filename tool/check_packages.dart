@@ -23,7 +23,9 @@ Future<void> main(List<String> arguments) => command(() async {
   final corePackage = packages.singleWhere(
     (package) => package.metadata.capabilities.contains('core'),
   );
-  final coreNpmName = corePackage.metadata.javascript?.name;
+  final coreNpmName =
+      corePackage.metadata.javascript?.types ??
+      corePackage.metadata.javascript?.name;
   if (coreNpmName == null) throw StateError('Core package has no npm package');
   final npmVersions = <String, String>{};
   final npmPackages = <String, Map<String, dynamic>>{};
@@ -78,9 +80,6 @@ void _validatePackageLayout(FlaxWorkspacePackage package) {
   require(p.join('lib', library), 'is missing its Dart entrypoint');
   if (metadata.javascript != null) {
     require(p.join('js', 'tsconfig.npm.json'), 'is missing its npm config');
-    if (metadata.javascript!.mode == 'declarations') {
-      require(p.join('js', 'noop.js'), 'is missing its empty npm entry');
-    }
   }
   final capabilities = metadata.capabilities;
   if (capabilities.contains('bindings')) {
@@ -391,7 +390,11 @@ Future<_NpmArchive> _checkNpmPackage(
     throw StateError('Missing npm archive for $name: ${archive.path}');
   }
   stdout.writeln('Verified npm archive for $name: ${files.length} files');
-  return _NpmArchive(name, archive);
+  return _NpmArchive(
+    name,
+    archive,
+    package.dartOwner?.metadata.javascript?.types ?? name,
+  );
 }
 
 void _checkNpmArchive(
@@ -405,7 +408,8 @@ void _checkNpmArchive(
       '${package.name} must list its npm archive files explicitly',
     );
   }
-  if (files.any((path) => path.contains('host/bootstrap'))) {
+  if (package.mode == 'declarations' &&
+      files.any((path) => path.contains('host/bootstrap'))) {
     throw StateError(
       'Host bootstrap leaked into npm archive for ${package.name}',
     );
@@ -415,13 +419,6 @@ void _checkNpmArchive(
     if (package.isTypeOnly && javascript.isNotEmpty) {
       throw StateError(
         'Type-only npm package ${package.name} must not contain JavaScript: '
-        '$javascript',
-      );
-    }
-    if (!package.isTypeOnly &&
-        (javascript.length != 1 || javascript.single != 'noop.js')) {
-      throw StateError(
-        'Declaration npm package ${package.name} must contain only noop.js: '
         '$javascript',
       );
     }
@@ -550,6 +547,12 @@ Future<void> _checkNpmConsumers(
     ..createSync(recursive: true);
   final consumers = <Directory>[];
   for (final archive in archives.values) {
+    final types = archives[archive.types];
+    if (types == null) {
+      throw StateError(
+        'Missing ${archive.types} declarations for ${archive.name}',
+      );
+    }
     final directory = Directory(
       p.join(root.path, archive.name.replaceAll(RegExp(r'[^a-zA-Z0-9]+'), '-')),
     )..createSync(recursive: true);
@@ -559,6 +562,8 @@ Future<void> _checkNpmConsumers(
       if (archive.name != core.name)
         archive.name:
             'file:${p.relative(archive.file.path, from: directory.path)}',
+      if (types.name != core.name && types.name != archive.name)
+        types.name: 'file:${p.relative(types.file.path, from: directory.path)}',
     };
     File(p.join(directory.path, 'package.json')).writeAsStringSync(
       '${const JsonEncoder.withIndent('  ').convert({'name': 'consumer-${p.basename(directory.path)}', 'private': true, 'type': 'module', 'dependencies': dependencies})}\n',
@@ -574,8 +579,9 @@ Future<void> _checkNpmConsumers(
     }.toList()..sort();
     final typeImports = <String>{
       ..._npmExportSpecifiers(coreName, manifests[coreName]!),
-      if (archive.name != core.name)
-        ..._npmExportSpecifiers(archive.name, manifests[archive.name]!),
+      // The public declaration package is the sole application type authority.
+      if (types.name != core.name)
+        ..._npmExportSpecifiers(types.name, manifests[types.name]!),
     }.toList()..sort();
     File(p.join(directory.path, 'verify.mjs')).writeAsStringSync(
       'for (const name of ${jsonEncode(runtimeImports)}) await import(name);\n'
@@ -737,8 +743,9 @@ String _npmArchiveName(String name, String version) =>
     '${name.replaceFirst('@', '').replaceAll('/', '-')}-$version.tgz';
 
 final class _NpmArchive {
-  const _NpmArchive(this.name, this.file);
+  const _NpmArchive(this.name, this.file, this.types);
 
   final String name;
   final File file;
+  final String types;
 }

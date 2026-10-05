@@ -1,3 +1,4 @@
+import 'package:flax_material_ui/flax_material_ui.dart';
 import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
@@ -19,6 +20,7 @@ void main() {
       return const FlaxJsUndefined();
     });
     final session = FlaxSession(
+      plugins: const [FlaxMaterialPlugin()],
       createRuntime: () => runtime,
       bindings: registry,
       onError: (error, _) => errors.add(error),
@@ -41,7 +43,7 @@ componentApi.runApp(new Parent());
     );
     await t.pumpWidget(MaterialApp(home: FlaxView.session(session: session)));
     final closed = session.close();
-    await t.pumpWidget(const SizedBox());
+    await flaxTestUnmount(t);
     await closed;
     expect(events, [
       'parent:deactivate',
@@ -78,6 +80,7 @@ componentApi.runApp(new Parent());
           _ => 'super.$method(...args); return Promise.resolve();',
         };
         final session = FlaxSession(
+          plugins: const [FlaxMaterialPlugin()],
           createRuntime: () => runtime,
           bindings: registry,
           onError: (error, _) => errors.add(error),
@@ -156,7 +159,7 @@ componentApi.runApp(componentApi.Column({children: [
         var closed = false;
         session.close().then((_) => closed = true);
         expect(closed, isFalse);
-        await t.pumpWidget(const SizedBox());
+        await flaxTestUnmount(t);
         await t.pump();
         expect(t.takeException(), isNull);
         expect(closed, isTrue);

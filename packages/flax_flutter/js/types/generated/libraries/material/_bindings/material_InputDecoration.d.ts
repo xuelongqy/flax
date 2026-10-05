@@ -21,31 +21,55 @@ export interface InputDecoration extends Readonly<{
     readonly filled: boolean | null;
     readonly fillColor: upstream2.Color | null;
     copyWith(options?: {
-        contentPadding?: upstream1.EdgeInsetsGeometry | null | undefined;
-        errorStyle?: upstream0.TextStyle | null | undefined;
+        contentPadding?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }> | null | undefined;
+        errorStyle?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> | null | undefined;
         errorText?: string | null | undefined;
-        fillColor?: upstream2.Color | null | undefined;
+        fillColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
         filled?: boolean | null | undefined;
-        helperStyle?: upstream0.TextStyle | null | undefined;
+        helperStyle?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> | null | undefined;
         helperText?: string | null | undefined;
-        hintStyle?: upstream0.TextStyle | null | undefined;
+        hintStyle?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> | null | undefined;
         hintText?: string | null | undefined;
         isDense?: boolean | null | undefined;
-        labelStyle?: upstream0.TextStyle | null | undefined;
+        labelStyle?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> | null | undefined;
         labelText?: string | null | undefined;
     }): InputDecoration;
 }
 export declare function InputDecoration(options?: {
     labelText?: string | null | undefined;
-    labelStyle?: upstream0.TextStyle | null | undefined;
+    labelStyle?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> | null | undefined;
     helperText?: string | null | undefined;
-    helperStyle?: upstream0.TextStyle | null | undefined;
+    helperStyle?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> | null | undefined;
     hintText?: string | null | undefined;
-    hintStyle?: upstream0.TextStyle | null | undefined;
+    hintStyle?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> | null | undefined;
     errorText?: string | null | undefined;
-    errorStyle?: upstream0.TextStyle | null | undefined;
+    errorStyle?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> | null | undefined;
     isDense?: boolean | null | undefined;
-    contentPadding?: upstream1.EdgeInsetsGeometry | null | undefined;
+    contentPadding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
     filled?: boolean | null | undefined;
-    fillColor?: upstream2.Color | null | undefined;
+    fillColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
 }): InputDecoration;

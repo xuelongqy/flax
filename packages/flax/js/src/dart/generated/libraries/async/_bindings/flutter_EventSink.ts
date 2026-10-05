@@ -8,14 +8,14 @@ import '@flax/dart/core/_bindings/flutter_StackTrace';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface EventSink<T extends unknown | null = unknown | null> extends upstream0.Sink<T>, Readonly<{ "__flaxBound:dart:async::EventSink": readonly [T] }> { readonly __EventSink: unique symbol;
 add(event: T): void;
-addError(error: {}, stackTrace?: upstream1.StackTrace | null): void;
+addError(error: {}, stackTrace?: Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }> | null): void;
 close(): void;
 }
 defineObject("flax.core/flutter#type:EventSink", [], [], {add(this: object, event: unknown | null): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeObject(this, "flax.core/flutter#type:EventSink", "add", [event]);
 },
-addError(this: object, error: {}, stackTrace?: upstream1.StackTrace | null): void {
+addError(this: object, error: {}, stackTrace?: Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }> | null): void {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeObject(this, "flax.core/flutter#type:EventSink", "addError", [error, stackTrace]);
 },

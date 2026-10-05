@@ -1,4 +1,5 @@
 import 'package:flax/flax.dart';
+import 'package:flax_test/flax_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
 
@@ -37,7 +38,8 @@ hooks.callback.value = () => hooks.count.value += 2;
       expect(runtime.activeSubscriptions, subscriptions);
       expect(errors, isEmpty);
     } finally {
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
+      await flaxTestWaitForRuntimeDisposal(t, runtime);
       await t.pumpAndSettle();
     }
     expect(runtime.isDisposed, isTrue);
@@ -58,7 +60,8 @@ hooks.callback.value = () => hooks.count.value += 2;
         expect(find.text('Count: 2'), findsOneWidget);
         expect(h.errors, hasLength(1));
       } finally {
-        await t.pumpWidget(const SizedBox());
+        await flaxTestUnmount(t);
+        await flaxTestWaitForRuntimeDisposal(t, h.runtime);
         await t.pumpAndSettle();
       }
       expect(h.runtime.isDisposed, isTrue);
@@ -102,7 +105,8 @@ hooks.callback.value = () => hooks.count.value += 2;
       await t.pumpWidget(h.app());
       expect(h.runtimes, hasLength(1));
       expect(find.text('Count: 30'), findsOneWidget);
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
+      await flaxTestWaitForRuntimeDisposal(t, h.runtime);
       expect(h.runtime.isDisposed, isTrue);
       expect(h.errors, isEmpty);
     },
@@ -156,7 +160,8 @@ hooks.callback.value = () => hooks.count.value += 2;
     h.execute('hooks.visible.value = true');
     await t.pump();
     expect(find.text('Detail 1'), findsOneWidget);
-    await t.pumpWidget(const SizedBox());
+    await flaxTestUnmount(t);
+    await flaxTestWaitForRuntimeDisposal(t, h.runtime);
     expect(h.errors, isEmpty);
   });
   testWidgets(
@@ -218,7 +223,8 @@ hooks.callback.value = () => hooks.count.value += 2;
             .padding,
         const EdgeInsets.all(8),
       );
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
+      await flaxTestWaitForRuntimeDisposal(t, h.runtime);
       old(const PointerDownEvent());
     },
   );
@@ -248,6 +254,7 @@ hooks.callback.value = () => hooks.count.value += 2;
       expect(find.text('Count: 0'), findsOneWidget);
       a.execute('hooks.count.value = 6');
       await t.pumpWidget(app(false));
+      await flaxTestWaitForRuntimeDisposal(t, a.runtime);
       expect(a.runtime.isDisposed, isTrue);
       expect(b.runtime.isDisposed, isFalse);
       b.execute('hooks.count.value = 7');
@@ -258,7 +265,9 @@ hooks.callback.value = () => hooks.count.value += 2;
       expect(b.runtimes, hasLength(1));
       expect(find.text('Count: 0'), findsOneWidget);
       expect(find.text('Count: 7'), findsOneWidget);
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
+      await flaxTestWaitForRuntimeDisposal(t, a.runtime);
+      await flaxTestWaitForRuntimeDisposal(t, b.runtime);
       expect(a.errors, isEmpty);
       expect(b.errors, isEmpty);
     },
@@ -270,6 +279,7 @@ hooks.callback.value = () => hooks.count.value += 2;
       await t.pumpWidget(h.app());
       final old = h.runtime;
       await t.pumpWidget(h.app(code: '$source\n// new session'));
+      await flaxTestWaitForRuntimeDisposal(t, old);
       expect(old.isDisposed, isTrue);
       expect(h.runtimes, hasLength(2));
       expect(h.errors, isEmpty);
@@ -281,7 +291,8 @@ hooks.callback.value = () => hooks.count.value += 2;
       expect(h.errors.last.toString(), contains('protocol'));
       await t.pumpWidget(h.app());
       expect(find.text('Count: 0'), findsOneWidget);
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
+      await flaxTestWaitForRuntimeDisposal(t, h.runtime);
     },
   );
   testWidgets(
@@ -305,7 +316,8 @@ hooks.callback.value = () => hooks.count.value += 2;
       expect(Theme.of(context).colorScheme.primary, theme.colorScheme.primary);
       expect(t.getSize(host('root')).width, lessThanOrEqualTo(360));
       expect(h.errors, isEmpty);
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
+      await flaxTestWaitForRuntimeDisposal(t, h.runtime);
     },
   );
   testWidgets('invalidations during build wait for the next frame', (t) async {
@@ -327,7 +339,8 @@ hooks.callback.value = () => hooks.count.value += 2;
     await t.pump();
     expect(find.text('Count: 2'), findsOneWidget);
     expect(h.errors, isEmpty);
-    await t.pumpWidget(const SizedBox());
+    await flaxTestUnmount(t);
+    await flaxTestWaitForRuntimeDisposal(t, h.runtime);
   });
 
   testWidgets('key changes remount and unkeyed children match by position', (
@@ -358,7 +371,8 @@ hooks.callback.value = () => hooks.count.value += 2;
     expect(t.element(item(3)), same(first));
     expect(t.element(item(1)), same(last));
     expect(h.errors, isEmpty);
-    await t.pumpWidget(const SizedBox());
+    await flaxTestUnmount(t);
+    await flaxTestWaitForRuntimeDisposal(t, h.runtime);
   });
 
   test('duplicate registrations and incompatible modules are rejected', () {

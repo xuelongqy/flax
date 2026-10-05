@@ -7,7 +7,7 @@ import type * as upstream1 from '@flax/flutter/cupertino/_bindings/cupertino_Cup
 import '@flax/flutter/cupertino/_bindings/cupertino_CupertinoThemeData';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/cupertino/_bindings/cupertino.__module";
 export interface CupertinoApp extends WidgetDescription { readonly type: "flax.cupertino/cupertino#type:CupertinoApp";  }
-export function CupertinoApp(options: { key?: upstream0.Key | null | undefined; home?: Bindable<Widget | null> | undefined; theme?: Bindable<upstream1.CupertinoThemeData | null> | undefined; debugShowCheckedModeBanner?: Bindable<boolean> | undefined } = {}): CupertinoApp {
+export function CupertinoApp(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; home?: Bindable<Widget | null> | undefined; theme?: Bindable<Readonly<{ "__flaxBound:package:cupertino_ui/src/theme.dart::CupertinoThemeData": readonly [] }> | null> | undefined; debugShowCheckedModeBanner?: Bindable<boolean> | undefined } = {}): CupertinoApp {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return construct("widget", "flax.cupertino/cupertino#type:CupertinoApp", "", [{"name":"key","required":false,"positional":false},{"name":"home","required":false,"positional":false},{"name":"theme","required":false,"positional":false},{"name":"debugShowCheckedModeBanner","required":false,"positional":false}], [], options) as CupertinoApp;
 }

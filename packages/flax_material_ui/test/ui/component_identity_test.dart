@@ -58,7 +58,7 @@ componentApi.runApp(componentApi.Column({children: items.bind}));
         expect(find.text('counter:1:ltr'), findsOneWidget);
         expect(h.number('Number(componentHooks.states[1].mounted)'), 1);
       }
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       expect(h.errors, isEmpty);
       expect(h.runtime.isDisposed, isTrue);
     });

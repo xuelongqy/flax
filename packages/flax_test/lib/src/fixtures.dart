@@ -1,5 +1,8 @@
 import 'dart:io';
 
+import 'package:flax/flax.dart';
+import 'package:flutter/services.dart';
+
 Map<String, String>? _assets;
 final _packageAssets = <String, Map<String, String>>{};
 
@@ -65,4 +68,23 @@ Future<void> flaxTestPrepareTls(
   if (result.exitCode != 0) {
     throw StateError('Cannot create TLS fixture: ${result.stderr}');
   }
+}
+
+/// Load the public prepared factory inventory without executing unrequested modules.
+Future<void> flaxTestLoadModuleAssets(Map<String, String> sources) async {
+  Flax.moduleAssets = await FlaxModuleAssets.load(
+    bundle: _FixtureModuleBundle(sources),
+    manifest: 'modules/modules.json',
+  );
+}
+
+class _FixtureModuleBundle extends CachingAssetBundle {
+  _FixtureModuleBundle(this.sources);
+  final Map<String, String> sources;
+  @override
+  Future<String> loadString(String key, {bool cache = true}) async =>
+      sources[key] ?? (throw StateError('Missing prepared test module: $key'));
+  @override
+  Future<ByteData> load(String key) =>
+      throw UnsupportedError('Test modules are text');
 }

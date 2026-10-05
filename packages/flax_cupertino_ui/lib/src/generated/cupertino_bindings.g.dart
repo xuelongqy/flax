@@ -303,7 +303,8 @@ const cupertinoBindings = FlaxBindingModule(
   ],
   functions: [],
   moduleId: "flax.cupertino/cupertino",
-  uiProtocol: 21,
+  dependencyModules: ["flax.core/flutter"],
+  uiProtocol: 22,
   requiredCapabilities: const <String>[],
   stateVariants: [],
 );

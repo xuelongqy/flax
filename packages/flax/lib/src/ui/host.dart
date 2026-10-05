@@ -20,9 +20,23 @@ FlaxBindingRegistry _bindingsWithPlugins(
   FlaxBindingRegistry bindings,
   List<FlaxPlugin> plugins,
 ) {
-  final extra = [for (final plugin in plugins) ...plugin.bindingModules];
-  if (extra.isEmpty) return bindings;
-  return FlaxBindingRegistry([...bindings.modules, ...extra]);
+  final modules = [...bindings.modules];
+  if (!modules.any((module) => module.moduleId == flutterBindings.moduleId)) {
+    modules.insert(0, flutterBindings);
+  }
+  for (final plugin in plugins) {
+    for (final module in plugin.bindingModules) {
+      final existing = modules
+          .where((entry) => entry.moduleId == module.moduleId)
+          .firstOrNull;
+      if (existing == null) {
+        modules.add(module);
+      } else if (!identical(existing, module)) {
+        throw ArgumentError('Conflicting binding module: ${module.moduleId}');
+      }
+    }
+  }
+  return FlaxBindingRegistry(modules);
 }
 
 List<FlaxPlugin> _pluginSnapshot(List<FlaxPlugin> plugins) {
@@ -244,7 +258,12 @@ class _BaseHostPlugin extends FlaxPlugin {
   @override
   String get id => 'flax.base';
   @override
-  Set<String> get jsModules => const {'@flax/flutter/widgets'};
+  Set<String> get jsModules => const {
+    '@flax/core',
+    '@flax/core/host',
+    '@flax/core/navigation',
+    '@flax/flutter/widgets',
+  };
   @override
   Set<String> get globals => const {
     'console',

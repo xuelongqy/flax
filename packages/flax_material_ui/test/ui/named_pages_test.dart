@@ -1,3 +1,4 @@
+import 'package:flax_material_ui/flax_material_ui.dart';
 import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
@@ -19,6 +20,7 @@ void main() {
       final runtime = RuntimeTracker();
       final errors = <Object>[];
       final session = FlaxSession(
+        plugins: const [FlaxMaterialPlugin()],
         createRuntime: () => runtime,
         source: namedSource,
         bindings: registry,
@@ -77,9 +79,9 @@ void main() {
       expect(find.text('Count 0'), findsNWidgets(2));
       expect(read('namedPages.factories'), 3);
       expect(errors, isEmpty);
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       await t.pumpAndSettle();
-      await session.close();
+      await flaxTestCloseSession(t, session);
       expect(runtime.handlesAtDispose, 0);
       expect(runtime.activeSubscriptions, 0);
     },
@@ -91,6 +93,7 @@ void main() {
       final runtime = RuntimeTracker();
       final errors = <Object>[];
       final session = FlaxSession(
+        plugins: const [FlaxMaterialPlugin()],
         createRuntime: () => runtime,
         source: namedSource,
         bindings: registry,
@@ -122,9 +125,9 @@ void main() {
         1,
       );
       expect(errors, isEmpty);
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       await t.pumpAndSettle();
-      await session.close();
+      await flaxTestCloseSession(t, session);
       expect(runtime.handlesAtDispose, 0);
       expect(runtime.activeSubscriptions, 0);
     },
@@ -136,6 +139,7 @@ void main() {
       final runtime = RuntimeTracker();
       final errors = <Object>[];
       final session = FlaxSession(
+        plugins: const [FlaxMaterialPlugin()],
         createRuntime: () => runtime,
         source: namedSource,
         bindings: registry,
@@ -164,9 +168,9 @@ void main() {
       await t.pumpWidget(app('details', {'id': 2}));
       await t.pumpAndSettle();
       expect(find.text('Input {"id":2}'), findsOneWidget);
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       await t.pumpAndSettle();
-      await session.close();
+      await flaxTestCloseSession(t, session);
       expect(runtime.handlesAtDispose, 0);
     },
   );

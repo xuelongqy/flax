@@ -146,7 +146,7 @@ FlaxCodegenManifest _manifest({bool readonly = true}) {
       FlaxCodegenManifestModule(
         name: 'values',
         moduleId: moduleId,
-        uiProtocol: 21,
+        uiProtocol: 22,
         requiredCapabilities: const [],
         model: FlaxCodegenManifestModel(
           module: FlaxCodegenModuleModel(

@@ -96,7 +96,7 @@ void main() {
         const expected=${immediateClose ? '["open","microtask","welcome","second","close"]' : '["open","microtask","welcome","second"]'};
         if(JSON.stringify(events)!==JSON.stringify(expected))throw Error(JSON.stringify(events));
       ''');
-      await tester.pumpWidget(const SizedBox());
+      await flaxTestUnmount(tester);
       await tester.pumpAndSettle();
       expect(h.errors, isEmpty);
       expect(h.tracker.handlesAtDispose, 0);
@@ -137,7 +137,7 @@ void main() {
     expect(h.tracker.hostOperations['__flaxWebSocketCall:abort'] ?? 0, 0);
     stdout.writeln('WebSocket blocked close: ${h.tracker.hostOperations}');
     expect(h.tracker.handles, baseline);
-    await tester.pumpWidget(const SizedBox());
+    await flaxTestUnmount(tester);
     await tester.pumpAndSettle();
     expect(h.errors, isEmpty);
     expect(h.tracker.handlesAtDispose, 0);
@@ -154,7 +154,7 @@ void main() {
       ),
       1,
     );
-    await tester.pumpWidget(const SizedBox());
+    await flaxTestUnmount(tester);
     await tester.pumpAndSettle();
     expect(h.tracker.handlesAtDispose, 0);
   });
@@ -194,7 +194,7 @@ void main() {
     );
     expect(h.tracker.hostCalls['__flaxWebSocketCall'], afterOpen);
     expect(afterOpen, calls + 1);
-    await tester.pumpWidget(const SizedBox());
+    await flaxTestUnmount(tester);
     await tester.pumpAndSettle();
     expect(h.tracker.handlesAtDispose, 0);
   });
@@ -230,7 +230,7 @@ void main() {
     stdout.writeln(
       'WebSocket copies: upload=${h.tracker.copiedFromJs}/${h.tracker.byteReads}, download=${h.tracker.copiedToJs}/${h.tracker.byteWrites}; bridge=${h.tracker.hostOperations}',
     );
-    await tester.pumpWidget(const SizedBox());
+    await flaxTestUnmount(tester);
     await tester.pumpAndSettle();
     expect(h.tracker.handlesAtDispose, 0);
   });
@@ -277,7 +277,7 @@ void main() {
         b,
         "const reply=new Promise(r=>live.onmessage=e=>r(e.data));live.send('alive');if(await reply!=='alive')throw Error('isolation');live.close();",
       );
-      await tester.pumpWidget(const SizedBox());
+      await flaxTestUnmount(tester);
       await tester.pumpAndSettle();
       expect(b.tracker.handlesAtDispose, 0);
       expect(a.errors, isEmpty);
@@ -308,7 +308,7 @@ void main() {
         () => a.execute("new WebSocket('ws://127.0.0.1:1/');"),
         throwsA(isA<FlaxJsException>()),
       );
-      await tester.pumpWidget(const SizedBox());
+      await flaxTestUnmount(tester);
       await tester.pumpAndSettle();
       final closing = session.close();
       await tester.pumpAndSettle();
@@ -353,7 +353,7 @@ void main() {
       allOf(contains('a=1'), contains('b=2')),
     );
     expect(base64Decode(headers.value('sec-websocket-key')!), hasLength(16));
-    await tester.pumpWidget(const SizedBox());
+    await flaxTestUnmount(tester);
     await tester.pumpAndSettle();
     expect(h.tracker.handlesAtDispose, 0);
   });

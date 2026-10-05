@@ -7,7 +7,7 @@ import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_EdgeIns
 import '@flax/flutter/widgets/_bindings/flutter_EdgeInsetsGeometry';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface Padding extends WidgetDescription { readonly type: "flax.core/flutter#type:Padding";  }
-export function Padding(options: { key?: upstream0.Key | null | undefined; padding: Bindable<upstream1.EdgeInsetsGeometry>; child?: Bindable<Widget | null> | undefined }): Padding {
+export function Padding(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; padding: Bindable<Readonly<{ "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [] }>>; child?: Bindable<Widget | null> | undefined }): Padding {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return construct("widget", "flax.core/flutter#type:Padding", "", [{"name":"key","required":false,"positional":false},{"name":"padding","required":true,"positional":false},{"name":"child","required":false,"positional":false}], [], options) as Padding;
 }

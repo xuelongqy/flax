@@ -1,9 +1,13 @@
 import { execFileSync } from 'node:child_process';
 import { build } from 'esbuild';
-import { access, readdir } from 'node:fs/promises';
+import {
+  prepareModules,
+  flaxHostModulesPlugin,
+} from '../packages/flax_tools/js/src/modules.mjs';
+import { access, readdir, mkdir, writeFile } from 'node:fs/promises';
 import { basename, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { bundleOptionsFor, prepareBundleModulesFor, root } from './src/bundle.mjs';
+import { bundleOptionsFor, root } from './src/bundle.mjs';
 
 const args = process.argv.slice(2);
 if (args.length !== 0 && (args.length !== 2 || args[0] !== '--package')) {
@@ -33,6 +37,42 @@ if (process.env.FLAX_PREPARED_CHECKS && process.env.FLAX_CHECK_PREPARED === '1')
   process.exit(0);
 }
 
+const inventoryRoot = resolve(root, '.local/ui-module-inventory');
+await mkdir(inventoryRoot, { recursive: true });
+await writeFile(
+  resolve(inventoryRoot, 'pubspec.yaml'),
+  JSON.stringify({
+    name: 'flax_ui_module_inventory',
+    flutter: { assets: ['modules/'] },
+  }),
+);
+const moduleEntries = [
+  ['@flax/core', '@flax/core-runtime'],
+  ['@flax/core/host', '@flax/core-runtime'],
+  ['@flax/core/navigation', '@flax/core-runtime'],
+  ['@flax/core/bindings', '@flax/core-runtime'],
+  ['@flax/flutter/widgets', '@flax/core-runtime'],
+  ['@flax/flutter/material', '@flax/material-ui'],
+  ['@flax/flutter/cupertino', '@flax/cupertino-ui'],
+  ['@flax/fetch', '@flax/fetch-runtime'],
+  ['@flax/websocket', '@flax/websocket-runtime'],
+  ['@flax/local-storage', '@flax/local-storage-runtime'],
+  ['@flax/canvas', '@flax/canvas-runtime'],
+];
+const inventoryConfig = resolve(inventoryRoot, 'flax.modules.json');
+await writeFile(
+  inventoryConfig,
+  JSON.stringify({
+    formatVersion: 1,
+    flutterProject: '.',
+    output: 'modules',
+    modules: moduleEntries.map(([specifier, packageName]) => ({
+      specifier,
+      package: packageName,
+    })),
+  }),
+);
+const inventory = await prepareModules({ configPath: inventoryConfig });
 let bundled = 0;
 for (const owner of packages) {
   const generator = resolve(owner.root, 'tool/ui_fixture.dart');
@@ -72,8 +112,10 @@ for (const owner of packages) {
   const outdir = resolve(owner.root, '.dart_tool/flax/ui');
   if (entries.length > 0) {
     const projectRoot = resolve(owner.root, 'js');
-    await prepareBundleModulesFor(projectRoot);
-    const options = await bundleOptionsFor(projectRoot);
+    const options = {
+      ...(await bundleOptionsFor(projectRoot)),
+      plugins: [flaxHostModulesPlugin(inventory.manifest)],
+    };
     await build({
       ...options,
       entryPoints: Object.fromEntries(

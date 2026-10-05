@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/flutter/foundation/_bindings/flutter_Key'
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/material.__module";
 export interface RefreshIndicator extends WidgetDescription { readonly type: "flax.material/material#type:RefreshIndicator";  }
-export function RefreshIndicator(options: { key?: upstream0.Key | null | undefined; onRefresh: Bindable<(() => Promise<void>)>; child: Bindable<Widget> }): RefreshIndicator {
+export function RefreshIndicator(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; onRefresh: Bindable<(() => Promise<void>)>; child: Bindable<Widget> }): RefreshIndicator {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return construct("widget", "flax.material/material#type:RefreshIndicator", "", [{"name":"key","required":false,"positional":false},{"name":"onRefresh","required":true,"positional":false},{"name":"child","required":true,"positional":false}], [], options) as RefreshIndicator;
 }

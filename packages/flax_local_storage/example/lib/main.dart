@@ -11,6 +11,11 @@ Future<void> main() => startApplication();
 Future<void> startApplication({String? storageDirectory}) async {
   WidgetsFlutterBinding.ensureInitialized();
   await FlaxLocalStoragePlugin.initialize(directory: storageDirectory);
+  Flax.moduleAssets = await FlaxModuleAssets.load(
+    bundle: rootBundle,
+    manifest: 'assets/flax_modules/modules.json',
+  );
+
   final source = await rootBundle.loadString('assets/app.js');
   runApp(
     Directionality(

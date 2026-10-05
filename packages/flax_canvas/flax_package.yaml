@@ -1,8 +1,9 @@
-format: 1
+format: 2
 dart:
   entrypoint: package:flax_canvas/flax_canvas.dart
 javascript:
-  package: '@flax/canvas'
+  package: '@flax/canvas-runtime'
+  types: '@flax/canvas'
   version: same
   mode: runtime
 capabilities:

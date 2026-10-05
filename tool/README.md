@@ -87,8 +87,10 @@ is validated separately after copying it outside the checkout; see the
 Every package declares its entry point, optional npm peer, capabilities, and public
 registration symbols in `flax_package.yaml`. Archive checks use this metadata to select
 binding, host, engine, and npm rules. Temporary Dart consumers import the declared entry
-point and reference the registration symbols, while npm consumers load and type-check
-every exported subpath. Paired Pub/npm versions must match; no runtime registration is
+point and reference the registration symbols. Npm consumers load source delivery exports
+and type-check the corresponding public declaration exports with Core. Source-package
+declarations are implementation details, so consumers use `javascript.types` as their
+single type authority. Paired Pub/npm versions must match; no runtime registration is
 derived from the metadata.
 
 Binding aggregation discovers package YAML and follows manifest imports through
@@ -197,9 +199,10 @@ package-owned UI hooks, including pinned WPT inputs. Consumers only register the
 plugin. No application bundle initializer is needed.
 
 Host-owning JavaScript projects use `tsconfig.npm.json` for public npm output and
-`tsconfig.host.json` for the embedded implementation. Declaration-mode packages export
-only declarations and `noop.js`; `host_bundle.mjs` still bundles the private bootstrap
-directly into its Dart owner.
+`tsconfig.host.json` for the embedded implementation. Public declaration packages export
+only `.d.ts` files; physical source packages deliver JavaScript and the host bootstrap.
+`host_bundle.mjs` also embeds that bootstrap directly into its Dart owner. Business
+bundles use the prepared module inventory and cannot inline a missing implementation.
 
 Run `dart test packages/flax_websocket/test` for local transport, TLS and proxy checks
 without an engine. Run the package integration command for its real host path;

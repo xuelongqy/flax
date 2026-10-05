@@ -1,12 +1,14 @@
-# @flax/canvas
+# @flax/canvas-runtime
 
-Type declarations, `CanvasView`, and source ownership for the optional Dart
-`flax_canvas` plugin. Import `@flax/canvas/globals` as a type-only import to declare
-installed constructors. The package does not install those constructors.
+`CanvasView` and runtime source for the optional Dart `flax_canvas` plugin. Public
+declarations live in the declaration-only `@flax/canvas` package. Import
+`@flax/canvas/globals` as a type-only import to declare installed constructors. The
+package does not install those constructors.
 
-Install it at the same version as Dart `flax_canvas`. This is a runtime npm package:
-`CanvasView` and the application-side Canvas implementation execute from the archive,
-while host transport remains embedded in Dart.
+Install both npm packages at the same version as Dart `flax_canvas`. `CanvasView` and
+the application-side Canvas implementation execute from prepared plugin modules; the
+generated host bootstrap is also embedded in Dart. Business code keeps its public
+`@flax/canvas` imports; private implementation imports are rejected.
 
 Dart plugin registration installs the prebuilt script once per session. Application code
 uses `OffscreenCanvas` and related globals after `FlaxCanvasPlugin` is installed.

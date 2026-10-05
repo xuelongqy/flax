@@ -213,7 +213,7 @@ gain a general unhandled-rejection monitoring service.
 
 ## Boundaries and verification
 
-Protocol 21 rejects earlier bundles and modules; the C ABI is unchanged. Host native
+Protocol 22 rejects earlier bundles and modules; the C ABI is unchanged. Host native
 Router and JS Pages are implemented. go_router-specific adapters, system deep-link
 registration, restoration, custom transitions, and additional platforms remain deferred.
 URL parsing in the example does not register OS links.

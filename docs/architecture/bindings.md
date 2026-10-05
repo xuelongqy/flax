@@ -10,7 +10,7 @@ fail-closed.
 
 The analyzer-based generator resolves selected public APIs and emits Dart calls,
 TypeScript declarations and shared parameter metadata. Configuration, parsing/model and
-emission remain separate. UI protocol 21 reuses the unchanged native C ABI (ABI 2).
+emission remain separate. UI protocol 22 reuses the unchanged native C ABI (ABI 2).
 
 The `FlaxCodegen*Model` graph produced by parsing is the semantic IR between analyzer
 resolution and emission. It carries resolved types, generics, inheritance, Widget and
@@ -49,15 +49,24 @@ dart run flax_codegen generate --config <direct-yaml>
 ```
 
 Official selection files carry `format: 2` and live as direct children of package
-`bindings/`. Packages with `bindings` capability keep package metadata format 1 and set
+`bindings/`. Packages with `bindings` capability keep package metadata format 2 and set
 `bindingNamespace` in `flax_package.yaml`. Generated `bindings/manifest.json` uses
-Manifest `formatVersion: 12`; the reader accepts format 12 only. The generator has no
+Manifest `formatVersion: 13`; the reader accepts format 13 only. The generator has no
 reader or normalization path for other binding selection or Manifest formats. See
 [ADR 0035](../decisions/0035-generic-state-variants-and-protocol-21.md) and
 [External Binding Verification](external-binding-verification.md).
 
-Include dependency modules to share declaration ownership. Input order does not change
-adaptation identity.
+Flax Core is an implicit provider for every binding package depending on Dart `flax`.
+Core bindings cannot be republished. Independent packages may bind the same Dart source
+with different namespaces, including the same short module name. A unique compatible
+dependency with an adequate selected surface is reused. Missing, insufficient or
+ambiguous non-Core providers cause a complete local binding. Explicit local selections
+remain local. No selection enlarges an imported provider. See
+[ADR 0037](../decisions/0037-package-scoped-binding-providers.md).
+
+Single-file generated consumers import public provider libraries. Split implementations
+keep their private declaration imports inside source preparation; business bundles never
+import private binding chunks directly.
 
 ## Public libraries and top-level readonly declarations
 
@@ -118,13 +127,14 @@ create no implicit reactive subscriptions or cross-session reference cache. Clos
 existing call, reference and pending-delivery cleanup; it does not dispose
 application-owned values.
 
-Manifest 12 stores public-library routing plus each readonly declaration's source,
+Manifest 13 stores public-library routing plus each readonly declaration's source,
 public export, return type, declaration kind, optional literal and ownership/reference
 status. Source kind `readonly` maps to a stable
 `<bindingNamespace>/<module>#read:<name>` operation. Existing type and function IDs are
 unchanged. A public reexport of a provider-owned read forwards to the provider's public
 module without registering another Dart entry. Consumers use public libraries and
-manifests and cannot enlarge or change the provider's declaration.
+manifests. An explicit local non-Core selection emits its own operation; it never
+changes the provider's declaration.
 
 Core exposes `getKIsWeb()` and `getDefaultTargetPlatform()` from
 `@flax/flutter/foundation`, with `TargetPlatform`. Material exposes direct
@@ -136,10 +146,10 @@ synchronous, propagate Dart exceptions and return void; the next read observes c
 Dart state. Top-level state belongs to the Dart application and can be shared across
 sessions; closing a session does not roll back writes. Source identity uses the function
 operation `name=` (wire suffix `#function:name%3D`), leaving existing getter/read IDs
-unchanged. Manifest 12 records `topLevel.setters` and their independent operation IDs.
-Provider read and write surfaces are checked separately and cannot be widened by
-consumers. Writes reuse ordinary input conversion and existing session cleanup without
-new ownership rules. See
+unchanged. Manifest 13 records `topLevel.setters` and their independent operation IDs.
+Provider read and write surfaces are checked separately. Core surfaces cannot be
+widened; independent non-Core selections emit local operations. Writes reuse ordinary
+input conversion and existing session cleanup without new ownership rules. See
 [mutable access tests](../../packages/flax_codegen/test/top_level_mutable_test.dart),
 [readonly generation tests](../../packages/flax_codegen/test/top_level_readonly_test.dart),
 [manifest tests](../../packages/flax_codegen/test/top_level_manifest_test.dart) and
@@ -148,7 +158,7 @@ new ownership rules. See
 ## Literal module tuple and registration
 
 Generated Dart and JavaScript modules carry literal `moduleId`, `uiProtocol` and
-`requiredCapabilities` values. The active UI protocol is 21 and native ABI is 2.
+`requiredCapabilities` values. The active UI protocol is 22 and native ABI is 2.
 `uiProtocol` is the required field for module compatibility; there is no parallel
 `version` field or ambient Core fallback.
 
@@ -167,6 +177,10 @@ fields:
 Registry comparison. Generated modules pass their **own** literals; they must not read
 Core's constant as a fallback.
 
+The generated `dependencyModules` list names reused provider modules needed by the
+signature. Runtime erased results use this list as the originating module's dependency
+context; short module names never resolve ownership.
+
 ### `FlaxBindingRegistry`
 
 On construction, **before** publishing type or function maps:
@@ -175,7 +189,8 @@ On construction, **before** publishing type or function maps:
 2. Every `requiredCapabilities` entry is a member of Core's internal
    `supportedCapabilities`. Core owns that set; authors and manifests do not declare
    provided sets ([ADR 0021](../decisions/0021-external-binding-version-domains.md)).
-3. Reject duplicate `moduleId` (primary identity). Also reject duplicate `name`.
+3. Reject duplicate `moduleId` (primary identity). Short `name` values may match across
+   namespaces.
 4. Keep rejecting duplicate type and function binding ids.
 5. Any failure throws; leave no partial registry.
 6. No silent upgrade of old modules.
@@ -246,9 +261,11 @@ lifecycle-specific ownership.
 Core supplies minimal real-reference bindings for `DateTime` (epoch constructor, `year`,
 `isUtc`, `toIso8601String`), `Uri` (static `parse`, `scheme`, `host`), and
 `StringBuffer` (constructor, `length`, `write`, `toString`). Consumers reuse those
-owners. `proposeSelection` reports the provider without a duplicate selection and
-diagnoses insufficient owner members or incompatible adaptations. It never expands an
-imported package's API. Existing `Duration` and `TextRange` ownership is unchanged.
+owners. `proposeSelection` reports the Core provider without a duplicate selection and
+diagnoses insufficient Core members or incompatible adaptations. For a non-Core provider
+it reuses an adequate compatible surface or emits a full local selection. It never
+expands an imported package's API. Existing `Duration` and `TextRange` ownership is
+unchanged.
 
 Selected `void` getters, including inherited generic getters instantiated with `void`,
 evaluate once, propagate Dart exceptions and return JavaScript `undefined`.
@@ -301,7 +318,7 @@ on the outer one. Defaults, nullability, alias-chain substitution, nested captur
 shadowing use the existing declaration identities. Explicit TS arguments are supported
 without promising identical Dart inference or supplying Dart runtime type tokens.
 
-Manifest 12 stores each alias's public name, originating URI/name, `typeParameters` and
+Manifest 13 stores each alias's public name, originating URI/name, `typeParameters` and
 target type. Even non-generic aliases require an empty `typeParameters` array. Lexical
 slots preserve parameter identity across dependency projections. Bounds and defaults, as
 well as targets, participate in dependency imports and nominal ownership checks.
@@ -319,7 +336,7 @@ the existing TypeRef conversion. JS-to-Dart conversion requires every declared f
 ignores extra properties, validates field nullability independently from whole-Record
 nullability, and reconstructs a real Dart Record. Records themselves have no wire ID,
 owner or session reference identity; provider-owned objects nested inside fields retain
-their normal identity. Manifest 12 carries the complete current Record shape.
+their normal identity. Manifest 13 carries the complete current Record shape.
 
 Generic declarations use one shared Dart owner while TypeScript keeps the declared type
 parameters. An unconstrained owner uses `Object?`; a simple upper bound such as `num` is
@@ -515,13 +532,14 @@ conversions, including Records, aliases, callbacks, collections and Future/Futur
 Existing unsupported Widget/lifecycle semantic positions remain rejected.
 
 Extensions have no runtime instance or type wire ID. Each selected operation owns a
-stable function ID; public re-exports route to that single adapter. Provider references
+stable package-scoped function ID; reused public re-exports route to the selected
+provider adapter. Independent packages may emit separate adapters. Provider references
 must preserve the provider's selected signature and public export surface. See
 [ADR 0030](../decisions/0030-extension-binding-adapters.md).
 
 ## Bound-only type references
 
-Generic bounds may name interfaces without runtime bindings. Manifest 12 records their
+Generic bounds may name interfaces without runtime bindings. Manifest 13 records their
 source URI, declaration name and recursively scoped generic arguments as `typeOnly`.
 They never receive an owner, wire ID, reference handle or member selection. Ordinary
 parameters, results and runtime erasure still require convertible concrete types.

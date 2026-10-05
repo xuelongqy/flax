@@ -13,16 +13,16 @@ import { construct, constructProxy, constructObject, constructDeferredObject, co
 export interface RoundedRectangleBorder extends upstream0.OutlinedBorder, upstream1.ShapeBorder, Readonly<{ "__flaxBound:package:flutter/src/painting/rounded_rectangle_border.dart::RoundedRectangleBorder": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/painting/rounded_rectangle_border.dart::_RRectLikeBorder": readonly [] }> { readonly __RoundedRectangleBorder: unique symbol;
 readonly side: upstream2.BorderSide;
 readonly borderRadius: upstream3.BorderRadiusGeometry;
-copyWith(options?: {borderRadius?: upstream3.BorderRadiusGeometry | null | undefined; side?: upstream2.BorderSide | null | undefined}): RoundedRectangleBorder;
+copyWith(options?: {borderRadius?: Readonly<{ "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [] }> | null | undefined; side?: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [] }> | null | undefined}): RoundedRectangleBorder;
 }
-defineObject("flax.core/flutter#type:RoundedRectangleBorder", ["side","borderRadius"], [], {copyWith(this: object, options: { borderRadius?: upstream3.BorderRadiusGeometry | null | undefined; side?: upstream2.BorderSide | null | undefined } = {}): RoundedRectangleBorder {
+defineObject("flax.core/flutter#type:RoundedRectangleBorder", ["side","borderRadius"], [], {copyWith(this: object, options: { borderRadius?: Readonly<{ "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [] }> | null | undefined; side?: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [] }> | null | undefined } = {}): RoundedRectangleBorder {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["borderRadius","side"].includes(k))) throw new TypeError('Invalid named method arguments');
 const _flaxResult = invokeObject(this, "flax.core/flutter#type:RoundedRectangleBorder", "copyWith", [options.borderRadius, options.side]);
 return _flaxResult as RoundedRectangleBorder;
 },
 }, []);
-export function RoundedRectangleBorder(options: { side?: upstream2.BorderSide | undefined; borderRadius?: upstream3.BorderRadiusGeometry | undefined } = {}): RoundedRectangleBorder {
+export function RoundedRectangleBorder(options: { side?: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [] }> | undefined; borderRadius?: Readonly<{ "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [] }> | undefined } = {}): RoundedRectangleBorder {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:RoundedRectangleBorder", "", [{"name":"side","required":false,"positional":false},{"name":"borderRadius","required":false,"positional":false}], [], options) as RoundedRectangleBorder;
 }

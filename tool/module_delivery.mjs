@@ -102,6 +102,8 @@ function publicRequirements(manifest) {
 }
 
 function coreSource(specifier) {
+  if (specifier === '@flax/core') return { source: 'dist/runtime/index.js' };
+  if (specifier === '@flax/core/host') return { source: 'dist/host/index.js' };
   if (specifier === '@flax/core/navigation') {
     return {
       source: 'dist/flutter/generated/libraries/navigation/index.js',
@@ -158,13 +160,15 @@ async function delivery({
   extraModules = [],
 }) {
   const npm = await json(join(root, packageDirectory, 'package.json'));
-  const manifest = await json(join(root, manifestPath));
-  if (manifest.formatVersion !== 12) {
-    throw new Error(`Expected Binding Manifest 12: ${manifestPath}`);
+  const manifest = manifestPath
+    ? await json(join(root, manifestPath))
+    : { formatVersion: 13, modules: [] };
+  if (manifest.formatVersion !== 13) {
+    throw new Error(`Expected Binding Manifest 13: ${manifestPath}`);
   }
   const requirements = publicRequirements(manifest);
   const modules = [
-    ...extraModules,
+    ...extraModules.map((entry) => ({ bindings: [], ...entry })),
     ...[...requirements.entries()].map(([specifier, requirement]) => ({
       specifier,
       ...sourceFor(specifier),
@@ -175,7 +179,7 @@ async function delivery({
     })),
   ].sort((a, b) => a.specifier.localeCompare(b.specifier));
   return {
-    formatVersion: 1,
+    formatVersion: 2,
     package: npm.name,
     version: npm.version,
     modules,
@@ -208,6 +212,8 @@ const targets = [
     manifestPath: 'packages/flax/bindings/manifest.json',
     sourceFor: coreSource,
     extraModules: [
+      { specifier: '@flax/core', source: 'dist/runtime/index.js' },
+      { specifier: '@flax/core/host', source: 'dist/host/index.js' },
       {
         specifier: '@flax/core/bindings',
         source: 'dist/runtime/bindings.js',
@@ -226,6 +232,33 @@ const targets = [
     sourceFor: cupertinoSource,
   },
 ];
+
+for (const [owner, publicName] of [
+  ['flax_fetch', '@flax/fetch'],
+  ['flax_websocket', '@flax/websocket'],
+  ['flax_local_storage', '@flax/local-storage'],
+  ['flax_canvas', '@flax/canvas'],
+]) {
+  const canvas =
+    owner === 'flax_canvas'
+      ? await json(join(root, 'packages/flax_canvas/bindings/manifest.json'))
+      : null;
+  targets.push({
+    packageDirectory: `packages/${owner}/js`,
+    manifestPath: null,
+    sourceFor: () => {
+      throw new Error('Unexpected host module');
+    },
+    extraModules: [
+      {
+        specifier: publicName,
+        source: 'dist/index.js',
+        bindings: canvas ? canvas.modules.map(bindingRequirement) : [],
+      },
+      { specifier: `${publicName}/globals`, source: 'dist/globals.js' },
+    ],
+  });
+}
 
 for (const target of targets) {
   const value = await delivery(target);

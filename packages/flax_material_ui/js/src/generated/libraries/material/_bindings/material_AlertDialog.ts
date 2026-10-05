@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/flutter/foundation/_bindings/flutter_Key'
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/material.__module";
 export interface AlertDialog extends WidgetDescription { readonly type: "flax.material/material#type:AlertDialog";  }
-export function AlertDialog(options: { key?: upstream0.Key | null | undefined; title?: Bindable<Widget | null> | undefined; content?: Bindable<Widget | null> | undefined; actions?: Bindable<DartListInput<Widget, Widget> | null> | undefined; scrollable?: Bindable<boolean> | undefined } = {}): AlertDialog {
+export function AlertDialog(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; title?: Bindable<Widget | null> | undefined; content?: Bindable<Widget | null> | undefined; actions?: Bindable<DartListInput<Widget, Widget> | null> | undefined; scrollable?: Bindable<boolean> | undefined } = {}): AlertDialog {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return construct("widget", "flax.material/material#type:AlertDialog", "", [{"name":"key","required":false,"positional":false},{"name":"title","required":false,"positional":false},{"name":"content","required":false,"positional":false},{"name":"actions","required":false,"positional":false},{"name":"scrollable","required":false,"positional":false}], [], options) as AlertDialog;
 }

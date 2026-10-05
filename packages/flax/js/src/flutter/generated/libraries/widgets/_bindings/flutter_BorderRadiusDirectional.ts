@@ -14,7 +14,7 @@ readonly bottomEnd: upstream1.Radius;
 }
 defineObject("flax.core/flutter#type:BorderRadiusDirectional", ["topStart","topEnd","bottomStart","bottomEnd"], [], {}, []);
 export namespace BorderRadiusDirectional {
-export function all(radius: upstream1.Radius): BorderRadiusDirectional {
+export function all(radius: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }>): BorderRadiusDirectional {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:BorderRadiusDirectional", "all", [{"name":"radius","required":true,"positional":true}], [radius], {}) as BorderRadiusDirectional;
 }
@@ -26,7 +26,7 @@ return constructObject("object", "flax.core/flutter#type:BorderRadiusDirectional
 }
 }
 export namespace BorderRadiusDirectional {
-export function only(options: { topStart?: upstream1.Radius | undefined; topEnd?: upstream1.Radius | undefined; bottomStart?: upstream1.Radius | undefined; bottomEnd?: upstream1.Radius | undefined } = {}): BorderRadiusDirectional {
+export function only(options: { topStart?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined; topEnd?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined; bottomStart?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined; bottomEnd?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined } = {}): BorderRadiusDirectional {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:BorderRadiusDirectional", "only", [{"name":"topStart","required":false,"positional":false},{"name":"topEnd","required":false,"positional":false},{"name":"bottomStart","required":false,"positional":false},{"name":"bottomEnd","required":false,"positional":false}], [], options) as BorderRadiusDirectional;
 }

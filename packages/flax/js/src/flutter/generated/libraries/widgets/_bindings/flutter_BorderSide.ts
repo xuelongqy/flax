@@ -10,16 +10,16 @@ readonly color: upstream0.Color;
 readonly width: number;
 readonly style: upstream1.BorderStyle;
 readonly strokeAlign: number;
-copyWith(options?: {color?: upstream0.Color | null | undefined; strokeAlign?: number | null | undefined; style?: upstream1.BorderStyle | null | undefined; width?: number | null | undefined}): BorderSide;
+copyWith(options?: {color?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; strokeAlign?: number | null | undefined; style?: upstream1.BorderStyle | null | undefined; width?: number | null | undefined}): BorderSide;
 }
-defineObject("flax.core/flutter#type:BorderSide", ["color","width","style","strokeAlign"], [], {copyWith(this: object, options: { color?: upstream0.Color | null | undefined; strokeAlign?: number | null | undefined; style?: upstream1.BorderStyle | null | undefined; width?: number | null | undefined } = {}): BorderSide {
+defineObject("flax.core/flutter#type:BorderSide", ["color","width","style","strokeAlign"], [], {copyWith(this: object, options: { color?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; strokeAlign?: number | null | undefined; style?: upstream1.BorderStyle | null | undefined; width?: number | null | undefined } = {}): BorderSide {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["color","strokeAlign","style","width"].includes(k))) throw new TypeError('Invalid named method arguments');
 const _flaxResult = invokeObject(this, "flax.core/flutter#type:BorderSide", "copyWith", [options.color, options.strokeAlign, options.style, options.width]);
 return _flaxResult as BorderSide;
 },
 }, []);
-export function BorderSide(options: { color?: upstream0.Color | undefined; width?: number | undefined; style?: upstream1.BorderStyle | undefined; strokeAlign?: number | undefined } = {}): BorderSide {
+export function BorderSide(options: { color?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | undefined; width?: number | undefined; style?: upstream1.BorderStyle | undefined; strokeAlign?: number | undefined } = {}): BorderSide {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:BorderSide", "", [{"name":"color","required":false,"positional":false},{"name":"width","required":false,"positional":false},{"name":"style","required":false,"positional":false},{"name":"strokeAlign","required":false,"positional":false}], [], options) as BorderSide;
 }

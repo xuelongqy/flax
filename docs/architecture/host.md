@@ -2,7 +2,7 @@
 
 FlaxSession installs a basic JavaScript environment before application code. Optional
 plugins add capabilities to the same session. Pure FlaxJsRuntime instances remain bare
-and require explicit microtask draining. The UI protocol is 20; copied binary transport
+and require explicit microtask draining. The UI protocol is 22; copied binary transport
 requires native ABI 2. The host itself is not separately versioned.
 
 ## Registration and ownership
@@ -46,18 +46,19 @@ base host participates implicitly and requests its Core Flutter module; capabili
 packages such as Material expose a normal plugin (`FlaxMaterialPlugin`) that declares
 their public module. Duplicate requests are harmless because selection is by specifier.
 
-A requested module that is not in `Flax.moduleAssets` is left to the business bundle and
-does not make host startup fail solely because it is absent. An inventory module that no
-plugin requests remains unevaluated and does not impose Dart binding requirements on the
-session. Module instances and their registry are session-local even when multiple
-sessions reuse the same preloaded `FlaxModuleAssets`.
+A requested module missing from `Flax.moduleAssets`, or a session without prepared
+assets, fails before business source executes. Business builds cannot inline a missing
+Flax implementation. An inventory module that no plugin requests remains unevaluated and
+does not impose Dart binding requirements on the session. Module instances and their
+registry are session-local even when multiple sessions reuse the same preloaded
+`FlaxModuleAssets`.
 
 Plugins may also contribute `bindingModules`; those merge with the application registry
-before module selection and source execution. Duplicate module names, type ids, function
-ids and incompatible protocol versions fail before installation. Declare installed
-public globals in `globals`; private dispatcher names are also checked for collisions.
-Plugins must clean incomplete installations themselves. Successfully installed instances
-close and dispose in reverse order.
+before module selection and source execution. Duplicate full module IDs, type IDs,
+function IDs and incompatible protocol versions fail before installation. Declare
+installed public globals in `globals`; private dispatcher names are also checked for
+collisions. Plugins must clean incomplete installations themselves. Successfully
+installed instances close and dispose in reverse order.
 
 Closing stops new timers and requests, cancels active work, and delivers rejection while
 the engine lives. Existing pages and Routes keep their prior exit contract. Final

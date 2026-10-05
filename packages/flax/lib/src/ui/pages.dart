@@ -248,11 +248,14 @@ extension _PageDecoding on _Session {
   ) {
     final parameters = definition.constructors[ctor];
     if (parameters == null) throw ArgumentError('Unsupported Page constructor');
-    final sources = _arguments(
-      descriptor,
-      parameters,
-      allowBindings: false,
-      callbackScope: _CallbackScope.ui,
+    final sources = _inBindingContext(
+      definition.id,
+      () => _arguments(
+        descriptor,
+        parameters,
+        allowBindings: false,
+        callbackScope: _CallbackScope.ui,
+      ),
     );
     final lease = FlaxPageLease._(this, sources, descriptor.retain());
     try {

@@ -1,3 +1,5 @@
+import 'package:flax_material_ui/flax_material_ui.dart';
+
 import 'dart:convert';
 
 import 'package:flax/flax.dart';
@@ -35,6 +37,7 @@ void main() {
       final events = <String>[];
       var native = _NativeLifecycle(events, 1);
       final session = FlaxSession(
+        plugins: const [FlaxMaterialPlugin()],
         createRuntime: h.create,
         bindings: registry,
         onError: (e, _) => h.errors.add(e),
@@ -72,10 +75,10 @@ componentApi.runApp(componentApi.Center({child: selected.bind}));
       compare();
       await t.pumpWidget(tree(TextDirection.rtl));
       compare();
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       compare();
       expect(h.errors, isEmpty);
-      await session.close();
+      await flaxTestCloseSession(t, session);
       expect(h.runtime.isDisposed, isTrue);
     },
   );
@@ -120,7 +123,7 @@ componentApi.runApp(componentApi.Center({child: selected.bind}));
       expect(find.text('a:6:rtl'), findsOneWidget);
       expect(h.number('componentHooks.states.length'), 1);
       expect(h.number('Number(Object.isFrozen(s.widget))'), 1);
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       expect(h.runtime.isDisposed, isTrue);
       expect(h.errors, isEmpty);
     },
@@ -192,7 +195,7 @@ try {
 ''');
       expect(h.number('Number(disposedVariantRejected)'), 1);
       expect(h.errors, isEmpty);
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       expect(h.runtime.isDisposed, isTrue);
     },
   );
@@ -242,7 +245,7 @@ runApp(Column({children: children.bind}));
       await t.pump();
       expect(find.text('other:7:ltr'), findsOneWidget);
       expect(h.number('componentHooks.states.length'), 4);
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       expect(h.errors, isEmpty);
     },
   );
@@ -279,7 +282,7 @@ try { componentHooks.states[0].setState(async () => {}); } catch (e) { errors.pu
     expect(h.number('errors.length'), 2);
     expect(h.number('componentHooks.states[0].builds - before'), 0);
     expect(h.number('componentHooks.states[0].count'), 8);
-    await t.pumpWidget(const SizedBox());
+    await flaxTestUnmount(t);
   });
 
   testWidgets(
@@ -294,7 +297,7 @@ try { componentHooks.states[0].setState(async () => {}); } catch (e) { errors.pu
       await t.pumpWidget(app(h, code, direction: TextDirection.rtl));
       expect(find.text('caption:rtl'), findsOneWidget);
       expect(h.number('componentHooks.statelessBuilds'), 2);
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       expect(h.runtime.isDisposed, isTrue);
       expect(h.errors, isEmpty);
     },
@@ -338,7 +341,7 @@ var noEarlyCallbacks = lifecycleChecks.length === 0;
         1,
       );
       expect(h.errors, isEmpty);
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       expect(h.runtime.isDisposed, isTrue);
     },
   );
@@ -391,7 +394,7 @@ var noEarlyCallbacks = lifecycleChecks.length === 0;
         h.number('Number(componentHooks.events.includes("move:reassemble"))'),
         1,
       );
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       expect(h.errors, isEmpty);
     },
   );
@@ -415,7 +418,7 @@ componentApi.runApp(new Broken());
         );
         expect(h.errors, hasLength(1));
         expect(find.byType(ErrorWidget), findsOneWidget);
-        await t.pumpWidget(const SizedBox());
+        await flaxTestUnmount(t);
         expect(h.runtime.isDisposed, isTrue);
       }
       for (final hook in ['initState', 'dispose']) {
@@ -438,7 +441,7 @@ componentApi.runApp(new Broken());
             contains('must call super.initState'),
           );
         }
-        await t.pumpWidget(const SizedBox());
+        await flaxTestUnmount(t);
         if (hook == 'dispose') {
           expect(
             h.errors.single.toString(),
@@ -456,6 +459,7 @@ componentApi.runApp(new Broken());
       final runtime = RuntimeTracker();
       final errors = <Object>[];
       final session = FlaxSession(
+        plugins: const [FlaxMaterialPlugin()],
         createRuntime: () => runtime,
         source: script(
           'componentApi.runApp(new componentApi.Counter("cost"));',
@@ -506,7 +510,7 @@ componentApi.runApp(new Broken());
       execute('cost.setState(() => cost.count++);');
       await t.pump();
       expect(closed, isFalse);
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       await closing;
       expect(runtime.handlesAtDispose, 0);
       expect(runtime.activeSubscriptions, 0);
@@ -545,7 +549,7 @@ runApp(SizedBox({height: 500, child: Column({children: [componentApi.Center({chi
       expect(h.number('componentHooks.states.length'), 2);
       expect(h.number('Number(componentHooks.states[0].mounted)'), 0);
       expect(find.text('second:2:ltr'), findsOneWidget);
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       expect(h.errors, isEmpty);
     },
   );
@@ -587,7 +591,7 @@ componentApi.runApp(componentApi.Column({children:[new Left(), new Right('right'
       await t.pump();
       expect(find.text('during build'), findsOneWidget);
       expect(h.errors, isEmpty);
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
     },
   );
 
@@ -596,6 +600,7 @@ componentApi.runApp(componentApi.Column({children:[new Left(), new Right('right'
     (t) async {
       final h = Harness();
       final session = FlaxSession(
+        plugins: const [FlaxMaterialPlugin()],
         createRuntime: h.create,
         bindings: registry,
         onError: (e, _) => h.errors.add(e),
@@ -643,7 +648,7 @@ nav.push(MaterialPageRoute({builder: () => new Counter('route', 4)}));
       expect(h.runtime.isDisposed, isFalse);
       await t.pumpAndSettle();
       expect(find.text('page:7:ltr'), findsOneWidget);
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       await closing;
       expect(h.runtime.isDisposed, isTrue);
       expect(h.errors, isEmpty);
@@ -684,11 +689,12 @@ componentApi.runApp(new Editor());
     );
     expect(find.text('new:0:ltr'), findsOneWidget);
     expect(h.runtimes, hasLength(2));
+    await flaxTestWaitForRuntimeDisposal(t, oldRuntime);
     expect(oldRuntime.isDisposed, isTrue);
     expect(() => field.controller!.addListener(() {}), throwsFlutterError);
     expect(() => field.focusNode!.addListener(() {}), throwsFlutterError);
     expect(h.errors, isEmpty);
-    await t.pumpWidget(const SizedBox());
+    await flaxTestUnmount(t);
     expect(h.runtime.isDisposed, isTrue);
   });
 
@@ -702,6 +708,7 @@ componentApi.runApp(new Editor());
       final runtime = RuntimeTracker();
       final errors = <Object>[];
       final session = FlaxSession(
+        plugins: const [FlaxMaterialPlugin()],
         createRuntime: () => runtime,
         bindings: registry,
         onError: (error, _) => errors.add(error),
@@ -716,7 +723,7 @@ componentApi.runApp(new Failing());
       );
       await t.pumpWidget(MaterialApp(home: FlaxView.session(session: session)));
       final closing = session.close();
-      await t.pumpWidget(const SizedBox());
+      await flaxTestUnmount(t);
       await closing;
       expect(errors, hasLength(1));
       expect(runtime.handlesAtDispose, 0);
@@ -734,7 +741,7 @@ componentApi.runApp(componentApi.Column({children:[new Reused('a'), new Reused('
     expect(h.errors, hasLength(1));
     expect(find.text('a:0:ltr'), findsOneWidget);
     expect(find.byType(ErrorWidget), findsOneWidget);
-    await t.pumpWidget(const SizedBox());
+    await flaxTestUnmount(t);
     expect(h.runtime.isDisposed, isTrue);
   });
 }

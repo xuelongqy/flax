@@ -12,7 +12,7 @@ get canRequestFocus(): boolean;
 get skipTraversal(): boolean;
 addListener(listener: (() => void)): void;
 removeListener(listener: (() => void)): void;
-requestFocus(node?: FocusNode | null): void;
+requestFocus(node?: Readonly<{ "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [] }> | null): void;
 unfocus(options?: {disposition?: upstream1.UnfocusDisposition | undefined}): void;
 nextFocus(): boolean;
 previousFocus(): boolean;
@@ -28,7 +28,7 @@ removeListener(this: object, listener: (() => void)): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeObject(this, "flax.core/flutter#type:FocusNode", "removeListener", [listener]);
 },
-requestFocus(this: object, node?: FocusNode | null): void {
+requestFocus(this: object, node?: Readonly<{ "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [] }> | null): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeObject(this, "flax.core/flutter#type:FocusNode", "requestFocus", [node]);
 },

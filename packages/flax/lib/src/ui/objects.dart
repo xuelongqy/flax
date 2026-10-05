@@ -6,14 +6,21 @@ class _ObjectReference {
   final _Session session;
   final int id;
   final FlaxObjectBinding binding;
+  final _BindingContext? context = _bindingContext;
   Object? _value;
   final listeners = <_ObjectListener>[];
   bool disposing = false;
 
   Object get value => _value ?? (throw StateError('Released Dart object'));
 
-  bool accepts(String type) =>
-      binding.id == type || binding.supertypes.contains(type);
+  bool accepts(String type) {
+    final expected = session.registry._types[type];
+    // Each binding view shares the actual session-owned Dart value.
+    // Generated matches preserves concrete Dart type and generic checks.
+    return expected is FlaxObjectBinding && expected.matches != null
+        ? expected.matches!(value)
+        : binding.id == type || binding.supertypes.contains(type);
+  }
 
   void removeListeners() {
     for (final listener in listeners.toList()) {
@@ -31,9 +38,9 @@ class _ObjectReference {
     }
   }
 
-  void dispose() {
+  void dispose(FlaxObjectBinding view) {
     final receiver = value;
-    binding.instanceMethods[binding.disposeMethod]!.invoke(receiver, const {});
+    view.instanceMethods[view.disposeMethod]!.invoke(receiver, const {});
     // The user chose disposal. Do not guess whether Flutter still uses the object.
     disposing = true;
     for (final listener in listeners.toList()) {
@@ -136,20 +143,24 @@ class _ObjectListener implements FlaxCallback {
 
 extension _ObjectCalls on _Session {
   FlaxObjectBinding _objectBinding(Object value, String type) {
-    FlaxObjectBinding? selected;
-    for (final candidate
-        in registry._types.values.whereType<FlaxObjectBinding>()) {
-      if (candidate.matches?.call(value) != true) continue;
-      if (candidate.id != type && !candidate.supertypes.contains(type)) {
-        continue;
-      }
-      if (selected == null || candidate.supertypes.contains(selected.id)) {
-        selected = candidate;
-      }
-    }
-    selected ??= registry._types[type] as FlaxObjectBinding?;
-    if (selected == null || selected.matches?.call(value) == false) {
+    final expected = registry._types[type];
+    if (expected is! FlaxObjectBinding ||
+        expected.matches?.call(value) == false) {
       throw ArgumentError('Unsupported returned Dart object');
+    }
+    var selected = expected;
+    // Preserve concrete identity within the signature's provider, without
+    // exposing a subtype view registered by another provider.
+    final owner = registry._bindingOwners[type];
+    for (final binding in registry._types.values) {
+      if (binding is FlaxObjectBinding &&
+          registry._bindingOwners[binding.id] == owner &&
+          binding.id != type &&
+          binding.supertypes.contains(type) &&
+          binding.matches?.call(value) == true &&
+          (selected.id == type || binding.supertypes.contains(selected.id))) {
+        selected = binding;
+      }
     }
     return selected;
   }
@@ -339,9 +350,9 @@ extension _ObjectCalls on _Session {
       }
       return anyResult(value);
     }
+    final selected = _objectBinding(value, type.id!);
     var object = _objectIds[value];
     if (object == null) {
-      final selected = _objectBinding(value, type.id!);
       object = _ObjectReference(this, _nextObject++, selected, value);
       _objects[object.id] = object;
       _objectIds[value] = object;
@@ -350,10 +361,8 @@ extension _ObjectCalls on _Session {
       throw ArgumentError('Incompatible Dart object');
     }
     object.value;
-    return helper('object').call([
-      FlaxJsString(object.binding.id),
-      FlaxJsNumber(object.id.toDouble()),
-    ]);
+    return helper('object')
+        .call([FlaxJsString(selected.id), FlaxJsNumber(object.id.toDouble())]);
   }
 
   void sweepObjects() {
@@ -419,7 +428,7 @@ extension _ObjectCalls on _Session {
   }
 
   void registerObjects() {
-    runtime.registerHostFunction('__flaxCreateObject', (_, args) {
+    _registerBindingHostFunction('__flaxCreateObject', (_, args) {
       _checkCall(args, 3);
       if (args.length != 3 || args[2] is! FlaxJsObject) {
         throw ArgumentError('Invalid object constructor');
@@ -453,7 +462,7 @@ extension _ObjectCalls on _Session {
         }
       }
     });
-    runtime.registerHostFunction('__flaxObject', (_, args) {
+    _registerBindingHostFunction('__flaxObject', (_, args) {
       _checkCall(args, 5);
       if (args[2] is! FlaxJsNumber ||
           args[3] is! FlaxJsString ||
@@ -472,11 +481,15 @@ extension _ObjectCalls on _Session {
         return holdHostResult(memberResult(getter.read(), getter.type));
       }
       final object = _objects[(args[2] as FlaxJsNumber).value.toInt()];
-      if (object == null || object.binding.id != type) {
+      final binding =
+          registry._types[type] ??
+          (object?.binding.id == type ? object?.binding : null);
+      if (object == null ||
+          binding is! FlaxObjectBinding ||
+          !object.accepts(type)) {
         throw ArgumentError('Foreign or disposed Dart object');
       }
       final receiver = object.value;
-      final binding = object.binding;
       final operation = (args[3] as FlaxJsString).value;
       final name = (args[4] as FlaxJsString).value;
       if (operation == 'get') {
@@ -514,7 +527,7 @@ extension _ObjectCalls on _Session {
         if (args.length != 5) {
           throw ArgumentError('Disposal takes no arguments');
         }
-        object.dispose();
+        object.dispose(binding);
         return const FlaxJsUndefined();
       }
       final addName = binding.listenerPairs.containsKey(name)

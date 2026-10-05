@@ -6,6 +6,8 @@ analyzer:
     - '**/dist/**'
     - '**/node_modules/**'
     - .local/**
+    # A copied package with placeholder dependencies, analyzed independently.
+    - packages/flax_codegen/example/author_template/**
     - .fvm/**
     - android/**
     - ios/**

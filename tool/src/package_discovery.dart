@@ -23,12 +23,27 @@ final class FlaxWorkspacePackage {
   Map<String, dynamic> get pubspec =>
       readYamlFile(File(p.join(directory.path, 'pubspec.yaml')));
 
-  FlaxPackageMetadata get metadata => readFlaxPackageMetadata(
-    File(p.join(directory.path, 'flax_package.yaml')),
-    pubspec: pubspec,
-    npmManifest: _npmManifest,
-    strict: true,
-  );
+  FlaxPackageMetadata get metadata {
+    final manifest = pubspec;
+    final file = File(p.join(directory.path, 'flax_package.yaml'));
+    final metadata = readFlaxPackageMetadata(
+      file,
+      pubspec: manifest,
+      npmManifest: _npmManifest,
+      strict: true,
+    );
+    final dependencies = manifest['dependencies'];
+    if (!metadata.capabilities.contains('core') &&
+        (metadata.capabilities.contains('bindings') ||
+            metadata.capabilities.contains('host-plugin')) &&
+        (dependencies is! Map || !dependencies.containsKey('flax'))) {
+      throw FormatException(
+        'Binding and host-plugin packages must depend on Dart flax',
+        file.path,
+      );
+    }
+    return metadata;
+  }
 
   Map<String, dynamic>? get _npmManifest {
     final file = File(p.join(js.path, 'package.json'));
@@ -62,10 +77,11 @@ final class FlaxNpmPackage {
   final String mode;
   final FlaxWorkspacePackage? dartOwner;
 
-  bool get isTypeOnly => dartOwner == null;
+  bool get isTypeOnly => mode == 'declarations';
 
-  String get archiveDirectoryName =>
-      dartOwner?.name ?? p.basename(p.dirname(directory.path));
+  String get archiveDirectoryName => p.basename(directory.path) == 'js-types'
+      ? '${dartOwner!.name}_types'
+      : dartOwner?.name ?? p.basename(p.dirname(directory.path));
 
   Map<String, dynamic> get manifest => (jsonDecode(
     File(p.join(directory.path, 'package.json')).readAsStringSync(),
@@ -89,10 +105,15 @@ const _packageCapabilities = {
 };
 
 final class FlaxJavascriptPackageMetadata {
-  const FlaxJavascriptPackageMetadata({required this.name, required this.mode});
+  const FlaxJavascriptPackageMetadata({
+    required this.name,
+    required this.mode,
+    this.types,
+  });
 
   final String name;
   final String mode;
+  final String? types;
 }
 
 final class FlaxPackageRegistration {
@@ -147,7 +168,7 @@ FlaxPackageMetadata readFlaxPackageMetadata(
     'registration',
     'bindingNamespace',
   }, file.path);
-  if (data['format'] != 1) {
+  if (data['format'] != 2) {
     throw FormatException('Unsupported package metadata format', file.path);
   }
   final dart = _stringMap(data['dart'], 'dart', file.path);
@@ -170,6 +191,7 @@ FlaxPackageMetadata readFlaxPackageMetadata(
       'package',
       'version',
       'mode',
+      'types',
     }, 'javascript in ${file.path}');
     final name = _string(fields['package'], 'javascript.package', file.path);
     if (fields['version'] != 'same') {
@@ -195,7 +217,13 @@ FlaxPackageMetadata readFlaxPackageMetadata(
         file.path,
       );
     }
-    javascript = FlaxJavascriptPackageMetadata(name: name, mode: mode);
+    javascript = FlaxJavascriptPackageMetadata(
+      name: name,
+      mode: mode,
+      types: fields['types'] == null
+          ? null
+          : _string(fields['types'], 'javascript.types', file.path),
+    );
   } else if (npmManifest != null) {
     throw FormatException(
       'javascript metadata is required for ${npmManifest['name']}',
@@ -261,7 +289,7 @@ FlaxPackageMetadata readFlaxPackageMetadata(
   }
 
   return FlaxPackageMetadata(
-    format: 1,
+    format: 2,
     dartEntrypoint: entrypoint,
     javascript: javascript,
     capabilities: Set.unmodifiable(capabilities),
@@ -372,6 +400,39 @@ List<FlaxNpmPackage> discoverNpmPackages(String root) {
     if (!names.add(name)) throw StateError('Duplicate npm package: $name');
     result.add(
       FlaxNpmPackage(name: name, directory: directory, mode: entry.value),
+    );
+  }
+  for (final package in discoverPackages(root)) {
+    final typeName = package.metadata.javascript?.types;
+    if (typeName == null) continue;
+    final directory = Directory(p.join(package.directory.path, 'js-types'));
+    if (!directory.existsSync()) {
+      if (!names.contains(typeName)) {
+        throw StateError(
+          'Missing declaration package $typeName for ${package.name}',
+        );
+      }
+      continue;
+    }
+    final data = (jsonDecode(
+      File(p.join(directory.path, 'package.json')).readAsStringSync(),
+    ) as Map);
+    if (data['name'] != typeName ||
+        data['version'] != package.pubspec['version']) {
+      throw StateError(
+        'Declaration package/version mismatch for ${package.name}',
+      );
+    }
+    if (!names.add(typeName)) {
+      throw StateError('Duplicate npm package: $typeName');
+    }
+    result.add(
+      FlaxNpmPackage(
+        name: typeName,
+        directory: directory,
+        mode: 'declarations',
+        dartOwner: package,
+      ),
     );
   }
   result.sort((left, right) => left.name.compareTo(right.name));

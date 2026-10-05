@@ -64,8 +64,8 @@ final class FlaxCodegenManifest {
   }) : imports = List.unmodifiable(imports),
        modules = List.unmodifiable(modules);
 
-  static const formatVersion = 12;
-  static const uiProtocol = 21;
+  static const formatVersion = 13;
+  static const uiProtocol = 22;
 
   final String package;
   final FlaxCodegenBindingNamespace bindingNamespace;

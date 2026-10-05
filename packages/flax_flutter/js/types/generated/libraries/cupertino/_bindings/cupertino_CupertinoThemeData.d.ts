@@ -12,6 +12,10 @@ export interface CupertinoThemeData extends Readonly<{
     readonly scaffoldBackgroundColor: upstream0.Color;
 }
 export declare function CupertinoThemeData(options?: {
-    primaryColor?: upstream0.Color | null | undefined;
-    scaffoldBackgroundColor?: upstream0.Color | null | undefined;
+    primaryColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    scaffoldBackgroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
 }): CupertinoThemeData;

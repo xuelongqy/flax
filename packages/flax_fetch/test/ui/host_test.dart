@@ -76,7 +76,7 @@ void main() {
         'globalThis.hostStage = "$name"; await hostBodyCases.$name();',
       );
       expect(h.errors, isEmpty);
-      await tester.pumpWidget(const SizedBox());
+      await flaxTestUnmount(tester);
       for (var i = 0; i < 4; i++) {
         await tester.pump(const Duration(milliseconds: 1));
       }
@@ -126,7 +126,7 @@ void main() {
         1,
       );
       expect(h.errors, isEmpty);
-      await tester.pumpWidget(const SizedBox());
+      await flaxTestUnmount(tester);
       for (var i = 0; i < 4; i++) {
         await tester.pump(const Duration(milliseconds: 1));
       }
@@ -162,7 +162,7 @@ void main() {
       if (!(form instanceof FormData) || !(form.get('file') instanceof File)) throw Error('Form identity');
     ''');
     expect(h.errors, isEmpty);
-    await tester.pumpWidget(const SizedBox());
+    await flaxTestUnmount(tester);
     await tester.pump();
     await tester.pumpAndSettle();
     expect(h.tracker.isDisposed, isTrue);
@@ -241,7 +241,7 @@ void main() {
     );
     expect(h.errors.map((e) => e.toString()).join(), contains('timer fixture'));
     expect(h.errors.length, 2);
-    await tester.pumpWidget(const SizedBox());
+    await flaxTestUnmount(tester);
     await tester.pump();
     expect(h.runtimes.single.isDisposed, isTrue);
   });
@@ -308,7 +308,7 @@ void main() {
       throwsA(isA<FlaxJsException>()),
     );
     expect(second.number('probe_b()'), 2);
-    await tester.pumpWidget(const SizedBox());
+    await flaxTestUnmount(tester);
     for (var i = 0; i < 4; i++) {
       await tester.pump(const Duration(milliseconds: 1));
     }
@@ -362,7 +362,7 @@ void main() {
       expect(empty.runtime.getGlobal('fetch'), isA<FlaxJsUndefined>());
       expect(empty.number('performance.now()'), greaterThanOrEqualTo(0));
       expect([...h.errors, ...empty.errors], isEmpty);
-      await tester.pumpWidget(const SizedBox());
+      await flaxTestUnmount(tester);
       await tester.pumpAndSettle();
       final closed = session.close();
       await tester.pumpAndSettle();
@@ -675,7 +675,7 @@ void main() {
         controller.abort();check((await Promise.all(tasks)).every(Boolean),'Axios concurrent cancellation');
         check(intercepted===3,'Axios interceptors');
       ''');
-        await tester.pumpWidget(const SizedBox());
+        await flaxTestUnmount(tester);
         for (var i = 0; i < 4; i++) {
           await tester.pump(const Duration(milliseconds: 1));
         }
@@ -688,7 +688,7 @@ void main() {
         );
       } finally {
         // Failures must not leave requests running into the next owner's tests.
-        await tester.pumpWidget(const SizedBox());
+        await flaxTestUnmount(tester);
         await tester.pump();
         await tester.runAsync(() => server!.close(force: true));
       }
@@ -729,7 +729,7 @@ void main() {
         if(!rejected) throw Error('Queued headers escaped session close');
       ''');
       expect(closed, isFalse);
-      await tester.pumpWidget(const SizedBox());
+      await flaxTestUnmount(tester);
       await tester.pumpAndSettle();
       expect(closed, isTrue);
       expect(h.errors, isEmpty);
@@ -783,7 +783,7 @@ void main() {
         () => h.execute('setTimeout(() => {},0)'),
         throwsA(isA<FlaxJsException>()),
       );
-      await tester.pumpWidget(const SizedBox());
+      await flaxTestUnmount(tester);
       for (var i = 0; i < 5; i++) {
         await tester.pump(const Duration(milliseconds: 1));
       }
@@ -842,14 +842,14 @@ void main() {
                 ? "if(await (await fetch('/')).text() !== 'trusted') throw Error('TLS data');"
                 : "let failed=false;try{await fetch('/');}catch(e){failed=e instanceof TypeError;}if(!failed)throw Error('Untrusted TLS accepted');",
           );
-          await tester.pumpWidget(const SizedBox());
+          await flaxTestUnmount(tester);
           for (var i = 0; i < 4; i++) {
             await tester.pump(const Duration(milliseconds: 1));
           }
           expect(h.errors, isEmpty);
         }
       } finally {
-        await tester.pumpWidget(const SizedBox());
+        await flaxTestUnmount(tester);
         for (var i = 0; i < 4; i++) {
           await tester.pump(const Duration(milliseconds: 1));
         }
@@ -867,7 +867,7 @@ void main() {
       'test.extra',
       [],
       moduleId: 'test/extra',
-      uiProtocol: 21,
+      uiProtocol: 22,
       requiredCapabilities: [],
     );
     final merged = Harness();
@@ -888,7 +888,7 @@ void main() {
     merged.execute(
       'if (typeof probe_extra !== "function") throw Error("merged")',
     );
-    await tester.pumpWidget(const SizedBox());
+    await flaxTestUnmount(tester);
     await tester.pumpAndSettle();
 
     final duplicate = Harness();
@@ -905,9 +905,35 @@ void main() {
         ),
       ),
     );
+    expect(duplicate.errors, isEmpty);
+    duplicate.execute('probe_dup()');
+    await flaxTestUnmount(tester);
+
+    final conflicting = Harness();
+    await tester.pumpWidget(
+      MaterialApp(
+        home: FlaxView(
+          createRuntime: conflicting.create,
+          source: source,
+          bindings: registry,
+          plugins: [
+            _ModulePlugin('conflict', [
+              FlaxBindingModule(
+                flutterBindings.name,
+                flutterBindings.types,
+                moduleId: flutterBindings.moduleId,
+                uiProtocol: flutterBindings.uiProtocol,
+                requiredCapabilities: flutterBindings.requiredCapabilities,
+              ),
+            ]),
+          ],
+          onError: (e, _) => conflicting.errors.add(e),
+        ),
+      ),
+    );
     expect(
-      duplicate.errors.single.toString(),
-      contains('Duplicate binding module'),
+      conflicting.errors.single.toString(),
+      contains('Conflicting binding module'),
     );
 
     final version = Harness();
@@ -965,7 +991,7 @@ void main() {
       try { exposeProbe('badId'); } catch { bad = true; }
       if (!bad) throw Error('id');
     ''');
-    await tester.pumpWidget(const SizedBox());
+    await flaxTestUnmount(tester);
     for (var i = 0; i < 4; i++) {
       await tester.pump(const Duration(milliseconds: 1));
     }
@@ -988,7 +1014,7 @@ void main() {
       if (!rejected) throw Error('cross-session');
     ''');
     expect(box.crossSessionRejected, isTrue);
-    await tester.pumpWidget(const SizedBox());
+    await flaxTestUnmount(tester);
     for (var i = 0; i < 4; i++) {
       await tester.pump(const Duration(milliseconds: 1));
     }
@@ -1026,7 +1052,7 @@ void main() {
         'script,microtask,raf,raf-microtask',
       );
       expect(h.errors.join(), contains('raf boom'));
-      await tester.pumpWidget(const SizedBox());
+      await flaxTestUnmount(tester);
       await tester.pumpAndSettle();
     },
   );

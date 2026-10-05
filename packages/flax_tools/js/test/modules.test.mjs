@@ -1,6 +1,14 @@
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
-import { access, mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import {
+  access,
+  mkdir,
+  mkdtemp,
+  readFile,
+  realpath,
+  rm,
+  writeFile,
+} from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
@@ -9,6 +17,7 @@ import { fileURLToPath } from 'node:url';
 import { createContext, runInContext } from 'node:vm';
 import { build } from 'esbuild';
 import {
+  createModuleDeliveryResolver,
   flaxHostModulesPlugin,
   prepareModules,
   validateModuleManifest,
@@ -81,86 +90,129 @@ test('app import and bundled B re-export share one lazy host instance', () => {
   assert.equal(context.fixtureResult.bindingState.reads, 2);
 });
 
-test('public import bundles its separately installed implementation when the host does not provide it', async () => {
-  const bundled = await createBundledProviderFixture(join(root, 'bundled-provider'));
-  const context = createContext({});
-  runInContext(bundled.code, context);
-  assert.equal(context.fixtureBundledResult.tag, 'C_IMPL_MARKER');
-  assert.ok(
-    Object.keys(bundled.metafile.inputs).some((path) =>
-      path.includes('node_modules/@fixture/c-impl/generated/_bindings/shared.js'),
-    ),
-  );
-  assert.ok(
-    !Object.keys(bundled.metafile.inputs).some((path) =>
-      path.includes('node_modules/@fixture/c/index'),
-    ),
+test('business imports reject an installed implementation without a prepared plugin', async () => {
+  await assert.rejects(
+    createBundledProviderFixture(join(root, 'bundled-provider')),
+    /Missing prepared Flax module: @fixture\/c/,
   );
 });
 
-test('package-local public import resolves through its delivery facade before tsconfig paths', async () => {
-  const directory = join(root, 'self-provider');
-  await mkdir(join(directory, 'generated'), { recursive: true });
-  await writeFile(
-    join(directory, 'package.json'),
-    JSON.stringify({
-      name: '@fixture/self-impl',
-      version: '1.0.0',
-      type: 'module',
-    }),
+test('business imports require exact prepared entries or recorded public subpaths', async () => {
+  const prepared = await createOwnedSubpathFixture(join(root, 'public-subpaths'));
+  const provider = prepared.manifest.modules.find(
+    (entry) => entry.specifier === '@fixture/owned/provider',
   );
-  await writeFile(
-    join(directory, 'flax_modules.json'),
-    JSON.stringify({
-      formatVersion: 1,
-      package: '@fixture/self-impl',
-      version: '1.0.0',
-      modules: [
-        {
-          specifier: '@fixture/self',
-          source: 'facade.js',
-          subpathRoot: 'generated',
-          bindings: [],
-        },
-      ],
-    }),
-  );
-  await writeFile(join(directory, 'facade.js'), "export const source = 'facade';\n");
-  await writeFile(
-    join(directory, 'generated/index.js'),
-    "export const source = 'generated';\n",
-  );
-  await writeFile(
-    join(directory, 'consumer.js'),
-    "import { source } from '@fixture/self'; globalThis.fixtureSelfSource = source;\n",
-  );
-  await writeFile(
-    join(directory, 'tsconfig.json'),
-    JSON.stringify({
-      compilerOptions: { baseUrl: '.', paths: { '@fixture/*': ['./generated/*'] } },
-    }),
-  );
+  assert.deepEqual(provider.subpaths, ['@fixture/owned/provider/index']);
+  for (const path of [
+    '@fixture/owned/provider/index',
+    '@fixture/owned/provider/missing',
+    '@fixture/owned/provider/_bindings/type',
+    '@fixture/owned/provider/_bindings/helper',
+  ]) {
+    const bundled = build({
+      stdin: { contents: `import ${JSON.stringify(path)};`, resolveDir: root },
+      bundle: true,
+      write: false,
+      platform: 'neutral',
+      plugins: [flaxHostModulesPlugin(prepared.manifest)],
+      logLevel: 'silent',
+    });
+    if (path.endsWith('/index')) {
+      const result = await bundled;
+      assert.ok(result.outputFiles[0].text.includes('@fixture/owned/provider'));
+    } else {
+      await assert.rejects(bundled, /Missing prepared Flax module or public subpath/);
+    }
+  }
+  const core = {
+    ...fixture.manifest.modules[0],
+    specifier: '@flax/core',
+    dependencies: {},
+    subpaths: [],
+  };
+  for (const path of ['@flax/core/navigation', '@flax/core/not-a-public-module']) {
+    await assert.rejects(
+      build({
+        stdin: { contents: `import ${JSON.stringify(path)};`, resolveDir: root },
+        bundle: true,
+        write: false,
+        plugins: [flaxHostModulesPlugin({ ...fixture.manifest, modules: [core] })],
+        logLevel: 'silent',
+      }),
+      /Missing prepared Flax module or public subpath/,
+    );
+  }
+});
 
-  const built = await build({
-    absWorkingDir: directory,
-    entryPoints: ['consumer.js'],
-    bundle: true,
-    write: false,
-    format: 'iife',
-    platform: 'neutral',
-    target: 'es2019',
-    plugins: [flaxHostModulesPlugin()],
-    logLevel: 'silent',
-  });
-  const context = createContext({});
-  runInContext(built.outputFiles[0].text, context);
-  assert.equal(context.fixtureSelfSource, 'facade');
+test('Node delivery resolves a dependency child even after caching its parent module', async () => {
+  const directory = join(root, 'node-parent-child');
+  const files = {};
+  for (const [name, specifier] of [
+    ['parent', '@fixture/public'],
+    ['child', '@fixture/public/bindings'],
+  ]) {
+    const packageRoot = join(directory, 'node_modules', '@fixture', name);
+    await mkdir(packageRoot, { recursive: true });
+    await writeFile(
+      join(packageRoot, 'package.json'),
+      JSON.stringify({
+        name: `@fixture/${name}`,
+        version: '1.0.0',
+        exports: { './flax_modules.json': './flax_modules.json' },
+      }),
+    );
+    await writeFile(join(packageRoot, 'index.js'), 'export const value = 1;\n');
+    await writeFile(
+      join(packageRoot, 'flax_modules.json'),
+      JSON.stringify({
+        formatVersion: 2,
+        package: `@fixture/${name}`,
+        version: '1.0.0',
+        modules: [{ specifier, source: 'index.js', bindings: [] }],
+      }),
+    );
+    const consumer = join(directory, name);
+    await mkdir(consumer, { recursive: true });
+    await writeFile(
+      join(consumer, 'package.json'),
+      JSON.stringify({ dependencies: { [`@fixture/${name}`]: '1.0.0' } }),
+    );
+    files[name] = join(consumer, 'index.js');
+    await writeFile(files[name], '');
+  }
+  const expected = [
+    await realpath(join(directory, 'node_modules/@fixture/parent/index.js')),
+    await realpath(join(directory, 'node_modules/@fixture/child/index.js')),
+  ];
+  for (const order of [
+    [0, 1],
+    [1, 0],
+  ]) {
+    const resolveDelivery = createModuleDeliveryResolver();
+    for (const index of order) {
+      assert.equal(
+        await resolveDelivery(
+          index === 0 ? '@fixture/public' : '@fixture/public/bindings',
+          index === 0 ? files.parent : files.child,
+        ),
+        expected[index],
+      );
+    }
+  }
+  const resolveDelivery = createModuleDeliveryResolver();
+  assert.deepEqual(
+    await Promise.all([
+      resolveDelivery('@fixture/public', files.parent),
+      resolveDelivery('@fixture/public/bindings', files.child),
+    ]),
+    expected,
+  );
 });
 
 test('prepared assets contain the selected module and exclude unrelated code', async () => {
   assert.deepEqual(
     fixture.manifest.modules.map((entry) => entry.specifier),
-    ['@fixture/a', '@flax/core/bindings'],
+    ['@fixture/a', '@fixture/base/bindings'],
   );
   assert.ok(
     !Object.values(fixture.assets).join('').includes('UNSELECTED_MODULE_MUST_NOT_SHIP'),
@@ -209,6 +261,20 @@ test('strict inventory rejects unknown fields, duplicate owners and missing depe
     /Unknown field/,
   );
   const original = fixture.manifest.modules[0];
+  for (const subpaths of [
+    null,
+    ['@fixture/other'],
+    ['@fixture/a/../escape'],
+    ['@fixture/a/_bindings/private'],
+    ['@fixture/a/alias', '@fixture/a/alias'],
+  ]) {
+    assert.throws(() =>
+      validateModuleManifest({
+        ...fixture.manifest,
+        modules: [{ ...original, subpaths }, ...fixture.manifest.modules.slice(1)],
+      }),
+    );
+  }
   const alias = {
     ...original,
     specifier: '@fixture/a/alias',
@@ -218,6 +284,17 @@ test('strict inventory rejects unknown fields, duplicate owners and missing depe
   assert.throws(
     () => validateModuleManifest({ ...fixture.manifest, modules: [original, alias] }),
     /Duplicate Flax module owner/,
+  );
+  assert.throws(
+    () =>
+      validateModuleManifest({
+        ...fixture.manifest,
+        modules: [
+          { ...original, subpaths: [alias.specifier] },
+          { ...alias, owner: 'other-owner' },
+        ],
+      }),
+    /Duplicate Flax module subpath/,
   );
   assert.throws(
     () =>
@@ -315,6 +392,41 @@ test('preparation externalizes concrete binding subpaths to their owning public 
     'HELPER_MARKER',
   );
   assert.equal(context.providerRegistrations, 1);
+});
+
+test('business bundles reject absolute, relative and package private source imports', async () => {
+  const prepared = await createInternalSubpathFixture(join(root, 'private-source'));
+  const source = join(
+    prepared.hostJs,
+    'node_modules/@fixture/internal-impl/private.js',
+  );
+  await writeFile(source, 'export const privateValue = 1;\n');
+  const manifestPath = join(dirname(source), 'package.json');
+  const manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
+  manifest.exports['./private'] = './private.js';
+  manifest.exports['.'] = './private.js';
+  await writeFile(manifestPath, JSON.stringify(manifest));
+  for (const path of [
+    source,
+    './node_modules/@fixture/internal-impl/private.js',
+    '@fixture/internal-impl/private',
+    '@fixture/internal-impl',
+  ]) {
+    await assert.rejects(
+      build({
+        stdin: {
+          contents: `import ${JSON.stringify(path)};`,
+          resolveDir: prepared.hostJs,
+        },
+        bundle: true,
+        write: false,
+        platform: 'neutral',
+        plugins: [flaxHostModulesPlugin(prepared.manifest)],
+        logLevel: 'silent',
+      }),
+      /Flax implementation cannot be bundled into application code/,
+    );
+  }
 });
 
 test('real delivery metadata preserves public library binding topology', async () => {

@@ -3,12 +3,14 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'runtime_tracker.dart';
+import 'harness.dart';
 
 class FlaxOwnedTestHarness {
   FlaxOwnedTestHarness({
     required FlaxJsRuntime Function() createRuntime,
     required FlaxBindingRegistry bindings,
     required String source,
+    List<FlaxPlugin> plugins = const [],
     List<FlaxBindingModule> extra = const [],
     void Function(FlaxObjectBinding binding, Object value)? onCreate,
   }) : runtime = FlaxTestRuntimeTracker(createRuntime()) {
@@ -64,6 +66,7 @@ class FlaxOwnedTestHarness {
                   type,
             ],
             moduleId: module.moduleId,
+            dependencyModules: module.dependencyModules,
             uiProtocol: module.uiProtocol,
             requiredCapabilities: module.requiredCapabilities,
             functions: module.functions,
@@ -74,6 +77,12 @@ class FlaxOwnedTestHarness {
       createRuntime: () => runtime,
       source: source,
       bindings: FlaxBindingRegistry(modules),
+      plugins: [
+        for (final plugin in plugins)
+          FlaxTestBindingPlugin(plugin, {
+            for (final module in modules) module.moduleId,
+          }),
+      ],
       onError: (error, _) => errors.add(error),
     );
   }
@@ -102,7 +111,7 @@ class FlaxOwnedTestHarness {
     await tester.pumpWidget(const SizedBox());
     await tester.pumpAndSettle();
     final disposalsBeforeClose = actualDisposals;
-    await session.close();
+    await flaxTestCloseSession(tester, session);
     expect(runtime.handlesAtDispose, 0);
     expect(runtime.activeSubscriptions, 0);
     expect(actualDisposals, disposalsBeforeClose);

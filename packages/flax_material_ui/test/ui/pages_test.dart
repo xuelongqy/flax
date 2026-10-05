@@ -1,3 +1,4 @@
+import 'package:flax_material_ui/flax_material_ui.dart';
 import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
@@ -16,6 +17,7 @@ class PagesHarness {
   final runtime = RuntimeTracker();
   final errors = <Object>[];
   late final session = FlaxSession(
+    plugins: const [FlaxMaterialPlugin()],
     createRuntime: () => runtime,
     source: pagesSource,
     bindings: registry,
@@ -48,9 +50,9 @@ class PagesHarness {
   }
 
   Future<void> finish(WidgetTester t) async {
-    await t.pumpWidget(const SizedBox());
+    await flaxTestUnmount(t);
     await t.pumpAndSettle();
-    await session.close();
+    await flaxTestCloseSession(t, session);
     expect(runtime.handlesAtDispose, 0);
     expect(runtime.activeSubscriptions, 0);
     expect(runtime.pendingFutures, 0);

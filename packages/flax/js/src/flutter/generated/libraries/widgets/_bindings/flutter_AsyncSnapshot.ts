@@ -40,7 +40,7 @@ return constructObject("object", "flax.core/flutter#type:AsyncSnapshot", "withDa
 }
 }
 export namespace AsyncSnapshot {
-export function withError<T extends unknown | null = unknown | null>(state: upstream0.ConnectionState, error: {}, stackTrace?: upstream1.StackTrace): AsyncSnapshot<T> {
+export function withError<T extends unknown | null = unknown | null>(state: upstream0.ConnectionState, error: {}, stackTrace?: Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }>): AsyncSnapshot<T> {
 if (arguments.length > 3) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:AsyncSnapshot", "withError", [{"name":"state","required":true,"positional":true},{"name":"error","required":true,"positional":true},{"name":"stackTrace","required":false,"positional":true}], [state, error, stackTrace], {}) as AsyncSnapshot<T>;
 }

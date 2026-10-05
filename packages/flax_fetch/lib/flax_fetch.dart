@@ -17,6 +17,8 @@ class FlaxFetchPlugin extends FlaxPlugin {
   @override
   String get id => 'flax.fetch';
   @override
+  Set<String> get jsModules => const {'@flax/fetch'};
+  @override
   Set<String> get globals => const {'fetch', 'Headers', 'Request', 'Response'};
   @override
   FlaxPluginInstance install(FlaxHostContext context) {

@@ -99,18 +99,20 @@ FlaxCodegenPackageMetadataProjection _parsePackageMetadata(
   }
   final root = _MetadataMap(diagnostics, rootNode);
   final format = root.requiredInt('format');
-  if (format != null && format != 1) {
+  if (format != null && format != 2) {
     diagnostics.add(
       code: FlaxCodegenDiagnosticCode.invalidValue,
       pointer: '/format',
-      message: 'Expected 1.',
+      message: 'Expected 2.',
       node: root.node('format'),
     );
   }
   final capabilities = root.requiredStringList('capabilities');
   final namespace = root.optionalNamespace();
   final dartEntrypoint = root.optionalNestedString('dart', 'entrypoint');
-  final javascriptPackage = root.optionalNestedString('javascript', 'package');
+  final javascriptPackage =
+      root.optionalNestedString('javascript', 'types') ??
+      root.optionalNestedString('javascript', 'package');
   if (capabilities != null &&
       (namespace.omitted || namespace.value != null) &&
       capabilities.contains('bindings') != (namespace.value != null)) {

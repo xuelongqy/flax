@@ -1,3 +1,4 @@
+import 'package:flax_material_ui/flax_material_ui.dart';
 import 'package:flax_test/flax_test.dart';
 import 'package:material_ui/material_ui.dart';
 
@@ -9,6 +10,7 @@ class OwnedHarness extends FlaxOwnedTestHarness {
     : super(
         createRuntime: createTestRuntime,
         bindings: registry,
+        plugins: const [FlaxMaterialPlugin()],
         source: flaxTestFixtureSource(fixture, packageName: 'flax_material_ui'),
       );
 

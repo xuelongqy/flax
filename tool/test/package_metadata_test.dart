@@ -79,7 +79,7 @@ void main() {
 
   test('parses a paired binding package', () {
     final metadata = _read(temporary, _valid);
-    expect(metadata.format, 1);
+    expect(metadata.format, 2);
     expect(metadata.dartEntrypoint, 'package:example/example.dart');
     expect(metadata.javascript?.name, '@flax/example');
     expect(metadata.javascript?.mode, 'runtime');
@@ -99,7 +99,7 @@ void main() {
       throwsFormatException,
     );
     expect(
-      () => _read(temporary, _valid.replaceFirst('format: 1', 'format: 2')),
+      () => _read(temporary, _valid.replaceFirst('format: 2', 'format: 1')),
       throwsFormatException,
     );
   });
@@ -189,7 +189,7 @@ void main() {
     );
     expect(byName['flax_canvas']!.metadata.bindingNamespace, 'flax.canvas');
     for (final package in packages) {
-      expect(package.metadata.format, 1);
+      expect(package.metadata.format, 2);
       final hasBindings = package.metadata.capabilities.contains('bindings');
       expect(
         package.metadata.bindingNamespace != null,
@@ -197,6 +197,32 @@ void main() {
         reason: package.name,
       );
     }
+  });
+
+  test('package discovery requires the default Core dependency', () {
+    File(p.join(temporary.path, 'flax_package.yaml')).writeAsStringSync('''
+format: 2
+dart:
+  entrypoint: package:example/example.dart
+capabilities: [bindings]
+bindingNamespace: example.bindings
+''');
+    final pubspec = File(p.join(temporary.path, 'pubspec.yaml'));
+    pubspec.writeAsStringSync('name: example\nversion: 0.0.0\n');
+    final package = FlaxWorkspacePackage('example', temporary);
+    expect(() => package.metadata, throwsFormatException);
+    pubspec.writeAsStringSync(
+      'name: example\nversion: 0.0.0\ndependencies:\n  flax: 0.0.0\n',
+    );
+    expect(package.metadata.bindingNamespace, 'example.bindings');
+    File(p.join(temporary.path, 'flax_package.yaml')).writeAsStringSync('''
+format: 2
+dart:
+  entrypoint: package:example/example.dart
+capabilities: [core]
+''');
+    pubspec.writeAsStringSync('name: example\nversion: 0.0.0\n');
+    expect(package.metadata.capabilities, {'core'});
   });
 
   test('repository npm delivery includes SDK type packages but not tools', () {
@@ -207,14 +233,15 @@ void main() {
     expect(byName, isNot(contains('@flax/tools')));
     expect(byName['@flax/dart']!.isTypeOnly, isTrue);
     expect(byName['@flax/flutter']!.isTypeOnly, isTrue);
-    expect(byName['@flax/core']!.isTypeOnly, isFalse);
+    expect(byName['@flax/core']!.isTypeOnly, isTrue);
+    expect(byName['@flax/core-runtime']!.isTypeOnly, isFalse);
   });
 
   test('strict mode rejects binding metadata without namespace', () {
     expect(
       _records(
         _strictErrors(temporary, '''
-format: 1
+format: 2
 dart:
   entrypoint: package:tmp/tmp.dart
 capabilities:
@@ -252,7 +279,7 @@ capabilities:
     'strict canvas-style bindings and host-plugin omit registration.bindings',
     () {
       final metadata = _read(temporary, _canvas, strict: true);
-      expect(metadata.format, 1);
+      expect(metadata.format, 2);
       expect(metadata.capabilities, {'bindings', 'host-plugin'});
       expect(metadata.bindingNamespace, 'flax.canvas');
       expect(metadata.registration.bindings, isEmpty);
@@ -352,7 +379,7 @@ FlaxPackageMetadata _read(
 }
 
 const _valid = '''
-format: 1
+format: 2
 dart:
   entrypoint: package:example/example.dart
 javascript:
@@ -367,7 +394,7 @@ registration:
 ''';
 
 const _canvas = '''
-format: 1
+format: 2
 dart:
   entrypoint: package:example/example.dart
 javascript:

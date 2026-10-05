@@ -10,6 +10,8 @@
   "dependencies": {
     "@flax/core": "workspace:*",
     "@flax/flutter": "workspace:*",
-    "@flax/canvas": "workspace:*"
+    "@flax/canvas": "workspace:*",
+    "@flax/core-runtime": "workspace:*",
+    "@flax/canvas-runtime": "workspace:*"
   }
 }

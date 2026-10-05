@@ -7,7 +7,7 @@ import type * as upstream1 from '@flax/flutter/material/_bindings/material_Butto
 import '@flax/flutter/material/_bindings/material_ButtonStyle';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/material.__module";
 export interface TextButton extends WidgetDescription { readonly type: "flax.material/material#type:TextButton";  }
-export function TextButton(options: { key?: upstream0.Key | null | undefined; onPressed: Bindable<(() => void) | null>; style?: Bindable<upstream1.ButtonStyle | null> | undefined; child: Bindable<Widget> }): TextButton {
+export function TextButton(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; onPressed: Bindable<(() => void) | null>; style?: Bindable<Readonly<{ "__flaxBound:package:material_ui/src/button_style.dart::ButtonStyle": readonly [] }> | null> | undefined; child: Bindable<Widget> }): TextButton {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return construct("widget", "flax.material/material#type:TextButton", "", [{"name":"key","required":false,"positional":false},{"name":"onPressed","required":true,"positional":false},{"name":"style","required":false,"positional":false},{"name":"child","required":true,"positional":false}], [], options) as TextButton;
 }

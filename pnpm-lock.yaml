@@ -8,9 +8,30 @@ importers:
 
   .:
     devDependencies:
+      '@flax/canvas-runtime':
+        specifier: workspace:*
+        version: link:packages/flax_canvas/js
       '@flax/core':
         specifier: workspace:*
+        version: link:packages/flax/js-types
+      '@flax/core-runtime':
+        specifier: workspace:*
         version: link:packages/flax/js
+      '@flax/cupertino-ui':
+        specifier: workspace:*
+        version: link:packages/flax_cupertino_ui/js
+      '@flax/fetch-runtime':
+        specifier: workspace:*
+        version: link:packages/flax_fetch/js
+      '@flax/local-storage-runtime':
+        specifier: workspace:*
+        version: link:packages/flax_local_storage/js
+      '@flax/material-ui':
+        specifier: workspace:*
+        version: link:packages/flax_material_ui/js
+      '@flax/websocket-runtime':
+        specifier: workspace:*
+        version: link:packages/flax_websocket/js
       esbuild:
         specifier: 0.28.2
         version: 0.28.2
@@ -34,6 +55,9 @@ importers:
     dependencies:
       '@flax/core':
         specifier: workspace:*
+        version: link:../../../packages/flax/js-types
+      '@flax/core-runtime':
+        specifier: workspace:*
         version: link:../../../packages/flax/js
       '@flax/flutter':
         specifier: workspace:*
@@ -46,11 +70,20 @@ importers:
     dependencies:
       '@flax/canvas':
         specifier: workspace:*
+        version: link:../../../packages/flax_canvas/js-types
+      '@flax/canvas-runtime':
+        specifier: workspace:*
         version: link:../../../packages/flax_canvas/js
       '@flax/core':
         specifier: workspace:*
+        version: link:../../../packages/flax/js-types
+      '@flax/core-runtime':
+        specifier: workspace:*
         version: link:../../../packages/flax/js
       '@flax/fetch':
+        specifier: workspace:*
+        version: link:../../../packages/flax_fetch/js-types
+      '@flax/fetch-runtime':
         specifier: workspace:*
         version: link:../../../packages/flax_fetch/js
       '@flax/flutter':
@@ -58,11 +91,17 @@ importers:
         version: link:../../../packages/flax_flutter/js
       '@flax/local-storage':
         specifier: workspace:*
+        version: link:../../../packages/flax_local_storage/js-types
+      '@flax/local-storage-runtime':
+        specifier: workspace:*
         version: link:../../../packages/flax_local_storage/js
       '@flax/material-ui':
         specifier: workspace:*
         version: link:../../../packages/flax_material_ui/js
       '@flax/websocket':
+        specifier: workspace:*
+        version: link:../../../packages/flax_websocket/js-types
+      '@flax/websocket-runtime':
         specifier: workspace:*
         version: link:../../../packages/flax_websocket/js
     devDependencies:
@@ -79,6 +118,9 @@ importers:
   packages/flax/example/js:
     dependencies:
       '@flax/core':
+        specifier: workspace:*
+        version: link:../../js-types
+      '@flax/core-runtime':
         specifier: workspace:*
         version: link:../../js
       '@flax/flutter':
@@ -97,6 +139,9 @@ importers:
       '@exodus/bytes':
         specifier: 1.15.1
         version: 1.15.1
+      '@flax/core':
+        specifier: workspace:*
+        version: link:../js-types
       '@flax/tools':
         specifier: workspace:*
         version: link:../../flax_tools/js
@@ -104,12 +149,27 @@ importers:
         specifier: 3.50.0
         version: 3.50.0
 
+  packages/flax/js-types:
+    dependencies:
+      '@preact/signals-core':
+        specifier: 1.14.4
+        version: 1.14.4
+      web-streams-polyfill:
+        specifier: 4.3.0
+        version: 4.3.0
+
   packages/flax_canvas/example/js:
     dependencies:
       '@flax/canvas':
         specifier: workspace:*
+        version: link:../../js-types
+      '@flax/canvas-runtime':
+        specifier: workspace:*
         version: link:../../js
       '@flax/core':
+        specifier: workspace:*
+        version: link:../../../flax/js-types
+      '@flax/core-runtime':
         specifier: workspace:*
         version: link:../../../flax/js
       '@flax/flutter':
@@ -120,7 +180,26 @@ importers:
     dependencies:
       '@flax/core':
         specifier: workspace:*
+        version: link:../../flax/js-types
+      '@flax/core-runtime':
+        specifier: workspace:*
         version: link:../../flax/js
+      '@flax/flutter':
+        specifier: workspace:*
+        version: link:../../flax_flutter/js
+    devDependencies:
+      '@flax/canvas':
+        specifier: workspace:*
+        version: link:../js-types
+      '@flax/tools':
+        specifier: workspace:*
+        version: link:../../flax_tools/js
+
+  packages/flax_canvas/js-types:
+    dependencies:
+      '@flax/core':
+        specifier: workspace:*
+        version: link:../../flax/js-types
       '@flax/flutter':
         specifier: workspace:*
         version: link:../../flax_flutter/js
@@ -128,6 +207,9 @@ importers:
   packages/flax_cupertino_ui/example/js:
     dependencies:
       '@flax/core':
+        specifier: workspace:*
+        version: link:../../../flax/js-types
+      '@flax/core-runtime':
         specifier: workspace:*
         version: link:../../../flax/js
       '@flax/cupertino-ui':
@@ -141,6 +223,9 @@ importers:
     dependencies:
       '@flax/core':
         specifier: workspace:*
+        version: link:../../flax/js-types
+      '@flax/core-runtime':
+        specifier: workspace:*
         version: link:../../flax/js
       '@flax/dart':
         specifier: workspace:*
@@ -153,11 +238,14 @@ importers:
     dependencies:
       '@flax/core':
         specifier: workspace:*
-        version: link:../../flax/js
+        version: link:../../flax/js-types
 
   packages/flax_engine_hermes/example/js:
     dependencies:
       '@flax/core':
+        specifier: workspace:*
+        version: link:../../../flax/js-types
+      '@flax/core-runtime':
         specifier: workspace:*
         version: link:../../../flax/js
       '@flax/flutter':
@@ -168,6 +256,9 @@ importers:
     dependencies:
       '@flax/core':
         specifier: workspace:*
+        version: link:../../../flax/js-types
+      '@flax/core-runtime':
+        specifier: workspace:*
         version: link:../../../flax/js
       '@flax/flutter':
         specifier: workspace:*
@@ -177,8 +268,14 @@ importers:
     dependencies:
       '@flax/core':
         specifier: workspace:*
+        version: link:../../../flax/js-types
+      '@flax/core-runtime':
+        specifier: workspace:*
         version: link:../../../flax/js
       '@flax/fetch':
+        specifier: workspace:*
+        version: link:../../js-types
+      '@flax/fetch-runtime':
         specifier: workspace:*
         version: link:../../js
       '@flax/flutter':
@@ -189,17 +286,32 @@ importers:
     dependencies:
       '@flax/core':
         specifier: workspace:*
+        version: link:../../flax/js-types
+      '@flax/core-runtime':
+        specifier: workspace:*
         version: link:../../flax/js
     devDependencies:
+      '@flax/fetch':
+        specifier: workspace:*
+        version: link:../js-types
+      '@flax/tools':
+        specifier: workspace:*
+        version: link:../../flax_tools/js
       axios:
         specifier: 1.20.0
         version: 1.20.0(debug@4.4.3)
+
+  packages/flax_fetch/js-types:
+    dependencies:
+      '@flax/core':
+        specifier: workspace:*
+        version: link:../../flax/js-types
 
   packages/flax_flutter/js:
     dependencies:
       '@flax/core':
         specifier: workspace:*
-        version: link:../../flax/js
+        version: link:../../flax/js-types
       '@flax/dart':
         specifier: workspace:*
         version: link:../../flax_dart/js
@@ -208,11 +320,17 @@ importers:
     dependencies:
       '@flax/core':
         specifier: workspace:*
+        version: link:../../../flax/js-types
+      '@flax/core-runtime':
+        specifier: workspace:*
         version: link:../../../flax/js
       '@flax/flutter':
         specifier: workspace:*
         version: link:../../../flax_flutter/js
       '@flax/local-storage':
+        specifier: workspace:*
+        version: link:../../js-types
+      '@flax/local-storage-runtime':
         specifier: workspace:*
         version: link:../../js
 
@@ -220,11 +338,30 @@ importers:
     dependencies:
       '@flax/core':
         specifier: workspace:*
+        version: link:../../flax/js-types
+      '@flax/core-runtime':
+        specifier: workspace:*
         version: link:../../flax/js
+    devDependencies:
+      '@flax/local-storage':
+        specifier: workspace:*
+        version: link:../js-types
+      '@flax/tools':
+        specifier: workspace:*
+        version: link:../../flax_tools/js
+
+  packages/flax_local_storage/js-types:
+    dependencies:
+      '@flax/core':
+        specifier: workspace:*
+        version: link:../../flax/js-types
 
   packages/flax_material_ui/example/js:
     dependencies:
       '@flax/core':
+        specifier: workspace:*
+        version: link:../../../flax/js-types
+      '@flax/core-runtime':
         specifier: workspace:*
         version: link:../../../flax/js
       '@flax/flutter':
@@ -237,6 +374,9 @@ importers:
   packages/flax_material_ui/js:
     dependencies:
       '@flax/core':
+        specifier: workspace:*
+        version: link:../../flax/js-types
+      '@flax/core-runtime':
         specifier: workspace:*
         version: link:../../flax/js
       '@flax/dart':
@@ -263,11 +403,17 @@ importers:
     dependencies:
       '@flax/core':
         specifier: workspace:*
+        version: link:../../../flax/js-types
+      '@flax/core-runtime':
+        specifier: workspace:*
         version: link:../../../flax/js
       '@flax/flutter':
         specifier: workspace:*
         version: link:../../../flax_flutter/js
       '@flax/websocket':
+        specifier: workspace:*
+        version: link:../../js-types
+      '@flax/websocket-runtime':
         specifier: workspace:*
         version: link:../../js
 
@@ -275,7 +421,23 @@ importers:
     dependencies:
       '@flax/core':
         specifier: workspace:*
+        version: link:../../flax/js-types
+      '@flax/core-runtime':
+        specifier: workspace:*
         version: link:../../flax/js
+    devDependencies:
+      '@flax/tools':
+        specifier: workspace:*
+        version: link:../../flax_tools/js
+      '@flax/websocket':
+        specifier: workspace:*
+        version: link:../js-types
+
+  packages/flax_websocket/js-types:
+    dependencies:
+      '@flax/core':
+        specifier: workspace:*
+        version: link:../../flax/js-types
 
 packages:
 
