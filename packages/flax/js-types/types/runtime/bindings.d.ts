@@ -171,6 +171,24 @@ export declare function constructObject(_kind: 'object', type: string, ctor: str
 /** Records a generic factory call until a concrete Dart parameter supplies T. */
 export declare function constructDeferredObject(type: string, factory: string, parameters: readonly Parameter[], positional: readonly unknown[], options: Readonly<Record<string, unknown>>): object;
 export declare function constructProxy(type: string, parameters: readonly Parameter[], args: readonly unknown[], implementation: object, names: readonly string[], getters: readonly string[], setters: readonly string[]): object;
+/** Generated signatures remain in TypeScript; executable forwarding is shared. */
+export interface ProxyDefinition {
+    readonly type: string;
+    readonly parameters: readonly Parameter[];
+    readonly methods: Readonly<Record<string, readonly MemberParameter[]>>;
+    readonly getters: readonly string[];
+    readonly setters: readonly string[];
+    readonly superMembers: readonly string[];
+}
+export interface MemberParameter extends Parameter {
+    readonly context?: string;
+}
+export declare abstract class FlaxProxyBase {
+    protected constructor(prototype: object, definition: ProxyDefinition, args: readonly unknown[]);
+}
+export declare function bindingMethods(type: string, category: 'object' | 'state' | 'stream', methods: Readonly<Record<string, readonly MemberParameter[]>>): Record<string, StateMethod>;
+export declare function defineProxyBase(prototype: object, definition: ProxyDefinition): void;
+export declare function defineStateMembers(prototype: object, methods: Readonly<Record<string, readonly MemberParameter[]>>, getters: readonly string[], setters: readonly string[]): void;
 /**
  * Attaches a newly-created Dart extends proxy to the JS instance currently
  * being initialized by a generated abstract base class.

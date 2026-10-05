@@ -1,6 +1,25 @@
 // GENERATED CODE. Selected public API subset; do not edit.
 // Regenerate with dart run melos run bindings:generate.
-import { bindingVersion, construct as _flaxHostConstruct, constructProxy as _flaxHostConstructProxy, constructObject as _flaxHostConstructObject, constructDeferredObject as _flaxHostConstructDeferredObject, constructStream as _flaxHostConstructStream, constructAsyncIterableStream as _flaxHostConstructAsyncIterableStream, defineObject as _flaxHostDefineObject, defineStream as _flaxHostDefineStream, invokeObject as _flaxHostInvokeObject, invokeObjectStatic as _flaxHostInvokeObjectStatic, invokeStream as _flaxHostInvokeStream, enumValue as _flaxHostEnumValue, defineContext as _flaxHostDefineContext, defineState as _flaxHostDefineState, contextHandle as _flaxHostContextHandle, invokeStatic as _flaxHostInvokeStatic, invokeInstance as _flaxHostInvokeInstance, invokeTopLevel as _flaxHostInvokeTopLevel, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+import { bindingMethods as _flaxBindingMethods, bindingVersion, construct as _flaxHostConstruct, constructProxy as _flaxHostConstructProxy, constructObject as _flaxHostConstructObject, constructDeferredObject as _flaxHostConstructDeferredObject, constructStream as _flaxHostConstructStream, constructAsyncIterableStream as _flaxHostConstructAsyncIterableStream, defineObject as _flaxHostDefineObject, defineStream as _flaxHostDefineStream, invokeObject as _flaxHostInvokeObject, invokeObjectStatic as _flaxHostInvokeObjectStatic, invokeStream as _flaxHostInvokeStream, enumValue as _flaxHostEnumValue, defineContext as _flaxHostDefineContext, defineState as _flaxHostDefineState, contextHandle as _flaxHostContextHandle, invokeStatic as _flaxHostInvokeStatic, invokeInstance as _flaxHostInvokeInstance, invokeTopLevel as _flaxHostInvokeTopLevel, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+const _flaxMemberParameters0 = [{"name":"onCancel","required":false,"positional":false},{"name":"onListen","required":false,"positional":false}] as const;
+const _flaxMemberParameters1 = [{"name":"onData","required":true,"positional":true},{"name":"cancelOnError","required":false,"positional":false},{"name":"onDone","required":false,"positional":false},{"name":"onError","required":false,"positional":false}] as const;
+const _flaxMemberParameters2 = [{"name":"test","required":true,"positional":true}] as const;
+const _flaxMemberParameters3 = [{"name":"convert","required":true,"positional":true}] as const;
+const _flaxMemberParameters4 = [{"name":"onError","required":true,"positional":true},{"name":"test","required":false,"positional":false}] as const;
+const _flaxMemberParameters5 = [{"name":"streamConsumer","required":true,"positional":true}] as const;
+const _flaxMemberParameters6 = [{"name":"streamTransformer","required":true,"positional":true}] as const;
+const _flaxMemberParameters7 = [{"name":"combine","required":true,"positional":true}] as const;
+const _flaxMemberParameters8 = [{"name":"initialValue","required":true,"positional":true},{"name":"combine","required":true,"positional":true}] as const;
+const _flaxMemberParameters9 = [{"name":"separator","required":false,"positional":true}] as const;
+const _flaxMemberParameters10 = [{"name":"needle","required":true,"positional":true}] as const;
+const _flaxMemberParameters11 = [{"name":"action","required":true,"positional":true}] as const;
+const _flaxMemberParameters12 = [] as const;
+const _flaxMemberParameters13 = [{"name":"futureValue","required":false,"positional":true}] as const;
+const _flaxMemberParameters14 = [{"name":"count","required":true,"positional":true}] as const;
+const _flaxMemberParameters15 = [{"name":"equals","required":false,"positional":true}] as const;
+const _flaxMemberParameters16 = [{"name":"test","required":true,"positional":true},{"name":"orElse","required":false,"positional":false}] as const;
+const _flaxMemberParameters17 = [{"name":"index","required":true,"positional":true}] as const;
+const _flaxMemberParameters18 = [{"name":"timeLimit","required":true,"positional":true},{"name":"onTimeout","required":false,"positional":false}] as const;
 import type * as upstream0 from '@flax/dart/core/_bindings/flutter_StackTrace';
 import '@flax/dart/core/_bindings/flutter_StackTrace';
 import type * as upstream1 from '@flax/dart/async/_bindings/flutter_MultiStreamController';
@@ -55,169 +74,7 @@ singleWhere(test: ((element: T) => boolean), options?: {orElse?: (() => T) | nul
 elementAt(index: number): Promise<T>;
 timeout(timeLimit: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }>, options?: {onTimeout?: ((sink: upstream3.EventSink<T>) => void) | null | undefined}): Stream<T>;
 }
-defineStream("flax.core/flutter#type:Stream", ["isBroadcast","length","isEmpty","first","last","single"], {asBroadcastStream(this: object, options: { onCancel?: ((subscription: upstream4.StreamSubscription<unknown | null>) => void) | null | undefined; onListen?: ((subscription: upstream4.StreamSubscription<unknown | null>) => void) | null | undefined } = {}): Stream<unknown | null> {
-if (arguments.length > 1) throw new TypeError('Too many method arguments');
-if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["onCancel","onListen"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "asBroadcastStream", [options.onCancel, options.onListen]);
-return _flaxResult as Stream<unknown | null>;
-},
-listen(this: object, onData: ((event: unknown | null) => void) | null, options: { cancelOnError?: boolean | null | undefined; onDone?: (() => void) | null | undefined; onError?: ((p0: {}, p1?: upstream0.StackTrace) => void) | null | undefined } = {}): upstream4.StreamSubscription<unknown | null> {
-if (arguments.length > 2) throw new TypeError('Too many method arguments');
-if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["cancelOnError","onDone","onError"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "listen", [onData, options.cancelOnError, options.onDone, options.onError]);
-return _flaxResult as upstream4.StreamSubscription<unknown | null>;
-},
-where(this: object, test: ((event: unknown | null) => boolean)): Stream<unknown | null> {
-if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "where", [test]);
-return _flaxResult as Stream<unknown | null>;
-},
-map(this: object, convert: ((event: unknown | null) => unknown | null)): Stream<unknown | null> {
-if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "map", [convert]);
-return _flaxResult as Stream<unknown | null>;
-},
-asyncMap(this: object, convert: ((event: unknown | null) => unknown | null | Promise<unknown | null>)): Stream<unknown | null> {
-if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "asyncMap", [convert]);
-return _flaxResult as Stream<unknown | null>;
-},
-asyncExpand(this: object, convert: ((event: unknown | null) => Stream<unknown | null> | null)): Stream<unknown | null> {
-if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "asyncExpand", [convert]);
-return _flaxResult as Stream<unknown | null>;
-},
-handleError(this: object, onError: ((p0: {}, p1?: upstream0.StackTrace) => void), options: { test?: ((error: unknown | null) => boolean) | null | undefined } = {}): Stream<unknown | null> {
-if (arguments.length > 2) throw new TypeError('Too many method arguments');
-if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["test"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "handleError", [onError, options.test]);
-return _flaxResult as Stream<unknown | null>;
-},
-expand(this: object, convert: ((element: unknown | null) => DartIterableInput<unknown | null, unknown | null>)): Stream<unknown | null> {
-if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "expand", [convert]);
-return _flaxResult as Stream<unknown | null>;
-},
-pipe(this: object, streamConsumer: Readonly<{ "__flaxBound:dart:async::StreamConsumer": readonly [unknown | null] }>): Promise<unknown | null> {
-if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "pipe", [streamConsumer]);
-return _flaxResult as Promise<unknown | null>;
-},
-transform(this: object, streamTransformer: Readonly<{ "__flaxBound:dart:async::StreamTransformer": readonly [unknown | null, unknown | null] }>): Stream<unknown | null> {
-if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "transform", [streamTransformer]);
-return _flaxResult as Stream<unknown | null>;
-},
-reduce(this: object, combine: ((previous: unknown | null, element: unknown | null) => unknown | null)): Promise<unknown | null> {
-if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "reduce", [combine]);
-return _flaxResult as Promise<unknown | null>;
-},
-fold(this: object, initialValue: unknown | null, combine: ((previous: unknown | null, element: unknown | null) => unknown | null)): Promise<unknown | null> {
-if (arguments.length > 2) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "fold", [initialValue, combine]);
-return _flaxResult as Promise<unknown | null>;
-},
-join(this: object, separator?: string): Promise<string> {
-if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "join", [separator]);
-return _flaxResult as Promise<string>;
-},
-contains(this: object, needle: unknown | null): Promise<boolean> {
-if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "contains", [needle]);
-return _flaxResult as Promise<boolean>;
-},
-forEach(this: object, action: ((element: unknown | null) => void)): Promise<void> {
-if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "forEach", [action]);
-return _flaxResult as Promise<void>;
-},
-every(this: object, test: ((element: unknown | null) => boolean)): Promise<boolean> {
-if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "every", [test]);
-return _flaxResult as Promise<boolean>;
-},
-any(this: object, test: ((element: unknown | null) => boolean)): Promise<boolean> {
-if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "any", [test]);
-return _flaxResult as Promise<boolean>;
-},
-cast(this: object): Stream<unknown | null> {
-if (arguments.length > 0) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "cast", []);
-return _flaxResult as Stream<unknown | null>;
-},
-toList(this: object): Promise<DartList<unknown | null>> {
-if (arguments.length > 0) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "toList", []);
-return _flaxResult as Promise<DartList<unknown | null>>;
-},
-toSet(this: object): Promise<DartSet<unknown | null>> {
-if (arguments.length > 0) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "toSet", []);
-return _flaxResult as Promise<DartSet<unknown | null>>;
-},
-drain(this: object, futureValue?: unknown | null): Promise<unknown | null> {
-if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "drain", [futureValue]);
-return _flaxResult as Promise<unknown | null>;
-},
-take(this: object, count: number): Stream<unknown | null> {
-if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "take", [count]);
-return _flaxResult as Stream<unknown | null>;
-},
-takeWhile(this: object, test: ((element: unknown | null) => boolean)): Stream<unknown | null> {
-if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "takeWhile", [test]);
-return _flaxResult as Stream<unknown | null>;
-},
-skip(this: object, count: number): Stream<unknown | null> {
-if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "skip", [count]);
-return _flaxResult as Stream<unknown | null>;
-},
-skipWhile(this: object, test: ((element: unknown | null) => boolean)): Stream<unknown | null> {
-if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "skipWhile", [test]);
-return _flaxResult as Stream<unknown | null>;
-},
-distinct(this: object, equals?: ((previous: unknown | null, next: unknown | null) => boolean) | null): Stream<unknown | null> {
-if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "distinct", [equals]);
-return _flaxResult as Stream<unknown | null>;
-},
-firstWhere(this: object, test: ((element: unknown | null) => boolean), options: { orElse?: (() => unknown | null) | null | undefined } = {}): Promise<unknown | null> {
-if (arguments.length > 2) throw new TypeError('Too many method arguments');
-if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["orElse"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "firstWhere", [test, options.orElse]);
-return _flaxResult as Promise<unknown | null>;
-},
-lastWhere(this: object, test: ((element: unknown | null) => boolean), options: { orElse?: (() => unknown | null) | null | undefined } = {}): Promise<unknown | null> {
-if (arguments.length > 2) throw new TypeError('Too many method arguments');
-if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["orElse"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "lastWhere", [test, options.orElse]);
-return _flaxResult as Promise<unknown | null>;
-},
-singleWhere(this: object, test: ((element: unknown | null) => boolean), options: { orElse?: (() => unknown | null) | null | undefined } = {}): Promise<unknown | null> {
-if (arguments.length > 2) throw new TypeError('Too many method arguments');
-if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["orElse"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "singleWhere", [test, options.orElse]);
-return _flaxResult as Promise<unknown | null>;
-},
-elementAt(this: object, index: number): Promise<unknown | null> {
-if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "elementAt", [index]);
-return _flaxResult as Promise<unknown | null>;
-},
-timeout(this: object, timeLimit: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }>, options: { onTimeout?: ((sink: upstream3.EventSink<unknown | null>) => void) | null | undefined } = {}): Stream<unknown | null> {
-if (arguments.length > 2) throw new TypeError('Too many method arguments');
-if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["onTimeout"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "timeout", [timeLimit, options.onTimeout]);
-return _flaxResult as Stream<unknown | null>;
-},
-});
+defineStream("flax.core/flutter#type:Stream", ["isBroadcast","length","isEmpty","first","last","single"], _flaxBindingMethods("flax.core/flutter#type:Stream", "stream", {"asBroadcastStream":_flaxMemberParameters0,"listen":_flaxMemberParameters1,"where":_flaxMemberParameters2,"map":_flaxMemberParameters3,"asyncMap":_flaxMemberParameters3,"asyncExpand":_flaxMemberParameters3,"handleError":_flaxMemberParameters4,"expand":_flaxMemberParameters3,"pipe":_flaxMemberParameters5,"transform":_flaxMemberParameters6,"reduce":_flaxMemberParameters7,"fold":_flaxMemberParameters8,"join":_flaxMemberParameters9,"contains":_flaxMemberParameters10,"forEach":_flaxMemberParameters11,"every":_flaxMemberParameters2,"any":_flaxMemberParameters2,"cast":_flaxMemberParameters12,"toList":_flaxMemberParameters12,"toSet":_flaxMemberParameters12,"drain":_flaxMemberParameters13,"take":_flaxMemberParameters14,"takeWhile":_flaxMemberParameters2,"skip":_flaxMemberParameters14,"skipWhile":_flaxMemberParameters2,"distinct":_flaxMemberParameters15,"firstWhere":_flaxMemberParameters16,"lastWhere":_flaxMemberParameters16,"singleWhere":_flaxMemberParameters16,"elementAt":_flaxMemberParameters17,"timeout":_flaxMemberParameters18}));
 export namespace Stream {
 export function fromAsyncIterable<T extends unknown | null >(source: AsyncIterable<T>): Stream<T> {
 return constructAsyncIterableStream("flax.core/flutter#type:Stream", source) as Stream<T>;

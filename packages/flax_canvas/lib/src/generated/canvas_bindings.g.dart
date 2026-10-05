@@ -83,7 +83,6 @@ const canvasBindings = FlaxBindingModule(
       ],
       matches: _isFlaxCanvasSurface,
       methods: {},
-      staticGetters: {},
     ),
     FlaxWidgetBinding(
       "flax.canvas/canvas#type:FlaxCanvasView",

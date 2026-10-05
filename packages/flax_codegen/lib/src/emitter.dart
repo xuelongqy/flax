@@ -97,7 +97,7 @@ String? _inferModuleIdFromMembers(FlaxCodegenModuleModel module) {
 }
 
 const _typescriptHostImport =
-    "import { bindingVersion, construct as _flaxHostConstruct, constructProxy as _flaxHostConstructProxy, constructObject as _flaxHostConstructObject, constructDeferredObject as _flaxHostConstructDeferredObject, constructStream as _flaxHostConstructStream, constructAsyncIterableStream as _flaxHostConstructAsyncIterableStream, defineObject as _flaxHostDefineObject, defineStream as _flaxHostDefineStream, invokeObject as _flaxHostInvokeObject, invokeObjectStatic as _flaxHostInvokeObjectStatic, invokeStream as _flaxHostInvokeStream, enumValue as _flaxHostEnumValue, defineContext as _flaxHostDefineContext, defineState as _flaxHostDefineState, contextHandle as _flaxHostContextHandle, invokeStatic as _flaxHostInvokeStatic, invokeInstance as _flaxHostInvokeInstance, invokeTopLevel as _flaxHostInvokeTopLevel, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';";
+    "import { bindingMethods as _flaxBindingMethods, bindingVersion, construct as _flaxHostConstruct, constructProxy as _flaxHostConstructProxy, constructObject as _flaxHostConstructObject, constructDeferredObject as _flaxHostConstructDeferredObject, constructStream as _flaxHostConstructStream, constructAsyncIterableStream as _flaxHostConstructAsyncIterableStream, defineObject as _flaxHostDefineObject, defineStream as _flaxHostDefineStream, invokeObject as _flaxHostInvokeObject, invokeObjectStatic as _flaxHostInvokeObjectStatic, invokeStream as _flaxHostInvokeStream, enumValue as _flaxHostEnumValue, defineContext as _flaxHostDefineContext, defineState as _flaxHostDefineState, contextHandle as _flaxHostContextHandle, invokeStatic as _flaxHostInvokeStatic, invokeInstance as _flaxHostInvokeInstance, invokeTopLevel as _flaxHostInvokeTopLevel, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';";
 
 const _typescriptInstallHelper = r'''
 function _flaxInstallBindingModule(
@@ -349,6 +349,7 @@ class FlaxCodegenBindingEmitter {
         ...type.getters,
         ...type.setters,
         ...type.staticGetters,
+        ...type.staticSetters,
       ]) {
         yield* _typescriptReachableType(getter.type);
       }
@@ -1259,6 +1260,44 @@ class FlaxCodegenBindingEmitter {
     }
   }
 
+  List<Map<String, Object?>> _memberParameters(
+    List<FlaxCodegenParameterModel> parameters,
+  ) => [
+    for (final p in parameters)
+      {
+        'name': p.name,
+        'required': p.required,
+        'positional': p.positional,
+        if (p.type.kind == 'context') 'context': p.type.id,
+      },
+  ];
+
+  String _proxyMethodSignature(
+    FlaxCodegenMethodModel method,
+    String Function(
+      FlaxCodegenTypeRef, {
+      bool input,
+      bool declarations,
+      bool nominal,
+    })
+    tsType,
+    String Function(List<FlaxCodegenGenericParameter>, {bool defaults})
+    generics,
+    String Function(FlaxCodegenParameterModel, String) namedParameter,
+  ) {
+    final args = [
+      for (final p in method.parameters.where((p) => p.positional))
+        '${p.name}${p.required ? '' : '?'}: ${tsType(p.type, input: true)}',
+    ];
+    final named = method.parameters.where((p) => !p.positional).toList();
+    if (named.isNotEmpty) {
+      args.add(
+        'options${named.every((p) => !p.required) ? '?' : ''}: {${named.map((p) => namedParameter(p, tsType(p.type, input: true))).join('; ')}}',
+      );
+    }
+    return '${method.name}${generics(method.typeParameters)}(${args.join(', ')}): ${tsType(method.result)}';
+  }
+
   void _guardPositionalTs(
     StringBuffer out,
     List<FlaxCodegenParameterModel> parameters,
@@ -1726,15 +1765,7 @@ import 'package:flax/bindings.dart';
               'FlaxSetter(${_quote(setter.name)}, ${_ref(setter.type)}, _${type.name}_set_${setter.name}),',
             );
           }
-          out.write(
-            '], matches: _is${type.name}, methods: ${_methods(type)}, staticGetters: {',
-          );
-          for (final getter in type.staticGetters) {
-            out.write(
-              '${_quote(getter.name)}: FlaxStaticGetter(${_ref(getter.type)}, _${type.name}_static_${getter.name}),',
-            );
-          }
-          out.write('}');
+          out.write('], matches: _is${type.name}, methods: ${_methods(type)}');
         }
         out.writeln('),');
         continue;
@@ -1779,6 +1810,14 @@ import 'package:flax/bindings.dart';
             .toList() ??
         <FlaxCodegenTopLevelSetterModel>[];
     final functionNames = {
+      for (final type in module.classes)
+        for (final getter in type.staticGetters)
+          type.staticGetterId(getter):
+              '_${type.name}_static_get_${getter.name}',
+      for (final type in module.classes)
+        for (final setter in type.staticSetters)
+          type.staticSetterId(setter):
+              '_${type.name}_static_set_${setter.name}',
       for (final extension in module.extensions)
         for (final member in extension.members)
           member.id: '_extension_${extension.name}_${member.call.name}',
@@ -1919,9 +1958,27 @@ import 'package:flax/bindings.dart';
         );
       }
       for (final getter in type.staticGetters) {
+        final read = '${_dartName(type.name)}.${getter.name}';
         out.writeln(
-          'Object? _${type.name}_static_${getter.name}() => ${_dartName(type.name)}.${getter.name};',
+          'Object? _${type.name}_static_get_${getter.name}(Map<String, Object?> values) '
+          '${getter.type.kind == 'void' ? '{ $read; return null; }' : '=> $read;'}',
         );
+      }
+      for (final setter in type.staticSetters) {
+        out.writeln(
+          'Object? _${type.name}_static_set_${setter.name}(Map<String, Object?> values) {',
+        );
+        final call = type.staticFunctions
+            .firstWhere(
+              (operation) => operation.id == type.staticSetterId(setter),
+            )
+            .call;
+        _emitCallableCall(
+          out,
+          call,
+          (value) => '${_dartName(type.name)}.${setter.name} = $value',
+        );
+        out.writeln('}');
       }
       for (final setter in type.setters) {
         final receiver =
@@ -1938,12 +1995,25 @@ import 'package:flax/bindings.dart';
         out.writeln(
           'Object? _${type.name}_${method.name}(${method.instance ? 'Object receiver, ' : ''}Map<String, Object?> values) {',
         );
-        _emitCallableCall(
-          out,
-          method,
-          (args) => '${_methodTarget(type, method)}($args)',
-          tearOff: _methodTarget(type, method),
-        );
+        if (method.operatorName != null) {
+          final call = _operatorExpression(
+            '(receiver as ${_dartName(type.name)}${_typeArgs(type.typeArguments)})',
+            method.operatorName!,
+            [
+              for (final p in method.parameters)
+                _cast('values[${_quote(p.name)}]', p.type),
+            ],
+          );
+          out.writeln('${method.result.kind == 'void' ? '' : 'return '}$call;');
+          if (method.result.kind == 'void') out.writeln('return null;');
+        } else {
+          _emitCallableCall(
+            out,
+            method,
+            (args) => '${_methodTarget(type, method)}($args)',
+            tearOff: _methodTarget(type, method),
+          );
+        }
         out.writeln('}');
       }
       if (type.proxy case final proxy? when proxy.kind == 'extends') {
@@ -2136,7 +2206,7 @@ ${type.widgetMembers.map((m) => m.source).join('\n')}
         if (named.isNotEmpty) declarations.add('{${named.join(', ')}}');
         out.writeln('@override');
         out.writeln(
-          '${_dartDeclaredType(method.result, generic: generic)} ${method.name}${_dartGenerics(method.typeParameters)}(${declarations.join(', ')}) {',
+          '${_dartDeclaredType(method.result, generic: generic)} ${method.operatorName == null ? method.name : 'operator ${method.operatorName == 'unary-' ? '-' : method.operatorName}'}${_dartGenerics(method.typeParameters)}(${declarations.join(', ')}) {',
         );
         final genericUse = method.typeParameters.isEmpty
             ? ''
@@ -2168,8 +2238,9 @@ ${type.widgetMembers.map((m) => m.source).join('\n')}
               if (!omitted.contains(parameter.name))
                 '${parameter.name}: ${parameter.required || _dartDeclaredType(parameter.type, generic: generic) == 'Object?' ? parameter.name : '${parameter.name} as ${_dartDeclaredType(parameter.type, generic: generic)}'}',
           ];
-          var call =
-              '${directSuper ? superTarget : callbackTarget}(${arguments.join(', ')})';
+          var call = directSuper && method.operatorName != null
+              ? _operatorExpression('super', method.operatorName!, arguments)
+              : '${directSuper ? superTarget : callbackTarget}(${arguments.join(', ')})';
           if (namedParameters.where((p) => !p.required).length >=
               _applyOmissionThreshold) {
             final parameters = [
@@ -2576,26 +2647,6 @@ ${type.widgetMembers.map((m) => m.source).join('\n')}
       }
       out.writeln('}');
     }
-    if (usesGenericCallbackResult || _streams.isNotEmpty) {
-      out.writeln('''
-T _genericCallbackResult<T>(Object? value) {
-  // Test assignability to cover both nullable and non-nullable numeric T.
-  // Broad bounds keep their decoded representation; only the Dart use site
-  // selects a more specific numeric representation.
-  if (value is num && value is! T) {
-    if (0 is T && 0.0 is! T) {
-      if (!value.isFinite || value.abs() > 9007199254740991 ||
-          value != value.truncateToDouble()) {
-        throw ArgumentError('Expected a safe integer');
-      }
-      return value.toInt() as T;
-    }
-    if (0.0 is T && 0 is! T) return value.toDouble() as T;
-  }
-  return value as T;
-}
-''');
-    }
     for (final entry in _records.values) {
       final (type, name) = entry;
       final dartType = _dartRecordType(type);
@@ -2669,6 +2720,9 @@ Future<Object?> ${name}Adapt(Future<Object?> value) {
           generic: false,
           erased: erased,
         );
+        usesGenericCallbackResult |= converted.contains(
+          '_genericCallbackResult<',
+        );
         if (erased) {
           out.writeln('''
 Future<Object?> ${name}Adapt(Future<Object?> value) {
@@ -2700,11 +2754,32 @@ Future<Object?> ${name}Adapt(Future<Object?> value) {
         // Typed sources keep their identity. Erased JS sources need the same
         // concrete-use-site conversion as generic callbacks, without awaiting events.
         final event = _erasedStreamValue('event', type.item!);
+        usesGenericCallbackResult |= event.contains('_genericCallbackResult<');
         out.writeln(
           '$stream<Object?> ${name}Adapt(Object value) => '
           '(value is $dartStream ? value : (value as $stream<Object?>).map<$item>((event) => $event)) as $stream<Object?>;',
         );
       }
+    }
+    if (usesGenericCallbackResult) {
+      out.writeln('''
+T _genericCallbackResult<T>(Object? value) {
+  // Test assignability to cover both nullable and non-nullable numeric T.
+  // Broad bounds keep their decoded representation; only the Dart use site
+  // selects a more specific numeric representation.
+  if (value is num && value is! T) {
+    if (0 is T && 0.0 is! T) {
+      if (!value.isFinite || value.abs() > 9007199254740991 ||
+          value != value.truncateToDouble()) {
+        throw ArgumentError('Expected a safe integer');
+      }
+      return value.toInt() as T;
+    }
+    if (0.0 is T && 0 is! T) return value.toDouble() as T;
+  }
+  return value as T;
+}
+''');
     }
     return out.toString();
   }
@@ -2997,6 +3072,18 @@ Future<Object?> ${name}Adapt(Future<Object?> value) {
       }
     }
   }
+
+  String _operatorExpression(
+    String receiver,
+    String operator,
+    List<String> args,
+  ) => switch (operator) {
+    '[]' => '$receiver[${args.single}]',
+    '[]=' => '$receiver[${args[0]}] = ${args[1]}',
+    'unary-' => '-$receiver',
+    '~' => '~$receiver',
+    _ => '$receiver $operator (${args.single})',
+  };
 
   String _methodTarget(
     FlaxCodegenClassModel type,
@@ -3405,7 +3492,7 @@ $_typescriptHostImport
     );
     if (module.stateVariants.isNotEmpty) {
       out.writeln(
-        "import { componentStateCall as _flaxComponentStateCall, registerComponentStateVariant as _flaxRegisterComponentStateVariant } from '@flax/core/bindings';",
+        "import { componentStateCall as _flaxComponentStateCall, defineStateMembers as _flaxDefineStateMembers, registerComponentStateVariant as _flaxRegisterComponentStateVariant } from '@flax/core/bindings';",
       );
       final componentImport =
           module.name == 'components' &&
@@ -3418,7 +3505,7 @@ $_typescriptHostImport
     }
     if (module.classes.any((c) => c.proxy?.kind == 'extends')) {
       out.writeln(
-        "import { constructExtendedProxy, invokeProxySuper } from '@flax/core/bindings';",
+        "import { FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase } from '@flax/core/bindings';",
       );
     }
     for (final entry in dependencies.entries) {
@@ -3600,6 +3687,13 @@ $_typescriptHostImport
       genericNames = previousGenericNames;
     }
 
+    final memberLayouts = <String, String>{};
+    String memberMetadata(Iterable<FlaxCodegenMethodModel> methods) =>
+        '{${methods.map((method) {
+          final layout = jsonEncode(_memberParameters(method.parameters));
+          final name = memberLayouts.putIfAbsent(layout, () => '_flaxMemberParameters${memberLayouts.length}');
+          return '${jsonEncode(method.name)}:$name';
+        }).join(',')}}';
     final staticMethods = StringBuffer();
     void emitProxy(
       StringBuffer target,
@@ -3626,111 +3720,67 @@ $_typescriptHostImport
       }
       if (proxy.kind == 'extends') {
         target.writeln(
-          'export abstract class ${type.name}${generics(type.typeParameters)} {',
+          'const _${type.name}Proxy = {'
+          'type: ${jsonEncode(type.id)}, parameters: ${jsonEncode(params)}, '
+          'methods: ${memberMetadata(proxy.methods.map((method) => proxy.hasSuperMethod(method.name) ? type.methods.firstWhere((surface) => surface.instance && surface.name == method.name) : method))}, '
+          'getters: ${jsonEncode(proxy.getters.map((g) => g.name).toList())}, '
+          'setters: ${jsonEncode(proxy.setters.map((s) => s.name).toList())}, '
+          'superMembers: ${jsonEncode(proxy.superMethods)}} as const;',
         );
-        target.writeln('constructor(${args.join(', ')}) {');
         target.writeln(
-          'constructExtendedProxy(this, ${type.name}.prototype, ${jsonEncode(type.id)}, '
-          '${jsonEncode(params)}, Array.from(arguments), '
-          '${jsonEncode(proxy.methods.map((m) => m.name).toList())}, '
-          '${jsonEncode(proxy.getters.map((g) => g.name).toList())}, '
-          '${jsonEncode(proxy.setters.map((s) => s.name).toList())}, '
-          '${jsonEncode(proxy.superMethods)});',
+          'export interface ${type.name}${generics(type.typeParameters)} {',
         );
-        target.writeln('}');
-
-        for (final method in proxy.methods) {
-          final positional = method.parameters
-              .where((p) => p.positional)
-              .map(
-                (p) =>
-                    '${p.name}${p.required ? '' : '?'}: ${tsType(p.type, input: true)}',
-              )
-              .toList();
-          final named = method.parameters.where((p) => !p.positional).toList();
-          final signature = [...positional];
-          if (named.isNotEmpty) {
-            signature.add(
-              'options${named.every((p) => !p.required) ? '?' : ''}: {${named.map((p) => namedParameter(p, tsType(p.type, input: true))).join('; ')}}',
-            );
-          }
-          if (!proxy.hasSuperMethod(method.name)) {
-            target.writeln(
-              'abstract ${method.name}${generics(method.typeParameters)}(${signature.join(', ')}): ${tsType(method.result)};',
-            );
-            continue;
-          }
-          final runtimeSignature = [...positional];
-          if (named.isNotEmpty) {
-            runtimeSignature.add(
-              'options: { ${named.map((p) => namedParameter(p, tsType(p.type, input: true))).join('; ')} }${named.every((p) => !p.required) ? ' = {}' : ''}',
-            );
-          }
+        for (final method in proxy.methods.where(
+          (m) => proxy.hasSuperMethod(m.name),
+        )) {
           target.writeln(
-            '${method.name}${generics(method.typeParameters)}(${runtimeSignature.join(', ')}): ${tsType(method.result)} {',
+            '${_proxyMethodSignature(method, tsType, generics, namedParameter)};',
           );
-          target.writeln(
-            "if (arguments.length > ${runtimeSignature.length}) throw new TypeError('Too many method arguments');",
-          );
-          _guardPositionalTs(target, method.parameters);
-          if (named.isNotEmpty) {
-            target.writeln(
-              "if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !${jsonEncode(named.map((p) => p.name).toList())}.includes(k))) throw new TypeError('Invalid named method arguments');",
-            );
-          }
-          // The exposed member may use analyzer's canonical named order.
-          // The host's positional wire array must use that same surface order.
-          final surface = type.methods.firstWhere(
-            (candidate) => candidate.instance && candidate.name == method.name,
-          );
-          final values = surface.parameters
-              .map((p) {
-                final value = p.positional ? p.name : 'options.${p.name}';
-                return p.type.kind == 'context'
-                    ? 'contextHandle($value, ${jsonEncode(p.type.id)})'
-                    : value;
-              })
-              .join(', ');
-          target.writeln(
-            'const _flaxResult = invokeProxySuper(this, ${jsonEncode(type.id)}, ${jsonEncode(method.name)}, [$values]);',
-          );
-          if (method.result.kind != 'void') {
-            target.writeln('return _flaxResult as ${tsType(method.result)};');
-          }
-          target.writeln('}');
         }
-        for (final getter in proxy.getters) {
-          if (!proxy.hasSuperGetter(getter.name)) {
-            target.writeln(
-              'abstract get ${getter.name}(): ${tsType(getter.type)};',
-            );
-            continue;
-          }
-          target.writeln('get ${getter.name}(): ${tsType(getter.type)} {');
-          if (getter.type.kind == 'void') {
-            target.writeln(
-              'invokeProxySuper(this, ${jsonEncode(type.id)}, ${jsonEncode('get:${getter.name}')}, []);',
-            );
-          } else {
-            target.writeln(
-              'return invokeProxySuper(this, ${jsonEncode(type.id)}, ${jsonEncode('get:${getter.name}')}, []) as ${tsType(getter.type)};',
-            );
-          }
-          target.writeln('}');
+        for (final getter in proxy.getters.where(
+          (g) => proxy.hasSuperGetter(g.name),
+        )) {
+          target.writeln('get ${getter.name}(): ${tsType(getter.type)};');
         }
-        for (final setter in proxy.setters) {
-          if (!proxy.hasSuperSetter(setter.name)) {
-            target.writeln(
-              'abstract set ${setter.name}(value: ${tsType(setter.type, input: true)});',
-            );
-            continue;
-          }
+        for (final setter in proxy.setters.where(
+          (s) => proxy.hasSuperSetter(s.name),
+        )) {
           target.writeln(
-            'set ${setter.name}(value: ${tsType(setter.type, input: true)}) { '
-            'invokeProxySuper(this, ${jsonEncode(type.id)}, ${jsonEncode('set:${setter.name}')}, [value]); }',
+            'set ${setter.name}(value: ${tsType(setter.type, input: true)});',
           );
         }
         target.writeln('}');
+        target.writeln(
+          'export abstract class ${type.name}${generics(type.typeParameters)} extends _FlaxProxyBase {',
+        );
+        target.writeln(
+          'constructor(${args.join(', ')}) { super(${type.name}.prototype, _${type.name}Proxy, Array.from(arguments)); }',
+        );
+        for (final method in proxy.methods.where(
+          (m) => !proxy.hasSuperMethod(m.name),
+        )) {
+          target.writeln(
+            'abstract ${_proxyMethodSignature(method, tsType, generics, namedParameter)};',
+          );
+        }
+        for (final getter in proxy.getters.where(
+          (g) => !proxy.hasSuperGetter(g.name),
+        )) {
+          target.writeln(
+            'abstract get ${getter.name}(): ${tsType(getter.type)};',
+          );
+        }
+        for (final setter in proxy.setters.where(
+          (s) => !proxy.hasSuperSetter(s.name),
+        )) {
+          target.writeln(
+            'abstract set ${setter.name}(value: ${tsType(setter.type, input: true)});',
+          );
+        }
+        target.writeln('}');
+        target.writeln(
+          '_flaxDefineProxyBase(${type.name}.prototype, _${type.name}Proxy);',
+        );
       }
       final requiredMethods = proxy.methods
           .where((m) => !proxy.hasSuperMethod(m.name))
@@ -3797,6 +3847,27 @@ $_typescriptHostImport
           'extends ${interfaces.join(', ')} {}',
         );
       }
+      out.writeln('export interface ${variant.name}$genericDeclaration {');
+      for (final getter in variant.getters.where(
+        (g) => variant.superMethods.contains('get:${g.name}'),
+      )) {
+        out.writeln('get ${getter.name}(): ${tsType(getter.type)};');
+      }
+      for (final setter in variant.setters.where(
+        (g) => variant.superMethods.contains('set:${g.name}'),
+      )) {
+        out.writeln(
+          'set ${setter.name}(value: ${tsType(setter.type, input: true)});',
+        );
+      }
+      for (final method in variant.methods.where(
+        (m) => variant.superMethods.contains('call:${m.name}'),
+      )) {
+        out.writeln(
+          '${_proxyMethodSignature(method, tsType, generics, namedParameter)};',
+        );
+      }
+      out.writeln('}');
       out.writeln(
         'export abstract class ${variant.name}$genericDeclaration '
         'extends _FlaxComponentState$genericUse {',
@@ -3805,79 +3876,24 @@ $_typescriptHostImport
         'constructor() { super(); '
         '_flaxRegisterComponentStateVariant(this, ${jsonEncode(variant.id)}); }',
       );
-      for (final getter in variant.getters) {
-        if (!variant.superMethods.contains('get:${getter.name}')) {
-          out.writeln('abstract get ${getter.name}(): ${tsType(getter.type)};');
-        } else {
-          out.writeln(
-            'get ${getter.name}(): ${tsType(getter.type)} { '
-            'return _flaxComponentStateCall(this, ${jsonEncode('native:get:${getter.name}')}, []) '
-            'as ${tsType(getter.type)}; }',
-          );
-        }
+      for (final getter in variant.getters.where(
+        (g) => !variant.superMethods.contains('get:${g.name}'),
+      )) {
+        out.writeln('abstract get ${getter.name}(): ${tsType(getter.type)};');
       }
-      for (final setter in variant.setters) {
-        if (!variant.superMethods.contains('set:${setter.name}')) {
-          out.writeln(
-            'abstract set ${setter.name}(value: ${tsType(setter.type, input: true)});',
-          );
-        } else {
-          out.writeln(
-            'set ${setter.name}(value: ${tsType(setter.type, input: true)}) { '
-            '_flaxComponentStateCall(this, ${jsonEncode('native:set:${setter.name}')}, [value]); }',
-          );
-        }
-      }
-      for (final method in variant.methods) {
-        final positional = method.parameters
-            .where((value) => value.positional)
-            .map(
-              (value) =>
-                  '${value.name}${value.required ? '' : '?'}: ${tsType(value.type, input: true)}',
-            )
-            .toList();
-        final named = method.parameters
-            .where((value) => !value.positional)
-            .toList();
-        final signature = [...positional];
-        if (named.isNotEmpty) {
-          signature.add(
-            'options${named.every((value) => !value.required) ? '?' : ''}: {'
-            '${named.map((value) => namedParameter(value, tsType(value.type, input: true))).join('; ')}}',
-          );
-        }
-        if (!variant.superMethods.contains('call:${method.name}')) {
-          out.writeln(
-            'abstract ${method.name}(${signature.join(', ')}): ${tsType(method.result)};',
-          );
-          continue;
-        }
-        final runtimeSignature = [...positional];
-        if (named.isNotEmpty) {
-          runtimeSignature.add(
-            'options: {${named.map((value) => namedParameter(value, tsType(value.type, input: true))).join('; ')}}'
-            '${named.every((value) => !value.required) ? ' = {}' : ''}',
-          );
-        }
-        final values = <String>[
-          for (final parameter in method.parameters.where(
-            (value) => value.positional,
-          ))
-            parameter.name,
-          for (final parameter in named) 'options.${parameter.name}',
-        ];
+      for (final setter in variant.setters.where(
+        (g) => !variant.superMethods.contains('set:${g.name}'),
+      )) {
         out.writeln(
-          '${method.name}(${runtimeSignature.join(', ')}): ${tsType(method.result)} {',
+          'abstract set ${setter.name}(value: ${tsType(setter.type, input: true)});',
         );
-        final call =
-            '_flaxComponentStateCall(this, ${jsonEncode('native:${method.name}')}, '
-            '[${values.join(', ')}])';
-        if (method.result.kind == 'void') {
-          out.writeln('$call;');
-        } else {
-          out.writeln('return $call as ${tsType(method.result)};');
-        }
-        out.writeln('}');
+      }
+      for (final method in variant.methods.where(
+        (m) => !variant.superMethods.contains('call:${m.name}'),
+      )) {
+        out.writeln(
+          'abstract ${_proxyMethodSignature(method, tsType, generics, namedParameter)};',
+        );
       }
       if (variant.superMethods.contains('call:build')) {
         final contextType = stateType.methods
@@ -3892,12 +3908,64 @@ $_typescriptHostImport
         );
       }
       out.writeln('}');
+      out.writeln(
+        '_flaxDefineStateMembers(${variant.name}.prototype, '
+        '${memberMetadata(variant.methods.where((m) => variant.superMethods.contains('call:${m.name}')))}, '
+        '${jsonEncode(variant.getters.where((g) => variant.superMethods.contains('get:${g.name}')).map((g) => g.name).toList())}, '
+        '${jsonEncode(variant.setters.where((g) => variant.superMethods.contains('set:${g.name}')).map((g) => g.name).toList())});',
+      );
     }
 
     for (final type in module.classes) {
       final exportPrefix = module.internalTypeNames.contains(type.name)
           ? ''
           : 'export ';
+      if (type.staticGetters.isNotEmpty || type.staticSetters.isNotEmpty) {
+        final staticObject =
+            !type.constructors.any(
+              (constructor) =>
+                  constructor.name.isNotEmpty ||
+                  type.jsName == null ||
+                  type.jsName == type.name,
+            ) &&
+            type.proxy == null &&
+            type.asyncIterableFactory == null &&
+            type.staticSetters.isEmpty &&
+            type.methods.every((method) => method.instance);
+        if (staticObject) {
+          staticMethods.writeln(
+            'export const ${type.name} = {} as {${type.staticGetters.map((getter) => 'readonly ${getter.name}: ${tsType(getter.type)}').join(';')}};',
+          );
+        }
+        for (final setter in type.staticSetters) {
+          final exported =
+              'set${setter.name[0].toUpperCase()}${setter.name.substring(1)}';
+          final operation = type.staticFunctions.firstWhere(
+            (function) => function.id == type.staticSetterId(setter),
+          );
+          emitTsCallable(
+            staticMethods,
+            FlaxCodegenMethodModel(
+              exported,
+              operation.call.parameters,
+              operation.call.result,
+            ),
+            id: operation.id,
+            namespace: type.name,
+            extensionOperation: true,
+          );
+        }
+        for (final getter in type.staticGetters) {
+          if (!staticObject) {
+            staticMethods.writeln(
+              'export namespace ${type.name} { export declare const ${getter.name}: ${tsType(getter.type)}; }',
+            );
+          }
+          staticMethods.writeln(
+            'Object.defineProperty(${type.name}, ${jsonEncode(getter.name)}, { get: () => invokeTopLevel(${jsonEncode(type.staticGetterId(getter))}, []) });',
+          );
+        }
+      }
       if (type.kind == 'widgetInterface') {
         out.writeln(
           '${exportPrefix}type ${type.name} = Widget & { readonly __${type.name}: unique symbol; }${type.superTypes.map((t) => ' & ${tsType(t, nominal: true)}').join('')};',
@@ -3956,25 +4024,26 @@ $_typescriptHostImport
           );
         }
       }
-      final stateMethods = StringBuffer();
-      for (final method in type.methods) {
+      for (final method in type.methods.where((m) => !m.instance)) {
         emitTsCallable(
-          method.instance ? stateMethods : staticMethods,
+          staticMethods,
           method,
           id: type.id,
           namespace: type.name,
           category: type.category,
         );
       }
+      String sharedMethods() =>
+          '_flaxBindingMethods(${jsonEncode(type.id)}, ${jsonEncode(type.kind)}, ${memberMetadata(type.methods.where((m) => m.instance))})';
       if (type.kind == 'object') {
         final listeners = _sortedStringMap(type.listenerPairs).values.toList();
         out.writeln(
-          'defineObject(${jsonEncode(type.id)}, ${jsonEncode(type.getters.map((g) => g.name).toList())}, ${jsonEncode(type.setters.map((g) => g.name).toList())}, {$stateMethods}, ${jsonEncode(listeners)});',
+          'defineObject(${jsonEncode(type.id)}, ${jsonEncode(type.getters.map((g) => g.name).toList())}, ${jsonEncode(type.setters.map((g) => g.name).toList())}, ${sharedMethods()}, ${jsonEncode(listeners)});',
         );
       }
       if (type.kind == 'stream') {
         out.writeln(
-          'defineStream(${jsonEncode(type.id)}, ${jsonEncode(type.getters.map((g) => g.name).toList())}, {$stateMethods});',
+          'defineStream(${jsonEncode(type.id)}, ${jsonEncode(type.getters.map((g) => g.name).toList())}, ${sharedMethods()});',
         );
         if (type.asyncIterableFactory case final factory?) {
           final parameter = type.typeParameters.single;
@@ -3988,32 +4057,9 @@ $_typescriptHostImport
           out.writeln('} }');
         }
       }
-      if (type.kind == 'object') {
-        // A namespace with only declarations is erased by TypeScript. Give
-        // static-only reference types a real object without a fake constructor.
-        final staticObject =
-            type.constructors.isEmpty &&
-            type.proxy == null &&
-            type.methods.every((m) => m.instance);
-        if (staticObject && type.staticGetters.isNotEmpty) {
-          staticMethods.writeln(
-            'export const ${type.name} = {} as {${type.staticGetters.map((g) => 'readonly ${g.name}: ${tsType(g.type)}').join(';')}};',
-          );
-        }
-        for (final getter in type.staticGetters) {
-          if (!staticObject) {
-            staticMethods.writeln(
-              'export namespace ${type.name} { export declare const ${getter.name}: ${tsType(getter.type)}; }',
-            );
-          }
-          staticMethods.writeln(
-            'Object.defineProperty(${type.name}, ${jsonEncode(getter.name)}, { get: () => invokeObjectStatic(${jsonEncode(type.id)}, ${jsonEncode(getter.name)}) });',
-          );
-        }
-      }
       if (type.kind == 'state') {
         out.writeln(
-          'defineState(${jsonEncode(type.id)}, ${jsonEncode(type.getters.map((g) => g.name).toList())}, {$stateMethods});',
+          'defineState(${jsonEncode(type.id)}, ${jsonEncode(type.getters.map((g) => g.name).toList())}, ${sharedMethods()});',
         );
       }
       if (type.constructors.isEmpty && type.proxy == null) {
@@ -4203,7 +4249,13 @@ $_typescriptHostImport
         );
       }
     }
-    return out.toString();
+    final layouts = memberLayouts.entries
+        .map((entry) => 'const ${entry.value} = ${entry.key} as const;\n')
+        .join();
+    return out.toString().replaceFirst(
+      '$_typescriptHostImport\n',
+      '$_typescriptHostImport\n$layouts',
+    );
   }
 
   void _writeTypescriptModuleInstall(

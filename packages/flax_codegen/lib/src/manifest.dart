@@ -64,7 +64,7 @@ final class FlaxCodegenManifest {
   }) : imports = List.unmodifiable(imports),
        modules = List.unmodifiable(modules);
 
-  static const formatVersion = 13;
+  static const formatVersion = 15;
   static const uiProtocol = 22;
 
   final String package;
@@ -1101,14 +1101,36 @@ void _diagnoseModelIdentityCoverage(
         ),
       );
     }
-    for (var getter = 0; getter < type.staticGetters.length; getter++) {
-      walkGetter(
-        type.staticGetters[getter],
-        flaxCodegenManifestPointer(
-          flaxCodegenManifestPointer(classPointer, 'staticGetters'),
-          '$getter',
-        ),
-      );
+    for (final section in ['staticGetters', 'staticSetters']) {
+      final write = section == 'staticSetters';
+      final accessors = write ? type.staticSetters : type.staticGetters;
+      for (final (index, accessor) in accessors.indexed) {
+        final operationId = write
+            ? type.staticSetterId(accessor)
+            : type.staticGetterId(accessor);
+        requireOwner(
+          id: operationId,
+          name: '${type.name}.${accessor.name}${write ? '=' : ''}',
+          expectedKind: write
+              ? FlaxCodegenWireKind.function
+              : FlaxCodegenWireKind.read,
+          idPointer: '$classPointer/$section/$index/id',
+        );
+        walkGetter(accessor, '$classPointer/$section/$index');
+        final owner = byWire[type.id]?.singleOrNull;
+        final operation = byWire[operationId]?.singleOrNull;
+        if (owner != null &&
+            operation != null &&
+            (operation.sourceIdentity.originatingUri !=
+                    owner.sourceIdentity.originatingUri ||
+                operation.sourceIdentity.name !=
+                    '${owner.sourceIdentity.name}.${accessor.name}${write ? '=' : ''}')) {
+          addOnce(
+            '$classPointer/$section/$index/id',
+            'Static accessor source identity mismatch.',
+          );
+        }
+      }
     }
     for (var method = 0; method < type.methods.length; method++) {
       walkMethod(

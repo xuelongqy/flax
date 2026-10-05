@@ -9,6 +9,7 @@
     "declarationMap": false,
     "sourceMap": false,
     "paths": {
+      "@flax/core/bindings": ["../packages/flax/js/src/runtime/bindings.ts"],
       "@flax/core/navigation": [
         "../packages/flax/js/src/flutter/generated/libraries/navigation/index.ts"
       ],

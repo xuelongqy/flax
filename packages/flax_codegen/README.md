@@ -40,7 +40,7 @@ dart run flax_codegen generate --library package:foo/foo.dart
 
 `<direct-yaml>` must be an explicit direct child of the package `bindings/` directory.
 The CLI discovers sibling binding configs in that directory, resolves current-only
-Manifest 13 dependency projections through the package config, and (for `generate`)
+Manifest 15 dependency projections through the package config, and (for `generate`)
 writes `lib/...`, `js/...`, and `bindings/manifest.json` below the owning package. The
 old `dart run flax_codegen [--check] <config>` form is not supported.
 
@@ -121,12 +121,12 @@ and is ignored by explicit config discovery.
 Third-party authors: start from [docs/author-template.md](docs/author-template.md) and
 the copyable skeleton under [example/author_template/](example/author_template/).
 
-Protocol 22 includes ordinary references, returned objects, setters, static readonly
-fields, abstract factories, typed List/Map conversion, stored callbacks, shared generic
-owners, validated concrete constructor specializations and explicitly selected proxies.
-Objects need no dispose method. Contexts/State remain borrowed, and Widget/Page/Route
-hosts retain Flutter lifecycle semantics. Material Pages keep their explicit public
-Route adapter.
+Protocol 22 includes ordinary references, returned objects, setters, static properties
+with explicit setters, abstract factories, typed List/Map conversion, stored callbacks,
+shared generic owners, validated concrete constructor specializations and explicitly
+selected proxies. Objects need no dispose method. Contexts/State remain borrowed, and
+Widget/Page/Route hosts retain Flutter lifecycle semantics. Material Pages keep their
+explicit public Route adapter.
 
 `additionalLibraries` merges public exports by actual declaration identity. Generic
 bounds and inheritance are resolved before emission; TS keeps type relationships while
@@ -192,7 +192,7 @@ Aliases reuse existing callback and collection conversions and create no runtime
 constructor or additional wire identity. Explicit TS type arguments are supported;
 matching all Dart inference is not required. Generic callbacks retain bound erasure and
 concrete-use-site result validation. Unsupported targets, recursive or unbound callback
-bounds, and export-name collisions fail explicitly. Manifest 13 preserves alias origins,
+bounds, and export-name collisions fail explicitly. Manifest 15 preserves alias origins,
 parameters and targets across packages. See
 [ADR 0035](../../docs/decisions/0035-generic-state-variants-and-protocol-21.md).
 Complete Dart type-system coverage remains separate work.
@@ -201,7 +201,7 @@ Records are structural values with no wire ID or session identity. Generated Typ
 uses readonly object fields (`$1`, `$2`, ... for positional fields plus named fields),
 while Dart conversion reconstructs real Records and recursively reuses the existing
 conversion rules for nested callbacks, collections, Futures and provider-owned objects.
-Manifest 13 encodes Record fields and all current recursive type metadata.
+Manifest 15 encodes Record fields and all current recursive type metadata.
 
 Style and Theme selections reuse object, static-member and Widget generation. Optional
 named TS inputs explicitly include undefined for exactOptionalPropertyTypes. An
@@ -255,7 +255,7 @@ DartWidget references; Context arguments borrow existing Flutter owners. See
 Widget interfaces use `kind: widgetInterface` and `widgetInterfaces` selections. Hosts
 generate real implements clauses and native getter/setter/method forwarding, including
 generic methods and BuildContext signatures. Native members stay outside JS conversion
-and are recorded in Manifest 13. Generic interface declarations remain deferred.
+and are recorded in Manifest 15. Generic interface declarations remain deferred.
 Interface Widgets reject direct bindings and constructor callbacks; nested child Widgets
 keep their normal bindings. Cross-module fixtures compile both Dart and TS. See
 [interface generation](../../docs/architecture/widget-interfaces.md).
@@ -278,10 +278,22 @@ their existing Dart and session behavior. Writes emit synchronous `setX(value): 
 functions; getter and setter types follow their separate Dart signatures.
 Const/final/late-final writes and Flutter-specific input semantics are rejected.
 Provider-owned declarations reuse the provider's public module without registering
-twice. Manifest 13 records source identity, read/write operations and public-library
+twice. Manifest 15 records source identity, read/write operations and public-library
 routing. See
 [readonly generation](../../docs/architecture/bindings.md#public-libraries-and-top-level-readonly-declarations)
 and [ADR 0027](../../docs/decisions/0027-public-library-module-delivery.md).
+
+Class `staticGetters: [count]` and `staticSetters: [count]` independently select public
+static fields or explicit accessors on any supported class category. JavaScript uses
+`Counter.count` and `Counter.setCount(value)`, with separate Dart return/input types.
+Setter-only classes expose a real namespace without a synthetic constructor. Reads and
+writes use the same function channel as top-level declarations; module import does not
+read state. Const/final/late-final writes, inherited statics, unsupported conversions
+and generated `setX` export collisions are rejected. Automatic selection skips
+conflicting writes and reports the reason. Static state belongs to the application;
+closing a session does not reset it. Manifest 15 records class-qualified read/write
+operation IDs and provider capabilities. See
+[static properties](../../docs/architecture/bindings.md#class-static-properties).
 
 Ordinary proxies generate required getter/setter dispatch from effective inherited
 signatures. Implementations use explicit JS accessors, checked without eager reads;
@@ -353,13 +365,22 @@ Explicit `extensions` selections expose named Dart extensions as receiver-first 
 TypeScript adapters: `StringX.getIsBlank(value)` and `StringX.repeat(value, count)`.
 Getters, setters, static getters/methods, generic declarations/members and legal Dart
 operators reuse the function call channel. Dart invocation always uses an explicit
-extension override; no prototype or instance identity is created. Manifest 13 records
+extension override; no prototype or instance identity is created. Manifest 15 records
 these declarations. See the
 [extension binding contract](../../docs/architecture/bindings.md#extension-declarations).
 
-Generic bounds can refer to unbound interfaces through Manifest 13 type-only references.
+Generic bounds can refer to unbound interfaces through Manifest 15 type-only references.
 Explicit recursive/dependent class and method specializations keep Dart subtype checks;
 TS retains nominal source identity and generic arguments without exposing bound members.
 Generic aliases need no runtime erasure when their bounds are type-only. Ordinary values
 still require conversion, and unresolved recursive extension/callback specializations
 fail explicitly. See [bound tests](test/bound_type_only_test.dart).
+
+Class operators use the class `operators` selection and fixed explicit JS aliases, for
+example `'+': [other]` becomes `operatorAdd(other)`. Ordinary bindings call real Dart
+operators; legal object proxies can override them from JS and use real `super`. Equality
+is opt-in and a proxy must also select `hashCode`. JS arithmetic and JS Map/Set retain
+their language semantics. Generated proxy classes share `FlaxProxyBase` and prototype
+installers rather than repeating forwarding bodies. Widget, State, Route and Page
+ownership stays with the existing specialized owners. See the
+[shared proxy contract](../../docs/architecture/bindings.md#shared-js-proxy-implementations-and-class-operators).

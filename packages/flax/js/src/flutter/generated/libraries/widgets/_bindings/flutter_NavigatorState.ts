@@ -1,6 +1,11 @@
 // GENERATED CODE. Selected public API subset; do not edit.
 // Regenerate with dart run melos run bindings:generate.
-import { bindingVersion, construct as _flaxHostConstruct, constructProxy as _flaxHostConstructProxy, constructObject as _flaxHostConstructObject, constructDeferredObject as _flaxHostConstructDeferredObject, constructStream as _flaxHostConstructStream, constructAsyncIterableStream as _flaxHostConstructAsyncIterableStream, defineObject as _flaxHostDefineObject, defineStream as _flaxHostDefineStream, invokeObject as _flaxHostInvokeObject, invokeObjectStatic as _flaxHostInvokeObjectStatic, invokeStream as _flaxHostInvokeStream, enumValue as _flaxHostEnumValue, defineContext as _flaxHostDefineContext, defineState as _flaxHostDefineState, contextHandle as _flaxHostContextHandle, invokeStatic as _flaxHostInvokeStatic, invokeInstance as _flaxHostInvokeInstance, invokeTopLevel as _flaxHostInvokeTopLevel, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+import { bindingMethods as _flaxBindingMethods, bindingVersion, construct as _flaxHostConstruct, constructProxy as _flaxHostConstructProxy, constructObject as _flaxHostConstructObject, constructDeferredObject as _flaxHostConstructDeferredObject, constructStream as _flaxHostConstructStream, constructAsyncIterableStream as _flaxHostConstructAsyncIterableStream, defineObject as _flaxHostDefineObject, defineStream as _flaxHostDefineStream, invokeObject as _flaxHostInvokeObject, invokeObjectStatic as _flaxHostInvokeObjectStatic, invokeStream as _flaxHostInvokeStream, enumValue as _flaxHostEnumValue, defineContext as _flaxHostDefineContext, defineState as _flaxHostDefineState, contextHandle as _flaxHostContextHandle, invokeStatic as _flaxHostInvokeStatic, invokeInstance as _flaxHostInvokeInstance, invokeTopLevel as _flaxHostInvokeTopLevel, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+const _flaxMemberParameters0 = [{"name":"route","required":true,"positional":true}] as const;
+const _flaxMemberParameters1 = [{"name":"routeName","required":true,"positional":true},{"name":"arguments","required":false,"positional":false}] as const;
+const _flaxMemberParameters2 = [{"name":"newRoute","required":true,"positional":true},{"name":"result","required":false,"positional":false}] as const;
+const _flaxMemberParameters3 = [{"name":"result","required":false,"positional":true}] as const;
+const _flaxMemberParameters4 = [] as const;
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_Route';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface NavigatorState { readonly __NavigatorState: unique symbol;
@@ -12,35 +17,4 @@ pop<T extends NavigationData | null = NavigationData | null>(result?: T | null):
 maybePop<T extends NavigationData | null = NavigationData | null>(result?: T | null): Promise<boolean>;
 canPop(): boolean;
 }
-defineState("flax.core/flutter#type:NavigatorState", ["mounted"], {push(this: object, route: upstream0.Route<unknown | null>): Promise<NavigationData | null> {
-if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeInstance(this, "flax.core/flutter#type:NavigatorState", "push", [route]);
-return _flaxResult as Promise<NavigationData | null>;
-},
-pushNamed(this: object, routeName: string, options: { arguments?: NavigationData | null | undefined } = {}): Promise<NavigationData | null> {
-if (arguments.length > 2) throw new TypeError('Too many method arguments');
-if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["arguments"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeInstance(this, "flax.core/flutter#type:NavigatorState", "pushNamed", [routeName, options.arguments]);
-return _flaxResult as Promise<NavigationData | null>;
-},
-pushReplacement(this: object, newRoute: upstream0.Route<unknown | null>, options: { result?: NavigationData | null | undefined } = {}): Promise<NavigationData | null> {
-if (arguments.length > 2) throw new TypeError('Too many method arguments');
-if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["result"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeInstance(this, "flax.core/flutter#type:NavigatorState", "pushReplacement", [newRoute, options.result]);
-return _flaxResult as Promise<NavigationData | null>;
-},
-pop(this: object, result?: NavigationData | null): void {
-if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeInstance(this, "flax.core/flutter#type:NavigatorState", "pop", [result]);
-},
-maybePop(this: object, result?: NavigationData | null): Promise<boolean> {
-if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeInstance(this, "flax.core/flutter#type:NavigatorState", "maybePop", [result]);
-return _flaxResult as Promise<boolean>;
-},
-canPop(this: object): boolean {
-if (arguments.length > 0) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeInstance(this, "flax.core/flutter#type:NavigatorState", "canPop", []);
-return _flaxResult as boolean;
-},
-});
+defineState("flax.core/flutter#type:NavigatorState", ["mounted"], _flaxBindingMethods("flax.core/flutter#type:NavigatorState", "state", {"push":_flaxMemberParameters0,"pushNamed":_flaxMemberParameters1,"pushReplacement":_flaxMemberParameters2,"pop":_flaxMemberParameters3,"maybePop":_flaxMemberParameters3,"canPop":_flaxMemberParameters4}));

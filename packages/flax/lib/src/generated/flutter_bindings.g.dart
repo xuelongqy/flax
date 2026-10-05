@@ -1913,7 +1913,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isStreamSubscription,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:StreamController",
@@ -2321,7 +2320,6 @@ const flutterBindings = FlaxBindingModule(
       ],
       matches: _isStreamController,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:SynchronousStreamController",
@@ -2607,7 +2605,6 @@ const flutterBindings = FlaxBindingModule(
       ],
       matches: _isSynchronousStreamController,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:MultiStreamController",
@@ -2938,7 +2935,6 @@ const flutterBindings = FlaxBindingModule(
       ],
       matches: _isMultiStreamController,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:Duration",
@@ -3012,12 +3008,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isDuration,
       methods: {},
-      staticGetters: {
-        "zero": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
-          _Duration_static_zero,
-        ),
-      },
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:DateTime",
@@ -3058,7 +3048,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isDateTime,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:Uri",
@@ -3103,7 +3092,6 @@ const flutterBindings = FlaxBindingModule(
           _Uri_parse,
         ),
       },
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:StringBuffer",
@@ -3148,7 +3136,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isStringBuffer,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:StackTrace",
@@ -3169,16 +3156,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isStackTrace,
       methods: {},
-      staticGetters: {
-        "current": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:StackTrace"),
-          _StackTrace_static_current,
-        ),
-        "empty": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:StackTrace"),
-          _StackTrace_static_empty,
-        ),
-      },
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:Sink",
@@ -3192,7 +3169,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isSink,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:EventSink",
@@ -3330,7 +3306,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isEventSink,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:StreamConsumer",
@@ -3443,7 +3418,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isStreamConsumer,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:StreamSink",
@@ -3549,7 +3523,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isStreamSink,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:StreamTransformer",
@@ -3882,7 +3855,6 @@ const flutterBindings = FlaxBindingModule(
           _StreamTransformer_castFrom,
         ),
       },
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:StreamTransformerBase",
@@ -3935,27 +3907,6 @@ const flutterBindings = FlaxBindingModule(
       constructors: {
         "@implementation": [
           FlaxParameter(
-            "@call:cast",
-            FlaxTypeRef(
-              "callback",
-              nullable: true,
-              callback: FlaxCallbackBinding(
-                [],
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/flutter#type:StreamTransformer",
-                ),
-                _callback75,
-                id: "callback:<RS:any?:=any?:,RT:any?:=any?:>()->object:flax.core/flutter#type:StreamTransformer<Object?,Object?><any?:,any?:>",
-                invoke: _callback75Invoke,
-                matches: _callback75Matches,
-              ),
-            ),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: true,
-          ),
-          FlaxParameter(
             "@call:bind",
             FlaxTypeRef(
               "callback",
@@ -3987,15 +3938,36 @@ const flutterBindings = FlaxBindingModule(
                     _stream0Adapt,
                   ),
                 ),
-                _callback76,
+                _callback75,
                 id: "callback:<>(p:r:stream:stream:flax.core/flutter#type:Stream[any?:])->stream:flax.core/flutter#type:Stream[any?:]",
-                invoke: _callback76Invoke,
-                matches: _callback76Matches,
+                invoke: _callback75Invoke,
+                matches: _callback75Matches,
               ),
             ),
             required: true,
             defaultValue: null,
             omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "@call:cast",
+            FlaxTypeRef(
+              "callback",
+              nullable: true,
+              callback: FlaxCallbackBinding(
+                [],
+                FlaxTypeRef(
+                  "object",
+                  id: "flax.core/flutter#type:StreamTransformer",
+                ),
+                _callback76,
+                id: "callback:<RS:any?:=any?:,RT:any?:=any?:>()->object:flax.core/flutter#type:StreamTransformer<Object?,Object?><any?:,any?:>",
+                invoke: _callback76Invoke,
+                matches: _callback76Matches,
+              ),
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: true,
           ),
         ],
       },
@@ -4009,7 +3981,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isStreamTransformerBase,
       methods: {},
-      staticGetters: {},
     ),
     FlaxStreamTypeBinding(
       "flax.core/flutter#type:StreamView",
@@ -5385,7 +5356,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isStreamIterator,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:AsyncSnapshot",
@@ -5489,7 +5459,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isAsyncSnapshot,
       methods: {},
-      staticGetters: {},
     ),
     FlaxWidgetBinding(
       "flax.core/flutter#type:StreamBuilder",
@@ -5623,7 +5592,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isWidgetStateProperty,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:TickerProvider",
@@ -5637,7 +5605,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isTickerProvider,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:Curve",
@@ -5669,7 +5636,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isCurve,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:Cubic",
@@ -5738,7 +5704,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isCubic,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:Curves",
@@ -5752,28 +5717,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isCurves,
       methods: {},
-      staticGetters: {
-        "linear": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Curve"),
-          _Curves_static_linear,
-        ),
-        "ease": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Cubic"),
-          _Curves_static_ease,
-        ),
-        "easeIn": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Cubic"),
-          _Curves_static_easeIn,
-        ),
-        "easeOut": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Cubic"),
-          _Curves_static_easeOut,
-        ),
-        "easeInOut": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Cubic"),
-          _Curves_static_easeInOut,
-        ),
-      },
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:MouseCursor",
@@ -5790,16 +5733,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isMouseCursor,
       methods: {},
-      staticGetters: {
-        "defer": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:MouseCursor"),
-          _MouseCursor_static_defer,
-        ),
-        "uncontrolled": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:MouseCursor"),
-          _MouseCursor_static_uncontrolled,
-        ),
-      },
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:SystemMouseCursor",
@@ -5817,7 +5750,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isSystemMouseCursor,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:SystemMouseCursors",
@@ -5831,24 +5763,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isSystemMouseCursors,
       methods: {},
-      staticGetters: {
-        "basic": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:SystemMouseCursor"),
-          _SystemMouseCursors_static_basic,
-        ),
-        "click": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:SystemMouseCursor"),
-          _SystemMouseCursors_static_click,
-        ),
-        "text": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:SystemMouseCursor"),
-          _SystemMouseCursors_static_text,
-        ),
-        "forbidden": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:SystemMouseCursor"),
-          _SystemMouseCursors_static_forbidden,
-        ),
-      },
     ),
     FlaxWidgetBinding(
       "flax.core/flutter#type:ValueListenableBuilder",
@@ -6055,7 +5969,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isListenable,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:ValueListenable",
@@ -6212,7 +6125,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isValueListenable,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:FittedSizes",
@@ -6237,7 +6149,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isFittedSizes,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:NavigatorObserver",
@@ -6251,7 +6162,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isNavigatorObserver,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:FlaxNavigatorObserver",
@@ -6268,7 +6178,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isFlaxNavigatorObserver,
       methods: {},
-      staticGetters: {},
     ),
     FlaxWidgetInterfaceBinding(
       "flax.core/flutter#type:PreferredSizeWidget",
@@ -6502,7 +6411,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isDecoration,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:ShapeBorder",
@@ -6516,7 +6424,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isShapeBorder,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:OutlinedBorder",
@@ -6536,7 +6443,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isOutlinedBorder,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:RoundedRectangleBorder",
@@ -6622,7 +6528,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isRoundedRectangleBorder,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:CircleBorder",
@@ -6694,7 +6599,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isCircleBorder,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:StadiumBorder",
@@ -6747,7 +6651,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isStadiumBorder,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:BoxBorder",
@@ -6761,7 +6664,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isBoxBorder,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:BorderRadiusGeometry",
@@ -6775,7 +6677,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isBorderRadiusGeometry,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:EdgeInsetsGeometry",
@@ -6789,7 +6690,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isEdgeInsetsGeometry,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:BoxDecoration",
@@ -6935,7 +6835,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isBoxDecoration,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:BorderSide",
@@ -7044,24 +6943,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isBorderSide,
       methods: {},
-      staticGetters: {
-        "none": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:BorderSide"),
-          _BorderSide_static_none,
-        ),
-        "strokeAlignInside": FlaxStaticGetter(
-          FlaxTypeRef("double"),
-          _BorderSide_static_strokeAlignInside,
-        ),
-        "strokeAlignCenter": FlaxStaticGetter(
-          FlaxTypeRef("double"),
-          _BorderSide_static_strokeAlignCenter,
-        ),
-        "strokeAlignOutside": FlaxStaticGetter(
-          FlaxTypeRef("double"),
-          _BorderSide_static_strokeAlignOutside,
-        ),
-      },
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:Border",
@@ -7162,7 +7043,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isBorder,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:BorderDirectional",
@@ -7237,7 +7117,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isBorderDirectional,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:Radius",
@@ -7280,12 +7159,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isRadius,
       methods: {},
-      staticGetters: {
-        "zero": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Radius"),
-          _Radius_static_zero,
-        ),
-      },
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:BorderRadius",
@@ -7424,12 +7297,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isBorderRadius,
       methods: {},
-      staticGetters: {
-        "zero": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:BorderRadius"),
-          _BorderRadius_static_zero,
-        ),
-      },
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:BorderRadiusDirectional",
@@ -7516,15 +7383,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isBorderRadiusDirectional,
       methods: {},
-      staticGetters: {
-        "zero": FlaxStaticGetter(
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:BorderRadiusDirectional",
-          ),
-          _BorderRadiusDirectional_static_zero,
-        ),
-      },
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:EdgeInsetsDirectional",
@@ -7640,15 +7498,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isEdgeInsetsDirectional,
       methods: {},
-      staticGetters: {
-        "zero": FlaxStaticGetter(
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:EdgeInsetsDirectional",
-          ),
-          _EdgeInsetsDirectional_static_zero,
-        ),
-      },
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:AlignmentGeometry",
@@ -7662,7 +7511,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isAlignmentGeometry,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:Alignment",
@@ -7699,44 +7547,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isAlignment,
       methods: {},
-      staticGetters: {
-        "topLeft": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Alignment"),
-          _Alignment_static_topLeft,
-        ),
-        "topCenter": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Alignment"),
-          _Alignment_static_topCenter,
-        ),
-        "topRight": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Alignment"),
-          _Alignment_static_topRight,
-        ),
-        "centerLeft": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Alignment"),
-          _Alignment_static_centerLeft,
-        ),
-        "center": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Alignment"),
-          _Alignment_static_center,
-        ),
-        "centerRight": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Alignment"),
-          _Alignment_static_centerRight,
-        ),
-        "bottomLeft": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Alignment"),
-          _Alignment_static_bottomLeft,
-        ),
-        "bottomCenter": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Alignment"),
-          _Alignment_static_bottomCenter,
-        ),
-        "bottomRight": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Alignment"),
-          _Alignment_static_bottomRight,
-        ),
-      },
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:AlignmentDirectional",
@@ -7773,71 +7583,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isAlignmentDirectional,
       methods: {},
-      staticGetters: {
-        "topStart": FlaxStaticGetter(
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:AlignmentDirectional",
-          ),
-          _AlignmentDirectional_static_topStart,
-        ),
-        "topCenter": FlaxStaticGetter(
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:AlignmentDirectional",
-          ),
-          _AlignmentDirectional_static_topCenter,
-        ),
-        "topEnd": FlaxStaticGetter(
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:AlignmentDirectional",
-          ),
-          _AlignmentDirectional_static_topEnd,
-        ),
-        "centerStart": FlaxStaticGetter(
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:AlignmentDirectional",
-          ),
-          _AlignmentDirectional_static_centerStart,
-        ),
-        "center": FlaxStaticGetter(
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:AlignmentDirectional",
-          ),
-          _AlignmentDirectional_static_center,
-        ),
-        "centerEnd": FlaxStaticGetter(
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:AlignmentDirectional",
-          ),
-          _AlignmentDirectional_static_centerEnd,
-        ),
-        "bottomStart": FlaxStaticGetter(
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:AlignmentDirectional",
-          ),
-          _AlignmentDirectional_static_bottomStart,
-        ),
-        "bottomCenter": FlaxStaticGetter(
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:AlignmentDirectional",
-          ),
-          _AlignmentDirectional_static_bottomCenter,
-        ),
-        "bottomEnd": FlaxStaticGetter(
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:AlignmentDirectional",
-          ),
-          _AlignmentDirectional_static_bottomEnd,
-        ),
-      },
     ),
     FlaxWidgetBinding(
       "flax.core/flutter#type:Expanded",
@@ -8182,7 +7927,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isColor,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:ImageFilter",
@@ -8261,7 +8005,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isImageFilter,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:FontWeight",
@@ -8285,52 +8028,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isFontWeight,
       methods: {},
-      staticGetters: {
-        "w100": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:FontWeight"),
-          _FontWeight_static_w100,
-        ),
-        "w200": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:FontWeight"),
-          _FontWeight_static_w200,
-        ),
-        "w300": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:FontWeight"),
-          _FontWeight_static_w300,
-        ),
-        "w400": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:FontWeight"),
-          _FontWeight_static_w400,
-        ),
-        "w500": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:FontWeight"),
-          _FontWeight_static_w500,
-        ),
-        "w600": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:FontWeight"),
-          _FontWeight_static_w600,
-        ),
-        "w700": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:FontWeight"),
-          _FontWeight_static_w700,
-        ),
-        "w800": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:FontWeight"),
-          _FontWeight_static_w800,
-        ),
-        "w900": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:FontWeight"),
-          _FontWeight_static_w900,
-        ),
-        "normal": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:FontWeight"),
-          _FontWeight_static_normal,
-        ),
-        "bold": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:FontWeight"),
-          _FontWeight_static_bold,
-        ),
-      },
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:TextStyle",
@@ -8574,7 +8271,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isTextStyle,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:Key",
@@ -8588,7 +8284,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isKey,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:LocalKey",
@@ -8602,7 +8297,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isLocalKey,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:TextEditingController",
@@ -8740,7 +8434,6 @@ const flutterBindings = FlaxBindingModule(
       ],
       matches: _isTextEditingController,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:TextEditingValue",
@@ -8832,12 +8525,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isTextEditingValue,
       methods: {},
-      staticGetters: {
-        "empty": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:TextEditingValue"),
-          _TextEditingValue_static_empty,
-        ),
-      },
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:TextSelection",
@@ -8968,7 +8655,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isTextSelection,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:TextRange",
@@ -9018,12 +8704,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isTextRange,
       methods: {},
-      staticGetters: {
-        "empty": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:TextRange"),
-          _TextRange_static_empty,
-        ),
-      },
     ),
     FlaxWidgetBinding(
       "flax.core/flutter#type:Navigator",
@@ -9377,7 +9057,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isRouteSettings,
       methods: {},
-      staticGetters: {},
     ),
     FlaxWidgetBinding(
       "flax.core/flutter#type:NavigatorPopHandler",
@@ -9665,7 +9344,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isSize,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:SchedulerBinding",
@@ -9692,12 +9370,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isSchedulerBinding,
       methods: {},
-      staticGetters: {
-        "instance": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:SchedulerBinding"),
-          _SchedulerBinding_static_instance,
-        ),
-      },
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:BoxConstraints",
@@ -9790,7 +9462,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isBoxConstraints,
       methods: {},
-      staticGetters: {},
     ),
     FlaxMemberBinding("flax.core/flutter#type:Directionality", {
       "of": FlaxStaticMethod(
@@ -10331,12 +10002,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isEdgeInsets,
       methods: {},
-      staticGetters: {
-        "zero": FlaxStaticGetter(
-          FlaxTypeRef("object", id: "flax.core/flutter#type:EdgeInsets"),
-          _EdgeInsets_static_zero,
-        ),
-      },
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:ValueKey",
@@ -10370,7 +10035,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isValueKey,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:ScrollController",
@@ -10520,7 +10184,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isScrollController,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:ScrollPhysics",
@@ -10558,7 +10221,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isScrollPhysics,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:ClampingScrollPhysics",
@@ -10596,7 +10258,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isClampingScrollPhysics,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:BouncingScrollPhysics",
@@ -10634,7 +10295,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isBouncingScrollPhysics,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:AlwaysScrollableScrollPhysics",
@@ -10672,7 +10332,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isAlwaysScrollableScrollPhysics,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:NeverScrollableScrollPhysics",
@@ -10710,7 +10369,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isNeverScrollableScrollPhysics,
       methods: {},
-      staticGetters: {},
     ),
     FlaxWidgetBinding(
       "flax.core/flutter#type:ListView",
@@ -11143,7 +10801,6 @@ const flutterBindings = FlaxBindingModule(
       ],
       matches: _isFocusNode,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:TextInputFormatter",
@@ -11199,7 +10856,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isTextInputFormatter,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:FilteringTextInputFormatter",
@@ -11272,22 +10928,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isFilteringTextInputFormatter,
       methods: {},
-      staticGetters: {
-        "digitsOnly": FlaxStaticGetter(
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:TextInputFormatter",
-          ),
-          _FilteringTextInputFormatter_static_digitsOnly,
-        ),
-        "singleLineFormatter": FlaxStaticGetter(
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:TextInputFormatter",
-          ),
-          _FilteringTextInputFormatter_static_singleLineFormatter,
-        ),
-      },
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:LengthLimitingTextInputFormatter",
@@ -11325,7 +10965,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isLengthLimitingTextInputFormatter,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:Pattern",
@@ -11339,7 +10978,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isPattern,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:RegExp",
@@ -11391,7 +11029,6 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isRegExp,
       methods: {},
-      staticGetters: {},
     ),
     FlaxWidgetBinding(
       "flax.core/flutter#type:Listener",
@@ -13004,6 +12641,351 @@ const flutterBindings = FlaxBindingModule(
       FlaxTypeRef("object", id: "flax.core/flutter#type:FittedSizes"),
       _function_applyBoxFit,
     ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:Duration.zero",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
+      _Duration_static_get_zero,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:StackTrace.current",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:StackTrace"),
+      _StackTrace_static_get_current,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:StackTrace.empty",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:StackTrace"),
+      _StackTrace_static_get_empty,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:Curves.linear",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:Curve"),
+      _Curves_static_get_linear,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:Curves.ease",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:Cubic"),
+      _Curves_static_get_ease,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:Curves.easeIn",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:Cubic"),
+      _Curves_static_get_easeIn,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:Curves.easeOut",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:Cubic"),
+      _Curves_static_get_easeOut,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:Curves.easeInOut",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:Cubic"),
+      _Curves_static_get_easeInOut,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:MouseCursor.defer",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:MouseCursor"),
+      _MouseCursor_static_get_defer,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:MouseCursor.uncontrolled",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:MouseCursor"),
+      _MouseCursor_static_get_uncontrolled,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:SystemMouseCursors.basic",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:SystemMouseCursor"),
+      _SystemMouseCursors_static_get_basic,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:SystemMouseCursors.click",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:SystemMouseCursor"),
+      _SystemMouseCursors_static_get_click,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:SystemMouseCursors.text",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:SystemMouseCursor"),
+      _SystemMouseCursors_static_get_text,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:SystemMouseCursors.forbidden",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:SystemMouseCursor"),
+      _SystemMouseCursors_static_get_forbidden,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:BorderSide.none",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:BorderSide"),
+      _BorderSide_static_get_none,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:BorderSide.strokeAlignInside",
+      [],
+      FlaxTypeRef("double"),
+      _BorderSide_static_get_strokeAlignInside,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:BorderSide.strokeAlignCenter",
+      [],
+      FlaxTypeRef("double"),
+      _BorderSide_static_get_strokeAlignCenter,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:BorderSide.strokeAlignOutside",
+      [],
+      FlaxTypeRef("double"),
+      _BorderSide_static_get_strokeAlignOutside,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:Radius.zero",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:Radius"),
+      _Radius_static_get_zero,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:BorderRadius.zero",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:BorderRadius"),
+      _BorderRadius_static_get_zero,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:BorderRadiusDirectional.zero",
+      [],
+      FlaxTypeRef(
+        "object",
+        id: "flax.core/flutter#type:BorderRadiusDirectional",
+      ),
+      _BorderRadiusDirectional_static_get_zero,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:EdgeInsetsDirectional.zero",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:EdgeInsetsDirectional"),
+      _EdgeInsetsDirectional_static_get_zero,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:Alignment.topLeft",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:Alignment"),
+      _Alignment_static_get_topLeft,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:Alignment.topCenter",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:Alignment"),
+      _Alignment_static_get_topCenter,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:Alignment.topRight",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:Alignment"),
+      _Alignment_static_get_topRight,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:Alignment.centerLeft",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:Alignment"),
+      _Alignment_static_get_centerLeft,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:Alignment.center",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:Alignment"),
+      _Alignment_static_get_center,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:Alignment.centerRight",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:Alignment"),
+      _Alignment_static_get_centerRight,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:Alignment.bottomLeft",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:Alignment"),
+      _Alignment_static_get_bottomLeft,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:Alignment.bottomCenter",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:Alignment"),
+      _Alignment_static_get_bottomCenter,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:Alignment.bottomRight",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:Alignment"),
+      _Alignment_static_get_bottomRight,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:AlignmentDirectional.topStart",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:AlignmentDirectional"),
+      _AlignmentDirectional_static_get_topStart,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:AlignmentDirectional.topCenter",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:AlignmentDirectional"),
+      _AlignmentDirectional_static_get_topCenter,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:AlignmentDirectional.topEnd",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:AlignmentDirectional"),
+      _AlignmentDirectional_static_get_topEnd,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:AlignmentDirectional.centerStart",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:AlignmentDirectional"),
+      _AlignmentDirectional_static_get_centerStart,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:AlignmentDirectional.center",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:AlignmentDirectional"),
+      _AlignmentDirectional_static_get_center,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:AlignmentDirectional.centerEnd",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:AlignmentDirectional"),
+      _AlignmentDirectional_static_get_centerEnd,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:AlignmentDirectional.bottomStart",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:AlignmentDirectional"),
+      _AlignmentDirectional_static_get_bottomStart,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:AlignmentDirectional.bottomCenter",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:AlignmentDirectional"),
+      _AlignmentDirectional_static_get_bottomCenter,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:AlignmentDirectional.bottomEnd",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:AlignmentDirectional"),
+      _AlignmentDirectional_static_get_bottomEnd,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:FontWeight.w100",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:FontWeight"),
+      _FontWeight_static_get_w100,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:FontWeight.w200",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:FontWeight"),
+      _FontWeight_static_get_w200,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:FontWeight.w300",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:FontWeight"),
+      _FontWeight_static_get_w300,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:FontWeight.w400",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:FontWeight"),
+      _FontWeight_static_get_w400,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:FontWeight.w500",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:FontWeight"),
+      _FontWeight_static_get_w500,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:FontWeight.w600",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:FontWeight"),
+      _FontWeight_static_get_w600,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:FontWeight.w700",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:FontWeight"),
+      _FontWeight_static_get_w700,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:FontWeight.w800",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:FontWeight"),
+      _FontWeight_static_get_w800,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:FontWeight.w900",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:FontWeight"),
+      _FontWeight_static_get_w900,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:FontWeight.normal",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:FontWeight"),
+      _FontWeight_static_get_normal,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:FontWeight.bold",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:FontWeight"),
+      _FontWeight_static_get_bold,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:TextEditingValue.empty",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:TextEditingValue"),
+      _TextEditingValue_static_get_empty,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:TextRange.empty",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:TextRange"),
+      _TextRange_static_get_empty,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:SchedulerBinding.instance",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:SchedulerBinding"),
+      _SchedulerBinding_static_get_instance,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:EdgeInsets.zero",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:EdgeInsets"),
+      _EdgeInsets_static_get_zero,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:FilteringTextInputFormatter.digitsOnly",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:TextInputFormatter"),
+      _FilteringTextInputFormatter_static_get_digitsOnly,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:FilteringTextInputFormatter.singleLineFormatter",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:TextInputFormatter"),
+      _FilteringTextInputFormatter_static_get_singleLineFormatter,
+    ),
   ],
   moduleId: "flax.core/flutter",
   dependencyModules: [],
@@ -13653,7 +13635,8 @@ Object? _Duration_inMilliseconds(Object value) =>
     (value as api1.Duration).inMilliseconds;
 Object? _Duration_inMicroseconds(Object value) =>
     (value as api1.Duration).inMicroseconds;
-Object? _Duration_static_zero() => api1.Duration.zero;
+Object? _Duration_static_get_zero(Map<String, Object?> values) =>
+    api1.Duration.zero;
 Object _createDuration(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
@@ -13730,8 +13713,10 @@ Object _createStringBuffer(String ctor, Map<String, Object?> values) {
 }
 
 bool _isStackTrace(Object value) => value is api1.StackTrace;
-Object? _StackTrace_static_current() => api1.StackTrace.current;
-Object? _StackTrace_static_empty() => api1.StackTrace.empty;
+Object? _StackTrace_static_get_current(Map<String, Object?> values) =>
+    api1.StackTrace.current;
+Object? _StackTrace_static_get_empty(Map<String, Object?> values) =>
+    api1.StackTrace.empty;
 Object? _StackTrace_toString(Object receiver, Map<String, Object?> values) {
   return (receiver as api1.StackTrace).toString();
 }
@@ -13923,11 +13908,11 @@ Object _createStreamTransformerBase(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case '@implementation':
       return _StreamTransformerBaseProxy(
+        values["@call:bind"]
+            as api3.Stream<Object?> Function(api3.Stream<Object?> stream),
         values["@call:cast"]
             as api3.StreamTransformer<RS, RT>
             Function<RS extends Object?, RT extends Object?>()?,
-        values["@call:bind"]
-            as api3.Stream<Object?> Function(api3.Stream<Object?> stream),
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -14294,26 +14279,35 @@ Object _createCubic(String ctor, Map<String, Object?> values) {
 }
 
 bool _isCurves(Object value) => value is api.Curves;
-Object? _Curves_static_linear() => api.Curves.linear;
-Object? _Curves_static_ease() => api.Curves.ease;
-Object? _Curves_static_easeIn() => api.Curves.easeIn;
-Object? _Curves_static_easeOut() => api.Curves.easeOut;
-Object? _Curves_static_easeInOut() => api.Curves.easeInOut;
+Object? _Curves_static_get_linear(Map<String, Object?> values) =>
+    api.Curves.linear;
+Object? _Curves_static_get_ease(Map<String, Object?> values) => api.Curves.ease;
+Object? _Curves_static_get_easeIn(Map<String, Object?> values) =>
+    api.Curves.easeIn;
+Object? _Curves_static_get_easeOut(Map<String, Object?> values) =>
+    api.Curves.easeOut;
+Object? _Curves_static_get_easeInOut(Map<String, Object?> values) =>
+    api.Curves.easeInOut;
 Object _createCurves(String ctor, Map<String, Object?> values) =>
     throw ArgumentError('Abstract object has no constructor');
 bool _isMouseCursor(Object value) => value is api.MouseCursor;
-Object? _MouseCursor_static_defer() => api.MouseCursor.defer;
-Object? _MouseCursor_static_uncontrolled() => api.MouseCursor.uncontrolled;
+Object? _MouseCursor_static_get_defer(Map<String, Object?> values) =>
+    api.MouseCursor.defer;
+Object? _MouseCursor_static_get_uncontrolled(Map<String, Object?> values) =>
+    api.MouseCursor.uncontrolled;
 Object _createMouseCursor(String ctor, Map<String, Object?> values) =>
     throw ArgumentError('Abstract object has no constructor');
 bool _isSystemMouseCursor(Object value) => value is api4.SystemMouseCursor;
 Object _createSystemMouseCursor(String ctor, Map<String, Object?> values) =>
     throw ArgumentError('Abstract object has no constructor');
 bool _isSystemMouseCursors(Object value) => value is api.SystemMouseCursors;
-Object? _SystemMouseCursors_static_basic() => api.SystemMouseCursors.basic;
-Object? _SystemMouseCursors_static_click() => api.SystemMouseCursors.click;
-Object? _SystemMouseCursors_static_text() => api.SystemMouseCursors.text;
-Object? _SystemMouseCursors_static_forbidden() =>
+Object? _SystemMouseCursors_static_get_basic(Map<String, Object?> values) =>
+    api.SystemMouseCursors.basic;
+Object? _SystemMouseCursors_static_get_click(Map<String, Object?> values) =>
+    api.SystemMouseCursors.click;
+Object? _SystemMouseCursors_static_get_text(Map<String, Object?> values) =>
+    api.SystemMouseCursors.text;
+Object? _SystemMouseCursors_static_get_forbidden(Map<String, Object?> values) =>
     api.SystemMouseCursors.forbidden;
 Object _createSystemMouseCursors(String ctor, Map<String, Object?> values) =>
     throw ArgumentError('Abstract object has no constructor');
@@ -14678,13 +14672,15 @@ Object? _BorderSide_width(Object value) => (value as api.BorderSide).width;
 Object? _BorderSide_style(Object value) => (value as api.BorderSide).style;
 Object? _BorderSide_strokeAlign(Object value) =>
     (value as api.BorderSide).strokeAlign;
-Object? _BorderSide_static_none() => api.BorderSide.none;
-Object? _BorderSide_static_strokeAlignInside() =>
+Object? _BorderSide_static_get_none(Map<String, Object?> values) =>
+    api.BorderSide.none;
+Object? _BorderSide_static_get_strokeAlignInside(Map<String, Object?> values) =>
     api.BorderSide.strokeAlignInside;
-Object? _BorderSide_static_strokeAlignCenter() =>
+Object? _BorderSide_static_get_strokeAlignCenter(Map<String, Object?> values) =>
     api.BorderSide.strokeAlignCenter;
-Object? _BorderSide_static_strokeAlignOutside() =>
-    api.BorderSide.strokeAlignOutside;
+Object? _BorderSide_static_get_strokeAlignOutside(
+  Map<String, Object?> values,
+) => api.BorderSide.strokeAlignOutside;
 Object? _BorderSide_copyWith(Object receiver, Map<String, Object?> values) {
   return (receiver as api.BorderSide).copyWith(
     color: values["color"] as api.Color?,
@@ -14939,7 +14935,7 @@ Object _createBorderDirectional(String ctor, Map<String, Object?> values) {
 bool _isRadius(Object value) => value is api.Radius;
 Object? _Radius_x(Object value) => (value as api.Radius).x;
 Object? _Radius_y(Object value) => (value as api.Radius).y;
-Object? _Radius_static_zero() => api.Radius.zero;
+Object? _Radius_static_get_zero(Map<String, Object?> values) => api.Radius.zero;
 Object _createRadius(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "circular":
@@ -14963,7 +14959,8 @@ Object? _BorderRadius_bottomLeft(Object value) =>
     (value as api.BorderRadius).bottomLeft;
 Object? _BorderRadius_bottomRight(Object value) =>
     (value as api.BorderRadius).bottomRight;
-Object? _BorderRadius_static_zero() => api.BorderRadius.zero;
+Object? _BorderRadius_static_get_zero(Map<String, Object?> values) =>
+    api.BorderRadius.zero;
 Object? _BorderRadius_copyWith(Object receiver, Map<String, Object?> values) {
   return (receiver as api.BorderRadius).copyWith(
     bottomLeft: values["bottomLeft"] as api.Radius?,
@@ -15088,7 +15085,7 @@ Object? _BorderRadiusDirectional_bottomStart(Object value) =>
     (value as api.BorderRadiusDirectional).bottomStart;
 Object? _BorderRadiusDirectional_bottomEnd(Object value) =>
     (value as api.BorderRadiusDirectional).bottomEnd;
-Object? _BorderRadiusDirectional_static_zero() =>
+Object? _BorderRadiusDirectional_static_get_zero(Map<String, Object?> values) =>
     api.BorderRadiusDirectional.zero;
 Object _createBorderRadiusDirectional(
   String ctor,
@@ -15208,7 +15205,8 @@ Object? _EdgeInsetsDirectional_end(Object value) =>
     (value as api.EdgeInsetsDirectional).end;
 Object? _EdgeInsetsDirectional_bottom(Object value) =>
     (value as api.EdgeInsetsDirectional).bottom;
-Object? _EdgeInsetsDirectional_static_zero() => api.EdgeInsetsDirectional.zero;
+Object? _EdgeInsetsDirectional_static_get_zero(Map<String, Object?> values) =>
+    api.EdgeInsetsDirectional.zero;
 Object _createEdgeInsetsDirectional(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "fromSTEB":
@@ -15243,15 +15241,24 @@ Object _createAlignmentGeometry(String ctor, Map<String, Object?> values) =>
 bool _isAlignment(Object value) => value is api.Alignment;
 Object? _Alignment_x(Object value) => (value as api.Alignment).x;
 Object? _Alignment_y(Object value) => (value as api.Alignment).y;
-Object? _Alignment_static_topLeft() => api.Alignment.topLeft;
-Object? _Alignment_static_topCenter() => api.Alignment.topCenter;
-Object? _Alignment_static_topRight() => api.Alignment.topRight;
-Object? _Alignment_static_centerLeft() => api.Alignment.centerLeft;
-Object? _Alignment_static_center() => api.Alignment.center;
-Object? _Alignment_static_centerRight() => api.Alignment.centerRight;
-Object? _Alignment_static_bottomLeft() => api.Alignment.bottomLeft;
-Object? _Alignment_static_bottomCenter() => api.Alignment.bottomCenter;
-Object? _Alignment_static_bottomRight() => api.Alignment.bottomRight;
+Object? _Alignment_static_get_topLeft(Map<String, Object?> values) =>
+    api.Alignment.topLeft;
+Object? _Alignment_static_get_topCenter(Map<String, Object?> values) =>
+    api.Alignment.topCenter;
+Object? _Alignment_static_get_topRight(Map<String, Object?> values) =>
+    api.Alignment.topRight;
+Object? _Alignment_static_get_centerLeft(Map<String, Object?> values) =>
+    api.Alignment.centerLeft;
+Object? _Alignment_static_get_center(Map<String, Object?> values) =>
+    api.Alignment.center;
+Object? _Alignment_static_get_centerRight(Map<String, Object?> values) =>
+    api.Alignment.centerRight;
+Object? _Alignment_static_get_bottomLeft(Map<String, Object?> values) =>
+    api.Alignment.bottomLeft;
+Object? _Alignment_static_get_bottomCenter(Map<String, Object?> values) =>
+    api.Alignment.bottomCenter;
+Object? _Alignment_static_get_bottomRight(Map<String, Object?> values) =>
+    api.Alignment.bottomRight;
 Object _createAlignment(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
@@ -15266,24 +15273,31 @@ Object? _AlignmentDirectional_start(Object value) =>
     (value as api.AlignmentDirectional).start;
 Object? _AlignmentDirectional_y(Object value) =>
     (value as api.AlignmentDirectional).y;
-Object? _AlignmentDirectional_static_topStart() =>
-    api.AlignmentDirectional.topStart;
-Object? _AlignmentDirectional_static_topCenter() =>
-    api.AlignmentDirectional.topCenter;
-Object? _AlignmentDirectional_static_topEnd() =>
+Object? _AlignmentDirectional_static_get_topStart(
+  Map<String, Object?> values,
+) => api.AlignmentDirectional.topStart;
+Object? _AlignmentDirectional_static_get_topCenter(
+  Map<String, Object?> values,
+) => api.AlignmentDirectional.topCenter;
+Object? _AlignmentDirectional_static_get_topEnd(Map<String, Object?> values) =>
     api.AlignmentDirectional.topEnd;
-Object? _AlignmentDirectional_static_centerStart() =>
-    api.AlignmentDirectional.centerStart;
-Object? _AlignmentDirectional_static_center() =>
+Object? _AlignmentDirectional_static_get_centerStart(
+  Map<String, Object?> values,
+) => api.AlignmentDirectional.centerStart;
+Object? _AlignmentDirectional_static_get_center(Map<String, Object?> values) =>
     api.AlignmentDirectional.center;
-Object? _AlignmentDirectional_static_centerEnd() =>
-    api.AlignmentDirectional.centerEnd;
-Object? _AlignmentDirectional_static_bottomStart() =>
-    api.AlignmentDirectional.bottomStart;
-Object? _AlignmentDirectional_static_bottomCenter() =>
-    api.AlignmentDirectional.bottomCenter;
-Object? _AlignmentDirectional_static_bottomEnd() =>
-    api.AlignmentDirectional.bottomEnd;
+Object? _AlignmentDirectional_static_get_centerEnd(
+  Map<String, Object?> values,
+) => api.AlignmentDirectional.centerEnd;
+Object? _AlignmentDirectional_static_get_bottomStart(
+  Map<String, Object?> values,
+) => api.AlignmentDirectional.bottomStart;
+Object? _AlignmentDirectional_static_get_bottomCenter(
+  Map<String, Object?> values,
+) => api.AlignmentDirectional.bottomCenter;
+Object? _AlignmentDirectional_static_get_bottomEnd(
+  Map<String, Object?> values,
+) => api.AlignmentDirectional.bottomEnd;
 Object _createAlignmentDirectional(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
@@ -15501,17 +15515,28 @@ Object _createImageFilter(String ctor, Map<String, Object?> values) {
 
 bool _isFontWeight(Object value) => value is api.FontWeight;
 Object? _FontWeight_value(Object value) => (value as api.FontWeight).value;
-Object? _FontWeight_static_w100() => api.FontWeight.w100;
-Object? _FontWeight_static_w200() => api.FontWeight.w200;
-Object? _FontWeight_static_w300() => api.FontWeight.w300;
-Object? _FontWeight_static_w400() => api.FontWeight.w400;
-Object? _FontWeight_static_w500() => api.FontWeight.w500;
-Object? _FontWeight_static_w600() => api.FontWeight.w600;
-Object? _FontWeight_static_w700() => api.FontWeight.w700;
-Object? _FontWeight_static_w800() => api.FontWeight.w800;
-Object? _FontWeight_static_w900() => api.FontWeight.w900;
-Object? _FontWeight_static_normal() => api.FontWeight.normal;
-Object? _FontWeight_static_bold() => api.FontWeight.bold;
+Object? _FontWeight_static_get_w100(Map<String, Object?> values) =>
+    api.FontWeight.w100;
+Object? _FontWeight_static_get_w200(Map<String, Object?> values) =>
+    api.FontWeight.w200;
+Object? _FontWeight_static_get_w300(Map<String, Object?> values) =>
+    api.FontWeight.w300;
+Object? _FontWeight_static_get_w400(Map<String, Object?> values) =>
+    api.FontWeight.w400;
+Object? _FontWeight_static_get_w500(Map<String, Object?> values) =>
+    api.FontWeight.w500;
+Object? _FontWeight_static_get_w600(Map<String, Object?> values) =>
+    api.FontWeight.w600;
+Object? _FontWeight_static_get_w700(Map<String, Object?> values) =>
+    api.FontWeight.w700;
+Object? _FontWeight_static_get_w800(Map<String, Object?> values) =>
+    api.FontWeight.w800;
+Object? _FontWeight_static_get_w900(Map<String, Object?> values) =>
+    api.FontWeight.w900;
+Object? _FontWeight_static_get_normal(Map<String, Object?> values) =>
+    api.FontWeight.normal;
+Object? _FontWeight_static_get_bold(Map<String, Object?> values) =>
+    api.FontWeight.bold;
 Object _createFontWeight(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
@@ -15662,7 +15687,8 @@ Object? _TextEditingValue_composing(Object value) =>
     (value as api.TextEditingValue).composing;
 Object? _TextEditingValue_isComposingRangeValid(Object value) =>
     (value as api.TextEditingValue).isComposingRangeValid;
-Object? _TextEditingValue_static_empty() => api.TextEditingValue.empty;
+Object? _TextEditingValue_static_get_empty(Map<String, Object?> values) =>
+    api.TextEditingValue.empty;
 Object? _TextEditingValue_copyWith(
   Object receiver,
   Map<String, Object?> values,
@@ -15756,7 +15782,8 @@ Object? _TextRange_isCollapsed(Object value) =>
     (value as api.TextRange).isCollapsed;
 Object? _TextRange_isNormalized(Object value) =>
     (value as api.TextRange).isNormalized;
-Object? _TextRange_static_empty() => api.TextRange.empty;
+Object? _TextRange_static_get_empty(Map<String, Object?> values) =>
+    api.TextRange.empty;
 Object _createTextRange(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
@@ -16042,7 +16069,8 @@ Object _createSize(String ctor, Map<String, Object?> values) {
 bool _isSchedulerBinding(Object value) => value is api7.SchedulerBinding;
 Object? _SchedulerBinding_endOfFrame(Object value) =>
     (value as api7.SchedulerBinding).endOfFrame;
-Object? _SchedulerBinding_static_instance() => api7.SchedulerBinding.instance;
+Object? _SchedulerBinding_static_get_instance(Map<String, Object?> values) =>
+    api7.SchedulerBinding.instance;
 Object _createSchedulerBinding(String ctor, Map<String, Object?> values) =>
     throw ArgumentError('Abstract object has no constructor');
 bool _isBoxConstraints(Object value) => value is api.BoxConstraints;
@@ -16264,7 +16292,8 @@ Object? _EdgeInsets_left(Object value) => (value as api.EdgeInsets).left;
 Object? _EdgeInsets_top(Object value) => (value as api.EdgeInsets).top;
 Object? _EdgeInsets_right(Object value) => (value as api.EdgeInsets).right;
 Object? _EdgeInsets_bottom(Object value) => (value as api.EdgeInsets).bottom;
-Object? _EdgeInsets_static_zero() => api.EdgeInsets.zero;
+Object? _EdgeInsets_static_get_zero(Map<String, Object?> values) =>
+    api.EdgeInsets.zero;
 Object _createEdgeInsets(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "all":
@@ -16606,10 +16635,12 @@ Object _createTextInputFormatter(String ctor, Map<String, Object?> values) {
 
 bool _isFilteringTextInputFormatter(Object value) =>
     value is api4.FilteringTextInputFormatter;
-Object? _FilteringTextInputFormatter_static_digitsOnly() =>
-    api4.FilteringTextInputFormatter.digitsOnly;
-Object? _FilteringTextInputFormatter_static_singleLineFormatter() =>
-    api4.FilteringTextInputFormatter.singleLineFormatter;
+Object? _FilteringTextInputFormatter_static_get_digitsOnly(
+  Map<String, Object?> values,
+) => api4.FilteringTextInputFormatter.digitsOnly;
+Object? _FilteringTextInputFormatter_static_get_singleLineFormatter(
+  Map<String, Object?> values,
+) => api4.FilteringTextInputFormatter.singleLineFormatter;
 Object _createFilteringTextInputFormatter(
   String ctor,
   Map<String, Object?> values,
@@ -17271,11 +17302,16 @@ final class _StreamTransformerProxy
 
 final class _StreamTransformerBaseProxy
     extends api3.StreamTransformerBase<Object?, Object?> {
+  final api3.Stream<Object?> Function(api3.Stream<Object?> stream) _call_bind;
   final api3.StreamTransformer<RS, RT>
   Function<RS extends Object?, RT extends Object?>()?
   _call_cast;
-  final api3.Stream<Object?> Function(api3.Stream<Object?> stream) _call_bind;
-  _StreamTransformerBaseProxy(this._call_cast, this._call_bind);
+  _StreamTransformerBaseProxy(this._call_bind, this._call_cast);
+  @override
+  api3.Stream<Object?> bind(api3.Stream<Object?> stream) {
+    return _call_bind(stream);
+  }
+
   @override
   api3.StreamTransformer<RS, RT>
   cast<RS extends Object?, RT extends Object?>() {
@@ -17288,11 +17324,6 @@ final class _StreamTransformerBaseProxy
   api3.StreamTransformer<RS, RT>
   _flaxSuper_cast<RS extends Object?, RT extends Object?>() {
     return super.cast<RS, RT>();
-  }
-
-  @override
-  api3.Stream<Object?> bind(api3.Stream<Object?> stream) {
-    return _call_bind(stream);
   }
 }
 
@@ -18724,28 +18755,6 @@ Object? _callback74Invoke(
 }
 
 Object _callback75(FlaxCallback _flaxBridgeCallback) =>
-    <RS extends Object?, RT extends Object?>() {
-      final positional = <Object?>[];
-      final named = <String, Object?>{};
-      return _genericCallbackResult<api3.StreamTransformer<RS, RT>>(
-        _flaxBridgeCallback.call(positional, named),
-      );
-    };
-bool _callback75Matches(Object value) =>
-    value
-        is api3.StreamTransformer<RS, RT>
-        Function<RS extends Object?, RT extends Object?>();
-Object? _callback75Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function
-      as api3.StreamTransformer<RS, RT>
-      Function<RS extends Object?, RT extends Object?>())<Object?, Object?>();
-}
-
-Object _callback76(FlaxCallback _flaxBridgeCallback) =>
     (api3.Stream<Object?> p0) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
@@ -18753,9 +18762,9 @@ Object _callback76(FlaxCallback _flaxBridgeCallback) =>
       return _flaxBridgeCallback.call(positional, named)
           as api3.Stream<Object?>;
     };
-bool _callback76Matches(Object value) =>
+bool _callback75Matches(Object value) =>
     value is api3.Stream<Object?> Function(api3.Stream<Object?> stream);
-Object? _callback76Invoke(
+Object? _callback75Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -18764,6 +18773,28 @@ Object? _callback76Invoke(
       as api3.Stream<Object?> Function(api3.Stream<Object?> stream))(
     positional[0] as api3.Stream<Object?>,
   );
+}
+
+Object _callback76(FlaxCallback _flaxBridgeCallback) =>
+    <RS extends Object?, RT extends Object?>() {
+      final positional = <Object?>[];
+      final named = <String, Object?>{};
+      return _genericCallbackResult<api3.StreamTransformer<RS, RT>>(
+        _flaxBridgeCallback.call(positional, named),
+      );
+    };
+bool _callback76Matches(Object value) =>
+    value
+        is api3.StreamTransformer<RS, RT>
+        Function<RS extends Object?, RT extends Object?>();
+Object? _callback76Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  return (function
+      as api3.StreamTransformer<RS, RT>
+      Function<RS extends Object?, RT extends Object?>())<Object?, Object?>();
 }
 
 Object _callback77(FlaxCallback _flaxBridgeCallback) =>
@@ -20206,24 +20237,6 @@ Object? _callback155Invoke(
   );
 }
 
-T _genericCallbackResult<T>(Object? value) {
-  // Test assignability to cover both nullable and non-nullable numeric T.
-  // Broad bounds keep their decoded representation; only the Dart use site
-  // selects a more specific numeric representation.
-  if (value is num && value is! T) {
-    if (0 is T && 0.0 is! T) {
-      if (!value.isFinite ||
-          value.abs() > 9007199254740991 ||
-          value != value.truncateToDouble()) {
-        throw ArgumentError('Expected a safe integer');
-      }
-      return value.toInt() as T;
-    }
-    if (0.0 is T && 0 is! T) return value.toDouble() as T;
-  }
-  return value as T;
-}
-
 Object _collection0Create() => <Object?>[];
 bool _collection0Matches(Object value) => value is Iterable<Object?>;
 Object _collection1Create() => <Object?>[];
@@ -20269,3 +20282,20 @@ api3.Stream<Object?> _stream0Adapt(Object value) =>
 bool _stream1Matches(Object value) => value is api3.Stream<Object?>;
 api3.Stream<Object?> _stream1Adapt(Object value) =>
     value as api3.Stream<Object?>;
+T _genericCallbackResult<T>(Object? value) {
+  // Test assignability to cover both nullable and non-nullable numeric T.
+  // Broad bounds keep their decoded representation; only the Dart use site
+  // selects a more specific numeric representation.
+  if (value is num && value is! T) {
+    if (0 is T && 0.0 is! T) {
+      if (!value.isFinite ||
+          value.abs() > 9007199254740991 ||
+          value != value.truncateToDouble()) {
+        throw ArgumentError('Expected a safe integer');
+      }
+      return value.toInt() as T;
+    }
+    if (0.0 is T && 0 is! T) return value.toDouble() as T;
+  }
+  return value as T;
+}

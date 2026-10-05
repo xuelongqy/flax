@@ -1233,6 +1233,7 @@ Map<String, FlaxCodegenManifestProjection> _selectDirectDependencyProjections({
       final selection = configs[index].classes[type.name];
       if (selection != null && !flaxCodegenIsStateVariantOverlay(selection)) {
         localIds.add(type.id);
+        localIds.addAll(type.staticFunctions.map((operation) => operation.id));
       }
     }
     localIds.addAll(module.functions.map((function) => function.id));
@@ -1501,6 +1502,12 @@ Map<int, List<FlaxCodegenOwnerClaim>> _automaticLocalDependencyClaims({
       final selection = config.classes[type.name];
       if (selection != null && !flaxCodegenIsStateVariantOverlay(selection)) {
         add(type.id, FlaxCodegenDeclarationKind.type);
+        for (final getter in type.staticGetters) {
+          add(type.staticGetterId(getter), FlaxCodegenDeclarationKind.readonly);
+        }
+        for (final setter in type.staticSetters) {
+          add(type.staticSetterId(setter), FlaxCodegenDeclarationKind.function);
+        }
       }
     }
     for (final function in module.functions) {
@@ -1713,6 +1720,35 @@ FlaxCodegenSiblingModuleInput _siblingInput({
   }
 
   final extensionClaims = <FlaxCodegenOwnerClaim>[];
+  for (final type in module.classes) {
+    for (final accessor in [...type.staticGetters, ...type.staticSetters]) {
+      final write = type.staticSetters.contains(accessor);
+      final rawId = write
+          ? type.staticSetterId(accessor)
+          : type.staticGetterId(accessor);
+      final identity = _sourceIdentityFromRawId(
+        rawId,
+        write
+            ? FlaxCodegenDeclarationKind.function
+            : FlaxCodegenDeclarationKind.readonly,
+      );
+      if (identity != null) {
+        extensionClaims.add(
+          FlaxCodegenOwnerClaim(
+            sourceIdentity: identity,
+            location: FlaxCodegenSourceLocation(
+              source: source,
+              offset: 0,
+              line: 1,
+              column: 1,
+              pointer:
+                  '/classes/${type.name}/${write ? 'staticSetters' : 'staticGetters'}/${accessor.name}',
+            ),
+          ),
+        );
+      }
+    }
+  }
   for (final extension in module.extensions.where((e) => !e.isReference)) {
     for (final member in extension.members) {
       final identity = _sourceIdentityFromRawId(
@@ -1810,6 +1846,8 @@ void _walkModuleEncodedIds(
     for (final function in module.callableFunctions) function.id,
   };
   final readonlyIds = {
+    for (final type in module.classes)
+      for (final getter in type.staticGetters) type.staticGetterId(getter),
     for (final getter
         in module.topLevel?.getters ?? <FlaxCodegenTopLevelGetterModel>[])
       getter.id,
@@ -1823,10 +1861,10 @@ void _walkModuleEncodedIds(
         if (key == 'id' && child is String) {
           visit(
             child,
-            functionIds.contains(child)
-                ? FlaxCodegenDeclarationKind.function
-                : readonlyIds.contains(child)
+            readonlyIds.contains(child)
                 ? FlaxCodegenDeclarationKind.readonly
+                : functionIds.contains(child)
+                ? FlaxCodegenDeclarationKind.function
                 : FlaxCodegenDeclarationKind.type,
             childPointer,
           );

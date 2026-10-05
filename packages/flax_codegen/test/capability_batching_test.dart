@@ -9,7 +9,7 @@ void main() {
     final decoded = jsonDecode(
       '{"kind":"object","typeArguments":["num"],'
       '"constructors":{"":["value"]},"getters":["value"],'
-      '"setters":[],"staticGetters":["empty"],'
+      '"setters":[],"staticGetters":["empty"],"staticSetters":["count"],'
       '"instanceMethods":{"echo":["input"]},"methods":{"create":[]}}',
     );
     final selection = selectionFromJson(decoded)!;
@@ -18,6 +18,7 @@ void main() {
     expect(selection.constructors[''], ['value']);
     expect(selection.getters, ['value']);
     expect(selection.staticGetters, ['empty']);
+    expect(selection.staticSetters, ['count']);
     expect(selection.instanceMethods['echo'], ['input']);
     expect(selection.methods['create'], isEmpty);
   });

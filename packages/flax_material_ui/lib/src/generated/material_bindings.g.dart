@@ -2068,7 +2068,6 @@ const materialBindings = FlaxBindingModule(
       setters: [],
       matches: _isButtonStyle,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.material/material#type:VisualDensity",
@@ -2134,29 +2133,6 @@ const materialBindings = FlaxBindingModule(
       setters: [],
       matches: _isVisualDensity,
       methods: {},
-      staticGetters: {
-        "standard": FlaxStaticGetter(
-          FlaxTypeRef(
-            "object",
-            id: "flax.material/material#type:VisualDensity",
-          ),
-          _VisualDensity_static_standard,
-        ),
-        "comfortable": FlaxStaticGetter(
-          FlaxTypeRef(
-            "object",
-            id: "flax.material/material#type:VisualDensity",
-          ),
-          _VisualDensity_static_comfortable,
-        ),
-        "compact": FlaxStaticGetter(
-          FlaxTypeRef(
-            "object",
-            id: "flax.material/material#type:VisualDensity",
-          ),
-          _VisualDensity_static_compact,
-        ),
-      },
     ),
     FlaxWidgetBinding(
       "flax.material/material#type:AppBar",
@@ -2454,7 +2430,6 @@ const materialBindings = FlaxBindingModule(
       setters: [],
       matches: _isThemeData,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.material/material#type:TextTheme",
@@ -2638,7 +2613,6 @@ const materialBindings = FlaxBindingModule(
       setters: [],
       matches: _isTextTheme,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.material/material#type:ColorScheme",
@@ -2793,7 +2767,6 @@ const materialBindings = FlaxBindingModule(
       setters: [],
       matches: _isColorScheme,
       methods: {},
-      staticGetters: {},
     ),
     FlaxObjectBinding(
       "flax.material/material#type:InputDecoration",
@@ -3122,7 +3095,6 @@ const materialBindings = FlaxBindingModule(
       setters: [],
       matches: _isInputDecoration,
       methods: {},
-      staticGetters: {},
     ),
     FlaxWidgetBinding(
       "flax.material/material#type:TextField",
@@ -6205,6 +6177,24 @@ const materialBindings = FlaxBindingModule(
       _function_showDialog,
       route: FlaxRouteCallBinding("context", "useRootNavigator", ["builder"]),
     ),
+    FlaxFunctionBinding(
+      "flax.material/material#read:VisualDensity.standard",
+      [],
+      FlaxTypeRef("object", id: "flax.material/material#type:VisualDensity"),
+      _VisualDensity_static_get_standard,
+    ),
+    FlaxFunctionBinding(
+      "flax.material/material#read:VisualDensity.comfortable",
+      [],
+      FlaxTypeRef("object", id: "flax.material/material#type:VisualDensity"),
+      _VisualDensity_static_get_comfortable,
+    ),
+    FlaxFunctionBinding(
+      "flax.material/material#read:VisualDensity.compact",
+      [],
+      FlaxTypeRef("object", id: "flax.material/material#type:VisualDensity"),
+      _VisualDensity_static_get_compact,
+    ),
   ],
   moduleId: "flax.material/material",
   dependencyModules: ["flax.core/flutter"],
@@ -6494,9 +6484,12 @@ Object? _VisualDensity_horizontal(Object value) =>
     (value as api.VisualDensity).horizontal;
 Object? _VisualDensity_vertical(Object value) =>
     (value as api.VisualDensity).vertical;
-Object? _VisualDensity_static_standard() => api.VisualDensity.standard;
-Object? _VisualDensity_static_comfortable() => api.VisualDensity.comfortable;
-Object? _VisualDensity_static_compact() => api.VisualDensity.compact;
+Object? _VisualDensity_static_get_standard(Map<String, Object?> values) =>
+    api.VisualDensity.standard;
+Object? _VisualDensity_static_get_comfortable(Map<String, Object?> values) =>
+    api.VisualDensity.comfortable;
+Object? _VisualDensity_static_get_compact(Map<String, Object?> values) =>
+    api.VisualDensity.compact;
 Object? _VisualDensity_copyWith(Object receiver, Map<String, Object?> values) {
   return (receiver as api.VisualDensity).copyWith(
     horizontal: values["horizontal"] as double?,

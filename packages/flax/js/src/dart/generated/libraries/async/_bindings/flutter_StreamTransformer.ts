@@ -1,6 +1,8 @@
 // GENERATED CODE. Selected public API subset; do not edit.
 // Regenerate with dart run melos run bindings:generate.
-import { bindingVersion, construct as _flaxHostConstruct, constructProxy as _flaxHostConstructProxy, constructObject as _flaxHostConstructObject, constructDeferredObject as _flaxHostConstructDeferredObject, constructStream as _flaxHostConstructStream, constructAsyncIterableStream as _flaxHostConstructAsyncIterableStream, defineObject as _flaxHostDefineObject, defineStream as _flaxHostDefineStream, invokeObject as _flaxHostInvokeObject, invokeObjectStatic as _flaxHostInvokeObjectStatic, invokeStream as _flaxHostInvokeStream, enumValue as _flaxHostEnumValue, defineContext as _flaxHostDefineContext, defineState as _flaxHostDefineState, contextHandle as _flaxHostContextHandle, invokeStatic as _flaxHostInvokeStatic, invokeInstance as _flaxHostInvokeInstance, invokeTopLevel as _flaxHostInvokeTopLevel, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+import { bindingMethods as _flaxBindingMethods, bindingVersion, construct as _flaxHostConstruct, constructProxy as _flaxHostConstructProxy, constructObject as _flaxHostConstructObject, constructDeferredObject as _flaxHostConstructDeferredObject, constructStream as _flaxHostConstructStream, constructAsyncIterableStream as _flaxHostConstructAsyncIterableStream, defineObject as _flaxHostDefineObject, defineStream as _flaxHostDefineStream, invokeObject as _flaxHostInvokeObject, invokeObjectStatic as _flaxHostInvokeObjectStatic, invokeStream as _flaxHostInvokeStream, enumValue as _flaxHostEnumValue, defineContext as _flaxHostDefineContext, defineState as _flaxHostDefineState, contextHandle as _flaxHostContextHandle, invokeStatic as _flaxHostInvokeStatic, invokeInstance as _flaxHostInvokeInstance, invokeTopLevel as _flaxHostInvokeTopLevel, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+const _flaxMemberParameters0 = [{"name":"stream","required":true,"positional":true}] as const;
+const _flaxMemberParameters1 = [] as const;
 import type * as upstream0 from '@flax/dart/async/_bindings/flutter_StreamSubscription';
 import '@flax/dart/async/_bindings/flutter_StreamSubscription';
 import type * as upstream1 from '@flax/dart/async/_bindings/flutter_Stream';
@@ -13,17 +15,7 @@ export interface StreamTransformer<S extends unknown | null = unknown | null, T 
 bind(stream: upstream1.Stream<S>): upstream1.Stream<T>;
 cast<RS extends unknown | null = unknown | null, RT extends unknown | null = unknown | null>(): StreamTransformer<RS, RT>;
 }
-defineObject("flax.core/flutter#type:StreamTransformer", [], [], {bind(this: object, stream: upstream1.Stream<unknown | null>): upstream1.Stream<unknown | null> {
-if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeObject(this, "flax.core/flutter#type:StreamTransformer", "bind", [stream]);
-return _flaxResult as upstream1.Stream<unknown | null>;
-},
-cast(this: object): StreamTransformer<unknown | null, unknown | null> {
-if (arguments.length > 0) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeObject(this, "flax.core/flutter#type:StreamTransformer", "cast", []);
-return _flaxResult as StreamTransformer<unknown | null, unknown | null>;
-},
-}, []);
+defineObject("flax.core/flutter#type:StreamTransformer", [], [], _flaxBindingMethods("flax.core/flutter#type:StreamTransformer", "object", {"bind":_flaxMemberParameters0,"cast":_flaxMemberParameters1}), []);
 export function StreamTransformer<S extends unknown | null = unknown | null, T extends unknown | null = unknown | null>(onListen: ((stream: upstream1.Stream<S>, cancelOnError: boolean) => Readonly<{ "__flaxBound:dart:async::StreamSubscription": readonly [T] }>)): StreamTransformer<S, T> {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:StreamTransformer", "", [{"name":"onListen","required":true,"positional":true}], [onListen], {}) as StreamTransformer<S, T>;

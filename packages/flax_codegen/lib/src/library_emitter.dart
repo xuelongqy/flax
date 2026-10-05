@@ -426,6 +426,7 @@ extension FlaxCodegenLibraryEmission on FlaxCodegenBindingEmitter {
           type.proxy != null ||
           type.asyncIterableFactory != null ||
           type.staticGetters.isNotEmpty ||
+          type.staticSetters.isNotEmpty ||
           type.methods.any((method) => !method.instance) ||
           type.constructors.any(
             (ctor) => ctor.name.isNotEmpty || type.jsName == null,

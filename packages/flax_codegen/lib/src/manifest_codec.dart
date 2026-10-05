@@ -59,6 +59,7 @@ const _methodKeys = {
   'typeParameters',
   'mustCallSuper',
   'deferredFactory',
+  'operator',
 };
 
 const _proxyKeys = {'kind', 'methods', 'superMethods', 'getters', 'setters'};
@@ -95,6 +96,7 @@ const _classKeys = {
   'getters',
   'setters',
   'staticGetters',
+  'staticSetters',
   'methods',
   'widgetInterfaces',
   'widgetMembers',
@@ -1354,6 +1356,36 @@ FlaxCodegenGetterModel? _decodeGetter(
   return FlaxCodegenGetterModel(name, type, encodeKind: encodeKind);
 }
 
+FlaxCodegenGetterModel? _decodeStaticAccessor(
+  Object? value,
+  FlaxCodegenManifestDiagnostics diagnostics,
+  String pointer,
+  _SlotDecodeScope scope,
+) {
+  final object = FlaxCodegenManifestObject.read(diagnostics, value, pointer, {
+    ..._getterKeys,
+    'id',
+  });
+  if (object == null) return null;
+  final id = object.requiredString('id');
+  final getter = _decodeGetter(
+    {
+      for (final entry in (value as Map).entries)
+        if (_getterKeys.contains(entry.key)) entry.key as String: entry.value,
+    },
+    diagnostics,
+    pointer,
+    scope,
+  );
+  if (id == null || getter == null) return null;
+  return FlaxCodegenGetterModel(
+    getter.name,
+    getter.type,
+    encodeKind: getter.encodeKind,
+    id: id,
+  );
+}
+
 Map<String, Object?> _encodeConstructor(
   FlaxCodegenConstructorModel constructor, [
   _SlotEncodeScope? scope,
@@ -1507,6 +1539,7 @@ Map<String, Object?> _encodeMethod(
       ],
       'mustCallSuper': method.mustCallSuper,
       'deferredFactory': method.deferredFactory,
+      'operator': method.operatorName,
     };
   } finally {
     scope.release(reserved);
@@ -1534,6 +1567,7 @@ FlaxCodegenMethodModel? _decodeMethod(
   final startsRoute = object.requiredBool('startsRoute');
   final mustCallSuper = object.requiredBool('mustCallSuper');
   final deferredFactory = object.requiredBool('deferredFactory');
+  final operatorName = object.nullableString('operator');
 
   final typeParametersValue = object._fields['typeParameters'];
   if (!object._fields.containsKey('typeParameters')) {
@@ -1735,6 +1769,7 @@ FlaxCodegenMethodModel? _decodeMethod(
     typeParameters: typeParameters,
     mustCallSuper: mustCallSuper,
     deferredFactory: deferredFactory,
+    operatorName: operatorName,
   );
 }
 
@@ -2042,7 +2077,12 @@ Map<String, Object?> _encodeClass(FlaxCodegenClassModel type) {
       for (final setter in type.setters) _encodeGetter(setter, scope),
     ];
     final staticGetterJsons = [
-      for (final getter in type.staticGetters) _encodeGetter(getter, scope),
+      for (final getter in type.staticGetters)
+        {..._encodeGetter(getter, scope), 'id': type.staticGetterId(getter)},
+    ];
+    final staticSetterJsons = [
+      for (final setter in type.staticSetters)
+        {..._encodeGetter(setter, scope), 'id': type.staticSetterId(setter)},
     ];
     final methodJsons = [
       for (final method in type.methods) _encodeMethod(method, scope),
@@ -2077,6 +2117,7 @@ Map<String, Object?> _encodeClass(FlaxCodegenClassModel type) {
       'getters': getterJsons,
       'setters': setterJsons,
       'staticGetters': staticGetterJsons,
+      'staticSetters': staticSetterJsons,
       'methods': methodJsons,
       'widgetInterfaces': widgetInterfaceJsons,
       if (type.widgetMembers.isNotEmpty)
@@ -2199,7 +2240,13 @@ FlaxCodegenClassModel? _decodeClass(
   );
   final staticGetters = object.requiredList(
     'staticGetters',
-    _decodeGetterFn(diagnostics, scope),
+    (value, pointer) =>
+        _decodeStaticAccessor(value, diagnostics, pointer, scope),
+  );
+  final staticSetters = object.requiredList(
+    'staticSetters',
+    (value, pointer) =>
+        _decodeStaticAccessor(value, diagnostics, pointer, scope),
   );
   final methods = object.requiredList(
     'methods',
@@ -2302,6 +2349,7 @@ FlaxCodegenClassModel? _decodeClass(
       getters == null ||
       setters == null ||
       staticGetters == null ||
+      staticSetters == null ||
       methods == null ||
       widgetInterfaces == null ||
       widgetMembers == null ||
@@ -2322,6 +2370,7 @@ FlaxCodegenClassModel? _decodeClass(
     getters: getters,
     setters: setters,
     staticGetters: staticGetters,
+    staticSetters: staticSetters,
     methods: methods,
     widgetInterfaces: widgetInterfaces,
     widgetMembers: widgetMembers,

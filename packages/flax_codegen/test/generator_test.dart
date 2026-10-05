@@ -2054,7 +2054,7 @@ void main() {
     final copied = binding.instanceMethods['copyWith']!.invoke(note, {'text': null, 'selection': const spans.Marker(low: 1, high: 2)}) as api.Note;
     expect(copied.text, 'hello');
     expect(copied.selection, isA<spans.Marker>());
-    expect(binding.staticGetters['empty']!.read(), same(api.Note.empty));
+    expect(editingBindings.functions.singleWhere((function) => function.id.endsWith('::Note.empty')).invoke({}), same(api.Note.empty));
     expect(() => _createNote('', {'text': '', 'selection': null, 'optional': null}), throwsA(isA<TypeError>()));
     final store = _createNoteStore('', {}) as api.NoteStore;
     expect(store.value, same(api.Note.empty));
@@ -2181,7 +2181,7 @@ void main() {
         final emitter = FlaxCodegenBindingEmitter([descendants, ancestors]);
         expect(
           emitter.typescript(descendants),
-          contains('invokeObject(this, "${selected.id}", "ping"'),
+          contains('_flaxBindingMethods("${selected.id}", "object", {"ping":'),
         );
         expect(
           emitter.typescript(descendants),
@@ -2529,10 +2529,13 @@ const result: number = value.value;
       expect(ts, contains('select<U extends Token'));
       expect(ts, contains('implement'));
       expect(ts, contains('export abstract class Evaluator'));
-      expect(ts, contains('constructExtendedProxy(this, Evaluator.prototype'));
+      expect(ts, contains('super(Evaluator.prototype, _EvaluatorProxy,'));
       expect(ts, contains('abstract evaluate(value: number): number;'));
-      expect(ts, contains('twice(value: number): number {'));
-      expect(ts, contains('invokeProxySuper(this,'));
+      expect(ts, contains('twice(value: number): number;'));
+      expect(
+        ts,
+        contains('_flaxDefineProxyBase(Evaluator.prototype, _EvaluatorProxy)'),
+      );
       expect(
         ts,
         contains(

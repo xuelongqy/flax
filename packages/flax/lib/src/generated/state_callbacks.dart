@@ -29,7 +29,6 @@ const componentsBindings = FlaxBindingModule(
       setters: [],
       matches: _isStatefulWidget,
       methods: {},
-      staticGetters: {},
     ),
     FlaxStateBinding("flax.core/components#type:State", [], {}),
   ],

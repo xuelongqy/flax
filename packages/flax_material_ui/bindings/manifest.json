@@ -1,5 +1,5 @@
 {
-  "formatVersion": 13,
+  "formatVersion": 15,
   "package": "flax_material_ui",
   "bindingNamespace": "flax.material",
   "imports": [
@@ -638,6 +638,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -1584,6 +1585,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -1971,6 +1973,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -2258,6 +2261,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -2676,6 +2680,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -3238,6 +3243,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -3500,6 +3506,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -4582,6 +4589,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "copyWith",
@@ -5173,7 +5181,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -5427,7 +5436,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.material/material#read:VisualDensity.standard"
               },
               {
                 "name": "comfortable",
@@ -5448,7 +5458,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.material/material#read:VisualDensity.comfortable"
               },
               {
                 "name": "compact",
@@ -5469,9 +5480,11 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.material/material#read:VisualDensity.compact"
               }
             ],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "copyWith",
@@ -5603,7 +5616,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -6235,6 +6249,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [
               {
@@ -6431,6 +6446,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "of",
@@ -6518,7 +6534,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -6842,6 +6859,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "copyWith",
@@ -7017,7 +7035,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -7495,6 +7514,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "copyWith",
@@ -7758,7 +7778,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -8178,6 +8199,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "copyWith",
@@ -8529,7 +8551,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -9574,6 +9597,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "copyWith",
@@ -10145,7 +10169,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -11313,6 +11338,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -11686,6 +11712,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -12673,6 +12700,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -13059,6 +13087,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -13318,6 +13347,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -13577,6 +13607,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -14066,6 +14097,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -16775,6 +16807,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -18691,6 +18724,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -19077,6 +19111,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -19419,6 +19454,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -19761,6 +19797,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -20995,6 +21032,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -22005,6 +22043,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -22725,6 +22764,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -23277,6 +23317,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -23575,6 +23616,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -23874,6 +23916,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -24502,6 +24545,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -25290,7 +25334,8 @@
                 }
               ],
               "mustCallSuper": false,
-              "deferredFactory": false
+              "deferredFactory": false,
+              "operator": null
             },
             "route": {
               "context": "context",
@@ -25413,6 +25458,33 @@
               "name": "kToolbarHeight"
             },
             "wireId": "flax.material/material#read:kToolbarHeight",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:material_ui/src/theme_data.dart",
+              "name": "VisualDensity.comfortable"
+            },
+            "wireId": "flax.material/material#read:VisualDensity.comfortable",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:material_ui/src/theme_data.dart",
+              "name": "VisualDensity.compact"
+            },
+            "wireId": "flax.material/material#read:VisualDensity.compact",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:material_ui/src/theme_data.dart",
+              "name": "VisualDensity.standard"
+            },
+            "wireId": "flax.material/material#read:VisualDensity.standard",
             "owner": true
           },
           {

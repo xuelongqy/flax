@@ -242,7 +242,6 @@ final class _WidgetInterfaceParser {
     };
     if (selection.constructors.isNotEmpty ||
         selection.instanceMethods.isNotEmpty ||
-        selection.staticGetters.isNotEmpty ||
         selection.proxy != null) {
       _fail('Only native getters, setters and methods may be selected');
     }

@@ -1075,6 +1075,202 @@ function proxyProperty(
   return undefined;
 }
 
+/** Generated signatures remain in TypeScript; executable forwarding is shared. */
+export interface ProxyDefinition {
+  readonly type: string;
+  readonly parameters: readonly Parameter[];
+  readonly methods: Readonly<Record<string, readonly MemberParameter[]>>;
+  readonly getters: readonly string[];
+  readonly setters: readonly string[];
+  readonly superMembers: readonly string[];
+}
+
+export interface MemberParameter extends Parameter {
+  readonly context?: string;
+}
+
+export abstract class FlaxProxyBase {
+  protected constructor(
+    prototype: object,
+    definition: ProxyDefinition,
+    args: readonly unknown[],
+  ) {
+    constructExtendedProxy(
+      this,
+      prototype,
+      definition.type,
+      definition.parameters,
+      args,
+      Object.keys(definition.methods),
+      definition.getters,
+      definition.setters,
+      definition.superMembers,
+    );
+  }
+}
+
+const memberLayouts = new WeakMap<
+  readonly MemberParameter[],
+  (args: readonly unknown[]) => readonly unknown[]
+>();
+
+function memberArguments(parameters: readonly MemberParameter[]) {
+  const cached = memberLayouts.get(parameters);
+  if (cached) return cached;
+  for (const parameter of parameters) Object.freeze(parameter);
+  Object.freeze(parameters);
+  if (parameters.every((p) => p.required && p.positional && !p.context)) {
+    const argumentsFor = (args: readonly unknown[]) => {
+      if (args.length > parameters.length)
+        throw new TypeError('Too many method arguments');
+      for (let i = 0; i < parameters.length; i++)
+        if (args[i] === undefined)
+          throw new TypeError(`Missing required argument: ${parameters[i]!.name}`);
+      return args;
+    };
+    memberLayouts.set(parameters, argumentsFor);
+    return argumentsFor;
+  }
+
+  const positional = parameters.filter((p) => p.positional);
+  const named = parameters.filter((p) => !p.positional);
+  const names = new Set(named.map((p) => p.name));
+  const argumentsFor = (args: readonly unknown[]): unknown[] => {
+    if (args.length > positional.length + (named.length ? 1 : 0))
+      throw new TypeError('Too many method arguments');
+    const options = named.length
+      ? args[positional.length] === undefined
+        ? {}
+        : args[positional.length]
+      : {};
+    if (
+      options === null ||
+      typeof options !== 'object' ||
+      Array.isArray(options) ||
+      Object.keys(options).some((name) => !names.has(name))
+    )
+      throw new TypeError('Invalid named method arguments');
+    let omitted = false;
+    for (let i = 0; i < positional.length; i++) {
+      if (!positional[i]!.required && args[i] === undefined) omitted = true;
+      else if (omitted && args[i] !== undefined)
+        throw new TypeError(
+          'Optional positional arguments must omit a trailing suffix',
+        );
+    }
+    let index = 0;
+    return parameters.map((parameter) => {
+      const value = parameter.positional
+        ? args[index++]
+        : (options as Record<string, unknown>)[parameter.name];
+      if (value === undefined && parameter.required)
+        throw new TypeError(`Missing required argument: ${parameter.name}`);
+      return parameter.context ? contextHandle(value, parameter.context) : value;
+    });
+  };
+  memberLayouts.set(parameters, argumentsFor);
+  return argumentsFor;
+}
+
+export function bindingMethods(
+  type: string,
+  category: 'object' | 'state' | 'stream',
+  methods: Readonly<Record<string, readonly MemberParameter[]>>,
+): Record<string, StateMethod> {
+  const invoke =
+    category === 'object'
+      ? invokeObject
+      : category === 'stream'
+        ? invokeStream
+        : invokeInstance;
+  return Object.fromEntries(
+    Object.entries(methods).map(([name, parameters]) => {
+      const argumentsFor = memberArguments(parameters);
+      return [
+        name,
+        function (this: object, ...args: unknown[]) {
+          return invoke(this, type, name, argumentsFor(args));
+        },
+      ];
+    }),
+  );
+}
+
+function installMembers(
+  prototype: object,
+  methods: Readonly<Record<string, readonly MemberParameter[]>>,
+  getters: readonly string[],
+  setters: readonly string[],
+  invoke: (receiver: object, member: string, args: readonly unknown[]) => unknown,
+): void {
+  for (const [name, parameters] of Object.entries(methods)) {
+    const argumentsFor = memberArguments(parameters);
+    Object.defineProperty(prototype, name, {
+      configurable: true,
+      writable: true,
+      value(this: object, ...args: unknown[]) {
+        return invoke(this, name, argumentsFor(args));
+      },
+    });
+  }
+  for (const name of new Set([...getters, ...setters])) {
+    Object.defineProperty(prototype, name, {
+      configurable: true,
+      ...(getters.includes(name)
+        ? {
+            get(this: object) {
+              return invoke(this, `get:${name}`, []);
+            },
+          }
+        : {}),
+      ...(setters.includes(name)
+        ? {
+            set(this: object, value: unknown) {
+              invoke(this, `set:${name}`, [value]);
+            },
+          }
+        : {}),
+    });
+  }
+}
+
+export function defineProxyBase(prototype: object, definition: ProxyDefinition): void {
+  // Generated metadata is shared by all instances of this class.
+  for (const parameters of Object.values(definition.methods)) {
+    for (const parameter of parameters) Object.freeze(parameter);
+    Object.freeze(parameters);
+  }
+  for (const parameter of definition.parameters) Object.freeze(parameter);
+  Object.freeze(definition.parameters);
+  Object.freeze(definition.methods);
+  Object.freeze(definition.getters);
+  Object.freeze(definition.setters);
+  Object.freeze(definition.superMembers);
+  Object.freeze(definition);
+  const members = new Set(definition.superMembers);
+  installMembers(
+    prototype,
+    Object.fromEntries(
+      Object.entries(definition.methods).filter(([name]) => members.has(name)),
+    ),
+    definition.getters.filter((name) => members.has(`get:${name}`)),
+    definition.setters.filter((name) => members.has(`set:${name}`)),
+    (receiver, member, args) =>
+      invokeProxySuper(receiver, definition.type, member, args),
+  );
+}
+
+export function defineStateMembers(
+  prototype: object,
+  methods: Readonly<Record<string, readonly MemberParameter[]>>,
+  getters: readonly string[],
+  setters: readonly string[],
+): void {
+  installMembers(prototype, methods, getters, setters, (receiver, member, args) =>
+    componentStateCall(receiver, `native:${member}`, args),
+  );
+}
+
 /**
  * Attaches a newly-created Dart extends proxy to the JS instance currently
  * being initialized by a generated abstract base class.

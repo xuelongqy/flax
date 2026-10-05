@@ -5,7 +5,7 @@ repository. Follow this layout, then run the three-command Codegen CLI against a
 YAML config.
 
 This template targets binding selection format **2**, package metadata format **2**,
-Manifest format **13**, UI protocol **22**, and native ABI **2**. These are separate
+Manifest format **15**, UI protocol **22**, and native ABI **2**. These are separate
 current domains; binding authors do not add readers or adapters for other formats.
 
 Open product decisions (do **not** invent values here): license text, Pub/npm package
@@ -38,7 +38,7 @@ your_package/
         your_bindings.g.dart   # Codegen output (do not hand-edit)
   bindings/
     config.yaml                # format: 2 selection (direct child only)
-    manifest.json              # Manifest 13 output (do not hand-edit)
+    manifest.json              # Manifest 15 output (do not hand-edit)
   js-types/
     package.json               # public exports contain only types conditions
     types/**/*.d.ts            # built declarations; no JavaScript
@@ -57,7 +57,7 @@ Rules:
 - Binding configs must be **direct children** of `bindings/` (`*.yaml` / `*.yml`).
   Nested paths are rejected.
 - `library:` in the config must be a **public** `package:<name>/...` URI. Do not point
-  Codegen at `package:<name>/src/...` (Manifest 13 rejects private `src/` type library
+  Codegen at `package:<name>/src/...` (Manifest 15 rejects private `src/` type library
   URIs).
 - Prefer a small `lib/api.dart` that exports only the selected API (not the generated
   file) so the config library URI does not create an import cycle with generated output.
@@ -133,7 +133,7 @@ Notes:
 - Optional `typedefs: [AliasName]` exports aliases as `AliasName<T>` and directional
   `AliasNameInput<T>`, preserving alias and function-local parameters, bounds and
   defaults. Targets use existing conversions and owners; aliases create no runtime
-  identity. Manifest 13 preserves alias parameters, bounds and targets. See
+  identity. Manifest 15 preserves alias parameters, bounds and targets. See
   [ADR 0035](../../../docs/decisions/0035-generic-state-variants-and-protocol-21.md).
 - Optional `topLevel: {getters: [name]}` selects public const, final, late final and
   getters without setters. `publicLibraries` determines the public JS/TS module. Safe
@@ -141,7 +141,7 @@ Notes:
   values use uncached `getX()` functions. Importing a module does not perform dynamic
   reads. The return type must use an existing conversion and ownership model. A
   declaration already owned by a dependency reuses that provider's public module.
-  Manifest 13 represents this routing; see
+  Manifest 15 represents this routing; see
   [ADR 0027](../../../docs/decisions/0027-public-library-module-delivery.md).
 
 Direct Dart dependencies that publish binding Manifests are considered automatically.
@@ -155,7 +155,7 @@ supported:
 imports: [flax]
 ```
 
-Codegen resolves Manifest 13 providers through the consumer's package config. It does
+Codegen resolves Manifest 15 providers through the consumer's package config. It does
 not read another package’s selection YAML or private sources, and it never auto-expands
 another provider's public/member surface.
 
@@ -172,7 +172,7 @@ dart run flax_codegen check --config bindings/config.yaml
 - `validate` — strict YAML + package metadata + ownership / Manifest projection; no
   writes.
 - `generate` — package-atomic write of Dart, TypeScript, and `bindings/manifest.json`
-  (Manifest formatVersion **13**).
+  (Manifest formatVersion **15**).
 - `check` — read-only reproducibility / orphan check; does not modify the tree.
 
 The old form `dart run flax_codegen [--check] <config> ...` is not supported.

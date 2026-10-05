@@ -162,9 +162,9 @@ async function delivery({
   const npm = await json(join(root, packageDirectory, 'package.json'));
   const manifest = manifestPath
     ? await json(join(root, manifestPath))
-    : { formatVersion: 13, modules: [] };
-  if (manifest.formatVersion !== 13) {
-    throw new Error(`Expected Binding Manifest 13: ${manifestPath}`);
+    : { formatVersion: 15, modules: [] };
+  if (manifest.formatVersion !== 15) {
+    throw new Error(`Expected Binding Manifest 15: ${manifestPath}`);
   }
   const requirements = publicRequirements(manifest);
   const modules = [

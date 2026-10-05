@@ -1,5 +1,5 @@
 {
-  "formatVersion": 13,
+  "formatVersion": 15,
   "package": "flax",
   "bindingNamespace": "flax.core",
   "imports": [],
@@ -40,6 +40,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -107,6 +108,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -317,7 +319,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "superMethods": [
@@ -906,6 +909,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -2690,6 +2694,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "castFrom",
@@ -2921,7 +2926,8 @@
                   }
                 ],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "asBroadcastStream",
@@ -3449,7 +3455,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "listen",
@@ -3936,7 +3943,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "where",
@@ -4178,7 +4186,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "map",
@@ -4461,7 +4470,8 @@
                   }
                 ],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "asyncMap",
@@ -4792,7 +4802,8 @@
                   }
                 ],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "asyncExpand",
@@ -5123,7 +5134,8 @@
                   }
                 ],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "handleError",
@@ -5466,7 +5478,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "expand",
@@ -5797,7 +5810,8 @@
                   }
                 ],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "pipe",
@@ -5957,7 +5971,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "transform",
@@ -6194,7 +6209,8 @@
                   }
                 ],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "reduce",
@@ -6508,7 +6524,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "fold",
@@ -6907,7 +6924,8 @@
                   }
                 ],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "join",
@@ -7027,7 +7045,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "contains",
@@ -7147,7 +7166,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "forEach",
@@ -7389,7 +7409,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "every",
@@ -7631,7 +7652,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "any",
@@ -7873,7 +7895,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "cast",
@@ -7989,7 +8012,8 @@
                   }
                 ],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "toList",
@@ -8096,7 +8120,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "toSet",
@@ -8203,7 +8228,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "drain",
@@ -8364,7 +8390,8 @@
                   }
                 ],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "take",
@@ -8484,7 +8511,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "takeWhile",
@@ -8726,7 +8754,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "skip",
@@ -8846,7 +8875,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "skipWhile",
@@ -9088,7 +9118,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "distinct",
@@ -9402,7 +9433,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "firstWhere",
@@ -9736,7 +9768,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "lastWhere",
@@ -10070,7 +10103,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "singleWhere",
@@ -10404,7 +10438,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "elementAt",
@@ -10524,7 +10559,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "timeout",
@@ -10870,7 +10906,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -11012,6 +11049,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "cancel",
@@ -11086,7 +11124,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "onData",
@@ -11296,7 +11335,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "onError",
@@ -11441,7 +11481,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "onDone",
@@ -11577,7 +11618,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "pause",
@@ -11697,7 +11739,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "resume",
@@ -11740,7 +11783,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "asFuture",
@@ -11901,7 +11945,8 @@
                   }
                 ],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -13810,6 +13855,7 @@
               }
             ],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "add",
@@ -13897,7 +13943,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "addError",
@@ -14029,7 +14076,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "close",
@@ -14104,7 +14152,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "addStream",
@@ -14300,7 +14349,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -15868,6 +15918,7 @@
               }
             ],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "add",
@@ -15955,7 +16006,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "addError",
@@ -16087,7 +16139,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "close",
@@ -16162,7 +16215,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "addStream",
@@ -16358,7 +16412,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -18016,6 +18071,7 @@
               }
             ],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "add",
@@ -18103,7 +18159,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "addError",
@@ -18235,7 +18292,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "close",
@@ -18310,7 +18368,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "addStream",
@@ -18506,7 +18565,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "addSync",
@@ -18594,7 +18654,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "addErrorSync",
@@ -18726,7 +18787,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "closeSync",
@@ -18769,7 +18831,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -19795,9 +19858,11 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:Duration.zero"
               }
             ],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -20049,6 +20114,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "toIso8601String",
@@ -20091,7 +20157,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -20249,6 +20316,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "parse",
@@ -20424,7 +20492,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -20558,6 +20627,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "write",
@@ -20645,7 +20715,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "toString",
@@ -20688,7 +20759,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -20772,7 +20844,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:StackTrace.current"
               },
               {
                 "name": "empty",
@@ -20793,9 +20866,11 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:StackTrace.empty"
               }
             ],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "toString",
@@ -20838,7 +20913,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -20924,6 +21000,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -21026,6 +21103,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "add",
@@ -21113,7 +21191,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "addError",
@@ -21245,7 +21324,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "close",
@@ -21288,7 +21368,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -21513,7 +21594,8 @@
                   "startsRoute": false,
                   "typeParameters": [],
                   "mustCallSuper": false,
-                  "deferredFactory": false
+                  "deferredFactory": false,
+                  "operator": null
                 },
                 {
                   "name": "addError",
@@ -21645,7 +21727,8 @@
                   "startsRoute": false,
                   "typeParameters": [],
                   "mustCallSuper": false,
-                  "deferredFactory": false
+                  "deferredFactory": false,
+                  "operator": null
                 },
                 {
                   "name": "close",
@@ -21688,7 +21771,8 @@
                   "startsRoute": false,
                   "typeParameters": [],
                   "mustCallSuper": false,
-                  "deferredFactory": false
+                  "deferredFactory": false,
+                  "operator": null
                 }
               ],
               "superMethods": [],
@@ -21752,6 +21836,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "addStream",
@@ -21903,7 +21988,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "close",
@@ -21978,7 +22064,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -22177,7 +22264,8 @@
                   "startsRoute": false,
                   "typeParameters": [],
                   "mustCallSuper": false,
-                  "deferredFactory": false
+                  "deferredFactory": false,
+                  "operator": null
                 },
                 {
                   "name": "close",
@@ -22252,7 +22340,8 @@
                   "startsRoute": false,
                   "typeParameters": [],
                   "mustCallSuper": false,
-                  "deferredFactory": false
+                  "deferredFactory": false,
+                  "operator": null
                 }
               ],
               "superMethods": [],
@@ -22386,6 +22475,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "add",
@@ -22473,7 +22563,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "addError",
@@ -22605,7 +22696,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "close",
@@ -22680,7 +22772,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "addStream",
@@ -22832,7 +22925,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -24766,6 +24860,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "castFrom",
@@ -25163,7 +25258,8 @@
                   }
                 ],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "bind",
@@ -25315,7 +25411,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "cast",
@@ -25514,7 +25611,8 @@
                   }
                 ],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -25730,7 +25828,8 @@
                   "startsRoute": false,
                   "typeParameters": [],
                   "mustCallSuper": false,
-                  "deferredFactory": false
+                  "deferredFactory": false,
+                  "operator": null
                 },
                 {
                   "name": "cast",
@@ -25958,7 +26057,8 @@
                     }
                   ],
                   "mustCallSuper": false,
-                  "deferredFactory": false
+                  "deferredFactory": false,
+                  "operator": null
                 }
               ],
               "superMethods": [],
@@ -26067,6 +26167,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "bind",
@@ -26218,7 +26319,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "cast",
@@ -26417,7 +26519,8 @@
                   }
                 ],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -26625,6 +26728,159 @@
             "proxy": {
               "kind": "extends",
               "methods": [
+                {
+                  "name": "bind",
+                  "parameters": [
+                    {
+                      "name": "stream",
+                      "type": {
+                        "kind": "stream",
+                        "id": "flax.core/flutter#type:Stream",
+                        "name": "Stream",
+                        "nullable": false,
+                        "item": {
+                          "kind": "any",
+                          "id": null,
+                          "name": null,
+                          "nullable": true,
+                          "item": null,
+                          "key": null,
+                          "parameters": [],
+                          "typeParameters": [],
+                          "result": null,
+                          "typeArguments": [],
+                          "dartArguments": [],
+                          "primitiveKinds": [],
+                          "declaration": null,
+                          "tsArguments": [],
+                          "slot": null
+                        },
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": {
+                          "kind": "stream",
+                          "id": "flax.core/flutter#type:Stream",
+                          "name": "Stream",
+                          "nullable": false,
+                          "item": {
+                            "kind": "parameter",
+                            "id": null,
+                            "name": "S",
+                            "nullable": false,
+                            "item": null,
+                            "key": null,
+                            "parameters": [],
+                            "typeParameters": [],
+                            "result": null,
+                            "typeArguments": [],
+                            "dartArguments": [],
+                            "primitiveKinds": [],
+                            "declaration": null,
+                            "tsArguments": [],
+                            "slot": "g0"
+                          },
+                          "key": null,
+                          "parameters": [],
+                          "typeParameters": [],
+                          "result": null,
+                          "typeArguments": [],
+                          "dartArguments": [],
+                          "primitiveKinds": [],
+                          "declaration": null,
+                          "tsArguments": [],
+                          "slot": null
+                        },
+                        "tsArguments": [],
+                        "slot": null
+                      },
+                      "required": true,
+                      "positional": true,
+                      "defaultCode": "null",
+                      "omitWhenAbsent": false,
+                      "independentWidgetResult": false,
+                      "snapshot": null,
+                      "encodeKind": null,
+                      "scoped": false
+                    }
+                  ],
+                  "result": {
+                    "kind": "stream",
+                    "id": "flax.core/flutter#type:Stream",
+                    "name": "Stream",
+                    "nullable": false,
+                    "item": {
+                      "kind": "any",
+                      "id": null,
+                      "name": null,
+                      "nullable": true,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": null,
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": {
+                      "kind": "stream",
+                      "id": "flax.core/flutter#type:Stream",
+                      "name": "Stream",
+                      "nullable": false,
+                      "item": {
+                        "kind": "parameter",
+                        "id": null,
+                        "name": "T",
+                        "nullable": false,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": null,
+                        "tsArguments": [],
+                        "slot": "g1"
+                      },
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": null,
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "instance": true,
+                  "typeArguments": [],
+                  "startsRoute": false,
+                  "typeParameters": [],
+                  "mustCallSuper": false,
+                  "deferredFactory": false,
+                  "operator": null
+                },
                 {
                   "name": "cast",
                   "parameters": [],
@@ -26851,159 +27107,8 @@
                     }
                   ],
                   "mustCallSuper": false,
-                  "deferredFactory": false
-                },
-                {
-                  "name": "bind",
-                  "parameters": [
-                    {
-                      "name": "stream",
-                      "type": {
-                        "kind": "stream",
-                        "id": "flax.core/flutter#type:Stream",
-                        "name": "Stream",
-                        "nullable": false,
-                        "item": {
-                          "kind": "any",
-                          "id": null,
-                          "name": null,
-                          "nullable": true,
-                          "item": null,
-                          "key": null,
-                          "parameters": [],
-                          "typeParameters": [],
-                          "result": null,
-                          "typeArguments": [],
-                          "dartArguments": [],
-                          "primitiveKinds": [],
-                          "declaration": null,
-                          "tsArguments": [],
-                          "slot": null
-                        },
-                        "key": null,
-                        "parameters": [],
-                        "typeParameters": [],
-                        "result": null,
-                        "typeArguments": [],
-                        "dartArguments": [],
-                        "primitiveKinds": [],
-                        "declaration": {
-                          "kind": "stream",
-                          "id": "flax.core/flutter#type:Stream",
-                          "name": "Stream",
-                          "nullable": false,
-                          "item": {
-                            "kind": "parameter",
-                            "id": null,
-                            "name": "S",
-                            "nullable": false,
-                            "item": null,
-                            "key": null,
-                            "parameters": [],
-                            "typeParameters": [],
-                            "result": null,
-                            "typeArguments": [],
-                            "dartArguments": [],
-                            "primitiveKinds": [],
-                            "declaration": null,
-                            "tsArguments": [],
-                            "slot": "g0"
-                          },
-                          "key": null,
-                          "parameters": [],
-                          "typeParameters": [],
-                          "result": null,
-                          "typeArguments": [],
-                          "dartArguments": [],
-                          "primitiveKinds": [],
-                          "declaration": null,
-                          "tsArguments": [],
-                          "slot": null
-                        },
-                        "tsArguments": [],
-                        "slot": null
-                      },
-                      "required": true,
-                      "positional": true,
-                      "defaultCode": "null",
-                      "omitWhenAbsent": false,
-                      "independentWidgetResult": false,
-                      "snapshot": null,
-                      "encodeKind": null,
-                      "scoped": false
-                    }
-                  ],
-                  "result": {
-                    "kind": "stream",
-                    "id": "flax.core/flutter#type:Stream",
-                    "name": "Stream",
-                    "nullable": false,
-                    "item": {
-                      "kind": "any",
-                      "id": null,
-                      "name": null,
-                      "nullable": true,
-                      "item": null,
-                      "key": null,
-                      "parameters": [],
-                      "typeParameters": [],
-                      "result": null,
-                      "typeArguments": [],
-                      "dartArguments": [],
-                      "primitiveKinds": [],
-                      "declaration": null,
-                      "tsArguments": [],
-                      "slot": null
-                    },
-                    "key": null,
-                    "parameters": [],
-                    "typeParameters": [],
-                    "result": null,
-                    "typeArguments": [],
-                    "dartArguments": [],
-                    "primitiveKinds": [],
-                    "declaration": {
-                      "kind": "stream",
-                      "id": "flax.core/flutter#type:Stream",
-                      "name": "Stream",
-                      "nullable": false,
-                      "item": {
-                        "kind": "parameter",
-                        "id": null,
-                        "name": "T",
-                        "nullable": false,
-                        "item": null,
-                        "key": null,
-                        "parameters": [],
-                        "typeParameters": [],
-                        "result": null,
-                        "typeArguments": [],
-                        "dartArguments": [],
-                        "primitiveKinds": [],
-                        "declaration": null,
-                        "tsArguments": [],
-                        "slot": "g1"
-                      },
-                      "key": null,
-                      "parameters": [],
-                      "typeParameters": [],
-                      "result": null,
-                      "typeArguments": [],
-                      "dartArguments": [],
-                      "primitiveKinds": [],
-                      "declaration": null,
-                      "tsArguments": [],
-                      "slot": null
-                    },
-                    "tsArguments": [],
-                    "slot": null
-                  },
-                  "instance": true,
-                  "typeArguments": [],
-                  "startsRoute": false,
-                  "typeParameters": [],
-                  "mustCallSuper": false,
-                  "deferredFactory": false
+                  "deferredFactory": false,
+                  "operator": null
                 }
               ],
               "superMethods": [
@@ -27535,6 +27640,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "asBroadcastStream",
@@ -28062,7 +28168,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "listen",
@@ -28549,7 +28656,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "where",
@@ -28791,7 +28899,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "map",
@@ -29074,7 +29183,8 @@
                   }
                 ],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "asyncMap",
@@ -29405,7 +29515,8 @@
                   }
                 ],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "asyncExpand",
@@ -29736,7 +29847,8 @@
                   }
                 ],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "handleError",
@@ -30079,7 +30191,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "expand",
@@ -30410,7 +30523,8 @@
                   }
                 ],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "pipe",
@@ -30570,7 +30684,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "transform",
@@ -30807,7 +30922,8 @@
                   }
                 ],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "reduce",
@@ -31121,7 +31237,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "fold",
@@ -31520,7 +31637,8 @@
                   }
                 ],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "join",
@@ -31640,7 +31758,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "contains",
@@ -31760,7 +31879,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "forEach",
@@ -32002,7 +32122,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "every",
@@ -32244,7 +32365,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "any",
@@ -32486,7 +32608,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "cast",
@@ -32602,7 +32725,8 @@
                   }
                 ],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "toList",
@@ -32709,7 +32833,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "toSet",
@@ -32816,7 +32941,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "drain",
@@ -32977,7 +33103,8 @@
                   }
                 ],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "take",
@@ -33097,7 +33224,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "takeWhile",
@@ -33339,7 +33467,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "skip",
@@ -33459,7 +33588,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "skipWhile",
@@ -33701,7 +33831,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "distinct",
@@ -34015,7 +34146,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "firstWhere",
@@ -34349,7 +34481,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "lastWhere",
@@ -34683,7 +34816,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "singleWhere",
@@ -35017,7 +35151,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "elementAt",
@@ -35137,7 +35272,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "timeout",
@@ -35483,7 +35619,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -35790,6 +35927,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "moveNext",
@@ -35864,7 +36002,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "cancel",
@@ -35939,7 +36078,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -36546,6 +36686,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "inState",
@@ -36673,7 +36814,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -37246,6 +37388,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -37315,6 +37458,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "resolveWith",
@@ -37663,7 +37807,8 @@
                   }
                 ],
                 "mustCallSuper": false,
-                "deferredFactory": true
+                "deferredFactory": true,
+                "operator": null
               },
               {
                 "name": "resolve",
@@ -37783,7 +37928,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -37846,6 +37992,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -37889,6 +38036,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "transform",
@@ -37976,7 +38124,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -38391,6 +38540,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "transform",
@@ -38478,7 +38628,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -38614,7 +38765,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:Curves.linear"
               },
               {
                 "name": "ease",
@@ -38635,7 +38787,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:Curves.ease"
               },
               {
                 "name": "easeIn",
@@ -38656,7 +38809,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:Curves.easeIn"
               },
               {
                 "name": "easeOut",
@@ -38677,7 +38831,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:Curves.easeOut"
               },
               {
                 "name": "easeInOut",
@@ -38698,9 +38853,11 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:Curves.easeInOut"
               }
             ],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -38763,7 +38920,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:MouseCursor.defer"
               },
               {
                 "name": "uncontrolled",
@@ -38784,9 +38942,11 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:MouseCursor.uncontrolled"
               }
             ],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -38850,6 +39010,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -38966,7 +39127,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:SystemMouseCursors.basic"
               },
               {
                 "name": "click",
@@ -38987,7 +39149,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:SystemMouseCursors.click"
               },
               {
                 "name": "text",
@@ -39008,7 +39171,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:SystemMouseCursors.text"
               },
               {
                 "name": "forbidden",
@@ -39029,9 +39193,11 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:SystemMouseCursors.forbidden"
               }
             ],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -39605,6 +39771,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -40009,6 +40176,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -40037,6 +40205,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "addListener",
@@ -40172,7 +40341,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "removeListener",
@@ -40308,7 +40478,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -40440,6 +40611,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "addListener",
@@ -40575,7 +40747,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "removeListener",
@@ -40711,7 +40884,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -40928,7 +41102,8 @@
                   "startsRoute": false,
                   "typeParameters": [],
                   "mustCallSuper": false,
-                  "deferredFactory": false
+                  "deferredFactory": false,
+                  "operator": null
                 },
                 {
                   "name": "removeListener",
@@ -41064,7 +41239,8 @@
                   "startsRoute": false,
                   "typeParameters": [],
                   "mustCallSuper": false,
-                  "deferredFactory": false
+                  "deferredFactory": false,
+                  "operator": null
                 }
               ],
               "superMethods": [],
@@ -41202,6 +41378,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -41245,6 +41422,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -41294,6 +41472,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -41371,6 +41550,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "widgetMembers": [
@@ -41547,6 +41727,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [
               {
@@ -42183,6 +42364,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -42393,6 +42575,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -42421,6 +42604,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -42484,6 +42668,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -42565,6 +42750,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -42812,6 +42998,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "copyWith",
@@ -42943,7 +43130,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -43246,6 +43434,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "copyWith",
@@ -43377,7 +43566,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -43579,6 +43769,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "copyWith",
@@ -43666,7 +43857,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -43779,6 +43971,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -43856,6 +44049,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -43899,6 +44093,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -44274,6 +44469,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "copyWith",
@@ -44493,7 +44689,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -44943,7 +45140,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:BorderSide.none"
               },
               {
                 "name": "strokeAlignInside",
@@ -44964,7 +45162,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:BorderSide.strokeAlignInside"
               },
               {
                 "name": "strokeAlignCenter",
@@ -44985,7 +45184,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:BorderSide.strokeAlignCenter"
               },
               {
                 "name": "strokeAlignOutside",
@@ -45006,9 +45206,11 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:BorderSide.strokeAlignOutside"
               }
             ],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "copyWith",
@@ -45228,7 +45430,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -45844,6 +46047,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -46324,6 +46528,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -46674,9 +46879,11 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:Radius.zero"
               }
             ],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -47171,9 +47378,11 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:BorderRadius.zero"
               }
             ],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "copyWith",
@@ -47393,7 +47602,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -47923,9 +48133,11 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:BorderRadiusDirectional.zero"
               }
             ],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -48680,9 +48892,11 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:EdgeInsetsDirectional.zero"
               }
             ],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -48760,6 +48974,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -48992,7 +49207,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:Alignment.topLeft"
               },
               {
                 "name": "topCenter",
@@ -49013,7 +49229,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:Alignment.topCenter"
               },
               {
                 "name": "topRight",
@@ -49034,7 +49251,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:Alignment.topRight"
               },
               {
                 "name": "centerLeft",
@@ -49055,7 +49273,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:Alignment.centerLeft"
               },
               {
                 "name": "center",
@@ -49076,7 +49295,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:Alignment.center"
               },
               {
                 "name": "centerRight",
@@ -49097,7 +49317,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:Alignment.centerRight"
               },
               {
                 "name": "bottomLeft",
@@ -49118,7 +49339,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:Alignment.bottomLeft"
               },
               {
                 "name": "bottomCenter",
@@ -49139,7 +49361,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:Alignment.bottomCenter"
               },
               {
                 "name": "bottomRight",
@@ -49160,9 +49383,11 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:Alignment.bottomRight"
               }
             ],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -49429,7 +49654,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:AlignmentDirectional.topStart"
               },
               {
                 "name": "topCenter",
@@ -49450,7 +49676,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:AlignmentDirectional.topCenter"
               },
               {
                 "name": "topEnd",
@@ -49471,7 +49698,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:AlignmentDirectional.topEnd"
               },
               {
                 "name": "centerStart",
@@ -49492,7 +49720,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:AlignmentDirectional.centerStart"
               },
               {
                 "name": "center",
@@ -49513,7 +49742,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:AlignmentDirectional.center"
               },
               {
                 "name": "centerEnd",
@@ -49534,7 +49764,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:AlignmentDirectional.centerEnd"
               },
               {
                 "name": "bottomStart",
@@ -49555,7 +49786,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:AlignmentDirectional.bottomStart"
               },
               {
                 "name": "bottomCenter",
@@ -49576,7 +49808,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:AlignmentDirectional.bottomCenter"
               },
               {
                 "name": "bottomEnd",
@@ -49597,9 +49830,11 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:AlignmentDirectional.bottomEnd"
               }
             ],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -49816,6 +50051,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -50028,6 +50264,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -50359,6 +50596,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -50746,6 +50984,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -51001,6 +51240,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -51411,6 +51651,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "toARGB32",
@@ -51453,7 +51694,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -51875,6 +52117,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -52026,7 +52269,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:FontWeight.w100"
               },
               {
                 "name": "w200",
@@ -52047,7 +52291,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:FontWeight.w200"
               },
               {
                 "name": "w300",
@@ -52068,7 +52313,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:FontWeight.w300"
               },
               {
                 "name": "w400",
@@ -52089,7 +52335,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:FontWeight.w400"
               },
               {
                 "name": "w500",
@@ -52110,7 +52357,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:FontWeight.w500"
               },
               {
                 "name": "w600",
@@ -52131,7 +52379,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:FontWeight.w600"
               },
               {
                 "name": "w700",
@@ -52152,7 +52401,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:FontWeight.w700"
               },
               {
                 "name": "w800",
@@ -52173,7 +52423,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:FontWeight.w800"
               },
               {
                 "name": "w900",
@@ -52194,7 +52445,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:FontWeight.w900"
               },
               {
                 "name": "normal",
@@ -52215,7 +52467,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:FontWeight.normal"
               },
               {
                 "name": "bold",
@@ -52236,9 +52489,11 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:FontWeight.bold"
               }
             ],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -53019,6 +53274,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "copyWith",
@@ -53458,7 +53714,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -53523,6 +53780,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -53566,6 +53824,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -53968,6 +54227,7 @@
               }
             ],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "addListener",
@@ -54103,7 +54363,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "removeListener",
@@ -54239,7 +54500,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "clear",
@@ -54282,7 +54544,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "clearComposing",
@@ -54325,7 +54588,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "dispose",
@@ -54368,7 +54632,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -54888,9 +55153,11 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:TextEditingValue.empty"
               }
             ],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "copyWith",
@@ -55066,7 +55333,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -55722,6 +55990,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "copyWith",
@@ -55941,7 +56210,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -56370,9 +56640,11 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:TextRange.empty"
               }
             ],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -57381,6 +57653,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "of",
@@ -57512,7 +57785,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -57579,6 +57853,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "push",
@@ -57763,7 +58038,8 @@
                   }
                 ],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "pushNamed",
@@ -57936,7 +58212,8 @@
                   }
                 ],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "pushReplacement",
@@ -58204,7 +58481,8 @@
                   }
                 ],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "pop",
@@ -58333,7 +58611,8 @@
                   }
                 ],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "maybePop",
@@ -58494,7 +58773,8 @@
                   }
                 ],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "canPop",
@@ -58537,7 +58817,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -58608,6 +58889,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -58826,6 +59108,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -59026,6 +59309,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -59338,6 +59622,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -59678,6 +59963,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -59922,6 +60208,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -60238,6 +60525,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -60342,6 +60630,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -60585,6 +60874,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -60737,9 +61027,11 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:SchedulerBinding.instance"
               }
             ],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -61323,6 +61615,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -61386,6 +61679,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "of",
@@ -61473,7 +61767,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -61863,6 +62158,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -62325,6 +62621,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -62789,6 +63086,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -63001,6 +63299,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -63169,6 +63468,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -63380,6 +63680,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -64085,9 +64386,11 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:EdgeInsets.zero"
               }
             ],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -64350,6 +64653,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -64693,6 +64997,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "addListener",
@@ -64828,7 +65133,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "removeListener",
@@ -64964,7 +65270,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "jumpTo",
@@ -65052,7 +65359,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "animateTo",
@@ -65260,7 +65568,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "dispose",
@@ -65303,7 +65612,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -65493,6 +65803,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -65625,6 +65936,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -65791,6 +66103,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -65957,6 +66270,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -66123,6 +66437,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -67183,6 +67498,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -67571,6 +67887,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -67961,6 +68278,7 @@
               }
             ],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "addListener",
@@ -68096,7 +68414,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "removeListener",
@@ -68232,7 +68551,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "requestFocus",
@@ -68320,7 +68640,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "unfocus",
@@ -68408,7 +68729,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "nextFocus",
@@ -68451,7 +68773,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "previousFocus",
@@ -68494,7 +68817,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "dispose",
@@ -68537,7 +68861,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -68943,6 +69268,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -69344,7 +69670,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:FilteringTextInputFormatter.digitsOnly"
               },
               {
                 "name": "singleLineFormatter",
@@ -69365,9 +69692,11 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "id": "flax.core/flutter#read:FilteringTextInputFormatter.singleLineFormatter"
               }
             ],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -69540,6 +69869,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -69617,6 +69947,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -69889,6 +70220,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -71105,6 +71437,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -71814,6 +72147,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -72235,6 +72569,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -72621,6 +72956,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -73171,6 +73507,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -73426,6 +73763,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -73593,6 +73931,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -73760,6 +74099,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -73971,6 +74311,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -74540,6 +74881,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -74750,6 +75092,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -74961,6 +75304,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -75128,6 +75472,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -75503,6 +75848,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -76493,6 +76839,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -77133,6 +77480,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -77568,6 +77916,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -78131,6 +78480,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -79391,7 +79741,8 @@
               "startsRoute": false,
               "typeParameters": [],
               "mustCallSuper": false,
-              "deferredFactory": false
+              "deferredFactory": false,
+              "operator": null
             },
             "route": null
           }
@@ -79978,6 +80329,195 @@
           {
             "sourceIdentity": {
               "kind": "readonly",
+              "originatingUri": "dart:core",
+              "name": "Duration.zero"
+            },
+            "wireId": "flax.core/flutter#read:Duration.zero",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "dart:core",
+              "name": "StackTrace.current"
+            },
+            "wireId": "flax.core/flutter#read:StackTrace.current",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "dart:core",
+              "name": "StackTrace.empty"
+            },
+            "wireId": "flax.core/flutter#read:StackTrace.empty",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "dart:ui",
+              "name": "FontWeight.bold"
+            },
+            "wireId": "flax.core/flutter#read:FontWeight.bold",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "dart:ui",
+              "name": "FontWeight.normal"
+            },
+            "wireId": "flax.core/flutter#read:FontWeight.normal",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "dart:ui",
+              "name": "FontWeight.w100"
+            },
+            "wireId": "flax.core/flutter#read:FontWeight.w100",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "dart:ui",
+              "name": "FontWeight.w200"
+            },
+            "wireId": "flax.core/flutter#read:FontWeight.w200",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "dart:ui",
+              "name": "FontWeight.w300"
+            },
+            "wireId": "flax.core/flutter#read:FontWeight.w300",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "dart:ui",
+              "name": "FontWeight.w400"
+            },
+            "wireId": "flax.core/flutter#read:FontWeight.w400",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "dart:ui",
+              "name": "FontWeight.w500"
+            },
+            "wireId": "flax.core/flutter#read:FontWeight.w500",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "dart:ui",
+              "name": "FontWeight.w600"
+            },
+            "wireId": "flax.core/flutter#read:FontWeight.w600",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "dart:ui",
+              "name": "FontWeight.w700"
+            },
+            "wireId": "flax.core/flutter#read:FontWeight.w700",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "dart:ui",
+              "name": "FontWeight.w800"
+            },
+            "wireId": "flax.core/flutter#read:FontWeight.w800",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "dart:ui",
+              "name": "FontWeight.w900"
+            },
+            "wireId": "flax.core/flutter#read:FontWeight.w900",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "dart:ui",
+              "name": "Radius.zero"
+            },
+            "wireId": "flax.core/flutter#read:Radius.zero",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "dart:ui",
+              "name": "TextRange.empty"
+            },
+            "wireId": "flax.core/flutter#read:TextRange.empty",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/animation/curves.dart",
+              "name": "Curves.ease"
+            },
+            "wireId": "flax.core/flutter#read:Curves.ease",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/animation/curves.dart",
+              "name": "Curves.easeIn"
+            },
+            "wireId": "flax.core/flutter#read:Curves.easeIn",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/animation/curves.dart",
+              "name": "Curves.easeInOut"
+            },
+            "wireId": "flax.core/flutter#read:Curves.easeInOut",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/animation/curves.dart",
+              "name": "Curves.easeOut"
+            },
+            "wireId": "flax.core/flutter#read:Curves.easeOut",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/animation/curves.dart",
+              "name": "Curves.linear"
+            },
+            "wireId": "flax.core/flutter#read:Curves.linear",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
               "originatingUri": "package:flutter/src/foundation/constants.dart",
               "name": "kIsWeb"
             },
@@ -79991,6 +80531,330 @@
               "name": "defaultTargetPlatform"
             },
             "wireId": "flax.core/flutter#read:defaultTargetPlatform",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/painting/alignment.dart",
+              "name": "Alignment.bottomCenter"
+            },
+            "wireId": "flax.core/flutter#read:Alignment.bottomCenter",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/painting/alignment.dart",
+              "name": "Alignment.bottomLeft"
+            },
+            "wireId": "flax.core/flutter#read:Alignment.bottomLeft",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/painting/alignment.dart",
+              "name": "Alignment.bottomRight"
+            },
+            "wireId": "flax.core/flutter#read:Alignment.bottomRight",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/painting/alignment.dart",
+              "name": "Alignment.center"
+            },
+            "wireId": "flax.core/flutter#read:Alignment.center",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/painting/alignment.dart",
+              "name": "Alignment.centerLeft"
+            },
+            "wireId": "flax.core/flutter#read:Alignment.centerLeft",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/painting/alignment.dart",
+              "name": "Alignment.centerRight"
+            },
+            "wireId": "flax.core/flutter#read:Alignment.centerRight",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/painting/alignment.dart",
+              "name": "Alignment.topCenter"
+            },
+            "wireId": "flax.core/flutter#read:Alignment.topCenter",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/painting/alignment.dart",
+              "name": "Alignment.topLeft"
+            },
+            "wireId": "flax.core/flutter#read:Alignment.topLeft",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/painting/alignment.dart",
+              "name": "Alignment.topRight"
+            },
+            "wireId": "flax.core/flutter#read:Alignment.topRight",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/painting/alignment.dart",
+              "name": "AlignmentDirectional.bottomCenter"
+            },
+            "wireId": "flax.core/flutter#read:AlignmentDirectional.bottomCenter",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/painting/alignment.dart",
+              "name": "AlignmentDirectional.bottomEnd"
+            },
+            "wireId": "flax.core/flutter#read:AlignmentDirectional.bottomEnd",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/painting/alignment.dart",
+              "name": "AlignmentDirectional.bottomStart"
+            },
+            "wireId": "flax.core/flutter#read:AlignmentDirectional.bottomStart",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/painting/alignment.dart",
+              "name": "AlignmentDirectional.center"
+            },
+            "wireId": "flax.core/flutter#read:AlignmentDirectional.center",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/painting/alignment.dart",
+              "name": "AlignmentDirectional.centerEnd"
+            },
+            "wireId": "flax.core/flutter#read:AlignmentDirectional.centerEnd",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/painting/alignment.dart",
+              "name": "AlignmentDirectional.centerStart"
+            },
+            "wireId": "flax.core/flutter#read:AlignmentDirectional.centerStart",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/painting/alignment.dart",
+              "name": "AlignmentDirectional.topCenter"
+            },
+            "wireId": "flax.core/flutter#read:AlignmentDirectional.topCenter",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/painting/alignment.dart",
+              "name": "AlignmentDirectional.topEnd"
+            },
+            "wireId": "flax.core/flutter#read:AlignmentDirectional.topEnd",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/painting/alignment.dart",
+              "name": "AlignmentDirectional.topStart"
+            },
+            "wireId": "flax.core/flutter#read:AlignmentDirectional.topStart",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/painting/border_radius.dart",
+              "name": "BorderRadius.zero"
+            },
+            "wireId": "flax.core/flutter#read:BorderRadius.zero",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/painting/border_radius.dart",
+              "name": "BorderRadiusDirectional.zero"
+            },
+            "wireId": "flax.core/flutter#read:BorderRadiusDirectional.zero",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/painting/borders.dart",
+              "name": "BorderSide.none"
+            },
+            "wireId": "flax.core/flutter#read:BorderSide.none",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/painting/borders.dart",
+              "name": "BorderSide.strokeAlignCenter"
+            },
+            "wireId": "flax.core/flutter#read:BorderSide.strokeAlignCenter",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/painting/borders.dart",
+              "name": "BorderSide.strokeAlignInside"
+            },
+            "wireId": "flax.core/flutter#read:BorderSide.strokeAlignInside",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/painting/borders.dart",
+              "name": "BorderSide.strokeAlignOutside"
+            },
+            "wireId": "flax.core/flutter#read:BorderSide.strokeAlignOutside",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/painting/edge_insets.dart",
+              "name": "EdgeInsets.zero"
+            },
+            "wireId": "flax.core/flutter#read:EdgeInsets.zero",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/painting/edge_insets.dart",
+              "name": "EdgeInsetsDirectional.zero"
+            },
+            "wireId": "flax.core/flutter#read:EdgeInsetsDirectional.zero",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/scheduler/binding.dart",
+              "name": "SchedulerBinding.instance"
+            },
+            "wireId": "flax.core/flutter#read:SchedulerBinding.instance",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/services/mouse_cursor.dart",
+              "name": "MouseCursor.defer"
+            },
+            "wireId": "flax.core/flutter#read:MouseCursor.defer",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/services/mouse_cursor.dart",
+              "name": "MouseCursor.uncontrolled"
+            },
+            "wireId": "flax.core/flutter#read:MouseCursor.uncontrolled",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/services/mouse_cursor.dart",
+              "name": "SystemMouseCursors.basic"
+            },
+            "wireId": "flax.core/flutter#read:SystemMouseCursors.basic",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/services/mouse_cursor.dart",
+              "name": "SystemMouseCursors.click"
+            },
+            "wireId": "flax.core/flutter#read:SystemMouseCursors.click",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/services/mouse_cursor.dart",
+              "name": "SystemMouseCursors.forbidden"
+            },
+            "wireId": "flax.core/flutter#read:SystemMouseCursors.forbidden",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/services/mouse_cursor.dart",
+              "name": "SystemMouseCursors.text"
+            },
+            "wireId": "flax.core/flutter#read:SystemMouseCursors.text",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/services/text_formatter.dart",
+              "name": "FilteringTextInputFormatter.digitsOnly"
+            },
+            "wireId": "flax.core/flutter#read:FilteringTextInputFormatter.digitsOnly",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/services/text_formatter.dart",
+              "name": "FilteringTextInputFormatter.singleLineFormatter"
+            },
+            "wireId": "flax.core/flutter#read:FilteringTextInputFormatter.singleLineFormatter",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "package:flutter/src/services/text_input.dart",
+              "name": "TextEditingValue.empty"
+            },
+            "wireId": "flax.core/flutter#read:TextEditingValue.empty",
             "owner": true
           },
           {

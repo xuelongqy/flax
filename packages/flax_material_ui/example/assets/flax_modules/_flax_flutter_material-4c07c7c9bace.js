@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/flutter/material","owner":"@flax/material-ui:dist/generated/libraries/material/index.js","version":"0.0.0","artifact":"2c4bedc74ed45b72363dc0cd0ebc2a1f15272d4692d3f6b83ad84943347bf881","asset":"assets/flax_modules/_flax_flutter_material-4c07c7c9bace.js","package":"@flax/material-ui","source":"dist/generated/libraries/material/index.js","dependencies":{"@flax/core/bindings":"0.0.0","@flax/dart/core":"0.0.0","@flax/flutter/foundation":"0.0.0","@flax/flutter/services":"0.0.0","@flax/flutter/widgets":"0.0.0"},"bindings":[{"moduleId":"flax.material/material","uiProtocol":22,"types":["flax.material/material#type:AlertDialog","flax.material/material#type:AppBar","flax.material/material#type:Brightness","flax.material/material#type:ButtonStyle","flax.material/material#type:Card","flax.material/material#type:Checkbox","flax.material/material#type:CircularProgressIndicator","flax.material/material#type:ColorScheme","flax.material/material#type:Divider","flax.material/material#type:Drawer","flax.material/material#type:ElevatedButton","flax.material/material#type:FilledButton","flax.material/material#type:FloatingActionButton","flax.material/material#type:IconButton","flax.material/material#type:InkWell","flax.material/material#type:InputDecoration","flax.material/material#type:LinearProgressIndicator","flax.material/material#type:ListTile","flax.material/material#type:ListTileStyle","flax.material/material#type:Material","flax.material/material#type:MaterialApp","flax.material/material#type:MaterialPage","flax.material/material#type:MaterialPageRoute","flax.material/material#type:MaterialType","flax.material/material#type:NavigationBar","flax.material/material#type:NavigationDestination","flax.material/material#type:NavigationDestinationLabelBehavior","flax.material/material#type:OutlinedButton","flax.material/material#type:RefreshIndicator","flax.material/material#type:Scaffold","flax.material/material#type:Switch","flax.material/material#type:TextButton","flax.material/material#type:TextField","flax.material/material#type:TextInputAction","flax.material/material#type:TextTheme","flax.material/material#type:Theme","flax.material/material#type:ThemeData","flax.material/material#type:ThemeMode","flax.material/material#type:VerticalDivider","flax.material/material#type:VisualDensity"],"functions":["flax.material/material#function:showDialog","flax.material/material#read:kTabScrollDuration"]}],"subpaths":["@flax/flutter/material/index"]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/flutter/material","owner":"@flax/material-ui:dist/generated/libraries/material/index.js","version":"0.0.0","artifact":"c20a998ef40b7af115661c9744c7d6292c43af85a612d3b25be2570b480a9cd5","asset":"assets/flax_modules/_flax_flutter_material-4c07c7c9bace.js","package":"@flax/material-ui","source":"dist/generated/libraries/material/index.js","dependencies":{"@flax/core/bindings":"0.0.0","@flax/dart/core":"0.0.0","@flax/flutter/foundation":"0.0.0","@flax/flutter/services":"0.0.0","@flax/flutter/widgets":"0.0.0"},"bindings":[{"moduleId":"flax.material/material","uiProtocol":22,"types":["flax.material/material#type:AlertDialog","flax.material/material#type:AppBar","flax.material/material#type:Brightness","flax.material/material#type:ButtonStyle","flax.material/material#type:Card","flax.material/material#type:Checkbox","flax.material/material#type:CircularProgressIndicator","flax.material/material#type:ColorScheme","flax.material/material#type:Divider","flax.material/material#type:Drawer","flax.material/material#type:ElevatedButton","flax.material/material#type:FilledButton","flax.material/material#type:FloatingActionButton","flax.material/material#type:IconButton","flax.material/material#type:InkWell","flax.material/material#type:InputDecoration","flax.material/material#type:LinearProgressIndicator","flax.material/material#type:ListTile","flax.material/material#type:ListTileStyle","flax.material/material#type:Material","flax.material/material#type:MaterialApp","flax.material/material#type:MaterialPage","flax.material/material#type:MaterialPageRoute","flax.material/material#type:MaterialType","flax.material/material#type:NavigationBar","flax.material/material#type:NavigationDestination","flax.material/material#type:NavigationDestinationLabelBehavior","flax.material/material#type:OutlinedButton","flax.material/material#type:RefreshIndicator","flax.material/material#type:Scaffold","flax.material/material#type:Switch","flax.material/material#type:TextButton","flax.material/material#type:TextField","flax.material/material#type:TextInputAction","flax.material/material#type:TextTheme","flax.material/material#type:Theme","flax.material/material#type:ThemeData","flax.material/material#type:ThemeMode","flax.material/material#type:VerticalDivider","flax.material/material#type:VisualDensity"],"functions":["flax.material/material#function:showDialog","flax.material/material#read:kTabScrollDuration"]}],"subpaths":["@flax/flutter/material/index"]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -122,16 +122,8 @@ var materialBindingModule = _flaxInstallBindingModule("flax.material/material", 
 var { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } = materialBindingModule;
 
 // ../../js/dist/generated/libraries/material/_bindings/material_VisualDensity.js
-defineObject("flax.material/material#type:VisualDensity", ["horizontal", "vertical"], [], {
-  copyWith(options = {}) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["horizontal", "vertical"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeObject(this, "flax.material/material#type:VisualDensity", "copyWith", [options.horizontal, options.vertical]);
-    return _flaxResult;
-  }
-}, []);
+var _flaxMemberParameters0 = [{ "name": "horizontal", "required": false, "positional": false }, { "name": "vertical", "required": false, "positional": false }];
+defineObject("flax.material/material#type:VisualDensity", ["horizontal", "vertical"], [], (0, import_bindings2.bindingMethods)("flax.material/material#type:VisualDensity", "object", { "copyWith": _flaxMemberParameters0 }), []);
 function VisualDensity(options = {}) {
   if (arguments.length > 1)
     throw new TypeError("Too many constructor arguments");
@@ -139,25 +131,17 @@ function VisualDensity(options = {}) {
 }
 /* @__PURE__ */ (function(VisualDensity2) {
 })(VisualDensity || (VisualDensity = {}));
-Object.defineProperty(VisualDensity, "standard", { get: () => invokeObjectStatic("flax.material/material#type:VisualDensity", "standard") });
+Object.defineProperty(VisualDensity, "standard", { get: () => invokeTopLevel("flax.material/material#read:VisualDensity.standard", []) });
 /* @__PURE__ */ (function(VisualDensity2) {
 })(VisualDensity || (VisualDensity = {}));
-Object.defineProperty(VisualDensity, "comfortable", { get: () => invokeObjectStatic("flax.material/material#type:VisualDensity", "comfortable") });
+Object.defineProperty(VisualDensity, "comfortable", { get: () => invokeTopLevel("flax.material/material#read:VisualDensity.comfortable", []) });
 /* @__PURE__ */ (function(VisualDensity2) {
 })(VisualDensity || (VisualDensity = {}));
-Object.defineProperty(VisualDensity, "compact", { get: () => invokeObjectStatic("flax.material/material#type:VisualDensity", "compact") });
+Object.defineProperty(VisualDensity, "compact", { get: () => invokeTopLevel("flax.material/material#read:VisualDensity.compact", []) });
 
 // ../../js/dist/generated/libraries/material/_bindings/material_ButtonStyle.js
-defineObject("flax.material/material#type:ButtonStyle", ["backgroundColor", "foregroundColor", "overlayColor", "elevation", "shape", "mouseCursor", "visualDensity"], [], {
-  copyWith(options = {}) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["backgroundColor", "elevation", "foregroundColor", "mouseCursor", "overlayColor", "shape", "visualDensity"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeObject(this, "flax.material/material#type:ButtonStyle", "copyWith", [options.backgroundColor, options.elevation, options.foregroundColor, options.mouseCursor, options.overlayColor, options.shape, options.visualDensity]);
-    return _flaxResult;
-  }
-}, []);
+var _flaxMemberParameters02 = [{ "name": "backgroundColor", "required": false, "positional": false }, { "name": "elevation", "required": false, "positional": false }, { "name": "foregroundColor", "required": false, "positional": false }, { "name": "mouseCursor", "required": false, "positional": false }, { "name": "overlayColor", "required": false, "positional": false }, { "name": "shape", "required": false, "positional": false }, { "name": "visualDensity", "required": false, "positional": false }];
+defineObject("flax.material/material#type:ButtonStyle", ["backgroundColor", "foregroundColor", "overlayColor", "elevation", "shape", "mouseCursor", "visualDensity"], [], (0, import_bindings3.bindingMethods)("flax.material/material#type:ButtonStyle", "object", { "copyWith": _flaxMemberParameters02 }), []);
 function ButtonStyle(options = {}) {
   if (arguments.length > 1)
     throw new TypeError("Too many constructor arguments");
@@ -167,16 +151,8 @@ function ButtonStyle(options = {}) {
 // ../../js/dist/generated/libraries/material/_bindings/material_ColorScheme.js
 var import_bindings4 = require("@flax/core/bindings");
 var import_flutter_Color2 = require("@flax/flutter/services");
-defineObject("flax.material/material#type:ColorScheme", ["brightness", "primary", "onPrimary", "surface", "onSurface", "error", "onError"], [], {
-  copyWith(options = {}) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["brightness", "error", "onError", "onPrimary", "onSurface", "primary", "surface"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeObject(this, "flax.material/material#type:ColorScheme", "copyWith", [options.brightness, options.error, options.onError, options.onPrimary, options.onSurface, options.primary, options.surface]);
-    return _flaxResult;
-  }
-}, []);
+var _flaxMemberParameters03 = [{ "name": "brightness", "required": false, "positional": false }, { "name": "error", "required": false, "positional": false }, { "name": "onError", "required": false, "positional": false }, { "name": "onPrimary", "required": false, "positional": false }, { "name": "onSurface", "required": false, "positional": false }, { "name": "primary", "required": false, "positional": false }, { "name": "surface", "required": false, "positional": false }];
+defineObject("flax.material/material#type:ColorScheme", ["brightness", "primary", "onPrimary", "surface", "onSurface", "error", "onError"], [], (0, import_bindings4.bindingMethods)("flax.material/material#type:ColorScheme", "object", { "copyWith": _flaxMemberParameters03 }), []);
 var ColorScheme;
 (function(ColorScheme2) {
   function fromSeed(options) {
@@ -192,16 +168,8 @@ var import_bindings5 = require("@flax/core/bindings");
 var import_flutter_TextStyle = require("@flax/flutter/widgets");
 var import_flutter_EdgeInsetsGeometry = require("@flax/flutter/widgets");
 var import_flutter_Color3 = require("@flax/flutter/services");
-defineObject("flax.material/material#type:InputDecoration", ["labelText", "hintText", "helperText", "errorText", "labelStyle", "hintStyle", "helperStyle", "errorStyle", "isDense", "contentPadding", "filled", "fillColor"], [], {
-  copyWith(options = {}) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["contentPadding", "errorStyle", "errorText", "fillColor", "filled", "helperStyle", "helperText", "hintStyle", "hintText", "isDense", "labelStyle", "labelText"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeObject(this, "flax.material/material#type:InputDecoration", "copyWith", [options.contentPadding, options.errorStyle, options.errorText, options.fillColor, options.filled, options.helperStyle, options.helperText, options.hintStyle, options.hintText, options.isDense, options.labelStyle, options.labelText]);
-    return _flaxResult;
-  }
-}, []);
+var _flaxMemberParameters04 = [{ "name": "contentPadding", "required": false, "positional": false }, { "name": "errorStyle", "required": false, "positional": false }, { "name": "errorText", "required": false, "positional": false }, { "name": "fillColor", "required": false, "positional": false }, { "name": "filled", "required": false, "positional": false }, { "name": "helperStyle", "required": false, "positional": false }, { "name": "helperText", "required": false, "positional": false }, { "name": "hintStyle", "required": false, "positional": false }, { "name": "hintText", "required": false, "positional": false }, { "name": "isDense", "required": false, "positional": false }, { "name": "labelStyle", "required": false, "positional": false }, { "name": "labelText", "required": false, "positional": false }];
+defineObject("flax.material/material#type:InputDecoration", ["labelText", "hintText", "helperText", "errorText", "labelStyle", "hintStyle", "helperStyle", "errorStyle", "isDense", "contentPadding", "filled", "fillColor"], [], (0, import_bindings5.bindingMethods)("flax.material/material#type:InputDecoration", "object", { "copyWith": _flaxMemberParameters04 }), []);
 function InputDecoration(options = {}) {
   if (arguments.length > 1)
     throw new TypeError("Too many constructor arguments");
@@ -211,16 +179,8 @@ function InputDecoration(options = {}) {
 // ../../js/dist/generated/libraries/material/_bindings/material_TextTheme.js
 var import_bindings6 = require("@flax/core/bindings");
 var import_flutter_TextStyle2 = require("@flax/flutter/widgets");
-defineObject("flax.material/material#type:TextTheme", ["titleLarge", "titleMedium", "bodyLarge", "bodyMedium", "labelLarge"], [], {
-  copyWith(options = {}) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["bodyLarge", "bodyMedium", "labelLarge", "titleLarge", "titleMedium"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeObject(this, "flax.material/material#type:TextTheme", "copyWith", [options.bodyLarge, options.bodyMedium, options.labelLarge, options.titleLarge, options.titleMedium]);
-    return _flaxResult;
-  }
-}, []);
+var _flaxMemberParameters05 = [{ "name": "bodyLarge", "required": false, "positional": false }, { "name": "bodyMedium", "required": false, "positional": false }, { "name": "labelLarge", "required": false, "positional": false }, { "name": "titleLarge", "required": false, "positional": false }, { "name": "titleMedium", "required": false, "positional": false }];
+defineObject("flax.material/material#type:TextTheme", ["titleLarge", "titleMedium", "bodyLarge", "bodyMedium", "labelLarge"], [], (0, import_bindings6.bindingMethods)("flax.material/material#type:TextTheme", "object", { "copyWith": _flaxMemberParameters05 }), []);
 function TextTheme(options = {}) {
   if (arguments.length > 1)
     throw new TypeError("Too many constructor arguments");
@@ -230,16 +190,8 @@ function TextTheme(options = {}) {
 // ../../js/dist/generated/libraries/material/_bindings/material_ThemeData.js
 var import_bindings7 = require("@flax/core/bindings");
 var import_flutter_Color4 = require("@flax/flutter/services");
-defineObject("flax.material/material#type:ThemeData", ["brightness", "colorScheme", "textTheme"], [], {
-  copyWith(options = {}) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["brightness", "colorScheme", "textTheme"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeObject(this, "flax.material/material#type:ThemeData", "copyWith", [options.brightness, options.colorScheme, options.textTheme]);
-    return _flaxResult;
-  }
-}, []);
+var _flaxMemberParameters06 = [{ "name": "brightness", "required": false, "positional": false }, { "name": "colorScheme", "required": false, "positional": false }, { "name": "textTheme", "required": false, "positional": false }];
+defineObject("flax.material/material#type:ThemeData", ["brightness", "colorScheme", "textTheme"], [], (0, import_bindings7.bindingMethods)("flax.material/material#type:ThemeData", "object", { "copyWith": _flaxMemberParameters06 }), []);
 function ThemeData(options = {}) {
   if (arguments.length > 1)
     throw new TypeError("Too many constructor arguments");

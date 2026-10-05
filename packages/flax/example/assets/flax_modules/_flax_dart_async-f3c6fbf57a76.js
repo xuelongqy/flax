@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/dart/async","owner":"@flax/core-runtime:dist/dart/generated/libraries/async/index.js","version":"0.0.0","artifact":"9669780b36448d639ebec3d38220be7842c0cd4c0f1906752615820a8dc8240b","asset":"assets/flax_modules/_flax_dart_async-f3c6fbf57a76.js","package":"@flax/core-runtime","source":"dist/dart/generated/libraries/async/index.js","dependencies":{"@flax/core/bindings":"0.0.0","@flax/dart/core":"0.0.0"},"bindings":[{"moduleId":"flax.core/flutter","uiProtocol":22,"types":["flax.core/flutter#type:Align","flax.core/flutter#type:Alignment","flax.core/flutter#type:AlignmentDirectional","flax.core/flutter#type:AlignmentGeometry","flax.core/flutter#type:AlwaysScrollableScrollPhysics","flax.core/flutter#type:AspectRatio","flax.core/flutter#type:AsyncSnapshot","flax.core/flutter#type:AutovalidateMode","flax.core/flutter#type:Axis","flax.core/flutter#type:Border","flax.core/flutter#type:BorderDirectional","flax.core/flutter#type:BorderRadius","flax.core/flutter#type:BorderRadiusDirectional","flax.core/flutter#type:BorderRadiusGeometry","flax.core/flutter#type:BorderSide","flax.core/flutter#type:BorderStyle","flax.core/flutter#type:BouncingScrollPhysics","flax.core/flutter#type:BoxBorder","flax.core/flutter#type:BoxConstraints","flax.core/flutter#type:BoxDecoration","flax.core/flutter#type:BoxFit","flax.core/flutter#type:BoxShape","flax.core/flutter#type:BuildContext","flax.core/flutter#type:Builder","flax.core/flutter#type:Center","flax.core/flutter#type:CircleBorder","flax.core/flutter#type:ClampingScrollPhysics","flax.core/flutter#type:Clip","flax.core/flutter#type:ClipRRect","flax.core/flutter#type:Color","flax.core/flutter#type:ColoredBox","flax.core/flutter#type:Column","flax.core/flutter#type:ConnectionState","flax.core/flutter#type:ConstrainedBox","flax.core/flutter#type:Container","flax.core/flutter#type:CrossAxisAlignment","flax.core/flutter#type:Cubic","flax.core/flutter#type:Curve","flax.core/flutter#type:Curves","flax.core/flutter#type:DateTime","flax.core/flutter#type:DecoratedBox","flax.core/flutter#type:Decoration","flax.core/flutter#type:DecorationPosition","flax.core/flutter#type:Directionality","flax.core/flutter#type:DragStartBehavior","flax.core/flutter#type:Duration","flax.core/flutter#type:EdgeInsets","flax.core/flutter#type:EdgeInsetsDirectional","flax.core/flutter#type:EdgeInsetsGeometry","flax.core/flutter#type:EventSink","flax.core/flutter#type:Expanded","flax.core/flutter#type:FilteringTextInputFormatter","flax.core/flutter#type:FittedBox","flax.core/flutter#type:FittedSizes","flax.core/flutter#type:FlaxNavigatorObserver","flax.core/flutter#type:FlexFit","flax.core/flutter#type:Flexible","flax.core/flutter#type:Focus","flax.core/flutter#type:FocusNode","flax.core/flutter#type:FontStyle","flax.core/flutter#type:FontWeight","flax.core/flutter#type:Form","flax.core/flutter#type:GestureDetector","flax.core/flutter#type:HitTestBehavior","flax.core/flutter#type:IgnorePointer","flax.core/flutter#type:ImageFilter","flax.core/flutter#type:IndexedStack","flax.core/flutter#type:Key","flax.core/flutter#type:KeyboardListener","flax.core/flutter#type:LayoutBuilder","flax.core/flutter#type:LengthLimitingTextInputFormatter","flax.core/flutter#type:ListView","flax.core/flutter#type:Listenable","flax.core/flutter#type:ListenableBuilder","flax.core/flutter#type:Listener","flax.core/flutter#type:LocalKey","flax.core/flutter#type:MainAxisAlignment","flax.core/flutter#type:MainAxisSize","flax.core/flutter#type:MaxLengthEnforcement","flax.core/flutter#type:MouseCursor","flax.core/flutter#type:MouseRegion","flax.core/flutter#type:MultiStreamController","flax.core/flutter#type:Navigator","flax.core/flutter#type:NavigatorObserver","flax.core/flutter#type:NavigatorPopHandler","flax.core/flutter#type:NavigatorState","flax.core/flutter#type:NeverScrollableScrollPhysics","flax.core/flutter#type:Opacity","flax.core/flutter#type:OutlinedBorder","flax.core/flutter#type:Padding","flax.core/flutter#type:Page","flax.core/flutter#type:Pattern","flax.core/flutter#type:PopScope","flax.core/flutter#type:Positioned","flax.core/flutter#type:PreferredSize","flax.core/flutter#type:PreferredSizeWidget","flax.core/flutter#type:Radius","flax.core/flutter#type:RegExp","flax.core/flutter#type:RoundedRectangleBorder","flax.core/flutter#type:Route","flax.core/flutter#type:RouteSettings","flax.core/flutter#type:Row","flax.core/flutter#type:SafeArea","flax.core/flutter#type:SchedulerBinding","flax.core/flutter#type:ScrollController","flax.core/flutter#type:ScrollPhysics","flax.core/flutter#type:ShapeBorder","flax.core/flutter#type:SingleChildScrollView","flax.core/flutter#type:Sink","flax.core/flutter#type:Size","flax.core/flutter#type:SizedBox","flax.core/flutter#type:Spacer","flax.core/flutter#type:Stack","flax.core/flutter#type:StackFit","flax.core/flutter#type:StackTrace","flax.core/flutter#type:StadiumBorder","flax.core/flutter#type:StatefulBuilder","flax.core/flutter#type:Stream","flax.core/flutter#type:StreamBuilder","flax.core/flutter#type:StreamConsumer","flax.core/flutter#type:StreamController","flax.core/flutter#type:StreamIterator","flax.core/flutter#type:StreamSink","flax.core/flutter#type:StreamSubscription","flax.core/flutter#type:StreamTransformer","flax.core/flutter#type:StreamTransformerBase","flax.core/flutter#type:StreamView","flax.core/flutter#type:StringBuffer","flax.core/flutter#type:SynchronousStreamController","flax.core/flutter#type:SystemMouseCursor","flax.core/flutter#type:SystemMouseCursors","flax.core/flutter#type:TargetPlatform","flax.core/flutter#type:Text","flax.core/flutter#type:TextAffinity","flax.core/flutter#type:TextAlign","flax.core/flutter#type:TextBaseline","flax.core/flutter#type:TextDirection","flax.core/flutter#type:TextEditingController","flax.core/flutter#type:TextEditingValue","flax.core/flutter#type:TextInputFormatter","flax.core/flutter#type:TextOverflow","flax.core/flutter#type:TextRange","flax.core/flutter#type:TextSelection","flax.core/flutter#type:TextStyle","flax.core/flutter#type:TickerProvider","flax.core/flutter#type:UnfocusDisposition","flax.core/flutter#type:Uri","flax.core/flutter#type:ValueKey","flax.core/flutter#type:ValueListenable","flax.core/flutter#type:ValueListenableBuilder","flax.core/flutter#type:VerticalDirection","flax.core/flutter#type:Visibility","flax.core/flutter#type:WidgetState","flax.core/flutter#type:WidgetStateProperty","flax.core/flutter#type:Wrap","flax.core/flutter#type:WrapAlignment","flax.core/flutter#type:WrapCrossAlignment"],"functions":["flax.core/flutter#function:applyBoxFit","flax.core/flutter#read:defaultTargetPlatform","flax.core/flutter#read:kIsWeb"]}],"subpaths":["@flax/dart/async/index"]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/dart/async","owner":"@flax/core-runtime:dist/dart/generated/libraries/async/index.js","version":"0.0.0","artifact":"556f3ce368f283078461888a0e6854fa435a2cacbb366356cc69cff7a24b720a","asset":"assets/flax_modules/_flax_dart_async-f3c6fbf57a76.js","package":"@flax/core-runtime","source":"dist/dart/generated/libraries/async/index.js","dependencies":{"@flax/core/bindings":"0.0.0","@flax/dart/core":"0.0.0"},"bindings":[{"moduleId":"flax.core/flutter","uiProtocol":22,"types":["flax.core/flutter#type:Align","flax.core/flutter#type:Alignment","flax.core/flutter#type:AlignmentDirectional","flax.core/flutter#type:AlignmentGeometry","flax.core/flutter#type:AlwaysScrollableScrollPhysics","flax.core/flutter#type:AspectRatio","flax.core/flutter#type:AsyncSnapshot","flax.core/flutter#type:AutovalidateMode","flax.core/flutter#type:Axis","flax.core/flutter#type:Border","flax.core/flutter#type:BorderDirectional","flax.core/flutter#type:BorderRadius","flax.core/flutter#type:BorderRadiusDirectional","flax.core/flutter#type:BorderRadiusGeometry","flax.core/flutter#type:BorderSide","flax.core/flutter#type:BorderStyle","flax.core/flutter#type:BouncingScrollPhysics","flax.core/flutter#type:BoxBorder","flax.core/flutter#type:BoxConstraints","flax.core/flutter#type:BoxDecoration","flax.core/flutter#type:BoxFit","flax.core/flutter#type:BoxShape","flax.core/flutter#type:BuildContext","flax.core/flutter#type:Builder","flax.core/flutter#type:Center","flax.core/flutter#type:CircleBorder","flax.core/flutter#type:ClampingScrollPhysics","flax.core/flutter#type:Clip","flax.core/flutter#type:ClipRRect","flax.core/flutter#type:Color","flax.core/flutter#type:ColoredBox","flax.core/flutter#type:Column","flax.core/flutter#type:ConnectionState","flax.core/flutter#type:ConstrainedBox","flax.core/flutter#type:Container","flax.core/flutter#type:CrossAxisAlignment","flax.core/flutter#type:Cubic","flax.core/flutter#type:Curve","flax.core/flutter#type:Curves","flax.core/flutter#type:DateTime","flax.core/flutter#type:DecoratedBox","flax.core/flutter#type:Decoration","flax.core/flutter#type:DecorationPosition","flax.core/flutter#type:Directionality","flax.core/flutter#type:DragStartBehavior","flax.core/flutter#type:Duration","flax.core/flutter#type:EdgeInsets","flax.core/flutter#type:EdgeInsetsDirectional","flax.core/flutter#type:EdgeInsetsGeometry","flax.core/flutter#type:EventSink","flax.core/flutter#type:Expanded","flax.core/flutter#type:FilteringTextInputFormatter","flax.core/flutter#type:FittedBox","flax.core/flutter#type:FittedSizes","flax.core/flutter#type:FlaxNavigatorObserver","flax.core/flutter#type:FlexFit","flax.core/flutter#type:Flexible","flax.core/flutter#type:Focus","flax.core/flutter#type:FocusNode","flax.core/flutter#type:FontStyle","flax.core/flutter#type:FontWeight","flax.core/flutter#type:Form","flax.core/flutter#type:GestureDetector","flax.core/flutter#type:HitTestBehavior","flax.core/flutter#type:IgnorePointer","flax.core/flutter#type:ImageFilter","flax.core/flutter#type:IndexedStack","flax.core/flutter#type:Key","flax.core/flutter#type:KeyboardListener","flax.core/flutter#type:LayoutBuilder","flax.core/flutter#type:LengthLimitingTextInputFormatter","flax.core/flutter#type:ListView","flax.core/flutter#type:Listenable","flax.core/flutter#type:ListenableBuilder","flax.core/flutter#type:Listener","flax.core/flutter#type:LocalKey","flax.core/flutter#type:MainAxisAlignment","flax.core/flutter#type:MainAxisSize","flax.core/flutter#type:MaxLengthEnforcement","flax.core/flutter#type:MouseCursor","flax.core/flutter#type:MouseRegion","flax.core/flutter#type:MultiStreamController","flax.core/flutter#type:Navigator","flax.core/flutter#type:NavigatorObserver","flax.core/flutter#type:NavigatorPopHandler","flax.core/flutter#type:NavigatorState","flax.core/flutter#type:NeverScrollableScrollPhysics","flax.core/flutter#type:Opacity","flax.core/flutter#type:OutlinedBorder","flax.core/flutter#type:Padding","flax.core/flutter#type:Page","flax.core/flutter#type:Pattern","flax.core/flutter#type:PopScope","flax.core/flutter#type:Positioned","flax.core/flutter#type:PreferredSize","flax.core/flutter#type:PreferredSizeWidget","flax.core/flutter#type:Radius","flax.core/flutter#type:RegExp","flax.core/flutter#type:RoundedRectangleBorder","flax.core/flutter#type:Route","flax.core/flutter#type:RouteSettings","flax.core/flutter#type:Row","flax.core/flutter#type:SafeArea","flax.core/flutter#type:SchedulerBinding","flax.core/flutter#type:ScrollController","flax.core/flutter#type:ScrollPhysics","flax.core/flutter#type:ShapeBorder","flax.core/flutter#type:SingleChildScrollView","flax.core/flutter#type:Sink","flax.core/flutter#type:Size","flax.core/flutter#type:SizedBox","flax.core/flutter#type:Spacer","flax.core/flutter#type:Stack","flax.core/flutter#type:StackFit","flax.core/flutter#type:StackTrace","flax.core/flutter#type:StadiumBorder","flax.core/flutter#type:StatefulBuilder","flax.core/flutter#type:Stream","flax.core/flutter#type:StreamBuilder","flax.core/flutter#type:StreamConsumer","flax.core/flutter#type:StreamController","flax.core/flutter#type:StreamIterator","flax.core/flutter#type:StreamSink","flax.core/flutter#type:StreamSubscription","flax.core/flutter#type:StreamTransformer","flax.core/flutter#type:StreamTransformerBase","flax.core/flutter#type:StreamView","flax.core/flutter#type:StringBuffer","flax.core/flutter#type:SynchronousStreamController","flax.core/flutter#type:SystemMouseCursor","flax.core/flutter#type:SystemMouseCursors","flax.core/flutter#type:TargetPlatform","flax.core/flutter#type:Text","flax.core/flutter#type:TextAffinity","flax.core/flutter#type:TextAlign","flax.core/flutter#type:TextBaseline","flax.core/flutter#type:TextDirection","flax.core/flutter#type:TextEditingController","flax.core/flutter#type:TextEditingValue","flax.core/flutter#type:TextInputFormatter","flax.core/flutter#type:TextOverflow","flax.core/flutter#type:TextRange","flax.core/flutter#type:TextSelection","flax.core/flutter#type:TextStyle","flax.core/flutter#type:TickerProvider","flax.core/flutter#type:UnfocusDisposition","flax.core/flutter#type:Uri","flax.core/flutter#type:ValueKey","flax.core/flutter#type:ValueListenable","flax.core/flutter#type:ValueListenableBuilder","flax.core/flutter#type:VerticalDirection","flax.core/flutter#type:Visibility","flax.core/flutter#type:WidgetState","flax.core/flutter#type:WidgetStateProperty","flax.core/flutter#type:Wrap","flax.core/flutter#type:WrapAlignment","flax.core/flutter#type:WrapCrossAlignment"],"functions":["flax.core/flutter#function:applyBoxFit","flax.core/flutter#read:defaultTargetPlatform","flax.core/flutter#read:kIsWeb"]}],"subpaths":["@flax/dart/async/index"]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -82,23 +82,10 @@ var flutterBindingModule = _flaxInstallBindingModule("flax.core/flutter", 22, Ob
 var { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } = flutterBindingModule;
 
 // ../../js/dist/dart/generated/libraries/async/_bindings/flutter_EventSink.js
-defineObject("flax.core/flutter#type:EventSink", [], [], {
-  add(event) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:EventSink", "add", [event]);
-  },
-  addError(error, stackTrace) {
-    if (arguments.length > 2)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:EventSink", "addError", [error, stackTrace]);
-  },
-  close() {
-    if (arguments.length > 0)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:EventSink", "close", []);
-  }
-}, []);
+var _flaxMemberParameters0 = [{ "name": "event", "required": true, "positional": true }];
+var _flaxMemberParameters1 = [{ "name": "error", "required": true, "positional": true }, { "name": "stackTrace", "required": false, "positional": true }];
+var _flaxMemberParameters2 = [];
+defineObject("flax.core/flutter#type:EventSink", [], [], (0, import_bindings2.bindingMethods)("flax.core/flutter#type:EventSink", "object", { "add": _flaxMemberParameters0, "addError": _flaxMemberParameters1, "close": _flaxMemberParameters2 }), []);
 var EventSink;
 (function(EventSink2) {
   function implement(args, implementation) {
@@ -119,20 +106,9 @@ var import_flutter_Sink2 = require("@flax/dart/core");
 
 // ../../js/dist/dart/generated/libraries/async/_bindings/flutter_StreamConsumer.js
 var import_bindings3 = require("@flax/core/bindings");
-defineObject("flax.core/flutter#type:StreamConsumer", [], [], {
-  addStream(stream) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:StreamConsumer", "addStream", [stream]);
-    return _flaxResult;
-  },
-  close() {
-    if (arguments.length > 0)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:StreamConsumer", "close", []);
-    return _flaxResult;
-  }
-}, []);
+var _flaxMemberParameters02 = [{ "name": "stream", "required": true, "positional": true }];
+var _flaxMemberParameters12 = [];
+defineObject("flax.core/flutter#type:StreamConsumer", [], [], (0, import_bindings3.bindingMethods)("flax.core/flutter#type:StreamConsumer", "object", { "addStream": _flaxMemberParameters02, "close": _flaxMemberParameters12 }), []);
 var StreamConsumer;
 (function(StreamConsumer2) {
   function implement(args, implementation) {
@@ -143,60 +119,20 @@ var StreamConsumer;
 
 // ../../js/dist/dart/generated/libraries/async/_bindings/flutter_StreamSink.js
 var import_flutter_StackTrace2 = require("@flax/dart/core");
-defineObject("flax.core/flutter#type:StreamSink", ["done"], [], {
-  add(event) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:StreamSink", "add", [event]);
-  },
-  addError(error, stackTrace) {
-    if (arguments.length > 2)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:StreamSink", "addError", [error, stackTrace]);
-  },
-  close() {
-    if (arguments.length > 0)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:StreamSink", "close", []);
-    return _flaxResult;
-  },
-  addStream(stream) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:StreamSink", "addStream", [stream]);
-    return _flaxResult;
-  }
-}, []);
+var _flaxMemberParameters03 = [{ "name": "event", "required": true, "positional": true }];
+var _flaxMemberParameters13 = [{ "name": "error", "required": true, "positional": true }, { "name": "stackTrace", "required": false, "positional": true }];
+var _flaxMemberParameters22 = [];
+var _flaxMemberParameters3 = [{ "name": "stream", "required": true, "positional": true }];
+defineObject("flax.core/flutter#type:StreamSink", ["done"], [], (0, import_bindings4.bindingMethods)("flax.core/flutter#type:StreamSink", "object", { "add": _flaxMemberParameters03, "addError": _flaxMemberParameters13, "close": _flaxMemberParameters22, "addStream": _flaxMemberParameters3 }), []);
 
 // ../../js/dist/dart/generated/libraries/async/_bindings/flutter_StreamController.js
 var import_flutter_Sink3 = require("@flax/dart/core");
 var import_flutter_StackTrace3 = require("@flax/dart/core");
-defineObject("flax.core/flutter#type:StreamController", ["done", "onListen", "onPause", "onResume", "onCancel", "stream", "sink", "isClosed", "isPaused", "hasListener"], ["onListen", "onPause", "onResume", "onCancel"], {
-  add(event) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:StreamController", "add", [event]);
-  },
-  addError(error, stackTrace) {
-    if (arguments.length > 2)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:StreamController", "addError", [error, stackTrace]);
-  },
-  close() {
-    if (arguments.length > 0)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:StreamController", "close", []);
-    return _flaxResult;
-  },
-  addStream(source, options = {}) {
-    if (arguments.length > 2)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["cancelOnError"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:StreamController", "addStream", [source, options.cancelOnError]);
-    return _flaxResult;
-  }
-}, []);
+var _flaxMemberParameters04 = [{ "name": "event", "required": true, "positional": true }];
+var _flaxMemberParameters14 = [{ "name": "error", "required": true, "positional": true }, { "name": "stackTrace", "required": false, "positional": true }];
+var _flaxMemberParameters23 = [];
+var _flaxMemberParameters32 = [{ "name": "source", "required": true, "positional": true }, { "name": "cancelOnError", "required": false, "positional": false }];
+defineObject("flax.core/flutter#type:StreamController", ["done", "onListen", "onPause", "onResume", "onCancel", "stream", "sink", "isClosed", "isPaused", "hasListener"], ["onListen", "onPause", "onResume", "onCancel"], (0, import_bindings5.bindingMethods)("flax.core/flutter#type:StreamController", "object", { "add": _flaxMemberParameters04, "addError": _flaxMemberParameters14, "close": _flaxMemberParameters23, "addStream": _flaxMemberParameters32 }), []);
 function StreamController(options = {}) {
   if (arguments.length > 1)
     throw new TypeError("Too many constructor arguments");
@@ -214,47 +150,12 @@ function StreamController(options = {}) {
 // ../../js/dist/dart/generated/libraries/async/_bindings/flutter_MultiStreamController.js
 var import_flutter_Sink4 = require("@flax/dart/core");
 var import_flutter_StackTrace4 = require("@flax/dart/core");
-defineObject("flax.core/flutter#type:MultiStreamController", ["onListen", "onPause", "onResume", "onCancel", "stream", "sink", "isClosed", "isPaused", "hasListener", "done"], ["onListen", "onPause", "onResume", "onCancel"], {
-  add(event) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:MultiStreamController", "add", [event]);
-  },
-  addError(error, stackTrace) {
-    if (arguments.length > 2)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:MultiStreamController", "addError", [error, stackTrace]);
-  },
-  close() {
-    if (arguments.length > 0)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:MultiStreamController", "close", []);
-    return _flaxResult;
-  },
-  addStream(source, options = {}) {
-    if (arguments.length > 2)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["cancelOnError"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:MultiStreamController", "addStream", [source, options.cancelOnError]);
-    return _flaxResult;
-  },
-  addSync(value) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:MultiStreamController", "addSync", [value]);
-  },
-  addErrorSync(error, stackTrace) {
-    if (arguments.length > 2)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:MultiStreamController", "addErrorSync", [error, stackTrace]);
-  },
-  closeSync() {
-    if (arguments.length > 0)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:MultiStreamController", "closeSync", []);
-  }
-}, []);
+var _flaxMemberParameters05 = [{ "name": "event", "required": true, "positional": true }];
+var _flaxMemberParameters15 = [{ "name": "error", "required": true, "positional": true }, { "name": "stackTrace", "required": false, "positional": true }];
+var _flaxMemberParameters24 = [];
+var _flaxMemberParameters33 = [{ "name": "source", "required": true, "positional": true }, { "name": "cancelOnError", "required": false, "positional": false }];
+var _flaxMemberParameters4 = [{ "name": "value", "required": true, "positional": true }];
+defineObject("flax.core/flutter#type:MultiStreamController", ["onListen", "onPause", "onResume", "onCancel", "stream", "sink", "isClosed", "isPaused", "hasListener", "done"], ["onListen", "onPause", "onResume", "onCancel"], (0, import_bindings6.bindingMethods)("flax.core/flutter#type:MultiStreamController", "object", { "add": _flaxMemberParameters05, "addError": _flaxMemberParameters15, "close": _flaxMemberParameters24, "addStream": _flaxMemberParameters33, "addSync": _flaxMemberParameters4, "addErrorSync": _flaxMemberParameters15, "closeSync": _flaxMemberParameters24 }), []);
 
 // ../../js/dist/dart/generated/libraries/async/_bindings/flutter_Stream.js
 var import_bindings9 = require("@flax/core/bindings");
@@ -264,63 +165,20 @@ var import_flutter_Duration = require("@flax/dart/core");
 // ../../js/dist/dart/generated/libraries/async/_bindings/flutter_StreamSubscription.js
 var import_bindings7 = require("@flax/core/bindings");
 var import_flutter_StackTrace5 = require("@flax/dart/core");
-defineObject("flax.core/flutter#type:StreamSubscription", ["isPaused"], [], {
-  cancel() {
-    if (arguments.length > 0)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:StreamSubscription", "cancel", []);
-    return _flaxResult;
-  },
-  onData(handleData) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:StreamSubscription", "onData", [handleData]);
-  },
-  onError(handleError) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:StreamSubscription", "onError", [handleError]);
-  },
-  onDone(handleDone) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:StreamSubscription", "onDone", [handleDone]);
-  },
-  pause(resumeSignal) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:StreamSubscription", "pause", [resumeSignal]);
-  },
-  resume() {
-    if (arguments.length > 0)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:StreamSubscription", "resume", []);
-  },
-  asFuture(futureValue) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:StreamSubscription", "asFuture", [futureValue]);
-    return _flaxResult;
-  }
-}, []);
+var _flaxMemberParameters06 = [];
+var _flaxMemberParameters16 = [{ "name": "handleData", "required": true, "positional": true }];
+var _flaxMemberParameters25 = [{ "name": "handleError", "required": true, "positional": true }];
+var _flaxMemberParameters34 = [{ "name": "handleDone", "required": true, "positional": true }];
+var _flaxMemberParameters42 = [{ "name": "resumeSignal", "required": false, "positional": true }];
+var _flaxMemberParameters5 = [{ "name": "futureValue", "required": false, "positional": true }];
+defineObject("flax.core/flutter#type:StreamSubscription", ["isPaused"], [], (0, import_bindings7.bindingMethods)("flax.core/flutter#type:StreamSubscription", "object", { "cancel": _flaxMemberParameters06, "onData": _flaxMemberParameters16, "onError": _flaxMemberParameters25, "onDone": _flaxMemberParameters34, "pause": _flaxMemberParameters42, "resume": _flaxMemberParameters06, "asFuture": _flaxMemberParameters5 }), []);
 
 // ../../js/dist/dart/generated/libraries/async/_bindings/flutter_StreamTransformer.js
 var import_bindings8 = require("@flax/core/bindings");
 var import_flutter_StackTrace6 = require("@flax/dart/core");
-defineObject("flax.core/flutter#type:StreamTransformer", [], [], {
-  bind(stream) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:StreamTransformer", "bind", [stream]);
-    return _flaxResult;
-  },
-  cast() {
-    if (arguments.length > 0)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:StreamTransformer", "cast", []);
-    return _flaxResult;
-  }
-}, []);
+var _flaxMemberParameters07 = [{ "name": "stream", "required": true, "positional": true }];
+var _flaxMemberParameters17 = [];
+defineObject("flax.core/flutter#type:StreamTransformer", [], [], (0, import_bindings8.bindingMethods)("flax.core/flutter#type:StreamTransformer", "object", { "bind": _flaxMemberParameters07, "cast": _flaxMemberParameters17 }), []);
 function StreamTransformer(onListen) {
   if (arguments.length > 1)
     throw new TypeError("Too many constructor arguments");
@@ -359,208 +217,26 @@ function StreamTransformer(onListen) {
 })(StreamTransformer || (StreamTransformer = {}));
 
 // ../../js/dist/dart/generated/libraries/async/_bindings/flutter_Stream.js
-defineStream("flax.core/flutter#type:Stream", ["isBroadcast", "length", "isEmpty", "first", "last", "single"], {
-  asBroadcastStream(options = {}) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["onCancel", "onListen"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "asBroadcastStream", [options.onCancel, options.onListen]);
-    return _flaxResult;
-  },
-  listen(onData, options = {}) {
-    if (arguments.length > 2)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["cancelOnError", "onDone", "onError"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "listen", [onData, options.cancelOnError, options.onDone, options.onError]);
-    return _flaxResult;
-  },
-  where(test) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "where", [test]);
-    return _flaxResult;
-  },
-  map(convert) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "map", [convert]);
-    return _flaxResult;
-  },
-  asyncMap(convert) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "asyncMap", [convert]);
-    return _flaxResult;
-  },
-  asyncExpand(convert) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "asyncExpand", [convert]);
-    return _flaxResult;
-  },
-  handleError(onError, options = {}) {
-    if (arguments.length > 2)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["test"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "handleError", [onError, options.test]);
-    return _flaxResult;
-  },
-  expand(convert) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "expand", [convert]);
-    return _flaxResult;
-  },
-  pipe(streamConsumer) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "pipe", [streamConsumer]);
-    return _flaxResult;
-  },
-  transform(streamTransformer) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "transform", [streamTransformer]);
-    return _flaxResult;
-  },
-  reduce(combine) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "reduce", [combine]);
-    return _flaxResult;
-  },
-  fold(initialValue, combine) {
-    if (arguments.length > 2)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "fold", [initialValue, combine]);
-    return _flaxResult;
-  },
-  join(separator) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "join", [separator]);
-    return _flaxResult;
-  },
-  contains(needle) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "contains", [needle]);
-    return _flaxResult;
-  },
-  forEach(action) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "forEach", [action]);
-    return _flaxResult;
-  },
-  every(test) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "every", [test]);
-    return _flaxResult;
-  },
-  any(test) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "any", [test]);
-    return _flaxResult;
-  },
-  cast() {
-    if (arguments.length > 0)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "cast", []);
-    return _flaxResult;
-  },
-  toList() {
-    if (arguments.length > 0)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "toList", []);
-    return _flaxResult;
-  },
-  toSet() {
-    if (arguments.length > 0)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "toSet", []);
-    return _flaxResult;
-  },
-  drain(futureValue) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "drain", [futureValue]);
-    return _flaxResult;
-  },
-  take(count) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "take", [count]);
-    return _flaxResult;
-  },
-  takeWhile(test) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "takeWhile", [test]);
-    return _flaxResult;
-  },
-  skip(count) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "skip", [count]);
-    return _flaxResult;
-  },
-  skipWhile(test) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "skipWhile", [test]);
-    return _flaxResult;
-  },
-  distinct(equals) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "distinct", [equals]);
-    return _flaxResult;
-  },
-  firstWhere(test, options = {}) {
-    if (arguments.length > 2)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["orElse"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "firstWhere", [test, options.orElse]);
-    return _flaxResult;
-  },
-  lastWhere(test, options = {}) {
-    if (arguments.length > 2)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["orElse"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "lastWhere", [test, options.orElse]);
-    return _flaxResult;
-  },
-  singleWhere(test, options = {}) {
-    if (arguments.length > 2)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["orElse"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "singleWhere", [test, options.orElse]);
-    return _flaxResult;
-  },
-  elementAt(index) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "elementAt", [index]);
-    return _flaxResult;
-  },
-  timeout(timeLimit, options = {}) {
-    if (arguments.length > 2)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["onTimeout"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:Stream", "timeout", [timeLimit, options.onTimeout]);
-    return _flaxResult;
-  }
-});
+var _flaxMemberParameters08 = [{ "name": "onCancel", "required": false, "positional": false }, { "name": "onListen", "required": false, "positional": false }];
+var _flaxMemberParameters18 = [{ "name": "onData", "required": true, "positional": true }, { "name": "cancelOnError", "required": false, "positional": false }, { "name": "onDone", "required": false, "positional": false }, { "name": "onError", "required": false, "positional": false }];
+var _flaxMemberParameters26 = [{ "name": "test", "required": true, "positional": true }];
+var _flaxMemberParameters35 = [{ "name": "convert", "required": true, "positional": true }];
+var _flaxMemberParameters43 = [{ "name": "onError", "required": true, "positional": true }, { "name": "test", "required": false, "positional": false }];
+var _flaxMemberParameters52 = [{ "name": "streamConsumer", "required": true, "positional": true }];
+var _flaxMemberParameters6 = [{ "name": "streamTransformer", "required": true, "positional": true }];
+var _flaxMemberParameters7 = [{ "name": "combine", "required": true, "positional": true }];
+var _flaxMemberParameters8 = [{ "name": "initialValue", "required": true, "positional": true }, { "name": "combine", "required": true, "positional": true }];
+var _flaxMemberParameters9 = [{ "name": "separator", "required": false, "positional": true }];
+var _flaxMemberParameters10 = [{ "name": "needle", "required": true, "positional": true }];
+var _flaxMemberParameters11 = [{ "name": "action", "required": true, "positional": true }];
+var _flaxMemberParameters122 = [];
+var _flaxMemberParameters132 = [{ "name": "futureValue", "required": false, "positional": true }];
+var _flaxMemberParameters142 = [{ "name": "count", "required": true, "positional": true }];
+var _flaxMemberParameters152 = [{ "name": "equals", "required": false, "positional": true }];
+var _flaxMemberParameters162 = [{ "name": "test", "required": true, "positional": true }, { "name": "orElse", "required": false, "positional": false }];
+var _flaxMemberParameters172 = [{ "name": "index", "required": true, "positional": true }];
+var _flaxMemberParameters182 = [{ "name": "timeLimit", "required": true, "positional": true }, { "name": "onTimeout", "required": false, "positional": false }];
+defineStream("flax.core/flutter#type:Stream", ["isBroadcast", "length", "isEmpty", "first", "last", "single"], (0, import_bindings9.bindingMethods)("flax.core/flutter#type:Stream", "stream", { "asBroadcastStream": _flaxMemberParameters08, "listen": _flaxMemberParameters18, "where": _flaxMemberParameters26, "map": _flaxMemberParameters35, "asyncMap": _flaxMemberParameters35, "asyncExpand": _flaxMemberParameters35, "handleError": _flaxMemberParameters43, "expand": _flaxMemberParameters35, "pipe": _flaxMemberParameters52, "transform": _flaxMemberParameters6, "reduce": _flaxMemberParameters7, "fold": _flaxMemberParameters8, "join": _flaxMemberParameters9, "contains": _flaxMemberParameters10, "forEach": _flaxMemberParameters11, "every": _flaxMemberParameters26, "any": _flaxMemberParameters26, "cast": _flaxMemberParameters122, "toList": _flaxMemberParameters122, "toSet": _flaxMemberParameters122, "drain": _flaxMemberParameters132, "take": _flaxMemberParameters142, "takeWhile": _flaxMemberParameters26, "skip": _flaxMemberParameters142, "skipWhile": _flaxMemberParameters26, "distinct": _flaxMemberParameters152, "firstWhere": _flaxMemberParameters162, "lastWhere": _flaxMemberParameters162, "singleWhere": _flaxMemberParameters162, "elementAt": _flaxMemberParameters172, "timeout": _flaxMemberParameters182 }));
 var Stream;
 (function(Stream2) {
   function fromAsyncIterable(source) {
@@ -652,20 +328,8 @@ var Stream;
 
 // ../../js/dist/dart/generated/libraries/async/_bindings/flutter_StreamIterator.js
 var import_bindings10 = require("@flax/core/bindings");
-defineObject("flax.core/flutter#type:StreamIterator", ["current"], [], {
-  moveNext() {
-    if (arguments.length > 0)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:StreamIterator", "moveNext", []);
-    return _flaxResult;
-  },
-  cancel() {
-    if (arguments.length > 0)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:StreamIterator", "cancel", []);
-    return _flaxResult;
-  }
-}, []);
+var _flaxMemberParameters09 = [];
+defineObject("flax.core/flutter#type:StreamIterator", ["current"], [], (0, import_bindings10.bindingMethods)("flax.core/flutter#type:StreamIterator", "object", { "moveNext": _flaxMemberParameters09, "cancel": _flaxMemberParameters09 }), []);
 function StreamIterator(stream) {
   if (arguments.length > 1)
     throw new TypeError("Too many constructor arguments");
@@ -675,31 +339,16 @@ function StreamIterator(stream) {
 // ../../js/dist/dart/generated/libraries/async/_bindings/flutter_StreamTransformerBase.js
 var import_bindings11 = require("@flax/core/bindings");
 var import_bindings12 = require("@flax/core/bindings");
-defineObject("flax.core/flutter#type:StreamTransformerBase", [], [], {
-  bind(stream) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:StreamTransformerBase", "bind", [stream]);
-    return _flaxResult;
-  },
-  cast() {
-    if (arguments.length > 0)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:StreamTransformerBase", "cast", []);
-    return _flaxResult;
-  }
-}, []);
-var StreamTransformerBase = class _StreamTransformerBase {
+var _flaxMemberParameters010 = [{ "name": "stream", "required": true, "positional": true }];
+var _flaxMemberParameters19 = [];
+defineObject("flax.core/flutter#type:StreamTransformerBase", [], [], (0, import_bindings11.bindingMethods)("flax.core/flutter#type:StreamTransformerBase", "object", { "bind": _flaxMemberParameters010, "cast": _flaxMemberParameters19 }), []);
+var _StreamTransformerBaseProxy = { type: "flax.core/flutter#type:StreamTransformerBase", parameters: [], methods: { "bind": _flaxMemberParameters010, "cast": _flaxMemberParameters19 }, getters: [], setters: [], superMembers: ["cast"] };
+var StreamTransformerBase = class _StreamTransformerBase extends import_bindings12.FlaxProxyBase {
   constructor() {
-    (0, import_bindings12.constructExtendedProxy)(this, _StreamTransformerBase.prototype, "flax.core/flutter#type:StreamTransformerBase", [], Array.from(arguments), ["cast", "bind"], [], [], ["cast"]);
-  }
-  cast() {
-    if (arguments.length > 0)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = (0, import_bindings12.invokeProxySuper)(this, "flax.core/flutter#type:StreamTransformerBase", "cast", []);
-    return _flaxResult;
+    super(_StreamTransformerBase.prototype, _StreamTransformerBaseProxy, Array.from(arguments));
   }
 };
+(0, import_bindings12.defineProxyBase)(StreamTransformerBase.prototype, _StreamTransformerBaseProxy);
 (function(StreamTransformerBase2) {
   function implement(args, implementation) {
     return constructProxy("flax.core/flutter#type:StreamTransformerBase", [], args, implementation, ["bind"], [], []);
@@ -711,208 +360,26 @@ var StreamTransformerBase = class _StreamTransformerBase {
 var import_bindings13 = require("@flax/core/bindings");
 var import_flutter_StackTrace8 = require("@flax/dart/core");
 var import_flutter_Duration2 = require("@flax/dart/core");
-defineStream("flax.core/flutter#type:StreamView", ["isBroadcast", "length", "isEmpty", "first", "last", "single"], {
-  asBroadcastStream(options = {}) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["onCancel", "onListen"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:StreamView", "asBroadcastStream", [options.onCancel, options.onListen]);
-    return _flaxResult;
-  },
-  listen(onData, options = {}) {
-    if (arguments.length > 2)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["cancelOnError", "onDone", "onError"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:StreamView", "listen", [onData, options.cancelOnError, options.onDone, options.onError]);
-    return _flaxResult;
-  },
-  where(test) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:StreamView", "where", [test]);
-    return _flaxResult;
-  },
-  map(convert) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:StreamView", "map", [convert]);
-    return _flaxResult;
-  },
-  asyncMap(convert) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:StreamView", "asyncMap", [convert]);
-    return _flaxResult;
-  },
-  asyncExpand(convert) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:StreamView", "asyncExpand", [convert]);
-    return _flaxResult;
-  },
-  handleError(onError, options = {}) {
-    if (arguments.length > 2)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["test"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:StreamView", "handleError", [onError, options.test]);
-    return _flaxResult;
-  },
-  expand(convert) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:StreamView", "expand", [convert]);
-    return _flaxResult;
-  },
-  pipe(streamConsumer) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:StreamView", "pipe", [streamConsumer]);
-    return _flaxResult;
-  },
-  transform(streamTransformer) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:StreamView", "transform", [streamTransformer]);
-    return _flaxResult;
-  },
-  reduce(combine) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:StreamView", "reduce", [combine]);
-    return _flaxResult;
-  },
-  fold(initialValue, combine) {
-    if (arguments.length > 2)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:StreamView", "fold", [initialValue, combine]);
-    return _flaxResult;
-  },
-  join(separator) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:StreamView", "join", [separator]);
-    return _flaxResult;
-  },
-  contains(needle) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:StreamView", "contains", [needle]);
-    return _flaxResult;
-  },
-  forEach(action) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:StreamView", "forEach", [action]);
-    return _flaxResult;
-  },
-  every(test) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:StreamView", "every", [test]);
-    return _flaxResult;
-  },
-  any(test) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:StreamView", "any", [test]);
-    return _flaxResult;
-  },
-  cast() {
-    if (arguments.length > 0)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:StreamView", "cast", []);
-    return _flaxResult;
-  },
-  toList() {
-    if (arguments.length > 0)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:StreamView", "toList", []);
-    return _flaxResult;
-  },
-  toSet() {
-    if (arguments.length > 0)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:StreamView", "toSet", []);
-    return _flaxResult;
-  },
-  drain(futureValue) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:StreamView", "drain", [futureValue]);
-    return _flaxResult;
-  },
-  take(count) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:StreamView", "take", [count]);
-    return _flaxResult;
-  },
-  takeWhile(test) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:StreamView", "takeWhile", [test]);
-    return _flaxResult;
-  },
-  skip(count) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:StreamView", "skip", [count]);
-    return _flaxResult;
-  },
-  skipWhile(test) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:StreamView", "skipWhile", [test]);
-    return _flaxResult;
-  },
-  distinct(equals) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:StreamView", "distinct", [equals]);
-    return _flaxResult;
-  },
-  firstWhere(test, options = {}) {
-    if (arguments.length > 2)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["orElse"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:StreamView", "firstWhere", [test, options.orElse]);
-    return _flaxResult;
-  },
-  lastWhere(test, options = {}) {
-    if (arguments.length > 2)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["orElse"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:StreamView", "lastWhere", [test, options.orElse]);
-    return _flaxResult;
-  },
-  singleWhere(test, options = {}) {
-    if (arguments.length > 2)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["orElse"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:StreamView", "singleWhere", [test, options.orElse]);
-    return _flaxResult;
-  },
-  elementAt(index) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:StreamView", "elementAt", [index]);
-    return _flaxResult;
-  },
-  timeout(timeLimit, options = {}) {
-    if (arguments.length > 2)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["onTimeout"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeStream(this, "flax.core/flutter#type:StreamView", "timeout", [timeLimit, options.onTimeout]);
-    return _flaxResult;
-  }
-});
+var _flaxMemberParameters011 = [{ "name": "onCancel", "required": false, "positional": false }, { "name": "onListen", "required": false, "positional": false }];
+var _flaxMemberParameters110 = [{ "name": "onData", "required": true, "positional": true }, { "name": "cancelOnError", "required": false, "positional": false }, { "name": "onDone", "required": false, "positional": false }, { "name": "onError", "required": false, "positional": false }];
+var _flaxMemberParameters27 = [{ "name": "test", "required": true, "positional": true }];
+var _flaxMemberParameters36 = [{ "name": "convert", "required": true, "positional": true }];
+var _flaxMemberParameters44 = [{ "name": "onError", "required": true, "positional": true }, { "name": "test", "required": false, "positional": false }];
+var _flaxMemberParameters53 = [{ "name": "streamConsumer", "required": true, "positional": true }];
+var _flaxMemberParameters62 = [{ "name": "streamTransformer", "required": true, "positional": true }];
+var _flaxMemberParameters72 = [{ "name": "combine", "required": true, "positional": true }];
+var _flaxMemberParameters82 = [{ "name": "initialValue", "required": true, "positional": true }, { "name": "combine", "required": true, "positional": true }];
+var _flaxMemberParameters92 = [{ "name": "separator", "required": false, "positional": true }];
+var _flaxMemberParameters102 = [{ "name": "needle", "required": true, "positional": true }];
+var _flaxMemberParameters112 = [{ "name": "action", "required": true, "positional": true }];
+var _flaxMemberParameters123 = [];
+var _flaxMemberParameters133 = [{ "name": "futureValue", "required": false, "positional": true }];
+var _flaxMemberParameters143 = [{ "name": "count", "required": true, "positional": true }];
+var _flaxMemberParameters153 = [{ "name": "equals", "required": false, "positional": true }];
+var _flaxMemberParameters163 = [{ "name": "test", "required": true, "positional": true }, { "name": "orElse", "required": false, "positional": false }];
+var _flaxMemberParameters173 = [{ "name": "index", "required": true, "positional": true }];
+var _flaxMemberParameters183 = [{ "name": "timeLimit", "required": true, "positional": true }, { "name": "onTimeout", "required": false, "positional": false }];
+defineStream("flax.core/flutter#type:StreamView", ["isBroadcast", "length", "isEmpty", "first", "last", "single"], (0, import_bindings13.bindingMethods)("flax.core/flutter#type:StreamView", "stream", { "asBroadcastStream": _flaxMemberParameters011, "listen": _flaxMemberParameters110, "where": _flaxMemberParameters27, "map": _flaxMemberParameters36, "asyncMap": _flaxMemberParameters36, "asyncExpand": _flaxMemberParameters36, "handleError": _flaxMemberParameters44, "expand": _flaxMemberParameters36, "pipe": _flaxMemberParameters53, "transform": _flaxMemberParameters62, "reduce": _flaxMemberParameters72, "fold": _flaxMemberParameters82, "join": _flaxMemberParameters92, "contains": _flaxMemberParameters102, "forEach": _flaxMemberParameters112, "every": _flaxMemberParameters27, "any": _flaxMemberParameters27, "cast": _flaxMemberParameters123, "toList": _flaxMemberParameters123, "toSet": _flaxMemberParameters123, "drain": _flaxMemberParameters133, "take": _flaxMemberParameters143, "takeWhile": _flaxMemberParameters27, "skip": _flaxMemberParameters143, "skipWhile": _flaxMemberParameters27, "distinct": _flaxMemberParameters153, "firstWhere": _flaxMemberParameters163, "lastWhere": _flaxMemberParameters163, "singleWhere": _flaxMemberParameters163, "elementAt": _flaxMemberParameters173, "timeout": _flaxMemberParameters183 }));
 function StreamView(stream) {
   if (arguments.length > 1)
     throw new TypeError("Too many constructor arguments");
@@ -923,31 +390,10 @@ function StreamView(stream) {
 var import_bindings14 = require("@flax/core/bindings");
 var import_flutter_Sink5 = require("@flax/dart/core");
 var import_flutter_StackTrace9 = require("@flax/dart/core");
-defineObject("flax.core/flutter#type:SynchronousStreamController", ["onListen", "onPause", "onResume", "onCancel", "stream", "sink", "isClosed", "isPaused", "hasListener", "done"], ["onListen", "onPause", "onResume", "onCancel"], {
-  add(data) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:SynchronousStreamController", "add", [data]);
-  },
-  addError(error, stackTrace) {
-    if (arguments.length > 2)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:SynchronousStreamController", "addError", [error, stackTrace]);
-  },
-  close() {
-    if (arguments.length > 0)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:SynchronousStreamController", "close", []);
-    return _flaxResult;
-  },
-  addStream(source, options = {}) {
-    if (arguments.length > 2)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["cancelOnError"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:SynchronousStreamController", "addStream", [source, options.cancelOnError]);
-    return _flaxResult;
-  }
-}, []);
+var _flaxMemberParameters012 = [{ "name": "data", "required": true, "positional": true }];
+var _flaxMemberParameters111 = [{ "name": "error", "required": true, "positional": true }, { "name": "stackTrace", "required": false, "positional": true }];
+var _flaxMemberParameters28 = [];
+var _flaxMemberParameters37 = [{ "name": "source", "required": true, "positional": true }, { "name": "cancelOnError", "required": false, "positional": false }];
+defineObject("flax.core/flutter#type:SynchronousStreamController", ["onListen", "onPause", "onResume", "onCancel", "stream", "sink", "isClosed", "isPaused", "hasListener", "done"], ["onListen", "onPause", "onResume", "onCancel"], (0, import_bindings14.bindingMethods)("flax.core/flutter#type:SynchronousStreamController", "object", { "add": _flaxMemberParameters012, "addError": _flaxMemberParameters111, "close": _flaxMemberParameters28, "addStream": _flaxMemberParameters37 }), []);
 
 });

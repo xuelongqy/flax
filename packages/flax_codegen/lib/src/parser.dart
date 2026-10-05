@@ -51,6 +51,7 @@ void _validateDuplicates(FlaxCodegenClassSelection selection, String location) {
     selection.getters,
     selection.setters,
     selection.staticGetters,
+    selection.staticSetters,
     selection.errorGetters,
     selection.widgetInterfaces,
     ...selection.constructors.values,
@@ -291,7 +292,9 @@ FlaxCodegenClassSelection _selectionFromModel(FlaxCodegenClassModel type) {
           .toList(),
   };
   final instanceMethods = {
-    for (final method in type.methods.where((method) => method.instance))
+    for (final method in type.methods.where(
+      (method) => method.instance && method.operatorName == null,
+    ))
       method.name: method.parameters
           .map((parameter) => parameter.name)
           .toList(),
@@ -312,7 +315,7 @@ FlaxCodegenClassSelection _selectionFromModel(FlaxCodegenClassModel type) {
   }
   for (final method in type.methods) {
     _collectRawCallbackSelection(
-      method.name,
+      method.operatorName ?? method.name,
       method.parameters,
       signatures: callbackSignatures,
       optional: callbackOptionalParameters,
@@ -344,19 +347,25 @@ FlaxCodegenClassSelection _selectionFromModel(FlaxCodegenClassModel type) {
           .map((m) => m.name),
     ],
     staticGetters: type.staticGetters.map((getter) => getter.name).toList(),
+    staticSetters: type.staticSetters.map((setter) => setter.name).toList(),
     errorGetters: type.getters
         .where((getter) => getter.encodeKind == 'error')
         .map((getter) => getter.name)
         .toList(),
     methods: methods,
     instanceMethods: instanceMethods,
+    operators: {
+      for (final method in type.methods.where((m) => m.operatorName != null))
+        method.operatorName!: method.parameters.map((p) => p.name).toList(),
+    },
     methodTypeArguments: {
       for (final method in type.methods)
-        if (method.typeArguments.isNotEmpty) method.name: method.typeArguments,
+        if (method.typeArguments.isNotEmpty)
+          (method.operatorName ?? method.name): method.typeArguments,
     },
     startsRoute: type.methods
         .where((method) => method.startsRoute)
-        .map((method) => method.name)
+        .map((method) => method.operatorName ?? method.name)
         .toList(),
     widgetInterfaces: type.widgetInterfaces
         .map((interface) => interface.name!)
@@ -389,14 +398,14 @@ FlaxCodegenClassSelection _selectionFromModel(FlaxCodegenClassModel type) {
           if (method.parameters.any(
             (parameter) => _containsData(parameter.type),
           ))
-            method.name: method.parameters
+            (method.operatorName ?? method.name): method.parameters
                 .where((parameter) => _containsData(parameter.type))
                 .map((parameter) => parameter.name)
                 .toList(),
       },
       results: type.methods
           .where((method) => _containsData(method.result))
-          .map((method) => method.name)
+          .map((method) => method.operatorName ?? method.name)
           .toList(),
     ),
   );
@@ -406,7 +415,11 @@ void _validateDataTargets(
   FlaxCodegenClassSelection selection,
   String location,
 ) {
-  final methods = {...selection.methods, ...selection.instanceMethods};
+  final methods = {
+    ...selection.methods,
+    ...selection.instanceMethods,
+    ...selection.operators,
+  };
   void parameters(
     Map<String, List<String>> markers,
     Map<String, List<String>> selected,
@@ -1167,10 +1180,12 @@ class FlaxCodegenBindingParser {
       proxyVariants: own.proxyVariants,
       pageAdapter: own.pageAdapter,
       staticGetters: own.staticGetters,
+      staticSetters: own.staticSetters,
       errorGetters: {
         for (final selection in selections) ...selection.errorGetters,
       }.toList(),
       methods: own.methods,
+      operators: mergeParameters(selections.map((s) => s.operators)),
       methodTypeArguments: arguments,
       getters: {for (final s in selections) ...s.getters}.toList(),
       setters: {for (final s in selections) ...s.setters}.toList(),
@@ -2173,11 +2188,17 @@ class FlaxCodegenBindingParser {
       final selectedMethods = {
         if (selection.kind != 'widgetInterface') ...selection.methods,
         ...selection.instanceMethods,
+        ...selection.operators,
       };
       if (selection.kind != 'widgetInterface' &&
           selectedMethods.length !=
-              selection.methods.length + selection.instanceMethods.length) {
+              selection.methods.length +
+                  selection.instanceMethods.length +
+                  selection.operators.length) {
         throw StateError('Duplicate method selection');
+      }
+      if (selection.operators.isNotEmpty && selection.kind != 'object') {
+        throw StateError('Class operators require an object binding');
       }
       if (selection.instanceMethods.isNotEmpty &&
           !{'state', 'object', 'stream'}.contains(selection.kind)) {
@@ -2203,11 +2224,39 @@ class FlaxCodegenBindingParser {
             'Duplicate selected parameter: ${entry.key}.${chosen.key}',
           );
         }
-        final instance = selection.instanceMethods.containsKey(chosen.key);
-        final method = instance
+        final operatorName = selection.operators.containsKey(chosen.key)
+            ? chosen.key
+            : null;
+        final exportedName = operatorName == null
+            ? chosen.key
+            : flaxCodegenClassOperators[operatorName] ??
+                  (throw StateError(
+                    'Unsupported class operator: $operatorName',
+                  ));
+        if (operatorName != null &&
+            (selection.methods.containsKey(exportedName) ||
+                selection.instanceMethods.containsKey(exportedName) ||
+                selection.getters.contains(exportedName) ||
+                selection.setters.contains(exportedName) ||
+                selection.constructors.containsKey(exportedName) ||
+                selection.staticGetters.contains(exportedName) ||
+                selection.staticSetters.contains(exportedName))) {
+          throw StateError(
+            'Conflicting operator export: ${entry.key}.$exportedName',
+          );
+        }
+        final instance =
+            operatorName != null ||
+            selection.instanceMethods.containsKey(chosen.key);
+        final method = operatorName != null
+            ? _classOperator(actualType, operatorName)
+            : instance
             ? actualType.lookUpMethod(chosen.key, element.library)
             : element.getMethod(chosen.key);
-        if (method == null || method.isStatic == instance || method.isPrivate) {
+        if (method == null ||
+            method.isStatic == instance ||
+            method.isPrivate ||
+            method.isOperator != (operatorName != null)) {
           throw StateError(
             'Expected a public ${instance ? 'instance' : 'static'} method: ${entry.key}.${chosen.key}',
           );
@@ -2274,7 +2323,9 @@ class FlaxCodegenBindingParser {
             : typeArgs.isEmpty
             ? method.type
             : method.type.instantiate(runtimeMethodArguments);
-        final originalMethod = instance
+        final originalMethod = operatorName != null
+            ? _classOperator(element.thisType, operatorName)!
+            : instance
             ? element.thisType.lookUpMethod(chosen.key, element.library)!
             : method;
         var result = typeRef(
@@ -2373,8 +2424,9 @@ class FlaxCodegenBindingParser {
         }
         methods.add(
           FlaxCodegenMethodModel(
-            chosen.key,
+            exportedName,
             args,
+            operatorName: operatorName,
             result,
             instance: instance,
             typeArguments: typeArgs,
@@ -2472,13 +2524,13 @@ class FlaxCodegenBindingParser {
       for (final name in selection.staticGetters) {
         final getter = element.getGetter(name);
         if (getter == null ||
+            getter.enclosingElement != element ||
             !getter.isStatic ||
             getter.isPrivate ||
-            getter.variable.setter != null ||
             staticGetters.any((g) => g.name == name) ||
             selection.constructors.containsKey(name) ||
             selectedMethods.containsKey(name)) {
-          throw StateError('Invalid static readonly field: ${entry.key}.$name');
+          throw StateError('Invalid static getter: ${entry.key}.$name');
         }
         final returned = getter.returnType;
         final type =
@@ -2488,6 +2540,43 @@ class FlaxCodegenBindingParser {
             ? typeRef(actualType)
             : typeRef(returned);
         staticGetters.add(FlaxCodegenGetterModel(name, type));
+      }
+      final staticSetters = <FlaxCodegenGetterModel>[];
+      final staticNames = <String>{
+        ...selection.staticGetters,
+        ...selectedMethods.keys,
+        ...selection.constructors.keys.where((name) => name.isNotEmpty),
+        if (selection.proxy != null) 'implementation',
+        if (selection.proxy != null) 'extend',
+        if (selection.asyncIterableFactory != null)
+          selection.asyncIterableFactory!,
+      };
+      for (final name in selection.staticSetters) {
+        final setter = element.getSetter(name);
+        final exported =
+            'set${name.isEmpty ? '' : name[0].toUpperCase() + name.substring(1)}';
+        if (setter == null ||
+            !setter.isStatic ||
+            setter.isPrivate ||
+            setter.enclosingElement != element ||
+            (setter.variable.isOriginDeclaration &&
+                (setter.variable.isConst || setter.variable.isFinal))) {
+          throw StateError('Invalid static setter: ${entry.key}.$name');
+        }
+        if (!staticNames.add(exported)) {
+          throw StateError(
+            'Conflicting static setter export: ${entry.key}.$exported',
+          );
+        }
+        final input = setter.formalParameters.single.type;
+        final type = typeRef(input)
+            .declaredAs(typeRef(input, forTypescript: true));
+        if (!_setterKinds.contains(type.kind)) {
+          throw StateError(
+            'Unsupported static setter type: ${entry.key}.$name',
+          );
+        }
+        staticSetters.add(FlaxCodegenGetterModel(name, type));
       }
       for (final chosen in entry.value.constructors.entries) {
         final constructor = actualType.constructors
@@ -2685,6 +2774,7 @@ class FlaxCodegenBindingParser {
                         accessor.isAbstract ||
                         selection.proxy == 'implements'))
                   accessor.name!.replaceFirst(RegExp(r'=$'), ''),
+            ...(setter ? setters : getters).map((member) => member.name),
           };
           for (final name in names) {
             final accessor = setter
@@ -2741,22 +2831,41 @@ class FlaxCodegenBindingParser {
         }
         final proxyMethods = <FlaxCodegenMethodModel>[];
         for (final name in {
+          ...methods
+              .where((method) => method.instance)
+              .map((method) => method.operatorName ?? method.name),
           for (final t in hierarchy)
             for (final method in t.methods)
               if (!method.isStatic &&
                   (!method.isPrivate ||
                       method.isAbstract ||
                       selection.proxy == 'implements'))
-                method.name!,
+                method.isOperator &&
+                        method.name == '-' &&
+                        method.formalParameters.isEmpty
+                    ? 'unary-'
+                    : method.name!,
         }) {
-          final method = actualType.lookUpMethod(name, element.library);
-          if (method == null || method.isPrivate || method.isOperator) {
-            throw StateError(
-              'Proxy methods require public non-operator signatures: $name',
-            );
+          final operatorName = flaxCodegenClassOperators.containsKey(name)
+              ? name
+              : null;
+          final alias = operatorName == null
+              ? name
+              : flaxCodegenClassOperators[name]!;
+          final method = operatorName == null
+              ? actualType.lookUpMethod(name, element.library)
+              : _classOperator(actualType, name);
+          if (method != null &&
+              method.isOperator &&
+              !method.isAbstract &&
+              !selection.operators.containsKey(name)) {
+            continue;
+          }
+          if (method == null || method.isPrivate) {
+            throw StateError('Proxy methods require public signatures: $name');
           }
           final selectedConcrete = methods.any(
-            (candidate) => candidate.instance && candidate.name == name,
+            (candidate) => candidate.instance && candidate.name == alias,
           );
           if (selection.proxy == 'extends' &&
               !method.isAbstract &&
@@ -2777,38 +2886,53 @@ class FlaxCodegenBindingParser {
             continue;
           }
           final callback = typeRef(method.type);
-          final declaredMethod = element.thisType.lookUpMethod(
-            name,
-            element.library,
-          );
+          final declaredMethod = operatorName == null
+              ? element.thisType.lookUpMethod(name, element.library)
+              : _classOperator(element.thisType, name);
           if (declaredMethod == null || declaredMethod.isPrivate) {
             throw StateError('Proxy methods must be public: $name');
           }
-          final result = callback.result!.declaredAs(
+          var result = callback.result!.declaredAs(
             typeRef(declaredMethod.returnType, forTypescript: true),
           );
+          if (selection.data.results.contains(name)) {
+            result = _dataType(result, '${entry.key}.$name result');
+          }
           final mustCallSuper = _requiresSuper(element, name);
           if ({'widget', 'route'}.contains(result.kind)) {
             throw StateError('Unsupported proxy result: $name');
           }
           proxyMethods.add(
             FlaxCodegenMethodModel(
-              name,
+              alias,
               parameters(
                 method.formalParameters,
                 method.formalParameters.map((p) => p.name!).toList(),
                 '${entry.key}.$name',
                 declared: declaredMethod.formalParameters,
+                data: selection.data.methods[name] ?? const [],
+                callbackSignatures: selection.callbackSignatures,
+                callbackOptionalParameters:
+                    selection.callbackOptionalParameters,
+                callbackErrorParameters: selection.callbackErrorParameters,
+                callbackScopedParameters: selection.callbackScopedParameters,
               ),
               result,
               typeParameters: callback.typeParameters,
               mustCallSuper: mustCallSuper,
               instance: true,
+              operatorName: operatorName,
             ),
           );
-          if (concreteOverride && !proxySuperMembers.contains(name)) {
-            proxySuperMembers.add(name);
+          if (concreteOverride && !proxySuperMembers.contains(alias)) {
+            proxySuperMembers.add(alias);
           }
+        }
+        if (proxyMethods.any((m) => m.operatorName == '==') &&
+            !proxyGetters.any((g) => g.name == 'hashCode')) {
+          throw StateError(
+            'Proxy equality requires a selected hashCode getter',
+          );
         }
         proxy = FlaxCodegenProxyModel(
           selection.proxy!,
@@ -2892,6 +3016,7 @@ class FlaxCodegenBindingParser {
           capabilities: [if (selection.disposeMethod != null) 'Disposable'],
           listenerPairs: selection.listenerPairs,
           staticGetters: staticGetters,
+          staticSetters: staticSetters,
         ),
       );
     }
@@ -3770,4 +3895,9 @@ final class FlaxCodegenParserCheckpoint {
   final Map<String, FlaxCodegenClassSelection> selections;
   final Map<String, String> libraryByIdentity;
   final Map<String, InterfaceElement> elementsByIdentity;
+}
+
+MethodElement? _classOperator(InterfaceType type, String name) {
+  final method = type.lookUpMethod(name, type.element.library);
+  return method?.isOperator == true ? method : null;
 }

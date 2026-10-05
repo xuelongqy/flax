@@ -1,6 +1,10 @@
 // GENERATED CODE. Selected public API subset; do not edit.
 // Regenerate with dart run melos run bindings:generate.
-import { bindingVersion, construct as _flaxHostConstruct, constructProxy as _flaxHostConstructProxy, constructObject as _flaxHostConstructObject, constructDeferredObject as _flaxHostConstructDeferredObject, constructStream as _flaxHostConstructStream, constructAsyncIterableStream as _flaxHostConstructAsyncIterableStream, defineObject as _flaxHostDefineObject, defineStream as _flaxHostDefineStream, invokeObject as _flaxHostInvokeObject, invokeObjectStatic as _flaxHostInvokeObjectStatic, invokeStream as _flaxHostInvokeStream, enumValue as _flaxHostEnumValue, defineContext as _flaxHostDefineContext, defineState as _flaxHostDefineState, contextHandle as _flaxHostContextHandle, invokeStatic as _flaxHostInvokeStatic, invokeInstance as _flaxHostInvokeInstance, invokeTopLevel as _flaxHostInvokeTopLevel, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+import { bindingMethods as _flaxBindingMethods, bindingVersion, construct as _flaxHostConstruct, constructProxy as _flaxHostConstructProxy, constructObject as _flaxHostConstructObject, constructDeferredObject as _flaxHostConstructDeferredObject, constructStream as _flaxHostConstructStream, constructAsyncIterableStream as _flaxHostConstructAsyncIterableStream, defineObject as _flaxHostDefineObject, defineStream as _flaxHostDefineStream, invokeObject as _flaxHostInvokeObject, invokeObjectStatic as _flaxHostInvokeObjectStatic, invokeStream as _flaxHostInvokeStream, enumValue as _flaxHostEnumValue, defineContext as _flaxHostDefineContext, defineState as _flaxHostDefineState, contextHandle as _flaxHostContextHandle, invokeStatic as _flaxHostInvokeStatic, invokeInstance as _flaxHostInvokeInstance, invokeTopLevel as _flaxHostInvokeTopLevel, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+const _flaxMemberParameters0 = [{"name":"event","required":true,"positional":true}] as const;
+const _flaxMemberParameters1 = [{"name":"error","required":true,"positional":true},{"name":"stackTrace","required":false,"positional":true}] as const;
+const _flaxMemberParameters2 = [] as const;
+const _flaxMemberParameters3 = [{"name":"source","required":true,"positional":true},{"name":"cancelOnError","required":false,"positional":false}] as const;
 import type * as upstream0 from '@flax/dart/async/_bindings/flutter_StreamSink';
 import '@flax/dart/async/_bindings/flutter_StreamSink';
 import type * as upstream1 from '@flax/dart/async/_bindings/flutter_EventSink';
@@ -33,26 +37,7 @@ set onPause(value: (() => void) | null);
 set onResume(value: (() => void) | null);
 set onCancel(value: (() => void | Promise<void>) | null);
 }
-defineObject("flax.core/flutter#type:StreamController", ["done","onListen","onPause","onResume","onCancel","stream","sink","isClosed","isPaused","hasListener"], ["onListen","onPause","onResume","onCancel"], {add(this: object, event: unknown | null): void {
-if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeObject(this, "flax.core/flutter#type:StreamController", "add", [event]);
-},
-addError(this: object, error: {}, stackTrace?: Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }> | null): void {
-if (arguments.length > 2) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeObject(this, "flax.core/flutter#type:StreamController", "addError", [error, stackTrace]);
-},
-close(this: object): Promise<unknown | null> {
-if (arguments.length > 0) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeObject(this, "flax.core/flutter#type:StreamController", "close", []);
-return _flaxResult as Promise<unknown | null>;
-},
-addStream(this: object, source: upstream4.Stream<unknown | null>, options: { cancelOnError?: boolean | null | undefined } = {}): Promise<unknown | null> {
-if (arguments.length > 2) throw new TypeError('Too many method arguments');
-if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["cancelOnError"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeObject(this, "flax.core/flutter#type:StreamController", "addStream", [source, options.cancelOnError]);
-return _flaxResult as Promise<unknown | null>;
-},
-}, []);
+defineObject("flax.core/flutter#type:StreamController", ["done","onListen","onPause","onResume","onCancel","stream","sink","isClosed","isPaused","hasListener"], ["onListen","onPause","onResume","onCancel"], _flaxBindingMethods("flax.core/flutter#type:StreamController", "object", {"add":_flaxMemberParameters0,"addError":_flaxMemberParameters1,"close":_flaxMemberParameters2,"addStream":_flaxMemberParameters3}), []);
 export function StreamController<T extends unknown | null = unknown | null>(options: { onListen?: (() => void) | null | undefined; onPause?: (() => void) | null | undefined; onResume?: (() => void) | null | undefined; onCancel?: (() => void | Promise<void>) | null | undefined; sync?: boolean | undefined } = {}): StreamController<T> {
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:StreamController", "", [{"name":"onListen","required":false,"positional":false},{"name":"onPause","required":false,"positional":false},{"name":"onResume","required":false,"positional":false},{"name":"onCancel","required":false,"positional":false},{"name":"sync","required":false,"positional":false}], [], options) as StreamController<T>;

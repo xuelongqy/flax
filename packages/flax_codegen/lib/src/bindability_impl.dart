@@ -70,12 +70,18 @@ List<FlaxCodegenSkip> _providerSurfaceSkips({
   requireNames(requested.getters, available.getters, 'getters');
   requireNames(requested.setters, available.setters, 'setters');
   requireNames(
+    requested.staticSetters,
+    available.staticSetters,
+    'staticSetters',
+  );
+  requireNames(
     requested.staticGetters,
     available.staticGetters,
     'staticGetters',
   );
   requireCalls(requested.constructors, available.constructors, 'constructors');
   requireCalls(requested.methods, available.methods, 'methods');
+  requireCalls(requested.operators, available.operators, 'operators');
   requireCalls(
     requested.instanceMethods,
     available.instanceMethods,
@@ -384,12 +390,13 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
   final getters = <String>[];
   final setters = <String>[];
   final staticGetters = <String>[];
+  final staticSetters = <String>[];
   final instanceMethods = <String, List<String>>{};
   final methods = <String, List<String>>{};
   final deferredFactories = <String>{};
   String? inferredDisposeMethod;
 
-  if (!widget) {
+  {
     for (final getter in element.getters) {
       if (!getter.isPublic) continue;
       final getterName = getter.name!;
@@ -399,7 +406,6 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
         continue;
       }
       if (getter.isStatic) {
-        if (getter.variable.setter != null) continue;
         final converted = _tryMemberType(
           scope,
           getter.returnType,
@@ -409,6 +415,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
         if (converted != null) staticGetters.add(getterName);
         continue;
       }
+      if (widget) continue;
       final converted = _tryMemberType(
         scope,
         getter.returnType,
@@ -419,7 +426,13 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
       if (converted != null) getters.add(getterName);
     }
     for (final setter in element.setters) {
-      if (!setter.isPublic || setter.isStatic) continue;
+      if (!setter.isPublic ||
+          (widget && !setter.isStatic) ||
+          (setter.isStatic &&
+              setter.variable.isOriginDeclaration &&
+              (setter.variable.isConst || setter.variable.isFinal))) {
+        continue;
+      }
       final setterName = setter.name!.replaceFirst(RegExp(r'=$'), '');
       if (!_usableMemberName(setterName)) continue;
       final converted = _tryMemberType(
@@ -430,10 +443,12 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
         allowed: _setterKinds,
         input: true,
       );
-      if (converted != null) setters.add(setterName);
+      if (converted != null) {
+        (setter.isStatic ? staticSetters : setters).add(setterName);
+      }
     }
     for (final method in element.methods) {
-      if (!method.isPublic) continue;
+      if (!method.isPublic || widget) continue;
       final methodName = method.name!;
       if (!_usableMemberName(methodName) ||
           methodName == 'toString' ||
@@ -462,7 +477,8 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     // Public instance API is inherited in Dart. Collect the effective member
     // from thisType so generic substitutions and overrides match what callers
     // actually see, while keeping static members declaration-local.
-    for (final parent in element.allSupertypes) {
+    for (final parent
+        in widget ? const <InterfaceType>[] : element.allSupertypes) {
       if (parent.isDartCoreObject) continue;
       for (final declared in parent.getters) {
         final getterName = declared.name!;
@@ -556,7 +572,8 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
         }
       }
     }
-  } else {
+  }
+  if (widget) {
     for (final getter in element.getters) {
       if (!getter.isPublic || getter.isStatic) continue;
       final getterName = getter.name!;
@@ -588,6 +605,50 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     }
   }
 
+  final operators = <String, List<String>>{};
+  if (kind == 'object') {
+    for (final operator in flaxCodegenClassOperators.keys) {
+      final method = _classOperator(element.thisType, operator);
+      if (method == null ||
+          !method.isPublic ||
+          method.isStatic ||
+          method.metadata.hasInternal ||
+          method.metadata.hasProtected ||
+          method.metadata.hasVisibleForTesting) {
+        continue;
+      }
+      // Object equality stays opt-in; inheriting it does not request JS equality.
+      if (operator == '==' &&
+          !(base?.operators.containsKey(operator) ?? false)) {
+        continue;
+      }
+      final alias = flaxCodegenClassOperators[operator]!;
+      if (instanceMethods.containsKey(alias) ||
+          methods.containsKey(alias) ||
+          getters.contains(alias) ||
+          setters.contains(alias) ||
+          staticGetters.contains(alias) ||
+          staticSetters.contains(alias) ||
+          constructors.containsKey(alias)) {
+        skip(
+          '$name.$operator',
+          'Conflicting operator export: $alias',
+          code: 'operator_export_collision',
+        );
+        continue;
+      }
+      final bound = _bindMethod(
+        parser: parser,
+        scope: scope,
+        element: element,
+        method: method,
+        location: '$name.$operator',
+        skips: skips,
+      );
+      if (bound != null) operators[operator] = bound;
+    }
+  }
+
   final recommendation = await _proxyRecommendation(
     parser: parser,
     element: element,
@@ -598,6 +659,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     getters: getters,
     setters: setters,
     instanceMethods: instanceMethods,
+    operators: operators,
     kind: kind,
   );
   final proxyCapability = recommendation.capability;
@@ -657,7 +719,31 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     }
   }
 
-  if (widget && constructors.isEmpty) {
+  final generatedStaticNames = <String>{
+    ...staticGetters,
+    ...methods.keys,
+    ...selectedInstanceMethods.keys,
+    ...operators.keys.map((op) => flaxCodegenClassOperators[op]!),
+    ...selectedConstructors.keys.where((name) => name.isNotEmpty),
+    if (proxy != null) 'implementation',
+    if (proxy != null) 'extend',
+    if (base?.asyncIterableFactory != null) base!.asyncIterableFactory!,
+  };
+  staticSetters.removeWhere((member) {
+    final exported = 'set${member[0].toUpperCase()}${member.substring(1)}';
+    if (generatedStaticNames.add(exported)) return false;
+    skip(
+      '$name.$member=',
+      'Conflicting static setter export: $exported',
+      code: 'static_setter_export_collision',
+    );
+    return true;
+  });
+  if (widget &&
+      constructors.isEmpty &&
+      staticGetters.isEmpty &&
+      staticSetters.isEmpty &&
+      methods.isEmpty) {
     skip(name, 'No bindable constructors', code: 'no_constructors');
     return FlaxCodegenProposedBinding(
       name: name,
@@ -671,7 +757,9 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
       getters.isEmpty &&
       setters.isEmpty &&
       staticGetters.isEmpty &&
+      staticSetters.isEmpty &&
       instanceMethods.isEmpty &&
+      operators.isEmpty &&
       methods.isEmpty &&
       proxy == null) {
     skip(name, 'No bindable members', code: 'no_members');
@@ -691,7 +779,9 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     getters: selectedGetters,
     setters: selectedSetters,
     staticGetters: staticGetters,
+    staticSetters: staticSetters,
     instanceMethods: selectedInstanceMethods,
+    operators: operators,
     methods: methods,
     disposeMethod: base?.disposeMethod ?? inferredDisposeMethod,
     proxyVariants: base?.proxyVariants ?? const {},
@@ -1567,6 +1657,7 @@ _proxyRecommendation({
   required List<String> getters,
   required List<String> setters,
   required Map<String, List<String>> instanceMethods,
+  required Map<String, List<String>> operators,
   required String? kind,
 }) async {
   if (_requiresFlutterSemantics(parser, element)) {
@@ -1586,7 +1677,10 @@ _proxyRecommendation({
       constructorName: null,
     );
   }
-  if (getters.isEmpty && setters.isEmpty && instanceMethods.isEmpty) {
+  if (getters.isEmpty &&
+      setters.isEmpty &&
+      instanceMethods.isEmpty &&
+      operators.isEmpty) {
     return (
       capability: FlaxCodegenProxyCapability.unsupported,
       proxy: null,
@@ -1621,11 +1715,15 @@ _proxyRecommendation({
         getters: extendGetters,
         setters: extendSetters,
         instanceMethods: extendMethods,
+        operators: operators,
       ),
     );
   }
 
   final hasConcreteBehavior =
+      operators.keys.any(
+        (op) => !(_classOperator(element.thisType, op)?.isAbstract ?? true),
+      ) ||
       extendGetters.any(
         (member) =>
             !(element.thisType
@@ -1673,6 +1771,7 @@ _proxyRecommendation({
         getters: getters,
         setters: setters,
         instanceMethods: instanceMethods,
+        operators: operators,
       ),
     );
     if (canImplement) {

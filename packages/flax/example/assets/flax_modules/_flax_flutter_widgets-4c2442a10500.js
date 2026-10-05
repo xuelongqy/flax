@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/flutter/widgets","owner":"@flax/core-runtime:dist/flutter/widgets.js","version":"0.0.0","artifact":"9e0b44a94e92b44bdfbb2d4fd4efd89d902db19e4dc5eca0a700c7591a7b28ca","asset":"assets/flax_modules/_flax_flutter_widgets-4c2442a10500.js","package":"@flax/core-runtime","source":"dist/flutter/widgets.js","dependencies":{"@flax/core/bindings":"0.0.0","@flax/dart/core":"0.0.0","@flax/flutter/foundation":"0.0.0","@flax/flutter/scheduler":"0.0.0","@flax/flutter/services":"0.0.0"},"bindings":[{"moduleId":"flax.core/components","uiProtocol":22,"types":["flax.core/components#type:State","flax.core/components#type:StatefulWidget"],"functions":[]},{"moduleId":"flax.core/flutter","uiProtocol":22,"types":["flax.core/flutter#type:Align","flax.core/flutter#type:Alignment","flax.core/flutter#type:AlignmentDirectional","flax.core/flutter#type:AlignmentGeometry","flax.core/flutter#type:AlwaysScrollableScrollPhysics","flax.core/flutter#type:AspectRatio","flax.core/flutter#type:AsyncSnapshot","flax.core/flutter#type:AutovalidateMode","flax.core/flutter#type:Axis","flax.core/flutter#type:Border","flax.core/flutter#type:BorderDirectional","flax.core/flutter#type:BorderRadius","flax.core/flutter#type:BorderRadiusDirectional","flax.core/flutter#type:BorderRadiusGeometry","flax.core/flutter#type:BorderSide","flax.core/flutter#type:BorderStyle","flax.core/flutter#type:BouncingScrollPhysics","flax.core/flutter#type:BoxBorder","flax.core/flutter#type:BoxConstraints","flax.core/flutter#type:BoxDecoration","flax.core/flutter#type:BoxFit","flax.core/flutter#type:BoxShape","flax.core/flutter#type:BuildContext","flax.core/flutter#type:Builder","flax.core/flutter#type:Center","flax.core/flutter#type:CircleBorder","flax.core/flutter#type:ClampingScrollPhysics","flax.core/flutter#type:Clip","flax.core/flutter#type:ClipRRect","flax.core/flutter#type:Color","flax.core/flutter#type:ColoredBox","flax.core/flutter#type:Column","flax.core/flutter#type:ConnectionState","flax.core/flutter#type:ConstrainedBox","flax.core/flutter#type:Container","flax.core/flutter#type:CrossAxisAlignment","flax.core/flutter#type:Cubic","flax.core/flutter#type:Curve","flax.core/flutter#type:Curves","flax.core/flutter#type:DateTime","flax.core/flutter#type:DecoratedBox","flax.core/flutter#type:Decoration","flax.core/flutter#type:DecorationPosition","flax.core/flutter#type:Directionality","flax.core/flutter#type:DragStartBehavior","flax.core/flutter#type:Duration","flax.core/flutter#type:EdgeInsets","flax.core/flutter#type:EdgeInsetsDirectional","flax.core/flutter#type:EdgeInsetsGeometry","flax.core/flutter#type:EventSink","flax.core/flutter#type:Expanded","flax.core/flutter#type:FilteringTextInputFormatter","flax.core/flutter#type:FittedBox","flax.core/flutter#type:FittedSizes","flax.core/flutter#type:FlaxNavigatorObserver","flax.core/flutter#type:FlexFit","flax.core/flutter#type:Flexible","flax.core/flutter#type:Focus","flax.core/flutter#type:FocusNode","flax.core/flutter#type:FontStyle","flax.core/flutter#type:FontWeight","flax.core/flutter#type:Form","flax.core/flutter#type:GestureDetector","flax.core/flutter#type:HitTestBehavior","flax.core/flutter#type:IgnorePointer","flax.core/flutter#type:ImageFilter","flax.core/flutter#type:IndexedStack","flax.core/flutter#type:Key","flax.core/flutter#type:KeyboardListener","flax.core/flutter#type:LayoutBuilder","flax.core/flutter#type:LengthLimitingTextInputFormatter","flax.core/flutter#type:ListView","flax.core/flutter#type:Listenable","flax.core/flutter#type:ListenableBuilder","flax.core/flutter#type:Listener","flax.core/flutter#type:LocalKey","flax.core/flutter#type:MainAxisAlignment","flax.core/flutter#type:MainAxisSize","flax.core/flutter#type:MaxLengthEnforcement","flax.core/flutter#type:MouseCursor","flax.core/flutter#type:MouseRegion","flax.core/flutter#type:MultiStreamController","flax.core/flutter#type:Navigator","flax.core/flutter#type:NavigatorObserver","flax.core/flutter#type:NavigatorPopHandler","flax.core/flutter#type:NavigatorState","flax.core/flutter#type:NeverScrollableScrollPhysics","flax.core/flutter#type:Opacity","flax.core/flutter#type:OutlinedBorder","flax.core/flutter#type:Padding","flax.core/flutter#type:Page","flax.core/flutter#type:Pattern","flax.core/flutter#type:PopScope","flax.core/flutter#type:Positioned","flax.core/flutter#type:PreferredSize","flax.core/flutter#type:PreferredSizeWidget","flax.core/flutter#type:Radius","flax.core/flutter#type:RegExp","flax.core/flutter#type:RoundedRectangleBorder","flax.core/flutter#type:Route","flax.core/flutter#type:RouteSettings","flax.core/flutter#type:Row","flax.core/flutter#type:SafeArea","flax.core/flutter#type:SchedulerBinding","flax.core/flutter#type:ScrollController","flax.core/flutter#type:ScrollPhysics","flax.core/flutter#type:ShapeBorder","flax.core/flutter#type:SingleChildScrollView","flax.core/flutter#type:Sink","flax.core/flutter#type:Size","flax.core/flutter#type:SizedBox","flax.core/flutter#type:Spacer","flax.core/flutter#type:Stack","flax.core/flutter#type:StackFit","flax.core/flutter#type:StackTrace","flax.core/flutter#type:StadiumBorder","flax.core/flutter#type:StatefulBuilder","flax.core/flutter#type:Stream","flax.core/flutter#type:StreamBuilder","flax.core/flutter#type:StreamConsumer","flax.core/flutter#type:StreamController","flax.core/flutter#type:StreamIterator","flax.core/flutter#type:StreamSink","flax.core/flutter#type:StreamSubscription","flax.core/flutter#type:StreamTransformer","flax.core/flutter#type:StreamTransformerBase","flax.core/flutter#type:StreamView","flax.core/flutter#type:StringBuffer","flax.core/flutter#type:SynchronousStreamController","flax.core/flutter#type:SystemMouseCursor","flax.core/flutter#type:SystemMouseCursors","flax.core/flutter#type:TargetPlatform","flax.core/flutter#type:Text","flax.core/flutter#type:TextAffinity","flax.core/flutter#type:TextAlign","flax.core/flutter#type:TextBaseline","flax.core/flutter#type:TextDirection","flax.core/flutter#type:TextEditingController","flax.core/flutter#type:TextEditingValue","flax.core/flutter#type:TextInputFormatter","flax.core/flutter#type:TextOverflow","flax.core/flutter#type:TextRange","flax.core/flutter#type:TextSelection","flax.core/flutter#type:TextStyle","flax.core/flutter#type:TickerProvider","flax.core/flutter#type:UnfocusDisposition","flax.core/flutter#type:Uri","flax.core/flutter#type:ValueKey","flax.core/flutter#type:ValueListenable","flax.core/flutter#type:ValueListenableBuilder","flax.core/flutter#type:VerticalDirection","flax.core/flutter#type:Visibility","flax.core/flutter#type:WidgetState","flax.core/flutter#type:WidgetStateProperty","flax.core/flutter#type:Wrap","flax.core/flutter#type:WrapAlignment","flax.core/flutter#type:WrapCrossAlignment"],"functions":["flax.core/flutter#function:applyBoxFit","flax.core/flutter#read:defaultTargetPlatform","flax.core/flutter#read:kIsWeb"]}],"subpaths":["@flax/flutter/widgets/components","@flax/flutter/widgets/index"]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/flutter/widgets","owner":"@flax/core-runtime:dist/flutter/widgets.js","version":"0.0.0","artifact":"994d33f798cd446c8bb59f950ee7307b93e9377415d02f706c9d4529847db96b","asset":"assets/flax_modules/_flax_flutter_widgets-4c2442a10500.js","package":"@flax/core-runtime","source":"dist/flutter/widgets.js","dependencies":{"@flax/core/bindings":"0.0.0","@flax/dart/core":"0.0.0","@flax/flutter/foundation":"0.0.0","@flax/flutter/scheduler":"0.0.0","@flax/flutter/services":"0.0.0"},"bindings":[{"moduleId":"flax.core/components","uiProtocol":22,"types":["flax.core/components#type:State","flax.core/components#type:StatefulWidget"],"functions":[]},{"moduleId":"flax.core/flutter","uiProtocol":22,"types":["flax.core/flutter#type:Align","flax.core/flutter#type:Alignment","flax.core/flutter#type:AlignmentDirectional","flax.core/flutter#type:AlignmentGeometry","flax.core/flutter#type:AlwaysScrollableScrollPhysics","flax.core/flutter#type:AspectRatio","flax.core/flutter#type:AsyncSnapshot","flax.core/flutter#type:AutovalidateMode","flax.core/flutter#type:Axis","flax.core/flutter#type:Border","flax.core/flutter#type:BorderDirectional","flax.core/flutter#type:BorderRadius","flax.core/flutter#type:BorderRadiusDirectional","flax.core/flutter#type:BorderRadiusGeometry","flax.core/flutter#type:BorderSide","flax.core/flutter#type:BorderStyle","flax.core/flutter#type:BouncingScrollPhysics","flax.core/flutter#type:BoxBorder","flax.core/flutter#type:BoxConstraints","flax.core/flutter#type:BoxDecoration","flax.core/flutter#type:BoxFit","flax.core/flutter#type:BoxShape","flax.core/flutter#type:BuildContext","flax.core/flutter#type:Builder","flax.core/flutter#type:Center","flax.core/flutter#type:CircleBorder","flax.core/flutter#type:ClampingScrollPhysics","flax.core/flutter#type:Clip","flax.core/flutter#type:ClipRRect","flax.core/flutter#type:Color","flax.core/flutter#type:ColoredBox","flax.core/flutter#type:Column","flax.core/flutter#type:ConnectionState","flax.core/flutter#type:ConstrainedBox","flax.core/flutter#type:Container","flax.core/flutter#type:CrossAxisAlignment","flax.core/flutter#type:Cubic","flax.core/flutter#type:Curve","flax.core/flutter#type:Curves","flax.core/flutter#type:DateTime","flax.core/flutter#type:DecoratedBox","flax.core/flutter#type:Decoration","flax.core/flutter#type:DecorationPosition","flax.core/flutter#type:Directionality","flax.core/flutter#type:DragStartBehavior","flax.core/flutter#type:Duration","flax.core/flutter#type:EdgeInsets","flax.core/flutter#type:EdgeInsetsDirectional","flax.core/flutter#type:EdgeInsetsGeometry","flax.core/flutter#type:EventSink","flax.core/flutter#type:Expanded","flax.core/flutter#type:FilteringTextInputFormatter","flax.core/flutter#type:FittedBox","flax.core/flutter#type:FittedSizes","flax.core/flutter#type:FlaxNavigatorObserver","flax.core/flutter#type:FlexFit","flax.core/flutter#type:Flexible","flax.core/flutter#type:Focus","flax.core/flutter#type:FocusNode","flax.core/flutter#type:FontStyle","flax.core/flutter#type:FontWeight","flax.core/flutter#type:Form","flax.core/flutter#type:GestureDetector","flax.core/flutter#type:HitTestBehavior","flax.core/flutter#type:IgnorePointer","flax.core/flutter#type:ImageFilter","flax.core/flutter#type:IndexedStack","flax.core/flutter#type:Key","flax.core/flutter#type:KeyboardListener","flax.core/flutter#type:LayoutBuilder","flax.core/flutter#type:LengthLimitingTextInputFormatter","flax.core/flutter#type:ListView","flax.core/flutter#type:Listenable","flax.core/flutter#type:ListenableBuilder","flax.core/flutter#type:Listener","flax.core/flutter#type:LocalKey","flax.core/flutter#type:MainAxisAlignment","flax.core/flutter#type:MainAxisSize","flax.core/flutter#type:MaxLengthEnforcement","flax.core/flutter#type:MouseCursor","flax.core/flutter#type:MouseRegion","flax.core/flutter#type:MultiStreamController","flax.core/flutter#type:Navigator","flax.core/flutter#type:NavigatorObserver","flax.core/flutter#type:NavigatorPopHandler","flax.core/flutter#type:NavigatorState","flax.core/flutter#type:NeverScrollableScrollPhysics","flax.core/flutter#type:Opacity","flax.core/flutter#type:OutlinedBorder","flax.core/flutter#type:Padding","flax.core/flutter#type:Page","flax.core/flutter#type:Pattern","flax.core/flutter#type:PopScope","flax.core/flutter#type:Positioned","flax.core/flutter#type:PreferredSize","flax.core/flutter#type:PreferredSizeWidget","flax.core/flutter#type:Radius","flax.core/flutter#type:RegExp","flax.core/flutter#type:RoundedRectangleBorder","flax.core/flutter#type:Route","flax.core/flutter#type:RouteSettings","flax.core/flutter#type:Row","flax.core/flutter#type:SafeArea","flax.core/flutter#type:SchedulerBinding","flax.core/flutter#type:ScrollController","flax.core/flutter#type:ScrollPhysics","flax.core/flutter#type:ShapeBorder","flax.core/flutter#type:SingleChildScrollView","flax.core/flutter#type:Sink","flax.core/flutter#type:Size","flax.core/flutter#type:SizedBox","flax.core/flutter#type:Spacer","flax.core/flutter#type:Stack","flax.core/flutter#type:StackFit","flax.core/flutter#type:StackTrace","flax.core/flutter#type:StadiumBorder","flax.core/flutter#type:StatefulBuilder","flax.core/flutter#type:Stream","flax.core/flutter#type:StreamBuilder","flax.core/flutter#type:StreamConsumer","flax.core/flutter#type:StreamController","flax.core/flutter#type:StreamIterator","flax.core/flutter#type:StreamSink","flax.core/flutter#type:StreamSubscription","flax.core/flutter#type:StreamTransformer","flax.core/flutter#type:StreamTransformerBase","flax.core/flutter#type:StreamView","flax.core/flutter#type:StringBuffer","flax.core/flutter#type:SynchronousStreamController","flax.core/flutter#type:SystemMouseCursor","flax.core/flutter#type:SystemMouseCursors","flax.core/flutter#type:TargetPlatform","flax.core/flutter#type:Text","flax.core/flutter#type:TextAffinity","flax.core/flutter#type:TextAlign","flax.core/flutter#type:TextBaseline","flax.core/flutter#type:TextDirection","flax.core/flutter#type:TextEditingController","flax.core/flutter#type:TextEditingValue","flax.core/flutter#type:TextInputFormatter","flax.core/flutter#type:TextOverflow","flax.core/flutter#type:TextRange","flax.core/flutter#type:TextSelection","flax.core/flutter#type:TextStyle","flax.core/flutter#type:TickerProvider","flax.core/flutter#type:UnfocusDisposition","flax.core/flutter#type:Uri","flax.core/flutter#type:ValueKey","flax.core/flutter#type:ValueListenable","flax.core/flutter#type:ValueListenableBuilder","flax.core/flutter#type:VerticalDirection","flax.core/flutter#type:Visibility","flax.core/flutter#type:WidgetState","flax.core/flutter#type:WidgetStateProperty","flax.core/flutter#type:Wrap","flax.core/flutter#type:WrapAlignment","flax.core/flutter#type:WrapCrossAlignment"],"functions":["flax.core/flutter#function:applyBoxFit","flax.core/flutter#read:defaultTargetPlatform","flax.core/flutter#read:kIsWeb"]}],"subpaths":["@flax/flutter/widgets/components","@flax/flutter/widgets/index"]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -196,10 +196,10 @@ var flutterBindingModule = _flaxInstallBindingModule("flax.core/flutter", 22, Ob
 var { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } = flutterBindingModule;
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_AlignmentGeometry.js
-defineObject("flax.core/flutter#type:AlignmentGeometry", [], [], {}, []);
+defineObject("flax.core/flutter#type:AlignmentGeometry", [], [], (0, import_bindings2.bindingMethods)("flax.core/flutter#type:AlignmentGeometry", "object", {}), []);
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_Alignment.js
-defineObject("flax.core/flutter#type:Alignment", ["x", "y"], [], {}, []);
+defineObject("flax.core/flutter#type:Alignment", ["x", "y"], [], (0, import_bindings3.bindingMethods)("flax.core/flutter#type:Alignment", "object", {}), []);
 function Alignment(x, y) {
   if (arguments.length > 2)
     throw new TypeError("Too many constructor arguments");
@@ -207,35 +207,35 @@ function Alignment(x, y) {
 }
 /* @__PURE__ */ (function(Alignment2) {
 })(Alignment || (Alignment = {}));
-Object.defineProperty(Alignment, "topLeft", { get: () => invokeObjectStatic("flax.core/flutter#type:Alignment", "topLeft") });
+Object.defineProperty(Alignment, "topLeft", { get: () => invokeTopLevel("flax.core/flutter#read:Alignment.topLeft", []) });
 /* @__PURE__ */ (function(Alignment2) {
 })(Alignment || (Alignment = {}));
-Object.defineProperty(Alignment, "topCenter", { get: () => invokeObjectStatic("flax.core/flutter#type:Alignment", "topCenter") });
+Object.defineProperty(Alignment, "topCenter", { get: () => invokeTopLevel("flax.core/flutter#read:Alignment.topCenter", []) });
 /* @__PURE__ */ (function(Alignment2) {
 })(Alignment || (Alignment = {}));
-Object.defineProperty(Alignment, "topRight", { get: () => invokeObjectStatic("flax.core/flutter#type:Alignment", "topRight") });
+Object.defineProperty(Alignment, "topRight", { get: () => invokeTopLevel("flax.core/flutter#read:Alignment.topRight", []) });
 /* @__PURE__ */ (function(Alignment2) {
 })(Alignment || (Alignment = {}));
-Object.defineProperty(Alignment, "centerLeft", { get: () => invokeObjectStatic("flax.core/flutter#type:Alignment", "centerLeft") });
+Object.defineProperty(Alignment, "centerLeft", { get: () => invokeTopLevel("flax.core/flutter#read:Alignment.centerLeft", []) });
 /* @__PURE__ */ (function(Alignment2) {
 })(Alignment || (Alignment = {}));
-Object.defineProperty(Alignment, "center", { get: () => invokeObjectStatic("flax.core/flutter#type:Alignment", "center") });
+Object.defineProperty(Alignment, "center", { get: () => invokeTopLevel("flax.core/flutter#read:Alignment.center", []) });
 /* @__PURE__ */ (function(Alignment2) {
 })(Alignment || (Alignment = {}));
-Object.defineProperty(Alignment, "centerRight", { get: () => invokeObjectStatic("flax.core/flutter#type:Alignment", "centerRight") });
+Object.defineProperty(Alignment, "centerRight", { get: () => invokeTopLevel("flax.core/flutter#read:Alignment.centerRight", []) });
 /* @__PURE__ */ (function(Alignment2) {
 })(Alignment || (Alignment = {}));
-Object.defineProperty(Alignment, "bottomLeft", { get: () => invokeObjectStatic("flax.core/flutter#type:Alignment", "bottomLeft") });
+Object.defineProperty(Alignment, "bottomLeft", { get: () => invokeTopLevel("flax.core/flutter#read:Alignment.bottomLeft", []) });
 /* @__PURE__ */ (function(Alignment2) {
 })(Alignment || (Alignment = {}));
-Object.defineProperty(Alignment, "bottomCenter", { get: () => invokeObjectStatic("flax.core/flutter#type:Alignment", "bottomCenter") });
+Object.defineProperty(Alignment, "bottomCenter", { get: () => invokeTopLevel("flax.core/flutter#read:Alignment.bottomCenter", []) });
 /* @__PURE__ */ (function(Alignment2) {
 })(Alignment || (Alignment = {}));
-Object.defineProperty(Alignment, "bottomRight", { get: () => invokeObjectStatic("flax.core/flutter#type:Alignment", "bottomRight") });
+Object.defineProperty(Alignment, "bottomRight", { get: () => invokeTopLevel("flax.core/flutter#read:Alignment.bottomRight", []) });
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_AlignmentDirectional.js
 var import_bindings4 = require("@flax/core/bindings");
-defineObject("flax.core/flutter#type:AlignmentDirectional", ["start", "y"], [], {}, []);
+defineObject("flax.core/flutter#type:AlignmentDirectional", ["start", "y"], [], (0, import_bindings4.bindingMethods)("flax.core/flutter#type:AlignmentDirectional", "object", {}), []);
 function AlignmentDirectional(start, y) {
   if (arguments.length > 2)
     throw new TypeError("Too many constructor arguments");
@@ -243,38 +243,38 @@ function AlignmentDirectional(start, y) {
 }
 /* @__PURE__ */ (function(AlignmentDirectional2) {
 })(AlignmentDirectional || (AlignmentDirectional = {}));
-Object.defineProperty(AlignmentDirectional, "topStart", { get: () => invokeObjectStatic("flax.core/flutter#type:AlignmentDirectional", "topStart") });
+Object.defineProperty(AlignmentDirectional, "topStart", { get: () => invokeTopLevel("flax.core/flutter#read:AlignmentDirectional.topStart", []) });
 /* @__PURE__ */ (function(AlignmentDirectional2) {
 })(AlignmentDirectional || (AlignmentDirectional = {}));
-Object.defineProperty(AlignmentDirectional, "topCenter", { get: () => invokeObjectStatic("flax.core/flutter#type:AlignmentDirectional", "topCenter") });
+Object.defineProperty(AlignmentDirectional, "topCenter", { get: () => invokeTopLevel("flax.core/flutter#read:AlignmentDirectional.topCenter", []) });
 /* @__PURE__ */ (function(AlignmentDirectional2) {
 })(AlignmentDirectional || (AlignmentDirectional = {}));
-Object.defineProperty(AlignmentDirectional, "topEnd", { get: () => invokeObjectStatic("flax.core/flutter#type:AlignmentDirectional", "topEnd") });
+Object.defineProperty(AlignmentDirectional, "topEnd", { get: () => invokeTopLevel("flax.core/flutter#read:AlignmentDirectional.topEnd", []) });
 /* @__PURE__ */ (function(AlignmentDirectional2) {
 })(AlignmentDirectional || (AlignmentDirectional = {}));
-Object.defineProperty(AlignmentDirectional, "centerStart", { get: () => invokeObjectStatic("flax.core/flutter#type:AlignmentDirectional", "centerStart") });
+Object.defineProperty(AlignmentDirectional, "centerStart", { get: () => invokeTopLevel("flax.core/flutter#read:AlignmentDirectional.centerStart", []) });
 /* @__PURE__ */ (function(AlignmentDirectional2) {
 })(AlignmentDirectional || (AlignmentDirectional = {}));
-Object.defineProperty(AlignmentDirectional, "center", { get: () => invokeObjectStatic("flax.core/flutter#type:AlignmentDirectional", "center") });
+Object.defineProperty(AlignmentDirectional, "center", { get: () => invokeTopLevel("flax.core/flutter#read:AlignmentDirectional.center", []) });
 /* @__PURE__ */ (function(AlignmentDirectional2) {
 })(AlignmentDirectional || (AlignmentDirectional = {}));
-Object.defineProperty(AlignmentDirectional, "centerEnd", { get: () => invokeObjectStatic("flax.core/flutter#type:AlignmentDirectional", "centerEnd") });
+Object.defineProperty(AlignmentDirectional, "centerEnd", { get: () => invokeTopLevel("flax.core/flutter#read:AlignmentDirectional.centerEnd", []) });
 /* @__PURE__ */ (function(AlignmentDirectional2) {
 })(AlignmentDirectional || (AlignmentDirectional = {}));
-Object.defineProperty(AlignmentDirectional, "bottomStart", { get: () => invokeObjectStatic("flax.core/flutter#type:AlignmentDirectional", "bottomStart") });
+Object.defineProperty(AlignmentDirectional, "bottomStart", { get: () => invokeTopLevel("flax.core/flutter#read:AlignmentDirectional.bottomStart", []) });
 /* @__PURE__ */ (function(AlignmentDirectional2) {
 })(AlignmentDirectional || (AlignmentDirectional = {}));
-Object.defineProperty(AlignmentDirectional, "bottomCenter", { get: () => invokeObjectStatic("flax.core/flutter#type:AlignmentDirectional", "bottomCenter") });
+Object.defineProperty(AlignmentDirectional, "bottomCenter", { get: () => invokeTopLevel("flax.core/flutter#read:AlignmentDirectional.bottomCenter", []) });
 /* @__PURE__ */ (function(AlignmentDirectional2) {
 })(AlignmentDirectional || (AlignmentDirectional = {}));
-Object.defineProperty(AlignmentDirectional, "bottomEnd", { get: () => invokeObjectStatic("flax.core/flutter#type:AlignmentDirectional", "bottomEnd") });
+Object.defineProperty(AlignmentDirectional, "bottomEnd", { get: () => invokeTopLevel("flax.core/flutter#read:AlignmentDirectional.bottomEnd", []) });
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_AlwaysScrollableScrollPhysics.js
 var import_bindings6 = require("@flax/core/bindings");
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_ScrollPhysics.js
 var import_bindings5 = require("@flax/core/bindings");
-defineObject("flax.core/flutter#type:ScrollPhysics", ["parent"], [], {}, []);
+defineObject("flax.core/flutter#type:ScrollPhysics", ["parent"], [], (0, import_bindings5.bindingMethods)("flax.core/flutter#type:ScrollPhysics", "object", {}), []);
 function ScrollPhysics(options = {}) {
   if (arguments.length > 1)
     throw new TypeError("Too many constructor arguments");
@@ -282,7 +282,7 @@ function ScrollPhysics(options = {}) {
 }
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_AlwaysScrollableScrollPhysics.js
-defineObject("flax.core/flutter#type:AlwaysScrollableScrollPhysics", ["parent"], [], {}, []);
+defineObject("flax.core/flutter#type:AlwaysScrollableScrollPhysics", ["parent"], [], (0, import_bindings6.bindingMethods)("flax.core/flutter#type:AlwaysScrollableScrollPhysics", "object", {}), []);
 function AlwaysScrollableScrollPhysics(options = {}) {
   if (arguments.length > 1)
     throw new TypeError("Too many constructor arguments");
@@ -292,14 +292,8 @@ function AlwaysScrollableScrollPhysics(options = {}) {
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_AsyncSnapshot.js
 var import_bindings7 = require("@flax/core/bindings");
 var import_flutter_StackTrace = require("@flax/dart/core");
-defineObject("flax.core/flutter#type:AsyncSnapshot", ["connectionState", "data", "error", "stackTrace", "hasData", "hasError", "requireData"], [], {
-  inState(state) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:AsyncSnapshot", "inState", [state]);
-    return _flaxResult;
-  }
-}, []);
+var _flaxMemberParameters0 = [{ "name": "state", "required": true, "positional": true }];
+defineObject("flax.core/flutter#type:AsyncSnapshot", ["connectionState", "data", "error", "stackTrace", "hasData", "hasError", "requireData"], [], (0, import_bindings7.bindingMethods)("flax.core/flutter#type:AsyncSnapshot", "object", { "inState": _flaxMemberParameters0 }), []);
 var AsyncSnapshot;
 (function(AsyncSnapshot2) {
   function nothing() {
@@ -342,24 +336,16 @@ var import_bindings9 = require("@flax/core/bindings");
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_ShapeBorder.js
 var import_bindings8 = require("@flax/core/bindings");
-defineObject("flax.core/flutter#type:ShapeBorder", [], [], {}, []);
+defineObject("flax.core/flutter#type:ShapeBorder", [], [], (0, import_bindings8.bindingMethods)("flax.core/flutter#type:ShapeBorder", "object", {}), []);
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_BoxBorder.js
-defineObject("flax.core/flutter#type:BoxBorder", [], [], {}, []);
+defineObject("flax.core/flutter#type:BoxBorder", [], [], (0, import_bindings9.bindingMethods)("flax.core/flutter#type:BoxBorder", "object", {}), []);
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_BorderSide.js
 var import_bindings10 = require("@flax/core/bindings");
 var import_flutter_Color = require("@flax/flutter/services");
-defineObject("flax.core/flutter#type:BorderSide", ["color", "width", "style", "strokeAlign"], [], {
-  copyWith(options = {}) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["color", "strokeAlign", "style", "width"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:BorderSide", "copyWith", [options.color, options.strokeAlign, options.style, options.width]);
-    return _flaxResult;
-  }
-}, []);
+var _flaxMemberParameters02 = [{ "name": "color", "required": false, "positional": false }, { "name": "strokeAlign", "required": false, "positional": false }, { "name": "style", "required": false, "positional": false }, { "name": "width", "required": false, "positional": false }];
+defineObject("flax.core/flutter#type:BorderSide", ["color", "width", "style", "strokeAlign"], [], (0, import_bindings10.bindingMethods)("flax.core/flutter#type:BorderSide", "object", { "copyWith": _flaxMemberParameters02 }), []);
 function BorderSide(options = {}) {
   if (arguments.length > 1)
     throw new TypeError("Too many constructor arguments");
@@ -367,20 +353,20 @@ function BorderSide(options = {}) {
 }
 /* @__PURE__ */ (function(BorderSide2) {
 })(BorderSide || (BorderSide = {}));
-Object.defineProperty(BorderSide, "none", { get: () => invokeObjectStatic("flax.core/flutter#type:BorderSide", "none") });
+Object.defineProperty(BorderSide, "none", { get: () => invokeTopLevel("flax.core/flutter#read:BorderSide.none", []) });
 /* @__PURE__ */ (function(BorderSide2) {
 })(BorderSide || (BorderSide = {}));
-Object.defineProperty(BorderSide, "strokeAlignInside", { get: () => invokeObjectStatic("flax.core/flutter#type:BorderSide", "strokeAlignInside") });
+Object.defineProperty(BorderSide, "strokeAlignInside", { get: () => invokeTopLevel("flax.core/flutter#read:BorderSide.strokeAlignInside", []) });
 /* @__PURE__ */ (function(BorderSide2) {
 })(BorderSide || (BorderSide = {}));
-Object.defineProperty(BorderSide, "strokeAlignCenter", { get: () => invokeObjectStatic("flax.core/flutter#type:BorderSide", "strokeAlignCenter") });
+Object.defineProperty(BorderSide, "strokeAlignCenter", { get: () => invokeTopLevel("flax.core/flutter#read:BorderSide.strokeAlignCenter", []) });
 /* @__PURE__ */ (function(BorderSide2) {
 })(BorderSide || (BorderSide = {}));
-Object.defineProperty(BorderSide, "strokeAlignOutside", { get: () => invokeObjectStatic("flax.core/flutter#type:BorderSide", "strokeAlignOutside") });
+Object.defineProperty(BorderSide, "strokeAlignOutside", { get: () => invokeTopLevel("flax.core/flutter#read:BorderSide.strokeAlignOutside", []) });
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_Border.js
 var import_flutter_Color2 = require("@flax/flutter/services");
-defineObject("flax.core/flutter#type:Border", ["top", "right", "bottom", "left", "isUniform"], [], {}, []);
+defineObject("flax.core/flutter#type:Border", ["top", "right", "bottom", "left", "isUniform"], [], (0, import_bindings11.bindingMethods)("flax.core/flutter#type:Border", "object", {}), []);
 function Border(options = {}) {
   if (arguments.length > 1)
     throw new TypeError("Too many constructor arguments");
@@ -397,7 +383,7 @@ function Border(options = {}) {
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_BorderDirectional.js
 var import_bindings12 = require("@flax/core/bindings");
-defineObject("flax.core/flutter#type:BorderDirectional", ["top", "start", "end", "bottom", "isUniform"], [], {}, []);
+defineObject("flax.core/flutter#type:BorderDirectional", ["top", "start", "end", "bottom", "isUniform"], [], (0, import_bindings12.bindingMethods)("flax.core/flutter#type:BorderDirectional", "object", {}), []);
 function BorderDirectional(options = {}) {
   if (arguments.length > 1)
     throw new TypeError("Too many constructor arguments");
@@ -409,11 +395,11 @@ var import_bindings15 = require("@flax/core/bindings");
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_BorderRadiusGeometry.js
 var import_bindings13 = require("@flax/core/bindings");
-defineObject("flax.core/flutter#type:BorderRadiusGeometry", [], [], {}, []);
+defineObject("flax.core/flutter#type:BorderRadiusGeometry", [], [], (0, import_bindings13.bindingMethods)("flax.core/flutter#type:BorderRadiusGeometry", "object", {}), []);
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_Radius.js
 var import_bindings14 = require("@flax/core/bindings");
-defineObject("flax.core/flutter#type:Radius", ["x", "y"], [], {}, []);
+defineObject("flax.core/flutter#type:Radius", ["x", "y"], [], (0, import_bindings14.bindingMethods)("flax.core/flutter#type:Radius", "object", {}), []);
 var Radius;
 (function(Radius2) {
   function circular(radius) {
@@ -433,19 +419,11 @@ var Radius;
 })(Radius || (Radius = {}));
 /* @__PURE__ */ (function(Radius2) {
 })(Radius || (Radius = {}));
-Object.defineProperty(Radius, "zero", { get: () => invokeObjectStatic("flax.core/flutter#type:Radius", "zero") });
+Object.defineProperty(Radius, "zero", { get: () => invokeTopLevel("flax.core/flutter#read:Radius.zero", []) });
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_BorderRadius.js
-defineObject("flax.core/flutter#type:BorderRadius", ["topLeft", "topRight", "bottomLeft", "bottomRight"], [], {
-  copyWith(options = {}) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["bottomLeft", "bottomRight", "topLeft", "topRight"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:BorderRadius", "copyWith", [options.bottomLeft, options.bottomRight, options.topLeft, options.topRight]);
-    return _flaxResult;
-  }
-}, []);
+var _flaxMemberParameters03 = [{ "name": "bottomLeft", "required": false, "positional": false }, { "name": "bottomRight", "required": false, "positional": false }, { "name": "topLeft", "required": false, "positional": false }, { "name": "topRight", "required": false, "positional": false }];
+defineObject("flax.core/flutter#type:BorderRadius", ["topLeft", "topRight", "bottomLeft", "bottomRight"], [], (0, import_bindings15.bindingMethods)("flax.core/flutter#type:BorderRadius", "object", { "copyWith": _flaxMemberParameters03 }), []);
 var BorderRadius;
 (function(BorderRadius2) {
   function all(radius) {
@@ -473,11 +451,11 @@ var BorderRadius;
 })(BorderRadius || (BorderRadius = {}));
 /* @__PURE__ */ (function(BorderRadius2) {
 })(BorderRadius || (BorderRadius = {}));
-Object.defineProperty(BorderRadius, "zero", { get: () => invokeObjectStatic("flax.core/flutter#type:BorderRadius", "zero") });
+Object.defineProperty(BorderRadius, "zero", { get: () => invokeTopLevel("flax.core/flutter#read:BorderRadius.zero", []) });
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_BorderRadiusDirectional.js
 var import_bindings16 = require("@flax/core/bindings");
-defineObject("flax.core/flutter#type:BorderRadiusDirectional", ["topStart", "topEnd", "bottomStart", "bottomEnd"], [], {}, []);
+defineObject("flax.core/flutter#type:BorderRadiusDirectional", ["topStart", "topEnd", "bottomStart", "bottomEnd"], [], (0, import_bindings16.bindingMethods)("flax.core/flutter#type:BorderRadiusDirectional", "object", {}), []);
 var BorderRadiusDirectional;
 (function(BorderRadiusDirectional2) {
   function all(radius) {
@@ -505,11 +483,11 @@ var BorderRadiusDirectional;
 })(BorderRadiusDirectional || (BorderRadiusDirectional = {}));
 /* @__PURE__ */ (function(BorderRadiusDirectional2) {
 })(BorderRadiusDirectional || (BorderRadiusDirectional = {}));
-Object.defineProperty(BorderRadiusDirectional, "zero", { get: () => invokeObjectStatic("flax.core/flutter#type:BorderRadiusDirectional", "zero") });
+Object.defineProperty(BorderRadiusDirectional, "zero", { get: () => invokeTopLevel("flax.core/flutter#read:BorderRadiusDirectional.zero", []) });
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_BouncingScrollPhysics.js
 var import_bindings17 = require("@flax/core/bindings");
-defineObject("flax.core/flutter#type:BouncingScrollPhysics", ["parent"], [], {}, []);
+defineObject("flax.core/flutter#type:BouncingScrollPhysics", ["parent"], [], (0, import_bindings17.bindingMethods)("flax.core/flutter#type:BouncingScrollPhysics", "object", {}), []);
 function BouncingScrollPhysics(options = {}) {
   if (arguments.length > 1)
     throw new TypeError("Too many constructor arguments");
@@ -518,7 +496,7 @@ function BouncingScrollPhysics(options = {}) {
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_BoxConstraints.js
 var import_bindings18 = require("@flax/core/bindings");
-defineObject("flax.core/flutter#type:BoxConstraints", ["minWidth", "maxWidth", "minHeight", "maxHeight"], [], {}, []);
+defineObject("flax.core/flutter#type:BoxConstraints", ["minWidth", "maxWidth", "minHeight", "maxHeight"], [], (0, import_bindings18.bindingMethods)("flax.core/flutter#type:BoxConstraints", "object", {}), []);
 function BoxConstraints(options = {}) {
   if (arguments.length > 1)
     throw new TypeError("Too many constructor arguments");
@@ -546,20 +524,12 @@ var import_bindings20 = require("@flax/core/bindings");
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_Decoration.js
 var import_bindings19 = require("@flax/core/bindings");
-defineObject("flax.core/flutter#type:Decoration", [], [], {}, []);
+defineObject("flax.core/flutter#type:Decoration", [], [], (0, import_bindings19.bindingMethods)("flax.core/flutter#type:Decoration", "object", {}), []);
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_BoxDecoration.js
 var import_flutter_Color3 = require("@flax/flutter/services");
-defineObject("flax.core/flutter#type:BoxDecoration", ["color", "border", "borderRadius", "shape"], [], {
-  copyWith(options = {}) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["border", "borderRadius", "color", "shape"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:BoxDecoration", "copyWith", [options.border, options.borderRadius, options.color, options.shape]);
-    return _flaxResult;
-  }
-}, []);
+var _flaxMemberParameters04 = [{ "name": "border", "required": false, "positional": false }, { "name": "borderRadius", "required": false, "positional": false }, { "name": "color", "required": false, "positional": false }, { "name": "shape", "required": false, "positional": false }];
+defineObject("flax.core/flutter#type:BoxDecoration", ["color", "border", "borderRadius", "shape"], [], (0, import_bindings20.bindingMethods)("flax.core/flutter#type:BoxDecoration", "object", { "copyWith": _flaxMemberParameters04 }), []);
 function BoxDecoration(options = {}) {
   if (arguments.length > 1)
     throw new TypeError("Too many constructor arguments");
@@ -576,19 +546,11 @@ var import_bindings23 = require("@flax/core/bindings");
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_OutlinedBorder.js
 var import_bindings22 = require("@flax/core/bindings");
-defineObject("flax.core/flutter#type:OutlinedBorder", ["side"], [], {}, []);
+defineObject("flax.core/flutter#type:OutlinedBorder", ["side"], [], (0, import_bindings22.bindingMethods)("flax.core/flutter#type:OutlinedBorder", "object", {}), []);
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_CircleBorder.js
-defineObject("flax.core/flutter#type:CircleBorder", ["side", "eccentricity"], [], {
-  copyWith(options = {}) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["eccentricity", "side"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:CircleBorder", "copyWith", [options.eccentricity, options.side]);
-    return _flaxResult;
-  }
-}, []);
+var _flaxMemberParameters05 = [{ "name": "eccentricity", "required": false, "positional": false }, { "name": "side", "required": false, "positional": false }];
+defineObject("flax.core/flutter#type:CircleBorder", ["side", "eccentricity"], [], (0, import_bindings23.bindingMethods)("flax.core/flutter#type:CircleBorder", "object", { "copyWith": _flaxMemberParameters05 }), []);
 function CircleBorder(options = {}) {
   if (arguments.length > 1)
     throw new TypeError("Too many constructor arguments");
@@ -597,7 +559,7 @@ function CircleBorder(options = {}) {
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_ClampingScrollPhysics.js
 var import_bindings24 = require("@flax/core/bindings");
-defineObject("flax.core/flutter#type:ClampingScrollPhysics", ["parent"], [], {}, []);
+defineObject("flax.core/flutter#type:ClampingScrollPhysics", ["parent"], [], (0, import_bindings24.bindingMethods)("flax.core/flutter#type:ClampingScrollPhysics", "object", {}), []);
 function ClampingScrollPhysics(options = {}) {
   if (arguments.length > 1)
     throw new TypeError("Too many constructor arguments");
@@ -609,24 +571,12 @@ var import_bindings26 = require("@flax/core/bindings");
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_Curve.js
 var import_bindings25 = require("@flax/core/bindings");
-defineObject("flax.core/flutter#type:Curve", [], [], {
-  transform(t) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:Curve", "transform", [t]);
-    return _flaxResult;
-  }
-}, []);
+var _flaxMemberParameters06 = [{ "name": "t", "required": true, "positional": true }];
+defineObject("flax.core/flutter#type:Curve", [], [], (0, import_bindings25.bindingMethods)("flax.core/flutter#type:Curve", "object", { "transform": _flaxMemberParameters06 }), []);
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_Cubic.js
-defineObject("flax.core/flutter#type:Cubic", ["a", "b", "c", "d"], [], {
-  transform(t) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:Cubic", "transform", [t]);
-    return _flaxResult;
-  }
-}, []);
+var _flaxMemberParameters07 = [{ "name": "t", "required": true, "positional": true }];
+defineObject("flax.core/flutter#type:Cubic", ["a", "b", "c", "d"], [], (0, import_bindings26.bindingMethods)("flax.core/flutter#type:Cubic", "object", { "transform": _flaxMemberParameters07 }), []);
 function Cubic(a, b, c, d) {
   if (arguments.length > 4)
     throw new TypeError("Too many constructor arguments");
@@ -635,23 +585,23 @@ function Cubic(a, b, c, d) {
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_Curves.js
 var import_bindings27 = require("@flax/core/bindings");
-defineObject("flax.core/flutter#type:Curves", [], [], {}, []);
+defineObject("flax.core/flutter#type:Curves", [], [], (0, import_bindings27.bindingMethods)("flax.core/flutter#type:Curves", "object", {}), []);
 var Curves = {};
-Object.defineProperty(Curves, "linear", { get: () => invokeObjectStatic("flax.core/flutter#type:Curves", "linear") });
-Object.defineProperty(Curves, "ease", { get: () => invokeObjectStatic("flax.core/flutter#type:Curves", "ease") });
-Object.defineProperty(Curves, "easeIn", { get: () => invokeObjectStatic("flax.core/flutter#type:Curves", "easeIn") });
-Object.defineProperty(Curves, "easeOut", { get: () => invokeObjectStatic("flax.core/flutter#type:Curves", "easeOut") });
-Object.defineProperty(Curves, "easeInOut", { get: () => invokeObjectStatic("flax.core/flutter#type:Curves", "easeInOut") });
+Object.defineProperty(Curves, "linear", { get: () => invokeTopLevel("flax.core/flutter#read:Curves.linear", []) });
+Object.defineProperty(Curves, "ease", { get: () => invokeTopLevel("flax.core/flutter#read:Curves.ease", []) });
+Object.defineProperty(Curves, "easeIn", { get: () => invokeTopLevel("flax.core/flutter#read:Curves.easeIn", []) });
+Object.defineProperty(Curves, "easeOut", { get: () => invokeTopLevel("flax.core/flutter#read:Curves.easeOut", []) });
+Object.defineProperty(Curves, "easeInOut", { get: () => invokeTopLevel("flax.core/flutter#read:Curves.easeInOut", []) });
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_EdgeInsets.js
 var import_bindings29 = require("@flax/core/bindings");
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_EdgeInsetsGeometry.js
 var import_bindings28 = require("@flax/core/bindings");
-defineObject("flax.core/flutter#type:EdgeInsetsGeometry", [], [], {}, []);
+defineObject("flax.core/flutter#type:EdgeInsetsGeometry", [], [], (0, import_bindings28.bindingMethods)("flax.core/flutter#type:EdgeInsetsGeometry", "object", {}), []);
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_EdgeInsets.js
-defineObject("flax.core/flutter#type:EdgeInsets", ["left", "top", "right", "bottom"], [], {}, []);
+defineObject("flax.core/flutter#type:EdgeInsets", ["left", "top", "right", "bottom"], [], (0, import_bindings29.bindingMethods)("flax.core/flutter#type:EdgeInsets", "object", {}), []);
 var EdgeInsets;
 (function(EdgeInsets2) {
   function all(value) {
@@ -687,11 +637,11 @@ var EdgeInsets;
 })(EdgeInsets || (EdgeInsets = {}));
 /* @__PURE__ */ (function(EdgeInsets2) {
 })(EdgeInsets || (EdgeInsets = {}));
-Object.defineProperty(EdgeInsets, "zero", { get: () => invokeObjectStatic("flax.core/flutter#type:EdgeInsets", "zero") });
+Object.defineProperty(EdgeInsets, "zero", { get: () => invokeTopLevel("flax.core/flutter#read:EdgeInsets.zero", []) });
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_EdgeInsetsDirectional.js
 var import_bindings30 = require("@flax/core/bindings");
-defineObject("flax.core/flutter#type:EdgeInsetsDirectional", ["start", "top", "end", "bottom"], [], {}, []);
+defineObject("flax.core/flutter#type:EdgeInsetsDirectional", ["start", "top", "end", "bottom"], [], (0, import_bindings30.bindingMethods)("flax.core/flutter#type:EdgeInsetsDirectional", "object", {}), []);
 var EdgeInsetsDirectional;
 (function(EdgeInsetsDirectional2) {
   function fromSTEB(start, top, end, bottom) {
@@ -727,57 +677,21 @@ var EdgeInsetsDirectional;
 })(EdgeInsetsDirectional || (EdgeInsetsDirectional = {}));
 /* @__PURE__ */ (function(EdgeInsetsDirectional2) {
 })(EdgeInsetsDirectional || (EdgeInsetsDirectional = {}));
-Object.defineProperty(EdgeInsetsDirectional, "zero", { get: () => invokeObjectStatic("flax.core/flutter#type:EdgeInsetsDirectional", "zero") });
+Object.defineProperty(EdgeInsetsDirectional, "zero", { get: () => invokeTopLevel("flax.core/flutter#read:EdgeInsetsDirectional.zero", []) });
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_FittedSizes.js
 var import_bindings31 = require("@flax/core/bindings");
 var import_flutter_Size2 = require("@flax/flutter/services");
-defineObject("flax.core/flutter#type:FittedSizes", ["source", "destination"], [], {}, []);
+defineObject("flax.core/flutter#type:FittedSizes", ["source", "destination"], [], (0, import_bindings31.bindingMethods)("flax.core/flutter#type:FittedSizes", "object", {}), []);
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_FocusNode.js
 var import_bindings32 = require("@flax/core/bindings");
 var import_flutter_Listenable = require("@flax/flutter/foundation");
-defineObject("flax.core/flutter#type:FocusNode", ["hasFocus", "hasPrimaryFocus", "canRequestFocus", "skipTraversal"], ["canRequestFocus", "skipTraversal"], {
-  addListener(listener) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:FocusNode", "addListener", [listener]);
-  },
-  removeListener(listener) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:FocusNode", "removeListener", [listener]);
-  },
-  requestFocus(node) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:FocusNode", "requestFocus", [node]);
-  },
-  unfocus(options = {}) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["disposition"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:FocusNode", "unfocus", [options.disposition]);
-  },
-  nextFocus() {
-    if (arguments.length > 0)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:FocusNode", "nextFocus", []);
-    return _flaxResult;
-  },
-  previousFocus() {
-    if (arguments.length > 0)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:FocusNode", "previousFocus", []);
-    return _flaxResult;
-  },
-  dispose() {
-    if (arguments.length > 0)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:FocusNode", "dispose", []);
-  }
-}, ["removeListener"]);
+var _flaxMemberParameters08 = [{ "name": "listener", "required": true, "positional": true }];
+var _flaxMemberParameters1 = [{ "name": "node", "required": false, "positional": true }];
+var _flaxMemberParameters2 = [{ "name": "disposition", "required": false, "positional": false }];
+var _flaxMemberParameters3 = [];
+defineObject("flax.core/flutter#type:FocusNode", ["hasFocus", "hasPrimaryFocus", "canRequestFocus", "skipTraversal"], ["canRequestFocus", "skipTraversal"], (0, import_bindings32.bindingMethods)("flax.core/flutter#type:FocusNode", "object", { "addListener": _flaxMemberParameters08, "removeListener": _flaxMemberParameters08, "requestFocus": _flaxMemberParameters1, "unfocus": _flaxMemberParameters2, "nextFocus": _flaxMemberParameters3, "previousFocus": _flaxMemberParameters3, "dispose": _flaxMemberParameters3 }), ["removeListener"]);
 function FocusNode(options = {}) {
   if (arguments.length > 1)
     throw new TypeError("Too many constructor arguments");
@@ -786,55 +700,20 @@ function FocusNode(options = {}) {
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_NavigatorObserver.js
 var import_bindings33 = require("@flax/core/bindings");
-defineObject("flax.core/flutter#type:NavigatorObserver", [], [], {}, []);
+defineObject("flax.core/flutter#type:NavigatorObserver", [], [], (0, import_bindings33.bindingMethods)("flax.core/flutter#type:NavigatorObserver", "object", {}), []);
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_NavigatorState.js
 var import_bindings34 = require("@flax/core/bindings");
-defineState("flax.core/flutter#type:NavigatorState", ["mounted"], {
-  push(route) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeInstance(this, "flax.core/flutter#type:NavigatorState", "push", [route]);
-    return _flaxResult;
-  },
-  pushNamed(routeName, options = {}) {
-    if (arguments.length > 2)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["arguments"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeInstance(this, "flax.core/flutter#type:NavigatorState", "pushNamed", [routeName, options.arguments]);
-    return _flaxResult;
-  },
-  pushReplacement(newRoute, options = {}) {
-    if (arguments.length > 2)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["result"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeInstance(this, "flax.core/flutter#type:NavigatorState", "pushReplacement", [newRoute, options.result]);
-    return _flaxResult;
-  },
-  pop(result) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeInstance(this, "flax.core/flutter#type:NavigatorState", "pop", [result]);
-  },
-  maybePop(result) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeInstance(this, "flax.core/flutter#type:NavigatorState", "maybePop", [result]);
-    return _flaxResult;
-  },
-  canPop() {
-    if (arguments.length > 0)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeInstance(this, "flax.core/flutter#type:NavigatorState", "canPop", []);
-    return _flaxResult;
-  }
-});
+var _flaxMemberParameters09 = [{ "name": "route", "required": true, "positional": true }];
+var _flaxMemberParameters12 = [{ "name": "routeName", "required": true, "positional": true }, { "name": "arguments", "required": false, "positional": false }];
+var _flaxMemberParameters22 = [{ "name": "newRoute", "required": true, "positional": true }, { "name": "result", "required": false, "positional": false }];
+var _flaxMemberParameters32 = [{ "name": "result", "required": false, "positional": true }];
+var _flaxMemberParameters4 = [];
+defineState("flax.core/flutter#type:NavigatorState", ["mounted"], (0, import_bindings34.bindingMethods)("flax.core/flutter#type:NavigatorState", "state", { "push": _flaxMemberParameters09, "pushNamed": _flaxMemberParameters12, "pushReplacement": _flaxMemberParameters22, "pop": _flaxMemberParameters32, "maybePop": _flaxMemberParameters32, "canPop": _flaxMemberParameters4 }));
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_NeverScrollableScrollPhysics.js
 var import_bindings35 = require("@flax/core/bindings");
-defineObject("flax.core/flutter#type:NeverScrollableScrollPhysics", ["parent"], [], {}, []);
+defineObject("flax.core/flutter#type:NeverScrollableScrollPhysics", ["parent"], [], (0, import_bindings35.bindingMethods)("flax.core/flutter#type:NeverScrollableScrollPhysics", "object", {}), []);
 function NeverScrollableScrollPhysics(options = {}) {
   if (arguments.length > 1)
     throw new TypeError("Too many constructor arguments");
@@ -843,16 +722,8 @@ function NeverScrollableScrollPhysics(options = {}) {
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_RoundedRectangleBorder.js
 var import_bindings36 = require("@flax/core/bindings");
-defineObject("flax.core/flutter#type:RoundedRectangleBorder", ["side", "borderRadius"], [], {
-  copyWith(options = {}) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["borderRadius", "side"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:RoundedRectangleBorder", "copyWith", [options.borderRadius, options.side]);
-    return _flaxResult;
-  }
-}, []);
+var _flaxMemberParameters010 = [{ "name": "borderRadius", "required": false, "positional": false }, { "name": "side", "required": false, "positional": false }];
+defineObject("flax.core/flutter#type:RoundedRectangleBorder", ["side", "borderRadius"], [], (0, import_bindings36.bindingMethods)("flax.core/flutter#type:RoundedRectangleBorder", "object", { "copyWith": _flaxMemberParameters010 }), []);
 function RoundedRectangleBorder(options = {}) {
   if (arguments.length > 1)
     throw new TypeError("Too many constructor arguments");
@@ -861,7 +732,7 @@ function RoundedRectangleBorder(options = {}) {
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_RouteSettings.js
 var import_bindings37 = require("@flax/core/bindings");
-defineObject("flax.core/flutter#type:RouteSettings", ["name", "arguments"], [], {}, []);
+defineObject("flax.core/flutter#type:RouteSettings", ["name", "arguments"], [], (0, import_bindings37.bindingMethods)("flax.core/flutter#type:RouteSettings", "object", {}), []);
 function RouteSettings(options = {}) {
   if (arguments.length > 1)
     throw new TypeError("Too many constructor arguments");
@@ -872,36 +743,11 @@ function RouteSettings(options = {}) {
 var import_bindings38 = require("@flax/core/bindings");
 var import_flutter_Listenable2 = require("@flax/flutter/foundation");
 var import_flutter_Duration = require("@flax/dart/core");
-defineObject("flax.core/flutter#type:ScrollController", ["hasClients", "offset"], [], {
-  addListener(listener) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:ScrollController", "addListener", [listener]);
-  },
-  removeListener(listener) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:ScrollController", "removeListener", [listener]);
-  },
-  jumpTo(value) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:ScrollController", "jumpTo", [value]);
-  },
-  animateTo(offset, options) {
-    if (arguments.length > 2)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["curve", "duration"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:ScrollController", "animateTo", [offset, options.curve, options.duration]);
-    return _flaxResult;
-  },
-  dispose() {
-    if (arguments.length > 0)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:ScrollController", "dispose", []);
-  }
-}, ["removeListener"]);
+var _flaxMemberParameters011 = [{ "name": "listener", "required": true, "positional": true }];
+var _flaxMemberParameters13 = [{ "name": "value", "required": true, "positional": true }];
+var _flaxMemberParameters23 = [{ "name": "offset", "required": true, "positional": true }, { "name": "curve", "required": true, "positional": false }, { "name": "duration", "required": true, "positional": false }];
+var _flaxMemberParameters33 = [];
+defineObject("flax.core/flutter#type:ScrollController", ["hasClients", "offset"], [], (0, import_bindings38.bindingMethods)("flax.core/flutter#type:ScrollController", "object", { "addListener": _flaxMemberParameters011, "removeListener": _flaxMemberParameters011, "jumpTo": _flaxMemberParameters13, "animateTo": _flaxMemberParameters23, "dispose": _flaxMemberParameters33 }), ["removeListener"]);
 function ScrollController(options = {}) {
   if (arguments.length > 1)
     throw new TypeError("Too many constructor arguments");
@@ -910,16 +756,8 @@ function ScrollController(options = {}) {
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_StadiumBorder.js
 var import_bindings39 = require("@flax/core/bindings");
-defineObject("flax.core/flutter#type:StadiumBorder", ["side"], [], {
-  copyWith(options = {}) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["side"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:StadiumBorder", "copyWith", [options.side]);
-    return _flaxResult;
-  }
-}, []);
+var _flaxMemberParameters012 = [{ "name": "side", "required": false, "positional": false }];
+defineObject("flax.core/flutter#type:StadiumBorder", ["side"], [], (0, import_bindings39.bindingMethods)("flax.core/flutter#type:StadiumBorder", "object", { "copyWith": _flaxMemberParameters012 }), []);
 function StadiumBorder(options = {}) {
   if (arguments.length > 1)
     throw new TypeError("Too many constructor arguments");
@@ -932,33 +770,9 @@ var import_flutter_Listenable3 = require("@flax/flutter/foundation");
 var import_flutter_ValueListenable = require("@flax/flutter/foundation");
 var import_flutter_TextEditingValue = require("@flax/flutter/services");
 var import_flutter_TextSelection = require("@flax/flutter/services");
-defineObject("flax.core/flutter#type:TextEditingController", ["value", "text", "selection"], ["text", "value", "selection"], {
-  addListener(listener) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:TextEditingController", "addListener", [listener]);
-  },
-  removeListener(listener) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:TextEditingController", "removeListener", [listener]);
-  },
-  clear() {
-    if (arguments.length > 0)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:TextEditingController", "clear", []);
-  },
-  clearComposing() {
-    if (arguments.length > 0)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:TextEditingController", "clearComposing", []);
-  },
-  dispose() {
-    if (arguments.length > 0)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:TextEditingController", "dispose", []);
-  }
-}, ["removeListener"]);
+var _flaxMemberParameters013 = [{ "name": "listener", "required": true, "positional": true }];
+var _flaxMemberParameters14 = [];
+defineObject("flax.core/flutter#type:TextEditingController", ["value", "text", "selection"], ["text", "value", "selection"], (0, import_bindings40.bindingMethods)("flax.core/flutter#type:TextEditingController", "object", { "addListener": _flaxMemberParameters013, "removeListener": _flaxMemberParameters013, "clear": _flaxMemberParameters14, "clearComposing": _flaxMemberParameters14, "dispose": _flaxMemberParameters14 }), ["removeListener"]);
 function TextEditingController(options = {}) {
   if (arguments.length > 1)
     throw new TypeError("Too many constructor arguments");
@@ -977,16 +791,8 @@ function TextEditingController(options = {}) {
 var import_bindings41 = require("@flax/core/bindings");
 var import_flutter_Color4 = require("@flax/flutter/services");
 var import_flutter_FontWeight = require("@flax/flutter/services");
-defineObject("flax.core/flutter#type:TextStyle", ["inherit", "color", "backgroundColor", "fontSize", "fontWeight", "fontStyle", "letterSpacing", "wordSpacing", "height"], [], {
-  copyWith(options = {}) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((k) => !["backgroundColor", "color", "fontSize", "fontStyle", "fontWeight", "height", "inherit", "letterSpacing", "wordSpacing"].includes(k)))
-      throw new TypeError("Invalid named method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:TextStyle", "copyWith", [options.backgroundColor, options.color, options.fontSize, options.fontStyle, options.fontWeight, options.height, options.inherit, options.letterSpacing, options.wordSpacing]);
-    return _flaxResult;
-  }
-}, []);
+var _flaxMemberParameters014 = [{ "name": "backgroundColor", "required": false, "positional": false }, { "name": "color", "required": false, "positional": false }, { "name": "fontSize", "required": false, "positional": false }, { "name": "fontStyle", "required": false, "positional": false }, { "name": "fontWeight", "required": false, "positional": false }, { "name": "height", "required": false, "positional": false }, { "name": "inherit", "required": false, "positional": false }, { "name": "letterSpacing", "required": false, "positional": false }, { "name": "wordSpacing", "required": false, "positional": false }];
+defineObject("flax.core/flutter#type:TextStyle", ["inherit", "color", "backgroundColor", "fontSize", "fontWeight", "fontStyle", "letterSpacing", "wordSpacing", "height"], [], (0, import_bindings41.bindingMethods)("flax.core/flutter#type:TextStyle", "object", { "copyWith": _flaxMemberParameters014 }), []);
 function TextStyle(options = {}) {
   if (arguments.length > 1)
     throw new TypeError("Too many constructor arguments");
@@ -995,14 +801,8 @@ function TextStyle(options = {}) {
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_WidgetStateProperty.js
 var import_bindings42 = require("@flax/core/bindings");
-defineObject("flax.core/flutter#type:WidgetStateProperty", [], [], {
-  resolve(states) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.core/flutter#type:WidgetStateProperty", "resolve", [states]);
-    return _flaxResult;
-  }
-}, []);
+var _flaxMemberParameters015 = [{ "name": "states", "required": true, "positional": true }];
+defineObject("flax.core/flutter#type:WidgetStateProperty", [], [], (0, import_bindings42.bindingMethods)("flax.core/flutter#type:WidgetStateProperty", "object", { "resolve": _flaxMemberParameters015 }), []);
 var WidgetStateProperty;
 (function(WidgetStateProperty2) {
   function resolveWith(callback) {
@@ -1790,27 +1590,26 @@ var componentsBindingModule = _flaxInstallBindingModule2("flax.core/components",
 var { construct: construct2, constructProxy: constructProxy2, constructObject: constructObject2, constructDeferredObject: constructDeferredObject2, constructStream: constructStream2, constructAsyncIterableStream: constructAsyncIterableStream2, defineObject: defineObject2, defineStream: defineStream2, invokeObject: invokeObject2, invokeObjectStatic: invokeObjectStatic2, invokeStream: invokeStream2, enumValue: enumValue2, defineContext: defineContext2, defineState: defineState2, contextHandle: contextHandle2, invokeStatic: invokeStatic2, invokeInstance: invokeInstance2, invokeTopLevel: invokeTopLevel2 } = componentsBindingModule;
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/components_StatefulWidget.js
-defineObject2("flax.core/components#type:StatefulWidget", [], [], {}, []);
+defineObject2("flax.core/components#type:StatefulWidget", [], [], (0, import_bindings112.bindingMethods)("flax.core/components#type:StatefulWidget", "object", {}), []);
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/components_State.js
-defineState2("flax.core/components#type:State", [], {});
+defineState2("flax.core/components#type:State", [], (0, import_bindings113.bindingMethods)("flax.core/components#type:State", "state", {}));
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/components_KeepAliveTickerState.js
 var import_bindings114 = require("@flax/core/bindings");
 var import_bindings115 = require("@flax/core/bindings");
 var import_flutter_TickerProvider = require("@flax/flutter/scheduler");
+var _flaxMemberParameters016 = [];
 var KeepAliveTickerState = class extends State {
   constructor() {
     super();
     (0, import_bindings115.registerComponentStateVariant)(this, "flax.core/components#stateVariant:KeepAliveTickerState");
   }
-  updateKeepAlive() {
-    (0, import_bindings115.componentStateCall)(this, "native:updateKeepAlive", []);
-  }
   build(context) {
     return this.invokeSuper("build", [context]);
   }
 };
+(0, import_bindings115.defineStateMembers)(KeepAliveTickerState.prototype, { "updateKeepAlive": _flaxMemberParameters016 }, [], []);
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/components_SingleTickerProviderState.js
 var import_bindings116 = require("@flax/core/bindings");
@@ -1822,6 +1621,7 @@ var SingleTickerProviderState = class extends State {
     (0, import_bindings117.registerComponentStateVariant)(this, "flax.core/components#stateVariant:SingleTickerProviderState");
   }
 };
+(0, import_bindings117.defineStateMembers)(SingleTickerProviderState.prototype, {}, [], []);
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/components_TickerProviderState.js
 var import_bindings118 = require("@flax/core/bindings");
@@ -1833,6 +1633,7 @@ var TickerProviderState = class extends State {
     (0, import_bindings119.registerComponentStateVariant)(this, "flax.core/components#stateVariant:TickerProviderState");
   }
 };
+(0, import_bindings119.defineStateMembers)(TickerProviderState.prototype, {}, [], []);
 
 // ../../js/dist/flutter/widgets.js
 function runApp(widget) {

@@ -4,6 +4,7 @@
     "rootDir": "src",
     "outDir": "dist",
     "paths": {
+      "@flax/core/bindings": ["./src/runtime/bindings.ts"],
       "@flax/core/navigation": [
         "./src/flutter/generated/libraries/navigation/index.ts"
       ],

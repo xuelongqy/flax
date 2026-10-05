@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"4379e295537e5c2c2b0e895de4e62466550cc687866efd957c4c434aa985912d","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"345371a1566430e3b14189f3792c1f426001855d3375018cff34aa903f847066","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -57,6 +57,8 @@ var __yieldStar = (value) => {
 // ../../../packages/flax/js/dist/runtime/bindings.js
 var bindings_exports = {};
 __export(bindings_exports, {
+  FlaxProxyBase: () => FlaxProxyBase,
+  bindingMethods: () => bindingMethods,
   bindingVersion: () => bindingVersion,
   componentStateCall: () => componentStateCall,
   componentStateWidget: () => componentStateWidget,
@@ -71,7 +73,9 @@ __export(bindings_exports, {
   copyNavigationData: () => copyNavigationData,
   defineContext: () => defineContext,
   defineObject: () => defineObject,
+  defineProxyBase: () => defineProxyBase,
   defineState: () => defineState,
+  defineStateMembers: () => defineStateMembers,
   defineStream: () => defineStream,
   enumValue: () => enumValue,
   invokeInstance: () => invokeInstance,
@@ -658,6 +662,117 @@ function proxyProperty(implementation, name, stopBefore) {
       return descriptor;
   }
   return void 0;
+}
+var FlaxProxyBase = class {
+  constructor(prototype, definition, args) {
+    constructExtendedProxy(this, prototype, definition.type, definition.parameters, args, Object.keys(definition.methods), definition.getters, definition.setters, definition.superMembers);
+  }
+};
+var memberLayouts = /* @__PURE__ */ new WeakMap();
+function memberArguments(parameters) {
+  const cached = memberLayouts.get(parameters);
+  if (cached)
+    return cached;
+  for (const parameter of parameters)
+    Object.freeze(parameter);
+  Object.freeze(parameters);
+  if (parameters.every((p) => p.required && p.positional && !p.context)) {
+    const argumentsFor2 = (args) => {
+      if (args.length > parameters.length)
+        throw new TypeError("Too many method arguments");
+      for (let i = 0; i < parameters.length; i++)
+        if (args[i] === void 0)
+          throw new TypeError(`Missing required argument: ${parameters[i].name}`);
+      return args;
+    };
+    memberLayouts.set(parameters, argumentsFor2);
+    return argumentsFor2;
+  }
+  const positional = parameters.filter((p) => p.positional);
+  const named = parameters.filter((p) => !p.positional);
+  const names = new Set(named.map((p) => p.name));
+  const argumentsFor = (args) => {
+    if (args.length > positional.length + (named.length ? 1 : 0))
+      throw new TypeError("Too many method arguments");
+    const options = named.length ? args[positional.length] === void 0 ? {} : args[positional.length] : {};
+    if (options === null || typeof options !== "object" || Array.isArray(options) || Object.keys(options).some((name) => !names.has(name)))
+      throw new TypeError("Invalid named method arguments");
+    let omitted = false;
+    for (let i = 0; i < positional.length; i++) {
+      if (!positional[i].required && args[i] === void 0)
+        omitted = true;
+      else if (omitted && args[i] !== void 0)
+        throw new TypeError("Optional positional arguments must omit a trailing suffix");
+    }
+    let index = 0;
+    return parameters.map((parameter) => {
+      const value = parameter.positional ? args[index++] : options[parameter.name];
+      if (value === void 0 && parameter.required)
+        throw new TypeError(`Missing required argument: ${parameter.name}`);
+      return parameter.context ? contextHandle(value, parameter.context) : value;
+    });
+  };
+  memberLayouts.set(parameters, argumentsFor);
+  return argumentsFor;
+}
+function bindingMethods(type, category, methods) {
+  const invoke = category === "object" ? invokeObject : category === "stream" ? invokeStream : invokeInstance;
+  return Object.fromEntries(Object.entries(methods).map(([name, parameters]) => {
+    const argumentsFor = memberArguments(parameters);
+    return [
+      name,
+      function(...args) {
+        return invoke(this, type, name, argumentsFor(args));
+      }
+    ];
+  }));
+}
+function installMembers(prototype, methods, getters, setters, invoke) {
+  for (const [name, parameters] of Object.entries(methods)) {
+    const argumentsFor = memberArguments(parameters);
+    Object.defineProperty(prototype, name, {
+      configurable: true,
+      writable: true,
+      value(...args) {
+        return invoke(this, name, argumentsFor(args));
+      }
+    });
+  }
+  for (const name of /* @__PURE__ */ new Set([...getters, ...setters])) {
+    Object.defineProperty(prototype, name, {
+      configurable: true,
+      ...getters.includes(name) ? {
+        get() {
+          return invoke(this, `get:${name}`, []);
+        }
+      } : {},
+      ...setters.includes(name) ? {
+        set(value) {
+          invoke(this, `set:${name}`, [value]);
+        }
+      } : {}
+    });
+  }
+}
+function defineProxyBase(prototype, definition) {
+  for (const parameters of Object.values(definition.methods)) {
+    for (const parameter of parameters)
+      Object.freeze(parameter);
+    Object.freeze(parameters);
+  }
+  for (const parameter of definition.parameters)
+    Object.freeze(parameter);
+  Object.freeze(definition.parameters);
+  Object.freeze(definition.methods);
+  Object.freeze(definition.getters);
+  Object.freeze(definition.setters);
+  Object.freeze(definition.superMembers);
+  Object.freeze(definition);
+  const members = new Set(definition.superMembers);
+  installMembers(prototype, Object.fromEntries(Object.entries(definition.methods).filter(([name]) => members.has(name))), definition.getters.filter((name) => members.has(`get:${name}`)), definition.setters.filter((name) => members.has(`set:${name}`)), (receiver, member, args) => invokeProxySuper(receiver, definition.type, member, args));
+}
+function defineStateMembers(prototype, methods, getters, setters) {
+  installMembers(prototype, methods, getters, setters, (receiver, member, args) => componentStateCall(receiver, `native:${member}`, args));
 }
 function constructExtendedProxy(receiver, basePrototype, type, parameters, args, names, getters, setters, superMembers) {
   var _a, _b, _c;

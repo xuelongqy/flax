@@ -115,6 +115,8 @@ class FlaxCodegenBindingConfig {
             ),
             staticGetters: (selection['staticGetters'] as List<dynamic>? ?? [])
                 .cast<String>(),
+            staticSetters: (selection['staticSetters'] as List<dynamic>? ?? [])
+                .cast<String>(),
             errorGetters: (selection['errorGetters'] as List<dynamic>? ?? [])
                 .cast<String>(),
             setters: (selection['setters'] as List<dynamic>? ?? [])
@@ -140,6 +142,11 @@ class FlaxCodegenBindingConfig {
                     ),
             startsRoute: (selection['startsRoute'] as List<dynamic>? ?? [])
                 .cast<String>(),
+            operators: (selection['operators'] as Map<String, dynamic>? ?? {})
+                .map(
+                  (name, params) =>
+                      MapEntry(name, (params as List<dynamic>).cast<String>()),
+                ),
             instanceMethods:
                 (selection['instanceMethods'] as Map<String, dynamic>? ?? {})
                     .map(
@@ -378,6 +385,7 @@ class FlaxCodegenClassSelection {
     this.proxy,
     this.proxyVariants = const {},
     this.staticGetters = const [],
+    this.staticSetters = const [],
     this.errorGetters = const [],
     this.pageAdapter,
     this.setters = const [],
@@ -385,6 +393,7 @@ class FlaxCodegenClassSelection {
     this.listenerPairs = const {},
     this.getters = const [],
     this.methods = const {},
+    this.operators = const {},
     this.data = const FlaxCodegenDataSelection(),
     this.jsName,
   });
@@ -410,6 +419,7 @@ class FlaxCodegenClassSelection {
   final String? proxy;
   final Map<String, FlaxCodegenProxyVariantSelection> proxyVariants;
   final List<String> staticGetters;
+  final List<String> staticSetters;
   final List<String> errorGetters;
   final FlaxCodegenPageAdapterModel? pageAdapter;
   final List<String> setters;
@@ -417,6 +427,7 @@ class FlaxCodegenClassSelection {
   final Map<String, String> listenerPairs;
   final List<String> getters;
   final Map<String, List<String>> methods;
+  final Map<String, List<String>> operators;
   final FlaxCodegenDataSelection data;
   final String? jsName;
 }
@@ -446,10 +457,12 @@ bool flaxCodegenIsStateVariantOverlay(FlaxCodegenClassSelection selection) =>
     selection.typeArguments.isEmpty &&
     selection.methodTypeArguments.isEmpty &&
     selection.instanceMethods.isEmpty &&
+    selection.operators.isEmpty &&
     selection.startsRoute.isEmpty &&
     selection.kind == null &&
     selection.proxy == null &&
     selection.staticGetters.isEmpty &&
+    selection.staticSetters.isEmpty &&
     selection.errorGetters.isEmpty &&
     selection.pageAdapter == null &&
     selection.setters.isEmpty &&

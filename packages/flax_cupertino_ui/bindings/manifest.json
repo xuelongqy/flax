@@ -1,5 +1,5 @@
 {
-  "formatVersion": 13,
+  "formatVersion": 15,
   "package": "flax_cupertino_ui",
   "bindingNamespace": "flax.cupertino",
   "imports": [
@@ -237,6 +237,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -491,6 +492,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -705,6 +707,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -902,6 +905,7 @@
             ],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [
@@ -985,6 +989,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "widgetMembers": [
@@ -1428,6 +1433,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [
               {

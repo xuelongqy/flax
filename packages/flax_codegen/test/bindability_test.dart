@@ -1349,7 +1349,24 @@ void main() {
         ['Route<dynamic>'],
       );
 
-      for (final name in ['FutureBuilder', 'AnnotatedRegion']) {
+      final futureBuilder = await inspect('FutureBuilder', parse: true);
+      expect(futureBuilder.proposal.selection!.constructors, isEmpty);
+      expect(futureBuilder.proposal.selection!.staticGetters, [
+        'debugRethrowError',
+      ]);
+      expect(futureBuilder.proposal.selection!.staticSetters, [
+        'debugRethrowError',
+      ]);
+      expect(
+        futureBuilder.module!.classes.single.staticSetters.single.type.kind,
+        'bool',
+      );
+      expect(
+        futureBuilder.proposal.skips.map((skip) => skip.code),
+        contains('constructor_specialization_missing_use_site'),
+      );
+
+      for (final name in ['AnnotatedRegion']) {
         final result = await inspect(name, parse: false);
         expect(result.proposal.selection, isNull, reason: name);
         expect(

@@ -749,11 +749,26 @@ Map<String, Object?> _surface(
     for (final name in selection.staticGetters) {
       selectedMembers.add(_memberKey('getter', name));
     }
-    for (final name in selection.instanceMethods.keys) {
-      selectedMembers.add(_memberKey('method', name));
+    for (final name in selection.staticSetters) {
+      selectedMembers.add(_memberKey('setter', name));
     }
-    for (final name in selection.methods.keys) {
-      selectedMembers.add(_memberKey('method', name));
+    for (final member in declaration.declaredMembers) {
+      if (member.kind == 'setter' &&
+          selectedMembers.contains(_memberKey(member.kind, member.name))) {
+        for (final parameter in member.parameters) {
+          selectedParameters.add('${member.name}.${parameter.name}');
+        }
+      }
+    }
+    for (final entry in {
+      ...selection.instanceMethods,
+      ...selection.methods,
+      ...selection.operators,
+    }.entries) {
+      selectedMembers.add(_memberKey('method', entry.key));
+      for (final parameter in entry.value) {
+        selectedParameters.add('${entry.key}.$parameter');
+      }
     }
   }
   return _librarySurface(
@@ -781,13 +796,22 @@ Map<String, Object?> _librarySurface(
   var visibleForTestingSelected = 0;
   var deprecatedSelected = 0;
   for (final member in declaration.declaredMembers) {
-    final key = _memberKey(member.kind, member.name);
-    final legal = isJsLegalName(member.name.isEmpty ? 'new' : member.name);
+    final name =
+        member.isOperator && member.name == '-' && member.parameters.isEmpty
+        ? 'unary-'
+        : member.name;
+    final key = _memberKey(member.kind, name);
+    final exportedName = member.isOperator
+        ? flaxCodegenClassOperators[name] ?? name
+        : name.isEmpty
+        ? 'new'
+        : name;
+    final legal = isJsLegalName(exportedName);
     if (!legal) illegalJsNames++;
     final selected =
         selectedMembers.contains(key) ||
         selectedMembers.contains('${member.kind}.${declaration.name}') ||
-        selectedMembers.contains('${member.kind}.${member.name}');
+        selectedMembers.contains('${member.kind}.$name');
     if (!selected && declaration.declaredMembers.isNotEmpty) droppedMembers++;
     if (member.isProtected) {
       protectedDeclared++;
@@ -806,7 +830,7 @@ Map<String, Object?> _librarySurface(
       if (!isJsLegalName(parameter.name)) illegalJsNames++;
       final selectedParameter =
           selectedParameters.contains(parameter.name) ||
-          selectedParameters.contains('${member.name}.${parameter.name}');
+          selectedParameters.contains('$name.${parameter.name}');
       if (!selectedParameter && selected) droppedParameters++;
     }
   }
@@ -837,7 +861,9 @@ Map<String, Object?>? _selectionJson(FlaxCodegenClassSelection? selection) {
     'getters': selection.getters,
     'setters': selection.setters,
     'staticGetters': selection.staticGetters,
+    'staticSetters': selection.staticSetters,
     'instanceMethods': selection.instanceMethods,
+    'operators': selection.operators,
     'methods': selection.methods,
   };
 }

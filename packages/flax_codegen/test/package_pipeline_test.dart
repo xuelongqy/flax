@@ -63,6 +63,154 @@ javascript: {package: '@host/api', version: same, mode: runtime}
         }
       },
     );
+    test('static accessors preserve wire identities and provider write capability', () async {
+      final workspace = _tempWorkspace();
+      final base = _writeHostPackage(
+        workspace: workspace,
+        name: 'static_base',
+        bindingNamespace: 'example.staticbase',
+        libraries: {
+          'api.dart': "export 'src/values.dart';",
+          'src/values.dart':
+              'class Counter { static int count = 0; static int get tracked => count; '
+              'static set tracked(num value) { count = value.round(); } }',
+        },
+        configs: {
+          'counter.yaml': """
+format: 2
+name: counter
+library: package:static_base/api.dart
+jsPackage: '@static_base/counter'
+dartOutput: lib/counter.g.dart
+tsOutput: js/counter.ts
+classes:
+  Counter:
+    kind: object
+    staticGetters: [count, tracked]
+    staticSetters: [count, tracked]
+""",
+        },
+      );
+      final host = _writeHostPackage(
+        workspace: workspace,
+        name: 'static_host',
+        bindingNamespace: 'example.statichost',
+        dependencies: ['static_base'],
+        configs: const {},
+        libraries: {'host.dart': "export 'package:static_base/api.dart';"},
+      );
+      for (final entry in [
+        (base.root, 'static_base'),
+        (host.root, 'static_host'),
+      ]) {
+        final metadata = File(p.join(entry.$1.path, 'flax_package.yaml'));
+        metadata.writeAsStringSync(
+          '${metadata.readAsStringSync()}javascript: {package: "@${entry.$2}/api", version: same, mode: runtime}\n',
+        );
+      }
+      _writePackageConfig(workspace, {
+        'static_base': base.root,
+        'static_host': host.root,
+      });
+      final configFile = File(base.configPath('counter.yaml'));
+      final original = configFile.readAsStringSync();
+      final complete = await FlaxCodegenPackagePipeline.validateConfig(
+        configFile.path,
+      );
+      final type = complete.localModels.single.classes.single;
+      expect(type.id, 'example.staticbase/counter#type:Counter');
+      expect(
+        type.staticGetterId(type.staticGetters.first),
+        'example.staticbase/counter#read:Counter.count',
+      );
+      expect(
+        type.staticSetterId(type.staticSetters.first),
+        'example.staticbase/counter#function:Counter.count%3D',
+      );
+      expect(type.staticGetters.last.type.kind, 'int');
+      expect(type.staticSetters.last.type.kind, 'num');
+      expect(
+        complete.manifest.modules.single.model.identities
+            .where((row) => row.sourceIdentity.name == 'Counter.count=')
+            .single
+            .sourceIdentity
+            .originatingUri,
+        'package:static_base/src/values.dart',
+      );
+      final diagnostics = FlaxCodegenManifestDiagnostics('roundtrip.json');
+      final roundtrip = FlaxCodegenManifest.parse(
+        complete.manifest.encode(),
+        diagnostics,
+      )!;
+      expect(diagnostics.items, isEmpty);
+      expect(roundtrip.encode(), complete.manifest.encode());
+      for (final section in ['staticGetters', 'staticSetters']) {
+        final malformed = jsonDecode(complete.manifest.encode()) as Map;
+        final model = (malformed['modules'] as List).single['model'] as Map;
+        final accessor =
+            ((model['classes'] as List).single[section] as List).first as Map;
+        accessor['id'] = section == 'staticGetters'
+            ? 'example.staticbase/counter#function:Counter.count'
+            : 'example.staticbase/counter#read:Counter.count%3D';
+        final rejected = FlaxCodegenManifestDiagnostics('invalid-static.json');
+        expect(
+          FlaxCodegenManifest.parse(jsonEncode(malformed), rejected),
+          isNull,
+        );
+        expect(
+          rejected.items.any((item) => item.pointer.contains('/$section/0/id')),
+          isTrue,
+        );
+      }
+      final emitted = FlaxCodegenBindingEmitter([complete.localModels.single]);
+      expect(
+        emitted.typescript(complete.localModels.single),
+        contains(
+          'invokeTopLevel("example.staticbase/counter#function:Counter.count%3D"',
+        ),
+      );
+      for (final write in [false, true]) {
+        configFile.writeAsStringSync(
+          write
+              ? original
+              : original.replaceFirst(
+                  '    staticSetters: [count, tracked]\n',
+                  '',
+                ),
+        );
+        final provider = write
+            ? await FlaxCodegenPackagePipeline.validateLibrary(
+                'package:static_base/api.dart',
+                packageRoot: base.root.path,
+              )
+            : await FlaxCodegenPackagePipeline.validateConfig(configFile.path);
+        File(p.join(base.root.path, 'bindings/manifest.json'))
+            .writeAsStringSync(provider.manifest.encode());
+        final consumer = await FlaxCodegenPackagePipeline.validateLibrary(
+          'package:static_host/host.dart',
+          packageRoot: host.root.path,
+        );
+        final classes = consumer.localModels
+            .expand((module) => module.classes)
+            .toList();
+        if (write) {
+          expect(classes, isEmpty);
+          expect(
+            consumer.skips.any(
+              (skip) =>
+                  skip.target == 'Counter' && skip.code == 'existing_provider',
+            ),
+            isTrue,
+          );
+        } else {
+          expect(
+            classes.single.staticSetters.map((setter) => setter.name),
+            containsAll(['count', 'tracked']),
+          );
+          expect(classes.single.id, startsWith('example.statichost/'));
+        }
+      }
+    });
     test('independent packages bind one source and accept each other in TypeScript', () async {
       final workspace = _tempWorkspace();
       final source = _writeHostPackage(
@@ -73,7 +221,7 @@ javascript: {package: '@host/api', version: same, mode: runtime}
         libraries: {
           'money.dart':
               'class Money { Money(this.amount); final int amount; '
-              'Money echo(Money value) => value; }',
+              'Money echo(Money value) => value; static int count = 0; }',
         },
       );
       String selection(String package) =>
@@ -90,6 +238,8 @@ classes:
     constructors: {'': [amount]}
     getters: [amount]
     instanceMethods: {echo: [value]}
+    staticGetters: [count]
+    staticSetters: [count]
 """;
       final a = _writeHostPackage(
         workspace: workspace,
@@ -135,6 +285,7 @@ import { Money as A } from '@example/a';
 import { Money as B } from '@example/b';
 const a = A(3); const b = B(4);
 a.echo(b); b.echo(a);
+A.setCount(1); B.setCount(2); const current: number = A.count;
 // @ts-expect-error An ordinary shape is not a Dart reference.
 a.echo({ amount: 3 });
 """);
@@ -782,7 +933,7 @@ extensions:
       expect(module.extensions.single.name, 'ItemX');
       expect(module.classes, isEmpty);
       expect(module.extensions.single.onType.id, 'example.base/base#type:Item');
-      expect(validated.manifest.toJson()['formatVersion'], 13);
+      expect(validated.manifest.toJson()['formatVersion'], 15);
       expect(
         validated.manifest.modules.single.model.identities.where(
           (row) => row.owner,
@@ -2649,7 +2800,7 @@ classes:
         expect(
           typescript,
           contains(
-            'map(this: object, transform: ((value: upstream0.Token) => number)): number {',
+            'map(transform: ((value: upstream0.Token) => number)): number;',
           ),
         );
       },
@@ -4973,6 +5124,18 @@ class Base {
               sourceIdentity: stackSource,
               wireId: stackWire,
             ),
+            FlaxCodegenResolvedOwner(
+              sourceIdentity: FlaxCodegenSourceIdentity(
+                kind: FlaxCodegenDeclarationKind.readonly,
+                originatingUri: 'dart:core',
+                name: 'StackTrace.current',
+                origin: FlaxCodegenOriginState.resolved,
+              ),
+              wireId: FlaxCodegenWireId.read(
+                moduleId: moduleId,
+                publicBindingName: 'StackTrace.current',
+              ),
+            ),
           ],
           references: const [],
           requiredCapabilities: flaxCodegenProtocol21RequiredCapabilities(),
@@ -5175,6 +5338,18 @@ class Base {
             FlaxCodegenResolvedOwner(
               sourceIdentity: stackSource,
               wireId: stackWire,
+            ),
+            FlaxCodegenResolvedOwner(
+              sourceIdentity: FlaxCodegenSourceIdentity(
+                kind: FlaxCodegenDeclarationKind.readonly,
+                originatingUri: 'dart:core',
+                name: 'StackTrace.current',
+                origin: FlaxCodegenOriginState.resolved,
+              ),
+              wireId: FlaxCodegenWireId.read(
+                moduleId: moduleId,
+                publicBindingName: 'StackTrace.current',
+              ),
             ),
           ],
           references: const [],

@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/canvas","owner":"@flax/canvas-runtime:dist/index.js","version":"0.0.0","artifact":"a9f33bb44ef44c8581464e848bacb4ab18726d76399c04e07881241a4027d2d5","asset":"assets/flax_modules/_flax_canvas-b471e7fea32c.js","package":"@flax/canvas-runtime","source":"dist/index.js","dependencies":{"@flax/core/bindings":"0.0.0","@flax/flutter/foundation":"0.0.0"},"bindings":[{"moduleId":"flax.canvas/canvas","uiProtocol":22,"types":["flax.canvas/canvas#type:FlaxCanvasSurface","flax.canvas/canvas#type:FlaxCanvasView"],"functions":[]}],"subpaths":[]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/canvas","owner":"@flax/canvas-runtime:dist/index.js","version":"0.0.0","artifact":"6d01db1f1991668b9520a2b77673aec5434f32a5fa2ddf57049515f64ab2d2a2","asset":"assets/flax_modules/_flax_canvas-b471e7fea32c.js","package":"@flax/canvas-runtime","source":"dist/index.js","dependencies":{"@flax/core/bindings":"0.0.0","@flax/flutter/foundation":"0.0.0"},"bindings":[{"moduleId":"flax.canvas/canvas","uiProtocol":22,"types":["flax.canvas/canvas#type:FlaxCanvasSurface","flax.canvas/canvas#type:FlaxCanvasView"],"functions":[]}],"subpaths":[]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -31,6 +31,7 @@ module.exports = __toCommonJS(index_exports);
 var import_bindings = require("@flax/core/bindings");
 var import_foundation = require("@flax/flutter/foundation");
 var import_foundation2 = require("@flax/flutter/foundation");
+var _flaxMemberParameters0 = [{ "name": "listener", "required": true, "positional": true }];
 function _flaxInstallBindingModule(moduleId, uiProtocol, requiredCapabilities) {
   if (typeof moduleId !== "string" || moduleId.length === 0 || moduleId.indexOf("/") < 1 || moduleId.indexOf("/") !== moduleId.lastIndexOf("/") || moduleId.startsWith("/") || moduleId.endsWith("/")) {
     throw new TypeError("Invalid binding moduleId");
@@ -72,18 +73,7 @@ function _flaxInstallBindingModule(moduleId, uiProtocol, requiredCapabilities) {
 }
 var canvasBindingModule = _flaxInstallBindingModule("flax.canvas/canvas", 22, Object.freeze([]));
 var { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } = canvasBindingModule;
-defineObject("flax.canvas/canvas#type:FlaxCanvasSurface", ["width", "height"], ["width", "height"], {
-  addListener(listener) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.canvas/canvas#type:FlaxCanvasSurface", "addListener", [listener]);
-  },
-  removeListener(listener) {
-    if (arguments.length > 1)
-      throw new TypeError("Too many method arguments");
-    const _flaxResult = invokeObject(this, "flax.canvas/canvas#type:FlaxCanvasSurface", "removeListener", [listener]);
-  }
-}, ["removeListener"]);
+defineObject("flax.canvas/canvas#type:FlaxCanvasSurface", ["width", "height"], ["width", "height"], (0, import_bindings.bindingMethods)("flax.canvas/canvas#type:FlaxCanvasSurface", "object", { "addListener": _flaxMemberParameters0, "removeListener": _flaxMemberParameters0 }), ["removeListener"]);
 function CanvasView(canvas, options = {}) {
   if (arguments.length > 2)
     throw new TypeError("Too many constructor arguments");

@@ -131,7 +131,7 @@ ordinary module type imports at shared boundaries.
 ## Binding manifests
 
 Every implemented binding package commits `bindings/manifest.json`. The writer and
-reader accept Manifest **13** only. The manifest carries the current cross-package
+reader accept Manifest **15** only. The manifest carries the current cross-package
 semantic model: declaration ownership, stable identities, JS exports, recursive types,
 generic scopes, selected members, public-library routing, State variants, conversion
 semantics, and each module's UI protocol and required capabilities. It does not copy
@@ -172,7 +172,7 @@ Implementation delivery uses a versioned `flax_modules.json`, separate from the 
 Manifest. It records public specifiers, the physical npm package and source entry,
 delivery dependencies, and the Dart binding requirements needed if that module is
 actually injected into a session. `tool/module_delivery.mjs` derives official delivery
-metadata from Manifest 13 rather than duplicating binding ownership by hand.
+metadata from Manifest 15 rather than duplicating binding ownership by hand.
 
 An application prepares the modules it can provide, for example:
 

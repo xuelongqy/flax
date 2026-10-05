@@ -1,5 +1,5 @@
 {
-  "formatVersion": 13,
+  "formatVersion": 15,
   "package": "flax_canvas",
   "bindingNamespace": "flax.canvas",
   "imports": [
@@ -184,6 +184,7 @@
               }
             ],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "addListener",
@@ -319,7 +320,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               },
               {
                 "name": "removeListener",
@@ -455,7 +457,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],
@@ -739,6 +742,7 @@
             "getters": [],
             "setters": [],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
             "supertypes": [

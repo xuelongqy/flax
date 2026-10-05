@@ -83,7 +83,7 @@ For example, CupertinoNavigationBar forwards both `preferredSize` and
 therefore uses its real obstruction and layout behavior. AppBar's original preferredSize
 object, including its private theme-height sentinel subtype, is preserved.
 
-Manifest 13 records native member selections, Dart override source and explicit public
+Manifest 15 records native member selections, Dart override source and explicit public
 imports separately from bridge TypeRefs. Native members add no wire operations or owner
 rows; existing declaration IDs, UI protocol 22 and native ABI 2 remain unchanged. See
 [ADR 0029](../decisions/0029-native-widget-interface-members.md).

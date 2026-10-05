@@ -6,6 +6,8 @@ import 'package:flax_codegen/src/manifest_codec.dart';
 import '../test/fixtures/interop_selection.dart';
 import '../test/fixtures/default_omission_selection.dart';
 import '../test/fixtures/repeated_selection.dart';
+import '../test/fixtures/static_accessors_selection.dart';
+import '../test/fixtures/proxy_operators_selection.dart';
 
 Future<void> main() async {
   final package = Directory.current.absolute;
@@ -46,6 +48,22 @@ Future<void> main() async {
     functions: const {
       'omissionTotal': FlaxCodegenFunctionSelection(omissionParameters),
     },
+  );
+  await _generate(
+    package,
+    output,
+    'static_accessors',
+    staticAccessorsSelection,
+    core,
+    rawToWire,
+  );
+  await _generate(
+    package,
+    output,
+    'proxy_operators',
+    proxyOperatorsSelection,
+    core,
+    rawToWire,
   );
   await _generate(
     package,

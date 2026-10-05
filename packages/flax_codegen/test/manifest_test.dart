@@ -470,6 +470,7 @@ void main() {
         _record('/instance', 'Expected a boolean.'),
         _record('/mustCallSuper', 'Expected a boolean.'),
         _record('/name', 'Expected a string.'),
+        _record('/operator', 'Missing field.'),
         _record('/parameters/0/defaultCode', 'Missing field.'),
         _record('/parameters/0/encodeKind', 'Missing field.'),
         _record('/parameters/0/extra', 'Unknown field.'),
@@ -519,6 +520,7 @@ void main() {
       _record('/methods/0/instance', 'Missing field.'),
       _record('/methods/0/mustCallSuper', 'Missing field.'),
       _record('/methods/0/name', 'Expected a string.'),
+      _record('/methods/0/operator', 'Missing field.'),
       _record('/methods/0/parameters', 'Missing field.'),
       _record('/methods/0/result', 'Missing field.'),
       _record('/methods/0/startsRoute', 'Missing field.'),
@@ -850,6 +852,7 @@ void main() {
       _record('/methods/0/instance', 'Missing field.'),
       _record('/methods/0/mustCallSuper', 'Missing field.'),
       _record('/methods/0/name', 'Expected a string.'),
+      _record('/methods/0/operator', 'Missing field.'),
       _record('/methods/0/parameters', 'Missing field.'),
       _record('/methods/0/result', 'Missing field.'),
       _record('/methods/0/startsRoute', 'Missing field.'),
@@ -871,8 +874,10 @@ void main() {
       _record('/setters/0/~0x', 'Unknown field.'),
       _record('/staticGetters/0/encodeKind', 'Missing field.'),
       _record('/staticGetters/0/foo~1bar', 'Unknown field.'),
+      _record('/staticGetters/0/id', 'Missing field.'),
       _record('/staticGetters/0/name', 'Expected a string.'),
       _record('/staticGetters/0/type', 'Missing field.'),
+      _record('/staticSetters', 'Missing field.'),
       _record('/superTypes/0', 'Expected a mapping.'),
       _record('/supertypes/0', 'Expected a string.'),
       _record('/typeArguments', 'Expected a list.'),
@@ -926,6 +931,7 @@ void main() {
         _record('/call/instance', 'Missing field.'),
         _record('/call/mustCallSuper', 'Missing field.'),
         _record('/call/name', 'Expected a string.'),
+        _record('/call/operator', 'Missing field.'),
         _record('/call/parameters', 'Missing field.'),
         _record('/call/result', 'Missing field.'),
         _record('/call/startsRoute', 'Missing field.'),
@@ -1326,7 +1332,7 @@ void main() {
     }
   });
 
-  group('Manifest 13 typeLibraries URI semantics', () {
+  group('Manifest 15 typeLibraries URI semantics', () {
     test('accepts public package URIs, cross-package names, and dart:core', () {
       final module = _typeLibrariesModule({
         'Core': 'dart:core',
@@ -1573,7 +1579,7 @@ void main() {
     );
   });
 
-  group('Manifest 13 envelope positives', () {
+  group('Manifest 15 envelope positives', () {
     test('fromResolved round-trips rich and zero-entry modules', () {
       final fixture = _envelopeFixture();
       final manifest = FlaxCodegenManifest.fromResolved(
@@ -1734,16 +1740,16 @@ void main() {
     });
   });
 
-  group('Manifest 13 envelope negatives', () {
+  group('Manifest 15 envelope negatives', () {
     test('invalid JSON and duplicate keys fail closed', () {
       _expectEnvelopeFailure('{', [_record('', 'Invalid JSON.')]);
       _expectEnvelopeFailure(
-        '{\n  "formatVersion": 13,\n  "package": "a",\n  "package": "b"\n}\n',
+        '{\n  "formatVersion": 15,\n  "package": "a",\n  "package": "b"\n}\n',
         [_record('', 'Duplicate mapping key.')],
       );
       final withModuleDup =
           '{\n'
-          '  "formatVersion": 13,\n'
+          '  "formatVersion": 15,\n'
           '  "package": "acme_widgets",\n'
           '  "bindingNamespace": "com.acme.widgets",\n'
           '  "imports": [],\n'
@@ -1763,7 +1769,7 @@ void main() {
       ]);
       final withModelDup =
           '{\n'
-          '  "formatVersion": 13,\n'
+          '  "formatVersion": 15,\n'
           '  "package": "acme_widgets",\n'
           '  "bindingNamespace": "com.acme.widgets",\n'
           '  "imports": [],\n'
@@ -1991,7 +1997,7 @@ void main() {
     });
   });
 
-  group('Manifest 13 ownership model and fromResolved negatives', () {
+  group('Manifest 15 ownership model and fromResolved negatives', () {
     test('declaration owner rows are required at id pointers', () {
       const gauge = 'com.acme.widgets/widgets#type:Gauge';
       const axis = 'com.acme.widgets/widgets#type:Axis';
@@ -2129,11 +2135,11 @@ void main() {
         },
         [
           _record(
-            '/modules/1/model~1identities/2/wireId',
+            '/modules/1/model~1identities/3/wireId',
             'Owner wire outside module.',
           ),
           _record(
-            '/modules/1/model~1identities/2/wireId',
+            '/modules/1/model~1identities/3/wireId',
             'Ownership inconsistency.',
           ),
         ],
@@ -2150,7 +2156,7 @@ void main() {
         },
         [
           _record(
-            '/modules/1/model/identities/2/wireId',
+            '/modules/1/model/identities/3/wireId',
             'Wire name mismatch.',
           ),
         ],
@@ -2167,7 +2173,7 @@ void main() {
         },
         [
           _record(
-            '/modules/1/model/identities/2/wireId',
+            '/modules/1/model/identities/3/wireId',
             'Wire kind mismatch.',
           ),
         ],
@@ -2454,7 +2460,7 @@ void main() {
     });
   });
 
-  group('Manifest 13 generic lexical slot positives', () {
+  group('Manifest 15 generic lexical slot positives', () {
     test(
       'fresh decoded tokens preserve declaration/reference identity sharing',
       () {
@@ -2752,7 +2758,7 @@ void main() {
     });
   });
 
-  group('Manifest 13 generic lexical slot negatives', () {
+  group('Manifest 15 generic lexical slot negatives', () {
     test('missing declaration slot fails closed', () {
       final json = _cloneJsonMap(
         _slotCallbackJson(_slotSharingCallback(Object())),
@@ -2963,7 +2969,7 @@ void main() {
     });
   });
 
-  group('Manifest 13 Quality P1 maximal projection', () {
+  group('Manifest 15 Quality P1 maximal projection', () {
     test('independently constructed maximal module survives fromResolved encode parse projection and input mutation', () {
       final inIntType = FlaxCodegenTypeRef('int');
       final inStringType = FlaxCodegenTypeRef('String', nullable: true);
@@ -4159,6 +4165,18 @@ void main() {
               source: 'core.yaml',
               owners: [
                 FlaxCodegenResolvedOwner(
+                  sourceIdentity: FlaxCodegenSourceIdentity(
+                    kind: FlaxCodegenDeclarationKind.readonly,
+                    originatingUri: gaugeSource.originatingUri,
+                    name: 'Gauge.value',
+                    origin: FlaxCodegenOriginState.resolved,
+                  ),
+                  wireId: FlaxCodegenWireId.read(
+                    moduleId: moduleId,
+                    publicBindingName: 'Gauge.value',
+                  ),
+                ),
+                FlaxCodegenResolvedOwner(
                   sourceIdentity: gaugeSource,
                   wireId: gaugeWire,
                 ),
@@ -4544,7 +4562,7 @@ void main() {
     });
   });
 
-  group('Manifest 13 direct dependency projection positives', () {
+  group('Manifest 15 direct dependency projection positives', () {
     test('A→B→C flattens packages owners modules and importedPackages', () {
       final chain = _projectionChain();
       final a = chain.aProjection;
@@ -4868,7 +4886,7 @@ bindingNamespace: com.example.local
     );
   });
 
-  group('Manifest 13 direct dependency projection negatives', () {
+  group('Manifest 15 direct dependency projection negatives', () {
     test('missing direct import fails closed', () {
       final b = _packageB(_packageC());
       final a = _packageA(b);
@@ -5720,6 +5738,7 @@ const _methodKeys = {
   'typeParameters',
   'mustCallSuper',
   'deferredFactory',
+  'operator',
 };
 
 const _proxyKeys = {'kind', 'methods', 'superMethods', 'getters', 'setters'};
@@ -5757,6 +5776,7 @@ const _classKeys = {
   'getters',
   'setters',
   'staticGetters',
+  'staticSetters',
   'methods',
   'widgetInterfaces',
   'supertypes',
@@ -6831,7 +6851,18 @@ void _expectClassJson(Object? json) {
   _expectJsonList(object['constructors'], _expectConstructorJson);
   _expectJsonList(object['getters'], _expectGetterJson);
   _expectJsonList(object['setters'], _expectGetterJson);
-  _expectJsonList(object['staticGetters'], _expectGetterJson);
+  void staticAccessor(Object? json) {
+    final accessor = _expectObject(json);
+    _expectExactKeys(accessor, {..._getterKeys, 'id'});
+    expect(accessor['id'], isA<String>());
+    _expectGetterJson({
+      for (final entry in accessor.entries)
+        if (entry.key != 'id') entry.key: entry.value,
+    });
+  }
+
+  _expectJsonList(object['staticGetters'], staticAccessor);
+  _expectJsonList(object['staticSetters'], staticAccessor);
   _expectJsonList(object['methods'], _expectMethodJson);
   _expectJsonList(object['widgetInterfaces'], _expectTypeJson);
   if (object['widgetMembers'] case final members?) {
@@ -7131,6 +7162,18 @@ _EnvelopeFixture _envelopeFixture() {
     moduleId: widgetsId,
     source: 'widgets.yaml',
     owners: [
+      FlaxCodegenResolvedOwner(
+        sourceIdentity: FlaxCodegenSourceIdentity(
+          kind: FlaxCodegenDeclarationKind.readonly,
+          originatingUri: gaugeUri,
+          name: 'Gauge.zero',
+          origin: FlaxCodegenOriginState.resolved,
+        ),
+        wireId: FlaxCodegenWireId.read(
+          moduleId: widgetsId,
+          publicBindingName: 'Gauge.zero',
+        ),
+      ),
       FlaxCodegenResolvedOwner(sourceIdentity: gaugeSource, wireId: gaugeWire),
       FlaxCodegenResolvedOwner(sourceIdentity: axisSource, wireId: axisWire),
       FlaxCodegenResolvedOwner(
@@ -7319,11 +7362,11 @@ void _expectEnvelopeShape(
   expect(manifest.package, 'acme_widgets');
   expect(manifest.bindingNamespace.value, 'com.acme.widgets');
   expect(manifest.imports, ['flax', 'flax_material']);
-  expect(FlaxCodegenManifest.formatVersion, 13);
+  expect(FlaxCodegenManifest.formatVersion, 15);
   expect(FlaxCodegenManifest.uiProtocol, 22);
   final encoded = manifest.toJson();
   _expectExactKeys(encoded, _envelopeKeys);
-  expect(encoded['formatVersion'], 13);
+  expect(encoded['formatVersion'], 15);
   expect(encoded['modules'], isA<List<Object?>>());
   final modules = encoded['modules']! as List<Object?>;
   expect(modules, hasLength(2));
@@ -7367,11 +7410,12 @@ void _expectEnvelopeShape(
   expect(widgets.model.module.types.single.id, endsWith('#type:Axis'));
   expect(widgets.model.module.functions.single.id, endsWith('#function:show'));
   expect(widgets.model.module.snapshots.single.id, endsWith('#type:Scroll'));
-  expect(widgets.model.identities, hasLength(5));
+  expect(widgets.model.identities, hasLength(6));
   expect(
     [for (final row in widgets.model.identities) (row.owner, row.wireId.value)],
     [
       (true, 'com.acme.widgets/widgets#function:show'),
+      (true, 'com.acme.widgets/widgets#read:Gauge.zero'),
       (true, 'com.acme.widgets/widgets#type:Axis'),
       (true, 'com.acme.widgets/widgets#type:Gauge'),
       (true, 'com.acme.widgets/widgets#type:Scroll'),

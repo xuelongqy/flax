@@ -16,7 +16,7 @@ bool isJsLegalName(String? name) =>
 
 String publicElementName(Element element) {
   final name = element.name ?? '<unnamed>';
-  if (element is SetterElement || name.endsWith('=')) {
+  if (element is SetterElement) {
     return name.endsWith('=') ? name.substring(0, name.length - 1) : name;
   }
   return name;

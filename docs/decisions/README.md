@@ -72,8 +72,11 @@ current language support is in the
   accepted and supersedes the native distribution details of ADR 0002 and ADR 0012.
 
 - [0037: Package-scoped binding providers and plugin delivery](0037-package-scoped-binding-providers.md)
-  is accepted. Metadata 2, Manifest 13 and UI protocol 22 are current-only; native ABI 2
-  is unchanged.
+  is accepted. Metadata 2 and UI protocol 22 remain current-only; ADR 0038 updates
+  Manifest 13 to 14. Native ABI 2 is unchanged.
+
+- [0038: Class static properties](0038-class-static-properties.md) is accepted. It uses
+  independent read/write operations in Manifest 14.
 
 [Open Questions](open-questions.md) records decisions that have not been made. Use the
 [decision template](TEMPLATE.md) for a new significant decision. Record the decision,

@@ -9,7 +9,7 @@ only the formats and checks implemented by this repository.
 | ----------------- | ------------- | ------------------------------------------------------------------------ |
 | Binding selection | Format 2      | Strict YAML schema; unknown fields and unsupported semantics fail closed |
 | Package metadata  | Format 2      | `flax_package.yaml`; separate from binding selections                    |
-| Binding Manifest  | Format 13     | The reader and writer accept format 13 only                              |
+| Binding Manifest  | Format 15     | The reader and writer accept format 15 only                              |
 | UI protocol       | 22            | Every generated module must match the runtime exactly                    |
 | Native ABI        | 2             | Unchanged by binding generation                                          |
 | Module inventory  | Format 2      | `flax_modules.json`; separate from the Binding Manifest                  |

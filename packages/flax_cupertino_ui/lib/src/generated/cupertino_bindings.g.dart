@@ -216,7 +216,6 @@ const cupertinoBindings = FlaxBindingModule(
       setters: [],
       matches: _isCupertinoThemeData,
       methods: {},
-      staticGetters: {},
     ),
     FlaxWidgetInterfaceBinding(
       "flax.cupertino/cupertino#type:ObstructingPreferredSizeWidget",

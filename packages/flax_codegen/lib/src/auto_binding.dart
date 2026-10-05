@@ -264,7 +264,10 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
           }
         }
         for (final setter in element.setters) {
-          if (selection.setters.contains(setter.name)) {
+          if (selection.setters.contains(setter.name) ||
+              selection.staticSetters.contains(
+                setter.name?.replaceFirst(RegExp(r'=$'), ''),
+              )) {
             signatures.add(setter.type);
           }
         }
@@ -273,6 +276,10 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
               selection.methods.containsKey(method.name)) {
             signatures.add(method.type);
           }
+        }
+        for (final name in selection.operators.keys) {
+          final method = _classOperator(element.thisType, name);
+          if (method != null) signatures.add(method.type);
         }
         if (!signatures.any(
           (type) => _autoUsesUnavailable(type, unavailable),
@@ -634,8 +641,17 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
                 .toList();
         }
       }
+      final statics = await _proposeSelection(
+        this,
+        element,
+        library: seed,
+        ignoreProvider: true,
+      );
+      skips.addAll(statics.skips.where((skip) => skip.target.contains('.')));
       final selection = FlaxCodegenClassSelection(
         const {},
+        staticGetters: statics.selection?.staticGetters ?? const [],
+        staticSetters: statics.selection?.staticSetters ?? const [],
         kind: 'widgetInterface',
         getters: getters,
         setters: setters,
@@ -718,6 +734,10 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       for (final name in selection.staticGetters)
         if (visible(element.getGetter(name), '${element.name}.$name')) name,
     ];
+    final staticSetters = [
+      for (final name in selection.staticSetters)
+        if (visible(element.getSetter(name), '${element.name}.$name=')) name,
+    ];
     final instanceMethods = <String, List<String>>{
       for (final entry in selection.instanceMethods.entries)
         if (visible(
@@ -740,6 +760,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       getters: getters,
       setters: setters,
       staticGetters: staticGetters,
+      staticSetters: staticSetters,
       instanceMethods: instanceMethods,
       methods: methods,
     );
@@ -1369,9 +1390,13 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     final typeArguments = fields.contains('typeArguments')
         ? selection.typeArguments
         : const <String>[];
+    final operators = fields.contains('operators')
+        ? selection.operators
+        : const <String, List<String>>{};
     final kind = fields.contains('kind') ? selection.kind : null;
     final jsName = fields.contains('jsName') ? selection.jsName : null;
-    if (constructors.isEmpty &&
+    if (operators.isEmpty &&
+        constructors.isEmpty &&
         typeArguments.isEmpty &&
         kind == null &&
         proxy == null &&
@@ -1380,6 +1405,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     }
     return FlaxCodegenClassSelection(
       constructors,
+      operators: operators,
       typeArguments: typeArguments,
       kind: kind,
       proxy: proxy,
@@ -1429,6 +1455,9 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       proxyVariants: has('proxyVariants')
           ? value.proxyVariants
           : source.proxyVariants,
+      staticSetters: has('staticSetters')
+          ? value.staticSetters
+          : source.staticSetters,
       staticGetters: has('staticGetters')
           ? value.staticGetters
           : source.staticGetters,
@@ -1445,6 +1474,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
           : source.listenerPairs,
       getters: has('getters') ? value.getters : source.getters,
       methods: has('methods') ? value.methods : source.methods,
+      operators: has('operators') ? value.operators : source.operators,
       data: has('data') ? value.data : source.data,
       jsName: has('jsName') ? value.jsName : source.jsName,
     );
@@ -1478,6 +1508,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     List<String>? getters,
     List<String>? setters,
     List<String>? staticGetters,
+    List<String>? staticSetters,
     Map<String, List<String>>? instanceMethods,
     Map<String, List<String>>? methods,
   }) => FlaxCodegenClassSelection(
@@ -1496,6 +1527,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     proxy: source.proxy,
     proxyVariants: source.proxyVariants,
     staticGetters: staticGetters ?? source.staticGetters,
+    staticSetters: staticSetters ?? source.staticSetters,
     errorGetters: source.errorGetters,
     pageAdapter: source.pageAdapter,
     setters: setters ?? source.setters,
@@ -1503,6 +1535,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     listenerPairs: source.listenerPairs,
     getters: getters ?? source.getters,
     methods: methods ?? source.methods,
+    operators: source.operators,
     data: source.data,
     jsName: source.jsName,
   );

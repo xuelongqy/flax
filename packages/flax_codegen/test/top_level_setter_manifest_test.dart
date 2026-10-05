@@ -15,7 +15,7 @@ void main() {
     final original = _manifest();
     final decoded = _decode(original.toJson());
     expect(decoded.encode(), original.encode());
-    expect(decoded.toJson()['formatVersion'], 13);
+    expect(decoded.toJson()['formatVersion'], 15);
     final values = decoded.modules.single.model.module.topLevel!;
     expect(values.getters.single.id, 'example.values/values#read:answer');
     expect(

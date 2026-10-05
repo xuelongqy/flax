@@ -48,7 +48,6 @@ const exampleBindings = FlaxBindingModule(
       setters: [FlaxSetter("value", FlaxTypeRef("int"), _Gauge_set_value)],
       matches: _isGauge,
       methods: {},
-      staticGetters: {},
     ),
   ],
   functions: [],

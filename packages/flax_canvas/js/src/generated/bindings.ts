@@ -1,6 +1,7 @@
 // GENERATED CODE. Selected public API subset; do not edit.
 // Regenerate with dart run melos run bindings:generate.
-import { bindingVersion, construct as _flaxHostConstruct, constructProxy as _flaxHostConstructProxy, constructObject as _flaxHostConstructObject, constructDeferredObject as _flaxHostConstructDeferredObject, constructStream as _flaxHostConstructStream, constructAsyncIterableStream as _flaxHostConstructAsyncIterableStream, defineObject as _flaxHostDefineObject, defineStream as _flaxHostDefineStream, invokeObject as _flaxHostInvokeObject, invokeObjectStatic as _flaxHostInvokeObjectStatic, invokeStream as _flaxHostInvokeStream, enumValue as _flaxHostEnumValue, defineContext as _flaxHostDefineContext, defineState as _flaxHostDefineState, contextHandle as _flaxHostContextHandle, invokeStatic as _flaxHostInvokeStatic, invokeInstance as _flaxHostInvokeInstance, invokeTopLevel as _flaxHostInvokeTopLevel, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+import { bindingMethods as _flaxBindingMethods, bindingVersion, construct as _flaxHostConstruct, constructProxy as _flaxHostConstructProxy, constructObject as _flaxHostConstructObject, constructDeferredObject as _flaxHostConstructDeferredObject, constructStream as _flaxHostConstructStream, constructAsyncIterableStream as _flaxHostConstructAsyncIterableStream, defineObject as _flaxHostDefineObject, defineStream as _flaxHostDefineStream, invokeObject as _flaxHostInvokeObject, invokeObjectStatic as _flaxHostInvokeObjectStatic, invokeStream as _flaxHostInvokeStream, enumValue as _flaxHostEnumValue, defineContext as _flaxHostDefineContext, defineState as _flaxHostDefineState, contextHandle as _flaxHostContextHandle, invokeStatic as _flaxHostInvokeStatic, invokeInstance as _flaxHostInvokeInstance, invokeTopLevel as _flaxHostInvokeTopLevel, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+const _flaxMemberParameters0 = [{"name":"listener","required":true,"positional":true}] as const;
 import type * as upstream0 from '@flax/flutter/foundation';
 import '@flax/flutter/foundation';
 import type * as upstream1 from '@flax/flutter/foundation';
@@ -58,15 +59,7 @@ removeListener(listener: (() => void)): void;
 set width(value: number);
 set height(value: number);
 }
-defineObject("flax.canvas/canvas#type:FlaxCanvasSurface", ["width","height"], ["width","height"], {addListener(this: object, listener: (() => void)): void {
-if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeObject(this, "flax.canvas/canvas#type:FlaxCanvasSurface", "addListener", [listener]);
-},
-removeListener(this: object, listener: (() => void)): void {
-if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeObject(this, "flax.canvas/canvas#type:FlaxCanvasSurface", "removeListener", [listener]);
-},
-}, ["removeListener"]);
+defineObject("flax.canvas/canvas#type:FlaxCanvasSurface", ["width","height"], ["width","height"], _flaxBindingMethods("flax.canvas/canvas#type:FlaxCanvasSurface", "object", {"addListener":_flaxMemberParameters0,"removeListener":_flaxMemberParameters0}), ["removeListener"]);
 export interface FlaxCanvasView extends WidgetDescription { readonly type: "flax.canvas/canvas#type:FlaxCanvasView";  }
 export function CanvasView(canvas: Bindable<Readonly<{ "__flaxBound:package:flax_canvas/src/surface.dart::FlaxCanvasSurface": readonly [] }>>, options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; width?: Bindable<number | null> | undefined; height?: Bindable<number | null> | undefined } = {}): FlaxCanvasView {
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');

@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'identity.dart';
+
 enum FlaxCodegenTypeCategory {
   string('String'),
   boolean('bool'),
@@ -623,10 +625,18 @@ class FlaxCodegenStateVariantModel {
 }
 
 class FlaxCodegenGetterModel {
-  const FlaxCodegenGetterModel(this.name, this.type, {this.encodeKind});
+  const FlaxCodegenGetterModel(
+    this.name,
+    this.type, {
+    this.encodeKind,
+    this.id,
+  });
   final String name;
   final FlaxCodegenTypeRef type;
   final String? encodeKind;
+
+  /// Static accessor operation identity; instance accessors use their owner.
+  final String? id;
 }
 
 class FlaxCodegenMethodModel {
@@ -640,7 +650,9 @@ class FlaxCodegenMethodModel {
     this.typeParameters = const [],
     this.mustCallSuper = false,
     this.deferredFactory = false,
+    this.operatorName,
   });
+  final String? operatorName;
   final bool mustCallSuper;
   final List<FlaxCodegenGenericParameter> typeParameters;
   final bool instance;
@@ -686,6 +698,7 @@ class FlaxCodegenClassModel {
     this.capabilities = const [],
     this.listenerPairs = const {},
     this.staticGetters = const [],
+    this.staticSetters = const [],
     this.typeParameters = const [],
     this.proxy,
     this.widgetInterfaces = const [],
@@ -716,6 +729,52 @@ class FlaxCodegenClassModel {
   final List<String> capabilities;
   final Map<String, String> listenerPairs;
   final List<FlaxCodegenGetterModel> staticGetters;
+  final List<FlaxCodegenGetterModel> staticSetters;
+
+  String staticGetterId(FlaxCodegenGetterModel getter) =>
+      getter.id ?? _staticAccessorId(getter.name, false);
+  String staticSetterId(FlaxCodegenGetterModel setter) =>
+      setter.id ?? _staticAccessorId(setter.name, true);
+
+  String _staticAccessorId(String member, bool write) {
+    final operation = '$member${write ? '=' : ''}';
+    if (id.contains('::')) return '$id.$operation';
+    final owner = FlaxCodegenWireId.parse(id);
+    final name = '${owner.publicBindingName}.$operation';
+    return (write
+            ? FlaxCodegenWireId.function(
+                moduleId: owner.moduleId,
+                publicBindingName: name,
+              )
+            : FlaxCodegenWireId.read(
+                moduleId: owner.moduleId,
+                publicBindingName: name,
+              ))
+        .value;
+  }
+
+  Iterable<FlaxCodegenFunctionModel> get staticFunctions sync* {
+    for (final getter in staticGetters) {
+      yield FlaxCodegenFunctionModel(
+        staticGetterId(getter),
+        FlaxCodegenMethodModel('get${getter.name}', const [], getter.type),
+      );
+    }
+    for (final setter in staticSetters) {
+      yield FlaxCodegenFunctionModel(
+        staticSetterId(setter),
+        FlaxCodegenMethodModel('set${setter.name}', [
+          FlaxCodegenParameterModel(
+            name: 'value',
+            type: setter.type,
+            required: true,
+            positional: true,
+            defaultCode: 'null',
+          ),
+        ], const FlaxCodegenTypeRef('void')),
+      );
+    }
+  }
 
   FlaxCodegenClassCategory get category => FlaxCodegenClassCategory.parse(kind);
 }
@@ -810,6 +869,9 @@ class FlaxCodegenModuleModel {
   /// All operations that use the existing function binding transport.
   Iterable<FlaxCodegenFunctionModel> get callableFunctions sync* {
     yield* functions;
+    for (final type in classes) {
+      yield* type.staticFunctions;
+    }
     for (final setter
         in topLevel?.setters ?? <FlaxCodegenTopLevelSetterModel>[]) {
       yield setter.asFunction();
@@ -828,6 +890,9 @@ class FlaxCodegenModuleModel {
 
   Iterable<FlaxCodegenFunctionModel> get ownedFunctions sync* {
     yield* functions;
+    for (final type in classes) {
+      yield* type.staticFunctions;
+    }
     for (final setter
         in topLevel?.setters ?? <FlaxCodegenTopLevelSetterModel>[]) {
       if (!setter.isReference) yield setter.asFunction();
@@ -1062,7 +1127,6 @@ class FlaxCodegenModuleModel {
           (type.constructors.isNotEmpty ||
               type.methods.isNotEmpty ||
               type.setters.isNotEmpty ||
-              type.staticGetters.isNotEmpty ||
               type.typeParameters.isNotEmpty ||
               type.proxy != null)) {
         throw StateError(
@@ -1110,13 +1174,48 @@ class FlaxCodegenModuleModel {
           }
         }
       }
+      final staticNames = <String>{
+        ...type.methods.map((method) => method.name),
+        ...type.constructors
+            .map((constructor) => constructor.name)
+            .where((name) => name.isNotEmpty),
+        if (type.proxy != null) 'implementation',
+        if (type.proxy != null) 'extend',
+        if (type.asyncIterableFactory != null) type.asyncIterableFactory!,
+      };
+      final staticWrites = <String>{};
+      for (final getter in type.staticGetters) {
+        if (!flaxCodegenIsExportName(getter.name) ||
+            !staticNames.add(getter.name)) {
+          throw StateError(
+            'Invalid or conflicting static getter: ${type.name}.${getter.name}',
+          );
+        }
+      }
+      for (final setter in type.staticSetters) {
+        if (!flaxCodegenIsExportName(setter.name) ||
+            !staticWrites.add(setter.name)) {
+          throw StateError(
+            'Invalid or duplicate static setter: ${type.name}.${setter.name}',
+          );
+        }
+        final exported =
+            'set${setter.name[0].toUpperCase()}${setter.name.substring(1)}';
+        if (!staticNames.add(exported)) {
+          throw StateError(
+            'Conflicting static setter export: ${type.name}.$exported',
+          );
+        }
+      }
       for (final getter in [
         ...type.getters,
         ...type.setters,
         ...type.staticGetters,
+        ...type.staticSetters,
       ]) {
         getter.type.validate('${type.name}.${getter.name}');
-        if (type.setters.contains(getter)) {
+        if (type.setters.contains(getter) ||
+            type.staticSetters.contains(getter)) {
           getter.type.validateCallbacks(
             '${type.name}.${getter.name}',
             input: true,
@@ -1125,7 +1224,53 @@ class FlaxCodegenModuleModel {
           getter.type.validateResult('${type.name}.${getter.name}');
         }
       }
+      if (type.proxy case final proxy?) {
+        final names = <String>{};
+        for (final method in proxy.methods) {
+          if (!names.add(method.name) ||
+              proxy.getters.any((getter) => getter.name == method.name) ||
+              proxy.setters.any((setter) => setter.name == method.name)) {
+            throw StateError(
+              'Conflicting proxy member: ${type.name}.${method.name}',
+            );
+          }
+        }
+        if (proxy.getters.any((getter) => getter.name == 'runtimeType')) {
+          throw StateError(
+            'Proxy runtimeType must remain native: ${type.name}',
+          );
+        }
+      }
+      if (type.proxy?.methods.any((method) => method.operatorName == '==') ==
+              true &&
+          !type.proxy!.getters.any((getter) => getter.name == 'hashCode')) {
+        throw StateError('Proxy equality requires hashCode: ${type.name}');
+      }
       for (final method in [...type.methods, ...?type.proxy?.methods]) {
+        if (method.operatorName case final operator?) {
+          final arity = {'unary-', '~'}.contains(operator)
+              ? 0
+              : operator == '[]='
+              ? 2
+              : 1;
+          if (type.kind != 'object' ||
+              !method.instance ||
+              flaxCodegenClassOperators[operator] != method.name ||
+              method.parameters.length != arity ||
+              method.parameters.any((p) => !p.positional || !p.required) ||
+              method.typeParameters.isNotEmpty ||
+              method.typeArguments.isNotEmpty ||
+              method.startsRoute ||
+              method.deferredFactory ||
+              operator == '[]=' && method.result.kind != 'void' ||
+              operator == '==' &&
+                  (method.result.kind != 'bool' || method.result.nullable)) {
+            throw StateError(
+              'Invalid class operator: ${type.name}.${method.name}',
+            );
+          }
+        }
+
         method.result.validate('${type.name}.${method.name} result');
         method.result.validateResult('${type.name}.${method.name} result');
         for (final parameter in method.parameters) {
@@ -1723,4 +1868,29 @@ const flaxCodegenExtensionOperators = <String, String>{
   '>>>': 'unsignedShiftRight',
   '~': 'bitNot',
   'unary-': 'negate',
+};
+
+/// Class operators have distinct JS names, without changing JS language operators.
+const flaxCodegenClassOperators = <String, String>{
+  '[]': 'operatorGetIndex',
+  '[]=': 'operatorSetIndex',
+  '+': 'operatorAdd',
+  '-': 'operatorSubtract',
+  '*': 'operatorMultiply',
+  '/': 'operatorDivide',
+  '~/': 'operatorTruncateDivide',
+  '%': 'operatorModulo',
+  '<': 'operatorLessThan',
+  '>': 'operatorGreaterThan',
+  '<=': 'operatorLessThanOrEqual',
+  '>=': 'operatorGreaterThanOrEqual',
+  '&': 'operatorBitAnd',
+  '|': 'operatorBitOr',
+  '^': 'operatorBitXor',
+  '<<': 'operatorShiftLeft',
+  '>>': 'operatorShiftRight',
+  '>>>': 'operatorUnsignedShiftRight',
+  '~': 'operatorBitNot',
+  'unary-': 'operatorNegate',
+  '==': 'operatorEquals',
 };

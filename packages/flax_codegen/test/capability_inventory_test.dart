@@ -162,6 +162,39 @@ void main() {
     );
   });
 
+  test('selected static setter inputs are not dropped parameters', () async {
+    final uri = fixture('static_values.dart');
+    final inventory = await inventoryLibrary(collection: collection, uri: uri);
+    final declaration = inventory.declarations.singleWhere(
+      (declaration) => declaration.name == 'StaticSetterOnly',
+    );
+    final resolved = await collection.contexts.first.currentSession
+        .getLibraryByUri(uri);
+    final element = (resolved as LibraryElementResult).element.exportNamespace
+        .get2('StaticSetterOnly')!;
+    final parser = FlaxCodegenBindingParser(repoRoot);
+    addTearDown(parser.dispose);
+    final assessment = await assessDeclaration(
+      parser: parser,
+      library: FlaxCodegenBindingConfig(
+        'statics',
+        uri,
+        '@example/statics',
+        'unused.dart',
+        'unused.ts',
+        const {},
+      ),
+      declaration: declaration,
+      lookup: (_) async => element,
+    );
+    expect(
+      assessment.selection!['staticSetters'],
+      containsAll(['value', 'sink']),
+    );
+    expect(assessment.surface['selectedParameters'], 2);
+    expect(assessment.surface['droppedParameters'], 0);
+  });
+
   test('an inventory lookup failure is a generator gap', () async {
     final uri = fixture('discovery_show.dart');
     final inventory = await inventoryLibrary(collection: collection, uri: uri);

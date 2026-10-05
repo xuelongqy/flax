@@ -1,5 +1,5 @@
 {
-  "formatVersion": 13,
+  "formatVersion": 14,
   "package": "your_package",
   "bindingNamespace": "vendor.example",
   "imports": [
@@ -166,6 +166,7 @@
               }
             ],
             "staticGetters": [],
+            "staticSetters": [],
             "methods": [
               {
                 "name": "increment",

@@ -19,7 +19,9 @@ FlaxCodegenClassSelection? selectionFromJson(Object? raw) {
     getters: _stringList(raw['getters']),
     setters: _stringList(raw['setters']),
     staticGetters: _stringList(raw['staticGetters']),
+    staticSetters: _stringList(raw['staticSetters']),
     instanceMethods: _stringListMap(raw['instanceMethods']),
+    operators: _stringListMap(raw['operators']),
     methods: _stringListMap(raw['methods']),
   );
 }
@@ -1337,6 +1339,7 @@ Set<String> _moduleIntrinsicStreamTypeIds(FlaxCodegenModuleModel module) {
       ...type.getters,
       ...type.setters,
       ...type.staticGetters,
+      ...type.staticSetters,
     ]) {
       collect(getter.type);
     }
@@ -1397,7 +1400,7 @@ Set<String> _classReferencedTypeIds(FlaxCodegenClassModel value) {
   for (final setter in value.setters) {
     _collectTypeRefIds(setter.type, ids);
   }
-  for (final getter in value.staticGetters) {
+  for (final getter in [...value.staticGetters, ...value.staticSetters]) {
     _collectTypeRefIds(getter.type, ids);
   }
   for (final method in value.methods) {

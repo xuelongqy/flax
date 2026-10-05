@@ -6,7 +6,7 @@ be supported by the generator while a particular SDK library still needs its own
 selection and runtime verification.
 
 The current version domains are binding selection format **2**, package metadata format
-**2**, Manifest **13**, UI protocol **22**, and native ABI **2**. Only the current
+**2**, Manifest **15**, UI protocol **22**, and native ABI **2**. Only the current
 formats are read and written.
 
 ## Capability assessment model
@@ -21,6 +21,14 @@ follow the selected signature, while erased results retain their originating pac
 through callbacks, Futures, collections and Streams. Cross-package views check actual
 Dart types and share disposal and listeners. See
 [ADR 0037](../decisions/0037-package-scoped-binding-providers.md).
+
+Class static reads and writes are independent capabilities on every supported class
+category. Reads use `Class.property`; writes use `Class.setProperty(value)`. They retain
+their own types and operation identities in Manifest 15. Static declarations are not
+inherited; a read-only provider cannot supply a write. A generated setter name collision
+fails explicit selection or produces `static_setter_export_collision` in automatic
+selection. See [static property rules](bindings.md#class-static-properties) and the
+[generator regression](../../packages/flax_codegen/test/static_accessors_test.dart).
 
 | Field        | Values                                                                                                                      | Meaning                                        |
 | ------------ | --------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
@@ -40,20 +48,21 @@ fixture.
 
 ## Declaration support
 
-| Declaration                                    | Verdict     | Current contract                                                                                                                                                                                                           |
-| ---------------------------------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Class and abstract class                       | Supported   | Automatic and explicit selection cover constructors, getters, setters, static members, methods, inheritance, generic owners, and representable callbacks. Abstract construction still requires a valid generated proxy.    |
-| Mixin and mixin class members                  | Supported   | Ordinary member surfaces can be selected and emitted. Applying mixins to generated classes is a separate capability.                                                                                                       |
-| Arbitrary mixin composition                    | Unsupported | Real Dart composition is generated only for fixed Flutter State `proxyVariants`. Runtime-selected or general class mixin composition is outside the contract.                                                              |
-| Ordinary enum                                  | Supported   | Enum values and typed conversion are discovered automatically.                                                                                                                                                             |
-| Enhanced enum                                  | Limited     | Enum values remain supported; custom instance fields and methods are not projected by the enum adapter (`enhanced_enum_members_not_bound`).                                                                                |
-| Typedef                                        | Supported   | Basic, generic, callback, collection, Record, Future/FutureOr, Stream, and nested targets retain their declared relationships when the target is representable.                                                            |
-| Top-level function                             | Supported   | Synchronous, Future, Stream, callback, default-parameter, and safely erasable generic signatures are discovered automatically. Concrete generic calls use existing `typeArguments` configuration when erasure is not safe. |
-| Const, final, getter, mutable variable, setter | Supported   | Reads and writes are assessed independently. Dynamic values use uncached accessors; mutable values keep Dart state.                                                                                                        |
-| Named extension                                | Supported   | Safe receiver-first adapters are discovered automatically for getters, setters, static members, methods, legal operators, callbacks, Records, and async values.                                                            |
-| Generic extension                              | Limited     | Analyzer-proven upper-bound erasure is supported. A receiver that needs concrete runtime specialization is rejected (`generic_receiver_specialization_required`).                                                          |
-| Unnamed extension                              | Excluded    | It has no stable exported binding name (`unnamed_extension`).                                                                                                                                                              |
-| Extension type                                 | Limited     | Parameters and results use the representation type. No independent runtime object identity or owner is created (`extension_type_representation_only`). Unrepresentable representations fail closed.                        |
+| Declaration                                    | Verdict     | Current contract                                                                                                                                                                                                               |
+| ---------------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Class and abstract class                       | Supported   | Automatic and explicit selection cover constructors, getters, setters, static members, methods, inheritance, generic owners, and representable callbacks. Abstract construction still requires a valid generated proxy.        |
+| Class operators                                | Supported   | Representable ordinary object operators use explicit JS aliases; legal extends/implements proxies can override them. Equality is opt-in and requires hashCode on proxies; JS arithmetic and collection identity are unchanged. |
+| Mixin and mixin class members                  | Supported   | Ordinary member surfaces can be selected and emitted. Applying mixins to generated classes is a separate capability.                                                                                                           |
+| Arbitrary mixin composition                    | Unsupported | Real Dart composition is generated only for fixed Flutter State `proxyVariants`. Runtime-selected or general class mixin composition is outside the contract.                                                                  |
+| Ordinary enum                                  | Supported   | Enum values and typed conversion are discovered automatically.                                                                                                                                                                 |
+| Enhanced enum                                  | Limited     | Enum values remain supported; custom instance fields and methods are not projected by the enum adapter (`enhanced_enum_members_not_bound`).                                                                                    |
+| Typedef                                        | Supported   | Basic, generic, callback, collection, Record, Future/FutureOr, Stream, and nested targets retain their declared relationships when the target is representable.                                                                |
+| Top-level function                             | Supported   | Synchronous, Future, Stream, callback, default-parameter, and safely erasable generic signatures are discovered automatically. Concrete generic calls use existing `typeArguments` configuration when erasure is not safe.     |
+| Const, final, getter, mutable variable, setter | Supported   | Reads and writes are assessed independently. Dynamic values use uncached accessors; mutable values keep Dart state.                                                                                                            |
+| Named extension                                | Supported   | Safe receiver-first adapters are discovered automatically for getters, setters, static members, methods, legal operators, callbacks, Records, and async values.                                                                |
+| Generic extension                              | Limited     | Analyzer-proven upper-bound erasure is supported. A receiver that needs concrete runtime specialization is rejected (`generic_receiver_specialization_required`).                                                              |
+| Unnamed extension                              | Excluded    | It has no stable exported binding name (`unnamed_extension`).                                                                                                                                                                  |
+| Extension type                                 | Limited     | Parameters and results use the representation type. No independent runtime object identity or owner is created (`extension_type_representation_only`). Unrepresentable representations fail closed.                            |
 
 Automatic proposal covers `classes`, `types`, `typedefs`, `functions`, `extensions`, and
 `topLevel` selections from the same public inventory. Annotation filtering excludes
