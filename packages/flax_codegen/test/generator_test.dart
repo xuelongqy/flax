@@ -58,7 +58,16 @@ void main() {
         emitter,
         module,
         consumerSource: """
-import {FunctionToken, addValues, invokeTopLevel, echoToken, mapNumbers, multiplyBy, finishLater, copyData, openFixturePanel, callAsync, callNamedCallback, callDebugPrinter} from './plugin.js';
+import {FunctionToken, addValues, invokeTopLevel, echoToken, mapNumbers, multiplyBy, finishLater, copyData, openFixturePanel, callAsync, callNamedCallback, callDebugPrinter, BuilderBox, wrapBuilder, builderWrapper, nativeTile} from './plugin.js';
+wrapBuilder(context => { const mounted: boolean = context.mounted; return nativeTile(); });
+const builderBox = BuilderBox(context => nativeTile());
+builderBox.configure(null);
+BuilderBox.wrapStatic(context => nativeTile());
+builderWrapper()(context => nativeTile());
+// @ts-expect-error Standard builders return non-null Widgets.
+wrapBuilder(context => null);
+// @ts-expect-error Standard builders receive Context, not a number.
+wrapBuilder((context: number) => nativeTile());
 const helperName: number = invokeTopLevel(3);
 const token: FunctionToken = echoToken(FunctionToken(3));
 const sum: number = addValues(1, undefined);
@@ -120,7 +129,43 @@ copyData(token);
         ),
         throwsStateError,
       );
+      final ordinary = await parser.parse(
+        FlaxCodegenBindingConfig(
+          'ordinary',
+          config.library,
+          '@example/ordinary',
+          '',
+          '',
+          {},
+          functions: const {
+            'openFixturePanel': FlaxCodegenFunctionSelection([
+              'origin',
+              'content',
+              'root',
+              'failAfterPush',
+            ]),
+          },
+        ),
+      );
+      expect(ordinary.functions.single.route, isNull);
+      await compileFixture(
+        root,
+        FlaxCodegenBindingEmitter([ordinary, core]),
+        ordinary,
+      );
       for (final functions in [
+        for (final name in [
+          'badBuilder',
+          'nullableBuilder',
+          'asyncBuilder',
+          'namedBuilder',
+          'optionalContextBuilder',
+          'nestedBuilders',
+          'interfaceBuilder',
+        ])
+          {
+            name: const FlaxCodegenFunctionSelection(['builder']),
+          },
         {'absent': const FlaxCodegenFunctionSelection([])},
         {'FunctionToken': const FlaxCodegenFunctionSelection([])},
         {
@@ -158,14 +203,6 @@ copyData(token);
             'left',
             'right',
           ], dataResult: true),
-        },
-        {
-          'openFixturePanel': const FlaxCodegenFunctionSelection([
-            'origin',
-            'content',
-            'root',
-            'failAfterPush',
-          ]),
         },
         {
           'invalidRoute': const FlaxCodegenFunctionSelection([

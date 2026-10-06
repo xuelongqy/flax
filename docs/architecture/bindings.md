@@ -311,6 +311,12 @@ Flutter bindings expose the selected dart:async Stream family and call real Dart
 operators. Widget builders and Route factories stay synchronous and retain their Flutter
 lifecycle-specific ownership.
 
+Direct standard `Widget Function(BuildContext)` inputs also work in ordinary functions,
+object constructors, methods, and returned Dart functions. An independent host runs JS
+at build with its actual mounted child Context; generic hosts do not retain enclosing
+Routes. Configured Route-producing calls keep their synchronous Observer capture and
+transition-completion leases. See [function contracts](functions.md).
+
 ## Example object selection
 
 Core supplies minimal real-reference bindings for `DateTime` (epoch constructor, `year`,

@@ -210,3 +210,6 @@ class AutoVisible {
   @protected
   void protectedAction() {}
 }
+
+Widget autoBuild(Widget Function(BuildContext) builder) =>
+    Builder(builder: builder);

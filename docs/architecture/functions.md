@@ -31,8 +31,26 @@ conversion. Other Object positions use ordinary Dart interop.
 Selected scalar, enum, object, collection, synchronous callback, returned function, and
 Future conversions reuse member-call behavior. Dart invocation/conversion errors throw
 synchronously into JS; Future completion uses the UI Promise checkpoint and close
-cancellation. Unsupported signatures fail generation. Widget builder inputs require an
-explicit mounted-result owner; ordinary top-level functions cannot retain them.
+cancellation. Unsupported signatures fail generation.
+
+Direct synchronous `Widget Function(BuildContext)` inputs also work in ordinary
+functions, object constructors, instance/static methods, and returned Dart function
+calls. Each native invocation returns an independent content host; JS runs only when
+that host builds, with its real mounted child Context. Existing mounted callbacks keep
+their direct invocation path. Native Dart callbacks remain native.
+
+This adaptation requires one required positional, non-null base BuildContext and a
+non-null base Widget result. Optional/nullable callback inputs preserve omission,
+undefined, and null. Async or nullable Widget results, additional callback arguments,
+Widget subinterfaces, and nested collections do not gain this adaptation.
+
+Each content host owns its callback handle, subscriptions, and rendered result. Escaped
+Dart closures can be called after the original parameter resource is released; the new
+host clones the JS handle rather than retaining that released resource. Unmounted
+configurations use the existing Widget finalizer and session cleanup. Generic hosts do
+not retain a surrounding Route or infer navigation from a Context. They therefore do not
+provide the pre-mount and transition lifetime guarantee of an explicit Route-producing
+call below.
 
 ## Native dialogs
 

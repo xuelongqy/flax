@@ -36,6 +36,20 @@ abstract class FlaxWidgetHost extends StatefulWidget {
   State<FlaxWidgetHost> createState() => _NodeState();
 }
 
+final _widgetBuilderBinding = FlaxWidgetBinding(
+  'flax:widget-builder',
+  {},
+  _WidgetBuilderHost.new,
+);
+
+class _WidgetBuilderHost extends FlaxWidgetHost {
+  _WidgetBuilderHost(super.node);
+
+  @override
+  Widget buildNative(Map<String, Object?> values) =>
+      Builder(builder: values['builder'] as WidgetBuilder);
+}
+
 class _MountedProperty {
   _MountedProperty(
     this.owner,

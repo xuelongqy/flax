@@ -35,6 +35,7 @@ void main() {
         const {},
       ),
     );
+    expect(proposal.config.functions, contains('autoBuild'));
     final module = await parser.parse(proposal.config);
     await compileFixture(
       root,

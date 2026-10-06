@@ -76,6 +76,20 @@ bool _containsData(FlaxCodegenTypeRef type) =>
     type.parameters.any((parameter) => _containsData(parameter.type)) ||
     type.recordFields.any((field) => _containsData(field.type));
 
+bool _isWidgetBuilder(FlaxCodegenTypeRef type) =>
+    type.kind == 'callback' &&
+    type.typeParameters.isEmpty &&
+    type.result!.kind == 'widget' &&
+    type.result!.id == null &&
+    !type.result!.nullable &&
+    type.parameters.length == 1 &&
+    type.parameters.single.required &&
+    type.parameters.single.positional &&
+    type.parameters.single.type.kind == 'context' &&
+    type.parameters.single.type.id ==
+        'package:flutter/src/widgets/framework.dart::BuildContext' &&
+    !type.parameters.single.type.nullable;
+
 bool _requiresWidgetOwner(FlaxCodegenTypeRef type) => type.kind == 'callback'
     ? type.result!.kind == 'route' ||
           type.parameters.any((parameter) => parameter.type.kind == 'context')
@@ -2415,6 +2429,7 @@ class FlaxCodegenBindingParser {
         if (args.any(
           (p) =>
               p.type.kind == 'callback' &&
+              !_isWidgetBuilder(p.type) &&
               (p.type.result!.kind == 'route' ||
                   p.type.parameters.any((a) => a.type.kind == 'context')),
         )) {
@@ -3352,6 +3367,7 @@ class FlaxCodegenBindingParser {
             (p.type.containsWidget &&
                 !{'widget', 'callback'}.contains(p.type.kind)) ||
             (_requiresWidgetOwner(p.type) &&
+                !_isWidgetBuilder(p.type) &&
                 !(route?.builders.contains(p.name) ?? false))) {
           throw StateError(
             'Unsupported function input: ${entry.key}.${p.name}',

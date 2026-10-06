@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flax_test/flax_test.dart';
 import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -29,6 +31,347 @@ Widget _app(
 );
 
 void main() {
+  testWidgets(
+    'ordinary builder rejects an unmounted native Context before JS',
+    (t) async {
+      final h = _harness();
+      try {
+        await t.pumpWidget(_app(h));
+        h.execute('topLevel.saveContext()');
+        await t.pumpWidget(const SizedBox());
+        expect(
+          () => h.execute('topLevel.stale()'),
+          throwsA(
+            isA<FlaxJsException>().having(
+              (e) => e.toString(),
+              'message',
+              contains('Unmounted builder Context'),
+            ),
+          ),
+        );
+        expect(h.number('topLevel.builderCalls'), 0);
+        expect(h.errors, isEmpty);
+      } finally {
+        await h.finish(t);
+      }
+    },
+  );
+
+  testWidgets('ordinary content hosts isolate concurrent sessions', (t) async {
+    final first = _harness();
+    final second = _harness();
+    final visible = ValueNotifier(true);
+    try {
+      await t.pumpWidget(
+        _app(
+          first,
+          home: ValueListenableBuilder<bool>(
+            valueListenable: visible,
+            builder: (_, value, _) => Row(
+              children: [
+                if (value)
+                  Expanded(
+                    key: const ValueKey('first-slot'),
+                    child: FlaxView.session(
+                      key: const ValueKey('first'),
+                      session: first.session,
+                    ),
+                  ),
+                Expanded(
+                  key: const ValueKey('second-slot'),
+                  child: FlaxView.session(
+                    key: const ValueKey('second'),
+                    session: second.session,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+      first.execute('topLevel.inline()');
+      second.execute('topLevel.inline()');
+      final reassemble = t.binding.reassembleApplication();
+      await t.pump();
+      await reassemble;
+      await t.pumpAndSettle();
+      first.execute('topLevel.label.value = "First builder"');
+      await t.pumpAndSettle();
+      expect(find.text('First builder'), findsOneWidget);
+      expect(find.text('Dialog label'), findsOneWidget);
+      visible.value = false;
+      await t.pumpAndSettle();
+      expect(
+        find.byKey(const ValueKey('first'), skipOffstage: false),
+        findsNothing,
+      );
+      // Unlike a named Page entry, ordinary content must not hold this host Route.
+      await flaxTestCloseSession(t, first.session);
+      expect(first.runtime.isDisposed, isTrue);
+      expect(second.runtime.isDisposed, isFalse);
+      await t.tap(find.text('Increment dialog'));
+      await t.pumpAndSettle();
+      expect(find.text('Local 1'), findsOneWidget);
+      expect(first.errors, isEmpty);
+      expect(second.errors, isEmpty);
+    } finally {
+      await first.finish(t);
+      await second.finish(t);
+      visible.dispose();
+    }
+  });
+
+  for (final kind in ['stored', 'preview']) {
+    testWidgets('ordinary $kind builder survives released input and Dart GC', (
+      t,
+    ) async {
+      final h = _harness();
+      try {
+        await t.pumpWidget(_app(h));
+        h.execute(
+          'topLevel.setMode("native"); topLevel.setBuilderKind("$kind"); '
+          'topLevel.${kind == 'stored' ? 'store' : 'preview'}()',
+        );
+        expect(h.number('topLevel.builderCalls'), 0);
+        await t.runAsync(flaxTestCollectDartGarbage);
+        h.execute(flaxTestJsGarbagePressure);
+        await t.pumpWidget(
+          _app(
+            h,
+            home: Material(
+              child: FlaxView.page(session: h.session, name: 'builder'),
+            ),
+          ),
+        );
+        await t.pumpAndSettle();
+        expect(h.boolean('topLevel.builderMounted'), isTrue);
+        expect(
+          find.byWidgetPredicate(
+            (w) => w is SizedBox && w.width == 17 && w.height == 19,
+          ),
+          findsOneWidget,
+        );
+        expect(h.errors, isEmpty);
+      } finally {
+        await h.finish(t);
+      }
+    });
+  }
+
+  testWidgets('never mounted ordinary builder does not prevent session close', (
+    t,
+  ) async {
+    final h = _harness();
+    try {
+      await t.pumpWidget(_app(h));
+      h.execute('topLevel.preview()');
+      expect(h.number('topLevel.builderCalls'), 0);
+      await t.pumpWidget(const SizedBox());
+      await flaxTestCloseSession(t, h.session);
+      expect(h.runtime.isDisposed, isTrue);
+    } finally {
+      await h.finish(t);
+    }
+  });
+
+  for (final failure in ['throw', 'promise', 'invalid']) {
+    testWidgets('ordinary builder $failure recovers on a later build', (
+      t,
+    ) async {
+      final h = _harness();
+      try {
+        await t.pumpWidget(_app(h));
+        h.execute('topLevel.setMode("$failure")');
+        await t.pumpWidget(
+          _app(
+            h,
+            home: Material(
+              child: FlaxView.page(session: h.session, name: 'builder'),
+            ),
+          ),
+        );
+        await t.pumpAndSettle();
+        expect(find.byType(ErrorWidget), findsOneWidget);
+        expect(h.errors, hasLength(1));
+        h.errors.clear();
+        h.execute('topLevel.setMode("valid")');
+        t
+            .element(
+              find
+                  .ancestor(
+                    of: find.byType(ErrorWidget),
+                    matching: find.byType(Builder),
+                  )
+                  .first,
+            )
+            .markNeedsBuild();
+        await t.pumpAndSettle();
+        expect(find.byType(ErrorWidget), findsNothing);
+        expect(find.text('Local 0'), findsOneWidget);
+        expect(h.errors, isEmpty);
+      } finally {
+        await h.finish(t);
+      }
+    });
+  }
+
+  testWidgets('ordinary repeated builder invocations keep independent State', (
+    t,
+  ) async {
+    final h = _harness();
+    try {
+      await t.pumpWidget(_app(h));
+      h.execute('topLevel.setBuilderKind("repeat")');
+      await t.pumpWidget(
+        _app(
+          h,
+          home: Material(
+            child: FlaxView.page(session: h.session, name: 'builder'),
+          ),
+        ),
+      );
+      await t.pumpAndSettle();
+      expect(find.text('Local 0'), findsNWidgets(2));
+      await t.tap(find.text('Increment dialog').first);
+      await t.pumpAndSettle();
+      expect(find.text('Local 1'), findsOneWidget);
+      expect(find.text('Local 0'), findsOneWidget);
+      expect(h.number('topLevel.created'), 2);
+      expect(h.errors, isEmpty);
+    } finally {
+      await h.finish(t);
+    }
+  });
+
+  testWidgets(
+    'observed push then throw survives close before its first build',
+    (t) async {
+      final h = _harness();
+      final routes = _Routes();
+      final source = ValueNotifier(true);
+      try {
+        await t.pumpWidget(
+          _app(
+            h,
+            observers: [FlaxNavigatorObserver(), routes],
+            home: ValueListenableBuilder<bool>(
+              valueListenable: source,
+              builder: (_, visible, _) => visible
+                  ? Material(child: FlaxView.session(session: h.session))
+                  : const Text('Native source'),
+            ),
+          ),
+        );
+        expect(
+          () => h.execute('topLevel.fixture(true, undefined, false)'),
+          throwsA(isA<FlaxJsException>()),
+        );
+        final hidden = routes.routes.last as TransitionRoute<Object?>;
+        final navigator = hidden.navigator!;
+        var completed = false;
+        hidden.completed.then((_) => completed = true);
+        unawaited(
+          navigator.push<void>(
+            PageRouteBuilder<void>(
+              transitionDuration: Duration.zero,
+              pageBuilder: (_, _, _) => const Text('Native covering page'),
+            ),
+          ),
+        );
+        await t.pumpAndSettle();
+        expect(h.number('topLevel.created'), 0);
+        source.value = false;
+        await t.pump();
+        expect(find.byType(FlaxView, skipOffstage: false), findsNothing);
+        var closed = false;
+        final closing = h.session.close().then((_) => closed = true);
+        await t.pumpAndSettle();
+        expect(completed, isFalse);
+        expect(closed, isFalse);
+        expect(h.runtime.isDisposed, isFalse);
+        navigator.removeRoute(routes.routes.last);
+        await t.pumpAndSettle();
+        expect(t.takeException(), isNull);
+        expect(find.byType(AlertDialog), findsOneWidget);
+        navigator.removeRoute(hidden);
+        await t.pumpAndSettle();
+        await closing;
+        expect(completed, isTrue);
+      } finally {
+        await h.finish(t);
+        source.dispose();
+      }
+    },
+  );
+
+  for (final kind in [
+    'function',
+    'constructor',
+    'method',
+    'static',
+    'returned',
+  ]) {
+    testWidgets('ordinary $kind WidgetBuilder owns a mounted child Context', (
+      t,
+    ) async {
+      final h = _harness();
+      try {
+        await t.pumpWidget(_app(h));
+        h.execute('topLevel.setBuilderKind("$kind")');
+        expect(h.number('topLevel.builderCalls'), 0);
+        final theme = ThemeData(colorSchemeSeed: const Color(0xff934455));
+        await t.pumpWidget(
+          _app(
+            h,
+            theme: theme,
+            home: Material(
+              child: FlaxView.page(session: h.session, name: 'builder'),
+            ),
+          ),
+        );
+        await t.pumpAndSettle();
+        expect(h.boolean('topLevel.builderMounted'), isTrue);
+        expect(find.byType(AlertDialog), findsOneWidget);
+        expect(
+          Theme.of(t.element(find.byType(AlertDialog))).colorScheme,
+          theme.colorScheme,
+        );
+        await t.tap(find.text('Increment dialog'));
+        await t.pumpAndSettle();
+        expect(find.text('Local 1'), findsOneWidget);
+        h.execute('topLevel.label.value = "Updated builder"');
+        await t.pumpAndSettle();
+        expect(find.text('Updated builder'), findsOneWidget);
+        expect(h.errors, isEmpty);
+      } finally {
+        await h.finish(t);
+      }
+    });
+  }
+
+  for (final kind in ['undefined', 'null']) {
+    testWidgets('ordinary WidgetBuilder preserves $kind', (t) async {
+      final h = _harness();
+      try {
+        await t.pumpWidget(_app(h));
+        h.execute('topLevel.setBuilderKind("$kind")');
+        await t.pumpWidget(
+          _app(
+            h,
+            home: Material(
+              child: FlaxView.page(session: h.session, name: 'builder'),
+            ),
+          ),
+        );
+        await t.pumpAndSettle();
+        expect(h.number('topLevel.builderCalls'), 0);
+        expect(h.errors, isEmpty);
+      } finally {
+        await h.finish(t);
+      }
+    });
+  }
+
   testWidgets('nested synchronous calls keep separate observer records', (
     t,
   ) async {

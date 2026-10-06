@@ -44,11 +44,15 @@ Future<Object?> openFixturePanel({
   required WidgetBuilder content,
   bool root = false,
   bool failAfterPush = false,
+  bool maintainState = true,
   VoidCallback? before,
 }) {
   before?.call();
   final result = Navigator.of(origin, rootNavigator: root).push<Object?>(
-    PageRouteBuilder<Object?>(pageBuilder: (context, _, _) => content(context)),
+    PageRouteBuilder<Object?>(
+      maintainState: maintainState,
+      pageBuilder: (context, _, _) => content(context),
+    ),
   );
   if (failAfterPush) throw StateError('after push');
   return result;
@@ -73,3 +77,46 @@ Future<Object?>? nullableRoute({
 Widget wrapContent(Widget value) => Center(child: value);
 Widget mapContent(Widget value, Widget Function(Widget) transform) =>
     transform(value);
+
+class BuilderBox {
+  BuilderBox([WidgetBuilder? builder]) : _builder = builder;
+  WidgetBuilder? _builder;
+
+  void configure(WidgetBuilder? builder) => _builder = builder;
+  Widget wrap() => wrapBuilder(_builder);
+  static Widget wrapStatic(WidgetBuilder builder) => wrapBuilder(builder);
+}
+
+Widget wrapBuilder([WidgetBuilder? builder]) =>
+    Builder(builder: builder ?? (_) => const SizedBox.shrink());
+Widget Function(WidgetBuilder) builderWrapper() =>
+    (builder) => wrapBuilder(builder);
+
+Widget badBuilder(Widget Function(BuildContext, int) builder) =>
+    Builder(builder: (context) => builder(context, 1));
+Widget nullableBuilder(Widget? Function(BuildContext) builder) =>
+    Builder(builder: (context) => builder(context) ?? const SizedBox.shrink());
+Widget asyncBuilder(Future<Widget> Function(BuildContext) builder) =>
+    const SizedBox.shrink();
+
+Widget invokeBuilder(BuildContext origin, WidgetBuilder builder) =>
+    builder(origin);
+
+BuildContext? _builderContext;
+void saveBuilderContext(BuildContext origin) => _builderContext = origin;
+Widget invokeStaleBuilder(WidgetBuilder builder) {
+  try {
+    return builder(_builderContext!);
+  } finally {
+    _builderContext = null;
+  }
+}
+
+Widget namedBuilder(Widget Function({required BuildContext context}) builder) =>
+    Builder(builder: (context) => builder(context: context));
+Widget optionalContextBuilder(Widget Function([BuildContext?]) builder) =>
+    Builder(builder: (context) => builder(context));
+Widget nestedBuilders(List<WidgetBuilder> builder) =>
+    Builder(builder: builder.single);
+Widget interfaceBuilder(PreferredSizeWidget Function(BuildContext) builder) =>
+    Builder(builder: builder);

@@ -33,6 +33,7 @@ let created = 0;
 let disposed = 0;
 let result: unknown = 'pending';
 const label = signal('Dialog label');
+let inline: Widget | null = null;
 const observer = FlaxNavigatorObserver();
 
 class DialogContent extends StatefulWidget {
@@ -100,6 +101,7 @@ function open(options: Partial<Parameters<typeof showDialog>[0]> = {}) {
 const root = Builder({
   builder: (current) => {
     context = current;
+    if (inline !== null) return inline;
     return Column({
       children: [
         Text('Static source', { key: ValueKey('static-source') }),
@@ -113,6 +115,41 @@ const root = Builder({
     });
   },
 });
+let preview: Widget;
+let builderKind = 'function';
+let builderCalls = 0;
+let builderMounted = false;
+const builderBox = functions.BuilderBox();
+function genericContent(current: BuildContext): Widget {
+  builderCalls++;
+  builderMounted = current.mounted;
+  Navigator.of(current);
+  return mode === 'native' ? functions.nativeTile() : content();
+}
+registerPage('builder', () => {
+  if (builderKind === 'constructor') {
+    return functions.BuilderBox(genericContent).wrap();
+  }
+  if (builderKind === 'method') {
+    builderBox.configure(genericContent);
+    return builderBox.wrap();
+  }
+  if (builderKind === 'static') {
+    return functions.BuilderBox.wrapStatic(genericContent);
+  }
+  if (builderKind === 'returned') {
+    return functions.builderWrapper()(genericContent);
+  }
+  if (builderKind === 'preview') return preview;
+  if (builderKind === 'stored') return builderBox.wrap();
+  if (builderKind === 'repeat') {
+    builderBox.configure(genericContent);
+    return Column({ children: [builderBox.wrap(), builderBox.wrap()] });
+  }
+  if (builderKind === 'undefined') return functions.wrapBuilder(undefined);
+  if (builderKind === 'null') return functions.wrapBuilder(null);
+  return functions.wrapBuilder(genericContent);
+});
 registerPage('functions', () => root);
 registerPage('application', () =>
   MaterialApp({ navigatorObservers: [observer], home: root }),
@@ -121,6 +158,32 @@ runApp(root);
 Object.assign(globalThis, {
   topLevel: {
     functions,
+    builderBox,
+    inline() {
+      builderBox.configure(genericContent);
+      inline = builderBox.wrap();
+    },
+    saveContext() {
+      functions.saveBuilderContext(context);
+    },
+    stale() {
+      functions.invokeStaleBuilder(genericContent);
+    },
+    preview() {
+      preview = functions.invokeBuilder(context, genericContent);
+    },
+    store() {
+      builderBox.configure(genericContent);
+    },
+    get builderCalls() {
+      return builderCalls;
+    },
+    get builderMounted() {
+      return builderMounted;
+    },
+    setBuilderKind(value: string) {
+      builderKind = value;
+    },
     label,
     open,
     get context() {
@@ -141,12 +204,13 @@ Object.assign(globalThis, {
     setMode(value: string) {
       mode = value;
     },
-    fixture(failAfterPush = false, before?: () => void) {
+    fixture(failAfterPush = false, before?: () => void, maintainState = true) {
       return functions.openFixturePanel({
         origin: context,
         content,
         root: false,
         failAfterPush,
+        maintainState,
         before,
       });
     },

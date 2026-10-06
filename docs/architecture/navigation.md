@@ -240,3 +240,11 @@ target Navigator.observers (or MaterialApp.navigatorObservers). Its captured Rou
 the callback until TransitionRoute.completed, independently of its result Future and
 source page. The observer serves concurrent sessions without keeping another stack. See
 [function calls and dialogs](functions.md) for setup, scope and errors.
+
+Ordinary standard WidgetBuilder inputs reuse the same mounted content host without Route
+capture. `_RouteBody` adds only the preview-to-mount lease handoff. Observer capture
+remains necessary for configured Route-producing calls: a Route may be pushed, covered
+before its first build, and survive a subsequent throw. Its lease must already exist
+when the source view disappears or the session starts closing. The observer captures
+synchronously and releases at transition completion, including nested calls; a generic
+content host does not keep an unrelated host Route alive.

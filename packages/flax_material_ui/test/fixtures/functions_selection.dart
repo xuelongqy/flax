@@ -1,6 +1,19 @@
 import 'package:flax_codegen/flax_codegen.dart';
 
 const functionClasses = {
+  'BuilderBox': FlaxCodegenClassSelection(
+    {
+      '': ['builder'],
+    },
+    kind: 'object',
+    instanceMethods: {
+      'configure': ['builder'],
+      'wrap': [],
+    },
+    methods: {
+      'wrapStatic': ['builder'],
+    },
+  ),
   'FunctionToken': FlaxCodegenClassSelection(
     {
       '': ['value'],
@@ -11,6 +24,11 @@ const functionClasses = {
 };
 
 const functionSelections = {
+  'saveBuilderContext': FlaxCodegenFunctionSelection(['origin']),
+  'invokeStaleBuilder': FlaxCodegenFunctionSelection(['builder']),
+  'invokeBuilder': FlaxCodegenFunctionSelection(['origin', 'builder']),
+  'wrapBuilder': FlaxCodegenFunctionSelection(['builder']),
+  'builderWrapper': FlaxCodegenFunctionSelection([]),
   'wrapContent': FlaxCodegenFunctionSelection(['value']),
   'mapContent': FlaxCodegenFunctionSelection(['value', 'transform']),
   'addValues': FlaxCodegenFunctionSelection(['left', 'right']),
@@ -36,7 +54,7 @@ const functionSelections = {
   'callDebugPrinter': FlaxCodegenFunctionSelection(['callback']),
   'nativeTile': FlaxCodegenFunctionSelection([]),
   'openFixturePanel': FlaxCodegenFunctionSelection(
-    ['origin', 'content', 'root', 'failAfterPush', 'before'],
+    ['origin', 'content', 'root', 'failAfterPush', 'before', 'maintainState'],
     dataResult: true,
     route: FlaxCodegenRouteCallModel('origin', 'root', ['content']),
   ),

@@ -305,6 +305,45 @@ class _Callback extends _Resource implements FlaxCallback {
           named.any((p) => p.required && !namedArguments.containsKey(p.name))) {
         throw ArgumentError('Invalid callback arity');
       }
+      if (scope == _CallbackScope.member &&
+          owner == null &&
+          signature.result.kind == 'widget' &&
+          signature.result.id == null &&
+          !signature.result.nullable &&
+          signature.parameters.length == 1 &&
+          positional.length == 1 &&
+          positional.single.required &&
+          positional.single.type.kind == 'context' &&
+          positional.single.type.id == 'flax.core/flutter#type:BuildContext' &&
+          !positional.single.type.nullable) {
+        final nativeContext = positionalArguments.single as BuildContext;
+        if (!nativeContext.mounted) {
+          throw StateError('Unmounted builder Context');
+        }
+        // Escaped Dart closures can outlive their released parameter resource.
+        // Give each returned host its own JS handle and mounted child Context.
+        final callback = _Callback(
+          session,
+          function.retain() as FlaxJsFunction,
+          signature,
+          bindingContext: context,
+        );
+        final source = _Source(
+          session,
+          FlaxTypeRef('callback', callback: signature),
+          _Value(callback.wrap(), [callback]),
+        );
+        final node = FlaxNode._(session, _widgetBuilderBinding, '', {
+          'builder': source,
+        });
+        try {
+          final host = _WidgetBuilderHost(node);
+          session.escapeWidget(host);
+          return host;
+        } finally {
+          node.release();
+        }
+      }
       final args = <FlaxJsValue>[
         function,
         FlaxJsNumber(positionalArguments.length.toDouble()),

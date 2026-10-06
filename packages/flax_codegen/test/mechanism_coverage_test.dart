@@ -358,9 +358,6 @@ void _assertShape(Stage2MechanismProbe probe, _ShapeExpectation expected) {
   }
 
   expect(probe.classWide['ok'], expected.classWideOk, reason: label);
-  if (expected.classWideError != null) {
-    expect(probe.classWide['error'], expected.classWideError, reason: label);
-  }
   if (expected.classWideClasses != null) {
     expect(
       probe.classWide['classes'],
@@ -376,21 +373,7 @@ void _assertShape(Stage2MechanismProbe probe, _ShapeExpectation expected) {
     );
   }
 
-  if (expected.memberIsolatedOk != null) {
-    final isolated = probe.memberIsolated;
-    expect(isolated, isNotNull, reason: label);
-    expect(isolated!['ok'], expected.memberIsolatedOk, reason: label);
-    if (expected.memberIsolatedError != null) {
-      expect(isolated['error'], expected.memberIsolatedError, reason: label);
-    }
-    if (expected.memberIsolatedClasses != null) {
-      expect(
-        isolated['classes'],
-        expected.memberIsolatedClasses,
-        reason: label,
-      );
-    }
-  } else if (expected.classWideOk) {
+  if (expected.classWideOk) {
     expect(probe.memberIsolated, isNull, reason: label);
   }
 
@@ -428,12 +411,8 @@ final class _ShapeExpectation {
     this.memberStatus,
     this.skips,
     required this.classWideOk,
-    this.classWideError,
     this.classWideClasses,
     this.classWideMemberSelected,
-    this.memberIsolatedOk,
-    this.memberIsolatedError,
-    this.memberIsolatedClasses,
     required this.memberInModule,
   });
 
@@ -450,12 +429,8 @@ final class _ShapeExpectation {
   final String? memberStatus;
   final List<String>? skips;
   final bool classWideOk;
-  final String? classWideError;
   final List<String>? classWideClasses;
   final bool? classWideMemberSelected;
-  final bool? memberIsolatedOk;
-  final String? memberIsolatedError;
-  final List<String>? memberIsolatedClasses;
   final Object? memberInModule;
 }
 
@@ -795,24 +770,18 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'widget_callback_shapes.dart',
     type: 'WidgetBuilderBox',
     member: 'configure',
-    verdict: CapabilityVerdict.unsupported,
-    reasonKind: CapabilityReasonKind.intentionalBoundary,
-    route: 'failed',
+    verdict: CapabilityVerdict.supported,
+    route: 'classWide',
     bindable: true,
     memberStatus: 'selected',
     skips: <String>[
       'WidgetBuilderBox.buildOnce.context: Context inputs are currently '
           'callback-only',
     ],
-    classWideOk: false,
-    classWideError:
-        'Bad state: Method callbacks require synchronous data arguments and '
-        'results',
-    memberIsolatedOk: false,
-    memberIsolatedError:
-        'Bad state: Method callbacks require synchronous data arguments and '
-        'results',
-    memberInModule: null,
+    classWideOk: true,
+    classWideClasses: <String>['WidgetBuilderBox', 'BuildContext'],
+    classWideMemberSelected: true,
+    memberInModule: true,
   ),
   _ShapeExpectation(
     label: 'widgetCallback/context-param',
@@ -821,19 +790,16 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     member: 'buildOnce',
     verdict: CapabilityVerdict.unsupported,
     reasonKind: CapabilityReasonKind.intentionalBoundary,
-    route: 'memberIsolated',
+    route: 'classWide',
     bindable: true,
     memberStatus: 'skipped',
     skips: <String>[
       'WidgetBuilderBox.buildOnce.context: Context inputs are currently '
           'callback-only',
     ],
-    classWideOk: false,
-    classWideError:
-        'Bad state: Method callbacks require synchronous data arguments and '
-        'results',
-    memberIsolatedOk: true,
-    memberIsolatedClasses: <String>['WidgetBuilderBox', 'BuildContext'],
+    classWideOk: true,
+    classWideClasses: <String>['WidgetBuilderBox', 'BuildContext'],
+    classWideMemberSelected: true,
     memberInModule: true,
   ),
   _ShapeExpectation(

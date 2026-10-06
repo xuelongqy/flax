@@ -216,6 +216,15 @@ name or public YAML lifecycle marker is required. A separately named plugin fixt
 verifies generation and repeated result mounting through the UI tests. See
 [lazy list ownership](../../docs/architecture/lists.md).
 
+Ordinary functions, object constructors, instance/static methods, and returned Dart
+functions accept direct standard `Widget Function(BuildContext)` inputs. Each native
+invocation creates an independent host and runs JS at mount with the real child Context.
+Only one required positional non-null base Context and a non-null base Widget result
+receive this adaptation; optional/nullable callback inputs retain their normal meaning.
+Async/nullable Widget results, extra callback arguments, interfaces, and nested
+collections are not newly supported. This content ownership does not infer Route
+ownership; configured Route-producing functions still require FlaxNavigatorObserver.
+
 Nested callbacks in typed List elements and Map values receive per-mount adapters.
 Nested Widget results use independent ownership; Map callback keys are rejected.
 Collection view identifiers include complete signatures and conversion semantics, so
