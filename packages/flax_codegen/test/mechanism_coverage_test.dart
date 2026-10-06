@@ -7,6 +7,7 @@ import 'package:test/test.dart';
 
 import '../tool/src/capability/mechanisms.dart';
 import '../tool/src/capability/model.dart';
+import '../tool/src/capability/stage3.dart';
 
 /// The recorded matrix. Every value below is an observed result, not an
 /// expectation about how the binder "should" behave: the probe re-runs the real
@@ -41,6 +42,34 @@ void main() {
     probes[label] = result;
     return result;
   }
+
+  test(
+    'Context mechanisms emit and compile with the complete Core provider',
+    () async {
+      final officialParse = await parseOfficialBindings(
+        workspaceRoot: repoRoot,
+        official: official,
+      );
+      expect(officialParse.ok, isTrue, reason: officialParse.error);
+      final result = await probe('widgetCallback/context-shapes');
+      final local = Directory(p.join(repoRoot, '.local'))
+        ..createSync(recursive: true);
+      final output = local.createTempSync('context-mechanism-');
+      addTearDown(() => output.deleteSync(recursive: true));
+      final emitted = await emitModuleSet(
+        target: result.module!,
+        official: officialParse.module,
+        directory: output.path,
+      );
+      expect(emitted['ok'], isTrue, reason: emitted['error']?.toString());
+      final compiled = await compileEmitted(
+        workspaceRoot: repoRoot,
+        directory: output.path,
+        targetName: result.module!.name,
+      );
+      expect(compiled['ok'], isTrue, reason: compiled.toString());
+    },
+  );
 
   test('records every measured shape verdict', () async {
     for (final expected in _recordedShapes) {

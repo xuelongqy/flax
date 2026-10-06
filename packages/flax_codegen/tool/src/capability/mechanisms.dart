@@ -687,12 +687,9 @@ Future<Map<String, Object?>> runStage2Mechanisms({
 
   Stage3ParseResult? officialParse;
   Future<Stage3ParseResult> officialModule() async =>
-      officialParse ??= await parseClassSelectionSet(
+      officialParse ??= await parseOfficialBindings(
         workspaceRoot: workspaceRoot,
         official: official,
-        library: official,
-        classes: official.classes,
-        label: 'official',
       );
 
   final rows = <Map<String, Object?>>[];

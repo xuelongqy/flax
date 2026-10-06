@@ -475,7 +475,7 @@ Future<Map<String, Object?>> runFoundationStage3({
   Map<String, Object?>? gapProbeResult;
   if (batchParse.ok && batchParse.module != null) {
     log('Parsing official YAML for emit context…');
-    final officialParse = await _parseOfficial(
+    final officialParse = await parseOfficialBindings(
       workspaceRoot: workspaceRoot,
       official: official,
     );
@@ -723,7 +723,8 @@ Future<Stage3ParseResult> parseClassSelectionSet({
   }
 }
 
-Future<Stage3ParseResult> _parseOfficial({
+/// Preserve the complete official configuration, including callback snapshots.
+Future<Stage3ParseResult> parseOfficialBindings({
   required String workspaceRoot,
   required FlaxCodegenBindingConfig official,
 }) async {
