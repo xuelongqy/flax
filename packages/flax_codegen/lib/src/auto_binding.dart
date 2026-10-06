@@ -1261,14 +1261,17 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     }
     try {
       final type = scope.typeRef(setter.formalParameters.single.type);
-      type.validate('$name setter');
-      type.validateCallbacks('$name setter', input: true);
-      if (type.containsWidget ||
-          {'context', 'state', 'route', 'page'}.contains(type.kind)) {
-        throw StateError(
-          'Flutter tree/reference semantics require an explicit override',
-        );
-      }
+      FlaxCodegenTopLevelModel(
+        '',
+        const [],
+        setters: [
+          FlaxCodegenTopLevelSetterModel(
+            '${setter.library.uri}::$name=',
+            name,
+            type,
+          ),
+        ],
+      ).validate();
       setters.add(name);
     } on StateError catch (error) {
       skips.add(

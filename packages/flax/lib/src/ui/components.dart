@@ -383,24 +383,8 @@ abstract class FlaxComponentStateBase extends State<StatefulWidget> {
     if (method == null || arguments.length > method.parameters.length) {
       throw ArgumentError('Unknown State variant method: $member');
     }
-    final values = <String, _Value>{};
+    final values = _scope.session.objectArguments(arguments, method.parameters);
     try {
-      for (var i = 0; i < method.parameters.length; i++) {
-        final parameter = method.parameters[i];
-        final input = i < arguments.length
-            ? arguments[i]
-            : const FlaxJsUndefined();
-        if (input is FlaxJsUndefined) {
-          if (parameter.required) {
-            throw ArgumentError('Missing method argument: ${parameter.name}');
-          }
-          if (!parameter.omitWhenAbsent) {
-            values[parameter.name] = _Value(parameter.defaultValue);
-          }
-        } else {
-          values[parameter.name] = _scope.session.decode(input, parameter.type);
-        }
-      }
       final result = method.invoke(
         this,
         values.map((key, value) => MapEntry(key, value.data)),

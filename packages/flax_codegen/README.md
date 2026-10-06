@@ -216,6 +216,14 @@ name or public YAML lifecycle marker is required. A separately named plugin fixt
 verifies generation and repeated result mounting through the UI tests. See
 [lazy list ownership](../../docs/architecture/lists.md).
 
+Direct `BuildContext` inputs are ordinary borrowed references in automatic and explicit
+selection. Functions, constructors, instance/static methods, setters, returned Dart
+functions and supported collection inputs reuse the mounted Context supplied by JS.
+Passing or storing it does not extend its Flutter lifetime. Each conversion rejects
+forged, foreign-session and inactive references; nullable inputs retain normal null and
+omission semantics. Arbitrary Context outputs remain unsupported; native-to-JS callback
+arguments still require mounted ownership.
+
 Ordinary functions, object constructors, instance/static methods, and returned Dart
 functions accept direct standard `Widget Function(BuildContext)` inputs. Each native
 invocation creates an independent host and runs JS at mount with the real child Context.
@@ -285,10 +293,10 @@ through the existing function binding channel. Importing a module does not trigg
 reads. Initialization, exceptions, object identity, callbacks and async delivery keep
 their existing Dart and session behavior. Writes emit synchronous `setX(value): void`
 functions; getter and setter types follow their separate Dart signatures.
-Const/final/late-final writes and Flutter-specific input semantics are rejected.
-Provider-owned declarations reuse the provider's public module without registering
-twice. Manifest 15 records source identity, read/write operations and public-library
-routing. See
+Const/final/late-final writes and inputs requiring unsupported Flutter ownership are
+rejected; existing mounted Context references are accepted. Provider-owned declarations
+reuse the provider's public module without registering twice. Manifest 15 records source
+identity, read/write operations and public-library routing. See
 [readonly generation](../../docs/architecture/bindings.md#public-libraries-and-top-level-readonly-declarations)
 and [ADR 0027](../../docs/decisions/0027-public-library-module-delivery.md).
 

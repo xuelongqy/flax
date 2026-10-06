@@ -538,7 +538,6 @@ const Set<String> _widgetMechanismDiagnosticCodes = {
   'missing_callback_signature',
   'unsupported_binding_type',
   'unsupported_input_shape',
-  'context_input_callback_only',
   'unsupported_mounted_widget_result',
   'stored_callback_owner_required',
 };
@@ -1345,7 +1344,6 @@ const _environmentStageCodes = {
 const _visibilityBoundaryCodes = {'visibility_annotation', 'unnamed_extension'};
 
 const _intentionalBoundaryCodes = {
-  'context_input_callback_only',
   'unsupported_mounted_widget_result',
   'stored_callback_owner_required',
   'generic_receiver_specialization_required',

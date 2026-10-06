@@ -4175,7 +4175,10 @@ $_typescriptHostImport
 
       String writeSetter(FlaxCodegenTopLevelSetterModel setter) {
         if (!setter.isReference) {
-          return 'invokeTopLevel(${jsonEncode(setter.id)}, [value])';
+          final value = setter.type.kind == 'context'
+              ? 'contextHandle(value, ${jsonEncode(setter.type.id)})'
+              : 'value';
+          return 'invokeTopLevel(${jsonEncode(setter.id)}, [$value])';
         }
         final provider = _owners[setter.id]!;
         final namespace = provider.topLevel!.jsName;

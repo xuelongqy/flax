@@ -1,6 +1,25 @@
 import 'package:flax_codegen/flax_codegen.dart';
 
 const functionClasses = {
+  'ContextBox': FlaxCodegenClassSelection(
+    {
+      '': ['origin', 'optional'],
+    },
+    kind: 'object',
+    getters: ['mounted', 'optionalMounted'],
+    setters: ['origin', 'optional'],
+    instanceMethods: {
+      'matches': ['context'],
+    },
+    methods: {
+      'isMounted': ['context'],
+    },
+    staticGetters: ['selectedMounted'],
+    staticSetters: ['selected'],
+  ),
+  'ContextTile': FlaxCodegenClassSelection({
+    '': ['key', 'origin'],
+  }),
   'BuilderBox': FlaxCodegenClassSelection(
     {
       '': ['builder'],
@@ -24,6 +43,11 @@ const functionClasses = {
 };
 
 const functionSelections = {
+  'isDark': FlaxCodegenFunctionSelection(['context']),
+  'contextMounted': FlaxCodegenFunctionSelection(['context']),
+  'optionalContext': FlaxCodegenFunctionSelection(['context']),
+  'mountedContexts': FlaxCodegenFunctionSelection(['contexts']),
+  'contextReader': FlaxCodegenFunctionSelection([]),
   'saveBuilderContext': FlaxCodegenFunctionSelection(['origin']),
   'invokeStaleBuilder': FlaxCodegenFunctionSelection(['builder']),
   'invokeBuilder': FlaxCodegenFunctionSelection(['origin', 'builder']),

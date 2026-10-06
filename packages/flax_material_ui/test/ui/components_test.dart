@@ -30,6 +30,47 @@ Widget app(
   ),
 );
 void main() {
+  testWidgets('State mixin methods and setters borrow Context inputs', (
+    t,
+  ) async {
+    final h = Harness();
+    await t.pumpWidget(
+      h.app(
+        code: script('''
+var contextState;
+class ContextState extends componentApi.ContextInputState {
+  initState() { super.initState(); contextState = this; }
+  build(context) {
+    this.input = context;
+    if (!this.isMountedContext(context)) throw new Error('inactive context');
+    return componentApi.Text('Context mixin ' + this.inputMounted);
+  }
+}
+class ContextWidget extends componentApi.StatefulWidget {
+  createState() { return new ContextState(); }
+}
+componentApi.runApp(new ContextWidget());
+'''),
+      ),
+    );
+    expect(find.text('Context mixin true'), findsOneWidget);
+    expect(
+      h.number('Number(contextState.isMountedContext(contextState.context))'),
+      1,
+    );
+    h.execute('contextState.input = null;');
+    expect(h.number('Number(contextState.inputMounted)'), 0);
+    for (final call in [
+      'contextState.isMountedContext({})',
+      'contextState.isMountedContext(null)',
+      'contextState.input = 1',
+    ]) {
+      expect(() => h.execute(call), throwsA(isA<FlaxJsException>()));
+    }
+    expect(h.errors, isEmpty);
+    await flaxTestUnmount(t);
+  });
+
   testWidgets(
     'lifecycle ordering matches a native State through updates and dependencies',
     (t) async {

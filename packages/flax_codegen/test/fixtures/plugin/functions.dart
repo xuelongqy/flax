@@ -1,7 +1,42 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart' show Brightness, Theme;
 
 export 'package:flutter/widgets.dart' show BuildContext, Widget;
+
+bool isDark(BuildContext context) =>
+    Theme.of(context).brightness == Brightness.dark;
+bool contextMounted(BuildContext context) => context.mounted;
+bool optionalContext({BuildContext? context}) => context?.mounted ?? false;
+int mountedContexts(List<BuildContext> contexts) =>
+    contexts.where((context) => context.mounted).length;
+bool Function(BuildContext) contextReader() =>
+    (context) => context.mounted;
+
+final class ContextBox {
+  ContextBox(this.origin, {this.optional});
+
+  BuildContext origin;
+  BuildContext? optional;
+  static BuildContext? _selected;
+  static set selected(BuildContext? value) => _selected = value;
+  static bool get selectedMounted => _selected?.mounted ?? false;
+  static bool isMounted(BuildContext context) => context.mounted;
+  bool get mounted => origin.mounted;
+  bool get optionalMounted => optional?.mounted ?? false;
+  bool matches(BuildContext context) => identical(origin, context);
+}
+
+class ContextTile extends StatelessWidget {
+  const ContextTile({super.key, required this.origin});
+  final BuildContext origin;
+  @override
+  Widget build(BuildContext context) => Text('Context ${origin.mounted}');
+}
+
+BuildContext? _selectedContext;
+set selectedContext(BuildContext? value) => _selectedContext = value;
+bool get selectedContextMounted => _selectedContext?.mounted ?? false;
 
 int invokeTopLevel(int value) => value + 1;
 

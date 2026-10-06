@@ -2,7 +2,10 @@ import * as ui from '@flax/flutter/widgets';
 import * as material from '@flax/flutter/material';
 import * as scheduler from '@flax/flutter/scheduler';
 import { signal, bind, batch } from '@flax/core';
-import { TickerProviderProbe } from '../../../.dart_tool/flax/ui/state_variant_bindings.js';
+import {
+  ContextInputState,
+  TickerProviderProbe,
+} from '../../../.dart_tool/flax/ui/state_variant_bindings.js';
 
 const hooks = {
   events: [] as string[],
@@ -116,6 +119,7 @@ Object.assign(globalThis, {
     ...material,
     ...scheduler,
     TickerProviderProbe,
+    ContextInputState,
     signal,
     bind,
     batch,

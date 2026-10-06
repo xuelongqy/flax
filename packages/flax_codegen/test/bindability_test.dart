@@ -94,6 +94,21 @@ void main() {
     expect(config.types, contains('AutoMode'));
     expect(config.typedefs, contains('LabelBuilder'));
     expect(config.functions.keys, contains('autoGreeting'));
+    expect(config.functions['autoContextMounted']?.parameters, ['context']);
+    final contextBox = config.classes['AutoContextBox']!;
+    expect(contextBox.constructors[''], ['context', 'optional']);
+    expect(contextBox.setters, containsAll(['context', 'optional']));
+    expect(contextBox.instanceMethods['matches'], ['value']);
+    expect(contextBox.methods['isMounted'], ['value']);
+    expect(contextBox.staticSetters, contains('selected'));
+    expect(config.topLevel!.setters, contains('autoSelectedContext'));
+    for (final name in ['autoContextListener', 'autoContextListListener']) {
+      expect(config.topLevel!.setters, isNot(contains(name)));
+      expect(
+        proposal.skips.singleWhere((skip) => skip.target == '$name=').code,
+        'top_level_setter_shape',
+      );
+    }
     expect(config.functions['autoIdentity']!.typeArguments, ['Object?']);
     expect(config.extensions['AutoTextExtension']!.getters, ['isBlank']);
     expect(config.extensions['AutoTextExtension']!.methods['repeatText'], [

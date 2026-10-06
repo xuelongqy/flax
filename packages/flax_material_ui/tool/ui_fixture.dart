@@ -29,6 +29,11 @@ Future<void> main() async {
     core,
     rawToWire,
     functions: functionSelections,
+    topLevel: const FlaxCodegenTopLevelSelection(
+      'ContextValues',
+      ['selectedContextMounted'],
+      setters: ['selectedContext'],
+    ),
   );
   await _generate(
     package,
@@ -233,6 +238,7 @@ FlaxCodegenModuleModel _rewriteModuleIds(
     snapshots: rewritten.snapshots,
     typedefs: rewritten.typedefs,
     topLevel: rewritten.topLevel,
+    stateVariants: rewritten.stateVariants,
     moduleId: module.moduleId,
     requiredCapabilities: module.requiredCapabilities,
   );

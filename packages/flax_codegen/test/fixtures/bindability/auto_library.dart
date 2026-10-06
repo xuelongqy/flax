@@ -213,3 +213,20 @@ class AutoVisible {
 
 Widget autoBuild(Widget Function(BuildContext) builder) =>
     Builder(builder: builder);
+
+bool autoContextMounted(BuildContext context) => context.mounted;
+
+class AutoContextBox {
+  AutoContextBox(this.context, {this.optional});
+
+  BuildContext context;
+  BuildContext? optional;
+  bool get mounted => context.mounted;
+  bool matches(BuildContext value) => identical(context, value);
+  static bool isMounted(BuildContext value) => value.mounted;
+  static set selected(BuildContext? value) {}
+}
+
+set autoSelectedContext(BuildContext? value) {}
+set autoContextListener(void Function(BuildContext) value) {}
+set autoContextListListener(void Function(List<BuildContext>) value) {}

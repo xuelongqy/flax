@@ -2174,26 +2174,7 @@ class FlaxCodegenBindingParser {
             forTypescript: true,
           ),
         );
-        if (!{
-          'String',
-          'bool',
-          'int',
-          'double',
-          'num',
-          'enum',
-          'data',
-          'any',
-          'iterable',
-          'list',
-          'map',
-          'record',
-          'set',
-          'object',
-          'future',
-          'futureOr',
-          'stream',
-          'callback',
-        }.contains(type.kind)) {
+        if (!_setterKinds.contains(type.kind)) {
           throw StateError('Unsupported setter type: $name');
         }
         setters.add(FlaxCodegenGetterModel(name, type));
@@ -2710,10 +2691,8 @@ class FlaxCodegenBindingParser {
             specializations: specializations,
           ),
         );
-        if (constructors.last.parameters.any(
-          (p) => p.type.kind == 'context' || p.type.kind == 'void',
-        )) {
-          throw StateError('Context inputs are currently callback-only');
+        if (constructors.last.parameters.any((p) => p.type.kind == 'void')) {
+          throw StateError('Void constructor inputs are unsupported');
         }
       }
       if (!isWidget &&

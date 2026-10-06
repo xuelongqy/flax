@@ -2,10 +2,12 @@ import 'dart:async';
 
 import 'package:flax_test/flax_test.dart';
 import 'package:flax/flax.dart';
+import 'package:flutter/material.dart' as native;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
 
 import '../../.dart_tool/flax/ui/functions_bindings.dart';
+import '../fixtures/functions.dart' as fixture;
 import '../support/owned_harness.dart';
 import '../support/harness.dart' show host;
 
@@ -31,6 +33,177 @@ Widget _app(
 );
 
 void main() {
+  testWidgets(
+    'Context inputs work in functions, objects, properties and collections',
+    (t) async {
+      final h = _harness();
+      Widget themed(Brightness brightness) => _app(
+        h,
+        home: native.Theme(
+          data: native.ThemeData(brightness: brightness),
+          child: Material(child: FlaxView.session(session: h.session)),
+        ),
+      );
+      try {
+        await t.pumpWidget(themed(Brightness.dark));
+        h.execute('topLevel.makeContextBox()');
+        for (final expression in [
+          'topLevel.functions.isDark(topLevel.context)',
+          'topLevel.functions.contextMounted(topLevel.context)',
+          'topLevel.functions.ContextBox.isMounted(topLevel.context)',
+          'topLevel.contextBox.mounted',
+          'topLevel.contextBox.matches(topLevel.context)',
+          'topLevel.functions.contextReader()(topLevel.context)',
+          'topLevel.functions.optionalContext({context: topLevel.context})',
+        ]) {
+          expect(h.boolean(expression), isTrue, reason: expression);
+        }
+        for (final expression in [
+          'topLevel.contextBox.optionalMounted',
+          'topLevel.functions.optionalContext()',
+          'topLevel.functions.optionalContext({context: undefined})',
+          'topLevel.functions.optionalContext({context: null})',
+        ]) {
+          expect(h.boolean(expression), isFalse, reason: expression);
+        }
+        expect(
+          h.number(
+            'topLevel.functions.mountedContexts([topLevel.context, topLevel.context])',
+          ),
+          2,
+        );
+        h.execute(
+          'topLevel.contextBox.origin = topLevel.context; '
+          'topLevel.contextBox.optional = topLevel.context; '
+          'topLevel.functions.ContextBox.setSelected(topLevel.context); '
+          'topLevel.functions.ContextValues.setSelectedContext(topLevel.context)',
+        );
+        expect(h.boolean('topLevel.contextBox.optionalMounted'), isTrue);
+        expect(
+          h.boolean('topLevel.functions.ContextBox.selectedMounted'),
+          isTrue,
+        );
+        expect(
+          h.boolean('topLevel.functions.ContextValues.selectedContextMounted'),
+          isTrue,
+        );
+        h.execute(
+          'topLevel.contextBox.optional = null; '
+          'topLevel.functions.ContextBox.setSelected(null); '
+          'topLevel.functions.ContextValues.setSelectedContext(null)',
+        );
+        expect(h.boolean('topLevel.contextBox.optionalMounted'), isFalse);
+        expect(
+          h.boolean('topLevel.functions.ContextBox.selectedMounted'),
+          isFalse,
+        );
+        expect(
+          h.boolean('topLevel.functions.ContextValues.selectedContextMounted'),
+          isFalse,
+        );
+        await t.pumpWidget(themed(Brightness.light));
+        expect(
+          h.boolean('topLevel.functions.isDark(topLevel.context)'),
+          isFalse,
+        );
+        h.execute('topLevel.makeContextBox(topLevel.context, null)');
+        expect(h.boolean('topLevel.contextBox.optionalMounted'), isFalse);
+        h.execute(
+          'topLevel.makeContextBox(topLevel.context, topLevel.context)',
+        );
+        expect(h.boolean('topLevel.contextBox.optionalMounted'), isTrue);
+        expect(h.errors, isEmpty);
+      } finally {
+        fixture.ContextBox.selected = null;
+        fixture.selectedContext = null;
+        await h.finish(t);
+      }
+    },
+  );
+
+  testWidgets('Context inputs reject invalid values on every conversion path', (
+    t,
+  ) async {
+    final h = _harness();
+    try {
+      await t.pumpWidget(_app(h));
+      h.execute('topLevel.makeContextBox()');
+      for (final value in ['{}', '1', 'null', 'undefined']) {
+        for (final call in [
+          'topLevel.functions.contextMounted($value)',
+          'topLevel.functions.ContextBox($value)',
+          'topLevel.contextBox.matches($value)',
+          'topLevel.contextBox.origin = $value',
+          'topLevel.functions.mountedContexts([$value])',
+          'topLevel.functions.contextReader()($value)',
+        ]) {
+          expect(
+            () => h.execute(call),
+            throwsA(isA<FlaxJsException>()),
+            reason: call,
+          );
+        }
+      }
+      for (final value in ['{}', '1', 'undefined']) {
+        for (final call in [
+          'topLevel.contextBox.optional = $value',
+          'topLevel.functions.ContextBox.setSelected($value)',
+          'topLevel.functions.ContextValues.setSelectedContext($value)',
+        ]) {
+          expect(
+            () => h.execute(call),
+            throwsA(isA<FlaxJsException>()),
+            reason: call,
+          );
+        }
+      }
+      expect(h.boolean('topLevel.contextBox.mounted'), isTrue);
+      expect(h.errors, isEmpty);
+    } finally {
+      await h.finish(t);
+    }
+  });
+
+  testWidgets('Context constructors preserve native storage after unmount', (
+    t,
+  ) async {
+    final h = _harness();
+    try {
+      await t.pumpWidget(_app(h));
+      h.execute('topLevel.makeContextBox()');
+      await t.pumpWidget(const SizedBox());
+      expect(h.boolean('topLevel.contextBox.mounted'), isFalse);
+      for (final call in [
+        'topLevel.functions.ContextBox(topLevel.context)',
+        'topLevel.contextBox.origin = topLevel.context',
+        'topLevel.contextBox.matches(topLevel.context)',
+        'topLevel.functions.mountedContexts([topLevel.context])',
+        'topLevel.functions.ContextBox.setSelected(topLevel.context)',
+        'topLevel.functions.ContextValues.setSelectedContext(topLevel.context)',
+      ]) {
+        expect(
+          () => h.execute(call),
+          throwsA(isA<FlaxJsException>()),
+          reason: call,
+        );
+      }
+      expect(h.errors, isEmpty);
+    } finally {
+      await h.finish(t);
+    }
+  });
+
+  testWidgets('Widget constructors borrow their supplied Context', (t) async {
+    final h = _harness();
+    try {
+      await t.pumpWidget(_app(h, home: Material(child: h.page('context'))));
+      expect(find.text('Context true'), findsOneWidget);
+      expect(h.errors, isEmpty);
+    } finally {
+      await h.finish(t);
+    }
+  });
+
   testWidgets(
     'ordinary builder rejects an unmounted native Context before JS',
     (t) async {

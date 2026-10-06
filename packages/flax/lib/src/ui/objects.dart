@@ -415,7 +415,9 @@ extension _ObjectCalls on _Session {
           }
           if (!p.omitWhenAbsent) values[p.name] = _Value(p.defaultValue);
         } else {
-          values[p.name] = decode(input, p.type);
+          values[p.name] = p.type.kind == 'context' && input is FlaxJsNumber
+              ? _Value(_context(input, p.type.id!).requireActive())
+              : decode(input, p.type);
         }
       }
       return values;

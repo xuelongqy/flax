@@ -120,6 +120,7 @@ let builderKind = 'function';
 let builderCalls = 0;
 let builderMounted = false;
 const builderBox = functions.BuilderBox();
+let contextBox: functions.ContextBox | undefined;
 function genericContent(current: BuildContext): Widget {
   builderCalls++;
   builderMounted = current.mounted;
@@ -151,6 +152,9 @@ registerPage('builder', () => {
   return functions.wrapBuilder(genericContent);
 });
 registerPage('functions', () => root);
+registerPage('context', () =>
+  Builder({ builder: (current) => functions.ContextTile({ origin: current }) }),
+);
 registerPage('application', () =>
   MaterialApp({ navigatorObservers: [observer], home: root }),
 );
@@ -159,6 +163,13 @@ Object.assign(globalThis, {
   topLevel: {
     functions,
     builderBox,
+    makeContextBox(origin = context, optional?: BuildContext | null) {
+      contextBox = functions.ContextBox(origin, { optional });
+      return contextBox;
+    },
+    get contextBox() {
+      return contextBox;
+    },
     inline() {
       builderBox.configure(genericContent);
       inline = builderBox.wrap();

@@ -262,7 +262,7 @@ void main() {
       expect((records['parameterPosition']! as List), hasLength(1));
       expect((records['insideCallbackSignature']! as List), hasLength(1));
       expect(evidence['mechanismDiagnostics'], {
-        'context_input_callback_only': 1,
+        'unsupported_mounted_widget_result': 1,
         'unsupported_binding_type': 1,
       });
       expect(evidence['mechanismDiagnosticIdentityCount'], 2);
@@ -454,8 +454,8 @@ const Map<String, Object?> _syntheticInventory = {
         'verdict': 'limited',
         'diagnostics': <Map<String, Object?>>[
           {
-            'code': 'context_input_callback_only',
-            'message': 'Context inputs are currently callback-only',
+            'code': 'unsupported_mounted_widget_result',
+            'message': 'Unsupported mounted Widget callback result',
           },
         ],
       },
@@ -774,10 +774,6 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     route: 'classWide',
     bindable: true,
     memberStatus: 'selected',
-    skips: <String>[
-      'WidgetBuilderBox.buildOnce.context: Context inputs are currently '
-          'callback-only',
-    ],
     classWideOk: true,
     classWideClasses: <String>['WidgetBuilderBox', 'BuildContext'],
     classWideMemberSelected: true,
@@ -788,15 +784,10 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'widget_callback_shapes.dart',
     type: 'WidgetBuilderBox',
     member: 'buildOnce',
-    verdict: CapabilityVerdict.unsupported,
-    reasonKind: CapabilityReasonKind.intentionalBoundary,
+    verdict: CapabilityVerdict.supported,
     route: 'classWide',
     bindable: true,
-    memberStatus: 'skipped',
-    skips: <String>[
-      'WidgetBuilderBox.buildOnce.context: Context inputs are currently '
-          'callback-only',
-    ],
+    memberStatus: 'selected',
     classWideOk: true,
     classWideClasses: <String>['WidgetBuilderBox', 'BuildContext'],
     classWideMemberSelected: true,

@@ -28,6 +28,13 @@ and associations without supplying runtime type arguments. `data.parameters` sel
 parameter names and `data.result: true` selects the result for explicit NavigationData
 conversion. Other Object positions use ordinary Dart interop.
 
+Direct Context parameters are selected automatically and use existing mounted Context
+references. For example, `bool isDark(BuildContext context)` can read
+`Theme.of(context)` from the Context received by a JS Builder. Constructors and setters
+may also pass or store that real Dart Context. This is borrowing: it neither keeps the
+Flutter element mounted nor transfers its ownership. Invalid or inactive references fail
+conversion.
+
 Selected scalar, enum, object, collection, synchronous callback, returned function, and
 Future conversions reuse member-call behavior. Dart invocation/conversion errors throw
 synchronously into JS; Future completion uses the UI Promise checkpoint and close

@@ -838,6 +838,7 @@ const _setterKinds = {
   'double',
   'num',
   'enum',
+  'context',
   'data',
   'any',
   'iterable',
@@ -1403,12 +1404,12 @@ List<String>? _bindConstructor({
     );
     return null;
   }
-  if (type.kind == 'context' || type.kind == 'void') {
+  if (type.kind == 'void') {
     skips.add(
       FlaxCodegenSkip(
         target: location,
-        reason: 'Context inputs are currently callback-only',
-        code: 'context_input_callback_only',
+        reason: 'Void inputs are unsupported',
+        code: 'unsupported_input_shape',
       ),
     );
     return null;

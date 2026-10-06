@@ -289,6 +289,13 @@ own defaults. Route, Page and extends-proxy adapters use super formals, preservi
 private defaults without copying them. Optional positional parameters permit only
 trailing omission; provided arguments after a hole are rejected.
 
+Direct Context inputs are supported by automatic and explicit selection in functions,
+constructors, methods, setters, returned Dart functions and supported collections. They
+borrow an existing Context from the same active session. Dart may store it, but binding
+does not extend the Flutter element's lifetime; subsequent bridge inputs reject inactive
+or unmounted references. JS cannot forge a Context or construct one. Context outputs and
+native-to-JS callback arguments still need an actual mounted owner.
+
 Widget parameters except key may bind. Ordinary object construction and writes do not
 bind. Callbacks support required/optional positional parameters, required/optional named
 parameters, and analyzer-validated generic parameters. Named arguments use a final JS

@@ -34,6 +34,11 @@ void main() {
         'unused.ts',
         functionClasses,
         functions: functionSelections,
+        topLevel: const FlaxCodegenTopLevelSelection(
+          'ContextValues',
+          ['selectedContextMounted'],
+          setters: ['selectedContext'],
+        ),
         additionalLibraries: [
           Uri.file(
             p.join(
@@ -58,7 +63,26 @@ void main() {
         emitter,
         module,
         consumerSource: """
-import {FunctionToken, addValues, invokeTopLevel, echoToken, mapNumbers, multiplyBy, finishLater, copyData, openFixturePanel, callAsync, callNamedCallback, callDebugPrinter, BuilderBox, wrapBuilder, builderWrapper, nativeTile} from './plugin.js';
+import {FunctionToken, addValues, invokeTopLevel, echoToken, mapNumbers, multiplyBy, finishLater, copyData, openFixturePanel, callAsync, callNamedCallback, callDebugPrinter, BuilderBox, wrapBuilder, builderWrapper, nativeTile, ContextBox, ContextTile, ContextValues, isDark, optionalContext, mountedContexts, contextReader} from './plugin.js';
+wrapBuilder(context => {
+  const dark: boolean = isDark(context);
+  const box = ContextBox(context, {optional: undefined});
+  box.origin = context;
+  box.optional = null;
+  box.matches(context);
+  ContextBox.isMounted(context);
+  ContextBox.setSelected(context);
+  ContextValues.setSelectedContext(context);
+  optionalContext({context: null});
+  optionalContext({context: undefined});
+  const count: number = mountedContexts([context]);
+  const mounted: boolean = contextReader()(context);
+  // @ts-expect-error Context inputs are not arbitrary objects.
+  ContextBox({mounted: true});
+  // @ts-expect-error Required Context cannot be null.
+  isDark(null);
+  return ContextTile({origin: context});
+});
 wrapBuilder(context => { const mounted: boolean = context.mounted; return nativeTile(); });
 const builderBox = BuilderBox(context => nativeTile());
 builderBox.configure(null);

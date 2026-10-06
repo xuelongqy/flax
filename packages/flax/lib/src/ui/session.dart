@@ -331,6 +331,11 @@ class _Session {
       }
       return _Value(null);
     }
+    if (type.kind == 'context') {
+      final handle = helper('contextHandle')
+          .call([value, FlaxJsString(type.id!)]);
+      return _Value(_context(handle, type.id!).requireActive());
+    }
     if (type.kind == 'void') {
       if (value is FlaxJsUndefined) return _Value(null);
       throw ArgumentError('Expected void, got ${value.runtimeType}');
