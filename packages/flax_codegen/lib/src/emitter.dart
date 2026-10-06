@@ -1412,7 +1412,7 @@ class FlaxCodegenBindingEmitter {
           parameter.type.category == FlaxCodegenTypeCategory.callback &&
           parameter.type.result!.category == FlaxCodegenTypeCategory.widget;
       final value = routeBuilder
-          ? 'lease.builder(${_quote(parameter.name)})'
+          ? 'lease.builder<${_dartType(specialization?.parameterTypes[index] ?? parameter.type)}>(${_quote(parameter.name)})'
           : _cast(
               'values[${_quote(parameter.name)}]',
               specialization?.parameterTypes[index] ?? parameter.type,
@@ -1460,7 +1460,7 @@ class FlaxCodegenBindingEmitter {
               type.category == FlaxCodegenClassCategory.route &&
                   p.type.category == FlaxCodegenTypeCategory.callback &&
                   p.type.result!.category == FlaxCodegenTypeCategory.widget
-              ? 'lease.builder(${_quote(p.name)})'
+              ? 'lease.builder<${_dartType(specialization?.parameterTypes[ctor.parameters.indexOf(p)] ?? p.type)}>(${_quote(p.name)})'
               : _cast(
                   'values[${_quote(p.name)}]',
                   specialization?.parameterTypes[ctor.parameters.indexOf(p)] ??
@@ -2534,6 +2534,7 @@ ${type.widgetMembers.map((m) => m.source).join('\n')}
       usesGenericCallbackResult |=
           generic &&
           result.kind != 'void' &&
+          !(result.kind == 'list' && result.item!.kind == 'widget') &&
           (result.kind != 'future' || result.item!.kind != 'void');
       if (result.kind == 'void') {
         out.writeln('_flaxBridgeCallback.call(positional, named);');
@@ -2887,8 +2888,11 @@ T _genericCallbackResult<T>(Object? value) {
     required bool generic,
   }) {
     final declared = _dartDeclaredType(result, generic: generic);
-    if (generic) return '_genericCallbackResult<$declared>($value)';
-    return declared == 'Object?' ? value : '$value as $declared';
+    // Widget snapshots need structural casts even inside generic callbacks.
+    if (generic && !(result.kind == 'list' && result.item!.kind == 'widget')) {
+      return '_genericCallbackResult<$declared>($value)';
+    }
+    return _cast(value, result);
   }
 
   String _stateMixinDartType(FlaxCodegenStateMixinModel mixin) {

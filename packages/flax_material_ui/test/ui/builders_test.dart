@@ -5,7 +5,8 @@ import 'package:material_ui/material_ui.dart';
 
 import 'package:flax_test/flax_test.dart';
 
-import '../support/harness.dart' show Harness, host, registry;
+import '../support/harness.dart'
+    show collectWidgetConfigurations, Harness, host, registry;
 import '../support/test_module.dart';
 import '../support/runtime_tracker.dart';
 
@@ -253,18 +254,16 @@ void main() {
 
       await t.pumpWidget(trackedApp(TextDirection.ltr));
       await t.pumpWidget(trackedApp(TextDirection.rtl));
+      await collectWidgetConfigurations(t);
       final baseline = runtime.handles;
       final calls = runtime.hostCalls['__flaxCall'] ?? 0;
       for (var i = 0; i < 100; i++) {
         await t.pumpWidget(
           trackedApp(i.isEven ? TextDirection.ltr : TextDirection.rtl),
         );
-        expect(
-          runtime.handles,
-          baseline,
-          reason: 'Owned handles grew at rebuild $i',
-        );
       }
+      await collectWidgetConfigurations(t);
+      expect(runtime.handles, baseline);
       expect(runtime.hostCalls['__flaxCall'], calls + 100);
       final getters = runtime.hostCalls['__flaxGet'] ?? 0;
       execute(
@@ -273,14 +272,16 @@ void main() {
       expect(runtime.hostCalls['__flaxGet'] ?? 0, getters);
       execute('hooks.visible.value = false');
       await t.pump();
+      await collectWidgetConfigurations(t);
       final unmounted = runtime.handles;
       for (var i = 0; i < 20; i++) {
         execute('hooks.visible.value = true');
         await t.pump();
         execute('hooks.visible.value = false');
         await t.pump();
-        expect(runtime.handles, unmounted);
       }
+      await collectWidgetConfigurations(t);
+      expect(runtime.handles, unmounted);
       await flaxTestUnmount(t);
       expect(runtime.handlesAtDispose, 0);
       expect(errors, isEmpty);

@@ -5,7 +5,7 @@ import 'package:material_ui/material_ui.dart';
 
 import 'package:flax_test/flax_test.dart';
 
-import '../support/harness.dart' show registry;
+import '../support/harness.dart' show collectWidgetConfigurations, registry;
 import '../support/runtime_tracker.dart';
 
 final pagesSource = flaxTestFixtureSource(
@@ -80,6 +80,7 @@ void main() {
         expect(ModalRoute.of(t.element(find.text('Local 1'))), same(route));
         expect(h.read('pages.factories'), 1);
         expect(h.read('pages.builds'), builds);
+        await collectWidgetConfigurations(t);
         steady ??= h.runtime.handles;
         expect(h.runtime.handles, steady);
       }
@@ -146,6 +147,7 @@ void main() {
           '[7,true,{"answer":[42,true]}]',
         );
         expect(find.text('Page {"id":1}'), findsOneWidget);
+        await collectWidgetConfigurations(t);
         steady ??= h.runtime.handles;
         expect(h.runtime.handles, steady);
       }

@@ -195,23 +195,15 @@ void main() {
       'iterableWidgets',
       'setWidgets',
       'mapWidgets',
-      'futureWidget',
-      'futureOrWidget',
-      'streamWidget',
       'futureWidgets',
       'streamWidgets',
     ]) {
       expect(deferred.constructors[''], isNot(contains(name)), reason: name);
     }
-    for (final name in ['futureWidget', 'futureOrWidget', 'streamWidget']) {
-      expect(
-        proposal.skips
-            .where((skip) => skip.target.endsWith('.$name'))
-            .map((skip) => skip.reason),
-        contains(contains('Unsupported mounted Widget callback result')),
-        reason: name,
-      );
-    }
+    expect(
+      deferred.constructors[''],
+      containsAll(['futureWidget', 'futureOrWidget', 'streamWidget']),
+    );
 
     final module = await parser.parse(config);
     expect(
@@ -419,6 +411,27 @@ void main() {
         proposal.config.classes['ExternalPreferredTile']!.widgetInterfaces,
         ['ExternalPreferred'],
       );
+      expect(
+        proposal.config.functions.keys,
+        containsAll(['applyPreferred', 'preferredIdentity']),
+      );
+      for (final name in [
+        'ExternalPreferredBuilder',
+        'ExternalPreferredListBuilder',
+        'ExternalPreferredNestedBuilder',
+      ]) {
+        final parameter = name == 'ExternalPreferredNestedBuilder'
+            ? 'builders'
+            : 'builder';
+        expect(
+          proposal.config.classes[name]!.constructors[''],
+          contains(parameter),
+        );
+        expect(
+          proposal.skips.where((skip) => skip.target == '$name.$parameter'),
+          isEmpty,
+        );
+      }
       final module = await parser.parse(proposal.config);
       expect(
         module.classes

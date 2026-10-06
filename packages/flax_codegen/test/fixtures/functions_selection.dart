@@ -33,6 +33,18 @@ const functionClasses = {
       'wrapStatic': ['builder'],
     },
   ),
+  'PreferredBuilderBox': FlaxCodegenClassSelection(
+    {
+      '': ['builder'],
+    },
+    kind: 'object',
+    instanceMethods: {
+      'invoke': ['origin'],
+    },
+    methods: {
+      'buildStatic': ['origin', 'builder'],
+    },
+  ),
   'FunctionToken': FlaxCodegenClassSelection(
     {
       '': ['value'],
@@ -85,6 +97,19 @@ const functionSelections = {
   'callNamedCallback': FlaxCodegenFunctionSelection(['transform']),
   'callDebugPrinter': FlaxCodegenFunctionSelection(['callback']),
   'nativeTile': FlaxCodegenFunctionSelection([]),
+  'nativePreferred': FlaxCodegenFunctionSelection([]),
+  'preferredHeight': FlaxCodegenFunctionSelection(['value']),
+  'invokePreferred': FlaxCodegenFunctionSelection(['origin', 'builder']),
+  'invokeNullablePreferred': FlaxCodegenFunctionSelection([
+    'origin',
+    'builder',
+  ]),
+  'invokeAsyncPreferred': FlaxCodegenFunctionSelection(['origin', 'builder']),
+  'mapPreferred': FlaxCodegenFunctionSelection(['value', 'transform']),
+  'preferredIdentity': FlaxCodegenFunctionSelection([]),
+  'mapPreferredList': FlaxCodegenFunctionSelection(['transform']),
+  'genericPreferredList': FlaxCodegenFunctionSelection(['builder']),
+
   'openFixturePanel': FlaxCodegenFunctionSelection(
     ['origin', 'content', 'root', 'failAfterPush', 'before', 'maintainState'],
     dataResult: true,

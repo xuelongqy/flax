@@ -6804,7 +6804,9 @@ api1.Route<Object?> _createMaterialPageRoute(
     case "":
       return _MaterialPageRoute(
         lease,
-        builder: lease.builder("builder"),
+        builder: lease.builder<api1.Widget Function(api1.BuildContext context)>(
+          "builder",
+        ),
         settings: values["settings"] as api1.RouteSettings?,
         maintainState: values["maintainState"] as bool,
         fullscreenDialog: values["fullscreenDialog"] as bool,

@@ -169,3 +169,43 @@ Widget optionalContextBuilder(Widget Function([BuildContext?]) builder) =>
     Builder(builder: (context) => builder(context));
 Widget nestedBuilders(List<WidgetBuilder> builder) =>
     Builder(builder: builder.single);
+
+PreferredSizeWidget nativePreferred() => const PreferredSize(
+  preferredSize: Size.fromHeight(37),
+  child: Text('Preferred callback'),
+);
+double preferredHeight(PreferredSizeWidget value) => value.preferredSize.height;
+PreferredSizeWidget invokePreferred(
+  BuildContext origin,
+  PreferredSizeWidget Function(BuildContext) builder,
+) => builder(origin);
+PreferredSizeWidget? invokeNullablePreferred(
+  BuildContext origin,
+  PreferredSizeWidget? Function(BuildContext) builder,
+) => builder(origin);
+Future<PreferredSizeWidget> invokeAsyncPreferred(
+  BuildContext origin,
+  Future<PreferredSizeWidget> Function(BuildContext) builder,
+) => builder(origin);
+PreferredSizeWidget mapPreferred(
+  PreferredSizeWidget value,
+  PreferredSizeWidget Function(PreferredSizeWidget) transform,
+) => transform(value);
+PreferredSizeWidget Function(PreferredSizeWidget) preferredIdentity() =>
+    (value) => value;
+List<PreferredSizeWidget> mapPreferredList(
+  List<PreferredSizeWidget> Function(List<PreferredSizeWidget>) transform,
+) => transform([nativePreferred()]);
+List<PreferredSizeWidget> genericPreferredList(
+  List<PreferredSizeWidget> Function<T>() builder,
+) => builder<int>();
+
+class PreferredBuilderBox {
+  PreferredBuilderBox(this.builder);
+  final PreferredSizeWidget Function(BuildContext) builder;
+  PreferredSizeWidget invoke(BuildContext origin) => builder(origin);
+  static PreferredSizeWidget buildStatic(
+    BuildContext origin,
+    PreferredSizeWidget Function(BuildContext) builder,
+  ) => builder(origin);
+}

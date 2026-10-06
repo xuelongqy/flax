@@ -2,7 +2,7 @@ import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
 
-import '../support/harness.dart' show host;
+import '../support/harness.dart' show collectWidgetConfigurations, host;
 import '../support/owned_harness.dart';
 
 Widget app(Widget view, ThemeData theme) => MaterialApp(
@@ -249,6 +249,7 @@ void main() {
       }
       await t.pumpWidget(app(view, dark));
       await t.pumpAndSettle();
+      await collectWidgetConfigurations(t);
       final handles = h.runtime.handles;
       final subscriptions = h.runtime.activeSubscriptions;
       final bridge = h.runtime.hostCalls['__flaxCall'] ?? 0;
@@ -256,9 +257,10 @@ void main() {
       for (var i = 0; i < 20; i++) {
         await t.pumpWidget(app(view, i.isEven ? light : dark));
         await t.pumpAndSettle();
-        expect(h.runtime.handles, handles);
         expect(h.runtime.activeSubscriptions, subscriptions);
       }
+      await collectWidgetConfigurations(t);
+      expect(h.runtime.handles, handles);
       expect(h.runtime.hostCalls['__flaxCall'], bridge + 60); // Host, derived and inherited Cupertino dependencies; matched against Dart above.
       expect(h.number('themes.factories'), 1);
       expect(h.number('themes.localBuilds'), localReads + 20);
@@ -275,6 +277,7 @@ void main() {
         await t.pumpAndSettle();
         expect(h.runtime.activeSubscriptions, subscriptions);
         // First cleanup loads the cached releaseContext/releaseObject helpers.
+        await collectWidgetConfigurations(t);
         remountedHandles ??= h.runtime.handles;
         expect(h.runtime.handles, remountedHandles);
       }

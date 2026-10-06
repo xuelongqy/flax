@@ -88,19 +88,39 @@ imports separately from bridge TypeRefs. Native members add no wire operations o
 rows; existing declaration IDs, UI protocol 22 and native ABI 2 remain unchanged. See
 [ADR 0029](../decisions/0029-native-widget-interface-members.md).
 
-Interface Widgets still require fixed constructor arguments without direct or
-collection-contained callbacks. Widgets inside child/children keep their own callback
-ownership. A native setter mutates the target configuration according to its Dart
-implementation; it does not create a reactive subscription or schedule a rebuild.
+Interface Widgets require fixed constructor arguments and accept ordinary typed
+callbacks, including callbacks inside supported collections. The cached native
+configuration uses the original closures during validation, mounting and later Dart
+reuse; it does not clone callbacks per mount. Widgets inside child/children keep their
+own mounted subscriptions. A native setter mutates the target configuration according to
+its Dart implementation; it does not create a reactive subscription or schedule a
+rebuild.
 
 Interface types work in Widget parameters, typed Widget lists and native Widget results.
-Callbacks declaring a narrower Widget-interface return type are rejected: existing
-callback result hosts do not implement arbitrary interfaces. This does not restrict
-ordinary callbacks returning Widget, whose content may be an AppBar.
+Ordinary and mounted callbacks share conversion for interface-typed arguments and
+results, including nullable results, Futures and direct typed Widget lists. Returned
+Dart functions use the same conversions. For example,
+`PreferredSizeWidget Function(BuildContext)` can return an AppBar or PreferredSize,
+while a plain Text fails the interface check. Configured Route/Page builders forward the
+original typed closure and preserve its actual result without an extra content host.
+Route-producing functions retain their existing observed-navigation contract.
+
+Callback results preserve native Widget identity and generated hosts' selected
+interfaces. Narrow interface failures propagate the original error; an ErrorWidget
+cannot satisfy an arbitrary interface. Only base `Widget` and `List<Widget>` UI
+callbacks can use the existing error placeholder. Synchronous callbacks still reject
+Promises. Widget-containing Records and non-list Widget collections remain outside the
+callback conversion contract. Specific concrete native class returns such as
+`Text Function()` are not made bindable by this rule: a generated Text host is a Widget,
+not a native Text.
 
 A previous interface configuration may still be read by native didUpdateWidget even if
-its Widget was never mounted. Its cached Dart value follows the proxy's Dart lifetime;
-releasing the bridge lease still releases every JS resource immediately.
+its Widget was never mounted. Its cached Dart value follows Dart references. Escaped
+callbacks and generated child configurations use the shared weak cleanup mechanism, so a
+saved native configuration remains usable after its original host unmounts. Unmount
+releases mounted subscriptions immediately; discarded configurations release bridge
+handles after actual Dart GC. Session close revokes all bridge holdings without waiting
+for GC or disposing application values.
 
 Configuration replacement uses the existing prepare, validate, commit and release
 sequence. Mounted children hold their own resources; new configurations do not reset

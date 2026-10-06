@@ -138,7 +138,12 @@ extension _MemberCalls on _Session {
       if (definition == null) throw ArgumentError('Unknown top-level function');
       final route = definition.route;
       if (route != null) requireOpen();
-      final values = _callArguments(args, definition.parameters, 2);
+      final values = _callArguments(
+        args,
+        definition.parameters,
+        2,
+        uiCallbacks: route?.builders ?? const [],
+      );
       FlaxRouteLease? lease;
       try {
         final inputs = values.map((name, value) => MapEntry(name, value.data));
@@ -252,8 +257,9 @@ extension _MemberCalls on _Session {
   Map<String, _Value> _callArguments(
     List<FlaxJsValue> args,
     List<FlaxParameter> parameters,
-    int offset,
-  ) {
+    int offset, {
+    List<String> uiCallbacks = const [],
+  }) {
     if (args.length > parameters.length + offset) {
       throw ArgumentError('Too many function arguments');
     }
@@ -272,7 +278,13 @@ extension _MemberCalls on _Session {
         } else if (p.type.kind == 'context' && arg is! FlaxJsNull) {
           values[p.name] = _Value(_context(arg, p.type.id!).requireActive());
         } else {
-          values[p.name] = decode(arg, p.type);
+          values[p.name] = decode(
+            arg,
+            p.type,
+            callbackScope: uiCallbacks.contains(p.name)
+                ? _CallbackScope.ui
+                : _CallbackScope.member,
+          );
         }
       }
       return values;

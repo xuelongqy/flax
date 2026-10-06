@@ -5,7 +5,7 @@ import 'package:material_ui/material_ui.dart';
 
 import '../../.dart_tool/flax/ui/widget_interfaces_bindings.dart';
 import '../fixtures/widget_interfaces.dart';
-import '../support/harness.dart' show host;
+import '../support/harness.dart' show collectWidgetConfigurations, host;
 import '../support/owned_harness.dart';
 
 OwnedHarness harness() => OwnedHarness(
@@ -306,6 +306,7 @@ void main() {
       try {
         await t.pumpWidget(h.app('scaffold-test'));
         await t.pumpAndSettle();
+        await collectWidgetConfigurations(t);
         var baseline = h.runtime.handles;
         final initialLabels = h.runtime.handleLabels.toSet();
         final subscriptions = h.runtime.activeSubscriptions;
@@ -319,6 +320,7 @@ void main() {
           );
           await t.pump();
           expect(h.runtime.activeSubscriptions, subscriptions);
+          await collectWidgetConfigurations(t);
           if (i == 0) {
             // First use of a custom State loads its shared lifecycle helpers.
             // ignore: avoid_print
@@ -346,6 +348,344 @@ void main() {
         print(
           'Interface replacements: 30 round trips; $baseline handle baseline, $subscriptions subscriptions; zero at close.',
         );
+      } finally {
+        await h.finish(t);
+      }
+    },
+  );
+  testWidgets(
+    'mounted callback returns preserve native Widget and interface identity',
+    (t) async {
+      final h = harness();
+      try {
+        await t.pumpWidget(h.app('callback-fixture'));
+        await t.pumpAndSettle();
+        h.execute('widgetCallbacks.mode.value="native"');
+        await t.pumpAndSettle();
+        expect(InterfaceBuilder.last, same(ExtentProbe.native));
+        h.execute('widgetCallbacks.kind.value="base"');
+        await t.pumpAndSettle();
+        expect(WidgetResultBuilder.last, same(ExtentProbe.plain));
+        expect(h.errors, isEmpty);
+      } finally {
+        InterfaceBuilder.last = null;
+        WidgetResultBuilder.last = null;
+        await h.finish(t);
+      }
+    },
+  );
+
+  testWidgets(
+    'interface callback lists and nested callbacks retain local signals',
+    (t) async {
+      final h = harness();
+      try {
+        await t.pumpWidget(h.app('callback-fixture'));
+        await t.pumpAndSettle();
+        final first = InterfaceBuilder.last;
+        expect(first, isA<LabelledContract>());
+        h.execute('widgetCallbacks.label.value="Updated callback child"');
+        await t.pumpAndSettle();
+        expect(InterfaceBuilder.last, same(first));
+        expect(find.text('Updated callback child'), findsOneWidget);
+        h.execute('widgetCallbacks.kind.value="list"');
+        await t.pumpAndSettle();
+        expect(find.text('Updated callback child'), findsNWidgets(2));
+        h.execute('widgetCallbacks.kind.value="nested"');
+        await t.pumpAndSettle();
+        expect(find.text('Updated callback child'), findsOneWidget);
+        expect(h.errors, isEmpty);
+      } finally {
+        InterfaceBuilder.last = null;
+        await h.finish(t);
+      }
+    },
+  );
+
+  testWidgets(
+    'narrow callback failures propagate the original error and recover',
+    (t) async {
+      final h = harness();
+      try {
+        await t.pumpWidget(h.app('callback-fixture'));
+        await t.pumpAndSettle();
+        for (final kind in ['interface', 'list', 'nested']) {
+          h.execute(
+            'widgetCallbacks.kind.value="$kind";widgetCallbacks.mode.value="invalid"',
+          );
+          await t.pumpAndSettle();
+          expect(t.takeException(), isA<ArgumentError>());
+          expect(
+            h.errors.last.toString(),
+            contains('Widget does not implement'),
+          );
+          h.execute('widgetCallbacks.mode.value="native"');
+          await t.pumpAndSettle();
+          expect(t.takeException(), isNull);
+          expect(
+            find.text('Native tile'),
+            kind == 'list' ? findsNWidgets(2) : findsOneWidget,
+          );
+        }
+        h.execute(
+          'widgetCallbacks.kind.value="interface";widgetCallbacks.mode.value="throw"',
+        );
+        await t.pumpAndSettle();
+        expect(
+          t.takeException().toString(),
+          contains('interface callback failure'),
+        );
+        expect(h.errors, hasLength(4));
+        h.execute(
+          'widgetCallbacks.kind.value="nullable";widgetCallbacks.mode.value="null"',
+        );
+        await t.pumpAndSettle();
+        expect(t.takeException(), isNull);
+        expect(find.text('Native tile'), findsNothing);
+      } finally {
+        InterfaceBuilder.last = null;
+        await h.finish(t);
+      }
+    },
+  );
+
+  testWidgets(
+    'mounted asynchronous interface callbacks preserve typed results and errors',
+    (t) async {
+      final h = harness();
+      try {
+        await t.pumpWidget(h.app('callback-fixture'));
+        await t.pumpAndSettle();
+        h.execute(
+          'widgetCallbacks.kind.value="async";widgetCallbacks.mode.value="native"',
+        );
+        await t.pumpAndSettle();
+        expect(find.text('Native tile'), findsOneWidget);
+        h.execute('widgetCallbacks.mode.value="throw"');
+        await t.pumpAndSettle();
+        expect(find.textContaining('Async error:'), findsOneWidget);
+        h.execute('widgetCallbacks.mode.value="generated"');
+        await t.pumpAndSettle();
+        expect(find.text('Callback child'), findsOneWidget);
+        expect(t.takeException(), isNull);
+      } finally {
+        InterfaceBuilder.last = null;
+        await h.finish(t);
+      }
+    },
+  );
+
+  testWidgets(
+    'mounted FutureOr and Stream callbacks preserve interface results',
+    (t) async {
+      final h = harness();
+      try {
+        await t.pumpWidget(h.app('callback-fixture'));
+        await t.pumpAndSettle();
+        for (final kind in ['future-or', 'future-or-async', 'stream']) {
+          h.execute(
+            'widgetCallbacks.kind.value="$kind";widgetCallbacks.mode.value="native"',
+          );
+          await t.pumpAndSettle();
+          expect(find.text('Native tile'), findsOneWidget);
+          h.execute('widgetCallbacks.mode.value="generated"');
+          await t.pumpAndSettle();
+          expect(find.text('Callback child'), findsOneWidget);
+          h.execute('widgetCallbacks.label.value="Async typed child"');
+          await t.pumpAndSettle();
+          expect(find.text('Async typed child'), findsOneWidget);
+          h.execute('widgetCallbacks.label.value="Callback child"');
+          await t.pumpAndSettle();
+        }
+        expect(h.errors, isEmpty);
+        expect(t.takeException(), isNull);
+      } finally {
+        InterfaceBuilder.last = null;
+        await h.finish(t);
+      }
+    },
+  );
+
+  testWidgets(
+    'Dart can retain an unmounted interface configuration for later mounting',
+    (t) async {
+      final h = harness();
+      try {
+        await t.pumpWidget(h.app('callback-fixture'));
+        await t.pumpAndSettle();
+        h.execute('widgetCallbacks.discard.value=true');
+        await t.pumpAndSettle();
+        final saved = InterfaceBuilder.last!;
+        InterfaceBuilder.last = null;
+        expect(find.text('Callback child'), findsNothing);
+        await collectWidgetConfigurations(t);
+        await t.pumpWidget(MaterialApp(home: saved));
+        await t.pumpAndSettle();
+        expect(find.text('Callback child'), findsOneWidget);
+        h.execute('widgetCallbacks.label.value="Mounted later"');
+        await t.pumpAndSettle();
+        expect(find.text('Mounted later'), findsOneWidget);
+        expect(h.errors, isEmpty);
+      } finally {
+        InterfaceBuilder.last = null;
+        await h.finish(t);
+      }
+    },
+  );
+
+  testWidgets(
+    'discarded interface configurations are collected without extra subscriptions',
+    (t) async {
+      final h = harness();
+      try {
+        await t.pumpWidget(h.app('callback-fixture'));
+        await t.pumpAndSettle();
+        h.execute('widgetCallbacks.discard.value=true');
+        await t.pumpAndSettle();
+        InterfaceBuilder.last = null;
+        await collectWidgetConfigurations(t);
+        final baseline = h.runtime.handles;
+        final subscriptions = h.runtime.activeSubscriptions;
+        for (var i = 0; i < 30; i++) {
+          h.execute('widgetCallbacks.revision.value++');
+          await t.pumpAndSettle();
+          expect(h.runtime.activeSubscriptions, subscriptions);
+        }
+        final beforeGc = h.runtime.handles;
+        InterfaceBuilder.last = null;
+        await collectWidgetConfigurations(t);
+        expect(h.runtime.handles, baseline);
+        expect(h.errors, isEmpty);
+        // ignore: avoid_print
+        print(
+          'Widget configurations: $baseline -> $beforeGc -> ${h.runtime.handles} handles after real GC; $subscriptions subscriptions.',
+        );
+      } finally {
+        InterfaceBuilder.last = null;
+        await h.finish(t);
+      }
+    },
+  );
+
+  testWidgets(
+    'fixed native configurations keep generated children alive across reuse',
+    (t) async {
+      final h = harness();
+      try {
+        await t.pumpWidget(h.app('callback-fixture'));
+        await t.pumpAndSettle();
+        final saved =
+            (InterfaceBuilder.last as FlaxWidgetHost).configuration
+                as ExtentTile;
+        InterfaceBuilder.last = null;
+        await flaxTestUnmount(t);
+        await t.pumpAndSettle();
+        await collectWidgetConfigurations(t);
+        await t.pumpWidget(MaterialApp(home: saved));
+        await t.pumpAndSettle();
+        expect(find.text('Callback child'), findsOneWidget);
+        h.execute('widgetCallbacks.label.value="Native configuration reused"');
+        await t.pumpAndSettle();
+        expect(find.text('Native configuration reused'), findsOneWidget);
+        expect(h.errors, isEmpty);
+      } finally {
+        InterfaceBuilder.last = null;
+        await h.finish(t);
+      }
+    },
+  );
+
+  testWidgets(
+    'fixed interface callbacks survive native configuration reuse and session close',
+    (t) async {
+      final h = harness();
+      try {
+        await t.pumpWidget(h.app('callback-fixture'));
+        await t.pumpAndSettle();
+        h.execute('widgetCallbacks.mode.value="callback"');
+        await t.pumpAndSettle();
+        final saved =
+            (InterfaceBuilder.last as FlaxWidgetHost).configuration
+                as CallbackTile;
+        await t.tap(find.text('Callback tile'));
+        expect(h.number('widgetCallbacks.taps'), 2);
+        InterfaceBuilder.last = null;
+        await flaxTestUnmount(t);
+        await t.pumpAndSettle();
+        await collectWidgetConfigurations(t);
+        await t.pumpWidget(MaterialApp(home: saved));
+        await t.pumpAndSettle();
+        await t.tap(find.text('Callback tile'));
+        expect(h.number('widgetCallbacks.taps'), 4);
+        await h.finish(t);
+        final calls = Map.of(h.runtime.jsCalls);
+        saved.callback();
+        for (final callback in saved.callbacks) {
+          callback();
+        }
+        expect(h.runtime.jsCalls, calls);
+        expect(h.runtime.handlesAtDispose, 0);
+        expect(h.runtime.activeSubscriptions, 0);
+      } finally {
+        InterfaceBuilder.last = null;
+        await h.finish(t);
+      }
+    },
+  );
+
+  testWidgets(
+    'typed Route builders use native Context and retire at navigation completion',
+    (t) async {
+      final h = harness();
+      try {
+        await t.pumpWidget(
+          MaterialApp(
+            navigatorObservers: [FlaxNavigatorObserver()],
+            home: h.page('callback-fixture'),
+          ),
+        );
+        await t.pumpAndSettle();
+        for (final open in ['open', 'openPanel']) {
+          h.execute('void widgetCallbacks.$open()');
+          await t.pumpAndSettle();
+          expect(find.text('Callback child'), findsOneWidget);
+          h.execute('widgetCallbacks.label.value="Route update"');
+          await t.pumpAndSettle();
+          expect(find.text('Route update'), findsOneWidget);
+          h.execute('widgetCallbacks.pop()');
+          await t.pumpAndSettle();
+          h.execute('widgetCallbacks.label.value="Callback child"');
+          await t.pumpAndSettle();
+        }
+        expect(h.errors, isEmpty);
+      } finally {
+        InterfaceBuilder.last = null;
+        await h.finish(t);
+      }
+    },
+  );
+
+  testWidgets(
+    'typed Page callbacks retain updated configurations until their Routes retire',
+    (t) async {
+      final h = harness();
+      try {
+        await t.pumpWidget(h.app('callback-pages'));
+        await t.pumpAndSettle();
+        expect(find.text('Native tile'), findsOneWidget);
+        h.execute('widgetCallbacks.setPage(1)');
+        await t.pumpAndSettle();
+        expect(find.text('Page 1'), findsOneWidget);
+        final route = ModalRoute.of(t.element(find.text('Page 1')));
+        h.execute('widgetCallbacks.setPage(2)');
+        await t.pumpAndSettle();
+        expect(find.text('Page 2'), findsOneWidget);
+        expect(ModalRoute.of(t.element(find.text('Page 2'))), same(route));
+        h.execute('widgetCallbacks.clearPages()');
+        await t.pumpAndSettle();
+        expect(find.text('Page 2'), findsNothing);
+        expect(find.text('Native tile'), findsOneWidget);
+        expect(h.errors, isEmpty);
       } finally {
         await h.finish(t);
       }

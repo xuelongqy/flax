@@ -1,6 +1,7 @@
 import { bind, signal } from '@flax/core';
 import {
   Builder,
+  Navigator,
   Column,
   PreferredSize,
   SizedBox,
@@ -19,8 +20,22 @@ import {
   ExtentTile,
   ExtentProbe,
   MetadataFrame,
+  CallbackTile,
+  InterfaceBuilder,
+  InterfaceListBuilder,
+  InterfaceNestedBuilder,
+  InterfaceNullableBuilder,
+  InterfaceAsyncBuilder,
+  InterfaceFutureOrBuilder,
+  InterfaceStreamBuilder,
+  WidgetResultBuilder,
+  InterfaceRoute,
+  InterfacePage,
+  openInterfacePanel,
+  interfaceStream,
 } from '../../../.dart_tool/flax/ui/widget_interfaces_bindings.js';
-import type { PreferredSizeWidget, Widget } from '@flax/flutter/widgets';
+import type { ExtentContract } from '../../../.dart_tool/flax/ui/widget_interfaces_bindings.js';
+import type { PreferredSizeWidget, Widget, Page } from '@flax/flutter/widgets';
 
 export const height = signal<number | null>(null);
 export const bottomHeight = signal<number | null>(null);
@@ -166,6 +181,99 @@ Object.assign(globalThis, {
     },
     get disposals() {
       return disposals;
+    },
+  },
+});
+
+const callbackMode = signal('generated');
+const callbackKind = signal('interface');
+const callbackRevision = signal(0);
+const callbackLabel = signal('Callback child');
+const callbackDiscard = signal(false);
+const callbackPages = signal<readonly Page[]>([]);
+let taps = 0;
+let callbackContext: Parameters<typeof Navigator.of>[0];
+function interfaceResult(): ExtentContract {
+  if (callbackMode.value === 'native') return ExtentProbe.native;
+  if (callbackMode.value === 'invalid') return ExtentProbe.plain as ExtentContract;
+  if (callbackMode.value === 'throw') throw Error('interface callback failure');
+  if (callbackMode.value === 'null') return null as unknown as ExtentContract;
+  if (callbackMode.value === 'callback')
+    return CallbackTile({ callback: () => taps++, callbacks: [() => taps++] });
+  return ExtentTile({ child: Text(callbackLabel.bind) });
+}
+registerPage('callback-fixture', () =>
+  Builder({
+    builder: bind(() => {
+      callbackRevision.value;
+      callbackMode.value;
+      const kind = callbackKind.value,
+        discard = callbackDiscard.value;
+      return (context) => {
+        callbackContext = context;
+        if (kind === 'base')
+          return WidgetResultBuilder({ discard, builder: () => ExtentProbe.plain });
+        if (kind === 'list')
+          return InterfaceListBuilder({
+            builder: () => [interfaceResult(), interfaceResult()],
+          });
+        if (kind === 'nested')
+          return InterfaceNestedBuilder({ builders: [() => interfaceResult()] });
+        if (kind === 'nullable')
+          return InterfaceNullableBuilder({ builder: () => interfaceResult() });
+        if (kind === 'future-or')
+          return InterfaceFutureOrBuilder({ builder: () => interfaceResult() });
+        if (kind === 'future-or-async')
+          return InterfaceFutureOrBuilder({ builder: async () => interfaceResult() });
+        if (kind === 'stream')
+          return InterfaceStreamBuilder({
+            builder: () => interfaceStream(interfaceResult()),
+          });
+        if (kind === 'async')
+          return InterfaceAsyncBuilder({ builder: async () => interfaceResult() });
+        return InterfaceBuilder({ discard, builder: () => interfaceResult() });
+      };
+    }),
+  }),
+);
+registerPage('callback-pages', () =>
+  Navigator({
+    pages: bind(() => [
+      InterfacePage({ key: ValueKey('base'), builder: () => ExtentProbe.native }),
+      ...callbackPages.value,
+    ]),
+    onDidRemovePage: (page) => {
+      callbackPages.value = callbackPages.value.filter((value) => value !== page);
+    },
+  }),
+);
+Object.assign(globalThis, {
+  widgetCallbacks: {
+    mode: callbackMode,
+    kind: callbackKind,
+    revision: callbackRevision,
+    label: callbackLabel,
+    discard: callbackDiscard,
+    get taps() {
+      return taps;
+    },
+    open: () =>
+      Navigator.of(callbackContext).push(
+        InterfaceRoute({ builder: () => interfaceResult() }),
+      ),
+    openPanel: () =>
+      openInterfacePanel({ origin: callbackContext, content: () => interfaceResult() }),
+    pop: () => Navigator.of(callbackContext).pop(),
+    setPage: (revision: number) => {
+      callbackPages.value = [
+        InterfacePage({
+          key: ValueKey('page'),
+          builder: () => ExtentTile({ child: Text(`Page ${revision}`) }),
+        }),
+      ];
+    },
+    clearPages: () => {
+      callbackPages.value = [];
     },
   },
 });

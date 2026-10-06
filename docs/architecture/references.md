@@ -19,8 +19,13 @@ close. Losing the last JS wrapper does not remove that registration.
 A callback closure may be stored by an ordinary Dart object or returned Widget. Its
 lifetime follows that Dart reference, including before the first mount. Calling it
 preserves its actual Context, synchronous order, result and exception. Conversion
-creates no synthetic Builder or Element. A Future-returning callback uses the existing
-Promise conversion; synchronous Flutter builders reject a Promise.
+creates no synthetic Builder or Element. Mounted Widget callbacks and typed Route/Page
+builders use the same result conversion. Fixed interface configurations keep their
+original typed closures and generated children through native configuration reuse.
+Unmount stops subscriptions immediately; discarded configurations require actual Dart GC
+to release their handles. There is no frame-end result expiry queue. A Future-returning
+callback uses the existing Promise conversion; synchronous Flutter builders reject a
+Promise.
 
 Context borrowing never keeps an Element mounted or alive. The bridge rejects forged,
 foreign-session, inactive and unmounted inputs. `mounted` reports the native state;

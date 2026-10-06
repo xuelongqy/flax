@@ -221,15 +221,6 @@ extension _AsyncCalls on _Session {
           }
         }
       }
-      // Flutter has finished adopting this frame's callback results. Discarded
-      // children must not stay alive until the next builder call or a GC cycle.
-      if (_unmountedResults.isNotEmpty) {
-        final unmounted = _unmountedResults.toList();
-        _unmountedResults.clear();
-        for (final result in unmounted) {
-          result.release();
-        }
-      }
       for (final result in _hostResults) {
         result.release();
       }

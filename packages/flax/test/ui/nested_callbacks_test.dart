@@ -14,6 +14,13 @@ Finder tile() => find.byWidgetPredicate(
   (w) => w is fixture.RetainedTile && w.label == 'nested-0',
 );
 
+Future<void> collectReturnedWidgets(WidgetTester tester) async {
+  for (var i = 0; i < 4; i++) {
+    await tester.runAsync(flaxTestCollectDartGarbage);
+    await tester.pumpAndSettle();
+  }
+}
+
 void main() {
   testWidgets(
     'Dart collections cannot transplant another session JS callback',
@@ -84,6 +91,7 @@ void main() {
         for (var i = 0; i < 8; i++) {
           h.execute('nested.revision.value++');
           await t.pumpAndSettle();
+          await collectReturnedWidgets(t);
           counts.add(h.runtime.handles);
         }
         expect(counts.toSet(), hasLength(1));
@@ -140,10 +148,12 @@ void main() {
         await t.pumpAndSettle();
         expect(find.byType(fixture.RetainedTile), findsNothing);
         expect(h.runtime.activeSubscriptions, subscriptions - 2);
+        await collectReturnedWidgets(t);
         final baseline = h.runtime.handles;
         for (var i = 0; i < 5; i++) {
           h.execute('nested.revision.value++');
           await t.pumpAndSettle();
+          await collectReturnedWidgets(t);
           expect(h.runtime.handles, baseline);
         }
         h.execute('nested.discard.value=false');

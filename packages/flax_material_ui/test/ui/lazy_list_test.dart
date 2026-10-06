@@ -5,7 +5,7 @@ import 'package:material_ui/material_ui.dart';
 
 import '../../.dart_tool/flax/ui/material_repeated_bindings.dart';
 import '../fixtures/repeated.dart';
-import '../support/harness.dart' show host;
+import '../support/harness.dart' show collectWidgetConfigurations, host;
 import '../support/owned_harness.dart';
 
 OwnedHarness harness() =>
@@ -175,6 +175,7 @@ void main() {
         controller.jumpTo(0);
         await t.pumpAndSettle();
         expect(t.state(tile(0)), same(zero));
+        await collectWidgetConfigurations(t);
         handles.add(h.runtime.handles);
       }
       expect(handles.toSet(), hasLength(1));

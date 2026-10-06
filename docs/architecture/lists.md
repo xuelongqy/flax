@@ -50,37 +50,28 @@ rebuilds follow Flutter, including dependencies registered on the shared Sliver 
 
 ## Independent result ownership
 
-Callbacks stored by a mounted Widget constructor use invocation ownership automatically
-when their direct synchronous result is `Widget`, `Widget?` or `List<Widget>`. The
-callback does not need a `BuildContext` parameter. No constructor-specific callback list
-is required:
+Callbacks stored by mounted Widget constructors reuse ordinary callback result
+conversion. JS executes synchronously when Flutter requests a child. The actual Widget
+is returned, with its native identity, key and selected interface; no result host,
+deferred Builder or pending-adoption queue is added. No constructor-specific callback
+list or public lifecycle marker is required. Existing semantic metadata remains
+compatible.
 
-```yaml
-# No callback ownership marker is needed for itemBuilder.
-```
-
-The runtime derives ownership from the mounted Widget callback position and result type,
-instead of a component name, callback name, parameter list or index. No public callback
-ownership marker is required. The role is preserved in generated semantic metadata for
-runtime delivery.
-
-JS executes synchronously when Flutter requests the child, not during descriptor
-validation or inside a deferred replacement Builder. Each non-null result is wrapped by
-an internal host carrying the child's key. The host owns the description through update
-and disposal; inner generated hosts retain their usual independent leases. Callback
-replacement cannot release resources that mounted children still use.
-
-Results await initial adoption until the existing safe UI checkpoint after the frame. A
-mounted host takes its own reference. Results that Flutter discards are released at that
-checkpoint, without waiting for another invocation or GC. Pending results also prevent
-session destruction. No result history is indexed by item index or key.
+An escaped generated configuration retains its bridge dependencies while Dart holds it,
+including before its first mount. Each mounted generated host owns its own signal
+subscriptions; replacing a callback cannot retire a child still held by Dart or Flutter.
+Unmount releases mounted subscriptions, and actual Dart GC releases discarded
+configurations. Session close revokes bridge holdings immediately and does not wait for
+configuration GC. No result history is indexed by item index or key. See
+[bridge references and GC](references.md).
 
 ## Errors and Flutter boundaries
 
-A Widget callback error, invalid return or Promise reports once through the session and
-produces a bounded error placeholder for that invocation. It never returns another
-invocation's content. Later valid calls can recover. Builder and LayoutBuilder follow
-the same invocation-isolated rule.
+A base Widget callback error, invalid return or Promise reports once through the session
+and produces a bounded error placeholder for that invocation. Narrow Widget-interface
+callbacks propagate the original error because the placeholder does not implement their
+interface. It never returns another invocation's content. Later valid calls can recover.
+Builder and LayoutBuilder follow the same invocation-isolated rule.
 
 Explicit null is forwarded to Flutter and may terminate construction. Undefined is not
 null and is rejected. In pinned Flutter 3.47.2, changing an already materialized middle

@@ -9,7 +9,7 @@ import 'package:material_ui/material_ui.dart';
 
 import 'package:flax_test/flax_test.dart';
 
-import '../support/harness.dart' show registry;
+import '../support/harness.dart' show collectWidgetConfigurations, registry;
 import '../support/test_module.dart';
 import '../support/runtime_tracker.dart';
 
@@ -151,6 +151,7 @@ void main() {
       await t.tap(find.text('Return result'));
       await t.pumpAndSettle();
       expect(find.text('Result {"selected":["a",3]}'), findsOneWidget);
+      await collectWidgetConfigurations(t);
       steady ??= h.runtime.handles;
       subscriptions ??= h.runtime.activeSubscriptions;
       expect(h.runtime.pendingFutures, 0);
@@ -305,14 +306,8 @@ void main() {
     await h.enter(t);
     await t.tap(find.text('Open detail'));
     await t.pumpAndSettle();
-    final body = find.byWidgetPredicate(
-      (w) => w is FlaxWidgetHost && w.node.definition.id == 'flax:route-body',
-    );
-    void rebuild() => t
-        .element(
-          find.descendant(of: body, matching: find.byType(Builder)).first,
-        )
-        .markNeedsBuild();
+    final route = ModalRoute.of(t.element(find.text('Detail')))!;
+    void rebuild() => route.changedExternalState();
     h.execute('navigation.throwBuilder = true');
     rebuild();
     await t.pumpAndSettle();
@@ -514,14 +509,8 @@ __flaxCall($flaxBindingVersion, 'test:Async', 'later').then(
       expect(find.byType(ErrorWidget), findsOneWidget);
       expect(h.errors.single.toString(), contains('route builder failed'));
       h.execute('navigation.throwBuilder = false');
-      final body = find.byWidgetPredicate(
-        (w) => w is FlaxWidgetHost && w.node.definition.id == 'flax:route-body',
-      );
-      t
-          .element(
-            find.descendant(of: body, matching: find.byType(Builder)).first,
-          )
-          .markNeedsBuild();
+      final route = ModalRoute.of(t.element(find.byType(ErrorWidget)))!;
+      route.changedExternalState();
       await t.pumpAndSettle();
       expect(find.text('Detail'), findsOneWidget);
       await h.finish(t);

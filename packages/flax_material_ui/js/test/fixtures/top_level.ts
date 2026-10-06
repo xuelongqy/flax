@@ -8,6 +8,7 @@ import {
   StatefulWidget,
   State,
   TextEditingController,
+  PreferredSize,
   registerPage,
   runApp,
   type BuildContext,
@@ -179,6 +180,15 @@ registerPage('functions', () => root);
 registerPage('context', () =>
   Builder({ builder: (current) => functions.ContextTile({ origin: current }) }),
 );
+function preferred() {
+  return PreferredSize({
+    preferredSize: Size.fromHeight(43),
+    child: Text('Descriptor preferred'),
+  });
+}
+registerPage('preferred', () =>
+  Builder({ builder: (current) => functions.invokePreferred(current, preferred) }),
+);
 registerPage('application', () =>
   MaterialApp({ navigatorObservers: [observer], home: root }),
 );
@@ -186,6 +196,7 @@ runApp(root);
 Object.assign(globalThis, {
   topLevel: {
     functions,
+    preferred,
     builderBox,
     makeContextBox(origin = context, optional?: BuildContext | null) {
       contextBox = functions.ContextBox(origin, { optional });

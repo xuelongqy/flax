@@ -1414,19 +1414,6 @@ List<String>? _bindConstructor({
     );
     return null;
   }
-  if (widget &&
-      type.kind == 'callback' &&
-      type.result!.containsWidget &&
-      !type.result!.isDirectMountedWidgetResult) {
-    skips.add(
-      FlaxCodegenSkip(
-        target: location,
-        reason: 'Unsupported mounted Widget callback result: $location',
-        code: 'unsupported_mounted_widget_result',
-      ),
-    );
-    return null;
-  }
   if (!widget &&
       kind != 'object' &&
       kind != 'stream' &&

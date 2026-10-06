@@ -13,7 +13,8 @@ class FlaxNode extends _Resource {
   void close() {
     // Flutter may still read oldWidget's interface configuration after the bridge
     // lease ends, even when that Widget was never mounted. Only its native value
-    // follows the proxy's Dart lifetime; JS resources below are always released.
+    // follows Dart references; escaped callbacks and children retain their own
+    // cleanup until collected or the session closes.
     if (!definition.fixedArguments) _validatedWidget = null;
     for (final source in _sources.values) {
       source.release();
@@ -93,7 +94,13 @@ class _MountedProperty {
         remaining.removeAt(index);
       }
     }
-    if (next.data == null || !source.type.containsCallback) return next;
+    // Fixed native configurations use the same typed closures during validation,
+    // mounting and later Dart reuse. They need no per-mount callback copies.
+    if (owner.widget.node.definition.fixedArguments ||
+        next.data == null ||
+        !source.type.containsCallback) {
+      return next;
+    }
     if (source.type.kind != 'callback') return _prepareNestedCallbacks(next);
     try {
       final callback = _callbackSources[next.data!];
@@ -360,63 +367,6 @@ class _NodeState extends State<FlaxWidgetHost> with _ContextOwner {
     _node?.release();
     final session = widget.node._session;
     if (_retained) session.releaseMount();
-    super.dispose();
-  }
-}
-
-/// Each returned child owns its description independently of the invoking callback.
-class _IndependentResult extends StatefulWidget {
-  _IndependentResult(this.session, this.result)
-    : super(key: (result.data as Widget).key);
-  final _Session session;
-  final _Value result;
-
-  @override
-  State<_IndependentResult> createState() => _IndependentResultState();
-}
-
-class _IndependentResultState extends State<_IndependentResult> {
-  bool _retained = false;
-  Object? _failure;
-  void _accept() {
-    widget.result.retain();
-    if (widget.session._unmountedResults.remove(widget.result)) {
-      widget.result.release();
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    if (!widget.session.active) {
-      _failure = StateError('Closed Flax session');
-      widget.session.report(_failure!, StackTrace.current);
-      return;
-    }
-    widget.session.retainMount();
-    _retained = true;
-    _accept();
-  }
-
-  @override
-  void didUpdateWidget(covariant _IndependentResult oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (_retained) {
-      _accept();
-      oldWidget.result.release();
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) =>
-      _failure == null ? widget.result.data as Widget : _errorWidget(_failure!);
-
-  @override
-  void dispose() {
-    if (_retained) {
-      widget.result.release();
-      widget.session.releaseMount();
-    }
     super.dispose();
   }
 }

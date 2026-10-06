@@ -129,6 +129,8 @@ class FlaxCallbackBinding {
   final String id;
   final Object? Function(Object, List<Object?>, Map<String, Object?>) invoke;
   final bool Function(Object) matches;
+  // Retained for generated module compatibility. Shared result conversion owns
+  // returned configurations without adding a separate result host.
   final bool independentWidgetResult;
   final List<FlaxCallbackParameter> parameters;
   final FlaxTypeRef result;

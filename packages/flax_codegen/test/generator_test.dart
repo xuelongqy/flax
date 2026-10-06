@@ -88,6 +88,28 @@ const builderBox = BuilderBox(context => nativeTile());
 builderBox.configure(null);
 BuilderBox.wrapStatic(context => nativeTile());
 builderWrapper()(context => nativeTile());
+import {nativePreferred, preferredHeight, invokePreferred, invokeNullablePreferred, invokeAsyncPreferred, mapPreferred, preferredIdentity, mapPreferredList, genericPreferredList, PreferredBuilderBox} from './plugin.js';
+type PreferredSizeWidget = ReturnType<typeof nativePreferred>;
+const source: PreferredSizeWidget = nativePreferred();
+const height: number = preferredHeight(source);
+mapPreferred(source, value => value);
+preferredIdentity()(source);
+mapPreferredList(values => values.toArray());
+genericPreferredList(() => [source]);
+wrapBuilder(context => {
+  const result: PreferredSizeWidget = invokePreferred(context, () => source);
+  invokeNullablePreferred(context, () => null);
+  invokeAsyncPreferred(context, async () => source);
+  PreferredBuilderBox(() => source).invoke(context);
+  PreferredBuilderBox.buildStatic(context, () => source);
+  // @ts-expect-error A plain Widget cannot claim the narrower interface.
+  invokePreferred(context, () => nativeTile());
+  // @ts-expect-error Only nullable interface results may return null.
+  invokePreferred(context, () => null);
+  // @ts-expect-error Synchronous interface callbacks cannot return Promises.
+  invokePreferred(context, async () => source);
+  return result;
+});
 // @ts-expect-error Standard builders return non-null Widgets.
 wrapBuilder(context => null);
 // @ts-expect-error Standard builders receive Context, not a number.
@@ -192,20 +214,22 @@ copyData(token);
             'namedBuilder': FlaxCodegenFunctionSelection(['builder']),
             'optionalContextBuilder': FlaxCodegenFunctionSelection(['builder']),
             'nestedBuilders': FlaxCodegenFunctionSelection(['builder']),
+            'interfaceBuilder': FlaxCodegenFunctionSelection(['builder']),
+            'openInterfacePanel': FlaxCodegenFunctionSelection([
+              'origin',
+              'content',
+              'root',
+            ], route: FlaxCodegenRouteCallModel('origin', 'root', ['content'])),
           },
         ),
       );
-      expect(callbacks.functions, hasLength(6));
+      expect(callbacks.functions, hasLength(8));
       await compileFixture(
         root,
         FlaxCodegenBindingEmitter([callbacks, core]),
         callbacks,
       );
       for (final functions in [
-        for (final name in ['interfaceBuilder'])
-          {
-            name: const FlaxCodegenFunctionSelection(['builder']),
-          },
         {'absent': const FlaxCodegenFunctionSelection([])},
         {'FunctionToken': const FlaxCodegenFunctionSelection([])},
         {
@@ -337,15 +361,6 @@ const size = tile.extent;
         },
         {
           ...widgetInterfacesSelection,
-          'CallbackTile': const FlaxCodegenClassSelection(
-            {
-              '': ['callback'],
-            },
-            widgetInterfaces: ['ExtentContract'],
-          ),
-        },
-        {
-          ...widgetInterfacesSelection,
           'ExtentTile': const FlaxCodegenClassSelection(
             {
               '': ['child'],
@@ -359,6 +374,59 @@ const size = tile.extent;
           throwsStateError,
         );
       }
+    },
+  );
+
+  test(
+    'mounted callbacks preserve native Widget interfaces and fixed callbacks',
+    () async {
+      final config = fixture('widget_interfaces.dart', {
+        for (final entry in widgetInterfacesSelection.entries)
+          if (entry.key != 'Key') entry.key: entry.value,
+        'InterfaceBuilder': const FlaxCodegenClassSelection({
+          '': ['builder'],
+        }),
+        'InterfaceListBuilder': const FlaxCodegenClassSelection({
+          '': ['builder'],
+        }),
+        'InterfaceNestedBuilder': const FlaxCodegenClassSelection({
+          '': ['builders'],
+        }),
+        'InterfaceRoute': const FlaxCodegenClassSelection({
+          '': ['builder'],
+        }, kind: 'route'),
+        'CallbackTile': const FlaxCodegenClassSelection(
+          {
+            '': ['callback'],
+          },
+          widgetInterfaces: ['ExtentContract'],
+        ),
+      });
+      final coreConfig = FlaxCodegenBindingConfig.read(
+        p.join(root, 'packages/flax/bindings/config.yaml'),
+      );
+      await parser.prepare([config, coreConfig]);
+      final core = await parser.parse(coreConfig);
+      final module = await parser.parse(config);
+      final emitter = FlaxCodegenBindingEmitter([module, core]);
+      await compileFixture(
+        root,
+        emitter,
+        module,
+        consumerSource: """
+import {ExtentTile, ExtentProbe, InterfaceBuilder, InterfaceListBuilder, InterfaceNestedBuilder, InterfaceRoute, CallbackTile} from './plugin.js';
+const tile = ExtentTile({child: ExtentProbe.plain});
+InterfaceBuilder({builder: () => tile});
+InterfaceListBuilder({builder: () => [tile, tile]});
+InterfaceNestedBuilder({builders: [() => tile]});
+InterfaceRoute({builder: () => tile});
+CallbackTile({callback: () => {}});
+// @ts-expect-error A plain Widget does not implement ExtentContract.
+InterfaceBuilder({builder: () => ExtentProbe.plain});
+// @ts-expect-error Synchronous callbacks cannot return a Promise.
+InterfaceBuilder({builder: async () => tile});
+""",
+      );
     },
   );
 
@@ -1704,7 +1772,12 @@ AlignmentGeometry();
     expect(probe.methods.first.parameters.last.defaultCode, 'false');
     expect(probe.methods.last.typeArguments, ['Object?']);
     final emitter = FlaxCodegenBindingEmitter([module]);
-    expect(emitter.dart(module), contains('lease.builder("content")'));
+    expect(
+      emitter.dart(module),
+      contains(
+        'lease.builder<api.Widget Function(api.BuildContext context)>("content")',
+      ),
+    );
     expect(emitter.dart(module), contains('_lease.routeDisposed()'));
     expect(emitter.typescript(module), contains('Promise<NavigationData'));
     await compileFixture(root, emitter, module);

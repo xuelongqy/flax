@@ -51,6 +51,14 @@ Future<void> main() async {
     widgetInterfacesSelection,
     core,
     rawToWire,
+    functions: const {
+      'interfaceStream': FlaxCodegenFunctionSelection(['value']),
+      'openInterfacePanel': FlaxCodegenFunctionSelection(
+        ['origin', 'content', 'root'],
+        dataResult: true,
+        route: FlaxCodegenRouteCallModel('origin', 'root', ['content']),
+      ),
+    },
   );
   await _generate(
     package,

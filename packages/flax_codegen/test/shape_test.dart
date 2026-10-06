@@ -635,6 +635,54 @@ void main() {
     );
   });
 
+  test(
+    'interface callbacks retain nominal types without mounted result hosts',
+    () {
+      const widget = FlaxCodegenTypeRef(
+        'widget',
+        id: 'flax.core/flutter#type:PreferredSizeWidget',
+        name: 'PreferredSizeWidget',
+      );
+      const callback = FlaxCodegenTypeRef('callback', result: widget);
+      callback.validateCallbacks('ordinary', input: true);
+      callback.validateCallbacks('returned', input: false);
+      expect(FlaxCodegenShapeV1.encode(callback).value, contains('nominal'));
+      expect(widget.isDirectMountedWidgetResult, isFalse);
+      expect(
+        const FlaxCodegenTypeRef(
+          'list',
+          item: widget,
+        ).isDirectMountedWidgetResult,
+        isFalse,
+      );
+      const FlaxCodegenTypeRef(
+        'callback',
+        result: FlaxCodegenTypeRef('list', item: widget),
+      ).validateCallbacks('mounted list', input: true);
+      const FlaxCodegenTypeRef(
+        'list',
+        item: callback,
+      ).validateCallbacks('nested mounted callbacks', input: true);
+      const record = FlaxCodegenTypeRef(
+        'callback',
+        result: FlaxCodegenTypeRef(
+          'record',
+          recordFields: [
+            FlaxCodegenRecordFieldModel(
+              name: '\$1',
+              type: widget,
+              positional: true,
+            ),
+          ],
+        ),
+      );
+      expect(
+        () => record.validateCallbacks('Widget record', input: true),
+        throwsA(isA<StateError>()),
+      );
+    },
+  );
+
   test('encode rejects empty and duplicate named parameters', () {
     expect(
       () => FlaxCodegenShapeV1.encode(

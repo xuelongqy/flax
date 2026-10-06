@@ -181,10 +181,11 @@ class FlaxCodegenTypeRef {
       (key?.containsWidget ?? false) ||
       recordFields.any((field) => field.type.containsWidget);
   bool get isDirectMountedWidgetResult =>
-      kind == 'widget' ||
+      (kind == 'widget' && id == null) ||
       (kind == 'list' &&
           !nullable &&
           item?.kind == 'widget' &&
+          item?.id == null &&
           item?.nullable == false);
   bool get containsCallback =>
       category == FlaxCodegenTypeCategory.callback ||
@@ -405,6 +406,8 @@ class FlaxCodegenTypeRef {
           return null;
         }
         if (type.kind == 'record') {
+          // Widget configuration escape supports direct Widgets and typed lists.
+          if (type.containsWidget) return position;
           for (final field in type.recordFields) {
             final error = unsupportedPosition(
               field.type,
@@ -425,8 +428,7 @@ class FlaxCodegenTypeRef {
         }
         if (type.kind == 'context') return argument ? null : position;
         if (type.kind == 'page') return argument && !toDart ? null : position;
-        // Mounted callback result hosts do not inherit a narrower Widget interface.
-        if (type.kind == 'widget') return type.id == null ? null : position;
+        if (type.kind == 'widget') return null;
         if (type.kind == 'route') return toDart && !argument ? null : position;
         // Lexical type-parameter refs require a bound genericIdentity token.
         if (type.kind == 'parameter') {
@@ -1115,13 +1117,8 @@ class FlaxCodegenModuleModel {
         }
       }
       if (type.widgetInterfaces.isNotEmpty &&
-          (category != FlaxCodegenClassCategory.widget ||
-              type.constructors.any(
-                (c) => c.parameters.any((p) => p.type.containsCallback),
-              ))) {
-        throw StateError(
-          'Interface Widgets require fixed inputs without callbacks: ${type.name}',
-        );
+          category != FlaxCodegenClassCategory.widget) {
+        throw StateError('Widget interfaces require a Widget: ${type.name}');
       }
       if (category == FlaxCodegenClassCategory.widgetInterface &&
           (type.constructors.isNotEmpty ||

@@ -1,11 +1,19 @@
+import 'package:flax_test/flax_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../.dart_tool/flax/ui/repeated_bindings.dart';
 import '../support/owned_harness.dart';
 
+Future<void> collectReturnedWidgets(WidgetTester tester) async {
+  for (var i = 0; i < 4; i++) {
+    await tester.runAsync(flaxTestCollectDartGarbage);
+    await tester.pumpAndSettle();
+  }
+}
+
 void main() {
   testWidgets(
-    'independent results mount, replace, discard and close without retaining history',
+    'independent results mount, replace, discard and close release discarded configurations after Dart GC',
     (t) async {
       final h = OwnedHarness(fixture: 'repeated', extra: [repeatedBindings]);
       await t.pumpWidget(h.app('repeated'));
@@ -49,10 +57,12 @@ void main() {
       h.execute('repeated.discard.value = true');
       await t.pumpAndSettle();
       expect(h.runtime.activeSubscriptions, 3);
+      await collectReturnedWidgets(t);
       final handles = h.runtime.handles;
       for (var i = 0; i < 10; i++) {
         h.execute('repeated.revision.value++');
         await t.pumpAndSettle();
+        await collectReturnedWidgets(t);
         expect(h.runtime.handles, handles);
         expect(h.runtime.activeSubscriptions, 3);
       }

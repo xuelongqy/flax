@@ -76,23 +76,10 @@ class FlaxRouteLease extends _Resource {
   bool _transferred = false;
   bool _disposed = false;
 
-  late final _bodyBinding = FlaxWidgetBinding(
-    'flax:route-body',
-    {},
-    (node) => _RouteBody(node, this),
-  );
-
-  WidgetBuilder builder(String name) {
-    final source = _sources[name]!;
-    return (context) {
-      source.initial.retain();
-      final input = _Source(_session, source.type, source.initial);
-      final node = FlaxNode._(_session, _bodyBinding, '', {'builder': input});
-      // The Route owns the descriptor until the content's first mount, after which
-      // that host owns its own lease. This also handles content rebuilt offstage.
-      return _bodyBinding.createHost(node);
-    };
-  }
+  // The lease already owns the generated typed closure. Returning it preserves
+  // its exact signature and Widget interface without adding an Element.
+  T builder<T extends Function>(String name) =>
+      _sources[name]!.initial.data as T;
 
   void _transfer() {
     if (_transferred) return;
@@ -108,14 +95,8 @@ class FlaxRouteLease extends _Resource {
     if (_transferred) {
       release();
     }
-    for (final node in _previews.toList()) {
-      node.release();
-    }
-    _previews.clear();
     if (_transferred) _session.releaseRoute();
   }
-
-  final _previews = <FlaxNode>{};
 
   @override
   void close() {
@@ -123,36 +104,6 @@ class FlaxRouteLease extends _Resource {
       source.release();
     }
     if (!_disposed) onDiscard?.call();
-  }
-}
-
-class _RouteBody extends FlaxWidgetHost {
-  _RouteBody(super.node, this.lease) {
-    lease._previews.add(node);
-  }
-  final FlaxRouteLease lease;
-  @override
-  Widget buildNative(Map<String, Object?> values) =>
-      Builder(builder: values['builder'] as WidgetBuilder);
-  @override
-  State<FlaxWidgetHost> createState() => _RouteBodyState();
-}
-
-class _RouteBodyState extends _NodeState {
-  void _accept(_RouteBody body) {
-    if (body.lease._previews.remove(body.node)) body.node.release();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _accept(widget as _RouteBody);
-  }
-
-  @override
-  void didUpdateWidget(covariant FlaxWidgetHost oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    _accept(widget as _RouteBody);
   }
 }
 
@@ -179,7 +130,17 @@ extension _Navigation on _Session {
     }
     final sources = _inBindingContext(
       definition.id,
-      () => _arguments(descriptor, parameters, allowBindings: false),
+      () => _arguments(
+        descriptor,
+        parameters,
+        allowBindings: false,
+        uiCallbacks: [
+          for (final parameter in parameters)
+            if (parameter.type.kind == 'callback' &&
+                parameter.type.callback!.result.kind == 'widget')
+              parameter.name,
+        ],
+      ),
     );
     final lease = FlaxRouteLease._(this, sources);
     try {

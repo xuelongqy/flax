@@ -66,6 +66,114 @@ void main() {
     },
   );
 
+  testWidgets(
+    'ordinary interface callbacks preserve native types and identity',
+    (t) async {
+      final h = _harness();
+      try {
+        await t.pumpWidget(_app(h));
+        h.execute('''
+        var preferredFunctions = topLevel.functions;
+        var preferredSource = preferredFunctions.nativePreferred();
+        var preferredContext = topLevel.context;
+        var preferredBox = preferredFunctions.PreferredBuilderBox(current => {
+          if (current !== preferredContext) throw Error('Context changed');
+          return preferredSource;
+        });
+        var preferredResults = [
+          preferredFunctions.invokePreferred(preferredContext, () => preferredSource),
+          preferredBox.invoke(preferredContext),
+          preferredFunctions.PreferredBuilderBox.buildStatic(preferredContext, () => preferredSource),
+          preferredFunctions.mapPreferred(preferredSource, value => value),
+          preferredFunctions.preferredIdentity()(preferredSource),
+          preferredFunctions.invokeNullablePreferred(preferredContext, () => preferredSource),
+        ];
+        var preferredList = preferredFunctions.mapPreferredList(values => values.toArray());
+        var preferredGenericList = preferredFunctions.genericPreferredList(() => [preferredSource]);
+        var preferredDescriptor = preferredFunctions.invokePreferred(preferredContext, () => topLevel.preferred());
+        var asyncPreferredHeight = 0;
+        preferredFunctions.invokeAsyncPreferred(preferredContext, async () => preferredSource)
+          .then(value => { asyncPreferredHeight = preferredFunctions.preferredHeight(value); });
+      ''');
+        await t.pumpAndSettle();
+        expect(
+          h.boolean(
+            'preferredResults.every(value => value === preferredSource)',
+          ),
+          isTrue,
+        );
+        expect(
+          h.number('preferredFunctions.preferredHeight(preferredList.get(0))'),
+          37,
+        );
+        expect(
+          h.number('preferredFunctions.preferredHeight(preferredDescriptor)'),
+          43,
+        );
+        expect(
+          h.boolean('preferredGenericList.get(0) === preferredSource'),
+          isTrue,
+        );
+        expect(h.number('asyncPreferredHeight'), 37);
+        expect(
+          h.boolean(
+            'preferredFunctions.invokeNullablePreferred(preferredContext, () => null) === null',
+          ),
+          isTrue,
+        );
+        await t.pumpWidget(_app(h, home: h.page('preferred')));
+        expect(find.text('Descriptor preferred'), findsOneWidget);
+        expect(h.errors, isEmpty);
+      } finally {
+        await h.finish(t);
+      }
+    },
+  );
+
+  testWidgets('ordinary interface callbacks reject invalid inputs and results', (
+    t,
+  ) async {
+    final h = _harness();
+    try {
+      await t.pumpWidget(_app(h));
+      for (final value in [
+        'null',
+        'undefined',
+        '7',
+        'topLevel.functions.nativeTile()',
+        'Promise.resolve(topLevel.functions.nativePreferred())',
+      ]) {
+        expect(
+          () => h.execute(
+            'topLevel.functions.invokePreferred(topLevel.context, () => $value)',
+          ),
+          throwsA(isA<FlaxJsException>()),
+          reason: value,
+        );
+      }
+      for (final call in [
+        'topLevel.functions.preferredIdentity()(topLevel.functions.nativeTile())',
+        'topLevel.functions.invokePreferred(topLevel.context, () => { throw Error("interface failure"); })',
+        'topLevel.functions.mapPreferredList(() => [topLevel.functions.nativeTile()])',
+      ]) {
+        expect(
+          () => h.execute(call),
+          throwsA(isA<FlaxJsException>()),
+          reason: call,
+        );
+      }
+      expect(
+        h.number(
+          'topLevel.functions.preferredHeight(topLevel.functions.invokePreferred(topLevel.context, () => topLevel.preferred()))',
+        ),
+        43,
+      );
+      expect(h.errors, isEmpty);
+    } finally {
+      await h.finish(t);
+    }
+  });
+
   for (final shape in [
     'indexed',
     'nullable',

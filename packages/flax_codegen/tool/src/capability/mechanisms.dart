@@ -367,18 +367,10 @@ const Set<String> stage2MechanismFlutterFixtures = {
 /// diagnostic codes. These are assessed, not left in an unmeasured bucket.
 const List<Map<String, Object?>> stage2MechanismBoundaries = [
   {
-    'id': 'async_mounted_widget_result',
-    'verdict': 'unsupported',
-    'reasonKind': 'intentionalBoundary',
-    'code': 'unsupported_mounted_widget_result',
-    'fixture': 'test/fixtures/bindability/auto_library.dart',
-    'example': 'Future<Widget> Function() on a Widget constructor',
-  },
-  {
     'id': 'mounted_widget_collection_shape',
     'verdict': 'unsupported',
     'reasonKind': 'intentionalBoundary',
-    'code': 'unsupported_mounted_widget_result',
+    'code': 'unsupported_input_shape',
     'fixture': 'test/fixtures/bindability/auto_library.dart',
     'example': 'Set<Widget> or List<Widget?> returned by a mounted callback',
   },

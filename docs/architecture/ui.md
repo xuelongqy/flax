@@ -112,12 +112,14 @@ BoxConstraints exposes only minWidth, maxWidth, minHeight, and maxHeight as a fr
 reference, including Infinity. Each selected field reads its real Dart getter. Enums
 returned by Dart share identity with the generated JS constants, including ===.
 
-Each mounted builder owns its retained result, even when several nodes share a function
-or descriptor. Each successful invocation owns its result independently; mounted
-descendants keep their own resource leases through reconciliation. Callback replacement
-releases the old function when its owners finish. Builder errors, Promise returns, and
-invalid structures reach onError and display a bounded ErrorWidget for that invocation.
-Subsequent valid invocations can recover without replacing the runtime.
+Mounted builders return actual Widgets through the shared typed callback conversion,
+even when several nodes share a function or descriptor. Escaped configurations follow
+Dart references and GC; mounted descendants keep their own subscriptions through
+reconciliation. Callback replacement releases the old function when its owners finish.
+Base Widget builder errors, Promise returns and invalid structures reach onError and
+display a bounded ErrorWidget for that invocation. Narrow Widget-interface failures
+propagate the original error. Subsequent valid invocations can recover without replacing
+the runtime.
 
 ## Ownership and recovery
 

@@ -130,15 +130,18 @@ functions:
 
 These roles describe a restricted contract: the function synchronously pushes exactly
 one TransitionRoute and returns a Future. Each selected builder is a synchronous,
-non-null WidgetBuilder with a BuildContext parameter. No function names are inferred.
-Asynchronous navigation, arbitrary Route subclasses, and independent dialog windows are
-outside this contract.
+non-null Widget-returning callback with one BuildContext parameter. Its result may be
+base Widget or a selected Widget interface. No function names are inferred. Asynchronous
+navigation, arbitrary Route subclasses, and independent dialog windows are outside this
+contract.
 
 During that call the observer captures the actual didPush notification. A nested call
 temporarily replaces and then restores the current record. The Route retains its
 builders independently of the source Context, page, or event; Flutter first invokes a
-builder when it builds the dialog. The existing content host owns each mounted result.
-The observer does not maintain a page stack or replace Flutter theme/transition code.
+builder when it builds the dialog. The lease forwards the original typed closure; result
+conversion preserves the actual Widget and its selected interfaces. Escaped
+configurations and their mounted resources use the shared reference mechanism. The
+observer does not maintain a page stack or replace Flutter theme/transition code.
 
 The result Future and TransitionRoute.completed have separate responsibilities. The
 first delivers the Promise result; the second releases the Route lease after exit.
@@ -146,9 +149,10 @@ Mounted content retains its own resources until unmount. If invocation throws af
 pushing, the accepted Route still owns its resources until it actually exits; native
 side effects are not rolled back.
 
-Every failed builder invocation shows an error placeholder for that invocation. Errors
-are reported once and later valid builds can recover. Promise builders and invalid
-Widget returns are rejected. Closing rejects new dialogs and cancels pending Promise
-delivery, while accepted dialogs can still rebuild and return. The host must remove them
-before close can finish. Application disposal remains the application's responsibility.
-See [navigation ownership](navigation.md).
+Failed base Widget builders show an error placeholder for that invocation. Narrow
+interface builders propagate their original error. Errors are reported once and later
+valid builds can recover. Promise builders and invalid Widget returns are rejected.
+Closing rejects new dialogs and cancels pending Promise delivery, while accepted dialogs
+can still rebuild and return. The host must remove them before close can finish.
+Application disposal remains the application's responsibility. See
+[navigation ownership](navigation.md).

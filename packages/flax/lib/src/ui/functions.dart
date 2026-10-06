@@ -272,7 +272,6 @@ extension _WidgetReferences on _Session {
     FlaxWidgetHost() => widget.node,
     _ComponentStateful() => widget.description,
     _ComponentStateless() => widget.description,
-    _IndependentResult() => widget.result,
     _ => null,
   };
 

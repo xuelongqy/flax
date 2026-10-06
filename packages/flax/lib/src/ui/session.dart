@@ -143,7 +143,6 @@ class _Session {
   int _nextObject = 1;
   int _nextState = 1;
   final _hostResults = <FlaxJsObject>[];
-  final _unmountedResults = <_Value>{};
   final _pending = <int, _PendingFuture>{};
   int _nextFuture = 1;
   final _promises = <int, _PendingPromise>{};
@@ -628,12 +627,22 @@ class _Session {
       try {
         final host = definition.createHost(node);
         checkWidgetType(host, type);
+        if (definition.fixedArguments) {
+          // A native constructor may store an input even if it then throws.
+          for (final source in sources.values) {
+            source.initial.escapeCallbacks();
+            escapeWidget(source.initial.data);
+          }
+        }
         // Validate constructor invariants before accepting the structural snapshot.
         final validated = host.buildNative(
           sources.map((name, source) => MapEntry(name, source.initial.data)),
         );
-        if (parameters.every((parameter) => !parameter.type.containsCallback) &&
-            sources.values.every((source) => source.binding == null)) {
+        if (definition.fixedArguments ||
+            (parameters.every(
+                  (parameter) => !parameter.type.containsCallback,
+                ) &&
+                sources.values.every((source) => source.binding == null))) {
           node._validatedWidget = validated;
         }
         return _Value(host, [node]);
@@ -664,6 +673,7 @@ class _Session {
     List<FlaxParameter> parameters, {
     required bool allowBindings,
     _CallbackScope callbackScope = _CallbackScope.member,
+    List<String> uiCallbacks = const [],
   }) => _property(descriptor, 'args', (args) {
     if (args is! FlaxJsObject) {
       throw ArgumentError('Descriptor args must be an object');
@@ -677,6 +687,9 @@ class _Session {
     final sources = <String, _Source>{};
     try {
       for (final parameter in parameters) {
+        final scope = uiCallbacks.contains(parameter.name)
+            ? _CallbackScope.ui
+            : callbackScope;
         if (parameter.omitWhenAbsent &&
             _property(
               args,
@@ -718,11 +731,7 @@ class _Session {
               }
               final result = reader.call(const []);
               try {
-                return decode(
-                  result,
-                  parameter.type,
-                  callbackScope: callbackScope,
-                );
+                return decode(result, parameter.type, callbackScope: scope);
               } finally {
                 _releaseJs(result);
               }
@@ -737,7 +746,7 @@ class _Session {
           return _Source(
             this,
             parameter.type,
-            decode(value, parameter.type, callbackScope: callbackScope),
+            decode(value, parameter.type, callbackScope: scope),
           );
         });
       }
@@ -770,7 +779,6 @@ class _Session {
     if (closing &&
         _mounts == 0 &&
         _routeCount == 0 &&
-        _unmountedResults.isEmpty &&
         _hostTasks.isEmpty &&
         !_checkpointScheduled &&
         !_checkpointRunning) {

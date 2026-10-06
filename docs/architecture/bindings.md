@@ -322,10 +322,14 @@ lifecycle-specific ownership.
 Ordinary functions, object constructors, methods, and returned Dart functions invoke
 callbacks directly, preserving native Context identity, synchronous order, typed results
 and exceptions. Supported arguments can be indexed, optional, nullable or named;
-supported results include nullable Widgets and Futures. No synthetic content host is
-allocated. Configured Route-producing calls keep their synchronous Observer capture and
-transition-completion leases. See [function contracts](functions.md) and
-[bridge references and GC](references.md).
+supported results include nullable Widgets, selected Widget interfaces and Futures.
+Mounted Widget callbacks share this conversion, including direct typed Widget lists;
+fixed interface configurations accept ordinary callbacks and retain their original
+closures during native configuration reuse. Only base Widget UI callbacks can use an
+ErrorWidget fallback; narrower interfaces propagate the original error. No synthetic
+content host is allocated. Configured Route-producing calls keep their synchronous
+Observer capture and transition-completion leases. See
+[function contracts](functions.md) and [bridge references and GC](references.md).
 
 ## Example object selection
 

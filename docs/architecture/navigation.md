@@ -77,18 +77,20 @@ Constructing a JS Route descriptor never runs its builder. Each accepted descrip
 materialized as a new Dart Route. A generated subclass forwards the selected upstream
 constructor and releases its lease from Flutter's actual Route.dispose.
 
-The Route retains its builder independently of the triggering button or source page. Its
-content host runs the JS builder at build time with a real Context and owns the last
-valid result, subscriptions, and event references. Multiple Routes using the same JS
-function have independent mounted results. Disposal of offstage content follows
-maintainState; the Route retains enough input to build fresh content later. JS state
-held by the Route's closure survives that content disposal.
+The Route retains its original typed builder independently of the triggering button or
+source page. Flutter invokes it at build time with a real Context. Shared callback
+conversion returns the actual Widget and preserves selected Widget interfaces, without
+an extra content host. Escaped configurations follow Dart references and GC; mounted
+descendants own their subscriptions and event references. Multiple Routes using the same
+JS function have independent mounts. Disposal of offstage content follows maintainState;
+the Route retains enough input to build fresh content later. JS state held by the
+Route's closure survives that content disposal.
 
 A pop result and the end of an exit transition are separate events. Completing the
 navigation Promise does not release still-mounted content. Session disposal waits for
 both Route leases and mounted hosts. Failed construction releases unaccepted resources;
-initial builder failures show an error widget, and later failures preserve valid
-content.
+base Widget builder failures show an error widget for that invocation, while narrower
+interface builders propagate the original error. Later valid builds can recover.
 
 Integration tests wait for outgoing content to disappear with a bounded frame-driven
 wait before interacting with a global finder. A completed pop Future or a shorter Pages
@@ -242,10 +244,10 @@ source page. The observer serves concurrent sessions without keeping another sta
 [function calls and dialogs](functions.md) for setup, scope and errors.
 
 Ordinary callbacks invoke JS directly with the original native Context and result,
-without a content host or inferred Route ownership. `_RouteBody` remains an explicit
-Route adapter for the preview-to-mount lease handoff. Observer capture remains necessary
-for configured Route-producing calls: a Route may be pushed, covered before its first
-build, and survive a subsequent throw. Its lease must already exist when the source view
-disappears or the session starts closing. The observer captures synchronously and
-releases at transition completion, including nested calls. Ordinary callbacks do not
-keep an unrelated host Route alive.
+without a content host or inferred Route ownership. Explicit Route/Page adapters forward
+their typed closures directly and keep existing navigation leases; no preview result
+host is needed. Observer capture remains necessary for configured Route-producing calls:
+a Route may be pushed, covered before its first build, and survive a subsequent throw.
+Its lease must already exist when the source view disappears or the session starts
+closing. The observer captures synchronously and releases at transition completion,
+including nested calls. Ordinary callbacks do not keep an unrelated host Route alive.

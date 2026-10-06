@@ -335,24 +335,20 @@ class _Callback extends _Resource implements FlaxCallback {
         scoped.clear();
       }
       try {
-        if (scope == _CallbackScope.member) return _memberResult(value);
-        if (_returnsWidgetList) return _builderListResult(value);
-        return switch (signature.result.kind) {
-          'void' => _eventResult(value),
-          'widget' => _builderResult(value),
-          'route' => _routeResult(value),
-          _ => _memberResult(value),
-        };
+        if (scope == _CallbackScope.ui && signature.result.kind == 'route') {
+          return _routeResult(value);
+        }
+        return _memberResult(value);
       } finally {
         _releaseJs(value);
       }
     } catch (error, stack) {
       if (scope == _CallbackScope.member) rethrow;
       session.report(error, stack);
-      if (signature.result.kind == 'widget') {
+      if (signature.result.kind == 'widget' && signature.result.id == null) {
         return _errorWidget(error);
       }
-      if (_returnsWidgetList) {
+      if (_returnsWidgetList && signature.result.item!.id == null) {
         return List<Widget>.unmodifiable([_errorWidget(error)]);
       }
       if (signature.result.kind != 'void') rethrow;
@@ -387,45 +383,6 @@ class _Callback extends _Resource implements FlaxCallback {
   Object? _eventResult(FlaxJsValue value) {
     session.observeEvent(value);
     return null;
-  }
-
-  Widget? _builderResult(FlaxJsValue value) {
-    if (owner == null) {
-      throw StateError('Widget callbacks require a mounted owner');
-    }
-    final decoded = session.decode(value, signature.result);
-    if (decoded.data == null) {
-      decoded.release();
-      return null;
-    }
-    session._unmountedResults.add(decoded);
-    return _IndependentResult(session, decoded);
-  }
-
-  List<Widget> _builderListResult(FlaxJsValue value) {
-    if (owner == null) {
-      throw StateError('Widget callbacks require a mounted owner');
-    }
-    final decoded = session.decode(value, signature.result);
-    final retained = <_Value>[];
-    try {
-      for (final widget in decoded.data as List<Widget>) {
-        retained.add(session.retainWidget(widget));
-      }
-    } catch (_) {
-      for (final item in retained.reversed) {
-        item.release();
-      }
-      rethrow;
-    } finally {
-      decoded.release();
-    }
-    for (final item in retained) {
-      session._unmountedResults.add(item);
-    }
-    return List<Widget>.unmodifiable([
-      for (final item in retained) _IndependentResult(session, item),
-    ]);
   }
 
   Object? _routeResult(FlaxJsValue value) {

@@ -59,11 +59,11 @@ use one analyzer-validated shared Dart owner while TypeScript preserves the gene
 relationship. The owner is `Object?` or a publicly routable, fully closed analyzer bound
 such as `Route<dynamic>`. Constructors are selected separately and only when observed
 concrete targets can be distinguished from their direct runtime inputs. Widget
-constructor callbacks with direct synchronous `Widget`, `Widget?` or `List<Widget>`
-results reuse mounted invocation ownership; `BuildContext` is an ordinary callback
-parameter. Public, non-generic, implementable Widget interfaces reuse the existing
-native interface forwarding path. Private, `@internal`, `@visibleForTesting`, and
-`@protected` API is excluded from automatic exposure.
+constructor callbacks with supported Widget and selected interface results reuse
+ordinary result conversion; `BuildContext` is an ordinary callback parameter. Public,
+non-generic, implementable Widget interfaces reuse the existing native interface
+forwarding path. Private, `@internal`, `@visibleForTesting`, and `@protected` API is
+excluded from automatic exposure.
 
 Run automatic mode from the owning binding package (the package receiving generated
 files). Its `pubspec.yaml` resolves the target Dart package and any Flax providers.
@@ -209,12 +209,14 @@ independent fixture compiles constructor, instance, static and proxy calls in th
 Required inputs remain required. The SDK test reports constructor call counts and
 generated sizes.
 
-Widget constructor callbacks with direct synchronous `Widget`, `Widget?` or
-`List<Widget>` results use mounted Widget result semantics automatically. `BuildContext`
-is an ordinary callback argument and is not required for this inference. No callback
-name or public YAML lifecycle marker is required. A separately named plugin fixture
-verifies generation and repeated result mounting through the UI tests. See
-[lazy list ownership](../../docs/architecture/lists.md).
+Widget constructor callbacks share ordinary typed result conversion, including selected
+Widget interfaces, nullable results, supported Futures and direct typed Widget lists.
+`BuildContext` is an ordinary callback argument. No callback name or public YAML
+lifecycle marker is required. The actual Widget is preserved without an extra result
+host; configuration references and GC own its bridge dependencies. A separately named
+plugin fixture verifies generation, repeated mounting and native configuration reuse.
+Widget-containing Records and non-list Widget collections remain outside the callback
+conversion contract. See [lazy list ownership](../../docs/architecture/lists.md).
 
 Direct `BuildContext` inputs are ordinary borrowed references in automatic and explicit
 selection. Functions, constructors, instance/static methods, setters, returned Dart
@@ -228,9 +230,14 @@ Ordinary functions, object constructors, instance/static methods, and returned D
 functions invoke callbacks directly with their original arguments and results. Context
 arguments do not require an extra Flax host. Supported signatures include indexed, named
 and optional arguments, nullable Widget results, nested callback values and Future
-results. Synchronous Flutter builders still reject Promises. Widget subinterface result
-limitations remain unchanged. Configured Route-producing functions keep their explicit
-leases and FlaxNavigatorObserver. See
+results. Widget interfaces such as `PreferredSizeWidget` work in ordinary callback
+arguments and results, with native interface validation in both directions. Mounted
+Widget constructor callbacks and configured Route/Page adapters preserve the same
+selected interfaces. Narrow interface failures propagate; only base Widget UI results
+can use an ErrorWidget placeholder. Specific concrete native class returns remain
+separate from interface binding. Synchronous Flutter builders still reject Promises.
+Configured Route-producing functions keep their explicit leases and
+FlaxNavigatorObserver. See
 [bridge references and GC](../../docs/architecture/references.md).
 
 Nested callbacks in typed List elements and Map values receive per-mount adapters.
@@ -273,9 +280,10 @@ Widget interfaces use `kind: widgetInterface` and `widgetInterfaces` selections.
 generate real implements clauses and native getter/setter/method forwarding, including
 generic methods and BuildContext signatures. Native members stay outside JS conversion
 and are recorded in Manifest 15. Generic interface declarations remain deferred.
-Interface Widgets reject direct bindings and constructor callbacks; nested child Widgets
-keep their normal bindings. Cross-module fixtures compile both Dart and TS. See
-[interface generation](../../docs/architecture/widget-interfaces.md).
+Interface Widgets reject direct bindings but accept ordinary constructor callbacks.
+Their fixed native configurations keep original closures; nested child Widgets retain
+normal bindings and mounted subscriptions. Cross-module fixtures compile both Dart and
+TS. See [interface generation](../../docs/architecture/widget-interfaces.md).
 
 Top-level `functions` selections generate named JS exports and `FlaxFunctionBinding`
 registrations. Function-only modules, public re-exports, typed callbacks and Future
@@ -340,7 +348,7 @@ Native JavaScript Promise assimilation flattens direct nested Promise/thenable l
 so generated adapters reconstruct the declared Dart Future layers while preserving
 type/value semantics rather than separate JavaScript Promise identity or timing.
 Future/FutureOr values inside collections, Maps and Records remain independent async
-values. Asynchronous properties and lifecycle/build callbacks remain rejected. A
+values. Asynchronous properties and lifecycle/build overrides remain rejected. A
 returned function is a new invocation boundary and may have its own supported Future
 result.
 
@@ -351,7 +359,7 @@ collection and Record positions. A Stream of Futures delivers independently comp
 Future events rather than flattening them. Typed views remain lazy and validate erased
 source events at concrete use sites. Erased collection restoration only copies
 compatible raw JS collection shapes. Existing Dart collections retain identity or fail
-their concrete type check. Async Flutter lifetime exclusions and nested Stream event
+their concrete type check. Asynchronous lifecycle overrides and nested Stream event
 exclusions remain unchanged. See the
 [interop examples](../../docs/architecture/interop.md#future-and-stream-callback-combinations).
 

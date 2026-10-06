@@ -1556,14 +1556,6 @@ class FlaxCodegenBindingParser {
         if (data.contains(parameter.name)) {
           type = _dataType(type, '$member.${parameter.name}');
         }
-        if (mountedWidgetCallbacks &&
-            type.kind == 'callback' &&
-            type.result!.containsWidget &&
-            !type.result!.isDirectMountedWidgetResult) {
-          throw StateError(
-            'Unsupported mounted Widget callback result: $member.${parameter.name}',
-          );
-        }
         final independent =
             mountedWidgetCallbacks &&
             type.kind == 'callback' &&

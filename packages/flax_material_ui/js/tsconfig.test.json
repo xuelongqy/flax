@@ -1,12 +1,19 @@
 {
   "extends": "../../../tsconfig.base.json",
   "compilerOptions": {
-    "noEmit": true
+    "noEmit": true,
+    "paths": {
+      "@flax/flutter/widgets": ["../../flax_flutter/js/types/widgets.d.ts"],
+      "@flax/flutter/*": ["../../flax_flutter/js/types/generated/libraries/*"],
+      "@flax/dart/*": ["../../flax_dart/js/types/generated/libraries/*"]
+    }
   },
   "include": [
     "test/types.ts",
     "test/shared_objects.types.ts",
     "test/fixtures/binding_slice.ts",
-    "test/fixtures/shared_objects.ts"
+    "test/fixtures/shared_objects.ts",
+    "test/fixtures/widget_interfaces.ts",
+    "test/fixtures/top_level.ts"
   ]
 }

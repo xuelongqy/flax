@@ -361,7 +361,7 @@ void main() {
     expect(markdown, contains('## Closure gates'));
     expect(markdown, contains('- automationGap: 0'));
     expect(markdown, contains('## Explicit boundaries'));
-    expect(markdown, contains('`async_mounted_widget_result`'));
+    expect(markdown, contains('`mounted_widget_collection_shape`'));
   });
 }
 

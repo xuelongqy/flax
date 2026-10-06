@@ -1,6 +1,8 @@
+import 'dart:io';
+
 import 'package:flax_codegen/flax_codegen.dart';
 
-const widgetInterfacesSelection = {
+final widgetInterfacesSelection = {
   'Key': FlaxCodegenClassSelection({}, kind: 'object'),
   'ExtentContract': FlaxCodegenClassSelection(
     {},
@@ -28,5 +30,51 @@ const widgetInterfacesSelection = {
     {},
     kind: 'object',
     staticGetters: ['native', 'plain', 'opaque', 'header'],
+  ),
+  'CallbackTile': FlaxCodegenClassSelection(
+    {
+      '': ['key', 'callback', 'callbacks'],
+    },
+    widgetInterfaces: ['ExtentContract'],
+  ),
+  'InterfaceBuilder': FlaxCodegenClassSelection({
+    '': ['key', 'builder', 'discard'],
+  }),
+  'InterfaceListBuilder': FlaxCodegenClassSelection({
+    '': ['key', 'builder'],
+  }),
+  'InterfaceNestedBuilder': FlaxCodegenClassSelection({
+    '': ['key', 'builders'],
+  }),
+  'WidgetResultBuilder': FlaxCodegenClassSelection({
+    '': ['key', 'builder', 'discard'],
+  }),
+  'InterfaceNullableBuilder': FlaxCodegenClassSelection({
+    '': ['key', 'builder'],
+  }),
+  'InterfaceAsyncBuilder': FlaxCodegenClassSelection({
+    '': ['key', 'builder'],
+  }),
+  'InterfaceFutureOrBuilder': FlaxCodegenClassSelection({
+    '': ['key', 'builder'],
+  }),
+  'InterfaceStreamBuilder': FlaxCodegenClassSelection({
+    '': ['key', 'builder'],
+  }),
+  'InterfaceRoute': FlaxCodegenClassSelection({
+    '': ['builder'],
+  }, kind: 'route'),
+  'InterfacePage': FlaxCodegenClassSelection(
+    {
+      '': ['key', 'builder'],
+    },
+    kind: 'page',
+    getters: ['key'],
+    pageAdapter: FlaxCodegenPageAdapterModel(
+      Directory.current.uri
+          .resolve('test/fixtures/widget_interfaces.dart')
+          .toString(),
+      'adaptInterfacePage',
+    ),
   ),
 };

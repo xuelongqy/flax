@@ -18,6 +18,13 @@ final source = flaxTestFixtureSource(
 );
 Finder host(Object key) => flaxTestHost(key);
 
+Future<void> collectWidgetConfigurations(WidgetTester tester) async {
+  for (var i = 0; i < 4; i++) {
+    await tester.runAsync(flaxTestCollectDartGarbage);
+    await tester.pumpAndSettle();
+  }
+}
+
 class Harness extends FlaxTestHarness {
   Harness()
     : super(
