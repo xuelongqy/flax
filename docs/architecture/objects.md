@@ -51,6 +51,10 @@ own descriptors. Navigation and named-page parameters retain their data-copy con
 
 ## Callbacks, listeners and collection
 
+Callbacks, Widget configurations and Context borrowing share the internal
+[bridge reference mechanism](references.md). Other Dart values reuse its JS weak alias
+cache. This does not merge the Dart and JS garbage collectors.
+
 A generated Dart closure retains a shared JS callback wrapper. Explicit release and a
 Dart Finalizer use the same idempotent function-handle cleanup. The finalization token
 holds no strong reference to that wrapper or its owner. A running callback remains

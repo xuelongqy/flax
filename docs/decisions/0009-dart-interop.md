@@ -13,7 +13,11 @@ focus, input behavior and listener notification rules.
 
 A shared callback wrapper retains each JS function, with explicit release and a Dart
 Finalizer fallback. Weak JS identity caches are swept in bounded batches at existing UI
-checkpoints. No cross-language cycle collector or additional observer system is added.
+checkpoints. Callback handles, escaped Widget configurations and weak native Context
+references share idempotent cleanup. Ordinary callbacks preserve Dart invocation order
+and results without an extra content host. See
+[bridge references](../architecture/references.md). No cross-language cycle collector or
+additional observer system is added.
 
 TS generics preserve development-time type relationships. Configured valid Dart concrete
 types remain fixed and are checked by analyzer. Explicit generated proxies cover a

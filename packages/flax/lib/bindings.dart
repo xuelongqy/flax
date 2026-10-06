@@ -15,6 +15,7 @@ import 'src/generated/flutter_bindings.g.dart';
 import 'src/generated/host_bootstrap.g.dart';
 
 part 'src/ui/definitions.dart';
+part 'src/ui/references.dart';
 part 'src/ui/resources.dart';
 part 'src/ui/members.dart';
 part 'src/ui/objects.dart';

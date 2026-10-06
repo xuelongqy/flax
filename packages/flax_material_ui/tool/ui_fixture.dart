@@ -32,7 +32,7 @@ Future<void> main() async {
     topLevel: const FlaxCodegenTopLevelSelection(
       'ContextValues',
       ['selectedContextMounted'],
-      setters: ['selectedContext'],
+      setters: ['selectedContext', 'selectedContextListener'],
     ),
   );
   await _generate(

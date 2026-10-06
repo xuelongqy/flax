@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"3dfc58d894ff96988ec290f60db65ba8a68a39e0b7456eb790e08c0221ce95e5","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"ce69d5416045cdede8ed3ac97fd6eb6887aab739178dea6b50b0c35d19e48925","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -8,6 +8,7 @@ var __knownSymbol = (name, symbol) => (symbol = Symbol[name]) ? symbol : /* @__P
 var __typeError = (msg) => {
   throw TypeError(msg);
 };
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
 var __export = (target, all) => {
   for (var name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
@@ -21,6 +22,7 @@ var __copyProps = (to, from, except, desc) => {
   return to;
 };
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
 var __await = function(promise, isYieldStar) {
   this[0] = promise;
   this[1] = isYieldStar;
@@ -95,6 +97,92 @@ __export(bindings_exports, {
 });
 module.exports = __toCommonJS(bindings_exports);
 var import_index = require("@flax/core");
+
+// ../../../flax/js/dist/runtime/references.js
+var ReferenceCache = class {
+  constructor() {
+    __publicField(this, "handles", /* @__PURE__ */ new WeakMap());
+    __publicField(this, "aliases", /* @__PURE__ */ new Map());
+    __publicField(this, "cursor");
+  }
+  get(type, id) {
+    const aliases = this.aliases.get(id);
+    if (!aliases)
+      return null;
+    for (const alias of aliases) {
+      const value = alias.deref();
+      if (!value) {
+        aliases.delete(alias);
+        continue;
+      }
+      const handle = this.handles.get(value);
+      if ((handle == null ? void 0 : handle.alive) && handle.type === type)
+        return value;
+    }
+    return null;
+  }
+  track(value, type, id) {
+    var _a;
+    const current = this.handles.get(value);
+    if (current) {
+      if (!current.alive || current.type !== type || current.id !== id)
+        throw new TypeError("Object identity mismatch");
+      return;
+    }
+    this.handles.set(value, { type, id, alive: true });
+    const aliases = (_a = this.aliases.get(id)) != null ? _a : /* @__PURE__ */ new Set();
+    aliases.add(new WeakRef(value));
+    this.aliases.set(id, aliases);
+  }
+  transfer(source, target) {
+    const ref = this.handles.get(source);
+    if (!ref || !ref.alive)
+      throw new TypeError("Invalid Dart object alias");
+    this.track(target, ref.type, ref.id);
+    for (const alias of this.aliases.get(ref.id)) {
+      const value = alias.deref();
+      if (!value || value === source)
+        this.aliases.get(ref.id).delete(alias);
+    }
+    this.handles.delete(source);
+  }
+  release(id) {
+    var _a;
+    for (const alias of (_a = this.aliases.get(id)) != null ? _a : []) {
+      const value = alias.deref();
+      const handle = value && this.handles.get(value);
+      if (handle)
+        handle.alive = false;
+    }
+    this.aliases.delete(id);
+  }
+  sweep() {
+    var _a;
+    const expired = [];
+    (_a = this.cursor) != null ? _a : this.cursor = this.aliases.keys();
+    for (let i = 0; i < 64; i++) {
+      const next = this.cursor.next();
+      if (next.done) {
+        this.cursor = void 0;
+        break;
+      }
+      const aliases = this.aliases.get(next.value);
+      if (!aliases)
+        continue;
+      for (const alias of aliases) {
+        if (!alias.deref())
+          aliases.delete(alias);
+      }
+      if (aliases.size === 0) {
+        this.aliases.delete(next.value);
+        expired.push(next.value);
+      }
+    }
+    return expired;
+  }
+};
+
+// ../../../flax/js/dist/runtime/bindings.js
 var bindingVersion = 22;
 var components = /* @__PURE__ */ new WeakMap();
 var componentTypes = /* @__PURE__ */ new WeakMap();
@@ -235,7 +323,6 @@ var enums = /* @__PURE__ */ new Map();
 var enumTypes = /* @__PURE__ */ new WeakMap();
 var contextTypes = /* @__PURE__ */ new Map();
 var contextStates = /* @__PURE__ */ new WeakMap();
-var contexts = /* @__PURE__ */ new Map();
 function defineContext(type, fields) {
   if (contextTypes.has(type))
     throw new Error(`Duplicate context type: ${type}`);
@@ -358,55 +445,19 @@ function invokeInstance(receiver, type, method, args) {
   return host.__flaxInstance(bindingVersion, type, ref.id, method, ...args);
 }
 var objectTypes = /* @__PURE__ */ new Map();
-var objectHandles = /* @__PURE__ */ new WeakMap();
-var objects = /* @__PURE__ */ new Map();
+var references = new ReferenceCache();
+var objectHandles = references.handles;
 var constructingExtendedProxies = /* @__PURE__ */ new WeakSet();
 var deferredObjects = /* @__PURE__ */ new WeakMap();
 var iterableObjectTypes = /* @__PURE__ */ new Set();
-var objectSweep;
 function cachedObject(type, id) {
-  const aliases = objects.get(id);
-  if (!aliases)
-    return null;
-  for (const alias of aliases) {
-    const value = alias.deref();
-    if (!value) {
-      aliases.delete(alias);
-      continue;
-    }
-    const handle = objectHandles.get(value);
-    if ((handle == null ? void 0 : handle.alive) && handle.type === type)
-      return value;
-  }
-  if (aliases.size === 0)
-    objects.delete(id);
-  return null;
+  return references.get(type, id);
 }
 function trackObject(value, type, id) {
-  var _a;
-  const current = objectHandles.get(value);
-  if (current) {
-    if (!current.alive || current.type !== type || current.id !== id)
-      throw new TypeError("Object identity mismatch");
-    return;
-  }
-  objectHandles.set(value, { type, id, alive: true });
-  const aliases = (_a = objects.get(id)) != null ? _a : /* @__PURE__ */ new Set();
-  aliases.add(new WeakRef(value));
-  objects.set(id, aliases);
+  references.track(value, type, id);
 }
 function transferObjectAlias(source, target) {
-  const ref = objectHandles.get(source);
-  if (!ref || !ref.alive)
-    throw new TypeError("Invalid Dart object alias");
-  trackObject(target, ref.type, ref.id);
-  const aliases = objects.get(ref.id);
-  for (const alias of aliases) {
-    const value = alias.deref();
-    if (!value || value === source)
-      aliases.delete(alias);
-  }
-  objectHandles.delete(source);
+  references.transfer(source, target);
 }
 function defineObject(type, fields, setters, methods, removers) {
   if (objectTypes.has(type))
@@ -1245,37 +1296,10 @@ Object.assign(globalThis, {
       return ref.id;
     },
     sweepObjects() {
-      const expired = [];
-      objectSweep != null ? objectSweep : objectSweep = objects.keys();
-      for (let i = 0; i < 64; i++) {
-        const next = objectSweep.next();
-        if (next.done) {
-          objectSweep = void 0;
-          break;
-        }
-        const aliases = objects.get(next.value);
-        if (!aliases)
-          continue;
-        for (const alias of aliases) {
-          if (!alias.deref())
-            aliases.delete(alias);
-        }
-        if (aliases.size === 0) {
-          objects.delete(next.value);
-          expired.push(next.value);
-        }
-      }
-      return expired;
+      return references.sweep();
     },
     releaseObject(id) {
-      var _a;
-      for (const alias of (_a = objects.get(id)) != null ? _a : []) {
-        const value = alias.deref();
-        const handle = value && objectHandles.get(value);
-        if (handle)
-          handle.alive = false;
-      }
-      objects.delete(id);
+      references.release(id);
     },
     enumValue,
     enumType(value) {
@@ -1366,14 +1390,15 @@ Object.assign(globalThis, {
       return Object.freeze(value);
     },
     context(type, id) {
-      const cached = contexts.get(id);
+      const cached = cachedObject(type, id);
       if (cached)
         return cached;
       const fields = contextTypes.get(type);
       if (!fields)
         throw new TypeError(`Unregistered context type: ${type}`);
-      const state = { type, id, alive: true };
       const value = {};
+      trackObject(value, type, id);
+      const state = objectHandles.get(value);
       for (const field of fields) {
         Object.defineProperty(value, field, {
           enumerable: true,
@@ -1402,14 +1427,10 @@ Object.assign(globalThis, {
         }
       });
       contextStates.set(value, state);
-      contexts.set(id, Object.freeze(value));
-      return value;
+      return Object.freeze(value);
     },
     releaseContext(id) {
-      const value = contexts.get(id);
-      if (value)
-        contextStates.get(value).alive = false;
-      contexts.delete(id);
+      references.release(id);
     }
   })
 });

@@ -126,11 +126,14 @@ class FlaxRouteLease extends _Resource {
   }
 }
 
-class _RouteBody extends _WidgetBuilderHost {
+class _RouteBody extends FlaxWidgetHost {
   _RouteBody(super.node, this.lease) {
     lease._previews.add(node);
   }
   final FlaxRouteLease lease;
+  @override
+  Widget buildNative(Map<String, Object?> values) =>
+      Builder(builder: values['builder'] as WidgetBuilder);
   @override
   State<FlaxWidgetHost> createState() => _RouteBodyState();
 }

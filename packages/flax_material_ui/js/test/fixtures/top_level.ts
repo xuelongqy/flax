@@ -119,15 +119,39 @@ let preview: Widget;
 let builderKind = 'function';
 let builderCalls = 0;
 let builderMounted = false;
+let lastBuilderContext: BuildContext | undefined;
+let builderIndex = 0;
 const builderBox = functions.BuilderBox();
 let contextBox: functions.ContextBox | undefined;
 function genericContent(current: BuildContext): Widget {
   builderCalls++;
+  lastBuilderContext = current;
   builderMounted = current.mounted;
   Navigator.of(current);
   return mode === 'native' ? functions.nativeTile() : content();
 }
 registerPage('builder', () => {
+  if (builderKind === 'indexed')
+    return functions.indexedBuilder((current, index) => {
+      builderIndex = index;
+      return genericContent(current);
+    });
+  if (builderKind === 'nullable')
+    return functions.nullableBuilder((current) => {
+      genericContent(current);
+      return null;
+    });
+  if (builderKind === 'async')
+    return functions.asyncBuilder(async (current) => {
+      await Promise.resolve();
+      return genericContent(current);
+    });
+  if (builderKind === 'named')
+    return functions.namedBuilder(({ context }) => genericContent(context));
+  if (builderKind === 'optional')
+    return functions.optionalContextBuilder((current) => genericContent(current!));
+  if (builderKind === 'nested') return functions.nestedBuilders([genericContent]);
+
   if (builderKind === 'constructor') {
     return functions.BuilderBox(genericContent).wrap();
   }
@@ -188,6 +212,12 @@ Object.assign(globalThis, {
     },
     get builderCalls() {
       return builderCalls;
+    },
+    get lastBuilderContext() {
+      return lastBuilderContext;
+    },
+    get builderIndex() {
+      return builderIndex;
     },
     get builderMounted() {
       return builderMounted;

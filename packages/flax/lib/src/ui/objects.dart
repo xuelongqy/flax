@@ -389,6 +389,7 @@ extension _ObjectCalls on _Session {
             stream.release();
           } else {
             _dartErrors[id]?.release();
+            _contexts[id]?.aliasesCollected();
           }
         }
       }

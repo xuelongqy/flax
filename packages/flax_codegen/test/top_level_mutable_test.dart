@@ -287,62 +287,65 @@ void main() {
     },
   );
 
-  test('Context ownership follows the callback argument direction', () {
-    const context = FlaxCodegenTypeRef(
-      'context',
-      id: 'package:flutter/src/widgets/framework.dart::BuildContext',
-      name: 'BuildContext',
-    );
-    const callback = FlaxCodegenTypeRef(
-      'callback',
-      parameters: [
-        FlaxCodegenParameterModel(
-          name: 'context',
-          type: context,
-          required: true,
-          positional: true,
-          defaultCode: 'null',
-        ),
-      ],
-      result: FlaxCodegenTypeRef('bool'),
-    );
-    for (final type in [
-      context,
-      const FlaxCodegenTypeRef('list', item: context),
-      const FlaxCodegenTypeRef('future', item: context),
-    ]) {
-      final model = FlaxCodegenTopLevelModel(
-        '',
-        [],
-        setters: [
-          FlaxCodegenTopLevelSetterModel('$uri::value=', 'value', type),
-        ],
+  test(
+    'callback Context arguments borrow native Elements in both directions',
+    () {
+      const context = FlaxCodegenTypeRef(
+        'context',
+        id: 'package:flutter/src/widgets/framework.dart::BuildContext',
+        name: 'BuildContext',
       );
-      expect(model.validate, returnsNormally);
-    }
-    for (final type in [
-      callback,
-      const FlaxCodegenTypeRef('list', item: callback),
-    ]) {
-      final model = FlaxCodegenTopLevelModel(
-        '',
-        [],
-        setters: [
-          FlaxCodegenTopLevelSetterModel('$uri::value=', 'value', type),
+      const callback = FlaxCodegenTypeRef(
+        'callback',
+        parameters: [
+          FlaxCodegenParameterModel(
+            name: 'context',
+            type: context,
+            required: true,
+            positional: true,
+            defaultCode: 'null',
+          ),
         ],
+        result: FlaxCodegenTypeRef('bool'),
       );
-      expect(model.validate, throwsStateError);
-    }
-    final getter = FlaxCodegenTopLevelModel('', [
-      FlaxCodegenTopLevelGetterModel(
-        '$uri::reader',
-        'reader',
+      for (final type in [
+        context,
+        const FlaxCodegenTypeRef('list', item: context),
+        const FlaxCodegenTypeRef('future', item: context),
+      ]) {
+        final model = FlaxCodegenTopLevelModel(
+          '',
+          [],
+          setters: [
+            FlaxCodegenTopLevelSetterModel('$uri::value=', 'value', type),
+          ],
+        );
+        expect(model.validate, returnsNormally);
+      }
+      for (final type in [
         callback,
-        FlaxCodegenReadonlyKind.getter,
-      ),
-    ]);
-    expect(getter.validate, returnsNormally);
-  });
+        const FlaxCodegenTypeRef('list', item: callback),
+      ]) {
+        final model = FlaxCodegenTopLevelModel(
+          '',
+          [],
+          setters: [
+            FlaxCodegenTopLevelSetterModel('$uri::value=', 'value', type),
+          ],
+        );
+        expect(model.validate, returnsNormally);
+      }
+      final getter = FlaxCodegenTopLevelModel('', [
+        FlaxCodegenTopLevelGetterModel(
+          '$uri::reader',
+          'reader',
+          callback,
+          FlaxCodegenReadonlyKind.getter,
+        ),
+      ]);
+      expect(getter.validate, returnsNormally);
+    },
+  );
 
   test('setter inputs reject special ownership recursively', () {
     for (final kind in ['widget', 'state', 'route', 'page']) {

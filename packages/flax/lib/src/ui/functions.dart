@@ -132,9 +132,6 @@ extension _FunctionCalls on _Session {
       final values = <_Value>[];
       final positionalValues = <Object?>[];
       final namedValues = <String, Object?>{};
-      final previousContexts = _functionContexts;
-      final contexts = Map<BuildContext, _ContextReference>.identity();
-      _functionContexts = contexts;
       try {
         final positional = signature.parameters
             .where((p) => p.positional)
@@ -155,7 +152,6 @@ extension _FunctionCalls on _Session {
                 .call([input, FlaxJsString(type.id!)]);
             final context = _context(handle, type.id!);
             final value = context.requireActive();
-            contexts[value] = context;
             return _Value(value);
           }
           return decode(input, type);
@@ -199,7 +195,6 @@ extension _FunctionCalls on _Session {
         );
         return holdHostResult(memberResult(result, signature.result));
       } finally {
-        _functionContexts = previousContexts;
         for (final value in values.reversed) {
           value.release();
         }
@@ -239,7 +234,7 @@ extension _WidgetReferences on _Session {
     final existing = _widgetConfigurations[value];
     if (existing != null) {
       if (existing.released) throw StateError('Closed Widget configuration');
-      if (!identical(existing.session.target, this)) {
+      if (!identical(existing._session.target, this)) {
         throw ArgumentError('Foreign Widget configuration');
       }
       return;
@@ -252,7 +247,7 @@ extension _WidgetReferences on _Session {
     resource.validate();
     final record = _WidgetConfiguration(this, resource);
     _widgetConfigurations[value] = record;
-    _widgetFinalizer.attach(value, record, detach: record);
+    record.attach(value);
   }
 
   void checkWidgetType(Widget widget, FlaxTypeRef type) {

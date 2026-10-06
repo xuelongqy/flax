@@ -118,7 +118,7 @@ class _Session {
   final _closed = Completer<void>();
   final _componentStates = <int, FlaxComponentStateBase>{};
   final _componentDescriptions = <int, WeakReference<_ComponentDescription>>{};
-  final _configurations = <_WidgetConfiguration>{};
+  final _references = <_BridgeReference>{};
   final _componentSessionId = _nextComponentSession++;
   final _componentTypes = <int, _ComponentType>{};
   int _nextComponentState = 1;
@@ -139,8 +139,7 @@ class _Session {
   // Repeated method tear-offs are equal, but not necessarily identical. Preserve
   // Dart listener removal semantics while keeping each conversion signature separate.
   final _functionViews = <Object, Map<String, _FunctionReference>>{};
-  Map<BuildContext, _ContextReference>? _functionContexts;
-  final _callbackHandles = <_CallbackHandle>{};
+  final _contextIds = Expando<_ContextReference>();
   int _nextObject = 1;
   int _nextState = 1;
   final _hostResults = <FlaxJsObject>[];
@@ -161,7 +160,6 @@ class _Session {
   final _helpers = <String, FlaxJsFunction>{};
   final _enums = <String, FlaxJsObject>{};
   final _contexts = <int, _ContextReference>{};
-  int _nextContext = 1;
 
   void requireOpen() {
     if (closing) throw StateError('The Flax session is closing');
@@ -797,7 +795,7 @@ class _Session {
     _root?.release();
     _root = null;
     for (final context in _contexts.values.toList()) {
-      context.close();
+      context.release();
     }
     for (final object in _objects.values.toList().reversed) {
       try {
@@ -813,13 +811,10 @@ class _Session {
     for (final error in _dartErrors.values.toList().reversed) {
       error.release();
     }
-    for (final configuration in _configurations.toList()) {
-      configuration.release();
+    for (final reference in _references.toList()) {
+      reference.release();
     }
     _componentDescriptions.clear();
-    for (final handle in _callbackHandles.toList()) {
-      handle.release();
-    }
     for (final helper in _helpers.values) {
       helper.release();
     }

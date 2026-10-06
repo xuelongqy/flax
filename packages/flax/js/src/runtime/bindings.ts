@@ -1,4 +1,5 @@
 import { computed, signal, type Binding, type ReadonlySignal } from './index.js';
+import { ReferenceCache } from './references.js';
 
 /** Experimental generated-binding extension. Independent of the native C ABI. */
 export const bindingVersion = 22;
@@ -404,7 +405,6 @@ const enumTypes = new WeakMap<object, string>();
 const contextTypes = new Map<string, readonly string[]>();
 type ContextState = { type: string; id: number; alive: boolean };
 const contextStates = new WeakMap<object, ContextState>();
-const contexts = new Map<number, object>();
 type BindingHost = typeof globalThis & {
   __flaxCall?: (
     version: number,
@@ -621,11 +621,8 @@ type ObjectDefinition = {
   removers: readonly string[];
 };
 const objectTypes = new Map<string, ObjectDefinition>();
-const objectHandles = new WeakMap<
-  object,
-  { type: string; id: number; alive: boolean }
->();
-const objects = new Map<number, Set<WeakRef<object>>>();
+const references = new ReferenceCache();
+const objectHandles = references.handles;
 const constructingExtendedProxies = new WeakSet<object>();
 type DeferredObject = {
   type: string;
@@ -635,7 +632,6 @@ type DeferredObject = {
 };
 const deferredObjects = new WeakMap<object, DeferredObject>();
 const iterableObjectTypes = new Set<string>();
-let objectSweep: MapIterator<number> | undefined;
 type ObjectHost = typeof globalThis & {
   __flaxObject?: (
     version: number,
@@ -649,44 +645,15 @@ type ObjectHost = typeof globalThis & {
 };
 
 function cachedObject(type: string, id: number): object | null {
-  const aliases = objects.get(id);
-  if (!aliases) return null;
-  for (const alias of aliases) {
-    const value = alias.deref();
-    if (!value) {
-      aliases.delete(alias);
-      continue;
-    }
-    const handle = objectHandles.get(value);
-    if (handle?.alive && handle.type === type) return value;
-  }
-  if (aliases.size === 0) objects.delete(id);
-  return null;
+  return references.get(type, id);
 }
 
 function trackObject(value: object, type: string, id: number): void {
-  const current = objectHandles.get(value);
-  if (current) {
-    if (!current.alive || current.type !== type || current.id !== id)
-      throw new TypeError('Object identity mismatch');
-    return;
-  }
-  objectHandles.set(value, { type, id, alive: true });
-  const aliases = objects.get(id) ?? new Set<WeakRef<object>>();
-  aliases.add(new WeakRef(value));
-  objects.set(id, aliases);
+  references.track(value, type, id);
 }
 
 function transferObjectAlias(source: object, target: object): void {
-  const ref = objectHandles.get(source);
-  if (!ref || !ref.alive) throw new TypeError('Invalid Dart object alias');
-  trackObject(target, ref.type, ref.id);
-  const aliases = objects.get(ref.id)!;
-  for (const alias of aliases) {
-    const value = alias.deref();
-    if (!value || value === source) aliases.delete(alias);
-  }
-  objectHandles.delete(source);
+  references.transfer(source, target);
 }
 
 export function defineObject(
@@ -1862,33 +1829,10 @@ Object.assign(globalThis, {
       return ref.id;
     },
     sweepObjects(): number[] {
-      const expired: number[] = [];
-      objectSweep ??= objects.keys();
-      for (let i = 0; i < 64; i++) {
-        const next = objectSweep.next();
-        if (next.done) {
-          objectSweep = undefined;
-          break;
-        }
-        const aliases = objects.get(next.value);
-        if (!aliases) continue;
-        for (const alias of aliases) {
-          if (!alias.deref()) aliases.delete(alias);
-        }
-        if (aliases.size === 0) {
-          objects.delete(next.value);
-          expired.push(next.value);
-        }
-      }
-      return expired;
+      return references.sweep();
     },
     releaseObject(id: number): void {
-      for (const alias of objects.get(id) ?? []) {
-        const value = alias.deref();
-        const handle = value && objectHandles.get(value);
-        if (handle) handle.alive = false;
-      }
-      objects.delete(id);
+      references.release(id);
     },
     enumValue,
     enumType(value: object): string | null {
@@ -2001,12 +1945,13 @@ Object.assign(globalThis, {
       return Object.freeze(value);
     },
     context(type: string, id: number): object {
-      const cached = contexts.get(id);
+      const cached = cachedObject(type, id);
       if (cached) return cached;
       const fields = contextTypes.get(type);
       if (!fields) throw new TypeError(`Unregistered context type: ${type}`);
-      const state = { type, id, alive: true };
       const value = {};
+      trackObject(value, type, id);
+      const state = objectHandles.get(value)!;
       for (const field of fields) {
         Object.defineProperty(value, field, {
           enumerable: true,
@@ -2040,13 +1985,10 @@ Object.assign(globalThis, {
         },
       });
       contextStates.set(value, state);
-      contexts.set(id, Object.freeze(value));
-      return value;
+      return Object.freeze(value);
     },
     releaseContext(id: number): void {
-      const value = contexts.get(id);
-      if (value) contextStates.get(value)!.alive = false;
-      contexts.delete(id);
+      references.release(id);
     },
   }),
 });

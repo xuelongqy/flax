@@ -49,7 +49,8 @@ Dart FlaxJsRuntime
 ```
 
 The engine package supplies the native asset entry point; core Dart code does not know
-its library name or filesystem path. See [execution and lifetime](runtime.md).
+its library name or filesystem path. See [execution and lifetime](runtime.md) and
+[bridge references and GC](references.md).
 
 The UI path adds JS descriptors -> generated factories -> native Widgets. Flutter events
 invoke JS callbacks, and signals invalidate individual mounted properties for the next

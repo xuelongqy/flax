@@ -1409,10 +1409,13 @@ void _validateTopLevelOwnership(
     _validateTopLevelOwnership(result, location, input: input);
   }
   for (final parameter in type.parameters) {
+    // Callback Context arguments borrow native Elements in either direction.
     _validateTopLevelOwnership(
       parameter.type,
       location,
-      input: type.kind == 'callback' ? !input : input,
+      input: type.kind == 'callback'
+          ? parameter.type.kind == 'context' || !input
+          : input,
     );
   }
   for (final field in type.recordFields) {

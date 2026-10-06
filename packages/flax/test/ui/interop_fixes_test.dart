@@ -44,7 +44,8 @@ void main() {
       }
       // ignore: avoid_print
       print('Context handles after layout replacement: $counts');
-      expect(counts.toSet(), {1});
+      // Native proxy handles are temporary; live JS aliases use the weak cache.
+      expect(counts.toSet(), {0});
     } finally {
       await h.finish(t);
     }

@@ -229,6 +229,14 @@ const List<Stage2MechanismShape> stage2MechanismShapes = [
     member: 'configure',
   ),
   Stage2MechanismShape(
+    label: 'widgetCallback/context-shapes',
+    group: 'widgetCallback',
+    fixture: 'widget_callback_shapes.dart',
+    type: 'WidgetBuilderBox',
+    member: 'buildIndexed',
+    note: 'direct native Context: indexed, named, nullable and Future callback results',
+  ),
+  Stage2MechanismShape(
     label: 'widgetCallback/context-param',
     group: 'widgetCallback',
     fixture: 'widget_callback_shapes.dart',

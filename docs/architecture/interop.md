@@ -1,7 +1,8 @@
 # Collections, Generics and Generated Proxies
 
 UI protocol 22 shares one conversion and reference mechanism across selected Dart APIs.
-[Object ownership](objects.md) describes callbacks, GC and session shutdown.
+[Bridge references](references.md) describes callback and reference GC;
+[object ownership](objects.md) describes application disposal and session shutdown.
 
 ## Ordinary objects and explicit data
 
@@ -95,8 +96,8 @@ at Widget positions, not ordinary Object/dynamic inputs. Flax hosts also retain 
 description resources. The application root holds the session until its subtree
 unmounts, even when it consists entirely of native Widgets.
 
-A returned builder borrows the supplied Context's existing owner and lifecycle. It does
-not manufacture an Element, extend Context lifetime or execute during conversion.
+A returned builder borrows the supplied native Context and its Flutter lifecycle. It
+does not manufacture an Element, extend Context lifetime or execute during conversion.
 Callback signatures preserve required and optional positional parameters and required
 and optional named parameters. Named arguments use one final JS options object. Omitted
 optional values are not sent, so JS and Dart defaults execute normally; explicit null is

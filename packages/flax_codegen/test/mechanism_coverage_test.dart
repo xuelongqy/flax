@@ -197,7 +197,7 @@ void main() {
   });
 
   test('the flat shape list covers five mechanisms with unique labels', () {
-    expect(stage2MechanismShapes, hasLength(37));
+    expect(stage2MechanismShapes, hasLength(38));
     expect(stage2MechanismShapes.map((shape) => shape.group).toSet(), <String>{
       'callback',
       'record',
@@ -770,6 +770,20 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     fixture: 'widget_callback_shapes.dart',
     type: 'WidgetBuilderBox',
     member: 'configure',
+    verdict: CapabilityVerdict.supported,
+    route: 'classWide',
+    bindable: true,
+    memberStatus: 'selected',
+    classWideOk: true,
+    classWideClasses: <String>['WidgetBuilderBox', 'BuildContext'],
+    classWideMemberSelected: true,
+    memberInModule: true,
+  ),
+  _ShapeExpectation(
+    label: 'widgetCallback/context-shapes',
+    fixture: 'widget_callback_shapes.dart',
+    type: 'WidgetBuilderBox',
+    member: 'buildIndexed',
     verdict: CapabilityVerdict.supported,
     route: 'classWide',
     bindable: true,

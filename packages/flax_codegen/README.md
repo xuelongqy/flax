@@ -222,16 +222,16 @@ functions and supported collection inputs reuse the mounted Context supplied by 
 Passing or storing it does not extend its Flutter lifetime. Each conversion rejects
 forged, foreign-session and inactive references; nullable inputs retain normal null and
 omission semantics. Arbitrary Context outputs remain unsupported; native-to-JS callback
-arguments still require mounted ownership.
+arguments borrow the actual native Element through a weak reference.
 
 Ordinary functions, object constructors, instance/static methods, and returned Dart
-functions accept direct standard `Widget Function(BuildContext)` inputs. Each native
-invocation creates an independent host and runs JS at mount with the real child Context.
-Only one required positional non-null base Context and a non-null base Widget result
-receive this adaptation; optional/nullable callback inputs retain their normal meaning.
-Async/nullable Widget results, extra callback arguments, interfaces, and nested
-collections are not newly supported. This content ownership does not infer Route
-ownership; configured Route-producing functions still require FlaxNavigatorObserver.
+functions invoke callbacks directly with their original arguments and results. Context
+arguments do not require an extra Flax host. Supported signatures include indexed, named
+and optional arguments, nullable Widget results, nested callback values and Future
+results. Synchronous Flutter builders still reject Promises. Widget subinterface result
+limitations remain unchanged. Configured Route-producing functions keep their explicit
+leases and FlaxNavigatorObserver. See
+[bridge references and GC](../../docs/architecture/references.md).
 
 Nested callbacks in typed List elements and Map values receive per-mount adapters.
 Nested Widget results use independent ownership; Map callback keys are rejected.

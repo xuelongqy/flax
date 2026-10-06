@@ -29,7 +29,7 @@ void main() {
         h.runtime.handleLabels.where(
           (s) => s == '__flaxBindings.context.result',
         ),
-        hasLength(130),
+        isEmpty,
       );
       expect(
         h.boolean('nested.contexts.slice(0,130).every(c=>!c.mounted)'),

@@ -230,3 +230,17 @@ class AutoContextBox {
 set autoSelectedContext(BuildContext? value) {}
 set autoContextListener(void Function(BuildContext) value) {}
 set autoContextListListener(void Function(List<BuildContext>) value) {}
+
+Widget autoIndexedBuild(Widget Function(BuildContext, int) builder) =>
+    Builder(builder: (context) => builder(context, 1));
+Widget autoNamedBuild(
+  Widget Function({required BuildContext context}) builder,
+) => Builder(builder: (context) => builder(context: context));
+Widget autoNullableBuild(Widget? Function(BuildContext) builder) =>
+    Builder(builder: (context) => builder(context) ?? const SizedBox.shrink());
+Widget autoAsyncBuild(Future<Widget> Function(BuildContext) builder) => Builder(
+  builder: (context) => FutureBuilder<Widget>(
+    future: builder(context),
+    builder: (_, snapshot) => snapshot.data ?? const SizedBox.shrink(),
+  ),
+);

@@ -177,16 +177,32 @@ copyData(token);
         FlaxCodegenBindingEmitter([ordinary, core]),
         ordinary,
       );
+      final callbacks = await parser.parse(
+        FlaxCodegenBindingConfig(
+          'callbacks',
+          config.library,
+          '@example/callbacks',
+          '',
+          '',
+          {},
+          functions: const {
+            'indexedBuilder': FlaxCodegenFunctionSelection(['builder']),
+            'nullableBuilder': FlaxCodegenFunctionSelection(['builder']),
+            'asyncBuilder': FlaxCodegenFunctionSelection(['builder']),
+            'namedBuilder': FlaxCodegenFunctionSelection(['builder']),
+            'optionalContextBuilder': FlaxCodegenFunctionSelection(['builder']),
+            'nestedBuilders': FlaxCodegenFunctionSelection(['builder']),
+          },
+        ),
+      );
+      expect(callbacks.functions, hasLength(6));
+      await compileFixture(
+        root,
+        FlaxCodegenBindingEmitter([callbacks, core]),
+        callbacks,
+      );
       for (final functions in [
-        for (final name in [
-          'badBuilder',
-          'nullableBuilder',
-          'asyncBuilder',
-          'namedBuilder',
-          'optionalContextBuilder',
-          'nestedBuilders',
-          'interfaceBuilder',
-        ])
+        for (final name in ['interfaceBuilder'])
           {
             name: const FlaxCodegenFunctionSelection(['builder']),
           },

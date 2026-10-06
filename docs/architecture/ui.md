@@ -91,9 +91,9 @@ Flutter invokes the builder when that inherited value changes. It does not requi
 Ordinary signal.value reads inside a builder still do not establish subscriptions.
 Signal invalidations during either build or layout wait for the next frame.
 
-BuildContext is not constructible or disposable from JS. A mounted host caches its
-Element's wrapper across rebuilds and callback replacements. Captured contexts may be
-used in later synchronous events. mounted reports the actual Element state, while
+BuildContext is not constructible or disposable from JS. The weak reference cache reuses
+a live Element's wrapper across rebuilds and callback replacements. Captured contexts
+may be used in later synchronous events. mounted reports the actual Element state, while
 ancestor queries reject inactive or unmounted contexts. Unmount clears the Dart object
 reference and cached JS wrapper; a previously captured wrapper returns false from
 mounted and rejects member calls. Public wrappers reject forged and foreign references.
@@ -103,7 +103,10 @@ The owner may outlive internal native Elements, such as a replaced list Sliver. 
 UI checkpoints rotate through at most 64 Context records and revoke unmounted Elements.
 Inactive Elements that remain mounted keep their identity for reactivation. Access
 checks apply even before that sweep. Owner unmount and session teardown clear all their
-remaining Contexts immediately; reclamation requires no GC, timer or idle polling.
+remaining Contexts immediately. Native callback Contexts need no Flax mount owner and
+borrow the actual Element weakly. Last-alias JS GC and Element GC use the shared
+[reference cleanup mechanism](references.md); unmount cleanup requires no GC, timer or
+idle polling.
 
 BoxConstraints exposes only minWidth, maxWidth, minHeight, and maxHeight as a frozen
 reference, including Infinity. Each selected field reads its real Dart getter. Enums

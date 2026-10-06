@@ -15,6 +15,23 @@ class WidgetBuilderBox {
   void configure(Widget Function(BuildContext) build) {}
 
   Widget buildOnce(BuildContext context) => builder(context);
+
+  Widget buildIndexed(
+    BuildContext context,
+    Widget Function(BuildContext, int) build,
+  ) => build(context, 1);
+  Widget? buildNullable(
+    BuildContext context,
+    Widget? Function(BuildContext) build,
+  ) => build(context);
+  Widget buildNamed(
+    BuildContext context,
+    Widget Function({required BuildContext context}) build,
+  ) => build(context: context);
+  Future<Widget> buildAsync(
+    BuildContext context,
+    Future<Widget> Function(BuildContext) build,
+  ) => build(context);
 }
 
 class WidgetSinkBox {

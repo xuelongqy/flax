@@ -95,6 +95,14 @@ void main() {
     expect(config.typedefs, contains('LabelBuilder'));
     expect(config.functions.keys, contains('autoGreeting'));
     expect(config.functions['autoContextMounted']?.parameters, ['context']);
+    for (final name in [
+      'autoIndexedBuild',
+      'autoNamedBuild',
+      'autoNullableBuild',
+      'autoAsyncBuild',
+    ]) {
+      expect(config.functions[name]?.parameters, ['builder']);
+    }
     final contextBox = config.classes['AutoContextBox']!;
     expect(contextBox.constructors[''], ['context', 'optional']);
     expect(contextBox.setters, containsAll(['context', 'optional']));
@@ -102,7 +110,8 @@ void main() {
     expect(contextBox.methods['isMounted'], ['value']);
     expect(contextBox.staticSetters, contains('selected'));
     expect(config.topLevel!.setters, contains('autoSelectedContext'));
-    for (final name in ['autoContextListener', 'autoContextListListener']) {
+    expect(config.topLevel!.setters, contains('autoContextListener'));
+    for (final name in ['autoContextListListener']) {
       expect(config.topLevel!.setters, isNot(contains(name)));
       expect(
         proposal.skips.singleWhere((skip) => skip.target == '$name=').code,

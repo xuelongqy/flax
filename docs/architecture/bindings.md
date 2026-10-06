@@ -293,8 +293,9 @@ Direct Context inputs are supported by automatic and explicit selection in funct
 constructors, methods, setters, returned Dart functions and supported collections. They
 borrow an existing Context from the same active session. Dart may store it, but binding
 does not extend the Flutter element's lifetime; subsequent bridge inputs reject inactive
-or unmounted references. JS cannot forge a Context or construct one. Context outputs and
-native-to-JS callback arguments still need an actual mounted owner.
+or unmounted references. JS cannot forge a Context or construct one. Arbitrary Context
+outputs remain unsupported; native-to-JS callback arguments weakly borrow the actual
+Flutter Element without requiring a Flax mount owner.
 
 Widget parameters except key may bind. Ordinary object construction and writes do not
 bind. Callbacks support required/optional positional parameters, required/optional named
@@ -318,11 +319,13 @@ Flutter bindings expose the selected dart:async Stream family and call real Dart
 operators. Widget builders and Route factories stay synchronous and retain their Flutter
 lifecycle-specific ownership.
 
-Direct standard `Widget Function(BuildContext)` inputs also work in ordinary functions,
-object constructors, methods, and returned Dart functions. An independent host runs JS
-at build with its actual mounted child Context; generic hosts do not retain enclosing
-Routes. Configured Route-producing calls keep their synchronous Observer capture and
-transition-completion leases. See [function contracts](functions.md).
+Ordinary functions, object constructors, methods, and returned Dart functions invoke
+callbacks directly, preserving native Context identity, synchronous order, typed results
+and exceptions. Supported arguments can be indexed, optional, nullable or named;
+supported results include nullable Widgets and Futures. No synthetic content host is
+allocated. Configured Route-producing calls keep their synchronous Observer capture and
+transition-completion leases. See [function contracts](functions.md) and
+[bridge references and GC](references.md).
 
 ## Example object selection
 

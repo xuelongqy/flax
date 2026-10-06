@@ -38,6 +38,12 @@ BuildContext? _selectedContext;
 set selectedContext(BuildContext? value) => _selectedContext = value;
 bool get selectedContextMounted => _selectedContext?.mounted ?? false;
 
+bool Function(BuildContext)? _selectedContextListener;
+set selectedContextListener(bool Function(BuildContext)? value) =>
+    _selectedContextListener = value;
+bool invokeContextListener(BuildContext context) =>
+    _selectedContextListener!(context);
+
 int invokeTopLevel(int value) => value + 1;
 
 enum FunctionMode { first, second }
@@ -127,12 +133,22 @@ Widget wrapBuilder([WidgetBuilder? builder]) =>
 Widget Function(WidgetBuilder) builderWrapper() =>
     (builder) => wrapBuilder(builder);
 
-Widget badBuilder(Widget Function(BuildContext, int) builder) =>
-    Builder(builder: (context) => builder(context, 1));
+Widget indexedBuilder(Widget Function(BuildContext, int) builder) => Builder(
+  builder: (context) {
+    lastCallbackContext = WeakReference(context);
+    return builder(context, 1);
+  },
+);
 Widget nullableBuilder(Widget? Function(BuildContext) builder) =>
     Builder(builder: (context) => builder(context) ?? const SizedBox.shrink());
-Widget asyncBuilder(Future<Widget> Function(BuildContext) builder) =>
-    const SizedBox.shrink();
+Widget asyncBuilder(Future<Widget> Function(BuildContext) builder) => Builder(
+  builder: (context) => FutureBuilder<Widget>(
+    future: builder(context),
+    builder: (_, snapshot) => snapshot.data ?? const SizedBox.shrink(),
+  ),
+);
+
+WeakReference<BuildContext>? lastCallbackContext;
 
 Widget invokeBuilder(BuildContext origin, WidgetBuilder builder) =>
     builder(origin);
@@ -146,3 +162,10 @@ Widget invokeStaleBuilder(WidgetBuilder builder) {
     _builderContext = null;
   }
 }
+
+Widget namedBuilder(Widget Function({required BuildContext context}) builder) =>
+    Builder(builder: (context) => builder(context: context));
+Widget optionalContextBuilder(Widget Function([BuildContext?]) builder) =>
+    Builder(builder: (context) => builder(context));
+Widget nestedBuilders(List<WidgetBuilder> builder) =>
+    Builder(builder: builder.single);

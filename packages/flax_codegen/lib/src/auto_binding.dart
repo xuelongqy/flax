@@ -1195,7 +1195,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
           {'page', 'state', 'route'}.contains(type.kind) ||
           (type.containsWidget &&
               !{'widget', 'callback'}.contains(type.kind)) ||
-          (_requiresWidgetOwner(type) && !_isWidgetBuilder(type));
+          _requiresRouteOwner(type);
       if (bound == null || unsupported) {
         skips.addAll(localSkips);
         if (unsupported && localSkips.isEmpty) {

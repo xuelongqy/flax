@@ -3,12 +3,12 @@ part of '../../bindings.dart';
 /// Context ownership shared by generated properties and application components.
 mixin _ContextOwner {
   bool _active = true;
-  final _contexts = Map<BuildContext, _ContextReference>.identity();
+  final _contexts = <_ContextReference>{};
 
   void _closeContexts() {
     _active = false;
-    for (final reference in _contexts.values.toList()) {
-      reference.close();
+    for (final reference in _contexts.toList()) {
+      reference.release();
     }
   }
 }
@@ -298,7 +298,9 @@ abstract class FlaxComponentStateBase extends State<StatefulWidget> {
     if (operation == 'mounted') return FlaxJsBoolean(mounted);
     if (!mounted) throw StateError('Component State is not mounted');
     if (operation == 'context') {
-      return _scope.session.componentContext(context, _scope);
+      return _scope.session.holdHostResult(
+        _scope.session.componentContext(context, _scope),
+      );
     }
     if (operation == 'setState') {
       if (arguments.length != 1 || arguments.single is! FlaxJsFunction) {
@@ -575,6 +577,7 @@ class _ComponentMount with _ContextOwner {
       state ?? description.input,
       FlaxJsString(method),
     ];
+    final temporary = <FlaxJsObject>[];
     _running++;
     try {
       for (var i = 0; i < values.length; i++) {
@@ -584,10 +587,14 @@ class _ComponentMount with _ContextOwner {
             : value is _ComponentStateful
             ? value.description.input
             : throw ArgumentError('Unsupported component callback argument');
+        if (value is BuildContext) temporary.add(encoded);
         arguments.add(encoded);
       }
       return session.helper('invokeComponent').call(arguments);
     } finally {
+      for (final handle in temporary.reversed) {
+        handle.release();
+      }
       _running--;
       if (_closed && _running == 0) _release();
       session.checkpoint();
@@ -759,27 +766,9 @@ extension _ComponentCalls on _Session {
   }
 
   FlaxJsObject componentContext(BuildContext context, _ContextOwner owner) {
-    // State.context remains available during dispose; its Element is already unmounted.
-    return owner._contexts.putIfAbsent(context, () {
-      final type = registry._types.values
-          .whereType<FlaxContextBinding>()
-          .single;
-      final id = _nextContext++;
-      final proxy = helper('context').call([
-        FlaxJsString(type.id),
-        FlaxJsNumber(id.toDouble()),
-      ]) as FlaxJsObject;
-      final reference = _ContextReference(
-        this,
-        owner,
-        type.id,
-        id,
-        context,
-        proxy,
-      );
-      _contexts[id] = reference;
-      return reference;
-    }).proxy;
+    // State.context remains available during dispose, even after unmount.
+    final type = registry._types.values.whereType<FlaxContextBinding>().single;
+    return contextResult(context, type.id, owner: owner, allowUnmounted: true);
   }
 
   void registerComponents() {

@@ -76,26 +76,11 @@ bool _containsData(FlaxCodegenTypeRef type) =>
     type.parameters.any((parameter) => _containsData(parameter.type)) ||
     type.recordFields.any((field) => _containsData(field.type));
 
-bool _isWidgetBuilder(FlaxCodegenTypeRef type) =>
-    type.kind == 'callback' &&
-    type.typeParameters.isEmpty &&
-    type.result!.kind == 'widget' &&
-    type.result!.id == null &&
-    !type.result!.nullable &&
-    type.parameters.length == 1 &&
-    type.parameters.single.required &&
-    type.parameters.single.positional &&
-    type.parameters.single.type.kind == 'context' &&
-    type.parameters.single.type.id ==
-        'package:flutter/src/widgets/framework.dart::BuildContext' &&
-    !type.parameters.single.type.nullable;
-
-bool _requiresWidgetOwner(FlaxCodegenTypeRef type) => type.kind == 'callback'
-    ? type.result!.kind == 'route' ||
-          type.parameters.any((parameter) => parameter.type.kind == 'context')
-    : (type.item != null && _requiresWidgetOwner(type.item!)) ||
-          (type.key != null && _requiresWidgetOwner(type.key!)) ||
-          type.recordFields.any((field) => _requiresWidgetOwner(field.type));
+bool _requiresRouteOwner(FlaxCodegenTypeRef type) =>
+    (type.kind == 'callback' && type.result!.kind == 'route') ||
+    (type.item != null && _requiresRouteOwner(type.item!)) ||
+    (type.key != null && _requiresRouteOwner(type.key!)) ||
+    type.recordFields.any((field) => _requiresRouteOwner(field.type));
 
 bool _containsDeferredTypeParameter(
   DartType type,
@@ -2407,15 +2392,9 @@ class FlaxCodegenBindingParser {
         )) {
           throw StateError('Unsupported method arguments: ${chosen.key}');
         }
-        if (args.any(
-          (p) =>
-              p.type.kind == 'callback' &&
-              !_isWidgetBuilder(p.type) &&
-              (p.type.result!.kind == 'route' ||
-                  p.type.parameters.any((a) => a.type.kind == 'context')),
-        )) {
+        if (args.any((p) => _requiresRouteOwner(p.type))) {
           throw StateError(
-            'Method callbacks require synchronous data arguments and results',
+            'Method callbacks returning Routes require explicit ownership',
           );
         }
         methods.add(
@@ -3345,8 +3324,7 @@ class FlaxCodegenBindingParser {
         if ({'page', 'state', 'route'}.contains(p.type.kind) ||
             (p.type.containsWidget &&
                 !{'widget', 'callback'}.contains(p.type.kind)) ||
-            (_requiresWidgetOwner(p.type) &&
-                !_isWidgetBuilder(p.type) &&
+            (_requiresRouteOwner(p.type) &&
                 !(route?.builders.contains(p.name) ?? false))) {
           throw StateError(
             'Unsupported function input: ${entry.key}.${p.name}',

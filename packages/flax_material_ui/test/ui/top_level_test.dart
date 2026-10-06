@@ -34,6 +34,132 @@ Widget _app(
 
 void main() {
   testWidgets(
+    'ordinary callbacks preserve synchronous order and Context identity',
+    (t) async {
+      final h = _harness();
+      try {
+        await t.pumpWidget(_app(h));
+        h.execute('''
+        var callbackOrder = ['before'];
+        var sameCallbackContext = false;
+        var callbackSource = topLevel.functions.nativeTile();
+        var callbackWidget = topLevel.functions.invokeBuilder(topLevel.context, current => {
+          callbackOrder.push('callback');
+          sameCallbackContext = current === topLevel.context;
+          return callbackSource;
+        });
+        callbackOrder.push('after');
+      ''');
+        expect(h.string('callbackOrder.join(",")'), 'before,callback,after');
+        expect(h.boolean('sameCallbackContext'), isTrue);
+        expect(h.boolean('callbackWidget === callbackSource'), isTrue);
+        expect(
+          () => h.execute(
+            'topLevel.functions.invokeBuilder(topLevel.context, () => { throw Error("synchronous failure"); })',
+          ),
+          throwsA(isA<FlaxJsException>()),
+        );
+        expect(h.errors, isEmpty);
+      } finally {
+        await h.finish(t);
+      }
+    },
+  );
+
+  for (final shape in [
+    'indexed',
+    'nullable',
+    'async',
+    'named',
+    'optional',
+    'nested',
+  ]) {
+    testWidgets('ordinary $shape callback uses native Flutter invocation', (
+      t,
+    ) async {
+      final h = _harness();
+      try {
+        await t.pumpWidget(_app(h));
+        h.execute(
+          'topLevel.setMode("native"); topLevel.setBuilderKind("$shape")',
+        );
+        await t.pumpWidget(_app(h, home: Material(child: h.page('builder'))));
+        await t.pumpAndSettle();
+        expect(h.number('topLevel.builderCalls'), 1);
+        expect(h.boolean('topLevel.builderMounted'), isTrue);
+        expect(
+          find.byWidgetPredicate((w) => w is SizedBox && w.width == 17),
+          shape == 'nullable' ? findsNothing : findsOneWidget,
+        );
+        if (shape == 'indexed') expect(h.number('topLevel.builderIndex'), 1);
+        expect(h.errors, isEmpty);
+      } finally {
+        await h.finish(t);
+      }
+    });
+  }
+
+  testWidgets('Dart retention and clearing control a stored JS callback', (
+    t,
+  ) async {
+    final h = _harness();
+    try {
+      await t.pumpWidget(_app(h));
+      h.execute('''
+        var weakContextListener;
+        (() => {
+          const callback = current => current.mounted;
+          weakContextListener = new WeakRef(callback);
+          topLevel.functions.ContextValues.setSelectedContextListener(callback);
+        })();
+      ''');
+      await t.runAsync(flaxTestCollectDartGarbage);
+      h.execute(flaxTestJsGarbagePressure);
+      expect(h.boolean('weakContextListener.deref() !== undefined'), isTrue);
+      expect(
+        h.boolean('topLevel.functions.invokeContextListener(topLevel.context)'),
+        isTrue,
+      );
+      h.execute(
+        'topLevel.functions.ContextValues.setSelectedContextListener(null)',
+      );
+      for (var i = 0; i < 8; i++) {
+        await t.runAsync(flaxTestCollectDartGarbage);
+        h.execute(flaxTestJsGarbagePressure);
+        await t.pump();
+        if (h.boolean('weakContextListener.deref() === undefined')) break;
+      }
+      expect(h.boolean('weakContextListener.deref() === undefined'), isTrue);
+      expect(h.errors, isEmpty);
+    } finally {
+      fixture.selectedContextListener = null;
+      await h.finish(t);
+    }
+  });
+
+  testWidgets('a retained JS Context does not retain a native Element', (
+    t,
+  ) async {
+    final h = _harness();
+    try {
+      await t.pumpWidget(_app(h));
+      h.execute(
+        'topLevel.setMode("native"); topLevel.setBuilderKind("indexed")',
+      );
+      await t.pumpWidget(_app(h, home: Material(child: h.page('builder'))));
+      expect(fixture.lastCallbackContext!.target, isNotNull);
+      await t.pumpWidget(const SizedBox());
+      await t.runAsync(flaxTestCollectDartGarbage);
+      expect(fixture.lastCallbackContext!.target, isNull);
+      expect(h.boolean('topLevel.lastBuilderContext.mounted'), isFalse);
+      expect(h.errors, isEmpty);
+    } finally {
+      fixture.lastCallbackContext = null;
+      await h.finish(t);
+    }
+  });
+
+  testWidgets(
     'Context inputs work in functions, objects, properties and collections',
     (t) async {
       final h = _harness();
@@ -218,7 +344,7 @@ void main() {
             isA<FlaxJsException>().having(
               (e) => e.toString(),
               'message',
-              contains('Unmounted builder Context'),
+              contains('Inactive or unmounted BuildContext'),
             ),
           ),
         );
@@ -230,7 +356,7 @@ void main() {
     },
   );
 
-  testWidgets('ordinary content hosts isolate concurrent sessions', (t) async {
+  testWidgets('ordinary callbacks isolate concurrent sessions', (t) async {
     final first = _harness();
     final second = _harness();
     final visible = ValueNotifier(true);
@@ -305,7 +431,7 @@ void main() {
           'topLevel.setMode("native"); topLevel.setBuilderKind("$kind"); '
           'topLevel.${kind == 'stored' ? 'store' : 'preview'}()',
         );
-        expect(h.number('topLevel.builderCalls'), 0);
+        expect(h.number('topLevel.builderCalls'), kind == 'stored' ? 0 : 1);
         await t.runAsync(flaxTestCollectDartGarbage);
         h.execute(flaxTestJsGarbagePressure);
         await t.pumpWidget(
@@ -338,7 +464,7 @@ void main() {
     try {
       await t.pumpWidget(_app(h));
       h.execute('topLevel.preview()');
-      expect(h.number('topLevel.builderCalls'), 0);
+      expect(h.number('topLevel.builderCalls'), 1);
       await t.pumpWidget(const SizedBox());
       await flaxTestCloseSession(t, h.session);
       expect(h.runtime.isDisposed, isTrue);
@@ -365,8 +491,8 @@ void main() {
         );
         await t.pumpAndSettle();
         expect(find.byType(ErrorWidget), findsOneWidget);
-        expect(h.errors, hasLength(1));
-        h.errors.clear();
+        expect(t.takeException(), isNotNull);
+        expect(h.errors, isEmpty);
         h.execute('topLevel.setMode("valid")');
         t
             .element(
@@ -484,7 +610,7 @@ void main() {
     'static',
     'returned',
   ]) {
-    testWidgets('ordinary $kind WidgetBuilder owns a mounted child Context', (
+    testWidgets('ordinary $kind WidgetBuilder preserves its native Context', (
       t,
     ) async {
       final h = _harness();

@@ -1,46 +1,63 @@
 part of '../../bindings.dart';
 
-/// The owning host outlives its native Builder/LayoutBuilder child Element.
-class _ContextReference {
+/// Borrow the actual Element without keeping it mounted or manufacturing a host.
+class _ContextReference extends _BridgeReference {
   _ContextReference(
-    this.session,
-    this.owner,
+    super.session,
+    _ContextOwner? owner,
     this.type,
     this.id,
-    this.context,
-    this.proxy,
-  );
-  final _Session session;
-  final _ContextOwner owner;
+    BuildContext context,
+  ) : _context = WeakReference(context),
+      _owner = owner == null ? null : WeakReference(owner) {
+    attach(context);
+  }
   final String type;
   final int id;
-  BuildContext? context;
-  final FlaxJsObject proxy;
+  WeakReference<BuildContext>? _context;
+  WeakReference<_ContextOwner>? _owner;
+  bool _notifyJs = true;
+  BuildContext? get context => _context?.target;
+
+  void aliasesCollected() {
+    // The JS sweep already removed every alias; do not cross the bridge again.
+    _notifyJs = false;
+    release();
+  }
+
+  FlaxJsObject get proxy {
+    if (retired) throw StateError('Retired Context reference');
+    return _session.target!.helper('context').call([
+      FlaxJsString(type),
+      FlaxJsNumber(id.toDouble()),
+    ]) as FlaxJsObject;
+  }
 
   BuildContext requireActive() {
     final value = context;
-    if (value == null || !value.mounted || !owner._active) {
+    if (retired ||
+        value == null ||
+        !value.mounted ||
+        _owner?.target?._active == false) {
       throw StateError('Inactive or unmounted BuildContext');
     }
     return value;
   }
 
+  @override
   void close() {
-    final previous = context;
-    if (previous == null) return;
-    context = null;
-    owner._contexts.remove(previous);
-    session._contexts.remove(id);
-    try {
-      if (session.active) {
+    _context = null;
+    _owner?.target?._contexts.remove(this);
+    final session = _session.target;
+    session?._contexts.remove(id);
+    if (_notifyJs && session?.active == true) {
+      try {
         _releaseJs(
-          session.helper('releaseContext').call([FlaxJsNumber(id.toDouble())]),
+          session!.helper('releaseContext').call([FlaxJsNumber(id.toDouble())]),
         );
+      } catch (error, stack) {
+        session!.report(error, stack);
       }
-    } catch (error, stack) {
-      session.report(error, stack);
-    } finally {
-      proxy.release();
     }
   }
 }
@@ -55,7 +72,7 @@ extension _MemberCalls on _Session {
         // Rotate live entries without retaining an iterator across frame changes.
         _contexts[id] = reference;
       } else {
-        reference.close();
+        reference.release();
       }
     }
   }
@@ -194,10 +211,12 @@ extension _MemberCalls on _Session {
       final getter = binding.getters.where((g) => g.name == name).firstOrNull;
       if (getter == null) throw ArgumentError('Unsupported getter: $name');
       final reference = _context(args[2], type);
-      final context = name == 'mounted'
-          ? reference.context!
-          : reference.requireActive();
-      return holdHostResult(memberResult(getter.read(context), getter.type));
+      if (name == 'mounted') {
+        return FlaxJsBoolean(reference.context?.mounted ?? false);
+      }
+      return holdHostResult(
+        memberResult(getter.read(reference.requireActive()), getter.type),
+      );
     });
     _registerBindingHostFunction('__flaxCall', (_, args) {
       _checkCall(args, 3);
@@ -465,7 +484,34 @@ extension _MemberCalls on _Session {
     throw ArgumentError('Unsupported Dart result: ${type.kind}');
   }
 
-  /// Context and Page arguments borrow their owner; other handles are temporary.
+  FlaxJsObject contextResult(
+    BuildContext value,
+    String type, {
+    _ContextOwner? owner,
+    bool allowUnmounted = false,
+  }) {
+    if ((!allowUnmounted && !value.mounted) ||
+        (!allowUnmounted && owner?._active == false)) {
+      throw StateError('Inactive or unmounted BuildContext');
+    }
+    var reference = _contextIds[value];
+    if (reference == null || reference.retired) {
+      reference = _ContextReference(this, owner, type, _nextObject++, value);
+      _contextIds[value] = reference;
+      _contexts[reference.id] = reference;
+    } else if (reference.type != type) {
+      throw ArgumentError('Incompatible Context type');
+    }
+    if (owner != null) {
+      reference._owner ??= WeakReference(owner);
+      if (identical(reference._owner!.target, owner)) {
+        owner._contexts.add(reference);
+      }
+    }
+    return reference.proxy;
+  }
+
+  /// Contexts borrow native Elements; Pages borrow leases. Handles are temporary.
   FlaxJsValue encodeArgument(
     Object? value,
     FlaxTypeRef type,
@@ -517,34 +563,10 @@ extension _MemberCalls on _Session {
       return value.flaxPageLease._descriptor;
     }
     if (type.kind == 'context') {
-      final borrowed = _functionContexts?[value];
-      if (owner == null && borrowed != null && borrowed.type == type.id) {
-        borrowed.requireActive();
-        return borrowed.proxy;
-      }
-      if (value is! BuildContext ||
-          owner == null ||
-          !owner._active ||
-          !value.mounted) {
-        throw StateError('BuildContext requires an active mounted owner');
-      }
-      return owner._contexts.putIfAbsent(value, () {
-        final id = _nextContext++;
-        final proxy = helper('context').call([
-          FlaxJsString(type.id!),
-          FlaxJsNumber(id.toDouble()),
-        ]) as FlaxJsObject;
-        final reference = _ContextReference(
-          this,
-          owner,
-          type.id!,
-          id,
-          value,
-          proxy,
-        );
-        _contexts[id] = reference;
-        return reference;
-      }).proxy;
+      if (value is! BuildContext) throw ArgumentError('Expected BuildContext');
+      final proxy = contextResult(value, type.id!, owner: owner);
+      temporary.add(proxy);
+      return proxy;
     }
     final result = scalarResult(value, type);
     if (result is FlaxJsObject) temporary.add(result);

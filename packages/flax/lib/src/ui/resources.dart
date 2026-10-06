@@ -111,27 +111,16 @@ class _ResourceCleanup {
 }
 
 final _widgetConfigurations = Expando<_WidgetConfiguration>();
-final _widgetFinalizer = Finalizer<_WidgetConfiguration>(
-  (record) => record.release(),
-);
 
-class _WidgetConfiguration {
-  _WidgetConfiguration(_Session session, _Resource resource)
-    : session = WeakReference(session),
-      cleanup = resource._detachedCleanup {
+class _WidgetConfiguration extends _BridgeReference {
+  _WidgetConfiguration(super.session, _Resource resource)
+    : cleanup = resource._detachedCleanup {
     resource.retain();
-    session._configurations.add(this);
   }
-  final WeakReference<_Session> session;
   final _ResourceCleanup cleanup;
-  bool released = false;
 
-  void release() {
-    if (released) return;
-    released = true;
-    session.target?._configurations.remove(this);
-    cleanup.release();
-  }
+  @override
+  void close() => cleanup.release();
 }
 
 void _releaseJs(FlaxJsValue value) {
@@ -191,27 +180,12 @@ enum _CallbackScope { member, ui }
 // identifies it when a Dart collection later becomes a Widget parameter.
 final _callbackSources = Expando<_Callback>();
 
-// The finalization token must not retain its callback owner or mounted State.
-final _callbackFinalizer = Finalizer<_CallbackHandle>(
-  (handle) => handle.release(),
-);
-
-class _CallbackHandle {
-  _CallbackHandle(_Session owner, this.function)
-    : session = WeakReference(owner) {
-    owner._callbackHandles.add(this);
-  }
-  final WeakReference<_Session> session;
+class _CallbackHandle extends _BridgeReference {
+  _CallbackHandle(super.session, this.function);
   final FlaxJsFunction function;
-  int running = 0;
-  bool retired = false;
-  bool released = false;
 
-  void release() {
-    retired = true;
-    if (running != 0 || released) return;
-    released = true;
-    session.target?._callbackHandles.remove(this);
+  @override
+  void close() {
     if (!function.isReleased) function.release();
   }
 }
@@ -226,7 +200,7 @@ class _Callback extends _Resource implements FlaxCallback {
     _BindingContext? bindingContext,
   }) : context = bindingContext ?? _bindingContext,
        _handle = _CallbackHandle(session, function) {
-    _callbackFinalizer.attach(this, _handle, detach: this);
+    _handle.attach(this);
   }
   final _Session session;
   final _CallbackHandle _handle;
@@ -247,7 +221,6 @@ class _Callback extends _Resource implements FlaxCallback {
 
   /// Revokes a callback whose Dart owner has deterministically released it.
   void retire() {
-    _callbackFinalizer.detach(this);
     _handle.release();
   }
 
@@ -290,7 +263,7 @@ class _Callback extends _Resource implements FlaxCallback {
     }
     final temporary = <FlaxJsObject>[];
     final scoped = <_ScopedObjectLease>[];
-    _handle.running++;
+    _handle.enter();
     try {
       final positional = signature.parameters
           .where((p) => p.positional)
@@ -304,45 +277,6 @@ class _Callback extends _Resource implements FlaxCallback {
           ) ||
           named.any((p) => p.required && !namedArguments.containsKey(p.name))) {
         throw ArgumentError('Invalid callback arity');
-      }
-      if (scope == _CallbackScope.member &&
-          owner == null &&
-          signature.result.kind == 'widget' &&
-          signature.result.id == null &&
-          !signature.result.nullable &&
-          signature.parameters.length == 1 &&
-          positional.length == 1 &&
-          positional.single.required &&
-          positional.single.type.kind == 'context' &&
-          positional.single.type.id == 'flax.core/flutter#type:BuildContext' &&
-          !positional.single.type.nullable) {
-        final nativeContext = positionalArguments.single as BuildContext;
-        if (!nativeContext.mounted) {
-          throw StateError('Unmounted builder Context');
-        }
-        // Escaped Dart closures can outlive their released parameter resource.
-        // Give each returned host its own JS handle and mounted child Context.
-        final callback = _Callback(
-          session,
-          function.retain() as FlaxJsFunction,
-          signature,
-          bindingContext: context,
-        );
-        final source = _Source(
-          session,
-          FlaxTypeRef('callback', callback: signature),
-          _Value(callback.wrap(), [callback]),
-        );
-        final node = FlaxNode._(session, _widgetBuilderBinding, '', {
-          'builder': source,
-        });
-        try {
-          final host = _WidgetBuilderHost(node);
-          session.escapeWidget(host);
-          return host;
-        } finally {
-          node.release();
-        }
       }
       final args = <FlaxJsValue>[
         function,
@@ -427,8 +361,7 @@ class _Callback extends _Resource implements FlaxCallback {
       for (final lease in scoped.reversed) {
         lease.release();
       }
-      _handle.running--;
-      if (_handle.retired) _handle.release();
+      _handle.leave();
       session.checkpoint();
       for (final value in temporary.reversed) {
         value.release();
@@ -510,7 +443,6 @@ class _Callback extends _Resource implements FlaxCallback {
   @override
   void close() {
     if (!escaped) {
-      _callbackFinalizer.detach(this);
       _handle.release();
     }
   }
