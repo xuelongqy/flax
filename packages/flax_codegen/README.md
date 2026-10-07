@@ -40,7 +40,7 @@ dart run flax_codegen generate --library package:foo/foo.dart
 
 `<direct-yaml>` must be an explicit direct child of the package `bindings/` directory.
 The CLI discovers sibling binding configs in that directory, resolves current-only
-Manifest 15 dependency projections through the package config, and (for `generate`)
+Manifest 16 dependency projections through the package config, and (for `generate`)
 writes `lib/...`, `js/...`, and `bindings/manifest.json` below the owning package. The
 old `dart run flax_codegen [--check] <config>` form is not supported.
 
@@ -192,7 +192,7 @@ Aliases reuse existing callback and collection conversions and create no runtime
 constructor or additional wire identity. Explicit TS type arguments are supported;
 matching all Dart inference is not required. Generic callbacks retain bound erasure and
 concrete-use-site result validation. Unsupported targets, recursive or unbound callback
-bounds, and export-name collisions fail explicitly. Manifest 15 preserves alias origins,
+bounds, and export-name collisions fail explicitly. Manifest 16 preserves alias origins,
 parameters and targets across packages. See
 [ADR 0035](../../docs/decisions/0035-generic-state-variants-and-protocol-21.md).
 Complete Dart type-system coverage remains separate work.
@@ -201,7 +201,7 @@ Records are structural values with no wire ID or session identity. Generated Typ
 uses readonly object fields (`$1`, `$2`, ... for positional fields plus named fields),
 while Dart conversion reconstructs real Records and recursively reuses the existing
 conversion rules for nested callbacks, collections, Futures and provider-owned objects.
-Manifest 15 encodes Record fields and all current recursive type metadata.
+Manifest 16 encodes Record fields and all current recursive type metadata.
 
 Style and Theme selections reuse object, static-member and Widget generation. Optional
 named TS inputs explicitly include undefined for exactOptionalPropertyTypes. An
@@ -234,10 +234,11 @@ results. Widget interfaces such as `PreferredSizeWidget` work in ordinary callba
 arguments and results, with native interface validation in both directions. Mounted
 Widget constructor callbacks and configured Route/Page adapters preserve the same
 selected interfaces. Narrow interface failures propagate; only base Widget UI results
-can use an ErrorWidget placeholder. Specific concrete native class returns remain
-separate from interface binding. Synchronous Flutter builders still reject Promises.
-Configured Route-producing functions keep their explicit leases and
-FlaxNavigatorObserver. See
+can use an ErrorWidget placeholder. Concrete native Widget results preserve the actual
+Dart subtype. A descriptor accepted by a concrete signature becomes a fixed native
+configuration; signals remain on descriptor hosts, not native constructor inputs.
+Synchronous Flutter builders still reject Promises. Configured Route-producing functions
+keep their explicit leases and FlaxNavigatorObserver. See
 [bridge references and GC](../../docs/architecture/references.md).
 
 Nested callbacks in typed List elements and Map values receive per-mount adapters.
@@ -272,14 +273,16 @@ the singleton. The independent Pulse fixture covers inheritance and compiled Dar
 Returned callback signatures generate direct typed invocation adapters as well as
 incoming closure adapters. Directional TS types distinguish JS callback arguments from
 arguments to returned Dart functions, including collection inputs/outputs. Recursive
-validation rejects unsupported returned signatures. Native Widget values return opaque
-DartWidget references; Context arguments borrow existing Flutter owners. See
+validation rejects unsupported returned signatures. Base and interface Widget values
+return opaque DartWidget references; concrete selected proxy bindings expose their
+generated native getters and methods; Context arguments borrow existing Flutter owners.
+See
 [returned functions](../../docs/architecture/interop.md#returned-functions-and-widgets).
 
 Widget interfaces use `kind: widgetInterface` and `widgetInterfaces` selections. Hosts
 generate real implements clauses and native getter/setter/method forwarding, including
 generic methods and BuildContext signatures. Native members stay outside JS conversion
-and are recorded in Manifest 15. Generic interface declarations remain deferred.
+and are recorded in Manifest 16. Generic interface declarations remain deferred.
 Interface Widgets reject direct bindings but accept ordinary constructor callbacks.
 Their fixed native configurations keep original closures; nested child Widgets retain
 normal bindings and mounted subscriptions. Cross-module fixtures compile both Dart and
@@ -303,7 +306,7 @@ their existing Dart and session behavior. Writes emit synchronous `setX(value): 
 functions; getter and setter types follow their separate Dart signatures.
 Const/final/late-final writes and inputs requiring unsupported Flutter ownership are
 rejected; existing mounted Context references are accepted. Provider-owned declarations
-reuse the provider's public module without registering twice. Manifest 15 records source
+reuse the provider's public module without registering twice. Manifest 16 records source
 identity, read/write operations and public-library routing. See
 [readonly generation](../../docs/architecture/bindings.md#public-libraries-and-top-level-readonly-declarations)
 and [ADR 0027](../../docs/decisions/0027-public-library-module-delivery.md).
@@ -316,7 +319,7 @@ writes use the same function channel as top-level declarations; module import do
 read state. Const/final/late-final writes, inherited statics, unsupported conversions
 and generated `setX` export collisions are rejected. Automatic selection skips
 conflicting writes and reports the reason. Static state belongs to the application;
-closing a session does not reset it. Manifest 15 records class-qualified read/write
+closing a session does not reset it. Manifest 16 records class-qualified read/write
 operation IDs and provider capabilities. See
 [static properties](../../docs/architecture/bindings.md#class-static-properties).
 
@@ -390,11 +393,11 @@ Explicit `extensions` selections expose named Dart extensions as receiver-first 
 TypeScript adapters: `StringX.getIsBlank(value)` and `StringX.repeat(value, count)`.
 Getters, setters, static getters/methods, generic declarations/members and legal Dart
 operators reuse the function call channel. Dart invocation always uses an explicit
-extension override; no prototype or instance identity is created. Manifest 15 records
+extension override; no prototype or instance identity is created. Manifest 16 records
 these declarations. See the
 [extension binding contract](../../docs/architecture/bindings.md#extension-declarations).
 
-Generic bounds can refer to unbound interfaces through Manifest 15 type-only references.
+Generic bounds can refer to unbound interfaces through Manifest 16 type-only references.
 Explicit recursive/dependent class and method specializations keep Dart subtype checks;
 TS retains nominal source identity and generic arguments without exposing bound members.
 Generic aliases need no runtime erasure when their bounds are type-only. Ordinary values
@@ -409,3 +412,38 @@ their language semantics. Generated proxy classes share `FlaxProxyBase` and prot
 installers rather than repeating forwarding bodies. Widget, State, Route and Page
 ownership stays with the existing specialized owners. See the
 [shared proxy contract](../../docs/architecture/bindings.md#shared-js-proxy-implementations-and-class-operators).
+
+## Native Widget subclasses
+
+Select `proxy: extends` on a Widget and explicitly list the native virtual methods to
+expose. The factory call retains descriptor reactivity; `new` creates a fixed native
+configuration and supports JS inheritance:
+
+```typescript
+class Title extends Text {
+  constructor(value: string) {
+    super(`Title: ${value}`);
+  }
+  override build(context: BuildContext) {
+    return super.build(context);
+  }
+}
+const native: Text = new Title('Orders');
+const reactive = Text(title.bind);
+```
+
+Generated Dart proxies extend the selected native class with `FlaxWidgetProxy`. Flutter
+owns their Elements, keys, State and RenderObjects. No override means a direct native
+call. JS constructor identity supplies Flutter matching; configuration is frozen when
+accepted, after the derived constructor finishes. Selected getters read native fields.
+
+Stateless `build`, Inherited `updateShouldNotify`, and RenderObject creation/update/
+unmount methods use ordinary typed proxy calls. A selected Stateful `createState`
+override uses the existing `State` lifecycle through a `State<ConcreteWidget>` adapter;
+each mount must return a fresh JS State. Unoverridden factories preserve native State.
+State variants still require a compatible Dart State type; a variant composed for
+`State<StatefulWidget>` cannot impersonate `State<ConcreteWidget>`.
+
+Manifest 16 requires `native-widget-proxies`; selection format 2, UI protocol 22 and
+native ABI 2 remain unchanged. Source packages provide implementations and types
+packages declare the same callable/constructible exports. Core remains implicit.

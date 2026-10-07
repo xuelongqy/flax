@@ -26,6 +26,7 @@ class _ComponentType implements Type {
 }
 
 int _nextComponentSession = 1;
+final _nativeStateClaims = Expando<bool>();
 
 class _ComponentDescription extends _Resource {
   _ComponentDescription(
@@ -34,14 +35,16 @@ class _ComponentDescription extends _Resource {
     this.type,
     this.stateful,
     this.input,
-    this.key,
-  );
+    this.key, {
+    this.nativeWidget = false,
+  });
   final _Session session;
   final int id;
   final _ComponentType type;
   final bool stateful;
   final FlaxJsObject input;
   final Key? key;
+  final bool nativeWidget;
   WeakReference<Widget>? _widget;
   Widget get widget {
     final existing = _widget?.target;
@@ -158,12 +161,19 @@ class _ComponentStateSeed {
   final Object? failure;
 }
 
-State<StatefulWidget> _createComponentState(_ComponentDescription description) {
+State<T> _createComponentState<T extends StatefulWidget>(
+  _ComponentDescription description, {
+  FlaxComponentStateBase<T> Function(Object)? create,
+}) {
   final scope = _ComponentMount(description);
   final id = scope.session._nextComponentState++;
   FlaxJsObject? state;
   String? variantId;
   Object? failure;
+  final candidates = <int>{};
+  if (description.nativeWidget) {
+    scope.session._nativeStateFactories.add(candidates);
+  }
   try {
     if (!scope._retained) throw StateError('Closed Flax session');
     final created = scope.session.helper('createComponentState').call([
@@ -174,6 +184,28 @@ State<StatefulWidget> _createComponentState(_ComponentDescription description) {
       throw StateError('Invalid component State creation result');
     }
     try {
+      final native = created.getProperty('native');
+      try {
+        if (native is FlaxJsNumber) {
+          final reference = scope.session._states[native.value.toInt()];
+          final result = reference?.pendingState;
+          if (!candidates.contains(native.value.toInt()) ||
+              reference!.claimed ||
+              result is! State<T> ||
+              _nativeStateClaims[result] == true ||
+              result.mounted) {
+            throw StateError(
+              'createState must return a fresh State of the native Widget type',
+            );
+          }
+          reference.claimed = true;
+          _nativeStateClaims[result] = true;
+          scope.close();
+          return result;
+        }
+      } finally {
+        _releaseJs(native);
+      }
       state = _property(created, 'state', (value) {
         if (value is! FlaxJsObject) throw StateError('Invalid component State');
         return value.retain();
@@ -191,6 +223,13 @@ State<StatefulWidget> _createComponentState(_ComponentDescription description) {
   } catch (error, stack) {
     failure = error;
     scope.session.report(error, stack);
+  } finally {
+    if (description.nativeWidget) {
+      scope.session._nativeStateFactories.removeLast();
+      for (final id in candidates) {
+        scope.session._states[id]?.pendingState = null;
+      }
+    }
   }
 
   var seed = _ComponentStateSeed(
@@ -202,7 +241,13 @@ State<StatefulWidget> _createComponentState(_ComponentDescription description) {
   );
   if (failure == null && variantId != null) {
     final variant = scope.session.registry._stateVariants[variantId];
-    if (variant != null) return variant.create(seed);
+    if (variant != null) {
+      final result = variant.create(seed);
+      if (result is State<T>) return result as State<T>;
+      scope.session._componentStates.remove(id);
+      scope.close();
+      throw StateError('State variant does not match the native Widget type');
+    }
     failure = StateError('Unknown component State variant: $variantId');
     scope.session.report(failure, StackTrace.current);
     seed = _ComponentStateSeed(
@@ -213,11 +258,53 @@ State<StatefulWidget> _createComponentState(_ComponentDescription description) {
       failure: failure,
     );
   }
-  return _DefaultComponentState(seed);
+  return create?.call(seed) ?? (_DefaultComponentState(seed) as State<T>);
+}
+
+/// Uses the existing component State lifecycle with a concrete Flutter Widget type.
+State<T> flaxCreateWidgetState<T extends StatefulWidget>(
+  Object callback,
+  T widget,
+  FlaxComponentStateBase<T> Function(Object) create,
+) {
+  final source = _callbackSources[callback];
+  if (source == null || !source.active) {
+    throw StateError('Retired native Widget State factory');
+  }
+  final description = _nativeWidgetDescription(source.session, widget);
+  try {
+    return _createComponentState<T>(description, create: create);
+  } finally {
+    description.release();
+  }
+}
+
+_ComponentDescription _nativeWidgetDescription(
+  _Session session,
+  Widget widget,
+) {
+  final input = session.widgetResult(widget) as FlaxJsObject;
+  return _ComponentDescription(
+    session,
+    0,
+    widget.runtimeType is _ComponentType
+        ? widget.runtimeType as _ComponentType
+        : _ComponentType(
+            session._componentSessionId,
+            0,
+            widget.runtimeType.toString(),
+            true,
+          ),
+    true,
+    input,
+    widget.key,
+    nativeWidget: true,
+  );
 }
 
 /// Stable generator/runtime contract for a Flutter-owned component State.
-abstract class FlaxComponentStateBase extends State<StatefulWidget> {
+abstract class FlaxComponentStateBase<T extends StatefulWidget>
+    extends State<T> {
   FlaxComponentStateBase(Object value) {
     final seed = value as _ComponentStateSeed;
     _scope = seed.scope;
@@ -257,7 +344,16 @@ abstract class FlaxComponentStateBase extends State<StatefulWidget> {
     _hookArguments = arguments;
     try {
       if (method == 'didUpdateWidget') {
-        _scope.update((widget as _ComponentStateful).description);
+        if (widget is _ComponentStateful) {
+          _scope.update((widget as _ComponentStateful).description);
+        } else {
+          final description = _nativeWidgetDescription(_scope.session, widget);
+          try {
+            _scope.update(description);
+          } finally {
+            description.release();
+          }
+        }
       }
       if (method == 'build') {
         return failure != null
@@ -274,7 +370,10 @@ abstract class FlaxComponentStateBase extends State<StatefulWidget> {
       }
       return null;
     } catch (error, stack) {
-      if (method == 'dispose') rethrow;
+      if (method == 'dispose') {
+        if (!_scope.description.nativeWidget) rethrow;
+        if (!_calledSuper) flaxSuper('dispose', const []);
+      }
       if (method == 'initState') failure = error;
       _scope.session.report(error, stack);
       return null;
@@ -324,7 +423,12 @@ abstract class FlaxComponentStateBase extends State<StatefulWidget> {
       final decoded = <_Value>[];
       try {
         for (final argument in arguments) {
-          decoded.add(_scope.session.decodeComponent(argument));
+          decoded.add(
+            argument is FlaxJsObject
+                ? (_scope.session.decodeDartWidget(argument) ??
+                      _scope.session.decodeComponent(argument))
+                : _scope.session.decodeComponent(argument),
+          );
         }
         final result = flaxSuper(method, decoded.map((v) => v.data).toList());
         _calledSuper = true;
@@ -456,7 +560,7 @@ abstract class FlaxComponentStateBase extends State<StatefulWidget> {
 }
 
 /// Last in every generated State composition so direct super enters Dart mixins.
-mixin FlaxStateProxy on FlaxComponentStateBase {
+mixin FlaxStateProxy<T extends StatefulWidget> on FlaxComponentStateBase<T> {
   @override
   // ignore: must_call_super
   void initState() => flaxInvoke('initState', const [], requiresSuper: true);
@@ -468,7 +572,7 @@ mixin FlaxStateProxy on FlaxComponentStateBase {
 
   @override
   // ignore: must_call_super
-  void didUpdateWidget(StatefulWidget oldWidget) =>
+  void didUpdateWidget(T oldWidget) =>
       flaxInvoke('didUpdateWidget', [oldWidget], requiresSuper: true);
 
   @override
@@ -504,7 +608,7 @@ mixin FlaxStateProxy on FlaxComponentStateBase {
         return null;
       case 'didUpdateWidget':
         if (args.length != 1) throw ArgumentError('Invalid super arity');
-        super.didUpdateWidget(args.single as StatefulWidget);
+        super.didUpdateWidget(args.single as T);
         return null;
       case 'deactivate':
         if (args.isNotEmpty) throw ArgumentError('Invalid super arity');
@@ -586,8 +690,13 @@ class _ComponentMount with _ContextOwner {
             ? session.componentContext(value, this)
             : value is _ComponentStateful
             ? value.description.input
+            : value is Widget
+            ? session.widgetResult(value)
             : throw ArgumentError('Unsupported component callback argument');
-        if (value is BuildContext) temporary.add(encoded);
+        if (value is BuildContext ||
+            (value is Widget && value is! _ComponentStateful)) {
+          temporary.add(encoded as FlaxJsObject);
+        }
         arguments.add(encoded);
       }
       return session.helper('invokeComponent').call(arguments);

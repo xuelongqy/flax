@@ -370,3 +370,11 @@ class _NodeState extends State<FlaxWidgetHost> with _ContextOwner {
     super.dispose();
   }
 }
+
+/// Shared identity for native Widget subclasses; mount resources remain separate.
+final _flaxWidgetProxyTypes = Expando<Type>();
+
+mixin FlaxWidgetProxy on Widget {
+  @override
+  Type get runtimeType => _flaxWidgetProxyTypes[this] ?? super.runtimeType;
+}

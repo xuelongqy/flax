@@ -18,7 +18,9 @@ function _flaxInstallBindingModule(
       throw new TypeError('requiredCapabilities must be sorted unique strings');
     }
     previous = capability;
-    throw new TypeError(`Unsupported binding capability ${capability}`);
+    if (capability !== 'native-widget-proxies') {
+      throw new TypeError(`Unsupported binding capability ${capability}`);
+    }
   }
   return Object.freeze({
     moduleId,
@@ -44,6 +46,6 @@ function _flaxInstallBindingModule(
     invokeTopLevel: _flaxHostInvokeTopLevel,
   });
 }
-export const cupertinoBindingModule = _flaxInstallBindingModule("flax.cupertino/cupertino", 22, Object.freeze([]) as readonly string[]);
+export const cupertinoBindingModule = _flaxInstallBindingModule("flax.cupertino/cupertino", 22, Object.freeze(["native-widget-proxies"]) as readonly string[]);
 const { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } = cupertinoBindingModule;
 export { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel };

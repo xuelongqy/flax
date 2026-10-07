@@ -1044,6 +1044,7 @@ function proxyProperty(
 
 /** Generated signatures remain in TypeScript; executable forwarding is shared. */
 export interface ProxyDefinition {
+  readonly nativeWidget?: boolean;
   readonly type: string;
   readonly parameters: readonly Parameter[];
   readonly methods: Readonly<Record<string, readonly MemberParameter[]>>;
@@ -1072,8 +1073,32 @@ export abstract class FlaxProxyBase {
       definition.getters,
       definition.setters,
       definition.superMembers,
+      definition.nativeWidget && !componentBases.has(new.target.prototype as object)
+        ? componentType(new.target).type
+        : undefined,
     );
   }
+}
+
+/** Keeps descriptor calls and native subclass construction on one public export. */
+export function widgetProxyFactory<
+  F extends object,
+  C extends abstract new (...args: never[]) => object,
+>(
+  factory: F,
+  native: C,
+): F & (new (...args: ConstructorParameters<C>) => InstanceType<C>) {
+  const callable = function (this: object, ...args: unknown[]): unknown {
+    if (new.target) return Reflect.construct(native, args, new.target);
+    if (typeof factory !== 'function')
+      throw new TypeError('This Widget has only named constructors');
+    return Reflect.apply(factory, undefined, args);
+  };
+  callable.prototype = native.prototype;
+  Object.setPrototypeOf(callable, factory);
+  registerComponentBase(callable, false);
+  return callable as unknown as F &
+    (new (...args: ConstructorParameters<C>) => InstanceType<C>);
 }
 
 const memberLayouts = new WeakMap<
@@ -1201,7 +1226,14 @@ function installMembers(
   }
 }
 
-export function defineProxyBase(prototype: object, definition: ProxyDefinition): void {
+export function defineProxyBase(
+  prototype: object,
+  definition: ProxyDefinition,
+  nativeGetters: readonly string[] = [],
+): void {
+  installMembers(prototype, {}, nativeGetters, [], (receiver, member, args) =>
+    callObject(receiver, definition.type, 'get', member.slice(4), args),
+  );
   // Generated metadata is shared by all instances of this class.
   for (const parameters of Object.values(definition.methods)) {
     for (const parameter of parameters) Object.freeze(parameter);
@@ -1252,6 +1284,7 @@ export function constructExtendedProxy(
   getters: readonly string[],
   setters: readonly string[],
   superMembers: readonly string[],
+  widgetType?: number,
 ): void {
   if (receiver === null || typeof receiver !== 'object')
     throw new TypeError('Expected a proxy class instance');
@@ -1305,6 +1338,7 @@ export function constructExtendedProxy(
   try {
     const created = create(bindingVersion, type, {
       ...descriptor,
+      ...(widgetType === undefined ? {} : { widgetType }),
       args: Object.freeze(values),
     });
     const ref = objectHandles.get(created);
@@ -1493,6 +1527,9 @@ Object.assign(globalThis, {
       return Reflect.apply(callback, undefined, [...positional, options]);
     },
     componentType,
+    freezeWidget(value: object): void {
+      Object.freeze(value);
+    },
     component(value: object): ComponentInfo {
       const info = components.get(value);
       if (!info) throw new TypeError('Unknown or foreign component');
@@ -1502,7 +1539,7 @@ Object.assign(globalThis, {
     createComponentState(
       widget: object,
       id: number,
-    ): { state: object; variant: string | null } {
+    ): { state: object; variant: string | null } | { native: number } {
       const value = synchronous(
         Reflect.apply((widget as { createState: Function }).createState, widget, []),
       );
@@ -1510,6 +1547,11 @@ Object.assign(globalThis, {
         value !== null && typeof value === 'object'
           ? componentStates.get(value)
           : undefined;
+      const native =
+        value !== null && typeof value === 'object'
+          ? stateHandles.get(value)
+          : undefined;
+      if (native) return Object.freeze({ native: native.id });
       if (!state || state.claimed)
         throw new TypeError('createState must return a fresh State');
       state.claimed = true;

@@ -58,6 +58,7 @@ const cupertinoBindings = FlaxBindingModule(
         ],
       },
       _CupertinoAppHost.new,
+      matches: _isCupertinoApp,
       fixedArguments: false,
       methods: {},
     ),
@@ -115,6 +116,7 @@ const cupertinoBindings = FlaxBindingModule(
         ],
       },
       _CupertinoPageScaffoldHost.new,
+      matches: _isCupertinoPageScaffold,
       fixedArguments: false,
       methods: {},
     ),
@@ -161,6 +163,7 @@ const cupertinoBindings = FlaxBindingModule(
         ],
       },
       _CupertinoButtonHost.new,
+      matches: _isCupertinoButton,
       fixedArguments: false,
       methods: {},
     ),
@@ -296,6 +299,7 @@ const cupertinoBindings = FlaxBindingModule(
         ],
       },
       _CupertinoNavigationBarHost.new,
+      matches: _isCupertinoNavigationBar,
       fixedArguments: true,
       methods: {},
     ),
@@ -304,9 +308,10 @@ const cupertinoBindings = FlaxBindingModule(
   moduleId: "flax.cupertino/cupertino",
   dependencyModules: ["flax.core/flutter"],
   uiProtocol: 22,
-  requiredCapabilities: const <String>[],
+  requiredCapabilities: const <String>["native-widget-proxies"],
   stateVariants: [],
 );
+bool _isCupertinoApp(Object value) => value is api.CupertinoApp;
 
 class _CupertinoAppHost extends FlaxWidgetHost {
   _CupertinoAppHost(super.node);
@@ -330,6 +335,9 @@ api1.Widget _createCupertinoApp(String ctor, Map<String, Object?> values) {
       throw ArgumentError('Unknown generated constructor');
   }
 }
+
+bool _isCupertinoPageScaffold(Object value) =>
+    value is api.CupertinoPageScaffold;
 
 class _CupertinoPageScaffoldHost extends FlaxWidgetHost {
   _CupertinoPageScaffoldHost(super.node);
@@ -357,6 +365,8 @@ api1.Widget _createCupertinoPageScaffold(
       throw ArgumentError('Unknown generated constructor');
   }
 }
+
+bool _isCupertinoButton(Object value) => value is api.CupertinoButton;
 
 class _CupertinoButtonHost extends FlaxWidgetHost {
   _CupertinoButtonHost(super.node);
@@ -399,6 +409,8 @@ Object _createCupertinoThemeData(String ctor, Map<String, Object?> values) {
 
 bool _isObstructingPreferredSizeWidget(Object value) =>
     value is api.ObstructingPreferredSizeWidget;
+bool _isCupertinoNavigationBar(Object value) =>
+    value is api.CupertinoNavigationBar;
 
 class _CupertinoNavigationBarHost extends FlaxWidgetHost
     implements api.ObstructingPreferredSizeWidget {

@@ -574,7 +574,9 @@ final class _FlaxCodegenTypeScope {
       throw StateError('Unbound generic callback bound: $type');
     }
     final widgetInterface = parser._adaptations[id] == 'widgetInterface';
-    if (widgetInterface) usesWidget = true;
+    final nativeWidget =
+        parser._adaptations[id] == null && parser._isFlutterWidget(element);
+    if (widgetInterface || nativeWidget) usesWidget = true;
     if (!types.containsKey(id)) {
       final dependencyOwner = parser._dependencyTypeOwners[id];
       final dependencyType = dependencyOwner?.types
@@ -638,7 +640,7 @@ final class _FlaxCodegenTypeScope {
     return FlaxCodegenTypeRef(
       element is EnumElement
           ? 'enum'
-          : widgetInterface
+          : widgetInterface || nativeWidget
           ? 'widget'
           : parser._adaptations[id] ?? 'object',
       id: id,

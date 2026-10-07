@@ -108,9 +108,13 @@ class FlaxRouteLease extends _Resource {
 }
 
 class _StateReference {
-  _StateReference(State state, this.type) : target = WeakReference(state);
+  _StateReference(State state, this.type, {bool pending = false})
+    : target = WeakReference(state),
+      pendingState = pending ? state : null;
   final WeakReference<State> target;
   final String type;
+  State? pendingState;
+  bool claimed = false;
   State? get mounted {
     final state = target.target;
     return state != null && state.mounted ? state : null;
@@ -157,10 +161,19 @@ extension _Navigation on _Session {
   }
 
   FlaxJsValue stateResult(State state, FlaxTypeRef type) {
-    if (!state.mounted) throw StateError('Unmounted State');
-    _states.removeWhere((_, ref) => ref.mounted == null);
+    final pending = !state.mounted;
+    if (pending && _nativeStateFactories.isEmpty) {
+      throw StateError('Unmounted State');
+    }
+    _states.removeWhere(
+      (_, ref) => ref.mounted == null && ref.pendingState == null,
+    );
     final id = _stateIds[state] ??= _nextState++;
-    _states[id] = _StateReference(state, type.id!);
+    _states.putIfAbsent(
+      id,
+      () => _StateReference(state, type.id!, pending: pending),
+    );
+    if (pending) _nativeStateFactories.last.add(id);
     // Wrappers do not own the Flutter State or need a native reference cache.
     return helper('state')
         .call([FlaxJsString(type.id!), FlaxJsNumber(id.toDouble())]);

@@ -802,6 +802,10 @@ classes:
     methods:
       of: [context]
   Text:
+    getters: [data, key]
+    proxy: extends
+    instanceMethods:
+      build: [context]
     constructors:
       '': [data, key, style, softWrap, maxLines, textAlign, textDirection, overflow]
   Row:

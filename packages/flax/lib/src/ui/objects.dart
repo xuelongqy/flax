@@ -14,7 +14,7 @@ class _ObjectReference {
   Object get value => _value ?? (throw StateError('Released Dart object'));
 
   bool accepts(String type) {
-    final expected = session.registry._types[type];
+    final expected = _objectView(session.registry._types[type]);
     // Each binding view shares the actual session-owned Dart value.
     // Generated matches preserves concrete Dart type and generic checks.
     return expected is FlaxObjectBinding && expected.matches != null
@@ -141,9 +141,15 @@ class _ObjectListener implements FlaxCallback {
   }
 }
 
+FlaxObjectBinding? _objectView(FlaxTypeBinding? binding) => switch (binding) {
+  FlaxObjectBinding() => binding,
+  FlaxWidgetBinding() => binding.objectView,
+  _ => null,
+};
+
 extension _ObjectCalls on _Session {
   FlaxObjectBinding _objectBinding(Object value, String type) {
-    final expected = registry._types[type];
+    final expected = _objectView(registry._types[type]);
     if (expected is! FlaxObjectBinding ||
         expected.matches?.call(value) == false) {
       throw ArgumentError('Unsupported returned Dart object');
@@ -436,7 +442,9 @@ extension _ObjectCalls on _Session {
       if (args.length != 3 || args[2] is! FlaxJsObject) {
         throw ArgumentError('Invalid object constructor');
       }
-      final binding = registry._types[(args[1] as FlaxJsString).value];
+      final binding = _objectView(
+        registry._types[(args[1] as FlaxJsString).value],
+      );
       if (binding is! FlaxObjectBinding) {
         throw ArgumentError('Unknown object type');
       }
@@ -454,6 +462,33 @@ extension _ObjectCalls on _Session {
           ctor,
           sources.map((k, v) => MapEntry(k, v.initial.data)),
         );
+        if (value is FlaxWidgetProxy) {
+          final identity = descriptor.getProperty('widgetType');
+          try {
+            if (identity is! FlaxJsUndefined) {
+              if (identity is! FlaxJsNumber ||
+                  !identity.value.isFinite ||
+                  identity.value <= 0 ||
+                  identity.value.truncateToDouble() != identity.value) {
+                throw ArgumentError('Invalid Widget proxy identity');
+              }
+              final key = identity.value.toInt();
+              final existingType = _componentTypes[key];
+              if (existingType != null && existingType.name != binding.id) {
+                throw ArgumentError(
+                  'Widget proxy identity belongs to another native class',
+                );
+              }
+              _flaxWidgetProxyTypes[value] = _componentTypes.putIfAbsent(
+                key,
+                () =>
+                    _ComponentType(_componentSessionId, key, binding.id, false),
+              );
+            }
+          } finally {
+            _releaseJs(identity);
+          }
+        }
         final result = objectResult(
           value,
           FlaxTypeRef('object', id: binding.id),
@@ -485,7 +520,7 @@ extension _ObjectCalls on _Session {
       }
       final object = _objects[(args[2] as FlaxJsNumber).value.toInt()];
       final binding =
-          registry._types[type] ??
+          _objectView(registry._types[type]) ??
           (object?.binding.id == type ? object?.binding : null);
       if (object == null ||
           binding is! FlaxObjectBinding ||

@@ -230,7 +230,24 @@ leases. Named-page lifecycle cleanup remains available for page-factory resource
 
 UI protocol 22 includes component type metadata, ancestor queries, returned Dart
 functions and Widget references; previous protocols are rejected. The C ABI and runtime
-microtask API are unchanged. There is no arbitrary Flutter concrete-class inheritance,
-dynamic mixin composition, JS GlobalKey/currentState, state restoration, JS source hot
-reload, automatic build tracking or new engine/platform. `reassemble` forwards Flutter's
-lifecycle only.
+microtask API are unchanged. Unselected Flutter concrete-class inheritance, dynamic
+mixin composition, JS GlobalKey/currentState, state restoration, JS source hot reload,
+automatic build tracking and new engines/platforms remain unavailable. `reassemble`
+forwards Flutter's lifecycle only.
+
+## Native Widget inheritance
+
+Generated `proxy: extends` Widget bindings create real subclasses of the selected Dart
+Widget with the shared `FlaxWidgetProxy` mixin. Descriptor hosts remain responsible for
+signals; the native proxy contains fixed configuration and no mount subscriptions.
+Stateless, Inherited and RenderObject hooks reuse the object proxy bridge and native
+Flutter Elements. An absent JS override calls Dart directly.
+
+A selected `createState` override reuses the component State bridge with a generated
+`FlaxComponentStateBase<ConcreteWidget>` and `FlaxStateProxy<ConcreteWidget>`. Each
+native mount claims a fresh JS State. `didUpdateWidget`, `setState`, Context lifetime
+and `mustCallSuper` checks use the existing lifecycle. Unoverridden `createState`
+remains native, including private State implementations. An explicit JS
+`super.createState()` can forward a fresh native State; reused or mounted States are
+rejected. State variants must satisfy the actual Dart generic State type; incompatible
+variants fail instead of casting away that type.

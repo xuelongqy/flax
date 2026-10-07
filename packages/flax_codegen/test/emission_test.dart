@@ -21,7 +21,12 @@ void main() {
         final dart = FlaxCodegenBindingEmitter([module]).dart(module);
         expect(dart, contains('moduleId: "com.acme.widgets/widgets"'));
         expect(dart, contains('uiProtocol: 22'));
-        expect(dart, contains('requiredCapabilities: const <String>[]'));
+        expect(
+          dart,
+          contains(
+            'requiredCapabilities: const <String>["native-widget-proxies"]',
+          ),
+        );
         expect(dart, isNot(contains('version:')));
         expect(dart, isNot(contains('flaxBindingVersion')));
       },
@@ -48,7 +53,7 @@ void main() {
         expect(
           typescript,
           contains(
-            '_flaxInstallBindingModule("com.acme.widgets/widgets", 22, Object.freeze([]) as readonly string[])',
+            '_flaxInstallBindingModule("com.acme.widgets/widgets", 22, Object.freeze(["native-widget-proxies"]) as readonly string[])',
           ),
         );
         expect(typescript, contains('export const widgetsBindingModule'));
@@ -71,13 +76,18 @@ void main() {
       final dart = emitter.dart(module);
       expect(dart, contains('moduleId: "example.host/host"'));
       expect(dart, contains('uiProtocol: 22'));
-      expect(dart, contains('requiredCapabilities: const <String>[]'));
+      expect(
+        dart,
+        contains(
+          'requiredCapabilities: const <String>["native-widget-proxies"]',
+        ),
+      );
       expect(dart, isNot(contains('version:')));
       final typescript = emitter.typescript(module);
       expect(
         typescript,
         contains(
-          '_flaxInstallBindingModule("example.host/host", 22, Object.freeze([]) as readonly string[])',
+          '_flaxInstallBindingModule("example.host/host", 22, Object.freeze(["native-widget-proxies"]) as readonly string[])',
         ),
       );
       expect(typescript, contains('export const hostBindingModule'));

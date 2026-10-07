@@ -83,7 +83,7 @@ For example, CupertinoNavigationBar forwards both `preferredSize` and
 therefore uses its real obstruction and layout behavior. AppBar's original preferredSize
 object, including its private theme-height sentinel subtype, is preserved.
 
-Manifest 15 records native member selections, Dart override source and explicit public
+Manifest 16 records native member selections, Dart override source and explicit public
 imports separately from bridge TypeRefs. Native members add no wire operations or owner
 rows; existing declaration IDs, UI protocol 22 and native ABI 2 remain unchanged. See
 [ADR 0029](../decisions/0029-native-widget-interface-members.md).
@@ -110,9 +110,11 @@ interfaces. Narrow interface failures propagate the original error; an ErrorWidg
 cannot satisfy an arbitrary interface. Only base `Widget` and `List<Widget>` UI
 callbacks can use the existing error placeholder. Synchronous callbacks still reject
 Promises. Widget-containing Records and non-list Widget collections remain outside the
-callback conversion contract. Specific concrete native class returns such as
-`Text Function()` are not made bindable by this rule: a generated Text host is a Widget,
-not a native Text.
+callback conversion contract. Concrete native class signatures such as `Text Function()`
+materialize the real native configuration and validate its Dart type. Selected
+`proxy: extends` classes can also return a JS subclass backed by a native Dart subclass.
+Base Widget and interface signatures retain their existing host and reactive
+configuration semantics.
 
 A previous interface configuration may still be read by native didUpdateWidget even if
 its Widget was never mounted. Its cached Dart value follows Dart references. Escaped
@@ -125,7 +127,9 @@ for GC or disposing application values.
 Configuration replacement uses the existing prepare, validate, commit and release
 sequence. Mounted children hold their own resources; new configurations do not reset
 State when native type/key matching retains it. No application object disposal, upward
-notification graph, extra Element, ComponentBoundary or runtimeType override is added.
+notification graph, extra Element, ComponentBoundary is added for interface forwarding.
+Selected native JS subclasses use a weak runtimeType token to preserve Flutter type
+matching between JS classes.
 
 The
 [widget-interface owner tests](../../packages/flax_material_ui/test/ui/widget_interfaces_test.dart)

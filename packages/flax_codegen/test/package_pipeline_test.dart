@@ -933,7 +933,7 @@ extensions:
       expect(module.extensions.single.name, 'ItemX');
       expect(module.classes, isEmpty);
       expect(module.extensions.single.onType.id, 'example.base/base#type:Item');
-      expect(validated.manifest.toJson()['formatVersion'], 15);
+      expect(validated.manifest.toJson()['formatVersion'], 16);
       expect(
         validated.manifest.modules.single.model.identities.where(
           (row) => row.owner,
@@ -2589,7 +2589,9 @@ classes:
         );
         expect(viaWidgets.localModels[0].classes, isEmpty);
         expect(viaWidgets.localModels[0].moduleId, 'example.host/host');
-        expect(viaWidgets.localModels[0].requiredCapabilities, isEmpty);
+        expect(viaWidgets.localModels[0].requiredCapabilities, [
+          'native-widget-proxies',
+        ]);
         expect(viaWidgets.localModels[1].moduleId, 'example.host/widgets');
         expect(viaWidgets.localModels[1].classes.single.name, 'Counter');
         expect(

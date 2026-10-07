@@ -1,5 +1,5 @@
 {
-  "formatVersion": 15,
+  "formatVersion": 16,
   "package": "flax_cupertino_ui",
   "bindingNamespace": "flax.cupertino",
   "imports": [
@@ -10,7 +10,9 @@
       "name": "cupertino",
       "moduleId": "flax.cupertino/cupertino",
       "uiProtocol": 22,
-      "requiredCapabilities": [],
+      "requiredCapabilities": [
+        "native-widget-proxies"
+      ],
       "model": {
         "library": "package:cupertino_ui/cupertino_ui.dart",
         "jsPackage": "@flax/flutter/cupertino",

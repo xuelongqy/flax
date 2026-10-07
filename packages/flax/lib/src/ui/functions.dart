@@ -253,7 +253,13 @@ extension _WidgetReferences on _Session {
   void checkWidgetType(Widget widget, FlaxTypeRef type) {
     if (type.id == null) return;
     final contract = registry._types[type.id];
-    if (contract is! FlaxWidgetInterfaceBinding || !contract.matches(widget)) {
+    final accepts = switch (contract) {
+      FlaxWidgetInterfaceBinding() => contract.matches(widget),
+      FlaxWidgetBinding(matches: final matches?) => matches(widget),
+      FlaxObjectBinding(matches: final matches?) => matches(widget),
+      _ => false,
+    };
+    if (!accepts) {
       throw ArgumentError('Widget does not implement ${type.id}');
     }
   }
@@ -290,12 +296,17 @@ extension _WidgetReferences on _Session {
       _objects[reference.id] = reference;
       _objectIds[widget] = reference;
     }
-    if (reference is! _WidgetReference) {
+    if (reference.value is! Widget) {
       throw ArgumentError('Incompatible Widget reference');
     }
     reference.value;
     try {
-      return helper('dartWidget').call([FlaxJsNumber(reference.id.toDouble())]);
+      return reference is _WidgetReference
+          ? helper('dartWidget').call([FlaxJsNumber(reference.id.toDouble())])
+          : helper('object').call([
+              FlaxJsString(reference.binding.id),
+              FlaxJsNumber(reference.id.toDouble()),
+            ]);
     } catch (_) {
       if (created) reference.release();
       rethrow;
@@ -306,9 +317,10 @@ extension _WidgetReferences on _Session {
     final id = helper('tryObjectHandle').call([input]);
     if (id is! FlaxJsNumber) return null;
     final reference = _objects[id.value.toInt()];
-    if (reference is! _WidgetReference) {
+    if (reference == null || reference.value is! Widget) {
       throw ArgumentError('Expected a Dart Widget');
     }
+    _releaseJs(helper('freezeWidget').call([input]));
     return _Value(reference.value, [_ObjectBorrow(reference, input.retain())]);
   }
 }

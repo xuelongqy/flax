@@ -3,8 +3,8 @@ part of '../../bindings.dart';
 /// Active UI protocol for Core-owned code and registry comparison.
 const flaxBindingVersion = 22;
 
-/// The active protocol has no additive capability identifiers.
-const _supportedCapabilities = <String>{};
+/// Additive features supported without changing the UI protocol.
+const _supportedCapabilities = <String>{'native-widget-proxies'};
 
 class FlaxTypeRef {
   const FlaxTypeRef(
@@ -325,10 +325,14 @@ class FlaxWidgetBinding extends FlaxTypeBinding {
     this.createHost, {
     super.methods,
     this.fixedArguments = false,
+    this.matches,
+    this.objectView,
   });
   final Map<String, List<FlaxParameter>> constructors;
   final FlaxWidgetHost Function(FlaxNode) createHost;
+  final FlaxObjectBinding? objectView;
   final bool fixedArguments;
+  final bool Function(Object)? matches;
 }
 
 /// A selected native Widget contract, independent of its generated implementations.

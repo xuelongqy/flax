@@ -205,6 +205,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _SpacerHost.new,
+      matches: _isSpacer,
       fixedArguments: false,
       methods: {},
     ),
@@ -5539,6 +5540,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _StreamBuilderHost.new,
+      matches: _isStreamBuilder,
       fixedArguments: false,
       methods: {},
     ),
@@ -5836,6 +5838,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _ValueListenableBuilderHost.new,
+      matches: _isValueListenableBuilder,
       fixedArguments: false,
       methods: {},
     ),
@@ -5905,6 +5908,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _ListenableBuilderHost.new,
+      matches: _isListenableBuilder,
       fixedArguments: false,
       methods: {},
     ),
@@ -6215,6 +6219,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _PreferredSizeHost.new,
+      matches: _isPreferredSize,
       fixedArguments: true,
       methods: {},
     ),
@@ -6348,6 +6353,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _ContainerHost.new,
+      matches: _isContainer,
       fixedArguments: false,
       methods: {},
     ),
@@ -6393,6 +6399,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _DecoratedBoxHost.new,
+      matches: _isDecoratedBox,
       fixedArguments: false,
       methods: {},
     ),
@@ -7616,6 +7623,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _ExpandedHost.new,
+      matches: _isExpanded,
       fixedArguments: false,
       methods: {},
     ),
@@ -7658,6 +7666,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _FlexibleHost.new,
+      matches: _isFlexible,
       fixedArguments: false,
       methods: {},
     ),
@@ -7738,6 +7747,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _StackHost.new,
+      matches: _isStack,
       fixedArguments: false,
       methods: {},
     ),
@@ -7808,6 +7818,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _PositionedHost.new,
+      matches: _isPositioned,
       fixedArguments: false,
       methods: {},
     ),
@@ -7860,6 +7871,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _AlignHost.new,
+      matches: _isAlign,
       fixedArguments: false,
       methods: {},
     ),
@@ -8873,6 +8885,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _NavigatorHost.new,
+      matches: _isNavigator,
       fixedArguments: false,
       methods: {
         "of": FlaxStaticMethod(
@@ -9115,6 +9128,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _NavigatorPopHandlerHost.new,
+      matches: _isNavigatorPopHandler,
       fixedArguments: false,
       methods: {},
     ),
@@ -9181,6 +9195,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _PopScopeHost.new,
+      matches: _isPopScope,
       fixedArguments: false,
       methods: {},
     ),
@@ -9230,6 +9245,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _BuilderHost.new,
+      matches: _isBuilder,
       fixedArguments: false,
       methods: {},
     ),
@@ -9288,6 +9304,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _LayoutBuilderHost.new,
+      matches: _isLayoutBuilder,
       fixedArguments: false,
       methods: {},
     ),
@@ -9561,8 +9578,308 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _TextHost.new,
+      matches: _isText,
       fixedArguments: false,
       methods: {},
+      objectView: FlaxObjectBinding(
+        "flax.core/flutter#type:Text",
+        [
+          FlaxGetter("data", FlaxTypeRef("String", nullable: true), _Text_data),
+          FlaxGetter(
+            "key",
+            FlaxTypeRef(
+              "object",
+              id: "flax.core/flutter#type:Key",
+              nullable: true,
+            ),
+            _Text_key,
+          ),
+        ],
+        {
+          "build": FlaxInstanceMethod(
+            [
+              FlaxParameter(
+                "context",
+                FlaxTypeRef(
+                  "context",
+                  id: "flax.core/flutter#type:BuildContext",
+                ),
+                required: true,
+                defaultValue: null,
+                omitWhenAbsent: false,
+              ),
+            ],
+            FlaxTypeRef("widget"),
+            _Text_build,
+            startsRoute: false,
+          ),
+          "@super:build": FlaxInstanceMethod(
+            [
+              FlaxParameter(
+                "context",
+                FlaxTypeRef(
+                  "context",
+                  id: "flax.core/flutter#type:BuildContext",
+                ),
+                required: true,
+                defaultValue: null,
+                omitWhenAbsent: false,
+              ),
+            ],
+            FlaxTypeRef("widget"),
+            _Text_super_build,
+          ),
+          "@super:get:data": FlaxInstanceMethod(
+            [],
+            FlaxTypeRef("String", nullable: true),
+            _Text_super_get_data,
+          ),
+          "@super:get:key": FlaxInstanceMethod(
+            [],
+            FlaxTypeRef(
+              "object",
+              id: "flax.core/flutter#type:Key",
+              nullable: true,
+            ),
+            _Text_super_get_key,
+          ),
+        },
+        constructors: {
+          "": [
+            FlaxParameter(
+              "data",
+              FlaxTypeRef("String"),
+              required: true,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+            FlaxParameter(
+              "key",
+              FlaxTypeRef(
+                "object",
+                id: "flax.core/flutter#type:Key",
+                nullable: true,
+              ),
+              required: false,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+            FlaxParameter(
+              "style",
+              FlaxTypeRef(
+                "object",
+                id: "flax.core/flutter#type:TextStyle",
+                nullable: true,
+              ),
+              required: false,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+            FlaxParameter(
+              "textAlign",
+              FlaxTypeRef(
+                "enum",
+                id: "flax.core/flutter#type:TextAlign",
+                nullable: true,
+              ),
+              required: false,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+            FlaxParameter(
+              "textDirection",
+              FlaxTypeRef(
+                "enum",
+                id: "flax.core/flutter#type:TextDirection",
+                nullable: true,
+              ),
+              required: false,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+            FlaxParameter(
+              "softWrap",
+              FlaxTypeRef("bool", nullable: true),
+              required: false,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+            FlaxParameter(
+              "overflow",
+              FlaxTypeRef(
+                "enum",
+                id: "flax.core/flutter#type:TextOverflow",
+                nullable: true,
+              ),
+              required: false,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+            FlaxParameter(
+              "maxLines",
+              FlaxTypeRef("int", nullable: true),
+              required: false,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+          ],
+          "@implementation": [
+            FlaxParameter(
+              "data",
+              FlaxTypeRef("String"),
+              required: true,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+            FlaxParameter(
+              "key",
+              FlaxTypeRef(
+                "object",
+                id: "flax.core/flutter#type:Key",
+                nullable: true,
+              ),
+              required: false,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+            FlaxParameter(
+              "style",
+              FlaxTypeRef(
+                "object",
+                id: "flax.core/flutter#type:TextStyle",
+                nullable: true,
+              ),
+              required: false,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+            FlaxParameter(
+              "textAlign",
+              FlaxTypeRef(
+                "enum",
+                id: "flax.core/flutter#type:TextAlign",
+                nullable: true,
+              ),
+              required: false,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+            FlaxParameter(
+              "textDirection",
+              FlaxTypeRef(
+                "enum",
+                id: "flax.core/flutter#type:TextDirection",
+                nullable: true,
+              ),
+              required: false,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+            FlaxParameter(
+              "softWrap",
+              FlaxTypeRef("bool", nullable: true),
+              required: false,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+            FlaxParameter(
+              "overflow",
+              FlaxTypeRef(
+                "enum",
+                id: "flax.core/flutter#type:TextOverflow",
+                nullable: true,
+              ),
+              required: false,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+            FlaxParameter(
+              "maxLines",
+              FlaxTypeRef("int", nullable: true),
+              required: false,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+            FlaxParameter(
+              "@call:build",
+              FlaxTypeRef(
+                "callback",
+                nullable: true,
+                callback: FlaxCallbackBinding(
+                  [
+                    FlaxCallbackParameter(
+                      "context",
+                      FlaxTypeRef(
+                        "context",
+                        id: "flax.core/flutter#type:BuildContext",
+                      ),
+                      required: true,
+                      positional: true,
+                    ),
+                  ],
+                  FlaxTypeRef("widget"),
+                  _callback125,
+                  id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
+                  invoke: _callback125Invoke,
+                  matches: _callback125Matches,
+                ),
+              ),
+              required: false,
+              defaultValue: null,
+              omitWhenAbsent: true,
+            ),
+            FlaxParameter(
+              "@get:data",
+              FlaxTypeRef(
+                "callback",
+                nullable: true,
+                callback: FlaxCallbackBinding(
+                  [],
+                  FlaxTypeRef("String", nullable: true),
+                  _callback126,
+                  id: "callback:<>()->String?:",
+                  invoke: _callback126Invoke,
+                  matches: _callback126Matches,
+                ),
+              ),
+              required: false,
+              defaultValue: null,
+              omitWhenAbsent: true,
+            ),
+            FlaxParameter(
+              "@get:key",
+              FlaxTypeRef(
+                "callback",
+                nullable: true,
+                callback: FlaxCallbackBinding(
+                  [],
+                  FlaxTypeRef(
+                    "object",
+                    id: "flax.core/flutter#type:Key",
+                    nullable: true,
+                  ),
+                  _callback127,
+                  id: "callback:<>()->object?:flax.core/flutter#type:Key",
+                  invoke: _callback127Invoke,
+                  matches: _callback127Matches,
+                ),
+              ),
+              required: false,
+              defaultValue: null,
+              omitWhenAbsent: true,
+            ),
+          ],
+        },
+        create: _createText,
+        matches: _isText,
+        supertypes: [
+          "package:flutter/src/widgets/framework.dart::StatelessWidget",
+          "package:flutter/src/widgets/framework.dart::Widget",
+          "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree",
+          "dart:core::Object",
+          "package:flutter/src/foundation/diagnostics.dart::Diagnosticable",
+        ],
+      ),
     ),
     FlaxWidgetBinding(
       "flax.core/flutter#type:Row",
@@ -9666,6 +9983,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _RowHost.new,
+      matches: _isRow,
       fixedArguments: false,
       methods: {},
     ),
@@ -9771,6 +10089,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _ColumnHost.new,
+      matches: _isColumn,
       fixedArguments: false,
       methods: {},
     ),
@@ -9813,6 +10132,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _CenterHost.new,
+      matches: _isCenter,
       fixedArguments: false,
       methods: {},
     ),
@@ -9851,6 +10171,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _PaddingHost.new,
+      matches: _isPadding,
       fixedArguments: false,
       methods: {},
     ),
@@ -9893,6 +10214,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _SizedBoxHost.new,
+      matches: _isSizedBox,
       fixedArguments: false,
       methods: {},
     ),
@@ -10056,10 +10378,10 @@ const flutterBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [],
                   FlaxTypeRef("void"),
-                  _callback125,
+                  _callback128,
                   id: "callback:<>()->void:",
-                  invoke: _callback125Invoke,
-                  matches: _callback125Matches,
+                  invoke: _callback128Invoke,
+                  matches: _callback128Matches,
                 ),
               ),
               required: true,
@@ -10080,10 +10402,10 @@ const flutterBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [],
                   FlaxTypeRef("void"),
-                  _callback126,
+                  _callback129,
                   id: "callback:<>()->void:",
-                  invoke: _callback126Invoke,
-                  matches: _callback126Matches,
+                  invoke: _callback129Invoke,
+                  matches: _callback129Matches,
                 ),
               ),
               required: true,
@@ -10476,10 +10798,10 @@ const flutterBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef("widget", nullable: true),
-                _callback127,
+                _callback130,
                 id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:index:int:)->widget?:",
-                invoke: _callback127Invoke,
-                matches: _callback127Matches,
+                invoke: _callback130Invoke,
+                matches: _callback130Matches,
                 independentWidgetResult: true,
               ),
             ),
@@ -10502,10 +10824,10 @@ const flutterBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef("int", nullable: true),
-                _callback128,
+                _callback131,
                 id: "callback:<>(p:r:key:object:flax.core/flutter#type:Key)->int?:",
-                invoke: _callback128Invoke,
-                matches: _callback128Matches,
+                invoke: _callback131Invoke,
+                matches: _callback131Matches,
               ),
             ),
             required: false,
@@ -10543,6 +10865,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _ListViewHost.new,
+      matches: _isListView,
       fixedArguments: false,
       methods: {},
     ),
@@ -10625,6 +10948,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _SingleChildScrollViewHost.new,
+      matches: _isSingleChildScrollView,
       fixedArguments: false,
       methods: {},
     ),
@@ -10658,10 +10982,10 @@ const flutterBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [],
                   FlaxTypeRef("void"),
-                  _callback129,
+                  _callback132,
                   id: "callback:<>()->void:",
-                  invoke: _callback129Invoke,
-                  matches: _callback129Matches,
+                  invoke: _callback132Invoke,
+                  matches: _callback132Matches,
                 ),
               ),
               required: true,
@@ -10682,10 +11006,10 @@ const flutterBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [],
                   FlaxTypeRef("void"),
-                  _callback130,
+                  _callback133,
                   id: "callback:<>()->void:",
-                  invoke: _callback130Invoke,
-                  matches: _callback130Matches,
+                  invoke: _callback133Invoke,
+                  matches: _callback133Matches,
                 ),
               ),
               required: true,
@@ -10837,10 +11161,10 @@ const flutterBindings = FlaxBindingModule(
                   "object",
                   id: "flax.core/flutter#type:TextEditingValue",
                 ),
-                _callback131,
+                _callback134,
                 id: "callback:<>(p:r:oldValue:object:flax.core/flutter#type:TextEditingValue,p:r:newValue:object:flax.core/flutter#type:TextEditingValue)->object:flax.core/flutter#type:TextEditingValue",
-                invoke: _callback131Invoke,
-                matches: _callback131Matches,
+                invoke: _callback134Invoke,
+                matches: _callback134Matches,
               ),
             ),
             required: true,
@@ -11064,93 +11388,6 @@ const flutterBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef("void"),
-                _callback132,
-                id: "callback:<>(p:r:event:object:flax.core/flutter#type:PointerEvent)->void:",
-                invoke: _callback132Invoke,
-                matches: _callback132Matches,
-              ),
-            ),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onPointerMove",
-            FlaxTypeRef(
-              "callback",
-              nullable: true,
-              callback: FlaxCallbackBinding(
-                [
-                  FlaxCallbackParameter(
-                    "event",
-                    FlaxTypeRef(
-                      "object",
-                      id: "flax.core/flutter#type:PointerEvent",
-                    ),
-                    required: true,
-                    positional: true,
-                    encode: const FlaxTypeRef('data'),
-                  ),
-                ],
-                FlaxTypeRef("void"),
-                _callback133,
-                id: "callback:<>(p:r:event:object:flax.core/flutter#type:PointerEvent)->void:",
-                invoke: _callback133Invoke,
-                matches: _callback133Matches,
-              ),
-            ),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onPointerUp",
-            FlaxTypeRef(
-              "callback",
-              nullable: true,
-              callback: FlaxCallbackBinding(
-                [
-                  FlaxCallbackParameter(
-                    "event",
-                    FlaxTypeRef(
-                      "object",
-                      id: "flax.core/flutter#type:PointerEvent",
-                    ),
-                    required: true,
-                    positional: true,
-                    encode: const FlaxTypeRef('data'),
-                  ),
-                ],
-                FlaxTypeRef("void"),
-                _callback134,
-                id: "callback:<>(p:r:event:object:flax.core/flutter#type:PointerEvent)->void:",
-                invoke: _callback134Invoke,
-                matches: _callback134Matches,
-              ),
-            ),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onPointerHover",
-            FlaxTypeRef(
-              "callback",
-              nullable: true,
-              callback: FlaxCallbackBinding(
-                [
-                  FlaxCallbackParameter(
-                    "event",
-                    FlaxTypeRef(
-                      "object",
-                      id: "flax.core/flutter#type:PointerEvent",
-                    ),
-                    required: true,
-                    positional: true,
-                    encode: const FlaxTypeRef('data'),
-                  ),
-                ],
-                FlaxTypeRef("void"),
                 _callback135,
                 id: "callback:<>(p:r:event:object:flax.core/flutter#type:PointerEvent)->void:",
                 invoke: _callback135Invoke,
@@ -11162,7 +11399,7 @@ const flutterBindings = FlaxBindingModule(
             omitWhenAbsent: false,
           ),
           FlaxParameter(
-            "onPointerCancel",
+            "onPointerMove",
             FlaxTypeRef(
               "callback",
               nullable: true,
@@ -11191,7 +11428,7 @@ const flutterBindings = FlaxBindingModule(
             omitWhenAbsent: false,
           ),
           FlaxParameter(
-            "onPointerSignal",
+            "onPointerUp",
             FlaxTypeRef(
               "callback",
               nullable: true,
@@ -11220,6 +11457,93 @@ const flutterBindings = FlaxBindingModule(
             omitWhenAbsent: false,
           ),
           FlaxParameter(
+            "onPointerHover",
+            FlaxTypeRef(
+              "callback",
+              nullable: true,
+              callback: FlaxCallbackBinding(
+                [
+                  FlaxCallbackParameter(
+                    "event",
+                    FlaxTypeRef(
+                      "object",
+                      id: "flax.core/flutter#type:PointerEvent",
+                    ),
+                    required: true,
+                    positional: true,
+                    encode: const FlaxTypeRef('data'),
+                  ),
+                ],
+                FlaxTypeRef("void"),
+                _callback138,
+                id: "callback:<>(p:r:event:object:flax.core/flutter#type:PointerEvent)->void:",
+                invoke: _callback138Invoke,
+                matches: _callback138Matches,
+              ),
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "onPointerCancel",
+            FlaxTypeRef(
+              "callback",
+              nullable: true,
+              callback: FlaxCallbackBinding(
+                [
+                  FlaxCallbackParameter(
+                    "event",
+                    FlaxTypeRef(
+                      "object",
+                      id: "flax.core/flutter#type:PointerEvent",
+                    ),
+                    required: true,
+                    positional: true,
+                    encode: const FlaxTypeRef('data'),
+                  ),
+                ],
+                FlaxTypeRef("void"),
+                _callback139,
+                id: "callback:<>(p:r:event:object:flax.core/flutter#type:PointerEvent)->void:",
+                invoke: _callback139Invoke,
+                matches: _callback139Matches,
+              ),
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "onPointerSignal",
+            FlaxTypeRef(
+              "callback",
+              nullable: true,
+              callback: FlaxCallbackBinding(
+                [
+                  FlaxCallbackParameter(
+                    "event",
+                    FlaxTypeRef(
+                      "object",
+                      id: "flax.core/flutter#type:PointerEvent",
+                    ),
+                    required: true,
+                    positional: true,
+                    encode: const FlaxTypeRef('data'),
+                  ),
+                ],
+                FlaxTypeRef("void"),
+                _callback140,
+                id: "callback:<>(p:r:event:object:flax.core/flutter#type:PointerEvent)->void:",
+                invoke: _callback140Invoke,
+                matches: _callback140Matches,
+              ),
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
             "behavior",
             FlaxTypeRef("enum", id: "flax.core/flutter#type:HitTestBehavior"),
             required: false,
@@ -11236,6 +11560,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _ListenerHost.new,
+      matches: _isListener,
       fixedArguments: false,
       methods: {},
     ),
@@ -11273,10 +11598,10 @@ const flutterBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef("void"),
-                _callback138,
+                _callback141,
                 id: "callback:<>(p:r:event:object:flax.core/flutter#type:PointerEvent)->void:",
-                invoke: _callback138Invoke,
-                matches: _callback138Matches,
+                invoke: _callback141Invoke,
+                matches: _callback141Matches,
               ),
             ),
             required: false,
@@ -11302,10 +11627,10 @@ const flutterBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef("void"),
-                _callback139,
+                _callback142,
                 id: "callback:<>(p:r:event:object:flax.core/flutter#type:PointerEvent)->void:",
-                invoke: _callback139Invoke,
-                matches: _callback139Matches,
+                invoke: _callback142Invoke,
+                matches: _callback142Matches,
               ),
             ),
             required: false,
@@ -11331,10 +11656,10 @@ const flutterBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef("void"),
-                _callback140,
+                _callback143,
                 id: "callback:<>(p:r:event:object:flax.core/flutter#type:PointerEvent)->void:",
-                invoke: _callback140Invoke,
-                matches: _callback140Matches,
+                invoke: _callback143Invoke,
+                matches: _callback143Matches,
               ),
             ),
             required: false,
@@ -11369,6 +11694,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _MouseRegionHost.new,
+      matches: _isMouseRegion,
       fixedArguments: false,
       methods: {},
     ),
@@ -11427,10 +11753,10 @@ const flutterBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef("void"),
-                _callback141,
+                _callback144,
                 id: "callback:<>(p:r:value:object:flax.core/flutter#type:KeyEvent)->void:",
-                invoke: _callback141Invoke,
-                matches: _callback141Matches,
+                invoke: _callback144Invoke,
+                matches: _callback144Matches,
               ),
             ),
             required: false,
@@ -11447,6 +11773,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _KeyboardListenerHost.new,
+      matches: _isKeyboardListener,
       fixedArguments: false,
       methods: {},
     ),
@@ -11517,6 +11844,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _SafeAreaHost.new,
+      matches: _isSafeArea,
       fixedArguments: false,
       methods: {},
     ),
@@ -11632,6 +11960,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _WrapHost.new,
+      matches: _isWrap,
       fixedArguments: false,
       methods: {},
     ),
@@ -11684,6 +12013,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _FittedBoxHost.new,
+      matches: _isFittedBox,
       fixedArguments: false,
       methods: {},
     ),
@@ -11719,6 +12049,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _AspectRatioHost.new,
+      matches: _isAspectRatio,
       fixedArguments: false,
       methods: {},
     ),
@@ -11754,6 +12085,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _ConstrainedBoxHost.new,
+      matches: _isConstrainedBox,
       fixedArguments: false,
       methods: {},
     ),
@@ -11796,6 +12128,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _OpacityHost.new,
+      matches: _isOpacity,
       fixedArguments: false,
       methods: {},
     ),
@@ -11900,6 +12233,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _VisibilityHost.new,
+      matches: _isVisibility,
       fixedArguments: false,
       methods: {},
     ),
@@ -11942,6 +12276,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _ColoredBoxHost.new,
+      matches: _isColoredBox,
       fixedArguments: false,
       methods: {},
     ),
@@ -11987,6 +12322,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _ClipRRectHost.new,
+      matches: _isClipRRect,
       fixedArguments: false,
       methods: {},
     ),
@@ -12022,6 +12358,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _IgnorePointerHost.new,
+      matches: _isIgnorePointer,
       fixedArguments: false,
       methods: {},
     ),
@@ -12109,6 +12446,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _IndexedStackHost.new,
+      matches: _isIndexedStack,
       fixedArguments: false,
       methods: {},
     ),
@@ -12142,60 +12480,6 @@ const flutterBindings = FlaxBindingModule(
               callback: FlaxCallbackBinding(
                 [],
                 FlaxTypeRef("void"),
-                _callback142,
-                id: "callback:<>()->void:",
-                invoke: _callback142Invoke,
-                matches: _callback142Matches,
-              ),
-            ),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onTapCancel",
-            FlaxTypeRef(
-              "callback",
-              nullable: true,
-              callback: FlaxCallbackBinding(
-                [],
-                FlaxTypeRef("void"),
-                _callback143,
-                id: "callback:<>()->void:",
-                invoke: _callback143Invoke,
-                matches: _callback143Matches,
-              ),
-            ),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onSecondaryTap",
-            FlaxTypeRef(
-              "callback",
-              nullable: true,
-              callback: FlaxCallbackBinding(
-                [],
-                FlaxTypeRef("void"),
-                _callback144,
-                id: "callback:<>()->void:",
-                invoke: _callback144Invoke,
-                matches: _callback144Matches,
-              ),
-            ),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onSecondaryTapCancel",
-            FlaxTypeRef(
-              "callback",
-              nullable: true,
-              callback: FlaxCallbackBinding(
-                [],
-                FlaxTypeRef("void"),
                 _callback145,
                 id: "callback:<>()->void:",
                 invoke: _callback145Invoke,
@@ -12207,7 +12491,7 @@ const flutterBindings = FlaxBindingModule(
             omitWhenAbsent: false,
           ),
           FlaxParameter(
-            "onDoubleTap",
+            "onTapCancel",
             FlaxTypeRef(
               "callback",
               nullable: true,
@@ -12225,7 +12509,7 @@ const flutterBindings = FlaxBindingModule(
             omitWhenAbsent: false,
           ),
           FlaxParameter(
-            "onDoubleTapCancel",
+            "onSecondaryTap",
             FlaxTypeRef(
               "callback",
               nullable: true,
@@ -12243,7 +12527,7 @@ const flutterBindings = FlaxBindingModule(
             omitWhenAbsent: false,
           ),
           FlaxParameter(
-            "onLongPressCancel",
+            "onSecondaryTapCancel",
             FlaxTypeRef(
               "callback",
               nullable: true,
@@ -12261,7 +12545,7 @@ const flutterBindings = FlaxBindingModule(
             omitWhenAbsent: false,
           ),
           FlaxParameter(
-            "onLongPress",
+            "onDoubleTap",
             FlaxTypeRef(
               "callback",
               nullable: true,
@@ -12272,6 +12556,60 @@ const flutterBindings = FlaxBindingModule(
                 id: "callback:<>()->void:",
                 invoke: _callback149Invoke,
                 matches: _callback149Matches,
+              ),
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "onDoubleTapCancel",
+            FlaxTypeRef(
+              "callback",
+              nullable: true,
+              callback: FlaxCallbackBinding(
+                [],
+                FlaxTypeRef("void"),
+                _callback150,
+                id: "callback:<>()->void:",
+                invoke: _callback150Invoke,
+                matches: _callback150Matches,
+              ),
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "onLongPressCancel",
+            FlaxTypeRef(
+              "callback",
+              nullable: true,
+              callback: FlaxCallbackBinding(
+                [],
+                FlaxTypeRef("void"),
+                _callback151,
+                id: "callback:<>()->void:",
+                invoke: _callback151Invoke,
+                matches: _callback151Matches,
+              ),
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "onLongPress",
+            FlaxTypeRef(
+              "callback",
+              nullable: true,
+              callback: FlaxCallbackBinding(
+                [],
+                FlaxTypeRef("void"),
+                _callback152,
+                id: "callback:<>()->void:",
+                invoke: _callback152Invoke,
+                matches: _callback152Matches,
               ),
             ),
             required: false,
@@ -12306,6 +12644,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _GestureDetectorHost.new,
+      matches: _isGestureDetector,
       fixedArguments: false,
       methods: {},
     ),
@@ -12364,10 +12703,10 @@ const flutterBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef("void"),
-                _callback150,
+                _callback153,
                 id: "callback:<>(p:r:value:bool:)->void:",
-                invoke: _callback150Invoke,
-                matches: _callback150Matches,
+                invoke: _callback153Invoke,
+                matches: _callback153Matches,
               ),
             ),
             required: false,
@@ -12419,6 +12758,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _FocusHost.new,
+      matches: _isFocus,
       fixedArguments: false,
       methods: {},
     ),
@@ -12472,10 +12812,10 @@ const flutterBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef("void"),
-                _callback151,
+                _callback154,
                 id: "callback:<>(p:r:didPop:bool:,p:r:result:data?:)->void:",
-                invoke: _callback151Invoke,
-                matches: _callback151Matches,
+                invoke: _callback154Invoke,
+                matches: _callback154Matches,
               ),
             ),
             required: false,
@@ -12490,10 +12830,10 @@ const flutterBindings = FlaxBindingModule(
               callback: FlaxCallbackBinding(
                 [],
                 FlaxTypeRef("void"),
-                _callback152,
+                _callback155,
                 id: "callback:<>()->void:",
-                invoke: _callback152Invoke,
-                matches: _callback152Matches,
+                invoke: _callback155Invoke,
+                matches: _callback155Matches,
               ),
             ),
             required: false,
@@ -12514,6 +12854,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _FormHost.new,
+      matches: _isForm,
       fixedArguments: false,
       methods: {},
     ),
@@ -12560,10 +12901,10 @@ const flutterBindings = FlaxBindingModule(
                               callback: FlaxCallbackBinding(
                                 [],
                                 FlaxTypeRef("void"),
-                                _callback153,
+                                _callback156,
                                 id: "callback:<>()->void:",
-                                invoke: _callback153Invoke,
-                                matches: _callback153Matches,
+                                invoke: _callback156Invoke,
+                                matches: _callback156Matches,
                               ),
                             ),
                             required: true,
@@ -12571,10 +12912,10 @@ const flutterBindings = FlaxBindingModule(
                           ),
                         ],
                         FlaxTypeRef("void"),
-                        _callback154,
+                        _callback157,
                         id: "callback:<>(p:r:fn:callback:<>()->void:)->void:",
-                        invoke: _callback154Invoke,
-                        matches: _callback154Matches,
+                        invoke: _callback157Invoke,
+                        matches: _callback157Matches,
                       ),
                     ),
                     required: true,
@@ -12582,10 +12923,10 @@ const flutterBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef("widget"),
-                _callback155,
+                _callback158,
                 id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:setState:callback:<>(p:r:fn:callback:<>()->void:)->void:)->widget:",
-                invoke: _callback155Invoke,
-                matches: _callback155Matches,
+                invoke: _callback158Invoke,
+                matches: _callback158Matches,
                 independentWidgetResult: true,
               ),
             ),
@@ -12596,6 +12937,7 @@ const flutterBindings = FlaxBindingModule(
         ],
       },
       _StatefulBuilderHost.new,
+      matches: _isStatefulBuilder,
       fixedArguments: false,
       methods: {},
     ),
@@ -12990,7 +13332,7 @@ const flutterBindings = FlaxBindingModule(
   moduleId: "flax.core/flutter",
   dependencyModules: [],
   uiProtocol: 22,
-  requiredCapabilities: const <String>[],
+  requiredCapabilities: const <String>["native-widget-proxies"],
   stateVariants: [],
 );
 Object? _function_applyBoxFit(Map<String, Object?> values) {
@@ -13004,6 +13346,7 @@ Object? _function_applyBoxFit(Map<String, Object?> values) {
 Object? _read_defaultTargetPlatform(Map<String, Object?> values) =>
     api8.defaultTargetPlatform;
 Object? _read_kIsWeb(Map<String, Object?> values) => api8.kIsWeb;
+bool _isSpacer(Object value) => value is api.Spacer;
 
 class _SpacerHost extends FlaxWidgetHost {
   _SpacerHost(super.node);
@@ -14205,6 +14548,8 @@ Object _createAsyncSnapshot(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isStreamBuilder(Object value) => value is api.StreamBuilder<Object?>;
+
 class _StreamBuilderHost extends FlaxWidgetHost {
   _StreamBuilderHost(super.node);
 
@@ -14311,6 +14656,8 @@ Object? _SystemMouseCursors_static_get_forbidden(Map<String, Object?> values) =>
     api.SystemMouseCursors.forbidden;
 Object _createSystemMouseCursors(String ctor, Map<String, Object?> values) =>
     throw ArgumentError('Abstract object has no constructor');
+bool _isValueListenableBuilder(Object value) =>
+    value is api.ValueListenableBuilder<Object?>;
 
 class _ValueListenableBuilderHost extends FlaxWidgetHost {
   _ValueListenableBuilderHost(super.node);
@@ -14343,6 +14690,8 @@ api.Widget _createValueListenableBuilder(
       throw ArgumentError('Unknown generated constructor');
   }
 }
+
+bool _isListenableBuilder(Object value) => value is api.ListenableBuilder;
 
 class _ListenableBuilderHost extends FlaxWidgetHost {
   _ListenableBuilderHost(super.node);
@@ -14449,6 +14798,7 @@ Object _createFlaxNavigatorObserver(String ctor, Map<String, Object?> values) {
 }
 
 bool _isPreferredSizeWidget(Object value) => value is api.PreferredSizeWidget;
+bool _isPreferredSize(Object value) => value is api.PreferredSize;
 
 class _PreferredSizeHost extends FlaxWidgetHost
     implements api.PreferredSizeWidget {
@@ -14473,6 +14823,8 @@ api.Widget _createPreferredSize(String ctor, Map<String, Object?> values) {
       throw ArgumentError('Unknown generated constructor');
   }
 }
+
+bool _isContainer(Object value) => value is api.Container;
 
 class _ContainerHost extends FlaxWidgetHost {
   _ContainerHost(super.node);
@@ -14504,6 +14856,8 @@ api.Widget _createContainer(String ctor, Map<String, Object?> values) {
       throw ArgumentError('Unknown generated constructor');
   }
 }
+
+bool _isDecoratedBox(Object value) => value is api.DecoratedBox;
 
 class _DecoratedBoxHost extends FlaxWidgetHost {
   _DecoratedBoxHost(super.node);
@@ -15310,6 +15664,8 @@ Object _createAlignmentDirectional(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isExpanded(Object value) => value is api.Expanded;
+
 class _ExpandedHost extends FlaxWidgetHost {
   _ExpandedHost(super.node);
 
@@ -15330,6 +15686,8 @@ api.Widget _createExpanded(String ctor, Map<String, Object?> values) {
       throw ArgumentError('Unknown generated constructor');
   }
 }
+
+bool _isFlexible(Object value) => value is api.Flexible;
 
 class _FlexibleHost extends FlaxWidgetHost {
   _FlexibleHost(super.node);
@@ -15352,6 +15710,8 @@ api.Widget _createFlexible(String ctor, Map<String, Object?> values) {
       throw ArgumentError('Unknown generated constructor');
   }
 }
+
+bool _isStack(Object value) => value is api.Stack;
 
 class _StackHost extends FlaxWidgetHost {
   _StackHost(super.node);
@@ -15403,6 +15763,8 @@ api.Widget _createStack(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isPositioned(Object value) => value is api.Positioned;
+
 class _PositionedHost extends FlaxWidgetHost {
   _PositionedHost(super.node);
 
@@ -15428,6 +15790,8 @@ api.Widget _createPositioned(String ctor, Map<String, Object?> values) {
       throw ArgumentError('Unknown generated constructor');
   }
 }
+
+bool _isAlign(Object value) => value is api.Align;
 
 class _AlignHost extends FlaxWidgetHost {
   _AlignHost(super.node);
@@ -15798,6 +16162,7 @@ Object _createTextRange(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isNavigator(Object value) => value is api.Navigator;
 Object? _Navigator_of(Map<String, Object?> values) {
   return api.Navigator.of(
     values["context"] as api.BuildContext,
@@ -15953,6 +16318,9 @@ Object _createRouteSettings(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isNavigatorPopHandler(Object value) =>
+    value is api.NavigatorPopHandler<Object?>;
+
 class _NavigatorPopHandlerHost extends FlaxWidgetHost {
   _NavigatorPopHandlerHost(super.node);
 
@@ -15979,6 +16347,8 @@ api.Widget _createNavigatorPopHandler(
   }
 }
 
+bool _isPopScope(Object value) => value is api.PopScope<Object?>;
+
 class _PopScopeHost extends FlaxWidgetHost {
   _PopScopeHost(super.node);
 
@@ -16003,6 +16373,8 @@ api.Widget _createPopScope(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isBuilder(Object value) => value is api.Builder;
+
 class _BuilderHost extends FlaxWidgetHost {
   _BuilderHost(super.node);
 
@@ -16023,6 +16395,8 @@ api.Widget _createBuilder(String ctor, Map<String, Object?> values) {
       throw ArgumentError('Unknown generated constructor');
   }
 }
+
+bool _isLayoutBuilder(Object value) => value is api.LayoutBuilder;
 
 class _LayoutBuilderHost extends FlaxWidgetHost {
   _LayoutBuilderHost(super.node);
@@ -16110,6 +16484,24 @@ Object? _Directionality_of(Map<String, Object?> values) {
   return api.Directionality.of(values["context"] as api.BuildContext);
 }
 
+bool _isText(Object value) => value is api.Text;
+Object? _Text_data(Object value) => (value as api.Text).data;
+Object? _Text_key(Object value) => (value as api.Text).key;
+Object? _Text_build(Object receiver, Map<String, Object?> values) {
+  return (receiver as api.Text).build(values["context"] as api.BuildContext);
+}
+
+Object? _Text_super_build(Object receiver, Map<String, Object?> values) {
+  return (receiver as _TextProxy)._flaxSuper_build(
+    values["context"] as api.BuildContext,
+  );
+}
+
+Object? _Text_super_get_data(Object receiver, Map<String, Object?> values) =>
+    (receiver as _TextProxy)._flaxSuperGet_data;
+Object? _Text_super_get_key(Object receiver, Map<String, Object?> values) =>
+    (receiver as _TextProxy)._flaxSuperGet_key;
+
 class _TextHost extends FlaxWidgetHost {
   _TextHost(super.node);
 
@@ -16131,10 +16523,26 @@ api.Widget _createText(String ctor, Map<String, Object?> values) {
         overflow: values["overflow"] as api.TextOverflow?,
         maxLines: values["maxLines"] as int?,
       );
+    case '@implementation':
+      return _TextProxy(
+        values["@call:build"] as api.Widget Function(api.BuildContext context)?,
+        values["@get:data"] as String? Function()?,
+        values["@get:key"] as api.Key? Function()?,
+        values["data"] as String,
+        key: values["key"] as api.Key?,
+        style: values["style"] as api.TextStyle?,
+        textAlign: values["textAlign"] as api.TextAlign?,
+        textDirection: values["textDirection"] as api.TextDirection?,
+        softWrap: values["softWrap"] as bool?,
+        overflow: values["overflow"] as api.TextOverflow?,
+        maxLines: values["maxLines"] as int?,
+      );
     default:
       throw ArgumentError('Unknown generated constructor');
   }
 }
+
+bool _isRow(Object value) => value is api.Row;
 
 class _RowHost extends FlaxWidgetHost {
   _RowHost(super.node);
@@ -16179,6 +16587,8 @@ api.Widget _createRow(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isColumn(Object value) => value is api.Column;
+
 class _ColumnHost extends FlaxWidgetHost {
   _ColumnHost(super.node);
 
@@ -16222,6 +16632,8 @@ api.Widget _createColumn(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isCenter(Object value) => value is api.Center;
+
 class _CenterHost extends FlaxWidgetHost {
   _CenterHost(super.node);
 
@@ -16244,6 +16656,8 @@ api.Widget _createCenter(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isPadding(Object value) => value is api.Padding;
+
 class _PaddingHost extends FlaxWidgetHost {
   _PaddingHost(super.node);
 
@@ -16264,6 +16678,8 @@ api.Widget _createPadding(String ctor, Map<String, Object?> values) {
       throw ArgumentError('Unknown generated constructor');
   }
 }
+
+bool _isSizedBox(Object value) => value is api.SizedBox;
 
 class _SizedBoxHost extends FlaxWidgetHost {
   _SizedBoxHost(super.node);
@@ -16481,6 +16897,8 @@ Object _createNeverScrollableScrollPhysics(
   }
 }
 
+bool _isListView(Object value) => value is api.ListView;
+
 class _ListViewHost extends FlaxWidgetHost {
   _ListViewHost(super.node);
 
@@ -16516,6 +16934,9 @@ api.Widget _createListView(String ctor, Map<String, Object?> values) {
       throw ArgumentError('Unknown generated constructor');
   }
 }
+
+bool _isSingleChildScrollView(Object value) =>
+    value is api.SingleChildScrollView;
 
 class _SingleChildScrollViewHost extends FlaxWidgetHost {
   _SingleChildScrollViewHost(super.node);
@@ -16704,6 +17125,8 @@ Object _createRegExp(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isListener(Object value) => value is api.Listener;
+
 class _ListenerHost extends FlaxWidgetHost {
   _ListenerHost(super.node);
 
@@ -16737,6 +17160,8 @@ api.Widget _createListener(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isMouseRegion(Object value) => value is api.MouseRegion;
+
 class _MouseRegionHost extends FlaxWidgetHost {
   _MouseRegionHost(super.node);
 
@@ -16762,6 +17187,8 @@ api.Widget _createMouseRegion(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isKeyboardListener(Object value) => value is api.KeyboardListener;
+
 class _KeyboardListenerHost extends FlaxWidgetHost {
   _KeyboardListenerHost(super.node);
 
@@ -16785,6 +17212,8 @@ api.Widget _createKeyboardListener(String ctor, Map<String, Object?> values) {
       throw ArgumentError('Unknown generated constructor');
   }
 }
+
+bool _isSafeArea(Object value) => value is api.SafeArea;
 
 class _SafeAreaHost extends FlaxWidgetHost {
   _SafeAreaHost(super.node);
@@ -16823,6 +17252,8 @@ api.Widget _createSafeArea(String ctor, Map<String, Object?> values) {
       throw ArgumentError('Unknown generated constructor');
   }
 }
+
+bool _isWrap(Object value) => value is api.Wrap;
 
 class _WrapHost extends FlaxWidgetHost {
   _WrapHost(super.node);
@@ -16870,6 +17301,8 @@ api.Widget _createWrap(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isFittedBox(Object value) => value is api.FittedBox;
+
 class _FittedBoxHost extends FlaxWidgetHost {
   _FittedBoxHost(super.node);
 
@@ -16901,6 +17334,8 @@ api.Widget _createFittedBox(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isAspectRatio(Object value) => value is api.AspectRatio;
+
 class _AspectRatioHost extends FlaxWidgetHost {
   _AspectRatioHost(super.node);
 
@@ -16921,6 +17356,8 @@ api.Widget _createAspectRatio(String ctor, Map<String, Object?> values) {
       throw ArgumentError('Unknown generated constructor');
   }
 }
+
+bool _isConstrainedBox(Object value) => value is api.ConstrainedBox;
 
 class _ConstrainedBoxHost extends FlaxWidgetHost {
   _ConstrainedBoxHost(super.node);
@@ -16943,6 +17380,8 @@ api.Widget _createConstrainedBox(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isOpacity(Object value) => value is api.Opacity;
+
 class _OpacityHost extends FlaxWidgetHost {
   _OpacityHost(super.node);
 
@@ -16964,6 +17403,8 @@ api.Widget _createOpacity(String ctor, Map<String, Object?> values) {
       throw ArgumentError('Unknown generated constructor');
   }
 }
+
+bool _isVisibility(Object value) => value is api.Visibility;
 
 class _VisibilityHost extends FlaxWidgetHost {
   _VisibilityHost(super.node);
@@ -16998,6 +17439,8 @@ api.Widget _createVisibility(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isColoredBox(Object value) => value is api.ColoredBox;
+
 class _ColoredBoxHost extends FlaxWidgetHost {
   _ColoredBoxHost(super.node);
 
@@ -17019,6 +17462,8 @@ api.Widget _createColoredBox(String ctor, Map<String, Object?> values) {
       throw ArgumentError('Unknown generated constructor');
   }
 }
+
+bool _isClipRRect(Object value) => value is api.ClipRRect;
 
 class _ClipRRectHost extends FlaxWidgetHost {
   _ClipRRectHost(super.node);
@@ -17049,6 +17494,8 @@ api.Widget _createClipRRect(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isIgnorePointer(Object value) => value is api.IgnorePointer;
+
 class _IgnorePointerHost extends FlaxWidgetHost {
   _IgnorePointerHost(super.node);
 
@@ -17069,6 +17516,8 @@ api.Widget _createIgnorePointer(String ctor, Map<String, Object?> values) {
       throw ArgumentError('Unknown generated constructor');
   }
 }
+
+bool _isIndexedStack(Object value) => value is api.IndexedStack;
 
 class _IndexedStackHost extends FlaxWidgetHost {
   _IndexedStackHost(super.node);
@@ -17124,6 +17573,8 @@ api.Widget _createIndexedStack(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isGestureDetector(Object value) => value is api.GestureDetector;
+
 class _GestureDetectorHost extends FlaxWidgetHost {
   _GestureDetectorHost(super.node);
 
@@ -17157,6 +17608,8 @@ api.Widget _createGestureDetector(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isFocus(Object value) => value is api.Focus;
+
 class _FocusHost extends FlaxWidgetHost {
   _FocusHost(super.node);
 
@@ -17186,6 +17639,8 @@ api.Widget _createFocus(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isForm(Object value) => value is api.Form;
+
 class _FormHost extends FlaxWidgetHost {
   _FormHost(super.node);
 
@@ -17211,6 +17666,8 @@ api.Widget _createForm(String ctor, Map<String, Object?> values) {
       throw ArgumentError('Unknown generated constructor');
   }
 }
+
+bool _isStatefulBuilder(Object value) => value is api.StatefulBuilder;
 
 class _StatefulBuilderHost extends FlaxWidgetHost {
   _StatefulBuilderHost(super.node);
@@ -17350,6 +17807,51 @@ final class _ValueListenableProxy extends api8.ValueListenable<Object?> {
 
   @override
   Object? get value => _get_value();
+}
+
+final class _TextProxy extends api.Text with FlaxWidgetProxy {
+  final api.Widget Function(api.BuildContext context)? _call_build;
+  final String? Function()? _get_data;
+  final api.Key? Function()? _get_key;
+  _TextProxy(
+    this._call_build,
+    this._get_data,
+    this._get_key,
+    String super.data, {
+    api.Key? super.key,
+    api.TextStyle? super.style,
+    api.TextAlign? super.textAlign,
+    api.TextDirection? super.textDirection,
+    bool? super.softWrap,
+    api.TextOverflow? super.overflow,
+    int? super.maxLines,
+  });
+  @override
+  api.Widget build(api.BuildContext context) {
+    if (_call_build == null) {
+      return super.build(context);
+    }
+    return _call_build(context);
+  }
+
+  api.Widget _flaxSuper_build(api.BuildContext context) {
+    return super.build(context);
+  }
+
+  @override
+  String? get data {
+    final callback = _get_data;
+    return callback == null ? super.data : callback();
+  }
+
+  String? get _flaxSuperGet_data => super.data;
+  @override
+  api.Key? get key {
+    final callback = _get_key;
+    return callback == null ? super.key : callback();
+  }
+
+  api.Key? get _flaxSuperGet_key => super.key;
 }
 
 String _keyEventType(Object value) {
@@ -19685,71 +20187,65 @@ Object? _callback124Invoke(
   );
 }
 
-Object _callback125(FlaxCallback _flaxBridgeCallback) => () {
+Object _callback125(FlaxCallback _flaxBridgeCallback) => (api.BuildContext p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  _flaxBridgeCallback.call(positional, named);
+  positional.add(p0);
+  return _flaxBridgeCallback.call(positional, named) as api.Widget;
 };
-bool _callback125Matches(Object value) => value is void Function();
+bool _callback125Matches(Object value) =>
+    value is api.Widget Function(api.BuildContext context);
 Object? _callback125Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  (function as void Function())();
-  return null;
+  return (function as api.Widget Function(api.BuildContext context))(
+    positional[0] as api.BuildContext,
+  );
 }
 
 Object _callback126(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
+  return _flaxBridgeCallback.call(positional, named) as String?;
+};
+bool _callback126Matches(Object value) => value is String? Function();
+Object? _callback126Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  return (function as String? Function())();
+}
+
+Object _callback127(FlaxCallback _flaxBridgeCallback) => () {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  return _flaxBridgeCallback.call(positional, named) as api.Key?;
+};
+bool _callback127Matches(Object value) => value is api.Key? Function();
+Object? _callback127Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  return (function as api.Key? Function())();
+}
+
+Object _callback128(FlaxCallback _flaxBridgeCallback) => () {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
   _flaxBridgeCallback.call(positional, named);
 };
-bool _callback126Matches(Object value) => value is void Function();
-Object? _callback126Invoke(
+bool _callback128Matches(Object value) => value is void Function();
+Object? _callback128Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
   (function as void Function())();
   return null;
-}
-
-Object _callback127(FlaxCallback _flaxBridgeCallback) =>
-    (api.BuildContext p0, int p1) {
-      final positional = <Object?>[];
-      final named = <String, Object?>{};
-      positional.add(p0);
-      positional.add(p1);
-      return _flaxBridgeCallback.call(positional, named) as api.Widget?;
-    };
-bool _callback127Matches(Object value) =>
-    value is api.Widget? Function(api.BuildContext context, int index);
-Object? _callback127Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function
-      as api.Widget? Function(api.BuildContext context, int index))(
-    positional[0] as api.BuildContext,
-    positional[1] as int,
-  );
-}
-
-Object _callback128(FlaxCallback _flaxBridgeCallback) => (api.Key p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as int?;
-};
-bool _callback128Matches(Object value) => value is int? Function(api.Key key);
-Object? _callback128Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as int? Function(api.Key key))(positional[0] as api.Key);
 }
 
 Object _callback129(FlaxCallback _flaxBridgeCallback) => () {
@@ -19767,13 +20263,50 @@ Object? _callback129Invoke(
   return null;
 }
 
-Object _callback130(FlaxCallback _flaxBridgeCallback) => () {
+Object _callback130(FlaxCallback _flaxBridgeCallback) =>
+    (api.BuildContext p0, int p1) {
+      final positional = <Object?>[];
+      final named = <String, Object?>{};
+      positional.add(p0);
+      positional.add(p1);
+      return _flaxBridgeCallback.call(positional, named) as api.Widget?;
+    };
+bool _callback130Matches(Object value) =>
+    value is api.Widget? Function(api.BuildContext context, int index);
+Object? _callback130Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  return (function
+      as api.Widget? Function(api.BuildContext context, int index))(
+    positional[0] as api.BuildContext,
+    positional[1] as int,
+  );
+}
+
+Object _callback131(FlaxCallback _flaxBridgeCallback) => (api.Key p0) {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  positional.add(p0);
+  return _flaxBridgeCallback.call(positional, named) as int?;
+};
+bool _callback131Matches(Object value) => value is int? Function(api.Key key);
+Object? _callback131Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  return (function as int? Function(api.Key key))(positional[0] as api.Key);
+}
+
+Object _callback132(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   _flaxBridgeCallback.call(positional, named);
 };
-bool _callback130Matches(Object value) => value is void Function();
-Object? _callback130Invoke(
+bool _callback132Matches(Object value) => value is void Function();
+Object? _callback132Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -19782,7 +20315,22 @@ Object? _callback130Invoke(
   return null;
 }
 
-Object _callback131(FlaxCallback _flaxBridgeCallback) =>
+Object _callback133(FlaxCallback _flaxBridgeCallback) => () {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  _flaxBridgeCallback.call(positional, named);
+};
+bool _callback133Matches(Object value) => value is void Function();
+Object? _callback133Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  (function as void Function())();
+  return null;
+}
+
+Object _callback134(FlaxCallback _flaxBridgeCallback) =>
     (api.TextEditingValue p0, api.TextEditingValue p1) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
@@ -19791,13 +20339,13 @@ Object _callback131(FlaxCallback _flaxBridgeCallback) =>
       return _flaxBridgeCallback.call(positional, named)
           as api.TextEditingValue;
     };
-bool _callback131Matches(Object value) =>
+bool _callback134Matches(Object value) =>
     value
         is api.TextEditingValue Function(
           api.TextEditingValue oldValue,
           api.TextEditingValue newValue,
         );
-Object? _callback131Invoke(
+Object? _callback134Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -19810,63 +20358,6 @@ Object? _callback131Invoke(
     positional[0] as api.TextEditingValue,
     positional[1] as api.TextEditingValue,
   );
-}
-
-Object _callback132(FlaxCallback _flaxBridgeCallback) => (api.PointerEvent p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(_snapshotPointerEvent(p0));
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback132Matches(Object value) =>
-    value is void Function(api.PointerEvent event);
-Object? _callback132Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.PointerEvent event))(
-    positional[0] as api.PointerEvent,
-  );
-  return null;
-}
-
-Object _callback133(FlaxCallback _flaxBridgeCallback) => (api.PointerEvent p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(_snapshotPointerEvent(p0));
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback133Matches(Object value) =>
-    value is void Function(api.PointerEvent event);
-Object? _callback133Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.PointerEvent event))(
-    positional[0] as api.PointerEvent,
-  );
-  return null;
-}
-
-Object _callback134(FlaxCallback _flaxBridgeCallback) => (api.PointerEvent p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(_snapshotPointerEvent(p0));
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback134Matches(Object value) =>
-    value is void Function(api.PointerEvent event);
-Object? _callback134Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.PointerEvent event))(
-    positional[0] as api.PointerEvent,
-  );
-  return null;
 }
 
 Object _callback135(FlaxCallback _flaxBridgeCallback) => (api.PointerEvent p0) {
@@ -19983,15 +20474,72 @@ Object? _callback140Invoke(
   return null;
 }
 
-Object _callback141(FlaxCallback _flaxBridgeCallback) => (api.KeyEvent p0) {
+Object _callback141(FlaxCallback _flaxBridgeCallback) => (api.PointerEvent p0) {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  positional.add(_snapshotPointerEvent(p0));
+  _flaxBridgeCallback.call(positional, named);
+};
+bool _callback141Matches(Object value) =>
+    value is void Function(api.PointerEvent event);
+Object? _callback141Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  (function as void Function(api.PointerEvent event))(
+    positional[0] as api.PointerEvent,
+  );
+  return null;
+}
+
+Object _callback142(FlaxCallback _flaxBridgeCallback) => (api.PointerEvent p0) {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  positional.add(_snapshotPointerEvent(p0));
+  _flaxBridgeCallback.call(positional, named);
+};
+bool _callback142Matches(Object value) =>
+    value is void Function(api.PointerEvent event);
+Object? _callback142Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  (function as void Function(api.PointerEvent event))(
+    positional[0] as api.PointerEvent,
+  );
+  return null;
+}
+
+Object _callback143(FlaxCallback _flaxBridgeCallback) => (api.PointerEvent p0) {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  positional.add(_snapshotPointerEvent(p0));
+  _flaxBridgeCallback.call(positional, named);
+};
+bool _callback143Matches(Object value) =>
+    value is void Function(api.PointerEvent event);
+Object? _callback143Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  (function as void Function(api.PointerEvent event))(
+    positional[0] as api.PointerEvent,
+  );
+  return null;
+}
+
+Object _callback144(FlaxCallback _flaxBridgeCallback) => (api.KeyEvent p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(_snapshotKeyEvent(p0));
   _flaxBridgeCallback.call(positional, named);
 };
-bool _callback141Matches(Object value) =>
+bool _callback144Matches(Object value) =>
     value is void Function(api.KeyEvent value);
-Object? _callback141Invoke(
+Object? _callback144Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -19999,51 +20547,6 @@ Object? _callback141Invoke(
   (function as void Function(api.KeyEvent value))(
     positional[0] as api.KeyEvent,
   );
-  return null;
-}
-
-Object _callback142(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback142Matches(Object value) => value is void Function();
-Object? _callback142Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function())();
-  return null;
-}
-
-Object _callback143(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback143Matches(Object value) => value is void Function();
-Object? _callback143Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function())();
-  return null;
-}
-
-Object _callback144(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback144Matches(Object value) => value is void Function();
-Object? _callback144Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function())();
   return null;
 }
 
@@ -20122,40 +20625,33 @@ Object? _callback149Invoke(
   return null;
 }
 
-Object _callback150(FlaxCallback _flaxBridgeCallback) => (bool p0) {
+Object _callback150(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  positional.add(p0);
   _flaxBridgeCallback.call(positional, named);
 };
-bool _callback150Matches(Object value) => value is void Function(bool value);
+bool _callback150Matches(Object value) => value is void Function();
 Object? _callback150Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  (function as void Function(bool value))(positional[0] as bool);
+  (function as void Function())();
   return null;
 }
 
-Object _callback151(FlaxCallback _flaxBridgeCallback) => (bool p0, Object? p1) {
+Object _callback151(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  positional.add(p0);
-  positional.add(p1);
   _flaxBridgeCallback.call(positional, named);
 };
-bool _callback151Matches(Object value) =>
-    value is void Function(bool didPop, Object? result);
+bool _callback151Matches(Object value) => value is void Function();
 Object? _callback151Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  (function as void Function(bool didPop, Object? result))(
-    positional[0] as bool,
-    positional[1],
-  );
+  (function as void Function())();
   return null;
 }
 
@@ -20174,13 +20670,50 @@ Object? _callback152Invoke(
   return null;
 }
 
-Object _callback153(FlaxCallback _flaxBridgeCallback) => () {
+Object _callback153(FlaxCallback _flaxBridgeCallback) => (bool p0) {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  positional.add(p0);
+  _flaxBridgeCallback.call(positional, named);
+};
+bool _callback153Matches(Object value) => value is void Function(bool value);
+Object? _callback153Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  (function as void Function(bool value))(positional[0] as bool);
+  return null;
+}
+
+Object _callback154(FlaxCallback _flaxBridgeCallback) => (bool p0, Object? p1) {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  positional.add(p0);
+  positional.add(p1);
+  _flaxBridgeCallback.call(positional, named);
+};
+bool _callback154Matches(Object value) =>
+    value is void Function(bool didPop, Object? result);
+Object? _callback154Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  (function as void Function(bool didPop, Object? result))(
+    positional[0] as bool,
+    positional[1],
+  );
+  return null;
+}
+
+Object _callback155(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   _flaxBridgeCallback.call(positional, named);
 };
-bool _callback153Matches(Object value) => value is void Function();
-Object? _callback153Invoke(
+bool _callback155Matches(Object value) => value is void Function();
+Object? _callback155Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -20189,15 +20722,30 @@ Object? _callback153Invoke(
   return null;
 }
 
-Object _callback154(FlaxCallback _flaxBridgeCallback) => (void Function() p0) {
+Object _callback156(FlaxCallback _flaxBridgeCallback) => () {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  _flaxBridgeCallback.call(positional, named);
+};
+bool _callback156Matches(Object value) => value is void Function();
+Object? _callback156Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  (function as void Function())();
+  return null;
+}
+
+Object _callback157(FlaxCallback _flaxBridgeCallback) => (void Function() p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
   _flaxBridgeCallback.call(positional, named);
 };
-bool _callback154Matches(Object value) =>
+bool _callback157Matches(Object value) =>
     value is void Function(void Function() fn);
-Object? _callback154Invoke(
+Object? _callback157Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -20208,7 +20756,7 @@ Object? _callback154Invoke(
   return null;
 }
 
-Object _callback155(FlaxCallback _flaxBridgeCallback) =>
+Object _callback158(FlaxCallback _flaxBridgeCallback) =>
     (api.BuildContext p0, void Function(void Function() fn) p1) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
@@ -20216,13 +20764,13 @@ Object _callback155(FlaxCallback _flaxBridgeCallback) =>
       positional.add(p1);
       return _flaxBridgeCallback.call(positional, named) as api.Widget;
     };
-bool _callback155Matches(Object value) =>
+bool _callback158Matches(Object value) =>
     value
         is api.Widget Function(
           api.BuildContext context,
           void Function(void Function() fn) setState,
         );
-Object? _callback155Invoke(
+Object? _callback158Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,

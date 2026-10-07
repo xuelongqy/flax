@@ -32,6 +32,12 @@ import { CanvasView } from '@flax/canvas';
 
 const themeMode = signal(ThemeMode.system);
 
+class CounterText extends Text {
+  override build(context: BuildContext) {
+    return super.build(context);
+  }
+}
+
 class HomePage extends StatefulWidget {
   createState(): State<HomePage> {
     return new HomeState();
@@ -115,7 +121,7 @@ class HomeState extends State<HomePage> {
                 localStorage.setItem('draft', text);
             },
           }),
-          Text(`Count: ${this.count}`),
+          new CounterText(`Count: ${this.count}`),
           TextButton({
             onPressed: () => this.setState(() => this.count++),
             child: Text('Increment'),

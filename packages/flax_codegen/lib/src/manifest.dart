@@ -64,7 +64,7 @@ final class FlaxCodegenManifest {
   }) : imports = List.unmodifiable(imports),
        modules = List.unmodifiable(modules);
 
-  static const formatVersion = 15;
+  static const formatVersion = 16;
   static const uiProtocol = 22;
 
   final String package;
@@ -339,10 +339,12 @@ FlaxCodegenManifestModule? _decodeModuleEntry(
     sortedMessage: 'Expected sorted capabilities.',
     duplicateMessage: 'Duplicate capability.',
   );
-  if (requiredCapabilities.isNotEmpty) {
+  if (requiredCapabilities.any(
+    (capability) => capability != 'native-widget-proxies',
+  )) {
     diagnostics.add(
       pointer: flaxCodegenManifestPointer(pointer, 'requiredCapabilities'),
-      message: 'Nonempty requiredCapabilities.',
+      message: 'Unsupported requiredCapabilities.',
     );
   }
   if (moduleName != null &&

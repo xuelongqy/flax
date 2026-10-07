@@ -126,6 +126,7 @@ const canvasBindings = FlaxBindingModule(
         ],
       },
       _FlaxCanvasViewHost.new,
+      matches: _isFlaxCanvasView,
       fixedArguments: false,
       methods: {},
     ),
@@ -134,7 +135,7 @@ const canvasBindings = FlaxBindingModule(
   moduleId: "flax.canvas/canvas",
   dependencyModules: ["flax.core/flutter"],
   uiProtocol: 22,
-  requiredCapabilities: const <String>[],
+  requiredCapabilities: const <String>["native-widget-proxies"],
   stateVariants: [],
 );
 bool _isFlaxCanvasSurface(Object value) => value is api.FlaxCanvasSurface;
@@ -172,6 +173,7 @@ Object? _FlaxCanvasSurface_removeListener(
 
 Object _createFlaxCanvasSurface(String ctor, Map<String, Object?> values) =>
     throw ArgumentError('Abstract object has no constructor');
+bool _isFlaxCanvasView(Object value) => value is api.FlaxCanvasView;
 
 class _FlaxCanvasViewHost extends FlaxWidgetHost {
   _FlaxCanvasViewHost(super.node);

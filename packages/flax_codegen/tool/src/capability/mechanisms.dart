@@ -279,6 +279,15 @@ const List<Stage2MechanismShape> stage2MechanismShapes = [
     member: 'maybe',
   ),
 
+  Stage2MechanismShape(
+    label: 'widgetCallback/concrete-native-result',
+    group: 'widgetCallback',
+    fixture: 'widget_callback_shapes.dart',
+    type: 'WidgetSinkBox',
+    member: 'concrete',
+    note: 'Concrete Widget configurations preserve the actual native subtype',
+  ),
+
   // Class modifiers.
   Stage2MechanismShape(
     label: 'classModifier/abstract',

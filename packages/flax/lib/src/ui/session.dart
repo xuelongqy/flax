@@ -123,6 +123,7 @@ class _Session {
   final _componentTypes = <int, _ComponentType>{};
   int _nextComponentState = 1;
   final _states = <int, _StateReference>{};
+  final _nativeStateFactories = <Set<int>>[];
   final _stateIds = Expando<int>();
   final _objects = <int, _ObjectReference>{};
   final _objectIds = Map<Object, _ObjectReference>.identity();
@@ -411,6 +412,10 @@ class _Session {
         rethrow;
       }
     }
+    if (type.kind == 'widget' && value is FlaxJsObject) {
+      final reference = decodeDartWidget(value);
+      if (reference != null) return checkWidgetValue(reference, type);
+    }
     if ((type.kind == 'object' || type.kind == 'state') &&
         value is FlaxJsObject) {
       final componentState = decodeComponentStateReference(value, type);
@@ -626,7 +631,7 @@ class _Session {
       final node = FlaxNode._(this, definition, ctor, sources);
       try {
         final host = definition.createHost(node);
-        checkWidgetType(host, type);
+
         if (definition.fixedArguments) {
           // A native constructor may store an input even if it then throws.
           for (final source in sources.values) {
@@ -638,6 +643,16 @@ class _Session {
         final validated = host.buildNative(
           sources.map((name, source) => MapEntry(name, source.initial.data)),
         );
+        if (registry._types[type.id] is FlaxWidgetBinding) {
+          checkWidgetType(validated, type);
+          // A concrete signature receives the immutable native configuration.
+          // Its weak lease keeps constructor callbacks and children alive.
+          final record = _WidgetConfiguration(this, node);
+          _widgetConfigurations[validated] = record;
+          record.attach(validated);
+          return _Value(validated, [node]);
+        }
+        checkWidgetType(host, type);
         if (definition.fixedArguments ||
             (parameters.every(
                   (parameter) => !parameter.type.containsCallback,

@@ -1332,7 +1332,7 @@ void main() {
     }
   });
 
-  group('Manifest 15 typeLibraries URI semantics', () {
+  group('Manifest 16 typeLibraries URI semantics', () {
     test('accepts public package URIs, cross-package names, and dart:core', () {
       final module = _typeLibrariesModule({
         'Core': 'dart:core',
@@ -1579,7 +1579,7 @@ void main() {
     );
   });
 
-  group('Manifest 15 envelope positives', () {
+  group('Manifest 16 envelope positives', () {
     test('fromResolved round-trips rich and zero-entry modules', () {
       final fixture = _envelopeFixture();
       final manifest = FlaxCodegenManifest.fromResolved(
@@ -1740,16 +1740,16 @@ void main() {
     });
   });
 
-  group('Manifest 15 envelope negatives', () {
+  group('Manifest 16 envelope negatives', () {
     test('invalid JSON and duplicate keys fail closed', () {
       _expectEnvelopeFailure('{', [_record('', 'Invalid JSON.')]);
       _expectEnvelopeFailure(
-        '{\n  "formatVersion": 15,\n  "package": "a",\n  "package": "b"\n}\n',
+        '{\n  "formatVersion": 16,\n  "package": "a",\n  "package": "b"\n}\n',
         [_record('', 'Duplicate mapping key.')],
       );
       final withModuleDup =
           '{\n'
-          '  "formatVersion": 15,\n'
+          '  "formatVersion": 16,\n'
           '  "package": "acme_widgets",\n'
           '  "bindingNamespace": "com.acme.widgets",\n'
           '  "imports": [],\n'
@@ -1769,7 +1769,7 @@ void main() {
       ]);
       final withModelDup =
           '{\n'
-          '  "formatVersion": 15,\n'
+          '  "formatVersion": 16,\n'
           '  "package": "acme_widgets",\n'
           '  "bindingNamespace": "com.acme.widgets",\n'
           '  "imports": [],\n'
@@ -1904,7 +1904,7 @@ void main() {
         [
           _record(
             '/modules/1/requiredCapabilities',
-            'Nonempty requiredCapabilities.',
+            'Unsupported requiredCapabilities.',
           ),
         ],
       );
@@ -1921,7 +1921,7 @@ void main() {
           ),
           _record(
             '/modules/1/requiredCapabilities',
-            'Nonempty requiredCapabilities.',
+            'Unsupported requiredCapabilities.',
           ),
         ],
       );
@@ -1997,7 +1997,7 @@ void main() {
     });
   });
 
-  group('Manifest 15 ownership model and fromResolved negatives', () {
+  group('Manifest 16 ownership model and fromResolved negatives', () {
     test('declaration owner rows are required at id pointers', () {
       const gauge = 'com.acme.widgets/widgets#type:Gauge';
       const axis = 'com.acme.widgets/widgets#type:Axis';
@@ -2460,7 +2460,7 @@ void main() {
     });
   });
 
-  group('Manifest 15 generic lexical slot positives', () {
+  group('Manifest 16 generic lexical slot positives', () {
     test(
       'fresh decoded tokens preserve declaration/reference identity sharing',
       () {
@@ -2758,7 +2758,7 @@ void main() {
     });
   });
 
-  group('Manifest 15 generic lexical slot negatives', () {
+  group('Manifest 16 generic lexical slot negatives', () {
     test('missing declaration slot fails closed', () {
       final json = _cloneJsonMap(
         _slotCallbackJson(_slotSharingCallback(Object())),
@@ -2969,7 +2969,7 @@ void main() {
     });
   });
 
-  group('Manifest 15 Quality P1 maximal projection', () {
+  group('Manifest 16 Quality P1 maximal projection', () {
     test('independently constructed maximal module survives fromResolved encode parse projection and input mutation', () {
       final inIntType = FlaxCodegenTypeRef('int');
       final inStringType = FlaxCodegenTypeRef('String', nullable: true);
@@ -4562,7 +4562,7 @@ void main() {
     });
   });
 
-  group('Manifest 15 direct dependency projection positives', () {
+  group('Manifest 16 direct dependency projection positives', () {
     test('A→B→C flattens packages owners modules and importedPackages', () {
       final chain = _projectionChain();
       final a = chain.aProjection;
@@ -4886,7 +4886,7 @@ bindingNamespace: com.example.local
     );
   });
 
-  group('Manifest 15 direct dependency projection negatives', () {
+  group('Manifest 16 direct dependency projection negatives', () {
     test('missing direct import fails closed', () {
       final b = _packageB(_packageC());
       final a = _packageA(b);
@@ -7362,11 +7362,11 @@ void _expectEnvelopeShape(
   expect(manifest.package, 'acme_widgets');
   expect(manifest.bindingNamespace.value, 'com.acme.widgets');
   expect(manifest.imports, ['flax', 'flax_material']);
-  expect(FlaxCodegenManifest.formatVersion, 15);
+  expect(FlaxCodegenManifest.formatVersion, 16);
   expect(FlaxCodegenManifest.uiProtocol, 22);
   final encoded = manifest.toJson();
   _expectExactKeys(encoded, _envelopeKeys);
-  expect(encoded['formatVersion'], 15);
+  expect(encoded['formatVersion'], 16);
   expect(encoded['modules'], isA<List<Object?>>());
   final modules = encoded['modules']! as List<Object?>;
   expect(modules, hasLength(2));
@@ -7374,7 +7374,7 @@ void _expectEnvelopeShape(
     final module = _expectObject(moduleJson);
     _expectExactKeys(module, _moduleEntryKeys);
     expect(module['uiProtocol'], 22);
-    expect(module['requiredCapabilities'], isEmpty);
+    expect(module['requiredCapabilities'], ['native-widget-proxies']);
     final model = _expectObject(module['model']);
     _expectExactKeys(model, _modelProjectionKeys);
     expect(model.containsKey('dartOutput'), isFalse);
@@ -7389,7 +7389,7 @@ void _expectEnvelopeShape(
   );
   final host = manifest.modules.first;
   expect(host.name, 'host');
-  expect(host.requiredCapabilities, isEmpty);
+  expect(host.requiredCapabilities, ['native-widget-proxies']);
   expect(host.model.identities, isEmpty);
   _expectModule(host.model.module, fixture.expectedHostModule);
   expect(host.model.module.dartOutput, isEmpty);
@@ -7397,7 +7397,7 @@ void _expectEnvelopeShape(
 
   final widgets = manifest.modules.last;
   expect(widgets.name, 'widgets');
-  expect(widgets.requiredCapabilities, isEmpty);
+  expect(widgets.requiredCapabilities, ['native-widget-proxies']);
   _expectModule(widgets.model.module, fixture.expectedWidgetsModule);
   expect(widgets.model.module.dartOutput, isEmpty);
   expect(widgets.model.module.tsOutput, isEmpty);

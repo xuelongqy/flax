@@ -42,6 +42,8 @@ class WidgetSinkBox {
   void sinkAll(void Function(Widget) handler) {}
 
   Widget children() => const SizedBox.shrink();
+
+  Text concrete(Text Function() build) => build();
 }
 
 class WidgetFutureBox {

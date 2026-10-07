@@ -46,7 +46,7 @@ void main() {
         'flax.core/components#type:State',
       );
       for (final module in package.modules) {
-        expect(module.requiredCapabilities, isEmpty);
+        expect(module.requiredCapabilities, ['native-widget-proxies']);
         expect(
           module.requiredCapabilities,
           flaxCodegenProtocol21RequiredCapabilities(),
@@ -379,7 +379,9 @@ void main() {
     expect(package.modules.single.moduleId.value, 'flax.core/host');
     expect(package.modules.single.owners, isEmpty);
     expect(package.modules.single.references, isEmpty);
-    expect(package.modules.single.requiredCapabilities, isEmpty);
+    expect(package.modules.single.requiredCapabilities, [
+      'native-widget-proxies',
+    ]);
   });
 
   test('input and result collections reject mutation', () {
@@ -479,7 +481,9 @@ bindingNamespace: flax.core
       [for (final owner in package.modules.single.owners) owner.sourceIdentity],
       [show, offset, state, widget],
     );
-    expect(package.modules.single.requiredCapabilities, isEmpty);
+    expect(package.modules.single.requiredCapabilities, [
+      'native-widget-proxies',
+    ]);
     expect(
       () => package.modules.single.requiredCapabilities.add('host'),
       throwsUnsupportedError,

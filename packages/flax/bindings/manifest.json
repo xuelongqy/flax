@@ -1,5 +1,5 @@
 {
-  "formatVersion": 15,
+  "formatVersion": 16,
   "package": "flax",
   "bindingNamespace": "flax.core",
   "imports": [],
@@ -8,7 +8,9 @@
       "name": "components",
       "moduleId": "flax.core/components",
       "uiProtocol": 22,
-      "requiredCapabilities": [],
+      "requiredCapabilities": [
+        "native-widget-proxies"
+      ],
       "model": {
         "library": "package:flutter/widgets.dart",
         "jsPackage": "@flax/flutter/widgets",
@@ -376,7 +378,9 @@
       "name": "flutter",
       "moduleId": "flax.core/flutter",
       "uiProtocol": 22,
-      "requiredCapabilities": [],
+      "requiredCapabilities": [
+        "native-widget-proxies"
+      ],
       "model": {
         "library": "package:flutter/widgets.dart",
         "jsPackage": "@flax/core/navigation",
@@ -62155,11 +62159,176 @@
                 "specializations": []
               }
             ],
-            "getters": [],
+            "getters": [
+              {
+                "name": "data",
+                "type": {
+                  "kind": "String",
+                  "id": null,
+                  "name": null,
+                  "nullable": true,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "String",
+                    "id": null,
+                    "name": null,
+                    "nullable": true,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "encodeKind": null
+              },
+              {
+                "name": "key",
+                "type": {
+                  "kind": "object",
+                  "id": "flax.core/flutter#type:Key",
+                  "name": "Key",
+                  "nullable": true,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "object",
+                    "id": "flax.core/flutter#type:Key",
+                    "name": "Key",
+                    "nullable": true,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "encodeKind": null
+              }
+            ],
             "setters": [],
             "staticGetters": [],
             "staticSetters": [],
-            "methods": [],
+            "methods": [
+              {
+                "name": "build",
+                "parameters": [
+                  {
+                    "name": "context",
+                    "type": {
+                      "kind": "context",
+                      "id": "flax.core/flutter#type:BuildContext",
+                      "name": "BuildContext",
+                      "nullable": false,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": {
+                        "kind": "context",
+                        "id": "flax.core/flutter#type:BuildContext",
+                        "name": "BuildContext",
+                        "nullable": false,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": null,
+                        "tsArguments": [],
+                        "slot": null
+                      },
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "required": true,
+                    "positional": true,
+                    "defaultCode": "null",
+                    "omitWhenAbsent": false,
+                    "independentWidgetResult": false,
+                    "snapshot": null,
+                    "encodeKind": null,
+                    "scoped": false
+                  }
+                ],
+                "result": {
+                  "kind": "widget",
+                  "id": null,
+                  "name": null,
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "widget",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "instance": true,
+                "typeArguments": [],
+                "startsRoute": false,
+                "typeParameters": [],
+                "mustCallSuper": false,
+                "deferredFactory": false,
+                "operator": null
+              }
+            ],
             "widgetInterfaces": [],
             "supertypes": [
               "package:flutter/src/widgets/framework.dart::StatelessWidget",
@@ -62169,7 +62338,182 @@
               "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"
             ],
             "superTypes": [],
-            "proxy": null,
+            "proxy": {
+              "kind": "extends",
+              "methods": [
+                {
+                  "name": "build",
+                  "parameters": [
+                    {
+                      "name": "context",
+                      "type": {
+                        "kind": "context",
+                        "id": "flax.core/flutter#type:BuildContext",
+                        "name": "BuildContext",
+                        "nullable": false,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": {
+                          "kind": "context",
+                          "id": "flax.core/flutter#type:BuildContext",
+                          "name": "BuildContext",
+                          "nullable": false,
+                          "item": null,
+                          "key": null,
+                          "parameters": [],
+                          "typeParameters": [],
+                          "result": null,
+                          "typeArguments": [],
+                          "dartArguments": [],
+                          "primitiveKinds": [],
+                          "declaration": null,
+                          "tsArguments": [],
+                          "slot": null
+                        },
+                        "tsArguments": [],
+                        "slot": null
+                      },
+                      "required": true,
+                      "positional": true,
+                      "defaultCode": "null",
+                      "omitWhenAbsent": false,
+                      "independentWidgetResult": false,
+                      "snapshot": null,
+                      "encodeKind": null,
+                      "scoped": false
+                    }
+                  ],
+                  "result": {
+                    "kind": "widget",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": {
+                      "kind": "widget",
+                      "id": null,
+                      "name": null,
+                      "nullable": false,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": null,
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "instance": true,
+                  "typeArguments": [],
+                  "startsRoute": false,
+                  "typeParameters": [],
+                  "mustCallSuper": false,
+                  "deferredFactory": false,
+                  "operator": null
+                }
+              ],
+              "superMethods": [
+                "get:data",
+                "get:key",
+                "build"
+              ],
+              "getters": [
+                {
+                  "name": "data",
+                  "type": {
+                    "kind": "String",
+                    "id": null,
+                    "name": null,
+                    "nullable": true,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": {
+                      "kind": "String",
+                      "id": null,
+                      "name": null,
+                      "nullable": true,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": null,
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "encodeKind": null
+                },
+                {
+                  "name": "key",
+                  "type": {
+                    "kind": "object",
+                    "id": "flax.core/flutter#type:Key",
+                    "name": "Key",
+                    "nullable": true,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": {
+                      "kind": "object",
+                      "id": "flax.core/flutter#type:Key",
+                      "name": "Key",
+                      "nullable": true,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": null,
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "encodeKind": null
+                }
+              ],
+              "setters": []
+            },
             "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}

@@ -51,7 +51,7 @@ dart run flax_codegen generate --config <direct-yaml>
 Official selection files carry `format: 2` and live as direct children of package
 `bindings/`. Packages with `bindings` capability keep package metadata format 2 and set
 `bindingNamespace` in `flax_package.yaml`. Generated `bindings/manifest.json` uses
-Manifest `formatVersion: 15`; the reader accepts format 15 only. The generator has no
+Manifest `formatVersion: 16`; the reader accepts format 16 only. The generator has no
 reader or normalization path for other binding selection or Manifest formats. See
 [ADR 0035](../decisions/0035-generic-state-variants-and-protocol-21.md) and
 [External Binding Verification](external-binding-verification.md).
@@ -127,7 +127,7 @@ create no implicit reactive subscriptions or cross-session reference cache. Clos
 existing call, reference and pending-delivery cleanup; it does not dispose
 application-owned values.
 
-Manifest 15 stores public-library routing plus each readonly declaration's source,
+Manifest 16 stores public-library routing plus each readonly declaration's source,
 public export, return type, declaration kind, optional literal and ownership/reference
 status. Source kind `readonly` maps to a stable
 `<bindingNamespace>/<module>#read:<name>` operation. Existing type and function IDs are
@@ -146,7 +146,7 @@ synchronous, propagate Dart exceptions and return void; the next read observes c
 Dart state. Top-level state belongs to the Dart application and can be shared across
 sessions; closing a session does not roll back writes. Source identity uses the function
 operation `name=` (wire suffix `#function:name%3D`), leaving existing getter/read IDs
-unchanged. Manifest 15 records `topLevel.setters` and their independent operation IDs.
+unchanged. Manifest 16 records `topLevel.setters` and their independent operation IDs.
 Provider read and write surfaces are checked separately. Core surfaces cannot be
 widened; independent non-Core selections emit local operations. Writes reuse ordinary
 input conversion and existing session cleanup without new ownership rules. See
@@ -189,7 +189,7 @@ inherited. Generated `setX` names must not conflict with selected methods, const
 entries, other static exports or proxy helpers. Explicit selections fail; automatic
 selection skips the conflicting write with `static_setter_export_collision`.
 
-Manifest 15 stores static accessor types and distinct operation IDs:
+Manifest 16 stores static accessor types and distinct operation IDs:
 `#read:Counter.count` and `#function:Counter.count%3D`. Class IDs and unrelated
 operation IDs retain their identities. All workspace manifests are regenerated; older
 formats are rejected. Selection 2, UI protocol 22 and native ABI 2 are unchanged. Core
@@ -221,11 +221,11 @@ Generated Dart and JavaScript modules carry literal `moduleId`, `uiProtocol` and
 `FlaxBindingModule` contains `name`, `types` and `functions`, plus these required
 fields:
 
-| Field                  | Rule                                                                                                                                                                                     |
-| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `moduleId`             | `String`; [ADR 0022](../decisions/0022-stable-binding-identity.md): `bindingNamespace + "/" + name`                                                                                      |
-| `uiProtocol`           | required `int`; **no default**. Same integer domain as Core `flaxBindingVersion` (UI protocol). There is no parallel `version` field.                                                    |
-| `requiredCapabilities` | required `List<String>`; sorted unique; empty allowed. Generated code must emit an **explicit literal** (for example `const <String>[]`); never omit and rely on a Core ambient default. |
+| Field                  | Rule                                                                                                                                                                                                                                                |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `moduleId`             | `String`; [ADR 0022](../decisions/0022-stable-binding-identity.md): `bindingNamespace + "/" + name`                                                                                                                                                 |
+| `uiProtocol`           | required `int`; **no default**. Same integer domain as Core `flaxBindingVersion` (UI protocol). There is no parallel `version` field.                                                                                                               |
+| `requiredCapabilities` | required `List<String>`; sorted unique; generated modules require `native-widget-proxies`. Generated code must emit an **explicit literal** (for example `const <String>["native-widget-proxies"]`); never omit and rely on a Core ambient default. |
 
 `flaxBindingVersion` remains Core's active protocol constant for Core-owned code and
 Registry comparison. Generated modules pass their **own** literals; they must not read
@@ -262,12 +262,18 @@ See [ADR 0021](../decisions/0021-external-binding-version-domains.md).
 
 ## Models and supported types
 
-Widget classes have distinct generated host types so Flutter retains runtimeType/key
-matching. Page and Route descriptors retain their existing hosts and resource leases.
-Contexts and NavigatorState are borrowed Flutter references. `kind: object` represents
-ordinary references, with optional constructors and disposal. Its getters, setters,
-static property reads and explicit setter methods execute direct Dart calls, as do its
-selected instance and static methods.
+Widget factory calls keep distinct descriptor hosts and per-mount signal ownership.
+Selected `proxy: extends` Widgets also support native construction and JS subclasses.
+The Dart proxy extends the real Widget with `FlaxWidgetProxy`; Flutter keeps the native
+Element and lifecycle. Constructor identity is a weak matching token, not a session
+owner. Configuration is frozen after construction when it crosses into Dart. Concrete
+Widget signatures validate the real native configuration; descriptor inputs become fixed
+snapshots at this boundary. Base Widget inputs preserve descriptor reactivity. Page and
+Route descriptors retain their existing hosts and resource leases. Contexts and
+NavigatorState are borrowed Flutter references. `kind: object` represents ordinary
+references, with optional constructors and disposal. Its getters, setters, static
+property reads and explicit setter methods execute direct Dart calls, as do its selected
+instance and static methods.
 
 The type model includes scalars, enums, selected objects, typed List/Map, complete Dart
 callback parameter shapes, supported Futures, FutureOr, and Streams. Callback metadata
@@ -393,7 +399,7 @@ on the outer one. Defaults, nullability, alias-chain substitution, nested captur
 shadowing use the existing declaration identities. Explicit TS arguments are supported
 without promising identical Dart inference or supplying Dart runtime type tokens.
 
-Manifest 15 stores each alias's public name, originating URI/name, `typeParameters` and
+Manifest 16 stores each alias's public name, originating URI/name, `typeParameters` and
 target type. Even non-generic aliases require an empty `typeParameters` array. Lexical
 slots preserve parameter identity across dependency projections. Bounds and defaults, as
 well as targets, participate in dependency imports and nominal ownership checks.
@@ -411,7 +417,7 @@ the existing TypeRef conversion. JS-to-Dart conversion requires every declared f
 ignores extra properties, validates field nullability independently from whole-Record
 nullability, and reconstructs a real Dart Record. Records themselves have no wire ID,
 owner or session reference identity; provider-owned objects nested inside fields retain
-their normal identity. Manifest 15 carries the complete current Record shape.
+their normal identity. Manifest 16 carries the complete current Record shape.
 
 Generic declarations use one shared Dart owner while TypeScript keeps the declared type
 parameters. An unconstrained owner uses `Object?`; a simple upper bound such as `num` is
@@ -614,7 +620,7 @@ must preserve the provider's selected signature and public export surface. See
 
 ## Bound-only type references
 
-Generic bounds may name interfaces without runtime bindings. Manifest 15 records their
+Generic bounds may name interfaces without runtime bindings. Manifest 16 records their
 source URI, declaration name and recursively scoped generic arguments as `typeOnly`.
 They never receive an owner, wire ID, reference handle or member selection. Ordinary
 parameters, results and runtime erasure still require convertible concrete types.
@@ -679,7 +685,7 @@ selected ordinary members; `runtimeType` remains native. No JavaScript arithmeti
 operator syntax is overloaded. No per-class mixin, runtime reflection or implicit extra
 bridge call is added.
 
-Manifest 15 records both the Dart operator and its JS method alias and rejects previous
+Manifest 16 records both the Dart operator and its JS method alias and rejects previous
 formats. Provider reuse requires the requested operator surface. Core injection,
 provider isolation and source/types package ownership are unchanged. Selection format 2,
 UI protocol 22 and native ABI 2 are unchanged.

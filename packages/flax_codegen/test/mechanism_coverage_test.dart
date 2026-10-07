@@ -226,7 +226,7 @@ void main() {
   });
 
   test('the flat shape list covers five mechanisms with unique labels', () {
-    expect(stage2MechanismShapes, hasLength(38));
+    expect(stage2MechanismShapes, hasLength(39));
     expect(stage2MechanismShapes.map((shape) => shape.group).toSet(), <String>{
       'callback',
       'record',
@@ -846,7 +846,7 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     bindable: true,
     memberStatus: 'selected',
     classWideOk: true,
-    classWideClasses: <String>['WidgetSinkBox'],
+    classWideClasses: <String>['WidgetSinkBox', 'Text', 'StatelessWidget'],
     classWideMemberSelected: true,
     memberInModule: true,
   ),
@@ -860,7 +860,7 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     bindable: true,
     memberStatus: 'selected',
     classWideOk: true,
-    classWideClasses: <String>['WidgetSinkBox'],
+    classWideClasses: <String>['WidgetSinkBox', 'Text', 'StatelessWidget'],
     classWideMemberSelected: true,
     memberInModule: true,
   ),
@@ -874,7 +874,21 @@ const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
     bindable: true,
     memberStatus: 'selected',
     classWideOk: true,
-    classWideClasses: <String>['WidgetSinkBox'],
+    classWideClasses: <String>['WidgetSinkBox', 'Text', 'StatelessWidget'],
+    classWideMemberSelected: true,
+    memberInModule: true,
+  ),
+  _ShapeExpectation(
+    label: 'widgetCallback/concrete-native-result',
+    fixture: 'widget_callback_shapes.dart',
+    type: 'WidgetSinkBox',
+    member: 'concrete',
+    verdict: CapabilityVerdict.supported,
+    route: 'classWide',
+    bindable: true,
+    memberStatus: 'selected',
+    classWideOk: true,
+    classWideClasses: <String>['WidgetSinkBox', 'Text', 'StatelessWidget'],
     classWideMemberSelected: true,
     memberInModule: true,
   ),

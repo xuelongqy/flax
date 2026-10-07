@@ -239,6 +239,12 @@ constructors, members, top-level functions and callbacks in both directions. Ord
 Object/dynamic inputs do not gain Widget conversion. A `Widget Function(Widget)`
 receives and returns real Widgets without a synthetic Context or Element.
 
+Concrete signatures such as `Text Function()` validate the actual Dart subtype. A
+descriptor becomes a fixed native configuration rather than a reactive host; a selected
+`proxy: extends` binding can return a real native JS subclass. Nullable, typed list and
+Future results use the same conversion. Proxy-backed results retain their generated
+member view; base and interface results use opaque Widget references.
+
 Before the actual Dart call starts, each escaping Flax Widget takes one independent
 configuration hold. Native wrappers such as Padding can retain it through their child
 field; Flax does not inspect native Widget fields or retain the entire invocation as a

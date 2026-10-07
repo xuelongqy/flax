@@ -4,6 +4,7 @@ import 'package:flax_codegen/flax_codegen.dart';
 import 'package:flax_codegen/src/manifest_codec.dart';
 
 import '../test/fixtures/interop_selection.dart';
+import '../test/fixtures/native_widgets_selection.dart';
 import '../test/fixtures/default_omission_selection.dart';
 import '../test/fixtures/repeated_selection.dart';
 import '../test/fixtures/static_accessors_selection.dart';
@@ -15,6 +16,14 @@ Future<void> main() async {
     ..createSync(recursive: true);
   final (core, rawToWire) = _loadCoreManifest(
     File('${package.path}/bindings/manifest.json'),
+  );
+  await _generate(
+    package,
+    output,
+    'native_widgets',
+    nativeWidgetsSelection,
+    core,
+    rawToWire,
   );
   await _generate(
     package,

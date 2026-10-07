@@ -853,7 +853,7 @@ class FlaxCodegenModuleModel {
     this.topLevel,
     this.publicLibraries = const [],
     this.moduleId,
-    this.requiredCapabilities = const <String>[],
+    this.requiredCapabilities = const <String>['native-widget-proxies'],
     this.internalTypeNames = const <String>{},
     this.stateVariants = const [],
   });
@@ -1283,7 +1283,16 @@ class FlaxCodegenModuleModel {
       if (type.proxy case final proxy?) {
         for (final (name, callback) in proxy.callbacks) {
           callback.validate('${type.name}.$name');
-          callback.validateCallbacks('${type.name}.$name', input: true);
+          final nativeStateFactory =
+              type.kind == 'widget' &&
+              proxy.kind == 'extends' &&
+              name == 'call:createState' &&
+              callback.parameters.isEmpty &&
+              callback.result?.kind == 'state' &&
+              callback.result?.nullable == false;
+          if (!nativeStateFactory) {
+            callback.validateCallbacks('${type.name}.$name', input: true);
+          }
           if (!name.startsWith('call:')) {
             bool supported(FlaxCodegenTypeRef value) =>
                 !{

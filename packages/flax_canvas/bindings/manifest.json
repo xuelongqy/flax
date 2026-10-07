@@ -1,5 +1,5 @@
 {
-  "formatVersion": 15,
+  "formatVersion": 16,
   "package": "flax_canvas",
   "bindingNamespace": "flax.canvas",
   "imports": [
@@ -10,7 +10,9 @@
       "name": "canvas",
       "moduleId": "flax.canvas/canvas",
       "uiProtocol": 22,
-      "requiredCapabilities": [],
+      "requiredCapabilities": [
+        "native-widget-proxies"
+      ],
       "model": {
         "library": "package:flax_canvas/flax_canvas.dart",
         "jsPackage": "@flax/canvas",

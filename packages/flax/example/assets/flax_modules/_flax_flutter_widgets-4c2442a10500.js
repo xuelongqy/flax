@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/flutter/widgets","owner":"@flax/core-runtime:dist/flutter/widgets.js","version":"0.0.0","artifact":"994d33f798cd446c8bb59f950ee7307b93e9377415d02f706c9d4529847db96b","asset":"assets/flax_modules/_flax_flutter_widgets-4c2442a10500.js","package":"@flax/core-runtime","source":"dist/flutter/widgets.js","dependencies":{"@flax/core/bindings":"0.0.0","@flax/dart/core":"0.0.0","@flax/flutter/foundation":"0.0.0","@flax/flutter/scheduler":"0.0.0","@flax/flutter/services":"0.0.0"},"bindings":[{"moduleId":"flax.core/components","uiProtocol":22,"types":["flax.core/components#type:State","flax.core/components#type:StatefulWidget"],"functions":[]},{"moduleId":"flax.core/flutter","uiProtocol":22,"types":["flax.core/flutter#type:Align","flax.core/flutter#type:Alignment","flax.core/flutter#type:AlignmentDirectional","flax.core/flutter#type:AlignmentGeometry","flax.core/flutter#type:AlwaysScrollableScrollPhysics","flax.core/flutter#type:AspectRatio","flax.core/flutter#type:AsyncSnapshot","flax.core/flutter#type:AutovalidateMode","flax.core/flutter#type:Axis","flax.core/flutter#type:Border","flax.core/flutter#type:BorderDirectional","flax.core/flutter#type:BorderRadius","flax.core/flutter#type:BorderRadiusDirectional","flax.core/flutter#type:BorderRadiusGeometry","flax.core/flutter#type:BorderSide","flax.core/flutter#type:BorderStyle","flax.core/flutter#type:BouncingScrollPhysics","flax.core/flutter#type:BoxBorder","flax.core/flutter#type:BoxConstraints","flax.core/flutter#type:BoxDecoration","flax.core/flutter#type:BoxFit","flax.core/flutter#type:BoxShape","flax.core/flutter#type:BuildContext","flax.core/flutter#type:Builder","flax.core/flutter#type:Center","flax.core/flutter#type:CircleBorder","flax.core/flutter#type:ClampingScrollPhysics","flax.core/flutter#type:Clip","flax.core/flutter#type:ClipRRect","flax.core/flutter#type:Color","flax.core/flutter#type:ColoredBox","flax.core/flutter#type:Column","flax.core/flutter#type:ConnectionState","flax.core/flutter#type:ConstrainedBox","flax.core/flutter#type:Container","flax.core/flutter#type:CrossAxisAlignment","flax.core/flutter#type:Cubic","flax.core/flutter#type:Curve","flax.core/flutter#type:Curves","flax.core/flutter#type:DateTime","flax.core/flutter#type:DecoratedBox","flax.core/flutter#type:Decoration","flax.core/flutter#type:DecorationPosition","flax.core/flutter#type:Directionality","flax.core/flutter#type:DragStartBehavior","flax.core/flutter#type:Duration","flax.core/flutter#type:EdgeInsets","flax.core/flutter#type:EdgeInsetsDirectional","flax.core/flutter#type:EdgeInsetsGeometry","flax.core/flutter#type:EventSink","flax.core/flutter#type:Expanded","flax.core/flutter#type:FilteringTextInputFormatter","flax.core/flutter#type:FittedBox","flax.core/flutter#type:FittedSizes","flax.core/flutter#type:FlaxNavigatorObserver","flax.core/flutter#type:FlexFit","flax.core/flutter#type:Flexible","flax.core/flutter#type:Focus","flax.core/flutter#type:FocusNode","flax.core/flutter#type:FontStyle","flax.core/flutter#type:FontWeight","flax.core/flutter#type:Form","flax.core/flutter#type:GestureDetector","flax.core/flutter#type:HitTestBehavior","flax.core/flutter#type:IgnorePointer","flax.core/flutter#type:ImageFilter","flax.core/flutter#type:IndexedStack","flax.core/flutter#type:Key","flax.core/flutter#type:KeyboardListener","flax.core/flutter#type:LayoutBuilder","flax.core/flutter#type:LengthLimitingTextInputFormatter","flax.core/flutter#type:ListView","flax.core/flutter#type:Listenable","flax.core/flutter#type:ListenableBuilder","flax.core/flutter#type:Listener","flax.core/flutter#type:LocalKey","flax.core/flutter#type:MainAxisAlignment","flax.core/flutter#type:MainAxisSize","flax.core/flutter#type:MaxLengthEnforcement","flax.core/flutter#type:MouseCursor","flax.core/flutter#type:MouseRegion","flax.core/flutter#type:MultiStreamController","flax.core/flutter#type:Navigator","flax.core/flutter#type:NavigatorObserver","flax.core/flutter#type:NavigatorPopHandler","flax.core/flutter#type:NavigatorState","flax.core/flutter#type:NeverScrollableScrollPhysics","flax.core/flutter#type:Opacity","flax.core/flutter#type:OutlinedBorder","flax.core/flutter#type:Padding","flax.core/flutter#type:Page","flax.core/flutter#type:Pattern","flax.core/flutter#type:PopScope","flax.core/flutter#type:Positioned","flax.core/flutter#type:PreferredSize","flax.core/flutter#type:PreferredSizeWidget","flax.core/flutter#type:Radius","flax.core/flutter#type:RegExp","flax.core/flutter#type:RoundedRectangleBorder","flax.core/flutter#type:Route","flax.core/flutter#type:RouteSettings","flax.core/flutter#type:Row","flax.core/flutter#type:SafeArea","flax.core/flutter#type:SchedulerBinding","flax.core/flutter#type:ScrollController","flax.core/flutter#type:ScrollPhysics","flax.core/flutter#type:ShapeBorder","flax.core/flutter#type:SingleChildScrollView","flax.core/flutter#type:Sink","flax.core/flutter#type:Size","flax.core/flutter#type:SizedBox","flax.core/flutter#type:Spacer","flax.core/flutter#type:Stack","flax.core/flutter#type:StackFit","flax.core/flutter#type:StackTrace","flax.core/flutter#type:StadiumBorder","flax.core/flutter#type:StatefulBuilder","flax.core/flutter#type:Stream","flax.core/flutter#type:StreamBuilder","flax.core/flutter#type:StreamConsumer","flax.core/flutter#type:StreamController","flax.core/flutter#type:StreamIterator","flax.core/flutter#type:StreamSink","flax.core/flutter#type:StreamSubscription","flax.core/flutter#type:StreamTransformer","flax.core/flutter#type:StreamTransformerBase","flax.core/flutter#type:StreamView","flax.core/flutter#type:StringBuffer","flax.core/flutter#type:SynchronousStreamController","flax.core/flutter#type:SystemMouseCursor","flax.core/flutter#type:SystemMouseCursors","flax.core/flutter#type:TargetPlatform","flax.core/flutter#type:Text","flax.core/flutter#type:TextAffinity","flax.core/flutter#type:TextAlign","flax.core/flutter#type:TextBaseline","flax.core/flutter#type:TextDirection","flax.core/flutter#type:TextEditingController","flax.core/flutter#type:TextEditingValue","flax.core/flutter#type:TextInputFormatter","flax.core/flutter#type:TextOverflow","flax.core/flutter#type:TextRange","flax.core/flutter#type:TextSelection","flax.core/flutter#type:TextStyle","flax.core/flutter#type:TickerProvider","flax.core/flutter#type:UnfocusDisposition","flax.core/flutter#type:Uri","flax.core/flutter#type:ValueKey","flax.core/flutter#type:ValueListenable","flax.core/flutter#type:ValueListenableBuilder","flax.core/flutter#type:VerticalDirection","flax.core/flutter#type:Visibility","flax.core/flutter#type:WidgetState","flax.core/flutter#type:WidgetStateProperty","flax.core/flutter#type:Wrap","flax.core/flutter#type:WrapAlignment","flax.core/flutter#type:WrapCrossAlignment"],"functions":["flax.core/flutter#function:applyBoxFit","flax.core/flutter#read:defaultTargetPlatform","flax.core/flutter#read:kIsWeb"]}],"subpaths":["@flax/flutter/widgets/components","@flax/flutter/widgets/index"]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/flutter/widgets","owner":"@flax/core-runtime:dist/flutter/widgets.js","version":"0.0.0","artifact":"d401953ca336602ed0d8437d68639bd942190d4f52894415a8e94f38e4b4ad25","asset":"assets/flax_modules/_flax_flutter_widgets-4c2442a10500.js","package":"@flax/core-runtime","source":"dist/flutter/widgets.js","dependencies":{"@flax/core/bindings":"0.0.0","@flax/dart/core":"0.0.0","@flax/flutter/foundation":"0.0.0","@flax/flutter/scheduler":"0.0.0","@flax/flutter/services":"0.0.0"},"bindings":[{"moduleId":"flax.core/components","uiProtocol":22,"types":["flax.core/components#type:State","flax.core/components#type:StatefulWidget"],"functions":[]},{"moduleId":"flax.core/flutter","uiProtocol":22,"types":["flax.core/flutter#type:Align","flax.core/flutter#type:Alignment","flax.core/flutter#type:AlignmentDirectional","flax.core/flutter#type:AlignmentGeometry","flax.core/flutter#type:AlwaysScrollableScrollPhysics","flax.core/flutter#type:AspectRatio","flax.core/flutter#type:AsyncSnapshot","flax.core/flutter#type:AutovalidateMode","flax.core/flutter#type:Axis","flax.core/flutter#type:Border","flax.core/flutter#type:BorderDirectional","flax.core/flutter#type:BorderRadius","flax.core/flutter#type:BorderRadiusDirectional","flax.core/flutter#type:BorderRadiusGeometry","flax.core/flutter#type:BorderSide","flax.core/flutter#type:BorderStyle","flax.core/flutter#type:BouncingScrollPhysics","flax.core/flutter#type:BoxBorder","flax.core/flutter#type:BoxConstraints","flax.core/flutter#type:BoxDecoration","flax.core/flutter#type:BoxFit","flax.core/flutter#type:BoxShape","flax.core/flutter#type:BuildContext","flax.core/flutter#type:Builder","flax.core/flutter#type:Center","flax.core/flutter#type:CircleBorder","flax.core/flutter#type:ClampingScrollPhysics","flax.core/flutter#type:Clip","flax.core/flutter#type:ClipRRect","flax.core/flutter#type:Color","flax.core/flutter#type:ColoredBox","flax.core/flutter#type:Column","flax.core/flutter#type:ConnectionState","flax.core/flutter#type:ConstrainedBox","flax.core/flutter#type:Container","flax.core/flutter#type:CrossAxisAlignment","flax.core/flutter#type:Cubic","flax.core/flutter#type:Curve","flax.core/flutter#type:Curves","flax.core/flutter#type:DateTime","flax.core/flutter#type:DecoratedBox","flax.core/flutter#type:Decoration","flax.core/flutter#type:DecorationPosition","flax.core/flutter#type:Directionality","flax.core/flutter#type:DragStartBehavior","flax.core/flutter#type:Duration","flax.core/flutter#type:EdgeInsets","flax.core/flutter#type:EdgeInsetsDirectional","flax.core/flutter#type:EdgeInsetsGeometry","flax.core/flutter#type:EventSink","flax.core/flutter#type:Expanded","flax.core/flutter#type:FilteringTextInputFormatter","flax.core/flutter#type:FittedBox","flax.core/flutter#type:FittedSizes","flax.core/flutter#type:FlaxNavigatorObserver","flax.core/flutter#type:FlexFit","flax.core/flutter#type:Flexible","flax.core/flutter#type:Focus","flax.core/flutter#type:FocusNode","flax.core/flutter#type:FontStyle","flax.core/flutter#type:FontWeight","flax.core/flutter#type:Form","flax.core/flutter#type:GestureDetector","flax.core/flutter#type:HitTestBehavior","flax.core/flutter#type:IgnorePointer","flax.core/flutter#type:ImageFilter","flax.core/flutter#type:IndexedStack","flax.core/flutter#type:Key","flax.core/flutter#type:KeyboardListener","flax.core/flutter#type:LayoutBuilder","flax.core/flutter#type:LengthLimitingTextInputFormatter","flax.core/flutter#type:ListView","flax.core/flutter#type:Listenable","flax.core/flutter#type:ListenableBuilder","flax.core/flutter#type:Listener","flax.core/flutter#type:LocalKey","flax.core/flutter#type:MainAxisAlignment","flax.core/flutter#type:MainAxisSize","flax.core/flutter#type:MaxLengthEnforcement","flax.core/flutter#type:MouseCursor","flax.core/flutter#type:MouseRegion","flax.core/flutter#type:MultiStreamController","flax.core/flutter#type:Navigator","flax.core/flutter#type:NavigatorObserver","flax.core/flutter#type:NavigatorPopHandler","flax.core/flutter#type:NavigatorState","flax.core/flutter#type:NeverScrollableScrollPhysics","flax.core/flutter#type:Opacity","flax.core/flutter#type:OutlinedBorder","flax.core/flutter#type:Padding","flax.core/flutter#type:Page","flax.core/flutter#type:Pattern","flax.core/flutter#type:PopScope","flax.core/flutter#type:Positioned","flax.core/flutter#type:PreferredSize","flax.core/flutter#type:PreferredSizeWidget","flax.core/flutter#type:Radius","flax.core/flutter#type:RegExp","flax.core/flutter#type:RoundedRectangleBorder","flax.core/flutter#type:Route","flax.core/flutter#type:RouteSettings","flax.core/flutter#type:Row","flax.core/flutter#type:SafeArea","flax.core/flutter#type:SchedulerBinding","flax.core/flutter#type:ScrollController","flax.core/flutter#type:ScrollPhysics","flax.core/flutter#type:ShapeBorder","flax.core/flutter#type:SingleChildScrollView","flax.core/flutter#type:Sink","flax.core/flutter#type:Size","flax.core/flutter#type:SizedBox","flax.core/flutter#type:Spacer","flax.core/flutter#type:Stack","flax.core/flutter#type:StackFit","flax.core/flutter#type:StackTrace","flax.core/flutter#type:StadiumBorder","flax.core/flutter#type:StatefulBuilder","flax.core/flutter#type:Stream","flax.core/flutter#type:StreamBuilder","flax.core/flutter#type:StreamConsumer","flax.core/flutter#type:StreamController","flax.core/flutter#type:StreamIterator","flax.core/flutter#type:StreamSink","flax.core/flutter#type:StreamSubscription","flax.core/flutter#type:StreamTransformer","flax.core/flutter#type:StreamTransformerBase","flax.core/flutter#type:StreamView","flax.core/flutter#type:StringBuffer","flax.core/flutter#type:SynchronousStreamController","flax.core/flutter#type:SystemMouseCursor","flax.core/flutter#type:SystemMouseCursors","flax.core/flutter#type:TargetPlatform","flax.core/flutter#type:Text","flax.core/flutter#type:TextAffinity","flax.core/flutter#type:TextAlign","flax.core/flutter#type:TextBaseline","flax.core/flutter#type:TextDirection","flax.core/flutter#type:TextEditingController","flax.core/flutter#type:TextEditingValue","flax.core/flutter#type:TextInputFormatter","flax.core/flutter#type:TextOverflow","flax.core/flutter#type:TextRange","flax.core/flutter#type:TextSelection","flax.core/flutter#type:TextStyle","flax.core/flutter#type:TickerProvider","flax.core/flutter#type:UnfocusDisposition","flax.core/flutter#type:Uri","flax.core/flutter#type:ValueKey","flax.core/flutter#type:ValueListenable","flax.core/flutter#type:ValueListenableBuilder","flax.core/flutter#type:VerticalDirection","flax.core/flutter#type:Visibility","flax.core/flutter#type:WidgetState","flax.core/flutter#type:WidgetStateProperty","flax.core/flutter#type:Wrap","flax.core/flutter#type:WrapAlignment","flax.core/flutter#type:WrapCrossAlignment"],"functions":["flax.core/flutter#function:applyBoxFit","flax.core/flutter#read:defaultTargetPlatform","flax.core/flutter#read:kIsWeb"]}],"subpaths":["@flax/flutter/widgets/components","@flax/flutter/widgets/index"]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -139,11 +139,11 @@ __export(widgets_exports, {
   WrapAlignment: () => WrapAlignment,
   WrapCrossAlignment: () => WrapCrossAlignment,
   applyBoxFit: () => _flaxTopLevel_applyBoxFit,
-  registerPage: () => import_bindings121.registerPage,
+  registerPage: () => import_bindings122.registerPage,
   runApp: () => runApp
 });
 module.exports = __toCommonJS(widgets_exports);
-var import_bindings120 = require("@flax/core/bindings");
+var import_bindings121 = require("@flax/core/bindings");
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_Alignment.js
 var import_bindings3 = require("@flax/core/bindings");
@@ -166,7 +166,9 @@ function _flaxInstallBindingModule(moduleId, uiProtocol, requiredCapabilities) {
       throw new TypeError("requiredCapabilities must be sorted unique strings");
     }
     previous = capability;
-    throw new TypeError(`Unsupported binding capability ${capability}`);
+    if (capability !== "native-widget-proxies") {
+      throw new TypeError(`Unsupported binding capability ${capability}`);
+    }
   }
   return Object.freeze({
     moduleId,
@@ -192,7 +194,7 @@ function _flaxInstallBindingModule(moduleId, uiProtocol, requiredCapabilities) {
     invokeTopLevel: import_bindings.invokeTopLevel
   });
 }
-var flutterBindingModule = _flaxInstallBindingModule("flax.core/flutter", 22, Object.freeze([]));
+var flutterBindingModule = _flaxInstallBindingModule("flax.core/flutter", 22, Object.freeze(["native-widget-proxies"]));
 var { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } = flutterBindingModule;
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_AlignmentGeometry.js
@@ -1340,19 +1342,30 @@ var import_flutter_TargetPlatform = require("@flax/flutter/foundation");
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_Text.js
 var import_bindings98 = require("@flax/core/bindings");
+var import_bindings99 = require("@flax/core/bindings");
 var import_flutter_Key40 = require("@flax/flutter/foundation");
-function Text(data, options = {}) {
+var _flaxMemberParameters016 = [{ "name": "context", "required": true, "positional": true, "context": "flax.core/flutter#type:BuildContext" }];
+defineObject("flax.core/flutter#type:Text", ["data", "key"], [], (0, import_bindings98.bindingMethods)("flax.core/flutter#type:Text", "object", { "build": _flaxMemberParameters016 }), []);
+var _TextProxy = { nativeWidget: true, type: "flax.core/flutter#type:Text", parameters: [{ "name": "data", "required": true, "positional": true }, { "name": "key", "required": false, "positional": false }, { "name": "style", "required": false, "positional": false }, { "name": "textAlign", "required": false, "positional": false }, { "name": "textDirection", "required": false, "positional": false }, { "name": "softWrap", "required": false, "positional": false }, { "name": "overflow", "required": false, "positional": false }, { "name": "maxLines", "required": false, "positional": false }], methods: { "build": _flaxMemberParameters016 }, getters: ["data", "key"], setters: [], superMembers: ["get:data", "get:key", "build"] };
+var _TextNative = class __TextNative extends import_bindings99.FlaxProxyBase {
+  constructor(data, options) {
+    super(__TextNative.prototype, _TextProxy, Array.from(arguments));
+  }
+};
+(0, import_bindings99.defineProxyBase)(_TextNative.prototype, _TextProxy, ["data", "key"]);
+function _TextFactory(data, options = {}) {
   if (arguments.length > 2)
     throw new TypeError("Too many constructor arguments");
-  return construct("widget", "flax.core/flutter#type:Text", "", [{ "name": "data", "required": true, "positional": true }, { "name": "key", "required": false, "positional": false }, { "name": "style", "required": false, "positional": false }, { "name": "textAlign", "required": false, "positional": false }, { "name": "textDirection", "required": false, "positional": false }, { "name": "softWrap", "required": false, "positional": false }, { "name": "overflow", "required": false, "positional": false }, { "name": "maxLines", "required": false, "positional": false }], [data], options);
+  return construct("widget", "flax.core/flutter#type:Text", "", [{ "name": "data", "required": true, "positional": true, "readonly": true, "defaultValue": null }, { "name": "key", "required": false, "positional": false, "readonly": true, "defaultValue": null }, { "name": "style", "required": false, "positional": false }, { "name": "textAlign", "required": false, "positional": false }, { "name": "textDirection", "required": false, "positional": false }, { "name": "softWrap", "required": false, "positional": false }, { "name": "overflow", "required": false, "positional": false }, { "name": "maxLines", "required": false, "positional": false }], [data], options);
 }
+var Text = (0, import_bindings99.widgetProxyFactory)(_TextFactory, _TextNative);
 
 // ../../js/dist/flutter/generated/libraries/widgets/index.js
 var import_flutter_TextAffinity = require("@flax/flutter/services");
 var import_flutter_TextAlign = require("@flax/flutter/services");
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_TextBaseline.js
-var import_bindings99 = require("@flax/core/bindings");
+var import_bindings100 = require("@flax/core/bindings");
 var TextBaseline = Object.freeze({
   alphabetic: enumValue("flax.core/flutter#type:TextBaseline", "alphabetic"),
   ideographic: enumValue("flax.core/flutter#type:TextBaseline", "ideographic")
@@ -1363,7 +1376,7 @@ var import_flutter_TextDirection = require("@flax/flutter/services");
 var import_flutter_TextEditingValue2 = require("@flax/flutter/services");
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_TextOverflow.js
-var import_bindings100 = require("@flax/core/bindings");
+var import_bindings101 = require("@flax/core/bindings");
 var TextOverflow = Object.freeze({
   clip: enumValue("flax.core/flutter#type:TextOverflow", "clip"),
   fade: enumValue("flax.core/flutter#type:TextOverflow", "fade"),
@@ -1376,7 +1389,7 @@ var import_flutter_TextRange = require("@flax/flutter/services");
 var import_flutter_TextSelection2 = require("@flax/flutter/services");
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_UnfocusDisposition.js
-var import_bindings101 = require("@flax/core/bindings");
+var import_bindings102 = require("@flax/core/bindings");
 var UnfocusDisposition = Object.freeze({
   scope: enumValue("flax.core/flutter#type:UnfocusDisposition", "scope"),
   previouslyFocusedChild: enumValue("flax.core/flutter#type:UnfocusDisposition", "previouslyFocusedChild")
@@ -1386,7 +1399,7 @@ var UnfocusDisposition = Object.freeze({
 var import_flutter_ValueKey = require("@flax/flutter/foundation");
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_ValueListenableBuilder.js
-var import_bindings102 = require("@flax/core/bindings");
+var import_bindings103 = require("@flax/core/bindings");
 var import_flutter_Key41 = require("@flax/flutter/foundation");
 var import_flutter_ValueListenable2 = require("@flax/flutter/foundation");
 function ValueListenableBuilder(options) {
@@ -1396,14 +1409,14 @@ function ValueListenableBuilder(options) {
 }
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_VerticalDirection.js
-var import_bindings103 = require("@flax/core/bindings");
+var import_bindings104 = require("@flax/core/bindings");
 var VerticalDirection = Object.freeze({
   up: enumValue("flax.core/flutter#type:VerticalDirection", "up"),
   down: enumValue("flax.core/flutter#type:VerticalDirection", "down")
 });
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_Visibility.js
-var import_bindings104 = require("@flax/core/bindings");
+var import_bindings105 = require("@flax/core/bindings");
 var import_flutter_Key42 = require("@flax/flutter/foundation");
 function Visibility(options) {
   if (arguments.length > 1)
@@ -1420,7 +1433,7 @@ function Visibility(options) {
 })(Visibility || (Visibility = {}));
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_WidgetState.js
-var import_bindings105 = require("@flax/core/bindings");
+var import_bindings106 = require("@flax/core/bindings");
 var WidgetState = Object.freeze({
   hovered: enumValue("flax.core/flutter#type:WidgetState", "hovered"),
   focused: enumValue("flax.core/flutter#type:WidgetState", "focused"),
@@ -1433,7 +1446,7 @@ var WidgetState = Object.freeze({
 });
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_Wrap.js
-var import_bindings106 = require("@flax/core/bindings");
+var import_bindings107 = require("@flax/core/bindings");
 var import_flutter_Key43 = require("@flax/flutter/foundation");
 function Wrap(options = {}) {
   if (arguments.length > 1)
@@ -1442,7 +1455,7 @@ function Wrap(options = {}) {
 }
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_WrapAlignment.js
-var import_bindings107 = require("@flax/core/bindings");
+var import_bindings108 = require("@flax/core/bindings");
 var WrapAlignment = Object.freeze({
   start: enumValue("flax.core/flutter#type:WrapAlignment", "start"),
   end: enumValue("flax.core/flutter#type:WrapAlignment", "end"),
@@ -1453,7 +1466,7 @@ var WrapAlignment = Object.freeze({
 });
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_WrapCrossAlignment.js
-var import_bindings108 = require("@flax/core/bindings");
+var import_bindings109 = require("@flax/core/bindings");
 var WrapCrossAlignment = Object.freeze({
   start: enumValue("flax.core/flutter#type:WrapCrossAlignment", "start"),
   end: enumValue("flax.core/flutter#type:WrapCrossAlignment", "end"),
@@ -1461,7 +1474,7 @@ var WrapCrossAlignment = Object.freeze({
 });
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/flutter_applyBoxFit.js
-var import_bindings109 = require("@flax/core/bindings");
+var import_bindings110 = require("@flax/core/bindings");
 var import_flutter_Size4 = require("@flax/flutter/services");
 function _flaxTopLevel_applyBoxFit(fit, inputSize, outputSize) {
   if (arguments.length > 3)
@@ -1471,17 +1484,17 @@ function _flaxTopLevel_applyBoxFit(fit, inputSize, outputSize) {
 }
 
 // ../../js/dist/flutter/widgets.js
-var import_bindings121 = require("@flax/core/bindings");
+var import_bindings122 = require("@flax/core/bindings");
 
 // ../../js/dist/flutter/components.js
-var import_bindings110 = require("@flax/core/bindings");
+var import_bindings111 = require("@flax/core/bindings");
 var StatelessWidget = class {
   constructor(options = {}) {
     __publicField(this, "kind", "component");
     __publicField(this, "key");
     var _a;
     this.key = (_a = options.key) != null ? _a : null;
-    (0, import_bindings110.registerComponent)(this, new.target, false, options.key);
+    (0, import_bindings111.registerComponent)(this, new.target, false, options.key);
   }
 };
 var StatefulWidget = class {
@@ -1490,26 +1503,26 @@ var StatefulWidget = class {
     __publicField(this, "key");
     var _a;
     this.key = (_a = options.key) != null ? _a : null;
-    (0, import_bindings110.registerComponent)(this, new.target, true, options.key);
+    (0, import_bindings111.registerComponent)(this, new.target, true, options.key);
   }
 };
 var State = class {
   constructor() {
-    (0, import_bindings110.registerComponentState)(this);
+    (0, import_bindings111.registerComponentState)(this);
   }
   get widget() {
-    return (0, import_bindings110.componentStateWidget)(this);
+    return (0, import_bindings111.componentStateWidget)(this);
   }
   get context() {
-    return (0, import_bindings110.componentStateCall)(this, "context", []);
+    return (0, import_bindings111.componentStateCall)(this, "context", []);
   }
   get mounted() {
-    return (0, import_bindings110.componentStateCall)(this, "mounted", []);
+    return (0, import_bindings111.componentStateCall)(this, "mounted", []);
   }
   setState(callback) {
     if (typeof callback !== "function")
       throw new TypeError("Expected a setState callback");
-    (0, import_bindings110.componentStateCall)(this, "setState", [callback]);
+    (0, import_bindings111.componentStateCall)(this, "setState", [callback]);
   }
   initState() {
     this.invokeSuper("initState", []);
@@ -1533,25 +1546,25 @@ var State = class {
     this.invokeSuper("reassemble", []);
   }
   invokeSuper(name, args) {
-    return (0, import_bindings110.componentStateCall)(this, `super:${name}`, args);
+    return (0, import_bindings111.componentStateCall)(this, `super:${name}`, args);
   }
 };
-(0, import_bindings110.registerComponentBase)(StatelessWidget, false);
-(0, import_bindings110.registerComponentBase)(StatefulWidget, true);
+(0, import_bindings111.registerComponentBase)(StatelessWidget, false);
+(0, import_bindings111.registerComponentBase)(StatefulWidget, true);
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/components_State.js
-var import_bindings113 = require("@flax/core/bindings");
+var import_bindings114 = require("@flax/core/bindings");
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/components_StatefulWidget.js
-var import_bindings112 = require("@flax/core/bindings");
+var import_bindings113 = require("@flax/core/bindings");
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/components.__module.js
-var import_bindings111 = require("@flax/core/bindings");
+var import_bindings112 = require("@flax/core/bindings");
 function _flaxInstallBindingModule2(moduleId, uiProtocol, requiredCapabilities) {
   if (typeof moduleId !== "string" || moduleId.length === 0 || moduleId.indexOf("/") < 1 || moduleId.indexOf("/") !== moduleId.lastIndexOf("/") || moduleId.startsWith("/") || moduleId.endsWith("/")) {
     throw new TypeError("Invalid binding moduleId");
   }
-  if (uiProtocol !== import_bindings111.bindingVersion) {
+  if (uiProtocol !== import_bindings112.bindingVersion) {
     throw new TypeError(`Incompatible binding uiProtocol: ${uiProtocol}`);
   }
   let previous;
@@ -1560,89 +1573,91 @@ function _flaxInstallBindingModule2(moduleId, uiProtocol, requiredCapabilities) 
       throw new TypeError("requiredCapabilities must be sorted unique strings");
     }
     previous = capability;
-    throw new TypeError(`Unsupported binding capability ${capability}`);
+    if (capability !== "native-widget-proxies") {
+      throw new TypeError(`Unsupported binding capability ${capability}`);
+    }
   }
   return Object.freeze({
     moduleId,
     uiProtocol,
     requiredCapabilities: Object.freeze([...requiredCapabilities]),
-    construct: import_bindings111.construct,
-    constructProxy: import_bindings111.constructProxy,
-    constructObject: import_bindings111.constructObject,
-    constructDeferredObject: import_bindings111.constructDeferredObject,
-    constructStream: import_bindings111.constructStream,
-    constructAsyncIterableStream: import_bindings111.constructAsyncIterableStream,
-    defineObject: import_bindings111.defineObject,
-    defineStream: import_bindings111.defineStream,
-    invokeObject: import_bindings111.invokeObject,
-    invokeObjectStatic: import_bindings111.invokeObjectStatic,
-    invokeStream: import_bindings111.invokeStream,
-    enumValue: import_bindings111.enumValue,
-    defineContext: import_bindings111.defineContext,
-    defineState: import_bindings111.defineState,
-    contextHandle: import_bindings111.contextHandle,
-    invokeStatic: import_bindings111.invokeStatic,
-    invokeInstance: import_bindings111.invokeInstance,
-    invokeTopLevel: import_bindings111.invokeTopLevel
+    construct: import_bindings112.construct,
+    constructProxy: import_bindings112.constructProxy,
+    constructObject: import_bindings112.constructObject,
+    constructDeferredObject: import_bindings112.constructDeferredObject,
+    constructStream: import_bindings112.constructStream,
+    constructAsyncIterableStream: import_bindings112.constructAsyncIterableStream,
+    defineObject: import_bindings112.defineObject,
+    defineStream: import_bindings112.defineStream,
+    invokeObject: import_bindings112.invokeObject,
+    invokeObjectStatic: import_bindings112.invokeObjectStatic,
+    invokeStream: import_bindings112.invokeStream,
+    enumValue: import_bindings112.enumValue,
+    defineContext: import_bindings112.defineContext,
+    defineState: import_bindings112.defineState,
+    contextHandle: import_bindings112.contextHandle,
+    invokeStatic: import_bindings112.invokeStatic,
+    invokeInstance: import_bindings112.invokeInstance,
+    invokeTopLevel: import_bindings112.invokeTopLevel
   });
 }
-var componentsBindingModule = _flaxInstallBindingModule2("flax.core/components", 22, Object.freeze([]));
+var componentsBindingModule = _flaxInstallBindingModule2("flax.core/components", 22, Object.freeze(["native-widget-proxies"]));
 var { construct: construct2, constructProxy: constructProxy2, constructObject: constructObject2, constructDeferredObject: constructDeferredObject2, constructStream: constructStream2, constructAsyncIterableStream: constructAsyncIterableStream2, defineObject: defineObject2, defineStream: defineStream2, invokeObject: invokeObject2, invokeObjectStatic: invokeObjectStatic2, invokeStream: invokeStream2, enumValue: enumValue2, defineContext: defineContext2, defineState: defineState2, contextHandle: contextHandle2, invokeStatic: invokeStatic2, invokeInstance: invokeInstance2, invokeTopLevel: invokeTopLevel2 } = componentsBindingModule;
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/components_StatefulWidget.js
-defineObject2("flax.core/components#type:StatefulWidget", [], [], (0, import_bindings112.bindingMethods)("flax.core/components#type:StatefulWidget", "object", {}), []);
+defineObject2("flax.core/components#type:StatefulWidget", [], [], (0, import_bindings113.bindingMethods)("flax.core/components#type:StatefulWidget", "object", {}), []);
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/components_State.js
-defineState2("flax.core/components#type:State", [], (0, import_bindings113.bindingMethods)("flax.core/components#type:State", "state", {}));
+defineState2("flax.core/components#type:State", [], (0, import_bindings114.bindingMethods)("flax.core/components#type:State", "state", {}));
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/components_KeepAliveTickerState.js
-var import_bindings114 = require("@flax/core/bindings");
 var import_bindings115 = require("@flax/core/bindings");
+var import_bindings116 = require("@flax/core/bindings");
 var import_flutter_TickerProvider = require("@flax/flutter/scheduler");
-var _flaxMemberParameters016 = [];
+var _flaxMemberParameters017 = [];
 var KeepAliveTickerState = class extends State {
   constructor() {
     super();
-    (0, import_bindings115.registerComponentStateVariant)(this, "flax.core/components#stateVariant:KeepAliveTickerState");
+    (0, import_bindings116.registerComponentStateVariant)(this, "flax.core/components#stateVariant:KeepAliveTickerState");
   }
   build(context) {
     return this.invokeSuper("build", [context]);
   }
 };
-(0, import_bindings115.defineStateMembers)(KeepAliveTickerState.prototype, { "updateKeepAlive": _flaxMemberParameters016 }, [], []);
+(0, import_bindings116.defineStateMembers)(KeepAliveTickerState.prototype, { "updateKeepAlive": _flaxMemberParameters017 }, [], []);
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/components_SingleTickerProviderState.js
-var import_bindings116 = require("@flax/core/bindings");
 var import_bindings117 = require("@flax/core/bindings");
+var import_bindings118 = require("@flax/core/bindings");
 var import_flutter_TickerProvider2 = require("@flax/flutter/scheduler");
 var SingleTickerProviderState = class extends State {
   constructor() {
     super();
-    (0, import_bindings117.registerComponentStateVariant)(this, "flax.core/components#stateVariant:SingleTickerProviderState");
+    (0, import_bindings118.registerComponentStateVariant)(this, "flax.core/components#stateVariant:SingleTickerProviderState");
   }
 };
-(0, import_bindings117.defineStateMembers)(SingleTickerProviderState.prototype, {}, [], []);
+(0, import_bindings118.defineStateMembers)(SingleTickerProviderState.prototype, {}, [], []);
 
 // ../../js/dist/flutter/generated/libraries/widgets/_bindings/components_TickerProviderState.js
-var import_bindings118 = require("@flax/core/bindings");
 var import_bindings119 = require("@flax/core/bindings");
+var import_bindings120 = require("@flax/core/bindings");
 var import_flutter_TickerProvider3 = require("@flax/flutter/scheduler");
 var TickerProviderState = class extends State {
   constructor() {
     super();
-    (0, import_bindings119.registerComponentStateVariant)(this, "flax.core/components#stateVariant:TickerProviderState");
+    (0, import_bindings120.registerComponentStateVariant)(this, "flax.core/components#stateVariant:TickerProviderState");
   }
 };
-(0, import_bindings119.defineStateMembers)(TickerProviderState.prototype, {}, [], []);
+(0, import_bindings120.defineStateMembers)(TickerProviderState.prototype, {}, [], []);
 
 // ../../js/dist/flutter/widgets.js
 function runApp(widget) {
-  (0, import_bindings120.mountRoot)(widget);
+  (0, import_bindings121.mountRoot)(widget);
 }
 function PageContent(name, options = {}) {
   if (typeof name !== "string" || name.length === 0)
     throw new TypeError("Expected a registered page name");
-  return (0, import_bindings120.construct)("widget", "flax:page-content", "", [
+  return (0, import_bindings121.construct)("widget", "flax:page-content", "", [
     { name: "name", required: true, positional: true },
     { name: "key", required: false, positional: false },
     { name: "arguments", required: false, positional: false }

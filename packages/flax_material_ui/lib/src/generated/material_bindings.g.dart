@@ -175,6 +175,7 @@ const materialBindings = FlaxBindingModule(
         ],
       },
       _MaterialHost.new,
+      matches: _isMaterial,
       fixedArguments: false,
       methods: {},
     ),
@@ -362,6 +363,7 @@ const materialBindings = FlaxBindingModule(
         ],
       },
       _InkWellHost.new,
+      matches: _isInkWell,
       fixedArguments: false,
       methods: {},
     ),
@@ -444,6 +446,7 @@ const materialBindings = FlaxBindingModule(
         ],
       },
       _LinearProgressIndicatorHost.new,
+      matches: _isLinearProgressIndicator,
       fixedArguments: false,
       methods: {},
     ),
@@ -511,6 +514,7 @@ const materialBindings = FlaxBindingModule(
         ],
       },
       _AlertDialogHost.new,
+      matches: _isAlertDialog,
       fixedArguments: false,
       methods: {},
     ),
@@ -616,6 +620,7 @@ const materialBindings = FlaxBindingModule(
         ],
       },
       _MaterialAppHost.new,
+      matches: _isMaterialApp,
       fixedArguments: false,
       methods: {},
     ),
@@ -722,6 +727,7 @@ const materialBindings = FlaxBindingModule(
         ],
       },
       _ScaffoldHost.new,
+      matches: _isScaffold,
       fixedArguments: false,
       methods: {},
     ),
@@ -771,6 +777,7 @@ const materialBindings = FlaxBindingModule(
         ],
       },
       _RefreshIndicatorHost.new,
+      matches: _isRefreshIndicator,
       fixedArguments: false,
       methods: {},
     ),
@@ -2259,6 +2266,7 @@ const materialBindings = FlaxBindingModule(
         ],
       },
       _AppBarHost.new,
+      matches: _isAppBar,
       fixedArguments: true,
       methods: {},
     ),
@@ -2294,6 +2302,7 @@ const materialBindings = FlaxBindingModule(
         ],
       },
       _ThemeHost.new,
+      matches: _isTheme,
       fixedArguments: false,
       methods: {
         "of": FlaxStaticMethod(
@@ -3324,6 +3333,7 @@ const materialBindings = FlaxBindingModule(
         ],
       },
       _TextFieldHost.new,
+      matches: _isTextField,
       fixedArguments: false,
       methods: {},
     ),
@@ -3548,6 +3558,7 @@ const materialBindings = FlaxBindingModule(
         ],
       },
       _TextButtonHost.new,
+      matches: _isTextButton,
       fixedArguments: false,
       methods: {},
     ),
@@ -3605,6 +3616,7 @@ const materialBindings = FlaxBindingModule(
         ],
       },
       _ElevatedButtonHost.new,
+      matches: _isElevatedButton,
       fixedArguments: false,
       methods: {},
     ),
@@ -3662,6 +3674,7 @@ const materialBindings = FlaxBindingModule(
         ],
       },
       _OutlinedButtonHost.new,
+      matches: _isOutlinedButton,
       fixedArguments: false,
       methods: {},
     ),
@@ -3768,6 +3781,7 @@ const materialBindings = FlaxBindingModule(
         ],
       },
       _FilledButtonHost.new,
+      matches: _isFilledButton,
       fixedArguments: false,
       methods: {},
     ),
@@ -4332,6 +4346,7 @@ const materialBindings = FlaxBindingModule(
         ],
       },
       _IconButtonHost.new,
+      matches: _isIconButton,
       fixedArguments: false,
       methods: {},
     ),
@@ -4722,6 +4737,7 @@ const materialBindings = FlaxBindingModule(
         ],
       },
       _FloatingActionButtonHost.new,
+      matches: _isFloatingActionButton,
       fixedArguments: false,
       methods: {},
     ),
@@ -4804,6 +4820,7 @@ const materialBindings = FlaxBindingModule(
         ],
       },
       _DrawerHost.new,
+      matches: _isDrawer,
       fixedArguments: false,
       methods: {},
     ),
@@ -4875,6 +4892,7 @@ const materialBindings = FlaxBindingModule(
         ],
       },
       _DividerHost.new,
+      matches: _isDivider,
       fixedArguments: false,
       methods: {},
     ),
@@ -4946,6 +4964,7 @@ const materialBindings = FlaxBindingModule(
         ],
       },
       _VerticalDividerHost.new,
+      matches: _isVerticalDivider,
       fixedArguments: false,
       methods: {},
     ),
@@ -5221,6 +5240,7 @@ const materialBindings = FlaxBindingModule(
         ],
       },
       _CardHost.new,
+      matches: _isCard,
       fixedArguments: false,
       methods: {},
     ),
@@ -5433,6 +5453,7 @@ const materialBindings = FlaxBindingModule(
         ],
       },
       _ListTileHost.new,
+      matches: _isListTile,
       fixedArguments: false,
       methods: {},
     ),
@@ -5680,6 +5701,7 @@ const materialBindings = FlaxBindingModule(
         ],
       },
       _CheckboxHost.new,
+      matches: _isCheckbox,
       fixedArguments: false,
       methods: {},
     ),
@@ -5795,6 +5817,7 @@ const materialBindings = FlaxBindingModule(
         ],
       },
       _SwitchHost.new,
+      matches: _isSwitch,
       fixedArguments: false,
       methods: {},
     ),
@@ -5859,6 +5882,7 @@ const materialBindings = FlaxBindingModule(
         ],
       },
       _CircularProgressIndicatorHost.new,
+      matches: _isCircularProgressIndicator,
       fixedArguments: false,
       methods: {},
     ),
@@ -5915,6 +5939,7 @@ const materialBindings = FlaxBindingModule(
         ],
       },
       _NavigationDestinationHost.new,
+      matches: _isNavigationDestination,
       fixedArguments: false,
       methods: {},
     ),
@@ -6050,6 +6075,7 @@ const materialBindings = FlaxBindingModule(
         ],
       },
       _NavigationBarHost.new,
+      matches: _isNavigationBar,
       fixedArguments: false,
       methods: {},
     ),
@@ -6199,7 +6225,7 @@ const materialBindings = FlaxBindingModule(
   moduleId: "flax.material/material",
   dependencyModules: ["flax.core/flutter"],
   uiProtocol: 22,
-  requiredCapabilities: const <String>[],
+  requiredCapabilities: const <String>["native-widget-proxies"],
   stateVariants: [],
 );
 Object? _function_showDialog(Map<String, Object?> values) {
@@ -6221,6 +6247,7 @@ Object? _function_showDialog(Map<String, Object?> values) {
 Object? _read_kTabScrollDuration(Map<String, Object?> values) =>
     api.kTabScrollDuration;
 Object? _read_kToolbarHeight(Map<String, Object?> values) => api.kToolbarHeight;
+bool _isMaterial(Object value) => value is api.Material;
 
 class _MaterialHost extends FlaxWidgetHost {
   _MaterialHost(super.node);
@@ -6250,6 +6277,8 @@ api1.Widget _createMaterial(String ctor, Map<String, Object?> values) {
       throw ArgumentError('Unknown generated constructor');
   }
 }
+
+bool _isInkWell(Object value) => value is api.InkWell;
 
 class _InkWellHost extends FlaxWidgetHost {
   _InkWellHost(super.node);
@@ -6283,6 +6312,9 @@ api1.Widget _createInkWell(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isLinearProgressIndicator(Object value) =>
+    value is api.LinearProgressIndicator;
+
 class _LinearProgressIndicatorHost extends FlaxWidgetHost {
   _LinearProgressIndicatorHost(super.node);
 
@@ -6312,6 +6344,8 @@ api1.Widget _createLinearProgressIndicator(
   }
 }
 
+bool _isAlertDialog(Object value) => value is api.AlertDialog;
+
 class _AlertDialogHost extends FlaxWidgetHost {
   _AlertDialogHost(super.node);
 
@@ -6334,6 +6368,8 @@ api1.Widget _createAlertDialog(String ctor, Map<String, Object?> values) {
       throw ArgumentError('Unknown generated constructor');
   }
 }
+
+bool _isMaterialApp(Object value) => value is api.MaterialApp;
 
 class _MaterialAppHost extends FlaxWidgetHost {
   _MaterialAppHost(super.node);
@@ -6375,6 +6411,8 @@ api1.Widget _createMaterialApp(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isScaffold(Object value) => value is api.Scaffold;
+
 class _ScaffoldHost extends FlaxWidgetHost {
   _ScaffoldHost(super.node);
 
@@ -6404,6 +6442,8 @@ api1.Widget _createScaffold(String ctor, Map<String, Object?> values) {
       throw ArgumentError('Unknown generated constructor');
   }
 }
+
+bool _isRefreshIndicator(Object value) => value is api.RefreshIndicator;
 
 class _RefreshIndicatorHost extends FlaxWidgetHost {
   _RefreshIndicatorHost(super.node);
@@ -6509,6 +6549,8 @@ Object _createVisualDensity(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isAppBar(Object value) => value is api.AppBar;
+
 class _AppBarHost extends FlaxWidgetHost implements api1.PreferredSizeWidget {
   _AppBarHost(super.node);
   @override
@@ -6541,6 +6583,7 @@ api1.Widget _createAppBar(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isTheme(Object value) => value is api.Theme;
 Object? _Theme_of(Map<String, Object?> values) {
   return api.Theme.of(values["context"] as api1.BuildContext);
 }
@@ -6736,6 +6779,8 @@ Object _createInputDecoration(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isTextField(Object value) => value is api.TextField;
+
 class _TextFieldHost extends FlaxWidgetHost {
   _TextFieldHost(super.node);
 
@@ -6853,6 +6898,8 @@ api1.Page<Object?> _createMaterialPage(
   }
 }
 
+bool _isTextButton(Object value) => value is api.TextButton;
+
 class _TextButtonHost extends FlaxWidgetHost {
   _TextButtonHost(super.node);
 
@@ -6874,6 +6921,8 @@ api1.Widget _createTextButton(String ctor, Map<String, Object?> values) {
       throw ArgumentError('Unknown generated constructor');
   }
 }
+
+bool _isElevatedButton(Object value) => value is api.ElevatedButton;
 
 class _ElevatedButtonHost extends FlaxWidgetHost {
   _ElevatedButtonHost(super.node);
@@ -6897,6 +6946,8 @@ api1.Widget _createElevatedButton(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isOutlinedButton(Object value) => value is api.OutlinedButton;
+
 class _OutlinedButtonHost extends FlaxWidgetHost {
   _OutlinedButtonHost(super.node);
 
@@ -6918,6 +6969,8 @@ api1.Widget _createOutlinedButton(String ctor, Map<String, Object?> values) {
       throw ArgumentError('Unknown generated constructor');
   }
 }
+
+bool _isFilledButton(Object value) => value is api.FilledButton;
 
 class _FilledButtonHost extends FlaxWidgetHost {
   _FilledButtonHost(super.node);
@@ -6947,6 +7000,8 @@ api1.Widget _createFilledButton(String ctor, Map<String, Object?> values) {
       throw ArgumentError('Unknown generated constructor');
   }
 }
+
+bool _isIconButton(Object value) => value is api.IconButton;
 
 class _IconButtonHost extends FlaxWidgetHost {
   _IconButtonHost(super.node);
@@ -7031,6 +7086,8 @@ api1.Widget _createIconButton(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isFloatingActionButton(Object value) => value is api.FloatingActionButton;
+
 class _FloatingActionButtonHost extends FlaxWidgetHost {
   _FloatingActionButtonHost(super.node);
 
@@ -7099,6 +7156,8 @@ api1.Widget _createFloatingActionButton(
   }
 }
 
+bool _isDrawer(Object value) => value is api.Drawer;
+
 class _DrawerHost extends FlaxWidgetHost {
   _DrawerHost(super.node);
 
@@ -7125,6 +7184,8 @@ api1.Widget _createDrawer(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isDivider(Object value) => value is api.Divider;
+
 class _DividerHost extends FlaxWidgetHost {
   _DividerHost(super.node);
 
@@ -7150,6 +7211,8 @@ api1.Widget _createDivider(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isVerticalDivider(Object value) => value is api.VerticalDivider;
+
 class _VerticalDividerHost extends FlaxWidgetHost {
   _VerticalDividerHost(super.node);
 
@@ -7174,6 +7237,8 @@ api1.Widget _createVerticalDivider(String ctor, Map<String, Object?> values) {
       throw ArgumentError('Unknown generated constructor');
   }
 }
+
+bool _isCard(Object value) => value is api.Card;
 
 class _CardHost extends FlaxWidgetHost {
   _CardHost(super.node);
@@ -7226,6 +7291,8 @@ api1.Widget _createCard(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isListTile(Object value) => value is api.ListTile;
+
 class _ListTileHost extends FlaxWidgetHost {
   _ListTileHost(super.node);
 
@@ -7264,6 +7331,8 @@ api1.Widget _createListTile(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isCheckbox(Object value) => value is api.Checkbox;
+
 class _CheckboxHost extends FlaxWidgetHost {
   _CheckboxHost(super.node);
 
@@ -7295,6 +7364,8 @@ api1.Widget _createCheckbox(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isSwitch(Object value) => value is api.Switch;
+
 class _SwitchHost extends FlaxWidgetHost {
   _SwitchHost(super.node);
 
@@ -7321,6 +7392,9 @@ api1.Widget _createSwitch(String ctor, Map<String, Object?> values) {
       throw ArgumentError('Unknown generated constructor');
   }
 }
+
+bool _isCircularProgressIndicator(Object value) =>
+    value is api.CircularProgressIndicator;
 
 class _CircularProgressIndicatorHost extends FlaxWidgetHost {
   _CircularProgressIndicatorHost(super.node);
@@ -7349,6 +7423,9 @@ api1.Widget _createCircularProgressIndicator(
   }
 }
 
+bool _isNavigationDestination(Object value) =>
+    value is api.NavigationDestination;
+
 class _NavigationDestinationHost extends FlaxWidgetHost {
   _NavigationDestinationHost(super.node);
 
@@ -7375,6 +7452,8 @@ api1.Widget _createNavigationDestination(
       throw ArgumentError('Unknown generated constructor');
   }
 }
+
+bool _isNavigationBar(Object value) => value is api.NavigationBar;
 
 class _NavigationBarHost extends FlaxWidgetHost {
   _NavigationBarHost(super.node);

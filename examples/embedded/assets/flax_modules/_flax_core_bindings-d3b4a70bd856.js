@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"eccbcd5c343bef0a9a74ca0ff85b4a03beaf2548b1c9ec0334aded32263e4bda","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"6a5c2b6441a8723673a29871e1c7435b76454906a9063a5e6b40a7e32e1fc129","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -93,7 +93,8 @@ __export(bindings_exports, {
   registerComponentBase: () => registerComponentBase,
   registerComponentState: () => registerComponentState,
   registerComponentStateVariant: () => registerComponentStateVariant,
-  registerPage: () => registerPage
+  registerPage: () => registerPage,
+  widgetProxyFactory: () => widgetProxyFactory
 });
 module.exports = __toCommonJS(bindings_exports);
 var import_index = require("@flax/core");
@@ -716,9 +717,22 @@ function proxyProperty(implementation, name, stopBefore) {
 }
 var FlaxProxyBase = class {
   constructor(prototype, definition, args) {
-    constructExtendedProxy(this, prototype, definition.type, definition.parameters, args, Object.keys(definition.methods), definition.getters, definition.setters, definition.superMembers);
+    constructExtendedProxy(this, prototype, definition.type, definition.parameters, args, Object.keys(definition.methods), definition.getters, definition.setters, definition.superMembers, definition.nativeWidget && !componentBases.has(new.target.prototype) ? componentType(new.target).type : void 0);
   }
 };
+function widgetProxyFactory(factory, native) {
+  const callable = function(...args) {
+    if (new.target)
+      return Reflect.construct(native, args, new.target);
+    if (typeof factory !== "function")
+      throw new TypeError("This Widget has only named constructors");
+    return Reflect.apply(factory, void 0, args);
+  };
+  callable.prototype = native.prototype;
+  Object.setPrototypeOf(callable, factory);
+  registerComponentBase(callable, false);
+  return callable;
+}
 var memberLayouts = /* @__PURE__ */ new WeakMap();
 function memberArguments(parameters) {
   const cached = memberLayouts.get(parameters);
@@ -805,7 +819,8 @@ function installMembers(prototype, methods, getters, setters, invoke) {
     });
   }
 }
-function defineProxyBase(prototype, definition) {
+function defineProxyBase(prototype, definition, nativeGetters = []) {
+  installMembers(prototype, {}, nativeGetters, [], (receiver, member, args) => callObject(receiver, definition.type, "get", member.slice(4), args));
   for (const parameters of Object.values(definition.methods)) {
     for (const parameter of parameters)
       Object.freeze(parameter);
@@ -825,7 +840,7 @@ function defineProxyBase(prototype, definition) {
 function defineStateMembers(prototype, methods, getters, setters) {
   installMembers(prototype, methods, getters, setters, (receiver, member, args) => componentStateCall(receiver, `native:${member}`, args));
 }
-function constructExtendedProxy(receiver, basePrototype, type, parameters, args, names, getters, setters, superMembers) {
+function constructExtendedProxy(receiver, basePrototype, type, parameters, args, names, getters, setters, superMembers, widgetType) {
   var _a, _b, _c;
   if (receiver === null || typeof receiver !== "object")
     throw new TypeError("Expected a proxy class instance");
@@ -867,6 +882,7 @@ function constructExtendedProxy(receiver, basePrototype, type, parameters, args,
   try {
     const created = create(bindingVersion, type, {
       ...descriptor,
+      ...widgetType === void 0 ? {} : { widgetType },
       args: Object.freeze(values)
     });
     const ref = objectHandles.get(created);
@@ -1009,6 +1025,9 @@ Object.assign(globalThis, {
       return Reflect.apply(callback, void 0, [...positional, options]);
     },
     componentType,
+    freezeWidget(value) {
+      Object.freeze(value);
+    },
     component(value) {
       const info = components.get(value);
       if (!info)
@@ -1019,6 +1038,9 @@ Object.assign(globalThis, {
     createComponentState(widget, id) {
       const value = synchronous(Reflect.apply(widget.createState, widget, []));
       const state = value !== null && typeof value === "object" ? componentStates.get(value) : void 0;
+      const native = value !== null && typeof value === "object" ? stateHandles.get(value) : void 0;
+      if (native)
+        return Object.freeze({ native: native.id });
       if (!state || state.claimed)
         throw new TypeError("createState must return a fresh State");
       state.claimed = true;

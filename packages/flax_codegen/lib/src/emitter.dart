@@ -117,7 +117,9 @@ function _flaxInstallBindingModule(
       throw new TypeError('requiredCapabilities must be sorted unique strings');
     }
     previous = capability;
-    throw new TypeError(`Unsupported binding capability ${capability}`);
+    if (capability !== 'native-widget-proxies') {
+      throw new TypeError(`Unsupported binding capability ${capability}`);
+    }
   }
   return Object.freeze({
     moduleId,
@@ -1793,7 +1795,7 @@ import 'package:flax/bindings.dart';
         out.writeln('],');
       }
       out.writeln(
-        '}, _${type.name}Host.new, fixedArguments: ${type.widgetInterfaces.isNotEmpty}, methods: ${_methods(type)}),',
+        '}, _${type.name}Host.new, matches: _is${type.name}, fixedArguments: ${type.widgetInterfaces.isNotEmpty}, methods: ${_methods(type)}, ${type.proxy == null ? '' : 'objectView: FlaxObjectBinding(${_quote(type.id)}, [${type.getters.map((g) => 'FlaxGetter(${_quote(g.name)}, ${_ref(g.type)}, _${type.name}_${g.name}),').join()}], ${_methods(type, instance: true)}, constructors: ${_constructors(type)}, create: _create${type.name}, matches: _is${type.name}, supertypes: ${jsonEncode(type.supertypes)}),'}),',
       );
     }
     out.writeln('], functions: [');
@@ -1942,13 +1944,16 @@ import 'package:flax/bindings.dart';
     for (final type in module.classes) {
       if (type.kind == 'object' ||
           type.kind == 'widgetInterface' ||
-          type.kind == 'stream') {
+          type.kind == 'stream' ||
+          type.kind == 'widget') {
         out.writeln(
           'bool _is${type.name}(Object value) => value is ${_dartName(type.name)}${_typeArgs(type.typeArguments)};',
         );
       }
       for (final getter in type.getters.where(
-        (_) => {'context', 'state', 'object', 'stream'}.contains(type.kind),
+        (_) =>
+            ({'context', 'state', 'object', 'stream'}.contains(type.kind) ||
+            (type.kind == 'widget' && type.proxy != null)),
       )) {
         final read =
             '(value as ${_dartName(type.name)}${_typeArgs(type.typeArguments)}).${getter.name}';
@@ -2101,12 +2106,13 @@ ${type.widgetMembers.map((m) => m.source).join('\n')}
           _emitConstructorCalls(out, type, ctor);
         }
       }
-      if (type.proxy == null) {
+      if (type.proxy == null || type.kind == 'widget') {
         for (final ctor in type.constructors) {
           out.writeln('case ${_quote(ctor.name)}:');
           _emitConstructorCalls(out, type, ctor);
         }
-      } else {
+      }
+      if (type.proxy != null) {
         out.writeln("case '@implementation':");
         _emitConstructorCalls(
           out,
@@ -2159,7 +2165,7 @@ ${type.widgetMembers.map((m) => m.source).join('\n')}
       final proxy = type.proxy!;
       final ctor = _proxyConstructor(type);
       out.writeln(
-        'final class _${type.name}Proxy ${proxy.kind} ${_dartName(type.name)}${_typeArgs(type.typeArguments)} {',
+        'final class _${type.name}Proxy ${proxy.kind} ${_dartName(type.name)}${_typeArgs(type.typeArguments)}${type.kind == 'widget' ? ' with FlaxWidgetProxy' : ''} {',
       );
       for (final (name, callback) in proxy.callbacks) {
         out.writeln(
@@ -2181,6 +2187,22 @@ ${type.widgetMembers.map((m) => m.source).join('\n')}
         '_${type.name}Proxy(${fields.join(', ')})${proxy.kind == 'extends' && ctor.name.isNotEmpty ? ' : super.${ctor.name}()' : ''};',
       );
       for (final method in proxy.methods) {
+        if (type.kind == 'widget' &&
+            method.name == 'createState' &&
+            method.result.kind == 'state') {
+          out.writeln(
+            '@override ${_dartDeclaredType(method.result)} createState() {',
+          );
+          out.writeln('final callback = _call_createState;');
+          out.writeln(
+            'return callback == null ? super.createState() : flaxCreateWidgetState(callback, this, _${type.name}State.new);',
+          );
+          out.writeln('}');
+          out.writeln(
+            '${_dartDeclaredType(method.result)} _flaxSuper_createState() => super.createState();',
+          );
+          continue;
+        }
         final superBacked =
             proxy.kind == 'extends' && proxy.hasSuperMethod(method.name);
         final generic = method.typeParameters.isNotEmpty;
@@ -2469,6 +2491,20 @@ ${type.widgetMembers.map((m) => m.source).join('\n')}
             '${_dartName(owner.name)}.${factory.name}<${factory.typeParameters.map((parameter) => _dartDeclaredType(_inferDeferredArguments(factory, specialized.result)[parameter.name]!)).join(', ')}>',
       );
       out.writeln('}');
+    }
+    for (final type in module.classes.where(
+      (t) =>
+          t.kind == 'widget' &&
+          t.proxy?.methods.any(
+                (m) => m.name == 'createState' && m.result.kind == 'state',
+              ) ==
+              true,
+    )) {
+      final widgetType =
+          '${_dartName(type.name)}${_typeArgs(type.typeArguments)}';
+      out.writeln(
+        'final class _${type.name}State extends FlaxComponentStateBase<$widgetType> with FlaxStateProxy<$widgetType> { _${type.name}State(super.seed); }',
+      );
     }
     _writeSnapshots(out, module);
     var usesGenericCallbackResult = false;
@@ -3105,7 +3141,8 @@ T _genericCallbackResult<T>(Object? value) {
   ) {
     if (type.proxy == null) return type.constructors;
     return [
-      if (type.proxy!.kind == 'implements') ...type.constructors,
+      if (type.proxy!.kind == 'implements' || type.kind == 'widget')
+        ...type.constructors,
       FlaxCodegenConstructorModel('@implementation', [
         ..._proxyConstructor(type).parameters,
         for (final (name, callback) in type.proxy!.callbacks)
@@ -3509,7 +3546,7 @@ $_typescriptHostImport
     }
     if (module.classes.any((c) => c.proxy?.kind == 'extends')) {
       out.writeln(
-        "import { FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase } from '@flax/core/bindings';",
+        "import { FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';",
       );
     }
     for (final entry in dependencies.entries) {
@@ -3699,41 +3736,56 @@ $_typescriptHostImport
           return '${jsonEncode(method.name)}:$name';
         }).join(',')}}';
     final staticMethods = StringBuffer();
-    void emitProxy(
-      StringBuffer target,
-      FlaxCodegenClassModel type,
-      FlaxCodegenProxyModel proxy,
-    ) {
+    String proxyArguments(FlaxCodegenClassModel type) {
       final ctor = _proxyConstructor(type);
-      final params = [
-        for (final p in ctor.parameters)
-          {'name': p.name, 'required': p.required, 'positional': p.positional},
-      ];
       final args = ctor.parameters
           .where((p) => p.positional)
           .map(
             (p) =>
-                '${p.name}${p.required ? '' : '?'}: ${tsType(p.type, input: true)}',
+                '${p.name}${p.required ? '' : '?'}: ${tsType(p.type, input: true, declarations: type.typeArguments.isEmpty)}',
           )
           .toList();
       final named = ctor.parameters.where((p) => !p.positional).toList();
       if (named.isNotEmpty) {
         args.add(
-          'options${named.every((p) => !p.required) ? '?' : ''}: {${named.map((p) => namedParameter(p, tsType(p.type, input: true))).join('; ')}}',
+          'options${named.every((p) => !p.required) ? '?' : ''}: {${named.map((p) => namedParameter(p, tsType(p.type, input: true, declarations: type.typeArguments.isEmpty))).join('; ')}}',
         );
       }
+      return args.join(', ');
+    }
+
+    void emitProxy(
+      StringBuffer target,
+      FlaxCodegenClassModel type,
+      FlaxCodegenProxyModel proxy,
+    ) {
+      final className = type.kind == 'widget'
+          ? '_${type.name}Native'
+          : type.name;
+      final ctor = _proxyConstructor(type);
+      final params = [
+        for (final p in ctor.parameters)
+          {'name': p.name, 'required': p.required, 'positional': p.positional},
+      ];
       if (proxy.kind == 'extends') {
         target.writeln(
           'const _${type.name}Proxy = {'
-          'type: ${jsonEncode(type.id)}, parameters: ${jsonEncode(params)}, '
+          '${type.kind == 'widget' ? 'nativeWidget: true, ' : ''}type: ${jsonEncode(type.id)}, parameters: ${jsonEncode(params)}, '
           'methods: ${memberMetadata(proxy.methods.map((method) => proxy.hasSuperMethod(method.name) ? type.methods.firstWhere((surface) => surface.instance && surface.name == method.name) : method))}, '
           'getters: ${jsonEncode(proxy.getters.map((g) => g.name).toList())}, '
           'setters: ${jsonEncode(proxy.setters.map((s) => s.name).toList())}, '
           'superMembers: ${jsonEncode(proxy.superMethods)}} as const;',
         );
         target.writeln(
-          'export interface ${type.name}${generics(type.typeParameters)} {',
+          'export interface $className${generics(type.typeParameters)}${type.kind == 'widget' ? ' extends _FlaxDartWidget${type.widgetInterfaces.map((i) => ", Omit<${tsType(i)}, 'kind'>").join()}' : ''} {',
         );
+        if (type.kind == 'widget') {
+          for (final getter in type.getters.where(
+            (g) => !proxy.getters.any((p) => p.name == g.name),
+          )) {
+            target.writeln('readonly ${getter.name}: ${tsType(getter.type)};');
+          }
+        }
         for (final method in proxy.methods.where(
           (m) => proxy.hasSuperMethod(m.name),
         )) {
@@ -3755,10 +3807,10 @@ $_typescriptHostImport
         }
         target.writeln('}');
         target.writeln(
-          'export abstract class ${type.name}${generics(type.typeParameters)} extends _FlaxProxyBase {',
+          'export abstract class $className${generics(type.typeParameters)} extends _FlaxProxyBase {',
         );
         target.writeln(
-          'constructor(${args.join(', ')}) { super(${type.name}.prototype, _${type.name}Proxy, Array.from(arguments)); }',
+          'constructor(${proxyArguments(type)}) { super($className.prototype, _${type.name}Proxy, Array.from(arguments)); }',
         );
         for (final method in proxy.methods.where(
           (m) => !proxy.hasSuperMethod(m.name),
@@ -3783,9 +3835,10 @@ $_typescriptHostImport
         }
         target.writeln('}');
         target.writeln(
-          '_flaxDefineProxyBase(${type.name}.prototype, _${type.name}Proxy);',
+          '_flaxDefineProxyBase($className.prototype, _${type.name}Proxy${type.kind == 'widget' ? ', ${jsonEncode(type.getters.map((g) => g.name).toList())}' : ''});',
         );
       }
+      if (type.kind == 'widget') return;
       final requiredMethods = proxy.methods
           .where((m) => !proxy.hasSuperMethod(m.name))
           .toList();
@@ -3804,7 +3857,7 @@ $_typescriptHostImport
           'set ${s.name}(value: ${tsType(s.type)})',
       ].join('; ');
       target.writeln(
-        'export namespace ${type.name} { export function implement${generics(type.typeParameters)}(args: [${args.join(', ')}], implementation: {$implementation}): ${type.name}${genericUse(type)} {',
+        'export namespace ${type.name} { export function implement${generics(type.typeParameters)}(args: [${proxyArguments(type)}], implementation: {$implementation}): ${type.name}${genericUse(type)} {',
       );
       target.writeln(
         'return constructProxy(${jsonEncode(type.id)}, ${jsonEncode(params)}, args, implementation, ${jsonEncode(requiredMethods.map((m) => m.name).toList())}, ${jsonEncode(requiredGetters.map((g) => g.name).toList())}, ${jsonEncode(requiredSetters.map((s) => s.name).toList())}) as ${type.name}${genericUse(type)}; } }',
@@ -3955,18 +4008,20 @@ $_typescriptHostImport
               operation.call.result,
             ),
             id: operation.id,
-            namespace: type.name,
+            namespace: type.kind == 'widget' && type.proxy != null
+                ? '_${type.name}Factory'
+                : type.name,
             extensionOperation: true,
           );
         }
         for (final getter in type.staticGetters) {
           if (!staticObject) {
             staticMethods.writeln(
-              'export namespace ${type.name} { export declare const ${getter.name}: ${tsType(getter.type)}; }',
+              'export namespace ${type.kind == 'widget' && type.proxy != null ? '_${type.name}Factory' : type.name} { export declare const ${getter.name}: ${tsType(getter.type)}; }',
             );
           }
           staticMethods.writeln(
-            'Object.defineProperty(${type.name}, ${jsonEncode(getter.name)}, { get: () => invokeTopLevel(${jsonEncode(type.staticGetterId(getter))}, []) });',
+            'Object.defineProperty(${type.kind == 'widget' && type.proxy != null ? '_${type.name}Factory' : type.name}, ${jsonEncode(getter.name)}, { get: () => invokeTopLevel(${jsonEncode(type.staticGetterId(getter))}, []) });',
           );
         }
       }
@@ -4033,13 +4088,16 @@ $_typescriptHostImport
           staticMethods,
           method,
           id: type.id,
-          namespace: type.name,
+          namespace: type.kind == 'widget' && type.proxy != null
+              ? '_${type.name}Factory'
+              : type.name,
           category: type.category,
         );
       }
       String sharedMethods() =>
-          '_flaxBindingMethods(${jsonEncode(type.id)}, ${jsonEncode(type.kind)}, ${memberMetadata(type.methods.where((m) => m.instance))})';
-      if (type.kind == 'object') {
+          '_flaxBindingMethods(${jsonEncode(type.id)}, ${jsonEncode(type.kind == 'widget' ? 'object' : type.kind)}, ${memberMetadata(type.methods.where((m) => m.instance))})';
+      if (type.kind == 'object' ||
+          (type.kind == 'widget' && type.proxy != null)) {
         final listeners = _sortedStringMap(type.listenerPairs).values.toList();
         out.writeln(
           'defineObject(${jsonEncode(type.id)}, ${jsonEncode(type.getters.map((g) => g.name).toList())}, ${jsonEncode(type.setters.map((g) => g.name).toList())}, ${sharedMethods()}, ${jsonEncode(listeners)});',
@@ -4051,7 +4109,9 @@ $_typescriptHostImport
         );
         if (type.asyncIterableFactory case final factory?) {
           final parameter = type.typeParameters.single;
-          out.writeln('export namespace ${type.name} {');
+          out.writeln(
+            'export namespace ${type.kind == 'widget' && type.proxy != null ? '_${type.name}Factory' : type.name} {',
+          );
           out.writeln(
             'export function $factory${generics([parameter], defaults: false)}(source: AsyncIterable<${parameter.name}>): ${type.name}<${parameter.name}> {',
           );
@@ -4077,7 +4137,15 @@ $_typescriptHostImport
       final bases = type.superTypes
           .map((parent) => "Omit<${tsType(parent, nominal: true)}, 'type'>")
           .toSet();
-      if (type.widgetInterfaces.isNotEmpty) {
+      if (type.kind == 'widget' && type.proxy != null) {
+        out.writeln(
+          '${exportPrefix}type ${type.name}${generics(type.typeParameters)} = ${type.name}Description${genericUse(type)} | _${type.name}Native${genericUse(type)};',
+        );
+        out.writeln(
+          '${exportPrefix}type ${type.name}Description${generics(type.typeParameters)} = WidgetDescription & { readonly type: ${jsonEncode(type.id)}; }${type.widgetInterfaces.map((i) => ' & ${tsType(i)}').join()};',
+        );
+        emitProxy(out, type, type.proxy!);
+      } else if (type.widgetInterfaces.isNotEmpty) {
         out.writeln(
           '${exportPrefix}type ${type.name} = WidgetDescription & { readonly type: ${jsonEncode(type.id)}; } & ${type.widgetInterfaces.map((t) => tsType(t)).join(' & ')};',
         );
@@ -4088,16 +4156,21 @@ $_typescriptHostImport
       }
       final delayedProxy =
           type.proxy?.kind == 'implements' && type.constructors.isNotEmpty;
-      if (type.proxy case final proxy? when !delayedProxy) {
+      if (type.proxy case final proxy?
+          when !delayedProxy && type.kind != 'widget') {
         emitProxy(out, type, proxy);
         continue;
       }
       for (final ctor in type.constructors) {
         final functionName = ctor.name.isEmpty
-            ? (type.jsName ?? type.name)
+            ? (type.kind == 'widget' && type.proxy != null
+                  ? '_${type.name}Factory'
+                  : (type.jsName ?? type.name))
             : ctor.name;
         if (ctor.name.isNotEmpty) {
-          out.writeln('export namespace ${type.name} {');
+          out.writeln(
+            'export namespace ${type.kind == 'widget' && type.proxy != null ? '_${type.name}Factory' : type.name} {',
+          );
         }
         final named = ctor.parameters
             .where((param) => !param.positional)
@@ -4160,6 +4233,11 @@ $_typescriptHostImport
         );
         out.writeln('}');
         if (ctor.name.isNotEmpty) out.writeln('}');
+      }
+      if (type.kind == 'widget' && type.proxy != null) {
+        out.writeln(
+          'export const ${type.name} = _flaxWidgetProxyFactory(_${type.name}Factory, _${type.name}Native) as typeof _${type.name}Factory & { new${generics(type.typeParameters)}(${proxyArguments(type)}): _${type.name}Native${genericUse(type)}; };',
+        );
       }
       if (delayedProxy) emitProxy(out, type, type.proxy!);
     }

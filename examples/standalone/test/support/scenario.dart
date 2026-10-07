@@ -58,6 +58,15 @@ runApp(SizedBox());
   expect(find.byType(MaterialApp), findsOneWidget);
   expect(find.byType(Navigator), findsOneWidget);
   expect(find.text('Count: 0'), findsOneWidget);
+  expect(
+    find.byWidgetPredicate(
+      (widget) =>
+          widget is Text &&
+          widget.data == 'Count: 0' &&
+          widget.runtimeType != Text,
+    ),
+    findsOneWidget,
+  );
   final previousOverrides = HttpOverrides.current;
   HttpOverrides.global = null;
   final server = await t.runAsync(() async {

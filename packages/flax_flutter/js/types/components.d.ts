@@ -18,7 +18,7 @@ export declare abstract class StatefulWidget implements ComponentWidget {
     abstract createState(): State;
 }
 /** Paired with a Flutter-owned State only when createState returns. */
-export declare abstract class State<T extends StatefulWidget = StatefulWidget> {
+export declare abstract class State<T extends Widget = StatefulWidget> {
     constructor();
     get widget(): T;
     get context(): BuildContext;

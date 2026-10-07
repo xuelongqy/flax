@@ -252,9 +252,9 @@ final class FlaxCodegenImportedPackage {
   final List<FlaxCodegenImportedOwner> owners;
 }
 
-/// Protocol 21 has no derived capabilities in this batch.
+/// Native Widget views require the shared typed-reference runtime.
 List<String> flaxCodegenProtocol21RequiredCapabilities() =>
-    List<String>.unmodifiable(const <String>[]);
+    List<String>.unmodifiable(const <String>['native-widget-proxies']);
 
 /// Resolves explicit local owners for one package namespace.
 abstract final class FlaxCodegenOwnership {

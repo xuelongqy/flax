@@ -2118,6 +2118,7 @@ class FlaxCodegenBindingParser {
       }
       if (getters.isNotEmpty &&
           selection.kind == null &&
+          !(isWidget && selection.proxy == 'extends') &&
           (isWidget ||
               getters.any(
                 (g) => !selection.constructors.values.every(
@@ -2173,7 +2174,8 @@ class FlaxCodegenBindingParser {
         throw StateError('Class operators require an object binding');
       }
       if (selection.instanceMethods.isNotEmpty &&
-          !{'state', 'object', 'stream'}.contains(selection.kind)) {
+          !{'state', 'object', 'stream'}.contains(selection.kind) &&
+          !(isWidget && selection.proxy == 'extends')) {
         throw StateError(
           'Instance methods require a State or object adaptation',
         );
@@ -2685,7 +2687,10 @@ class FlaxCodegenBindingParser {
         if (element is! ClassElement) {
           throw StateError('Only classes support proxies');
         }
-        if (selection.kind != 'object' ||
+        if ((selection.kind != 'object' &&
+                !(isWidget &&
+                    selection.kind == null &&
+                    selection.proxy == 'extends')) ||
             !{'extends', 'implements'}.contains(selection.proxy)) {
           throw StateError(
             'Proxies require an object class compatible with extends/implements',
@@ -2850,7 +2855,15 @@ class FlaxCodegenBindingParser {
               !concreteOverride) {
             continue;
           }
-          final callback = typeRef(method.type);
+          final callback = typeRef(
+            method.type,
+            forTypescript:
+                isWidget &&
+                name == 'createState' &&
+                element.allSupertypes.any(
+                  (parent) => identity(parent.element) == 'package:flutter/src/widgets/framework.dart::StatefulWidget',
+                ),
+          );
           final declaredMethod = operatorName == null
               ? element.thisType.lookUpMethod(name, element.library)
               : _classOperator(element.thisType, name);
@@ -2864,7 +2877,8 @@ class FlaxCodegenBindingParser {
             result = _dataType(result, '${entry.key}.$name result');
           }
           final mustCallSuper = _requiresSuper(element, name);
-          if ({'widget', 'route'}.contains(result.kind)) {
+          if (result.kind == 'route' ||
+              (result.kind == 'widget' && !isWidget)) {
             throw StateError('Unsupported proxy result: $name');
           }
           proxyMethods.add(

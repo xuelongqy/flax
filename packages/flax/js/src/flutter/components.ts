@@ -36,7 +36,7 @@ export abstract class StatefulWidget implements ComponentWidget {
 }
 
 /** Paired with a Flutter-owned State only when createState returns. */
-export abstract class State<T extends StatefulWidget = StatefulWidget> {
+export abstract class State<T extends Widget = StatefulWidget> {
   constructor() {
     registerComponentState(this);
   }

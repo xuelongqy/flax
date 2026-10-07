@@ -173,6 +173,7 @@ export declare function constructDeferredObject(type: string, factory: string, p
 export declare function constructProxy(type: string, parameters: readonly Parameter[], args: readonly unknown[], implementation: object, names: readonly string[], getters: readonly string[], setters: readonly string[]): object;
 /** Generated signatures remain in TypeScript; executable forwarding is shared. */
 export interface ProxyDefinition {
+    readonly nativeWidget?: boolean;
     readonly type: string;
     readonly parameters: readonly Parameter[];
     readonly methods: Readonly<Record<string, readonly MemberParameter[]>>;
@@ -186,14 +187,16 @@ export interface MemberParameter extends Parameter {
 export declare abstract class FlaxProxyBase {
     protected constructor(prototype: object, definition: ProxyDefinition, args: readonly unknown[]);
 }
+/** Keeps descriptor calls and native subclass construction on one public export. */
+export declare function widgetProxyFactory<F extends object, C extends abstract new (...args: never[]) => object>(factory: F, native: C): F & (new (...args: ConstructorParameters<C>) => InstanceType<C>);
 export declare function bindingMethods(type: string, category: 'object' | 'state' | 'stream', methods: Readonly<Record<string, readonly MemberParameter[]>>): Record<string, StateMethod>;
-export declare function defineProxyBase(prototype: object, definition: ProxyDefinition): void;
+export declare function defineProxyBase(prototype: object, definition: ProxyDefinition, nativeGetters?: readonly string[]): void;
 export declare function defineStateMembers(prototype: object, methods: Readonly<Record<string, readonly MemberParameter[]>>, getters: readonly string[], setters: readonly string[]): void;
 /**
  * Attaches a newly-created Dart extends proxy to the JS instance currently
  * being initialized by a generated abstract base class.
  */
-export declare function constructExtendedProxy(receiver: object, basePrototype: object, type: string, parameters: readonly Parameter[], args: readonly unknown[], names: readonly string[], getters: readonly string[], setters: readonly string[], superMembers: readonly string[]): void;
+export declare function constructExtendedProxy(receiver: object, basePrototype: object, type: string, parameters: readonly Parameter[], args: readonly unknown[], names: readonly string[], getters: readonly string[], setters: readonly string[], superMembers: readonly string[], widgetType?: number): void;
 export declare function invokeProxySuper(receiver: object, type: string, member: string, args: readonly unknown[]): unknown;
 export declare function invokeObject(receiver: object, type: string, method: string, args: readonly unknown[]): unknown;
 export declare function invokeObjectStatic(type: string, member: string): unknown;
