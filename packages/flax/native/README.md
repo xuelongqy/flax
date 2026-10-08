@@ -2,7 +2,7 @@
 
 This directory retains the canonical ABI 2 header and internal GC extension 1 header.
 FFI generation reads these declarations. The maintained Flutter fork owns the executable
-bridge, V8 adapter and Dart joint GC patch; see the
+bridge, platform V8/Hermes adapters and Dart joint GC patch; see the
 [runtime contract](../../../docs/architecture/runtime.md).
 
 The prior shared JSI sources and native tests remain as source history. They are not

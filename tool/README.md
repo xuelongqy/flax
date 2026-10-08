@@ -35,24 +35,25 @@ generation.
 
 ## Native build and verification
 
-`native.dart` discovers the selected engine package, obtains its locked shared SDK,
-compiles the adapter with Flax's ABI, and runs CTest. The same SDK preparation helper is
-used by native asset hooks. SDK caches and bridge builds are ignored inside the engine
-package. The current host desktop target is selected explicitly.
+The maintained Flutter fork builds the bridge and platform JS adapter.
+`native.dart build` rejects the retired standalone SDK deployment; `native:configure`
+only checks source/CMake structure. Workspace commands never build an engine implicitly.
 
 `check_runtime.dart` executes, in order:
 
 1. Reproducible FFI generation check.
-2. Explicit native build and CTest.
-3. Hook registration of the bridge and engine libraries.
-4. Shared Dart integration tests through the selected engine package.
-5. Standalone package verification through `src/package_verification.dart`.
+2. Shared runtime and joint-GC contracts in the matching local Flutter UI isolate.
 
-The last step stages package copies outside the repository, checks JIT and corrupt SDK
-checksum rejection, builds an AOT CLI bundle, relocates it, deletes the source staging
-tree, and executes the copy with library-search environment variables removed. Its
-consumer source stays with engine integration test fixtures. Workspace pubspec edits
-apply only to temporary copies. There is no second runtime implementation in tooling.
+`check_engine_application.dart debug|profile|release` runs the real macOS application.
+With `FLAX_CHECK_TARGET=android-arm64`, it builds, audits and launches the debug or
+release/AOT APK. With `FLAX_CHECK_TARGET=ios-simulator-arm64`, it runs a debug simulator
+application using embedded Hermes; profile/release modes are rejected. With
+`FLAX_CHECK_TARGET=ios-device-arm64`, it runs a release/AOT application with real
+development signing and provisioning; debug/profile modes are rejected. Set
+`FLAX_IOS_TEAM=<team-id>` for the device signing team. Mobile gates require
+`FLAX_CHECK_DEVICE`. The source staging tree is removed before the relocated application
+launches, and receipts retain per-case results, engine closure and signing checks. macOS
+and Android verify V8 JIT; iOS verifies the Hermes interpreter without JIT.
 
 Commands return nonzero on failure. Ordinary `check` and `native:configure` do not
 invoke an engine build. See [all commands](../CONTRIBUTING.md#checks) and
@@ -67,10 +68,9 @@ or `--dry-run` for a disposable receipt). `check_release.dart` asserts
 `publish_to: none` / `private: true`, then runs both checks. Melos entries:
 `packages:check`, `packages:pack`, and `release:check`. None of these publish.
 
-`check_platform.dart --scope=all` runs complete runtime/UI and application checks for
-the selected target. The Linux x64 invocation also owns the common `melos check` and FFI
-gate; other targets prepare bundles without repeating host-only checks. Use
-`dart run melos run check` separately for standalone local common validation.
+`check_platform.dart` rejects the retired SDK matrix. Use the maintained-engine gates
+above for current runtime acceptance and `dart run melos run check` for engine-free
+static workspace validation.
 
 `package.dart` discovers Pub packages under `packages/`. `check <name>` runs that
 package's analysis, Dart/Flutter unit tests, binding check, JS build/type/tests, host

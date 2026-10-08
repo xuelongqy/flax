@@ -1,8 +1,8 @@
 # V8 engine
 
 `FlaxV8Engine.createRuntime()` delegates to `FlaxEngine.createRuntime()` in the
-maintained Flutter engine. macOS and Android arm64 use V8 15.4.80.15 JIT. Android
-debug and release/AOT correctness has emulator and Pixel 4 acceptance; Android GC/frame
+maintained Flutter engine. macOS and Android arm64 use V8 15.4.80.15 JIT. Android debug
+and release/AOT correctness has emulator and Pixel 4 acceptance; Android GC/frame
 performance remains unmeasured. The factory rejects iOS and unsupported targets;
 platform policy uses Hermes on iOS.
 

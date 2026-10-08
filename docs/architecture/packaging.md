@@ -242,13 +242,17 @@ declarations. The executable C++ bridge, V8 adapter, exact-revision Dart patch, 
 verification and library packaging are owned by the maintained Flutter fork. See
 [ADR 0039](../decisions/0039-engine-owned-cross-heap-gc.md) and
 [runtime ownership](runtime.md). `FlaxEngine.createRuntime()` loads the macOS process
-exports or Android's `libflutter.so` and checks its exact capabilities before
-allocation.
+exports on macOS/iOS or Android's `libflutter.so` and checks its exact capabilities
+before allocation.
 
 Engine packages are compatibility factories. They have no native asset hooks and do not
 ship or build a second runtime. Existing SDK locks and notices are preserved;
 `flax_js_runtime` remains an internal source/build input. Platform policy is iOS Hermes
-and other native V8 JIT. macOS and Android arm64 have this integration.
+and other native V8 JIT. macOS, Android arm64 and iOS arm64 have this integration. iOS
+supports simulator debug and physical-device release/AOT. Both frameworks contain one
+static Hermes interpreter closure. The device gate requires real development signing and
+provisioning, verifies the AOT snapshot and packaged engine content, and runs after
+source removal. Distribution signing and Hermes GC/frame performance remain separate.
 
 `check:runtime` runs shared contracts in the local Flutter engine. The real application
 gate covers debug, profile and release/AOT. Its release artifact contains exactly one V8

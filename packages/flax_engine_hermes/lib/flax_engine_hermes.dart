@@ -1,4 +1,4 @@
-/// Reserved compatibility factory for the maintained iOS Hermes engine.
+/// Compatibility factory for the maintained engine's iOS Hermes runtime.
 library;
 
 import 'dart:io';

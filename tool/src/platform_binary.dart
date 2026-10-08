@@ -11,7 +11,7 @@ import 'package:flax/native_target.dart';
 
 import 'local_engine.dart';
 
-/// Audit the engine-owned V8 closure after Flutter signs the real application.
+/// Audit the engine-owned library closure in the delivered application.
 Future<Map<String, Object?>> verifyEngineApplication(
   String product,
   String mode, {
@@ -22,6 +22,13 @@ Future<Map<String, Object?>> verifyEngineApplication(
   final lock = jsonDecode(
     File('$source/flutter/flax/source.lock.json').readAsStringSync(),
   ) as Map;
+  if (target.name == 'ios-device-arm64' ||
+      target.name == 'ios-simulator-arm64') {
+    return _verifyIosEngineApplication(product, mode, source, target);
+  }
+  if (!{'macos-arm64', 'android-arm64'}.contains(target.name)) {
+    throw UnsupportedError('No maintained engine audit for ${target.name}');
+  }
   final expected = (lock['targets'][target.name]['libraries'] as Map)
       .cast<String, String>();
   if (target.name == 'android-arm64') {
@@ -110,6 +117,170 @@ Future<Map<String, Object?>> verifyEngineApplication(
       ).hasMatch(entitlements),
       'singleV8Closure': true,
       'unsignedLibrarySha256': hashes,
+    };
+  } finally {
+    temporary.deleteSync(recursive: true);
+  }
+}
+
+Future<Map<String, Object?>> _verifyIosEngineApplication(
+  String product,
+  String mode,
+  String source,
+  FlaxNativeTarget target,
+) async {
+  final simulator = target.name == 'ios-simulator-arm64';
+  if (mode != (simulator ? 'debug' : 'release')) {
+    throw UnsupportedError(
+      'iOS acceptance requires simulator debug or device release/AOT',
+    );
+  }
+  final output = '$source/out/flax_ios_${mode}_${simulator ? 'sim_' : ''}arm64';
+  final binary = File('$product/Frameworks/Flutter.framework/Flutter');
+  final original = File('$output/Flutter.framework/Flutter');
+  final args = File('$output/args.gn').readAsStringSync();
+  final build = RegExp(r'flax_hermes_build\s*=\s*"([^"]+)"')
+      .firstMatch(args)
+      ?.group(1);
+  if (build == null) {
+    throw StateError('Hermes producer is missing from engine args');
+  }
+  // Verify the exact revision, joint-GC recipe and all linked producer inputs.
+  await _inspect('python3', [
+    '$source/flutter/flax/tools/sdk_info.py',
+    build,
+    target.name,
+  ]);
+  final manifest =
+      jsonDecode(File('$build/flax-hermes.json').readAsStringSync()) as Map;
+  final files = Directory(product)
+      .listSync(recursive: true, followLinks: false)
+      .whereType<File>();
+  if (files.any(
+    (f) => RegExp(
+      r'(hermes|libv8|libflax_)',
+      caseSensitive: false,
+    ).hasMatch(p.basename(f.path)),
+  )) {
+    throw StateError(
+      'The iOS application contains a second standalone JS runtime',
+    );
+  }
+  await verifyBinaryArchitectures(target, [binary]);
+  final headers = await _inspect('otool', ['-l', binary.path]);
+  final platform = simulator ? r'(?:7|IOSSIMULATOR)' : r'(?:2|IOS)';
+  if (!RegExp('platform\\s+$platform\\b').hasMatch(headers)) {
+    throw StateError('The Flutter framework does not match ${target.name}');
+  }
+  final installName = RegExp(r'cmd LC_ID_DYLIB\s+cmdsize \d+\s+name (\S+) \(')
+      .firstMatch(headers)
+      ?.group(1);
+  if (installName != '@rpath/Flutter.framework/Flutter') {
+    throw StateError('Unexpected iOS engine install name: $installName');
+  }
+  for (final dependency in await _dependencies(target, binary)) {
+    // otool -L includes the library's own LC_ID_DYLIB before dependencies.
+    if (dependency != installName &&
+        !flaxSdkSystemDependency('ios', dependency)) {
+      throw StateError('Unexpected iOS engine dependency: $dependency');
+    }
+  }
+  final symbols = await _inspect('nm', ['-gU', binary.path]);
+  for (final symbol in ['_flax_engine_get_api', '_flax_engine_get_gc_api']) {
+    if (!RegExp('\\b${RegExp.escape(symbol)}\\b').hasMatch(symbols)) {
+      throw StateError('Missing iOS engine export: $symbol');
+    }
+  }
+  final temporary = Directory.systemTemp.createTempSync(
+    'flax-ios-engine-audit-',
+  );
+  try {
+    final hashes = <String>[];
+    for (final (index, input) in [original, binary].indexed) {
+      final copy = input.copySync('${temporary.path}/$index-Flutter');
+      final strip = await Process.run('codesign', [
+        '--remove-signature',
+        copy.path,
+      ]);
+      if (strip.exitCode != 0 && !'${strip.stderr}'.contains('not signed')) {
+        throw StateError(
+          'Cannot normalize the iOS engine signature: ${strip.stderr}',
+        );
+      }
+      // Removing a signature leaves its old size in unused load-command bytes.
+      await _inspect('codesign', [
+        '--force',
+        '--sign',
+        '-',
+        '--identifier',
+        'org.flax.engine-audit',
+        '--timestamp=none',
+        copy.path,
+      ]);
+      hashes.add((await sha256.bind(copy.openRead()).first).toString());
+    }
+    if (hashes[0] != hashes[1]) {
+      throw StateError('Packaged iOS engine content changed');
+    }
+    await _inspect('codesign', ['--verify', '--deep', '--strict', product]);
+    final signature = await Process.run('codesign', [
+      '--display',
+      '--verbose=4',
+      product,
+    ]);
+    if (signature.exitCode != 0) {
+      throw StateError(
+        'Cannot inspect the iOS application signature: ${signature.stderr}',
+      );
+    }
+    final signatureText = '${signature.stdout}${signature.stderr}';
+    final adHoc = signatureText.contains('Signature=adhoc');
+    final team = RegExp(
+      r'^TeamIdentifier=([A-Z0-9]{10})$',
+      multiLine: true,
+    ).firstMatch(signatureText)?.group(1);
+    if (!simulator) {
+      if (adHoc ||
+          team == null ||
+          !File('$product/embedded.mobileprovision').existsSync()) {
+        throw StateError(
+          'An iOS device application requires real signing and provisioning',
+        );
+      }
+      final app = File('$product/Frameworks/App.framework/App');
+      await verifyBinaryArchitectures(target, [app]);
+      final appHeaders = await _inspect('otool', ['-l', app.path]);
+      final appSymbols = await _inspect('nm', ['-gU', app.path]);
+      if (!RegExp(r'platform\s+(?:2|IOS)\b').hasMatch(appHeaders) ||
+          !RegExp(r'\b_kDartSnapshotText\b').hasMatch(appSymbols) ||
+          !RegExp(r'\b_kDartSnapshotData\b').hasMatch(appSymbols)) {
+        throw StateError(
+          'The iOS device application requires a Dart AOT snapshot',
+        );
+      }
+    }
+    return {
+      'signatureVerified': true,
+      'adHocSigning': adHoc,
+      'signingTeam': ?team,
+      'dartAot': !simulator,
+      if (!simulator)
+        'dartAotSha256':
+            (await sha256
+                    .bind(
+                      File('$product/Frameworks/App.framework/App').openRead(),
+                    )
+                    .first)
+                .toString(),
+      'singleHermesClosure': true,
+      'hermesJit': false,
+      'hermesRevision': manifest['revision'],
+      'hermesRecipe': manifest['recipe'],
+      'hermesStaticLibrarySha256': {
+        for (final path in manifest['libraries'] as List)
+          p.basename(path as String): (manifest['files'] as Map)[path],
+      },
+      'normalizedEngineSha256': hashes.first,
     };
   } finally {
     temporary.deleteSync(recursive: true);
@@ -499,10 +670,37 @@ Future<void> verifyBinaryArchitectures(
       }
       machine = data.getUint16(pe + 4, Endian.little);
     } else if (target.apple) {
-      if (data.getUint32(0, Endian.little) != 0xfeedfacf) {
-        throw StateError('Expected thin Mach-O: ${file.path}');
+      var offset = 0;
+      final magic = data.getUint32(0, Endian.big);
+      final int? containerMachine;
+      if (magic == 0xcafebabe || magic == 0xcafebabf) {
+        if (data.getUint32(4, Endian.big) != 1) {
+          throw StateError('Expected one Mach-O architecture: ${file.path}');
+        }
+        final wide = magic == 0xcafebabf;
+        offset = wide
+            ? data.getUint64(16, Endian.big)
+            : data.getUint32(16, Endian.big);
+        final size = wide
+            ? data.getUint64(24, Endian.big)
+            : data.getUint32(20, Endian.big);
+        if (offset < (wide ? 40 : 28) ||
+            offset > bytes.length - 32 ||
+            size < 32 ||
+            size > bytes.length - offset) {
+          throw StateError('Invalid Mach-O slice: ${file.path}');
+        }
+        containerMachine = data.getUint32(8, Endian.big);
+      } else {
+        containerMachine = null;
       }
-      machine = data.getUint32(4, Endian.little);
+      if (data.getUint32(offset, Endian.little) != 0xfeedfacf) {
+        throw StateError('Expected 64-bit Mach-O: ${file.path}');
+      }
+      machine = data.getUint32(offset + 4, Endian.little);
+      if (containerMachine != null && containerMachine != machine) {
+        throw StateError('Mismatched Mach-O slice architecture: ${file.path}');
+      }
     } else {
       if (data.getUint32(0, Endian.big) != 0x7f454c46 || bytes[5] != 1) {
         throw StateError('Expected ELF: ${file.path}');

@@ -1,7 +1,7 @@
 # ADR 0039: Engine-owned cross-heap GC
 
-Status: Accepted architecture; local macOS arm64 and Android arm64 emulator and Pixel 4
-correctness acceptance passed.
+Status: Accepted architecture; local macOS arm64, Android arm64 emulator and Pixel 4,
+and iOS arm64 simulator debug and iPhone release/AOT correctness acceptance passed.
 
 ## Context
 
@@ -23,9 +23,20 @@ runtime deployment.
 1, checking their sizes and exact Flutter/Dart revisions before runtime allocation.
 Ordinary Flutter and incompatible engines fail explicitly. UI protocol 22 and generated
 JS calls are unchanged. iOS selects Hermes; other native platforms select V8 with JIT.
-macOS and Android arm64 are implemented. Android debug and release/AOT correctness
-passes on an arm64 emulator and a Pixel 4 running Android 13. Other targets fail before
-allocation.
+macOS, Android arm64 and iOS arm64 are implemented. Android debug and release/AOT
+correctness passes on an arm64 emulator and a Pixel 4 running Android 13. iOS debug
+correctness passes on the iPhone 17 Pro arm64 simulator running iOS 26.5. iOS
+release/AOT correctness passes on an iPhone 14 Pro running iOS 26.6.2: 93 cases pass and
+two Flutter debug rebuild-hook cases are explicitly inapplicable. Other targets fail
+before allocation.
+
+The iOS producer builds pinned Hermes 260318099.0.4 with an internal conditional-handle
+extension. It keeps the Hermes/JSI vtable, native ABI and UI protocol unchanged. Hermes
+has no Context API, so sessions own separate VMs under one Dart UI-isolate coordinator.
+The coordinator reaches a fixed point across all participating final mark phases before
+weak processing. It uses the existing Hades marker rather than a separate heap scanner;
+ordinary marking remains concurrent. Active JS jobs defer joint tracing, retaining peers
+conservatively until an owner-thread checkpoint.
 
 One Dart UI isolate owns one V8 heap and CppHeap. Sessions have separate Contexts,
 microtask queues and module state. Dart retains its ordinary parallel marking, then
@@ -51,6 +62,14 @@ entitlements. Android uses the existing engine JAR and one V8/shared-libc++ libr
 with Dart AOT in release. The accepted API 37 emulator uses 16 KB pages; the accepted
 Pixel 4 uses 4 KB pages. These checks do not establish Android performance or
 distribution acceptance.
+
+The iOS simulator debug and device release frameworks link Hermes, JSI and Boost.Context
+statically. Consumers target iOS 16.3 or later and require no JS JIT entitlement. Patch
+and source hashes are verified before building, including reused caches; immutable SDK
+release attachments remain unchanged. The device gate verifies development signing,
+provisioning, Dart AOT and packaged engine content, then installs and runs after source
+removal. Simulator profile/release and device debug/profile are unsupported. These
+correctness checks do not certify distribution signing or Hermes GC/frame performance.
 
 Flutter still owns Element/State lifecycles. GC does not call application `dispose`, pop
 Routes or reset static state. Applications retain their ordinary Flutter obligations;

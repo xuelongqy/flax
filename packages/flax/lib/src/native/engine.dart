@@ -9,9 +9,10 @@ import 'runtime_bindings.g.dart';
 abstract final class FlaxEngine {
   static FlaxJsRuntime createRuntime() {
     if (!(Platform.isMacOS && Abi.current() == Abi.macosArm64 ||
-        Platform.isAndroid && Abi.current() == Abi.androidArm64)) {
+        Platform.isAndroid && Abi.current() == Abi.androidArm64 ||
+        Platform.isIOS && Abi.current() == Abi.iosArm64)) {
       throw UnsupportedError(
-        'The Flax engine currently supports macOS and Android arm64',
+        'The Flax engine currently supports macOS, Android and iOS arm64',
       );
     }
     try {

@@ -37,15 +37,37 @@ List<String> localEngineArguments(
       ? 'release'
       : 'debug';
   target ??= currentCheckTarget();
-  if (!{'macos-arm64', 'android-arm64'}.contains(target.name)) {
+  if (!{
+    'macos-arm64',
+    'android-arm64',
+    'ios-device-arm64',
+    'ios-simulator-arm64',
+  }.contains(target.name)) {
     throw UnsupportedError('No maintained Flax engine for ${target.name}');
   }
   final android = target.os == 'android';
-  final name = 'flax_${android ? 'android' : 'mac'}_${mode}_arm64';
+  final ios = target.os == 'ios';
+  final simulator = target.name == 'ios-simulator-arm64';
+  if (ios &&
+      (mode != (simulator ? 'debug' : 'release') ||
+          arguments.first == 'test' ||
+          arguments.first == 'build' &&
+              arguments.length > 1 &&
+              arguments[1] == 'ios' &&
+              arguments.contains('--simulator') != simulator)) {
+    throw UnsupportedError(
+      'The maintained iOS engine requires simulator debug or device release/AOT',
+    );
+  }
+  final name = ios
+      ? 'flax_ios_${mode}_${simulator ? 'sim_' : ''}arm64'
+      : 'flax_${android ? 'android' : 'mac'}_${mode}_arm64';
   final host = 'flax_mac_${mode}_arm64';
   final output = p.join(source, 'out', name);
   final artifact = android
       ? 'flutter.jar'
+      : ios
+      ? 'Flutter.framework/Flutter'
       : arguments.first == 'test'
       ? 'flutter_tester'
       : 'FlutterMacOS.framework/Versions/A/FlutterMacOS';

@@ -101,6 +101,33 @@ WeakReference<_Owner> _sharedCycle(
   return WeakReference(owner);
 }
 
+@pragma('vm:never-inline')
+WeakReference<_Owner> _sessionChain(List<FlaxNativeJsRuntime> runtimes) {
+  final owner = _Owner();
+  runtimes[2].registerHostFunction(
+    'leaf',
+    (_, _) => FlaxJsNumber((++owner.value).toDouble()),
+  );
+  // The WeakMap key becomes reachable only after tracing the other sessions.
+  runtimes[2].evaluate('''
+    globalThis.leafValues = new WeakMap();
+    (() => {
+      const key = {};
+      leafValues.set(key, leaf);
+      globalThis.leaf = () => leafValues.get(key)();
+    })();
+  ''');
+  final leaf = runtimes[2].evaluate('leaf') as FlaxJsFunction;
+  runtimes[1].registerHostFunction('middle', (_, _) => leaf.call([]));
+  final middle = runtimes[1].evaluate('middle') as FlaxJsFunction;
+  runtimes[0].registerHostFunction('head', (_, _) => middle.call([]));
+  owner.callback = runtimes[0].evaluate('head') as FlaxJsFunction;
+  runtimes[0].evaluate('globalThis.weak = new WeakRef(head)');
+  runtimes[1].evaluate('delete globalThis.middle');
+  runtimes[2].evaluate('delete globalThis.leaf');
+  return WeakReference(owner);
+}
+
 Future<void> _reclaimed(
   FlaxNativeJsRuntime runtime,
   WeakReference<_Owner> owner,
@@ -220,6 +247,33 @@ void flaxEngineGcContract({
       } finally {
         first.dispose();
         second.dispose();
+      }
+    },
+  );
+
+  test(
+    'joint marking follows callback cycles through three sessions',
+    () async {
+      final runtimes = List.generate(
+        3,
+        (_) => FlaxEngine.createRuntime() as FlaxNativeJsRuntime,
+      );
+      try {
+        final owner = _sessionChain(runtimes);
+        await _allocationPressure();
+        await Future<void>.delayed(const Duration(milliseconds: 1200));
+        expect(_dartAlive(owner), isTrue);
+        expect((runtimes.first.evaluate('head()') as FlaxJsNumber).value, 8);
+        runtimes.first.evaluate('delete globalThis.head');
+        await _reclaimed(runtimes.first, owner);
+        for (final runtime in runtimes) {
+          expect(runtime.bridgeCellCount, 0);
+          expect(runtime.bridgeCallbackCount, 0);
+        }
+      } finally {
+        for (final runtime in runtimes) {
+          runtime.dispose();
+        }
       }
     },
   );

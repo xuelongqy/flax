@@ -1,6 +1,7 @@
 # Task: Engine-owned cross-heap GC
 
-Status: local macOS arm64 and Android arm64 emulator and Pixel 4 acceptance passed
+Status: local macOS arm64, Android arm64 emulator and Pixel 4, and iOS arm64 simulator
+debug and iPhone release/AOT correctness acceptance passed
 
 ## Goal and scope
 
@@ -8,8 +9,10 @@ Integrate the verified Dart/V8 conditional tracing experiment into the maintaine
 Flutter 3.47.6 engine on macOS arm64. Use the fork's `flax/main` branch, V8 with JIT on
 macOS and independent session Contexts in one V8 heap per Dart UI isolate. Android arm64
 emulator and Pixel 4 correctness acceptance extends this implementation using the
-existing verified V8 SDK. iOS Hermes and other platform implementations remain outside
-acceptance. No push, CI trigger, SDK asset change or engine publication is authorized.
+existing verified V8 SDK. iOS arm64 simulator debug and device release/AOT embed Hermes
+without JIT. Device debug/profile, simulator profile/release and other platform
+implementations remain outside acceptance. No push, CI trigger, SDK asset change or
+engine publication is authorized.
 
 ## Acceptance criteria
 
@@ -28,10 +31,10 @@ acceptance. No push, CI trigger, SDK asset change or engine publication is autho
 
 Keep native ABI 2 and UI protocol 22. Add a separate internal GC extension and
 `FlaxEngine.createRuntime()`, with an early custom-engine capability check. Reuse V8
-CppHeap and the upstream Dart marking machinery. Remove accidental bridge roots rather
-than adding another Widget lifecycle, heap scanner or user GC API. Persist the
-exact-revision Dart patch in the Flutter fork and apply it through DEPS hooks.
-Local-engine builds precede distribution work.
+CppHeap or Hermes Hades and the upstream Dart marking machinery. Remove accidental
+bridge roots rather than adding another Widget lifecycle, heap scanner or user GC API.
+Persist the exact-revision Dart patch in the Flutter fork and apply it through DEPS
+hooks. Local-engine builds precede distribution work.
 
 ## Results and validation
 
@@ -210,8 +213,8 @@ distribution signing. No commit, push, CI trigger or SDK publication occurred.
 On 2026-10-08, a USB-connected Pixel 4 running Android 13 (API 33), arm64 and 4 KB pages
 passes all 94 debug cases and the same 92 applicable release/AOT cases. The two Flutter
 debug rebuild-hook checks remain explicitly inapplicable in release. Every original
-grouped case name and result matches the accepted emulator baseline; ordinary Dart
-cases are counted separately from the Widget receipt.
+grouped case name and result matches the accepted emulator baseline; ordinary Dart cases
+are counted separately from the Widget receipt.
 
 Both modes prove V8 machine-code generation, preserve either Dart/JS business root,
 reclaim 1,000 rootless bridge cycles and 1,000 Widget/State mount cycles, and pass
@@ -225,9 +228,9 @@ artifact audit, USB installation and correctness tests. First-frame times are fr
 integration fixture, not normal application startup; neither measurement is an Android
 GC/frame benchmark. Complete receipts, fresh device logs, per-case comparisons and
 baseline preservation are in `.local/android-device-20261008/acceptance.json`. The test
-application stops after each mode. This accepts this physical device's correctness,
-not every Android model, performance or distribution signing. No commit, push or CI
-trigger occurs.
+application stops after each mode. This accepts this physical device's correctness, not
+every Android model, performance or distribution signing. No commit, push or CI trigger
+occurs.
 
 The final review fixed premature AsyncIterable source collection: Dart subscriptions
 retain their controller, but not the temporary Stream facade returned by each
@@ -262,3 +265,103 @@ open; the measured fast path is not a bound for every joint collection. The nati
 source and regression fixture hashes match the measured candidate; the V8 GC mode,
 Flutter idle entry point and allocation workload are unchanged. No commit, push, CI
 trigger or publication occurred during this GC optimization.
+
+### iOS Hermes simulator acceptance
+
+Before the iOS work, the existing Flax and Flutter engine changes were committed locally
+as `d0c20985b4c3f6d1be5a82f221f1b74e01e6156d` and
+`341499e7ec7654e4e48093b210009157c32fdff0`, respectively. At simulator acceptance, the
+new iOS changes were uncommitted. No push, CI trigger, publication or immutable SDK
+attachment change occurred.
+
+On 2026-10-08, the iPhone 17 Pro arm64 simulator running iOS 26.5 passes all 95 debug
+application cases: every original Android baseline name and result (94 cases), plus a
+three-session WeakMap ownership regression. The receipt contains 91 Widget cases; four
+ordinary Dart cases are audited separately. No case is skipped or inapplicable. The
+application preserves either business root, reclaims 1,000 rootless bridge cycles and
+1,000 Widget/State mount cycles, and passes callback, Future, Stream, session and view
+isolation checks. The relocated application runs after its temporary source is deleted
+and stops when the gate finishes.
+
+Hermes 260318099.0.4 (bytecode 99) uses concurrent Hades without JIT. Each session owns
+a VM; one coordinator per Dart UI isolate reaches the cross-VM marking fixed point
+before weak processing. The debug `Flutter.framework` statically includes Hermes, JSI
+and Boost.Context, with no second runtime. Its producer recipe, source revision, static
+library hashes, arm64 simulator platform, native exports, dependency closure, strict
+ad-hoc signing and relocated engine hash are verified. The minimum iOS version is 16.3,
+as required by the pinned compiler's system libc++ APIs.
+
+The initial application runs exposed two GC defects. Ordinary Hermes calls did not
+schedule another idle checkpoint after roots were removed; the shared outermost-call
+boundary now queues the coalesced owner-thread request. Hades cleared WeakMap values
+before a key reachable through Dart had been marked; dead entries are now cleared only
+after joint tracing reaches its fixed point. Ordinary Hades marking remains concurrent,
+and its normal WeakMap pass is not duplicated. Failed receipts and an independent
+WeakMap reproduction are retained; assertions were not weakened.
+
+The final standalone Hermes experiment passes 24 cases (20 original and four WeakMap
+root combinations). The macOS V8 runtime and GC regression passes 38 cases, including
+the new three-session chain. Static workspace steps pass after correcting three
+pre-existing Markdown formatting failures and resuming from formatting: 537 generator
+tests, 87 tool tests, analysis, type checks and package delivery checks pass. One
+Windows CDB tool test is explicitly inapplicable on macOS. All five Flutter
+producer/patch helper tests pass. Complete logs, per-case comparisons, signatures and
+hashes are in `.local/ios-hermes-20261008/acceptance.json` and its sibling files.
+
+This accepts simulator debug correctness. Physical devices, Dart AOT, distribution
+signing, the complete platform UI suite and Hermes GC/frame measurements remain pending.
+The existing macOS V8 performance results do not establish Hermes performance. Reproduce
+after building matching engines:
+
+```sh
+FLAX_CHECK_TARGET=ios-simulator-arm64 FLAX_CHECK_DEVICE=<simulator-id> dart run tool/check_engine_application.dart debug
+```
+
+### iOS Hermes physical-device acceptance
+
+On 2026-10-08, an iPhone 14 Pro running iOS 26.6.2 passes 93 release/AOT application
+cases. Every original Android release case name and result is preserved, with the
+additional three-session WeakMap regression. The same two Flutter debug rebuild-hook
+cases are explicitly inapplicable; no applicable case is omitted. The receipt records 89
+Widget cases, and four ordinary Dart cases are audited from the console. Both 1,000
+rootless bridge cycles and 1,000 Widget/State mount cycles return to their baseline.
+Callbacks, Future/Stream ownership, multiple sessions and FlaxViews pass.
+
+The arm64 device producer and its manifest are separate from simulator inputs. The
+release engine statically embeds the same pinned Hermes interpreter and concurrent Hades
+joint-GC implementation. The gate verifies the producer recipe and library hashes,
+device Mach-O platform, native exports, dependency closure and unchanged packaged engine
+content. `App.framework` contains the real Dart AOT data and instructions. The relocated
+application retains real Apple Development signing and a matching provisioning profile;
+it installs after its temporary source is removed, passes, and terminates.
+
+The first audit exposed two harness assumptions: Flutter's AOT library uses a universal
+container with one arm64 slice, and this Flutter revision exports `kDartSnapshotData`
+and `kDartSnapshotText`. The binary checker now accepts a bounded single-slice container
+while rejecting multiple architectures, inconsistent slice headers and invalid offsets.
+The device console also does not capture Flutter's ordinary iOS print sink; only the
+direct-launch release fixture routes its print zone to stdout. Runtime logging and GC
+are unchanged. Earlier failed audit/console logs are retained; assertions are preserved.
+
+All 89 tool tests and five Flutter producer/patch helper tests pass. One Windows CDB
+self-test is explicitly inapplicable on macOS. Scoped Dart analysis passes. Per-case
+comparisons, signing, hashes, logs and preservation checks are in
+`.local/ios-device-hermes-20261008/acceptance.json` and sibling files. At
+physical-device acceptance, the new iOS changes were uncommitted; no push, CI trigger,
+publication or SDK attachment change occurred.
+
+This accepts physical-device release/AOT correctness. Device debug/profile, distribution
+signing, the complete platform UI suite and Hermes GC/frame performance remain outside
+acceptance. Reproduce after building matching engines:
+
+```sh
+FLAX_CHECK_TARGET=ios-device-arm64 FLAX_CHECK_DEVICE=<iphone-id> FLAX_IOS_TEAM=<team-id> dart run tool/check_engine_application.dart release
+```
+
+## Development priorities
+
+Complete and stabilize Flax's core functionality before expanding platform support or
+adding maintained-engine CI. Use focused local checks for changes during this phase;
+retain the accepted macOS, Android and iOS evidence without repeating the platform
+matrix for every development checkpoint. Platform expansion and CI work resume after the
+core behavior and contracts are settled.

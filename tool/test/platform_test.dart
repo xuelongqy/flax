@@ -188,6 +188,52 @@ void main() {
       }
     },
   );
+  test(
+    'single-slice Mach-O containers retain strict architecture checks',
+    () async {
+      final work = Directory.systemTemp.createTempSync('flax-macho-test-');
+      try {
+        final binary = File('${work.path}/App');
+        final target = FlaxNativeTarget('ios-device-arm64');
+        for (final wide in [false, true]) {
+          final data = ByteData(128)
+            ..setUint32(0, wide ? 0xcafebabf : 0xcafebabe, Endian.big)
+            ..setUint32(4, 1, Endian.big)
+            ..setUint32(8, 0x100000c, Endian.big)
+            ..setUint32(64, 0xfeedfacf, Endian.little)
+            ..setUint32(68, 0x100000c, Endian.little);
+          if (wide) {
+            data.setUint64(16, 64, Endian.big);
+            data.setUint64(24, 64, Endian.big);
+          } else {
+            data.setUint32(16, 64, Endian.big);
+            data.setUint32(20, 64, Endian.big);
+          }
+          Future<void> verify() {
+            binary.writeAsBytesSync(data.buffer.asUint8List());
+            return verifyBinaryArchitectures(target, [binary]);
+          }
+
+          await verify();
+          data.setUint32(4, 2, Endian.big);
+          await expectLater(verify(), throwsStateError);
+          data.setUint32(4, 1, Endian.big);
+          data.setUint32(68, 0x1000007, Endian.little);
+          await expectLater(verify(), throwsStateError);
+          data.setUint32(8, 0x1000007, Endian.big);
+          await expectLater(verify(), throwsStateError);
+          if (wide) {
+            data.setUint64(16, 128, Endian.big);
+          } else {
+            data.setUint32(16, 128, Endian.big);
+          }
+          await expectLater(verify(), throwsStateError);
+        }
+      } finally {
+        work.deleteSync(recursive: true);
+      }
+    },
+  );
   test('target selection distinguishes iOS SDKs and Android ARM32', () {
     expect(
       FlaxNativeTarget.fromBuild('ios', 'arm64', appleSdk: 'iphoneos').name,

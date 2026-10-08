@@ -90,14 +90,53 @@ dart run tool/check_engine_application.dart debug
 dart run tool/check_engine_application.dart release
 ```
 
-Android arm64 debug and release/AOT correctness passes on the API 37 emulator with
-16 KB pages and a Pixel 4 running Android 13 with 4 KB pages. Both verify V8 JIT and
-joint GC. Android GC/frame performance and complete platform UI coverage remain pending.
-Use the phone's ADB ID in `FLAX_CHECK_DEVICE` for physical-device checks.
+Android arm64 debug and release/AOT correctness passes on the API 37 emulator with 16 KB
+pages and a Pixel 4 running Android 13 with 4 KB pages. Both verify V8 JIT and joint GC.
+Android GC/frame performance and complete platform UI coverage remain pending. Use the
+phone's ADB ID in `FLAX_CHECK_DEVICE` for physical-device checks.
 
-Platform selection is fixed: iOS Hermes, other native targets V8 JIT. macOS and Android
-arm64 are implemented. Ordinary Flutter, mismatched revisions and unsupported runtime
-isolates fail explicitly; there is no independent SDK runtime fallback. See
+For the iOS arm64 simulator, build the Hermes debug engine and matching macOS debug host
+tools in the Flutter fork:
+
+```sh
+python3 engine/src/flutter/flax/tools/build_engine.py --target ios-simulator-arm64 --mode debug
+```
+
+Then select a booted simulator from the Flax checkout:
+
+```sh
+export FLAX_CHECK_TARGET=ios-simulator-arm64
+export FLAX_CHECK_DEVICE=<simulator-id>
+dart run tool/check_engine_application.dart debug
+```
+
+This gate builds a temporary application with an iOS 16.3 minimum, verifies the embedded
+Hermes interpreter without JIT, and exercises runtime, Widget and joint-GC contracts.
+For a physical arm64 iPhone, build the matching release engine in the Flutter fork:
+
+```sh
+python3 engine/src/flutter/flax/tools/build_engine.py --target ios-device-arm64 --mode release
+```
+
+Build `flax_mac_release_arm64` host tools first, then select the connected device and
+your development signing team from the Flax checkout:
+
+```sh
+export FLAX_CHECK_TARGET=ios-device-arm64
+export FLAX_CHECK_DEVICE=<iphone-id>
+export FLAX_IOS_TEAM=<team-id>
+dart run tool/check_engine_application.dart release
+```
+
+The device gate verifies real signing, provisioning, Dart AOT and the relocated engine
+before installation. Simulator profile/release and physical-device debug/profile are
+currently unsupported. Hermes GC/frame performance and distribution signing require
+separate acceptance.
+
+Platform selection is fixed: iOS Hermes, other native targets V8 JIT. macOS, Android
+arm64, iOS arm64 simulator debug and iOS arm64 device release are implemented. Ordinary
+Flutter, mismatched revisions and unsupported runtime isolates fail explicitly; there is
+no independent SDK runtime fallback. See
 [engine ownership](docs/decisions/0039-engine-owned-cross-heap-gc.md).
 
 ## Toolchain

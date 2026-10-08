@@ -2,21 +2,30 @@
 
 ## Implemented scope
 
-Flax uses its maintained Flutter 3.47.6 engine on macOS and Android arm64, with V8
-15.4.80.15 JIT. `FlaxEngine.createRuntime()` is the common entry in
-`package:flax/runtime.dart`. It checks native ABI 2, internal GC extension 1 and the
-exact Flutter/Dart revisions before allocation. Ordinary Flutter and incompatible
-engines fail explicitly. UI protocol 22 is unchanged.
+Flax uses its maintained Flutter 3.47.6 engine: V8 15.4.80.15 JIT on macOS and Android
+arm64, and Hermes 260318099.0.4 without JIT on iOS arm64. `FlaxEngine.createRuntime()`
+is the common entry in `package:flax/runtime.dart`. It checks native ABI 2, internal GC
+extension 1 and the exact Flutter/Dart revisions before allocation. Ordinary Flutter and
+incompatible engines fail explicitly. UI protocol 22 is unchanged.
 
-The Flutter fork owns the C++ bridge, V8 adapter and revision-checked Dart patch. One UI
-isolate owns one V8 heap/C++ heap; each runtime uses an independent Context and
+The Flutter fork owns the C++ bridge, platform adapters and revision-checked Dart patch.
+One UI isolate owns one V8 heap/C++ heap; each runtime uses an independent Context and
 microtask queue. Dart parallel marking and V8 conditional tracing reclaim rootless
 cross-language cycles. See [bridge references](references.md) and
 [ADR 0039](../decisions/0039-engine-owned-cross-heap-gc.md).
 
+Hermes sessions own separate VMs. One coordinator per Dart UI isolate traces them
+together before weak processing, using Hermes's existing Hades marker. Ordinary Hermes
+marking remains concurrent; active JS jobs defer joint collection. Closing one session
+preserves the others. Hermes, JSI and Boost.Context are linked into `Flutter.framework`;
+the application carries no second standalone runtime.
+
 Platform policy is iOS Hermes and other native V8 JIT. macOS and Android arm64 are
 implemented; Android debug and release/AOT acceptance covers an arm64 emulator and a
-Pixel 4 running Android 13. Engine package factories delegate to the common entry and
+Pixel 4 running Android 13. The iOS producer supports simulator debug and
+physical-device release/AOT applications on iOS 16.3 or later. Device debug/profile and
+simulator profile/release are unsupported; Hermes performance and distribution
+acceptance remain pending. Engine package factories delegate to the common entry and
 reject a wrong platform; they no longer build native assets. Earlier SDK platform
 validation remains historical evidence, not acceptance of this implementation.
 
@@ -25,8 +34,8 @@ validation remains historical evidence, not acceptance of this implementation.
 The maintained V8 adapter uses ordinary source compilation and preserves ES6 block
 scope, direct evaluation and Function construction. Runtime regressions include loop
 closures, source bundles, deferred callbacks and accessors. They are focused coverage,
-not complete ECMAScript conformance. The retained Hermes adapter settings are historical
-until iOS integration is implemented.
+not complete ECMAScript conformance. The maintained Hermes adapter uses source
+compilation, ES6 block scoping and explicit microtask checkpoints.
 
 ## Values and references
 
@@ -127,10 +136,20 @@ foreign-reference rejection, reentry and recreation. No command downloads or reb
 SDK runtime. Ordinary `check` verifies source and package structure.
 
 `dart run tool/check_engine_application.dart debug|profile|release` runs runtime and
-real Widget/State, callback, Future and Stream regressions in a macOS application.
-Release builds run directly because Flutter Driver does not support release mode.
-Application and performance evidence is recorded in the
-[acceptance task](../tasks/engine-cross-heap-gc.md).
+real Widget/State, callback, Future and Stream regressions in a macOS application. For
+an iOS simulator, set `FLAX_CHECK_TARGET=ios-simulator-arm64` and
+`FLAX_CHECK_DEVICE=<simulator-id>`, then run the same application's `debug` gate.
+Simulator profile/release modes are rejected explicitly. Release builds run directly
+because Flutter Driver does not support release mode. Application and performance
+evidence is recorded in the [acceptance task](../tasks/engine-cross-heap-gc.md).
+
+For a physical arm64 iPhone, use `FLAX_CHECK_TARGET=ios-device-arm64`,
+`FLAX_CHECK_DEVICE=<iphone-id>` and `FLAX_IOS_TEAM=<team-id>`, then run the `release`
+gate with matching iOS release and macOS release host engines. It verifies real signing,
+provisioning, Dart AOT, the embedded Hermes interpreter and relocation before
+installing. The direct-launch fixture writes iOS release results to stdout so the device
+console can audit every case; ordinary Flutter logging is unchanged. Device
+debug/profile modes are rejected explicitly.
 
 For Android arm64, set `ANDROID_HOME`, `FLAX_CHECK_TARGET=android-arm64` and
 `FLAX_CHECK_DEVICE=<adb-id>`, then run
@@ -138,8 +157,8 @@ For Android arm64, set `ANDROID_HOME`, `FLAX_CHECK_TARGET=android-arm64` and
 and macOS host tools must already be built. This gate runs the same runtime and Flutter
 assertions in an installed APK, proves V8 JIT, and audits all native libraries,
 immutable SDK hashes, signing and 16 KB page alignment. Release uses Dart AOT. The
-staged source is removed before installation. The API 37 emulator uses 16 KB pages;
-the accepted Pixel 4 uses 4 KB pages. These correctness checks do not establish Android
+staged source is removed before installation. The API 37 emulator uses 16 KB pages; the
+accepted Pixel 4 uses 4 KB pages. These correctness checks do not establish Android
 GC/frame performance or distribution signing.
 
 Package integration commands own package-specific Flutter/example behavior.

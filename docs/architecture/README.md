@@ -95,10 +95,12 @@ examples demonstrate one capability; top-level examples demonstrate composition.
 [package boundaries](packaging.md) and
 [ADR 0017](../decisions/0017-package-boundaries.md).
 
-Platform policy is iOS Hermes and other native V8 JIT. macOS and Android arm64 are
-implemented with the maintained engine; Android debug and release/AOT correctness has
-emulator and Pixel 4 acceptance. Android performance remains unmeasured. See
-[ADR 0039](../decisions/0039-engine-owned-cross-heap-gc.md) and [packaging](packaging.md).
+Platform policy is iOS Hermes and other native V8 JIT. macOS, Android arm64 and iOS
+arm64 are implemented with the maintained engine. iOS supports simulator debug and
+device release/AOT. Android debug and release/AOT correctness has emulator and Pixel 4
+acceptance. Android and Hermes performance remain unmeasured. See
+[ADR 0039](../decisions/0039-engine-owned-cross-heap-gc.md) and
+[packaging](packaging.md).
 
 [Owned Dart objects](objects.md) describes generated Controller references, paired
 listeners, borrowed Widget parameters, and named-page cleanup.

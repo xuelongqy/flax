@@ -21,25 +21,48 @@ Future<void> main(List<String> arguments) => command(() async {
   final root = Directory.fromUri(Platform.script.resolve('../')).path;
   final target = currentCheckTarget();
   final android = target.name == 'android-arm64';
+  final ios = target.os == 'ios';
+  final simulator = target.name == 'ios-simulator-arm64';
+  if (!{
+    'macos-arm64',
+    'android-arm64',
+    'ios-device-arm64',
+    'ios-simulator-arm64',
+  }.contains(target.name)) {
+    throw UnsupportedError(
+      'No maintained engine acceptance for ${target.name}',
+    );
+  }
+  if (ios && mode != (simulator ? 'debug' : 'release')) {
+    throw UnsupportedError(
+      'iOS acceptance requires simulator debug or device release/AOT',
+    );
+  }
+  final mobile = android || ios;
+  final engine = ios ? 'hermes' : 'v8';
   final device = Platform.environment['FLAX_CHECK_DEVICE'];
-  if (android) {
+  if (mobile) {
     if (device == null || device.isEmpty) {
-      throw ArgumentError('Android acceptance requires FLAX_CHECK_DEVICE');
+      throw ArgumentError('Mobile acceptance requires FLAX_CHECK_DEVICE');
     }
   } else {
     requireUiAssets(root);
   }
   final tests = collectUiTests(root, packageName: 'flax');
   final fixtures = await prepareUiFixtures(root, tests);
-  final name = 'engine-gc-${android ? '${target.name}-' : ''}$mode';
+  final name = 'engine-gc-${mobile ? '${target.name}-' : ''}$mode';
   final receipt = File('$root/build/$name.json');
   receipt.parent.createSync(recursive: true);
   if (receipt.existsSync()) receipt.deleteSync();
   final relocated =
-      '$root/build/$name/${android ? 'app.apk' : 'flax_standalone.app'}';
+      '$root/build/$name/${android
+          ? 'app.apk'
+          : ios
+          ? 'Runner.app'
+          : 'flax_standalone.app'}';
   String? bundle;
   Map<String, Object?>? audit;
-  await withExample(root, 'v8', 'standalone', (example) async {
+  await withExample(root, engine, 'standalone', (example) async {
     final packages = Directory.fromUri(
       Directory(example).uri.resolve('../../packages/'),
     );
@@ -50,19 +73,58 @@ Future<void> main(List<String> arguments) => command(() async {
       );
     }
     rewriteDartDirectiveUris(packages, Directory(root), packages.parent);
-    selectExampleEngine(root, '${packages.path}/flax/test', 'v8');
+    selectExampleEngine(root, '${packages.path}/flax/test', engine);
     File('$example/assets/engine-fixtures.json')
         .writeAsStringSync(jsonEncode(fixtures));
-    if (android) {
-      if (mode == 'release') {
-        // This acceptance entry uses the plugin that release excludes from dev deps.
-        final manifest = File('$example/pubspec.yaml');
-        final pubspec = readYamlFile(manifest);
-        (pubspec['dependencies'] as Map)['integration_test'] =
-            (pubspec['dev_dependencies'] as Map).remove('integration_test');
-        manifest.writeAsStringSync(jsonEncode(pubspec));
-        await run('flutter', ['pub', 'get'], directory: example);
+    if (mobile && mode == 'release') {
+      // Flutter excludes dev plugins from release; this fixture uses integration_test.
+      final manifest = File('$example/pubspec.yaml');
+      final pubspec = readYamlFile(manifest);
+      (pubspec['dependencies'] as Map)['integration_test'] =
+          (pubspec['dev_dependencies'] as Map).remove('integration_test');
+      manifest.writeAsStringSync(jsonEncode(pubspec));
+      await run('flutter', ['pub', 'get'], directory: example);
+    }
+    if (ios) {
+      configurePlatformProject(example, target);
+      final project = File('$example/ios/Runner.xcodeproj/project.pbxproj');
+      project.writeAsStringSync(
+        project.readAsStringSync().replaceAll(
+          RegExp(r'IPHONEOS_DEPLOYMENT_TARGET = [^;]+;'),
+          'IPHONEOS_DEPLOYMENT_TARGET = 16.3;',
+        ),
+      );
+      await run('flutter', [
+        'build',
+        'ios',
+        if (simulator) '--simulator',
+        '--$mode',
+        '--no-pub',
+        '--target=integration_test/engine_gc_test.dart',
+        '--dart-define=FLAX_ENGINE_DIRECT_LAUNCH=true',
+      ], directory: example);
+      final product =
+          '$example/build/ios/${simulator ? 'iphonesimulator' : 'iphoneos'}/Runner.app';
+      bundle = await applicationBundle(example, target, product);
+      if (Directory(relocated).existsSync()) {
+        Directory(relocated).deleteSync(recursive: true);
       }
+      Directory(relocated).parent.createSync(recursive: true);
+      await run('ditto', [product, relocated]);
+      if (simulator) {
+        await run('codesign', [
+          '--force',
+          '--sign',
+          '-',
+          '--timestamp=none',
+          '--deep',
+          relocated,
+        ]);
+      }
+      audit = await verifyEngineApplication(relocated, mode, target: target);
+      return;
+    }
+    if (android) {
       final properties = File('$example/android/gradle.properties');
       properties.writeAsStringSync(
         '\ndisable-abi-filtering=true\n',
@@ -130,8 +192,8 @@ android.defaultConfig.ndk.abiFilters.add("arm64-v8a")
     );
     File('$example/build/engine-gc-$mode.json').copySync(receipt.path);
   });
-  if (android || mode == 'release') {
-    final output = android
+  if (mobile || mode == 'release') {
+    final output = mobile
         ? await runMobileApplication(
             target,
             device!,
@@ -146,10 +208,14 @@ android.defaultConfig.ndk.abiFilters.add("arm64-v8a")
             'FLAX_ENGINE_PASSED',
             environment: {'FLAX_VERIFY_V8_JIT': '1'},
           );
-    if (!output.contains('FLAX_V8_JIT: machine code generated')) {
-      throw StateError('V8 JIT proof is missing');
+    if (!output.contains(
+      ios
+          ? 'FLAX_HERMES: embedded interpreter, joint GC'
+          : 'FLAX_V8_JIT: machine code generated',
+    )) {
+      throw StateError('${ios ? 'Hermes' : 'V8 JIT'} proof is missing');
     }
-    final prefix = android
+    final prefix = mobile
         ? 'FLAX_ENGINE_RESULT_BASE64:'
         : 'FLAX_ENGINE_RESULT:';
     final result = const LineSplitter()
@@ -158,7 +224,7 @@ android.defaultConfig.ndk.abiFilters.add("arm64-v8a")
         .map((line) => line.substring(line.indexOf(prefix) + prefix.length))
         .join();
     final data = jsonDecode(
-      android ? utf8.decode(base64Decode(result)) : result,
+      mobile ? utf8.decode(base64Decode(result)) : result,
     ) as Map<String, dynamic>;
     receipt.writeAsStringSync(
       jsonEncode({

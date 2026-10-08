@@ -7,6 +7,79 @@ import '../src/local_engine.dart';
 import '../src/process.dart';
 
 void main() {
+  test(
+    'iOS devices select AOT artifacts and reject simulator or JIT builds',
+    () {
+      final source = Directory.systemTemp.createTempSync('flax-ios-device-');
+      addTearDown(() => source.deleteSync(recursive: true));
+      final target = FlaxNativeTarget('ios-device-arm64');
+      File(
+          '${source.path}/out/flax_ios_release_arm64/Flutter.framework/Flutter',
+        )
+        ..parent.createSync(recursive: true)
+        ..writeAsStringSync('');
+      expect(
+        localEngineArguments(
+          ['build', 'ios', '--release'],
+          source: source.path,
+          target: target,
+        ).take(3),
+        [
+          '--local-engine-src-path=${source.path}',
+          '--local-engine=flax_ios_release_arm64',
+          '--local-engine-host=flax_mac_release_arm64',
+        ],
+      );
+      for (final command in [
+        ['build', 'ios', '--release', '--simulator'],
+        ['run', '--debug'],
+        ['run', '--profile'],
+        ['test'],
+      ]) {
+        expect(
+          () => localEngineArguments(
+            command,
+            source: source.path,
+            target: target,
+          ),
+          throwsUnsupportedError,
+        );
+      }
+    },
+  );
+  test('iOS simulator selects Hermes engine artifacts and rejects AOT modes', () {
+    final source = Directory.systemTemp.createTempSync('flax-ios-engine-');
+    addTearDown(() => source.deleteSync(recursive: true));
+    final target = FlaxNativeTarget('ios-simulator-arm64');
+    File(
+        '${source.path}/out/flax_ios_debug_sim_arm64/Flutter.framework/Flutter',
+      )
+      ..parent.createSync(recursive: true)
+      ..writeAsStringSync('');
+    expect(
+      localEngineArguments(
+        ['build', 'ios', '--simulator', '--debug'],
+        source: source.path,
+        target: target,
+      ).take(3),
+      [
+        '--local-engine-src-path=${source.path}',
+        '--local-engine=flax_ios_debug_sim_arm64',
+        '--local-engine-host=flax_mac_debug_arm64',
+      ],
+    );
+    for (final command in [
+      ['build', 'ios', '--simulator'],
+      ['run', '--profile'],
+      ['test'],
+    ]) {
+      expect(
+        () =>
+            localEngineArguments(command, source: source.path, target: target),
+        throwsUnsupportedError,
+      );
+    }
+  });
   test('static subprocesses drop only the local engine override', () async {
     final temporary = Directory.systemTemp.createTempSync(
       'flax-static-engine-',

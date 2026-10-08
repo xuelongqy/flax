@@ -1,10 +1,10 @@
 # Bridge references and GC
 
-The maintained Flutter engine connects Dart's collector to V8 CppHeap conditional
-tracing. Real business roots in either heap retain their peers; rootless cross-language
-cycles can be reclaimed. Flax does not add a JS heap scanner or a second Widget
-lifecycle. Flutter owns Elements, State, scheduling and application disposal. See
-[ADR 0039](../decisions/0039-engine-owned-cross-heap-gc.md).
+The maintained Flutter engine connects Dart's collector to V8 CppHeap or the iOS Hermes
+Hades marker through conditional tracing. Real business roots in either heap retain
+their peers; rootless cross-language cycles can be reclaimed. Flax does not add a JS
+heap scanner or a second Widget lifecycle. Flutter owns Elements, State, scheduling and
+application disposal. See [ADR 0039](../decisions/0039-engine-owned-cross-heap-gc.md).
 
 At the Dart major-GC safepoint, marked Dart origins first propagate through their exact
 JS peers to direct Dart targets. If every registered Dart target is already marked, this
@@ -15,6 +15,14 @@ assumption that unchanged registrations imply unchanged references.
 Flutter idle notifications still check Dart ownership. JS work separately marks the heap
 for idle V8 collection, including discarded JS wrappers whose Dart targets remain alive.
 Ordinary V8 pressure collection and session cleanup continue to run.
+
+Hermes uses a separate VM for each session and a shared UI-isolate coordinator. Joint
+collection holds all participating final mark phases until cross-session references
+reach a fixed point, then clears dead WeakMap entries and processes weak references.
+Outermost JS bridge calls schedule coalesced idle collection, including work after the
+last Flutter frame. It uses Hades's existing mark state, with no additional heap
+scanner. Ordinary Hades marking remains concurrent. Collection requests during active JS
+jobs defer to a safe owner-thread checkpoint.
 
 ## Retention directions
 
