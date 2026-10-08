@@ -1,27 +1,37 @@
 part of '../../bindings.dart';
 
 /// One typed view over a Dart Stream. Creating the view never listens.
+final _streamFinalizer = Finalizer<WeakReference<_StreamReference>>(
+  (reference) => reference.target?.release(),
+);
+
 class _StreamReference {
   _StreamReference(
     this.session,
     this.id,
     this.binding,
     this.type,
-    this.source,
-    this.value,
-  );
+    Object source,
+    Stream<Object?> value,
+  ) : _source = WeakReference(source),
+      _value = WeakReference(value) {
+    _streamFinalizer.attach(value, WeakReference(this), detach: this);
+  }
 
   final _Session session;
   final _BindingContext? context = _bindingContext;
   final int id;
   final FlaxStreamTypeBinding binding;
   final FlaxTypeRef type;
-  final Object source;
-  Stream<Object?>? value;
+  final WeakReference<Object> _source;
+  Object? get source => _source.target;
+  WeakReference<Stream<Object?>>? _value;
+  Stream<Object?>? get value => _value?.target;
 
   void release() {
-    if (value == null) return;
-    value = null;
+    if (_value == null) return;
+    _streamFinalizer.detach(this);
+    _value = null;
     session._streamReferences.remove(id);
     final views = session._streamViews[source];
     views?.remove(
@@ -49,19 +59,28 @@ class _StreamBorrow extends _Resource {
 }
 
 class _DartErrorReference {
-  _DartErrorReference(this.session, this.id, this.error, this.stack);
+  _DartErrorReference(
+    this.session,
+    this.id,
+    this.error,
+    this.stack,
+    this.indexed,
+  );
 
   final _Session session;
   final int id;
+  // Errors include Records, non-finite numbers and FFI values which cannot
+  // themselves be weak Dart targets. The engine traces this metadata instead.
   final Object error;
   final StackTrace stack;
+  final bool indexed;
   bool released = false;
 
   void release() {
     if (released) return;
     released = true;
     session._dartErrors.remove(id);
-    session._dartErrorIds.remove(error);
+    if (indexed) session._dartErrorIds.remove(error);
   }
 }
 
@@ -148,7 +167,8 @@ class _AsyncIterableStreamSource {
   bool requesting = false;
   bool closed = false;
 
-  Stream<Object?> get stream => controller.stream;
+  // A live subscription owns this source, which must retain its JS peer's origin.
+  late final Stream<Object?> stream = controller.stream;
 
   void _listen() {
     if (started) return;
@@ -417,21 +437,39 @@ extension _StreamCalls on _Session {
       // Any Dart object can be an asynchronous error. Only explicitly marked
       // error positions widen the ordinary Object conversion in this way.
     }
-    var reference = _dartErrorIds[error];
+    _DartErrorReference? reference;
+    var indexed = true;
+    try {
+      reference = _dartErrorIds[error];
+    } on ArgumentError {
+      // Immutable values and FFI values have no Expando identity. Their opaque
+      // error view still restores the original value and StackTrace.
+      indexed = false;
+    }
     if (reference == null) {
-      reference = _DartErrorReference(this, _nextObject++, error, stack);
+      reference = _DartErrorReference(
+        this,
+        _nextObject++,
+        error,
+        stack,
+        indexed,
+      );
       _dartErrors[reference.id] = reference;
-      _dartErrorIds[error] = reference;
+      if (indexed) _dartErrorIds[error] = reference;
     }
     final message = error is FlaxJsException ? error.message : error.toString();
     final text = error is FlaxJsException && error.jsStack.isNotEmpty
         ? error.jsStack
         : stack.toString();
-    return helper('dartError').call([
-      FlaxJsNumber(reference.id.toDouble()),
-      FlaxJsString(message),
-      text.isEmpty ? const FlaxJsNull() : FlaxJsString(text),
-    ]);
+    return _peerResult(
+      helper('dartError').call([
+        FlaxJsNumber(reference.id.toDouble()),
+        FlaxJsString(message),
+        text.isEmpty ? const FlaxJsNull() : FlaxJsString(text),
+      ]),
+      reference,
+      origin: reference,
+    );
   }
 
   FlaxJsValue streamResult(Object source, FlaxTypeRef type) {
@@ -444,11 +482,15 @@ extension _StreamCalls on _Session {
     final viewKey = _bindingViewKey(adapter.id, _usesBindingContext(type));
     final existing = views[viewKey];
     if (existing != null && existing.value != null) {
-      return helper('streamObject').call([
-        FlaxJsString(binding.id),
-        FlaxJsString(adapter.id),
-        FlaxJsNumber(existing.id.toDouble()),
-      ]);
+      return _peerResult(
+        helper('streamObject').call([
+          FlaxJsString(binding.id),
+          FlaxJsString(adapter.id),
+          FlaxJsNumber(existing.id.toDouble()),
+        ]),
+        existing.value!,
+        origin: source,
+      );
     }
     late final Stream<Object?> adapted;
     try {
@@ -466,11 +508,15 @@ extension _StreamCalls on _Session {
     );
     views[viewKey] = reference;
     _streamReferences[reference.id] = reference;
-    return helper('streamObject').call([
-      FlaxJsString(binding.id),
-      FlaxJsString(adapter.id),
-      FlaxJsNumber(reference.id.toDouble()),
-    ]);
+    return _peerResult(
+      helper('streamObject').call([
+        FlaxJsString(binding.id),
+        FlaxJsString(adapter.id),
+        FlaxJsNumber(reference.id.toDouble()),
+      ]),
+      adapted,
+      origin: source,
+    );
   }
 
   _Value decodeStream(FlaxJsObject input, FlaxTypeRef type) {
@@ -617,7 +663,9 @@ extension _StreamCalls on _Session {
 
     _registerBindingHostFunction('__flaxCreateStreamIterator', (_, args) {
       _checkCall(args, 2, numericReceiver: true);
-      if (args[1] is! FlaxJsNumber) {
+      if (args.length != 3 ||
+          args[1] is! FlaxJsNumber ||
+          args[2] is! FlaxJsObject) {
         throw ArgumentError('Invalid Stream iterator');
       }
       final reference =
@@ -626,7 +674,10 @@ extension _StreamCalls on _Session {
         throw ArgumentError('Foreign or released Dart Stream');
       }
       final id = _nextStreamIterator++;
-      _streamIterators[id] = _TrackedStreamIterator(this, id, reference);
+      final iterator = _TrackedStreamIterator(this, id, reference);
+      _streamIterators[id] = iterator;
+      (_bridgeOwners[iterator.iterator] ??= []).add(iterator);
+      runtime.bindDartPeer(args[2] as FlaxJsObject, iterator, origin: iterator);
       return FlaxJsNumber(id.toDouble());
     });
 

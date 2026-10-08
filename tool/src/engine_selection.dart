@@ -1,4 +1,4 @@
-const defaultFlaxEngine = 'hermes';
+const defaultFlaxEngine = 'v8';
 
 String selectedEngine(List<String> arguments) {
   if (arguments.isEmpty) return defaultFlaxEngine;

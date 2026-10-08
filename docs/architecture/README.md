@@ -4,9 +4,10 @@
 
 Implemented: Pub/Melos and pnpm workspaces, static checks, JS package compilation, C ABI
 generation, and an experimental Dart/C ABI/JSI runtime on macOS arm64. Runtime
-verification includes native tests, Dart integration, and independent JIT/AOT package
-loading. Generated Flutter/Material bindings, signals, and a real embedded Flutter host
-implement local property and dynamic subtree updates; see [UI lifecycle](ui.md).
+verification uses the maintained Flutter engine, joint Dart/V8 GC and real macOS debug,
+profile and release/AOT applications. Generated Flutter/Material bindings, signals, and
+a real embedded Flutter host implement local property and dynamic subtree updates; see
+[UI lifecycle](ui.md).
 
 Synchronous generated callbacks also support Builder/LayoutBuilder, borrowed Context
 references, selected static methods, and readonly constraint references. The binding
@@ -23,14 +24,14 @@ standalone applications. Flutter owns widgets, layout, painting, and native reso
 
 ## Layers
 
-| Layer                  | Owner                          | Responsibility and status                                               |
-| ---------------------- | ------------------------------ | ----------------------------------------------------------------------- |
-| Core Dart and JS       | `packages/flax` / `@flax/core` | Runtime, host environment, sessions, Flutter bindings, and signals      |
-| Extension packages     | `packages/flax_*`              | Material bindings, host plugins, and their package-local tests/examples |
-| Shared native runtime  | `packages/flax/native`         | C ABI, JSI operations, references, callbacks, errors, and bytes         |
-| Engine adaptation      | `packages/flax_engine_*`       | Locked shared SDKs, adapters, and engine tests                          |
-| Binding generator      | `packages/flax_codegen`        | Public API analysis, manifests, explicit selection, and Dart/TS output  |
-| Aggregate applications | `examples/*`                   | Multi-package integration, outside consumption, and release checks      |
+| Layer                  | Owner                             | Responsibility and status                                               |
+| ---------------------- | --------------------------------- | ----------------------------------------------------------------------- |
+| Core Dart and JS       | `packages/flax` / `@flax/core`    | Runtime, host environment, sessions, Flutter bindings, and signals      |
+| Extension packages     | `packages/flax_*`                 | Material bindings, host plugins, and their package-local tests/examples |
+| Shared native runtime  | `packages/flax/native`            | Canonical ABI and internal GC headers                                   |
+| Engine adaptation      | `flutter/engine/src/flutter/flax` | C++ bridge, V8 CppHeap, Dart patch and engine packaging                 |
+| Binding generator      | `packages/flax_codegen`           | Public API analysis, manifests, explicit selection, and Dart/TS output  |
+| Aggregate applications | `examples/*`                      | Multi-package integration, outside consumption, and release checks      |
 
 Application JS may use only engine language features and the host APIs installed by the
 selected session plugins. Repository maintenance commands belong in `tool/`.
@@ -44,13 +45,13 @@ Dart FlaxJsRuntime
   -> shared Dart FFI wrapper
   -> versioned C function table
   -> shared JSI operations
-  -> Hermes or V8
+  -> engine-owned V8 Context and shared CppHeap (macOS)
   -> synchronous Dart host callback (which may reenter JS)
 ```
 
-The engine package supplies the native asset entry point; core Dart code does not know
-its library name or filesystem path. See [execution and lifetime](runtime.md) and
-[bridge references and GC](references.md).
+The matching Flutter engine exports the native and GC function tables. Core loads
+process exports and rejects incompatible engines before allocating a runtime. See
+[execution and lifetime](runtime.md) and [bridge references and GC](references.md).
 
 The UI path adds JS descriptors -> generated factories -> native Widgets. Flutter events
 invoke JS callbacks, and signals invalidate individual mounted properties for the next
@@ -94,11 +95,10 @@ examples demonstrate one capability; top-level examples demonstrate composition.
 [package boundaries](packaging.md) and
 [ADR 0017](../decisions/0017-package-boundaries.md).
 
-Hermes remains the repository command and example default only. That is not a product
-default-engine choice; product default engine and per-platform selection remain open
-(see [open questions](../decisions/open-questions.md)). V8 is an explicit experimental
-alternative; QuickJS-NG remains reserved. Distribution and generation are described in
-[packaging](packaging.md).
+Platform policy is iOS Hermes and other native V8 JIT. macOS and Android arm64 are
+implemented with the maintained engine; Android debug and release/AOT correctness has
+emulator and Pixel 4 acceptance. Android performance remains unmeasured. See
+[ADR 0039](../decisions/0039-engine-owned-cross-heap-gc.md) and [packaging](packaging.md).
 
 [Owned Dart objects](objects.md) describes generated Controller references, paired
 listeners, borrowed Widget parameters, and named-page cleanup.

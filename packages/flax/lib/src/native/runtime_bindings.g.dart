@@ -7,9 +7,71 @@
 // ignore_for_file: unused_import, unused_element, deprecated_member_use_from_same_package
 import 'dart:ffi' as ffi;
 
+/// Experimental Flax C ABI types. Regenerate with dart run melos run ffi:generate.
+class FlaxBindings {
+  /// Holds the symbol lookup function.
+  final ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName)
+  _lookup;
+
+  /// The symbols are looked up in [dynamicLibrary].
+  FlaxBindings(ffi.DynamicLibrary dynamicLibrary)
+    : _lookup = dynamicLibrary.lookup;
+
+  /// The symbols are looked up with [lookup].
+  FlaxBindings.fromLookup(
+    ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName) lookup,
+  ) : _lookup = lookup;
+
+  ffi.Pointer<FlaxApi> flax_engine_get_api(int version) {
+    return _flax_engine_get_api(version);
+  }
+
+  late final _flax_engine_get_apiPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<FlaxApi> Function(ffi.Uint32)>>(
+        'flax_engine_get_api',
+      );
+  late final _flax_engine_get_api = _flax_engine_get_apiPtr
+      .asFunction<ffi.Pointer<FlaxApi> Function(int)>();
+
+  ffi.Pointer<FlaxEngineGcApi> flax_engine_get_gc_api(int version) {
+    return _flax_engine_get_gc_api(version);
+  }
+
+  late final _flax_engine_get_gc_apiPtr =
+      _lookup<
+        ffi.NativeFunction<ffi.Pointer<FlaxEngineGcApi> Function(ffi.Uint32)>
+      >('flax_engine_get_gc_api');
+  late final _flax_engine_get_gc_api = _flax_engine_get_gc_apiPtr
+      .asFunction<ffi.Pointer<FlaxEngineGcApi> Function(int)>();
+
+  void flax_engine_notify_idle_current_isolate() {
+    return _flax_engine_notify_idle_current_isolate();
+  }
+
+  late final _flax_engine_notify_idle_current_isolatePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function()>>(
+        'flax_engine_notify_idle_current_isolate',
+      );
+  late final _flax_engine_notify_idle_current_isolate =
+      _flax_engine_notify_idle_current_isolatePtr.asFunction<void Function()>();
+
+  void flax_engine_shutdown_current_isolate() {
+    return _flax_engine_shutdown_current_isolate();
+  }
+
+  late final _flax_engine_shutdown_current_isolatePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function()>>(
+        'flax_engine_shutdown_current_isolate',
+      );
+  late final _flax_engine_shutdown_current_isolate =
+      _flax_engine_shutdown_current_isolatePtr.asFunction<void Function()>();
+}
+
 const int FLAX_ABI_VERSION = 2;
 
 const int FLAX_CALLBACK_FAILURE = 4;
+
+const int FLAX_ENGINE_GC_VERSION = 1;
 
 final class FlaxApi extends ffi.Struct {
   @ffi.Uint32()
@@ -483,6 +545,120 @@ final class FlaxApi extends ffi.Struct {
     ..ref.error_set = error_set;
 }
 
+final class FlaxEngineGcApi extends ffi.Struct {
+  @ffi.Uint32()
+  external int version;
+
+  @ffi.Size()
+  external int struct_size;
+
+  external ffi.Pointer<ffi.Char> flutter_revision;
+
+  external ffi.Pointer<ffi.Char> dart_revision;
+
+  external ffi.Pointer<
+    ffi.NativeFunction<
+      ffi.Int32 Function(
+        ffi.Pointer<FlaxRuntime>,
+        FlaxValueId,
+        ffi.Handle,
+        ffi.Pointer<FlaxError>,
+      )
+    >
+  >
+  bind_value;
+
+  external ffi.Pointer<
+    ffi.NativeFunction<
+      ffi.Int32 Function(
+        ffi.Pointer<FlaxRuntime>,
+        FlaxValueId,
+        ffi.Handle,
+        ffi.Handle,
+        ffi.Pointer<FlaxError>,
+      )
+    >
+  >
+  bind_peer;
+
+  external ffi.Pointer<
+    ffi.NativeFunction<
+      ffi.Int32 Function(
+        ffi.Pointer<FlaxRuntime>,
+        ffi.Pointer<ffi.Uint16>,
+        ffi.Size,
+        FlaxHostCallback,
+        ffi.Pointer<ffi.Void>,
+        ffi.Handle,
+        ffi.Pointer<FlaxError>,
+      )
+    >
+  >
+  register_host;
+
+  external ffi.Pointer<
+    ffi.NativeFunction<ffi.Uint64 Function(ffi.Pointer<FlaxRuntime>)>
+  >
+  cell_count;
+
+  static ffi.Pointer<FlaxEngineGcApi> $allocate(
+    ffi.Allocator $allocator, {
+    required int version,
+    required int struct_size,
+    required ffi.Pointer<ffi.Char> flutter_revision,
+    required ffi.Pointer<ffi.Char> dart_revision,
+    required ffi.Pointer<
+      ffi.NativeFunction<
+        ffi.Int32 Function(
+          ffi.Pointer<FlaxRuntime>,
+          FlaxValueId,
+          ffi.Handle,
+          ffi.Pointer<FlaxError>,
+        )
+      >
+    >
+    bind_value,
+    required ffi.Pointer<
+      ffi.NativeFunction<
+        ffi.Int32 Function(
+          ffi.Pointer<FlaxRuntime>,
+          FlaxValueId,
+          ffi.Handle,
+          ffi.Handle,
+          ffi.Pointer<FlaxError>,
+        )
+      >
+    >
+    bind_peer,
+    required ffi.Pointer<
+      ffi.NativeFunction<
+        ffi.Int32 Function(
+          ffi.Pointer<FlaxRuntime>,
+          ffi.Pointer<ffi.Uint16>,
+          ffi.Size,
+          FlaxHostCallback,
+          ffi.Pointer<ffi.Void>,
+          ffi.Handle,
+          ffi.Pointer<FlaxError>,
+        )
+      >
+    >
+    register_host,
+    required ffi.Pointer<
+      ffi.NativeFunction<ffi.Uint64 Function(ffi.Pointer<FlaxRuntime>)>
+    >
+    cell_count,
+  }) => $allocator<FlaxEngineGcApi>()
+    ..ref.version = version
+    ..ref.struct_size = struct_size
+    ..ref.flutter_revision = flutter_revision
+    ..ref.dart_revision = dart_revision
+    ..ref.bind_value = bind_value
+    ..ref.bind_peer = bind_peer
+    ..ref.register_host = register_host
+    ..ref.cell_count = cell_count;
+}
+
 final class FlaxError extends ffi.Struct {
   @ffi.Int32()
   external int code;
@@ -606,3 +782,5 @@ enum FlaxValueKind {
     _ => throw ArgumentError('Unknown value for FlaxValueKind: $value'),
   };
 }
+
+final class _Dart_Handle extends ffi.Opaque {}

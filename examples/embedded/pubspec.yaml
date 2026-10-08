@@ -10,13 +10,13 @@ environment:
 
 dependencies:
   flax: 0.0.0
-  flax_engine_hermes: 0.0.0
   flax_material_ui: 0.0.0
   flutter:
     sdk: flutter
   material_ui: 1.1.1
 
 dev_dependencies:
+  flax_test: 0.0.0
   flutter_test:
     sdk: flutter
   integration_test:

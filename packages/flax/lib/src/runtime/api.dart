@@ -64,6 +64,10 @@ abstract class FlaxJsRuntime {
   Uint8List readBytes(FlaxJsObject value);
   void registerHostFunction(String name, FlaxJsHostFunction callback);
 
+  /// Internal binding edge. JS reachability retains [target]; Dart reachability
+  /// of [origin] retains the actual JS object. Neither registration is a root.
+  void bindDartPeer(FlaxJsObject object, Object target, {Object? origin});
+
   /// Explicit checkpoint. The engine treats [maxJobsHint] as a best-effort hint,
   /// not a time limit. Returns whether the microtask queue is empty.
   bool drainMicrotasks({int maxJobsHint = -1});

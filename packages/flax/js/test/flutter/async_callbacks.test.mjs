@@ -6,6 +6,39 @@ const api = globalThis.__flaxBindings;
 
 const flush = () => new Promise((resolve) => setImmediate(resolve));
 
+test('discarded unresolved Promise observers release their bookkeeping', async () => {
+  const observed = [];
+  const set = Map.prototype.set;
+  // Observe metadata through the standard collection boundary without adding
+  // a diagnostic API or making these records business roots.
+  Map.prototype.set = function (id, value) {
+    const record = value instanceof WeakRef ? value.deref() : value;
+    if (record && typeof record.active === 'boolean') {
+      observed.push(new WeakRef(record));
+    }
+    return set.call(this, id, value);
+  };
+  try {
+    for (let id = 1000; id < 2000; id++) {
+      api.observePromise(id, new Promise(() => {}));
+    }
+  } finally {
+    Map.prototype.set = set;
+  }
+  try {
+    assert.equal(observed.length, 1000);
+    for (let i = 0; i < 80; i++) {
+      await flush();
+      globalThis.gc();
+      await flush();
+      if (observed.every((record) => record.deref() === undefined)) break;
+    }
+    assert.equal(observed.filter((record) => record.deref() !== undefined).length, 0);
+  } finally {
+    api.cancelPromises();
+  }
+});
+
 test('Promise observers assimilate thenables and settle once', async () => {
   const settlements = [];
   globalThis.__flaxPromiseSettlement = (...args) => settlements.push(args);

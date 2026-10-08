@@ -55,21 +55,23 @@ class _ResourceCleanup {
         ];
       case _Source():
         children = [?resource._initial?._detachedCleanup];
-        handle = resource.binding;
+        handle = resource.binding == null
+            ? null
+            : WeakReference(resource.binding!);
       case _ComponentDescription():
-        handle = resource.input;
+        handle = WeakReference(resource.input);
         componentSession = WeakReference(resource.session);
         componentId = resource.id;
       case _ObjectBorrow():
-        handle = resource.wrapper;
+        handle = WeakReference(resource.wrapper);
       case _Callback():
-        callback = resource._handle;
+        callback = WeakReference(resource._handle);
       case FlaxPageLease():
         children = [
           for (final source in resource._sources.values)
             source._detachedCleanup,
         ];
-        handle = resource._descriptor;
+        handle = WeakReference(resource._descriptor);
       case FlaxRouteLease():
         children = [
           for (final source in resource._sources.values)
@@ -82,8 +84,8 @@ class _ResourceCleanup {
   final WeakReference<_Resource> owner;
   int references;
   List<_ResourceCleanup> children = const [];
-  FlaxJsObject? handle;
-  _CallbackHandle? callback;
+  WeakReference<FlaxJsObject>? handle;
+  WeakReference<_CallbackHandle>? callback;
   WeakReference<_Session>? componentSession;
   int? componentId;
 
@@ -96,9 +98,9 @@ class _ResourceCleanup {
       for (final child in children.reversed) {
         child.release();
       }
-      final value = handle;
+      final value = handle?.target;
       if (value != null && !value.isReleased) value.release();
-      callback?.release();
+      callback?.target?.release();
       final descriptions = componentSession?.target?._componentDescriptions;
       if (descriptions?[componentId]?.target == null) {
         descriptions?.remove(componentId);
@@ -112,15 +114,40 @@ class _ResourceCleanup {
 
 final _widgetConfigurations = Expando<_WidgetConfiguration>();
 
+// The session can close a pending finalizer's lease even after its Widget and
+// configuration record were collected. Only detached metadata is indexed here.
+class _WidgetCleanup {
+  _WidgetCleanup(_Session session, _Resource resource)
+    : session = WeakReference(session),
+      resource = resource._detachedCleanup {
+    resource.retain();
+    session._widgetCleanups.add(this);
+  }
+  final WeakReference<_Session> session;
+  final _ResourceCleanup resource;
+  bool released = false;
+
+  void release() {
+    if (released) return;
+    released = true;
+    session.target?._widgetCleanups.remove(this);
+    resource.release();
+  }
+}
+
 class _WidgetConfiguration extends _BridgeReference {
   _WidgetConfiguration(super.session, _Resource resource)
-    : cleanup = resource._detachedCleanup {
-    resource.retain();
-  }
-  final _ResourceCleanup cleanup;
+    : resource = resource,
+      cleanup = _WidgetCleanup(session, resource);
+  final _WidgetCleanup cleanup;
+  // A closed configuration remains an identity sentinel, without its resources.
+  _Resource? resource;
 
   @override
-  void close() => cleanup.release();
+  void close() {
+    cleanup.release();
+    resource = null;
+  }
 }
 
 void _releaseJs(FlaxJsValue value) {
@@ -216,6 +243,8 @@ class _Callback extends _Resource implements FlaxCallback {
   Object wrap() {
     final closure = signature.wrap(this);
     _callbackSources[closure] = this;
+    // The closure owns its facade already. The original JS function must not
+    // retain every temporary Dart adaptation of that function.
     return closure;
   }
 

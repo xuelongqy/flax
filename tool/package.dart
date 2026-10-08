@@ -171,6 +171,8 @@ Future<void> _unitTests(FlaxWorkspacePackage package) async {
     usesFlutter: package.usesFlutter,
     path: 'test',
     exclude: 'test/ui',
+    // Unit tests do not start Flax; runtime and UI gates use the local engine.
+    useLocalEngine: false,
   );
 }
 
@@ -180,6 +182,7 @@ Future<int> _runTests(
   required String path,
   String? exclude,
   String? device,
+  bool useLocalEngine = true,
 }) async {
   final directory = Directory(p.join(root.path, path));
   if (!directory.existsSync()) return 0;
@@ -194,12 +197,17 @@ Future<int> _runTests(
           .toList()
         ..sort();
   if (tests.isEmpty) return 0;
-  await run(usesFlutter ? 'flutter' : 'dart', [
-    'test',
-    if (usesFlutter) '--no-pub',
-    if (device != null) ...['-d', device],
-    ...tests,
-  ], directory: root.path);
+  await run(
+    usesFlutter ? 'flutter' : 'dart',
+    [
+      'test',
+      if (usesFlutter) '--no-pub',
+      if (device != null) ...['-d', device],
+      ...tests,
+    ],
+    directory: root.path,
+    useLocalEngine: useLocalEngine,
+  );
   return tests.length;
 }
 

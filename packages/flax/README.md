@@ -65,8 +65,9 @@ through analyzer-resolved bounds; no runtime TypeScript token is transported.
 - `package:flax/native_runtime.dart`: public engine-author extension exposing the shared
   native wrapper and generated ABI table type. Normal applications use `runtime.dart`.
 
-Objects and functions retain their owning runtime. Release owned references explicitly;
-callback references are borrowed until return, with `retain()` for longer use. Runtime
+Objects and functions retain their owning runtime and follow their real business
+references through joint GC. `release()` ends an owned reference early; callback
+references are borrowed until return, with `retain()` for longer use. Runtime
 `dispose()` cleans remaining references and must be called explicitly. Never pass a
 reference between runtimes. See the complete
 [runtime contract](../../docs/architecture/runtime.md).
@@ -75,14 +76,14 @@ FFI declarations are generated from the canonical native headers. Run
 `dart run melos run ffi:generate` from the repository root after header changes; never
 edit generated declarations. The shared wrapper has no Hermes library name or path.
 
-Real engine integration tests live in the
-[Hermes package](../flax_engine_hermes/README.md); ABI tests live in
-[native/tests](native/tests/README.md). See
+Use `FlaxEngine.createRuntime()` with the maintained Flutter 3.47.6 engine. Shared
+runtime and GC tests live in core and `flax_test`; the standalone example executes those
+contracts in real debug, profile and release/AOT apps. See
 [scoped checks](../../CONTRIBUTING.md#checks).
 
 See the [UI contract](../../docs/architecture/ui.md) for session ownership, frame
-scheduling, error recovery, and explicit limits. `check:ui` exercises the real
-Hermes-backed host.
+scheduling, error recovery, and explicit limits. `check:ui` exercises the real V8-backed
+custom Flutter engine.
 
 Navigation now includes explicit sessions, shared or nested Flutter Navigators,
 Route-owned callbacks, copied data, and UI Future delivery. See the
@@ -100,7 +101,7 @@ fixed at creation/mount, while node updates prepare and validate before committi
 Nodes without binding or callback parameters, including nested callbacks, reuse their
 validated native Widget; Element state and subscriptions still belong to each mount. See
 the [UI contract](../../docs/architecture/ui.md) and run `dart run melos run ui:test`
-for framework regression tests with the locked Hermes SDK.
+for framework regression tests with the matching local engine.
 
 FlaxObjectBinding and FlaxSetter extend generated registration for immediately
 constructed Dart objects. ScrollController and SingleChildScrollView use this path.

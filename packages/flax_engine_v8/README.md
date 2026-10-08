@@ -1,17 +1,16 @@
 # V8 engine
 
-Experimental native runtime using V8 15.4.80.15, with JIT outside iOS and jitless on
-iOS. The lock covers all twelve native target variants; see
-[acceptance and platform commands](../../docs/testing-platforms.md). Create a runtime
-with `FlaxV8Engine.createRuntime()`. The native asset hook downloads the version-locked
-V8 shared SDK, verifies it, and compiles the local Flax ABI and adapter.
-`dart run melos run native:build:v8` exercises that same path and native tests.
+`FlaxV8Engine.createRuntime()` delegates to `FlaxEngine.createRuntime()` in the
+maintained Flutter engine. macOS and Android arm64 use V8 15.4.80.15 JIT. Android
+debug and release/AOT correctness has emulator and Pixel 4 acceptance; Android GC/frame
+performance remains unmeasured. The factory rejects iOS and unsupported targets;
+platform policy uses Hermes on iOS.
 
-A distributable archive contains the Dart API, asset hook, CMake files, patched adapter,
-JSI sources, SDK lock, and `THIRD_PARTY_NOTICES.txt`; it contains no built dylib. A
-candidate SDK can be selected with `sdkArchive` and `sdkSha256` under
-`hooks.user_defines.flax_engine_v8` in the consuming application's `pubspec.yaml`. The
-package metadata has the `engine` capability and no npm peer.
+There is no native asset hook or independent bridge build. Published package staging
+contains the Dart factory and notices, without engine sources or duplicate libraries.
+The SDK lock and adapter sources remain local historical/internal build inputs; the
+Flutter fork owns the current runtime implementation.
 
-See [the runtime contract](../../docs/architecture/runtime.md) and
-[verification scope](../../docs/architecture/runtime.md#verification).
+Use the [workspace setup](../../README.md#quick-start) and
+[runtime contract](../../docs/architecture/runtime.md). Native ABI 2 and UI protocol 22
+remain unchanged; conditional GC uses a separately versioned engine extension.

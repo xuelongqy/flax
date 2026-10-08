@@ -10,14 +10,22 @@ import {
 test('shared prototype forwarding preserves receiver, direct super and omission', (t) => {
   const type = 'fixture:SharedProxy';
   const calls = [];
+  const peers = [];
   const originalCreate = globalThis.__flaxCreateObject;
   const originalCall = globalThis.__flaxObject;
+  const originalBind = globalThis.__flaxBindPeer;
   t.after(() => {
     globalThis.__flaxCreateObject = originalCreate;
     globalThis.__flaxObject = originalCall;
+    globalThis.__flaxBindPeer = originalBind;
   });
   defineObject(type, [], [], {}, []);
   globalThis.__flaxCreateObject = () => globalThis.__flaxBindings.object(type, 4001);
+  globalThis.__flaxBindPeer = (version, source, target) => {
+    assert.equal(version, 22);
+    assert.equal(globalThis.__flaxBindings.objectHandle(source), 4001);
+    peers.push(target);
+  };
   globalThis.__flaxObject = (...args) => {
     calls.push(args);
     return args.at(-1);
@@ -48,6 +56,7 @@ test('shared prototype forwarding preserves receiver, direct super and omission'
     }
   }
   const instance = new Custom();
+  assert.deepEqual(peers, [instance]);
   assert.equal(instance.add(2), 12);
   assert.equal(calls.at(-1)[4], '@super:add');
   assert.equal(instance.named({ value: null }), null);

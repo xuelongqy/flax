@@ -2,15 +2,30 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'local_engine.dart';
+
 Future<void> run(
   String executable,
   List<String> arguments, {
   String? directory,
   Map<String, String>? environment,
   bool inheritEnvironment = true,
+  bool useLocalEngine = true,
   bool captureWindowsCrash = false,
   Duration timeout = const Duration(minutes: 30),
 }) async {
+  if (!useLocalEngine) {
+    // Nested Flutter commands also treat this as a local-engine request.
+    environment = {
+      if (inheritEnvironment) ...Platform.environment,
+      ...?environment,
+    }..remove('FLUTTER_ENGINE');
+    inheritEnvironment = false;
+  }
+  if (executable == 'flutter') {
+    if (useLocalEngine) arguments = localEngineArguments(arguments);
+    executable = '${flutterSdkRoot()}/bin/flutter';
+  }
   final elapsed = Stopwatch()..start();
   stdout.writeln('> $executable ${arguments.join(' ')}');
   final process = await Process.start(

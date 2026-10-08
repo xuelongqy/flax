@@ -78,6 +78,10 @@ current language support is in the
 - [0038: Class static properties](0038-class-static-properties.md) is accepted. It uses
   independent read/write operations in Manifest 14.
 
+- [0039: Engine-owned cross-heap GC](0039-engine-owned-cross-heap-gc.md) is accepted
+  with macOS arm64 acceptance in progress. It supersedes ADR 0036's independent runtime
+  deployment and fixes platform selection to iOS Hermes and other native V8 JIT.
+
 [Open Questions](open-questions.md) records decisions that have not been made. Use the
 [decision template](TEMPLATE.md) for a new significant decision. Record the decision,
 its reason and practical consequences, and update this index.

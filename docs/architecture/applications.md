@@ -35,12 +35,11 @@ guarantee that Flutter calls dispose. Deterministic cleanup is tested through un
 
 ## Outside-repository verification
 
-check:standalone uses the locked Hermes SDK (or V8 through
-`tool/check_standalone.dart --engine=v8`) and copies source files into a system
-temporary directory. Dart flax, flax_material_ui, flax_fetch and the selected engine
-package copies use relative path dependencies without workspace resolution. Native
-assets and notices travel with the engine package; its hook remains the loading
-authority.
+Applications use Flutter 3.47.6 from `flax/main` and its matching local engine.
+`FlaxEngine.createRuntime()` supplies the platform runtime without a package asset hook.
+Source consumers copy Dart packages with relative path dependencies, but their Flutter
+engine remains an explicit prerequisite. The engine application gate is
+`dart run tool/check_engine_application.dart debug|profile|release`.
 
 `@flax/core` and the example's npm extensions (`@flax/material-ui`, `@flax/fetch`,
 `@flax/websocket`, `@flax/local-storage`, and `@flax/canvas`) are packed locally and

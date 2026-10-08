@@ -9,6 +9,214 @@ import 'package:crypto/crypto.dart';
 import 'package:flax/native_sdk.dart';
 import 'package:flax/native_target.dart';
 
+import 'local_engine.dart';
+
+/// Audit the engine-owned V8 closure after Flutter signs the real application.
+Future<Map<String, Object?>> verifyEngineApplication(
+  String product,
+  String mode, {
+  FlaxNativeTarget? target,
+}) async {
+  target ??= FlaxNativeTarget('macos-arm64');
+  final source = '${flutterSdkRoot()}/engine/src';
+  final lock = jsonDecode(
+    File('$source/flutter/flax/source.lock.json').readAsStringSync(),
+  ) as Map;
+  final expected = (lock['targets'][target.name]['libraries'] as Map)
+      .cast<String, String>();
+  if (target.name == 'android-arm64') {
+    return _verifyAndroidEngineApplication(product, mode, expected);
+  }
+  final framework =
+      '$product/Contents/Frameworks/FlutterMacOS.framework/Versions/A';
+  final files = Directory(product)
+      .listSync(recursive: true, followLinks: false)
+      .whereType<File>()
+      .toList();
+  final libraries = <File>[];
+  final hashes = <String, String>{};
+  final temporary = Directory.systemTemp.createTempSync(
+    'flax-signed-libraries-',
+  );
+  try {
+    for (final entry in expected.entries) {
+      final name = p.basename(entry.key);
+      final matches = files
+          .where((file) => p.basename(file.path) == name)
+          .toList();
+      if (matches.length != 1 ||
+          matches.single.path != '$framework/Libraries/$name') {
+        throw StateError('Expected one engine-owned $name in the application');
+      }
+      final original = File(
+        '$source/out/flax_mac_${mode}_arm64/FlutterMacOS.framework/Versions/A/Libraries/$name',
+      );
+      if ((await sha256.bind(original.openRead()).first).toString() !=
+          entry.value) {
+        throw StateError('Engine SDK input changed: $name');
+      }
+      final normalized = <String>[];
+      for (final (index, file) in [original, matches.single].indexed) {
+        final copy = file.copySync('${temporary.path}/$index-$name');
+        final strip = await Process.run('codesign', [
+          '--remove-signature',
+          copy.path,
+        ]);
+        if (strip.exitCode != 0 && !'${strip.stderr}'.contains('not signed')) {
+          throw StateError(
+            'Cannot inspect signed library $name: ${strip.stderr}',
+          );
+        }
+        normalized.add((await sha256.bind(copy.openRead()).first).toString());
+      }
+      if (normalized[0] != normalized[1]) {
+        throw StateError('Packaged library content changed: $name');
+      }
+      libraries.add(matches.single);
+      hashes[name] = normalized.first;
+    }
+    final binary = File('$framework/FlutterMacOS');
+    await verifyBinaryArchitectures(target, [binary, ...libraries]);
+    await verifyNativeDependencies(target, [binary, ...libraries]);
+    await _inspect('codesign', ['--verify', '--deep', '--strict', product]);
+    final entitlements = await _inspect('codesign', [
+      '--display',
+      '--entitlements',
+      ':-',
+      product,
+    ]);
+    if (!RegExp(r'<key>com.apple.security.cs.allow-jit</key>\s*<true\s*/>')
+        .hasMatch(entitlements)) {
+      throw StateError('The macOS application is missing allow-jit');
+    }
+    final signature = await Process.run('codesign', [
+      '--display',
+      '--verbose=4',
+      product,
+    ]);
+    if (signature.exitCode != 0 || !hasHardenedRuntime('${signature.stderr}')) {
+      throw StateError(
+        'The release application is missing hardened runtime signing: '
+        '${signature.stdout}${signature.stderr}',
+      );
+    }
+    return {
+      'signatureVerified': true,
+      'hardenedRuntime': true,
+      'allowJit': true,
+      'adHocSigning': '${signature.stderr}'.contains('Signature=adhoc'),
+      'libraryValidation': !RegExp(
+        r'<key>com.apple.security.cs.disable-library-validation</key>\s*<true\s*/>',
+      ).hasMatch(entitlements),
+      'singleV8Closure': true,
+      'unsignedLibrarySha256': hashes,
+    };
+  } finally {
+    temporary.deleteSync(recursive: true);
+  }
+}
+
+Future<Map<String, Object?>> _verifyAndroidEngineApplication(
+  String product,
+  String mode,
+  Map<String, String> expected,
+) async {
+  final target = FlaxNativeTarget('android-arm64');
+  final entries = (await _inspect('unzip', ['-Z1', product])).split('\n');
+  final names = [
+    'libflutter.so',
+    ...expected.keys.map(p.basename),
+    if (mode != 'debug') 'libapp.so',
+  ];
+  for (final name in names) {
+    final path = 'lib/arm64-v8a/$name';
+    if (entries.where((entry) => entry == path).length != 1) {
+      throw StateError('Expected one APK engine library: $path');
+    }
+  }
+  final paths = entries
+      .where((entry) => entry.startsWith('lib/') && entry.endsWith('.so'))
+      .toList();
+  if (paths.toSet().length != paths.length ||
+      paths.any(
+        (entry) =>
+            !RegExp(r'^lib/arm64-v8a/[a-zA-Z0-9_.+-]+\.so$').hasMatch(entry),
+      )) {
+    throw StateError('Unexpected or duplicate APK native library path');
+  }
+  final extracted = Directory.systemTemp.createTempSync('flax-engine-apk-');
+  try {
+    await _inspect('unzip', ['-q', product, ...paths, '-d', extracted.path]);
+    final files = [for (final path in paths) File('${extracted.path}/$path')];
+    final hashes = <String, String>{};
+    for (final entry in expected.entries) {
+      final name = p.basename(entry.key);
+      final file = File('${extracted.path}/lib/arm64-v8a/$name');
+      final hash = (await sha256.bind(file.openRead()).first).toString();
+      if (hash != entry.value) {
+        throw StateError('APK SDK library changed: $name');
+      }
+      hashes[name] = hash;
+    }
+    await verifyBinaryArchitectures(target, files);
+    await verifyNativeDependencies(
+      target,
+      files,
+      systemDependencies: const {
+        'libEGL.so',
+        'libGLESv2.so',
+        'libjnigraphics.so',
+        'libnativewindow.so',
+      },
+    );
+    for (final file in files) {
+      final data = ByteData.sublistView(await file.readAsBytes());
+      final start = data.getUint64(32, Endian.little);
+      final size = data.getUint16(54, Endian.little);
+      final count = data.getUint16(56, Endian.little);
+      if (size < 56 || start + count * size > data.lengthInBytes) {
+        throw StateError('Invalid ELF program headers: ${file.path}');
+      }
+      for (var i = 0; i < count; i++) {
+        final offset = start + i * size;
+        if (data.getUint32(offset, Endian.little) != 1) continue;
+        if (data.getUint64(offset + 48, Endian.little) < 16384 ||
+            data.getUint64(offset + 8, Endian.little) % 16384 !=
+                data.getUint64(offset + 16, Endian.little) % 16384) {
+          throw StateError('ELF is not 16 KB page compatible: ${file.path}');
+        }
+      }
+    }
+    final sdk =
+        Platform.environment['ANDROID_HOME'] ??
+        Platform.environment['ANDROID_SDK_ROOT'];
+    if (sdk == null) throw StateError('Set ANDROID_HOME for the APK audit');
+    final tools = '$sdk/build-tools/36.1.0';
+    await _inspect('$tools/zipalign', ['-c', '-P', '16', '4', product]);
+    await _inspect('$tools/apksigner', ['verify', '--verbose', product]);
+    return {
+      'signatureVerified': true,
+      'singleV8Closure': true,
+      'nativeLibraries': paths.map(p.basename).toList()..sort(),
+      'sdkLibrarySha256': hashes,
+      'pageSize16k': true,
+      'dartAot': mode != 'debug',
+      'apkSha256': (await sha256.bind(File(product).openRead()).first)
+          .toString(),
+    };
+  } finally {
+    extracted.deleteSync(recursive: true);
+  }
+}
+
+bool hasHardenedRuntime(String signature) {
+  final flags = RegExp(
+    r'^CodeDirectory .*\bflags=0x([a-fA-F0-9]+)',
+    multiLine: true,
+  ).firstMatch(signature);
+  return flags != null && (int.parse(flags[1]!, radix: 16) & 0x10000) != 0;
+}
+
 Future<void> verifyNativeAssets(
   FlaxNativeTarget target,
   String engine,
@@ -93,15 +301,19 @@ Future<List<String>> _dependencies(FlaxNativeTarget target, File file) async {
 /// Inspect linked binaries as well as the SDK manifest's declared closure.
 Future<void> verifyNativeDependencies(
   FlaxNativeTarget target,
-  List<File> files,
-) async {
+  List<File> files, {
+  Set<String> systemDependencies = const {},
+}) async {
   String name(String path) => target.os == 'windows'
       ? p.basename(path).toLowerCase()
       : p.basename(path);
   final supplied = files.map((f) => name(f.path)).toSet();
   for (final file in files) {
     for (final dependency in await _dependencies(target, file)) {
-      if (flaxSdkSystemDependency(target.os, dependency)) continue;
+      if (flaxSdkSystemDependency(target.os, dependency) ||
+          systemDependencies.contains(dependency)) {
+        continue;
+      }
       if (!supplied.contains(name(dependency)) ||
           target.apple && !dependency.startsWith('@')) {
         throw StateError(

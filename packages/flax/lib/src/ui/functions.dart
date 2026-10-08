@@ -3,7 +3,8 @@ part of '../../bindings.dart';
 /// A returned function is held independently of the collection it came from.
 class _FunctionReference extends _ObjectReference {
   _FunctionReference(_Session session, int id, Object value, this.signature)
-    : super(
+    : keyHash = value.hashCode,
+      super(
         session,
         id,
         FlaxObjectBinding(
@@ -16,6 +17,7 @@ class _FunctionReference extends _ObjectReference {
         value,
       );
   final FlaxCallbackBinding signature;
+  final int keyHash;
   String get _bindingViewKeyForReference =>
       context != null && _usesBindingContext(signature.result)
       ? '${signature.id}@${context!.moduleId}'
@@ -23,12 +25,8 @@ class _FunctionReference extends _ObjectReference {
 
   @override
   void release() {
-    final function = _value;
-    _value = null;
-    session._objects.remove(id);
-    final views = session._functionViews[function];
-    views?.remove(_bindingViewKeyForReference);
-    if (views != null && views.isEmpty) session._functionViews.remove(function);
+    forget();
+    session._functionViews.remove(this);
   }
 }
 
@@ -67,28 +65,32 @@ extension _FunctionCalls on _Session {
       signature.id,
       _usesBindingContext(signature.result),
     );
-    var reference = _functionViews[value]?[viewKey];
+    var reference = _functionViews.find(value, viewKey);
     final created = reference == null;
     if (reference == null) {
       reference = _FunctionReference(this, _nextObject++, value, signature);
       _objects[reference.id] = reference;
-      (_functionViews[value] ??= {})[viewKey] = reference;
+      _functionViews.add(value, reference);
     }
     try {
-      return helper('function').call([
-        FlaxJsString(signature.id),
-        FlaxJsNumber(reference.id.toDouble()),
-        FlaxJsString(
-          jsonEncode([
-            for (final parameter in signature.parameters)
-              {
-                'name': parameter.name,
-                'required': parameter.required,
-                'positional': parameter.positional,
-              },
-          ]),
-        ),
-      ]);
+      return _peerResult(
+        helper('function').call([
+          FlaxJsString(signature.id),
+          FlaxJsNumber(reference.id.toDouble()),
+          FlaxJsString(
+            jsonEncode([
+              for (final parameter in signature.parameters)
+                {
+                  'name': parameter.name,
+                  'required': parameter.required,
+                  'positional': parameter.positional,
+                },
+            ]),
+          ),
+        ]),
+        value,
+        origin: value,
+      );
     } catch (_) {
       if (created) reference.release();
       rethrow;
@@ -301,12 +303,16 @@ extension _WidgetReferences on _Session {
     }
     reference.value;
     try {
-      return reference is _WidgetReference
-          ? helper('dartWidget').call([FlaxJsNumber(reference.id.toDouble())])
-          : helper('object').call([
-              FlaxJsString(reference.binding.id),
-              FlaxJsNumber(reference.id.toDouble()),
-            ]);
+      return _peerResult(
+        reference is _WidgetReference
+            ? helper('dartWidget').call([FlaxJsNumber(reference.id.toDouble())])
+            : helper('object').call([
+                FlaxJsString(reference.binding.id),
+                FlaxJsNumber(reference.id.toDouble()),
+              ]),
+        widget,
+        origin: widget,
+      );
     } catch (_) {
       if (created) reference.release();
       rethrow;

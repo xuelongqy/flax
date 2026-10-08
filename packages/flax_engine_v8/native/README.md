@@ -1,5 +1,10 @@
 # V8 adapter
 
+This directory retains the historical standalone SDK adapter. The current
+[V8 entry point](../README.md) delegates to the maintained Flutter Engine; see
+[engine ownership](../../../docs/decisions/0039-engine-owned-cross-heap-gc.md). The
+native asset hook described below is retired.
+
 Experimental native runtime with target-specific schema 3 SDK locks. The adapter uses
 Microsoft's JSI ABI implementation and consumer-side JSI wrapper with the existing
 Hermes JSI headers. Flax's C ABI and shared bridge are unchanged. Hermes remains the

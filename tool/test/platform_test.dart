@@ -133,81 +133,24 @@ void main() {
       expect(() => builtBridge(consumer, engine), throwsStateError);
     }
   });
-  test('preparation failure writes a receipt without runtime acceptance', () async {
-    final root = Directory.current;
-    final temporary = Directory.systemTemp.createTempSync(
-      'flax prepare failure ',
-    );
-    addTearDown(() => temporary.deleteSync(recursive: true));
-    final tool = Directory('${temporary.path}/tool')..createSync();
-    File('${root.path}/tool/check_platform.dart')
-        .copySync('${tool.path}/check_platform.dart');
-    final sources = Directory('${tool.path}/src')..createSync();
-    for (final source in Directory(
-      '${root.path}/tool/src',
-    ).listSync().whereType<File>()) {
-      if (source.path.endsWith('.dart')) {
-        source.copySync('${sources.path}/${source.uri.pathSegments.last}');
-      }
-    }
-    // Full scope now discovers its combined UI entry before preparation.
-    final owner = Directory('${temporary.path}/packages/owner')
-      ..createSync(recursive: true);
-    File('${owner.path}/pubspec.yaml').writeAsStringSync('name: owner\n');
-    File('${owner.path}/flax_package.yaml').writeAsStringSync(
-      'format: 2\ndart:\n  entrypoint: package:owner/owner.dart\ncapabilities: [codegen]\n',
-    );
-    File('${owner.path}/test/ui/example_test.dart')
-      ..parent.createSync(recursive: true)
-      ..writeAsStringSync('void main() {}');
-    final bin = Directory('${temporary.path}/bin')..createSync();
-    final pnpm = File('${bin.path}/pnpm${Platform.isWindows ? '.cmd' : ''}')
-      ..writeAsStringSync(
-        Platform.isWindows ? '@exit /b 7\n' : '#!/bin/sh\nexit 7\n',
-      );
-    if (!Platform.isWindows) {
-      final chmod = await Process.run('chmod', ['+x', pnpm.path]);
-      expect(chmod.exitCode, 0);
-    }
-    final target = FlaxNativeTarget.host().name;
-    // This fake repository has no matching workspace preparation artifact.
-    final environment = Map<String, String>.of(Platform.environment)
-      ..remove('FLAX_PREPARED_CHECKS')
-      ..['PATH'] =
-          '${bin.path}${Platform.isWindows ? ';' : ':'}${Platform.environment['PATH']}';
-    for (final scope in ['platform', if (target != 'linux-x64') 'all']) {
-      final result = await Process.run(
-        Platform.resolvedExecutable,
-        [
-          '--packages=${root.path}/.dart_tool/package_config.json',
-          '${tool.path}/check_platform.dart',
-          '--target=$target',
-          '--engine=all',
-          '--scope=$scope',
-        ],
-        environment: environment,
-        includeParentEnvironment: false,
-      );
-      expect(result.exitCode, 1, reason: '${result.stdout}\n${result.stderr}');
+  test(
+    'retired SDK matrix rejects before building or runtime acceptance',
+    () async {
+      final result = await Process.run(Platform.resolvedExecutable, [
+        'run',
+        'tool/check_platform.dart',
+        '--target=macos-arm64',
+        '--engine=all',
+      ]);
+      expect(result.exitCode, 1);
       expect(
-        result.stdout.toString(),
-        contains('> pnpm --silent run js:build'),
+        result.stderr.toString(),
+        contains('standalone SDK platform matrix is retired'),
       );
-      final receipt = jsonDecode(
-        File('${temporary.path}/build/platform/$target/verification.json')
-            .readAsStringSync(),
-      ) as Map<String, dynamic>;
-      expect(receipt['failedStage'], 'prepare');
-      expect(receipt['errors'], isNotEmpty);
-      expect(receipt['sharedLibrariesVerified'], isFalse);
-      for (final record in receipt['results'] as List) {
-        expect((record as Map)['scope'], scope);
-        expect(record['built'], isFalse);
-        expect(record['ran'], isFalse);
-        expect(record['applicationDelivered'], isFalse);
-      }
-    }
-  });
+      expect(result.stdout.toString(), isNot(contains('> pnpm')));
+      expect(result.stdout.toString(), isNot(contains('> cmake')));
+    },
+  );
   test(
     'rejects a wrong process architecture and different shared CRT bytes',
     () async {

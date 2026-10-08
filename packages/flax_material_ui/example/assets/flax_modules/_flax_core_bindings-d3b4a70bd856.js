@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"2111d340dfc414c21c79443855cae3647b0faf5dca2facf0cee71e5720d61a56","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"a0727ea32c13dfd16f45fc2d0cf19bac9513dd02952490bf0fa48c17f8bb71fc","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -394,7 +394,8 @@ function reportCleanupError(error) {
   }
 }
 function settlePromise(id, record, success, value) {
-  if (!record.active || promises.get(id) !== record)
+  var _a;
+  if (!record.active || ((_a = promises.get(id)) == null ? void 0 : _a.deref()) !== record)
     return;
   const host = globalThis;
   const rejection = success ? null : rejectionDetails(value);
@@ -430,7 +431,10 @@ function freezeData(value) {
 var stateTypes = /* @__PURE__ */ new Map();
 var stateHandles = /* @__PURE__ */ new WeakMap();
 var futures = /* @__PURE__ */ new Map();
+var futureOwners = /* @__PURE__ */ new WeakMap();
+var futureFinalizer = new FinalizationRegistry((id) => futures.delete(id));
 var promises = /* @__PURE__ */ new Map();
+var promiseFinalizer = new FinalizationRegistry((id) => promises.delete(id));
 function defineState(type, fields, methods) {
   if (stateTypes.has(type))
     throw new Error(`Duplicate State type: ${type}`);
@@ -458,6 +462,10 @@ function trackObject(value, type, id) {
   references.track(value, type, id);
 }
 function transferObjectAlias(source, target) {
+  const host = globalThis;
+  if (!host.__flaxBindPeer)
+    throw new Error("Object aliases require the Flax engine");
+  host.__flaxBindPeer(bindingVersion, source, target);
   references.transfer(source, target);
 }
 function defineObject(type, fields, setters, methods, removers) {
@@ -472,6 +480,8 @@ function defineStream(type, fields, methods) {
   streamTypes.set(type, { fields, methods });
 }
 var asyncIterableSources = /* @__PURE__ */ new Map();
+var asyncIterableOwners = /* @__PURE__ */ new WeakMap();
+var asyncIterableFinalizer = new FinalizationRegistry((id) => asyncIterableSources.delete(id));
 var nextAsyncIterableSource = 1;
 function constructAsyncIterableStream(type, source) {
   if (source === null || typeof source !== "object" && typeof source !== "function")
@@ -480,21 +490,26 @@ function constructAsyncIterableStream(type, source) {
   if (!create)
     throw new Error("AsyncIterable Streams require a Flax host");
   const id = nextAsyncIterableSource++;
-  asyncIterableSources.set(id, {
+  const record = {
     source,
     iterator: null,
     closed: false,
     pendingReject: null
-  });
+  };
+  asyncIterableSources.set(id, new WeakRef(record));
+  asyncIterableFinalizer.register(record, id);
   try {
-    return create(bindingVersion, type, id);
+    const stream = create(bindingVersion, type, id);
+    asyncIterableOwners.set(stream, record);
+    return stream;
   } catch (error) {
     asyncIterableSources.delete(id);
     throw error;
   }
 }
 function asyncIterableSource(id) {
-  const record = asyncIterableSources.get(id);
+  var _a;
+  const record = (_a = asyncIterableSources.get(id)) == null ? void 0 : _a.deref();
   if (!record || record.closed)
     throw new Error("Released AsyncIterable Stream");
   return record;
@@ -540,7 +555,8 @@ function asyncIterableNext(id) {
   }
 }
 function asyncIterableReturn(id) {
-  const record = asyncIterableSources.get(id);
+  var _a;
+  const record = (_a = asyncIterableSources.get(id)) == null ? void 0 : _a.deref();
   if (!record || record.closed)
     return Promise.resolve();
   record.closed = true;
@@ -622,10 +638,10 @@ function streamAsyncIterator(stream, _type) {
   const call = host.__flaxStreamIterator;
   if (!create || !call)
     throw new Error("Dart Stream iteration requires a Flax host");
-  const iteratorId = create(bindingVersion, ref.id);
+  let iteratorId;
   let pending = false;
   let finished = false;
-  return {
+  const iterator = {
     async next() {
       if (pending)
         throw new Error("Concurrent Stream iterator next");
@@ -657,6 +673,8 @@ function streamAsyncIterator(stream, _type) {
       throw reason;
     }
   };
+  iteratorId = create(bindingVersion, ref.id, iterator);
+  return iterator;
 }
 function constructObject(_kind, type, ctor, parameters, positional, options) {
   const descriptor = construct("value", type, ctor, parameters, positional, options);
@@ -1335,13 +1353,20 @@ Object.assign(globalThis, {
       values[i * 2 + 1]
     ]))),
     future(id) {
-      const promise = new Promise((resolve, reject) => futures.set(id, { resolve, reject }));
+      let record;
+      const promise = new Promise((resolve, reject) => {
+        record = { resolve, reject };
+      });
+      futures.set(id, new WeakRef(record));
+      futureOwners.set(promise, record);
+      futureFinalizer.register(record, id);
       void promise.catch(() => {
       });
       return promise;
     },
     settleFuture(id, success, value) {
-      const pending = futures.get(id);
+      var _a;
+      const pending = (_a = futures.get(id)) == null ? void 0 : _a.deref();
       if (!pending)
         return;
       futures.delete(id);
@@ -1359,7 +1384,8 @@ Object.assign(globalThis, {
         then = value.then;
       } catch (error) {
         const record2 = { active: true };
-        promises.set(id, record2);
+        promises.set(id, new WeakRef(record2));
+        promiseFinalizer.register(record2, id);
         void Promise.reject(error).catch((reason) => settlePromise(id, record2, false, reason)).catch(reportCleanupError);
         return;
       }
@@ -1367,7 +1393,8 @@ Object.assign(globalThis, {
         throw new TypeError("Future callbacks must return a Promise");
       }
       const record = { active: true };
-      promises.set(id, record);
+      promises.set(id, new WeakRef(record));
+      promiseFinalizer.register(record, id);
       const assimilated = Promise.resolve({
         then(resolve, reject) {
           Reflect.apply(then, value, [resolve, reject]);
@@ -1376,8 +1403,11 @@ Object.assign(globalThis, {
       void assimilated.then((result) => settlePromise(id, record, true, result), (reason) => settlePromise(id, record, false, reason)).catch(reportCleanupError);
     },
     cancelPromises() {
-      for (const record of promises.values())
-        record.active = false;
+      for (const weak of promises.values()) {
+        const record = weak.deref();
+        if (record)
+          record.active = false;
+      }
       promises.clear();
     },
     observeEvent(value) {

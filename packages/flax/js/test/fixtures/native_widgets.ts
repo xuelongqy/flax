@@ -111,10 +111,35 @@ registerPage('nativeReuse', () =>
   Column({ children: [new ReusedCounter(), new ReusedCounter()] }),
 );
 registerPage('nativeBadDispose', () => new MissingSuperCounter());
+class GcCounter extends native.NativeCounter {
+  override createState() {
+    const state = new GcState();
+    Object.assign(globalThis, { gcState: new WeakRef(state) });
+    return state;
+  }
+}
+class GcState extends State<GcCounter> {
+  #value = 'private GC state';
+  override build() {
+    return Text(this.#value);
+  }
+  override dispose() {
+    gcDisposals++;
+    super.dispose();
+  }
+}
+let gcDisposals = 0;
+Object.assign(globalThis, { gcDisposals: () => gcDisposals });
+registerPage('nativeGc', () => {
+  const counter = new GcCounter();
+  Object.assign(globalThis, { gcWidget: new WeakRef(counter) });
+  return counter;
+});
 let asynchronous = false;
 Object.assign(globalThis, {
   nativeWidgets: {
     calls,
+    plain: () => Text('retained native configuration'),
     title,
     label,
     counter,

@@ -174,11 +174,11 @@ Future<Map<String, Object?>> verifyPlatformApplication(
         ], directory: app);
         final product = platformProduct(app, target, release: false);
         if (target.mobile) {
-          await _runMobileApplication(
+          await runMobileApplication(
             target,
             device!,
             product,
-            await _applicationBundle(app, target, product),
+            await applicationBundle(app, target, product),
             marker,
             // The Intel full suite was still at case 230 after eight minutes.
             // Keep its application deadline separate from the build/job budget.
@@ -366,11 +366,11 @@ Future<Map<String, Object?>> verifyPlatformApplication(
       }
       workspace.removeBuild(Directory('$app/build'));
       if (directLaunch) {
-        await _runMobileApplication(
+        await runMobileApplication(
           target,
           device!,
           relocated,
-          await _applicationBundle(app, target, relocated),
+          await applicationBundle(app, target, relocated),
           marker,
           timeout: Duration(minutes: full ? 10 : 3),
         );
@@ -436,7 +436,7 @@ Future<Map<String, Object?>> verifyPlatformApplication(
         workspace.removeBuild(Directory('$app/.dart_tool'));
         Directory(app).deleteSync(recursive: true);
         packages.deleteSync(recursive: true);
-        await _runMobileApplication(target, device, released, bundle, marker);
+        await runMobileApplication(target, device, released, bundle, marker);
         result['releaseRuntime'] = 'passed';
         result['dartMode'] = 'JIT and AOT';
       }
@@ -650,11 +650,12 @@ void main() {
 }
 ''';
 
-Future<void> runDesktopApplication(
+Future<String> runDesktopApplication(
   FlaxNativeTarget target,
   String product,
   String marker, {
   Duration timeout = const Duration(minutes: 10),
+  Map<String, String>? environment,
 }) async {
   final binary = switch (target.os) {
     'macos' => '$product/Contents/MacOS/flax_standalone',
@@ -666,27 +667,55 @@ Future<void> runDesktopApplication(
     binary,
     [],
     workingDirectory: product,
-    environment: {'LD_LIBRARY_PATH': '', 'DYLD_LIBRARY_PATH': ''},
-  );
-  final output = process.stdout.transform(utf8.decoder).join();
-  final errors = process.stderr.transform(utf8.decoder).join();
-  final code = await process.exitCode.timeout(
-    timeout,
-    onTimeout: () {
-      process.kill(ProcessSignal.sigkill);
-      throw TimeoutException('Application did not finish: $binary', timeout);
+    environment: {
+      ...?environment,
+      'LD_LIBRARY_PATH': '',
+      'DYLD_LIBRARY_PATH': '',
     },
   );
-  final out = await output;
-  final err = await errors;
-  stdout.write(out);
-  stderr.write(err);
-  if (code != 0 || !out.contains(marker)) {
-    throw StateError('Application failed: $code $out $err');
+  var activated = target.os != 'macos';
+  Future<ProcessResult>? activation;
+  final testLog = RegExp(r'^(?:flutter: )?\d+:\d+ \+');
+  final output = process.stdout
+      .transform(utf8.decoder)
+      .transform(const LineSplitter())
+      .map((line) {
+        if (!activated && testLog.hasMatch(line)) {
+          activated = true;
+          // Cocoa has registered the window by the first test log. Foreground
+          // activation keeps frame-driven integration tests advancing.
+          activation = Process.run('/usr/bin/open', ['-a', product]);
+        }
+        return '$line\n';
+      })
+      .join();
+  final errors = process.stderr.transform(utf8.decoder).join();
+  try {
+    final (code, out, err) = await (process.exitCode, output, errors).wait
+        .timeout(
+          timeout,
+          onTimeout: () => throw TimeoutException(
+            'Application did not finish: $binary',
+            timeout,
+          ),
+        );
+    final opened = await activation;
+    if (opened != null && opened.exitCode != 0) {
+      throw StateError('Cannot activate release test: ${opened.stderr}');
+    }
+    stdout.write(out);
+    stderr.write(err);
+    if (code != 0 || !out.contains(marker)) {
+      throw StateError('Application failed: $code $out $err');
+    }
+    return out;
+  } finally {
+    process.kill(ProcessSignal.sigkill);
+    await process.exitCode;
   }
 }
 
-Future<String> _applicationBundle(
+Future<String> applicationBundle(
   String app,
   FlaxNativeTarget target,
   String product,
@@ -705,7 +734,7 @@ Future<String> _applicationBundle(
   return (info.stdout as String).trim();
 }
 
-Future<void> _runMobileApplication(
+Future<String> runMobileApplication(
   FlaxNativeTarget target,
   String device,
   String product,
@@ -744,12 +773,11 @@ Future<void> _runMobileApplication(
         device,
         bundle,
       ]);
-      await waiting;
+      return await waiting;
     } finally {
       monitor.kill();
       await Process.run('xcrun', ['simctl', 'terminate', device, bundle]);
     }
-    return;
   }
   if (target.os == 'ios') {
     await run('xcrun', [
@@ -772,13 +800,12 @@ Future<void> _runMobileApplication(
       '--terminate-existing',
       bundle,
     ]);
-    await _waitForMarker(
+    return await _waitForMarker(
       process,
       marker,
       timeout: timeout,
       uiResultsPath: uiResultsPath,
     );
-    return;
   }
   final sdk =
       Platform.environment['ANDROID_HOME'] ??
@@ -833,14 +860,14 @@ Future<void> _runMobileApplication(
       '-n',
       '$bundle/.MainActivity',
     ]);
-    await waiting;
+    return await waiting;
   } finally {
     monitor.kill();
     await Process.run(adb, ['-s', device, 'shell', 'am', 'force-stop', bundle]);
   }
 }
 
-Future<void> _waitForMarker(
+Future<String> _waitForMarker(
   Process process,
   String marker, {
   required Duration timeout,
@@ -872,7 +899,9 @@ Future<void> _waitForMarker(
     if (line.contains(marker) && !completed.isCompleted) {
       completed.complete(!journal.hasFailure);
     }
-    if (line.contains('FLAX_PLATFORM_FAILED') && !completed.isCompleted) {
+    if ((line.contains('FLAX_PLATFORM_FAILED') ||
+            line.contains('FLAX_ENGINE_FAILED')) &&
+        !completed.isCompleted) {
       completed.complete(false);
     }
   }
@@ -891,6 +920,7 @@ Future<void> _waitForMarker(
   try {
     final passed = await completed.future.timeout(timeout);
     if (!passed) throw StateError('Device application failed: $log');
+    return log.toString();
   } finally {
     stdout.write(log);
     process.kill();

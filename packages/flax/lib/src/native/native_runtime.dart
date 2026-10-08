@@ -9,20 +9,60 @@ import '../runtime/api.dart';
 import 'native_calls.dart';
 import 'runtime_bindings.g.dart';
 
-/// Engine extension implementation. Construct from an engine's native asset API.
+final _hostCallbackFinalizer = Finalizer<_HostCallback>(
+  (record) => record.close(),
+);
+
+// The token contains a trampoline, not the business callback or a JS facade.
+class _HostCallback {
+  _HostCallback(FlaxNativeJsRuntime runtime, this.callable)
+    : runtime = WeakReference(runtime);
+  final WeakReference<FlaxNativeJsRuntime> runtime;
+  final NativeCallable<FlaxHostCallbackFunction> callable;
+  bool closed = false;
+  void close() {
+    if (closed) return;
+    closed = true;
+    _hostCallbackFinalizer.detach(this);
+    runtime.target?._callbacks.remove(this);
+    callable.close();
+  }
+}
+
+/// Engine extension implementation. Construct through its checked engine API.
 /// Owns native resources and must be explicitly disposed. Finalizable prevents
 /// sending this object to another isolate and keeps it live during native calls.
 final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
-  factory FlaxNativeJsRuntime.fromApi(Pointer<FlaxApi> table) {
+  factory FlaxNativeJsRuntime.fromEngine(
+    Pointer<FlaxApi> table,
+    Pointer<FlaxEngineGcApi> gc,
+  ) {
     if (table == nullptr ||
         table.ref.version != FLAX_ABI_VERSION ||
         table.ref.struct_size != sizeOf<FlaxApi>()) {
       throw UnsupportedError('Incompatible Flax native ABI');
     }
-    return FlaxNativeJsRuntime._(NativeCalls(table.ref));
+    if (gc == nullptr ||
+        gc.ref.version != FLAX_ENGINE_GC_VERSION ||
+        gc.ref.struct_size != sizeOf<FlaxEngineGcApi>() ||
+        gc.ref.flutter_revision == nullptr ||
+        gc.ref.dart_revision == nullptr ||
+        gc.ref.bind_value == nullptr ||
+        gc.ref.bind_peer == nullptr ||
+        gc.ref.register_host == nullptr ||
+        gc.ref.cell_count == nullptr ||
+        gc.ref.flutter_revision.cast<Utf8>().toDartString() !=
+            '5fc346839b5d0eef006ed8404392afb4dfae428d' ||
+        gc.ref.dart_revision.cast<Utf8>().toDartString() !=
+            '04bcd1036cdc799ac6564988f159ee454d42c822') {
+      throw UnsupportedError(
+        'Incompatible Flax Flutter engine or GC extension',
+      );
+    }
+    return FlaxNativeJsRuntime._(NativeCalls(table.ref), gc.ref);
   }
 
-  FlaxNativeJsRuntime._(this._calls) {
+  FlaxNativeJsRuntime._(this._calls, this._gc) {
     using((arena) {
       final result = arena<Pointer<FlaxRuntime>>();
       _checked(arena, (error) => _calls.create(result, error));
@@ -31,9 +71,36 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
   }
 
   final NativeCalls _calls;
+  final FlaxEngineGcApi _gc;
+  late final _bindValue = _gc.bind_value
+      .asFunction<
+        int Function(Pointer<FlaxRuntime>, int, Object, Pointer<FlaxError>)
+      >();
+  late final _bindPeer = _gc.bind_peer
+      .asFunction<
+        int Function(
+          Pointer<FlaxRuntime>,
+          int,
+          Object,
+          Object?,
+          Pointer<FlaxError>,
+        )
+      >();
+  late final _registerHost = _gc.register_host
+      .asFunction<
+        int Function(
+          Pointer<FlaxRuntime>,
+          Pointer<Uint16>,
+          int,
+          Pointer<NativeFunction<FlaxHostCallbackFunction>>,
+          Pointer<Void>,
+          Object,
+          Pointer<FlaxError>,
+        )
+      >();
   final SendPort _owner = Isolate.current.controlPort;
   late final Pointer<FlaxRuntime> _handle;
-  final _callbacks = <NativeCallable<FlaxHostCallbackFunction>>[];
+  final _callbacks = <_HostCallback>{};
   int _depth = 0;
   bool _disposed = false;
   bool _disposing = false;
@@ -126,10 +193,14 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
           );
         case FlaxValueKind.FLAX_OBJECT:
         case FlaxValueKind.FLAX_FUNCTION:
-          transferred = true;
-          return kind == FlaxValueKind.FLAX_FUNCTION
+          final value = kind == FlaxValueKind.FLAX_FUNCTION
               ? _NativeFunction(this, id, borrowed)
               : _NativeObject(this, id, borrowed);
+          if (!borrowed) {
+            _checked(arena, (error) => _bindValue(_handle, id, value, error));
+          }
+          transferred = true;
+          return value;
       }
     } finally {
       _calls.bufferFree(info.ref.string_data.cast());
@@ -243,12 +314,13 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
     }
   });
 
-  @override
-  void registerHostFunction(
-    String name,
-    FlaxJsHostFunction callback,
-  ) => _entry((arena) {
-    final callable = NativeCallable<FlaxHostCallbackFunction>.isolateLocal((
+  // Create the native root in a separate closure context. Sharing the
+  // registration scope would retain its strong business callback argument.
+  static NativeCallable<FlaxHostCallbackFunction> _hostTrampoline(
+    WeakReference<FlaxNativeJsRuntime> weakRuntime,
+    WeakReference<FlaxJsHostFunction> weakCallback,
+  ) {
+    return NativeCallable<FlaxHostCallbackFunction>.isolateLocal((
       Pointer<Void> context,
       Pointer<FlaxRuntime> runtime,
       int receiver,
@@ -259,10 +331,17 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
     ) {
       final borrowed = <_NativeObject>[];
       try {
-        return _entry((frame) {
-          if (runtime != _handle) throw StateError('Foreign runtime callback');
+        final owner = weakRuntime.target;
+        final function = weakCallback.target;
+        if (owner == null || function == null) {
+          throw StateError('Collected Dart host callback');
+        }
+        return owner._entry((frame) {
+          if (runtime != owner._handle) {
+            throw StateError('Foreign runtime callback');
+          }
           FlaxJsValue read(int id) {
-            final value = _read(frame, id, borrowed: true);
+            final value = owner._read(frame, id, borrowed: true);
             if (value is _NativeObject) borrowed.add(value);
             return value;
           }
@@ -273,9 +352,9 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
             (i) => read(arguments[i]),
             growable: false,
           );
-          output.value = _encode(
+          output.value = owner._encode(
             frame,
-            callback(thisValue, List.unmodifiable(args)),
+            function(thisValue, List.unmodifiable(args)),
           );
           return FlaxStatus.FLAX_OK.value;
         });
@@ -283,7 +362,11 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
         using((frame) {
           final (message, length) = _bytes(frame, exception.toString());
           final (trace, traceLength) = _bytes(frame, stack.toString());
-          _calls.errorSet(
+          final owner = weakRuntime.target;
+          if (owner == null) {
+            return;
+          }
+          owner._calls.errorSet(
             error,
             FlaxStatus.FLAX_JS_ERROR.value,
             message,
@@ -299,22 +382,58 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
         }
       }
     }, exceptionalReturn: FLAX_CALLBACK_FAILURE);
+  }
+
+  @override
+  void registerHostFunction(
+    String name,
+    FlaxJsHostFunction callback,
+  ) => _entry((arena) {
+    final weakCallback = WeakReference(callback);
+    final weakRuntime = WeakReference(this);
+    final callable = _hostTrampoline(weakRuntime, weakCallback);
     // A global setter may retain the function and then throw. Keep the callback
     // even if registration fails, as well as after a later global replacement.
-    _callbacks.add(callable);
+    final record = _HostCallback(this, callable);
+    _callbacks.add(record);
+    _hostCallbackFinalizer.attach(callback, record, detach: record);
     final (text, length) = _codeUnits(arena, name);
     _checked(
       arena,
-      (error) => _calls.registerHost(
+      (error) => _registerHost(
         _handle,
         text,
         length,
         callable.nativeFunction,
         nullptr,
+        callback,
         error,
       ),
     );
   });
+
+  /// Internal bridge edge; applications do not manage GC ownership.
+  @override
+  void bindDartPeer(FlaxJsObject object, Object target, {Object? origin}) {
+    if (object is! _NativeObject) {
+      throw ArgumentError('Expected a native JS object');
+    }
+    object._check(this);
+    _entry((arena) {
+      _checked(
+        arena,
+        (error) => _bindPeer(_handle, object._id, target, origin, error),
+      );
+    });
+  }
+
+  int get bridgeCellCount => _entry(
+    (_) => _gc.cell_count.asFunction<int Function(Pointer<FlaxRuntime>)>()(
+      _handle,
+    ),
+  );
+
+  int get bridgeCallbackCount => _callbacks.length;
 
   @override
   bool drainMicrotasks({int maxJobsHint = -1}) {
@@ -349,7 +468,7 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
     } finally {
       _disposing = false;
     }
-    for (final callback in _callbacks) {
+    for (final callback in _callbacks.toList()) {
       callback.close();
     }
     _callbacks.clear();

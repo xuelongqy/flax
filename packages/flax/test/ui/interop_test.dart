@@ -741,7 +741,7 @@ void asyncRequiredSuperConsumer.normalize(rejectingAsyncRequiredSuper, 3)
     await h.finish(t);
   });
   testWidgets(
-    'registered cross-language cycles require explicit disconnection or close',
+    'registered cross-language cycles collect without explicit disconnection',
     (t) async {
       final h = OwnedHarness(fixture: 'interop', extra: [interopBindings]);
       await t.pumpWidget(h.app('interop'));
@@ -752,20 +752,11 @@ void asyncRequiredSuperConsumer.normalize(rejectingAsyncRequiredSuper, 3)
       h.execute(
         'var cycle; (() => { let owner; owner = interop.Functions(value => owner ? value : interop.Token(0)); cycle = new WeakRef(owner); })()',
       );
-      for (var i = 0; i < 3; i++) {
-        h.runtime.drainMicrotasks();
-        h.execute('${flaxTestJsGarbagePressure}anchor.numbers.length');
-        await t.pumpAndSettle();
-        await t.runAsync(flaxTestCollectDartGarbage);
-      }
-      expect(h.boolean('cycle.deref() !== undefined'), isTrue);
-      expect(h.runtime.handles, greaterThan(baseline));
-      h.execute('cycle.deref().clear()');
       for (var i = 0; i < 30; i++) {
-        await t.runAsync(flaxTestCollectDartGarbage);
         h.runtime.drainMicrotasks();
         h.execute('${flaxTestJsGarbagePressure}anchor.numbers.length');
         await t.pumpAndSettle();
+        await t.runAsync(flaxTestCollectDartGarbage);
         if (h.boolean('cycle.deref() === undefined') &&
             h.runtime.handles == baseline) {
           break;
@@ -773,7 +764,7 @@ void asyncRequiredSuperConsumer.normalize(rejectingAsyncRequiredSuper, 3)
       }
       expect(h.boolean('cycle.deref() === undefined'), isTrue);
       expect(h.runtime.handles, baseline);
-      // An intentionally unbroken cycle is still deterministically cleaned on close.
+      // Close also clears a cycle before the next automatic collection.
       h.execute(
         '(() => { let owner; owner = interop.Functions(value => owner ? value : interop.Token(0)); })()',
       );

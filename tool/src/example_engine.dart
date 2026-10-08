@@ -78,18 +78,43 @@ void selectExampleEngine(String root, String flutter, String engine) {
     file.writeAsStringSync(source);
   }
   if (engine == 'v8') {
-    for (final name in ['DebugProfile', 'Release']) {
-      final entitlement = File('$flutter/macos/Runner/$name.entitlements');
-      if (!entitlement.existsSync()) continue;
-      final text = entitlement.readAsStringSync();
-      if (!text.contains('com.apple.security.cs.allow-jit')) {
-        entitlement.writeAsStringSync(
-          text.replaceFirst(
-            '<dict>',
-            '<dict>\n\t<key>com.apple.security.cs.allow-jit</key>\n\t<true/>',
+    final project = File('$flutter/macos/Runner.xcodeproj/project.pbxproj');
+    var adHocSigning = false;
+    if (project.existsSync()) {
+      final source = project.readAsStringSync();
+      adHocSigning =
+          source.contains('CODE_SIGN_IDENTITY = "-";') &&
+          !RegExp(r'DEVELOPMENT_TEAM = "?[A-Z0-9]+"?;').hasMatch(source);
+      if (!source.contains('ENABLE_HARDENED_RUNTIME = YES;')) {
+        project.writeAsStringSync(
+          source.replaceAllMapped(
+            RegExp(r'^(\s*)CODE_SIGN_IDENTITY =', multiLine: true),
+            (match) =>
+                '${match.group(1)}ENABLE_HARDENED_RUNTIME = YES;\n${match.group(1)}CODE_SIGN_IDENTITY =',
           ),
         );
       }
+    }
+    for (final name in ['DebugProfile', 'Release']) {
+      final entitlement = File('$flutter/macos/Runner/$name.entitlements');
+      if (!entitlement.existsSync()) continue;
+      var text = entitlement.readAsStringSync();
+      if (!text.contains('com.apple.security.cs.allow-jit')) {
+        text = text.replaceFirst(
+          '<dict>',
+          '<dict>\n\t<key>com.apple.security.cs.allow-jit</key>\n\t<true/>',
+        );
+      }
+      // Staged local examples have no signing Team ID. Distribution builds
+      // must sign their app and engine with the same real identity instead.
+      if (adHocSigning &&
+          !text.contains('com.apple.security.cs.disable-library-validation')) {
+        text = text.replaceFirst(
+          '<dict>',
+          '<dict>\n\t<key>com.apple.security.cs.disable-library-validation</key>\n\t<true/>',
+        );
+      }
+      entitlement.writeAsStringSync(text);
     }
   }
 }
@@ -151,10 +176,11 @@ Future<void> withExample(
   final temporary = Directory.systemTemp.createTempSync('flax-$engine-$kind-');
   try {
     final known = {for (final package in discoverPackages(root)) package.name};
-    final selected = (sourcePubspec['dependencies'] as Map).keys
-        .cast<String>()
-        .where(known.contains)
-        .toSet();
+    final selected = {
+      ...(sourcePubspec['dependencies'] as Map).keys.cast<String>(),
+      ...((sourcePubspec['dev_dependencies'] as Map?) ?? const {}).keys
+          .cast<String>(),
+    }.cast<String>().where(known.contains).toSet();
     selected.removeWhere((name) => name.startsWith('flax_engine_'));
     selected.add('flax_engine_$engine');
     final packages = selected.toList()..sort();
@@ -199,7 +225,9 @@ Future<void> withExample(
     final dependencies = pubspec['dependencies'] as Map<String, dynamic>;
     _replaceEngineDependencies(dependencies, engine);
     for (final name in packages) {
-      dependencies[name] = {
+      final dev = pubspec['dev_dependencies'] as Map<String, dynamic>?;
+      final section = dev?.containsKey(name) == true ? dev! : dependencies;
+      section[name] = {
         'path': p.relative('${temporary.path}/packages/$name', from: flutter),
       };
     }

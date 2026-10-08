@@ -1,5 +1,6 @@
 import 'package:flax/flax.dart';
 import 'package:flax_test/flax_test.dart';
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
 
@@ -110,6 +111,8 @@ hooks.callback.value = () => hooks.count.value += 2;
       expect(h.runtime.isDisposed, isTrue);
       expect(h.errors, isEmpty);
     },
+    // Flutter calls debugOnRebuildDirtyWidget only with assertions enabled.
+    skip: !kDebugMode,
   );
   testWidgets('keyed insertion, removal and moves preserve Element and State', (
     t,
@@ -341,7 +344,7 @@ hooks.callback.value = () => hooks.count.value += 2;
     expect(h.errors, isEmpty);
     await flaxTestUnmount(t);
     await flaxTestWaitForRuntimeDisposal(t, h.runtime);
-  });
+  }, skip: !kDebugMode);
 
   testWidgets('key changes remount and unkeyed children match by position', (
     t,

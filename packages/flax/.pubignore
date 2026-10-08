@@ -9,6 +9,7 @@ bindings/*
 /native/tests/
 /native/ffigen.yaml
 /native/CMakeLists.txt
+/native/src/
 *.iml
 
 /tool/

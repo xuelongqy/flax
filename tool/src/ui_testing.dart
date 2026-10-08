@@ -25,9 +25,10 @@ void requireUiAssets(String root, {String engine = defaultFlaxEngine}) {
       'The test process ABI must match ${currentCheckTarget().name}',
     );
   }
-  final lock = '$root/packages/flax_engine_$engine/native/sdk.lock.json';
-  if (!File(lock).existsSync()) {
-    throw StateError('$engine SDK lock is missing: $lock');
+  if (engine != 'v8' || currentCheckTarget().name != 'macos-arm64') {
+    throw UnsupportedError(
+      'The maintained Flax engine currently supports macOS arm64 with V8',
+    );
   }
 }
 
@@ -158,6 +159,9 @@ Future<void> _runIsolated(
     'ui-${currentCheckTarget().name}-$engine',
   );
   final temporary = workspace.directory;
+  final results = File(
+    p.join(root, 'build', 'ui', engine, '${p.basename(temporary.path)}.json'),
+  );
   try {
     final copiedNames = packageDependencyClosure(
       root,
@@ -234,7 +238,7 @@ Future<void> _runIsolated(
     final entry = File(p.join(temporary.path, 'test', 'ui_suite_test.dart'))
       ..parent.createSync();
     entry.writeAsStringSync(uiSuiteSource(tests, importPrefix: '../packages/'));
-    Directory('$root/build/ui/$engine').createSync(recursive: true);
+    results.parent.createSync(recursive: true);
     await run('flutter', ['pub', 'get'], directory: temporary.path);
     await run('flutter', [
       'test',
@@ -242,10 +246,20 @@ Future<void> _runIsolated(
       '--no-pub',
       '--reporter',
       'expanded',
-      '--file-reporter=json:$root/build/ui/$engine/results.json',
+      '--file-reporter=json:${results.path}',
       'test/ui_suite_test.dart',
     ], directory: temporary.path);
   } finally {
-    workspace.finish();
+    try {
+      // Keep each invocation's evidence and publish the compatibility copy with
+      // an atomic rename, so concurrent runners cannot interleave writes.
+      if (results.existsSync()) {
+        results
+            .copySync('${results.path}.latest')
+            .renameSync(p.join(results.parent.path, 'results.json'));
+      }
+    } finally {
+      workspace.finish();
+    }
   }
 }

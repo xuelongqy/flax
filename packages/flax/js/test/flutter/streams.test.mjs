@@ -75,8 +75,10 @@ test('AsyncIterator uses the host StreamIterator and rejects concurrent next', a
   let pendingResolve;
   let current;
   let cancelled = 0;
-  globalThis.__flaxCreateStreamIterator = (version, id) => {
+  let peer;
+  globalThis.__flaxCreateStreamIterator = (version, id, iterator) => {
     assert.deepEqual([version, id], [bindingVersion, 3]);
+    peer = iterator;
     return 11;
   };
   globalThis.__flaxStreamIterator = (version, id, operation) => {
@@ -102,6 +104,7 @@ test('AsyncIterator uses the host StreamIterator and rejects concurrent next', a
   };
 
   const iterator = stream(3)[Symbol.asyncIterator]();
+  assert.equal(peer, iterator);
   const first = iterator.next();
   await assert.rejects(iterator.next(), /Concurrent Stream iterator next/);
   pendingResolve();

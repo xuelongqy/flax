@@ -526,7 +526,7 @@ function settlePromise(
   success: boolean,
   value: unknown,
 ): void {
-  if (!record.active || promises.get(id) !== record) return;
+  if (!record.active || promises.get(id)?.deref() !== record) return;
   const host = globalThis as typeof globalThis & {
     __flaxPromiseSettlement?: (
       version: number,
@@ -578,11 +578,12 @@ const stateTypes = new Map<
   { fields: readonly string[]; methods: Readonly<Record<string, StateMethod>> }
 >();
 const stateHandles = new WeakMap<object, { type: string; id: number }>();
-const futures = new Map<
-  number,
-  { resolve(value: unknown): void; reject(error: Error): void }
->();
-const promises = new Map<number, { active: boolean }>();
+type FutureSettlement = { resolve(value: unknown): void; reject(error: Error): void };
+const futures = new Map<number, WeakRef<FutureSettlement>>();
+const futureOwners = new WeakMap<object, FutureSettlement>();
+const futureFinalizer = new FinalizationRegistry<number>((id) => futures.delete(id));
+const promises = new Map<number, WeakRef<{ active: boolean }>>();
+const promiseFinalizer = new FinalizationRegistry<number>((id) => promises.delete(id));
 
 export function defineState(
   type: string,
@@ -642,6 +643,7 @@ type ObjectHost = typeof globalThis & {
     ...args: unknown[]
   ) => unknown;
   __flaxCreateObject?: (version: number, type: string, descriptor: DartValue) => object;
+  __flaxBindPeer?: (version: number, source: object, target: object) => void;
 };
 
 function cachedObject(type: string, id: number): object | null {
@@ -653,6 +655,9 @@ function trackObject(value: object, type: string, id: number): void {
 }
 
 function transferObjectAlias(source: object, target: object): void {
+  const host = globalThis as ObjectHost;
+  if (!host.__flaxBindPeer) throw new Error('Object aliases require the Flax engine');
+  host.__flaxBindPeer(bindingVersion, source, target);
   references.transfer(source, target);
 }
 
@@ -692,7 +697,11 @@ type StreamHost = typeof globalThis & {
     member: string,
     ...args: unknown[]
   ) => unknown;
-  __flaxCreateStreamIterator?: (version: number, streamId: number) => number;
+  __flaxCreateStreamIterator?: (
+    version: number,
+    streamId: number,
+    iterator: object,
+  ) => number;
   __flaxStreamIterator?: (
     version: number,
     iteratorId: number,
@@ -711,7 +720,11 @@ type AsyncIterableSource = {
   closed: boolean;
   pendingReject: ((reason: unknown) => void) | null;
 };
-const asyncIterableSources = new Map<number, AsyncIterableSource>();
+const asyncIterableSources = new Map<number, WeakRef<AsyncIterableSource>>();
+const asyncIterableOwners = new WeakMap<object, AsyncIterableSource>();
+const asyncIterableFinalizer = new FinalizationRegistry<number>((id) =>
+  asyncIterableSources.delete(id),
+);
 let nextAsyncIterableSource = 1;
 
 export function constructAsyncIterableStream<T>(
@@ -723,14 +736,18 @@ export function constructAsyncIterableStream<T>(
   const create = (globalThis as StreamHost).__flaxCreateAsyncIterableStream;
   if (!create) throw new Error('AsyncIterable Streams require a Flax host');
   const id = nextAsyncIterableSource++;
-  asyncIterableSources.set(id, {
+  const record: AsyncIterableSource = {
     source: source as AsyncIterable<unknown>,
     iterator: null,
     closed: false,
     pendingReject: null,
-  });
+  };
+  asyncIterableSources.set(id, new WeakRef(record));
+  asyncIterableFinalizer.register(record, id);
   try {
-    return create(bindingVersion, type, id);
+    const stream = create(bindingVersion, type, id);
+    asyncIterableOwners.set(stream, record);
+    return stream;
   } catch (error) {
     asyncIterableSources.delete(id);
     throw error;
@@ -738,7 +755,7 @@ export function constructAsyncIterableStream<T>(
 }
 
 function asyncIterableSource(id: number): AsyncIterableSource {
-  const record = asyncIterableSources.get(id);
+  const record = asyncIterableSources.get(id)?.deref();
   if (!record || record.closed) throw new Error('Released AsyncIterable Stream');
   return record;
 }
@@ -787,7 +804,7 @@ function asyncIterableNext(id: number): Promise<readonly unknown[]> {
 }
 
 function asyncIterableReturn(id: number): Promise<void> {
-  const record = asyncIterableSources.get(id);
+  const record = asyncIterableSources.get(id)?.deref();
   if (!record || record.closed) return Promise.resolve();
   record.closed = true;
   asyncIterableSources.delete(id);
@@ -888,11 +905,11 @@ function streamAsyncIterator(stream: object, _type: string): AsyncIterator<unkno
   const create = host.__flaxCreateStreamIterator;
   const call = host.__flaxStreamIterator;
   if (!create || !call) throw new Error('Dart Stream iteration requires a Flax host');
-  const iteratorId = create(bindingVersion, ref.id);
+  let iteratorId: number;
   let pending = false;
   let finished = false;
 
-  return {
+  const iterator: AsyncIterator<unknown> = {
     async next(): Promise<IteratorResult<unknown>> {
       if (pending) throw new Error('Concurrent Stream iterator next');
       if (finished) return Promise.resolve({ value: undefined, done: true });
@@ -922,6 +939,8 @@ function streamAsyncIterator(stream: object, _type: string): AsyncIterator<unkno
       throw reason;
     },
   };
+  iteratorId = create(bindingVersion, ref.id, iterator);
+  return iterator;
 }
 
 export function constructObject(
@@ -1892,16 +1911,20 @@ Object.assign(globalThis, {
         ),
       ),
     future(id: number): Promise<unknown> {
-      const promise = new Promise((resolve, reject) =>
-        futures.set(id, { resolve, reject }),
-      );
+      let record!: FutureSettlement;
+      const promise = new Promise((resolve, reject) => {
+        record = { resolve, reject };
+      });
+      futures.set(id, new WeakRef(record));
+      futureOwners.set(promise, record);
+      futureFinalizer.register(record, id);
       // A host Future can be deliberately ignored just like a Dart Future.
       // Event-returned promises have a separate observable error boundary.
       void promise.catch(() => {});
       return promise;
     },
     settleFuture(id: number, success: boolean, value: unknown): void {
-      const pending = futures.get(id);
+      const pending = futures.get(id)?.deref();
       if (!pending) return;
       futures.delete(id);
       if (success) pending.resolve(value);
@@ -1919,7 +1942,8 @@ Object.assign(globalThis, {
         then = (value as { then?: unknown }).then;
       } catch (error) {
         const record = { active: true };
-        promises.set(id, record);
+        promises.set(id, new WeakRef(record));
+        promiseFinalizer.register(record, id);
         void Promise.reject(error)
           .catch((reason) => settlePromise(id, record, false, reason))
           .catch(reportCleanupError);
@@ -1929,7 +1953,8 @@ Object.assign(globalThis, {
         throw new TypeError('Future callbacks must return a Promise');
       }
       const record = { active: true };
-      promises.set(id, record);
+      promises.set(id, new WeakRef(record));
+      promiseFinalizer.register(record, id);
       const assimilated = Promise.resolve({
         then(resolve: (result: unknown) => void, reject: (reason: unknown) => void) {
           Reflect.apply(then as Function, value, [resolve, reject]);
@@ -1943,7 +1968,10 @@ Object.assign(globalThis, {
         .catch(reportCleanupError);
     },
     cancelPromises(): void {
-      for (const record of promises.values()) record.active = false;
+      for (const weak of promises.values()) {
+        const record = weak.deref();
+        if (record) record.active = false;
+      }
       promises.clear();
     },
     observeEvent(value: unknown): void {

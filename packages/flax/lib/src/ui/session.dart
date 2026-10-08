@@ -118,7 +118,8 @@ class _Session {
   final _closed = Completer<void>();
   final _componentStates = <int, FlaxComponentStateBase>{};
   final _componentDescriptions = <int, WeakReference<_ComponentDescription>>{};
-  final _references = <_BridgeReference>{};
+  final _references = _WeakReferences<_BridgeReference>();
+  final _widgetCleanups = <_WidgetCleanup>{};
   final _componentSessionId = _nextComponentSession++;
   final _componentTypes = <int, _ComponentType>{};
   int _nextComponentState = 1;
@@ -126,27 +127,30 @@ class _Session {
   final _nativeStateFactories = <Set<int>>[];
   final _stateIds = Expando<int>();
   final _objects = <int, _ObjectReference>{};
-  final _objectIds = Map<Object, _ObjectReference>.identity();
+  final _objectIds = _IdentityIndex<_ObjectReference>();
   final _streamReferences = <int, _StreamReference>{};
-  final _streamViews = Map<Object, Map<String, _StreamReference>>.identity();
-  final _streamSubscriptions = <_TrackedStreamSubscription<Object?>>{};
-  final _streamIterators = <int, _TrackedStreamIterator>{};
+  final _streamViews = _IdentityIndex<Map<String, _StreamReference>>();
+  final _streamSubscriptions =
+      _WeakReferences<_TrackedStreamSubscription<Object?>>();
+  final _streamIterators = _WeakValueMap<int, _TrackedStreamIterator>();
   int _nextStreamIterator = 1;
-  final _asyncIterableSources = <int, _AsyncIterableStreamSource>{};
-  final _dartErrors = <int, _DartErrorReference>{};
-  final _dartErrorIds = Map<Object, _DartErrorReference>.identity();
-  final _collectionViews =
-      Map<Object, Map<String, _CollectionReference>>.identity();
+  final _asyncIterableSources =
+      _WeakValueMap<int, _AsyncIterableStreamSource>();
+  final _dartErrors = _WeakValueMap<int, _DartErrorReference>();
+  final _dartErrorIds = _IdentityIndex<_DartErrorReference>();
+  final _collectionViews = _IdentityIndex<Map<String, _CollectionReference>>();
   // Repeated method tear-offs are equal, but not necessarily identical. Preserve
   // Dart listener removal semantics while keeping each conversion signature separate.
-  final _functionViews = <Object, Map<String, _FunctionReference>>{};
+  final _functionViews = _FunctionIndex();
   final _contextIds = Expando<_ContextReference>();
   int _nextObject = 1;
   int _nextState = 1;
   final _hostResults = <FlaxJsObject>[];
-  final _pending = <int, _PendingFuture>{};
+  final _pending = _WeakValueMap<int, _PendingFuture>();
+  // Completed values are real queued work until the next JS checkpoint.
+  final _readyFutures = <int, _PendingFuture>{};
   int _nextFuture = 1;
-  final _promises = <int, _PendingPromise>{};
+  final _promises = _WeakValueMap<int, _PendingPromise>();
   int _nextPromise = 1;
   bool _checkpointScheduled = false;
   bool _checkpointRunning = false;
@@ -837,6 +841,9 @@ class _Session {
     for (final reference in _references.toList()) {
       reference.release();
     }
+    for (final cleanup in _widgetCleanups.toList()) {
+      cleanup.release();
+    }
     _componentDescriptions.clear();
     for (final helper in _helpers.values) {
       helper.release();
@@ -855,6 +862,7 @@ class _Session {
     _states.clear();
     _componentTypes.clear();
     _pending.clear();
+    _readyFutures.clear();
     _promises.clear();
     runtime.dispose();
     if (!_closed.isCompleted) _closed.complete();

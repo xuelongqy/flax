@@ -1,4 +1,11 @@
-# Native platform verification
+# Historical SDK platform verification
+
+This guide records the previous standalone SDK deployment. It does not certify the
+maintained Flutter engine. Current macOS arm64 gates are documented in
+[runtime verification](architecture/runtime.md#verification); other platform engine
+integration is pending. SDK attachments and their historical evidence remain unchanged.
+The former platform workflows, including the manual entry, are removed. Current
+[CI policy](#ci-policy) covers static checks only.
 
 Flax consumes the 24 engine SDK archives from `flax_js_runtime` release `v0.3.0-rc.3`.
 Their manifest version is `0.3.0`, schema 3. The engine hooks select by the **build
@@ -16,6 +23,9 @@ modules and minidumps in the verification artifact's `ci/windows-crash-*` direct
 into runtime acceptance.
 
 ## One entry point
+
+Only `--list` remains available. Execution through this historical entry is retired and
+fails before fetching or building SDKs; the commands below record the former deployment.
 
 ```sh
 dart run tool/check_platform.dart --target=linux-x64 --engine=all --scope=all
@@ -148,47 +158,26 @@ behavior.
 
 ## CI policy
 
-Every PR/main push runs Linux x64 `all`, with both engines, in an Ubuntu 20.04 container
-on an Ubuntu 24.04 runner. Xvfb supplies desktop display access. The lightweight
-full-diff selector handles additions, deletions and both sides of renames; the summary
-job always returns a result.
+Every PR/main push runs [static workspace checks](../.github/workflows/check.yml) on
+Ubuntu 24.04 with the repository's locked Flutter/Dart, Node.js and pnpm versions.
+`melos check` covers host scripts, bindings, JS fixtures and tests, generator and tool
+tests, analysis, formatting, types, documentation, package archives and CMake
+configuration. `ffi:check` verifies generated declarations separately. Ordinary package
+unit tests use the standard Flutter tester and do not require a local Flax engine. Flax
+runtime and UI gates still require the maintained engine. The reusable
+[package archive workflow](../.github/workflows/packages.yml) also validates a
+disposable pack receipt and uploads the same-checkout archive proof. Neither job
+publishes packages or fetches or builds a JavaScript engine.
 
-Shared JavaScript, fixture and example preparation runs once before platform jobs.
-Consumers reject missing artifacts or mismatched checkout, source, toolchain/lock and
-output digests. Package archive validation is a reusable dependency of the main
-workflow; Linux reuses its successful same-checkout proof. Compiler caches use stable
-consumer paths and keys covering target, engine, scope, source, fixtures and pinned
-tools. Cache hits still execute tests. Failed/missing jobs can be rerun on the same
-head; successful evidence from that head remains valid and earlier attempts are kept.
+The `result` job requires both jobs to succeed, including when an upstream job fails or
+is cancelled. The workflow summary explicitly states that runtime, UI and platform
+acceptance were not executed. The former SDK platform workflow, manual runtime entry and
+shared platform preparation workflow are removed. Maintained-engine runtime CI is
+pending; current macOS arm64 acceptance uses the local engine application gates.
 
-| Changed files                                                       | Additional automatic checks                             |
-| ------------------------------------------------------------------- | ------------------------------------------------------- |
-| Ordinary Dart/JS/UI assertions or docs                              | None; default Linux full check covers common behavior   |
-| One platform's implementation/project/specialty tests               | That platform's related architectures, `platform` scope |
-| Shared native ABI, SDK preparation, native assets or device harness | All affected targets, both engines, `platform` scope    |
-| One engine adapter/hook/SDK lock                                    | All affected targets for that engine, `platform` scope  |
-| Flutter pin, global build dependencies or target rules              | All affected targets, both engines, `platform` scope    |
+## Historical receipts
 
-`.github/workflows/runtime.yml` is manual: select target, engine and scope. It reuses
-`.github/workflows/platform.yml`, as do automatic checks. No workflow publishes Flax or
-rebuilds an engine. The `ios-simulators` workflow target runs arm64 and x64 together
-after one shared preparation; individual target choices remain available. Android x64
-uses an emulator; iOS simulators run on matching CPU runners. Hosted Android arm32/arm64
-and iOS real-device jobs are **build-only**. Complete their runtime acceptance locally:
-
-```sh
-dart run tool/check_platform.dart --target=android-arm32 --engine=all --device=<id>
-dart run tool/check_platform.dart --target=android-arm64 --engine=all --device=<id>
-FLAX_IOS_TEAM=<team-id> dart run tool/check_platform.dart --target=ios-device-arm64 --engine=all --device=<id>
-```
-
-Evidence is written to `build/platform/<target>/verification.json` and uploaded by CI.
-Preparation failures also write a receipt with `failedStage` and no successful engine
-stages. Each engine records build, runtime and application stages independently. CI
-updates that receipt after each completed stage, so a job timeout retains partial
-evidence without claiming application acceptance. Failed application builds retain hook
-input/output and stdout/stderr diagnostics alongside the receipt. CI uploads
-installation and emulator diagnostics from `build/platform/<target>/ci/`; Android x64
-boot has a 10-minute deadline with each ADB call limited to 30 seconds. A green
-build-only job means built, not accepted. A failed full assertion blocks full acceptance
-even when platform smoke succeeds.
+The former SDK matrix wrote `build/platform/<target>/verification.json`. Each engine
+recorded build, runtime and application stages independently; timeouts retained partial
+evidence. Device jobs without execution remained **build-only**. These receipts remain
+historical evidence and do not certify the maintained-engine integration.

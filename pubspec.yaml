@@ -89,20 +89,21 @@ melos:
       description: Regenerate FFI declarations in a temporary directory and compare.
       run: dart run tool/ffi.dart --check
     native:build:v8:
-      description: Prepare the pinned V8 SDK and build the local bridge.
+      description: Retired standalone bridge build; use the Flutter engine build helper.
       run: dart run tool/native.dart --engine=v8
     check:runtime:v8:
-      description: Verify V8 native, Dart, and relocated package behavior.
+      description: Verify runtime and joint GC in the matching Flutter engine.
       run: dart run tool/check_runtime.dart --engine=v8
     check:engines:
-      description: Verify engine coexistence, reference rejection, and reentry.
+      description: Verify Context isolation, reference rejection, reentry and joint GC.
       run: dart run tool/check_engines.dart
     bench:engines:
       description:
-        Compare prepared engines in isolated AOT processes (up to 60 minutes).
+        Retired independent engine benchmark; use the profile application gate.
       run: dart run tool/benchmark_engines.dart
     bench:engines:smoke:
-      description: Verify benchmark workloads and reports with prepared engines.
+      description:
+        Retired independent engine benchmark; use the profile application gate.
       run: dart run tool/benchmark_engines.dart --smoke
     bench:engines:test:
       description: Test benchmark scheduling and statistics without loading engines.
@@ -120,11 +121,11 @@ melos:
       description: Run the embedded example with prepared V8 assets.
       run: dart run tool/example_run.dart --engine=v8
     native:build:
-      description: Prepare the pinned Hermes SDK and build the local bridge.
+      description: Retired standalone bridge build; use the Flutter engine build helper.
       run: dart run tool/native.dart
     check:runtime:
       description:
-        Verify the native ABI, Dart integration, and standalone JIT/AOT packages.
+        Verify the native ABI and joint Dart/V8 GC in the local Flutter UI isolate.
       run: dart run tool/check_runtime.dart
     bindings:generate:
       description:
@@ -149,7 +150,7 @@ melos:
         - dart run tool/build_js.dart
         - node tool/ui_bundle.mjs
     ui:test:
-      description: Run real framework tests using prepared Hermes native assets.
+      description: Run real framework tests with the matching local V8 Flutter engine.
       run: dart run tool/ui_test.dart
     example:run:
       description:
@@ -167,10 +168,11 @@ melos:
       description: Verify standalone relocated release UI with prepared V8 assets.
       run: dart run tool/check_standalone.dart --engine=v8
     check:aggregate:
-      description: Verify only cross-module aggregate behavior with Hermes.
+      description: Verify cross-module aggregate behavior with the local V8 engine.
       run: dart run tool/check_aggregate.dart
     check:ui:
-      description: Verify all owner UI modules and aggregate behavior with Hermes.
+      description:
+        Verify all owner UI modules and aggregate behavior with the local V8 engine.
       run: dart run tool/check_ui.dart
     check:
       description: Run static workspace checks without fetching or building an engine.

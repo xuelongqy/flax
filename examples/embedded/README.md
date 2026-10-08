@@ -12,6 +12,6 @@ storage, Canvas, or other owner scenarios.
 recreation. `integration_test/app_test.dart` drives the same aggregate on macOS and
 writes the `embedded-module-aggregate` receipt consumed by the test driver.
 
-Use `dart run melos run check:aggregate` after preparing Hermes assets, or
-`check:aggregate:v8` after preparing V8 assets. Full `check:ui` runs all UI-owning
-package integrations first and this aggregate last.
+Use `dart run melos run check:aggregate` with the matching local Flax engine.
+`check:aggregate:v8` selects the same macOS V8 runtime explicitly. Full `check:ui` runs
+all UI-owning package integrations first and this aggregate last.

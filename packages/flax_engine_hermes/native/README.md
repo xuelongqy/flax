@@ -1,5 +1,9 @@
 # Hermes Adapter
 
+This directory retains the historical standalone SDK adapter. Hermes is reserved for the
+maintained iOS engine, which is outside the current macOS implementation; see
+[the package status](../README.md). The native asset hook described below is retired.
+
 Implements engine creation with ES6 block scoping and the Hermes microtask queue
 enabled, and exports `flax_hermes_get_api` as the native asset bootstrap. The bridge
 uses JSI from the SDK's pinned upstream Hermes revision. [sdk.lock.json](sdk.lock.json)

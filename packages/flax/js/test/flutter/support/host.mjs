@@ -1,9 +1,17 @@
+import assert from 'node:assert/strict';
+
 // Transport fixtures only. Real Dart construction and semantics run in Flutter tests.
 export function objectHost() {
   const api = globalThis.__flaxBindings;
   const calls = [];
   const objects = new Map();
   let next = 100;
+  globalThis.__flaxBindPeer = (version, source, target) => {
+    assert.equal(version, api.version);
+    api.objectHandle(source);
+    assert.equal(typeof target, 'object');
+    assert.notEqual(target, null);
+  };
   globalThis.__flaxCreateObject = (version, type, descriptor) => {
     calls.push({ version, type, descriptor });
     const id = next++;

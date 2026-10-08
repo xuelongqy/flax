@@ -249,31 +249,23 @@ void _checkDartArchive(FlaxWorkspacePackage package, Set<String> paths) {
   }
   if (capabilities.contains('engine')) {
     require('THIRD_PARTY_NOTICES.txt');
-    require('hook/build.dart');
-    require('native/CMakeLists.txt');
-    require('native/sdk.lock.json');
-    require(
-      'native/${package.name == 'flax_engine_v8' ? 'v8_engine.cpp' : 'hermes_engine.cpp'}',
-    );
-    if (package.name == 'flax_engine_v8') {
-      require('native/jsi/jsi/jsi.cpp');
-      require('native/v8-jsi/src/v8_core.cpp');
-    }
-    for (final path in ['native/ffigen.yaml', 'native/generated']) {
-      reject(path);
-    }
+    // Compatibility factories use the maintained Flutter engine. Their old
+    // build sources remain local provenance, not a second application runtime.
+    reject('hook');
+    reject('native');
     if (paths.any((path) => path.endsWith('.dylib'))) {
       throw StateError('Built engine library leaked into ${package.name}');
     }
   }
   if (capabilities.contains('core')) {
     require('native/include/flax/runtime.h');
-    require('native/src/runtime.cpp');
+    require('native/include/flax/engine_gc.h');
     require('lib/native_sdk.dart');
     require('lib/native_target.dart');
     reject('native/tests/');
     reject('native/ffigen.yaml');
     reject('native/CMakeLists.txt');
+    reject('native/src');
   }
 }
 

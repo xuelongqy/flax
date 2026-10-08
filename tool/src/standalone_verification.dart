@@ -11,6 +11,7 @@ import 'ui_testing.dart';
 import 'example_engine.dart';
 import 'package_discovery.dart';
 import 'engine_selection.dart';
+import 'platform_binary.dart';
 
 Future<void> verifyStandalone(
   String root, {
@@ -26,10 +27,10 @@ Future<void> verifyStandalone(
     File('$root/examples/standalone/pubspec.yaml'),
   );
   final sourceDependencies =
-      (sourcePubspec['dependencies'] as Map).keys
-          .cast<String>()
-          .where(workspacePackages.containsKey)
-          .toSet()
+      {
+          ...(sourcePubspec['dependencies'] as Map).keys,
+          ...((sourcePubspec['dev_dependencies'] as Map?) ?? {}).keys,
+        }.cast<String>().where(workspacePackages.containsKey).toSet()
         ..removeWhere((name) => name.startsWith('flax_engine_'))
         ..add('flax_engine_$engine');
   final dartPackages = sourceDependencies.toList()..sort();
@@ -86,6 +87,14 @@ Future<void> verifyStandalone(
             .split('\u0000')
             .where((s) => s.isNotEmpty)
             .toSet()) {
+      // The engine acceptance runner owns these targets and their core fixtures.
+      if (const {
+        'examples/standalone/integration_test/engine_gc_test.dart',
+        'examples/standalone/integration_test/engine_restart.dart',
+        'examples/standalone/test_driver/engine_gc.dart',
+      }.contains(path)) {
+        continue;
+      }
       final source = File('$root/$path');
       if (!source.existsSync()) continue;
       final destination = File(
@@ -105,7 +114,11 @@ Future<void> verifyStandalone(
       (name, _) => name.startsWith('flax_engine_'),
     );
     for (final name in dartPackages) {
-      (pubspec['dependencies'] as Map<String, dynamic>)[name] = {
+      final dev = pubspec['dev_dependencies'] as Map<String, dynamic>?;
+      final section = dev?.containsKey(name) == true
+          ? dev!
+          : pubspec['dependencies'] as Map<String, dynamic>;
+      section[name] = {
         'path': p.relative(p.join(packages.path, name), from: consumer),
       };
     }
@@ -282,6 +295,10 @@ console.log('External JS exports and singleton Flax dependencies verified.');
     ], flutter);
     releaseBuild.stop();
     const product = 'build/macos/Build/Products/Release/flax_standalone.app';
+    final productionAudit = await verifyEngineApplication(
+      '$flutter/$product',
+      'release',
+    );
     final output = Directory(
       '$root/build/standalone${engine == defaultFlaxEngine ? '' : '-$engine'}',
     )..createSync(recursive: true);
@@ -306,6 +323,7 @@ console.log('External JS exports and singleton Flax dependencies verified.');
       '--dart-define=FLAX_VERIFY_RELEASE=true',
     ], flutter);
     final relocatedApp = '${relocated.path}/flax_standalone.app';
+    await verifyEngineApplication('$flutter/$product', 'release');
     // Framework bundles contain symlinks and executable modes; copyTree is for sources.
     await execute('ditto', ['$flutter/$product', relocatedApp], flutter);
     temporary.deleteSync(recursive: true);
@@ -324,6 +342,7 @@ console.log('External JS exports and singleton Flax dependencies verified.');
     File('${output.path}/verification.json').writeAsStringSync(
       jsonEncode({
         ...result,
+        ...productionAudit,
         if (jitVerification != null) ...{
           'jitObserved': true,
           'jitProofSeparateProcess': true,

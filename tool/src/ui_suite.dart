@@ -5,6 +5,7 @@ import 'package:path/path.dart' as p;
 
 import 'package_discovery.dart';
 import 'process.dart';
+import 'engine_selection.dart';
 
 /// Single-package and combined runners discover the same package-owned sources.
 typedef UiTestFile = ({String packageName, String path});
@@ -71,7 +72,7 @@ final class UiTestOptions {
       }
       values[key] = value;
     }
-    engine = values['--engine'] ?? 'hermes';
+    engine = values['--engine'] ?? defaultFlaxEngine;
     if (!{'hermes', 'v8'}.contains(engine)) {
       throw ArgumentError('Unknown engine: $engine');
     }

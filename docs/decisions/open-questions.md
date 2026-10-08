@@ -41,7 +41,6 @@ work has started and needs a handoff.
 | Project license                              | An explicit license choice and distribution review                                                                                           |
 | Public pub.dev names and npm scope           | Ownership and availability checks                                                                                                            |
 | Public-release compatibility policy          | Release artifacts, support lifetime and historical manifest comparison; current-graph validation does not establish released-ID immutability |
-| Default engine and per-platform selection    | Additional adapter builds, debugging, loading and memory measurements                                                                        |
 | Native ABI evolution after ABI 2             | Evidence for changing the `FlaxApi` table, size or call semantics                                                                            |
 | SDK distribution beyond macOS arm64          | Platform packaging, signing, hosting and release verification for each additional target                                                     |
 | Runtime module loading and hot replacement   | Identity, callback/resource ownership and unload behavior beyond compile-time dependency installation                                        |

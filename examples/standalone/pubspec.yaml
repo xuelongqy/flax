@@ -14,14 +14,17 @@ dependencies:
   flax_websocket: 0.0.0
   flax_local_storage: 0.0.0
   flax_canvas: 0.0.0
-  flax_engine_hermes: 0.0.0
   flax_material_ui: 0.0.0
   flutter:
     sdk: flutter
 
 dev_dependencies:
+  ffi: 2.2.0
+  flax_test: 0.0.0
   flutter_lints: 6.0.0
   flutter_test:
+    sdk: flutter
+  flutter_driver:
     sdk: flutter
   integration_test:
     sdk: flutter

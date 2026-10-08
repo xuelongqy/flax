@@ -2,10 +2,6 @@ name: Package archive checks
 
 on:
   workflow_call:
-    inputs:
-      prepared:
-        type: boolean
-        default: false
   workflow_dispatch:
 
 permissions:
@@ -50,18 +46,7 @@ jobs:
           flutter pub get --enforce-lockfile
           pnpm install --frozen-lockfile
 
-      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
-        if: inputs.prepared
-        with:
-          name: prepared-checks
-          path: build/prepared
-      - name: Consume shared preparation
-        if: inputs.prepared
-        run:
-          dart --packages=.dart_tool/package_config.json tool/prepare_checks.dart
-          --consume=build/prepared
       - name: Build JavaScript package outputs
-        if: ${{ !inputs.prepared }}
         run: dart run melos run js:build
 
       - name: Validate archives and pack receipt (no publish)

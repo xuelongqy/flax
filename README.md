@@ -8,8 +8,9 @@ applications and developing standalone applications.
 generated Flutter/Material bindings and explicit signals to update real Flutter widgets,
 including conditional and keyed subtrees. Owning FlaxViews create a runtime through
 their supplied factory; explicit FlaxSessions can span multiple Routes using the
-existing C ABI/JSI bridge. Runtime tests also cover standalone JIT and relocated AOT
-loading. See the [embedded example](examples/embedded/README.md) and
+engine-owned C ABI/JSI bridge. Flax requires its maintained Flutter 3.47.6 engine; macOS
+arm64 uses V8 JIT. Dart and JS business references participate in joint GC. See the
+[embedded example](examples/embedded/README.md) and
 [host contract](docs/architecture/ui.md).
 
 Generated Builder and LayoutBuilder callbacks run during Flutter build/layout. JS can
@@ -51,39 +52,69 @@ The checks verify generated bindings, generator and JS tests, JS compilation and
 example/test bundling, Dart analysis, formatting, documentation, and CMake
 configuration. They do not download or build an engine or run platform UI tests.
 
-On macOS arm64 (macOS 15 or newer), install Xcode command-line tools and Ninja, then
-run:
+Use the [Flutter fork](https://github.com/xuelongqy/flutter) on `flax/main` with its
+matching local engine. macOS arm64 requires macOS 15 or newer, Xcode and Ninja. Build
+artifacts from the fork using its revision-checked helper and an already verified V8
+SDK:
 
 ```sh
-dart run melos run native:build
-dart run melos run check:ui
+python3 engine/src/flutter/flax/tools/build_engine.py --sdk /path/to/verified/v8-macos-arm64 --mode debug
 ```
 
-`native:build` downloads the checksum-locked Hermes shared SDK and compiles the Flax
-bridge locally. `check:ui` then runs one combined entry importing every UI owner's
-original tests, their examples, and the cross-module aggregate once each. Runtime,
-standalone, engine-coexistence, and release verification remain separate gates. To
-launch the example afterward, run `dart run melos run example:run`. Hermes remains the
-default for repository commands and examples. Experimental V8 15.2.124.21 is available
-explicitly with `native:build:v8` and `check:ui:v8`; see the
-[V8 adapter](packages/flax_engine_v8/native/README.md) and
-[verification scope](docs/architecture/runtime.md#verification). See the
-[runtime package](packages/flax_engine_hermes/README.md) and
-[packaging instructions](docs/architecture/packaging.md).
+The Flax workspace tools select `flax_mac_debug_arm64` through Flutter's official local
+engine flags. Select the fork before running commands:
+
+```sh
+export FLUTTER_ROOT=/path/to/flutter-fork
+export PATH="$FLUTTER_ROOT/bin:$PATH"
+flutter pub get --enforce-lockfile
+dart run melos run check:runtime
+dart run melos run check:ui
+dart run tool/check_engine_application.dart debug
+```
+
+Build matching `profile` and `release` artifacts in the fork before selecting those
+modes in `check_engine_application.dart`. This gate runs runtime and real Widget/State,
+callback, Future and Stream contracts in a macOS application. Current acceptance is
+tracked in the [engine acceptance task](docs/tasks/engine-cross-heap-gc.md).
+
+Android arm64 uses the same engine-owned V8 JIT and joint GC. Build matching debug and
+release Android engines in the Flutter fork with `--target android-arm64`, using its
+verified Android V8 SDK and matching macOS host tools. Then run the real APK gate:
+
+```sh
+export ANDROID_HOME=/path/to/android-sdk
+export FLAX_CHECK_TARGET=android-arm64
+export FLAX_CHECK_DEVICE=emulator-5554
+dart run tool/check_engine_application.dart debug
+dart run tool/check_engine_application.dart release
+```
+
+Android arm64 debug and release/AOT correctness passes on the API 37 emulator with
+16 KB pages and a Pixel 4 running Android 13 with 4 KB pages. Both verify V8 JIT and
+joint GC. Android GC/frame performance and complete platform UI coverage remain pending.
+Use the phone's ADB ID in `FLAX_CHECK_DEVICE` for physical-device checks.
+
+Platform selection is fixed: iOS Hermes, other native targets V8 JIT. macOS and Android
+arm64 are implemented. Ordinary Flutter, mismatched revisions and unsupported runtime
+isolates fail explicitly; there is no independent SDK runtime fallback. See
+[engine ownership](docs/decisions/0039-engine-owned-cross-heap-gc.md).
 
 ## Toolchain
 
 | Tool    | Baseline                     | Configuration                  |
 | ------- | ---------------------------- | ------------------------------ |
-| Flutter | 3.47.2 stable                | [.fvmrc](.fvmrc)               |
-| Dart    | 3.13.2, bundled with Flutter | [pubspec.yaml](pubspec.yaml)   |
+| Flutter | 3.47.6 stable                | [.fvmrc](.fvmrc)               |
+| Dart    | 3.13.5, bundled with Flutter | [pubspec.yaml](pubspec.yaml)   |
 | Node.js | 22.23.0                      | [.node-version](.node-version) |
 | pnpm    | 11.24.0                      | [package.json](package.json)   |
 | Melos   | 8.6.0                        | [pubspec.yaml](pubspec.yaml)   |
 
 FVM is optional; the Flutter executable on PATH must use the configured version. Melos
 runs through `dart run`, so a global Melos installation is unnecessary. Commit both
-workspace lockfiles. CI uses the same pinned toolchain.
+workspace lockfiles. Default CI runs the complete static workspace and package archive
+checks. The former SDK platform workflows are retired; maintained-engine runtime CI is
+pending.
 
 ## Repository map
 
@@ -133,8 +164,8 @@ interfaces. Interface-bearing Widgets use fixed arguments and bind their contain
 property for changes. See [Widget interfaces](docs/architecture/widget-interfaces.md).
 
 The [standalone application](examples/standalone/README.md) creates its MaterialApp in
-JS. Use `dart run melos run standalone:run` with the locked Hermes SDK. External source
-consumption and relocated release validation are described in
+JS. Use `dart run melos run standalone:run` with the maintained Flutter engine. External
+source consumption and relocated release validation are described in
 [application startup](docs/architecture/applications.md).
 
 Optional [localStorage](docs/architecture/local-storage.md) uses Hive CE and session

@@ -1,17 +1,15 @@
-/// Experimental Hermes runtime creation through a bundled native asset.
+/// Reserved compatibility factory for the maintained iOS Hermes engine.
 library;
 
-import 'package:flax/native_runtime.dart';
-import 'package:flax/runtime.dart';
-import 'package:flax/native_target.dart';
+import 'dart:io';
 
-import 'src/hermes_bindings.g.dart';
+import 'package:flax/runtime.dart';
 
 abstract final class FlaxHermesEngine {
   static FlaxJsRuntime createRuntime() {
-    requireFlaxNativeAbi();
-    return FlaxNativeJsRuntime.fromApi(
-      flax_hermes_get_api(FLAX_ABI_VERSION).cast<FlaxApi>(),
-    );
+    if (!Platform.isIOS) {
+      throw UnsupportedError('Hermes is reserved for the Flax iOS engine');
+    }
+    return FlaxEngine.createRuntime();
   }
 }

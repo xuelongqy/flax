@@ -1,16 +1,10 @@
-# Shared Native Runtime
+# Native ABI headers
 
-This directory owns Flax's public C ABI and engine-independent JSI bridge.
-
-- `include/flax/runtime.h` is the canonical ABI 2 header.
-- `src/` implements shared values, references, calls, callbacks, and byte transport.
-- `tests/` verifies shared behavior without selecting an engine package.
-
-Hermes and V8 adapters and engine-specific tests live in their respective packages.
-Upstream engine pins and patches live in the engine SDK repository; each Flax engine
-package locks one archive. The adapters include this directory through the common CMake
-boundary; core code never selects an engine.
-
-Use `dart run melos run native:configure` for a toolchain-only check. Use the explicit
-runtime and UI checks for real engine behavior. See the
+This directory retains the canonical ABI 2 header and internal GC extension 1 header.
+FFI generation reads these declarations. The maintained Flutter fork owns the executable
+bridge, V8 adapter and Dart joint GC patch; see the
 [runtime contract](../../../docs/architecture/runtime.md).
+
+The prior shared JSI sources and native tests remain as source history. They are not
+loaded by Flax applications or included in core archives. `native:configure` checks
+CMake/toolchain structure only. Real runtime checks require the matching Flutter engine.

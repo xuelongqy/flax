@@ -393,10 +393,15 @@ extension _Collections on _Session {
               .call([FlaxJsString(viewId), FlaxJsString(type.kind)]),
         );
       }
-      return helper('object').call([
-        FlaxJsString(record.binding.id),
-        FlaxJsNumber(record.id.toDouble()),
-      ]);
+      // A typed view retains the collection; the collection does not retain
+      // every sibling view. An expired view is recreated from the same value.
+      return _peerResult(
+        helper('object').call([
+          FlaxJsString(record.binding.id),
+          FlaxJsNumber(record.id.toDouble()),
+        ]),
+        value,
+      );
     } catch (_) {
       if (created) record.release();
       rethrow;
@@ -563,8 +568,7 @@ class _CollectionReference extends _ObjectReference {
   @override
   void release() {
     final receiver = _value;
-    _value = null;
-    session._objects.remove(id);
+    forget();
     final views = session._collectionViews[receiver];
     views?.remove(binding.id);
     if (views != null && views.isEmpty) {

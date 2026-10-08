@@ -8,7 +8,8 @@ class FlaxTestRuntimeTracker implements FlaxJsRuntime {
   FlaxTestRuntimeTracker(this.inner);
 
   final FlaxJsRuntime inner;
-  final _owned = <_TrackedObject>{};
+  // Diagnostics must not turn every facade into a business GC root.
+  final _owned = <WeakReference<_TrackedObject>>[];
   final hostCalls = <String, int>{};
   final evaluationMicroseconds = <String, int>{};
   final jsCalls = <String, int>{};
@@ -19,8 +20,10 @@ class FlaxTestRuntimeTracker implements FlaxJsRuntime {
   int byteWrites = 0;
   int byteReads = 0;
   final hostOperations = <String, int>{};
-  int get handles => _owned.length;
-  List<String> get handleLabels => _owned.map((value) => value.label).toList();
+  Iterable<_TrackedObject> get _live =>
+      _owned.map((entry) => entry.target).whereType<_TrackedObject>();
+  int get handles => _live.length;
+  List<String> get handleLabels => _live.map((value) => value.label).toList();
   int get pendingFutures =>
       (jsCalls['__flaxBindings.future'] ?? 0) -
       (jsCalls['__flaxBindings.settleFuture'] ?? 0);
@@ -43,7 +46,10 @@ class FlaxTestRuntimeTracker implements FlaxJsRuntime {
     final result = value is FlaxJsFunction
         ? _TrackedFunction(this, value, label)
         : _TrackedObject(this, value, label);
-    if (owned) _owned.add(result);
+    if (owned) {
+      _owned.removeWhere((entry) => entry.target == null);
+      _owned.add(WeakReference(result));
+    }
     return result;
   }
 
@@ -100,6 +106,14 @@ class FlaxTestRuntimeTracker implements FlaxJsRuntime {
   }
 
   @override
+  void bindDartPeer(FlaxJsObject object, Object target, {Object? origin}) =>
+      inner.bindDartPeer(
+        unwrap(object) as FlaxJsObject,
+        target,
+        origin: origin,
+      );
+
+  @override
   bool drainMicrotasks({int maxJobsHint = -1}) {
     checkpointPhases.add(SchedulerBinding.instance.schedulerPhase);
     return inner.drainMicrotasks(maxJobsHint: maxJobsHint);
@@ -133,7 +147,9 @@ class _TrackedObject implements FlaxJsObject {
   @override
   void release() {
     inner.release();
-    runtime._owned.remove(this);
+    runtime._owned.removeWhere(
+      (entry) => entry.target == null || identical(entry.target, this),
+    );
   }
 
   @override

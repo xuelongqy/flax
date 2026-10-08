@@ -1,4 +1,4 @@
-name: Workspace and Linux runtime checks
+name: Static workspace checks
 
 on:
   pull_request:
@@ -13,73 +13,76 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  changes:
+  workspace:
     runs-on: ubuntu-24.04
-    outputs:
-      matrix: ${{ steps.targets.outputs.matrix }}
-      run: ${{ steps.targets.outputs.run }}
+    timeout-minutes: 45
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-          fetch-depth: 0
-      - uses: dart-lang/setup-dart@6afc89df92d6eb3834022f73cd65adc8cdfcb92d # v1
-        with:
-          sdk: 3.13.2
-      - id: targets
-        env:
-          BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
-          HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
-        run: |
-          if [ "$BASE" = 0000000000000000000000000000000000000000 ]; then BASE=$(git hash-object -t tree /dev/null); fi
-          dart tool/platform_changes.dart "$BASE" "$HEAD"
 
-  prepare:
-    uses: ./.github/workflows/prepare.yml
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+          package-manager-cache: false
+
+      - name: Set up pnpm
+        run:
+          npm install --global "$(node -p 'require("./package.json").packageManager')"
+
+      - name: Set up Flutter and Dart
+        uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
+        with:
+          channel: stable
+          flutter-version-file: .fvmrc
+          cache: true
+          pub-cache: false
+
+      - name: Install native configuration and FFI tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake ninja-build libclang-dev
+
+      - name: Install locked dependencies
+        run: |
+          flutter pub get --enforce-lockfile
+          pnpm install --frozen-lockfile
+
+      - name: Check the full static workspace
+        run: dart run melos run check
+
+      - name: Verify reproducible FFI declarations
+        run: dart run melos run ffi:check
+
+      - name: Verify source files are unchanged
+        run: |
+          git diff --exit-code
+          if [ -n "$(git status --porcelain)" ]; then
+            git status --short
+            exit 1
+          fi
+
+      - name: Record validation scope
+        if: always()
+        run: |
+          printf '%s\n' \
+            'This workflow checks the static workspace and package archives.' \
+            'Runtime, UI and platform acceptance are not executed. Maintained-engine CI is pending.' \
+            >> "$GITHUB_STEP_SUMMARY"
 
   archives:
-    needs: prepare
     uses: ./.github/workflows/packages.yml
-    with:
-      prepared: true
-
-  linux:
-    needs: [prepare, archives]
-    uses: ./.github/workflows/platform.yml
-    with:
-      target: linux-x64
-      engine: all
-      scope: all
-      prepared: true
-      archive-proof: true
-
-  platforms:
-    needs: [changes, prepare]
-    if: needs.changes.outputs.run == 'true'
-    strategy:
-      fail-fast: false
-      matrix: ${{ fromJSON(needs.changes.outputs.matrix) }}
-    uses: ./.github/workflows/platform.yml
-    with:
-      target: ${{ matrix.target }}
-      engine: ${{ matrix.engine }}
-      scope: platform
-      prepared: true
 
   result:
     if: always()
-    needs: [changes, prepare, archives, linux, platforms]
+    needs: [workspace, archives]
     runs-on: ubuntu-24.04
     steps:
       - env:
-          CHANGES: ${{ needs.changes.result }}
-          PREPARE: ${{ needs.prepare.result }}
+          WORKSPACE: ${{ needs.workspace.result }}
           ARCHIVES: ${{ needs.archives.result }}
-          LINUX: ${{ needs.linux.result }}
-          PLATFORMS: ${{ needs.platforms.result }}
         run: |
-          test "$CHANGES" = success
-          test "$PREPARE" = success
+          test "$WORKSPACE" = success
           test "$ARCHIVES" = success
-          test "$LINUX" = success
-          test "$PLATFORMS" = success || test "$PLATFORMS" = skipped

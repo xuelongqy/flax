@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
@@ -7,8 +6,6 @@ import 'package:yaml/yaml.dart';
 
 import 'engine_selection.dart';
 import 'package_discovery.dart';
-import 'process.dart';
-import 'example_engine.dart';
 
 void copyTree(Directory source, Directory target) {
   target.createSync(recursive: true);
@@ -32,7 +29,7 @@ void rewriteDartDirectiveUris(
   final from = RegExp.escape(source.absolute.uri.toString());
   final to = Directory(target.resolveSymbolicLinksSync()).uri.toString();
   final directive = RegExp(
-    r'''^([ \t]*(?:import|export|part)[ \t]+["'])''' + from,
+    '''^([ \\t]*(?:import|export|part)[ \\t]+["'])(?!${RegExp.escape(to)})$from''',
     multiLine: true,
   );
   for (final file in directory.listSync(recursive: true).whereType<File>()) {
@@ -115,150 +112,9 @@ Future<void> verifyPackage(
   Directory root, {
   String engine = defaultFlaxEngine,
 }) async {
-  final temporary = Directory.systemTemp.createTempSync('flax-package-');
-  final relocated = Directory.systemTemp.createTempSync('flax-relocated-');
-  final environment = Map<String, String>.from(Platform.environment)
-    ..removeWhere(
-      (name, _) => name.startsWith('DYLD_') || name == 'LD_LIBRARY_PATH',
-    );
-  try {
-    copyDartPackages(root, temporary, ['flax', 'flax_engine_$engine']);
-    final consumer = Directory(p.join(temporary.path, 'consumer'))
-      ..createSync();
-    final manifest = <String, dynamic>{
-      'name': 'flax_runtime_consumer',
-      'publish_to': 'none',
-      'environment': {'sdk': '^3.13.2'},
-      'dependencies': {
-        'flax': {'path': '../flax'},
-        'flax_engine_$engine': {'path': '../flax_engine_$engine'},
-      },
-    };
-    addCandidateSdk(manifest, engine, root: root.path);
-    File(p.join(consumer.path, 'pubspec.yaml'))
-        .writeAsStringSync(jsonEncode(manifest));
-    Directory(p.join(consumer.path, 'bin')).createSync();
-    final enginePackage = 'flax_engine_$engine';
-    final fixture = File(
-      p.join(
-        root.path,
-        'packages',
-        'flax_test',
-        'tool',
-        'runtime_consumer.dart.template',
-      ),
-    ).readAsStringSync();
-    File(p.join(consumer.path, 'bin/main.dart')).writeAsStringSync(
-      fixture
-          .replaceAll('{{enginePackage}}', enginePackage)
-          .replaceAll('{{engineClass}}', engineFactoryClass(root.path, engine)),
-    );
-    File('${root.path}/pubspec.lock').copySync('${consumer.path}/pubspec.lock');
-    await run(
-      'flutter',
-      ['pub', 'get'],
-      directory: consumer.path,
-      environment: environment,
-      inheritEnvironment: false,
-    );
-    Future<void> jit() => run(
-      Platform.resolvedExecutable,
-      ['run', 'bin/main.dart'],
-      directory: consumer.path,
-      environment: environment,
-      inheritEnvironment: false,
-      captureWindowsCrash: true,
-    );
-    await jit();
-
-    if (manifest.containsKey('hooks')) {
-      final pubspec = File(p.join(consumer.path, 'pubspec.yaml'));
-      final original = pubspec.readAsStringSync();
-      try {
-        final wrong = jsonDecode(original) as Map<String, dynamic>;
-        ((wrong['hooks'] as Map)['user_defines']
-                as Map)['flax_engine_$engine']['sdkSha256'] =
-            '0' * 64;
-        pubspec.writeAsStringSync(jsonEncode(wrong));
-        await _expectFailure(consumer, environment, 'SDK checksum mismatch');
-      } finally {
-        pubspec.writeAsStringSync(original);
-      }
-      await jit();
-    }
-    await run(
-      Platform.resolvedExecutable,
-      [
-        'build',
-        'cli',
-        '--target',
-        'bin/main.dart',
-        '--output',
-        'build/consumer',
-      ],
-      directory: consumer.path,
-      environment: environment,
-      inheritEnvironment: false,
-    );
-    copyTree(
-      Directory(p.join(consumer.path, 'build/consumer/bundle')),
-      relocated,
-    );
-    File(
-      p.join(root.path, 'packages/flax_engine_$engine/THIRD_PARTY_NOTICES.txt'),
-    ).copySync(p.join(relocated.path, 'THIRD_PARTY_NOTICES.txt'));
-    final executables = Directory(p.join(relocated.path, 'bin'))
-        .listSync()
-        .whereType<File>()
-        .toList();
-    if (executables.length != 1) {
-      throw StateError('Expected one AOT consumer executable');
-    }
-    // Remove the source packages and original bundle before executing the copy.
-    temporary.deleteSync(recursive: true);
-    await run(
-      executables.single.path,
-      [],
-      directory: relocated.path,
-      environment: environment,
-      inheritEnvironment: false,
-      captureWindowsCrash: true,
-    );
-    stdout.writeln(
-      'Standalone JIT, SDK checksum rejection, and relocated AOT bundle verified.',
-    );
-  } finally {
-    if (temporary.existsSync()) temporary.deleteSync(recursive: true);
-    relocated.deleteSync(recursive: true);
-  }
-}
-
-Future<void> _expectFailure(
-  Directory consumer,
-  Map<String, String> environment,
-  String message,
-) async {
-  final process = await Process.start(
-    Platform.resolvedExecutable,
-    ['run', 'bin/main.dart'],
-    workingDirectory: consumer.path,
-    environment: environment,
-    includeParentEnvironment: false,
+  throw UnsupportedError(
+    'The Flax runtime requires a Flutter UI isolate. Standalone Dart SDK '
+    'consumers are retired; use tool/check_engine_application.dart for '
+    'debug, profile and release/AOT application acceptance.',
   );
-  final stdoutText = process.stdout.transform(utf8.decoder).join();
-  final stderrText = process.stderr.transform(utf8.decoder).join();
-  final code = await process.exitCode.timeout(
-    const Duration(minutes: 2),
-    onTimeout: () {
-      process.kill(ProcessSignal.sigkill);
-      throw TimeoutException('Asset validation process did not finish');
-    },
-  );
-  final output = '${await stdoutText}\n${await stderrText}';
-  if (code == 0 || !output.contains(message)) {
-    throw StateError(
-      'Expected asset validation failure ($message), got $code:\n$output',
-    );
-  }
-  stdout.writeln('Verified rejection: $message');
 }

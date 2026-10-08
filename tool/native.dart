@@ -1,53 +1,9 @@
-import 'dart:io';
-
-import 'package:flax/native_sdk.dart';
-import 'package:flax/native_target.dart';
-import 'package:path/path.dart' as p;
-
-import 'src/engine_selection.dart';
-import 'src/package_discovery.dart';
 import 'src/process.dart';
 
 Future<void> main(List<String> arguments) => command(() async {
-  final engine = selectedEngine(arguments);
-  final root = Directory.fromUri(Platform.script.resolve('../'));
-  final package = findPackage(root.path, 'flax_engine_$engine').directory;
-  final core = findPackage(root.path, 'flax').directory;
-  final output = Directory(p.join(package.path, 'build', 'sdk-bridge'));
-  final localArchive = Platform.environment['FLAX_ENGINE_SDK_ARCHIVE'];
-  final localDigest = Platform.environment['FLAX_ENGINE_SDK_SHA256'];
-  await buildFlaxNativeSdk(
-    engine: engine,
-    target: FlaxNativeTarget.host(),
-    buildTests: true,
-    packageRoot: package.uri,
-    coreRoot: core.uri,
-    cacheRoot: Directory(
-      Platform.environment['FLAX_ENGINE_SDK_CACHE'] ??
-          p.join(package.path, '.cache', 'sdk'),
-    ).absolute.uri,
-    outputRoot: output.uri,
-    sdkArchive: localArchive == null ? null : File(localArchive).absolute.uri,
-    sdkSha256: localDigest,
+  throw UnsupportedError(
+    'Flax is built into its Flutter engine. Build the matching artifacts with '
+    'python3 engine/src/flutter/flax/tools/build_engine.py --sdk <verified-v8-sdk> '
+    '--mode debug from the Flutter fork. Standalone bridge builds are retired.',
   );
-  final build = p.join(output.path, 'cmake');
-  await run('cmake', [
-    '--build',
-    build,
-    '--config',
-    'Release',
-    '--target',
-    if (engine == 'v8') ...[
-      'flax_v8_runtime_test',
-      'flax_v8_lifecycle_test',
-    ] else
-      'flax_runtime_test',
-  ]);
-  await run('ctest', [
-    '--test-dir',
-    build,
-    '-C',
-    'Release',
-    '--output-on-failure',
-  ]);
 });

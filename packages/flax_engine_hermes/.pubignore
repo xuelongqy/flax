@@ -8,6 +8,8 @@ bindings/*
 !bindings/manifest.json
 /native/generated/
 /native/ffigen.yaml
+/native/
+/hook/
 /native/hermes.json
 /native/hermes-transfer.patch
 *.iml

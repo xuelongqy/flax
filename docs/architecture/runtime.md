@@ -2,32 +2,31 @@
 
 ## Implemented scope
 
-The experimental runtime has SDK/bridge target wiring for twelve native variants. Actual
-acceptance is recorded in the
-[platform validation record](../tasks/platform-sdk-validation.md). It executes
-JavaScript synchronously through Dart FFI, a versioned C ABI, JSI, and Hermes or V8.
-This is the engine layer used by the [Flutter application host](ui.md), not broad
-platform certification.
+Flax uses its maintained Flutter 3.47.6 engine on macOS and Android arm64, with V8
+15.4.80.15 JIT. `FlaxEngine.createRuntime()` is the common entry in
+`package:flax/runtime.dart`. It checks native ABI 2, internal GC extension 1 and the
+exact Flutter/Dart revisions before allocation. Ordinary Flutter and incompatible
+engines fail explicitly. UI protocol 22 is unchanged.
 
-Public Dart interfaces live in `package:flax/runtime.dart`. Engine authors use the
-separate `package:flax/native_runtime.dart` extension entry. The Hermes package returns
-`FlaxJsRuntime` through `FlaxHermesEngine.createRuntime()`. The optional V8 package
-exposes `FlaxV8Engine.createRuntime()` with the same return type and unchanged ABI. V8
-is pinned to 15.4.80.15, uses JIT outside iOS and jitless on iOS, and retains the
-existing JSI revision. See
-[adapter configuration and lifetime](../../packages/flax_engine_v8/native/README.md).
+The Flutter fork owns the C++ bridge, V8 adapter and revision-checked Dart patch. One UI
+isolate owns one V8 heap/C++ heap; each runtime uses an independent Context and
+microtask queue. Dart parallel marking and V8 conditional tracing reclaim rootless
+cross-language cycles. See [bridge references](references.md) and
+[ADR 0039](../decisions/0039-engine-owned-cross-heap-gc.md).
+
+Platform policy is iOS Hermes and other native V8 JIT. macOS and Android arm64 are
+implemented; Android debug and release/AOT acceptance covers an arm64 emulator and a
+Pixel 4 running Android 13. Engine package factories delegate to the common entry and
+reject a wrong platform; they no longer build native assets. Earlier SDK platform
+validation remains historical evidence, not acceptance of this implementation.
 
 ## Source compilation
 
-The Hermes adapter explicitly enables ES6 block scoping, which is disabled by default in
-the pinned upstream runtime. Loop closures retain their per-iteration `let` and `const`
-bindings; `var` retains its shared function-scoped behavior. The setting also applies to
-source compiled through `eval` and the `Function` constructor.
-
-Tests cover direct source execution, ES2019 IIFE bundles, deferred callbacks, accessors,
-and outside-repository loading. They are focused regressions, not a complete ECMAScript
-conformance suite. Compilation settings belong to the engine adapter; application JS
-does not need loop rewriting or a Flax compatibility flag.
+The maintained V8 adapter uses ordinary source compilation and preserves ES6 block
+scope, direct evaluation and Function construction. Runtime regressions include loop
+closures, source bundles, deferred callbacks and accessors. They are focused coverage,
+not complete ECMAScript conformance. The retained Hermes adapter settings are historical
+until iOS integration is implemented.
 
 ## Values and references
 
@@ -50,12 +49,13 @@ destruction and permanently rejects allocation on exhaustion. Direct C ABI calls
 foreign IDs as well as the Dart wrapper; an invalid release cannot release a same-number
 object in another engine. IDs remain opaque and process-local.
 
-References returned to Dart are owned and require `release()`. `retain()` creates an
-independent owned reference. Callback arguments and receivers are borrowed until that
-callback returns; retain them explicitly before storing them. Returning a reference from
-a callback preserves the caller's ownership. Releasing a wrapper does not destroy an
-object that JS or another reference still holds. Runtime disposal releases remaining
-owned references. There is no automatic GC-based runtime disposal.
+References returned to Dart follow the real Dart facade through conditional GC. Explicit
+`release()` ends that facade early. `retain()` creates an independent owned reference.
+Callback arguments and receivers are borrowed until that callback returns; retain them
+explicitly before storing them. Returning a reference from a callback preserves the
+caller's ownership. Releasing a wrapper does not destroy an object that JS or another
+reference still holds. Runtime disposal releases remaining owned references. There is no
+automatic GC-based runtime disposal.
 
 Symbol and BigInt conversion, property enumeration, symbol keys, and dedicated buffer
 views are not implemented. Arrays and other objects can be retained as ordinary object
@@ -65,8 +65,9 @@ references; there is no automatic collection conversion.
 
 One Dart isolate owns a runtime. The runtime cannot be sent to another isolate. Every
 engine operation starts synchronously from that isolate, without a JS worker thread.
-Native code rejects parallel access and allows same-stack reentry. This does not promise
-a permanently fixed operating-system thread for the Dart isolate.
+Native code rejects parallel access and allows same-stack reentry. Runtime creation
+requires the Flutter UI isolate and its owning platform thread. Background isolates and
+a second UI isolate in one isolate group are rejected.
 
 Dart host functions use `NativeCallable.isolateLocal`. Calls that can reach them are
 non-leaf FFI calls. A callback returns on the current stack and may call JS again,
@@ -93,9 +94,10 @@ entries, clears references, destroys the engine, and only then closes Dart callb
 Methods on a disposed runtime and operations on expired references fail in Dart rather
 than dereferencing freed native memory. Releasing an already invalid reference is safe.
 
-Registered callbacks are kept until runtime disposal. Replacing a global does not prove
-that JS released the old function. Even a failed registration may have exposed a
-function to a global setter before it threw, so its callback must stay alive.
+Registered callbacks stay alive while JS or Dart business references reach them.
+Replacing a global does not prove that JS released the old function. Even a failed
+registration may have exposed a function to a global setter before it threw, so its
+callback must stay alive.
 
 The C API is an experimental, process-local function table with a version and size
 check. Its native runtime pointer is invalid after successful destruction; direct ABI
@@ -118,19 +120,35 @@ rejected even when its length is zero; an ordinary empty buffer remains valid.
 
 ## Verification
 
-`dart run melos run check:runtime` builds and tests Hermes; `check:runtime:v8`
-explicitly selects V8. `check:engines` tests coexistence, cross-engine object and
-native-handle rejection, reentry and recreation. Run these serially with UI aggregates
-because engine assets and generated fixtures are shared. Ordinary `check` configures
-native builds but does not build or fetch an engine.
+`dart run melos run check:runtime` runs the shared native API and joint GC contracts
+with the matching local Flutter test engine. `check:runtime:v8` and `check:engines`
+exercise the same fixed macOS platform selection, including Context isolation,
+foreign-reference rejection, reentry and recreation. No command downloads or rebuilds an
+SDK runtime. Ordinary `check` verifies source and package structure.
+
+`dart run tool/check_engine_application.dart debug|profile|release` runs runtime and
+real Widget/State, callback, Future and Stream regressions in a macOS application.
+Release builds run directly because Flutter Driver does not support release mode.
+Application and performance evidence is recorded in the
+[acceptance task](../tasks/engine-cross-heap-gc.md).
+
+For Android arm64, set `ANDROID_HOME`, `FLAX_CHECK_TARGET=android-arm64` and
+`FLAX_CHECK_DEVICE=<adb-id>`, then run
+`dart run tool/check_engine_application.dart debug|release`. The matching Android engine
+and macOS host tools must already be built. This gate runs the same runtime and Flutter
+assertions in an installed APK, proves V8 JIT, and audits all native libraries,
+immutable SDK hashes, signing and 16 KB page alignment. Release uses Dart AOT. The
+staged source is removed before installation. The API 37 emulator uses 16 KB pages;
+the accepted Pixel 4 uses 4 KB pages. These correctness checks do not establish Android
+GC/frame performance or distribution signing.
 
 Package integration commands own package-specific Flutter/example behavior.
 `check:aggregate` adds only cross-module embedded composition, while `check:ui` runs all
 UI-owning package integrations followed by that aggregate. Runtime, standalone,
 engine-coexistence, and release checks remain separate gates. The current acceptance
 scope is recorded in [External Binding Verification](external-binding-verification.md).
-The [V8 adapter](../../packages/flax_engine_v8/native/README.md) documents lifecycle and
-JIT smoke coverage; [packaging](packaging.md) defines outside-consumer and
+The [V8 entry point](../../packages/flax_engine_v8/README.md) delegates to the
+maintained Flutter Engine; [packaging](packaging.md) defines outside-consumer and
 relocated-bundle checks. A local runtime pass does not establish other-platform,
 published-archive or complete ECMAScript conformance.
 
@@ -143,11 +161,21 @@ deferred; the first host integration remains Dart/Flutter.
 
 ## Performance measurement
 
-The [independent engine benchmarks](../../benchmarks/engines/README.md) consume the same
-public runtime API from a Dart AOT host. Workload processes isolate engines, source
-loading, execution, bridge calls, lifecycle and RSS observations. Timing includes the
-stated Flax boundary; it is not an engine-internal profiler. Runtime correctness and
-Flutter frame measurements remain separate from these results.
+The profile application gate records raw Flutter frame timings in the application and
+downloads the complete VM timeline in the host driver, keeping trace decoding out of the
+measured UI heap. It records a same-device Dart allocation baseline without a JS
+runtime, then the same workload with a live 300,000-object JS heap and 1,000 callback
+pairs. Exact phase markers validate the endless trace. Raw GC events, frame samples,
+allocation durations, startup and RSS are saved with the receipt. Whole GC and the V8
+joint phase are measured separately. This measures the stated workload; it is not a
+general frame latency guarantee or an unmodified Flutter engine comparison.
 
-The [platform test guide](../testing-platforms.md) defines shared/platform scopes,
-Linux-default CI, device conditions and the SDK schema 3 contract.
+The stable-root workload can use the direct-root path described in
+[bridge references](references.md). Report how many passes actually require V8
+collection; skipping an unnecessary JS collection is not a shorter full joint trace.
+Complete timeline capture also contributes to process RSS. Supplementary runs without
+full tracing can compare frame timings and memory, but cannot establish GC durations.
+
+The [earlier independent engine benchmarks](../../benchmarks/engines/README.md) and
+[SDK platform guide](../testing-platforms.md) describe the retired deployment model.
+Their results do not establish current engine performance or other-platform acceptance.

@@ -237,27 +237,32 @@ be checked alone with `node tool/host_bundle.mjs --check --package <dart-package
 
 ## Native code and engines
 
-The public ABI 2 header, shared JSI bridge, value IDs, and shared native tests live in
-[`packages/flax/native`](../../packages/flax/native/README.md). Engine adapters live in
-their engine packages:
+Core retains the canonical ABI 2 and internal GC extension 1 headers and generated Dart
+declarations. The executable C++ bridge, V8 adapter, exact-revision Dart patch, SDK
+verification and library packaging are owned by the maintained Flutter fork. See
+[ADR 0039](../decisions/0039-engine-owned-cross-heap-gc.md) and
+[runtime ownership](runtime.md). `FlaxEngine.createRuntime()` loads the macOS process
+exports or Android's `libflutter.so` and checks its exact capabilities before
+allocation.
 
-- [Hermes](../../packages/flax_engine_hermes/native/README.md)
-- [V8](../../packages/flax_engine_v8/native/README.md)
+Engine packages are compatibility factories. They have no native asset hooks and do not
+ship or build a second runtime. Existing SDK locks and notices are preserved;
+`flax_js_runtime` remains an internal source/build input. Platform policy is iOS Hermes
+and other native V8 JIT. macOS and Android arm64 have this integration.
 
-The FFI generator reads `packages/flax/native/include/flax/runtime.h` and writes the
-committed core Dart declarations. Engine CMake projects locate the core native directory
-through the workspace/package tools; they do not depend on an old root `native/` path.
+`check:runtime` runs shared contracts in the local Flutter engine. The real application
+gate covers debug, profile and release/AOT. Its release artifact contains exactly one V8
+dependency closure inside FlutterMacOS.framework, retains allow-jit and hardened runtime
+signing, and runs after its temporary source tree is removed. Independent Dart JIT/AOT
+hosts and the former two-engine deployment are retired.
 
-The engine SDK repository pins upstream sources and patches, then publishes relocatable
-macOS arm64 shared-library SDKs. Each engine package locks one SDK URL and SHA-256. Its
-asset hook downloads and verifies the SDK on a cold cache, compiles the Flax ABI and
-adapter from the package's source, and registers the bridge and all engine libraries.
-`native:build` exercises that same bridge build and its native tests. There is no
-engine-source fallback. Hermes remains the default; V8 stays explicit.
-
-`check:runtime` and `check:runtime:v8` verify native tests, the public Dart entry,
-outside-repository JIT loading, relocated AOT loading, missing/corrupt asset rejection,
-and cleanup. `check:engines` covers coexistence and cross-engine reference rejection.
+Android packages the verified V8 and shared libc++ libraries in the existing Flutter
+engine JAR. The application gate builds an arm64-only APK, audits every native library's
+dependency closure and 16 KB alignment, preserves SDK bytes, verifies the APK signature,
+and installs the relocated APK after removing its source. Release adds Dart's AOT
+`libapp.so`. The same audited APKs pass on the API 37 emulator with 16 KB pages and a
+Pixel 4 running Android 13 with 4 KB pages. Performance and distribution validation
+remain separate from this correctness acceptance.
 
 ## Tests and examples
 
@@ -276,9 +281,10 @@ package. Focused execution stages only selected owners and their dependency clos
 
 Shared engine-neutral runtime contracts and deterministic test helpers live in the
 development-only [`flax_test`](../../packages/flax_test/README.md) package. It imports
-only public `flax` APIs. HTTP servers, persistence fixtures, Canvas helpers, and other
-domain-specific support remain with their feature package. Root runtime tests cover only
-cross-engine coexistence, isolation, and benchmarks.
+public `flax` APIs; internal native counters are used only by GC acceptance tests. HTTP
+servers, persistence fixtures, Canvas helpers, and other domain-specific support remain
+with their feature package. Runtime contracts cover Context isolation, reentry,
+ownership and automatic joint GC.
 
 Every implemented runtime package has a package-local macOS example. It demonstrates
 that package, core, and the selected engine. The top-level
@@ -290,15 +296,15 @@ The generic package commands are:
 
 ```sh
 dart run tool/package.dart check flax_fetch
-dart run tool/package.dart integration flax_fetch --engine=hermes
+dart run tool/package.dart integration flax_fetch --engine=v8
 ```
 
 Discovery follows directory conventions. Adding a conforming package does not require a
 new package-name array in the root tools.
 
-The core FFI selection lives at `packages/flax/native/ffigen.yaml`. Each engine's
-adapter, SDK lock, and hook live in each engine package. The root `tool/native.dart`
-uses the shared Flax SDK preparation path and runs native tests.
+The core FFI selection lives at `packages/flax/native/ffigen.yaml`. Rebuild the Flutter
+engine through its `engine/src/flutter/flax/tools/build_engine.py`; the old
+`tool/native.dart` standalone bridge command fails explicitly.
 
 ## Archive validation
 
@@ -311,8 +317,8 @@ remove workspace and publication blockers. It runs Dart publish-content validati
 npm pack inspection, rejects source/tests/build/cache leakage, and validates package
 dependencies without modifying repository manifests. Metadata capabilities select the
 checks: binding archives need a manifest, host plugins need their generated host script,
-core needs the ABI header and implementation, and engine archives need their hook,
-adapter source, SDK lock, and consolidated notices.
+core needs its ABI and GC headers but excludes native implementation sources; engine
+archives retain factories, SDK locks and notices and reject obsolete asset hooks.
 
 The check also validates paired versions, compiles a minimal outside-repository Dart
 consumer that references every declared registration symbol, and installs each npm

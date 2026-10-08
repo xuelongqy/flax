@@ -7,6 +7,7 @@ import 'package:yaml/yaml.dart';
 import '../src/package_discovery.dart';
 import '../src/ui_testing.dart';
 import '../src/platform_selection.dart';
+import '../src/package_verification.dart';
 
 void main() {
   late Directory temporary;
@@ -17,6 +18,24 @@ void main() {
     commands = [];
   });
   tearDown(() => temporary.deleteSync(recursive: true));
+
+  test('nested consumer directive relocation is idempotent and preserves IDs', () {
+    final consumer = Directory('${temporary.path}/consumer')..createSync();
+    final original = '${temporary.absolute.uri}fixture.dart';
+    final file = File('${consumer.path}/bindings.dart')
+      ..writeAsStringSync("import '$original';\nconst id = '$original';\n");
+    rewriteDartDirectiveUris(consumer, temporary, consumer);
+    final once = file.readAsStringSync();
+    rewriteDartDirectiveUris(consumer, temporary, consumer);
+    expect(file.readAsStringSync(), once);
+    expect(once, contains("const id = '$original';"));
+    expect(
+      once,
+      contains(
+        "import '${Directory(consumer.resolveSymbolicLinksSync()).uri}fixture.dart';",
+      ),
+    );
+  });
 
   Future<void> record(
     String executable,
@@ -137,6 +156,7 @@ dependencies:
         await runPackageExampleTests(
           temporary.path,
           runnable,
+          engine: 'hermes',
           runCommand: record,
         ),
         1,

@@ -1,14 +1,22 @@
 part of '../../bindings.dart';
 
-/// The record retains the Dart instance, never permission to dispose it.
+final _objectFinalizer = Finalizer<WeakReference<_ObjectReference>>(
+  (record) => record.target?.release(),
+);
+
+/// An ID indexes weak metadata. The engine follows actual Dart and JS owners.
 class _ObjectReference {
-  _ObjectReference(this.session, this.id, this.binding, this._value);
+  _ObjectReference(this.session, this.id, this.binding, Object value)
+    : _weakValue = WeakReference(value) {
+    _objectFinalizer.attach(value, WeakReference(this), detach: this);
+  }
   final _Session session;
   final int id;
   final FlaxObjectBinding binding;
   final _BindingContext? context = _bindingContext;
-  Object? _value;
-  final listeners = <_ObjectListener>[];
+  WeakReference<Object>? _weakValue;
+  Object? get _value => _weakValue?.target;
+  final listeners = _WeakReferences<_ObjectListener>();
   bool disposing = false;
 
   Object get value => _value ?? (throw StateError('Released Dart object'));
@@ -55,11 +63,16 @@ class _ObjectReference {
 
   void release() {
     final receiver = _value;
-    _value = null;
-    session._objects.remove(id);
+    forget();
     if (receiver != null && identical(session._objectIds[receiver], this)) {
       session._objectIds.remove(receiver);
     }
+  }
+
+  void forget() {
+    _objectFinalizer.detach(this);
+    _weakValue = null;
+    session._objects.remove(id);
   }
 }
 
@@ -105,6 +118,7 @@ class _ObjectListener implements FlaxCallback {
     Object? native,
   ) {
     wrapped = callback == null ? native! : callback!.signature.wrap(this);
+    (_bridgeOwners[wrapped] ??= []).add(this);
   }
   final _ObjectReference object;
   final String addName;
@@ -135,6 +149,7 @@ class _ObjectListener implements FlaxCallback {
   void retire() {
     if (retired || registrations != 0 || running != 0) return;
     retired = true;
+    _bridgeOwners[wrapped]?.remove(this);
     object.listeners.remove(this);
     callback?.release();
     _function?.release();
@@ -148,6 +163,19 @@ FlaxObjectBinding? _objectView(FlaxTypeBinding? binding) => switch (binding) {
 };
 
 extension _ObjectCalls on _Session {
+  FlaxJsValue _peerResult(FlaxJsValue result, Object value, {Object? origin}) {
+    if (result is! FlaxJsObject) {
+      throw StateError('Expected a JS binding object');
+    }
+    try {
+      runtime.bindDartPeer(result, value, origin: origin);
+      return result;
+    } catch (_) {
+      result.release();
+      rethrow;
+    }
+  }
+
   FlaxObjectBinding _objectBinding(Object value, String type) {
     final expected = _objectView(registry._types[type]);
     if (expected is! FlaxObjectBinding ||
@@ -187,6 +215,7 @@ extension _ObjectCalls on _Session {
       final wrapper = helper(
         'scopedObject',
       ).call([FlaxJsString(binding.id), FlaxJsNumber(reference.id.toDouble())]);
+      _peerResult(wrapper, value);
       if (wrapper is FlaxJsObject) temporary.add(wrapper);
       return wrapper;
     } catch (_) {
@@ -329,6 +358,8 @@ extension _ObjectCalls on _Session {
                 FlaxJsString(materializer.id),
               ]),
             );
+            // A deferred descriptor is an alias, not the canonical Dart peer.
+            runtime.bindDartPeer(input, value);
           } catch (_) {
             if (created) object.release();
             rethrow;
@@ -367,8 +398,13 @@ extension _ObjectCalls on _Session {
       throw ArgumentError('Incompatible Dart object');
     }
     object.value;
-    return helper('object')
-        .call([FlaxJsString(selected.id), FlaxJsNumber(object.id.toDouble())]);
+    return _peerResult(
+      helper(
+        'object',
+      ).call([FlaxJsString(selected.id), FlaxJsNumber(object.id.toDouble())]),
+      value,
+      origin: value,
+    );
   }
 
   void sweepObjects() {
@@ -386,15 +422,15 @@ extension _ObjectCalls on _Session {
           (v) => (v as FlaxJsNumber).value.toInt(),
         );
         final object = _objects[id];
-        // An explicit listener registration remains until removal or session close.
-        if (object != null && object.listeners.isEmpty) {
+        // JS aliases alone cannot decide ownership: a Dart business root may
+        // retain the actual proxy, including its JS private fields.
+        if (object != null && object._value == null) {
           object.release();
         } else {
           final stream = _streamReferences[id];
-          if (stream != null) {
+          if (stream != null && stream.value == null) {
             stream.release();
           } else {
-            _dartErrors[id]?.release();
             _contexts[id]?.aliasesCollected();
           }
         }
@@ -437,6 +473,25 @@ extension _ObjectCalls on _Session {
   }
 
   void registerObjects() {
+    runtime.registerHostFunction('__flaxBindPeer', (_, args) {
+      if (args.length != 3 ||
+          args[0] is! FlaxJsNumber ||
+          (args[0] as FlaxJsNumber).value != flaxBindingVersion ||
+          args[1] is! FlaxJsObject ||
+          args[2] is! FlaxJsObject) {
+        throw ArgumentError('Invalid Dart object alias');
+      }
+      final handle = helper('tryObjectHandle').call([args[1]]);
+      final reference = handle is FlaxJsNumber
+          ? _objects[handle.value.toInt()]
+          : null;
+      if (reference == null) {
+        throw ArgumentError('Foreign or released Dart object alias');
+      }
+      final value = reference.value;
+      runtime.bindDartPeer(args[2] as FlaxJsObject, value, origin: value);
+      return const FlaxJsUndefined();
+    });
     _registerBindingHostFunction('__flaxCreateObject', (_, args) {
       _checkCall(args, 3);
       if (args.length != 3 || args[2] is! FlaxJsObject) {
