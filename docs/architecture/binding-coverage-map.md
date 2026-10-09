@@ -6,7 +6,7 @@ be supported by the generator while a particular SDK library still needs its own
 selection and runtime verification.
 
 The current version domains are binding selection format **2**, package metadata format
-**2**, Manifest **15**, UI protocol **22**, and native ABI **2**. Only the current
+**2**, Manifest **16**, UI protocol **23**, and native ABI **2**. Only the current
 formats are read and written.
 
 ## Capability assessment model
@@ -24,7 +24,7 @@ Dart types and share disposal and listeners. See
 
 Class static reads and writes are independent capabilities on every supported class
 category. Reads use `Class.property`; writes use `Class.setProperty(value)`. They retain
-their own types and operation identities in Manifest 15. Static declarations are not
+their own types and operation identities in Manifest 16. Static declarations are not
 inherited; a read-only provider cannot supply a write. A generated setter name collision
 fails explicit selection or produces `static_setter_export_collision` in automatic
 selection. See [static property rules](bindings.md#class-static-properties) and the
@@ -111,45 +111,46 @@ Evidence:
 
 ## Flutter semantic support
 
-| Semantic position                                                | Verdict     | Current contract                                                                                                                                                                                                                                                             |
-| ---------------------------------------------------------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Widget constructor value                                         | Supported   | Widget inputs retain the normal Flutter tree and ownership rules.                                                                                                                                                                                                            |
-| Mounted callback returning Widget or a selected Widget interface | Supported   | Ordinary typed result conversion preserves native identity and selected interfaces, including nullable results, supported Futures/Streams and direct typed lists. Escaped configurations follow Dart references and GC; mounted subscriptions release at unmount.            |
-| Ordinary callback with Context arguments                         | Supported   | Functions, constructors, methods and returned Dart functions call JS directly with the actual native Context; indexed, named and optional arguments, nullable Widget results and supported Futures use shared conversion. No extra content host or inferred Route ownership. |
-| Direct Context input                                             | Supported   | Functions, constructors, methods, setters and supported collections borrow a real mounted Context from the same session. Storing it does not extend its Flutter lifetime. Arbitrary Context outputs remain unsupported; callback arguments borrow the actual native Element. |
-| Async mounted Widget result                                      | Supported   | `Future<Widget>`, `FutureOr<Widget>`, and `Stream<Widget>` reuse ordinary typed conversion, including selected Widget interfaces. Async Widget collections remain unsupported.                                                                                               |
-| Other Widget callback aggregates                                 | Unsupported | Nullable collections, `List<Widget?>`, Set/Map/Iterable Widget results, Widget-containing Records and async Widget collections remain outside the shared callback conversion contract.                                                                                       |
-| Flutter State lifecycle                                          | Supported   | Flutter creates the real Dart State host. JS implements the Flutter lifecycle and makes explicit super calls. Flax does not automatically dispose application resources.                                                                                                     |
-| State `proxyVariants`                                            | Supported   | Ordered Analyzer-validated Dart mixins produce fixed host classes and project their interfaces. Variants do not inherit variants.                                                                                                                                            |
-| Component-State interface conversion                             | Supported   | A mounted JS State can be passed to Dart only through its live real State host and only when the generated variant implements the requested interface.                                                                                                                       |
-| Route, Page, and special lifecycle roles                         | Limited     | Existing conversions work, but semantic ownership and observation remain explicit configuration (`flutter_semantics_configuration_required`).                                                                                                                                |
-| Disposable capability                                            | Supported   | `dispose()` is an ordinary callable API and capability marker. Resource ownership remains with user code; session cleanup does not imply application disposal.                                                                                                               |
+| Semantic position                                                | Verdict   | Current contract                                                                                                                                                                                                                                                                                                                                          |
+| ---------------------------------------------------------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Widget constructor value                                         | Supported | Widget inputs retain the normal Flutter tree and ownership rules.                                                                                                                                                                                                                                                                                         |
+| Mounted callback returning Widget or a selected Widget interface | Supported | Ordinary typed result conversion preserves native identity and selected interfaces, including nullable results, supported Futures/Streams and direct typed lists. Escaped configurations follow Dart references and GC; mounted subscriptions release at unmount.                                                                                         |
+| Ordinary callback with Context arguments                         | Supported | Functions, constructors, methods and returned Dart functions call JS directly with the actual native Context; indexed, named and optional arguments, nullable Widget results and supported Futures use shared conversion. No extra content host or inferred Route ownership.                                                                              |
+| Direct Context input and result                                  | Supported | Functions, instance/static methods, getters and callbacks reuse the same weak borrowed Context identity, including null, typed finite aggregates and Future/FutureOr/Stream results. Shared conversion preserves derived collection reads and registered Record fields. Forged, foreign-session and unmounted values are rejected, including late events. |
+| Async mounted Widget result                                      | Supported | Future/FutureOr/Stream reuse typed conversion for individual Widgets, selected interfaces and finite Widget aggregates. Completion promotes each configuration before temporary holds are released.                                                                                                                                                       |
+| Finite Widget callback aggregates                                | Supported | List/Set/Map/Record and Iterable signatures accept finite JS arrays/Sets or compatible Dart Lists/Sets, including nullable values and supported async compositions. Actual lazy iterators fail conversion before iteration; ordinary native method views stay lazy.                                                                                       |
+| Flutter State lifecycle                                          | Supported | Flutter creates the real Dart State host. JS implements the Flutter lifecycle and makes explicit super calls. Flax does not automatically dispose application resources.                                                                                                                                                                                  |
+| State `proxyVariants`                                            | Supported | Ordered Analyzer-validated Dart mixins produce fixed host classes and project their interfaces. Variants do not inherit variants.                                                                                                                                                                                                                         |
+| Component-State interface conversion                             | Supported | A mounted JS State can be passed to Dart only through its live real State host and only when the generated variant implements the requested interface.                                                                                                                                                                                                    |
+| Route, Page, and special lifecycle roles                         | Limited   | Existing conversions work, but semantic ownership and observation remain explicit configuration (`flutter_semantics_configuration_required`).                                                                                                                                                                                                             |
+| Disposable capability                                            | Supported | `dispose()` is an ordinary callable API and capability marker. Resource ownership remains with user code; session cleanup does not imply application disposal.                                                                                                                                                                                            |
 
 Runtime evidence is required only where ownership, retention, State, navigation, or
 engine behavior changes. Pure language mechanisms close at parse, Dart/TypeScript emit,
 `dart analyze`, and strict `tsc`.
 
 Evidence: [component contract](components.md), [interop contract](interop.md),
-[native callback tests](../../packages/flax/test/ui/native_callbacks_test.dart), and
-[State variant tests](../../packages/flax_material_ui/test/ui/components_test.dart).
+[native callback tests](../../packages/flax/test/ui/native_callbacks_test.dart),
+[Widget aggregate and Context tests](../../packages/flax/test/ui/widget_values_test.dart),
+and [State variant tests](../../packages/flax_material_ui/test/ui/components_test.dart).
 
 ## Stable boundary codes
 
-| Code                                          | Verdict / reason                               | Example                                                                                                |
-| --------------------------------------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| `enhanced_enum_members_not_bound`             | `limited / intentionalBoundary`                | An enhanced enum value is usable, while its custom instance method is not emitted by the enum adapter. |
-| `extension_type_representation_only`          | `limited / intentionalBoundary`                | `Meters(int)` crosses the bridge as `int`, without a `Meters` owner.                                   |
-| `unnamed_extension`                           | `excluded / visibility`                        | `extension on String { ... }`.                                                                         |
-| `generic_receiver_specialization_required`    | `unsupported / intentionalBoundary`            | `extension X<T extends Comparable<T>> on List<T>`.                                                     |
-| `constructor_specialization_missing_use_site` | `limited or unsupported / intentionalBoundary` | A generic owner is usable, but JS construction has no concrete `T`.                                    |
-| `constructor_specialization_ambiguous`        | `unsupported / intentionalBoundary`            | Two concrete targets share the same JS runtime domain.                                                 |
-| `complex_generic_bound`                       | `unsupported / intentionalBoundary`            | `T extends Comparable<T>` without concrete evidence.                                                   |
-| `unsupported_input_shape`                     | `unsupported / intentionalBoundary`            | A callback returns `Set<Widget>`, `List<Widget?>` or a Widget-containing Record.                       |
-| `unsupported_core_type`                       | `unsupported / intentionalBoundary`            | Dart `Type` reflection or another core type with no bridge representation.                             |
-| `missing_export`                              | `unsupported / dependencyBoundary`             | No public carrier exposes the referenced declaration identity.                                         |
-| `private_implementation_dependency`           | `unsupported / dependencyBoundary`             | A public signature depends on a private nominal type.                                                  |
-| `provider_surface_insufficient`               | `unsupported / dependencyBoundary`             | Core owns the type but does not expose the requested member or constructor; it cannot be republished.  |
-| `flutter_semantics_configuration_required`    | `limited / configurationRequired`              | A Route, Page, or lifecycle role cannot be inferred from type shape alone.                             |
+| Code                                          | Verdict / reason                               | Example                                                                                                  |
+| --------------------------------------------- | ---------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `enhanced_enum_members_not_bound`             | `limited / intentionalBoundary`                | An enhanced enum value is usable, while its custom instance method is not emitted by the enum adapter.   |
+| `extension_type_representation_only`          | `limited / intentionalBoundary`                | `Meters(int)` crosses the bridge as `int`, without a `Meters` owner.                                     |
+| `unnamed_extension`                           | `excluded / visibility`                        | `extension on String { ... }`.                                                                           |
+| `generic_receiver_specialization_required`    | `unsupported / intentionalBoundary`            | `extension X<T extends Comparable<T>> on List<T>`.                                                       |
+| `constructor_specialization_missing_use_site` | `limited or unsupported / intentionalBoundary` | A generic owner is usable, but JS construction has no concrete `T`.                                      |
+| `constructor_specialization_ambiguous`        | `unsupported / intentionalBoundary`            | Two concrete targets share the same JS runtime domain.                                                   |
+| `complex_generic_bound`                       | `unsupported / intentionalBoundary`            | `T extends Comparable<T>` without concrete evidence.                                                     |
+| `runtime_finite_widget_iterable_required`     | `unsupported / intentionalBoundary`            | A bound callback returns an actual lazy `Iterable<Widget>`; finite arrays/Sets and Dart Lists/Sets pass. |
+| `unsupported_core_type`                       | `unsupported / intentionalBoundary`            | Dart `Type` reflection or another core type with no bridge representation.                               |
+| `missing_export`                              | `unsupported / dependencyBoundary`             | No public carrier exposes the referenced declaration identity.                                           |
+| `private_implementation_dependency`           | `unsupported / dependencyBoundary`             | A public signature depends on a private nominal type.                                                    |
+| `provider_surface_insufficient`               | `unsupported / dependencyBoundary`             | Core owns the type but does not expose the requested member or constructor; it cannot be republished.    |
+| `flutter_semantics_configuration_required`    | `limited / configurationRequired`              | A Route, Page, or lifecycle role cannot be inferred from type shape alone.                               |
 
 A new unsupported case must reuse an accurate code or add a code, fixture, and current
 example. Error message text is presentation only and is not used to infer the primary

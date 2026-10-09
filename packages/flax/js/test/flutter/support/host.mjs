@@ -1,3 +1,4 @@
+import { operationHost } from './operations.mjs';
 import assert from 'node:assert/strict';
 
 // Transport fixtures only. Real Dart construction and semantics run in Flutter tests.
@@ -18,11 +19,11 @@ export function objectHost() {
     objects.set(id, { ...descriptor.args });
     return api.object(type, id);
   };
-  globalThis.__flaxObject = (version, type, id, op, member, ...args) => {
+  operationHost('object', (version, type, id, op, member, ...args) => {
     calls.push({ version, type, id, op, member, args });
     const fields = objects.get(id);
     if (op === 'get') return fields?.[member] ?? null;
     if (op === 'set') fields[member] = args[0];
-  };
+  });
   return { api, calls, objects };
 }

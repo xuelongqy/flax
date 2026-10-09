@@ -46,6 +46,6 @@ function _flaxInstallBindingModule(
     invokeTopLevel: _flaxHostInvokeTopLevel,
   });
 }
-export const componentsBindingModule = _flaxInstallBindingModule("flax.core/components", 22, Object.freeze(["native-widget-proxies"]) as readonly string[]);
+export const componentsBindingModule = _flaxInstallBindingModule("flax.core/components", 23, Object.freeze(["native-widget-proxies"]) as readonly string[]);
 const { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } = componentsBindingModule;
 export { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel };

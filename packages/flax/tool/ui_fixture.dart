@@ -9,6 +9,7 @@ import '../test/fixtures/default_omission_selection.dart';
 import '../test/fixtures/repeated_selection.dart';
 import '../test/fixtures/static_accessors_selection.dart';
 import '../test/fixtures/proxy_operators_selection.dart';
+import '../test/fixtures/context_streams_selection.dart';
 
 Future<void> main() async {
   final package = Directory.current.absolute;
@@ -16,6 +17,14 @@ Future<void> main() async {
     ..createSync(recursive: true);
   final (core, rawToWire) = _loadCoreManifest(
     File('${package.path}/bindings/manifest.json'),
+  );
+  await _generate(
+    package,
+    output,
+    'context_streams',
+    contextStreamsSelection,
+    core,
+    rawToWire,
   );
   await _generate(
     package,
@@ -81,6 +90,9 @@ Future<void> main() async {
     repeatedSelection,
     core,
     rawToWire,
+    functions: const {
+      'echoWidgetContext': FlaxCodegenFunctionSelection(['value']),
+    },
   );
 }
 

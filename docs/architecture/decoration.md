@@ -1,7 +1,7 @@
 # Generated Containers and Decoration
 
 Core bindings expose real Flutter containers, decoration and physical/directional
-geometry. They reuse protocol 22 object references and Widget hosts. There is no JS
+geometry. They reuse protocol 23 object references and Widget hosts. There is no JS
 painting implementation, style manager, extra production RenderObject or native ABI
 change.
 

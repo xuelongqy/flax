@@ -43,7 +43,7 @@ IDs are separate concerns. See
 
 Generated Builder/LayoutBuilder adapters use real Flutter callbacks. The shared UI host
 owns callback results and Context references per mounted instance; scalar member calls
-and ordinary Dart references reuse the synchronous runtime bridge. Protocol 22 extension
+and ordinary Dart references reuse the synchronous runtime bridge. Protocol 23 extension
 types include callback signatures, getters, static/instance methods, contexts,
 references, borrowed State, Routes, Pages, and selected Future results. These UI
 features do not change the pure-Dart runtime entry or native ABI.
@@ -180,13 +180,23 @@ replacement or unmount does not cancel an in-flight result, while session closin
 pending results and ignores late settlement. RefreshIndicator is the first native
 Flutter consumer of this path.
 
+Callbacks declared as `Iterable<Widget>` accept ordinary JS arrays/Sets and compatible
+Dart Lists/Sets, including nullable values, selected Widget subtypes and supported async
+compositions. Arbitrary lazy iterators are rejected before iteration. The real
+SearchAnchor fixture validates synchronous Set and asynchronous array suggestions; it
+does not add SearchAnchor to the production Material binding selection. Ordinary native
+method Iterable views retain their lazy behavior.
+
 Generated dart:async bindings expose lazy, bidirectional `Stream<T>` references,
 subscriptions, controllers, sinks, transformers and iterators. Stream operations call
 the real Dart objects; JavaScript AsyncIterable conversion is explicit and bounded to
 one in-flight `next()`. `StreamBuilder` and `AsyncSnapshot` use Flutter's native
 subscription and rebuild lifecycle. Dart Streams remain separate from Fetch Web
 `ReadableStream`; applications close their own controllers while session shutdown
-cancels bridge-owned subscriptions and AsyncIterable sources.
+cancels bridge-owned subscriptions and AsyncIterable sources. Context-valued Stream
+callbacks reuse the same weak borrowed JS identity, reject late
+unmounted/foreign-session values, and preserve registered Record fields through generic
+operators and derived collection reads.
 
 Optional storage uses `FlaxSession.namespace` or owned `FlaxView.namespace`. See the
 [storage contract](../../docs/architecture/local-storage.md).

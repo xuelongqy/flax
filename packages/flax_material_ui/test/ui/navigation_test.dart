@@ -110,7 +110,7 @@ void main() {
       plugins: const [FlaxMaterialPlugin()],
       createRuntime: () => runtime,
       source:
-          "$navigationSource\n__flaxCall($flaxBindingVersion, 'test:Lifetime', 'stop');",
+          "$navigationSource\n__flaxInvokeOperation(__flaxResolveOperation($flaxBindingVersion, 'test:Lifetime', 'static', 'call', 'stop'), 0);",
       bindings: FlaxBindingRegistry([...registry.modules, stop]),
       onError: (error, _) => errors.add(error),
     );
@@ -350,7 +350,7 @@ void main() {
       await h.enter(t);
       h.execute('''
       navigation.input = {nested: [1, '😀', null, {flag: true}]};
-      __flaxCall($flaxBindingVersion, 'test:Async', 'later', navigation.input).then(
+      __flaxInvokeOperation(__flaxResolveOperation($flaxBindingVersion, 'test:Async', 'static', 'call', 'later'), 0, navigation.input).then(
         value => navigation.result.value = value,
         error => navigation.result.value = String(error),
       );
@@ -379,14 +379,14 @@ void main() {
       ]) {
         expect(
           () => h.execute(
-            "__flaxCall($flaxBindingVersion, 'test:Async', 'later', $input)",
+            "__flaxInvokeOperation(__flaxResolveOperation($flaxBindingVersion, 'test:Async', 'static', 'call', 'later'), 0, $input)",
           ),
           throwsA(isA<FlaxJsException>()),
         );
       }
       completion = Completer<Object?>();
       h.execute(
-        "__flaxCall($flaxBindingVersion, 'test:Async', 'later', null).catch(e => navigation.result.value = String(e))",
+        "__flaxInvokeOperation(__flaxResolveOperation($flaxBindingVersion, 'test:Async', 'static', 'call', 'later'), 0, null).catch(e => navigation.result.value = String(e))",
       );
       completion.completeError(StateError('future failed'));
       await t.pumpAndSettle();
@@ -396,7 +396,7 @@ void main() {
       );
       completion = Completer<Object?>();
       h.execute(
-        "__flaxCall($flaxBindingVersion, 'test:Async', 'later', null).catch(e => navigation.result.value = String(e))",
+        "__flaxInvokeOperation(__flaxResolveOperation($flaxBindingVersion, 'test:Async', 'static', 'call', 'later'), 0, null).catch(e => navigation.result.value = String(e))",
       );
       completion.complete(DateTime(2026));
       await t.pumpAndSettle();
@@ -406,7 +406,7 @@ void main() {
       );
       completion = Completer<Object?>();
       h.execute(
-        "__flaxCall($flaxBindingVersion, 'test:Async', 'later', null).catch(e => navigation.result.value = String(e))",
+        "__flaxInvokeOperation(__flaxResolveOperation($flaxBindingVersion, 'test:Async', 'static', 'call', 'later'), 0, null).catch(e => navigation.result.value = String(e))",
       );
       final closing = h.session.close();
       expect(h.session.close(), same(closing));
@@ -447,7 +447,7 @@ void main() {
           await h.enter(t);
           h.execute('''
 navigation.deliveries = 0;
-__flaxCall($flaxBindingVersion, 'test:Async', 'later').then(
+__flaxInvokeOperation(__flaxResolveOperation($flaxBindingVersion, 'test:Async', 'static', 'call', 'later'), 0).then(
   value => { navigation.deliveries++; navigation.result.value = value; },
   error => { navigation.deliveries++; navigation.result.value = String(error); },
 );

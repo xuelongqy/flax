@@ -13,11 +13,11 @@ const _ValueListenableProxy = {type: "flax.core/flutter#type:ValueListenable", p
 export interface ValueListenable<T extends unknown | null = unknown | null> {
 }
 export abstract class ValueListenable<T extends unknown | null = unknown | null> extends _FlaxProxyBase {
-constructor() { super(ValueListenable.prototype, _ValueListenableProxy, Array.from(arguments)); }
+constructor() { super(_ValueListenableProxy, Array.from(arguments)); }
 abstract addListener(listener: (() => void)): void;
 abstract removeListener(listener: (() => void)): void;
 abstract get value(): T;
 }
 _flaxDefineProxyBase(ValueListenable.prototype, _ValueListenableProxy);
 export namespace ValueListenable { export function implement<T extends unknown | null = unknown | null>(args: [], implementation: {addListener: ((listener: (() => void)) => void); removeListener: ((listener: (() => void)) => void); get value(): T}): ValueListenable<T> {
-return constructProxy("flax.core/flutter#type:ValueListenable", [], args, implementation, ["addListener","removeListener"], ["value"], []) as ValueListenable<T>; } }
+return constructProxy(_ValueListenableProxy, args, implementation) as ValueListenable<T>; } }

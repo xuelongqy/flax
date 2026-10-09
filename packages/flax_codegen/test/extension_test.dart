@@ -229,7 +229,7 @@ const hosts = Object.fromEntries(helpers.map(name => [name, (...args) => {
 }]));
 const output = transformSync(source.replace(imports, ''), {loader: 'ts', format: 'cjs'}).code;
 const exported = {exports: {}};
-new Function('module', 'exports', 'bindingVersion', ...helpers, output)(exported, exported.exports, 22, ...helpers.map(name => hosts[name]));
+new Function('module', 'exports', 'bindingVersion', ...helpers, output)(exported, exported.exports, 23, ...helpers.map(name => hosts[name]));
 const {StringA, StringB, ListX, ShadowX} = exported.exports;
 assert.equal(calls.length, 0);
 values.push(3, 13, true, false);

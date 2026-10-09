@@ -18,13 +18,22 @@ import 'package:integration_test/integration_test.dart';
 import '../../../packages/flax/test/ui/native_widget_proxies_test.dart'
     as widgets;
 import '../../../packages/flax/test/ui/native_callbacks_test.dart' as callbacks;
+import '../../../packages/flax/test/ui/widget_values_test.dart'
+    as widget_values;
 import '../../../packages/flax/test/ui/async_callbacks_test.dart' as futures;
 import '../../../packages/flax/test/ui/async_stream_callbacks_test.dart'
     as async_streams;
+import '../../../packages/flax/test/ui/context_streams_test.dart'
+    as context_streams;
 import '../../../packages/flax/test/ui/bridge_gc_test.dart' as bridge;
 import '../../../packages/flax/test/ui/streams_test.dart' as streams;
 import '../../../packages/flax/test/ui/session_test.dart' as sessions;
 import '../../../packages/flax/test/ui/flax_view_test.dart' as views;
+import '../../../packages/flax/test/ui/interop_test.dart' as interop;
+import '../../../packages/flax/test/ui/proxy_properties_test.dart'
+    as properties;
+import '../../../packages/flax/test/ui/package_bindings_test.dart' as providers;
+import '../../../packages/flax/test/ui/default_omission_test.dart' as defaults;
 
 void main() {
   if (Platform.isIOS &&
@@ -175,12 +184,18 @@ void _registerTests() {
   flaxEngineGcContract(registerTest: register);
   group('native Widgets and State', widgets.main);
   group('native callbacks', callbacks.main);
+  group('Widget aggregates and Context', widget_values.main);
   group('Future callbacks', futures.main);
   group('Future Stream callbacks', async_streams.main);
+  group('Context Stream callbacks', context_streams.main);
   group('bridge GC', bridge.main);
   group('Streams', streams.main);
   group('Sessions', sessions.main);
   group('FlaxView', views.main);
+  group('generated object peers', interop.main);
+  group('current proxy properties', properties.main);
+  group('independent binding providers', providers.main);
+  group('default omission', defaults.main);
   if (const bool.fromEnvironment('FLAX_ENGINE_BENCHMARK')) {
     testWidgets('profile GC, frame and memory measurements', (tester) async {
       final previousPolicy = binding.framePolicy;

@@ -63,8 +63,8 @@ void main() {
       final calls = Map.of(h.runtime.hostCalls);
       expect(h.number('old.selection.baseOffset + old.composing.end'), 8);
       expect(
-        (h.runtime.hostCalls['__flaxObject'] ?? 0) -
-            (calls['__flaxObject'] ?? 0),
+        (h.runtime.hostCalls['__flaxInvokeOperation'] ?? 0) -
+            (calls['__flaxInvokeOperation'] ?? 0),
         4,
       );
       h.execute("editing.controller.text = 'next'");
@@ -109,7 +109,7 @@ void main() {
       final staticElement = t.element(host('static'));
       final handles = h.runtime.handles;
       final subscriptions = h.runtime.activeSubscriptions;
-      final memberCalls = h.runtime.hostCalls['__flaxObject'] ?? 0;
+      final memberCalls = h.runtime.hostCalls['__flaxInvokeOperation'] ?? 0;
       final rebuilt = <FlaxWidgetHost>[];
       debugOnRebuildDirtyWidget = (element, _) {
         if (element.widget is FlaxWidgetHost) {
@@ -123,7 +123,7 @@ void main() {
       expect(h.number('editing.changes.length'), 1);
       expect(h.string('editing.changes[0]'), '中文🌱');
       expect(
-        (h.runtime.hostCalls['__flaxObject'] ?? 0) - memberCalls,
+        (h.runtime.hostCalls['__flaxInvokeOperation'] ?? 0) - memberCalls,
         20, // Two controller reads plus the selected real getters during label builds.
       );
       expect(rebuilt, isNotEmpty);
@@ -202,7 +202,7 @@ void main() {
         "editing.controller.selection = editing.TextSelection.collapsed({offset: 20})",
         "editing.controller.value = 'wrong'",
         "editing.controller.value.copyWith({selection: editing.TextRange.empty})",
-        "__flaxObject(6, '', 0, 'get', 'empty')",
+        "__flaxInvokeOperation(__flaxResolveOperation(6, '', 'object', 'get', 'empty'), 0)",
       ]) {
         expect(
           () => h.execute(code),

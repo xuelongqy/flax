@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"a0727ea32c13dfd16f45fc2d0cf19bac9513dd02952490bf0fa48c17f8bb71fc","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"9df53c8b1dd4d1e9d677b978bc1e1793fa1e67091614f61458d2e38a43cc0ae3","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -184,7 +184,7 @@ var ReferenceCache = class {
 };
 
 // ../../../flax/js/dist/runtime/bindings.js
-var bindingVersion = 22;
+var bindingVersion = 23;
 var components = /* @__PURE__ */ new WeakMap();
 var componentTypes = /* @__PURE__ */ new WeakMap();
 var componentBases = /* @__PURE__ */ new WeakMap();
@@ -323,7 +323,10 @@ ${name}`;
 var enums = /* @__PURE__ */ new Map();
 var enumTypes = /* @__PURE__ */ new WeakMap();
 var contextTypes = /* @__PURE__ */ new Map();
+var statePrototypes = /* @__PURE__ */ new Map();
+var contextPrototypes = /* @__PURE__ */ new Map();
 var contextStates = /* @__PURE__ */ new WeakMap();
+var recordShapes = /* @__PURE__ */ new WeakMap();
 function defineContext(type, fields) {
   if (contextTypes.has(type))
     throw new Error(`Duplicate context type: ${type}`);
@@ -339,16 +342,10 @@ function contextHandle(value, type) {
   return state.id;
 }
 function invokeStatic(type, member, args) {
-  const call = globalThis.__flaxCall;
-  if (!call)
-    throw new Error("Dart members require a FlaxView host");
-  return call(bindingVersion, type, member, ...args);
+  return invokeOperation("static", type, 0, "call", member, args);
 }
 function invokeTopLevel(id, args) {
-  const call = globalThis.__flaxTopLevel;
-  if (!call)
-    throw new Error("Dart functions require a FlaxView host");
-  return call(bindingVersion, id, ...args);
+  return invokeOperation("top", id, 0, "call", "", args);
 }
 function stringProperty(value, name) {
   if (value === null || typeof value !== "object" && typeof value !== "function") {
@@ -444,10 +441,7 @@ function invokeInstance(receiver, type, method, args) {
   const ref = stateHandles.get(receiver);
   if (!ref || ref.type !== type)
     throw new TypeError("Invalid or foreign State");
-  const host = globalThis;
-  if (!host.__flaxInstance)
-    throw new Error("State methods require a Flax host");
-  return host.__flaxInstance(bindingVersion, type, ref.id, method, ...args);
+  return invokeOperation("state", type, ref.id, "call", method, args);
 }
 var objectTypes = /* @__PURE__ */ new Map();
 var references = new ReferenceCache();
@@ -455,6 +449,19 @@ var objectHandles = references.handles;
 var constructingExtendedProxies = /* @__PURE__ */ new WeakSet();
 var deferredObjects = /* @__PURE__ */ new WeakMap();
 var iterableObjectTypes = /* @__PURE__ */ new Set();
+var operationIds = /* @__PURE__ */ new Map();
+function invokeOperation(category, type, id, operation, member, args) {
+  const host = globalThis;
+  if (!host.__flaxResolveOperation || !host.__flaxInvokeOperation)
+    throw new Error("Dart bindings require the Flax engine");
+  const key = `${category}\0${type}\0${operation}\0${member}`;
+  let slot = operationIds.get(key);
+  if (slot === void 0) {
+    slot = host.__flaxResolveOperation(bindingVersion, type, category, operation, member);
+    operationIds.set(key, slot);
+  }
+  return host.__flaxInvokeOperation(slot, id, ...args);
+}
 function cachedObject(type, id) {
   return references.get(type, id);
 }
@@ -595,16 +602,14 @@ function callStream(receiver, type, operation, member, args) {
   const definition = streamTypes.get(type);
   if (!definition)
     throw new TypeError(`Unknown Stream type: ${type}`);
-  const call = globalThis.__flaxStream;
-  if (!call)
-    throw new Error("Dart Streams require a Flax host");
-  return call(bindingVersion, type, ref.id, operation, member, ...args);
+  return invokeOperation("stream", type, ref.id, operation, member, args);
 }
 function invokeStream(receiver, type, method, args) {
   if (args.some(isBinding))
     throw new TypeError("Stream methods do not accept bindings");
   return callStream(receiver, type, "call", method, args);
 }
+var streamPrototypes = /* @__PURE__ */ new Map();
 function streamWrapper(type, view, id) {
   const cached = cachedObject(view, id);
   if (cached)
@@ -612,19 +617,30 @@ function streamWrapper(type, view, id) {
   const definition = streamTypes.get(type);
   if (!definition)
     throw new TypeError(`Unknown Stream type: ${type}`);
-  const value = {};
-  for (const field of definition.fields) {
-    Object.defineProperty(value, field, {
-      enumerable: true,
-      get: () => callStream(value, type, "get", field, [])
+  let prototype = streamPrototypes.get(type);
+  if (!prototype) {
+    const prototype2 = {};
+    for (const field of definition.fields) {
+      Object.defineProperty(prototype2, field, {
+        enumerable: true,
+        get() {
+          return callStream(this, type, "get", field, []);
+        }
+      });
+    }
+    for (const [name, method] of Object.entries(definition.methods)) {
+      Object.defineProperty(prototype2, name, { value: method });
+    }
+    Object.defineProperty(prototype2, Symbol.asyncIterator, {
+      value() {
+        return streamAsyncIterator(this, type);
+      }
     });
+    Object.freeze(prototype2);
+    streamPrototypes.set(type, prototype2);
+    return streamWrapper(type, view, id);
   }
-  for (const [name, method] of Object.entries(definition.methods)) {
-    Object.defineProperty(value, name, { value: method.bind(value) });
-  }
-  Object.defineProperty(value, Symbol.asyncIterator, {
-    value: () => streamAsyncIterator(value, type)
-  });
+  const value = Object.create(prototype);
   const frozen = Object.freeze(value);
   trackObject(frozen, view, id);
   return frozen;
@@ -694,48 +710,98 @@ function constructDeferredObject(type, factory, parameters, positional, options)
   });
   return Object.freeze(value);
 }
-function constructProxy(type, parameters, args, implementation, names, getters, setters) {
-  var _a, _b, _c;
-  const positional = parameters.filter((p) => p.positional).length;
-  const hasNamed = parameters.some((p) => !p.positional);
-  if (args.length > positional + (hasNamed ? 1 : 0))
-    throw new TypeError("Too many proxy constructor arguments");
-  if (implementation === null || typeof implementation !== "object" || Object.keys(implementation).some((k) => !names.includes(k) && !getters.includes(k) && !setters.includes(k)))
+var proxyLayouts = /* @__PURE__ */ new WeakMap();
+function proxyLayout(definition) {
+  let prepared = proxyLayouts.get(definition);
+  if (!prepared) {
+    prepared = {};
+    proxyLayouts.set(definition, prepared);
+  }
+  if (prepared.token !== void 0)
+    return prepared.token;
+  const supers = new Set(definition.superMembers);
+  const row = (name, kind, parameters) => {
+    const property = prepared.prototype && Object.getOwnPropertyDescriptor(prepared.prototype, name);
+    const base = kind === 0 ? property == null ? void 0 : property.value : kind === 1 ? property == null ? void 0 : property.get : property == null ? void 0 : property.set;
+    return Object.freeze([
+      name,
+      kind,
+      parameters.filter((p) => p.positional && p.required).length,
+      parameters.filter((p) => p.positional).length + (parameters.some((p) => !p.positional) ? 1 : 0),
+      base,
+      supers.has(kind === 0 ? name : `${kind === 1 ? "get" : "set"}:${name}`)
+    ]);
+  };
+  const rows = [
+    ...Object.entries(definition.methods).map(([name, parameters]) => row(name, 0, parameters)),
+    ...definition.getters.map((name) => row(name, 1, [])),
+    ...definition.setters.map((name) => row(name, 2, [{ name: "value", positional: true, required: true }]))
+  ];
+  const prepare = globalThis.__flaxPrepareProxy;
+  if (!prepare)
+    throw new Error("Dart proxies require the Flax engine");
+  prepared.token = prepare(bindingVersion, definition.type, Object.freeze(rows));
+  return prepared.token;
+}
+function constructProxy(definition, args, implementation) {
+  const names = /* @__PURE__ */ new Set([
+    ...Object.keys(definition.methods),
+    ...definition.getters,
+    ...definition.setters
+  ]);
+  if (implementation === null || typeof implementation !== "object" || Object.keys(implementation).some((name) => !names.has(name))) {
     throw new TypeError("Invalid proxy implementation");
-  const descriptor = construct("value", type, "@implementation", parameters, args.slice(0, positional), (_a = args[positional]) != null ? _a : {});
-  const values = { ...descriptor.args };
-  for (const name of names) {
-    const method = (_b = proxyProperty(implementation, name)) == null ? void 0 : _b.value;
-    if (typeof method !== "function")
-      throw new TypeError(`Missing proxy method: ${name}`);
-    values[`@call:${name}`] = method.bind(implementation);
   }
-  for (const kind of ["get", "set"]) {
-    for (const name of kind === "get" ? getters : setters) {
-      if (names.includes(name))
-        throw new TypeError(`Conflicting proxy member: ${name}`);
-      const accessor = (_c = proxyProperty(implementation, name)) == null ? void 0 : _c[kind];
-      if (typeof accessor !== "function")
-        throw new TypeError(`Missing proxy ${kind} accessor: ${name}`);
-      values[`@${kind}:${name}`] = (...args2) => synchronous(Reflect.apply(accessor, implementation, args2), `Proxy ${kind} ${name}`);
+  const property = (name) => {
+    for (let value = implementation; value; value = Object.getPrototypeOf(value)) {
+      const descriptor2 = Object.getOwnPropertyDescriptor(value, name);
+      if (descriptor2)
+        return descriptor2;
     }
+    return void 0;
+  };
+  for (const name of Object.keys(definition.methods)) {
+    const descriptor2 = property(name);
+    if (!descriptor2 && definition.superMembers.includes(name))
+      continue;
+    if (!descriptor2 || ("value" in descriptor2 ? typeof descriptor2.value !== "function" : typeof descriptor2.get !== "function"))
+      throw new TypeError(`Missing proxy method: ${name}`);
   }
+  for (const name of definition.getters) {
+    const descriptor2 = property(name);
+    if (!descriptor2 && definition.superMembers.includes(`get:${name}`))
+      continue;
+    if (!descriptor2 || !("value" in descriptor2) && typeof descriptor2.get !== "function")
+      throw new TypeError(`Missing proxy getter: ${name}`);
+  }
+  for (const name of definition.setters) {
+    const descriptor2 = property(name);
+    if (!descriptor2 && definition.superMembers.includes(`set:${name}`))
+      continue;
+    if (!descriptor2 || ("value" in descriptor2 ? !descriptor2.writable : typeof descriptor2.set !== "function"))
+      throw new TypeError(`Missing proxy setter: ${name}`);
+  }
+  const descriptor = proxyDescriptor(definition, args);
   const create = globalThis.__flaxCreateObject;
   if (!create)
     throw new Error("Dart proxies require a Flax host");
-  return create(bindingVersion, type, { ...descriptor, args: Object.freeze(values) });
+  return create(bindingVersion, definition.type, {
+    ...descriptor,
+    receiver: implementation,
+    layout: proxyLayout(definition)
+  });
 }
-function proxyProperty(implementation, name, stopBefore) {
-  for (let object = implementation; object !== null && object !== stopBefore; object = Object.getPrototypeOf(object)) {
-    const descriptor = Object.getOwnPropertyDescriptor(object, name);
-    if (descriptor)
-      return descriptor;
-  }
-  return void 0;
+function proxyDescriptor(definition, args) {
+  var _a;
+  const positional = definition.parameters.filter((p) => p.positional).length;
+  const hasNamed = definition.parameters.some((p) => !p.positional);
+  if (args.length > positional + (hasNamed ? 1 : 0))
+    throw new TypeError("Too many proxy constructor arguments");
+  return construct("value", definition.type, "@implementation", definition.parameters, args.slice(0, positional), (_a = args[positional]) != null ? _a : {});
 }
 var FlaxProxyBase = class {
-  constructor(prototype, definition, args) {
-    constructExtendedProxy(this, prototype, definition.type, definition.parameters, args, Object.keys(definition.methods), definition.getters, definition.setters, definition.superMembers, definition.nativeWidget && !componentBases.has(new.target.prototype) ? componentType(new.target).type : void 0);
+  constructor(definition, args) {
+    constructExtendedProxy(this, definition, args, definition.nativeWidget && !componentBases.has(new.target.prototype) ? componentType(new.target).type : void 0);
   }
 };
 function widgetProxyFactory(factory, native) {
@@ -854,57 +920,30 @@ function defineProxyBase(prototype, definition, nativeGetters = []) {
   Object.freeze(definition);
   const members = new Set(definition.superMembers);
   installMembers(prototype, Object.fromEntries(Object.entries(definition.methods).filter(([name]) => members.has(name))), definition.getters.filter((name) => members.has(`get:${name}`)), definition.setters.filter((name) => members.has(`set:${name}`)), (receiver, member, args) => invokeProxySuper(receiver, definition.type, member, args));
+  proxyLayouts.set(definition, { prototype });
 }
 function defineStateMembers(prototype, methods, getters, setters) {
   installMembers(prototype, methods, getters, setters, (receiver, member, args) => componentStateCall(receiver, `native:${member}`, args));
 }
-function constructExtendedProxy(receiver, basePrototype, type, parameters, args, names, getters, setters, superMembers, widgetType) {
-  var _a, _b, _c;
+function constructExtendedProxy(receiver, definition, args, widgetType) {
   if (receiver === null || typeof receiver !== "object")
     throw new TypeError("Expected a proxy class instance");
   if (objectHandles.has(receiver))
     throw new TypeError("Proxy class instance is already initialized");
-  const positional = parameters.filter((p) => p.positional).length;
-  const hasNamed = parameters.some((p) => !p.positional);
-  if (args.length > positional + (hasNamed ? 1 : 0))
-    throw new TypeError("Too many proxy constructor arguments");
-  const descriptor = construct("value", type, "@implementation", parameters, args.slice(0, positional), (_a = args[positional]) != null ? _a : {});
-  const values = { ...descriptor.args };
-  for (const name of names) {
-    const method = (_b = proxyProperty(receiver, name, basePrototype)) == null ? void 0 : _b.value;
-    if (typeof method !== "function") {
-      if (superMembers.includes(name))
-        continue;
-      throw new TypeError(`Missing proxy method: ${name}`);
-    }
-    values[`@call:${name}`] = method.bind(receiver);
-  }
-  for (const kind of ["get", "set"]) {
-    for (const name of kind === "get" ? getters : setters) {
-      if (names.includes(name))
-        throw new TypeError(`Conflicting proxy member: ${name}`);
-      const accessor = (_c = proxyProperty(receiver, name, basePrototype)) == null ? void 0 : _c[kind];
-      const superName = `${kind}:${name}`;
-      if (typeof accessor !== "function") {
-        if (superMembers.includes(superName))
-          continue;
-        throw new TypeError(`Missing proxy ${kind} accessor: ${name}`);
-      }
-      values[`@${kind}:${name}`] = (...callArgs) => synchronous(Reflect.apply(accessor, receiver, callArgs), `Proxy ${kind} ${name}`);
-    }
-  }
+  const descriptor = proxyDescriptor(definition, args);
   const create = globalThis.__flaxCreateObject;
   if (!create)
     throw new Error("Dart proxies require a Flax host");
   constructingExtendedProxies.add(receiver);
   try {
-    const created = create(bindingVersion, type, {
+    const created = create(bindingVersion, definition.type, {
       ...descriptor,
-      ...widgetType === void 0 ? {} : { widgetType },
-      args: Object.freeze(values)
+      receiver,
+      layout: proxyLayout(definition),
+      ...widgetType === void 0 ? {} : { widgetType }
     });
     const ref = objectHandles.get(created);
-    if (!ref || !ref.alive || ref.type !== type)
+    if (!ref || !ref.alive || ref.type !== definition.type)
       throw new TypeError("Invalid Dart proxy result");
     transferObjectAlias(created, receiver);
   } finally {
@@ -931,10 +970,7 @@ function callObject(receiver, type, operation, member, args) {
       return;
     throw new Error("Disposed Dart object");
   }
-  const call = globalThis.__flaxObject;
-  if (!call)
-    throw new Error("Dart objects require a Flax host");
-  return call(bindingVersion, type, ref.id, operation, member, ...args);
+  return invokeOperation("object", type, ref.id, operation, member, args);
 }
 function invokeObject(receiver, type, method, args) {
   if (args.some(isBinding))
@@ -942,12 +978,13 @@ function invokeObject(receiver, type, method, args) {
   return callObject(receiver, type, "call", method, args);
 }
 function invokeObjectStatic(type, member) {
-  const call = globalThis.__flaxObject;
-  if (!call)
-    throw new Error("Dart objects require a Flax host");
-  return call(bindingVersion, type, 0, "static", member);
+  return invokeOperation("object", type, 0, "static", member, []);
 }
+var objectPrototypes = /* @__PURE__ */ new Map();
 function createObjectWrapper(type) {
+  const cached = objectPrototypes.get(type);
+  if (cached)
+    return Object.create(cached);
   const definition = objectTypes.get(type);
   if (!definition)
     throw new TypeError(`Unknown object: ${type}`);
@@ -957,32 +994,34 @@ function createObjectWrapper(type) {
       enumerable: true,
       ...definition.fields.includes(field) ? {
         get() {
-          return callObject(value, type, "get", field, []);
+          return callObject(this, type, "get", field, []);
         }
       } : {},
       ...definition.setters.includes(field) ? {
         set(input) {
           if (isBinding(input))
             throw new TypeError("Object setters do not accept bindings");
-          callObject(value, type, "set", field, [input]);
+          callObject(this, type, "set", field, [input]);
         }
       } : {}
     });
   }
   for (const [name, method] of Object.entries(definition.methods)) {
-    Object.defineProperty(value, name, { value: method.bind(value) });
+    Object.defineProperty(value, name, { value: method });
   }
   if (iterableObjectTypes.has(type)) {
     Object.defineProperty(value, Symbol.iterator, {
       value: function* () {
-        const copy = callObject(value, type, "call", "toArray", []);
+        const copy = callObject(this, type, "call", "toArray", []);
         if (!Array.isArray(copy))
           throw new TypeError("Invalid Dart Iterable copy");
         yield* __yieldStar(copy);
       }
     });
   }
-  return value;
+  Object.freeze(value);
+  objectPrototypes.set(type, value);
+  return Object.create(value);
 }
 function objectWrapper(type, id) {
   const cached = cachedObject(type, id);
@@ -1010,11 +1049,11 @@ function copyNavigationData(value, path = /* @__PURE__ */ new Set()) {
     throw new TypeError("Invalid or cyclic navigation data");
   if (Object.getOwnPropertySymbols(value).length)
     throw new TypeError("Navigation data requires string keys");
+  if (contextStates.has(value) || stateHandles.has(value) || objectHandles.has(value) || enumTypes.has(value))
+    throw new TypeError("Host references are not navigation data");
   const array = Array.isArray(value);
   if (!array && Object.getPrototypeOf(value) !== Object.prototype && Object.getPrototypeOf(value) !== null)
     throw new TypeError("Expected a plain object");
-  if (contextStates.has(value) || stateHandles.has(value) || objectHandles.has(value) || enumTypes.has(value))
-    throw new TypeError("Host references are not navigation data");
   path.add(value);
   try {
     const read = (key) => {
@@ -1027,6 +1066,19 @@ function copyNavigationData(value, path = /* @__PURE__ */ new Set()) {
   } finally {
     path.delete(value);
   }
+}
+function finishComponentState(value, widget, id) {
+  value = synchronous(value);
+  const state = value !== null && typeof value === "object" ? componentStates.get(value) : void 0;
+  const native = value !== null && typeof value === "object" ? stateHandles.get(value) : void 0;
+  if (native)
+    return Object.freeze({ native: native.id });
+  if (!state || state.claimed)
+    throw new TypeError("createState must return a fresh State");
+  state.claimed = true;
+  state.widget = widget;
+  state.id = id;
+  return Object.freeze({ state: value, variant: state.variant });
 }
 Object.assign(globalThis, {
   __flaxBindings: Object.freeze({
@@ -1042,6 +1094,12 @@ Object.assign(globalThis, {
       }
       return Reflect.apply(callback, void 0, [...positional, options]);
     },
+    callbackOptions(...entries) {
+      const options = {};
+      for (let i = 0; i < entries.length; i += 2)
+        options[entries[i]] = entries[i + 1];
+      return options;
+    },
     componentType,
     freezeWidget(value) {
       Object.freeze(value);
@@ -1055,17 +1113,9 @@ Object.assign(globalThis, {
     },
     createComponentState(widget, id) {
       const value = synchronous(Reflect.apply(widget.createState, widget, []));
-      const state = value !== null && typeof value === "object" ? componentStates.get(value) : void 0;
-      const native = value !== null && typeof value === "object" ? stateHandles.get(value) : void 0;
-      if (native)
-        return Object.freeze({ native: native.id });
-      if (!state || state.claimed)
-        throw new TypeError("createState must return a fresh State");
-      state.claimed = true;
-      state.widget = widget;
-      state.id = id;
-      return Object.freeze({ state: value, variant: state.variant });
+      return finishComponentState(value, widget, id);
     },
+    finishComponentState,
     tryComponentStateId(value) {
       const state = componentStates.get(value);
       if (state == null ? void 0 : state.retired)
@@ -1167,13 +1217,15 @@ Object.assign(globalThis, {
         initializing = false;
       }
     },
-    collectionShape(value) {
+    collectionShape(value, finiteWidgetIterable = false) {
       if (Array.isArray(value))
         return "list";
       if (value instanceof Map)
         return "map";
       if (value instanceof Set)
         return "set";
+      if (finiteWidgetIterable)
+        return null;
       if (typeof value[Symbol.iterator] === "function")
         return "iterable";
       const prototype = Object.getPrototypeOf(value);
@@ -1181,11 +1233,20 @@ Object.assign(globalThis, {
         return "record";
       return null;
     },
-    collectionEntries(value) {
+    collectionEntries(value, finiteWidgetIterable = false) {
+      if (finiteWidgetIterable && value instanceof Set) {
+        return [...Set.prototype.values.call(value)];
+      }
       return Array.isArray(value) ? value : value instanceof Map ? [...value.entries()] : value instanceof Set || Symbol.iterator in Object(value) ? [...value] : Object.entries(value);
     },
-    emptyRecord() {
-      return {};
+    emptyRecord(signature) {
+      const value = {};
+      recordShapes.set(value, signature);
+      return value;
+    },
+    recordType(value) {
+      var _a;
+      return (_a = recordShapes.get(value)) != null ? _a : null;
     },
     emptyCollection(kind) {
       return kind === "map" ? /* @__PURE__ */ new Map() : kind === "set" ? /* @__PURE__ */ new Set() : [];
@@ -1420,65 +1481,74 @@ Object.assign(globalThis, {
       }
     },
     state(type, id) {
-      const definition = stateTypes.get(type);
-      if (!definition)
-        throw new TypeError(`Unknown State: ${type}`);
-      const value = {};
-      stateHandles.set(value, { type, id });
-      definition.fields.forEach((field) => {
-        Object.defineProperty(value, field, {
-          enumerable: true,
-          get() {
-            const host = globalThis;
-            if (!host.__flaxStateGet)
-              throw new Error("State getters require a Flax host");
-            return host.__flaxStateGet(bindingVersion, type, id, field);
-          }
-        });
-      });
-      for (const [name, method] of Object.entries(definition.methods)) {
-        Object.defineProperty(value, name, { value: method.bind(value) });
+      let prototype = statePrototypes.get(type);
+      if (!prototype) {
+        const definition = stateTypes.get(type);
+        if (!definition)
+          throw new TypeError(`Unknown State: ${type}`);
+        prototype = {};
+        for (const field of definition.fields)
+          Object.defineProperty(prototype, field, {
+            enumerable: true,
+            get() {
+              const ref = stateHandles.get(this);
+              if (!ref || ref.type !== type)
+                throw new TypeError("Invalid or foreign State");
+              return invokeOperation("state", type, ref.id, "get", field, []);
+            }
+          });
+        for (const [name, method] of Object.entries(definition.methods))
+          Object.defineProperty(prototype, name, { value: method });
+        Object.freeze(prototype);
+        statePrototypes.set(type, prototype);
       }
+      const value = Object.create(prototype);
+      stateHandles.set(value, { type, id });
       return Object.freeze(value);
     },
     context(type, id) {
       const cached = cachedObject(type, id);
       if (cached)
         return cached;
-      const fields = contextTypes.get(type);
-      if (!fields)
-        throw new TypeError(`Unregistered context type: ${type}`);
-      const value = {};
-      trackObject(value, type, id);
-      const state = objectHandles.get(value);
-      for (const field of fields) {
-        Object.defineProperty(value, field, {
-          enumerable: true,
-          get() {
-            if (!state.alive) {
-              if (field === "mounted")
-                return false;
-              throw new Error("Unmounted BuildContext");
+      let prototype = contextPrototypes.get(type);
+      if (!prototype) {
+        const fields = contextTypes.get(type);
+        if (!fields)
+          throw new TypeError(`Unregistered context type: ${type}`);
+        prototype = {};
+        for (const field of fields)
+          Object.defineProperty(prototype, field, {
+            enumerable: true,
+            get() {
+              const ref = contextStates.get(this);
+              if (!ref || ref.type !== type)
+                throw new TypeError("Invalid or foreign Context");
+              if (!ref.alive) {
+                if (field === "mounted")
+                  return false;
+                throw new Error("Unmounted BuildContext");
+              }
+              return invokeOperation("context", type, ref.id, "get", field, []);
             }
-            const get = globalThis.__flaxGet;
-            if (!get)
-              throw new Error("Dart members require a FlaxView host");
-            return get(bindingVersion, type, id, field);
+          });
+        Object.defineProperty(prototype, "findAncestorWidgetOfExactType", {
+          value(constructor) {
+            const ref = contextStates.get(this);
+            if (!ref || ref.type !== type || !ref.alive)
+              throw new Error("Unmounted BuildContext");
+            const info = componentType(constructor);
+            const call = globalThis.__flaxAncestor;
+            if (!call)
+              throw new Error("Ancestor queries require a Flax host");
+            return call(bindingVersion, type, ref.id, info.type);
           }
         });
+        Object.freeze(prototype);
+        contextPrototypes.set(type, prototype);
       }
-      Object.defineProperty(value, "findAncestorWidgetOfExactType", {
-        value: (constructor) => {
-          if (!state.alive)
-            throw new Error("Unmounted BuildContext");
-          const info = componentType(constructor);
-          const call = globalThis.__flaxAncestor;
-          if (!call)
-            throw new Error("Ancestor queries require a Flax host");
-          return call(bindingVersion, type, id, info.type);
-        }
-      });
-      contextStates.set(value, state);
+      const value = Object.create(prototype);
+      trackObject(value, type, id);
+      contextStates.set(value, objectHandles.get(value));
       return Object.freeze(value);
     },
     releaseContext(id) {

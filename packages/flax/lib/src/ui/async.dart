@@ -217,7 +217,7 @@ extension _AsyncCalls on _Session {
     try {
       decoded = decode(value, settlement);
       decoded.escapeCallbacks();
-      escapeWidget(decoded.data);
+      escapeWidget(decoded.data, settlement);
       pending.completer.complete(decoded.data);
     } catch (error, stack) {
       pending.completer.completeError(error, stack);

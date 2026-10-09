@@ -1,6 +1,6 @@
 # Generated Top-level Functions
 
-UI protocol 22 includes named JS exports for selected public Dart functions. Calls share
+UI protocol 23 includes named JS exports for selected public Dart functions. Calls share
 one typed host entry, `FlaxFunctionBinding`, and the existing argument/result
 conversion. The generator emits direct Dart calls; it does not register one host
 function per API, install application globals, or use reflection. The native ABI

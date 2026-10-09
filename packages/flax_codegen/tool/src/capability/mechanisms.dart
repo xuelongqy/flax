@@ -288,6 +288,65 @@ const List<Stage2MechanismShape> stage2MechanismShapes = [
     note: 'Concrete Widget configurations preserve the actual native subtype',
   ),
 
+  // Finite Widget aggregates and borrowed Context results.
+  Stage2MechanismShape(
+    label: 'widgetCallback/finite-widget-iterable',
+    group: 'widgetCallback',
+    fixture: 'widget_callback_shapes.dart',
+    type: 'WidgetAggregateBox',
+    member: 'finiteIterable',
+    note: 'Iterable Widget callbacks require finite JS arrays/Sets or Dart Lists/Sets',
+  ),
+  Stage2MechanismShape(
+    label: 'widgetCallback/future-widget-list',
+    group: 'widgetCallback',
+    fixture: 'widget_callback_shapes.dart',
+    type: 'WidgetAggregateBox',
+    member: 'futureList',
+  ),
+  Stage2MechanismShape(
+    label: 'widgetCallback/nullable-widget-list',
+    group: 'widgetCallback',
+    fixture: 'widget_callback_shapes.dart',
+    type: 'WidgetAggregateBox',
+    member: 'nullableList',
+  ),
+  Stage2MechanismShape(
+    label: 'widgetCallback/widget-record',
+    group: 'widgetCallback',
+    fixture: 'widget_callback_shapes.dart',
+    type: 'WidgetAggregateBox',
+    member: 'record',
+  ),
+  Stage2MechanismShape(
+    label: 'widgetCallback/direct-context-result',
+    group: 'widgetCallback',
+    fixture: 'widget_callback_shapes.dart',
+    type: 'WidgetAggregateBox',
+    member: 'context',
+  ),
+  Stage2MechanismShape(
+    label: 'widgetCallback/context-callback-result',
+    group: 'widgetCallback',
+    fixture: 'widget_callback_shapes.dart',
+    type: 'WidgetAggregateBox',
+    member: 'contextCallback',
+  ),
+  Stage2MechanismShape(
+    label: 'widgetCallback/async-context-callback-result',
+    group: 'widgetCallback',
+    fixture: 'widget_callback_shapes.dart',
+    type: 'WidgetAggregateBox',
+    member: 'asyncContextCallback',
+  ),
+  Stage2MechanismShape(
+    label: 'widgetCallback/context-stream-callback-result',
+    group: 'widgetCallback',
+    fixture: 'widget_callback_shapes.dart',
+    type: 'WidgetAggregateBox',
+    member: 'streamContextCallback',
+  ),
+
   // Class modifiers.
   Stage2MechanismShape(
     label: 'classModifier/abstract',
@@ -373,15 +432,15 @@ const Set<String> stage2MechanismFlutterFixtures = {
 };
 
 /// Intentional boundaries that use existing regression fixtures and stable
-/// diagnostic codes. These are assessed, not left in an unmeasured bucket.
+/// diagnostic or runtime boundary labels. These are assessed, not unmeasured.
 const List<Map<String, Object?>> stage2MechanismBoundaries = [
   {
-    'id': 'mounted_widget_collection_shape',
+    'id': 'lazy_widget_iterable_callback',
     'verdict': 'unsupported',
     'reasonKind': 'intentionalBoundary',
-    'code': 'unsupported_input_shape',
-    'fixture': 'test/fixtures/bindability/auto_library.dart',
-    'example': 'Set<Widget> or List<Widget?> returned by a mounted callback',
+    'code': 'runtime_finite_widget_iterable_required',
+    'fixture': '../flax/test/ui/widget_values_test.dart',
+    'example': 'An arbitrary lazy Iterable<Widget> fails conversion before iteration; its declared callback signature can bind',
   },
   {
     'id': 'arbitrary_mixin_composition',

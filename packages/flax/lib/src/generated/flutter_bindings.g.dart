@@ -1,6 +1,6 @@
 // GENERATED CODE. Selected public API subset; do not edit.
 // Regenerate with dart run melos run bindings:generate.
-// ignore_for_file: type=lint, unused_import
+// ignore_for_file: type=lint, unused_import, unnecessary_cast
 import 'dart:core';
 
 import 'package:flutter/widgets.dart' as api;
@@ -3221,85 +3221,7 @@ const flutterBindings = FlaxBindingModule(
           startsRoute: false,
         ),
       },
-      constructors: {
-        "@implementation": [
-          FlaxParameter(
-            "@call:add",
-            FlaxTypeRef(
-              "callback",
-              callback: FlaxCallbackBinding(
-                [
-                  FlaxCallbackParameter(
-                    "event",
-                    FlaxTypeRef("any", nullable: true),
-                    required: true,
-                    positional: true,
-                  ),
-                ],
-                FlaxTypeRef("void"),
-                _callback63,
-                id: "callback:<>(p:r:event:any?:)->void:",
-                invoke: _callback63Invoke,
-                matches: _callback63Matches,
-              ),
-            ),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "@call:addError",
-            FlaxTypeRef(
-              "callback",
-              callback: FlaxCallbackBinding(
-                [
-                  FlaxCallbackParameter(
-                    "error",
-                    FlaxTypeRef("any"),
-                    required: true,
-                    positional: true,
-                  ),
-                  FlaxCallbackParameter(
-                    "stackTrace",
-                    FlaxTypeRef(
-                      "object",
-                      id: "flax.core/flutter#type:StackTrace",
-                      nullable: true,
-                    ),
-                    required: false,
-                    positional: true,
-                  ),
-                ],
-                FlaxTypeRef("void"),
-                _callback64,
-                id: "callback:<>(p:r:error:any:,p:o:stackTrace:object?:flax.core/flutter#type:StackTrace)->void:",
-                invoke: _callback64Invoke,
-                matches: _callback64Matches,
-              ),
-            ),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "@call:close",
-            FlaxTypeRef(
-              "callback",
-              callback: FlaxCallbackBinding(
-                [],
-                FlaxTypeRef("void"),
-                _callback65,
-                id: "callback:<>()->void:",
-                invoke: _callback65Invoke,
-                matches: _callback65Matches,
-              ),
-            ),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-        ],
-      },
+      constructors: {"@implementation": []},
       create: _createEventSink,
       disposeMethod: null,
       listenerPairs: {},
@@ -3307,6 +3229,71 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isEventSink,
       methods: {},
+      proxy: FlaxProxyBinding([
+        FlaxProxyMember(
+          "add",
+          0,
+          FlaxCallbackBinding(
+            [
+              FlaxCallbackParameter(
+                "event",
+                FlaxTypeRef("any", nullable: true),
+                required: true,
+                positional: true,
+              ),
+            ],
+            FlaxTypeRef("void"),
+            _callback63,
+            id: "callback:<>(p:r:event:any?:)->void:",
+            invoke: _callback63Invoke,
+            matches: _callback63Matches,
+          ),
+          hasSuper: false,
+        ),
+        FlaxProxyMember(
+          "addError",
+          0,
+          FlaxCallbackBinding(
+            [
+              FlaxCallbackParameter(
+                "error",
+                FlaxTypeRef("any"),
+                required: true,
+                positional: true,
+              ),
+              FlaxCallbackParameter(
+                "stackTrace",
+                FlaxTypeRef(
+                  "object",
+                  id: "flax.core/flutter#type:StackTrace",
+                  nullable: true,
+                ),
+                required: false,
+                positional: true,
+              ),
+            ],
+            FlaxTypeRef("void"),
+            _callback64,
+            id: "callback:<>(p:r:error:any:,p:o:stackTrace:object?:flax.core/flutter#type:StackTrace)->void:",
+            invoke: _callback64Invoke,
+            matches: _callback64Matches,
+          ),
+          hasSuper: false,
+        ),
+        FlaxProxyMember(
+          "close",
+          0,
+          FlaxCallbackBinding(
+            [],
+            FlaxTypeRef("void"),
+            _callback65,
+            id: "callback:<>()->void:",
+            invoke: _callback65Invoke,
+            matches: _callback65Matches,
+          ),
+          hasSuper: false,
+        ),
+      ]),
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:StreamConsumer",
@@ -3350,68 +3337,7 @@ const flutterBindings = FlaxBindingModule(
           startsRoute: false,
         ),
       },
-      constructors: {
-        "@implementation": [
-          FlaxParameter(
-            "@call:addStream",
-            FlaxTypeRef(
-              "callback",
-              callback: FlaxCallbackBinding(
-                [
-                  FlaxCallbackParameter(
-                    "stream",
-                    FlaxTypeRef(
-                      "stream",
-                      id: "flax.core/flutter#type:Stream",
-                      item: FlaxTypeRef("any", nullable: true),
-                      stream: FlaxStreamBinding(
-                        "stream:flax.core/flutter#type:Stream[any?:]",
-                        _stream0Matches,
-                        _stream0Adapt,
-                      ),
-                    ),
-                    required: true,
-                    positional: true,
-                  ),
-                ],
-                FlaxTypeRef(
-                  "future",
-                  item: FlaxTypeRef("any", nullable: true),
-                  future: FlaxFutureBinding("any?:", _future2Adapt),
-                ),
-                _callback66,
-                id: "callback:<>(p:r:stream:stream:flax.core/flutter#type:Stream[any?:])->future:[any?:]",
-                invoke: _callback66Invoke,
-                matches: _callback66Matches,
-              ),
-            ),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "@call:close",
-            FlaxTypeRef(
-              "callback",
-              callback: FlaxCallbackBinding(
-                [],
-                FlaxTypeRef(
-                  "future",
-                  item: FlaxTypeRef("any", nullable: true),
-                  future: FlaxFutureBinding("any?:", _future2Adapt),
-                ),
-                _callback67,
-                id: "callback:<>()->future:[any?:]",
-                invoke: _callback67Invoke,
-                matches: _callback67Matches,
-              ),
-            ),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-        ],
-      },
+      constructors: {"@implementation": []},
       create: _createStreamConsumer,
       disposeMethod: null,
       listenerPairs: {},
@@ -3419,6 +3345,58 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isStreamConsumer,
       methods: {},
+      proxy: FlaxProxyBinding([
+        FlaxProxyMember(
+          "addStream",
+          0,
+          FlaxCallbackBinding(
+            [
+              FlaxCallbackParameter(
+                "stream",
+                FlaxTypeRef(
+                  "stream",
+                  id: "flax.core/flutter#type:Stream",
+                  item: FlaxTypeRef("any", nullable: true),
+                  stream: FlaxStreamBinding(
+                    "stream:flax.core/flutter#type:Stream[any?:]",
+                    _stream0Matches,
+                    _stream0Adapt,
+                  ),
+                ),
+                required: true,
+                positional: true,
+              ),
+            ],
+            FlaxTypeRef(
+              "future",
+              item: FlaxTypeRef("any", nullable: true),
+              future: FlaxFutureBinding("any?:", _future2Adapt),
+            ),
+            _callback66,
+            id: "callback:<>(p:r:stream:stream:flax.core/flutter#type:Stream[any?:])->future:[any?:]",
+            invoke: _callback66Invoke,
+            matches: _callback66Matches,
+          ),
+          hasSuper: false,
+        ),
+        FlaxProxyMember(
+          "close",
+          0,
+          FlaxCallbackBinding(
+            [],
+            FlaxTypeRef(
+              "future",
+              item: FlaxTypeRef("any", nullable: true),
+              future: FlaxFutureBinding("any?:", _future2Adapt),
+            ),
+            _callback67,
+            id: "callback:<>()->future:[any?:]",
+            invoke: _callback67Invoke,
+            matches: _callback67Matches,
+          ),
+          hasSuper: false,
+        ),
+      ]),
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:StreamSink",
@@ -3767,70 +3745,7 @@ const flutterBindings = FlaxBindingModule(
             omitWhenAbsent: false,
           ),
         ],
-        "@implementation": [
-          FlaxParameter(
-            "@call:bind",
-            FlaxTypeRef(
-              "callback",
-              callback: FlaxCallbackBinding(
-                [
-                  FlaxCallbackParameter(
-                    "stream",
-                    FlaxTypeRef(
-                      "stream",
-                      id: "flax.core/flutter#type:Stream",
-                      item: FlaxTypeRef("any", nullable: true),
-                      stream: FlaxStreamBinding(
-                        "stream:flax.core/flutter#type:Stream[any?:]",
-                        _stream0Matches,
-                        _stream0Adapt,
-                      ),
-                    ),
-                    required: true,
-                    positional: true,
-                  ),
-                ],
-                FlaxTypeRef(
-                  "stream",
-                  id: "flax.core/flutter#type:Stream",
-                  item: FlaxTypeRef("any", nullable: true),
-                  stream: FlaxStreamBinding(
-                    "stream:flax.core/flutter#type:Stream[any?:]",
-                    _stream0Matches,
-                    _stream0Adapt,
-                  ),
-                ),
-                _callback73,
-                id: "callback:<>(p:r:stream:stream:flax.core/flutter#type:Stream[any?:])->stream:flax.core/flutter#type:Stream[any?:]",
-                invoke: _callback73Invoke,
-                matches: _callback73Matches,
-              ),
-            ),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "@call:cast",
-            FlaxTypeRef(
-              "callback",
-              callback: FlaxCallbackBinding(
-                [],
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/flutter#type:StreamTransformer",
-                ),
-                _callback74,
-                id: "callback:<RS:any?:=any?:,RT:any?:=any?:>()->object:flax.core/flutter#type:StreamTransformer<Object?,Object?><any?:,any?:>",
-                invoke: _callback74Invoke,
-                matches: _callback74Matches,
-              ),
-            ),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-        ],
+        "@implementation": [],
       },
       create: _createStreamTransformer,
       disposeMethod: null,
@@ -3856,6 +3771,62 @@ const flutterBindings = FlaxBindingModule(
           _StreamTransformer_castFrom,
         ),
       },
+      proxy: FlaxProxyBinding([
+        FlaxProxyMember(
+          "bind",
+          0,
+          FlaxCallbackBinding(
+            [
+              FlaxCallbackParameter(
+                "stream",
+                FlaxTypeRef(
+                  "stream",
+                  id: "flax.core/flutter#type:Stream",
+                  item: FlaxTypeRef("any", nullable: true),
+                  stream: FlaxStreamBinding(
+                    "stream:flax.core/flutter#type:Stream[any?:]",
+                    _stream0Matches,
+                    _stream0Adapt,
+                  ),
+                ),
+                required: true,
+                positional: true,
+              ),
+            ],
+            FlaxTypeRef(
+              "stream",
+              id: "flax.core/flutter#type:Stream",
+              item: FlaxTypeRef("any", nullable: true),
+              stream: FlaxStreamBinding(
+                "stream:flax.core/flutter#type:Stream[any?:]",
+                _stream0Matches,
+                _stream0Adapt,
+              ),
+            ),
+            _callback73,
+            id: "callback:<>(p:r:stream:stream:flax.core/flutter#type:Stream[any?:])->stream:flax.core/flutter#type:Stream[any?:]",
+            invoke: _callback73Invoke,
+            matches: _callback73Matches,
+          ),
+          hasSuper: false,
+        ),
+        FlaxProxyMember(
+          "cast",
+          0,
+          FlaxCallbackBinding(
+            [],
+            FlaxTypeRef(
+              "object",
+              id: "flax.core/flutter#type:StreamTransformer",
+            ),
+            _callback74,
+            id: "callback:<RS:any?:=any?:,RT:any?:=any?:>()->object:flax.core/flutter#type:StreamTransformer<Object?,Object?><any?:,any?:>",
+            invoke: _callback74Invoke,
+            matches: _callback74Matches,
+          ),
+          hasSuper: false,
+        ),
+      ]),
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:StreamTransformerBase",
@@ -3905,73 +3876,7 @@ const flutterBindings = FlaxBindingModule(
           _StreamTransformerBase_super_cast,
         ),
       },
-      constructors: {
-        "@implementation": [
-          FlaxParameter(
-            "@call:bind",
-            FlaxTypeRef(
-              "callback",
-              callback: FlaxCallbackBinding(
-                [
-                  FlaxCallbackParameter(
-                    "stream",
-                    FlaxTypeRef(
-                      "stream",
-                      id: "flax.core/flutter#type:Stream",
-                      item: FlaxTypeRef("any", nullable: true),
-                      stream: FlaxStreamBinding(
-                        "stream:flax.core/flutter#type:Stream[any?:]",
-                        _stream0Matches,
-                        _stream0Adapt,
-                      ),
-                    ),
-                    required: true,
-                    positional: true,
-                  ),
-                ],
-                FlaxTypeRef(
-                  "stream",
-                  id: "flax.core/flutter#type:Stream",
-                  item: FlaxTypeRef("any", nullable: true),
-                  stream: FlaxStreamBinding(
-                    "stream:flax.core/flutter#type:Stream[any?:]",
-                    _stream0Matches,
-                    _stream0Adapt,
-                  ),
-                ),
-                _callback75,
-                id: "callback:<>(p:r:stream:stream:flax.core/flutter#type:Stream[any?:])->stream:flax.core/flutter#type:Stream[any?:]",
-                invoke: _callback75Invoke,
-                matches: _callback75Matches,
-              ),
-            ),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "@call:cast",
-            FlaxTypeRef(
-              "callback",
-              nullable: true,
-              callback: FlaxCallbackBinding(
-                [],
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/flutter#type:StreamTransformer",
-                ),
-                _callback76,
-                id: "callback:<RS:any?:=any?:,RT:any?:=any?:>()->object:flax.core/flutter#type:StreamTransformer<Object?,Object?><any?:,any?:>",
-                invoke: _callback76Invoke,
-                matches: _callback76Matches,
-              ),
-            ),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: true,
-          ),
-        ],
-      },
+      constructors: {"@implementation": []},
       create: _createStreamTransformerBase,
       disposeMethod: null,
       listenerPairs: {},
@@ -3982,6 +3887,62 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isStreamTransformerBase,
       methods: {},
+      proxy: FlaxProxyBinding([
+        FlaxProxyMember(
+          "bind",
+          0,
+          FlaxCallbackBinding(
+            [
+              FlaxCallbackParameter(
+                "stream",
+                FlaxTypeRef(
+                  "stream",
+                  id: "flax.core/flutter#type:Stream",
+                  item: FlaxTypeRef("any", nullable: true),
+                  stream: FlaxStreamBinding(
+                    "stream:flax.core/flutter#type:Stream[any?:]",
+                    _stream0Matches,
+                    _stream0Adapt,
+                  ),
+                ),
+                required: true,
+                positional: true,
+              ),
+            ],
+            FlaxTypeRef(
+              "stream",
+              id: "flax.core/flutter#type:Stream",
+              item: FlaxTypeRef("any", nullable: true),
+              stream: FlaxStreamBinding(
+                "stream:flax.core/flutter#type:Stream[any?:]",
+                _stream0Matches,
+                _stream0Adapt,
+              ),
+            ),
+            _callback75,
+            id: "callback:<>(p:r:stream:stream:flax.core/flutter#type:Stream[any?:])->stream:flax.core/flutter#type:Stream[any?:]",
+            invoke: _callback75Invoke,
+            matches: _callback75Matches,
+          ),
+          hasSuper: false,
+        ),
+        FlaxProxyMember(
+          "cast",
+          0,
+          FlaxCallbackBinding(
+            [],
+            FlaxTypeRef(
+              "object",
+              id: "flax.core/flutter#type:StreamTransformer",
+            ),
+            _callback76,
+            id: "callback:<RS:any?:=any?:,RT:any?:=any?:>()->object:flax.core/flutter#type:StreamTransformer<Object?,Object?><any?:,any?:>",
+            invoke: _callback76Invoke,
+            matches: _callback76Matches,
+          ),
+          hasSuper: true,
+        ),
+      ]),
     ),
     FlaxStreamTypeBinding(
       "flax.core/flutter#type:StreamView",
@@ -6033,95 +5994,7 @@ const flutterBindings = FlaxBindingModule(
           startsRoute: false,
         ),
       },
-      constructors: {
-        "@implementation": [
-          FlaxParameter(
-            "@call:addListener",
-            FlaxTypeRef(
-              "callback",
-              callback: FlaxCallbackBinding(
-                [
-                  FlaxCallbackParameter(
-                    "listener",
-                    FlaxTypeRef(
-                      "callback",
-                      callback: FlaxCallbackBinding(
-                        [],
-                        FlaxTypeRef("void"),
-                        _callback111,
-                        id: "callback:<>()->void:",
-                        invoke: _callback111Invoke,
-                        matches: _callback111Matches,
-                      ),
-                    ),
-                    required: true,
-                    positional: true,
-                  ),
-                ],
-                FlaxTypeRef("void"),
-                _callback112,
-                id: "callback:<>(p:r:listener:callback:<>()->void:)->void:",
-                invoke: _callback112Invoke,
-                matches: _callback112Matches,
-              ),
-            ),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "@call:removeListener",
-            FlaxTypeRef(
-              "callback",
-              callback: FlaxCallbackBinding(
-                [
-                  FlaxCallbackParameter(
-                    "listener",
-                    FlaxTypeRef(
-                      "callback",
-                      callback: FlaxCallbackBinding(
-                        [],
-                        FlaxTypeRef("void"),
-                        _callback113,
-                        id: "callback:<>()->void:",
-                        invoke: _callback113Invoke,
-                        matches: _callback113Matches,
-                      ),
-                    ),
-                    required: true,
-                    positional: true,
-                  ),
-                ],
-                FlaxTypeRef("void"),
-                _callback114,
-                id: "callback:<>(p:r:listener:callback:<>()->void:)->void:",
-                invoke: _callback114Invoke,
-                matches: _callback114Matches,
-              ),
-            ),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "@get:value",
-            FlaxTypeRef(
-              "callback",
-              callback: FlaxCallbackBinding(
-                [],
-                FlaxTypeRef("any", nullable: true),
-                _callback115,
-                id: "callback:<>()->any?:",
-                invoke: _callback115Invoke,
-                matches: _callback115Matches,
-              ),
-            ),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-        ],
-      },
+      constructors: {"@implementation": []},
       create: _createValueListenable,
       disposeMethod: null,
       listenerPairs: {"addListener": "removeListener"},
@@ -6129,6 +6002,81 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isValueListenable,
       methods: {},
+      proxy: FlaxProxyBinding([
+        FlaxProxyMember(
+          "addListener",
+          0,
+          FlaxCallbackBinding(
+            [
+              FlaxCallbackParameter(
+                "listener",
+                FlaxTypeRef(
+                  "callback",
+                  callback: FlaxCallbackBinding(
+                    [],
+                    FlaxTypeRef("void"),
+                    _callback111,
+                    id: "callback:<>()->void:",
+                    invoke: _callback111Invoke,
+                    matches: _callback111Matches,
+                  ),
+                ),
+                required: true,
+                positional: true,
+              ),
+            ],
+            FlaxTypeRef("void"),
+            _callback112,
+            id: "callback:<>(p:r:listener:callback:<>()->void:)->void:",
+            invoke: _callback112Invoke,
+            matches: _callback112Matches,
+          ),
+          hasSuper: false,
+        ),
+        FlaxProxyMember(
+          "removeListener",
+          0,
+          FlaxCallbackBinding(
+            [
+              FlaxCallbackParameter(
+                "listener",
+                FlaxTypeRef(
+                  "callback",
+                  callback: FlaxCallbackBinding(
+                    [],
+                    FlaxTypeRef("void"),
+                    _callback113,
+                    id: "callback:<>()->void:",
+                    invoke: _callback113Invoke,
+                    matches: _callback113Matches,
+                  ),
+                ),
+                required: true,
+                positional: true,
+              ),
+            ],
+            FlaxTypeRef("void"),
+            _callback114,
+            id: "callback:<>(p:r:listener:callback:<>()->void:)->void:",
+            invoke: _callback114Invoke,
+            matches: _callback114Matches,
+          ),
+          hasSuper: false,
+        ),
+        FlaxProxyMember(
+          "value",
+          1,
+          FlaxCallbackBinding(
+            [],
+            FlaxTypeRef("any", nullable: true),
+            _callback115,
+            id: "callback:<>()->any?:",
+            invoke: _callback115Invoke,
+            matches: _callback115Matches,
+          ),
+          hasSuper: false,
+        ),
+      ]),
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:FittedSizes",
@@ -7729,6 +7677,7 @@ const flutterBindings = FlaxBindingModule(
                 "list:[widget:]",
                 _collection6Create,
                 _collection6Matches,
+                snapshot: _collection6Snapshot,
               ),
               iterable: FlaxTypeRef(
                 "iterable",
@@ -9800,74 +9749,6 @@ const flutterBindings = FlaxBindingModule(
               defaultValue: null,
               omitWhenAbsent: false,
             ),
-            FlaxParameter(
-              "@call:build",
-              FlaxTypeRef(
-                "callback",
-                nullable: true,
-                callback: FlaxCallbackBinding(
-                  [
-                    FlaxCallbackParameter(
-                      "context",
-                      FlaxTypeRef(
-                        "context",
-                        id: "flax.core/flutter#type:BuildContext",
-                      ),
-                      required: true,
-                      positional: true,
-                    ),
-                  ],
-                  FlaxTypeRef("widget"),
-                  _callback125,
-                  id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
-                  invoke: _callback125Invoke,
-                  matches: _callback125Matches,
-                ),
-              ),
-              required: false,
-              defaultValue: null,
-              omitWhenAbsent: true,
-            ),
-            FlaxParameter(
-              "@get:data",
-              FlaxTypeRef(
-                "callback",
-                nullable: true,
-                callback: FlaxCallbackBinding(
-                  [],
-                  FlaxTypeRef("String", nullable: true),
-                  _callback126,
-                  id: "callback:<>()->String?:",
-                  invoke: _callback126Invoke,
-                  matches: _callback126Matches,
-                ),
-              ),
-              required: false,
-              defaultValue: null,
-              omitWhenAbsent: true,
-            ),
-            FlaxParameter(
-              "@get:key",
-              FlaxTypeRef(
-                "callback",
-                nullable: true,
-                callback: FlaxCallbackBinding(
-                  [],
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/flutter#type:Key",
-                    nullable: true,
-                  ),
-                  _callback127,
-                  id: "callback:<>()->object?:flax.core/flutter#type:Key",
-                  invoke: _callback127Invoke,
-                  matches: _callback127Matches,
-                ),
-              ),
-              required: false,
-              defaultValue: null,
-              omitWhenAbsent: true,
-            ),
           ],
         },
         create: _createText,
@@ -9879,6 +9760,61 @@ const flutterBindings = FlaxBindingModule(
           "dart:core::Object",
           "package:flutter/src/foundation/diagnostics.dart::Diagnosticable",
         ],
+        proxy: FlaxProxyBinding([
+          FlaxProxyMember(
+            "build",
+            0,
+            FlaxCallbackBinding(
+              [
+                FlaxCallbackParameter(
+                  "context",
+                  FlaxTypeRef(
+                    "context",
+                    id: "flax.core/flutter#type:BuildContext",
+                  ),
+                  required: true,
+                  positional: true,
+                ),
+              ],
+              FlaxTypeRef("widget"),
+              _callback125,
+              id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
+              invoke: _callback125Invoke,
+              matches: _callback125Matches,
+            ),
+            hasSuper: true,
+          ),
+          FlaxProxyMember(
+            "data",
+            1,
+            FlaxCallbackBinding(
+              [],
+              FlaxTypeRef("String", nullable: true),
+              _callback126,
+              id: "callback:<>()->String?:",
+              invoke: _callback126Invoke,
+              matches: _callback126Matches,
+            ),
+            hasSuper: true,
+          ),
+          FlaxProxyMember(
+            "key",
+            1,
+            FlaxCallbackBinding(
+              [],
+              FlaxTypeRef(
+                "object",
+                id: "flax.core/flutter#type:Key",
+                nullable: true,
+              ),
+              _callback127,
+              id: "callback:<>()->object?:flax.core/flutter#type:Key",
+              invoke: _callback127Invoke,
+              matches: _callback127Matches,
+            ),
+            hasSuper: true,
+          ),
+        ]),
       ),
     ),
     FlaxWidgetBinding(
@@ -9965,6 +9901,7 @@ const flutterBindings = FlaxBindingModule(
                 "list:[widget:]",
                 _collection6Create,
                 _collection6Matches,
+                snapshot: _collection6Snapshot,
               ),
               iterable: FlaxTypeRef(
                 "iterable",
@@ -10071,6 +10008,7 @@ const flutterBindings = FlaxBindingModule(
                 "list:[widget:]",
                 _collection6Create,
                 _collection6Matches,
+                snapshot: _collection6Snapshot,
               ),
               iterable: FlaxTypeRef(
                 "iterable",
@@ -11942,6 +11880,7 @@ const flutterBindings = FlaxBindingModule(
                 "list:[widget:]",
                 _collection6Create,
                 _collection6Matches,
+                snapshot: _collection6Snapshot,
               ),
               iterable: FlaxTypeRef(
                 "iterable",
@@ -12428,6 +12367,7 @@ const flutterBindings = FlaxBindingModule(
                 "list:[widget:]",
                 _collection6Create,
                 _collection6Matches,
+                snapshot: _collection6Snapshot,
               ),
               iterable: FlaxTypeRef(
                 "iterable",
@@ -13331,9 +13271,10 @@ const flutterBindings = FlaxBindingModule(
   ],
   moduleId: "flax.core/flutter",
   dependencyModules: [],
-  uiProtocol: 22,
+  uiProtocol: 23,
   requiredCapabilities: const <String>["native-widget-proxies"],
   stateVariants: [],
+  records: _recordTypes,
 );
 Object? _function_applyBoxFit(Map<String, Object?> values) {
   return api.applyBoxFit(
@@ -14091,12 +14032,7 @@ Object? _EventSink_close(Object receiver, Map<String, Object?> values) {
 Object _createEventSink(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case '@implementation':
-      return _EventSinkProxy(
-        values["@call:add"] as void Function(Object? event),
-        values["@call:addError"]
-            as void Function(Object error, [api1.StackTrace? stackTrace]),
-        values["@call:close"] as void Function(),
-      );
+      return _EventSinkProxy(values['@peer'] as FlaxProxyPeer);
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -14119,11 +14055,7 @@ Object? _StreamConsumer_close(Object receiver, Map<String, Object?> values) {
 Object _createStreamConsumer(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case '@implementation':
-      return _StreamConsumerProxy(
-        values["@call:addStream"]
-            as Future<Object?> Function(api3.Stream<Object?> stream),
-        values["@call:close"] as Future<Object?> Function(),
-      );
+      return _StreamConsumerProxy(values['@peer'] as FlaxProxyPeer);
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -14208,13 +14140,7 @@ Object _createStreamTransformer(String ctor, Map<String, Object?> values) {
             as api3.Stream<Object?> Function(api3.Stream<Object?> p0),
       );
     case '@implementation':
-      return _StreamTransformerProxy(
-        values["@call:bind"]
-            as api3.Stream<Object?> Function(api3.Stream<Object?> stream),
-        values["@call:cast"]
-            as api3.StreamTransformer<RS, RT>
-            Function<RS extends Object?, RT extends Object?>(),
-      );
+      return _StreamTransformerProxy(values['@peer'] as FlaxProxyPeer);
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -14250,13 +14176,7 @@ Object? _StreamTransformerBase_super_cast(
 Object _createStreamTransformerBase(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case '@implementation':
-      return _StreamTransformerBaseProxy(
-        values["@call:bind"]
-            as api3.Stream<Object?> Function(api3.Stream<Object?> stream),
-        values["@call:cast"]
-            as api3.StreamTransformer<RS, RT>
-            Function<RS extends Object?, RT extends Object?>()?,
-      );
+      return _StreamTransformerBaseProxy(values['@peer'] as FlaxProxyPeer);
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -14766,12 +14686,7 @@ Object? _ValueListenable_removeListener(
 Object _createValueListenable(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case '@implementation':
-      return _ValueListenableProxy(
-        values["@call:addListener"] as void Function(void Function() listener),
-        values["@call:removeListener"]
-            as void Function(void Function() listener),
-        values["@get:value"] as Object? Function(),
-      );
+      return _ValueListenableProxy(values['@peer'] as FlaxProxyPeer);
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -16525,9 +16440,7 @@ api.Widget _createText(String ctor, Map<String, Object?> values) {
       );
     case '@implementation':
       return _TextProxy(
-        values["@call:build"] as api.Widget Function(api.BuildContext context)?,
-        values["@get:data"] as String? Function()?,
-        values["@get:key"] as api.Key? Function()?,
+        values['@peer'] as FlaxProxyPeer,
         values["data"] as String,
         key: values["key"] as api.Key?,
         style: values["style"] as api.TextStyle?,
@@ -17695,87 +17608,128 @@ api.Widget _createStatefulBuilder(String ctor, Map<String, Object?> values) {
 }
 
 final class _EventSinkProxy implements api3.EventSink<Object?> {
-  final void Function(Object? event) _call_add;
-  final void Function(Object error, [api1.StackTrace? stackTrace])
-  _call_addError;
-  final void Function() _call_close;
-  _EventSinkProxy(this._call_add, this._call_addError, this._call_close);
+  final FlaxProxyPeer _flaxPeer;
+  _EventSinkProxy(this._flaxPeer);
   @override
   void add(Object? event) {
-    _call_add(event);
+    final _flaxResult = _flaxPeer.call(0, <Object?>[
+      event,
+    ], <String, Object?>{});
+    if (!_flaxResult.$1) {
+      throw StateError('Missing proxy method: add');
+    }
     return;
   }
 
   @override
   void addError(Object error, [Object? stackTrace = _flaxOmitted]) {
-    if (identical(stackTrace, _flaxOmitted)) {
-      _call_addError(error);
-      return;
+    final _flaxResult = _flaxPeer.call(1, <Object?>[
+      error,
+      if (!identical(stackTrace, _flaxOmitted)) stackTrace,
+    ], <String, Object?>{});
+    if (!_flaxResult.$1) {
+      throw StateError('Missing proxy method: addError');
     }
-    _call_addError(error, stackTrace as api1.StackTrace?);
     return;
   }
 
   @override
   void close() {
-    _call_close();
+    final _flaxResult = _flaxPeer.call(2, <Object?>[], <String, Object?>{});
+    if (!_flaxResult.$1) {
+      throw StateError('Missing proxy method: close');
+    }
     return;
   }
 }
 
 final class _StreamConsumerProxy implements api3.StreamConsumer<Object?> {
-  final Future<Object?> Function(api3.Stream<Object?> stream) _call_addStream;
-  final Future<Object?> Function() _call_close;
-  _StreamConsumerProxy(this._call_addStream, this._call_close);
+  final FlaxProxyPeer _flaxPeer;
+  _StreamConsumerProxy(this._flaxPeer);
   @override
   Future<Object?> addStream(api3.Stream<Object?> stream) {
-    return _call_addStream(stream);
+    final _flaxResult = _flaxPeer.call(0, <Object?>[
+      stream,
+    ], <String, Object?>{});
+    if (!_flaxResult.$1) {
+      throw StateError('Missing proxy method: addStream');
+    }
+    final result = (_flaxResult.$2 as Future<Object?>).then<Object?>(
+      (value) => value,
+    );
+    return result;
   }
 
   @override
   Future<Object?> close() {
-    return _call_close();
+    final _flaxResult = _flaxPeer.call(1, <Object?>[], <String, Object?>{});
+    if (!_flaxResult.$1) {
+      throw StateError('Missing proxy method: close');
+    }
+    final result = (_flaxResult.$2 as Future<Object?>).then<Object?>(
+      (value) => value,
+    );
+    return result;
   }
 }
 
 final class _StreamTransformerProxy
     implements api3.StreamTransformer<Object?, Object?> {
-  final api3.Stream<Object?> Function(api3.Stream<Object?> stream) _call_bind;
-  final api3.StreamTransformer<RS, RT>
-  Function<RS extends Object?, RT extends Object?>()
-  _call_cast;
-  _StreamTransformerProxy(this._call_bind, this._call_cast);
+  final FlaxProxyPeer _flaxPeer;
+  _StreamTransformerProxy(this._flaxPeer);
   @override
   api3.Stream<Object?> bind(api3.Stream<Object?> stream) {
-    return _call_bind(stream);
+    final _flaxResult = _flaxPeer.call(0, <Object?>[
+      stream,
+    ], <String, Object?>{});
+    if (!_flaxResult.$1) {
+      throw StateError('Missing proxy method: bind');
+    }
+    final result = _flaxResult.$2 as api3.Stream<Object?>;
+    return result;
   }
 
   @override
   api3.StreamTransformer<RS, RT>
   cast<RS extends Object?, RT extends Object?>() {
-    return _call_cast<RS, RT>();
+    final _flaxResult = _flaxPeer.call(1, <Object?>[], <String, Object?>{});
+    if (!_flaxResult.$1) {
+      throw StateError('Missing proxy method: cast');
+    }
+    final result = _genericCallbackResult<api3.StreamTransformer<RS, RT>>(
+      _flaxResult.$2,
+    );
+    return result;
   }
 }
 
 final class _StreamTransformerBaseProxy
     extends api3.StreamTransformerBase<Object?, Object?> {
-  final api3.Stream<Object?> Function(api3.Stream<Object?> stream) _call_bind;
-  final api3.StreamTransformer<RS, RT>
-  Function<RS extends Object?, RT extends Object?>()?
-  _call_cast;
-  _StreamTransformerBaseProxy(this._call_bind, this._call_cast);
+  final FlaxProxyPeer _flaxPeer;
+  _StreamTransformerBaseProxy(this._flaxPeer);
   @override
   api3.Stream<Object?> bind(api3.Stream<Object?> stream) {
-    return _call_bind(stream);
+    final _flaxResult = _flaxPeer.call(0, <Object?>[
+      stream,
+    ], <String, Object?>{});
+    if (!_flaxResult.$1) {
+      throw StateError('Missing proxy method: bind');
+    }
+    final result = _flaxResult.$2 as api3.Stream<Object?>;
+    return result;
   }
 
   @override
   api3.StreamTransformer<RS, RT>
   cast<RS extends Object?, RT extends Object?>() {
-    if (_call_cast == null) {
+    final _flaxResult = _flaxPeer.call(1, <Object?>[], <String, Object?>{});
+    if (!_flaxResult.$1) {
       return super.cast<RS, RT>();
     }
-    return _call_cast<RS, RT>();
+    final result = _genericCallbackResult<api3.StreamTransformer<RS, RT>>(
+      _flaxResult.$2,
+    );
+    return result;
   }
 
   api3.StreamTransformer<RS, RT>
@@ -17785,38 +17739,41 @@ final class _StreamTransformerBaseProxy
 }
 
 final class _ValueListenableProxy extends api8.ValueListenable<Object?> {
-  final void Function(void Function() listener) _call_addListener;
-  final void Function(void Function() listener) _call_removeListener;
-  final Object? Function() _get_value;
-  _ValueListenableProxy(
-    this._call_addListener,
-    this._call_removeListener,
-    this._get_value,
-  );
+  final FlaxProxyPeer _flaxPeer;
+  _ValueListenableProxy(this._flaxPeer);
   @override
   void addListener(void Function() listener) {
-    _call_addListener(listener);
+    final _flaxResult = _flaxPeer.call(0, <Object?>[
+      listener,
+    ], <String, Object?>{});
+    if (!_flaxResult.$1) {
+      throw StateError('Missing proxy method: addListener');
+    }
     return;
   }
 
   @override
   void removeListener(void Function() listener) {
-    _call_removeListener(listener);
+    final _flaxResult = _flaxPeer.call(1, <Object?>[
+      listener,
+    ], <String, Object?>{});
+    if (!_flaxResult.$1) {
+      throw StateError('Missing proxy method: removeListener');
+    }
     return;
   }
 
   @override
-  Object? get value => _get_value();
+  Object? get value {
+    final result = _flaxPeer.call(2, const [], const {});
+    return result.$2;
+  }
 }
 
 final class _TextProxy extends api.Text with FlaxWidgetProxy {
-  final api.Widget Function(api.BuildContext context)? _call_build;
-  final String? Function()? _get_data;
-  final api.Key? Function()? _get_key;
+  final FlaxProxyPeer _flaxPeer;
   _TextProxy(
-    this._call_build,
-    this._get_data,
-    this._get_key,
+    this._flaxPeer,
     String super.data, {
     api.Key? super.key,
     api.TextStyle? super.style,
@@ -17828,10 +17785,14 @@ final class _TextProxy extends api.Text with FlaxWidgetProxy {
   });
   @override
   api.Widget build(api.BuildContext context) {
-    if (_call_build == null) {
+    final _flaxResult = _flaxPeer.call(0, <Object?>[
+      context,
+    ], <String, Object?>{});
+    if (!_flaxResult.$1) {
       return super.build(context);
     }
-    return _call_build(context);
+    final result = _flaxResult.$2 as api.Widget;
+    return result;
   }
 
   api.Widget _flaxSuper_build(api.BuildContext context) {
@@ -17840,18 +17801,25 @@ final class _TextProxy extends api.Text with FlaxWidgetProxy {
 
   @override
   String? get data {
-    final callback = _get_data;
-    return callback == null ? super.data : callback();
+    final result = _flaxPeer.call(1, const [], const {});
+    if (!result.$1) return super.data;
+    return result.$2 as String?;
   }
 
-  String? get _flaxSuperGet_data => super.data;
+  String? get _flaxSuperGet_data {
+    return super.data;
+  }
+
   @override
   api.Key? get key {
-    final callback = _get_key;
-    return callback == null ? super.key : callback();
+    final result = _flaxPeer.call(2, const [], const {});
+    if (!result.$1) return super.key;
+    return result.$2 as api.Key?;
   }
 
-  api.Key? get _flaxSuperGet_key => super.key;
+  api.Key? get _flaxSuperGet_key {
+    return super.key;
+  }
 }
 
 String _keyEventType(Object value) {
@@ -20799,6 +20767,8 @@ Object _collection5Create() => <api.WidgetState>[];
 bool _collection5Matches(Object value) => value is Iterable<api.WidgetState>;
 Object _collection6Create() => <api.Widget>[];
 bool _collection6Matches(Object value) => value is List<api.Widget>;
+List<api.Widget> _collection6Snapshot(Iterable<Object?> items) =>
+    List<api.Widget>.unmodifiable(items.cast<api.Widget>());
 Object _collection7Create() => <api.Widget>[];
 bool _collection7Matches(Object value) => value is Iterable<api.Widget>;
 Object _collection8Create() => <api.Page<Object?>>[];
@@ -20847,3 +20817,5 @@ T _genericCallbackResult<T>(Object? value) {
   }
   return value as T;
 }
+
+const _recordTypes = <FlaxTypeRef>[];

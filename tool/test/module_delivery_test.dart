@@ -63,7 +63,7 @@ void main() {
           {
             'name': target.directory,
             'moduleId': moduleId,
-            'uiProtocol': 22,
+            'uiProtocol': 23,
             'model': {
               'publicLibraries': [
                 {'jsPackage': target.specifier},
@@ -113,7 +113,7 @@ void main() {
         expect(module['bindings'], [
           {
             'moduleId': moduleId,
-            'uiProtocol': 22,
+            'uiProtocol': 23,
             'types': <String>[],
             'functions': ['$moduleId#function:a%3D', '$moduleId#function:z%3D'],
           },

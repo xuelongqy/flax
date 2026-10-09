@@ -540,6 +540,70 @@ extension _StreamCalls on _Session {
     return _Value(adapted, [_StreamBorrow(reference, input.retain())]);
   }
 
+  _BindingOperation _streamOperation(
+    String type,
+    String operation,
+    String name,
+  ) {
+    final binding = registry._types[type];
+    if (binding is! FlaxStreamTypeBinding) {
+      throw ArgumentError('Unknown Stream type');
+    }
+    final getter = binding.getters.where((g) => g.name == name).firstOrNull;
+    final method = binding.instanceMethods[name];
+    if (!(operation == 'get' && getter != null ||
+        operation == 'call' && method != null)) {
+      throw ArgumentError('Unknown Stream operation');
+    }
+    return (id, args) {
+      final reference = _streamReferences[id];
+      if (reference == null ||
+          reference.binding.id != type ||
+          reference.value == null) {
+        throw ArgumentError('Foreign or released Dart Stream');
+      }
+      if (operation == 'get') {
+        if (args.isNotEmpty) throw ArgumentError('Invalid Stream getter');
+        return holdHostResult(
+          memberResult(getter!.read(reference.value!), getter.type),
+        );
+      }
+      final selected = method!;
+      final values = objectArguments(args, selected.parameters);
+      try {
+        for (final parameter in selected.parameters) {
+          final value = values[parameter.name];
+          if (value == null) continue;
+          value.escapeCallbacks();
+          escapeWidget(value.data, parameter.type);
+        }
+        var result = selected.invoke(
+          reference.value!,
+          values.map((name, value) => MapEntry(name, value.data)),
+        );
+        if (result is StreamSubscription<Object?>) {
+          final tracked = _TrackedStreamSubscription<Object?>(
+            this,
+            result,
+            onData: values['onData']?.data as void Function(Object?)?,
+            onError:
+                values['onError']?.data as void Function(Object, StackTrace)?,
+            onDone: values['onDone']?.data as void Function()?,
+            cancelOnError: values['cancelOnError']?.data == true,
+          );
+          _streamSubscriptions.add(tracked);
+          result = tracked;
+        }
+        return holdHostResult(memberResult(result, selected.result));
+      } finally {
+        for (final value in values.values.toList().reversed) {
+          value.release();
+        }
+        checkpoint();
+      }
+    };
+  }
+
   void registerStreams() {
     _registerBindingHostFunction('__flaxCreateStream', (_, args) {
       _checkCall(args, 3);
@@ -558,7 +622,7 @@ extension _StreamCalls on _Session {
       try {
         for (final source in sources.values) {
           source.initial.escapeCallbacks();
-          escapeWidget(source.initial.data);
+          escapeWidget(source.initial.data, source.type);
         }
         final value = binding.create(
           ctor,
@@ -592,72 +656,6 @@ extension _StreamCalls on _Session {
       } catch (_) {
         _asyncIterableSources.remove(id);
         rethrow;
-      }
-    });
-
-    _registerBindingHostFunction('__flaxStream', (_, args) {
-      _checkCall(args, 5);
-      if (args[2] is! FlaxJsNumber ||
-          args[3] is! FlaxJsString ||
-          args[4] is! FlaxJsString) {
-        throw ArgumentError('Invalid Stream member call');
-      }
-      final type = (args[1] as FlaxJsString).value;
-      final binding = registry._types[type];
-      final reference =
-          _streamReferences[(args[2] as FlaxJsNumber).value.toInt()];
-      if (binding is! FlaxStreamTypeBinding ||
-          reference == null ||
-          reference.binding.id != type ||
-          reference.value == null) {
-        throw ArgumentError('Foreign or released Dart Stream');
-      }
-      final operation = (args[3] as FlaxJsString).value;
-      final name = (args[4] as FlaxJsString).value;
-      if (operation == 'get') {
-        final getter = binding.getters
-            .where((value) => value.name == name)
-            .firstOrNull;
-        if (getter == null || args.length != 5) {
-          throw ArgumentError('Unknown Stream getter');
-        }
-        return holdHostResult(
-          memberResult(getter.read(reference.value!), getter.type),
-        );
-      }
-      final method = binding.instanceMethods[name];
-      if (operation != 'call' || method == null) {
-        throw ArgumentError('Unknown Stream method');
-      }
-      final values = objectArguments(args.sublist(5), method.parameters);
-      try {
-        for (final value in values.values) {
-          value.escapeCallbacks();
-          escapeWidget(value.data);
-        }
-        var result = method.invoke(
-          reference.value!,
-          values.map((name, value) => MapEntry(name, value.data)),
-        );
-        if (result is StreamSubscription<Object?>) {
-          final tracked = _TrackedStreamSubscription<Object?>(
-            this,
-            result,
-            onData: values['onData']?.data as void Function(Object?)?,
-            onError:
-                values['onError']?.data as void Function(Object, StackTrace)?,
-            onDone: values['onDone']?.data as void Function()?,
-            cancelOnError: values['cancelOnError']?.data == true,
-          );
-          _streamSubscriptions.add(tracked);
-          result = tracked;
-        }
-        return holdHostResult(memberResult(result, method.result));
-      } finally {
-        for (final value in values.values.toList().reversed) {
-          value.release();
-        }
-        checkpoint();
       }
     });
 

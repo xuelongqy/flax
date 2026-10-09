@@ -1758,7 +1758,7 @@ void main() {
           '      "name": "host",\n'
           '      "name": "host",\n'
           '      "moduleId": "com.acme.widgets/host",\n'
-          '      "uiProtocol": 22,\n'
+          '      "uiProtocol": 23,\n'
           '      "requiredCapabilities": [],\n'
           '      "model": {"library":"package:acme_widgets/host.dart","jsPackage":"@acme/host","typeLibraries":{},"classes":[],"types":[],"functions":[],"snapshots":[],"identities":[]}\n'
           '    }\n'
@@ -1777,7 +1777,7 @@ void main() {
           '    {\n'
           '      "name": "host",\n'
           '      "moduleId": "com.acme.widgets/host",\n'
-          '      "uiProtocol": 22,\n'
+          '      "uiProtocol": 23,\n'
           '      "requiredCapabilities": [],\n'
           '      "model": {"library":"package:acme_widgets/host.dart","library":"package:acme_widgets/host.dart","jsPackage":"@acme/host","typeLibraries":{},"classes":[],"types":[],"functions":[],"snapshots":[],"identities":[]}\n'
           '    }\n'
@@ -7363,7 +7363,7 @@ void _expectEnvelopeShape(
   expect(manifest.bindingNamespace.value, 'com.acme.widgets');
   expect(manifest.imports, ['flax', 'flax_material']);
   expect(FlaxCodegenManifest.formatVersion, 16);
-  expect(FlaxCodegenManifest.uiProtocol, 22);
+  expect(FlaxCodegenManifest.uiProtocol, 23);
   final encoded = manifest.toJson();
   _expectExactKeys(encoded, _envelopeKeys);
   expect(encoded['formatVersion'], 16);
@@ -7373,7 +7373,7 @@ void _expectEnvelopeShape(
   for (final moduleJson in modules) {
     final module = _expectObject(moduleJson);
     _expectExactKeys(module, _moduleEntryKeys);
-    expect(module['uiProtocol'], 22);
+    expect(module['uiProtocol'], 23);
     expect(module['requiredCapabilities'], ['native-widget-proxies']);
     final model = _expectObject(module['model']);
     _expectExactKeys(model, _modelProjectionKeys);

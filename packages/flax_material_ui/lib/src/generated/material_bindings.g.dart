@@ -1,6 +1,6 @@
 // GENERATED CODE. Selected public API subset; do not edit.
 // Regenerate with dart run melos run bindings:generate.
-// ignore_for_file: type=lint, unused_import
+// ignore_for_file: type=lint, unused_import, unnecessary_cast
 import 'dart:core';
 
 import 'package:material_ui/material_ui.dart' as api;
@@ -489,6 +489,7 @@ const materialBindings = FlaxBindingModule(
                 "list:[widget:]",
                 _collection0Create,
                 _collection0Matches,
+                snapshot: _collection0Snapshot,
               ),
               iterable: FlaxTypeRef(
                 "iterable",
@@ -2187,6 +2188,7 @@ const materialBindings = FlaxBindingModule(
                 "list:[widget:]",
                 _collection0Create,
                 _collection0Matches,
+                snapshot: _collection0Snapshot,
               ),
               iterable: FlaxTypeRef(
                 "iterable",
@@ -5974,6 +5976,7 @@ const materialBindings = FlaxBindingModule(
                 "list:[widget:]",
                 _collection0Create,
                 _collection0Matches,
+                snapshot: _collection0Snapshot,
               ),
               iterable: FlaxTypeRef(
                 "iterable",
@@ -6224,9 +6227,10 @@ const materialBindings = FlaxBindingModule(
   ],
   moduleId: "flax.material/material",
   dependencyModules: ["flax.core/flutter"],
-  uiProtocol: 22,
+  uiProtocol: 23,
   requiredCapabilities: const <String>["native-widget-proxies"],
   stateVariants: [],
+  records: _recordTypes,
 );
 Object? _function_showDialog(Map<String, Object?> values) {
   return api.showDialog<Object?>(
@@ -8394,6 +8398,8 @@ Object? _callback48Invoke(
 
 Object _collection0Create() => <api1.Widget>[];
 bool _collection0Matches(Object value) => value is List<api1.Widget>;
+List<api1.Widget> _collection0Snapshot(Iterable<Object?> items) =>
+    List<api1.Widget>.unmodifiable(items.cast<api1.Widget>());
 Object _collection1Create() => <api1.Widget>[];
 bool _collection1Matches(Object value) => value is Iterable<api1.Widget>;
 Object _collection2Create() => <api1.NavigatorObserver>[];
@@ -8414,3 +8420,4 @@ bool _collection7Matches(Object value) =>
 Future<Object?> _future0Adapt(Future<Object?> value) =>
     value.then<void>((_) {});
 Future<Object?> _future1Adapt(Future<Object?> value) => value;
+const _recordTypes = <FlaxTypeRef>[];

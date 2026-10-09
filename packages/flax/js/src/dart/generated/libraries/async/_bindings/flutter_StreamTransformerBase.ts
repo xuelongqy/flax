@@ -16,9 +16,9 @@ export interface StreamTransformerBase<S extends unknown | null = unknown | null
 cast<RS extends unknown | null = unknown | null, RT extends unknown | null = unknown | null>(): upstream0.StreamTransformer<RS, RT>;
 }
 export abstract class StreamTransformerBase<S extends unknown | null = unknown | null, T extends unknown | null = unknown | null> extends _FlaxProxyBase {
-constructor() { super(StreamTransformerBase.prototype, _StreamTransformerBaseProxy, Array.from(arguments)); }
+constructor() { super(_StreamTransformerBaseProxy, Array.from(arguments)); }
 abstract bind(stream: upstream1.Stream<S>): upstream1.Stream<T>;
 }
 _flaxDefineProxyBase(StreamTransformerBase.prototype, _StreamTransformerBaseProxy);
 export namespace StreamTransformerBase { export function implement<S extends unknown | null = unknown | null, T extends unknown | null = unknown | null>(args: [], implementation: {bind: ((stream: upstream1.Stream<S>) => upstream1.Stream<T>)}): StreamTransformerBase<S, T> {
-return constructProxy("flax.core/flutter#type:StreamTransformerBase", [], args, implementation, ["bind"], [], []) as StreamTransformerBase<S, T>; } }
+return constructProxy(_StreamTransformerBaseProxy, args, implementation) as StreamTransformerBase<S, T>; } }

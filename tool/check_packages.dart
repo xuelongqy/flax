@@ -260,6 +260,7 @@ void _checkDartArchive(FlaxWorkspacePackage package, Set<String> paths) {
   if (capabilities.contains('core')) {
     require('native/include/flax/runtime.h');
     require('native/include/flax/engine_gc.h');
+    require('native/include/flax/engine_binding.h');
     require('lib/native_sdk.dart');
     require('lib/native_target.dart');
     reject('native/tests/');

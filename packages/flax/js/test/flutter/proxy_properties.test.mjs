@@ -4,24 +4,38 @@ import { constructProxy } from '../../dist/runtime/bindings.js';
 import { ValueListenable } from '../../dist/flutter/generated/libraries/foundation/index.js';
 
 function capture(t) {
-  const original = globalThis.__flaxCreateObject;
-  const calls = [];
+  const create = globalThis.__flaxCreateObject;
+  const prepare = globalThis.__flaxPrepareProxy;
+  const calls = [],
+    layouts = [];
+  globalThis.__flaxPrepareProxy = (version, type, rows) => {
+    assert.equal(version, 23);
+    layouts.push({ type, rows });
+    return layouts.length - 1;
+  };
   globalThis.__flaxCreateObject = (version, type, descriptor) => {
-    assert.equal(version, 22);
+    assert.equal(version, 23);
     calls.push(descriptor);
     return descriptor;
   };
   t.after(() => {
-    globalThis.__flaxCreateObject = original;
+    globalThis.__flaxCreateObject = create;
+    globalThis.__flaxPrepareProxy = prepare;
   });
-  return calls;
+  return { calls, layouts };
 }
 
-const create = (implementation, getters = ['value'], setters = ['value']) =>
-  constructProxy('fixture:Properties', [], [], implementation, [], getters, setters);
+const definition = {
+  type: 'fixture:Properties',
+  parameters: [],
+  methods: {},
+  getters: ['value'],
+  setters: ['value'],
+  superMembers: [],
+};
 
-test('proxy accessors are captured without reading and retain the receiver', (t) => {
-  const calls = capture(t);
+test('proxy construction retains the actual receiver without reading or copying accessors', (t) => {
+  const { calls, layouts } = capture(t);
   let reads = 0;
   const storage = new WeakMap();
   const prototype = {
@@ -34,103 +48,38 @@ test('proxy accessors are captured without reading and retain the receiver', (t)
     },
   };
   const implementation = Object.create(prototype);
-  const result = create(implementation);
+  const result = constructProxy(definition, [], implementation);
   assert.equal(reads, 0);
   assert.equal(calls.length, 1);
-  result.args['@set:value'](7);
-  assert.equal(result.args['@get:value'](), 7);
-  assert.equal(reads, 1);
+  assert.equal(result.receiver, implementation);
+  assert.deepEqual(result.args, {});
+  assert.deepEqual(
+    layouts[0].rows.map((row) => row.slice(0, 4)),
+    [
+      ['value', 1, 0, 0],
+      ['value', 2, 1, 1],
+    ],
+  );
+  result.receiver.value = 7;
+  assert.equal(result.receiver.value, 7);
   Object.defineProperty(prototype, 'value', {
     get() {
       return 99;
     },
   });
-  assert.equal(result.args['@get:value'](), 7);
+  assert.equal(result.receiver.value, 99);
+  assert.throws(() => constructProxy(definition, [], { extra() {} }), /Invalid proxy/);
 });
 
-test('proxy validation rejects missing accessors and fields before calling Dart', (t) => {
-  const calls = capture(t);
-  for (const implementation of [
-    {},
-    { value: 3 },
-    {
-      get value() {
-        return 1;
-      },
-    },
-  ]) {
-    assert.throws(() => create(implementation), /Missing proxy (get|set) accessor/);
-  }
-  assert.throws(
-    () =>
-      create({
-        get value() {
-          return 1;
-        },
-        extra() {},
-      }),
-    /Invalid proxy/,
-  );
-  assert.equal(calls.length, 0);
-  assert.doesNotThrow(() =>
-    create(
-      {
-        get value() {
-          return 1;
-        },
-      },
-      ['value'],
-      [],
-    ),
-  );
-  assert.doesNotThrow(() => create({ set value(_) {} }, [], ['value']));
-});
-
-test('proxy properties reject thenables and propagate synchronous exceptions', (t) => {
-  capture(t);
-  const result = create({
-    get value() {
-      return { then() {} };
-    },
-    set value(value) {
-      if (value < 0) throw Error('setter failed');
-      return Promise.resolve();
-    },
-  });
-  assert.throws(
-    () => result.args['@get:value'](),
-    /Proxy get value must be synchronous/,
-  );
-  assert.throws(
-    () => result.args['@set:value'](0),
-    /Proxy set value must be synchronous/,
-  );
-  assert.throws(() => result.args['@set:value'](-1), /setter failed/);
-});
-
-test('ValueListenable uses generated getter and listener callbacks without a value mirror', (t) => {
-  capture(t);
-  let value = 1;
-  const listeners = [];
-  const result = ValueListenable.implement([], {
-    get value() {
-      return value;
-    },
-    addListener(listener) {
-      listeners.push(listener);
-    },
-    removeListener(listener) {
-      listeners.splice(listeners.indexOf(listener), 1);
-    },
-  });
-  let notices = 0;
-  const listener = () => notices++;
-  result.args['@call:addListener'](listener);
-  value = 2;
-  assert.equal(result.args['@get:value'](), 2);
-  assert.equal(notices, 0);
-  listeners.forEach((fn) => fn());
-  result.args['@call:removeListener'](listener);
-  assert.equal(notices, 1);
-  assert.deepEqual(listeners, []);
+test('generated ValueListenable sends one receiver and a shared member layout', (t) => {
+  const { calls, layouts } = capture(t);
+  const implementation = { value: 1, addListener() {}, removeListener() {} };
+  const result = ValueListenable.implement([], implementation);
+  assert.equal(result.receiver, implementation);
+  assert.deepEqual(result.args, {});
+  assert.equal(layouts[0].rows.length, 3);
+  const second = ValueListenable.implement([], { ...implementation });
+  assert.equal(second.layout, result.layout);
+  assert.equal(layouts.length, 1);
+  assert.equal(calls.length, 2);
 });

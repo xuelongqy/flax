@@ -1,3 +1,4 @@
+import { operationHost } from '../../../flax/js/test/flutter/support/operations.mjs';
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { Text } from '@flax/flutter/widgets';
@@ -12,13 +13,13 @@ test('showDialog forwards its builder without executing it', () => {
     return Text('Dialog');
   };
   const promise = Promise.resolve(null);
-  globalThis.__flaxTopLevel = (version, id, ...args) => {
-    assert.equal(version, 22);
+  operationHost('top', (version, id, ...args) => {
+    assert.equal(version, 23);
     assert.match(id, /#function:showDialog$/);
     assert.ok(args.includes(builder));
     assert.ok(args.includes(41));
     return promise;
-  };
+  });
   try {
     assert.equal(showDialog({ context, builder }), promise);
     assert.equal(count, 0);
@@ -26,6 +27,6 @@ test('showDialog forwards its builder without executing it', () => {
     assert.throws(() => showDialog({ context: {}, builder }), /Invalid/);
   } finally {
     helpers.releaseContext(41);
-    delete globalThis.__flaxTopLevel;
+    operationHost('top', null);
   }
 });

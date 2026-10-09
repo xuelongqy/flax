@@ -46,7 +46,7 @@ Future<(Text, WeakReference<FlaxJsRuntime>)> _closedConfiguration(
   try {
     await tester.pumpWidget(harness.app('nativeWidgets'));
     harness.execute(
-      '__flaxTopLevel(22, "test/configuration#function:keep", nativeWidgets.plain())',
+      '__flaxInvokeOperation(__flaxResolveOperation(23, "test/configuration#function:keep", "top", "call", ""), 0, nativeWidgets.plain())',
     );
     expect(retained, hasLength(1));
     expect(harness.errors, isEmpty);

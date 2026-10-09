@@ -33,6 +33,19 @@ class FlaxBindings {
   late final _flax_engine_get_api = _flax_engine_get_apiPtr
       .asFunction<ffi.Pointer<FlaxApi> Function(int)>();
 
+  ffi.Pointer<FlaxEngineBindingApi> flax_engine_get_binding_api(int version) {
+    return _flax_engine_get_binding_api(version);
+  }
+
+  late final _flax_engine_get_binding_apiPtr =
+      _lookup<
+        ffi.NativeFunction<
+          ffi.Pointer<FlaxEngineBindingApi> Function(ffi.Uint32)
+        >
+      >('flax_engine_get_binding_api');
+  late final _flax_engine_get_binding_api = _flax_engine_get_binding_apiPtr
+      .asFunction<ffi.Pointer<FlaxEngineBindingApi> Function(int)>();
+
   ffi.Pointer<FlaxEngineGcApi> flax_engine_get_gc_api(int version) {
     return _flax_engine_get_gc_api(version);
   }
@@ -70,6 +83,8 @@ class FlaxBindings {
 const int FLAX_ABI_VERSION = 2;
 
 const int FLAX_CALLBACK_FAILURE = 4;
+
+const int FLAX_ENGINE_BINDING_VERSION = 1;
 
 const int FLAX_ENGINE_GC_VERSION = 1;
 
@@ -543,6 +558,138 @@ final class FlaxApi extends ffi.Struct {
     ..ref.buffer_free = buffer_free
     ..ref.error_clear = error_clear
     ..ref.error_set = error_set;
+}
+
+final class FlaxBindingArgument extends ffi.Struct {
+  @ffi.Uint32()
+  external int kind;
+
+  @ffi.Double()
+  external double number;
+
+  @FlaxValueId()
+  external int id;
+
+  external ffi.Pointer<ffi.Uint16> text;
+
+  @ffi.Size()
+  external int length;
+
+  static ffi.Pointer<FlaxBindingArgument> $allocate(
+    ffi.Allocator $allocator, {
+    required int kind,
+    required double number,
+    required int id,
+    required ffi.Pointer<ffi.Uint16> text,
+    required int length,
+  }) => $allocator<FlaxBindingArgument>()
+    ..ref.kind = kind
+    ..ref.number = number
+    ..ref.id = id
+    ..ref.text = text
+    ..ref.length = length;
+}
+
+final class FlaxEngineBindingApi extends ffi.Struct {
+  @ffi.Uint32()
+  external int version;
+
+  @ffi.Size()
+  external int struct_size;
+
+  external ffi.Pointer<
+    ffi.NativeFunction<
+      ffi.Int32 Function(
+        ffi.Pointer<FlaxRuntime>,
+        FlaxValueId,
+        ffi.Pointer<ffi.Uint64>,
+        ffi.Pointer<FlaxError>,
+      )
+    >
+  >
+  register_members;
+
+  external ffi.Pointer<
+    ffi.NativeFunction<
+      ffi.Int32 Function(
+        ffi.Pointer<FlaxRuntime>,
+        FlaxValueId,
+        ffi.Uint64,
+        ffi.Pointer<FlaxBindingArgument>,
+        ffi.Size,
+        ffi.Pointer<ffi.Int32>,
+        ffi.Pointer<FlaxValueId>,
+        ffi.Pointer<FlaxError>,
+      )
+    >
+  >
+  invoke_member;
+
+  external ffi.Pointer<
+    ffi.NativeFunction<
+      ffi.Int32 Function(
+        ffi.Pointer<FlaxRuntime>,
+        FlaxValueId,
+        ffi.Pointer<FlaxBindingArgument>,
+        ffi.Pointer<FlaxBindingArgument>,
+        ffi.Size,
+        ffi.Pointer<FlaxValueId>,
+        ffi.Pointer<FlaxError>,
+      )
+    >
+  >
+  call;
+
+  static ffi.Pointer<FlaxEngineBindingApi> $allocate(
+    ffi.Allocator $allocator, {
+    required int version,
+    required int struct_size,
+    required ffi.Pointer<
+      ffi.NativeFunction<
+        ffi.Int32 Function(
+          ffi.Pointer<FlaxRuntime>,
+          FlaxValueId,
+          ffi.Pointer<ffi.Uint64>,
+          ffi.Pointer<FlaxError>,
+        )
+      >
+    >
+    register_members,
+    required ffi.Pointer<
+      ffi.NativeFunction<
+        ffi.Int32 Function(
+          ffi.Pointer<FlaxRuntime>,
+          FlaxValueId,
+          ffi.Uint64,
+          ffi.Pointer<FlaxBindingArgument>,
+          ffi.Size,
+          ffi.Pointer<ffi.Int32>,
+          ffi.Pointer<FlaxValueId>,
+          ffi.Pointer<FlaxError>,
+        )
+      >
+    >
+    invoke_member,
+    required ffi.Pointer<
+      ffi.NativeFunction<
+        ffi.Int32 Function(
+          ffi.Pointer<FlaxRuntime>,
+          FlaxValueId,
+          ffi.Pointer<FlaxBindingArgument>,
+          ffi.Pointer<FlaxBindingArgument>,
+          ffi.Size,
+          ffi.Pointer<FlaxValueId>,
+          ffi.Pointer<FlaxError>,
+        )
+      >
+    >
+    call,
+  }) => $allocator<FlaxEngineBindingApi>()
+    ..ref.version = version
+    ..ref.struct_size = struct_size
+    ..ref.register_members = register_members
+    ..ref.invoke_member = invoke_member
+    ..ref.call = call;
 }
 
 final class FlaxEngineGcApi extends ffi.Struct {

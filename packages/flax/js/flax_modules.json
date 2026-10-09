@@ -26,7 +26,7 @@
       "bindings": [
         {
           "moduleId": "flax.core/flutter",
-          "uiProtocol": 22,
+          "uiProtocol": 23,
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -201,7 +201,7 @@
       "bindings": [
         {
           "moduleId": "flax.core/flutter",
-          "uiProtocol": 22,
+          "uiProtocol": 23,
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -376,7 +376,7 @@
       "bindings": [
         {
           "moduleId": "flax.core/flutter",
-          "uiProtocol": 22,
+          "uiProtocol": 23,
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -551,7 +551,7 @@
       "bindings": [
         {
           "moduleId": "flax.core/flutter",
-          "uiProtocol": 22,
+          "uiProtocol": 23,
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -726,7 +726,7 @@
       "bindings": [
         {
           "moduleId": "flax.core/flutter",
-          "uiProtocol": 22,
+          "uiProtocol": 23,
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -901,7 +901,7 @@
       "bindings": [
         {
           "moduleId": "flax.core/flutter",
-          "uiProtocol": 22,
+          "uiProtocol": 23,
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -1076,7 +1076,7 @@
       "bindings": [
         {
           "moduleId": "flax.core/flutter",
-          "uiProtocol": 22,
+          "uiProtocol": 23,
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -1251,7 +1251,7 @@
       "bindings": [
         {
           "moduleId": "flax.core/flutter",
-          "uiProtocol": 22,
+          "uiProtocol": 23,
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -1427,7 +1427,7 @@
       "bindings": [
         {
           "moduleId": "flax.core/components",
-          "uiProtocol": 22,
+          "uiProtocol": 23,
           "types": [
             "flax.core/components#type:State",
             "flax.core/components#type:StatefulWidget"
@@ -1436,7 +1436,7 @@
         },
         {
           "moduleId": "flax.core/flutter",
-          "uiProtocol": 22,
+          "uiProtocol": 23,
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",

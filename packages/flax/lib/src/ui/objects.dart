@@ -327,7 +327,7 @@ extension _ObjectCalls on _Session {
         try {
           for (final source in sources.values) {
             source.initial.escapeCallbacks();
-            escapeWidget(source.initial.data);
+            escapeWidget(source.initial.data, source.type);
           }
           final value = materializer.create(
             sources.map((name, source) => MapEntry(name, source.initial.data)),
@@ -473,6 +473,7 @@ extension _ObjectCalls on _Session {
   }
 
   void registerObjects() {
+    registerOperations();
     runtime.registerHostFunction('__flaxBindPeer', (_, args) {
       if (args.length != 3 ||
           args[0] is! FlaxJsNumber ||
@@ -492,6 +493,64 @@ extension _ObjectCalls on _Session {
       runtime.bindDartPeer(args[2] as FlaxJsObject, value, origin: value);
       return const FlaxJsUndefined();
     });
+    _registerBindingHostFunction('__flaxPrepareProxy', (_, args) {
+      _checkCall(args, 3);
+      if (args.length != 3 || args[2] is! FlaxJsObject) {
+        throw ArgumentError('Invalid proxy layout');
+      }
+      final binding = _objectView(
+        registry._types[(args[1] as FlaxJsString).value],
+      );
+      if (binding is! FlaxObjectBinding || binding.proxy == null) {
+        throw ArgumentError('Unknown proxy type');
+      }
+      final layout = args[2] as FlaxJsObject;
+      final length = layout.getProperty('length');
+      if (length is! FlaxJsNumber ||
+          length.value != binding.proxy!.members.length) {
+        throw ArgumentError('Invalid proxy member count');
+      }
+      for (final (index, member) in binding.proxy!.members.indexed) {
+        final row = layout.getProperty('$index');
+        if (row is! FlaxJsObject) throw ArgumentError('Invalid proxy member');
+        final values = <FlaxJsValue>[];
+        try {
+          for (var i = 0; i < 6; i++) {
+            values.add(row.getProperty('$i'));
+          }
+          final parameters = member.signature.parameters;
+          final minimum = parameters
+              .where((p) => p.positional && p.required)
+              .length;
+          final maximum =
+              parameters.where((p) => p.positional).length +
+              (parameters.any((p) => !p.positional) ? 1 : 0);
+          if (values[0] is! FlaxJsString ||
+              (values[0] as FlaxJsString).value != member.name ||
+              values[1] is! FlaxJsNumber ||
+              (values[1] as FlaxJsNumber).value != member.kind ||
+              values[2] is! FlaxJsNumber ||
+              (values[2] as FlaxJsNumber).value != minimum ||
+              values[3] is! FlaxJsNumber ||
+              (values[3] as FlaxJsNumber).value != maximum ||
+              values[5] is! FlaxJsBoolean ||
+              (values[5] as FlaxJsBoolean).value != member.hasSuper ||
+              (values[4] is! FlaxJsUndefined &&
+                  (values[4] is! FlaxJsFunction || !member.hasSuper))) {
+            throw ArgumentError('Proxy layout does not match its binding');
+          }
+        } finally {
+          for (final value in values) {
+            _releaseJs(value);
+          }
+          row.release();
+        }
+      }
+      final first = runtime.registerProxyMembers(layout);
+      final token = _proxyLayouts.length;
+      _proxyLayouts.add((binding, first));
+      return FlaxJsNumber(token.toDouble());
+    });
     _registerBindingHostFunction('__flaxCreateObject', (_, args) {
       _checkCall(args, 3);
       if (args.length != 3 || args[2] is! FlaxJsObject) {
@@ -508,15 +567,45 @@ extension _ObjectCalls on _Session {
       final parameters = binding.constructors[ctor];
       if (parameters == null) throw ArgumentError('Unknown object constructor');
       final sources = _arguments(descriptor, parameters, allowBindings: false);
+      _ProxyPeer? peer;
+      var createdPeer = false;
       try {
+        if (ctor == '@implementation') {
+          final receiver = descriptor.getProperty('receiver');
+          final layout = descriptor.getProperty('layout');
+          try {
+            if (receiver is! FlaxJsObject ||
+                layout is! FlaxJsNumber ||
+                !layout.value.isFinite ||
+                layout.value != layout.value.truncateToDouble() ||
+                layout.value < 0 ||
+                layout.value >= _proxyLayouts.length) {
+              throw ArgumentError('Invalid proxy receiver or layout');
+            }
+            final prepared = _proxyLayouts[layout.value.toInt()];
+            if (!identical(prepared.$1, binding)) {
+              throw ArgumentError('Foreign proxy layout');
+            }
+            peer = _ProxyPeer(
+              this,
+              receiver.retain(),
+              binding.proxy!,
+              prepared.$2,
+            );
+          } finally {
+            _releaseJs(receiver);
+          }
+        }
         for (final source in sources.values) {
           source.initial.escapeCallbacks();
-          escapeWidget(source.initial.data);
+          escapeWidget(source.initial.data, source.type);
         }
-        final value = binding.create(
-          ctor,
-          sources.map((k, v) => MapEntry(k, v.initial.data)),
-        );
+        final value = binding.create(ctor, {
+          ...sources.map((k, v) => MapEntry(k, v.initial.data)),
+          '@peer': ?peer,
+        });
+        // The peer's native facade already retains its receiver from Dart.
+        // Only the returned wrapper (or transferred extends alias) owns the proxy.
         if (value is FlaxWidgetProxy) {
           final identity = descriptor.getProperty('widgetType');
           try {
@@ -548,46 +637,52 @@ extension _ObjectCalls on _Session {
           value,
           FlaxTypeRef('object', id: binding.id),
         );
-        return holdHostResult(result);
+        final held = holdHostResult(result);
+        createdPeer = true;
+        return held;
       } finally {
+        if (!createdPeer) peer?._handle.release();
         for (final source in sources.values) {
           source.release();
         }
       }
     });
-    _registerBindingHostFunction('__flaxObject', (_, args) {
-      _checkCall(args, 5);
-      if (args[2] is! FlaxJsNumber ||
-          args[3] is! FlaxJsString ||
-          args[4] is! FlaxJsString) {
-        throw ArgumentError('Invalid object member call');
-      }
-      final type = (args[1] as FlaxJsString).value;
-      if ((args[3] as FlaxJsString).value == 'static') {
-        final binding = registry._types[type];
-        final getter = binding is FlaxObjectBinding
-            ? binding.staticGetters[(args[4] as FlaxJsString).value]
-            : null;
-        if (getter == null || args.length != 5) {
-          throw ArgumentError('Unknown static getter');
+  }
+
+  _BindingOperation _objectOperation(
+    String type,
+    String operation,
+    String name,
+  ) {
+    final binding =
+        _objectView(registry._types[type]) ?? _collectionBindings[type];
+    if (binding == null) throw ArgumentError('Unknown object type');
+    if (operation == 'static') {
+      final getter = binding.staticGetters[name];
+      if (getter == null) throw ArgumentError('Unknown static getter');
+      return (id, args) {
+        if (id != 0 || args.isNotEmpty) {
+          throw ArgumentError('Invalid static getter');
         }
         return holdHostResult(memberResult(getter.read(), getter.type));
-      }
-      final object = _objects[(args[2] as FlaxJsNumber).value.toInt()];
-      final binding =
-          _objectView(registry._types[type]) ??
-          (object?.binding.id == type ? object?.binding : null);
-      if (object == null ||
-          binding is! FlaxObjectBinding ||
-          !object.accepts(type)) {
+      };
+    }
+    final getter = binding.getters.where((g) => g.name == name).firstOrNull;
+    final setter = binding.setters.where((s) => s.name == name).firstOrNull;
+    final method = binding.instanceMethods[name];
+    if (!(operation == 'get' && getter != null ||
+        operation == 'set' && setter != null ||
+        operation == 'call' && method != null)) {
+      throw ArgumentError('Unknown object operation');
+    }
+    return (id, args) {
+      final object = _objects[id];
+      if (object == null || !object.accepts(type)) {
         throw ArgumentError('Foreign or disposed Dart object');
       }
       final receiver = object.value;
-      final operation = (args[3] as FlaxJsString).value;
-      final name = (args[4] as FlaxJsString).value;
       if (operation == 'get') {
-        final getter = binding.getters.where((g) => g.name == name).firstOrNull;
-        if (getter == null || args.length != 5) {
+        if (getter == null || args.isNotEmpty) {
           throw ArgumentError('Unknown object getter');
         }
         final value = getter.read(receiver);
@@ -598,26 +693,24 @@ extension _ObjectCalls on _Session {
         );
       }
       if (operation == 'set') {
-        final setter = binding.setters.where((s) => s.name == name).firstOrNull;
-        if (setter == null || args.length != 6) {
+        if (setter == null || args.length != 1) {
           throw ArgumentError('Unknown object setter');
         }
-        final value = decode(args[5], setter.type);
+        final value = decode(args[0], setter.type);
         try {
           value.escapeCallbacks();
-          escapeWidget(value.data);
+          escapeWidget(value.data, setter.type);
           setter.write(receiver, value.data);
         } finally {
           value.release();
         }
         return const FlaxJsUndefined();
       }
-      final method = binding.instanceMethods[name];
       if (operation != 'call' || method == null) {
         throw ArgumentError('Unknown object method');
       }
       if (name == binding.disposeMethod) {
-        if (args.length != 5) {
+        if (args.isNotEmpty) {
           throw ArgumentError('Disposal takes no arguments');
         }
         object.dispose(binding);
@@ -630,10 +723,10 @@ extension _ObjectCalls on _Session {
                 .firstOrNull
                 ?.key;
       if (addName != null) {
-        if (args.length != 6 || args[5] is! FlaxJsFunction) {
+        if (args.length != 1 || args[0] is! FlaxJsFunction) {
           throw ArgumentError('Listeners require one function');
         }
-        final function = args[5] as FlaxJsFunction;
+        final function = args[0] as FlaxJsFunction;
         var listener = object.listeners
             .where(
               (l) => l.addName == addName && l.function.strictEquals(function),
@@ -696,11 +789,13 @@ extension _ObjectCalls on _Session {
           'Inserting or replacing Widgets through collection views is unsupported',
         );
       }
-      final values = objectArguments(args.sublist(5), method.parameters);
+      final values = objectArguments(args, method.parameters);
       try {
-        for (final value in values.values) {
+        for (final parameter in method.parameters) {
+          final value = values[parameter.name];
+          if (value == null) continue;
           value.escapeCallbacks();
-          escapeWidget(value.data);
+          escapeWidget(value.data, parameter.type);
         }
         final result = method.invoke(
           receiver,
@@ -712,6 +807,6 @@ extension _ObjectCalls on _Session {
           value.release();
         }
       }
-    });
+    };
   }
 }

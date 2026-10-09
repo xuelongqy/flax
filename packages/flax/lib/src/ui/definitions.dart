@@ -1,7 +1,7 @@
 part of '../../bindings.dart';
 
 /// Active UI protocol for Core-owned code and registry comparison.
-const flaxBindingVersion = 22;
+const flaxBindingVersion = 23;
 
 /// Additive features supported without changing the UI protocol.
 const _supportedCapabilities = <String>{'native-widget-proxies'};
@@ -11,6 +11,7 @@ class FlaxTypeRef {
     this.kind, {
     this.id,
     this.nullable = false,
+    this.finiteWidgetIterable = false,
     this.item,
     this.key,
     this.collection,
@@ -24,6 +25,8 @@ class FlaxTypeRef {
   final String kind;
   final String? id;
   final bool nullable;
+  // Callback Widget Iterables must be inspectable without running an iterator.
+  final bool finiteWidgetIterable;
   final FlaxTypeRef? item;
   final FlaxTypeRef? key;
   final FlaxCollectionBinding? collection;
@@ -55,9 +58,16 @@ class FlaxRecordFieldBinding {
 
 /// Generated reconstruction for one concrete Dart Record shape.
 class FlaxRecordBinding {
-  const FlaxRecordBinding(this.fields, this.create);
+  const FlaxRecordBinding(
+    this.fields,
+    this.create, {
+    required this.signature,
+    required this.matches,
+  });
   final List<FlaxRecordFieldBinding> fields;
   final Object Function(List<Object?>) create;
+  final String signature;
+  final bool Function(Object) matches;
 }
 
 /// Generated type adaptation for a JavaScript Promise entering Dart.
@@ -85,10 +95,17 @@ class FlaxDeferredFactoryBinding {
 
 /// Generated typed allocation and runtime checks for Dart collections.
 class FlaxCollectionBinding {
-  const FlaxCollectionBinding(this.id, this.create, this.matches);
+  const FlaxCollectionBinding(
+    this.id,
+    this.create,
+    this.matches, {
+    this.snapshot,
+  });
   final String id;
   final Object Function() create;
   final bool Function(Object) matches;
+  // Widget snapshots preserve the declared subtype inside other typed containers.
+  final List<Widget?> Function(Iterable<Object?>)? snapshot;
 }
 
 /// Generated adapters supply a real Dart function signature without reflection.
@@ -168,6 +185,7 @@ class FlaxObjectBinding extends FlaxTypeBinding {
     this.setters = const [],
     this.listenerPairs = const {},
     this.supertypes = const [],
+    this.proxy,
   });
   final Map<String, List<FlaxParameter>> constructors;
   final Object Function(String, Map<String, Object?>) create;
@@ -179,6 +197,37 @@ class FlaxObjectBinding extends FlaxTypeBinding {
   final Map<String, FlaxStaticGetter> staticGetters;
   final Map<String, String> listenerPairs;
   final List<String> supertypes;
+  final FlaxProxyBinding? proxy;
+}
+
+/// One selected Dart member; metadata is shared by every proxy of this type.
+class FlaxProxyMember {
+  const FlaxProxyMember(
+    this.name,
+    this.kind,
+    this.signature, {
+    this.hasSuper = false,
+  });
+  final String name;
+
+  /// 0: method, 1: getter, 2: setter.
+  final int kind;
+  final FlaxCallbackBinding signature;
+  final bool hasSuper;
+}
+
+class FlaxProxyBinding {
+  const FlaxProxyBinding(this.members);
+  final List<FlaxProxyMember> members;
+}
+
+/// Generated subclasses retain one peer, without per-member callback fields.
+abstract interface class FlaxProxyPeer {
+  (bool handled, Object? value) call(
+    int member,
+    List<Object?> positional,
+    Map<String, Object?> named,
+  );
 }
 
 /// Generated direct calls for the Dart Stream class at its erased runtime type.
@@ -372,6 +421,7 @@ class FlaxBindingModule {
     this.functions = const [],
     this.stateVariants = const [],
     this.dependencyModules = const [],
+    this.records = const [],
   });
   final String name;
   final List<FlaxTypeBinding> types;
@@ -381,6 +431,7 @@ class FlaxBindingModule {
   final List<FlaxFunctionBinding> functions;
   final List<FlaxStateVariantBinding> stateVariants;
   final List<String> dependencyModules;
+  final List<FlaxTypeRef> records;
 }
 
 /// Register generated modules explicitly. A registry never chooses an engine.
@@ -424,6 +475,13 @@ class FlaxBindingRegistry {
         functions[function.id] = function;
         _bindingOwners[function.id] = module;
       }
+      for (final type in module.records) {
+        final record = type.record;
+        if (type.kind != 'record' || record == null) {
+          throw ArgumentError('Invalid Record projection in ${module.name}');
+        }
+        _records.add((type, module));
+      }
       for (final variant in module.stateVariants) {
         if (stateVariants.containsKey(variant.id)) {
           throw ArgumentError('Duplicate State variant: ${variant.id}');
@@ -440,6 +498,13 @@ class FlaxBindingRegistry {
   final List<FlaxBindingModule> modules;
   final _bindingOwners = <String, FlaxBindingModule>{};
   final _types = <String, FlaxTypeBinding>{};
+  final _records = <(FlaxTypeRef, FlaxBindingModule)>[];
+  late final _contextType = _types.values
+      .whereType<FlaxContextBinding>()
+      .singleWhere(
+        (type) =>
+            _bindingOwners[type.id]!.moduleId.split('/').first == 'flax.core',
+      );
   final _functions = <String, FlaxFunctionBinding>{};
   final _stateVariants = <String, FlaxStateVariantBinding>{};
   final _componentStateTypes = <String>{};

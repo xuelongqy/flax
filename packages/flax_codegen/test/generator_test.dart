@@ -1781,17 +1781,19 @@ AlignmentGeometry();
     expect(emitter.dart(module), contains('_lease.routeDisposed()'));
     expect(emitter.typescript(module), contains('Promise<NavigationData'));
     await compileFixture(root, emitter, module);
-    await expectLater(
-      parser.parse(
-        fixture('navigation.dart', {
-          'Probe': const FlaxCodegenClassSelection(
-            {},
-            kind: 'state',
-            instanceMethods: {'unsupported': []},
-          ),
-        }),
-      ),
-      throwsStateError,
+    final contextResult = await parser.parse(
+      fixture('navigation.dart', {
+        'Probe': const FlaxCodegenClassSelection(
+          {},
+          kind: 'state',
+          instanceMethods: {'unsupported': []},
+        ),
+      }),
+    );
+    expect(contextResult.classes.single.methods.single.result.kind, 'future');
+    expect(
+      contextResult.classes.single.methods.single.result.item!.kind,
+      'context',
     );
     await expectLater(
       parser.parse(
@@ -2679,7 +2681,7 @@ const result: number = value.value;
       expect(ts, contains('select<U extends Token'));
       expect(ts, contains('implement'));
       expect(ts, contains('export abstract class Evaluator'));
-      expect(ts, contains('super(Evaluator.prototype, _EvaluatorProxy,'));
+      expect(ts, contains('super(_EvaluatorProxy,'));
       expect(ts, contains('abstract evaluate(value: number): number;'));
       expect(ts, contains('twice(value: number): number;'));
       expect(
@@ -2698,14 +2700,14 @@ const result: number = value.value;
       final dart = emitter.dart(module);
       expect(dart, contains('extends api.Evaluator'));
       expect(dart, contains('implements api.Selector'));
-      expect(dart, contains('if (_call_twice == null)'));
+      expect(dart, contains('if (!_flaxResult.\$1)'));
       expect(dart, contains('return super.twice(value);'));
       expect(dart, contains('_flaxSuper_twice'));
       expect(dart, contains('"@super:twice": FlaxInstanceMethod'));
       expect(
         dart,
         contains(
-          "return result.then<int>((_) => throw StateError('load must call super.load()'));",
+          'return result.then<int>((_) => throw StateError("load must call super.load()"));',
         ),
       );
       expect(dart, contains('api.DeferredProperty.resolveWith<api.Token?>'));

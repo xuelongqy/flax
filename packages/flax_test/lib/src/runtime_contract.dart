@@ -315,6 +315,163 @@ void flaxRuntimeContract(
     function.release();
   });
 
+  test('proxy members use the actual receiver and current properties with typed fallback', () {
+    final receiver = runtime.evaluate(r'''(() => {
+      class Base { method(value) { return value; } }
+      class Derived extends Base {
+        #seed = 40;
+        method = value => this.#seed + value;
+        value = 1;
+      }
+      globalThis.peer = new Derived();
+      globalThis.base = new Base();
+      globalThis.layout = [
+        ['method', 0, 1, 1, Base.prototype.method, true],
+        ['value', 1, 0, 0, undefined, false],
+        ['value', 2, 1, 1, undefined, false],
+      ];
+      return peer;
+    })()''') as FlaxJsObject;
+    final layout = runtime.getGlobal('layout') as FlaxJsObject;
+    final first = runtime.registerProxyMembers(layout);
+    layout.release();
+    final base = runtime.getGlobal('base') as FlaxJsObject;
+    try {
+      expect(
+        runtime.invokeProxyMember(base, first, [const FlaxJsNumber(2)]),
+        isNull,
+      );
+      expect(
+        _number(
+          runtime.invokeProxyMember(receiver, first, [const FlaxJsNumber(2)])!,
+        ),
+        42,
+      );
+      expect(
+        _number(runtime.invokeProxyMember(receiver, first + 1, const [])!),
+        1,
+      );
+      expect(
+        runtime.invokeProxyMember(receiver, first + 2, [const FlaxJsNull()]),
+        isA<FlaxJsUndefined>(),
+      );
+      expect(
+        runtime.invokeProxyMember(receiver, first + 1, const []),
+        isA<FlaxJsNull>(),
+      );
+      runtime.evaluate(
+        'peer.method = function(v) { return this.value + v; }; peer.value = 4;',
+      );
+      expect(
+        _number(
+          runtime.invokeProxyMember(receiver, first, [const FlaxJsNumber(2)])!,
+        ),
+        6,
+      );
+      runtime.evaluate(
+        'delete peer.method; Object.getPrototypeOf(peer).method = v => v * 3;',
+      );
+      expect(
+        _number(
+          runtime.invokeProxyMember(receiver, first, [const FlaxJsNumber(2)])!,
+        ),
+        6,
+      );
+      expect(
+        () => runtime.invokeProxyMember(receiver, first, const []),
+        throwsArgumentError,
+      );
+      expect(
+        () => runtime.invokeProxyMember(receiver, first + 3, const []),
+        throwsArgumentError,
+      );
+      runtime.evaluate(
+        'Object.defineProperty(peer, "value", {writable: false});',
+      );
+      expect(
+        () => runtime.invokeProxyMember(receiver, first + 2, [
+          const FlaxJsNumber(9),
+        ]),
+        throwsArgumentError,
+      );
+      final foreign = createRuntime();
+      try {
+        expect(
+          () => foreign.invokeProxyMember(receiver, first, [
+            const FlaxJsNumber(2),
+          ]),
+          throwsArgumentError,
+        );
+      } finally {
+        foreign.dispose();
+      }
+    } finally {
+      base.release();
+      receiver.release();
+    }
+    expect(
+      () => runtime.invokeProxyMember(receiver, first, const []),
+      throwsStateError,
+    );
+  });
+
+  test('proxy lookup reads method getters once and survives layout growth during reentry', () {
+    for (final source in [
+      '({length: 0})',
+      '[{}]',
+      '[["method", "bad", 1, 1, undefined, false]]',
+      '[["method", 0, 1, 1, undefined, 0]]',
+      '[["method", 0, 1, 1, 7, true]]',
+      '[["method", 0, 1, 1, undefined, false], ["bad", 0, -1, 1, undefined, false]]',
+    ]) {
+      final invalid = runtime.evaluate(source) as FlaxJsObject;
+      try {
+        expect(
+          () => runtime.registerProxyMembers(invalid),
+          throwsArgumentError,
+        );
+      } finally {
+        invalid.release();
+      }
+    }
+    final layout = runtime.evaluate(
+      '[["method", 0, 1, 1, undefined, false]]',
+    ) as FlaxJsObject;
+    final first = runtime.registerProxyMembers(layout);
+    expect(
+      first,
+      0,
+      reason: 'Rejected layouts must not partially register members',
+    );
+    runtime.registerHostFunction('growMembers', (_, _) {
+      runtime.registerProxyMembers(layout);
+      return const FlaxJsUndefined();
+    });
+    final receiver = runtime.evaluate(r'''globalThis.reads = 0;
+      globalThis.peer = { value: 40, get method() {
+        reads++; growMembers(); return function(v) { return this.value + v; };
+      }}; peer;''') as FlaxJsObject;
+    try {
+      expect(
+        _number(
+          runtime.invokeProxyMember(receiver, first, [const FlaxJsNumber(2)])!,
+        ),
+        42,
+      );
+      expect(_number(runtime.evaluate('reads')), 1);
+      runtime.evaluate('Object.defineProperty(peer, "method", {value: 7});');
+      expect(
+        () =>
+            runtime.invokeProxyMember(receiver, first, [const FlaxJsNumber(2)]),
+        throwsA(isA<FlaxJsException>()),
+      );
+      expect(_number(runtime.evaluate('21 * 2')), 42);
+    } finally {
+      receiver.release();
+      layout.release();
+    }
+  });
+
   test('JS calls Dart synchronously, including nested Dart and JS calls', () {
     runtime.registerHostFunction(
       'inner',

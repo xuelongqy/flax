@@ -1,8 +1,8 @@
 # Navigation and Application Sessions
 
-Status: experimental macOS arm64 Hermes/V8 implementation. Flax uses real Flutter
-Navigators and Routes. The application chooses a shared host stack or an explicitly
-nested Navigator; FlaxView does not insert one or mirror its stack in JS.
+Status: experimental maintained-engine implementation. Flax uses real Flutter Navigators
+and Routes. The application chooses a shared host stack or an explicitly nested
+Navigator; FlaxView does not insert one or mirror its stack in JS.
 
 ## Session ownership
 
@@ -215,7 +215,7 @@ gain a general unhandled-rejection monitoring service.
 
 ## Boundaries and verification
 
-Protocol 22 rejects earlier bundles and modules; the C ABI is unchanged. Host native
+Protocol 23 rejects earlier bundles and modules; the C ABI is unchanged. Host native
 Router and JS Pages are implemented. go_router-specific adapters, system deep-link
 registration, restoration, custom transitions, and additional platforms remain deferred.
 URL parsing in the example does not register OS links.

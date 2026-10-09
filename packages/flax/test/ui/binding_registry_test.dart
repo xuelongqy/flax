@@ -4,10 +4,11 @@ import 'package:flutter_test/flutter_test.dart';
 FlaxBindingModule _module(
   String name, {
   String? moduleId,
-  int uiProtocol = 22,
+  int uiProtocol = 23,
   List<String> requiredCapabilities = const <String>[],
   List<FlaxTypeBinding> types = const [],
   List<FlaxFunctionBinding> functions = const [],
+  List<FlaxTypeRef> records = const [],
 }) => FlaxBindingModule(
   name,
   types,
@@ -15,16 +16,17 @@ FlaxBindingModule _module(
   uiProtocol: uiProtocol,
   requiredCapabilities: requiredCapabilities,
   functions: functions,
+  records: records,
 );
 
 Object? _invoke(Map<String, Object?> values) => null;
 
 void main() {
-  test('generated flutter bindings pin a literal protocol-22 tuple', () {
-    expect(flaxBindingVersion, 22);
+  test('generated flutter bindings pin a literal protocol-23 tuple', () {
+    expect(flaxBindingVersion, 23);
     expect(flutterBindings.name, 'flutter');
     expect(flutterBindings.moduleId, 'flax.core/flutter');
-    expect(flutterBindings.uiProtocol, 22);
+    expect(flutterBindings.uiProtocol, 23);
     expect(flutterBindings.requiredCapabilities, ['native-widget-proxies']);
     expect(FlaxBindingRegistry([flutterBindings]).modules, [flutterBindings]);
   });
@@ -43,6 +45,17 @@ void main() {
       ]),
       throwsArgumentError,
     );
+  });
+
+  test('registry rejects incomplete Record projections', () {
+    for (final type in const [FlaxTypeRef('record'), FlaxTypeRef('object')]) {
+      expect(
+        () => FlaxBindingRegistry([
+          _module('records', records: [type]),
+        ]),
+        throwsArgumentError,
+      );
+    }
   });
 
   test(

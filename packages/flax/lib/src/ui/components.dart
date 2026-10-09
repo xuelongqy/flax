@@ -164,6 +164,8 @@ class _ComponentStateSeed {
 State<T> _createComponentState<T extends StatefulWidget>(
   _ComponentDescription description, {
   FlaxComponentStateBase<T> Function(Object)? create,
+  FlaxJsValue? Function(int)? prepare,
+  State<T> Function()? fallback,
 }) {
   final scope = _ComponentMount(description);
   final id = scope.session._nextComponentState++;
@@ -176,10 +178,16 @@ State<T> _createComponentState<T extends StatefulWidget>(
   }
   try {
     if (!scope._retained) throw StateError('Closed Flax session');
-    final created = scope.session.helper('createComponentState').call([
-      description.input,
-      FlaxJsNumber(id.toDouble()),
-    ]);
+    final created = prepare == null
+        ? scope.session.helper('createComponentState').call([
+            description.input,
+            FlaxJsNumber(id.toDouble()),
+          ])
+        : prepare(id);
+    if (created == null && fallback != null) {
+      scope.close();
+      return fallback();
+    }
     if (created is! FlaxJsObject) {
       throw StateError('Invalid component State creation result');
     }
@@ -263,17 +271,48 @@ State<T> _createComponentState<T extends StatefulWidget>(
 
 /// Uses the existing component State lifecycle with a concrete Flutter Widget type.
 State<T> flaxCreateWidgetState<T extends StatefulWidget>(
-  Object callback,
+  FlaxProxyPeer peer,
+  int member,
   T widget,
   FlaxComponentStateBase<T> Function(Object) create,
+  State<T> Function() fallback,
 ) {
-  final source = _callbackSources[callback];
-  if (source == null || !source.active) {
+  if (peer is! _ProxyPeer || !peer.active) {
     throw StateError('Retired native Widget State factory');
   }
-  final description = _nativeWidgetDescription(source.session, widget);
+  final description = _nativeWidgetDescription(peer.session, widget);
   try {
-    return _createComponentState<T>(description, create: create);
+    return _createComponentState<T>(
+      description,
+      create: create,
+      fallback: fallback,
+      prepare: (id) {
+        FlaxJsValue? invoke() => peer.session.runtime.invokeProxyMember(
+          peer.receiver,
+          peer.first + member,
+          const [],
+        );
+        peer._handle.enter();
+        try {
+          final value = peer.context == null
+              ? invoke()
+              : peer.context!.run(invoke);
+          if (value == null) return null;
+          try {
+            return peer.session.helper('finishComponentState').call([
+              value,
+              description.input,
+              FlaxJsNumber(id.toDouble()),
+            ]);
+          } finally {
+            _releaseJs(value);
+          }
+        } finally {
+          peer._handle.leave();
+          peer.session.checkpoint();
+        }
+      },
+    );
   } finally {
     description.release();
   }

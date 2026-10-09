@@ -55,3 +55,8 @@ class RequiredUriBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) => const SizedBox();
 }
+
+class IterableWidgetCallbackWall {
+  IterableWidgetCallbackWall(this.callback);
+  final Iterable<Widget> Function() callback;
+}

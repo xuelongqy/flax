@@ -676,10 +676,8 @@ void main() {
           ],
         ),
       );
-      expect(
-        () => record.validateCallbacks('Widget record', input: true),
-        throwsA(isA<StateError>()),
-      );
+      record.validateCallbacks('Widget record', input: true);
+      record.validateCallbacks('returned Widget record', input: false);
     },
   );
 

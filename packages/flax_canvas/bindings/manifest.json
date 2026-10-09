@@ -9,7 +9,7 @@
     {
       "name": "canvas",
       "moduleId": "flax.canvas/canvas",
-      "uiProtocol": 22,
+      "uiProtocol": 23,
       "requiredCapabilities": [
         "native-widget-proxies"
       ],

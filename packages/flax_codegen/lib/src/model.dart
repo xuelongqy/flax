@@ -297,7 +297,7 @@ class FlaxCodegenTypeRef {
   }
 
   void validateResult(String location) {
-    if ({'context', 'route', 'typeOnly'}.contains(kind)) {
+    if ({'route', 'typeOnly'}.contains(kind)) {
       throw StateError('Unsupported Dart result at $location: $kind');
     }
     // Lexical type-parameter results require a bound genericIdentity token.
@@ -346,8 +346,7 @@ class FlaxCodegenTypeRef {
         if (type.kind == 'future' || type.kind == 'futureOr') {
           final item = type.item!;
           final itemPosition = '$position item';
-          if ({'context', 'state', 'route', 'page'}.contains(item.kind) ||
-              (item.containsWidget && item.kind != 'widget')) {
+          if ({'state', 'route', 'page'}.contains(item.kind)) {
             return itemPosition;
           }
           return unsupportedPosition(
@@ -362,14 +361,12 @@ class FlaxCodegenTypeRef {
           final item = type.item!;
           final itemPosition = '$position item';
           if ({
-                'context',
-                'state',
-                'route',
-                'page',
-                'parameter',
-                'stream',
-              }.contains(item.kind) ||
-              (item.containsWidget && item.kind != 'widget')) {
+            'state',
+            'route',
+            'page',
+            'parameter',
+            'stream',
+          }.contains(item.kind)) {
             return itemPosition;
           }
           return unsupportedPosition(
@@ -380,12 +377,6 @@ class FlaxCodegenTypeRef {
           );
         }
         if ({'iterable', 'list', 'map', 'set'}.contains(type.kind)) {
-          final directWidgetList =
-              type.kind == 'list' &&
-              !type.nullable &&
-              type.item!.kind == 'widget' &&
-              !type.item!.nullable;
-          if (type.containsWidget && !directWidgetList) return position;
           final itemError = unsupportedPosition(
             type.item!,
             '$position item',
@@ -406,8 +397,6 @@ class FlaxCodegenTypeRef {
           return null;
         }
         if (type.kind == 'record') {
-          // Widget configuration escape supports direct Widgets and typed lists.
-          if (type.containsWidget) return position;
           for (final field in type.recordFields) {
             final error = unsupportedPosition(
               field.type,
@@ -426,7 +415,7 @@ class FlaxCodegenTypeRef {
           type.validateCallbacks(position, input: toDart);
           return null;
         }
-        if (type.kind == 'context') return argument ? null : position;
+        if (type.kind == 'context') return null;
         if (type.kind == 'page') return argument && !toDart ? null : position;
         if (type.kind == 'widget') return null;
         if (type.kind == 'route') return toDart && !argument ? null : position;
@@ -1412,16 +1401,18 @@ void _validateTopLevelOwnership(
     _validateTopLevelOwnership(key, location, input: input);
   }
   if (type.result case final result?) {
-    _validateTopLevelOwnership(result, location, input: input);
+    // Callbacks borrow Contexts in either direction, including nested results.
+    _validateTopLevelOwnership(
+      result,
+      location,
+      input: type.kind == 'callback' || input,
+    );
   }
   for (final parameter in type.parameters) {
-    // Callback Context arguments borrow native Elements in either direction.
     _validateTopLevelOwnership(
       parameter.type,
       location,
-      input: type.kind == 'callback'
-          ? parameter.type.kind == 'context' || !input
-          : input,
+      input: type.kind == 'callback' || input,
     );
   }
   for (final field in type.recordFields) {

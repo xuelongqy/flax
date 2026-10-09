@@ -2,7 +2,7 @@
 
 Current accepted contracts include explicit selection, public-provider manifests, stable
 wire identity, package-atomic generation and trusted compile-time dependencies. Binding
-selection format 2, package metadata format 2, current-only Manifest 15, UI protocol 22
+selection format 2, package metadata format 2, current-only Manifest 16, UI protocol 23
 and native ABI 2 remain separate domains. Generic declarations use shared Dart owners
 while TypeScript preserves relationships; safe constructor specializations come from
 Analyzer-observed concrete use sites plus the bounded String/safe-int scalar pair.

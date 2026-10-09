@@ -1,5 +1,8 @@
 import 'package:flutter/widgets.dart';
-export 'package:flutter/widgets.dart' show BuildContext, Key, Widget;
+export 'package:flutter/widgets.dart'
+    show BuildContext, Key, Widget, StatelessWidget, Text, PreferredSizeWidget;
+
+export 'widget_values.dart';
 
 typedef CellBuilder = Widget? Function(BuildContext, int);
 

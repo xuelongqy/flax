@@ -1,7 +1,7 @@
 # Flutter Host and Reactive Updates
 
-Status: experimental embedded UI on macOS arm64, using the existing Hermes/V8 runtimes.
-The [embedded example](../../examples/embedded/README.md) exercises the real path.
+Status: experimental embedded UI using the [maintained Flutter engine](runtime.md). The
+[embedded example](../../examples/embedded/README.md) exercises the real path.
 
 ## Public surfaces
 
@@ -170,7 +170,7 @@ checkpoints. UI void events may return a Promise without becoming a Dart Future.
 
 ## Experimental protocol and limits
 
-Protocol 22 generated descriptors carry `kind`, declaration-origin `type`, constructor
+Protocol 23 generated descriptors carry `kind`, declaration-origin `type`, constructor
 `ctor`, and an `args` map; enum descriptors carry type and member name. Binding
 descriptors expose `read()` and `observe(token)`, which returns cleanup.
 `__flaxMount(root, version)` checks the protocol against the Dart registry. The public
@@ -178,11 +178,13 @@ extension API and protocol are experimental, not a stable serialization format.
 References cross the existing JSI bridge as real objects and functions, without JSON
 encoding or native ABI changes.
 
-Generated static methods use `__flaxCall` and context getters use `__flaxGet`, both
-checking the protocol version and selected registry entry. The internal `__flaxBindings`
-helpers create cached contexts, canonical enums, and real Dart references. They are
-implementation details rather than an application API. Earlier bundles/modules are
-rejected; no compatibility layer is provided for experimental protocols.
+Generated members resolve a checked session operation once with
+`__flaxResolveOperation`, then invoke its numeric slot with `__flaxInvokeOperation`.
+Static methods, object members and context getters share this transport while retaining
+their own typed validation. The internal `__flaxBindings` helpers create cached
+contexts, canonical enums, and real Dart references. They are implementation details
+rather than an application API. Earlier bundles/modules are rejected; no compatibility
+layer is provided for experimental protocols.
 
 Additional Context APIs, additional Controllers, runtime module loading and other
 platforms remain deferred. There is no security sandbox or execution-time limit, and no
@@ -192,7 +194,7 @@ Named page factories also receive an explicit PageLifecycle argument. Its onDisp
 callbacks run after content descendants unmount. Generated Controllers use creator-owned
 object references, while Widgets borrow them. See [owned objects](objects.md).
 
-Protocol 22 retains [Dart references and callbacks](objects.md),
+Protocol 23 retains [Dart references and callbacks](objects.md),
 [collections and generics](interop.md), and
 [editing, focus and formatters](text-input.md). It includes Promise-to-Future callback
 results and the dart:async Stream/FutureOr envelope without changing object ownership or

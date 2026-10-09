@@ -2,13 +2,23 @@ import 'dart:convert';
 import 'dart:developer' as developer;
 import 'dart:io';
 import 'dart:isolate';
+import 'dart:typed_data';
 
-/// Request an actual VM collection; no framework cleanup method is called here.
+/// Use the VM service or allocation pressure; never invoke framework cleanup.
 Future<void> flaxTestCollectDartGarbage() async {
   final info = await developer.Service.getInfo();
   final uri = info.serverUri;
   if (uri == null) {
-    throw StateError('GC observation requires the Flutter test VM service');
+    // Release/AOT has no VM service. Keep a bounded live window while ordinary
+    // allocations trigger the real Dart collector, as in the engine GC contract.
+    final window = <Uint8List>[];
+    for (var i = 0; i < 400; i++) {
+      window.add(Uint8List(256 * 1024));
+      if (window.length > 100) window.removeAt(0);
+      if (i % 20 == 0) await Future<void>.delayed(Duration.zero);
+    }
+    await Future<void>.delayed(const Duration(milliseconds: 10));
+    return;
   }
   final socket = await WebSocket.connect(
     uri.replace(scheme: 'ws', path: '${uri.path}ws').toString(),

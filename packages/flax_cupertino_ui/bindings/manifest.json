@@ -9,7 +9,7 @@
     {
       "name": "cupertino",
       "moduleId": "flax.cupertino/cupertino",
-      "uiProtocol": 22,
+      "uiProtocol": 23,
       "requiredCapabilities": [
         "native-widget-proxies"
       ],

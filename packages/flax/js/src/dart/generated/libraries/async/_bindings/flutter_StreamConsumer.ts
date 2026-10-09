@@ -10,5 +10,6 @@ addStream(stream: upstream0.Stream<S>): Promise<unknown | null>;
 close(): Promise<unknown | null>;
 }
 defineObject("flax.core/flutter#type:StreamConsumer", [], [], _flaxBindingMethods("flax.core/flutter#type:StreamConsumer", "object", {"addStream":_flaxMemberParameters0,"close":_flaxMemberParameters1}), []);
+const _StreamConsumerProxy = {type: "flax.core/flutter#type:StreamConsumer", parameters: [], methods: {"addStream":_flaxMemberParameters0,"close":_flaxMemberParameters1}, getters: [], setters: [], superMembers: []} as const;
 export namespace StreamConsumer { export function implement<S extends unknown | null = unknown | null>(args: [], implementation: {addStream: ((stream: upstream0.Stream<S>) => Promise<unknown | null>); close: (() => Promise<unknown | null>)}): StreamConsumer<S> {
-return constructProxy("flax.core/flutter#type:StreamConsumer", [], args, implementation, ["addStream","close"], [], []) as StreamConsumer<S>; } }
+return constructProxy(_StreamConsumerProxy, args, implementation) as StreamConsumer<S>; } }

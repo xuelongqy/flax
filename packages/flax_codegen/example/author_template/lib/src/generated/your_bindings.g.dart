@@ -53,8 +53,8 @@ const exampleBindings = FlaxBindingModule(
   functions: [],
   moduleId: "vendor.example/example",
   dependencyModules: [],
-  uiProtocol: 22,
-  requiredCapabilities: const <String>[],
+  uiProtocol: 23,
+  requiredCapabilities: const <String>["native-widget-proxies"],
   stateVariants: [],
 );
 bool _isGauge(Object value) => value is api.Gauge;

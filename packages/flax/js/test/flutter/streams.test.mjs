@@ -1,3 +1,4 @@
+import { operationHost } from './support/operations.mjs';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
@@ -23,10 +24,10 @@ function stream(id) {
 
 test('Stream wrappers are lazy, typed and preserve their view identity', () => {
   const calls = [];
-  globalThis.__flaxStream = (...args) => {
+  operationHost('stream', (...args) => {
     calls.push(args);
     return args[3] === 'get';
-  };
+  });
 
   const first = stream(1);
   assert.equal(calls.length, 0);
@@ -34,7 +35,7 @@ test('Stream wrappers are lazy, typed and preserve their view identity', () => {
   assert.equal(first.isBroadcast, true);
   assert.deepEqual(calls, [[bindingVersion, type, 1, 'get', 'isBroadcast']]);
 
-  delete globalThis.__flaxStream;
+  operationHost('stream', null);
 });
 
 test('listen delegates once and leaves event semantics to Dart', () => {
@@ -45,14 +46,14 @@ test('listen delegates once and leaves event semantics to Dart', () => {
     resume() {},
     isPaused: false,
   });
-  globalThis.__flaxStream = (version, actualType, id, operation, member, ...args) => {
+  operationHost('stream', (version, actualType, id, operation, member, ...args) => {
     assert.deepEqual(
       [version, actualType, id, operation, member],
       [bindingVersion, type, 2, 'call', 'listen'],
     );
     callbacks = args;
     return subscription;
-  };
+  });
 
   const seen = [];
   const result = stream(2).listen((value) => seen.push(['data', value]), {
@@ -67,7 +68,7 @@ test('listen delegates once and leaves event semantics to Dart', () => {
   callbacks[1].onDone();
   assert.deepEqual(seen, [['data', 7], ['error', 'boom', 'stack'], ['done']]);
 
-  delete globalThis.__flaxStream;
+  operationHost('stream', null);
 });
 
 test('AsyncIterator uses the host StreamIterator and rejects concurrent next', async () => {

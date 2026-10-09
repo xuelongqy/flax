@@ -25,7 +25,7 @@ void main() {
       final constructorCount = h.created.length;
       final handles = h.runtime.handles;
       final subscriptions = h.runtime.activeSubscriptions;
-      final memberCalls = h.runtime.hostCalls['__flaxObject'] ?? 0;
+      final memberCalls = h.runtime.hostCalls['__flaxInvokeOperation'] ?? 0;
       final rebuilt = <FlaxWidgetHost>[];
       debugOnRebuildDirtyWidget = (element, builtOnce) {
         if (element.widget is FlaxWidgetHost) {
@@ -38,7 +38,7 @@ void main() {
       expect(native.controller!.offset, greaterThan(0));
       expect(h.number('objects.notifications'), greaterThan(0));
       expect(
-        (h.runtime.hostCalls['__flaxObject'] ?? 0) - memberCalls,
+        (h.runtime.hostCalls['__flaxInvokeOperation'] ?? 0) - memberCalls,
         h.number('objects.notifications'),
       );
       expect(rebuilt, isNotEmpty);
@@ -309,7 +309,7 @@ void main() {
         'gauge.echo(objects.controller)',
         'gauge.echo({})',
         'gauge.move(-1)',
-        "__flaxObject(4, 'fixture:Gauge', 1, 'get', 'reading')",
+        "__flaxInvokeOperation(__flaxResolveOperation(4, 'fixture:Gauge', 'object', 'get', 'reading'), 1)",
       ]) {
         expect(
           () => h.execute(code),
@@ -390,11 +390,11 @@ void main() {
     await t.pumpWidget(second.app('shared'));
     await t.pumpAndSettle();
     second.execute(
-      "var returned = __flaxCall($flaxBindingVersion, 'fixture:Foreign', 'get')",
+      "var returned = __flaxInvokeOperation(__flaxResolveOperation($flaxBindingVersion, 'fixture:Foreign', 'static', 'call', 'get'), 0)",
     );
     expect(
       second.boolean(
-        "returned === __flaxCall($flaxBindingVersion, 'fixture:Foreign', 'get')",
+        "returned === __flaxInvokeOperation(__flaxResolveOperation($flaxBindingVersion, 'fixture:Foreign', 'static', 'call', 'get'), 0)",
       ),
       isTrue,
     );

@@ -106,18 +106,13 @@ void main() {
     final contextBox = config.classes['AutoContextBox']!;
     expect(contextBox.constructors[''], ['context', 'optional']);
     expect(contextBox.setters, containsAll(['context', 'optional']));
+    expect(contextBox.getters, containsAll(['context', 'optional']));
     expect(contextBox.instanceMethods['matches'], ['value']);
     expect(contextBox.methods['isMounted'], ['value']);
     expect(contextBox.staticSetters, contains('selected'));
     expect(config.topLevel!.setters, contains('autoSelectedContext'));
     expect(config.topLevel!.setters, contains('autoContextListener'));
-    for (final name in ['autoContextListListener']) {
-      expect(config.topLevel!.setters, isNot(contains(name)));
-      expect(
-        proposal.skips.singleWhere((skip) => skip.target == '$name=').code,
-        'top_level_setter_shape',
-      );
-    }
+    expect(config.topLevel!.setters, contains('autoContextListListener'));
     expect(config.functions['autoIdentity']!.typeArguments, ['Object?']);
     expect(config.extensions['AutoTextExtension']!.getters, ['isBlank']);
     expect(config.extensions['AutoTextExtension']!.methods['repeatText'], [
@@ -192,13 +187,13 @@ void main() {
     for (final name in [
       'nullableList',
       'nullableItems',
-      'iterableWidgets',
       'setWidgets',
       'mapWidgets',
       'futureWidgets',
       'streamWidgets',
+      'iterableWidgets',
     ]) {
-      expect(deferred.constructors[''], isNot(contains(name)), reason: name);
+      expect(deferred.constructors[''], contains(name), reason: name);
     }
     expect(
       deferred.constructors[''],
@@ -940,34 +935,32 @@ void main() {
     expect(callback.parameters.single.type.item!.kind, 'widget');
   });
 
-  test('keeps other Widget callback collections fail-closed', () async {
-    for (final name in [
-      'SetWidgetCallbackWall',
-      'MapWidgetCallbackWall',
-      'FutureWidgetListCallbackWall',
-      'NullableWidgetListCallbackWall',
-    ]) {
+  test(
+    'binds Widget callback aggregates including finite Iterable contracts',
+    () async {
       final parser = FlaxCodegenBindingParser(repoRoot);
       addTearDown(parser.dispose);
-      await expectLater(
-        parser.parse(
+      for (final name in [
+        'SetWidgetCallbackWall',
+        'MapWidgetCallbackWall',
+        'FutureWidgetListCallbackWall',
+        'NullableWidgetListCallbackWall',
+        'IterableWidgetCallbackWall',
+      ]) {
+        final module = await parser.parse(
           fixture('widget_probe.dart', {
             name: const FlaxCodegenClassSelection({
               '': ['callback'],
             }, kind: 'object'),
           }),
-        ),
-        throwsA(
-          isA<StateError>().having(
-            (error) => error.message,
-            'callback collection diagnostic',
-            contains('Unsupported input callback signature'),
-          ),
-        ),
-        reason: name,
-      );
-    }
-  });
+        );
+        expect(
+          module.classes.single.constructors.single.parameters,
+          hasLength(1),
+        );
+      }
+    },
+  );
 
   test(
     'proxy Widget properties fail with their accessor or result position',

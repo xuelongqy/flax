@@ -61,6 +61,7 @@ class FlaxOwnedTestHarness {
                     listenerPairs: type.listenerPairs,
                     setters: type.setters,
                     supertypes: type.supertypes,
+                    proxy: type.proxy,
                   )
                 else
                   type,
@@ -70,6 +71,7 @@ class FlaxOwnedTestHarness {
             uiProtocol: module.uiProtocol,
             requiredCapabilities: module.requiredCapabilities,
             functions: module.functions,
+            records: module.records,
           ),
         )
         .toList();

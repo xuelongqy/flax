@@ -68,6 +68,16 @@ abstract class FlaxJsRuntime {
   /// of [origin] retains the actual JS object. Neither registration is a root.
   void bindDartPeer(FlaxJsObject object, Object target, {Object? origin});
 
+  /// Registers type-shared current-member dispatch metadata in this runtime.
+  int registerProxyMembers(FlaxJsObject layout);
+
+  /// Null means the generated Dart default is current. JS null is a real value.
+  FlaxJsValue? invokeProxyMember(
+    FlaxJsObject receiver,
+    int member,
+    List<FlaxJsValue> arguments,
+  );
+
   /// Explicit checkpoint. The engine treats [maxJobsHint] as a best-effort hint,
   /// not a time limit. Returns whether the microtask queue is empty.
   bool drainMicrotasks({int maxJobsHint = -1});

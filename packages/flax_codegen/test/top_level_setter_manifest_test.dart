@@ -231,7 +231,7 @@ FlaxCodegenManifest _manifest({bool reference = false}) {
       FlaxCodegenManifestModule(
         name: 'values',
         moduleId: moduleId,
-        uiProtocol: 22,
+        uiProtocol: 23,
         requiredCapabilities: [],
         model: FlaxCodegenManifestModel(
           module: FlaxCodegenModuleModel(

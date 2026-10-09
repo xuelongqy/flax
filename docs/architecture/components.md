@@ -2,7 +2,7 @@
 
 JS `StatelessWidget`, `StatefulWidget` and `State<T>` use real Flutter Elements and
 State. They work in generated children, named pages, builders, Routes, Pages and lazy
-lists. The implementation targets the existing macOS arm64 Hermes/V8 runtime.
+lists. Platform selection follows the [maintained engine contract](runtime.md).
 
 ## Application API
 
@@ -228,7 +228,7 @@ Existing accepted Routes may rebuild while a session closes. Component mount lea
 the runtime alive until their cleanup finishes, alongside existing Route and transition
 leases. Named-page lifecycle cleanup remains available for page-factory resources.
 
-UI protocol 22 includes component type metadata, ancestor queries, returned Dart
+UI protocol 23 includes component type metadata, ancestor queries, returned Dart
 functions and Widget references; previous protocols are rejected. The C ABI and runtime
 microtask API are unchanged. Unselected Flutter concrete-class inheritance, dynamic
 mixin composition, JS GlobalKey/currentState, state restoration, JS source hot reload,

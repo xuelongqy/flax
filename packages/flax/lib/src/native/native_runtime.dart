@@ -36,6 +36,7 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
   factory FlaxNativeJsRuntime.fromEngine(
     Pointer<FlaxApi> table,
     Pointer<FlaxEngineGcApi> gc,
+    Pointer<FlaxEngineBindingApi> binding,
   ) {
     if (table == nullptr ||
         table.ref.version != FLAX_ABI_VERSION ||
@@ -59,10 +60,18 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
         'Incompatible Flax Flutter engine or GC extension',
       );
     }
-    return FlaxNativeJsRuntime._(NativeCalls(table.ref), gc.ref);
+    if (binding == nullptr ||
+        binding.ref.version != FLAX_ENGINE_BINDING_VERSION ||
+        binding.ref.struct_size != sizeOf<FlaxEngineBindingApi>() ||
+        binding.ref.register_members == nullptr ||
+        binding.ref.invoke_member == nullptr ||
+        binding.ref.call == nullptr) {
+      throw UnsupportedError('Incompatible Flax binding engine extension');
+    }
+    return FlaxNativeJsRuntime._(NativeCalls(table.ref), gc.ref, binding.ref);
   }
 
-  FlaxNativeJsRuntime._(this._calls, this._gc) {
+  FlaxNativeJsRuntime._(this._calls, this._gc, this._binding) {
     using((arena) {
       final result = arena<Pointer<FlaxRuntime>>();
       _checked(arena, (error) => _calls.create(result, error));
@@ -72,6 +81,41 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
 
   final NativeCalls _calls;
   final FlaxEngineGcApi _gc;
+  final FlaxEngineBindingApi _binding;
+  late final _registerMembers = _binding.register_members
+      .asFunction<
+        int Function(
+          Pointer<FlaxRuntime>,
+          int,
+          Pointer<Uint64>,
+          Pointer<FlaxError>,
+        )
+      >();
+  late final _invokeMember = _binding.invoke_member
+      .asFunction<
+        int Function(
+          Pointer<FlaxRuntime>,
+          int,
+          int,
+          Pointer<FlaxBindingArgument>,
+          int,
+          Pointer<Int32>,
+          Pointer<Uint64>,
+          Pointer<FlaxError>,
+        )
+      >();
+  late final _bindingCall = _binding.call
+      .asFunction<
+        int Function(
+          Pointer<FlaxRuntime>,
+          int,
+          Pointer<FlaxBindingArgument>,
+          Pointer<FlaxBindingArgument>,
+          int,
+          Pointer<Uint64>,
+          Pointer<FlaxError>,
+        )
+      >();
   late final _bindValue = _gc.bind_value
       .asFunction<
         int Function(Pointer<FlaxRuntime>, int, Object, Pointer<FlaxError>)
@@ -145,7 +189,9 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
           throw StateError('Native runtime error: $message');
       }
     } finally {
-      _calls.errorClear(error);
+      if (error.ref.message != nullptr || error.ref.stack != nullptr) {
+        _calls.errorClear(error);
+      }
     }
   }
 
@@ -203,7 +249,9 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
           return value;
       }
     } finally {
-      _calls.bufferFree(info.ref.string_data.cast());
+      if (info.ref.string_data != nullptr) {
+        _calls.bufferFree(info.ref.string_data.cast());
+      }
       if (!transferred && !borrowed) _release(arena, id);
     }
   }
@@ -230,10 +278,9 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
         FlaxJsBoolean(:final value) => value ? 1.0 : 0.0,
         _ => 0.0,
       };
-      final (text, length) = _codeUnits(
-        arena,
-        value is FlaxJsString ? value.value : '',
-      );
+      final (text, length) = value is FlaxJsString
+          ? _codeUnits(arena, value.value)
+          : (nullptr.cast<Uint16>(), 0);
       _checked(
         arena,
         (error) => _calls.makeValue(
@@ -435,6 +482,81 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
 
   int get bridgeCallbackCount => _callbacks.length;
 
+  void _bindingArgument(
+    Arena arena,
+    FlaxBindingArgument output,
+    FlaxJsValue input,
+  ) {
+    switch (input) {
+      case FlaxJsUndefined():
+        output.kind = FlaxValueKind.FLAX_UNDEFINED.value;
+      case FlaxJsNull():
+        output.kind = FlaxValueKind.FLAX_NULL.value;
+      case FlaxJsBoolean(:final value):
+        output.kind = FlaxValueKind.FLAX_BOOLEAN.value;
+        output.number = value ? 1 : 0;
+      case FlaxJsNumber(:final value):
+        output.kind = FlaxValueKind.FLAX_NUMBER.value;
+        output.number = value;
+      case FlaxJsString(:final value):
+        output.kind = FlaxValueKind.FLAX_STRING.value;
+        final (text, length) = _codeUnits(arena, value);
+        output.text = text;
+        output.length = length;
+      case _NativeObject():
+        input._check(this);
+        output.kind = FlaxValueKind.FLAX_OBJECT.value;
+        output.id = input._id;
+      default:
+        throw ArgumentError('Unsupported binding argument');
+    }
+  }
+
+  @override
+  int registerProxyMembers(FlaxJsObject layout) => _entry((arena) {
+    if (layout is! _NativeObject) throw ArgumentError('Foreign proxy layout');
+    layout._check(this);
+    final first = arena<Uint64>();
+    _checked(
+      arena,
+      (error) => _registerMembers(_handle, layout._id, first, error),
+    );
+    return first.value;
+  });
+
+  @override
+  FlaxJsValue? invokeProxyMember(
+    FlaxJsObject receiver,
+    int member,
+    List<FlaxJsValue> arguments,
+  ) => _entry((arena) {
+    if (receiver is! _NativeObject) {
+      throw ArgumentError('Foreign proxy receiver');
+    }
+    receiver._check(this);
+    if (member < 0) throw ArgumentError('Invalid proxy member');
+    final inputs = arena<FlaxBindingArgument>(arguments.length + 1);
+    for (var i = 0; i < arguments.length; i++) {
+      _bindingArgument(arena, inputs[i], arguments[i]);
+    }
+    final handled = arena<Int32>();
+    final output = arena<Uint64>();
+    _checked(
+      arena,
+      (error) => _invokeMember(
+        _handle,
+        receiver._id,
+        member,
+        inputs,
+        arguments.length,
+        handled,
+        output,
+        error,
+      ),
+    );
+    return handled.value == 0 ? null : _read(arena, output.value);
+  });
+
   @override
   bool drainMicrotasks({int maxJobsHint = -1}) {
     if (_depth != 0) {
@@ -587,33 +709,25 @@ final class _NativeFunction extends _NativeObject implements FlaxJsFunction {
     FlaxJsValue thisValue = const FlaxJsUndefined(),
   }) => _runtime._entry((arena) {
     _check(_runtime);
-    final ids = <int>[];
-    try {
-      final receiver = _runtime._encode(arena, thisValue);
-      ids.add(receiver);
-      final inputs = arena<Uint64>(arguments.length + 1);
-      for (var i = 0; i < arguments.length; i++) {
-        inputs[i] = _runtime._encode(arena, arguments[i]);
-        ids.add(inputs[i]);
-      }
-      final output = arena<Uint64>();
-      _runtime._checked(
-        arena,
-        (error) => _runtime._calls.call(
-          _runtime._handle,
-          _id,
-          receiver,
-          inputs,
-          arguments.length,
-          output,
-          error,
-        ),
-      );
-      return _runtime._read(arena, output.value);
-    } finally {
-      for (final id in ids) {
-        _runtime._release(arena, id);
-      }
+    final receiver = arena<FlaxBindingArgument>();
+    _runtime._bindingArgument(arena, receiver.ref, thisValue);
+    final inputs = arena<FlaxBindingArgument>(arguments.length + 1);
+    for (var i = 0; i < arguments.length; i++) {
+      _runtime._bindingArgument(arena, inputs[i], arguments[i]);
     }
+    final output = arena<Uint64>();
+    _runtime._checked(
+      arena,
+      (error) => _runtime._bindingCall(
+        _runtime._handle,
+        _id,
+        receiver,
+        inputs,
+        arguments.length,
+        output,
+        error,
+      ),
+    );
+    return _runtime._read(arena, output.value);
   });
 }

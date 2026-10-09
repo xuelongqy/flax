@@ -121,7 +121,7 @@ and is ignored by explicit config discovery.
 Third-party authors: start from [docs/author-template.md](docs/author-template.md) and
 the copyable skeleton under [example/author_template/](example/author_template/).
 
-Protocol 22 includes ordinary references, returned objects, setters, static properties
+Protocol 23 includes ordinary references, returned objects, setters, static properties
 with explicit setters, abstract factories, typed List/Map conversion, stored callbacks,
 shared generic owners, validated concrete constructor specializations and explicitly
 selected proxies. Objects need no dispose method. Contexts/State remain borrowed, and
@@ -146,10 +146,10 @@ Dart runtime erasure. Explicit generic arguments preserve the declared relations
 complete Dart-equivalent inference is not required. Callback rejection diagnostics name
 the unsupported parameter or result position, including nested callback signatures.
 
-Protocol 22 expands selected inherited instance surfaces before emission and separates
+Protocol 23 expands selected inherited instance surfaces before emission and separates
 ordinary Object interop from explicitly selected `data` positions. Enum results are
-canonicalized by the shared Dart encoder, not individual generated wrappers. Previous
-protocol 18 and 19 modules and bundles are rejected.
+canonicalized by the shared Dart encoder, not individual generated wrappers. Earlier
+protocol modules and bundles are rejected.
 
 See [binding selections](../../docs/architecture/bindings.md),
 [interop and limits](../../docs/architecture/interop.md), and
@@ -210,21 +210,37 @@ Required inputs remain required. The SDK test reports constructor call counts an
 generated sizes.
 
 Widget constructor callbacks share ordinary typed result conversion, including selected
-Widget interfaces, nullable results, supported Futures and direct typed Widget lists.
-`BuildContext` is an ordinary callback argument. No callback name or public YAML
-lifecycle marker is required. The actual Widget is preserved without an extra result
-host; configuration references and GC own its bridge dependencies. A separately named
-plugin fixture verifies generation, repeated mounting and native configuration reuse.
-Widget-containing Records and non-list Widget collections remain outside the callback
-conversion contract. See [lazy list ownership](../../docs/architecture/lists.md).
+Widget interfaces, nullable results, supported Futures/Streams and finite
+List/Set/Map/Record aggregates and finite `Iterable<Widget>` values. `BuildContext` is
+an ordinary callback argument. No callback name or public YAML lifecycle marker is
+required. The actual Widget is preserved without an extra result host; configuration
+references and GC own its bridge dependencies. A separately named plugin fixture
+verifies generation, repeated mounting and native configuration reuse. Nullable
+containers and nullable Widget elements share this conversion. An `Iterable<Widget>`
+callback accepts ordinary JS arrays/Sets and compatible Dart List/Set references,
+including concrete Widget types and supported Future/FutureOr/Stream compositions. Its
+signature can be selected automatically; actual lazy/custom iterators are rejected at
+conversion before iteration. Generated TS callback inputs expose arrays, Sets and Dart
+references instead of arbitrary JS iterators. Normal Dart method Iterable views retain
+their existing lazy behavior. See
+[lazy list ownership](../../docs/architecture/lists.md).
 
 Direct `BuildContext` inputs are ordinary borrowed references in automatic and explicit
 selection. Functions, constructors, instance/static methods, setters, returned Dart
 functions and supported collection inputs reuse the mounted Context supplied by JS.
 Passing or storing it does not extend its Flutter lifetime. Each conversion rejects
 forged, foreign-session and inactive references; nullable inputs retain normal null and
-omission semantics. Arbitrary Context outputs remain unsupported; native-to-JS callback
-arguments borrow the actual native Element through a weak reference.
+omission semantics. Direct `BuildContext` / `BuildContext?` function, method and getter
+results and JS callback results use the same weak borrowed identity. Supported callback
+results include `BuildContext?`, typed finite collections/Records and
+`Future<BuildContext>` / `FutureOr<BuildContext?>`. A non-null Future still requires a
+Promise; `FutureOr<T?>` also accepts synchronous null. Each completed Context is checked
+against its current session and mounted state, so a Promise settling after unmount is
+rejected. A JS Context wrapper does not keep an Element alive; `.mounted` becomes false
+and other access fails. Ordinary Dart collections and closures still retain their actual
+values. Context-containing Stream callbacks and supported Future/Stream combinations use
+the same conversion, including derived `toList()` reads. See
+[Context return examples](../../docs/architecture/interop.md#context-results).
 
 Ordinary functions, object constructors, instance/static methods, and returned Dart
 functions invoke callbacks directly with their original arguments and results. Context
@@ -335,14 +351,21 @@ application retain API. ValueListenableBuilder and ListenableBuilder preserve th
 static-child optimization and listener lifecycle. See
 [Widget interop](../../docs/architecture/interop.md#widget-configuration-and-mounting).
 
-UI protocol 22 treats selected Dart `Stream<T>` values as lazy, typed references in both
+UI protocol 23 treats selected Dart `Stream<T>` values as lazy, typed references in both
 directions. The same model is used for parameters, results, callbacks, Futures and typed
 collections. Generated Stream views retain Dart identity and event conversion; `listen`,
 subscription control, controllers, sinks, transformers and iterators call the real
 dart:async APIs. `Stream.fromAsyncIterable` and the generated async iterator form the
 two explicit JS iterable boundaries. They are unrelated to Fetch `ReadableStream`.
+Context events retain their real Dart references while each JS conversion checks the
+current session and mounted state. Compiled Record projections preserve registered field
+conversions through erased Stream operators and derived collection reads; they add no
+Record identity or per-value ownership. Copied JS Records retain their generated shape
+through a weak association; erased callback returns revalidate each field. Fresh JS
+objects require a concrete Record position. Unknown or ambiguous erased Dart Record
+shapes fail closed instead of guessing a conversion.
 
-Protocol 22 supports Future-returning generated callbacks. Incoming JavaScript must
+Protocol 23 supports Future-returning generated callbacks. Incoming JavaScript must
 return a Promise or thenable; generated Dart adapters expose the exact `Future<T>` shape
 and apply the existing typed conversion when it completes. Selected Future parameters,
 Future collections and `FutureOr` positions are also generated for the dart:async
@@ -366,7 +389,7 @@ their concrete type check. Asynchronous lifecycle overrides and nested Stream ev
 exclusions remain unchanged. See the
 [interop examples](../../docs/architecture/interop.md#future-and-stream-callback-combinations).
 
-Protocol 22 callback models also preserve optional positional parameters, named
+Protocol 23 callback models also preserve optional positional parameters, named
 parameters and function-local generics. Generated Dart adapters use a private omission
 sentinel and direct call branches so Dart and JS defaults execute at their real call
 sites. TS retains generic bounds; runtime calls erase them to analyzer-resolved
@@ -375,7 +398,7 @@ parameter. Public fully closed bounds retain nested generic arguments and nullab
 Dependent or recursive bounds that still contain unresolved type parameters fail
 generation unless an explicit legal specialization is selected.
 
-Protocol 22 also recognizes Iterable and Set throughout generated types and conversion
+Protocol 23 also recognizes Iterable and Set throughout generated types and conversion
 metadata. DartIterable and DartSet wrappers preserve real Dart collection identity;
 iteration and explicit copies use one bulk host call and retain repeated references and
 cycles.
@@ -444,6 +467,11 @@ each mount must return a fresh JS State. Unoverridden factories preserve native 
 State variants still require a compatible Dart State type; a variant composed for
 `State<StatefulWidget>` cannot impersonate `State<ConcreteWidget>`.
 
-Manifest 16 requires `native-widget-proxies`; selection format 2, UI protocol 22 and
-native ABI 2 remain unchanged. Source packages provide implementations and types
+Manifest 16 requires `native-widget-proxies`; selection format 2 and native ABI 2 remain
+unchanged. UI protocol 23 requires regeneration of older generated modules. Generated
+proxies share member metadata and retain one actual JS receiver peer per Dart instance.
+Current lookup preserves private/arrow fields, inheritance and later member replacement.
+Ordinary wrappers share prototypes and standard method receivers; extracting a method
+requires explicit `.call()` or `.bind()`. No per-member forwarding callbacks or
+additional GC mechanism are generated. Source packages provide implementations and types
 packages declare the same callable/constructible exports. Core remains implicit.

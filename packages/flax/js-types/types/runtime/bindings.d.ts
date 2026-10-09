@@ -1,6 +1,6 @@
 import { type Binding, type ReadonlySignal } from './index.js';
 /** Experimental generated-binding extension. Independent of the native C ABI. */
-export declare const bindingVersion = 22;
+export declare const bindingVersion = 23;
 export type Bindable<T> = T | Binding<T>;
 export interface DartValue {
     readonly kind: 'value';
@@ -139,7 +139,6 @@ export declare function isBinding(value: unknown): value is Binding<unknown>;
 /** Called by generated constructors, never a second handwritten widget catalog. */
 export declare function construct(kind: 'widget' | 'value' | 'route' | 'page', type: string, ctor: string, parameters: readonly Parameter[], positional: readonly unknown[], options: Readonly<Record<string, unknown>>): WidgetDescription | DartValue;
 export declare function enumValue<T extends DartEnum>(type: T['type'], name: string): T;
-/** Generated declarations select the only fields available to application JS. */
 export declare function defineContext(type: string, fields: readonly string[]): void;
 export declare function contextHandle(value: unknown, type: string): number | null | undefined;
 export declare function invokeStatic(type: string, member: string, args: readonly unknown[]): unknown;
@@ -170,7 +169,7 @@ export declare function invokeStream(receiver: object, type: string, method: str
 export declare function constructObject(_kind: 'object', type: string, ctor: string, parameters: readonly Parameter[], positional: readonly unknown[], options: Readonly<Record<string, unknown>>): object;
 /** Records a generic factory call until a concrete Dart parameter supplies T. */
 export declare function constructDeferredObject(type: string, factory: string, parameters: readonly Parameter[], positional: readonly unknown[], options: Readonly<Record<string, unknown>>): object;
-export declare function constructProxy(type: string, parameters: readonly Parameter[], args: readonly unknown[], implementation: object, names: readonly string[], getters: readonly string[], setters: readonly string[]): object;
+export declare function constructProxy(definition: ProxyDefinition, args: readonly unknown[], implementation: object): object;
 /** Generated signatures remain in TypeScript; executable forwarding is shared. */
 export interface ProxyDefinition {
     readonly nativeWidget?: boolean;
@@ -185,7 +184,7 @@ export interface MemberParameter extends Parameter {
     readonly context?: string;
 }
 export declare abstract class FlaxProxyBase {
-    protected constructor(prototype: object, definition: ProxyDefinition, args: readonly unknown[]);
+    protected constructor(definition: ProxyDefinition, args: readonly unknown[]);
 }
 /** Keeps descriptor calls and native subclass construction on one public export. */
 export declare function widgetProxyFactory<F extends object, C extends abstract new (...args: never[]) => object>(factory: F, native: C): F & (new (...args: ConstructorParameters<C>) => InstanceType<C>);
@@ -196,7 +195,7 @@ export declare function defineStateMembers(prototype: object, methods: Readonly<
  * Attaches a newly-created Dart extends proxy to the JS instance currently
  * being initialized by a generated abstract base class.
  */
-export declare function constructExtendedProxy(receiver: object, basePrototype: object, type: string, parameters: readonly Parameter[], args: readonly unknown[], names: readonly string[], getters: readonly string[], setters: readonly string[], superMembers: readonly string[], widgetType?: number): void;
+export declare function constructExtendedProxy(receiver: object, definition: ProxyDefinition, args: readonly unknown[], widgetType?: number): void;
 export declare function invokeProxySuper(receiver: object, type: string, member: string, args: readonly unknown[]): unknown;
 export declare function invokeObject(receiver: object, type: string, method: string, args: readonly unknown[]): unknown;
 export declare function invokeObjectStatic(type: string, member: string): unknown;

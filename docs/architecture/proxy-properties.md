@@ -1,18 +1,18 @@
 # Generated proxy properties
 
-UI protocol 22 supports required properties on ordinary `proxy: extends` and
+UI protocol 23 supports required properties on ordinary `proxy: extends` and
 `proxy: implements` bindings. Native ABI 2 is unchanged. The JS entry remains
 `SomeType.implement(arguments, implementation)`; application classes do not need
 handwritten Dart bridges.
 
 ## Accessors and types
 
-An implementation supplies explicit JavaScript `get` and `set` accessors. Flax inspects
+An implementation supplies JavaScript accessors or ordinary data fields. Flax inspects
 property descriptors, including inherited descriptors, without invoking getters during
-validation. It captures each accessor with the original implementation as `this`.
-Replacing a descriptor later does not replace the captured implementation. Plain data
-fields are rejected at runtime; TypeScript's structural property types cannot enforce
-that syntax distinction.
+construction validation. Each Dart access resolves the current member and uses the
+actual implementation object as `this`. Later instance and prototype replacements take
+effect immediately; private fields and initialized arrow fields keep ordinary JS
+semantics. Required writes reject readonly data fields and accessors without a setter.
 
 Every Dart read invokes the getter once, and every Dart write invokes the setter once.
 There is no value mirror, implicit notification or signal subscription. Getter and
@@ -33,23 +33,26 @@ application JS has the reverse read/write directions. Scalars, enums, references
 collections and supported synchronous functions reuse the common converter. TS preserves
 generic relationships; Dart uses the configured concrete arguments.
 
-Private properties, Future values, properties requiring a Widget/Route mounting owner,
-concrete-accessor overrides and accessor super calls are unsupported. State host proxies
-keep their existing selected lifecycle/super mechanism.
+Private properties, Future values and properties requiring a Widget/Route mounting owner
+are unsupported. Eligible extends proxies support concrete accessors and explicit
+`super` calls through generated direct Dart parent entries. State host proxies keep
+their existing selected lifecycle/super mechanism.
 
 ## Construction and lifetime
 
-Generated typed callback fields are initialized before the selected generative Dart
-parent constructor. A real parent-constructor property access can therefore call JS;
-Flax validation does not simulate those accesses. Getter, setter and method callback
-identifiers are distinct.
+The generated Dart subclass holds one receiver peer, initialized before the selected
+Dart parent constructor. Methods, reads and writes have distinct shared operation slots.
+A real parent-constructor access may call JS; validation does not simulate it. Fields
+initialized after JS `super()` are only available after that construction phase.
+Explicit JS `super` is rejected until the Dart object handle has been attached.
 
-Callbacks use the existing invocation guard, escaped-function Finalizer and session
-cleanup. Temporary conversion resources are released on success or failure. A failed
-constructor may have already retained a callback in Dart, so Flax does not revoke an
-escaped callback prematurely. Unretained callbacks are reclaimed by the Dart Finalizer;
-session close deterministically revokes all remaining bridge entries without waiting for
-GC or disposing application objects. There is no cross-language cycle collector.
+The peer uses the existing invocation guard and typed callback converters, with no
+per-member forwarding callback. A Dart business root keeps the actual JS receiver; a JS
+wrapper or extends instance keeps its Dart peer. An independently retained `implement`
+object does not retain every proxy that uses it. The maintained engine reclaims rootless
+cycles. Temporary conversions are released on success or failure. Failed construction
+releases the pending receiver facade. Session close deterministically revokes bridge
+entries without waiting for GC or disposing application objects.
 
 Returned Dart function wrappers use Dart function equality and the complete conversion
 signature. In particular, repeated instance-method tear-offs can compare equal without

@@ -9,7 +9,7 @@
     {
       "name": "material",
       "moduleId": "flax.material/material",
-      "uiProtocol": 22,
+      "uiProtocol": 23,
       "requiredCapabilities": [
         "native-widget-proxies"
       ],

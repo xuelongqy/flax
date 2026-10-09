@@ -1,6 +1,6 @@
 # Collections, Generics and Generated Proxies
 
-UI protocol 22 shares one conversion and reference mechanism across selected Dart APIs.
+UI protocol 23 shares one conversion and reference mechanism across selected Dart APIs.
 [Bridge references](references.md) describes callback and reference GC;
 [object ownership](objects.md) describes application disposal and session shutdown.
 
@@ -89,12 +89,82 @@ passes that same instance back through roots, children, builders, components and
 content. It adds no Element and preserves the actual runtimeType and key. DartList of
 Widget becomes a structural snapshot when accepted as children. The Widget collection
 boundary supports reading, copying and removal. Inserting or replacing Widgets from JS
-remains unsupported. Direct non-null `List<Widget>` callback parameters and results are
-supported; other Widget collection callback shapes remain fail-closed. Single Widget
-arguments support Dart retention as described below. Widget references are accepted only
-at Widget positions, not ordinary Object/dynamic inputs. Flax hosts also retain their
-description resources. The application root holds the session until its subtree
-unmounts, even when it consists entirely of native Widgets.
+remains unsupported. Finite List/Set/Map/Record and Iterable Widget callback parameters
+and results are supported, including nullable containers/elements and
+Future/FutureOr/Stream compositions. A completed JS value promotes each contained Widget
+configuration before temporary conversion holds are released. Typed Widget lists become
+readonly snapshots that preserve concrete element types, including inside Maps and
+Records. Arbitrary lazy Widget Iterables remain unsupported in callback positions; their
+declared signatures can bind, but actual values must be JS arrays/Sets or compatible
+Dart Lists/Sets. The check precedes iterator access and execution, including overridden
+JS Set iterators. For example, `Iterable<Widget> Function()` can accept
+`() => [Text('One'), Text('Two')]` or a callback returning `new Set([Text('One')])`. A
+JS generator or a Dart `children.map(...)` view must first be materialized by
+application code. Normal native Iterable method results keep their existing lazy
+behavior. Callback collection/Stream views keep this constraint even when an ordinary
+view was created earlier. Checked async completions preserve the actual Widget instances
+and reuse native containers when their children need no adaptation. The native
+SearchAnchor fixture covers synchronous Set and asynchronous array suggestions without
+adding a production SearchAnchor binding. Single Widget arguments support Dart retention
+as described below. Widget references are accepted only at Widget positions, not
+ordinary Object/dynamic inputs. Flax hosts also retain their description resources. The
+application root holds the session until its subtree unmounts, even when it consists
+entirely of native Widgets.
+
+### Context results
+
+Direct `BuildContext` and `BuildContext?` function, method, getter and callback results
+reuse the same session-local borrowed reference as callback arguments. This applies to
+incoming JS callbacks and returned Dart functions, including typed finite
+List/Set/Map/Record values and Future/FutureOr/Stream results. For example, these
+selected Dart signatures use an existing Context supplied by Flutter:
+
+```dart
+BuildContext readContext(BuildContext Function() read) => read();
+Future<BuildContext> readLater(Future<BuildContext> Function() read) => read();
+```
+
+```ts
+// context came from a Builder in this Session.
+readContext(() => context);
+readLater(async () => context);
+```
+
+JS cannot manufacture a Context. Forged objects, wrong types, foreign-session values,
+inactive references and unmounted Elements are rejected on each conversion, including
+when a Promise settles. `BuildContext?` accepts null; undefined is not a Context result.
+`FutureOr<BuildContext?>` accepts a synchronous null or a Promise resolving null. A
+non-null Future itself still requires a Promise or callable thenable.
+
+The JS Context reference is weak: keeping that alias does not keep the Element alive.
+After unmount, `.mounted` is false and other access fails. Ordinary Dart collections,
+closures and completed Futures retain their real values according to Dart's reference
+rules; retaining one may keep the Element object alive, but cannot keep it mounted.
+Session close revokes retained JS callbacks and rejects pending completions without
+waiting for GC. Context Stream callbacks use the same conversion; each delivered value
+must still refer to an active, mounted Context in the receiving session. Stream sources
+retain their real Dart values, without extending their mounted lifetime.
+
+```dart
+Stream<BuildContext?> readContexts(Stream<BuildContext?> Function() read) => read();
+```
+
+```ts
+import { Stream } from '@flax/dart/async';
+
+const contexts = readContexts(() => Stream.fromIterable([context, null]));
+const values = await contexts.toList();
+values.get(0) === context; // Same borrowed identity.
+values.get(1) === null;
+```
+
+Supported Future/Stream combinations and finite aggregate events recurse through this
+conversion. Registered Record field projections also survive generic Stream operators,
+`first`, `toList().get()` and collection copies, including nested Records and callbacks.
+Copied JS Records keep a weak association with their generated shape when returned from
+an erased callback; every field is validated again. Fresh JS objects and structural
+clones require a concrete Record position. Unknown or ambiguous erased Dart Record
+shapes are rejected. No additional Stream retention or GC mechanism is required.
 
 A returned builder borrows the supplied native Context and its Flutter lifecycle. It
 does not manufacture an Element, extend Context lifetime or execute during conversion.
@@ -133,7 +203,7 @@ Widget unmount does not cancel an already returned Future. Session closing compl
 pending Futures with `StateError('FlaxSessionClosed')`, drops their observers and
 ignores later settlement. Promise cancellation is not inferred.
 
-## Dart Stream and FutureOr (UI protocol 22)
+## Dart Stream and FutureOr (UI protocol 23)
 
 Selected Dart `Stream<T>` / `Stream<T>?` results and parameters use the JS interop type
 **`FlaxStreamReference<T>`** (`@flax/core/bindings`). Generated Flutter bindings still
@@ -351,17 +421,18 @@ configuration wins. JS keeps `SomeType.implement(arguments, implementation)` for
 contract-style use. An extends proxy also emits a real TypeScript abstract class so
 application code can use normal `class Derived extends SomeType` syntax.
 
-An extends proxy initializes callback fields before calling its selected generative
+An extends proxy initializes one receiver peer before calling its selected generative
 super constructor. Selected concrete virtual methods and accessors may be overridden in
 JS; omitted overrides execute Dart `super`, and JS `super.foo()` uses a generated direct
 parent entry so it cannot recurse through the virtual override. An implements proxy
 supplies the entire effective interface. Generated direct Dart overrides invoke the
-shared callback conversion; there is no parallel Flax abstract-class hierarchy or
-reflection.
+shared typed conversion through that peer; there is no parallel Flax abstract-class
+hierarchy or reflection.
 
-Required getters and setters use explicit JS accessors with synchronous typed
-conversion. The generator resolves effective inherited properties and prepares callbacks
-before the parent constructor. See
+Required properties use JS accessors or ordinary data fields with synchronous typed
+conversion. The generator resolves effective inherited properties and prepares the peer
+before the parent constructor. Native lookup reads the current member, including arrow
+fields and later prototype or instance replacements, with the actual JS receiver. See
 [proxy properties and ValueListenable](proxy-properties.md).
 
 Proxy methods support the same positional, named and generic callback model, including
@@ -371,7 +442,7 @@ pre-yield boundary: calling `super` before the first `await` is valid; calling i
 after an `await` fails. A returned Promise that rejects preserves that rejection, while
 a Promise that resolves without the required pre-yield call completes with the
 `mustCallSuper` error. A Dart super constructor may dispatch to a JS override because
-callbacks exist before the parent constructor runs, but that callback cannot call JS
+the peer exists before the parent constructor runs, but that callback cannot call JS
 `super` until Dart object construction has returned and the object handle is attached.
 Such a call fails explicitly instead of recursing or using a partially initialized
 handle. Asynchronous properties, private members, non-virtual concrete overrides and

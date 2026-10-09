@@ -15,5 +15,6 @@ addError(error: {}, stackTrace?: Readonly<{ "__flaxBound:dart:core::StackTrace":
 close(): void;
 }
 defineObject("flax.core/flutter#type:EventSink", [], [], _flaxBindingMethods("flax.core/flutter#type:EventSink", "object", {"add":_flaxMemberParameters0,"addError":_flaxMemberParameters1,"close":_flaxMemberParameters2}), []);
+const _EventSinkProxy = {type: "flax.core/flutter#type:EventSink", parameters: [], methods: {"add":_flaxMemberParameters0,"addError":_flaxMemberParameters1,"close":_flaxMemberParameters2}, getters: [], setters: [], superMembers: []} as const;
 export namespace EventSink { export function implement<T extends unknown | null = unknown | null>(args: [], implementation: {add: ((event: T) => void); addError: ((error: {}, stackTrace?: upstream1.StackTrace | null) => void); close: (() => void)}): EventSink<T> {
-return constructProxy("flax.core/flutter#type:EventSink", [], args, implementation, ["add","addError","close"], [], []) as EventSink<T>; } }
+return constructProxy(_EventSinkProxy, args, implementation) as EventSink<T>; } }

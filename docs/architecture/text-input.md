@@ -1,7 +1,8 @@
 # Material Text Input and Focus
 
-Implemented for macOS arm64 Hermes/V8 with UI protocol 22. All selected calls use
-generated Dart APIs; no Controller-specific validation or formatter fallback is added.
+Implemented with the maintained Flutter engine and UI protocol 23. All selected calls
+use generated Dart APIs; no Controller-specific validation or formatter fallback is
+added.
 
 ## Selected API
 

@@ -10,12 +10,37 @@ fail-closed.
 
 The analyzer-based generator resolves selected public APIs and emits Dart calls,
 TypeScript declarations and shared parameter metadata. Configuration, parsing/model and
-emission remain separate. UI protocol 22 reuses the unchanged native C ABI (ABI 2).
+emission remain separate. UI protocol 23 reuses the unchanged native C ABI (ABI 2).
 
 The `FlaxCodegen*Model` graph produced by parsing is the semantic IR between analyzer
 resolution and emission. It carries resolved types, generics, inheritance, Widget and
 callback roles, and capabilities such as `Disposable`. Emitters consume that semantic
 model; they do not infer application ownership or lifecycle policy from method names.
+
+## Shared member dispatch
+
+Ordinary object, Context, State and Stream wrappers share one frozen JS prototype per
+bound type. Members resolve to validated numeric operation slots once per session;
+subsequent calls pass the slot, receiver handle and typed arguments. The operation table
+contains binding metadata and provider context, never a business-instance root.
+Top-level and static calls use the same table with receiver zero. Conversion, ownership,
+provider visibility and foreign-receiver checks remain at the Dart boundary.
+
+Generated Dart subclasses retain one peer for the actual JS receiver. Shared member
+metadata goes through internal engine binding extension 1. The engine looks up the
+current property and invokes it with real `this`; it does not snapshot callbacks or wrap
+the business instance in a JS Proxy. Unchanged generated delegates report an unhandled
+result and the typed Dart override calls `super` directly. Explicit JS super uses the
+selected direct parent entry, preserving generics, defaults and must-call-super. Private
+fields, arrow fields, inheritance and later member replacement stay ordinary JS.
+
+Methods use standard receiver semantics. A saved `const call = object.method` requires
+`call.call(object, ...)` or explicit `.bind(object)`; wrappers no longer allocate a
+bound method for each instance. Required properties accept accessors and writable data
+fields. UI protocol 23 rejects old generated modules; Manifest 16, selection 2 and
+native ABI 2 remain unchanged. Regeneration can replace an old owned module inventory,
+but runtime loading still rejects its protocol. See
+[proxy properties](proxy-properties.md).
 
 ## Selection and generation
 
@@ -192,11 +217,11 @@ selection skips the conflicting write with `static_setter_export_collision`.
 Manifest 16 stores static accessor types and distinct operation IDs:
 `#read:Counter.count` and `#function:Counter.count%3D`. Class IDs and unrelated
 operation IDs retain their identities. All workspace manifests are regenerated; older
-formats are rejected. Selection 2, UI protocol 22 and native ABI 2 are unchanged. Core
-remains implicit and cannot be republished. Non-Core packages can bind the same source
-independently; automatic reuse requires the complete requested read/write surface from a
-unique dependency provider. Types packages publish declarations and source packages
-publish implementations through the existing plugin injection path.
+formats are rejected. Selection 2 and native ABI 2 are unchanged; the active UI protocol
+is 23. Core remains implicit and cannot be republished. Non-Core packages can bind the
+same source independently; automatic reuse requires the complete requested read/write
+surface from a unique dependency provider. Types packages publish declarations and
+source packages publish implementations through the existing plugin injection path.
 
 Static state belongs to the Dart application and can be shared across sessions. Closing
 a session clears bridge resources without rolling back state or disposing application
@@ -212,7 +237,7 @@ See
 ## Literal module tuple and registration
 
 Generated Dart and JavaScript modules carry literal `moduleId`, `uiProtocol` and
-`requiredCapabilities` values. The active UI protocol is 22 and native ABI is 2.
+`requiredCapabilities` values. The active UI protocol is 23 and native ABI is 2.
 `uiProtocol` is the required field for module compatibility; there is no parallel
 `version` field or ambient Core fallback.
 
@@ -297,11 +322,14 @@ trailing omission; provided arguments after a hole are rejected.
 
 Direct Context inputs are supported by automatic and explicit selection in functions,
 constructors, methods, setters, returned Dart functions and supported collections. They
-borrow an existing Context from the same active session. Dart may store it, but binding
-does not extend the Flutter element's lifetime; subsequent bridge inputs reject inactive
-or unmounted references. JS cannot forge a Context or construct one. Arbitrary Context
-outputs remain unsupported; native-to-JS callback arguments weakly borrow the actual
-Flutter Element without requiring a Flax mount owner.
+borrow an existing Context from the same active session. Direct results and callback
+results reuse this identity, including nullable results, typed finite aggregates and
+Future/FutureOr completion. The JS wrapper is weak; ordinary Dart references retain
+their own values. Each conversion rejects inactive or unmounted references, including
+async completion after unmount. JS cannot forge or construct a Context, and no Flax
+mount owner is required. Context-containing Stream callbacks, supported Future/Stream
+combinations and derived collection reads reuse the same conversion; see
+[Context results](interop.md#context-results).
 
 Widget parameters except key may bind. Ordinary object construction and writes do not
 bind. Callbacks support required/optional positional parameters, required/optional named
@@ -313,12 +341,15 @@ declared relationship. A callback declared to return Future requires a JS Promis
 thenable and produces the typed Dart Future awaited by the caller. Future-returning Dart
 members use the reverse conversion and the same UI checkpoint. Future and FutureOr
 values compose recursively through supported collection, Record and callback positions
-under protocol 20; nested completion values retain their own declared async semantics.
-Asynchronous lifecycle/build callbacks and Map callback keys remain unsupported. Direct
-non-null `List<Widget>` callback parameters and results are supported; nullable-element
-lists and other Widget collection shapes remain fail-closed. Dart Stream references can
-appear in parameters, results, callbacks and typed collections, including nested
-ordinary value shapes; they follow
+under protocol 23; nested completion values retain their own declared async semantics.
+Asynchronous lifecycle/build callbacks and Map callback keys remain unsupported. Finite
+List/Set/Map/Record and Iterable Widget callback parameters and results support nullable
+containers and elements. Iterable callback signatures accept JS arrays/Sets and Dart
+Lists/Sets; actual arbitrary lazy iterators remain fail-closed at conversion. The same
+rule applies to selected Widget subclasses/interfaces and supported asynchronous
+compositions, while ordinary native method Iterable views stay lazy. Dart Stream
+references can appear in parameters, results, callbacks and typed collections, including
+nested ordinary value shapes; they follow
 [ADR 0020](../decisions/0020-complete-dart-stream-interop.md). The JS interop handle is
 `FlaxStreamReference` (not a `Dart*` alias and not Web `ReadableStream`). Generated
 Flutter bindings expose the selected dart:async Stream family and call real Dart
@@ -418,6 +449,17 @@ ignores extra properties, validates field nullability independently from whole-R
 nullability, and reconstructs a real Dart Record. Records themselves have no wire ID,
 owner or session reference identity; provider-owned objects nested inside fields retain
 their normal identity. Manifest 16 carries the complete current Record shape.
+
+Generated modules also register compiled Record signatures, native type checks and field
+accessors. An erased `Object?` result, including `Stream<Record>.toList().get()`,
+selects an unambiguous registered projection using the existing
+Core/current-package/dependency provider order. Its fields retain the ordinary typed
+conversion. A weak association preserves this generated shape when a copied JS Record
+passes through an erased callback; its fields are checked again before reconstruction.
+Signatures describe compiled shapes, not object identities or business-object roots.
+Unknown or ambiguous erased Dart Records are rejected. Fresh JS objects use their
+declared Record position; spreading or cloning an object does not copy the weak shape
+association. Direct typed Record positions do not require inference.
 
 Generic declarations use one shared Dart owner while TypeScript keeps the declared type
 parameters. An unconstrained owner uses `Object?`; a simple upper bound such as `num` is
@@ -643,8 +685,9 @@ prototype once. TypeScript interface merging retains each class's exact typed su
 abstract requirements remain abstract declarations. JavaScript subclasses can use real
 `super.operatorAdd(value)`, which calls the Dart superclass implementation without
 redispatching to the JavaScript override. Ordinary objects, State references and Streams
-reuse `bindingMethods`; detached object methods keep their bound receiver. State variant
-native methods reuse `defineStateMembers`.
+reuse shared prototypes and method forwarding. Detached methods follow standard JS
+receiver rules and require explicit `.call(receiver, ...)` or `.bind(receiver)`. State
+variant native methods reuse `defineStateMembers`.
 
 Select class operators separately from ordinary methods:
 
@@ -688,7 +731,7 @@ bridge call is added.
 Manifest 16 records both the Dart operator and its JS method alias and rejects previous
 formats. Provider reuse requires the requested operator surface. Core injection,
 provider isolation and source/types package ownership are unchanged. Selection format 2,
-UI protocol 22 and native ABI 2 are unchanged.
+The active UI protocol is 23; native ABI 2 is unchanged.
 
 Flutter ownership remains specialized: `FlaxWidgetHost`, `FlaxStateProxy`,
 `FlaxRouteLease` and `FlaxPageRoute` retain mount, State, route callback and disposal

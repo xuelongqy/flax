@@ -100,11 +100,12 @@ listeners; no polling is used. onstorage shares that same dispatcher.
 
 ## Supported scope
 
-Verified targets remain macOS arm64 Hermes and V8, UI protocol 22 and native ABI 2.
-There is no encryption, TTL, sessionStorage, automatic JSON or cross-isolate/process
-shared notification contract. Separate processes can reopen persisted storage after the
-previous owner closes. Applications must coordinate process and isolate ownership of a
-storage directory.
+Storage uses UI protocol 23 and native ABI 2 with the [maintained engine](runtime.md).
+The current owner-package runtime gate exercises macOS arm64 V8; it does not certify
+storage persistence or notifications on other platforms. There is no encryption, TTL,
+sessionStorage, automatic JSON or cross-isolate/process shared notification contract.
+Separate processes can reopen persisted storage after the previous owner closes.
+Applications must coordinate process and isolate ownership of a storage directory.
 
 Storage JS/types live in `packages/flax_local_storage/js`; embedded source is generated
 into the Dart package. It imports no Fetch or WebSocket implementation. Owner framework

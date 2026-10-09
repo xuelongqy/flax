@@ -61,7 +61,10 @@ including values that Dart cannot target with a weak reference.
 Context borrowing never keeps an Element mounted or alive. The bridge rejects forged,
 foreign-session, inactive and unmounted inputs. `mounted` reports the native state;
 other operations require a live mounted Context. Reparenting a live Element preserves
-its identity.
+its identity. JS callbacks can return that same borrowed Context, synchronously or
+through supported Future/FutureOr and typed finite aggregates. Validation also runs at
+async settlement. A real Dart closure or collection may still retain its contained
+Element as an ordinary business reference; it does not keep that Element mounted.
 
 ## Shared implementation
 
@@ -84,8 +87,8 @@ cache, timer or FinalizationRegistry is needed. The cache prunes protocol identi
 does not root business values. Conditional engine tracing owns cross-heap reachability,
 including idle and allocation-pressure GC.
 
-The binding protocol, native ABI, generated APIs and JS calls are unchanged. The helper
-is internal, with no separate package or public lifetime configuration.
+The lifetime mechanism is internal, with no separate package or public lifetime
+configuration. Binding transport uses UI protocol 23 and the unchanged native ABI 2.
 
 ## Boundaries
 

@@ -1,5 +1,5 @@
 {
-  "formatVersion": 14,
+  "formatVersion": 16,
   "package": "your_package",
   "bindingNamespace": "vendor.example",
   "imports": [
@@ -9,8 +9,10 @@
     {
       "name": "example",
       "moduleId": "vendor.example/example",
-      "uiProtocol": 22,
-      "requiredCapabilities": [],
+      "uiProtocol": 23,
+      "requiredCapabilities": [
+        "native-widget-proxies"
+      ],
       "model": {
         "library": "package:your_package/api.dart",
         "jsPackage": "@your-scope/your-package",
@@ -254,7 +256,8 @@
                 "startsRoute": false,
                 "typeParameters": [],
                 "mustCallSuper": false,
-                "deferredFactory": false
+                "deferredFactory": false,
+                "operator": null
               }
             ],
             "widgetInterfaces": [],

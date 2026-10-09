@@ -220,7 +220,10 @@ void main() {
       await t.pump();
       expect(built, [const ValueKey('theme-count')]);
       expect(h.constructions, constructions);
-      expect(h.runtime.hostCalls['__flaxCall'], memberCalls['__flaxCall']);
+      expect(
+        h.runtime.hostCalls['__flaxInvokeOperation'],
+        memberCalls['__flaxInvokeOperation'],
+      );
       expect(h.number('themes.staticBuilds'), 1);
       debugPrint(
         'Theme signal cost: ${h.runtime.hostCalls.map((key, value) => MapEntry(key, value - (memberCalls[key] ?? 0)))}; no Dart value constructions.',
@@ -252,7 +255,8 @@ void main() {
       await collectWidgetConfigurations(t);
       final handles = h.runtime.handles;
       final subscriptions = h.runtime.activeSubscriptions;
-      final bridge = h.runtime.hostCalls['__flaxCall'] ?? 0;
+      final bridge =
+          h.runtime.hostOperations['__flaxInvokeOperation:static'] ?? 0;
       final localReads = h.number('themes.localBuilds');
       for (var i = 0; i < 20; i++) {
         await t.pumpWidget(app(view, i.isEven ? light : dark));
@@ -261,7 +265,10 @@ void main() {
       }
       await collectWidgetConfigurations(t);
       expect(h.runtime.handles, handles);
-      expect(h.runtime.hostCalls['__flaxCall'], bridge + 60); // Host, derived and inherited Cupertino dependencies; matched against Dart above.
+      expect(
+        h.runtime.hostOperations['__flaxInvokeOperation:static'],
+        bridge + 60,
+      ); // Host, derived and inherited Cupertino dependencies; matched against Dart above.
       expect(h.number('themes.factories'), 1);
       expect(h.number('themes.localBuilds'), localReads + 20);
       expect(h.number('themes.staticBuilds'), 1);

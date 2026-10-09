@@ -4,7 +4,7 @@ import '@flax/flutter/foundation';
 import '@flax/flutter/foundation';
 export declare const canvasBindingModule: Readonly<{
     moduleId: string;
-    uiProtocol: 22;
+    uiProtocol: 23;
     requiredCapabilities: readonly string[];
     construct: typeof _flaxHostConstruct;
     constructProxy: typeof _flaxHostConstructProxy;

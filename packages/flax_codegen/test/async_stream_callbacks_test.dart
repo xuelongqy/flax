@@ -122,13 +122,15 @@ callbacks.echoFutureStream(value => callbacks.futureOrStream(value));
         for (final input in [true, false]) {
           expect(
             () => callback.validateCallbacks('fixture', input: input),
-            throwsA(
-              isA<StateError>().having(
-                (error) => error.message,
-                'path',
-                contains('fixture result item item'),
-              ),
-            ),
+            type == 'context'
+                ? returnsNormally
+                : throwsA(
+                    isA<StateError>().having(
+                      (error) => error.message,
+                      'path',
+                      contains('fixture result item item'),
+                    ),
+                  ),
           );
         }
       });
@@ -149,5 +151,29 @@ callbacks.echoFutureStream(value => callbacks.futureOrStream(value));
       () => callback.validateCallbacks('fixture', input: true),
       throwsStateError,
     );
+  });
+  test('Context inside a Stream aggregate uses ordinary conversion', () {
+    const callback = FlaxCodegenTypeRef(
+      'callback',
+      result: FlaxCodegenTypeRef(
+        'stream',
+        item: FlaxCodegenTypeRef(
+          'record',
+          recordFields: [
+            FlaxCodegenRecordFieldModel(
+              name: 'context',
+              type: FlaxCodegenTypeRef('context'),
+              positional: false,
+            ),
+          ],
+        ),
+      ),
+    );
+    for (final input in [true, false]) {
+      expect(
+        () => callback.validateCallbacks('fixture', input: input),
+        returnsNormally,
+      );
+    }
   });
 }

@@ -32,6 +32,11 @@ String _bindingViewKey(String id, bool usesContext) =>
     ? '$id@${_bindingContext!.moduleId}'
     : id;
 
+typedef _BindingOperation = FlaxJsValue Function(
+  int receiver,
+  List<FlaxJsValue> arguments,
+);
+
 class _Session {
   _Session(this.runtime, this.registry, this.onError, {this.namespace});
   final String? namespace;
@@ -66,14 +71,6 @@ class _Session {
         context =
             _objects[(arguments[2] as FlaxJsNumber).value.toInt()]?.context;
       }
-      if (name == '__flaxStream' &&
-          arguments.length > 2 &&
-          arguments[2] is FlaxJsNumber) {
-        context =
-            _streamReferences[(arguments[2] as FlaxJsNumber).value.toInt()]
-                ?.context ??
-            context;
-      }
       if (name == '__flaxCreateStreamIterator' &&
           arguments.length > 1 &&
           arguments[1] is FlaxJsNumber) {
@@ -93,6 +90,65 @@ class _Session {
       return context == null
           ? callback(receiver, arguments)
           : context.run(() => callback(receiver, arguments));
+    });
+  }
+
+  void registerOperations() {
+    _registerBindingHostFunction('__flaxResolveOperation', (_, args) {
+      _checkCall(args, 5);
+      if (args.length != 5 ||
+          args.skip(2).any((value) => value is! FlaxJsString)) {
+        throw ArgumentError('Invalid binding operation');
+      }
+      final type = (args[1] as FlaxJsString).value;
+      final category = (args[2] as FlaxJsString).value;
+      final operation = (args[3] as FlaxJsString).value;
+      final name = (args[4] as FlaxJsString).value;
+      final key = (category, type, operation, name);
+      final id = _operationIds.putIfAbsent(key, () {
+        final invoke = switch (category) {
+          'top' => _topLevelOperation(type, operation, name),
+          'static' => _staticOperation(type, operation, name),
+          'object' => _objectOperation(type, operation, name),
+          'stream' => _streamOperation(type, operation, name),
+          'state' => _stateOperation(type, operation, name),
+          'context' => _contextOperation(type, operation, name),
+          _ => throw ArgumentError('Unknown binding category'),
+        };
+        final id = _operations.length;
+        _operations.add((category, _bindingContext, invoke));
+        return id;
+      });
+      return FlaxJsNumber(id.toDouble());
+    });
+    runtime.registerHostFunction('__flaxInvokeOperation', (_, args) {
+      if (!active) throw StateError('Closed Flax session');
+      checkpoint();
+      if (args.length < 2 ||
+          args
+              .take(2)
+              .any(
+                (value) =>
+                    value is! FlaxJsNumber ||
+                    !value.value.isFinite ||
+                    value.value != value.value.truncateToDouble() ||
+                    value.value < 0,
+              )) {
+        throw ArgumentError('Invalid binding operation receiver');
+      }
+      final id = (args[0] as FlaxJsNumber).value.toInt();
+      if (id >= _operations.length) {
+        throw ArgumentError('Unknown binding operation');
+      }
+      final (category, context, invoke) = _operations[id];
+      final receiver = (args[1] as FlaxJsNumber).value.toInt();
+      final origin = category == 'stream'
+          ? _streamReferences[receiver]?.context ?? context
+          : context ??
+                (category == 'object' ? _objects[receiver]?.context : null);
+      return origin == null
+          ? invoke(receiver, args.sublist(2))
+          : origin.run(() => invoke(receiver, args.sublist(2)));
     });
   }
 
@@ -126,6 +182,10 @@ class _Session {
   final _states = <int, _StateReference>{};
   final _nativeStateFactories = <Set<int>>[];
   final _stateIds = Expando<int>();
+  final _operations = <(String, _BindingContext?, _BindingOperation)>[];
+  final _operationIds = <(String, String, String, String), int>{};
+  final _collectionBindings = <String, FlaxObjectBinding>{};
+  final _proxyLayouts = <(FlaxObjectBinding, int)>[];
   final _objects = <int, _ObjectReference>{};
   final _objectIds = _IdentityIndex<_ObjectReference>();
   final _streamReferences = <int, _StreamReference>{};
@@ -218,7 +278,6 @@ class _Session {
     try {
       _objectKeys = runtime.evaluate('Object.keys') as FlaxJsFunction;
       _arrayCheck = runtime.evaluate('Array.isArray') as FlaxJsFunction;
-      registerMembers();
       registerComponents();
       registerObjects();
       registerStreams();
@@ -329,6 +388,14 @@ class _Session {
     }
     if (value is FlaxJsNull) {
       if (!type.nullable) {
+        if (type.kind == 'futureOr') {
+          return decode(
+            value,
+            type.item!,
+            callbackScope: callbackScope,
+            conversion: conversion,
+          );
+        }
         throw ArgumentError('Unexpected null for ${type.kind}');
       }
       return _Value(null);
@@ -526,19 +593,23 @@ class _Session {
           final handle = helper('tryObjectHandle').call([value]);
           if (handle is FlaxJsNumber) {
             final reference = _objects[handle.value.toInt()];
-            if (reference == null || reference.value is! List<Widget>) {
-              throw ArgumentError('Expected a Dart List<Widget>');
+            if (reference == null ||
+                reference.value is! List<Widget?> ||
+                (!type.item!.nullable && reference.value is! List<Widget>)) {
+              throw ArgumentError('Expected a compatible Dart Widget list');
             }
             final items = <_Value>[];
             try {
-              final widgets = List<Widget>.unmodifiable(
-                reference.value as List<Widget>,
+              final widgets = widgetSnapshot(
+                reference.value as List<Widget?>,
+                type,
               );
               for (final widget in widgets) {
+                if (widget == null) continue;
                 checkWidgetType(widget, type.item!);
                 items.add(retainWidget(widget));
               }
-              _checkWidgetKeys(widgets);
+              _checkWidgetKeys(widgets.whereType<Widget>());
               return _Value(widgets, items);
             } catch (_) {
               for (final item in items.reversed) {
@@ -561,11 +632,9 @@ class _Session {
           items.add(_property(value, '$i', (item) => decode(item, type.item!)));
         }
         if (type.item!.kind == 'widget') {
-          final widgets = items
-              .map((item) => item.data as Widget)
-              .toList(growable: false);
-          _checkWidgetKeys(widgets);
-          return _Value(List<Widget>.unmodifiable(widgets), items);
+          final widgets = widgetSnapshot(items.map((item) => item.data), type);
+          _checkWidgetKeys(widgets.whereType<Widget>());
+          return _Value(widgets, items);
         }
         if (type.item!.kind == 'page') {
           final pages = items
@@ -640,7 +709,7 @@ class _Session {
           // A native constructor may store an input even if it then throws.
           for (final source in sources.values) {
             source.initial.escapeCallbacks();
-            escapeWidget(source.initial.data);
+            escapeWidget(source.initial.data, source.type);
           }
         }
         // Validate constructor invariants before accepting the structural snapshot.
@@ -853,6 +922,10 @@ class _Session {
       value.release();
     }
     _enums.clear();
+    _operations.clear();
+    _operationIds.clear();
+    _proxyLayouts.clear();
+    _collectionBindings.clear();
     _objectKeys?.release();
     _arrayCheck?.release();
     for (final result in _hostResults) {
@@ -869,7 +942,7 @@ class _Session {
   }
 }
 
-void _checkWidgetKeys(List<Widget> widgets) {
+void _checkWidgetKeys(Iterable<Widget> widgets) {
   final keys = <Key>{};
   for (final widget in widgets) {
     if (widget.key != null && !keys.add(widget.key!)) {

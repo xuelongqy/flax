@@ -1,3 +1,4 @@
+import { operationHost } from './support/operations.mjs';
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import {
@@ -12,24 +13,25 @@ test('shared prototype forwarding preserves receiver, direct super and omission'
   const calls = [];
   const peers = [];
   const originalCreate = globalThis.__flaxCreateObject;
-  const originalCall = globalThis.__flaxObject;
+  const originalCall = operationHost('object', null);
   const originalBind = globalThis.__flaxBindPeer;
   t.after(() => {
     globalThis.__flaxCreateObject = originalCreate;
-    globalThis.__flaxObject = originalCall;
+    operationHost('object', originalCall);
     globalThis.__flaxBindPeer = originalBind;
   });
   defineObject(type, [], [], {}, []);
+  globalThis.__flaxPrepareProxy = () => 0;
   globalThis.__flaxCreateObject = () => globalThis.__flaxBindings.object(type, 4001);
   globalThis.__flaxBindPeer = (version, source, target) => {
-    assert.equal(version, 22);
+    assert.equal(version, 23);
     assert.equal(globalThis.__flaxBindings.objectHandle(source), 4001);
     peers.push(target);
   };
-  globalThis.__flaxObject = (...args) => {
+  operationHost('object', (...args) => {
     calls.push(args);
     return args.at(-1);
-  };
+  });
   const definition = {
     type,
     parameters: [],
@@ -43,7 +45,7 @@ test('shared prototype forwarding preserves receiver, direct super and omission'
   };
   class Base extends FlaxProxyBase {
     constructor() {
-      super(Base.prototype, definition, []);
+      super(definition, []);
     }
   }
   defineProxyBase(Base.prototype, definition);
@@ -70,17 +72,17 @@ test('shared prototype forwarding preserves receiver, direct super and omission'
   assert.equal(calls.at(-1)[4], '@super:get:value');
 });
 
-test('shared bound methods preserve detached calls and reject positional holes', (t) => {
+test('shared methods require a real receiver and reject positional holes', (t) => {
   const type = 'fixture:SharedMethods';
   const calls = [];
-  const previous = globalThis.__flaxObject;
+  const previous = operationHost('object', null);
   t.after(() => {
-    globalThis.__flaxObject = previous;
+    operationHost('object', previous);
   });
-  globalThis.__flaxObject = (...args) => {
+  operationHost('object', (...args) => {
     calls.push(args);
     return args.at(-1);
-  };
+  });
   defineObject(
     type,
     [],
@@ -95,8 +97,12 @@ test('shared bound methods preserve detached calls and reject positional holes',
   );
   const value = globalThis.__flaxBindings.object(type, 4002);
   const detached = value.tail;
-  assert.equal(detached(1, 2), 2);
+  assert.throws(() => detached(1, 2), /Invalid or foreign/);
+  assert.equal(detached.call(value, 1, 2), 2);
+  const another = globalThis.__flaxBindings.object(type, 4003);
+  assert.equal(value.tail, another.tail);
+  assert.equal(Object.getPrototypeOf(value), Object.getPrototypeOf(another));
   assert.equal(calls.at(-1)[2], 4002);
-  assert.throws(() => detached(undefined, 2), /trailing suffix/);
-  assert.equal(detached(null), undefined);
+  assert.throws(() => detached.call(value, undefined, 2), /trailing suffix/);
+  assert.equal(detached.call(value, null), undefined);
 });

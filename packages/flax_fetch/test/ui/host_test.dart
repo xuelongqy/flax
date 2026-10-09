@@ -867,7 +867,7 @@ void main() {
       'test.extra',
       [],
       moduleId: 'test/extra',
-      uiProtocol: 22,
+      uiProtocol: 23,
       requiredCapabilities: [],
     );
     final merged = Harness();

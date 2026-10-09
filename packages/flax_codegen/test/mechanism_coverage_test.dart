@@ -44,30 +44,37 @@ void main() {
   }
 
   test(
-    'Context mechanisms emit and compile with the complete Core provider',
+    'Context and finite Widget Iterable mechanisms emit with the Core provider',
     () async {
       final officialParse = await parseOfficialBindings(
         workspaceRoot: repoRoot,
         official: official,
       );
       expect(officialParse.ok, isTrue, reason: officialParse.error);
-      final result = await probe('widgetCallback/context-shapes');
       final local = Directory(p.join(repoRoot, '.local'))
         ..createSync(recursive: true);
-      final output = local.createTempSync('context-mechanism-');
-      addTearDown(() => output.deleteSync(recursive: true));
-      final emitted = await emitModuleSet(
-        target: result.module!,
-        official: officialParse.module,
-        directory: output.path,
-      );
-      expect(emitted['ok'], isTrue, reason: emitted['error']?.toString());
-      final compiled = await compileEmitted(
-        workspaceRoot: repoRoot,
-        directory: output.path,
-        targetName: result.module!.name,
-      );
-      expect(compiled['ok'], isTrue, reason: compiled.toString());
+      for (final label in [
+        'widgetCallback/async-context-callback-result',
+        'widgetCallback/context-stream-callback-result',
+        'widgetCallback/finite-widget-iterable',
+      ]) {
+        final result = await probe(label);
+        expect(result.verdict, CapabilityVerdict.supported, reason: label);
+        final output = local.createTempSync('context-mechanism-');
+        addTearDown(() => output.deleteSync(recursive: true));
+        final emitted = await emitModuleSet(
+          target: result.module!,
+          official: officialParse.module,
+          directory: output.path,
+        );
+        expect(emitted['ok'], isTrue, reason: emitted['error']?.toString());
+        final compiled = await compileEmitted(
+          workspaceRoot: repoRoot,
+          directory: output.path,
+          targetName: result.module!.name,
+        );
+        expect(compiled['ok'], isTrue, reason: compiled.toString());
+      }
     },
   );
 
@@ -226,7 +233,7 @@ void main() {
   });
 
   test('the flat shape list covers five mechanisms with unique labels', () {
-    expect(stage2MechanismShapes, hasLength(39));
+    expect(stage2MechanismShapes, hasLength(47));
     expect(stage2MechanismShapes.map((shape) => shape.group).toSet(), <String>{
       'callback',
       'record',
@@ -361,7 +368,7 @@ void main() {
     expect(markdown, contains('## Closure gates'));
     expect(markdown, contains('- automationGap: 0'));
     expect(markdown, contains('## Explicit boundaries'));
-    expect(markdown, contains('`mounted_widget_collection_shape`'));
+    expect(markdown, contains('`lazy_widget_iterable_callback`'));
   });
 }
 

@@ -7,7 +7,7 @@
     {
       "name": "components",
       "moduleId": "flax.core/components",
-      "uiProtocol": 22,
+      "uiProtocol": 23,
       "requiredCapabilities": [
         "native-widget-proxies"
       ],
@@ -377,7 +377,7 @@
     {
       "name": "flutter",
       "moduleId": "flax.core/flutter",
-      "uiProtocol": 22,
+      "uiProtocol": 23,
       "requiredCapabilities": [
         "native-widget-proxies"
       ],

@@ -1,6 +1,6 @@
 // GENERATED CODE. Selected public API subset; do not edit.
 // Regenerate with dart run melos run bindings:generate.
-// ignore_for_file: type=lint, unused_import
+// ignore_for_file: type=lint, unused_import, unnecessary_cast
 import 'dart:core';
 
 import 'package:flax_canvas/flax_canvas.dart' as api;
@@ -134,9 +134,10 @@ const canvasBindings = FlaxBindingModule(
   functions: [],
   moduleId: "flax.canvas/canvas",
   dependencyModules: ["flax.core/flutter"],
-  uiProtocol: 22,
+  uiProtocol: 23,
   requiredCapabilities: const <String>["native-widget-proxies"],
   stateVariants: [],
+  records: _recordTypes,
 );
 bool _isFlaxCanvasSurface(Object value) => value is api.FlaxCanvasSurface;
 Object? _FlaxCanvasSurface_width(Object value) =>
@@ -226,3 +227,5 @@ Object? _callback1Invoke(
   (function as void Function())();
   return null;
 }
+
+const _recordTypes = <FlaxTypeRef>[];

@@ -32,8 +32,9 @@ if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:StreamTransformer", "fromBind", [{"name":"bind","required":true,"positional":true}], [bind], {}) as StreamTransformer<S, T>;
 }
 }
+const _StreamTransformerProxy = {type: "flax.core/flutter#type:StreamTransformer", parameters: [], methods: {"bind":_flaxMemberParameters0,"cast":_flaxMemberParameters1}, getters: [], setters: [], superMembers: []} as const;
 export namespace StreamTransformer { export function implement<S extends unknown | null = unknown | null, T extends unknown | null = unknown | null>(args: [], implementation: {bind: ((stream: upstream1.Stream<S>) => upstream1.Stream<T>); cast: (<RS extends unknown | null, RT extends unknown | null>() => Readonly<{ "__flaxBound:dart:async::StreamTransformer": readonly [RS, RT] }>)}): StreamTransformer<S, T> {
-return constructProxy("flax.core/flutter#type:StreamTransformer", [], args, implementation, ["bind","cast"], [], []) as StreamTransformer<S, T>; } }
+return constructProxy(_StreamTransformerProxy, args, implementation) as StreamTransformer<S, T>; } }
 export namespace StreamTransformer { export function castFrom<SS extends unknown | null = unknown | null, ST extends unknown | null = unknown | null, TS extends unknown | null = unknown | null, TT extends unknown | null = unknown | null>(source: Readonly<{ "__flaxBound:dart:async::StreamTransformer": readonly [SS, ST] }>): StreamTransformer<TS, TT> {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeStatic("flax.core/flutter#type:StreamTransformer", "castFrom", [source]);

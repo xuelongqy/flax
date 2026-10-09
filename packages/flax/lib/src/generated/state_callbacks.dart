@@ -1,6 +1,6 @@
 // GENERATED CODE. Selected public API subset; do not edit.
 // Regenerate with dart run melos run bindings:generate.
-// ignore_for_file: type=lint, unused_import
+// ignore_for_file: type=lint, unused_import, unnecessary_cast
 import 'dart:core';
 
 import 'package:flutter/widgets.dart' as api;
@@ -35,13 +35,14 @@ const componentsBindings = FlaxBindingModule(
   functions: [],
   moduleId: "flax.core/components",
   dependencyModules: ["flax.core/flutter"],
-  uiProtocol: 22,
+  uiProtocol: 23,
   requiredCapabilities: const <String>["native-widget-proxies"],
   stateVariants: [
     _stateVariant_SingleTickerProviderState,
     _stateVariant_TickerProviderState,
     _stateVariant_KeepAliveTickerState,
   ],
+  records: _recordTypes,
 );
 const _stateVariant_SingleTickerProviderState = FlaxStateVariantBinding(
   "flax.core/components#stateVariant:SingleTickerProviderState",
@@ -138,3 +139,4 @@ Object? _KeepAliveTickerState_call_updateKeepAlive(
 bool _isStatefulWidget(Object value) => value is api.StatefulWidget;
 Object _createStatefulWidget(String ctor, Map<String, Object?> values) =>
     throw ArgumentError('Abstract object has no constructor');
+const _recordTypes = <FlaxTypeRef>[];

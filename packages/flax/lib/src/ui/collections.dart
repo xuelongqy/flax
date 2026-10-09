@@ -36,13 +36,24 @@ final _jsCollectionShapes = Expando<String>();
 T flaxRestoreJsCollection<T>(
   Object value,
   String kind,
-  T Function(Object) restore,
-) {
+  T Function(Object) restore, {
+  bool finiteWidgetIterable = false,
+}) {
+  if (finiteWidgetIterable) {
+    _checkFiniteWidgetIterable(
+      value,
+      const FlaxTypeRef('iterable', finiteWidgetIterable: true),
+    );
+    if (value is T) return value as T;
+  }
   final shape = _jsCollectionShapes[value];
   final compatible = switch (kind) {
     'list' => shape == 'list',
     'set' => shape == 'set',
-    'iterable' => shape == 'list' || shape == 'set' || shape == 'iterable',
+    'iterable' =>
+      shape == 'list' ||
+          shape == 'set' ||
+          (!finiteWidgetIterable && shape == 'iterable'),
     'map' => shape == 'map' || shape == 'record',
     'record' => shape == 'record',
     _ => false,
@@ -63,7 +74,18 @@ extension _Collections on _Session {
       if (record == null || type.collection?.matches(record.value) != true) {
         throw ArgumentError('Incompatible Dart collection');
       }
+      _checkFiniteWidgetIterable(record.value, type);
       return _Value(record.value, [_ObjectBorrow(record, input.retain())]);
+    }
+    FlaxJsValue? shape;
+    if (type.finiteWidgetIterable) {
+      shape = helper('collectionShape')
+          .call([input, const FlaxJsBoolean(true)]);
+      if (shape is! FlaxJsString || !{'list', 'set'}.contains(shape.value)) {
+        throw ArgumentError(
+          'Widget Iterable callbacks require a finite List or Set',
+        );
+      }
     }
     final existing = memo.find(input);
     if (existing != null) {
@@ -72,7 +94,7 @@ extension _Collections on _Session {
       }
       return _Value(existing);
     }
-    final shape = helper('collectionShape').call([input]);
+    shape ??= helper('collectionShape').call([input]);
     final isMap = type.kind == 'map';
     final acceptedShapes = switch (type.kind) {
       'list' => const {'list'},
@@ -93,7 +115,10 @@ extension _Collections on _Session {
     memo.inputs.add((input.retain(), output));
     final resources = <_Value>[];
     try {
-      final entries = helper('collectionEntries').call([input]) as FlaxJsObject;
+      final entries = helper('collectionEntries').call([
+        input,
+        if (type.finiteWidgetIterable) const FlaxJsBoolean(true),
+      ]) as FlaxJsObject;
       try {
         final length = _property(
           entries,
@@ -165,6 +190,12 @@ extension _Collections on _Session {
     }
     final id = helper('tryObjectHandle').call([input]);
     if (id is FlaxJsNumber) {
+      final context = _contexts[id.value.toInt()];
+      if (context != null) {
+        final handle = helper('contextHandle')
+            .call([input, FlaxJsString(context.type)]);
+        return _Value(_context(handle, context.type).requireActive());
+      }
       final record = _objects[id.value.toInt()];
       if (record == null) {
         final stream = _streamReferences[id.value.toInt()];
@@ -209,6 +240,19 @@ extension _Collections on _Session {
     final shape = helper('collectionShape').call([input]);
     if (shape is FlaxJsString &&
         {'list', 'map', 'record', 'set', 'iterable'}.contains(shape.value)) {
+      if (shape.value == 'record') {
+        // A copied native Record keeps its generated shape through erased callbacks.
+        final signature = helper('recordType').call([input]);
+        if (signature is FlaxJsString) {
+          final record = registry._records
+              .where((entry) => entry.$1.record!.signature == signature.value)
+              .firstOrNull;
+          if (record == null) {
+            throw ArgumentError('Unregistered Record projection');
+          }
+          return decode(input, record.$1, conversion: memo);
+        }
+      }
       final decoded = decodeCollection(input, switch (shape.value) {
         'list' => _anyList,
         'map' || 'record' => _anyMap,
@@ -222,6 +266,7 @@ extension _Collections on _Session {
   }
 
   FlaxJsValue collectionResult(Object value, FlaxTypeRef type) {
+    _checkFiniteWidgetIterable(value, type);
     final definition = type.collection!;
     if (!definition.matches(value)) {
       throw ArgumentError('Incompatible collection result');
@@ -324,6 +369,7 @@ extension _Collections on _Session {
           item.kind,
           id: item.id,
           nullable: true,
+          finiteWidgetIterable: item.finiteWidgetIterable,
           item: item.item,
           key: item.key,
           collection: item.collection,
@@ -382,6 +428,7 @@ extension _Collections on _Session {
         create: _noCollectionConstructor,
         matches: definition.matches,
       );
+      _collectionBindings[viewId] = binding;
       record = _CollectionReference(this, _nextObject++, binding, value);
       _objects[record.id] = record;
       (_collectionViews[value] ??= {})[viewId] = record;
@@ -410,6 +457,9 @@ extension _Collections on _Session {
 
   FlaxJsValue anyResult(Object? value) {
     if (value == null) return const FlaxJsNull();
+    if (value is BuildContext) {
+      return contextResult(value, registry._contextType.id);
+    }
     if (value is String) return FlaxJsString(value);
     if (value is bool) return FlaxJsBoolean(value);
     if (value is num) {
@@ -423,6 +473,37 @@ extension _Collections on _Session {
     if (value is Map) return collectionResult(value, _anyMap);
     if (value is Set) return collectionResult(value, _anySet);
     if (value is Iterable) return collectionResult(value, _anyIterable);
+    int priority(FlaxBindingModule module) {
+      final namespace = module.moduleId.split('/').first;
+      if (namespace == 'flax.core') return 0;
+      if (namespace == _bindingContext?.namespace) return 1;
+      if (_bindingContext?.dependencies.contains(module.moduleId) == true) {
+        return 2;
+      }
+      return 3;
+    }
+
+    if (value is Record) {
+      var best = 4;
+      final selected = <String, FlaxTypeRef>{};
+      for (final (type, module) in registry._records) {
+        final record = type.record!;
+        if (!record.matches(value)) continue;
+        final rank = priority(module);
+        if (rank > best) continue;
+        if (rank < best) {
+          best = rank;
+          selected.clear();
+        }
+        selected[record.signature] = type;
+      }
+      if (selected.isNotEmpty) {
+        if (selected.length != 1) {
+          throw ArgumentError('Ambiguous Dart Record projection');
+        }
+        return recordResult(value, selected.values.single);
+      }
+    }
     final candidates = <FlaxTypeBinding>[
       for (final binding in registry._types.values)
         if (binding is FlaxEnumBinding &&
@@ -432,20 +513,14 @@ extension _Collections on _Session {
           binding,
     ];
     if (candidates.isNotEmpty) {
-      int priority(FlaxTypeBinding candidate) {
-        final module = registry._bindingOwners[candidate.id]!;
-        final namespace = module.moduleId.split('/').first;
-        if (namespace == 'flax.core') return 0;
-        if (namespace == _bindingContext?.namespace) return 1;
-        if (_bindingContext?.dependencies.contains(module.moduleId) == true) {
-          return 2;
-        }
-        return 3;
-      }
-
-      final best = candidates.map(priority).reduce((a, b) => a < b ? a : b);
+      final best = candidates
+          .map((candidate) => priority(registry._bindingOwners[candidate.id]!))
+          .reduce((a, b) => a < b ? a : b);
       final selected = candidates
-          .where((candidate) => priority(candidate) == best)
+          .where(
+            (candidate) =>
+                priority(registry._bindingOwners[candidate.id]!) == best,
+          )
           .toList();
       // Prefer specific interfaces within the selected provider priority.
       final lessSpecific = selected
@@ -495,6 +570,7 @@ extension _Collections on _Session {
       if (input == null || !declared.collection!.matches(input)) {
         throw ArgumentError('Incompatible collection copy');
       }
+      _checkFiniteWidgetIterable(input, declared);
       final shape = declared.kind == 'iterable' ? 'list' : declared.kind;
       var record = copies[input];
       final first = record == null;
@@ -558,6 +634,14 @@ extension _Collections on _Session {
         handle.release();
       }
     }
+  }
+}
+
+void _checkFiniteWidgetIterable(Object value, FlaxTypeRef type) {
+  if (type.finiteWidgetIterable && value is! List && value is! Set) {
+    throw ArgumentError(
+      'Widget Iterable callbacks require a finite List or Set',
+    );
   }
 }
 

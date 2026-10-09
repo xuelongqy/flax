@@ -1097,9 +1097,9 @@ void main() {
         ]) {
           expect(() => h.execute(source), throwsA(isA<FlaxJsException>()));
         }
-        final before = h.runtime.hostCalls['__flaxTopLevel'] ?? 0;
+        final before = h.runtime.hostCalls['__flaxInvokeOperation'] ?? 0;
         h.execute('var fitted = topLevel.fit()');
-        expect((h.runtime.hostCalls['__flaxTopLevel'] ?? 0) - before, 1);
+        expect((h.runtime.hostCalls['__flaxInvokeOperation'] ?? 0) - before, 1);
         expect(h.number('fitted.destination.width'), 40);
         expect(h.number('fitted.destination.height'), 20);
         h.execute(

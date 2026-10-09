@@ -262,6 +262,7 @@ final class _FlaxCodegenTypeScope {
           'double',
           'num',
           'enum',
+          'context',
           'widget',
           'route',
           'object',

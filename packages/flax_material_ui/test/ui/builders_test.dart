@@ -228,7 +228,7 @@ void main() {
   );
 
   testWidgets(
-    'repeated rebuilds release native handles and constraint reads avoid member calls',
+    'repeated rebuilds release native handles and constraint reads reuse their operation',
     (t) async {
       final runtime = RuntimeTracker();
       final errors = <Object>[];
@@ -256,7 +256,7 @@ void main() {
       await t.pumpWidget(trackedApp(TextDirection.rtl));
       await collectWidgetConfigurations(t);
       final baseline = runtime.handles;
-      final calls = runtime.hostCalls['__flaxCall'] ?? 0;
+      final calls = runtime.hostCalls['__flaxInvokeOperation'] ?? 0;
       for (var i = 0; i < 100; i++) {
         await t.pumpWidget(
           trackedApp(i.isEven ? TextDirection.ltr : TextDirection.rtl),
@@ -264,12 +264,14 @@ void main() {
       }
       await collectWidgetConfigurations(t);
       expect(runtime.handles, baseline);
-      expect(runtime.hostCalls['__flaxCall'], calls + 100);
-      final getters = runtime.hostCalls['__flaxGet'] ?? 0;
+      expect(runtime.hostCalls['__flaxInvokeOperation'], calls + 100);
+      final getters = runtime.hostCalls['__flaxInvokeOperation'] ?? 0;
+      final resolutions = runtime.hostCalls['__flaxResolveOperation'] ?? 0;
       execute(
         'for (let i = 0; i < 1000; i++) { if (hooks.constraints.maxWidth !== 400) throw Error("width"); }',
       );
-      expect(runtime.hostCalls['__flaxGet'] ?? 0, getters);
+      expect(runtime.hostCalls['__flaxInvokeOperation'] ?? 0, getters + 1000);
+      expect(runtime.hostCalls['__flaxResolveOperation'] ?? 0, resolutions);
       execute('hooks.visible.value = false');
       await t.pump();
       await collectWidgetConfigurations(t);
@@ -289,7 +291,8 @@ void main() {
       // ignore: avoid_print
       print(
         'Builder cost: $baseline steady handles; 100 rebuilds / 100 member calls; '
-        '1000 constraint reads / 0 getter calls; 0 handles before engine disposal.',
+        '1000 constraint reads / 1000 getter calls / 0 new operation resolutions; '
+        '0 handles before engine disposal.',
       );
     },
   );

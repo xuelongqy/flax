@@ -35,7 +35,7 @@ explicit and engine-only.
 Generated dart:async bindings provide lazy, bidirectional Stream references,
 controllers, subscriptions, transforms, AsyncIterable conversion and native Flutter
 StreamBuilder. They remain separate from Fetch Web Streams. See
-[Dart interop](docs/architecture/interop.md#dart-stream-and-futureor-ui-protocol-22).
+[Dart interop](docs/architecture/interop.md#dart-stream-and-futureor-ui-protocol-23).
 
 ## Quick start
 

@@ -288,7 +288,7 @@ void main() {
   );
 
   test(
-    'callback Context arguments borrow native Elements in both directions',
+    'callback Context arguments and results borrow Elements in both directions',
     () {
       const context = FlaxCodegenTypeRef(
         'context',
@@ -325,6 +325,11 @@ void main() {
       for (final type in [
         callback,
         const FlaxCodegenTypeRef('list', item: callback),
+        const FlaxCodegenTypeRef('callback', result: context),
+        const FlaxCodegenTypeRef(
+          'callback',
+          result: FlaxCodegenTypeRef('futureOr', item: context),
+        ),
       ]) {
         final model = FlaxCodegenTopLevelModel(
           '',
@@ -334,16 +339,16 @@ void main() {
           ],
         );
         expect(model.validate, returnsNormally);
+        final getter = FlaxCodegenTopLevelModel('', [
+          FlaxCodegenTopLevelGetterModel(
+            '$uri::reader',
+            'reader',
+            type,
+            FlaxCodegenReadonlyKind.getter,
+          ),
+        ]);
+        expect(getter.validate, returnsNormally);
       }
-      final getter = FlaxCodegenTopLevelModel('', [
-        FlaxCodegenTopLevelGetterModel(
-          '$uri::reader',
-          'reader',
-          callback,
-          FlaxCodegenReadonlyKind.getter,
-        ),
-      ]);
-      expect(getter.validate, returnsNormally);
     },
   );
 
@@ -838,7 +843,7 @@ const hosts = helpers.map(name => (...args) => {
 });
 const output = transformSync(source.replace(imports, ''), {loader: 'ts', format: 'cjs'}).code;
 const exported = {exports: {}};
-new Function('module', 'exports', 'bindingVersion', ...helpers, output)(exported, exported.exports, 22, ...hosts);
+new Function('module', 'exports', 'bindingVersion', ...helpers, output)(exported, exported.exports, 23, ...hosts);
 const api = exported.exports;
 assert.equal(calls.length, 0);
 assert.equal(api.setCounter(3), undefined);

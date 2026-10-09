@@ -217,7 +217,7 @@ class _CallbackHandle extends _BridgeReference {
   }
 }
 
-class _Callback extends _Resource implements FlaxCallback {
+class _Callback extends _Resource with _JsInvocation implements FlaxCallback {
   _Callback(
     this.session,
     FlaxJsFunction function,
@@ -229,14 +229,19 @@ class _Callback extends _Resource implements FlaxCallback {
        _handle = _CallbackHandle(session, function) {
     _handle.attach(this);
   }
+  @override
   final _Session session;
+  @override
   final _CallbackHandle _handle;
   final _BindingContext? context;
   FlaxJsFunction get function => _handle.function;
   bool escaped = false;
   final FlaxCallbackBinding signature;
+  @override
   final _CallbackScope scope;
+  @override
   final _NodeState? owner;
+  @override
   bool get active =>
       !_handle.retired && session.active && (owner?._active ?? true);
 
@@ -268,26 +273,37 @@ class _Callback extends _Resource implements FlaxCallback {
     );
   }
 
-  bool get _returnsWidgetList =>
-      signature.result.kind == 'list' &&
-      !signature.result.nullable &&
-      signature.result.item?.kind == 'widget' &&
-      signature.result.item?.nullable == false;
+  @override
+  Object? call(List<Object?> positional, Map<String, Object?> named) =>
+      context == null
+      ? invoke(signature, positional, named).$2
+      : context!.run(() => invoke(signature, positional, named).$2);
 
   @override
-  Object? call(
-    List<Object?> positionalArguments,
-    Map<String, Object?> namedArguments,
-  ) => context == null
-      ? _call(positionalArguments, namedArguments)
-      : context!.run(() => _call(positionalArguments, namedArguments));
+  FlaxJsObject get receiver => function;
 
-  Object? _call(
+  @override
+  void close() {
+    if (!escaped) _handle.release();
+  }
+}
+
+// Both callback directions keep the same conversion and ownership rules.
+mixin _JsInvocation {
+  _Session get session;
+  _BridgeReference get _handle;
+  FlaxJsObject get receiver;
+  _CallbackScope get scope;
+  _NodeState? get owner;
+  bool get active;
+  (bool, Object?) invoke(
+    FlaxCallbackBinding signature,
     List<Object?> positionalArguments,
-    Map<String, Object?> namedArguments,
-  ) {
+    Map<String, Object?> namedArguments, {
+    int? member,
+  }) {
     if (!active) {
-      if (signature.result.kind == 'void') return null;
+      if (signature.result.kind == 'void') return (true, null);
       throw StateError('Retired JS callback');
     }
     final temporary = <FlaxJsObject>[];
@@ -307,10 +323,7 @@ class _Callback extends _Resource implements FlaxCallback {
           named.any((p) => p.required && !namedArguments.containsKey(p.name))) {
         throw ArgumentError('Invalid callback arity');
       }
-      final args = <FlaxJsValue>[
-        function,
-        FlaxJsNumber(positionalArguments.length.toDouble()),
-      ];
+      final args = <FlaxJsValue>[];
       for (var i = 0; i < positionalArguments.length; i++) {
         args.add(
           positional[i].scoped
@@ -333,10 +346,10 @@ class _Callback extends _Resource implements FlaxCallback {
                 ),
         );
       }
-      args.add(FlaxJsNumber(namedArguments.length.toDouble()));
+      final namedArgs = <FlaxJsValue>[];
       for (final entry in namedArguments.entries) {
         final parameter = named.firstWhere((p) => p.name == entry.key);
-        args
+        namedArgs
           ..add(FlaxJsString(entry.key))
           ..add(
             parameter.scoped
@@ -354,20 +367,39 @@ class _Callback extends _Resource implements FlaxCallback {
                   ),
           );
       }
-      late final FlaxJsValue value;
+      late final FlaxJsValue? value;
       try {
-        value = session.helper('invokeCallback').call(args);
+        if (member == null) {
+          value = session.helper('invokeCallback').call([
+            receiver,
+            FlaxJsNumber(positionalArguments.length.toDouble()),
+            ...args,
+            FlaxJsNumber(namedArguments.length.toDouble()),
+            ...namedArgs,
+          ]);
+        } else {
+          if (signature.parameters.any((p) => !p.positional)) {
+            final options = session.helper('callbackOptions').call(namedArgs);
+            if (options is! FlaxJsObject) {
+              throw StateError('Invalid callback options');
+            }
+            temporary.add(options);
+            args.add(options);
+          }
+          value = session.runtime.invokeProxyMember(receiver, member, args);
+        }
       } finally {
         for (final lease in scoped.reversed) {
           lease.release();
         }
         scoped.clear();
       }
+      if (value == null) return (false, null);
       try {
         if (scope == _CallbackScope.ui && signature.result.kind == 'route') {
-          return _routeResult(value);
+          return (true, _routeResult(signature, value));
         }
-        return _memberResult(value);
+        return (true, _memberResult(signature, value));
       } finally {
         _releaseJs(value);
       }
@@ -375,13 +407,17 @@ class _Callback extends _Resource implements FlaxCallback {
       if (scope == _CallbackScope.member) rethrow;
       session.report(error, stack);
       if (signature.result.kind == 'widget' && signature.result.id == null) {
-        return _errorWidget(error);
+        return (true, _errorWidget(error));
       }
-      if (_returnsWidgetList && signature.result.item!.id == null) {
-        return List<Widget>.unmodifiable([_errorWidget(error)]);
+      if (signature.result.kind == 'list' &&
+          !signature.result.nullable &&
+          signature.result.item?.kind == 'widget' &&
+          signature.result.item?.nullable == false &&
+          signature.result.item!.id == null) {
+        return (true, List<Widget>.unmodifiable([_errorWidget(error)]));
       }
       if (signature.result.kind != 'void') rethrow;
-      return null;
+      return (true, null);
     } finally {
       for (final lease in scoped.reversed) {
         lease.release();
@@ -394,7 +430,7 @@ class _Callback extends _Resource implements FlaxCallback {
     }
   }
 
-  Object? _memberResult(FlaxJsValue value) {
+  Object? _memberResult(FlaxCallbackBinding signature, FlaxJsValue value) {
     if (signature.result.kind == 'void') return _eventResult(value);
     if (signature.result.kind == 'future') {
       return session.promiseResult(value, signature.result);
@@ -402,7 +438,7 @@ class _Callback extends _Resource implements FlaxCallback {
     final decoded = session.decode(value, signature.result);
     try {
       decoded.escapeCallbacks();
-      session.escapeWidget(decoded.data);
+      session.escapeWidget(decoded.data, signature.result);
       return decoded.data;
     } finally {
       decoded.release();
@@ -414,7 +450,7 @@ class _Callback extends _Resource implements FlaxCallback {
     return null;
   }
 
-  Object? _routeResult(FlaxJsValue value) {
+  Object? _routeResult(FlaxCallbackBinding signature, FlaxJsValue value) {
     final decoded = session.decode(value, signature.result);
     try {
       for (final lease in decoded.resources.whereType<FlaxRouteLease>()) {
@@ -425,12 +461,54 @@ class _Callback extends _Resource implements FlaxCallback {
       decoded.release();
     }
   }
+}
 
+class _ProxyHandle extends _BridgeReference {
+  _ProxyHandle(super.session, this.receiver);
+  final FlaxJsObject receiver;
   @override
   void close() {
-    if (!escaped) {
-      _handle.release();
+    if (!receiver.isReleased) receiver.release();
+  }
+}
+
+class _ProxyPeer with _JsInvocation implements FlaxProxyPeer {
+  _ProxyPeer(this.session, FlaxJsObject receiver, this.binding, this.first)
+    : _handle = _ProxyHandle(session, receiver),
+      context = _bindingContext {
+    _handle.attach(this);
+  }
+  @override
+  final _Session session;
+  final FlaxProxyBinding binding;
+  final int first;
+  @override
+  final _ProxyHandle _handle;
+  final _BindingContext? context;
+  @override
+  FlaxJsObject get receiver => _handle.receiver;
+  @override
+  _CallbackScope get scope => _CallbackScope.member;
+  @override
+  _NodeState? get owner => null;
+  @override
+  bool get active => !_handle.retired && session.active;
+
+  @override
+  (bool, Object?) call(
+    int member,
+    List<Object?> positional,
+    Map<String, Object?> named,
+  ) {
+    if (member < 0 || member >= binding.members.length) {
+      throw ArgumentError('Unknown proxy member');
     }
+    final signature = binding.members[member].signature;
+    return context == null
+        ? invoke(signature, positional, named, member: first + member)
+        : context!.run(
+            () => invoke(signature, positional, named, member: first + member),
+          );
   }
 }
 

@@ -79,10 +79,10 @@ void main() {
         isTrue,
       );
       final definitions = h.runtime.jsCalls['__flaxBindings.defineCollection'];
-      final calls = h.runtime.hostCalls['__flaxObject']!;
+      final calls = h.runtime.hostCalls['__flaxInvokeOperation']!;
       h.execute('for(let i=0;i<20;i++){ c.numbers; c.broadNumbers; }');
       expect(h.runtime.jsCalls['__flaxBindings.defineCollection'], definitions);
-      expect(h.runtime.hostCalls['__flaxObject']! - calls, 40);
+      expect(h.runtime.hostCalls['__flaxInvokeOperation']! - calls, 40);
       expect(h.errors, isEmpty);
     } finally {
       await h.finish(t);

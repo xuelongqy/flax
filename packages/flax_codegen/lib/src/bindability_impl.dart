@@ -829,6 +829,7 @@ const _getterKinds = {
   'stream',
   'callback',
   'widget',
+  'context',
 };
 
 const _setterKinds = {
@@ -1588,6 +1589,7 @@ List<String>? _bindMethod({
       'stream',
       'callback',
       'widget',
+      'context',
     },
     allowRecursiveErasure: deferredFactory,
   );

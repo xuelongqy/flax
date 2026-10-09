@@ -2099,6 +2099,7 @@ class FlaxCodegenBindingParser {
           'stream',
           'callback',
           'widget',
+          'context',
         }.contains(type.kind)) {
           throw StateError('Unsupported getter type: ${getter.returnType}');
         }
@@ -2341,6 +2342,7 @@ class FlaxCodegenBindingParser {
           'stream',
           'callback',
           'widget',
+          'context',
         };
         if (!results.contains(result.kind)) {
           throw StateError(

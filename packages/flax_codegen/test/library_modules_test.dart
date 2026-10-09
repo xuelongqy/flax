@@ -273,7 +273,10 @@ const built = await build({entryPoints: [${jsonEncode(consumer.path)}], outfile:
 assert.ok(!Object.keys(built.metafile.inputs).some(path => path.includes('libraries_Unused')));
 assert.ok(Object.keys(built.metafile.inputs).some(path => path.includes('libraries_ConcreteResult')));
 let reads = 0;
-globalThis.__flaxTopLevel = (_version, id) => {
+const operations = [];
+globalThis.__flaxResolveOperation = (_version, id) => { operations.push(id); return operations.length - 1; };
+globalThis.__flaxInvokeOperation = (slot) => {
+  const id = operations[slot];
   reads++;
   if (id.endsWith('::failing')) throw new Error('readonly failure');
   return id.endsWith('::buildFlag') ? true : reads;
@@ -288,8 +291,8 @@ assert.equal(api.getBuildFlag(), true);
 assert.throws(() => api.getFailing(), /readonly failure/);
 assert.throws(() => api.getFailing(), /readonly failure/);
 assert.equal(reads, 5);
-delete globalThis.__flaxTopLevel;
-assert.throws(() => api.getChanging(), /FlaxView host/);
+delete globalThis.__flaxInvokeOperation;
+assert.throws(() => api.getChanging(), /Flax engine/);
 ''');
         final executed = await Process.run('node', [
           runner.path,

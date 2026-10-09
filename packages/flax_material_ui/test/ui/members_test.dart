@@ -221,35 +221,35 @@ void main() {
         ),
       );
       h.execute('''
-      const result = __flaxCall($flaxBindingVersion, 'test:Members', 'apply', (n, direction) => {
+      const result = __flaxInvokeOperation(__flaxResolveOperation($flaxBindingVersion, 'test:Members', 'static', 'call', 'apply'), 0, (n, direction) => {
         if (direction !== __flaxBindings.enumValue('flax.core/flutter#type:TextDirection', 'rtl')) throw Error('enum identity');
         hooks.lookup();
         return String(n);
       });
       if (result !== '7') throw Error('default or return conversion');
-      if (__flaxCall($flaxBindingVersion, 'test:Members', 'apply', () => null) !== null) throw Error('null result');
-      __flaxCall($flaxBindingVersion, 'test:Members', 'visit', n => hooks.count.value = n);
-      if (__flaxCall($flaxBindingVersion, 'test:Members', 'optional', (value = 11) => value) !== 11) {
+      if (__flaxInvokeOperation(__flaxResolveOperation($flaxBindingVersion, 'test:Members', 'static', 'call', 'apply'), 0, () => null) !== null) throw Error('null result');
+      __flaxInvokeOperation(__flaxResolveOperation($flaxBindingVersion, 'test:Members', 'static', 'call', 'visit'), 0, n => hooks.count.value = n);
+      if (__flaxInvokeOperation(__flaxResolveOperation($flaxBindingVersion, 'test:Members', 'static', 'call', 'optional'), 0, (value = 11) => value) !== 11) {
         throw Error('optional positional omission');
       }
-      if (__flaxCall($flaxBindingVersion, 'test:Members', 'named', (value, {label, count = 5}) => String(value) + ':' + label + ':' + String(count)) !== '3:three:5') {
+      if (__flaxInvokeOperation(__flaxResolveOperation($flaxBindingVersion, 'test:Members', 'static', 'call', 'named'), 0, (value, {label, count = 5}) => String(value) + ':' + label + ':' + String(count)) !== '3:three:5') {
         throw Error('named option omission');
       }
     ''');
       await t.pump();
       expect(find.text('Count 4'), findsOneWidget);
       for (final script in [
-        "__flaxCall($flaxBindingVersion, 'test:Members', 'apply', () => undefined)",
-        "__flaxCall($flaxBindingVersion, 'test:Members', 'apply', () => { throw Error('nested'); })",
-        "__flaxCall($flaxBindingVersion, 'test:Members', 'visit', () => { throw Error('void nested'); })",
-        "__flaxCall($flaxBindingVersion, 'test:Members', 'apply', () => 'x', 1.5)",
-        "__flaxCall($flaxBindingVersion, 'test:Members', 'missing')",
-        "__flaxCall(7, 'test:Members', 'apply', () => 'x')",
+        "__flaxInvokeOperation(__flaxResolveOperation($flaxBindingVersion, 'test:Members', 'static', 'call', 'apply'), 0, () => undefined)",
+        "__flaxInvokeOperation(__flaxResolveOperation($flaxBindingVersion, 'test:Members', 'static', 'call', 'apply'), 0, () => { throw Error('nested'); })",
+        "__flaxInvokeOperation(__flaxResolveOperation($flaxBindingVersion, 'test:Members', 'static', 'call', 'visit'), 0, () => { throw Error('void nested'); })",
+        "__flaxInvokeOperation(__flaxResolveOperation($flaxBindingVersion, 'test:Members', 'static', 'call', 'apply'), 0, () => 'x', 1.5)",
+        "__flaxInvokeOperation(__flaxResolveOperation($flaxBindingVersion, 'test:Members', 'static', 'call', 'missing'), 0)",
+        "__flaxInvokeOperation(__flaxResolveOperation(7, 'test:Members', 'static', 'call', 'apply'), 0, () => 'x')",
       ]) {
         expect(() => h.execute(script), throwsA(isA<FlaxJsException>()));
       }
       h.execute(
-        "if (__flaxCall($flaxBindingVersion, 'test:Members', 'apply', n => String(n), 9) !== '9') throw Error('recovery');",
+        "if (__flaxInvokeOperation(__flaxResolveOperation($flaxBindingVersion, 'test:Members', 'static', 'call', 'apply'), 0, n => String(n), 9) !== '9') throw Error('recovery');",
       );
       expect(h.errors, isEmpty);
       await flaxTestUnmount(t);

@@ -20,6 +20,7 @@ class FlaxTestRuntimeTracker implements FlaxJsRuntime {
   int byteWrites = 0;
   int byteReads = 0;
   final hostOperations = <String, int>{};
+  final _operationCategories = <int, String>{};
   Iterable<_TrackedObject> get _live =>
       _owned.map((entry) => entry.target).whereType<_TrackedObject>();
   int get handles => _live.length;
@@ -96,12 +97,33 @@ class FlaxTestRuntimeTracker implements FlaxJsRuntime {
           ifAbsent: () => 1,
         );
       }
+      if (name == '__flaxInvokeOperation' &&
+          args.isNotEmpty &&
+          args.first is FlaxJsNumber) {
+        final category =
+            _operationCategories[(args.first as FlaxJsNumber).value.toInt()];
+        if (category != null) {
+          hostOperations.update(
+            '$name:$category',
+            (v) => v + 1,
+            ifAbsent: () => 1,
+          );
+        }
+      }
       hostCalls.update(name, (n) => n + 1, ifAbsent: () => 1);
-      return unwrap(
+      final result = unwrap(
         callback(wrap(receiver, '$name.this', owned: false), [
           for (final value in args) wrap(value, '$name.arg', owned: false),
         ]),
       );
+      if (name == '__flaxResolveOperation' &&
+          result is FlaxJsNumber &&
+          args.length == 5 &&
+          args[2] is FlaxJsString) {
+        _operationCategories[result.value.toInt()] =
+            (args[2] as FlaxJsString).value;
+      }
+      return result;
     });
   }
 
@@ -112,6 +134,24 @@ class FlaxTestRuntimeTracker implements FlaxJsRuntime {
         target,
         origin: origin,
       );
+
+  @override
+  int registerProxyMembers(FlaxJsObject layout) =>
+      inner.registerProxyMembers(unwrap(layout) as FlaxJsObject);
+
+  @override
+  FlaxJsValue? invokeProxyMember(
+    FlaxJsObject receiver,
+    int member,
+    List<FlaxJsValue> arguments,
+  ) {
+    final result = inner.invokeProxyMember(
+      unwrap(receiver) as FlaxJsObject,
+      member,
+      arguments.map(unwrap).toList(),
+    );
+    return result == null ? null : wrap(result, 'proxy.member:$member');
+  }
 
   @override
   bool drainMicrotasks({int maxJobsHint = -1}) {
@@ -125,6 +165,7 @@ class FlaxTestRuntimeTracker implements FlaxJsRuntime {
   void dispose() {
     handlesAtDispose = handles;
     inner.dispose();
+    _operationCategories.clear();
   }
 }
 

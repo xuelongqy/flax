@@ -1,6 +1,6 @@
 // GENERATED CODE. Selected public API subset; do not edit.
 // Regenerate with dart run melos run bindings:generate.
-// ignore_for_file: type=lint, unused_import
+// ignore_for_file: type=lint, unused_import, unnecessary_cast
 import 'dart:core';
 
 import 'package:cupertino_ui/cupertino_ui.dart' as api;
@@ -307,9 +307,10 @@ const cupertinoBindings = FlaxBindingModule(
   functions: [],
   moduleId: "flax.cupertino/cupertino",
   dependencyModules: ["flax.core/flutter"],
-  uiProtocol: 22,
+  uiProtocol: 23,
   requiredCapabilities: const <String>["native-widget-proxies"],
   stateVariants: [],
+  records: _recordTypes,
 );
 bool _isCupertinoApp(Object value) => value is api.CupertinoApp;
 
@@ -475,3 +476,5 @@ Object? _callback0Invoke(
   (function as void Function())();
   return null;
 }
+
+const _recordTypes = <FlaxTypeRef>[];

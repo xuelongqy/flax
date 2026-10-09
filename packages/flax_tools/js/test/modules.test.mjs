@@ -221,6 +221,19 @@ test('prepared assets contain the selected module and exclude unrelated code', a
   assert.deepEqual(checked.manifest, fixture.manifest);
 });
 
+test('regeneration replaces old protocol assets but runtime inventory rejects them', async () => {
+  const prepared = await createMixedFixture(join(root, 'old-protocol'));
+  const previous = structuredClone(prepared.manifest);
+  previous.modules[0].bindings = [
+    { moduleId: 'previous', uiProtocol: 22, types: [], functions: [] },
+  ];
+  assert.throws(() => validateModuleManifest(previous), /Unsupported binding protocol/);
+  const inventory = join(prepared.host, 'assets/modules/modules.json');
+  await writeFile(inventory, JSON.stringify(previous));
+  const regenerated = await prepareModules({ configPath: prepared.configPath });
+  assert.deepEqual(regenerated.manifest, prepared.manifest);
+});
+
 test('separate runtimes never share cached JS instances and close rejects new imports', () => {
   const first = runtime();
   const second = runtime();

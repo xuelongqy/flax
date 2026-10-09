@@ -23,7 +23,7 @@
       "specifier": "@flax/core/bindings",
       "owner": "@flax/core-runtime:dist/runtime/bindings.js",
       "version": "0.0.0",
-      "artifact": "4feb97dc198c2dba0063fbb5ad422e4cd29d3232604af9229a28e34e7469704c",
+      "artifact": "c87b43c9041b2ca7d5c9654b59ebe993d0588a878648de202c1df99c52f27e26",
       "asset": "assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js",
       "package": "@flax/core-runtime",
       "source": "dist/runtime/bindings.js",
@@ -49,7 +49,7 @@
       "specifier": "@flax/core/navigation",
       "owner": "@flax/core-runtime:dist/flutter/generated/libraries/navigation/index.js",
       "version": "0.0.0",
-      "artifact": "07f26a8d514b0966fc0931c8a073665fb632362913cc8366c04ae3b9f773f07a",
+      "artifact": "795452eac10c4f9718604a54d82a383ed37045e906dbe95846d143d08fa4c93b",
       "asset": "assets/flax_modules/_flax_core_navigation-33b2cfc211d0.js",
       "package": "@flax/core-runtime",
       "source": "dist/flutter/generated/libraries/navigation/index.js",
@@ -60,7 +60,7 @@
       "bindings": [
         {
           "moduleId": "flax.core/flutter",
-          "uiProtocol": 22,
+          "uiProtocol": 23,
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -235,7 +235,7 @@
       "specifier": "@flax/dart/async",
       "owner": "@flax/core-runtime:dist/dart/generated/libraries/async/index.js",
       "version": "0.0.0",
-      "artifact": "887eadd5ccd42a8652aef413248c4fac7179e32d0b355ad0bcc44b906eb1f892",
+      "artifact": "00b9074d65d012074f3054d639f4ab8d5222076a621164a7f689a4ecd735aa5c",
       "asset": "assets/flax_modules/_flax_dart_async-f3c6fbf57a76.js",
       "package": "@flax/core-runtime",
       "source": "dist/dart/generated/libraries/async/index.js",
@@ -246,7 +246,7 @@
       "bindings": [
         {
           "moduleId": "flax.core/flutter",
-          "uiProtocol": 22,
+          "uiProtocol": 23,
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -421,7 +421,7 @@
       "specifier": "@flax/dart/core",
       "owner": "@flax/core-runtime:dist/dart/generated/libraries/core/index.js",
       "version": "0.0.0",
-      "artifact": "dbd2d6f8dd06cecfdd815a2d9d5262d6742419e3ab36027384b09b3aa1266409",
+      "artifact": "3577aa59203d444743674d6d0e9f3af8cf1cc474dfec5ad29919d0fda3fd9e53",
       "asset": "assets/flax_modules/_flax_dart_core-5ad127bf5c9b.js",
       "package": "@flax/core-runtime",
       "source": "dist/dart/generated/libraries/core/index.js",
@@ -432,7 +432,7 @@
       "bindings": [
         {
           "moduleId": "flax.core/flutter",
-          "uiProtocol": 22,
+          "uiProtocol": 23,
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -607,7 +607,7 @@
       "specifier": "@flax/flutter/foundation",
       "owner": "@flax/core-runtime:dist/flutter/generated/libraries/foundation/index.js",
       "version": "0.0.0",
-      "artifact": "399aa20411ceed477478647ca812a6827e6e28f4a9fdc3b500d8d1cc0db796e5",
+      "artifact": "26449c2d445d88b8c6dcfd0b2c0d045632fd4e44211d5ce196ed6181fe741356",
       "asset": "assets/flax_modules/_flax_flutter_foundation-9748414906bc.js",
       "package": "@flax/core-runtime",
       "source": "dist/flutter/generated/libraries/foundation/index.js",
@@ -617,7 +617,7 @@
       "bindings": [
         {
           "moduleId": "flax.core/flutter",
-          "uiProtocol": 22,
+          "uiProtocol": 23,
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -792,7 +792,7 @@
       "specifier": "@flax/flutter/scheduler",
       "owner": "@flax/core-runtime:dist/flutter/generated/libraries/scheduler/index.js",
       "version": "0.0.0",
-      "artifact": "a58222dfbcd1273372e684eae9b41e34dbb9055f4430588750c56370734b5117",
+      "artifact": "14a836a2dcc5bea1a31973b4342071fda6a0bcc4483b69e0d717cddd11c8c758",
       "asset": "assets/flax_modules/_flax_flutter_scheduler-6129bf1d9d8b.js",
       "package": "@flax/core-runtime",
       "source": "dist/flutter/generated/libraries/scheduler/index.js",
@@ -802,7 +802,7 @@
       "bindings": [
         {
           "moduleId": "flax.core/flutter",
-          "uiProtocol": 22,
+          "uiProtocol": 23,
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -977,7 +977,7 @@
       "specifier": "@flax/flutter/services",
       "owner": "@flax/core-runtime:dist/flutter/generated/libraries/services/index.js",
       "version": "0.0.0",
-      "artifact": "8566ab33a565a449bec2163fceea7dd9a2ff25307bde971ce406ddf205e182e0",
+      "artifact": "0464e962087f86ae45b113be833b81e5fa2a17a916eda7c424a7a589d184c6bc",
       "asset": "assets/flax_modules/_flax_flutter_services-e820dad87955.js",
       "package": "@flax/core-runtime",
       "source": "dist/flutter/generated/libraries/services/index.js",
@@ -989,7 +989,7 @@
       "bindings": [
         {
           "moduleId": "flax.core/flutter",
-          "uiProtocol": 22,
+          "uiProtocol": 23,
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -1164,7 +1164,7 @@
       "specifier": "@flax/flutter/widgets",
       "owner": "@flax/core-runtime:dist/flutter/widgets.js",
       "version": "0.0.0",
-      "artifact": "d401953ca336602ed0d8437d68639bd942190d4f52894415a8e94f38e4b4ad25",
+      "artifact": "64fc2290b85c823134764e555886708818a25b667a47abe297c1ad9b5e41a7eb",
       "asset": "assets/flax_modules/_flax_flutter_widgets-4c2442a10500.js",
       "package": "@flax/core-runtime",
       "source": "dist/flutter/widgets.js",
@@ -1178,7 +1178,7 @@
       "bindings": [
         {
           "moduleId": "flax.core/components",
-          "uiProtocol": 22,
+          "uiProtocol": 23,
           "types": [
             "flax.core/components#type:State",
             "flax.core/components#type:StatefulWidget"
@@ -1187,7 +1187,7 @@
         },
         {
           "moduleId": "flax.core/flutter",
-          "uiProtocol": 22,
+          "uiProtocol": 23,
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",

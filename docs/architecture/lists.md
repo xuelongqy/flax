@@ -1,8 +1,8 @@
 # Lazy Lists and Independent Widget Results
 
-Status: generated ListView.builder on the existing macOS arm64 Hermes/V8 host, using UI
-protocol 22 and the unchanged native ABI. Flutter owns scrolling, caching, key matching
-and keep-alive. There is no JS virtual list or parallel item-state table.
+Status: generated ListView.builder on the maintained Flutter engine, using UI protocol
+23 and the unchanged native ABI. Flutter owns scrolling, caching, key matching and
+keep-alive. There is no JS virtual list or parallel item-state table.
 
 ## Selected API
 

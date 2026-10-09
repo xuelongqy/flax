@@ -338,7 +338,7 @@ void main() {
   });
 
   test(
-    'missing selections and inaccessible native signatures fail closed',
+    'Context callbacks select while inaccessible native signatures fail closed',
     () async {
       for (final selected in <String, FlaxCodegenClassSelection>{
         'NativeContract': const FlaxCodegenClassSelection(
@@ -354,13 +354,6 @@ void main() {
           {},
           kind: 'widgetInterface',
           getters: ['configuration'],
-        ),
-        'JsConsumer': const FlaxCodegenClassSelection(
-          {},
-          kind: 'object',
-          methods: {
-            'invoke': ['callback'],
-          },
         ),
         'PrivateContract': const FlaxCodegenClassSelection(
           {},
@@ -378,20 +371,37 @@ void main() {
         final parser = FlaxCodegenBindingParser(root);
         addTearDown(parser.dispose);
         await expectLater(
-          parser.parse(
-            config({
-              if (selected.key == 'JsConsumer')
-                'BuildContext': const FlaxCodegenClassSelection(
-                  {},
-                  kind: 'context',
-                ),
-              selected.key: selected.value,
-            }),
-          ),
+          parser.parse(config({selected.key: selected.value})),
           throwsStateError,
           reason: selected.key,
         );
       }
+      final parser = FlaxCodegenBindingParser(root);
+      addTearDown(parser.dispose);
+      final module = await parser.parse(
+        config({
+          'BuildContext': const FlaxCodegenClassSelection({}, kind: 'context'),
+          'JsConsumer': const FlaxCodegenClassSelection(
+            {},
+            kind: 'object',
+            methods: {
+              'invoke': ['callback'],
+            },
+          ),
+        }),
+      );
+      expect(
+        module.classes
+            .firstWhere((type) => type.name == 'JsConsumer')
+            .methods
+            .single
+            .parameters
+            .single
+            .type
+            .result!
+            .kind,
+        'context',
+      );
     },
   );
 }

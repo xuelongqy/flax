@@ -11,7 +11,7 @@
       "bindings": [
         {
           "moduleId": "vendor.example/example",
-          "uiProtocol": 22,
+          "uiProtocol": 23,
           "types": ["vendor.example/example#type:Gauge"],
           "functions": []
         }

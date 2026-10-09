@@ -132,6 +132,7 @@ extension _FunctionCalls on _Session {
         throw ArgumentError('Invalid Dart function arity');
       }
       final values = <_Value>[];
+      final valueTypes = <FlaxTypeRef>[];
       final positionalValues = <Object?>[];
       final namedValues = <String, Object?>{};
       try {
@@ -162,6 +163,7 @@ extension _FunctionCalls on _Session {
         for (var i = 0; i < positionalCount; i++) {
           final value = decodeParameter(args[4 + i], positional[i]);
           values.add(value);
+          valueTypes.add(positional[i].type);
           positionalValues.add(value.data);
         }
         for (var i = 0; i < namedCount; i++) {
@@ -181,14 +183,15 @@ extension _FunctionCalls on _Session {
             parameter,
           );
           values.add(value);
+          valueTypes.add(parameter.type);
           namedValues[nameValue.value] = value.data;
         }
         if (named.any((p) => p.required && !namedValues.containsKey(p.name))) {
           throw ArgumentError('Missing required named Dart function argument');
         }
-        for (final value in values) {
-          value.escapeCallbacks();
-          escapeWidget(value.data);
+        for (var i = 0; i < values.length; i++) {
+          values[i].escapeCallbacks();
+          escapeWidget(values[i].data, valueTypes[i]);
         }
         final result = signature.invoke(
           function,
@@ -225,12 +228,55 @@ class _WidgetReference extends _ObjectReference {
 extension _WidgetReferences on _Session {
   // Promote before entering Dart: the callee may keep the Widget even if it throws.
   // Native wrappers need no inspection; each escaped Flax child owns its resources.
-  void escapeWidget(Object? value) {
-    if (value is List<Widget>) {
-      for (final widget in value) {
-        escapeWidget(widget);
+  void escapeWidget(Object? value, [FlaxTypeRef? type]) {
+    if (type != null) {
+      if (value == null || !type.containsWidget) return;
+      if (type.kind != 'widget') {
+        final visited = HashMap<Object, Set<FlaxTypeRef>>.identity();
+        void visit(Object? current, FlaxTypeRef ref) {
+          if (current == null || !ref.containsWidget) return;
+          if (ref.kind == 'widget') {
+            escapeWidget(current);
+            return;
+          }
+          if (ref.kind == 'futureOr') {
+            if (current is! Future) visit(current, ref.item!);
+            return;
+          }
+          // Shared containers can expose different Widget positions per view.
+          if (!visited
+              .putIfAbsent(current, () => HashSet.identity())
+              .add(ref)) {
+            return;
+          }
+          switch (ref.kind) {
+            case 'record':
+              for (final field in ref.record!.fields) {
+                visit(field.read(current), field.type);
+              }
+            case 'map':
+              for (final entry in (current as Map).entries) {
+                visit(entry.key, ref.key!);
+                visit(entry.value, ref.item!);
+              }
+            case 'list' || 'set':
+              for (final item in current as Iterable) {
+                visit(item, ref.item!);
+              }
+            case 'iterable':
+              _checkFiniteWidgetIterable(current, ref);
+              // JS inputs are materialized; native lazy Iterables stay lazy.
+              if (current is List || current is Set) {
+                for (final item in current as Iterable) {
+                  visit(item, ref.item!);
+                }
+              }
+          }
+        }
+
+        visit(value, type);
+        return;
       }
-      return;
     }
     if (value is! Widget) return;
     final existing = _widgetConfigurations[value];
@@ -265,6 +311,12 @@ extension _WidgetReferences on _Session {
       throw ArgumentError('Widget does not implement ${type.id}');
     }
   }
+
+  List<Widget?> widgetSnapshot(Iterable<Object?> values, FlaxTypeRef type) =>
+      type.collection?.snapshot?.call(values) ??
+      (type.item!.nullable
+          ? List<Widget?>.unmodifiable(values.cast<Widget?>())
+          : List<Widget>.unmodifiable(values.cast<Widget>()));
 
   _Value checkWidgetValue(_Value value, FlaxTypeRef type) {
     try {

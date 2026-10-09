@@ -126,11 +126,16 @@ async function json(path) {
   return JSON.parse(await readFile(path, 'utf8'));
 }
 
-function bindings(value, label) {
+function bindings(value, label, current) {
   return array(value, label).map((binding) => {
     object(binding, ['moduleId', 'uiProtocol', 'types', 'functions'], label);
     text(binding.moduleId, `${label}.moduleId`);
-    if (binding.uiProtocol !== 22) fail(`Unsupported binding protocol in ${label}`);
+    if (
+      !Number.isSafeInteger(binding.uiProtocol) ||
+      binding.uiProtocol < 1 ||
+      (current && binding.uiProtocol !== 23)
+    )
+      fail(`Unsupported binding protocol in ${label}`);
     for (const kind of ['types', 'functions']) {
       unique(
         array(binding[kind], `${label}.${kind}`).map((id) => text(id, kind)),
@@ -142,7 +147,7 @@ function bindings(value, label) {
 }
 
 /** Validate the portable host inventory used by both Dart and business builds. */
-export function validateModuleManifest(value) {
+function validateModuleInventory(value, current) {
   object(
     value,
     ['formatVersion', 'runtimeFormat', 'bootstrap', 'lock', 'modules'],
@@ -207,7 +212,7 @@ export function validateModuleManifest(value) {
       specifier(name);
       version(requirement);
     }
-    bindings(entry.bindings, `bindings for ${entry.specifier}`);
+    bindings(entry.bindings, `bindings for ${entry.specifier}`, current);
   }
   const publicNames = new Set(names.keys());
   for (const entry of names.values()) {
@@ -231,6 +236,10 @@ export function validateModuleManifest(value) {
     }
   }
   return value;
+}
+
+export function validateModuleManifest(value) {
+  return validateModuleInventory(value, true);
 }
 
 export async function readModuleManifest(path) {
@@ -578,7 +587,11 @@ async function installAssets(directory, files, check) {
     return;
   }
   if (current.length > 0) {
-    const previous = await readModuleManifest(join(directory, 'modules.json'));
+    // Replacement needs the previous ownership inventory, not a runnable protocol.
+    const previous = validateModuleInventory(
+      await json(join(directory, 'modules.json')),
+      false,
+    );
     const owned = new Set([
       'modules.json',
       previous.bootstrap.split('/').at(-1),

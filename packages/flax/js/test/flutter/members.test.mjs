@@ -1,3 +1,4 @@
+import { operationHost } from './support/operations.mjs';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
@@ -32,19 +33,19 @@ test('generated context access uses synchronous selected members and canonical e
   const type = 'flax.core/flutter#type:BuildContext';
   const context = api.context(type, 7);
   let calls = 0;
-  globalThis.__flaxGet = (version, id, handle, member) => {
-    assert.deepEqual([version, id, handle, member], [22, type, 7, 'mounted']);
+  operationHost('context', (version, id, handle, member) => {
+    assert.deepEqual([version, id, handle, member], [23, type, 7, 'mounted']);
     calls++;
     return true;
-  };
-  globalThis.__flaxCall = (version, id, member, handle) => {
-    assert.equal(version, 22);
+  });
+  operationHost('static', (version, id, member, handle) => {
+    assert.equal(version, 23);
     assert.match(id, /#type:Directionality$/);
     assert.equal(member, 'of');
     assert.equal(handle, 7);
     calls++;
     return TextDirection.rtl;
-  };
+  });
   assert.equal(context, api.context(type, 7));
   assert.equal(context.mounted, true);
   assert.equal(Directionality.of(context), TextDirection.rtl);
@@ -62,12 +63,12 @@ test('generated context access uses synchronous selected members and canonical e
 
 test('constraint references preserve infinity through selected getters', () => {
   let calls = 0;
-  globalThis.__flaxObject = (_, type, id, op, member) => {
+  operationHost('object', (_, type, id, op, member) => {
     calls++;
     assert.equal(op, 'get');
     assert.equal(member, 'maxWidth');
     return Infinity;
-  };
+  });
   const box = globalThis.__flaxBindings.object(
     'flax.core/flutter#type:BoxConstraints',
     17,

@@ -1,7 +1,8 @@
 # Dart Objects and Bridge References
 
-Status: implemented on macOS arm64 Hermes/V8, UI protocol 22. The native C ABI is
-unchanged. See [the interop decision](../decisions/0009-dart-interop.md).
+Status: implemented with the [maintained Flutter engine](runtime.md), UI protocol 23.
+The native C ABI is unchanged. See
+[the interop decision](../decisions/0009-dart-interop.md).
 
 ## Identity and application ownership
 
@@ -53,7 +54,7 @@ own descriptors. Navigation and named-page parameters retain their data-copy con
 
 Callbacks, Widget configurations and Context borrowing share the internal
 [bridge reference mechanism](references.md). Other Dart values reuse its JS weak alias
-cache. This does not merge the Dart and JS garbage collectors.
+cache. The maintained engine jointly traces conditional references between both heaps.
 
 A generated Dart closure retains a shared JS callback wrapper. Explicit release and a
 Dart Finalizer use the same idempotent function-handle cleanup. The finalization token
@@ -66,19 +67,14 @@ callbacks observe Promise rejections; synchronous value callbacks propagate fail
 the caller. Flutter enforces disposal and notification preconditions without
 class-specific guards.
 
-The JS identity cache stores the weak aliases for each Dart identity. Existing UI
-checkpoints inspect at most 64 identities, remove expired aliases, and release the Dart
-table entry only after the last alias expires. Explicit release and session close revoke
-all aliases for the identity. The checkpoint then drains engine microtasks and clears
-kept objects. There is no timer, idle polling or FinalizationRegistry dependency.
-Reclamation requires engine GC and subsequent UI activity; session close does not wait
-for either.
-
-There is no cross-language cycle collector. A Dart object retaining a JS closure that
-retains its wrapper forms a cycle, including captures through a shared lexical scope.
-Applications remove listeners or clear long-lived registrations to break it. Session
-close clears all bridge holdings even when such a cycle remains. This is separate from
-calling application disposal methods.
+The JS identity cache stores weak aliases for each Dart identity. UI checkpoints inspect
+at most 64 identities and prune expired protocol records. The cache does not keep the
+business objects alive: joint engine tracing can reclaim rootless cycles during idle or
+allocation-pressure GC, including a Dart object retaining a JS closure that captures its
+wrapper. Either business owner still keeps both peers alive. Explicit release and
+session close revoke all aliases without waiting for GC. This never substitutes for
+application disposal or removing a listener from a controller that the application still
+owns.
 
 ## Page cleanup
 
@@ -161,11 +157,10 @@ before temporary holds are released; native wrappers need no field inspection. S
 [configuration ownership](interop.md#widget-configuration-and-mounting). Closing revokes
 all remaining configuration records and bridge entries deterministically.
 
-GC observations exclude known cross-language cycles: even a closure with no apparent
-free variables may retain its lexical environment. If that environment also holds the
-returned wrapper, applications must break the relationship or close the session. Weak
-caches do not implement cross-language cycle collection.
-
-Dart access to properties implemented in JS uses the same callback ownership as methods.
-See [generated proxy properties](proxy-properties.md); session cleanup still never
+Dart access to JS proxy members uses one receiver peer per instance, shared typed member
+metadata and the existing joint collector. Ordinary wrappers use a frozen shared
+prototype per bound type. Methods follow standard JS receiver semantics: use
+`object.method()` or explicitly `.call(object, ...)` / `.bind(object)` when extracting a
+method. They are not automatically bound to each wrapper. See
+[generated proxy properties](proxy-properties.md); session cleanup still never
 substitutes for application disposal.

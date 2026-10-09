@@ -313,12 +313,12 @@ void main() {
       h.execute('p.mode');
       await t.pumpAndSettle();
       final handles = h.runtime.handles;
-      final calls = h.runtime.hostCalls['__flaxObject'] ?? 0;
+      final calls = h.runtime.hostCalls['__flaxInvokeOperation'] ?? 0;
       h.execute(
         'for (let i=0;i<100;i++) { if (p.mode !== first) throw Error("enum identity"); }',
       );
       await t.pumpAndSettle();
-      expect((h.runtime.hostCalls['__flaxObject'] ?? 0) - calls, 100);
+      expect((h.runtime.hostCalls['__flaxInvokeOperation'] ?? 0) - calls, 100);
       // Real frame scheduling can collect unrelated temporary handles. Identity
       // stays strict above; retained handles must not grow.
       expect(h.runtime.handles, lessThanOrEqualTo(handles));
@@ -468,9 +468,12 @@ void main() {
     expect(h.string('acceptedSet.toArray().join(",")'), '5,6');
     expect(h.string('acceptedIterable.toArray().join(",")'), '7,8');
     h.execute('var lazyIterable = c.iterable');
-    final iterableCalls = h.runtime.hostCalls['__flaxObject'] ?? 0;
+    final iterableCalls = h.runtime.hostCalls['__flaxInvokeOperation'] ?? 0;
     h.execute('[...lazyIterable]');
-    expect((h.runtime.hostCalls['__flaxObject'] ?? 0) - iterableCalls, 1);
+    expect(
+      (h.runtime.hostCalls['__flaxInvokeOperation'] ?? 0) - iterableCalls,
+      1,
+    );
     h.execute('c.counts.set("a", 3); c.counts.set("b", null)');
     expect(
       h.boolean(
@@ -513,14 +516,53 @@ void main() {
     ]) {
       expect(() => h.execute(code), throwsA(isA<FlaxJsException>()));
     }
-    final before = h.runtime.hostCalls['__flaxObject'] ?? 0;
+    final before = h.runtime.hostCalls['__flaxInvokeOperation'] ?? 0;
     h.execute('numbers.toArray()');
-    expect((h.runtime.hostCalls['__flaxObject'] ?? 0) - before, 1);
+    expect((h.runtime.hostCalls['__flaxInvokeOperation'] ?? 0) - before, 1);
     await h.finish(t);
     expect(h.errors, isEmpty);
   });
   testWidgets(
-    'generated proxies initialize callbacks before super and preserve real identity',
+    'generated peers preserve arrow fields, private state and current inheritance',
+    (t) async {
+      final values = <fixture.ConstructorSuperEvaluator>[];
+      final h = OwnedHarness(
+        fixture: 'interop',
+        extra: [interopBindings],
+        onCreate: (_, value) {
+          if (value is fixture.ConstructorSuperEvaluator) values.add(value);
+        },
+      );
+      try {
+        await t.pumpWidget(h.app('interop'));
+        h.execute('''
+        var MiddlePeer = class extends interop.ConstructorSuperEvaluator {};
+        var LeafPeer = class extends MiddlePeer {
+          #extra = 7;
+          evaluate = value => super.evaluate(value) + this.#extra;
+        };
+        var peer = new LeafPeer(3);
+        var peerInstanceChecks = peer instanceof LeafPeer && peer instanceof MiddlePeer && peer instanceof interop.ConstructorSuperEvaluator;
+        ''');
+        expect(values.single.initialResult, 6);
+        expect(values.single.evaluate(2), 11);
+        expect(h.boolean('peerInstanceChecks'), isTrue);
+        h.execute('peer.evaluate = function(value) { return value + 40; }');
+        expect(values.single.evaluate(2), 42);
+        h.execute(
+          'delete peer.evaluate; MiddlePeer.prototype.evaluate = value => value * 3',
+        );
+        expect(values.single.evaluate(2), 6);
+        h.execute('delete MiddlePeer.prototype.evaluate');
+        expect(values.single.evaluate(2), 4);
+        expect(h.errors, isEmpty);
+      } finally {
+        await h.finish(t);
+      }
+    },
+  );
+  testWidgets(
+    'generated proxies initialize the receiver before super and preserve real identity',
     (t) async {
       final h = OwnedHarness(fixture: 'interop', extra: [interopBindings]);
       await t.pumpWidget(h.app('interop'));

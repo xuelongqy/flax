@@ -31,13 +31,16 @@ void main() {
         await t.pumpWidget(h.app('properties'));
         h.execute('var port = properties.createPort()');
         expect(h.number('properties.observations.reads'), 0);
-        final hostCalls = h.runtime.hostCalls['__flaxObject'] ?? 0;
+        final hostCalls = h.runtime.hostCalls['__flaxInvokeOperation'] ?? 0;
         expect(ports.single.readOnly, 7);
         expect(h.number('properties.observations.reads'), 1);
-        expect(h.runtime.hostCalls['__flaxObject'] ?? 0, hostCalls);
+        expect(h.runtime.hostCalls['__flaxInvokeOperation'] ?? 0, hostCalls);
         expect(h.number('port.readOnly'), 7);
         expect(h.number('properties.observations.reads'), 2);
-        expect((h.runtime.hostCalls['__flaxObject'] ?? 0) - hostCalls, 1);
+        expect(
+          (h.runtime.hostCalls['__flaxInvokeOperation'] ?? 0) - hostCalls,
+          1,
+        );
         ports.single.writeOnly = 8;
         h.execute('port.writeOnly = 9');
         expect(h.number('properties.observations.writes'), 2);
@@ -183,20 +186,24 @@ void main() {
   });
 
   testWidgets(
-    'field contracts require accessors and invalid implementations do not allocate Dart objects',
+    'field contracts accept writable data and reject incomplete implementations before allocation',
     (t) async {
       final h = _harness();
       try {
         await t.pumpWidget(h.app('properties'));
         final before = h.constructions.values.fold(0, (a, b) => a + b);
         for (final code in [
-          'properties.plugin.FieldContract.implement([], {value: 1})',
           'properties.plugin.FieldContract.implement([], {get value(){ return 1; }})',
           'properties.plugin.AccessorContract.implement([], {})',
         ]) {
           expect(() => h.execute(code), throwsA(isA<FlaxJsException>()));
         }
         expect(h.constructions.values.fold(0, (a, b) => a + b), before);
+        h.execute('''var data = {value: 1};
+        var dataField = properties.plugin.FieldContract.implement([], data);
+        dataField.value = 2;''');
+        expect(h.number('data.value'), 2);
+        expect(h.number('dataField.value'), 2);
         h.execute('''var value = 1;
         var field = properties.plugin.FieldContract.implement([], {
           get value() { return value; }, set value(v) { value = v; }
@@ -324,7 +331,7 @@ void main() {
   );
 
   testWidgets(
-    'failed construction releases callbacks after actual Dart collection',
+    'failed construction releases receiver facades without per-member callbacks',
     (t) async {
       final h = _harness();
       try {
@@ -340,20 +347,13 @@ void main() {
           );
         }
         expect(h.number('reads'), 20);
-        // Observe the VM Finalizer, without invoking a Flax cleanup function.
-        // The first Dart-to-JS call caches one shared invocation helper.
-        final steadyHandles = before + 1;
-        for (var i = 0; i < 12 && h.runtime.handles > steadyHandles; i++) {
-          await t.runAsync(flaxTestCollectDartGarbage);
-          await t.pump();
-        }
         expect(
           h.runtime.handleLabels
               .where((label) => label == '__flaxBindings.invokeCallback')
               .length,
-          1,
+          0,
         );
-        expect(h.runtime.handles, lessThanOrEqualTo(steadyHandles));
+        expect(h.runtime.handles, lessThanOrEqualTo(before));
         expect(h.errors, isEmpty);
       } finally {
         await h.finish(t);

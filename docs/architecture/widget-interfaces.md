@@ -1,7 +1,8 @@
 # Widget Interfaces and Material Page Shells
 
-UI protocol 22 supports selected native Widget interfaces and generated Scaffold, AppBar
-and PreferredSize bindings on macOS arm64 Hermes/V8. The native ABI is unchanged.
+UI protocol 23 supports selected native Widget interfaces and generated Scaffold, AppBar
+and PreferredSize bindings on the maintained Flutter engine. The native ABI is
+unchanged.
 
 ## Fixed configuration and local children
 
@@ -85,7 +86,7 @@ object, including its private theme-height sentinel subtype, is preserved.
 
 Manifest 16 records native member selections, Dart override source and explicit public
 imports separately from bridge TypeRefs. Native members add no wire operations or owner
-rows; existing declaration IDs, UI protocol 22 and native ABI 2 remain unchanged. See
+rows; existing declaration IDs, UI protocol 23 and native ABI 2 remain unchanged. See
 [ADR 0029](../decisions/0029-native-widget-interface-members.md).
 
 Interface Widgets require fixed constructor arguments and accept ordinary typed
@@ -109,12 +110,13 @@ Callback results preserve native Widget identity and generated hosts' selected
 interfaces. Narrow interface failures propagate the original error; an ErrorWidget
 cannot satisfy an arbitrary interface. Only base `Widget` and `List<Widget>` UI
 callbacks can use the existing error placeholder. Synchronous callbacks still reject
-Promises. Widget-containing Records and non-list Widget collections remain outside the
-callback conversion contract. Concrete native class signatures such as `Text Function()`
-materialize the real native configuration and validate its Dart type. Selected
-`proxy: extends` classes can also return a JS subclass backed by a native Dart subclass.
-Base Widget and interface signatures retain their existing host and reactive
-configuration semantics.
+Promises. Finite List/Set/Map/Record aggregates, including nullable elements and async
+compositions, retain each Widget configuration before temporary conversion holds are
+released. Lazy Widget Iterable callbacks remain outside the conversion contract.
+Concrete native class signatures such as `Text Function()` materialize the real native
+configuration and validate its Dart type. Selected `proxy: extends` classes can also
+return a JS subclass backed by a native Dart subclass. Base Widget and interface
+signatures retain their existing host and reactive configuration semantics.
 
 A previous interface configuration may still be read by native didUpdateWidget even if
 its Widget was never mounted. Its cached Dart value follows Dart references. Escaped

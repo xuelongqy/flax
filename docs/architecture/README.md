@@ -11,7 +11,7 @@ a real embedded Flutter host implement local property and dynamic subtree update
 
 Synchronous generated callbacks also support Builder/LayoutBuilder, borrowed Context
 references, selected static methods, and readonly constraint references. The binding
-protocol is version 22, including shared generic owners and State variants under
+protocol is version 23, including shared generic owners and State variants under
 [ADR 0035](../decisions/0035-generic-state-variants-and-protocol-21.md). The native ABI
 remains 2.
 

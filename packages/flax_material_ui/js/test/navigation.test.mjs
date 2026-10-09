@@ -1,3 +1,4 @@
+import { operationHost } from '../../../flax/js/test/flutter/support/operations.mjs';
 import { objectHost } from './support/host.mjs';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
@@ -44,11 +45,11 @@ test('Route construction is lazy and settings use real references', () => {
 
 test('State methods dispatch independently and validate named arguments', () => {
   const calls = [];
-  globalThis.__flaxInstance = (...args) => {
+  operationHost('state', (...args) => {
     calls.push(args);
-    return args[3] === 'canPop';
-  };
-  globalThis.__flaxStateGet = () => true;
+    return args[4] === 'canPop';
+  });
+
   const state = globalThis.__flaxBindings.state(stateType, 12);
   const route = MaterialPageRoute({ builder: () => Text('page') });
   state.push(route);
@@ -56,10 +57,10 @@ test('State methods dispatch independently and validate named arguments', () => 
   state.pop({ value: 1 });
   assert.equal(state.canPop(), true);
   assert.deepEqual(
-    calls.map((args) => args[3]),
+    calls.map((args) => args[4]),
     ['push', 'pushNamed', 'pop', 'canPop'],
   );
-  assert.deepEqual(calls[0].slice(0, 4), [22, stateType, 12, 'push']);
+  assert.deepEqual(calls[0].slice(0, 5), [23, stateType, 12, 'call', 'push']);
   assert.throws(() => state.pushNamed('/a', { extra: 1 }), /Invalid named/);
   assert.throws(() => state.canPop(1), /Too many/);
   assert.throws(() => invokeInstance({}, stateType, 'pop', []), /foreign/);

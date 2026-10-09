@@ -130,18 +130,23 @@ extension _MemberCalls on _Session {
     return reference;
   }
 
-  void registerMembers() {
-    registerStateMembers();
-    _registerBindingHostFunction('__flaxTopLevel', (_, args) {
-      _checkCall(args, 2);
-      final definition = registry._functions[(args[1] as FlaxJsString).value];
-      if (definition == null) throw ArgumentError('Unknown top-level function');
+  _BindingOperation _topLevelOperation(
+    String type,
+    String operation,
+    String name,
+  ) {
+    final definition = registry._functions[type];
+    if (definition == null || operation != 'call' || name.isNotEmpty) {
+      throw ArgumentError('Unknown top-level function');
+    }
+    return (id, args) {
+      if (id != 0) throw ArgumentError('Top-level functions have no receiver');
       final route = definition.route;
       if (route != null) requireOpen();
       final values = _callArguments(
         args,
         definition.parameters,
-        2,
+        0,
         uiCallbacks: route?.builders ?? const [],
       );
       FlaxRouteLease? lease;
@@ -149,9 +154,11 @@ extension _MemberCalls on _Session {
         final inputs = values.map((name, value) => MapEntry(name, value.data));
         Object? result;
         if (route == null) {
-          for (final value in values.values) {
+          for (final parameter in definition.parameters) {
+            final value = values[parameter.name];
+            if (value == null) continue;
             value.escapeCallbacks();
-            escapeWidget(value.data);
+            escapeWidget(value.data, parameter.type);
           }
           result = definition.invoke(inputs);
         } else {
@@ -182,11 +189,12 @@ extension _MemberCalls on _Session {
           for (final name in route.builders) {
             inputs[name] = lease.builder(name);
           }
-          for (final entry in values.entries) {
-            if (!route.builders.contains(entry.key)) {
-              entry.value.escapeCallbacks();
-              escapeWidget(entry.value.data);
-            }
+          for (final parameter in definition.parameters) {
+            if (route.builders.contains(parameter.name)) continue;
+            final value = values[parameter.name];
+            if (value == null) continue;
+            value.escapeCallbacks();
+            escapeWidget(value.data, parameter.type);
           }
           result = _TopLevelRouteCall(
             this,
@@ -201,45 +209,30 @@ extension _MemberCalls on _Session {
         }
         checkpoint();
       }
-    });
-    _registerBindingHostFunction('__flaxGet', (_, args) {
-      _checkCall(args, 4);
-      if (args.length != 4 || args[3] is! FlaxJsString) {
-        throw ArgumentError('Invalid getter arguments');
-      }
-      final type = (args[1] as FlaxJsString).value;
-      final binding = registry._types[type];
-      if (binding is! FlaxContextBinding) {
-        throw ArgumentError('Unknown context type');
-      }
-      final name = (args[3] as FlaxJsString).value;
-      final getter = binding.getters.where((g) => g.name == name).firstOrNull;
-      if (getter == null) throw ArgumentError('Unsupported getter: $name');
-      final reference = _context(args[2], type);
-      if (name == 'mounted') {
-        return FlaxJsBoolean(reference.context?.mounted ?? false);
-      }
-      return holdHostResult(
-        memberResult(getter.read(reference.requireActive()), getter.type),
-      );
-    });
-    _registerBindingHostFunction('__flaxCall', (_, args) {
-      _checkCall(args, 3);
-      if (args[2] is! FlaxJsString) throw ArgumentError('Invalid method name');
-      final type = (args[1] as FlaxJsString).value;
-      final name = (args[2] as FlaxJsString).value;
-      final method = registry._types[type]?.methods[name];
-      if (method == null) {
-        throw ArgumentError('Unsupported Dart method: $type.$name');
-      }
-      if (args.length > method.parameters.length + 3) {
+    };
+  }
+
+  _BindingOperation _staticOperation(
+    String type,
+    String operation,
+    String name,
+  ) {
+    final method = registry._types[type]?.methods[name];
+    if (method == null || operation != 'call') {
+      throw ArgumentError('Unknown static method');
+    }
+    return (id, args) {
+      if (id != 0) throw ArgumentError('Static methods have no receiver');
+      if (args.length > method.parameters.length) {
         throw ArgumentError('Too many method arguments');
       }
-      final values = _callArguments(args, method.parameters, 3);
+      final values = _callArguments(args, method.parameters, 0);
       try {
-        for (final value in values.values) {
+        for (final parameter in method.parameters) {
+          final value = values[parameter.name];
+          if (value == null) continue;
           value.escapeCallbacks();
-          escapeWidget(value.data);
+          escapeWidget(value.data, parameter.type);
         }
         final result = method.invoke(
           values.map((name, value) => MapEntry(name, value.data)),
@@ -251,7 +244,7 @@ extension _MemberCalls on _Session {
           value.release();
         }
       }
-    });
+    };
   }
 
   Map<String, _Value> _callArguments(
@@ -345,6 +338,12 @@ extension _MemberCalls on _Session {
       }
       return widgetResult(value);
     }
+    if (type.kind == 'context') {
+      if (value is! BuildContext) {
+        throw ArgumentError('Expected a BuildContext result');
+      }
+      return contextResult(value, type.id!);
+    }
     if (type.kind == 'state') return stateResult(value as State, type);
     if (type.kind == 'object') return objectResult(value!, type);
     return scalarResult(value, type);
@@ -353,7 +352,9 @@ extension _MemberCalls on _Session {
   FlaxJsObject recordResult(Object value, FlaxTypeRef type) {
     final binding = type.record;
     if (binding == null) throw ArgumentError('Missing Record binding');
-    final output = helper('emptyRecord').call(const []) as FlaxJsObject;
+    final output = helper(
+      'emptyRecord',
+    ).call([FlaxJsString(binding.signature)]) as FlaxJsObject;
     try {
       for (final field in binding.fields) {
         FlaxJsValue? encoded;
@@ -373,54 +374,70 @@ extension _MemberCalls on _Session {
     }
   }
 
-  void registerStateMembers() {
-    _registerBindingHostFunction('__flaxStateGet', (_, args) {
-      _checkCall(args, 4);
-      if (args.length != 4 ||
-          args[2] is! FlaxJsNumber ||
-          args[3] is! FlaxJsString) {
-        throw ArgumentError('Invalid State getter');
+  _BindingOperation _contextOperation(
+    String type,
+    String operation,
+    String name,
+  ) {
+    final binding = registry._types[type];
+    if (binding is! FlaxContextBinding || operation != 'get') {
+      throw ArgumentError('Unknown context operation');
+    }
+    final getter = binding.getters.where((g) => g.name == name).firstOrNull;
+    if (getter == null) throw ArgumentError('Unknown Context getter');
+    return (id, args) {
+      if (args.isNotEmpty) throw ArgumentError('Invalid Context getter');
+      final reference = _context(FlaxJsNumber(id.toDouble()), type);
+      if (name == 'mounted') {
+        return FlaxJsBoolean(reference.context?.mounted ?? false);
       }
-      final type = (args[1] as FlaxJsString).value;
-      final name = (args[3] as FlaxJsString).value;
-      final binding = registry._types[type];
-      if (binding is! FlaxStateBinding) {
-        throw ArgumentError('Unknown State type');
-      }
+      return holdHostResult(
+        memberResult(getter.read(reference.requireActive()), getter.type),
+      );
+    };
+  }
+
+  _BindingOperation _stateOperation(
+    String type,
+    String operation,
+    String name,
+  ) {
+    final binding = registry._types[type];
+    if (binding is! FlaxStateBinding) throw ArgumentError('Unknown State type');
+    if (operation == 'get') {
       final getter = binding.getters.where((g) => g.name == name).firstOrNull;
       if (getter == null) throw ArgumentError('Unknown State getter');
-      final ref = _states[(args[2] as FlaxJsNumber).value.toInt()];
-      if (ref != null && ref.type != type) throw ArgumentError('Foreign State');
-      final state = ref?.mounted;
-      if (name == 'mounted') return FlaxJsBoolean(state != null);
-      if (state == null) throw StateError('Unmounted State');
-      return holdHostResult(memberResult(getter.read(state), getter.type));
-    });
-    _registerBindingHostFunction('__flaxInstance', (_, args) {
-      _checkCall(args, 4);
-      if (args[2] is! FlaxJsNumber || args[3] is! FlaxJsString) {
-        throw ArgumentError('Invalid instance call');
-      }
-      final type = (args[1] as FlaxJsString).value;
-      final ref = _states[(args[2] as FlaxJsNumber).value.toInt()];
+      return (id, args) {
+        if (args.isNotEmpty) throw ArgumentError('Invalid State getter');
+        final ref = _states[id];
+        if (ref != null && ref.type != type) {
+          throw ArgumentError('Foreign State');
+        }
+        final state = ref?.mounted;
+        if (name == 'mounted') return FlaxJsBoolean(state != null);
+        if (state == null) throw StateError('Unmounted State');
+        return holdHostResult(memberResult(getter.read(state), getter.type));
+      };
+    }
+    final method = binding.instanceMethods[name];
+    if (operation != 'call' || method == null) {
+      throw ArgumentError('Unknown State method');
+    }
+    return (id, args) {
+      final ref = _states[id];
       final state = ref?.mounted;
       if (state == null || ref!.type != type) {
         throw StateError('Foreign or unmounted State');
       }
-      final binding = registry._types[type];
-      if (binding is! FlaxStateBinding) throw ArgumentError('Unknown State');
-      final method = binding.instanceMethods[(args[3] as FlaxJsString).value];
-      if (method == null || args.length > method.parameters.length + 4) {
-        throw ArgumentError('Unsupported instance method');
+      if (args.length > method.parameters.length) {
+        throw ArgumentError('Too many State arguments');
       }
       if (method.startsRoute) requireOpen();
       final values = <String, _Value>{};
       try {
         for (var i = 0; i < method.parameters.length; i++) {
           final p = method.parameters[i];
-          final input = i + 4 < args.length
-              ? args[i + 4]
-              : const FlaxJsUndefined();
+          final input = i < args.length ? args[i] : const FlaxJsUndefined();
           if (input is FlaxJsUndefined) {
             if (p.required) {
               throw ArgumentError('Missing method argument: ${p.name}');
@@ -432,9 +449,11 @@ extension _MemberCalls on _Session {
                 : decode(input, p.type);
           }
         }
-        for (final value in values.values) {
+        for (final parameter in method.parameters) {
+          final value = values[parameter.name];
+          if (value == null) continue;
           value.escapeCallbacks();
-          escapeWidget(value.data);
+          escapeWidget(value.data, parameter.type);
         }
         final result = method.invoke(
           state,
@@ -452,7 +471,7 @@ extension _MemberCalls on _Session {
         }
         checkpoint();
       }
-    });
+    };
   }
 
   String enumName(Object value, FlaxTypeRef type) {

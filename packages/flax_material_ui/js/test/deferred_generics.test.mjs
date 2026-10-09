@@ -1,3 +1,4 @@
+import { operationHost } from '../../../flax/js/test/flutter/support/operations.mjs';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { WidgetState, WidgetStateProperty } from '@flax/flutter/widgets';
@@ -17,17 +18,17 @@ test('deferred factories wait for a concrete Dart position and then keep identit
   assert.equal(pending.materializer, null);
   assert.equal(typeof pending.descriptor.args.callback, 'function');
 
-  globalThis.__flaxObject = (version, type, id, operation, member, states) => {
+  operationHost('object', (version, type, id, operation, member, states) => {
     calls.push({ version, type, id, operation, member, states });
     return pending.descriptor.args.callback({
       contains: (value) => states.has(value),
     });
-  };
+  });
   api.materializeDeferred(property, pending.type, 901, 'elevation');
   assert.equal(api.object(pending.type, 901), property);
   assert.equal(property.resolve(new Set([WidgetState.pressed])), 8);
   assert.equal(calls.length, 1);
-  assert.equal(calls[0].version, 22);
+  assert.equal(calls[0].version, 23);
   assert.throws(
     () => api.materializeDeferred(property, pending.type, 901, 'color'),
     /type mismatch/,
@@ -45,7 +46,7 @@ test('ButtonStyle preserves deferred values for Dart materialization', () => {
   const style = ButtonStyle({ elevation });
   assert.ok(style);
   assert.equal(calls.length, 1);
-  assert.equal(calls[0].version, 22);
+  assert.equal(calls[0].version, 23);
   assert.equal(calls[0].descriptor.args.elevation, elevation);
   assert.equal(api.deferredObject(elevation).materializer, null);
 });
@@ -53,7 +54,7 @@ test('ButtonStyle preserves deferred values for Dart materialization', () => {
 test('deferred aliases keep a shared Dart object alive independently', () => {
   const api = globalThis.__flaxBindings;
   const OriginalWeakRef = globalThis.WeakRef;
-  const originalObject = globalThis.__flaxObject;
+  const originalObject = operationHost('object', null);
   const refs = [];
   globalThis.WeakRef = class {
     constructor(value) {
@@ -71,7 +72,7 @@ test('deferred aliases keep a shared Dart object alive independently', () => {
     const pending = api.deferredObject(first);
     api.materializeDeferred(first, pending.type, 904, 'elevation');
     api.materializeDeferred(second, pending.type, 904, 'elevation');
-    globalThis.__flaxObject = () => 7;
+    operationHost('object', () => 7);
 
     assert.equal(api.object(pending.type, 904), first);
     refs.at(-1).value = undefined;
@@ -91,7 +92,7 @@ test('deferred aliases keep a shared Dart object alive independently', () => {
   } finally {
     api.releaseObject(904);
     globalThis.WeakRef = OriginalWeakRef;
-    globalThis.__flaxObject = originalObject;
+    operationHost('object', originalObject);
   }
 });
 
@@ -99,7 +100,7 @@ test('Dart Iterable and Set wrappers use one bulk copy for JavaScript iteration'
   const api = globalThis.__flaxBindings;
   const calls = [];
   const values = new Set([1, 2]);
-  globalThis.__flaxObject = (version, type, id, operation, member, ...args) => {
+  operationHost('object', (version, type, id, operation, member, ...args) => {
     calls.push({ version, type, id, operation, member, args });
     if (operation === 'get')
       return member === 'length' ? values.size : values.size === 0;
@@ -114,7 +115,7 @@ test('Dart Iterable and Set wrappers use one bulk copy for JavaScript iteration'
     if (member === 'toArray') return [...values];
     if (member === 'toSet') return new Set(values);
     throw new Error(`Unexpected ${operation} ${member}`);
-  };
+  });
   api.defineCollection('fixture:set:number', 'set');
   const set = api.object('fixture:set:number', 903);
   const customIterable = {

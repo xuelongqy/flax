@@ -1,3 +1,4 @@
+import { operationHost } from './support/operations.mjs';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
@@ -15,14 +16,14 @@ test('owned constructors call the host immediately and preserve wrapper identity
   let id = 0;
   globalThis.__flaxCreateObject = (version, type, descriptor) => {
     calls.push(descriptor);
-    assert.equal(version, 22);
+    assert.equal(version, 23);
     return api.object(type, ++id);
   };
-  globalThis.__flaxObject = (version, type, id, operation, member, ...args) => {
+  operationHost('object', (version, type, id, operation, member, ...args) => {
     calls.push([operation, member, ...args]);
     if (member === 'hasClients') return false;
     if (member === 'dispose') api.releaseObject(id);
-  };
+  });
   const c = ScrollController({ initialScrollOffset: 12 });
   assert.equal(calls.length, 1);
   assert.equal(calls[0].args.initialScrollOffset, 12);

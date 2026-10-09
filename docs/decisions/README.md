@@ -43,7 +43,7 @@ current language support is in the
 - [0020: Complete Dart Stream interop](0020-complete-dart-stream-interop.md) is
   accepted.
 - [0021: External binding version domains](0021-external-binding-version-domains.md) is
-  accepted with the current values defined by ADR 0037.
+  accepted. Current values are listed in the Binding Coverage Map linked above.
 - [0022: Stable binding identity and dependency ownership](0022-stable-binding-identity.md)
   is accepted.
 - [0023: External binding package and trust boundary](0023-external-binding-package-trust.md)

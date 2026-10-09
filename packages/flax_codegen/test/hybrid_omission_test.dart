@@ -47,7 +47,10 @@ void main() {
         contains('Function.apply(api.omissionTotal'),
       );
       expect(emitter.dart(module), contains('Function.apply(super.work'));
-      expect(emitter.dart(module), contains('Function.apply(_call_work'));
+      expect(
+        emitter.dart(module),
+        contains('final _flaxResult = _flaxPeer.call('),
+      );
       await compileFixture(
         root,
         emitter,
@@ -69,6 +72,12 @@ OmissionGeneric();
 value.compute({numbers: ['wrong']});
 ''',
         dartTestSource: r'''
+class _TestPeer implements FlaxProxyPeer {
+  _TestPeer(this.handled);
+  final bool handled;
+  @override
+  (bool, Object?) call(int member, List<Object?> positional, Map<String, Object?> named) => (handled, handled ? Future<int>.value(99) : null);
+}
 void main() {
   test('every mixed default and null subset executes through all call shapes', () async {
     const defaults = api.OmissionCalls();
@@ -102,12 +111,11 @@ void main() {
         19 - [for (var i = 0; i < 6; i++) if (mask & (1 << i) != 0) weights[i] + 1]
           .fold<int>(0, (a, b) => a + b));
     }
-    final proxy = _createOmissionProxy('@implementation', {'@call:work': null}) as api.OmissionProxy;
+    final proxy = _createOmissionProxy('@implementation', {'@peer': _TestPeer(false)}) as api.OmissionProxy;
     expect(proxy.total, 19);
     expect(await proxy.work(), 19);
     expect(await proxy.work(token: null), 17);
-    final bad = _createOmissionProxy('@implementation', {'@call:work': ({Object? token, List<int>? numbers,
-      Map<String, int>? mapping, int Function(int)? callback, List<String>? labels, Object? extra}) async => 99}) as api.OmissionProxy;
+    final bad = _createOmissionProxy('@implementation', {'@peer': _TestPeer(true)}) as api.OmissionProxy;
     await expectLater(bad.work(), throwsA(isA<StateError>().having((e) => e.message, 'reason', contains('must call super'))));
     expect(() => _createOmissionCalls('', {'numbers': ['wrong']}), throwsA(isA<TypeError>()));
     expect(() => _createOmissionGeneric('', {}), throwsA(isA<TypeError>()));
