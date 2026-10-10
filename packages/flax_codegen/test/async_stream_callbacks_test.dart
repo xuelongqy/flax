@@ -33,6 +33,7 @@ void main() {
       await parser.prepare([coreConfig]);
       final proposal = await parser.proposeLibrary(config);
       expect(proposal.skips, isEmpty);
+      expect(proposal.config.classes['AsyncStreamCallbacks']!.proxy, 'extends');
       final methods =
           proposal.config.classes['AsyncStreamCallbacks']!.instanceMethods;
       expect(
@@ -84,7 +85,7 @@ void main() {
         FlaxCodegenBindingEmitter([core, module]),
         module,
         consumerSource: '''import { AsyncStreamCallbacks } from './plugin.js';
-const callbacks = AsyncStreamCallbacks();
+const callbacks = AsyncStreamCallbacks.implement([], {});
 callbacks.echoFutureStream(value => value);
 callbacks.echoFutureOrStream(value => value);
 callbacks.echoStreamFuture(value => value);

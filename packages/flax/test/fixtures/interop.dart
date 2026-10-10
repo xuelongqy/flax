@@ -732,6 +732,31 @@ abstract class FutureProperty {
   Future<int> get value;
 }
 
+abstract class AsyncPropertyPort {
+  AsyncPropertyPort();
+
+  void get effect;
+  void event();
+  Future<int> get future;
+  set future(Future<int> value);
+  Future<int> get inherited => Future<int>.value(3);
+  Future<int>? get optionalFuture;
+  set optionalFuture(Future<int>? value);
+  FutureOr<int> get futureOr;
+  set futureOr(FutureOr<int> value);
+  Stream<int> get events;
+  set events(Stream<int> value);
+  Stream<int>? get optionalEvents;
+  set optionalEvents(Stream<int>? value);
+  ({Future<int> pending, Stream<int> events}) get snapshot;
+  set snapshot(({Future<int> pending, Stream<int> events}) value);
+  Future<int> Function(int) get transform;
+  set transform(Future<int> Function(int) value);
+  Future<Widget?> get child;
+}
+
+abstract interface class AsyncPropertyInterface implements AsyncPropertyPort {}
+
 abstract class PrivateProperty {
   // Deliberately invalid public proxy contract.
   // ignore: unused_element

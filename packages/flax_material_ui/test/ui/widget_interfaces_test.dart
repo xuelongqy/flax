@@ -329,7 +329,11 @@ void main() {
             );
             baseline = h.runtime.handles;
           }
-          expect(h.runtime.handles, lessThanOrEqualTo(baseline));
+          expect(
+            h.runtime.handles,
+            lessThanOrEqualTo(baseline),
+            reason: 'Replacement ${i + 1}: ${h.runtime.handleLabels}',
+          );
         }
         var closed = false;
         final closing = h.session.close().then((_) => closed = true);

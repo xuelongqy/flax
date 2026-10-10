@@ -2622,6 +2622,61 @@ function properties(child: Widget, context: Context, state: State) {
     },
   );
 
+  test(
+    'proxy async properties compile with shared directional types',
+    () async {
+      final config = FlaxCodegenBindingConfig(
+        'plugin',
+        Uri.file(p.join(root, 'packages/flax/test/fixtures/interop.dart'))
+            .toString(),
+        '@example/plugin',
+        'unused.dart',
+        'unused.ts',
+        {
+          for (final name in ['AsyncPropertyPort', 'AsyncPropertyInterface'])
+            name: ui.interopSelection[name]!,
+        },
+      );
+      final coreConfig = FlaxCodegenBindingConfig.read(
+        p.join(root, 'packages/flax/bindings/config.yaml'),
+      );
+      await parser.prepare([config, coreConfig]);
+      final core = await parser.parse(coreConfig);
+      final module = await parser.parse(config);
+      await compileFixture(
+        root,
+        FlaxCodegenBindingEmitter([module, core]),
+        module,
+        consumerSource: '''
+import { AsyncPropertyPort, AsyncPropertyInterface } from './plugin.js';
+type Implementation = Parameters<typeof AsyncPropertyInterface.implement>[1];
+declare const implementation: Implementation;
+const port = AsyncPropertyPort.implement([], implementation);
+port.future = Promise.resolve(4);
+const future: Promise<number> = port.future;
+port.optionalFuture = null;
+const optional: Promise<number> | null = port.optionalFuture;
+port.futureOr = 7;
+port.futureOr = Promise.resolve(8);
+const mixed: number | Promise<number> = port.futureOr;
+port.events = implementation.events;
+port.optionalEvents = null;
+port.snapshot = implementation.snapshot;
+port.transform = async value => value + 1;
+const transformed: Promise<number> = port.transform(2);
+// @ts-expect-error Future properties require a Promise.
+port.future = 4;
+// @ts-expect-error Null is distinct from undefined.
+port.optionalFuture = undefined;
+// @ts-expect-error A Stream is not a Promise.
+port.events = Promise.resolve(2);
+// @ts-expect-error Promise completion must have the declared type.
+AsyncPropertyInterface.implement([], {...implementation, future: Promise.resolve('bad')});
+''',
+      );
+    },
+  );
+
   test('proxy properties generate typed accessors', () async {
     final module = await parser.parse(
       fixture('interop.dart', {
@@ -2698,7 +2753,7 @@ const related: Token = generic.value;
 PropertyParent.implement<Token>([current], { get value(): number { return 1; } });
 ''',
     );
-    for (final name in ['FutureProperty', 'PrivateProperty']) {
+    for (final name in ['PrivateProperty']) {
       await expectLater(
         parser.parse(
           fixture('interop.dart', {

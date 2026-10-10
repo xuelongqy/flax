@@ -1014,6 +1014,8 @@ void main() {
         ('ContextProperty', 'context', 'context'),
         ('StateProperty', 'state', 'state'),
         ('WidgetRecordProperty', 'value', 'record'),
+        ('FutureRecordProperty', 'value', 'record'),
+        ('StreamRecordProperty', 'value', 'record'),
       ]) {
         final parser = FlaxCodegenBindingParser(repoRoot);
         addTearDown(parser.dispose);
@@ -1062,16 +1064,16 @@ void main() {
     },
   );
 
-  test('proxy property Records preserve nested async restrictions', () async {
-    for (final (name, member) in [
-      ('FutureRecordProperty', 'get:value'),
-      ('StreamRecordProperty', 'set:value'),
-    ]) {
+  test('proxy property Records preserve nested Route ownership restrictions', () async {
+    for (final (name, member) in [('RouteRecordProperty', 'get:value')]) {
       final parser = FlaxCodegenBindingParser(repoRoot);
       addTearDown(parser.dispose);
       await parser.prepare([
         FlaxCodegenBindingConfig.read(
           p.join(repoRoot, 'packages/flax/bindings/config.yaml'),
+        ),
+        FlaxCodegenBindingConfig.read(
+          p.join(repoRoot, 'packages/flax/bindings/components.yaml'),
         ),
       ]);
       await expectLater(
@@ -1088,7 +1090,7 @@ void main() {
           isA<StateError>().having(
             (error) => error.message,
             'message',
-            'Unsupported proxy property: $name.$member',
+            'Unsupported input callback signature at $name.$member result.pending item',
           ),
         ),
       );

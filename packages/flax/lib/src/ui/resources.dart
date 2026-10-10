@@ -301,6 +301,7 @@ mixin _JsInvocation {
     List<Object?> positionalArguments,
     Map<String, Object?> namedArguments, {
     int? member,
+    bool getter = false,
   }) {
     if (!active) {
       if (signature.result.kind == 'void') return (true, null);
@@ -399,7 +400,7 @@ mixin _JsInvocation {
         if (scope == _CallbackScope.ui && signature.result.kind == 'route') {
           return (true, _routeResult(signature, value));
         }
-        return (true, _memberResult(signature, value));
+        return (true, _memberResult(signature, value, getter: getter));
       } finally {
         _releaseJs(value);
       }
@@ -430,8 +431,19 @@ mixin _JsInvocation {
     }
   }
 
-  Object? _memberResult(FlaxCallbackBinding signature, FlaxJsValue value) {
-    if (signature.result.kind == 'void') return _eventResult(value);
+  Object? _memberResult(
+    FlaxCallbackBinding signature,
+    FlaxJsValue value, {
+    required bool getter,
+  }) {
+    if (signature.result.kind == 'void') {
+      if (!getter) return _eventResult(value);
+      if (value is FlaxJsObject &&
+          _property(value, 'then', (then) => then is FlaxJsFunction)) {
+        throw ArgumentError('Proxy property must be synchronous');
+      }
+      return null;
+    }
     if (signature.result.kind == 'future') {
       return session.promiseResult(value, signature.result);
     }
@@ -503,11 +515,23 @@ class _ProxyPeer with _JsInvocation implements FlaxProxyPeer {
     if (member < 0 || member >= binding.members.length) {
       throw ArgumentError('Unknown proxy member');
     }
-    final signature = binding.members[member].signature;
+    final selected = binding.members[member];
     return context == null
-        ? invoke(signature, positional, named, member: first + member)
+        ? invoke(
+            selected.signature,
+            positional,
+            named,
+            member: first + member,
+            getter: selected.kind == 1,
+          )
         : context!.run(
-            () => invoke(signature, positional, named, member: first + member),
+            () => invoke(
+              selected.signature,
+              positional,
+              named,
+              member: first + member,
+              getter: selected.kind == 1,
+            ),
           );
   }
 }

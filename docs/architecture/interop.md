@@ -440,12 +440,13 @@ shared typed conversion through that peer; there is no parallel Flax abstract-cl
 hierarchy or reflection.
 
 Required properties use JS accessors or ordinary data fields with synchronous typed
-conversion, including Widget, Context and State with the same ordinary conversion and
-lifetime checks. Dart-kept Widget results preserve JS overrides; Context/State
-properties do not extend Flutter lifetimes. The generator resolves effective inherited
-properties and prepares the peer before the parent constructor. Native lookup reads the
-current member, including arrow fields and later prototype or instance replacements,
-with the actual JS receiver. See
+conversion, including Future/FutureOr/Stream and Widget, Context and State with the same
+ordinary conversion and lifetime checks. A Future getter returns a Promise; Stream
+getters remain lazy references and setter functions remain synchronous. Dart-kept Widget
+results preserve JS overrides; Context/State properties do not extend Flutter lifetimes.
+The generator resolves effective inherited properties and prepares the peer before the
+parent constructor. Native lookup reads the current member, including arrow fields and
+later prototype or instance replacements, with the actual JS receiver. See
 [proxy properties and ValueListenable](proxy-properties.md).
 
 Proxy methods support the same positional, named and generic callback model, including
@@ -458,8 +459,9 @@ a Promise that resolves without the required pre-yield call completes with the
 the peer exists before the parent constructor runs, but that callback cannot call JS
 `super` until Dart object construction has returned and the object handle is attached.
 Such a call fails explicitly instead of recursing or using a partially initialized
-handle. Asynchronous properties, private members, non-virtual concrete overrides and
-incompatible Dart modifiers fail generation.
+handle. Private members, Route/Page proxy properties, non-virtual concrete overrides and
+incompatible Dart modifiers fail generation. Flutter lifecycle/build overrides retain
+their declared synchronous signatures.
 
 ## Verification
 

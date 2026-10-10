@@ -16,15 +16,26 @@ semantics. Required writes reject readonly data fields and accessors without a s
 
 Every Dart read invokes the getter once, and every Dart write invokes the setter once.
 There is no value mirror, implicit notification or signal subscription. Getter and
-setter implementations must finish synchronously: Promise and thenable results are
-rejected, including returns from the setter function itself. Ordinary setter return
-values are ignored. Exceptions propagate synchronously without rolling back side
-effects. The existing asynchronous UI void-event contract is unchanged.
+setter invocations finish synchronously. A getter declared as Future or FutureOr may
+return a Promise/thenable as its value; completion and errors use ordinary typed async
+conversion. Synchronous signatures still reject inappropriate Promise values. The setter
+function itself must not return a Promise/thenable, even when the assigned property is
+Future-valued. Void getter values are discarded synchronously and cannot return a
+Promise/thenable. Ordinary setter return values are ignored. Getter/setter exceptions
+propagate synchronously without rolling back side effects. The existing asynchronous UI
+void-event contract is unchanged.
 
 The analyzer resolves the effective inherited signature. Extends proxies implement
 remaining abstract accessors and inherit concrete defaults. Implements proxies supply
 the required interface, including accessors originating from Dart fields. Required
 implementation members are separate from the selected public wrapper surface.
+
+Generated `extends` subclasses still cannot combine an abstract accessor with a concrete
+accessor for the same property: TypeScript requires getter/setter abstractness to match.
+Explicit selection rejects this pair before emission; automatic selection can use an
+`implements` proxy when Dart permits it. That proxy requires both accessors from JS and
+does not inherit the Dart default. This declaration limitation is independent of async
+value conversion.
 
 Getter implementations return Dart inputs; setter implementations receive Dart outputs.
 For example, a List getter may return a JS array or DartList, while a List setter
@@ -32,8 +43,18 @@ receives a DartList referencing the original collection. The wrapper presented t
 application JS has the reverse read/write directions. Scalars, enums, references, typed
 collections and supported synchronous functions reuse the common converter. Widget,
 Context and State properties, including nullable values and supported finite aggregates,
-use the same conversion in ordinary extends and implements proxies. TS preserves generic
-relationships; Dart uses the configured concrete arguments.
+use the same conversion in ordinary extends and implements proxies. Future, FutureOr and
+Stream properties, nested Records/collections and returned async functions likewise
+reuse the existing converter. TS preserves generic relationships; Dart uses the
+configured concrete arguments.
+
+For example, a `Future<int> get value` implementation can return `Promise.resolve(3)`. A
+`Stream<int> get events` implementation returns a bound Dart Stream, including one
+created with `Stream.fromAsyncIterable(source)`. Reading the property does not listen;
+Dart owns subscription, pause, cancellation and event semantics. Setter implementations
+receive the same Promise/Stream views as ordinary Dart callback parameters. Session
+close rejects pending bridge Futures and cancels bridge subscriptions/AsyncIterable
+sources, without closing application controllers.
 
 Widget getters can return native configurations or JS Widget subclasses. Dart can retain
 and mount the result later; normal Dart references and the joint GC preserve JS
@@ -43,10 +64,10 @@ references supplied by Flutter, checked on every conversion; properties do not c
 mount or extend their lifetime. Forged, foreign-session and unmounted references are
 rejected. Nullable properties accept null, not undefined.
 
-Private properties, Future/Stream values and Route/Page ownership remain unsupported,
-including inside collections and Records. Eligible extends proxies support concrete
-accessors and explicit `super` calls through generated direct Dart parent entries. State
-host proxies keep their existing selected lifecycle/super mechanism.
+Private properties and Route/Page ownership remain unsupported, including inside
+collections and Records. Eligible extends proxies support concrete accessors and
+explicit `super` calls through generated direct Dart parent entries. State host proxies
+keep their existing selected lifecycle/super mechanism.
 
 `@mustCallSuper` enforcement currently covers proxy methods. Getter/setter super entries
 are available, but accessors do not yet track whether JS invoked them.

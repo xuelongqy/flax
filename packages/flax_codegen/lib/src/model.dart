@@ -1538,6 +1538,17 @@ class FlaxCodegenModuleModel {
       }
       if (type.proxy case final proxy?) {
         final names = <String>{};
+        if (proxy.kind == 'extends') {
+          for (final getter in proxy.getters) {
+            if (proxy.setters.any((setter) => setter.name == getter.name) &&
+                proxy.hasSuperGetter(getter.name) !=
+                    proxy.hasSuperSetter(getter.name)) {
+              throw StateError(
+                'Mixed abstract/concrete proxy accessors cannot be emitted in TypeScript: ${type.name}.${getter.name}',
+              );
+            }
+          }
+        }
         for (final method in proxy.methods) {
           if (!names.add(method.name) ||
               proxy.getters.any((getter) => getter.name == method.name) ||
@@ -1610,7 +1621,7 @@ class FlaxCodegenModuleModel {
           }
           if (!name.startsWith('call:')) {
             bool supported(FlaxCodegenTypeRef value) =>
-                !{'future', 'stream', 'route', 'page'}.contains(value.kind) &&
+                !{'route', 'page'}.contains(value.kind) &&
                 (value.item == null || supported(value.item!)) &&
                 (value.key == null || supported(value.key!)) &&
                 (value.result == null || supported(value.result!)) &&

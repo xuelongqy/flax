@@ -68,10 +68,26 @@ abstract class WidgetRecordProperty {
 
 abstract class FutureRecordProperty {
   ({Widget? child, Future<int> pending}) get value;
+  set value(({Widget? child, Future<int> pending}) value);
 }
 
 abstract class StreamRecordProperty {
+  ({Widget? child, Stream<int> events}) get value;
   set value(({Widget? child, Stream<int> events}) value);
+}
+
+abstract class MixedFutureProperty {
+  Future<int> get value => Future<int>.value(3);
+  set value(Future<int> value);
+}
+
+abstract class MixedStreamProperty {
+  Stream<int> get value;
+  set value(Stream<int> value) {}
+}
+
+abstract class RouteRecordProperty {
+  ({Widget? child, Future<Route<dynamic>> pending}) get value;
 }
 
 class RequiredUriBox extends StatelessWidget {

@@ -174,4 +174,98 @@ const fallback: number = ambiguous.value;
     },
     timeout: const Timeout(Duration(minutes: 3)),
   );
+
+  test('mixed async accessors use implements instead of invalid extends', () async {
+    final root = p.normalize(p.join(Directory.current.path, '../..'));
+    final parser = FlaxCodegenBindingParser(root);
+    final collection = AnalysisContextCollection(includedPaths: [root]);
+    addTearDown(parser.dispose);
+    addTearDown(collection.dispose);
+    final coreConfig = FlaxCodegenBindingConfig.read(
+      p.join(root, 'packages/flax/bindings/config.yaml'),
+    );
+    await parser.prepare([coreConfig]);
+    final core = await parser.parse(coreConfig);
+    final uri = Uri.file(
+      p.join(
+        root,
+        'packages/flax_codegen/test/fixtures/bindability/widget_probe.dart',
+      ),
+    ).toString();
+    FlaxCodegenBindingConfig config(
+      Map<String, FlaxCodegenClassSelection> classes,
+    ) => FlaxCodegenBindingConfig(
+      'mixed_accessors',
+      uri,
+      '@example/mixed-accessors',
+      'unused.dart',
+      'unused.ts',
+      classes,
+    );
+    final result = await collection.contexts.first.currentSession
+        .getLibraryByUri(uri);
+    expect(result, isA<LibraryElementResult>());
+    final library = (result as LibraryElementResult).element;
+    final selections = <String, FlaxCodegenClassSelection>{};
+    for (final name in ['MixedFutureProperty', 'MixedStreamProperty']) {
+      final checkpoint = parser.checkpoint();
+      await expectLater(
+        parser.parse(
+          config({
+            name: const FlaxCodegenClassSelection(
+              {'': []},
+              kind: 'object',
+              proxy: 'extends',
+              getters: ['value'],
+              setters: ['value'],
+            ),
+          }),
+        ),
+        throwsA(
+          isA<StateError>().having(
+            (e) => e.message,
+            'message',
+            'Mixed abstract/concrete proxy accessors cannot be emitted in TypeScript: $name.value',
+          ),
+        ),
+      );
+      parser.restore(checkpoint);
+      final proposal = await parser.proposeSelection(
+        library.exportNamespace.definedNames2[name] as InterfaceElement,
+        library: config(const {}),
+      );
+      expect(
+        proposal.selection?.proxy,
+        'implements',
+        reason:
+            '$name: ${proposal.skips.map((skip) => skip.reason).join("; ")}',
+      );
+      expect(proposal.proxyCapability, FlaxCodegenProxyCapability.canImplement);
+      expect(proposal.skips, isEmpty);
+      selections[name] = proposal.selection!;
+    }
+    final module = await parser.parse(config(selections));
+    await compileFixture(
+      root,
+      FlaxCodegenBindingEmitter([core, module]),
+      module,
+      consumerSource: '''
+import {MixedFutureProperty, MixedStreamProperty} from './plugin.js';
+let pending = Promise.resolve(4);
+const future = MixedFutureProperty.implement([], {
+  get value() { return pending; },
+  set value(value: Promise<number>) { pending = value; },
+});
+const completion: Promise<number> = future.value;
+future.value = Promise.resolve(5);
+type Events = MixedStreamProperty['value'];
+declare let events: Events;
+const stream = MixedStreamProperty.implement([], {
+  get value() { return events; },
+  set value(value: Events) { events = value; },
+});
+stream.value = events;
+''',
+    );
+  }, timeout: const Timeout(Duration(minutes: 3)));
 }

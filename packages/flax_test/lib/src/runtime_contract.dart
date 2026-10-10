@@ -386,6 +386,29 @@ void flaxRuntimeContract(
         throwsArgumentError,
       );
       runtime.evaluate(
+        'globalThis.pending = Promise.resolve(7); '
+        'Object.defineProperty(peer, "value", {configurable: true, '
+        'get() { return pending; }, set(v) { return pending; }}); void 0;',
+      );
+      final pending = runtime.getGlobal('pending') as FlaxJsObject;
+      final result = runtime.invokeProxyMember(
+        receiver,
+        first + 1,
+        const [],
+      ) as FlaxJsObject;
+      try {
+        expect(result.strictEquals(pending), isTrue);
+        expect(
+          () => runtime.invokeProxyMember(receiver, first + 2, [
+            const FlaxJsNumber(9),
+          ]),
+          throwsA(isA<FlaxJsException>()),
+        );
+      } finally {
+        result.release();
+        pending.release();
+      }
+      runtime.evaluate(
         'Object.defineProperty(peer, "value", {writable: false});',
       );
       expect(

@@ -388,10 +388,12 @@ Ordinary proxies generate required getter/setter dispatch from effective inherit
 signatures. Implementations use explicit JS accessors, checked without eager reads;
 parent constructors see initialized callbacks. ValueListenable exercises getter and
 listener dispatch, while independent fixtures cover setters and directional collection
-and function types. Ordinary extends/implements proxy properties reuse Widget, Context
-and State conversion, including nullable values and supported finite aggregates. Widgets
-follow Dart retention and joint GC; Context/State validity is checked on each
-read/write. See [proxy properties](../../docs/architecture/proxy-properties.md).
+and function types. Ordinary extends/implements proxy properties reuse Future/FutureOr,
+Stream, Widget, Context and State conversion, including nullable values, nested
+Records/collections and returned async functions. Getters return their typed values;
+setter functions remain synchronous even for Future-valued properties. Widgets follow
+Dart retention and joint GC; Context/State validity is checked on each read/write. See
+[proxy properties](../../docs/architecture/proxy-properties.md).
 
 Single Widget callback arguments and ordinary Widget-to-Widget calls share generated
 bidirectional conversion. Escaped configurations can be retained by Dart without an
@@ -422,9 +424,9 @@ Native JavaScript Promise assimilation flattens direct nested Promise/thenable l
 so generated adapters reconstruct the declared Dart Future layers while preserving
 type/value semantics rather than separate JavaScript Promise identity or timing.
 Future/FutureOr values inside collections, Maps and Records remain independent async
-values. Asynchronous properties and lifecycle/build overrides remain rejected. A
-returned function is a new invocation boundary and may have its own supported Future
-result.
+values. Ordinary proxy properties reuse these async rules; lifecycle/build overrides
+keep their synchronous Flutter signatures. A returned function is a new invocation
+boundary and may have its own supported Future result.
 
 Ordinary callbacks compose Future/FutureOr and Stream conversions in both directions:
 `Future<Stream<T>>`, `FutureOr<Stream<T>>`, `Stream<Future<T>>` and

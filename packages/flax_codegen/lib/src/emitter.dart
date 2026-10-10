@@ -2619,7 +2619,7 @@ ${type.widgetMembers.map((m) => m.source).join('\n')}
           '@override ${_dartDeclaredType(getter.type)} get ${getter.name} {',
         );
         out.writeln(
-          'final result = _flaxPeer.call($member, const [], const {});',
+          '${fallback || getter.type.kind != 'void' ? 'final result = ' : ''}_flaxPeer.call($member, const [], const {});',
         );
         if (fallback) {
           out.writeln(
@@ -2628,11 +2628,18 @@ ${type.widgetMembers.map((m) => m.source).join('\n')}
                 : 'if (!result.\$1) return super.${getter.name};',
           );
         }
-        out.writeln(
-          getter.type.kind == 'void'
-              ? 'return;'
-              : 'return ${_callbackResultCast('result.\$2', getter.type, generic: false)};',
-        );
+        if (getter.type.kind == 'future') {
+          if (getter.type.nullable) {
+            out.writeln('if (result.\$2 == null) return null;');
+          }
+          out.writeln(_futureCallbackReturn('result.\$2', getter.type.item!));
+        } else {
+          out.writeln(
+            getter.type.kind == 'void'
+                ? 'return;'
+                : 'return ${_callbackResultCast('result.\$2', getter.type, generic: false)};',
+          );
+        }
         out.writeln('}');
         if (fallback) {
           out.writeln(

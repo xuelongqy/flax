@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flax/flax.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -19,6 +21,303 @@ OwnedHarness _harness({void Function(FlaxObjectBinding, Object)? onCreate}) =>
     );
 
 void main() {
+  testWidgets(
+    'proxy async properties share typed Future conversion in both directions',
+    (t) async {
+      final ports = <plugin.AsyncPropertyPort>[];
+      final h = _harness(
+        onCreate: (_, value) {
+          if (value is plugin.AsyncPropertyPort) ports.add(value);
+        },
+      );
+      try {
+        await t.pumpWidget(h.app('properties'));
+        for (final type in ['AsyncPropertyInterface', 'AsyncPropertyPort']) {
+          h.execute(
+            'var implementation = properties.asyncImplementation(); '
+            'var port = properties.plugin.$type.implement([], implementation)',
+          );
+          final port = ports.last;
+          expect(h.number('implementation.observations.reads'), 0);
+          h.execute(
+            'var effectReads = 0; '
+            'Object.defineProperty(implementation, "effect", { configurable: true, '
+            'get() { effectReads++; return 42; } })',
+          );
+          port.effect;
+          expect(h.number('effectReads'), 1);
+          for (final value in [
+            'Promise.resolve()',
+            '{ then(resolve) { resolve(); } }',
+          ]) {
+            h.execute(
+              'Object.defineProperty(implementation, "effect", { configurable: true, '
+              'get() { return $value; } })',
+            );
+            expect(() => port.effect, throwsArgumentError);
+          }
+          h.execute(
+            'implementation.event = async function() { effectReads++; }',
+          );
+          port.event();
+          await t.pump();
+          expect(h.number('effectReads'), 2);
+          final result = port.future;
+          expect(h.number('implementation.observations.reads'), 1);
+          await t.pump();
+          expect(await result, 4);
+          port.future = Future<int>.value(6);
+          expect(h.number('implementation.observations.writes'), 1);
+          final native = port.future;
+          await t.pump();
+          expect(await native, 6);
+          h.execute(
+            'port.future = Promise.resolve(9); port.optionalFuture = null',
+          );
+          final fromJs = port.future;
+          await t.pump();
+          expect(await fromJs, 9);
+          expect(port.optionalFuture, isNull);
+          port.optionalFuture = Future<int>.value(12);
+          final optional = port.optionalFuture!;
+          await t.pump();
+          expect(await optional, 12);
+          port.optionalFuture = null;
+          expect(port.optionalFuture, isNull);
+          port.futureOr = 13;
+          expect(port.futureOr, 13);
+          port.futureOr = Future<int>.value(14);
+          final mixed = port.futureOr as Future<int>;
+          await t.pump();
+          expect(await mixed, 14);
+          port.snapshot = (
+            pending: Future<int>.value(15),
+            events: Stream<int>.empty(),
+          );
+          final snapshot = port.snapshot;
+          await t.pump();
+          expect(await snapshot.pending, 15);
+          final transformed = port.transform(16);
+          await t.pump();
+          expect(await transformed, 17);
+          port.transform = (value) async => value * 2;
+          final nativeCallback = port.transform(8);
+          await t.pump();
+          expect(await nativeCallback, 16);
+          for (final value in ['undefined', 'null', '4']) {
+            expect(
+              () => h.execute('port.future = $value'),
+              throwsA(isA<FlaxJsException>()),
+            );
+          }
+          expect(
+            () => h.execute('port.optionalFuture = undefined'),
+            throwsA(isA<FlaxJsException>()),
+          );
+          h.execute(
+            'Object.defineProperty(implementation, "future", { configurable: true, '
+            'get() { throw Error("async getter failed"); } })',
+          );
+          expect(() => port.future, throwsA(isA<FlaxJsException>()));
+          h.execute(
+            'Object.defineProperty(implementation, "future", { configurable: true, '
+            'get() { return { then(resolve) { resolve(19); } }; } })',
+          );
+          final thenable = port.future;
+          await t.pump();
+          expect(await thenable, 19);
+          h.execute(
+            'Object.defineProperty(implementation, "future", { configurable: true, '
+            'get() { return Promise.reject(Error("async property rejected")); } })',
+          );
+          final rejection = expectLater(
+            port.future,
+            throwsA(isA<FlaxJsException>()),
+          );
+          await t.pump();
+          await rejection;
+          h.execute(
+            'Object.defineProperty(implementation, "future", { configurable: true, '
+            'get() { return Promise.resolve("bad"); } })',
+          );
+          final badCompletion = expectLater(port.future, throwsArgumentError);
+          await t.pump();
+          await badCompletion;
+          h.execute(
+            'Object.defineProperty(implementation, "future", { configurable: true, '
+            'set(value) { return Promise.resolve(); } })',
+          );
+          expect(
+            () => port.future = Future<int>.value(1),
+            throwsA(isA<FlaxJsException>()),
+          );
+          h.execute('delete implementation.future');
+          if (type == 'AsyncPropertyPort') {
+            h.execute('delete Object.getPrototypeOf(implementation).inherited');
+            final inherited = port.inherited;
+            await t.pump();
+            expect(await inherited, 3);
+          }
+          final childFuture = port.child;
+          await t.pump();
+          final child = (await childFuture)!;
+          h.execute('port = implementation = null');
+          await t.runAsync(() async {
+            h.execute(flaxTestJsGarbagePressure);
+            await flaxTestCollectDartGarbage();
+          });
+          await t.pumpWidget(MaterialApp(home: child));
+          expect(find.text('Proxy widget'), findsOneWidget);
+          await t.pumpWidget(h.app('properties'));
+        }
+        expect(h.errors, isEmpty);
+      } finally {
+        await h.finish(t);
+      }
+    },
+  );
+
+  testWidgets(
+    'proxy Stream properties preserve lazy sources and native references',
+    (t) async {
+      final ports = <plugin.AsyncPropertyPort>[];
+      final h = _harness(
+        onCreate: (_, value) {
+          if (value is plugin.AsyncPropertyPort) ports.add(value);
+        },
+      );
+      try {
+        await t.pumpWidget(h.app('properties'));
+        for (final type in ['AsyncPropertyInterface', 'AsyncPropertyPort']) {
+          h.execute(
+            'var implementation = properties.asyncImplementation(); '
+            'var port = properties.plugin.$type.implement([], implementation)',
+          );
+          final port = ports.last;
+          final stream = port.events;
+          expect(h.number('implementation.observations.reads'), 1);
+          expect(h.number('implementation.observations.listens'), 0);
+          int? firstValue;
+          final first = stream.first.then((value) => firstValue = value);
+          for (var i = 0; i < 80 && firstValue == null; i++) {
+            await t.pump(const Duration(milliseconds: 1));
+            await t.runAsync(
+              () => Future<void>.delayed(const Duration(milliseconds: 1)),
+            );
+          }
+          expect(firstValue, 1, reason: 'Stream.first did not settle');
+          expect(await first, 1);
+          expect(h.number('implementation.observations.listens'), 1);
+          expect(h.number('implementation.observations.cancels'), 1);
+          final controller = StreamController<int>(sync: true);
+          final source = controller.stream;
+          final values = <int>[];
+          final errors = <Object>[];
+          StreamSubscription<int>? subscription;
+          try {
+            port.events = source;
+            expect(h.number('implementation.observations.writes'), 1);
+            expect(port.events, same(source));
+            h.execute(
+              'var savedEvents = port.events; port.events = savedEvents',
+            );
+            expect(port.events, same(source));
+            subscription = port.events.listen(values.add, onError: errors.add);
+            controller.add(7);
+            controller.addError(StateError('property stream error'));
+            controller.add(8);
+            await t.pump();
+            expect(values, [7, 8]);
+            expect(errors.single, isA<StateError>());
+            port.optionalEvents = source;
+            expect(port.optionalEvents, same(source));
+            h.execute('port.optionalEvents = null');
+            expect(port.optionalEvents, isNull);
+            port.optionalEvents = null;
+            expect(port.optionalEvents, isNull);
+            for (final code in [
+              'port.events = null',
+              'port.events = undefined',
+              'port.events = Promise.resolve(1)',
+              'port.optionalEvents = undefined',
+            ]) {
+              expect(() => h.execute(code), throwsA(isA<FlaxJsException>()));
+            }
+          } finally {
+            if (subscription != null) {
+              await t.runAsync(() => subscription!.cancel());
+            }
+            unawaited(controller.close());
+          }
+        }
+        expect(h.errors, isEmpty);
+      } finally {
+        await h.finish(t);
+      }
+    },
+  );
+
+  testWidgets(
+    'closing a proxy session rejects pending Futures and cancels async sources',
+    (t) async {
+      late plugin.AsyncPropertyPort port;
+      final h = _harness(
+        onCreate: (_, value) {
+          if (value is plugin.AsyncPropertyPort) port = value;
+        },
+      );
+      final controller = StreamController<int>();
+      StreamSubscription<int>? subscription;
+      try {
+        await t.pumpWidget(h.app('properties'));
+        h.execute('''
+        var implementation = properties.asyncImplementation();
+        var pending = new Promise(() => {});
+        var sourceCancels = 0;
+        Object.defineProperty(implementation, 'future', {
+          get() { return pending; }, set(value) { pending = value; }
+        });
+        implementation.events = properties.Stream.fromAsyncIterable({
+          [Symbol.asyncIterator]() {
+            return {next() { return new Promise(() => {}); },
+              return() { sourceCancels++; return Promise.resolve({done:true}); }};
+          }
+        });
+        var port = properties.plugin.AsyncPropertyInterface.implement([], implementation);
+      ''');
+        final rejected = expectLater(port.future, throwsA(isA<StateError>()));
+        subscription = port.events.listen((_) {});
+        port.optionalEvents = controller.stream;
+        h.execute(
+          'var appSubscription = port.optionalEvents.listen(value => {})',
+        );
+        for (var i = 0; i < 8; i++) {
+          await t.pump();
+        }
+        expect(controller.hasListener, isTrue);
+        final closed = h.session.close();
+        for (var i = 0; i < 8; i++) {
+          await t.pump(const Duration(milliseconds: 1));
+        }
+        expect(h.number('sourceCancels'), 1);
+        expect(controller.hasListener, isFalse);
+        expect(controller.isClosed, isFalse);
+        await flaxTestUnmount(t);
+        await flaxTestCloseSession(t, h.session);
+        await closed;
+        await rejected;
+        expect(h.runtime.handlesAtDispose, 0);
+        expect(h.errors, isEmpty);
+      } finally {
+        if (subscription != null) {
+          await t.runAsync(() => subscription!.cancel());
+        }
+        unawaited(controller.close());
+        await h.finish(t);
+      }
+    },
+  );
+
   testWidgets(
     'proxy accessors read current values once and avoid validation reads',
     (t) async {
@@ -386,7 +685,7 @@ void main() {
         expect(
           () => ports.single.readOnly,
           throwsA(
-            mode == 'type' ? isA<ArgumentError>() : isA<FlaxJsException>(),
+            mode == 'error' ? isA<FlaxJsException>() : isA<ArgumentError>(),
           ),
         );
         expect(
