@@ -12,9 +12,21 @@ Map<String, FlaxCodegenClassSelection> extensionClasses(String library) => {
   'ExtensionValues': FlaxCodegenClassSelection(
     {'': []},
     kind: 'object',
-    getters: ['widget', 'preferred', 'numbers', 'words', 'widgets'],
+    getters: [
+      'widget',
+      'preferred',
+      'numbers',
+      'words',
+      'widgets',
+      'nativeState',
+      'selectedWidget',
+    ],
+    setters: ['nativeState', 'selectedWidget'],
+    staticGetters: ['sharedState', 'sharedWidget'],
+    staticSetters: ['sharedState', 'sharedWidget'],
     instanceMethods: {
       'state': [],
+      'keepStateCallback': ['callback'],
       'matchesState': ['value'],
       'column': ['children'],
     },
@@ -23,6 +35,12 @@ Map<String, FlaxCodegenClassSelection> extensionClasses(String library) => {
     },
   ),
 };
+
+const extensionTopLevel = FlaxCodegenTopLevelSelection(
+  'ReferenceValues',
+  ['globalState', 'globalWidget'],
+  setters: ['globalState', 'globalWidget'],
+);
 
 const extensionFunctions = {
   'stateIsMounted': FlaxCodegenFunctionSelection(['value']),
@@ -72,7 +90,18 @@ const extensionSelection = {
     },
   ),
   'PreferredX': FlaxCodegenExtensionSelection(getters: ['height', 'same']),
-  'StateX': FlaxCodegenExtensionSelection(getters: ['isMounted', 'same']),
+  'StateX': FlaxCodegenExtensionSelection(
+    getters: ['isMounted', 'same'],
+    methods: {
+      'through': ['callback'],
+      'throughLater': ['callback'],
+      'throughMaybe': ['callback', 'empty'],
+      'throughStream': ['callback'],
+      'throughRecord': ['callback'],
+      'reader': [],
+      'visitor': [],
+    },
+  ),
   'RouteX': FlaxCodegenExtensionSelection(getters: ['isInstalled']),
   'PageX': FlaxCodegenExtensionSelection(getters: ['label']),
 };

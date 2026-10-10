@@ -28,10 +28,17 @@ Widget nestedWidgetColumn(List<List<Widget?>?>? children) => Column(
 
 class StateInputBox {
   StateInputBox();
+  State? selectedState;
+  Widget? child;
+  static State? sharedState;
+  static Widget? sharedChild;
   bool isLive(State input) => input.mounted;
   static bool isMounted(State input) => input.mounted;
   Widget column(List<Widget> children) => widgetColumn(children);
 }
+
+State? selectedStateValue;
+Widget? selectedWidgetValue;
 
 final class ContextBox {
   ContextBox(this.origin, {this.optional});

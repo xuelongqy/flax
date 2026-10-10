@@ -225,6 +225,10 @@ class AutoContextBox {
 
   BuildContext context;
   BuildContext? optional;
+  State? selectedState;
+  Widget? child;
+  static State? sharedState;
+  static Widget? sharedWidget;
   bool get mounted => context.mounted;
   bool matches(BuildContext value) => identical(context, value);
   bool matchesState(State value) => identical(context, value.context);
@@ -233,6 +237,8 @@ class AutoContextBox {
 }
 
 set autoSelectedContext(BuildContext? value) {}
+State? autoSelectedState;
+Widget? autoSelectedWidget;
 set autoContextListener(void Function(BuildContext) value) {}
 set autoContextListListener(void Function(List<BuildContext>) value) {}
 

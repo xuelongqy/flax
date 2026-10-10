@@ -100,7 +100,7 @@ void main() {
     expect(config.functions.keys, contains('autoGreeting'));
     expect(config.functions['autoContextMounted']?.parameters, ['context']);
     expect(config.functions['autoStateMounted']?.parameters, ['value']);
-    expect(config.functions, isNot(contains('autoStateCallback')));
+    expect(config.functions['autoStateCallback']?.parameters, ['callback']);
     expect(config.functions['autoWidgetColumn']?.parameters, ['children']);
     for (final name in [
       'autoIndexedBuild',
@@ -114,11 +114,29 @@ void main() {
     expect(contextBox.constructors[''], ['context', 'optional']);
     expect(contextBox.setters, containsAll(['context', 'optional']));
     expect(contextBox.getters, containsAll(['context', 'optional']));
+    expect(contextBox.getters, containsAll(['selectedState', 'child']));
+    expect(contextBox.setters, containsAll(['selectedState', 'child']));
+    expect(
+      contextBox.staticGetters,
+      containsAll(['sharedState', 'sharedWidget']),
+    );
+    expect(
+      contextBox.staticSetters,
+      containsAll(['sharedState', 'sharedWidget']),
+    );
     expect(contextBox.instanceMethods['matches'], ['value']);
     expect(contextBox.instanceMethods['matchesState'], ['value']);
     expect(contextBox.methods['isMounted'], ['value']);
     expect(contextBox.staticSetters, contains('selected'));
     expect(config.topLevel!.setters, contains('autoSelectedContext'));
+    expect(
+      config.topLevel!.getters,
+      containsAll(['autoSelectedState', 'autoSelectedWidget']),
+    );
+    expect(
+      config.topLevel!.setters,
+      containsAll(['autoSelectedState', 'autoSelectedWidget']),
+    );
     expect(config.topLevel!.setters, contains('autoContextListener'));
     expect(config.topLevel!.setters, contains('autoContextListListener'));
     expect(config.functions['autoIdentity']!.typeArguments, ['Object?']);

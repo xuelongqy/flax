@@ -47,8 +47,16 @@ void main() {
         functions: functionSelections,
         topLevel: const FlaxCodegenTopLevelSelection(
           'ContextValues',
-          ['selectedContextMounted'],
-          setters: ['selectedContext'],
+          [
+            'selectedContextMounted',
+            'selectedStateValue',
+            'selectedWidgetValue',
+          ],
+          setters: [
+            'selectedContext',
+            'selectedStateValue',
+            'selectedWidgetValue',
+          ],
         ),
         additionalLibraries: [
           Uri.file(
@@ -82,16 +90,34 @@ function readState(state: Parameters<typeof stateMounted>[0]) {
   StateInputBox.isMounted(state);
   stateBox.isLive(state);
   mountedStates([state]);
+  stateBox.selectedState = state;
+  const selected: typeof state | null = stateBox.selectedState;
+  StateInputBox.setSharedState(state);
+  ContextValues.setSelectedStateValue(state);
+  const global: typeof state | null = ContextValues.selectedStateValue;
+  StateInputBox.setSharedState(StateInputBox.sharedState);
 }
+stateBox.selectedState = null;
 optionalState({value: null});
 optionalState({value: undefined});
 const column = widgetColumn([nativeTile()]);
+stateBox.child = column;
+StateInputBox.setSharedChild(stateBox.child);
+ContextValues.setSelectedWidgetValue(StateInputBox.sharedChild);
+stateBox.child = ContextValues.selectedWidgetValue;
+stateBox.child = null;
 stateBox.column([column]);
 nestedWidgetColumn([[column, null], null]);
 // @ts-expect-error State inputs require a genuine borrowed State.
 stateMounted({mounted: true});
 // @ts-expect-error Non-null Widget elements cannot be null.
 widgetColumn([null]);
+// @ts-expect-error State properties do not accept forged references.
+stateBox.selectedState = {mounted: true};
+// @ts-expect-error Widget properties do not accept scalar values.
+stateBox.child = 1;
+// @ts-expect-error Setters require a value; undefined is not omission.
+ContextValues.setSelectedStateValue(undefined);
 wrapBuilder(context => {
   const dark: boolean = isDark(context);
   const box = ContextBox(context, {optional: undefined});
@@ -258,9 +284,6 @@ copyData(token);
         callbacks,
       );
       for (final functions in [
-        {
-          'withStateCallback': const FlaxCodegenFunctionSelection(['callback']),
-        },
         {'absent': const FlaxCodegenFunctionSelection([])},
         {'FunctionToken': const FlaxCodegenFunctionSelection([])},
         {

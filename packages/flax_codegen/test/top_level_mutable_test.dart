@@ -353,7 +353,7 @@ void main() {
   );
 
   test('setter inputs reject special ownership recursively', () {
-    for (final kind in ['widget', 'state', 'route', 'page']) {
+    for (final kind in ['route', 'page']) {
       final special = FlaxCodegenTypeRef(
         kind,
         id: 'package:example/types.dart::Special',
@@ -451,7 +451,7 @@ void main() {
         for (final method in ['setCounter', 'setWriteOnly']) {
           expect(
             ts,
-            contains('$namespace.$method = (value: number): void => {'),
+            contains('$namespace.$method = function(value: number): void {'),
           );
           expect(
             ts,
@@ -813,17 +813,19 @@ void main() {
   );
 
   test('JS dispatch preserves identities, arity, laziness and host rejection forwarding', () async {
-    final module = await parse(
-      config(
-        getters: ['counter', 'tracked'],
-        setters: ['counter', 'tracked', 'writeOnly', 'failing'],
-      ),
-    );
-    final ts = FlaxCodegenBindingEmitter([module]).typescript(module);
-    final result = await Process.run('node', [
-      '--input-type=module',
-      '-e',
-      '''
+    for (final namespace in ['', 'Values']) {
+      final module = await parse(
+        config(
+          jsName: namespace,
+          getters: ['counter', 'tracked'],
+          setters: ['counter', 'tracked', 'writeOnly', 'failing'],
+        ),
+      );
+      final ts = FlaxCodegenBindingEmitter([module]).typescript(module);
+      final result = await Process.run('node', [
+        '--input-type=module',
+        '-e',
+        '''
 import assert from 'node:assert/strict';
 import {transformSync} from 'esbuild';
 const source = ${jsonEncode(ts)};
@@ -844,28 +846,30 @@ const hosts = helpers.map(name => (...args) => {
 const output = transformSync(source.replace(imports, ''), {loader: 'ts', format: 'cjs'}).code;
 const exported = {exports: {}};
 new Function('module', 'exports', 'bindingVersion', ...helpers, output)(exported, exported.exports, 24, ...hosts);
-const api = exported.exports;
+const api = exported.exports${namespace.isEmpty ? '' : '.$namespace'};
+const readCounter = () => ${namespace.isEmpty ? 'api.getCounter()' : 'api.counter'};
+const readTracked = () => ${namespace.isEmpty ? 'api.getTracked()' : 'api.tracked'};
 assert.equal(calls.length, 0);
 assert.equal(api.setCounter(3), undefined);
-assert.equal(api.getCounter(), 3);
+assert.equal(readCounter(), 3);
 assert.equal(calls[0][0], ${jsonEncode('$uri::counter=')});
 assert.equal(calls[1][0], ${jsonEncode('$uri::counter')});
 assert.deepEqual(calls[0][1], [3]);
 assert.equal(api.setTracked(4), undefined);
-assert.equal(api.getTracked(), 4);
+assert.equal(readTracked(), 4);
 api.setWriteOnly(5);
-assert.equal('getWriteOnly' in api, false);
+assert.equal(${jsonEncode(namespace.isEmpty ? 'getWriteOnly' : 'writeOnly')} in api, false);
 const before = calls.length;
 assert.throws(() => api.setCounter(1, 2), TypeError);
 assert.equal(calls.length, before);
 assert.throws(() => api.setFailing(6), /setter failed/);
-assert.equal(api.getCounter(), 5);
+assert.equal(readCounter(), 5);
 // Host rejection forwarding only; this stub does not exercise session lifetime.
 active = false;
 const beforeClosed = calls.length;
 for (const invoke of [
-  () => api.getCounter(),
-  () => api.getTracked(),
+  readCounter,
+  readTracked,
   () => api.setCounter(100),
   () => api.setTracked(101),
   () => api.setWriteOnly(102),
@@ -875,7 +879,8 @@ for (const invoke of [
 }
 assert.equal(calls.length, beforeClosed + 5);
 ''',
-    ], workingDirectory: root.path);
-    expect(result.exitCode, 0, reason: '${result.stdout}\n${result.stderr}');
+      ], workingDirectory: root.path);
+      expect(result.exitCode, 0, reason: '${result.stdout}\n${result.stderr}');
+    }
   });
 }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flax/bindings.dart';
 import 'package:flutter/widgets.dart';
 
@@ -49,6 +51,24 @@ extension PreferredX on PreferredSizeWidget {
 extension StateX on State {
   bool get isMounted => mounted;
   State get same => this;
+  State through(State Function(State) callback) => callback(this);
+  FutureOr<State?> throughMaybe(
+    FutureOr<State?> Function(FutureOr<State?>) callback, {
+    bool empty = false,
+  }) => callback(empty ? null : this);
+  Future<State?> throughLater(
+    Future<State?> Function(Future<State?>) callback,
+  ) => callback(Future.value(this));
+  Stream<State?> throughStream(
+    Stream<State?> Function(Stream<State?>) callback,
+  ) => callback(Stream.value(this));
+  (State, List<State?>) throughRecord(
+    (State, List<State?>) Function((State, List<State?>)) callback,
+  ) => callback((this, [this, null]));
+  State Function(State) reader() =>
+      (value) => value;
+  void Function(void Function(State)) visitor() =>
+      (callback) => callback(this);
 }
 
 extension RouteX on Route<Object?> {
@@ -72,10 +92,35 @@ Widget columnWidgetGroups(List<List<Widget?>?>? children) => columnWidgets([
 Future<Widget> futureColumnWidgets(Future<List<Widget>> children) async =>
     columnWidgets(await children);
 
+State? globalState;
+Widget? globalWidget;
+
 class ExtensionValues {
   ExtensionValues();
   State? nativeState;
+  static State? sharedState;
+  static Widget? sharedWidget;
+  Widget? _selectedWidget;
+  int widgetReads = 0;
+  int widgetWrites = 0;
+  bool rejectWidgetAfterStore = false;
+  Widget? get selectedWidget {
+    widgetReads++;
+    return _selectedWidget;
+  }
+
+  set selectedWidget(Widget? value) {
+    _selectedWidget = value;
+    widgetWrites++;
+    if (rejectWidgetAfterStore) {
+      throw StateError('Stored Widget before throwing');
+    }
+  }
+
   State state() => nativeState!;
+  State Function(State)? retainedStateCallback;
+  void keepStateCallback(State Function(State) callback) =>
+      retainedStateCallback = callback;
   bool matchesState(State value) => identical(nativeState, value);
   static bool stateMounted(State value) => value.mounted;
   Widget column(List<Widget> children) => columnWidgets(children);

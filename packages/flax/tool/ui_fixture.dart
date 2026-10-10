@@ -30,6 +30,7 @@ Future<void> main() async {
     core,
     rawToWire,
     functions: extensionFunctions,
+    topLevel: extensionTopLevel,
     extensions: extensionSelection,
   );
   await _generate(
@@ -121,6 +122,7 @@ Future<void> _generate(
   List<String> typedefs = const [],
   Map<String, FlaxCodegenFunctionSelection> functions = const {},
   Map<String, FlaxCodegenExtensionSelection> extensions = const {},
+  FlaxCodegenTopLevelSelection? topLevel,
 }) async {
   final parser = FlaxCodegenBindingParser(package.path);
   try {
@@ -141,6 +143,7 @@ Future<void> _generate(
       typedefs: typedefs,
       functions: functions,
       extensions: extensions,
+      topLevel: topLevel,
     );
     await parser.prepare([config]);
     final wireToRaw = {

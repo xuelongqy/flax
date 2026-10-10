@@ -334,9 +334,18 @@ registrations. Function-only modules, public re-exports, typed callbacks and Fut
 results share member conversion. Explicit and automatic function selection also accept
 direct State and typed Widget collection inputs; instance/static methods accept State.
 All use the existing converters, preserving live State checks, native Widget identity
-and nullable/nested List semantics. No new lifetime configuration or runtime path is
-added. State callbacks retain their existing limits. Explicit `route` parameter roles
-require an observed synchronous TransitionRoute and per-Route callback ownership. See
+and nullable/nested List semantics. Instance/static properties and top-level variables
+also support State reads/writes and Widget writes using these shared rules.
+Dart-retained Widgets preserve their configurations and JS overrides; a stored State
+still requires Flutter mounting. No new lifetime configuration or runtime path is added.
+Callbacks reuse these converters for parameters and results, including State visitors,
+returned functions, nested callbacks, nullable aggregates and supported
+Future/FutureOr/Stream compositions. Explicit and automatic selection share one callback
+validation rule; ordinary values have no separate callback type whitelist. State
+validity is checked at invocation or async delivery, including after unmount. Retaining
+a callback does not keep a Flutter State mounted. Existing Context owner and Route/Page
+lease rules still apply. Explicit `route` parameter roles require an observed
+synchronous TransitionRoute and per-Route callback ownership. See
 [top-level functions](../../docs/architecture/functions.md).
 
 Optional `topLevel: {getters: [name]}` selects public top-level const, final, late final
@@ -349,10 +358,15 @@ through the existing function binding channel. Importing a module does not trigg
 reads. Initialization, exceptions, object identity, callbacks and async delivery keep
 their existing Dart and session behavior. Writes emit synchronous `setX(value): void`
 functions; getter and setter types follow their separate Dart signatures.
-Const/final/late-final writes and inputs requiring unsupported Flutter ownership are
-rejected; existing mounted Context references are accepted. Provider-owned declarations
-reuse the provider's public module without registering twice. Manifest 17 records source
-identity, read/write operations and public-library routing. See
+Const/final/late-final writes and inputs requiring unsupported Route/Page ownership are
+rejected; existing mounted Context and State references and compatible Widgets are
+accepted. State/Widget results use ordinary conversion; direct top-level Context results
+remain unsupported. Reads are lazy, invalid writes fail before invoking Dart, and
+nullable setters accept `null` but reject `undefined`. Static/global values belong to
+the Dart application; closing a session does not reset them or keep a stored State
+mounted. Provider-owned declarations reuse the provider's public module without
+registering twice. Manifest 17 records source identity, read/write operations and
+public-library routing. See
 [readonly generation](../../docs/architecture/bindings.md#public-libraries-and-top-level-readonly-declarations)
 and [ADR 0027](../../docs/decisions/0027-public-library-module-delivery.md).
 

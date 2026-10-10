@@ -2086,30 +2086,7 @@ class FlaxCodegenBindingParser {
         if (selection.data.getters.contains(name)) {
           type = _dataType(type, '${entry.key}.$name');
         }
-        if (!{
-          'void',
-          'String',
-          'bool',
-          'int',
-          'double',
-          'num',
-          'enum',
-          'data',
-          'any',
-          'iterable',
-          'list',
-          'map',
-          'record',
-          'set',
-          'scalar',
-          'object',
-          'future',
-          'futureOr',
-          'stream',
-          'callback',
-          'widget',
-          'context',
-        }.contains(type.kind)) {
+        if (!_getterKinds.contains(type.kind)) {
           throw StateError('Unsupported getter type: ${getter.returnType}');
         }
         final errorGetter = selection.errorGetters.contains(name);

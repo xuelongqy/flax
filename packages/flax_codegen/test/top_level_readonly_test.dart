@@ -338,27 +338,27 @@ void main() {
   );
 
   test(
-    'readonly ownership restrictions include declared and generic types',
+    'readonly Route ownership restrictions include declared and generic types',
     () {
-      const widget = FlaxCodegenTypeRef(
-        'widget',
-        id: 'package:example/values.dart::Widget',
-        name: 'Widget',
+      const route = FlaxCodegenTypeRef(
+        'route',
+        id: 'package:example/values.dart::Route',
+        name: 'Route',
       );
       for (final type in [
         const FlaxCodegenTypeRef(
           'object',
           id: 'package:example/values.dart::Box',
           name: 'Box',
-          dartArguments: [widget],
+          dartArguments: [route],
         ),
         const FlaxCodegenTypeRef(
           'object',
           id: 'package:example/values.dart::Box',
           name: 'Box',
-          tsArguments: [widget],
+          tsArguments: [route],
         ),
-        const FlaxCodegenTypeRef('any', declaration: widget),
+        const FlaxCodegenTypeRef('any', declaration: route),
       ]) {
         final values = FlaxCodegenTopLevelModel('Values', [
           FlaxCodegenTopLevelGetterModel(

@@ -231,58 +231,6 @@ final class _FlaxCodegenTypeScope {
                   typeOnlyPosition: typeOnlyPosition,
                 ),
               );
-        const incoming = {
-          'callback',
-          'String',
-          'bool',
-          'int',
-          'double',
-          'num',
-          'enum',
-          'context',
-          'widget',
-          'object',
-          'page',
-          'data',
-          'any',
-          'iterable',
-          'list',
-          'map',
-          'set',
-          'future',
-          'futureOr',
-          'stream',
-          'record',
-        };
-        const outgoing = {
-          'callback',
-          'String',
-          'bool',
-          'int',
-          'double',
-          'num',
-          'enum',
-          'context',
-          'widget',
-          'route',
-          'object',
-          'data',
-          'any',
-          'iterable',
-          'list',
-          'map',
-          'set',
-          'void',
-          'future',
-          'futureOr',
-          'stream',
-          'record',
-        };
-        if (!forTypescript &&
-            (parameters.any((p) => !incoming.contains(p.type.kind)) ||
-                !outgoing.contains(result.kind))) {
-          throw StateError('Unsupported callback signature: $type');
-        }
         return FlaxCodegenTypeRef(
           'callback',
           nullable: nullable,

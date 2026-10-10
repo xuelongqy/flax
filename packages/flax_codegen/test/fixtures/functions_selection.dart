@@ -4,6 +4,10 @@ const functionClasses = {
   'StateInputBox': FlaxCodegenClassSelection(
     {'': []},
     kind: 'object',
+    getters: ['selectedState', 'child'],
+    setters: ['selectedState', 'child'],
+    staticGetters: ['sharedState', 'sharedChild'],
+    staticSetters: ['sharedState', 'sharedChild'],
     instanceMethods: {
       'isLive': ['input'],
       'column': ['children'],
@@ -67,6 +71,7 @@ const functionClasses = {
 
 const functionSelections = {
   'stateMounted': FlaxCodegenFunctionSelection(['value']),
+  'withStateCallback': FlaxCodegenFunctionSelection(['callback']),
   'optionalState': FlaxCodegenFunctionSelection(['value']),
   'mountedStates': FlaxCodegenFunctionSelection(['values']),
   'widgetColumn': FlaxCodegenFunctionSelection(['children']),

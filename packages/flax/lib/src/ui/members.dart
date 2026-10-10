@@ -568,36 +568,7 @@ extension _MemberCalls on _Session {
       if (result is FlaxJsObject) temporary.add(result);
       return result;
     }
-    if ({
-          'list',
-          'map',
-          'iterable',
-          'set',
-          'any',
-          'callback',
-          'future',
-          'futureOr',
-          'stream',
-          'record',
-          'widget',
-          'error',
-        }.contains(type.kind) &&
-        value != null) {
-      final result = memberResult(value, type);
-      if (result is FlaxJsObject) temporary.add(result);
-      return result;
-    }
-    if (type.kind == 'object' && value != null) {
-      final result = objectResult(value, type);
-      if (result is FlaxJsObject) temporary.add(result);
-      return result;
-    }
-    if (type.kind == 'data') {
-      final result = encodeData(value);
-      if (result is FlaxJsObject) temporary.add(result);
-      return result;
-    }
-    if (value == null) return scalarResult(value, type);
+    if (value == null) return memberResult(value, type);
     if (type.kind == 'page') {
       if (value is! FlaxPageConfiguration ||
           !identical(value.flaxPageLease._session, this) ||
@@ -612,7 +583,7 @@ extension _MemberCalls on _Session {
       temporary.add(proxy);
       return proxy;
     }
-    final result = scalarResult(value, type);
+    final result = memberResult(value, type);
     if (result is FlaxJsObject) temporary.add(result);
     return result;
   }

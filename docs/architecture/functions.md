@@ -38,8 +38,11 @@ conversion.
 Direct State inputs also use the existing borrowed reference conversion, for example
 `bool isMounted(State state) => state.mounted`. A native State wrapper or a live JS
 State resolves to the real Flutter State; forged, foreign-session and unmounted States
-are rejected. Passing or saving a State does not keep it mounted. This does not widen
-the supported State callback signatures.
+are rejected. Passing or saving a State does not keep it mounted. State callbacks use
+the same converters in both directions: `void visit(void Function(State) callback)` can
+deliver a mounted native State to JS, and a JS callback can return an existing live
+State. Returned Dart functions, nested callbacks and supported async compositions reuse
+the same validity checks at invocation or delivery.
 
 Widget collections follow the same input conversion as methods and extensions. For
 example, `Widget stack(List<Widget> children) => Column(children: children)` accepts

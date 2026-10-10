@@ -268,11 +268,15 @@ scope, alongside classes, functions and typedefs.
 
 Read access does not freeze the returned value. Existing object/collection identity,
 mutation, callbacks, generic typedefs, Futures and supported Stream conversion remain
-unchanged. Unsupported conversions and special Widget, Context, State, Route or Page
-ownership, including nested declarations and type arguments, fail generation. Reads
-create no implicit reactive subscriptions or cross-session reference cache. Closing uses
-existing call, reference and pending-delivery cleanup; it does not dispose
-application-owned values.
+unchanged. State and Widget variables reuse ordinary typed conversion, including
+nullable values and supported collections. State reads still require a mounted State;
+storing a State does not keep it mounted. Dart-retained Widgets keep their existing
+configurations and JS overrides until ordinary references become unreachable.
+Unsupported conversions, direct Context results and Route/Page ownership, including
+nested declarations and type arguments, fail generation. Reads create no implicit
+reactive subscriptions or cross-session reference cache. Closing uses existing call,
+reference and pending-delivery cleanup; it does not dispose application-owned values or
+make a JS-backed Widget usable after its owning session has closed.
 
 Manifest 17 stores public-library routing plus each readonly declaration's source,
 public export, return type, declaration kind, optional literal and ownership/reference
@@ -748,8 +752,35 @@ same borrowed converter as extensions. Live JS States resolve to their real Dart
 native State wrappers require a mounted State. Typed Widget collection inputs, including
 `List<Widget>`, nullable/nested lists and supported async compositions, use the existing
 recursive converters in both explicit and automatic selection. There is no callable
-kind-specific collection ban. State callback signatures and Route/Page ownership keep
-their existing limits.
+kind-specific collection ban. Instance properties, static properties and top-level
+variables also accept State reads/writes and Widget writes through these same
+converters. Explicit and automatic selection share the member type rules. Instance
+writes use ordinary property assignment; static and top-level writes use explicit
+`setX(value)` methods. Importing a module performs no Dart reads, and each write calls
+its Dart setter once. Invalid or foreign references and `undefined` are rejected before
+the setter runs; nullable signatures accept `null`. A setter which stores a Widget and
+then throws keeps that Widget's configuration valid. Application-owned static/global
+values survive session close; Flutter still controls State mounting. See
+[reference property tests](../../packages/flax/test/ui/extensions_test.dart).
+
+Ordinary callback parameters and results use the same recursive converters as methods,
+including State, Context, Widget and selected object references. The analyzer creates
+one callback model; explicit and automatic selection share its direction and ownership
+validation instead of maintaining separate type lists. State visitors, returned Dart
+functions, nested callbacks, nullable aggregates and supported Future/FutureOr/Stream
+compositions borrow the real mounted State. Conversion happens when a callback runs or
+an async value is delivered: forged, foreign-session and unmounted references fail then.
+Erased Object positions also borrow State references, so generic Stream operators and
+derived collection reads preserve the same real State rather than treating it as an
+unbound Dart object. Existing typed State views keep their selected binding identity. A
+real State can have separate base and concrete binding views without changing either
+view's type. Saving a callback or a State does not keep the Flutter State mounted.
+Escaped callbacks retain their existing Dart/JS ownership and session-close behavior.
+Context arguments still register their mount owner; Page arguments and Route results
+retain their explicit lease rules. Unresolved runtime types, nested Streams and
+unsupported Route/Page positions remain rejected. No additional State callback adapter,
+lifecycle configuration, protocol version or GC mechanism is introduced. See the same
+reference property tests for synchronous, asynchronous and retained State callbacks.
 
 ## Extension declarations
 

@@ -356,7 +356,7 @@ class FlaxCodegenTypeRef {
         if (type.kind == 'future' || type.kind == 'futureOr') {
           final item = type.item!;
           final itemPosition = '$position item';
-          if ({'state', 'route', 'page'}.contains(item.kind)) {
+          if ({'route', 'page'}.contains(item.kind)) {
             return itemPosition;
           }
           return unsupportedPosition(
@@ -370,13 +370,7 @@ class FlaxCodegenTypeRef {
           if (insideStream) return position;
           final item = type.item!;
           final itemPosition = '$position item';
-          if ({
-            'state',
-            'route',
-            'page',
-            'parameter',
-            'stream',
-          }.contains(item.kind)) {
+          if ({'route', 'page', 'parameter', 'stream'}.contains(item.kind)) {
             return itemPosition;
           }
           return unsupportedPosition(
@@ -425,29 +419,18 @@ class FlaxCodegenTypeRef {
           type.validateCallbacks(position, input: toDart);
           return null;
         }
-        if (type.kind == 'context') return null;
         if (type.kind == 'page') return argument && !toDart ? null : position;
-        if (type.kind == 'widget') return null;
         if (type.kind == 'route') return toDart && !argument ? null : position;
+        if (type.kind == 'void' && argument) return position;
         // Lexical type-parameter refs require a bound genericIdentity token.
         if (type.kind == 'parameter') {
           return type.genericIdentity != null ? null : position;
         }
-        return {
-              'String',
-              'bool',
-              'int',
-              'double',
-              'num',
-              'scalar',
-              'enum',
-              'object',
-              'any',
-              'data',
-              'void',
-            }.contains(type.kind)
-            ? null
-            : position;
+        // Ordinary values use the member converters in both callback directions.
+        // Only ownership and unresolved type constraints need extra rules here.
+        return type.category == FlaxCodegenTypeCategory.typeOnly
+            ? position
+            : null;
       }
 
       for (final parameter in parameters) {
@@ -1731,7 +1714,7 @@ void _validateTopLevelOwnership(
   String location, {
   required bool input,
 }) {
-  if ({'widget', 'state', 'route', 'page'}.contains(type.kind) ||
+  if ({'route', 'page'}.contains(type.kind) ||
       (type.kind == 'context' && !input)) {
     throw StateError(
       'Unsupported top-level ownership at $location: ${type.kind}',

@@ -181,7 +181,7 @@ class _Session {
   int _nextComponentState = 1;
   final _states = <int, _StateReference>{};
   final _nativeStateFactories = <Set<int>>[];
-  final _stateIds = Expando<int>();
+  final _stateIds = Expando<Map<String, int>>();
   final _operations = <(String, _BindingContext?, _BindingOperation)>[];
   final _operationIds = <(String, String, String, String), int>{};
   final _collectionBindings = <String, FlaxObjectBinding>{};

@@ -1,5 +1,10 @@
 part of '../../bindings.dart';
 
+final _anyState = FlaxTypeRef(
+  'state',
+  id: componentsBindings.types.whereType<FlaxStateBinding>().single.id,
+);
+
 class _CollectionConversion {
   final inputs = <(FlaxJsObject, Object)>[];
   void close() {
@@ -213,6 +218,16 @@ extension _Collections on _Session {
       }
       return _Value(record.value, [_ObjectBorrow(record, input.retain())]);
     }
+    final stateId = helper('stateHandle').call([input, const FlaxJsNull()]);
+    if (stateId is FlaxJsNumber) {
+      final reference = _states[stateId.value.toInt()];
+      if (reference == null) throw ArgumentError('Invalid or foreign State');
+      final state = reference.mounted;
+      if (state == null) throw StateError('Unmounted State');
+      return _Value(state);
+    }
+    final component = decodeComponentStateReference(input, _anyState);
+    if (component != null) return component;
     // References take precedence over thenable detection: a bound Dart object
     // may expose an ordinary method named then. Erased JS Stream events still
     // preserve real Promise events for concrete-use-site adaptation.
@@ -459,6 +474,16 @@ extension _Collections on _Session {
     if (value == null) return const FlaxJsNull();
     if (value is BuildContext) {
       return contextResult(value, registry._contextType.id);
+    }
+    if (value is State) {
+      final views = _stateIds[value]?.values ?? const <int>[];
+      final reference = views.map((id) => _states[id]).nonNulls.firstOrNull;
+      return stateResult(
+        value,
+        reference == null
+            ? _anyState
+            : FlaxTypeRef('state', id: reference.type),
+      );
     }
     if (value is String) return FlaxJsString(value);
     if (value is bool) return FlaxJsBoolean(value);

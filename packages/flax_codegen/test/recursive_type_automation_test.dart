@@ -215,7 +215,10 @@ void streamTop;
           name: 'value',
           type: FlaxCodegenTypeRef(
             'future',
-            item: FlaxCodegenTypeRef('list', item: FlaxCodegenTypeRef('state')),
+            item: FlaxCodegenTypeRef(
+              'list',
+              item: FlaxCodegenTypeRef('parameter'),
+            ),
           ),
           required: true,
           positional: true,

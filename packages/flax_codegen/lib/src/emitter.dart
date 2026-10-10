@@ -4963,7 +4963,7 @@ $_typescriptHostImport
         for (final setter in values.setters) {
           if (setter.isReference) {
             out.writeln(
-              'export function ${setter.exportName}(value: ${tsType(setter.type, input: true)}): void { ${writeSetter(setter)}; }',
+              'export function ${setter.exportName}(value: ${tsType(setter.type, input: true)}): void { if (arguments.length > 1) throw new TypeError("Too many method arguments"); ${writeSetter(setter)}; }',
             );
           } else {
             emitTsCallable(out, setter.asFunction().call, id: setter.id);
@@ -4988,7 +4988,7 @@ $_typescriptHostImport
         }
         for (final setter in values.setters) {
           out.writeln(
-            '${values.jsName}.${setter.exportName} = (value: ${tsType(setter.type, input: true)}): void => { ${writeSetter(setter)}; };',
+            '${values.jsName}.${setter.exportName} = function(value: ${tsType(setter.type, input: true)}): void { if (arguments.length > 1) throw new TypeError("Too many method arguments"); ${writeSetter(setter)}; };',
           );
         }
       }

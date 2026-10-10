@@ -111,7 +111,7 @@ callbacks.echoFutureStream(value => callbacks.futureOrStream(value));
 
   for (final asyncKind in ['future', 'futureOr']) {
     for (final type in ['context', 'state', 'route', 'page']) {
-      test('$asyncKind/stream/$type retains the async lifetime boundary', () {
+      test('$asyncKind/stream/$type checks conversion and ownership', () {
         final callback = FlaxCodegenTypeRef(
           'callback',
           result: FlaxCodegenTypeRef(
@@ -122,7 +122,7 @@ callbacks.echoFutureStream(value => callbacks.futureOrStream(value));
         for (final input in [true, false]) {
           expect(
             () => callback.validateCallbacks('fixture', input: input),
-            type == 'context'
+            {'context', 'state'}.contains(type)
                 ? returnsNormally
                 : throwsA(
                     isA<StateError>().having(

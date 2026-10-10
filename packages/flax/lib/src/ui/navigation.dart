@@ -168,7 +168,8 @@ extension _Navigation on _Session {
     _states.removeWhere(
       (_, ref) => ref.mounted == null && ref.pendingState == null,
     );
-    final id = _stateIds[state] ??= _nextState++;
+    final views = _stateIds[state] ??= {};
+    final id = views.putIfAbsent(type.id!, () => _nextState++);
     _states.putIfAbsent(
       id,
       () => _StateReference(state, type.id!, pending: pending),

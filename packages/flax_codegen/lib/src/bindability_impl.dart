@@ -895,6 +895,7 @@ const _getterKinds = {
   'callback',
   'widget',
   'context',
+  'state',
 };
 
 const _setterKinds = {
@@ -905,6 +906,8 @@ const _setterKinds = {
   'num',
   'enum',
   'context',
+  'state',
+  'widget',
   'data',
   'any',
   'iterable',
