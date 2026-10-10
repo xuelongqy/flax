@@ -4,7 +4,10 @@ part of '../../bindings.dart';
 const flaxBindingVersion = 23;
 
 /// Additive features supported without changing the UI protocol.
-const _supportedCapabilities = <String>{'native-widget-proxies'};
+const _supportedCapabilities = <String>{
+  'instance-checks',
+  'native-widget-proxies',
+};
 
 class FlaxTypeRef {
   const FlaxTypeRef(

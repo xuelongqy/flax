@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/foundation/_bindings/flutter_LocalKey';
 import '@flax/flutter/foundation/_bindings/flutter_LocalKey';
 import type * as upstream1 from '@flax/flutter/foundation/_bindings/flutter_Key';
@@ -8,4 +9,6 @@ export interface ValueKey<T extends unknown | null = unknown | null> extends ups
     readonly __ValueKey: unique symbol;
     readonly value: T;
 }
-export declare function ValueKey<T extends (string | number) = (string | number)>(value: T): ValueKey<T>;
+declare function _ValueKeyFactory<T extends (string | number) = (string | number)>(value: T): ValueKey<T>;
+export declare const ValueKey: typeof _ValueKeyFactory & _FlaxInstanceType<ValueKey<any>>;
+export {};

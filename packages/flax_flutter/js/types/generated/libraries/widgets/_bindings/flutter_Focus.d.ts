@@ -1,10 +1,10 @@
-import { type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/widgets/_bindings/flutter_FocusNode';
 export interface Focus extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Focus";
 }
-export declare function Focus(options: {
+declare function _FocusFactory(options: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -21,3 +21,5 @@ export declare function Focus(options: {
     includeSemantics?: Bindable<boolean> | undefined;
     debugLabel?: Bindable<string | null> | undefined;
 }): Focus;
+export declare const Focus: typeof _FocusFactory & _FlaxInstanceType<Focus>;
+export {};

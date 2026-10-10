@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/core/_bindings/flutter_StackTrace';
 import '@flax/dart/core/_bindings/flutter_StackTrace';
 export interface StreamSubscription<T extends unknown | null = unknown | null> extends Readonly<{
@@ -13,3 +14,4 @@ export interface StreamSubscription<T extends unknown | null = unknown | null> e
     resume(): void;
     asFuture<E extends unknown | null = unknown | null>(futureValue?: E | null): Promise<E>;
 }
+export declare const StreamSubscription: object & _FlaxInstanceType<StreamSubscription<any>>;

@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 export interface Color extends Readonly<{
     "__flaxBound:dart:ui::Color": readonly [];
 }> {
@@ -8,7 +9,9 @@ export interface Color extends Readonly<{
     readonly b: number;
     toARGB32(): number;
 }
-export declare function Color(value: number): Color;
-export declare namespace Color {
+declare function _ColorFactory(value: number): Color;
+declare namespace _ColorFactory {
     function fromARGB(a: number, r: number, g: number, b: number): Color;
 }
+export declare const Color: typeof _ColorFactory & _FlaxInstanceType<Color>;
+export {};

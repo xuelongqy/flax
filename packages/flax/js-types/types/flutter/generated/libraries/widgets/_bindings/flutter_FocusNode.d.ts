@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/foundation/_bindings/flutter_Listenable';
 import '@flax/flutter/foundation/_bindings/flutter_Listenable';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_UnfocusDisposition';
@@ -31,8 +32,10 @@ export interface FocusNode extends upstream0.Listenable, Readonly<{
     set canRequestFocus(value: boolean);
     set skipTraversal(value: boolean);
 }
-export declare function FocusNode(options?: {
+declare function _FocusNodeFactory(options?: {
     debugLabel?: string | null | undefined;
     skipTraversal?: boolean | undefined;
     canRequestFocus?: boolean | undefined;
 }): FocusNode;
+export declare const FocusNode: typeof _FocusNodeFactory & _FlaxInstanceType<FocusNode>;
+export {};

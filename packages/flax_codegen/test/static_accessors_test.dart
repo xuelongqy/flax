@@ -87,7 +87,7 @@ classes:
         name: 'StaticSetterOnly',
       );
       final ts = FlaxCodegenBindingEmitter([module]).typescript(module);
-      expect(ts, contains('export namespace StaticSetterOnly'));
+      expect(ts, contains('namespace _StaticSetterOnlyFactory'));
       expect(ts, contains('export function setSink(value: number): void'));
       expect(ts, isNot(contains('function StaticSetterOnly(')));
     },
@@ -193,7 +193,17 @@ void main() {
       '@test/static_accessors',
       'unused.dart',
       'unused.ts',
-      {...staticAccessorsSelection}..remove('StaticInterface'),
+      {
+        ...staticAccessorsSelection,
+        'StaticProxy': const FlaxCodegenClassSelection(
+          {'': []},
+          kind: 'object',
+          proxy: 'extends',
+          jsName: 'CreateStaticProxy',
+          staticGetters: ['count'],
+          staticSetters: ['count'],
+        ),
+      }..remove('StaticInterface'),
     );
     await parser.prepare([seed, coreConfig]);
     final core = await parser.parse(coreConfig);
@@ -217,6 +227,12 @@ for (const owner of [statics.StaticWidget, statics.StaticState, statics.StaticRo
   owner.setCount(23);
   const current: number = owner.count;
 }
+const unknown: unknown = {};
+if (unknown instanceof statics.StaticMembers) {
+  const member: statics.StaticMembers<string> = unknown;
+}
+class StaticPeer extends statics.CreateStaticProxy {}
+const peer = new StaticPeer();
 statics.StaticCounter.setTokens([statics.StaticToken(12)]);
 const token: statics.StaticToken = statics.StaticCounter.tokens.get(0);
 statics.StaticCounter.setRecord({\$1: 5, label: 'static record'});

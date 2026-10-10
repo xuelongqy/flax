@@ -6,4 +6,4 @@ export { CupertinoButton } from "@flax/flutter/cupertino/_bindings/cupertino_Cup
 export { CupertinoNavigationBar } from "@flax/flutter/cupertino/_bindings/cupertino_CupertinoNavigationBar";
 export { CupertinoPageScaffold } from "@flax/flutter/cupertino/_bindings/cupertino_CupertinoPageScaffold";
 export { CupertinoThemeData } from "@flax/flutter/cupertino/_bindings/cupertino_CupertinoThemeData";
-export type { ObstructingPreferredSizeWidget } from "@flax/flutter/cupertino/_bindings/cupertino_ObstructingPreferredSizeWidget";
+export { ObstructingPreferredSizeWidget } from "@flax/flutter/cupertino/_bindings/cupertino_ObstructingPreferredSizeWidget";

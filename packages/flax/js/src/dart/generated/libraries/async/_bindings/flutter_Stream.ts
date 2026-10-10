@@ -1,6 +1,6 @@
 // GENERATED CODE. Selected public API subset; do not edit.
 // Regenerate with dart run melos run bindings:generate.
-import { bindingMethods as _flaxBindingMethods, bindingVersion, construct as _flaxHostConstruct, constructProxy as _flaxHostConstructProxy, constructObject as _flaxHostConstructObject, constructDeferredObject as _flaxHostConstructDeferredObject, constructStream as _flaxHostConstructStream, constructAsyncIterableStream as _flaxHostConstructAsyncIterableStream, defineObject as _flaxHostDefineObject, defineStream as _flaxHostDefineStream, invokeObject as _flaxHostInvokeObject, invokeObjectStatic as _flaxHostInvokeObjectStatic, invokeStream as _flaxHostInvokeStream, enumValue as _flaxHostEnumValue, defineContext as _flaxHostDefineContext, defineState as _flaxHostDefineState, contextHandle as _flaxHostContextHandle, invokeStatic as _flaxHostInvokeStatic, invokeInstance as _flaxHostInvokeInstance, invokeTopLevel as _flaxHostInvokeTopLevel, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, bindingVersion, construct as _flaxHostConstruct, constructProxy as _flaxHostConstructProxy, constructObject as _flaxHostConstructObject, constructDeferredObject as _flaxHostConstructDeferredObject, constructStream as _flaxHostConstructStream, constructAsyncIterableStream as _flaxHostConstructAsyncIterableStream, defineObject as _flaxHostDefineObject, defineStream as _flaxHostDefineStream, invokeObject as _flaxHostInvokeObject, invokeObjectStatic as _flaxHostInvokeObjectStatic, invokeStream as _flaxHostInvokeStream, enumValue as _flaxHostEnumValue, defineContext as _flaxHostDefineContext, defineState as _flaxHostDefineState, contextHandle as _flaxHostContextHandle, invokeStatic as _flaxHostInvokeStatic, invokeInstance as _flaxHostInvokeInstance, invokeTopLevel as _flaxHostInvokeTopLevel, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
 const _flaxMemberParameters0 = [{"name":"onCancel","required":false,"positional":false},{"name":"onListen","required":false,"positional":false}] as const;
 const _flaxMemberParameters1 = [{"name":"onData","required":true,"positional":true},{"name":"cancelOnError","required":false,"positional":false},{"name":"onDone","required":false,"positional":false},{"name":"onError","required":false,"positional":false}] as const;
 const _flaxMemberParameters2 = [{"name":"test","required":true,"positional":true}] as const;
@@ -34,7 +34,7 @@ import type * as upstream5 from '@flax/dart/async/_bindings/flutter_StreamConsum
 import '@flax/dart/async/_bindings/flutter_StreamConsumer';
 import type * as upstream6 from '@flax/dart/async/_bindings/flutter_StreamTransformer';
 import '@flax/dart/async/_bindings/flutter_StreamTransformer';
-import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
+import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface Stream<T extends unknown | null = unknown | null> extends AsyncIterable<T> { readonly __Stream: unique symbol;
 readonly isBroadcast: boolean;
 readonly length: Promise<number>;
@@ -75,66 +75,76 @@ elementAt(index: number): Promise<T>;
 timeout(timeLimit: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }>, options?: {onTimeout?: ((sink: upstream3.EventSink<T>) => void) | null | undefined}): Stream<T>;
 }
 defineStream("flax.core/flutter#type:Stream", ["isBroadcast","length","isEmpty","first","last","single"], _flaxBindingMethods("flax.core/flutter#type:Stream", "stream", {"asBroadcastStream":_flaxMemberParameters0,"listen":_flaxMemberParameters1,"where":_flaxMemberParameters2,"map":_flaxMemberParameters3,"asyncMap":_flaxMemberParameters3,"asyncExpand":_flaxMemberParameters3,"handleError":_flaxMemberParameters4,"expand":_flaxMemberParameters3,"pipe":_flaxMemberParameters5,"transform":_flaxMemberParameters6,"reduce":_flaxMemberParameters7,"fold":_flaxMemberParameters8,"join":_flaxMemberParameters9,"contains":_flaxMemberParameters10,"forEach":_flaxMemberParameters11,"every":_flaxMemberParameters2,"any":_flaxMemberParameters2,"cast":_flaxMemberParameters12,"toList":_flaxMemberParameters12,"toSet":_flaxMemberParameters12,"drain":_flaxMemberParameters13,"take":_flaxMemberParameters14,"takeWhile":_flaxMemberParameters2,"skip":_flaxMemberParameters14,"skipWhile":_flaxMemberParameters2,"distinct":_flaxMemberParameters15,"firstWhere":_flaxMemberParameters16,"lastWhere":_flaxMemberParameters16,"singleWhere":_flaxMemberParameters16,"elementAt":_flaxMemberParameters17,"timeout":_flaxMemberParameters18}));
-export namespace Stream {
+namespace _StreamFactory {
 export function fromAsyncIterable<T extends unknown | null >(source: AsyncIterable<T>): Stream<T> {
 return constructAsyncIterableStream("flax.core/flutter#type:Stream", source) as Stream<T>;
 } }
-export namespace Stream {
+namespace _StreamFactory {
 export function empty<T extends unknown | null = unknown | null>(options: { broadcast?: boolean | undefined } = {}): Stream<T> {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructStream("stream", "flax.core/flutter#type:Stream", "empty", [{"name":"broadcast","required":false,"positional":false}], [], options) as Stream<T>;
 }
 }
-export namespace Stream {
+namespace _StreamFactory {
 export function value<T extends unknown | null = unknown | null>(value: T): Stream<T> {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructStream("stream", "flax.core/flutter#type:Stream", "value", [{"name":"value","required":true,"positional":true}], [value], {}) as Stream<T>;
 }
 }
-export namespace Stream {
+namespace _StreamFactory {
 export function error<T extends unknown | null = unknown | null>(error: {}, stackTrace?: Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }> | null): Stream<T> {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
 return constructStream("stream", "flax.core/flutter#type:Stream", "error", [{"name":"error","required":true,"positional":true},{"name":"stackTrace","required":false,"positional":true}], [error, stackTrace], {}) as Stream<T>;
 }
 }
-export namespace Stream {
+namespace _StreamFactory {
 export function fromFuture<T extends unknown | null = unknown | null>(future: Promise<T>): Stream<T> {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructStream("stream", "flax.core/flutter#type:Stream", "fromFuture", [{"name":"future","required":true,"positional":true}], [future], {}) as Stream<T>;
 }
 }
-export namespace Stream {
+namespace _StreamFactory {
 export function fromFutures<T extends unknown | null = unknown | null>(futures: DartIterableInput<Promise<T>, Promise<T>>): Stream<T> {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructStream("stream", "flax.core/flutter#type:Stream", "fromFutures", [{"name":"futures","required":true,"positional":true}], [futures], {}) as Stream<T>;
 }
 }
-export namespace Stream {
+namespace _StreamFactory {
 export function fromIterable<T extends unknown | null = unknown | null>(elements: DartIterableInput<T, T>): Stream<T> {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructStream("stream", "flax.core/flutter#type:Stream", "fromIterable", [{"name":"elements","required":true,"positional":true}], [elements], {}) as Stream<T>;
 }
 }
-export namespace Stream {
+namespace _StreamFactory {
 export function multi<T extends unknown | null = unknown | null>(onListen: ((p0: upstream1.MultiStreamController<T>) => void), options: { isBroadcast?: boolean | undefined } = {}): Stream<T> {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
 return constructStream("stream", "flax.core/flutter#type:Stream", "multi", [{"name":"onListen","required":true,"positional":true},{"name":"isBroadcast","required":false,"positional":false}], [onListen], options) as Stream<T>;
 }
 }
-export namespace Stream {
+namespace _StreamFactory {
 export function periodic<T extends unknown | null = unknown | null>(period: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }>, computation?: ((computationCount: number) => T) | null): Stream<T> {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
 return constructStream("stream", "flax.core/flutter#type:Stream", "periodic", [{"name":"period","required":true,"positional":true},{"name":"computation","required":false,"positional":true}], [period, computation], {}) as Stream<T>;
 }
 }
-export namespace Stream {
+namespace _StreamFactory {
 export function eventTransformed<T extends unknown | null = unknown | null>(source: Stream<unknown | null>, mapSink: ((sink: upstream3.EventSink<T>) => Readonly<{ "__flaxBound:dart:async::EventSink": readonly [unknown | null] }>)): Stream<T> {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
 return constructStream("stream", "flax.core/flutter#type:Stream", "eventTransformed", [{"name":"source","required":true,"positional":true},{"name":"mapSink","required":true,"positional":true}], [source, mapSink], {}) as Stream<T>;
 }
 }
-export namespace Stream { export function castFrom<S extends unknown | null = unknown | null, T extends unknown | null = unknown | null>(source: Stream<S>): Stream<T> {
+namespace _StreamFactory { export function castFrom<S extends unknown | null = unknown | null, T extends unknown | null = unknown | null>(source: Stream<S>): Stream<T> {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeStatic("flax.core/flutter#type:Stream", "castFrom", [source]);
 return _flaxResult as Stream<T>;
 } }
+export const Stream: typeof _StreamFactory & _FlaxInstanceType<Stream<any>> = _flaxBindInstanceType<Stream<any>, typeof _StreamFactory>(_StreamFactory, "flax.core/flutter#type:Stream", ["dart:core::Object"]);

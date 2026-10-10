@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"9df53c8b1dd4d1e9d677b978bc1e1793fa1e67091614f61458d2e38a43cc0ae3","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"a40b07d0fb454569d7c8151d21161b6f128e1d64eb379bc5c17fffc45640c01e","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -60,6 +60,7 @@ var __yieldStar = (value) => {
 var bindings_exports = {};
 __export(bindings_exports, {
   FlaxProxyBase: () => FlaxProxyBase,
+  bindInstanceType: () => bindInstanceType,
   bindingMethods: () => bindingMethods,
   bindingVersion: () => bindingVersion,
   componentStateCall: () => componentStateCall,
@@ -446,6 +447,24 @@ function invokeInstance(receiver, type, method, args) {
 var objectTypes = /* @__PURE__ */ new Map();
 var references = new ReferenceCache();
 var objectHandles = references.handles;
+var instanceParents = /* @__PURE__ */ new Map();
+function bindInstanceType(value, type, parents) {
+  if (!instanceParents.has(type))
+    instanceParents.set(type, Object.freeze([...parents]));
+  Object.defineProperty(value, Symbol.hasInstance, {
+    value(candidate) {
+      var _a;
+      if (this !== value) {
+        return typeof this === "function" && Function.prototype[Symbol.hasInstance].call(this, candidate);
+      }
+      if (candidate === null || typeof candidate !== "object")
+        return false;
+      const ref = objectHandles.get(candidate);
+      return Boolean((ref == null ? void 0 : ref.alive) && (ref.type === type || ((_a = instanceParents.get(ref.type)) == null ? void 0 : _a.includes(type))));
+    }
+  });
+  return value;
+}
 var constructingExtendedProxies = /* @__PURE__ */ new WeakSet();
 var deferredObjects = /* @__PURE__ */ new WeakMap();
 var iterableObjectTypes = /* @__PURE__ */ new Set();

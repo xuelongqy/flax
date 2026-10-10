@@ -1,4 +1,4 @@
-import { type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/services/_bindings/flutter_MouseCursor';
 import '@flax/flutter/services/_bindings/flutter_Color';
@@ -7,7 +7,7 @@ import '@flax/flutter/widgets/_bindings/flutter_ShapeBorder';
 export interface InkWell extends WidgetDescription {
     readonly type: "flax.material/material#type:InkWell";
 }
-export declare function InkWell(options?: {
+declare function _InkWellFactory(options?: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -36,3 +36,5 @@ export declare function InkWell(options?: {
     }> | null> | undefined;
     enableFeedback?: Bindable<boolean> | undefined;
 }): InkWell;
+export declare const InkWell: typeof _InkWellFactory & _FlaxInstanceType<InkWell>;
+export {};

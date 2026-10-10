@@ -48,6 +48,13 @@ fixture.
 
 ## Declaration support
 
+Bound class exports provide authenticated `Symbol.hasInstance` checks and TypeScript
+narrowing across selected parent/interface/mixin views. Sealed parents retain their
+legal factories and can discriminate selected public children; no illegal Dart proxy or
+closed exhaustive TS union is generated. Checks add no Dart call. Generic arguments,
+parent-only/provider views and descriptor-only values have the explicit
+[instance-check limits](bindings.md#limits-of-javascript-instanceof).
+
 | Declaration                                    | Verdict     | Current contract                                                                                                                                                                                                               |
 | ---------------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Class and abstract class                       | Supported   | Automatic and explicit selection cover constructors, getters, setters, static members, methods, inheritance, generic owners, and representable callbacks. Abstract construction still requires a valid generated proxy.        |

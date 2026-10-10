@@ -598,6 +598,50 @@ type ObjectDefinition = {
 const objectTypes = new Map<string, ObjectDefinition>();
 const references = new ReferenceCache();
 const objectHandles = references.handles;
+const instanceParents = new Map<string, readonly string[]>();
+
+/** A bound view check; it never constructs, casts, or reads the Dart object. */
+export interface FlaxInstanceType<T> {
+  // Factory prototypes are any; only a concrete class prototype can narrow further.
+  [Symbol.hasInstance]<C>(
+    this: C,
+    value: unknown,
+  ): value is C extends abstract new (...args: any[]) => infer I
+    ? I
+    : C extends { readonly prototype: infer I }
+      ? unknown extends I
+        ? T
+        : I
+      : T;
+}
+
+export function bindInstanceType<T, V extends object>(
+  value: V,
+  type: string,
+  parents: readonly string[],
+): V & FlaxInstanceType<T> {
+  if (!instanceParents.has(type))
+    instanceParents.set(type, Object.freeze([...parents]));
+  Object.defineProperty(value, Symbol.hasInstance, {
+    value(this: object, candidate: unknown): boolean {
+      // JS subclasses inherit this function, but keep their own prototype test.
+      if (this !== value) {
+        return (
+          typeof this === 'function' &&
+          Function.prototype[Symbol.hasInstance].call(this, candidate)
+        );
+      }
+      if (candidate === null || typeof candidate !== 'object') return false;
+      const ref = objectHandles.get(candidate);
+      return Boolean(
+        ref?.alive &&
+        (ref.type === type || instanceParents.get(ref.type)?.includes(type)),
+      );
+    },
+  });
+  return value as V & FlaxInstanceType<T>;
+}
+
 const constructingExtendedProxies = new WeakSet<object>();
 type DeferredObject = {
   type: string;

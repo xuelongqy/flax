@@ -1,40 +1,43 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 export interface FontWeight extends Readonly<{
     "__flaxBound:dart:ui::FontWeight": readonly [];
 }> {
     readonly __FontWeight: unique symbol;
     readonly value: number;
 }
-export declare function FontWeight(value: number): FontWeight;
-export declare namespace FontWeight {
+declare function _FontWeightFactory(value: number): FontWeight;
+declare namespace _FontWeightFactory {
     const w100: FontWeight;
 }
-export declare namespace FontWeight {
+declare namespace _FontWeightFactory {
     const w200: FontWeight;
 }
-export declare namespace FontWeight {
+declare namespace _FontWeightFactory {
     const w300: FontWeight;
 }
-export declare namespace FontWeight {
+declare namespace _FontWeightFactory {
     const w400: FontWeight;
 }
-export declare namespace FontWeight {
+declare namespace _FontWeightFactory {
     const w500: FontWeight;
 }
-export declare namespace FontWeight {
+declare namespace _FontWeightFactory {
     const w600: FontWeight;
 }
-export declare namespace FontWeight {
+declare namespace _FontWeightFactory {
     const w700: FontWeight;
 }
-export declare namespace FontWeight {
+declare namespace _FontWeightFactory {
     const w800: FontWeight;
 }
-export declare namespace FontWeight {
+declare namespace _FontWeightFactory {
     const w900: FontWeight;
 }
-export declare namespace FontWeight {
+declare namespace _FontWeightFactory {
     const normal: FontWeight;
 }
-export declare namespace FontWeight {
+declare namespace _FontWeightFactory {
     const bold: FontWeight;
 }
+export declare const FontWeight: typeof _FontWeightFactory & _FlaxInstanceType<FontWeight>;
+export {};

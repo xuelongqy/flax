@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/material/_bindings/material_ColorScheme';
 import '@flax/flutter/material/_bindings/material_ColorScheme';
 import type * as upstream1 from '@flax/flutter/material/_bindings/material_Brightness';
@@ -23,7 +24,7 @@ export interface ThemeData extends Readonly<{
         }> | null | undefined;
     }): ThemeData;
 }
-export declare function ThemeData(options?: {
+declare function _ThemeDataFactory(options?: {
     colorScheme?: Readonly<{
         "__flaxBound:package:material_ui/src/color_scheme.dart::ColorScheme": readonly [];
     }> | null | undefined;
@@ -35,3 +36,5 @@ export declare function ThemeData(options?: {
         "__flaxBound:package:material_ui/src/text_theme.dart::TextTheme": readonly [];
     }> | null | undefined;
 }): ThemeData;
+export declare const ThemeData: typeof _ThemeDataFactory & _FlaxInstanceType<ThemeData>;
+export {};

@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_OutlinedBorder';
 import '@flax/flutter/widgets/_bindings/flutter_OutlinedBorder';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_ShapeBorder';
@@ -23,7 +24,7 @@ export interface RoundedRectangleBorder extends upstream0.OutlinedBorder, upstre
         }> | null | undefined;
     }): RoundedRectangleBorder;
 }
-export declare function RoundedRectangleBorder(options?: {
+declare function _RoundedRectangleBorderFactory(options?: {
     side?: Readonly<{
         "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [];
     }> | undefined;
@@ -31,3 +32,5 @@ export declare function RoundedRectangleBorder(options?: {
         "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [];
     }> | undefined;
 }): RoundedRectangleBorder;
+export declare const RoundedRectangleBorder: typeof _RoundedRectangleBorderFactory & _FlaxInstanceType<RoundedRectangleBorder>;
+export {};

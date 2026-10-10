@@ -1,4 +1,4 @@
-import { type NavigationData } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type NavigationData } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_Route';
 export interface NavigatorState {
     readonly __NavigatorState: unique symbol;
@@ -14,3 +14,4 @@ export interface NavigatorState {
     maybePop<T extends NavigationData | null = NavigationData | null>(result?: T | null): Promise<boolean>;
     canPop(): boolean;
 }
+export declare const NavigatorState: object & _FlaxInstanceType<NavigatorState>;

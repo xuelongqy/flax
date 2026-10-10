@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_AlignmentGeometry';
 import '@flax/flutter/widgets/_bindings/flutter_AlignmentGeometry';
 export interface Alignment extends upstream0.AlignmentGeometry, Readonly<{
@@ -7,31 +8,33 @@ export interface Alignment extends upstream0.AlignmentGeometry, Readonly<{
     readonly x: number;
     readonly y: number;
 }
-export declare function Alignment(x: number, y: number): Alignment;
-export declare namespace Alignment {
+declare function _AlignmentFactory(x: number, y: number): Alignment;
+declare namespace _AlignmentFactory {
     const topLeft: Alignment;
 }
-export declare namespace Alignment {
+declare namespace _AlignmentFactory {
     const topCenter: Alignment;
 }
-export declare namespace Alignment {
+declare namespace _AlignmentFactory {
     const topRight: Alignment;
 }
-export declare namespace Alignment {
+declare namespace _AlignmentFactory {
     const centerLeft: Alignment;
 }
-export declare namespace Alignment {
+declare namespace _AlignmentFactory {
     const center: Alignment;
 }
-export declare namespace Alignment {
+declare namespace _AlignmentFactory {
     const centerRight: Alignment;
 }
-export declare namespace Alignment {
+declare namespace _AlignmentFactory {
     const bottomLeft: Alignment;
 }
-export declare namespace Alignment {
+declare namespace _AlignmentFactory {
     const bottomCenter: Alignment;
 }
-export declare namespace Alignment {
+declare namespace _AlignmentFactory {
     const bottomRight: Alignment;
 }
+export declare const Alignment: typeof _AlignmentFactory & _FlaxInstanceType<Alignment>;
+export {};

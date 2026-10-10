@@ -147,7 +147,7 @@ void main() {
         .singleWhere((l) => l.contains('{ Alpha }'));
     expect(outputs['src/second/index.ts'], contains(alphaExport));
     expect(
-      outputs.values.where((s) => s.contains('export function Alpha(')),
+      outputs.values.where((s) => s.contains('function _AlphaFactory(')),
       hasLength(1),
     );
     expect(outputs.keys, contains('src/unused/_bindings/libraries_Unused.ts'));
@@ -160,7 +160,7 @@ void main() {
     expect(
       outputs['src/alpha/index.ts'],
       contains(
-        'export type { ConcreteResult } from "@example/libraries/alpha/_bindings/libraries_ConcreteResult";',
+        'export { ConcreteResult } from "@example/libraries/alpha/_bindings/libraries_ConcreteResult";',
       ),
     );
   });

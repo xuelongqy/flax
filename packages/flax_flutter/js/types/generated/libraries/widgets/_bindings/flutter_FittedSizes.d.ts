@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/services/_bindings/flutter_Size';
 import '@flax/flutter/services/_bindings/flutter_Size';
 export interface FittedSizes extends Readonly<{
@@ -7,3 +8,4 @@ export interface FittedSizes extends Readonly<{
     readonly source: upstream0.Size;
     readonly destination: upstream0.Size;
 }
+export declare const FittedSizes: object & _FlaxInstanceType<FittedSizes>;

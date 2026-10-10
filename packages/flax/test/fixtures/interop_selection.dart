@@ -1,6 +1,9 @@
 import 'package:flax_codegen/flax_codegen.dart';
 
+import 'instance_types_selection.dart';
+
 const interopSelection = {
+  ...instanceTypesSelection,
   'CodegenThenObject': FlaxCodegenClassSelection(
     {'': []},
     kind: 'object',

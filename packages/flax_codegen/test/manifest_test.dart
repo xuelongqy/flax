@@ -7374,7 +7374,10 @@ void _expectEnvelopeShape(
     final module = _expectObject(moduleJson);
     _expectExactKeys(module, _moduleEntryKeys);
     expect(module['uiProtocol'], 23);
-    expect(module['requiredCapabilities'], ['native-widget-proxies']);
+    expect(module['requiredCapabilities'], [
+      'instance-checks',
+      'native-widget-proxies',
+    ]);
     final model = _expectObject(module['model']);
     _expectExactKeys(model, _modelProjectionKeys);
     expect(model.containsKey('dartOutput'), isFalse);
@@ -7389,7 +7392,10 @@ void _expectEnvelopeShape(
   );
   final host = manifest.modules.first;
   expect(host.name, 'host');
-  expect(host.requiredCapabilities, ['native-widget-proxies']);
+  expect(host.requiredCapabilities, [
+    'instance-checks',
+    'native-widget-proxies',
+  ]);
   expect(host.model.identities, isEmpty);
   _expectModule(host.model.module, fixture.expectedHostModule);
   expect(host.model.module.dartOutput, isEmpty);
@@ -7397,7 +7403,10 @@ void _expectEnvelopeShape(
 
   final widgets = manifest.modules.last;
   expect(widgets.name, 'widgets');
-  expect(widgets.requiredCapabilities, ['native-widget-proxies']);
+  expect(widgets.requiredCapabilities, [
+    'instance-checks',
+    'native-widget-proxies',
+  ]);
   _expectModule(widgets.model.module, fixture.expectedWidgetsModule);
   expect(widgets.model.module.dartOutput, isEmpty);
   expect(widgets.model.module.tsOutput, isEmpty);

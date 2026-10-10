@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_ShapeBorder';
 import '@flax/flutter/widgets/_bindings/flutter_ShapeBorder';
 export interface BoxBorder extends upstream0.ShapeBorder, Readonly<{
@@ -5,3 +6,4 @@ export interface BoxBorder extends upstream0.ShapeBorder, Readonly<{
 }> {
     readonly __BoxBorder: unique symbol;
 }
+export declare const BoxBorder: object & _FlaxInstanceType<BoxBorder>;

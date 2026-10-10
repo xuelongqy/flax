@@ -46,7 +46,10 @@ void main() {
         'flax.core/components#type:State',
       );
       for (final module in package.modules) {
-        expect(module.requiredCapabilities, ['native-widget-proxies']);
+        expect(module.requiredCapabilities, [
+          'instance-checks',
+          'native-widget-proxies',
+        ]);
         expect(
           module.requiredCapabilities,
           flaxCodegenProtocol21RequiredCapabilities(),
@@ -380,6 +383,7 @@ void main() {
     expect(package.modules.single.owners, isEmpty);
     expect(package.modules.single.references, isEmpty);
     expect(package.modules.single.requiredCapabilities, [
+      'instance-checks',
       'native-widget-proxies',
     ]);
   });
@@ -482,6 +486,7 @@ bindingNamespace: flax.core
       [show, offset, state, widget],
     );
     expect(package.modules.single.requiredCapabilities, [
+      'instance-checks',
       'native-widget-proxies',
     ]);
     expect(

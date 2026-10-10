@@ -1,11 +1,11 @@
 // GENERATED CODE. Selected public API subset; do not edit.
 // Regenerate with dart run melos run bindings:generate.
-import { bindingMethods as _flaxBindingMethods, bindingVersion, construct as _flaxHostConstruct, constructProxy as _flaxHostConstructProxy, constructObject as _flaxHostConstructObject, constructDeferredObject as _flaxHostConstructDeferredObject, constructStream as _flaxHostConstructStream, constructAsyncIterableStream as _flaxHostConstructAsyncIterableStream, defineObject as _flaxHostDefineObject, defineStream as _flaxHostDefineStream, invokeObject as _flaxHostInvokeObject, invokeObjectStatic as _flaxHostInvokeObjectStatic, invokeStream as _flaxHostInvokeStream, enumValue as _flaxHostEnumValue, defineContext as _flaxHostDefineContext, defineState as _flaxHostDefineState, contextHandle as _flaxHostContextHandle, invokeStatic as _flaxHostInvokeStatic, invokeInstance as _flaxHostInvokeInstance, invokeTopLevel as _flaxHostInvokeTopLevel, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, bindingVersion, construct as _flaxHostConstruct, constructProxy as _flaxHostConstructProxy, constructObject as _flaxHostConstructObject, constructDeferredObject as _flaxHostConstructDeferredObject, constructStream as _flaxHostConstructStream, constructAsyncIterableStream as _flaxHostConstructAsyncIterableStream, defineObject as _flaxHostDefineObject, defineStream as _flaxHostDefineStream, invokeObject as _flaxHostInvokeObject, invokeObjectStatic as _flaxHostInvokeObjectStatic, invokeStream as _flaxHostInvokeStream, enumValue as _flaxHostEnumValue, defineContext as _flaxHostDefineContext, defineState as _flaxHostDefineState, contextHandle as _flaxHostContextHandle, invokeStatic as _flaxHostInvokeStatic, invokeInstance as _flaxHostInvokeInstance, invokeTopLevel as _flaxHostInvokeTopLevel, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_BorderRadiusGeometry';
 import '@flax/flutter/widgets/_bindings/flutter_BorderRadiusGeometry';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_Radius';
 import '@flax/flutter/widgets/_bindings/flutter_Radius';
-import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
+import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface BorderRadiusDirectional extends upstream0.BorderRadiusGeometry, Readonly<{ "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusDirectional": readonly [] }> { readonly __BorderRadiusDirectional: unique symbol;
 readonly topStart: upstream1.Radius;
 readonly topEnd: upstream1.Radius;
@@ -13,23 +13,27 @@ readonly bottomStart: upstream1.Radius;
 readonly bottomEnd: upstream1.Radius;
 }
 defineObject("flax.core/flutter#type:BorderRadiusDirectional", ["topStart","topEnd","bottomStart","bottomEnd"], [], _flaxBindingMethods("flax.core/flutter#type:BorderRadiusDirectional", "object", {}), []);
-export namespace BorderRadiusDirectional {
+namespace _BorderRadiusDirectionalFactory {
 export function all(radius: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }>): BorderRadiusDirectional {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:BorderRadiusDirectional", "all", [{"name":"radius","required":true,"positional":true}], [radius], {}) as BorderRadiusDirectional;
 }
 }
-export namespace BorderRadiusDirectional {
+namespace _BorderRadiusDirectionalFactory {
 export function circular(radius: number): BorderRadiusDirectional {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:BorderRadiusDirectional", "circular", [{"name":"radius","required":true,"positional":true}], [radius], {}) as BorderRadiusDirectional;
 }
 }
-export namespace BorderRadiusDirectional {
+namespace _BorderRadiusDirectionalFactory {
 export function only(options: { topStart?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined; topEnd?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined; bottomStart?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined; bottomEnd?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined } = {}): BorderRadiusDirectional {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:BorderRadiusDirectional", "only", [{"name":"topStart","required":false,"positional":false},{"name":"topEnd","required":false,"positional":false},{"name":"bottomStart","required":false,"positional":false},{"name":"bottomEnd","required":false,"positional":false}], [], options) as BorderRadiusDirectional;
 }
 }
-export namespace BorderRadiusDirectional { export declare const zero: BorderRadiusDirectional; }
-Object.defineProperty(BorderRadiusDirectional, "zero", { get: () => invokeTopLevel("flax.core/flutter#read:BorderRadiusDirectional.zero", []) });
+namespace _BorderRadiusDirectionalFactory { export declare const zero: BorderRadiusDirectional; }
+Object.defineProperty(_BorderRadiusDirectionalFactory, "zero", { get: () => invokeTopLevel("flax.core/flutter#read:BorderRadiusDirectional.zero", []) });
+export const BorderRadiusDirectional: typeof _BorderRadiusDirectionalFactory & _FlaxInstanceType<BorderRadiusDirectional> = _flaxBindInstanceType<BorderRadiusDirectional, typeof _BorderRadiusDirectionalFactory>(_BorderRadiusDirectionalFactory, "flax.core/flutter#type:BorderRadiusDirectional", ["flax.core/flutter#type:BorderRadiusGeometry","dart:core::Object"]);

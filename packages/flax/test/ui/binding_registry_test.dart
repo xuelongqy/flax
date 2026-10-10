@@ -27,7 +27,10 @@ void main() {
     expect(flutterBindings.name, 'flutter');
     expect(flutterBindings.moduleId, 'flax.core/flutter');
     expect(flutterBindings.uiProtocol, 23);
-    expect(flutterBindings.requiredCapabilities, ['native-widget-proxies']);
+    expect(flutterBindings.requiredCapabilities, [
+      'instance-checks',
+      'native-widget-proxies',
+    ]);
     expect(FlaxBindingRegistry([flutterBindings]).modules, [flutterBindings]);
   });
 

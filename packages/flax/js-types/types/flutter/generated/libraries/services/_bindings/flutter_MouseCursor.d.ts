@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 export interface MouseCursor extends Readonly<{
     "__flaxBound:package:flutter/src/services/mouse_cursor.dart::MouseCursor": readonly [];
 }>, Readonly<{
@@ -5,7 +6,9 @@ export interface MouseCursor extends Readonly<{
 }> {
     readonly __MouseCursor: unique symbol;
 }
-export declare const MouseCursor: {
+declare const _MouseCursorFactory: {
     readonly defer: MouseCursor;
     readonly uncontrolled: MouseCursor;
 };
+export declare const MouseCursor: typeof _MouseCursorFactory & _FlaxInstanceType<MouseCursor>;
+export {};

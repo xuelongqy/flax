@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 export interface SchedulerBinding extends Readonly<{
     "__flaxBound:package:flutter/src/scheduler/binding.dart::SchedulerBinding": readonly [];
 }>, Readonly<{
@@ -6,6 +7,8 @@ export interface SchedulerBinding extends Readonly<{
     readonly __SchedulerBinding: unique symbol;
     readonly endOfFrame: Promise<void>;
 }
-export declare const SchedulerBinding: {
+declare const _SchedulerBindingFactory: {
     readonly instance: SchedulerBinding;
 };
+export declare const SchedulerBinding: typeof _SchedulerBindingFactory & _FlaxInstanceType<SchedulerBinding>;
+export {};

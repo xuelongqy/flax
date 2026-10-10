@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_NavigatorObserver';
 import '@flax/flutter/widgets/_bindings/flutter_NavigatorObserver';
 export interface FlaxNavigatorObserver extends upstream0.NavigatorObserver, Readonly<{
@@ -5,4 +6,6 @@ export interface FlaxNavigatorObserver extends upstream0.NavigatorObserver, Read
 }> {
     readonly __FlaxNavigatorObserver: unique symbol;
 }
-export declare function FlaxNavigatorObserver(): FlaxNavigatorObserver;
+declare function _FlaxNavigatorObserverFactory(): FlaxNavigatorObserver;
+export declare const FlaxNavigatorObserver: typeof _FlaxNavigatorObserverFactory & _FlaxInstanceType<FlaxNavigatorObserver>;
+export {};

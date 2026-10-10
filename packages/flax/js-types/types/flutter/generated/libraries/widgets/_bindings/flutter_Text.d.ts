@@ -1,4 +1,4 @@
-import { type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
 import { FlaxProxyBase as _FlaxProxyBase, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
@@ -18,6 +18,7 @@ export interface _TextNative extends _FlaxDartWidget {
     get key(): upstream0.Key | null;
 }
 export declare abstract class _TextNative extends _FlaxProxyBase {
+    static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<Text>[typeof globalThis.Symbol.hasInstance];
     constructor(data: string, options?: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -32,7 +33,7 @@ export declare abstract class _TextNative extends _FlaxProxyBase {
         maxLines?: number | null | undefined;
     });
 }
-export declare function _TextFactory(data: Bindable<string>, options?: {
+declare function _TextFactory(data: Bindable<string>, options?: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -45,7 +46,7 @@ export declare function _TextFactory(data: Bindable<string>, options?: {
     overflow?: Bindable<upstream4.TextOverflow | null> | undefined;
     maxLines?: Bindable<number | null> | undefined;
 }): Text;
-export declare const Text: typeof _TextFactory & {
+declare const _TextBinding: typeof _TextFactory & {
     new (data: string, options?: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -60,3 +61,5 @@ export declare const Text: typeof _TextFactory & {
         maxLines?: number | null | undefined;
     }): _TextNative;
 };
+export declare const Text: typeof _TextBinding & _FlaxInstanceType<Text>;
+export {};

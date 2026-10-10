@@ -1,4 +1,4 @@
-import { type NavigationData, type DartValue } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type NavigationData, type DartValue } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/foundation/_bindings/flutter_LocalKey';
 import '@flax/flutter/foundation/_bindings/flutter_LocalKey';
 export interface Page<T extends unknown | null = unknown | null> extends DartValue {
@@ -7,3 +7,4 @@ export interface Page<T extends unknown | null = unknown | null> extends DartVal
     readonly name: string | null;
     readonly arguments: NavigationData | null;
 }
+export declare const Page: object & _FlaxInstanceType<Page<any>>;

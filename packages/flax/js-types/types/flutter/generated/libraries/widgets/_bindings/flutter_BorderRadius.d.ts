@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_BorderRadiusGeometry';
 import '@flax/flutter/widgets/_bindings/flutter_BorderRadiusGeometry';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_Radius';
@@ -25,15 +26,15 @@ export interface BorderRadius extends upstream0.BorderRadiusGeometry, Readonly<{
         }> | null | undefined;
     }): BorderRadius;
 }
-export declare namespace BorderRadius {
+declare namespace _BorderRadiusFactory {
     function all(radius: Readonly<{
         "__flaxBound:dart:ui::Radius": readonly [];
     }>): BorderRadius;
 }
-export declare namespace BorderRadius {
+declare namespace _BorderRadiusFactory {
     function circular(radius: number): BorderRadius;
 }
-export declare namespace BorderRadius {
+declare namespace _BorderRadiusFactory {
     function only(options?: {
         topLeft?: Readonly<{
             "__flaxBound:dart:ui::Radius": readonly [];
@@ -49,6 +50,8 @@ export declare namespace BorderRadius {
         }> | undefined;
     }): BorderRadius;
 }
-export declare namespace BorderRadius {
+declare namespace _BorderRadiusFactory {
     const zero: BorderRadius;
 }
+export declare const BorderRadius: typeof _BorderRadiusFactory & _FlaxInstanceType<BorderRadius>;
+export {};

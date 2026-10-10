@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_Curve';
 import '@flax/flutter/widgets/_bindings/flutter_Curve';
 export interface Cubic extends upstream0.Curve, Readonly<{
@@ -12,4 +13,6 @@ export interface Cubic extends upstream0.Curve, Readonly<{
     readonly d: number;
     transform(t: number): number;
 }
-export declare function Cubic(a: number, b: number, c: number, d: number): Cubic;
+declare function _CubicFactory(a: number, b: number, c: number, d: number): Cubic;
+export declare const Cubic: typeof _CubicFactory & _FlaxInstanceType<Cubic>;
+export {};

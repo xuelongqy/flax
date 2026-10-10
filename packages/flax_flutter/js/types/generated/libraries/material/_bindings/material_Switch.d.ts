@@ -1,4 +1,4 @@
-import { type Bindable, type WidgetDescription } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/services/_bindings/flutter_Color';
 import '@flax/flutter/widgets/_bindings/flutter_FocusNode';
@@ -6,7 +6,7 @@ import '@flax/flutter/widgets/_bindings/flutter_EdgeInsetsGeometry';
 export interface Switch extends WidgetDescription {
     readonly type: "flax.material/material#type:Switch";
 }
-export declare function Switch(options: {
+declare function _SwitchFactory(options: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -29,3 +29,5 @@ export declare function Switch(options: {
         "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
     }> | null> | undefined;
 }): Switch;
+export declare const Switch: typeof _SwitchFactory & _FlaxInstanceType<Switch>;
+export {};

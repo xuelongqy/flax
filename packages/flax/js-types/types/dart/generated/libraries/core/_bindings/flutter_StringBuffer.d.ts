@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 export interface StringBuffer extends Readonly<{
     "__flaxBound:dart:core::StringBuffer": readonly [];
 }>, Readonly<{
@@ -8,4 +9,6 @@ export interface StringBuffer extends Readonly<{
     write(object: unknown | null): void;
     toString(): string;
 }
-export declare function StringBuffer(content?: {}): StringBuffer;
+declare function _StringBufferFactory(content?: {}): StringBuffer;
+export declare const StringBuffer: typeof _StringBufferFactory & _FlaxInstanceType<StringBuffer>;
+export {};

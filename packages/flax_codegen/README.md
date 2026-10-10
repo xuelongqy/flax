@@ -128,6 +128,18 @@ selected proxies. Objects need no dispose method. Contexts/State remain borrowed
 Widget/Page/Route hosts retain Flutter lifecycle semantics. Material Pages keep their
 explicit public Route adapter.
 
+Generated class exports also support `Symbol.hasInstance`, including reference-only
+sealed parents and abstract contracts. A returned public child can be narrowed with
+`if (result instanceof Success) { result.value; }` while retaining real Dart identity.
+Checks use the authenticated binding view and its selected supertypes, without a Dart
+call or getter read. Configured extends proxies preserve JS subclass checks; ordinary
+Dart factories cannot be used with `new` or `class extends`. New generated modules
+require `instance-checks` as an additive capability; protocol and Manifest versions
+remain unchanged. Parent-only/provider views, private children, runtime generic
+arguments, descriptors and State wrappers have explicit limits. Sealed parents do not
+promise exhaustive TS unions. See
+[instance checks and limits](../../docs/architecture/bindings.md#instance-checks-and-sealed-results).
+
 `additionalLibraries` merges public exports by actual declaration identity. Generic
 bounds and inheritance are resolved before emission; TS keeps type relationships while
 Dart calls use configured legal concrete types. Private defaults remain omitted in real

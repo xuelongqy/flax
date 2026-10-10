@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/services/_bindings/flutter_Color';
 import '@flax/flutter/services/_bindings/flutter_Color';
 import type * as upstream1 from '@flax/flutter/material/_bindings/material_Brightness';
@@ -36,7 +37,7 @@ export interface ColorScheme extends Readonly<{
         }> | null | undefined;
     }): ColorScheme;
 }
-export declare namespace ColorScheme {
+declare namespace _ColorSchemeFactory {
     function fromSeed(options: {
         seedColor: Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];
@@ -44,3 +45,5 @@ export declare namespace ColorScheme {
         brightness?: upstream1.Brightness | undefined;
     }): ColorScheme;
 }
+export declare const ColorScheme: typeof _ColorSchemeFactory & _FlaxInstanceType<ColorScheme>;
+export {};

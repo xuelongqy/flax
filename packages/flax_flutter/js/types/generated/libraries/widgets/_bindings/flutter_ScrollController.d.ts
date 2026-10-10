@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/foundation/_bindings/flutter_Listenable';
 import '@flax/flutter/foundation/_bindings/flutter_Listenable';
 import '@flax/flutter/widgets/_bindings/flutter_Curve';
@@ -23,8 +24,10 @@ export interface ScrollController extends upstream0.Listenable, Readonly<{
     }): Promise<void>;
     dispose(): void;
 }
-export declare function ScrollController(options?: {
+declare function _ScrollControllerFactory(options?: {
     initialScrollOffset?: number | undefined;
     keepScrollOffset?: boolean | undefined;
     debugLabel?: string | null | undefined;
 }): ScrollController;
+export declare const ScrollController: typeof _ScrollControllerFactory & _FlaxInstanceType<ScrollController>;
+export {};

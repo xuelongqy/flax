@@ -9,6 +9,7 @@
       "moduleId": "flax.core/components",
       "uiProtocol": 23,
       "requiredCapabilities": [
+        "instance-checks",
         "native-widget-proxies"
       ],
       "model": {
@@ -379,6 +380,7 @@
       "moduleId": "flax.core/flutter",
       "uiProtocol": 23,
       "requiredCapabilities": [
+        "instance-checks",
         "native-widget-proxies"
       ],
       "model": {

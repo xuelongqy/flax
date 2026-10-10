@@ -1,6 +1,7 @@
 import 'dart:async';
 
 export 'async_stream_callbacks.dart';
+export 'instance_types.dart';
 
 import 'package:flutter/foundation.dart'
     show ValueChanged, ValueGetter, mustCallSuper;

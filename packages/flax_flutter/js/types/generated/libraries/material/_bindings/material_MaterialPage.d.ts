@@ -1,4 +1,4 @@
-import { type NavigationData, type DartValue, type Widget } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type NavigationData, type DartValue, type Widget } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_Page';
 import type * as upstream1 from '@flax/flutter/foundation/_bindings/flutter_LocalKey';
 import '@flax/flutter/foundation/_bindings/flutter_LocalKey';
@@ -11,7 +11,7 @@ export interface MaterialPage<T extends unknown | null = unknown | null> extends
     readonly name: string | null;
     readonly arguments: NavigationData | null;
 }
-export declare function MaterialPage<T extends unknown | null = unknown | null>(options: {
+declare function _MaterialPageFactory<T extends unknown | null = unknown | null>(options: {
     child: Widget;
     maintainState?: boolean | undefined;
     fullscreenDialog?: boolean | undefined;
@@ -23,3 +23,5 @@ export declare function MaterialPage<T extends unknown | null = unknown | null>(
     name?: string | null | undefined;
     arguments?: NavigationData | null | undefined;
 }): MaterialPage<T>;
+export declare const MaterialPage: typeof _MaterialPageFactory & _FlaxInstanceType<MaterialPage<any>>;
+export {};

@@ -1,4 +1,4 @@
-import { type DartIterableInput, type DartList, type DartSet } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartIterableInput, type DartList, type DartSet } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/core/_bindings/flutter_StackTrace';
 import '@flax/dart/core/_bindings/flutter_StackTrace';
 import type * as upstream1 from '@flax/dart/async/_bindings/flutter_MultiStreamController';
@@ -73,46 +73,48 @@ export interface Stream<T extends unknown | null = unknown | null> extends Async
         onTimeout?: ((sink: upstream3.EventSink<T>) => void) | null | undefined;
     }): Stream<T>;
 }
-export declare namespace Stream {
+declare namespace _StreamFactory {
     function fromAsyncIterable<T extends unknown | null>(source: AsyncIterable<T>): Stream<T>;
 }
-export declare namespace Stream {
+declare namespace _StreamFactory {
     function empty<T extends unknown | null = unknown | null>(options?: {
         broadcast?: boolean | undefined;
     }): Stream<T>;
 }
-export declare namespace Stream {
+declare namespace _StreamFactory {
     function value<T extends unknown | null = unknown | null>(value: T): Stream<T>;
 }
-export declare namespace Stream {
+declare namespace _StreamFactory {
     function error<T extends unknown | null = unknown | null>(error: {}, stackTrace?: Readonly<{
         "__flaxBound:dart:core::StackTrace": readonly [];
     }> | null): Stream<T>;
 }
-export declare namespace Stream {
+declare namespace _StreamFactory {
     function fromFuture<T extends unknown | null = unknown | null>(future: Promise<T>): Stream<T>;
 }
-export declare namespace Stream {
+declare namespace _StreamFactory {
     function fromFutures<T extends unknown | null = unknown | null>(futures: DartIterableInput<Promise<T>, Promise<T>>): Stream<T>;
 }
-export declare namespace Stream {
+declare namespace _StreamFactory {
     function fromIterable<T extends unknown | null = unknown | null>(elements: DartIterableInput<T, T>): Stream<T>;
 }
-export declare namespace Stream {
+declare namespace _StreamFactory {
     function multi<T extends unknown | null = unknown | null>(onListen: ((p0: upstream1.MultiStreamController<T>) => void), options?: {
         isBroadcast?: boolean | undefined;
     }): Stream<T>;
 }
-export declare namespace Stream {
+declare namespace _StreamFactory {
     function periodic<T extends unknown | null = unknown | null>(period: Readonly<{
         "__flaxBound:dart:core::Duration": readonly [];
     }>, computation?: ((computationCount: number) => T) | null): Stream<T>;
 }
-export declare namespace Stream {
+declare namespace _StreamFactory {
     function eventTransformed<T extends unknown | null = unknown | null>(source: Stream<unknown | null>, mapSink: ((sink: upstream3.EventSink<T>) => Readonly<{
         "__flaxBound:dart:async::EventSink": readonly [unknown | null];
     }>)): Stream<T>;
 }
-export declare namespace Stream {
+declare namespace _StreamFactory {
     function castFrom<S extends unknown | null = unknown | null, T extends unknown | null = unknown | null>(source: Stream<S>): Stream<T>;
 }
+export declare const Stream: typeof _StreamFactory & _FlaxInstanceType<Stream<any>>;
+export {};

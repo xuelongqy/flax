@@ -760,7 +760,12 @@ const contract = AsyncContract.implement([], {
     expect(labels.type.item!.kind, 'String');
     final emitter = FlaxCodegenBindingEmitter([module]);
     expect(emitter.dart(module), contains('api.Pulse.instance'));
-    expect(emitter.typescript(module), contains('export const Pulse = {}'));
+    expect(
+      emitter.typescript(module),
+      contains(
+        'export const Pulse: typeof _PulseFactory & _FlaxInstanceType<Pulse>',
+      ),
+    );
     expect(emitter.typescript(module), contains('FlaxStreamReference<number>'));
     expect(emitter.typescript(module), contains('FlaxStreamReference<string>'));
     expect(emitter.dart(module), contains('FlaxTypeRef("stream"'));
@@ -1543,7 +1548,7 @@ AlignmentGeometry();
     expect(dart, contains('defaultValue: 7'));
     expect(
       emitter.typescript(module),
-      contains('export function Badge(label: string, options:'),
+      contains('function _BadgeFactory(label: string, options:'),
     );
     expect(emitter.typescript(module), contains('note?: string | null'));
   });
@@ -1614,7 +1619,7 @@ AlignmentGeometry();
     final emitter = FlaxCodegenBindingEmitter([module]);
     expect(parseString(content: emitter.dart(module)).errors, isEmpty);
     expect(emitter.dart(module), contains('api.Tools.apply('));
-    expect(emitter.typescript(module), contains('export namespace Tools'));
+    expect(emitter.typescript(module), contains('namespace _ToolsFactory'));
     expect(emitter.typescript(module), contains('readonly amount: number'));
     expect(
       emitter.typescript(module),
@@ -1878,7 +1883,7 @@ AlignmentGeometry();
     expect(
       typescript,
       contains(
-        'function ValueKey<T extends (string | number) = (string | number)>',
+        'function _ValueKeyFactory<T extends (string | number) = (string | number)>',
       ),
     );
     await compileFixture(root, emitter, module);
@@ -2722,9 +2727,23 @@ class CustomEvaluator extends Evaluator {
   constructor(initial: number) { super(initial); }
   evaluate(value: number): number { return value + 1; }
   twice(value: number): number { return super.twice(value) + 1; }
+  own(): string { return 'child'; }
 }
 const evaluator = new CustomEvaluator(3);
 const initialResult: number = evaluator.initialResult;
+const unknown: unknown = evaluator;
+if (unknown instanceof CustomEvaluator) { const own: string = unknown.own(); }
+if (unknown instanceof Evaluator) { const value: number = unknown.evaluate(1); }
+class PrivateEvaluator extends CustomEvaluator {
+  private constructor() { super(3); }
+  static create() { return new PrivateEvaluator(); }
+  privateChildMember(): string { return 'private child'; }
+}
+if (unknown instanceof PrivateEvaluator) {
+  const child: string = unknown.privateChildMember();
+  // @ts-expect-error The private-constructor child retains its member types.
+  const wrong: number = unknown.privateChildMember();
+}
 const implemented = Evaluator.implement([3], {
   evaluate(value: number): number { return value + 1; },
 });
@@ -2943,7 +2962,7 @@ ValidBoundConsumer(BoundedProperty.resolveWith(() => ValidBound()));
       );
       expect(
         FlaxCodegenBindingEmitter([canvas, core]).typescript(canvas),
-        contains('export function CanvasView('),
+        contains('export const CanvasView: typeof _FlaxCanvasViewConstruct'),
       );
       final ts = FlaxCodegenBindingEmitter([core]).typescript(core);
       expect(ts, contains('export interface KeyEvent {'));

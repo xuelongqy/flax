@@ -2590,6 +2590,7 @@ classes:
         expect(viaWidgets.localModels[0].classes, isEmpty);
         expect(viaWidgets.localModels[0].moduleId, 'example.host/host');
         expect(viaWidgets.localModels[0].requiredCapabilities, [
+          'instance-checks',
           'native-widget-proxies',
         ]);
         expect(viaWidgets.localModels[1].moduleId, 'example.host/widgets');

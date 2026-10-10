@@ -1,4 +1,4 @@
-import { type Bindable, type WidgetDescription } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import type * as upstream1 from '@flax/flutter/services/_bindings/flutter_Color';
 import '@flax/flutter/services/_bindings/flutter_Color';
@@ -7,7 +7,7 @@ import '@flax/flutter/widgets/_bindings/flutter_FocusNode';
 export interface Checkbox extends WidgetDescription {
     readonly type: "flax.material/material#type:Checkbox";
 }
-export declare function Checkbox(options: {
+declare function _CheckboxFactory(options: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -32,3 +32,5 @@ export declare function Checkbox(options: {
     autofocus?: Bindable<boolean> | undefined;
     isError?: Bindable<boolean> | undefined;
 }): Checkbox;
+export declare const Checkbox: typeof _CheckboxFactory & _FlaxInstanceType<Checkbox>;
+export {};

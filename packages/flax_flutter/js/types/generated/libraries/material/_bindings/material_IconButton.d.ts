@@ -1,4 +1,4 @@
-import { type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/widgets/_bindings/flutter_EdgeInsetsGeometry';
 import '@flax/flutter/widgets/_bindings/flutter_AlignmentGeometry';
@@ -8,7 +8,7 @@ import '@flax/flutter/material/_bindings/material_ButtonStyle';
 export interface IconButton extends WidgetDescription {
     readonly type: "flax.material/material#type:IconButton";
 }
-export declare function IconButton(options: {
+declare function _IconButtonFactory(options: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -38,7 +38,7 @@ export declare function IconButton(options: {
     selectedIcon?: Bindable<Widget | null> | undefined;
     icon: Bindable<Widget>;
 }): IconButton;
-export declare namespace IconButton {
+declare namespace _IconButtonFactory {
     function filled(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -70,7 +70,7 @@ export declare namespace IconButton {
         icon: Bindable<Widget>;
     }): IconButton;
 }
-export declare namespace IconButton {
+declare namespace _IconButtonFactory {
     function filledTonal(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -102,7 +102,7 @@ export declare namespace IconButton {
         icon: Bindable<Widget>;
     }): IconButton;
 }
-export declare namespace IconButton {
+declare namespace _IconButtonFactory {
     function outlined(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -134,3 +134,5 @@ export declare namespace IconButton {
         icon: Bindable<Widget>;
     }): IconButton;
 }
+export declare const IconButton: typeof _IconButtonFactory & _FlaxInstanceType<IconButton>;
+export {};

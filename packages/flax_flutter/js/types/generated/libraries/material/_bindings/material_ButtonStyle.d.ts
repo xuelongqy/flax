@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_WidgetStateProperty';
 import '@flax/flutter/widgets/_bindings/flutter_WidgetStateProperty';
 import type * as upstream1 from '@flax/flutter/services/_bindings/flutter_Color';
@@ -45,7 +46,7 @@ export interface ButtonStyle extends Readonly<{
         }> | null | undefined;
     }): ButtonStyle;
 }
-export declare function ButtonStyle(options?: {
+declare function _ButtonStyleFactory(options?: {
     backgroundColor?: Readonly<{
         "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream1.Color | null];
     }> | null | undefined;
@@ -68,3 +69,5 @@ export declare function ButtonStyle(options?: {
         "__flaxBound:package:material_ui/src/theme_data.dart::VisualDensity": readonly [];
     }> | null | undefined;
 }): ButtonStyle;
+export declare const ButtonStyle: typeof _ButtonStyleFactory & _FlaxInstanceType<ButtonStyle>;
+export {};

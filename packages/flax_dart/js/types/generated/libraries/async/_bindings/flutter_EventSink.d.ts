@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/core/_bindings/flutter_Sink';
 import '@flax/dart/core/_bindings/flutter_Sink';
 import type * as upstream1 from '@flax/dart/core/_bindings/flutter_StackTrace';
@@ -12,10 +13,12 @@ export interface EventSink<T extends unknown | null = unknown | null> extends up
     }> | null): void;
     close(): void;
 }
-export declare namespace EventSink {
+declare namespace _EventSinkFactory {
     function implement<T extends unknown | null = unknown | null>(args: [], implementation: {
         add: ((event: T) => void);
         addError: ((error: {}, stackTrace?: upstream1.StackTrace | null) => void);
         close: (() => void);
     }): EventSink<T>;
 }
+export declare const EventSink: typeof _EventSinkFactory & _FlaxInstanceType<EventSink<any>>;
+export {};

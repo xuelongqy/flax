@@ -1,4 +1,4 @@
-import { type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_Axis';
@@ -10,7 +10,7 @@ import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 export interface ListView extends WidgetDescription {
     readonly type: "flax.core/flutter#type:ListView";
 }
-export declare namespace ListView {
+declare namespace _ListViewFactory {
     function builder(options: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -37,3 +37,5 @@ export declare namespace ListView {
         addSemanticIndexes?: Bindable<boolean> | undefined;
     }): ListView;
 }
+export declare const ListView: typeof _ListViewFactory & _FlaxInstanceType<ListView>;
+export {};

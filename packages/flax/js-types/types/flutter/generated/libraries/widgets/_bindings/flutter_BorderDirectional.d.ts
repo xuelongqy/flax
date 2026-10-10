@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_BoxBorder';
 import '@flax/flutter/widgets/_bindings/flutter_BoxBorder';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_ShapeBorder';
@@ -14,7 +15,7 @@ export interface BorderDirectional extends upstream0.BoxBorder, upstream1.ShapeB
     readonly bottom: upstream2.BorderSide;
     readonly isUniform: boolean;
 }
-export declare function BorderDirectional(options?: {
+declare function _BorderDirectionalFactory(options?: {
     top?: Readonly<{
         "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [];
     }> | undefined;
@@ -28,3 +29,5 @@ export declare function BorderDirectional(options?: {
         "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [];
     }> | undefined;
 }): BorderDirectional;
+export declare const BorderDirectional: typeof _BorderDirectionalFactory & _FlaxInstanceType<BorderDirectional>;
+export {};

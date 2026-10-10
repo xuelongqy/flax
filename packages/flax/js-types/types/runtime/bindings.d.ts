@@ -161,6 +161,13 @@ type ObjectDefinition = {
     methods: Readonly<Record<string, StateMethod>>;
     removers: readonly string[];
 };
+/** A bound view check; it never constructs, casts, or reads the Dart object. */
+export interface FlaxInstanceType<T> {
+    [Symbol.hasInstance]<C>(this: C, value: unknown): value is C extends abstract new (...args: any[]) => infer I ? I : C extends {
+        readonly prototype: infer I;
+    } ? unknown extends I ? T : I : T;
+}
+export declare function bindInstanceType<T, V extends object>(value: V, type: string, parents: readonly string[]): V & FlaxInstanceType<T>;
 export declare function defineObject(type: string, fields: ObjectDefinition['fields'], setters: readonly string[], methods: ObjectDefinition['methods'], removers: readonly string[]): void;
 export declare function defineStream(type: string, fields: readonly string[], methods: Readonly<Record<string, StateMethod>>): void;
 export declare function constructAsyncIterableStream<T>(type: string, source: AsyncIterable<T>): object;

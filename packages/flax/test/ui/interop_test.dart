@@ -24,6 +24,66 @@ Future<void> _waitFor(
 }
 
 void main() {
+  testWidgets(
+    'instanceof discriminates sealed child views without crossing the bridge',
+    (tester) async {
+      final harness = OwnedHarness(
+        fixture: 'interop',
+        extra: [interopBindings],
+      );
+      try {
+        await tester.pumpWidget(harness.app('interop'));
+        harness.execute('''
+        var success = interop.CodegenResult.success(7);
+        var failure = interop.CodegenResult.failure('missing');
+        var hidden = interop.CodegenResult.hidden();
+        var extra = interop.CodegenResult.extra(11);
+        var resultConsumer = interop.CodegenResultConsumer();
+      ''');
+        final before = Map<String, int>.of(harness.runtime.hostCalls);
+        expect(
+          harness.boolean('''
+        success instanceof interop.CodegenSuccess &&
+        success instanceof interop.CodegenResult &&
+        success instanceof interop.CodegenReadable &&
+        success instanceof interop.CodegenTagged &&
+        !(success instanceof interop.CodegenFailure) &&
+        failure instanceof interop.CodegenFailure &&
+        failure instanceof interop.CodegenResult &&
+        hidden instanceof interop.CodegenResult &&
+        !(hidden instanceof interop.CodegenSuccess) &&
+        !(hidden instanceof interop.CodegenFailure) &&
+        extra instanceof interop.CodegenSuccess &&
+        [null, undefined, 1, {}, Object.create(success)].every(
+          value => !(value instanceof interop.CodegenSuccess))
+      '''),
+          isTrue,
+        );
+        expect(harness.runtime.hostCalls, before);
+        expect(
+          harness.boolean('''
+        success.value === 7 && success.describe() === 'result:success' &&
+        resultConsumer.echo(success) === success &&
+        resultConsumer.read(success) === 7 &&
+        resultConsumer.tag(success) === 'tag' &&
+        failure.message === 'missing' && hidden.status === 'hidden'
+      '''),
+          isTrue,
+        );
+        for (final code in [
+          'new interop.CodegenSuccess(3)',
+          'new interop.CodegenResult.success(3)',
+          'new interop.CodegenResult()',
+          'new interop.CodegenReadable()',
+        ]) {
+          expect(() => harness.execute(code), throwsA(isA<FlaxJsException>()));
+        }
+        expect(harness.errors, isEmpty);
+      } finally {
+        await harness.finish(tester);
+      }
+    },
+  );
   testWidgets('typed Stream views validate events and preserve Dart errors', (
     tester,
   ) async {
@@ -542,19 +602,22 @@ void main() {
           evaluate = value => super.evaluate(value) + this.#extra;
         };
         var peer = new LeafPeer(3);
-        var peerInstanceChecks = peer instanceof LeafPeer && peer instanceof MiddlePeer && peer instanceof interop.ConstructorSuperEvaluator;
+        var SiblingPeer = class extends interop.ConstructorSuperEvaluator {};
+        var siblingPeer = new SiblingPeer(2);
+        var peerInstanceChecks = peer instanceof LeafPeer && peer instanceof MiddlePeer && peer instanceof interop.ConstructorSuperEvaluator && !(peer instanceof SiblingPeer) && !(siblingPeer instanceof LeafPeer);
         ''');
-        expect(values.single.initialResult, 6);
-        expect(values.single.evaluate(2), 11);
+        expect(values, hasLength(2));
+        expect(values.first.initialResult, 6);
+        expect(values.first.evaluate(2), 11);
         expect(h.boolean('peerInstanceChecks'), isTrue);
         h.execute('peer.evaluate = function(value) { return value + 40; }');
-        expect(values.single.evaluate(2), 42);
+        expect(values.first.evaluate(2), 42);
         h.execute(
           'delete peer.evaluate; MiddlePeer.prototype.evaluate = value => value * 3',
         );
-        expect(values.single.evaluate(2), 6);
+        expect(values.first.evaluate(2), 6);
         h.execute('delete MiddlePeer.prototype.evaluate');
-        expect(values.single.evaluate(2), 4);
+        expect(values.first.evaluate(2), 4);
         expect(h.errors, isEmpty);
       } finally {
         await h.finish(t);

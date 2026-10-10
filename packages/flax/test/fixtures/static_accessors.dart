@@ -81,7 +81,7 @@ abstract class StaticStream<T> extends Stream<T> {
   static int count = 0;
 }
 
-class StaticMembers {
+class StaticMembers<T> {
   static int count = 0;
 }
 

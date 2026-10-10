@@ -1,4 +1,4 @@
-import { type DartListInput, type Bindable, type WidgetDescription } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartListInput, type Bindable, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_Page';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_Route';
@@ -13,7 +13,7 @@ import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 export interface Navigator extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Navigator";
 }
-export declare function Navigator(options?: {
+declare function _NavigatorFactory(options?: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -26,8 +26,10 @@ export declare function Navigator(options?: {
     }>>> | undefined;
     onDidRemovePage?: Bindable<((page: upstream1.Page<unknown | null>) => void) | null> | undefined;
 }): Navigator;
-export declare namespace Navigator {
+declare namespace _NavigatorFactory {
     function of(context: upstream6.BuildContext, options?: {
         rootNavigator?: boolean | undefined;
     }): upstream5.NavigatorState;
 }
+export declare const Navigator: typeof _NavigatorFactory & _FlaxInstanceType<Navigator>;
+export {};

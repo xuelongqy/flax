@@ -7,7 +7,7 @@ const _libraryGeneratedHeader =
 const _moduleHelpers =
     'construct, constructProxy, constructObject, '
     'constructDeferredObject, constructStream, constructAsyncIterableStream, '
-    'defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, '
+    '_flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, '
     'enumValue, defineContext, defineState, contextHandle, invokeStatic, '
     'invokeInstance, invokeTopLevel';
 
@@ -422,16 +422,7 @@ extension FlaxCodegenLibraryEmission on FlaxCodegenBindingEmitter {
       if (stateVariants.isNotEmpty) {
         return 'export { ${stateVariants.join(', ')} } from $source;\n';
       }
-      final hasValue =
-          type.proxy != null ||
-          type.asyncIterableFactory != null ||
-          type.staticGetters.isNotEmpty ||
-          type.staticSetters.isNotEmpty ||
-          type.methods.any((method) => !method.instance) ||
-          type.constructors.any(
-            (ctor) => ctor.name.isNotEmpty || type.jsName == null,
-          );
-      return 'export ${hasValue ? '' : 'type '}{ $name } from $source;\n'
+      return 'export { $name } from $source;\n'
           '${type.jsName == null ? '' : 'export { ${type.jsName} } from $source;\n'}';
     }
     final hasValue =

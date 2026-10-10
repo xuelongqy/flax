@@ -36,7 +36,10 @@ const componentsBindings = FlaxBindingModule(
   moduleId: "flax.core/components",
   dependencyModules: ["flax.core/flutter"],
   uiProtocol: 23,
-  requiredCapabilities: const <String>["native-widget-proxies"],
+  requiredCapabilities: const <String>[
+    "instance-checks",
+    "native-widget-proxies",
+  ],
   stateVariants: [
     _stateVariant_SingleTickerProviderState,
     _stateVariant_TickerProviderState,

@@ -24,7 +24,7 @@ void main() {
         expect(
           dart,
           contains(
-            'requiredCapabilities: const <String>["native-widget-proxies"]',
+            'requiredCapabilities: const <String>["instance-checks", "native-widget-proxies"]',
           ),
         );
         expect(dart, isNot(contains('version:')));
@@ -53,7 +53,7 @@ void main() {
         expect(
           typescript,
           contains(
-            '_flaxInstallBindingModule("com.acme.widgets/widgets", 23, Object.freeze(["native-widget-proxies"]) as readonly string[])',
+            '_flaxInstallBindingModule("com.acme.widgets/widgets", 23, Object.freeze(["instance-checks","native-widget-proxies"]) as readonly string[])',
           ),
         );
         expect(typescript, contains('export const widgetsBindingModule'));
@@ -79,7 +79,7 @@ void main() {
       expect(
         dart,
         contains(
-          'requiredCapabilities: const <String>["native-widget-proxies"]',
+          'requiredCapabilities: const <String>["instance-checks", "native-widget-proxies"]',
         ),
       );
       expect(dart, isNot(contains('version:')));
@@ -87,7 +87,7 @@ void main() {
       expect(
         typescript,
         contains(
-          '_flaxInstallBindingModule("example.host/host", 23, Object.freeze(["native-widget-proxies"]) as readonly string[])',
+          '_flaxInstallBindingModule("example.host/host", 23, Object.freeze(["instance-checks","native-widget-proxies"]) as readonly string[])',
         ),
       );
       expect(typescript, contains('export const hostBindingModule'));

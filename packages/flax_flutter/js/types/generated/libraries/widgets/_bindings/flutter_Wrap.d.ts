@@ -1,4 +1,4 @@
-import { type DartListInput, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartListInput, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_Axis';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_WrapAlignment';
@@ -9,7 +9,7 @@ import type * as upstream6 from '@flax/flutter/widgets/_bindings/flutter_Clip';
 export interface Wrap extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Wrap";
 }
-export declare function Wrap(options?: {
+declare function _WrapFactory(options?: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -24,3 +24,5 @@ export declare function Wrap(options?: {
     clipBehavior?: Bindable<upstream6.Clip> | undefined;
     children?: Bindable<DartListInput<Widget, Widget>> | undefined;
 }): Wrap;
+export declare const Wrap: typeof _WrapFactory & _FlaxInstanceType<Wrap>;
+export {};

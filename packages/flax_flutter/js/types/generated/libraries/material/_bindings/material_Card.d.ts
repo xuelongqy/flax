@@ -1,4 +1,4 @@
-import { type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/services/_bindings/flutter_Color';
 import '@flax/flutter/widgets/_bindings/flutter_EdgeInsetsGeometry';
@@ -6,7 +6,7 @@ import type * as upstream3 from '@flax/flutter/widgets/_bindings/flutter_Clip';
 export interface Card extends WidgetDescription {
     readonly type: "flax.material/material#type:Card";
 }
-export declare function Card(options?: {
+declare function _CardFactory(options?: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -27,7 +27,7 @@ export declare function Card(options?: {
     child?: Bindable<Widget | null> | undefined;
     semanticContainer?: Bindable<boolean> | undefined;
 }): Card;
-export declare namespace Card {
+declare namespace _CardFactory {
     function filled(options?: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -50,7 +50,7 @@ export declare namespace Card {
         semanticContainer?: Bindable<boolean> | undefined;
     }): Card;
 }
-export declare namespace Card {
+declare namespace _CardFactory {
     function outlined(options?: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -73,3 +73,5 @@ export declare namespace Card {
         semanticContainer?: Bindable<boolean> | undefined;
     }): Card;
 }
+export declare const Card: typeof _CardFactory & _FlaxInstanceType<Card>;
+export {};

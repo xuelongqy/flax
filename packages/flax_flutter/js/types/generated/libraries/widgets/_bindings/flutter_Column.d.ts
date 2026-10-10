@@ -1,4 +1,4 @@
-import { type DartListInput, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartListInput, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_MainAxisAlignment';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_MainAxisSize';
@@ -9,7 +9,7 @@ import type * as upstream6 from '@flax/flutter/widgets/_bindings/flutter_TextBas
 export interface Column extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Column";
 }
-export declare function Column(options?: {
+declare function _ColumnFactory(options?: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -22,3 +22,5 @@ export declare function Column(options?: {
     spacing?: Bindable<number> | undefined;
     children?: Bindable<DartListInput<Widget, Widget>> | undefined;
 }): Column;
+export declare const Column: typeof _ColumnFactory & _FlaxInstanceType<Column>;
+export {};

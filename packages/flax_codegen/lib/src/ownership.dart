@@ -252,9 +252,12 @@ final class FlaxCodegenImportedPackage {
   final List<FlaxCodegenImportedOwner> owners;
 }
 
-/// Native Widget views require the shared typed-reference runtime.
+/// Generated views require authenticated instance checks and native Widget proxies.
 List<String> flaxCodegenProtocol21RequiredCapabilities() =>
-    List<String>.unmodifiable(const <String>['native-widget-proxies']);
+    List<String>.unmodifiable(const <String>[
+      'instance-checks',
+      'native-widget-proxies',
+    ]);
 
 /// Resolves explicit local owners for one package namespace.
 abstract final class FlaxCodegenOwnership {

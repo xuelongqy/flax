@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_EdgeInsetsGeometry';
 import '@flax/flutter/widgets/_bindings/flutter_EdgeInsetsGeometry';
 export interface EdgeInsetsDirectional extends upstream0.EdgeInsetsGeometry, Readonly<{
@@ -9,10 +10,10 @@ export interface EdgeInsetsDirectional extends upstream0.EdgeInsetsGeometry, Rea
     readonly end: number;
     readonly bottom: number;
 }
-export declare namespace EdgeInsetsDirectional {
+declare namespace _EdgeInsetsDirectionalFactory {
     function fromSTEB(start: number, top: number, end: number, bottom: number): EdgeInsetsDirectional;
 }
-export declare namespace EdgeInsetsDirectional {
+declare namespace _EdgeInsetsDirectionalFactory {
     function only(options?: {
         start?: number | undefined;
         top?: number | undefined;
@@ -20,15 +21,17 @@ export declare namespace EdgeInsetsDirectional {
         bottom?: number | undefined;
     }): EdgeInsetsDirectional;
 }
-export declare namespace EdgeInsetsDirectional {
+declare namespace _EdgeInsetsDirectionalFactory {
     function all(value: number): EdgeInsetsDirectional;
 }
-export declare namespace EdgeInsetsDirectional {
+declare namespace _EdgeInsetsDirectionalFactory {
     function symmetric(options?: {
         horizontal?: number | undefined;
         vertical?: number | undefined;
     }): EdgeInsetsDirectional;
 }
-export declare namespace EdgeInsetsDirectional {
+declare namespace _EdgeInsetsDirectionalFactory {
     const zero: EdgeInsetsDirectional;
 }
+export declare const EdgeInsetsDirectional: typeof _EdgeInsetsDirectionalFactory & _FlaxInstanceType<EdgeInsetsDirectional>;
+export {};

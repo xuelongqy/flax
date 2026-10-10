@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_Decoration';
 import '@flax/flutter/widgets/_bindings/flutter_Decoration';
 import type * as upstream1 from '@flax/flutter/services/_bindings/flutter_Color';
@@ -30,7 +31,7 @@ export interface BoxDecoration extends upstream0.Decoration, Readonly<{
         shape?: upstream4.BoxShape | null | undefined;
     }): BoxDecoration;
 }
-export declare function BoxDecoration(options?: {
+declare function _BoxDecorationFactory(options?: {
     color?: Readonly<{
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null | undefined;
@@ -42,3 +43,5 @@ export declare function BoxDecoration(options?: {
     }> | null | undefined;
     shape?: upstream4.BoxShape | undefined;
 }): BoxDecoration;
+export declare const BoxDecoration: typeof _BoxDecorationFactory & _FlaxInstanceType<BoxDecoration>;
+export {};

@@ -17,6 +17,60 @@ resolution and emission. It carries resolved types, generics, inheritance, Widge
 callback roles, and capabilities such as `Disposable`. Emitters consume that semantic
 model; they do not infer application ownership or lifecycle policy from method names.
 
+## Instance checks and sealed results
+
+Generated class exports implement `Symbol.hasInstance`, including non-constructible
+classes, interfaces and mixins. `value instanceof Animal` checks the authenticated
+binding view's registered type and selected Dart supertypes. TypeScript narrows the
+value to the bound surface, so selected parent members remain callable. The check reads
+only bridge-owned weak metadata: it does not call Dart, read getters, construct an
+object, or retain a business object. Prototype chains are not rewritten to imitate Dart
+inheritance.
+
+Sealed parents keep legal public Dart factories and ordinary reference wrapping. Public
+selected children are recognized when Dart returns their view through a parent
+signature. For example, given a sealed `Result` with selected `Success` and `Failure`:
+
+```ts
+const result: Result = Result.success(7);
+if (result instanceof Success) {
+  console.log(result.value); // Selected Success member; narrowed by TypeScript.
+} else if (result instanceof Failure) {
+  console.log(result.message);
+} else {
+  console.log(result.describe()); // Private or unselected implementations can remain.
+}
+```
+
+The generated exports are callable Dart factories or non-callable type tokens, not
+arbitrary JS subclass constructors. Only configured legal `proxy: extends` exports
+support `new` and JS inheritance. Their inherited instance-check hook uses ordinary JS
+prototype checks for a JS-authored child, preserving sibling discrimination and the
+child's own TypeScript members. Dart `final`, `sealed`, `base` and `interface` rules
+remain enforced during proxy selection; no external Dart child of a sealed class is
+generated. New modules require the additive `instance-checks` capability alongside
+`native-widget-proxies`; Manifest 16, UI protocol 23 and ABI 2 are unchanged. Regenerate
+providers and consumers together; older generated exports do not gain the new class
+tokens automatically.
+
+### Limits of JavaScript instanceof
+
+| Case                                                | Contract                                                                                                                                                                                                                                                                                                                                |
+| --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Parent-only or independent provider view            | No downcast or provider conversion. A parent-only view fails a child check; independently bound views have distinct wire identities. Reusing a dependency provider reuses its identity.                                                                                                                                                 |
+| Private or unselected descendants                   | A selected compatible ancestor can match; no exported child token exists. Sealed results are not an exhaustive TypeScript union and keep a fallback branch.                                                                                                                                                                             |
+| Runtime generic arguments or erased representations | Checks identify the bound family, not `Box<String>` versus `Box<int>`. Typedefs, extension types, copied Records/data and enum adapters gain no independent class token. Generic argument validation still occurs at typed Dart calls.                                                                                                  |
+| Descriptors and deferred construction               | Widget/Route/Page descriptions and unmaterialized deferred factories have no authenticated object handle and return false. Native Widget proxies, ordinary references, Contexts and Streams can match; a type-only State wrapper has no instance-check handle. JS-authored Widget/State classes retain ordinary JS prototype semantics. |
+| Released references and foreign values              | Generated binding tokens reject released handles, raw objects, prototype forgeries, primitives, null and undefined. JS-authored subclass checks follow native JS prototype semantics, which do not validate bridge handles. Member calls still enforce mounted state, session ownership and argument types.                             |
+
+These limits intentionally prevent a successful check from silently manufacturing a
+different API surface. A successful check does not guarantee a mounted Flutter owner.
+`Object.getPrototypeOf` and `constructor` do not reveal the Dart superclass. The
+generated
+[compile regression](../../packages/flax_codegen/test/instance_types_test.dart) and
+[real-engine regression](../../packages/flax/test/ui/interop_test.dart) cover sealed
+factories, public children, private descendants, interfaces, mixins and JS subclasses.
+
 ## Shared member dispatch
 
 Ordinary object, Context, State and Stream wrappers share one frozen JS prototype per

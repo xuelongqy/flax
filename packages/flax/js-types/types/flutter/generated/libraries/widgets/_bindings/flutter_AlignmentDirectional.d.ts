@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_AlignmentGeometry';
 import '@flax/flutter/widgets/_bindings/flutter_AlignmentGeometry';
 export interface AlignmentDirectional extends upstream0.AlignmentGeometry, Readonly<{
@@ -7,31 +8,33 @@ export interface AlignmentDirectional extends upstream0.AlignmentGeometry, Reado
     readonly start: number;
     readonly y: number;
 }
-export declare function AlignmentDirectional(start: number, y: number): AlignmentDirectional;
-export declare namespace AlignmentDirectional {
+declare function _AlignmentDirectionalFactory(start: number, y: number): AlignmentDirectional;
+declare namespace _AlignmentDirectionalFactory {
     const topStart: AlignmentDirectional;
 }
-export declare namespace AlignmentDirectional {
+declare namespace _AlignmentDirectionalFactory {
     const topCenter: AlignmentDirectional;
 }
-export declare namespace AlignmentDirectional {
+declare namespace _AlignmentDirectionalFactory {
     const topEnd: AlignmentDirectional;
 }
-export declare namespace AlignmentDirectional {
+declare namespace _AlignmentDirectionalFactory {
     const centerStart: AlignmentDirectional;
 }
-export declare namespace AlignmentDirectional {
+declare namespace _AlignmentDirectionalFactory {
     const center: AlignmentDirectional;
 }
-export declare namespace AlignmentDirectional {
+declare namespace _AlignmentDirectionalFactory {
     const centerEnd: AlignmentDirectional;
 }
-export declare namespace AlignmentDirectional {
+declare namespace _AlignmentDirectionalFactory {
     const bottomStart: AlignmentDirectional;
 }
-export declare namespace AlignmentDirectional {
+declare namespace _AlignmentDirectionalFactory {
     const bottomCenter: AlignmentDirectional;
 }
-export declare namespace AlignmentDirectional {
+declare namespace _AlignmentDirectionalFactory {
     const bottomEnd: AlignmentDirectional;
 }
+export declare const AlignmentDirectional: typeof _AlignmentDirectionalFactory & _FlaxInstanceType<AlignmentDirectional>;
+export {};

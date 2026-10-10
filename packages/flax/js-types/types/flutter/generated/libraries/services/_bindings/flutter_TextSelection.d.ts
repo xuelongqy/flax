@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/services/_bindings/flutter_TextRange';
 import '@flax/flutter/services/_bindings/flutter_TextRange';
 import type * as upstream1 from '@flax/flutter/services/_bindings/flutter_TextAffinity';
@@ -21,15 +22,17 @@ export interface TextSelection extends upstream0.TextRange, Readonly<{
         isDirectional?: boolean | null | undefined;
     }): TextSelection;
 }
-export declare function TextSelection(options: {
+declare function _TextSelectionFactory(options: {
     baseOffset: number;
     extentOffset: number;
     affinity?: upstream1.TextAffinity | undefined;
     isDirectional?: boolean | undefined;
 }): TextSelection;
-export declare namespace TextSelection {
+declare namespace _TextSelectionFactory {
     function collapsed(options: {
         offset: number;
         affinity?: upstream1.TextAffinity | undefined;
     }): TextSelection;
 }
+export declare const TextSelection: typeof _TextSelectionFactory & _FlaxInstanceType<TextSelection>;
+export {};

@@ -36,6 +36,7 @@ void main() {
                 '': ['data'],
               },
               proxy: 'extends',
+              jsName: 'MakeNativeLabel',
               instanceMethods: {
                 'build': ['context'],
               },
@@ -50,6 +51,7 @@ void main() {
                 '': ['data'],
               },
               proxy: 'extends',
+              jsName: 'Symbol',
               widgetInterfaces: ['PreferredSizeWidget'],
             ),
           },
@@ -65,8 +67,11 @@ void main() {
         emitter,
         module,
         consumerSource: '''
-import {NativeLabel, NativeToolbar, type PreferredSizeWidget, type BuildContext} from './plugin.js';
+import {NativeLabel, MakeNativeLabel, NativeToolbar, Symbol, type PreferredSizeWidget, type BuildContext} from './plugin.js';
 const factory = NativeLabel('factory');
+const aliasFactory = MakeNativeLabel('alias factory');
+class AliasTitle extends MakeNativeLabel {}
+const aliasTitle = new AliasTitle('alias native');
 class Title extends NativeLabel {
   constructor(value: string) { super('Title: ' + value); }
   override build(context: BuildContext) { return super.build(context); }
@@ -74,6 +79,13 @@ class Title extends NativeLabel {
 const title = new Title('native');
 class Toolbar extends NativeToolbar {}
 const toolbar: PreferredSizeWidget = new Toolbar('native');
+const aliasToolbar: PreferredSizeWidget = new Symbol('native alias');
+const unknown: unknown = aliasToolbar;
+if (unknown instanceof Symbol) {
+  const narrowed: PreferredSizeWidget = unknown;
+  // @ts-expect-error The alias guard must not widen the native Widget to any.
+  unknown.unselectedField;
+}
 ''',
       );
     },

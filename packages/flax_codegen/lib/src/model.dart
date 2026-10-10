@@ -842,7 +842,10 @@ class FlaxCodegenModuleModel {
     this.topLevel,
     this.publicLibraries = const [],
     this.moduleId,
-    this.requiredCapabilities = const <String>['native-widget-proxies'],
+    this.requiredCapabilities = const <String>[
+      'instance-checks',
+      'native-widget-proxies',
+    ],
     this.internalTypeNames = const <String>{},
     this.stateVariants = const [],
   });

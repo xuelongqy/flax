@@ -1,4 +1,4 @@
-import { type DartListInput, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartListInput, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_NavigatorObserver';
 import '@flax/flutter/widgets/_bindings/flutter_NavigatorObserver';
@@ -7,7 +7,7 @@ import type * as upstream3 from '@flax/flutter/material/_bindings/material_Theme
 export interface MaterialApp extends WidgetDescription {
     readonly type: "flax.material/material#type:MaterialApp";
 }
-export declare function MaterialApp(options?: {
+declare function _MaterialAppFactory(options?: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -25,3 +25,5 @@ export declare function MaterialApp(options?: {
     themeMode?: Bindable<upstream3.ThemeMode | null> | undefined;
     debugShowCheckedModeBanner?: Bindable<boolean> | undefined;
 }): MaterialApp;
+export declare const MaterialApp: typeof _MaterialAppFactory & _FlaxInstanceType<MaterialApp>;
+export {};

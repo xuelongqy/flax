@@ -1,4 +1,4 @@
-import { type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/widgets/_bindings/flutter_AlignmentGeometry';
 import '@flax/flutter/widgets/_bindings/flutter_EdgeInsetsGeometry';
@@ -9,7 +9,7 @@ import type * as upstream6 from '@flax/flutter/widgets/_bindings/flutter_Clip';
 export interface Container extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Container";
 }
-export declare function Container(options?: {
+declare function _ContainerFactory(options?: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -40,3 +40,5 @@ export declare function Container(options?: {
     child?: Bindable<Widget | null> | undefined;
     clipBehavior?: Bindable<upstream6.Clip> | undefined;
 }): Container;
+export declare const Container: typeof _ContainerFactory & _FlaxInstanceType<Container>;
+export {};

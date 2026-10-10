@@ -1,4 +1,4 @@
-import { type DartIterableInput, type DartList, type DartSet } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartIterableInput, type DartList, type DartSet } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/async/_bindings/flutter_Stream';
 import type * as upstream1 from '@flax/dart/async/_bindings/flutter_StreamSubscription';
 import '@flax/dart/async/_bindings/flutter_StreamSubscription';
@@ -72,4 +72,6 @@ export interface StreamView<T extends unknown | null = unknown | null> extends A
         onTimeout?: ((sink: upstream6.EventSink<T>) => void) | null | undefined;
     }): upstream0.Stream<T>;
 }
-export declare function StreamView<T extends unknown | null = unknown | null>(stream: upstream0.Stream<T>): StreamView<T>;
+declare function _StreamViewFactory<T extends unknown | null = unknown | null>(stream: upstream0.Stream<T>): StreamView<T>;
+export declare const StreamView: typeof _StreamViewFactory & _FlaxInstanceType<StreamView<any>>;
+export {};

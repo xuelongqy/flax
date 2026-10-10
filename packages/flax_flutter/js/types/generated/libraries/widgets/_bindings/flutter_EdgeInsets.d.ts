@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_EdgeInsetsGeometry';
 import '@flax/flutter/widgets/_bindings/flutter_EdgeInsetsGeometry';
 export interface EdgeInsets extends upstream0.EdgeInsetsGeometry, Readonly<{
@@ -9,19 +10,19 @@ export interface EdgeInsets extends upstream0.EdgeInsetsGeometry, Readonly<{
     readonly right: number;
     readonly bottom: number;
 }
-export declare namespace EdgeInsets {
+declare namespace _EdgeInsetsFactory {
     function all(value: number): EdgeInsets;
 }
-export declare namespace EdgeInsets {
+declare namespace _EdgeInsetsFactory {
     function symmetric(options?: {
         vertical?: number | undefined;
         horizontal?: number | undefined;
     }): EdgeInsets;
 }
-export declare namespace EdgeInsets {
+declare namespace _EdgeInsetsFactory {
     function fromLTRB(left: number, top: number, right: number, bottom: number): EdgeInsets;
 }
-export declare namespace EdgeInsets {
+declare namespace _EdgeInsetsFactory {
     function only(options?: {
         left?: number | undefined;
         top?: number | undefined;
@@ -29,6 +30,8 @@ export declare namespace EdgeInsets {
         bottom?: number | undefined;
     }): EdgeInsets;
 }
-export declare namespace EdgeInsets {
+declare namespace _EdgeInsetsFactory {
     const zero: EdgeInsets;
 }
+export declare const EdgeInsets: typeof _EdgeInsetsFactory & _FlaxInstanceType<EdgeInsets>;
+export {};

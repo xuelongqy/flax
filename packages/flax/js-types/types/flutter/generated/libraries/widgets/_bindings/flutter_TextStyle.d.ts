@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/services/_bindings/flutter_Color';
 import '@flax/flutter/services/_bindings/flutter_Color';
 import type * as upstream1 from '@flax/flutter/services/_bindings/flutter_FontWeight';
@@ -36,7 +37,7 @@ export interface TextStyle extends Readonly<{
         wordSpacing?: number | null | undefined;
     }): TextStyle;
 }
-export declare function TextStyle(options?: {
+declare function _TextStyleFactory(options?: {
     inherit?: boolean | undefined;
     color?: Readonly<{
         "__flaxBound:dart:ui::Color": readonly [];
@@ -53,3 +54,5 @@ export declare function TextStyle(options?: {
     wordSpacing?: number | null | undefined;
     height?: number | null | undefined;
 }): TextStyle;
+export declare const TextStyle: typeof _TextStyleFactory & _FlaxInstanceType<TextStyle>;
+export {};

@@ -97,7 +97,7 @@ String? _inferModuleIdFromMembers(FlaxCodegenModuleModel module) {
 }
 
 const _typescriptHostImport =
-    "import { bindingMethods as _flaxBindingMethods, bindingVersion, construct as _flaxHostConstruct, constructProxy as _flaxHostConstructProxy, constructObject as _flaxHostConstructObject, constructDeferredObject as _flaxHostConstructDeferredObject, constructStream as _flaxHostConstructStream, constructAsyncIterableStream as _flaxHostConstructAsyncIterableStream, defineObject as _flaxHostDefineObject, defineStream as _flaxHostDefineStream, invokeObject as _flaxHostInvokeObject, invokeObjectStatic as _flaxHostInvokeObjectStatic, invokeStream as _flaxHostInvokeStream, enumValue as _flaxHostEnumValue, defineContext as _flaxHostDefineContext, defineState as _flaxHostDefineState, contextHandle as _flaxHostContextHandle, invokeStatic as _flaxHostInvokeStatic, invokeInstance as _flaxHostInvokeInstance, invokeTopLevel as _flaxHostInvokeTopLevel, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';";
+    "import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, bindingVersion, construct as _flaxHostConstruct, constructProxy as _flaxHostConstructProxy, constructObject as _flaxHostConstructObject, constructDeferredObject as _flaxHostConstructDeferredObject, constructStream as _flaxHostConstructStream, constructAsyncIterableStream as _flaxHostConstructAsyncIterableStream, defineObject as _flaxHostDefineObject, defineStream as _flaxHostDefineStream, invokeObject as _flaxHostInvokeObject, invokeObjectStatic as _flaxHostInvokeObjectStatic, invokeStream as _flaxHostInvokeStream, enumValue as _flaxHostEnumValue, defineContext as _flaxHostDefineContext, defineState as _flaxHostDefineState, contextHandle as _flaxHostContextHandle, invokeStatic as _flaxHostInvokeStatic, invokeInstance as _flaxHostInvokeInstance, invokeTopLevel as _flaxHostInvokeTopLevel, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';";
 
 const _typescriptInstallHelper = r'''
 function _flaxInstallBindingModule(
@@ -117,7 +117,7 @@ function _flaxInstallBindingModule(
       throw new TypeError('requiredCapabilities must be sorted unique strings');
     }
     previous = capability;
-    if (capability !== 'native-widget-proxies') {
+    if (capability !== 'instance-checks' && capability !== 'native-widget-proxies') {
       throw new TypeError(`Unsupported binding capability ${capability}`);
     }
   }
@@ -131,6 +131,7 @@ function _flaxInstallBindingModule(
     constructDeferredObject: _flaxHostConstructDeferredObject,
     constructStream: _flaxHostConstructStream,
     constructAsyncIterableStream: _flaxHostConstructAsyncIterableStream,
+    bindInstanceType: _flaxHostBindInstanceType,
     defineObject: _flaxHostDefineObject,
     defineStream: _flaxHostDefineStream,
     invokeObject: _flaxHostInvokeObject,
@@ -3612,7 +3613,7 @@ T _genericCallbackResult<T>(Object? value) {
         FlaxCodegenTypeCategory.iterable =>
           input
               ? withinCallback && type.containsWidget
-                    ? '(Omit<DartIterable<${child(type.item!, asInput: false)}>, typeof Symbol.iterator> | ReadonlyArray<${child(type.item!)}> | ReadonlySet<${child(type.item!)}>)'
+                    ? '(Omit<DartIterable<${child(type.item!, asInput: false)}>, typeof globalThis.Symbol.iterator> | ReadonlyArray<${child(type.item!)}> | ReadonlySet<${child(type.item!)}>)'
                     : 'DartIterableInput<${child(type.item!, asInput: false)}, ${child(type.item!)}>'
               : 'DartIterable<${child(type.item!)}>',
         FlaxCodegenTypeCategory.list =>
@@ -3787,7 +3788,7 @@ $_typescriptHostImport
       out.writeln(
         'import { construct, constructProxy, constructObject, '
         'constructDeferredObject, constructStream, constructAsyncIterableStream, '
-        'defineObject, defineStream, invokeObject, invokeObjectStatic, '
+        '_flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, '
         'invokeStream, enumValue, defineContext, defineState, contextHandle, '
         'invokeStatic, invokeInstance, invokeTopLevel } from '
         '${jsonEncode(moduleInstallImport)};',
@@ -3833,6 +3834,7 @@ $_typescriptHostImport
       String? namespace,
       FlaxCodegenClassCategory? category,
       bool extensionOperation = false,
+      bool exportNamespace = true,
     }) {
       final previousGenericNames = genericNames;
       if (extensionOperation) {
@@ -3865,7 +3867,7 @@ $_typescriptHostImport
       target.writeln(
         method.instance
             ? '${method.name}(this: object${args.isEmpty ? '' : ', ${args.join(', ')}'}): ${tsType(method.result, declarations: !method.instance)} {'
-            : '${namespace == null ? "function _flaxTopLevel_" : "export namespace $namespace { export function "}${method.name}${generics(method.typeParameters)}(${args.join(', ')}): ${tsType(method.result, declarations: !method.instance)} {',
+            : '${namespace == null ? "function _flaxTopLevel_" : "${exportNamespace ? 'export ' : ''}namespace $namespace { export function "}${method.name}${generics(method.typeParameters)}(${args.join(', ')}): ${tsType(method.result, declarations: !method.instance)} {',
       );
       target.writeln(
         "if (arguments.length > ${args.length}) throw new TypeError('Too many method arguments');",
@@ -3949,6 +3951,16 @@ $_typescriptHostImport
           return '${jsonEncode(method.name)}:$name';
         }).join(',')}}';
     final staticMethods = StringBuffer();
+    final instanceChecks = StringBuffer();
+    String valueName(FlaxCodegenClassModel type) =>
+        type.proxy?.kind == 'extends' && type.kind != 'widget'
+        ? type.name
+        : '_${type.name}Factory';
+    String instanceType(FlaxCodegenClassModel type) =>
+        type.name +
+        (type.typeParameters.isEmpty
+            ? ''
+            : '<${type.typeParameters.map((_) => "any").join(", ")}>');
     String proxyArguments(FlaxCodegenClassModel type) {
       final ctor = _proxyConstructor(type);
       final args = ctor.parameters
@@ -4023,6 +4035,9 @@ $_typescriptHostImport
           'export abstract class $className${generics(type.typeParameters)} extends _FlaxProxyBase {',
         );
         target.writeln(
+          'static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<${instanceType(type)}>[typeof globalThis.Symbol.hasInstance];',
+        );
+        target.writeln(
           'constructor(${proxyArguments(type)}) { super(_${type.name}Proxy, Array.from(arguments)); }',
         );
         for (final method in proxy.methods.where(
@@ -4070,7 +4085,7 @@ $_typescriptHostImport
           'set ${s.name}(value: ${tsType(s.type)})',
       ].join('; ');
       target.writeln(
-        'export namespace ${type.name} { export function implement${generics(type.typeParameters)}(args: [${proxyArguments(type)}], implementation: {$implementation}): ${type.name}${genericUse(type)} {',
+        '${valueName(type) == type.name ? "export " : ""}namespace ${valueName(type)} { export function implement${generics(type.typeParameters)}(args: [${proxyArguments(type)}], implementation: {$implementation}): ${type.name}${genericUse(type)} {',
       );
       target.writeln(
         'return constructProxy(_${type.name}Proxy, args, implementation) as ${type.name}${genericUse(type)}; } }',
@@ -4190,6 +4205,47 @@ $_typescriptHostImport
       final exportPrefix = module.internalTypeNames.contains(type.name)
           ? ''
           : 'export ';
+      final hasJsConstructor =
+          type.proxy?.kind == 'extends' ||
+          (type.kind == 'widget' && type.proxy != null);
+      final api = type.kind == 'widget' && type.proxy != null
+          ? '_${type.name}Binding'
+          : valueName(type);
+      final hasApi =
+          type.proxy != null ||
+          type.asyncIterableFactory != null ||
+          type.staticGetters.isNotEmpty ||
+          type.staticSetters.isNotEmpty ||
+          type.methods.any((method) => !method.instance) ||
+          type.constructors.any(
+            (ctor) =>
+                ctor.name.isNotEmpty ||
+                type.jsName == null ||
+                type.jsName == type.name,
+          );
+      final check =
+          '_flaxBindInstanceType<${instanceType(type)}, ${hasApi ? "typeof $api" : "object"}>(${hasApi ? api : "{}"}, ${jsonEncode(type.id)}, ${jsonEncode(type.supertypes)})';
+      final apiType =
+          '${hasApi ? "typeof $api" : "object"} & _FlaxInstanceType<${instanceType(type)}>';
+      instanceChecks.writeln(
+        type.proxy?.kind == 'extends' && type.kind != 'widget'
+            ? '$check;'
+            : '${exportPrefix}const ${type.name}: $apiType = $check;',
+      );
+      if (type.jsName != null &&
+          type.jsName != type.name &&
+          type.constructors.any((ctor) => ctor.name.isEmpty)) {
+        instanceChecks.writeln(
+          hasJsConstructor
+              ? '${exportPrefix}const ${type.jsName}: typeof ${type.name} = ${type.name};'
+              : '${exportPrefix}const ${type.jsName}: typeof _${type.name}Construct & _FlaxInstanceType<${instanceType(type)}> = _flaxBindInstanceType<${instanceType(type)}, typeof _${type.name}Construct>(_${type.name}Construct, ${jsonEncode(type.id)}, ${jsonEncode(type.supertypes)});',
+        );
+      }
+      if (type.kind == 'members') {
+        out.writeln(
+          '${exportPrefix}interface ${type.name}${generics(type.typeParameters)} { readonly __${type.name}: unique symbol; }',
+        );
+      }
       if (type.staticGetters.isNotEmpty || type.staticSetters.isNotEmpty) {
         final staticObject =
             !type.constructors.any(
@@ -4204,7 +4260,7 @@ $_typescriptHostImport
             type.methods.every((method) => method.instance);
         if (staticObject) {
           staticMethods.writeln(
-            'export const ${type.name} = {} as {${type.staticGetters.map((getter) => 'readonly ${getter.name}: ${tsType(getter.type)}').join(';')}};',
+            'const ${valueName(type)} = {} as {${type.staticGetters.map((getter) => 'readonly ${getter.name}: ${tsType(getter.type)}').join(';')}};',
           );
         }
         for (final setter in type.staticSetters) {
@@ -4221,22 +4277,31 @@ $_typescriptHostImport
               operation.call.result,
             ),
             id: operation.id,
-            namespace: type.kind == 'widget' && type.proxy != null
-                ? '_${type.name}Factory'
-                : type.name,
+            namespace: valueName(type),
+            exportNamespace: valueName(type) == type.name,
             extensionOperation: true,
           );
         }
         for (final getter in type.staticGetters) {
           if (!staticObject) {
             staticMethods.writeln(
-              'export namespace ${type.kind == 'widget' && type.proxy != null ? '_${type.name}Factory' : type.name} { export declare const ${getter.name}: ${tsType(getter.type)}; }',
+              '${valueName(type) == type.name ? "export " : ""}namespace ${valueName(type)} { export declare const ${getter.name}: ${tsType(getter.type)}; }',
             );
           }
           staticMethods.writeln(
-            'Object.defineProperty(${type.kind == 'widget' && type.proxy != null ? '_${type.name}Factory' : type.name}, ${jsonEncode(getter.name)}, { get: () => invokeTopLevel(${jsonEncode(type.staticGetterId(getter))}, []) });',
+            'Object.defineProperty(${valueName(type)}, ${jsonEncode(getter.name)}, { get: () => invokeTopLevel(${jsonEncode(type.staticGetterId(getter))}, []) });',
           );
         }
+      }
+      for (final method in type.methods.where((m) => !m.instance)) {
+        emitTsCallable(
+          staticMethods,
+          method,
+          id: type.id,
+          namespace: valueName(type),
+          exportNamespace: valueName(type) == type.name,
+          category: type.category,
+        );
       }
       if (type.kind == 'widgetInterface') {
         out.writeln(
@@ -4296,17 +4361,6 @@ $_typescriptHostImport
           );
         }
       }
-      for (final method in type.methods.where((m) => !m.instance)) {
-        emitTsCallable(
-          staticMethods,
-          method,
-          id: type.id,
-          namespace: type.kind == 'widget' && type.proxy != null
-              ? '_${type.name}Factory'
-              : type.name,
-          category: type.category,
-        );
-      }
       String sharedMethods() =>
           '_flaxBindingMethods(${jsonEncode(type.id)}, ${jsonEncode(type.kind == 'widget' ? 'object' : type.kind)}, ${memberMetadata(type.methods.where((m) => m.instance))})';
       if (type.kind == 'object' ||
@@ -4323,7 +4377,7 @@ $_typescriptHostImport
         if (type.asyncIterableFactory case final factory?) {
           final parameter = type.typeParameters.single;
           out.writeln(
-            'export namespace ${type.kind == 'widget' && type.proxy != null ? '_${type.name}Factory' : type.name} {',
+            '${valueName(type) == type.name ? "export " : ""}namespace ${valueName(type)} {',
           );
           out.writeln(
             'export function $factory${generics([parameter], defaults: false)}(source: AsyncIterable<${parameter.name}>): ${type.name}<${parameter.name}> {',
@@ -4340,6 +4394,11 @@ $_typescriptHostImport
         );
       }
       if (type.constructors.isEmpty && type.proxy == null) {
+        if (type.kind == 'widget') {
+          out.writeln(
+            '${exportPrefix}type ${type.name}${generics(type.typeParameters)} = Widget & { readonly __${type.name}: unique symbol; };',
+          );
+        }
         if (type.kind == 'route' || type.kind == 'page') {
           out.writeln(
             '${exportPrefix}interface ${type.name}${generics(type.typeParameters)} extends DartValue { readonly __${type.name}: unique symbol; ${type.getters.map((g) => 'readonly ${g.name}: ${tsType(g.type)};').join(' ')} }',
@@ -4376,13 +4435,15 @@ $_typescriptHostImport
       }
       for (final ctor in type.constructors) {
         final functionName = ctor.name.isEmpty
-            ? (type.kind == 'widget' && type.proxy != null
-                  ? '_${type.name}Factory'
-                  : (type.jsName ?? type.name))
+            ? (type.jsName != null &&
+                      type.jsName != type.name &&
+                      !hasJsConstructor
+                  ? '_${type.name}Construct'
+                  : valueName(type))
             : ctor.name;
         if (ctor.name.isNotEmpty) {
           out.writeln(
-            'export namespace ${type.kind == 'widget' && type.proxy != null ? '_${type.name}Factory' : type.name} {',
+            '${valueName(type) == type.name ? "export " : ""}namespace ${valueName(type)} {',
           );
         }
         final named = ctor.parameters
@@ -4407,7 +4468,10 @@ $_typescriptHostImport
           );
         }
         out.writeln(
-          'export function $functionName${constructorGenerics(type, ctor)}(${args.join(', ')}): ${type.name}${genericUse(type)} {',
+          '${ctor.name.isEmpty ? "" : "export "}function $functionName${constructorGenerics(type, ctor)}(${args.join(', ')}): ${type.name}${genericUse(type)} {',
+        );
+        out.writeln(
+          "if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');",
         );
         out.writeln(
           "if (arguments.length > ${args.length}) throw new TypeError('Too many constructor arguments');",
@@ -4449,13 +4513,14 @@ $_typescriptHostImport
       }
       if (type.kind == 'widget' && type.proxy != null) {
         out.writeln(
-          'export const ${type.name} = _flaxWidgetProxyFactory(_${type.name}Factory, _${type.name}Native) as typeof _${type.name}Factory & { new${generics(type.typeParameters)}(${proxyArguments(type)}): _${type.name}Native${genericUse(type)}; };',
+          'const _${type.name}Binding = _flaxWidgetProxyFactory(_${type.name}Factory, _${type.name}Native) as typeof _${type.name}Factory & { new${generics(type.typeParameters)}(${proxyArguments(type)}): _${type.name}Native${genericUse(type)}; };',
         );
       }
       if (delayedProxy) emitProxy(out, type, type.proxy!);
     }
     emitTypedefs(out);
     out.write(staticMethods);
+    out.write(instanceChecks);
     if (module.topLevel case final values?) {
       String readGetter(FlaxCodegenTopLevelGetterModel getter) {
         if (!getter.isReference) {
@@ -4569,7 +4634,7 @@ $_typescriptHostImport
       'export const ${module.name}BindingModule = _flaxInstallBindingModule(${jsonEncode(_literalModuleId(module))}, $_generatedUiProtocol, $capabilityLiteral);',
     );
     out.writeln(
-      'const { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } = ${module.name}BindingModule;',
+      'const { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, bindInstanceType: _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } = ${module.name}BindingModule;',
     );
   }
 }

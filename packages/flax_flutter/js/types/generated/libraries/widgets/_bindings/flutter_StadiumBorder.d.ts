@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_OutlinedBorder';
 import '@flax/flutter/widgets/_bindings/flutter_OutlinedBorder';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_ShapeBorder';
@@ -15,8 +16,10 @@ export interface StadiumBorder extends upstream0.OutlinedBorder, upstream1.Shape
         }> | null | undefined;
     }): StadiumBorder;
 }
-export declare function StadiumBorder(options?: {
+declare function _StadiumBorderFactory(options?: {
     side?: Readonly<{
         "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [];
     }> | undefined;
 }): StadiumBorder;
+export declare const StadiumBorder: typeof _StadiumBorderFactory & _FlaxInstanceType<StadiumBorder>;
+export {};

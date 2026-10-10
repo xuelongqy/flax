@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/services/_bindings/flutter_Color';
 import '@flax/flutter/services/_bindings/flutter_Color';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_BorderStyle';
@@ -20,7 +21,7 @@ export interface BorderSide extends Readonly<{
         width?: number | null | undefined;
     }): BorderSide;
 }
-export declare function BorderSide(options?: {
+declare function _BorderSideFactory(options?: {
     color?: Readonly<{
         "__flaxBound:dart:ui::Color": readonly [];
     }> | undefined;
@@ -28,15 +29,17 @@ export declare function BorderSide(options?: {
     style?: upstream1.BorderStyle | undefined;
     strokeAlign?: number | undefined;
 }): BorderSide;
-export declare namespace BorderSide {
+declare namespace _BorderSideFactory {
     const none: BorderSide;
 }
-export declare namespace BorderSide {
+declare namespace _BorderSideFactory {
     const strokeAlignInside: number;
 }
-export declare namespace BorderSide {
+declare namespace _BorderSideFactory {
     const strokeAlignCenter: number;
 }
-export declare namespace BorderSide {
+declare namespace _BorderSideFactory {
     const strokeAlignOutside: number;
 }
+export declare const BorderSide: typeof _BorderSideFactory & _FlaxInstanceType<BorderSide>;
+export {};

@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 export interface Duration extends Readonly<{
     "__flaxBound:dart:core::Duration": readonly [];
 }>, Readonly<{
@@ -11,7 +12,7 @@ export interface Duration extends Readonly<{
     readonly inMilliseconds: number;
     readonly inMicroseconds: number;
 }
-export declare function Duration(options?: {
+declare function _DurationFactory(options?: {
     days?: number | undefined;
     hours?: number | undefined;
     minutes?: number | undefined;
@@ -19,6 +20,8 @@ export declare function Duration(options?: {
     milliseconds?: number | undefined;
     microseconds?: number | undefined;
 }): Duration;
-export declare namespace Duration {
+declare namespace _DurationFactory {
     const zero: Duration;
 }
+export declare const Duration: typeof _DurationFactory & _FlaxInstanceType<Duration>;
+export {};

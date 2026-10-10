@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 export interface BoxConstraints extends Readonly<{
     "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
 }>, Readonly<{
@@ -9,21 +10,23 @@ export interface BoxConstraints extends Readonly<{
     readonly minHeight: number;
     readonly maxHeight: number;
 }
-export declare function BoxConstraints(options?: {
+declare function _BoxConstraintsFactory(options?: {
     minWidth?: number | undefined;
     maxWidth?: number | undefined;
     minHeight?: number | undefined;
     maxHeight?: number | undefined;
 }): BoxConstraints;
-export declare namespace BoxConstraints {
+declare namespace _BoxConstraintsFactory {
     function tightFor(options?: {
         width?: number | null | undefined;
         height?: number | null | undefined;
     }): BoxConstraints;
 }
-export declare namespace BoxConstraints {
+declare namespace _BoxConstraintsFactory {
     function expand(options?: {
         width?: number | null | undefined;
         height?: number | null | undefined;
     }): BoxConstraints;
 }
+export declare const BoxConstraints: typeof _BoxConstraintsFactory & _FlaxInstanceType<BoxConstraints>;
+export {};

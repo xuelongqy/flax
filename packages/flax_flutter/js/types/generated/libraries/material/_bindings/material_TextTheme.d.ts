@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_TextStyle';
 import '@flax/flutter/widgets/_bindings/flutter_TextStyle';
 export interface TextTheme extends Readonly<{
@@ -29,7 +30,7 @@ export interface TextTheme extends Readonly<{
         }> | null | undefined;
     }): TextTheme;
 }
-export declare function TextTheme(options?: {
+declare function _TextThemeFactory(options?: {
     titleLarge?: Readonly<{
         "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
     }> | null | undefined;
@@ -46,3 +47,5 @@ export declare function TextTheme(options?: {
         "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
     }> | null | undefined;
 }): TextTheme;
+export declare const TextTheme: typeof _TextThemeFactory & _FlaxInstanceType<TextTheme>;
+export {};

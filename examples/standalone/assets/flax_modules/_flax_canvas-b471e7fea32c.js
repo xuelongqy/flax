@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/canvas","owner":"@flax/canvas-runtime:dist/index.js","version":"0.0.0","artifact":"fa8b7c70cd4a2b613e933219395cabf2cecb521b9b94d414b00ec44dffa2edce","asset":"assets/flax_modules/_flax_canvas-b471e7fea32c.js","package":"@flax/canvas-runtime","source":"dist/index.js","dependencies":{"@flax/core/bindings":"0.0.0","@flax/flutter/foundation":"0.0.0"},"bindings":[{"moduleId":"flax.canvas/canvas","uiProtocol":23,"types":["flax.canvas/canvas#type:FlaxCanvasSurface","flax.canvas/canvas#type:FlaxCanvasView"],"functions":[]}],"subpaths":[]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/canvas","owner":"@flax/canvas-runtime:dist/index.js","version":"0.0.0","artifact":"362890851ce66eaa97aba145e124ad5dadc52da8e5ac75a5140039885fb7d58d","asset":"assets/flax_modules/_flax_canvas-b471e7fea32c.js","package":"@flax/canvas-runtime","source":"dist/index.js","dependencies":{"@flax/core/bindings":"0.0.0","@flax/flutter/foundation":"0.0.0"},"bindings":[{"moduleId":"flax.canvas/canvas","uiProtocol":23,"types":["flax.canvas/canvas#type:FlaxCanvasSurface","flax.canvas/canvas#type:FlaxCanvasView"],"functions":[]}],"subpaths":[]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -45,7 +45,7 @@ function _flaxInstallBindingModule(moduleId, uiProtocol, requiredCapabilities) {
       throw new TypeError("requiredCapabilities must be sorted unique strings");
     }
     previous = capability;
-    if (capability !== "native-widget-proxies") {
+    if (capability !== "instance-checks" && capability !== "native-widget-proxies") {
       throw new TypeError(`Unsupported binding capability ${capability}`);
     }
   }
@@ -59,6 +59,7 @@ function _flaxInstallBindingModule(moduleId, uiProtocol, requiredCapabilities) {
     constructDeferredObject: import_bindings.constructDeferredObject,
     constructStream: import_bindings.constructStream,
     constructAsyncIterableStream: import_bindings.constructAsyncIterableStream,
+    bindInstanceType: import_bindings.bindInstanceType,
     defineObject: import_bindings.defineObject,
     defineStream: import_bindings.defineStream,
     invokeObject: import_bindings.invokeObject,
@@ -73,14 +74,19 @@ function _flaxInstallBindingModule(moduleId, uiProtocol, requiredCapabilities) {
     invokeTopLevel: import_bindings.invokeTopLevel
   });
 }
-var canvasBindingModule = _flaxInstallBindingModule("flax.canvas/canvas", 23, Object.freeze(["native-widget-proxies"]));
-var { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } = canvasBindingModule;
+var canvasBindingModule = _flaxInstallBindingModule("flax.canvas/canvas", 23, Object.freeze(["instance-checks", "native-widget-proxies"]));
+var { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, bindInstanceType: _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } = canvasBindingModule;
 defineObject("flax.canvas/canvas#type:FlaxCanvasSurface", ["width", "height"], ["width", "height"], (0, import_bindings.bindingMethods)("flax.canvas/canvas#type:FlaxCanvasSurface", "object", { "addListener": _flaxMemberParameters0, "removeListener": _flaxMemberParameters0 }), ["removeListener"]);
-function CanvasView(canvas, options = {}) {
+function _FlaxCanvasViewConstruct(canvas, options = {}) {
+  if (new.target)
+    throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
   if (arguments.length > 2)
     throw new TypeError("Too many constructor arguments");
   return construct("widget", "flax.canvas/canvas#type:FlaxCanvasView", "", [{ "name": "canvas", "required": true, "positional": true }, { "name": "key", "required": false, "positional": false }, { "name": "width", "required": false, "positional": false }, { "name": "height", "required": false, "positional": false }], [canvas], options);
 }
+var FlaxCanvasSurface = _flaxBindInstanceType({}, "flax.canvas/canvas#type:FlaxCanvasSurface", ["package:flutter/src/foundation/change_notifier.dart::ChangeNotifier", "dart:core::Object", "flax.core/flutter#type:Listenable"]);
+var FlaxCanvasView = _flaxBindInstanceType({}, "flax.canvas/canvas#type:FlaxCanvasView", ["package:flutter/src/widgets/framework.dart::LeafRenderObjectWidget", "package:flutter/src/widgets/framework.dart::RenderObjectWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
+var CanvasView = _flaxBindInstanceType(_FlaxCanvasViewConstruct, "flax.canvas/canvas#type:FlaxCanvasView", ["package:flutter/src/widgets/framework.dart::LeafRenderObjectWidget", "package:flutter/src/widgets/framework.dart::RenderObjectWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax_canvas/js/dist/commands.js
 var MAGIC = 826496579;

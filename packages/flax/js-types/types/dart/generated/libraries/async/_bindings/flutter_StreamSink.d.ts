@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/async/_bindings/flutter_EventSink';
 import '@flax/dart/async/_bindings/flutter_EventSink';
 import type * as upstream1 from '@flax/dart/core/_bindings/flutter_Sink';
@@ -18,3 +19,4 @@ export interface StreamSink<S extends unknown | null = unknown | null> extends u
     close(): Promise<unknown | null>;
     addStream(stream: upstream4.Stream<S>): Promise<unknown | null>;
 }
+export declare const StreamSink: object & _FlaxInstanceType<StreamSink<any>>;

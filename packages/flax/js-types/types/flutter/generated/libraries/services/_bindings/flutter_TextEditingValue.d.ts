@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/services/_bindings/flutter_TextSelection';
 import '@flax/flutter/services/_bindings/flutter_TextSelection';
 import type * as upstream1 from '@flax/flutter/services/_bindings/flutter_TextRange';
@@ -20,7 +21,7 @@ export interface TextEditingValue extends Readonly<{
         text?: string | null | undefined;
     }): TextEditingValue;
 }
-export declare function TextEditingValue(options?: {
+declare function _TextEditingValueFactory(options?: {
     text?: string | undefined;
     selection?: Readonly<{
         "__flaxBound:package:flutter/src/services/text_editing.dart::TextSelection": readonly [];
@@ -29,6 +30,8 @@ export declare function TextEditingValue(options?: {
         "__flaxBound:dart:ui::TextRange": readonly [];
     }> | undefined;
 }): TextEditingValue;
-export declare namespace TextEditingValue {
+declare namespace _TextEditingValueFactory {
     const empty: TextEditingValue;
 }
+export declare const TextEditingValue: typeof _TextEditingValueFactory & _FlaxInstanceType<TextEditingValue>;
+export {};

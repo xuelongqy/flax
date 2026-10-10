@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_TextStyle';
 import '@flax/flutter/widgets/_bindings/flutter_TextStyle';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_EdgeInsetsGeometry';
@@ -47,7 +48,7 @@ export interface InputDecoration extends Readonly<{
         labelText?: string | null | undefined;
     }): InputDecoration;
 }
-export declare function InputDecoration(options?: {
+declare function _InputDecorationFactory(options?: {
     labelText?: string | null | undefined;
     labelStyle?: Readonly<{
         "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
@@ -73,3 +74,5 @@ export declare function InputDecoration(options?: {
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null | undefined;
 }): InputDecoration;
+export declare const InputDecoration: typeof _InputDecorationFactory & _FlaxInstanceType<InputDecoration>;
+export {};

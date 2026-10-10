@@ -22,7 +22,7 @@ export type { Offset } from "@flax/flutter/gestures/_bindings/flutter_Offset";
 export type { PhysicalKeyboardKey } from "@flax/flutter/services/_bindings/flutter_PhysicalKeyboardKey";
 export type { PointerEvent } from "@flax/flutter/gestures/_bindings/flutter_PointerEvent";
 export { Size } from "@flax/flutter/services/_bindings/flutter_Size";
-export type { SystemMouseCursor } from "@flax/flutter/services/_bindings/flutter_SystemMouseCursor";
+export { SystemMouseCursor } from "@flax/flutter/services/_bindings/flutter_SystemMouseCursor";
 export { SystemMouseCursors } from "@flax/flutter/services/_bindings/flutter_SystemMouseCursors";
 export { TargetPlatform } from "@flax/flutter/foundation/_bindings/flutter_TargetPlatform";
 export { TextAffinity } from "@flax/flutter/services/_bindings/flutter_TextAffinity";

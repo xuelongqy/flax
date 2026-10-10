@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_BoxBorder';
 import '@flax/flutter/widgets/_bindings/flutter_BoxBorder';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_ShapeBorder';
@@ -16,7 +17,7 @@ export interface Border extends upstream0.BoxBorder, upstream1.ShapeBorder, Read
     readonly left: upstream2.BorderSide;
     readonly isUniform: boolean;
 }
-export declare function Border(options?: {
+declare function _BorderFactory(options?: {
     top?: Readonly<{
         "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [];
     }> | undefined;
@@ -30,7 +31,7 @@ export declare function Border(options?: {
         "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [];
     }> | undefined;
 }): Border;
-export declare namespace Border {
+declare namespace _BorderFactory {
     function all(options?: {
         color?: Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];
@@ -40,3 +41,5 @@ export declare namespace Border {
         strokeAlign?: number | undefined;
     }): Border;
 }
+export declare const Border: typeof _BorderFactory & _FlaxInstanceType<Border>;
+export {};

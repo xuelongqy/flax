@@ -1,4 +1,4 @@
-import { type DartValue, type Widget } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartValue, type Widget } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_Route';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
@@ -25,7 +25,7 @@ export interface MaterialPageRoute<T extends unknown | null = unknown | null> ex
     readonly type: "flax.material/material#type:MaterialPageRoute";
     readonly __MaterialPageRoute: unique symbol;
 }
-export declare function MaterialPageRoute<T extends unknown | null = unknown | null>(options: {
+declare function _MaterialPageRouteFactory<T extends unknown | null = unknown | null>(options: {
     builder: ((context: upstream1.BuildContext) => Widget);
     settings?: Readonly<{
         "__flaxBound:package:flutter/src/widgets/navigator.dart::RouteSettings": readonly [];
@@ -33,3 +33,5 @@ export declare function MaterialPageRoute<T extends unknown | null = unknown | n
     maintainState?: boolean | undefined;
     fullscreenDialog?: boolean | undefined;
 }): MaterialPageRoute<T>;
+export declare const MaterialPageRoute: typeof _MaterialPageRouteFactory & _FlaxInstanceType<MaterialPageRoute<any>>;
+export {};

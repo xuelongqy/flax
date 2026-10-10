@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 export interface TextRange extends Readonly<{
     "__flaxBound:dart:ui::TextRange": readonly [];
 }> {
@@ -8,13 +9,15 @@ export interface TextRange extends Readonly<{
     readonly isCollapsed: boolean;
     readonly isNormalized: boolean;
 }
-export declare function TextRange(options: {
+declare function _TextRangeFactory(options: {
     start: number;
     end: number;
 }): TextRange;
-export declare namespace TextRange {
+declare namespace _TextRangeFactory {
     function collapsed(offset: number): TextRange;
 }
-export declare namespace TextRange {
+declare namespace _TextRangeFactory {
     const empty: TextRange;
 }
+export declare const TextRange: typeof _TextRangeFactory & _FlaxInstanceType<TextRange>;
+export {};

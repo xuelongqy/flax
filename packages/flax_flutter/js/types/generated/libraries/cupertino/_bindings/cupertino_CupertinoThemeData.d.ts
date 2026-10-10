@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/services/_bindings/flutter_Color';
 import '@flax/flutter/services/_bindings/flutter_Color';
 export interface CupertinoThemeData extends Readonly<{
@@ -11,7 +12,7 @@ export interface CupertinoThemeData extends Readonly<{
     readonly primaryColor: upstream0.Color;
     readonly scaffoldBackgroundColor: upstream0.Color;
 }
-export declare function CupertinoThemeData(options?: {
+declare function _CupertinoThemeDataFactory(options?: {
     primaryColor?: Readonly<{
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null | undefined;
@@ -19,3 +20,5 @@ export declare function CupertinoThemeData(options?: {
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null | undefined;
 }): CupertinoThemeData;
+export declare const CupertinoThemeData: typeof _CupertinoThemeDataFactory & _FlaxInstanceType<CupertinoThemeData>;
+export {};

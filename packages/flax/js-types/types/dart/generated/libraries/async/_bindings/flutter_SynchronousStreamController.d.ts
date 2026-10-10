@@ -1,3 +1,4 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/async/_bindings/flutter_StreamController';
 import '@flax/dart/async/_bindings/flutter_StreamController';
 import type * as upstream1 from '@flax/dart/async/_bindings/flutter_StreamSink';
@@ -37,3 +38,4 @@ export interface SynchronousStreamController<T extends unknown | null = unknown 
     set onResume(value: (() => void) | null);
     set onCancel(value: (() => void | Promise<void>) | null);
 }
+export declare const SynchronousStreamController: object & _FlaxInstanceType<SynchronousStreamController<any>>;
