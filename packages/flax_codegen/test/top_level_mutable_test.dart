@@ -288,7 +288,7 @@ void main() {
   );
 
   test(
-    'callback Context arguments and results borrow Elements in both directions',
+    'top-level Context values and callbacks borrow Elements in both directions',
     () {
       const context = FlaxCodegenTypeRef(
         'context',
@@ -310,12 +310,26 @@ void main() {
       );
       for (final type in [
         context,
+        const FlaxCodegenTypeRef(
+          'context',
+          id: 'package:flutter/src/widgets/framework.dart::BuildContext',
+          name: 'BuildContext',
+          nullable: true,
+        ),
         const FlaxCodegenTypeRef('list', item: context),
         const FlaxCodegenTypeRef('future', item: context),
+        const FlaxCodegenTypeRef('stream', item: context),
       ]) {
         final model = FlaxCodegenTopLevelModel(
           '',
-          [],
+          [
+            FlaxCodegenTopLevelGetterModel(
+              '$uri::value',
+              'value',
+              type,
+              FlaxCodegenReadonlyKind.mutableValue,
+            ),
+          ],
           setters: [
             FlaxCodegenTopLevelSetterModel('$uri::value=', 'value', type),
           ],

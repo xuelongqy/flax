@@ -131,7 +131,12 @@ void main() {
     expect(config.topLevel!.setters, contains('autoSelectedContext'));
     expect(
       config.topLevel!.getters,
-      containsAll(['autoSelectedState', 'autoSelectedWidget']),
+      containsAll([
+        'autoSelectedContext',
+        'autoCurrentContext',
+        'autoSelectedState',
+        'autoSelectedWidget',
+      ]),
     );
     expect(
       config.topLevel!.setters,
@@ -302,8 +307,20 @@ void main() {
     expect(module.typedefs.single.name, 'LabelBuilder');
     expect(
       module.topLevel!.getters.map((getter) => getter.name),
-      containsAll(['autoLimit', 'autoMutable']),
+      containsAll([
+        'autoLimit',
+        'autoMutable',
+        'autoSelectedContext',
+        'autoCurrentContext',
+      ]),
     );
+    for (final name in ['autoSelectedContext', 'autoCurrentContext']) {
+      final getter = module.topLevel!.getters.singleWhere(
+        (getter) => getter.name == name,
+      );
+      expect(getter.type.kind, 'context');
+      expect(getter.type.nullable, isTrue);
+    }
     final autoList = module.classes.singleWhere(
       (type) => type.name == 'AutoList',
     );

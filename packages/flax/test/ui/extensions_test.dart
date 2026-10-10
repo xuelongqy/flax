@@ -680,13 +680,16 @@ void main() {
   testWidgets(
     'Dart globals share references without rolling back at session close',
     (tester) async {
-      final first = harness();
-      final second = harness();
       final previousState = fixture.globalState;
       final previousWidget = fixture.globalWidget;
+      final previousContext = fixture.globalContext;
+      final contextReads = fixture.globalContextReads;
+      final first = harness();
+      final second = harness();
       late State nativeState;
       const widget = Text('Shared Dart Widget');
       try {
+        fixture.globalContext = null;
         await tester.pumpWidget(
           fixture.ExtensionAnchor(
             onState: (state) => nativeState = state,
@@ -698,8 +701,21 @@ void main() {
             ),
           ),
         );
+        expect(fixture.globalContextReads, contextReads);
+        for (final h in [first, second]) {
+          expect(
+            h.boolean('''
+              extensions.ReferenceValues.globalContext === null &&
+              extensions.ReferenceValues.currentContext === null
+            '''),
+            isTrue,
+          );
+        }
+        expect(fixture.globalContextReads, contextReads + 2);
         fixture.globalState = nativeState;
         fixture.globalWidget = widget;
+        final nativeContext = nativeState.context;
+        fixture.globalContext = nativeContext;
         for (final h in [first, second]) {
           expect(
             h.boolean(
@@ -708,16 +724,41 @@ void main() {
             isTrue,
           );
           h.execute(
-            'extensionHooks.result = extensions.ReferenceValues.globalWidget;',
+            'extensionHooks.result = extensions.ReferenceValues.globalWidget;'
+            'var borrowedGlobalContext = extensions.ReferenceValues.globalContext;',
+          );
+          expect(
+            h.boolean('''
+              borrowedGlobalContext === extensions.ReferenceValues.currentContext &&
+              extensions.ContextX(borrowedGlobalContext).isMounted &&
+              extensions.ContextX(borrowedGlobalContext).same === borrowedGlobalContext
+            '''),
+            isTrue,
           );
         }
+        expect(fixture.globalContextReads, contextReads + 4);
         await second.finish(tester);
         expect(fixture.globalState, same(nativeState));
         expect(fixture.globalWidget, same(widget));
+        expect(fixture.globalContext, same(nativeContext));
         expect(nativeState.mounted, isFalse);
+        expect(nativeContext.mounted, isFalse);
+        expect(first.boolean('borrowedGlobalContext.mounted'), isFalse);
         expect(
           () => first.execute('extensions.ReferenceValues.globalState'),
           throwsA(isA<FlaxJsException>()),
+        );
+        for (final name in ['globalContext', 'currentContext']) {
+          expect(
+            () => first.execute('extensions.ReferenceValues.$name'),
+            throwsA(isA<FlaxJsException>()),
+            reason: name,
+          );
+        }
+        fixture.globalContext = null;
+        expect(
+          first.boolean('extensions.ReferenceValues.currentContext === null'),
+          isTrue,
         );
         await tester.pumpWidget(first.app('extension-result'));
         expect(find.byWidget(widget), findsOneWidget);
@@ -726,6 +767,8 @@ void main() {
       } finally {
         fixture.globalState = previousState;
         fixture.globalWidget = previousWidget;
+        fixture.globalContext = previousContext;
+        fixture.globalContextReads = contextReads;
         await first.finish(tester);
         await second.finish(tester);
       }
@@ -737,6 +780,7 @@ void main() {
   ) async {
     final first = harness();
     final second = harness();
+    final previousContext = fixture.globalContext;
     try {
       await tester.pumpWidget(
         Column(
@@ -747,14 +791,26 @@ void main() {
         ),
       );
       expect([...first.errors, ...second.errors], isEmpty);
-      final context =
-          first.runtime.evaluate('extensionHooks.context') as FlaxJsObject;
+      first.execute(
+        'extensions.ReferenceValues.setGlobalContext(extensionHooks.context)',
+      );
+      final context = first.runtime.evaluate(
+        'extensions.ReferenceValues.globalContext',
+      ) as FlaxJsObject;
       final read = second.runtime.evaluate(
         '(value) => extensions.ContextX(value).isMounted',
       ) as FlaxJsFunction;
+      final writeContext = second.runtime.evaluate(
+        'extensions.ReferenceValues.setGlobalContext',
+      ) as FlaxJsFunction;
       try {
         expect(() => read.call([context]), throwsA(isA<ArgumentError>()));
+        expect(
+          () => writeContext.call([context]),
+          throwsA(isA<ArgumentError>()),
+        );
       } finally {
+        writeContext.release();
         read.release();
         context.release();
       }
@@ -793,6 +849,7 @@ void main() {
         widget.release();
       }
     } finally {
+      fixture.globalContext = previousContext;
       await first.finish(tester);
       await second.finish(tester);
     }

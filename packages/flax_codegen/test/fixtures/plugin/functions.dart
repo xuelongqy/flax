@@ -62,6 +62,7 @@ class ContextTile extends StatelessWidget {
 }
 
 BuildContext? _selectedContext;
+BuildContext? get selectedContext => _selectedContext;
 set selectedContext(BuildContext? value) => _selectedContext = value;
 bool get selectedContextMounted => _selectedContext?.mounted ?? false;
 

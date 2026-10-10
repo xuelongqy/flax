@@ -236,7 +236,8 @@ class AutoContextBox {
   static set selected(BuildContext? value) {}
 }
 
-set autoSelectedContext(BuildContext? value) {}
+BuildContext? autoSelectedContext;
+BuildContext? get autoCurrentContext => autoSelectedContext;
 State? autoSelectedState;
 Widget? autoSelectedWidget;
 set autoContextListener(void Function(BuildContext) value) {}

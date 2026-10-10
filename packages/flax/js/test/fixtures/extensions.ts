@@ -65,6 +65,12 @@ registerPage('state-inputs', () => new InputComponent());
 function typeContract(context: BuildContext) {
   const result: string = extensions.ListX([1]).mapFirst((value) => value.toFixed());
   const same: BuildContext = extensions.ContextX(context).same;
+  extensions.ReferenceValues.setGlobalContext(context);
+  const current: BuildContext | null = extensions.ReferenceValues.currentContext;
+  extensions.ReferenceValues.setGlobalContext(current);
+  extensions.ReferenceValues.setGlobalContext(null);
+  // @ts-expect-error undefined is not a Context setter value
+  extensions.ReferenceValues.setGlobalContext(undefined);
   const state = extensionHooks.values.state();
   extensionHooks.values.nativeState = state;
   const savedState: State | null = extensionHooks.values.nativeState;
@@ -116,6 +122,6 @@ function typeContract(context: BuildContext) {
   extensions.StringX(' ').isBlank = false;
   // @ts-expect-error views do not construct Dart extension instances
   new extensions.StringX('a');
-  return { result, same, mounted };
+  return { result, same, current, mounted };
 }
 void typeContract;

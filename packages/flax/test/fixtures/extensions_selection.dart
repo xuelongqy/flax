@@ -38,8 +38,8 @@ Map<String, FlaxCodegenClassSelection> extensionClasses(String library) => {
 
 const extensionTopLevel = FlaxCodegenTopLevelSelection(
   'ReferenceValues',
-  ['globalState', 'globalWidget'],
-  setters: ['globalState', 'globalWidget'],
+  ['globalState', 'globalWidget', 'globalContext', 'currentContext'],
+  setters: ['globalState', 'globalWidget', 'globalContext'],
 );
 
 const extensionFunctions = {

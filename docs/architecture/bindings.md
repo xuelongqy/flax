@@ -268,15 +268,18 @@ scope, alongside classes, functions and typedefs.
 
 Read access does not freeze the returned value. Existing object/collection identity,
 mutation, callbacks, generic typedefs, Futures and supported Stream conversion remain
-unchanged. State and Widget variables reuse ordinary typed conversion, including
-nullable values and supported collections. State reads still require a mounted State;
-storing a State does not keep it mounted. Dart-retained Widgets keep their existing
-configurations and JS overrides until ordinary references become unreachable.
-Unsupported conversions, direct Context results and Route/Page ownership, including
-nested declarations and type arguments, fail generation. Reads create no implicit
-reactive subscriptions or cross-session reference cache. Closing uses existing call,
-reference and pending-delivery cleanup; it does not dispose application-owned values or
-make a JS-backed Widget usable after its owning session has closed.
+unchanged. Context, State and Widget variables reuse ordinary typed conversion,
+including nullable values and supported collections and async values. Context reads
+borrow a weak session-local reference to the current native Element. Context and State
+reads still require a mounted value when non-null; storing one does not keep it mounted.
+Each session creates its own Context wrapper for the same Dart value; JS references
+remain session-local. Dart-retained Widgets keep their existing configurations and JS
+overrides until ordinary references become unreachable. Unsupported conversions and
+Route/Page ownership, including nested declarations and type arguments, fail generation.
+Reads create no implicit reactive subscriptions or cross-session reference cache.
+Closing uses existing call, reference and pending-delivery cleanup; it does not dispose
+application-owned values or make a JS-backed Widget usable after its owning session has
+closed.
 
 Manifest 17 stores public-library routing plus each readonly declaration's source,
 public export, return type, declaration kind, optional literal and ownership/reference
@@ -448,14 +451,14 @@ trailing omission; provided arguments after a hole are rejected.
 
 Direct Context inputs are supported by automatic and explicit selection in functions,
 constructors, methods, setters, returned Dart functions and supported collections. They
-borrow an existing Context from the same active session. Direct results and callback
-results reuse this identity, including nullable results, typed finite aggregates and
-Future/FutureOr completion. The JS wrapper is weak; ordinary Dart references retain
-their own values. Each conversion rejects inactive or unmounted references, including
-async completion after unmount. JS cannot forge or construct a Context, and no Flax
-mount owner is required. Context-containing Stream callbacks, supported Future/Stream
-combinations and derived collection reads reuse the same conversion; see
-[Context results](interop.md#context-results).
+borrow an existing Context from the same active session. Top-level variable/getter,
+direct function and callback results reuse this identity, including nullable results,
+typed finite aggregates and Future/FutureOr completion. The JS wrapper is weak; ordinary
+Dart references retain their own values. Each conversion rejects inactive or unmounted
+references, including async completion after unmount. JS cannot forge or construct a
+Context, and no Flax mount owner is required. Context-containing Stream callbacks,
+supported Future/Stream combinations and derived collection reads reuse the same
+conversion; see [Context results](interop.md#context-results).
 
 Widget parameters except key may bind. Ordinary object construction and writes do not
 bind. Callbacks support required/optional positional parameters, required/optional named

@@ -48,6 +48,7 @@ void main() {
         topLevel: const FlaxCodegenTopLevelSelection(
           'ContextValues',
           [
+            'selectedContext',
             'selectedContextMounted',
             'selectedStateValue',
             'selectedWidgetValue',
@@ -127,6 +128,8 @@ wrapBuilder(context => {
   ContextBox.isMounted(context);
   ContextBox.setSelected(context);
   ContextValues.setSelectedContext(context);
+  const current: typeof context | null = ContextValues.selectedContext;
+  ContextValues.setSelectedContext(current);
   optionalContext({context: null});
   optionalContext({context: undefined});
   const count: number = mountedContexts([context]);

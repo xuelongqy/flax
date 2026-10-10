@@ -360,13 +360,15 @@ their existing Dart and session behavior. Writes emit synchronous `setX(value): 
 functions; getter and setter types follow their separate Dart signatures.
 Const/final/late-final writes and inputs requiring unsupported Route/Page ownership are
 rejected; existing mounted Context and State references and compatible Widgets are
-accepted. State/Widget results use ordinary conversion; direct top-level Context results
-remain unsupported. Reads are lazy, invalid writes fail before invoking Dart, and
-nullable setters accept `null` but reject `undefined`. Static/global values belong to
-the Dart application; closing a session does not reset them or keep a stored State
-mounted. Provider-owned declarations reuse the provider's public module without
-registering twice. Manifest 17 records source identity, read/write operations and
-public-library routing. See
+accepted. Context/State/Widget results use ordinary conversion, including nullable
+values and supported aggregates and async values. Context reads borrow the current
+native Element through a weak session-local reference; they do not keep it mounted.
+Reads are lazy, invalid writes fail before invoking Dart, and nullable setters accept
+`null` but reject `undefined`. Static/global values belong to the Dart application;
+closing a session does not reset them or keep a stored Context/State mounted.
+Provider-owned declarations reuse the provider's public module without registering
+twice. Manifest 17 records source identity, read/write operations and public-library
+routing. See
 [readonly generation](../../docs/architecture/bindings.md#public-libraries-and-top-level-readonly-declarations)
 and [ADR 0027](../../docs/decisions/0027-public-library-module-delivery.md).
 

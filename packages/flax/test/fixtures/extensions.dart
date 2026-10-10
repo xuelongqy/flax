@@ -94,6 +94,12 @@ Future<Widget> futureColumnWidgets(Future<List<Widget>> children) async =>
 
 State? globalState;
 Widget? globalWidget;
+BuildContext? globalContext;
+int globalContextReads = 0;
+BuildContext? get currentContext {
+  globalContextReads++;
+  return globalContext;
+}
 
 class ExtensionValues {
   ExtensionValues();

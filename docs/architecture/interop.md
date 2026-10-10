@@ -121,11 +121,13 @@ entirely of native Widgets.
 
 ### Context results
 
-Direct `BuildContext` and `BuildContext?` function, method, getter and callback results
-reuse the same session-local borrowed reference as callback arguments. This applies to
-incoming JS callbacks and returned Dart functions, including typed finite
-List/Set/Map/Record values and Future/FutureOr/Stream results. For example, these
-selected Dart signatures use an existing Context supplied by Flutter:
+Direct `BuildContext` and `BuildContext?` function, method, property, top-level
+variable/getter and callback results reuse the same session-local borrowed reference as
+callback arguments. Top-level reads return the current Dart value without caching or
+owning its Flutter lifecycle. This applies to incoming JS callbacks and returned Dart
+functions, including typed finite List/Set/Map/Record values and Future/FutureOr/Stream
+results. For example, these selected Dart signatures use an existing Context supplied by
+Flutter:
 
 ```dart
 BuildContext readContext(BuildContext Function() read) => read();

@@ -1686,7 +1686,7 @@ class FlaxCodegenTopLevelModel {
           throw StateError('Invalid constant literal type: $location');
         }
       }
-      _validateTopLevelOwnership(getter.type, location, input: false);
+      _validateTopLevelOwnership(getter.type, location);
     }
     final setterNames = <String>{};
     final exportedNames = <String>{
@@ -1704,56 +1704,42 @@ class FlaxCodegenTopLevelModel {
       }
       setter.type.validate(location);
       setter.type.validateCallbacks(location, input: true);
-      _validateTopLevelOwnership(setter.type, location, input: true);
+      _validateTopLevelOwnership(setter.type, location);
     }
   }
 }
 
-void _validateTopLevelOwnership(
-  FlaxCodegenTypeRef type,
-  String location, {
-  required bool input,
-}) {
-  if ({'route', 'page'}.contains(type.kind) ||
-      (type.kind == 'context' && !input)) {
+void _validateTopLevelOwnership(FlaxCodegenTypeRef type, String location) {
+  if ({'route', 'page'}.contains(type.kind)) {
     throw StateError(
       'Unsupported top-level ownership at $location: ${type.kind}',
     );
   }
   if (type.item case final item?) {
-    _validateTopLevelOwnership(item, location, input: input);
+    _validateTopLevelOwnership(item, location);
   }
   if (type.key case final key?) {
-    _validateTopLevelOwnership(key, location, input: input);
+    _validateTopLevelOwnership(key, location);
   }
   if (type.result case final result?) {
-    // Callbacks borrow Contexts in either direction, including nested results.
-    _validateTopLevelOwnership(
-      result,
-      location,
-      input: type.kind == 'callback' || input,
-    );
+    _validateTopLevelOwnership(result, location);
   }
   for (final parameter in type.parameters) {
-    _validateTopLevelOwnership(
-      parameter.type,
-      location,
-      input: type.kind == 'callback' || input,
-    );
+    _validateTopLevelOwnership(parameter.type, location);
   }
   for (final field in type.recordFields) {
-    _validateTopLevelOwnership(field.type, location, input: input);
+    _validateTopLevelOwnership(field.type, location);
   }
   if (type.declaration case final declaration?) {
-    _validateTopLevelOwnership(declaration, location, input: input);
+    _validateTopLevelOwnership(declaration, location);
   }
   for (final argument in [...type.dartArguments, ...type.tsArguments]) {
-    _validateTopLevelOwnership(argument, location, input: input);
+    _validateTopLevelOwnership(argument, location);
   }
   for (final parameter in type.typeParameters) {
-    _validateTopLevelOwnership(parameter.bound, location, input: input);
+    _validateTopLevelOwnership(parameter.bound, location);
     if (parameter.defaultType case final defaultType?) {
-      _validateTopLevelOwnership(defaultType, location, input: input);
+      _validateTopLevelOwnership(defaultType, location);
     }
   }
 }
