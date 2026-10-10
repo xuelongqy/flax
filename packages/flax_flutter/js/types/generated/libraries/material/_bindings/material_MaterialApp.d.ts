@@ -4,6 +4,7 @@ import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_Navigat
 import '@flax/flutter/widgets/_bindings/flutter_NavigatorObserver';
 import '@flax/flutter/material/_bindings/material_ThemeData';
 import type * as upstream3 from '@flax/flutter/material/_bindings/material_ThemeMode';
+import '@flax/flutter/material/_bindings/material_ThemeMode';
 export interface MaterialApp extends WidgetDescription {
     readonly type: "flax.material/material#type:MaterialApp";
 }

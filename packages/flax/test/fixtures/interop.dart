@@ -2,6 +2,7 @@ import 'dart:async';
 
 export 'async_stream_callbacks.dart';
 export 'instance_types.dart';
+export 'enums.dart';
 
 import 'package:flutter/foundation.dart'
     show ValueChanged, ValueGetter, mustCallSuper;

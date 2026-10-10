@@ -7,7 +7,7 @@
       "bindings": [
         {
           "moduleId": "flax.canvas/canvas",
-          "uiProtocol": 23,
+          "uiProtocol": 24,
           "types": [
             "flax.canvas/canvas#type:FlaxCanvasSurface",
             "flax.canvas/canvas#type:FlaxCanvasView"

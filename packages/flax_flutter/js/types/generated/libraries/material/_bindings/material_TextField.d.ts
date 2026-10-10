@@ -4,6 +4,7 @@ import '@flax/flutter/widgets/_bindings/flutter_TextEditingController';
 import '@flax/flutter/widgets/_bindings/flutter_FocusNode';
 import '@flax/flutter/material/_bindings/material_InputDecoration';
 import type * as upstream4 from '@flax/flutter/material/_bindings/material_TextInputAction';
+import '@flax/flutter/material/_bindings/material_TextInputAction';
 import '@flax/flutter/widgets/_bindings/flutter_TextStyle';
 import type * as upstream6 from '@flax/flutter/services/_bindings/flutter_TextInputFormatter';
 import '@flax/flutter/services/_bindings/flutter_TextInputFormatter';

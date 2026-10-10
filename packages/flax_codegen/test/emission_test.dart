@@ -20,7 +20,7 @@ void main() {
         );
         final dart = FlaxCodegenBindingEmitter([module]).dart(module);
         expect(dart, contains('moduleId: "com.acme.widgets/widgets"'));
-        expect(dart, contains('uiProtocol: 23'));
+        expect(dart, contains('uiProtocol: 24'));
         expect(
           dart,
           contains(
@@ -53,7 +53,7 @@ void main() {
         expect(
           typescript,
           contains(
-            '_flaxInstallBindingModule("com.acme.widgets/widgets", 23, Object.freeze(["instance-checks","native-widget-proxies"]) as readonly string[])',
+            '_flaxInstallBindingModule("com.acme.widgets/widgets", 24, Object.freeze(["instance-checks","native-widget-proxies"]) as readonly string[])',
           ),
         );
         expect(typescript, contains('export const widgetsBindingModule'));
@@ -75,7 +75,7 @@ void main() {
       final emitter = FlaxCodegenBindingEmitter([module]);
       final dart = emitter.dart(module);
       expect(dart, contains('moduleId: "example.host/host"'));
-      expect(dart, contains('uiProtocol: 23'));
+      expect(dart, contains('uiProtocol: 24'));
       expect(
         dart,
         contains(
@@ -87,7 +87,7 @@ void main() {
       expect(
         typescript,
         contains(
-          '_flaxInstallBindingModule("example.host/host", 23, Object.freeze(["instance-checks","native-widget-proxies"]) as readonly string[])',
+          '_flaxInstallBindingModule("example.host/host", 24, Object.freeze(["instance-checks","native-widget-proxies"]) as readonly string[])',
         ),
       );
       expect(typescript, contains('export const hostBindingModule'));
@@ -115,7 +115,7 @@ void main() {
       expect(
         typescript,
         contains(
-          '_flaxInstallBindingModule("example.host/host", 23, Object.freeze(["alpha","zeta"]) as readonly string[])',
+          '_flaxInstallBindingModule("example.host/host", 24, Object.freeze(["alpha","zeta"]) as readonly string[])',
         ),
       );
     });
@@ -1008,6 +1008,10 @@ void main(List<String> args) {
         name: 'Axis',
         id: 'com.acme.widgets/widgets#type:Axis',
         enumNames: ['horizontal', 'vertical'],
+      enumValueTypes: {
+        'horizontal': FlaxCodegenTypeRef('enum', id: 'com.acme.widgets/widgets#type:Axis', name: 'Axis'),
+        'vertical': FlaxCodegenTypeRef('enum', id: 'com.acme.widgets/widgets#type:Axis', name: 'Axis'),
+      },
       ),
     ],
     typeLibraries: {
@@ -1132,6 +1136,18 @@ FlaxCodegenModuleModel _richModule({
         name: 'Axis',
         id: 'com.acme.widgets/widgets#type:Axis',
         enumNames: ['horizontal', 'vertical'],
+        enumValueTypes: {
+          'horizontal': FlaxCodegenTypeRef(
+            'enum',
+            id: 'com.acme.widgets/widgets#type:Axis',
+            name: 'Axis',
+          ),
+          'vertical': FlaxCodegenTypeRef(
+            'enum',
+            id: 'com.acme.widgets/widgets#type:Axis',
+            name: 'Axis',
+          ),
+        },
       ),
     ],
     typeLibraries: typeLibraries,

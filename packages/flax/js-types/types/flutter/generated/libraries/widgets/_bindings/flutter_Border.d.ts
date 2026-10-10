@@ -7,6 +7,7 @@ import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_BorderS
 import '@flax/flutter/widgets/_bindings/flutter_BorderSide';
 import '@flax/flutter/services/_bindings/flutter_Color';
 import type * as upstream4 from '@flax/flutter/widgets/_bindings/flutter_BorderStyle';
+import '@flax/flutter/widgets/_bindings/flutter_BorderStyle';
 export interface Border extends upstream0.BoxBorder, upstream1.ShapeBorder, Readonly<{
     "__flaxBound:package:flutter/src/painting/box_border.dart::Border": readonly [];
 }> {

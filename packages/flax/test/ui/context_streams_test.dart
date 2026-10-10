@@ -106,7 +106,7 @@ void main() {
       ]) {
         expect(
           () => h.execute(
-            '__flaxInvokeOperation(__flaxResolveOperation(23, "test/record-validation#function:$name", "top", "call", ""), 0)',
+            '__flaxInvokeOperation(__flaxResolveOperation(24, "test/record-validation#function:$name", "top", "call", ""), 0)',
           ),
           throwsA(
             isA<FlaxJsException>().having(

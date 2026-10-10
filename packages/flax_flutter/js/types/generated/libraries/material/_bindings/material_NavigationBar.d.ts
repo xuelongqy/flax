@@ -2,6 +2,7 @@ import { type FlaxInstanceType as _FlaxInstanceType, type DartListInput, type Bi
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/services/_bindings/flutter_Color';
 import type * as upstream2 from '@flax/flutter/material/_bindings/material_NavigationDestinationLabelBehavior';
+import '@flax/flutter/material/_bindings/material_NavigationDestinationLabelBehavior';
 export interface NavigationBar extends WidgetDescription {
     readonly type: "flax.material/material#type:NavigationBar";
 }

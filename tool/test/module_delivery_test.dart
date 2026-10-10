@@ -48,7 +48,7 @@ void main() {
     }
     _writeJson(
       p.join(temporary.path, 'packages/flax_canvas/bindings/manifest.json'),
-      {'formatVersion': 16, 'modules': <Map<String, Object?>>[]},
+      {'formatVersion': 17, 'modules': <Map<String, Object?>>[]},
     );
     for (final target in _targets) {
       final directory = p.join(temporary.path, 'packages', target.directory);
@@ -58,12 +58,12 @@ void main() {
         'version': '0.0.0',
       });
       _writeJson(p.join(directory, 'bindings/manifest.json'), {
-        'formatVersion': 16,
+        'formatVersion': 17,
         'modules': [
           {
             'name': target.directory,
             'moduleId': moduleId,
-            'uiProtocol': 23,
+            'uiProtocol': 24,
             'model': {
               'publicLibraries': [
                 {'jsPackage': target.specifier},
@@ -90,7 +90,7 @@ void main() {
   ], workingDirectory: temporary.path);
 
   test(
-    'Manifest 16 delivery includes owned setters and excludes references',
+    'Manifest 17 delivery includes owned setters and excludes references',
     () async {
       final result = await run();
       expect(result.exitCode, 0, reason: '${result.stdout}\n${result.stderr}');
@@ -113,7 +113,7 @@ void main() {
         expect(module['bindings'], [
           {
             'moduleId': moduleId,
-            'uiProtocol': 23,
+            'uiProtocol': 24,
             'types': <String>[],
             'functions': ['$moduleId#function:a%3D', '$moduleId#function:z%3D'],
           },
@@ -121,6 +121,83 @@ void main() {
       }
     },
   );
+
+  test('delivery includes enum operations and static accessors', () async {
+    final path = p.join(temporary.path, 'packages/flax/bindings/manifest.json');
+    final manifest = jsonDecode(File(path).readAsStringSync()) as Map;
+    final model = manifest['modules'][0]['model'] as Map;
+    const owner = 'flax.test/flax';
+    model['classes'] = [
+      {
+        'id': '$owner#type:Status',
+        'kind': 'enum',
+        'getters': [
+          {'name': 'label'},
+        ],
+        'setters': [
+          {'name': 'history'},
+        ],
+        'methods': [
+          {'name': 'format'},
+        ],
+        'constructors': [
+          {'name': 'fromCode'},
+        ],
+        'staticGetters': [
+          {'id': '$owner#read:Status.count'},
+        ],
+        'staticSetters': [
+          {'id': '$owner#function:Status.count%3D'},
+        ],
+      },
+    ];
+    (model['classes'] as List).add({
+      'id': '$owner#type:Kind',
+      'kind': 'enum',
+      'typeParameters': [
+        {'name': 'T'},
+      ],
+      'getters': [
+        {'name': 'value'},
+      ],
+      'methods': [
+        {'name': 'echo', 'instance': true},
+      ],
+    });
+    model['types'] = [
+      {
+        'id': '$owner#type:Kind',
+        'enumNames': ['number', 'text'],
+      },
+    ];
+    _writeJson(path, manifest);
+    final result = await run();
+    expect(result.exitCode, 0, reason: '${result.stdout}\n${result.stderr}');
+    final output = jsonDecode(
+      File(p.join(temporary.path, 'packages/flax/js/flax_modules.json'))
+          .readAsStringSync(),
+    ) as Map;
+    final module = (output['modules'] as List)
+        .cast<Map<String, dynamic>>()
+        .singleWhere(
+          (module) => module['specifier'] == '@flax/flutter/widgets',
+        );
+    expect(
+      module['bindings'][0]['functions'],
+      containsAll([
+        '$owner#function:Kind.value%3Aget%3Anumber',
+        '$owner#function:Kind.value%3Aget%3Atext',
+        '$owner#function:Kind.echo%3Acall%3Anumber',
+        '$owner#function:Kind.echo%3Acall%3Atext',
+        '$owner#function:Status.label%3Aget',
+        '$owner#function:Status.history%3Aset',
+        '$owner#function:Status.format%3Acall',
+        '$owner#function:Status.fromCode%3Afactory',
+        '$owner#read:Status.count',
+        '$owner#function:Status.count%3D',
+      ]),
+    );
+  });
 
   test('delivery rejects an unknown manifest version', () async {
     _writeJson(p.join(temporary.path, 'packages/flax/bindings/manifest.json'), {

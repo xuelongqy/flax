@@ -91,7 +91,7 @@ void main() {
       config.classes['AutoVisible']!.instanceMethods,
       isNot(contains('protectedAction')),
     );
-    expect(config.types, contains('AutoMode'));
+    expect(config.classes['AutoMode']?.kind, 'enum');
     expect(config.typedefs, contains('LabelBuilder'));
     expect(config.functions.keys, contains('autoGreeting'));
     expect(config.functions['autoContextMounted']?.parameters, ['context']);

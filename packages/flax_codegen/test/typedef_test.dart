@@ -540,7 +540,7 @@ FlaxCodegenManifest _manifest(List<FlaxCodegenTypeAliasModel> aliases) =>
         FlaxCodegenManifestModule(
           name: 'aliases',
           moduleId: FlaxCodegenModuleId.parse('example.alias/aliases'),
-          uiProtocol: 23,
+          uiProtocol: 24,
           requiredCapabilities: const [],
           model: FlaxCodegenManifestModel(
             identities: const [],

@@ -19,6 +19,31 @@ function uniqueSorted(values) {
   return [...new Set(values)].sort();
 }
 
+function enumOperations(type, constants) {
+  if (type.kind !== 'enum') return [];
+  const split = type.id.indexOf('#type:');
+  const moduleId = type.id.slice(0, split);
+  const name = decodeURIComponent(type.id.slice(split + '#type:'.length));
+  const id = (member, operation, constant) =>
+    `${moduleId}#function:${encodeURIComponent(`${name}.${member}:${operation}${constant === null ? '' : `:${constant}`}`)}`;
+  const variants =
+    (type.typeParameters?.length ?? 0) > 0 ? constants.enumNames : [null];
+  return [
+    ...(type.getters ?? []).flatMap((member) =>
+      variants.map((constant) => id(member.name, 'get', constant)),
+    ),
+    ...(type.setters ?? []).flatMap((member) =>
+      variants.map((constant) => id(member.name, 'set', constant)),
+    ),
+    ...(type.methods ?? []).flatMap((member) =>
+      (member.instance ? variants : [null]).map((constant) =>
+        id(member.name, 'call', constant),
+      ),
+    ),
+    ...(type.constructors ?? []).map((member) => id(member.name, 'factory', null)),
+  ];
+}
+
 function bindingRequirement(module) {
   const model = module.model;
   // The Dart emitter switches the whole module to host-proxy output as soon as
@@ -47,6 +72,16 @@ function bindingRequirement(module) {
       ? []
       : uniqueSorted([
           ...(model.functions ?? []).map((entry) => entry.id),
+          ...(model.classes ?? [])
+            .filter((entry) => entry.id.startsWith(`${module.moduleId}#`))
+            .flatMap((entry) => [
+              ...enumOperations(
+                entry,
+                (model.types ?? []).find((named) => named.id === entry.id),
+              ),
+              ...(entry.staticGetters ?? []).map((member) => member.id),
+              ...(entry.staticSetters ?? []).map((member) => member.id),
+            ]),
           ...(model.extensions ?? [])
             .filter((entry) => entry.isReference !== true)
             .flatMap((entry) => entry.members.map((member) => member.id)),
@@ -162,9 +197,9 @@ async function delivery({
   const npm = await json(join(root, packageDirectory, 'package.json'));
   const manifest = manifestPath
     ? await json(join(root, manifestPath))
-    : { formatVersion: 16, modules: [] };
-  if (manifest.formatVersion !== 16) {
-    throw new Error(`Expected Binding Manifest 16: ${manifestPath}`);
+    : { formatVersion: 17, modules: [] };
+  if (manifest.formatVersion !== 17) {
+    throw new Error(`Expected Binding Manifest 17: ${manifestPath}`);
   }
   const requirements = publicRequirements(manifest);
   const modules = [

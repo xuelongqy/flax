@@ -3,6 +3,7 @@ import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/services/_bindings/flutter_Color';
 import '@flax/flutter/widgets/_bindings/flutter_EdgeInsetsGeometry';
 import type * as upstream3 from '@flax/flutter/widgets/_bindings/flutter_Clip';
+import '@flax/flutter/widgets/_bindings/flutter_Clip';
 export interface Card extends WidgetDescription {
     readonly type: "flax.material/material#type:Card";
 }

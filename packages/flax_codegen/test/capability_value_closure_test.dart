@@ -95,6 +95,9 @@ void main() {
           name: 'Enumish',
           id: enumId,
           enumNames: ['one'],
+          enumValueTypes: {
+            'one': FlaxCodegenTypeRef('enum', id: enumId, name: 'Enumish'),
+          },
         ),
       ],
       typeLibraries: const {

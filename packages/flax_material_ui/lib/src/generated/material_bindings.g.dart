@@ -22,18 +22,18 @@ const materialBindings = FlaxBindingModule(
     FlaxEnumBinding("flax.material/material#type:Brightness", {
       "dark": api.Brightness.dark,
       "light": api.Brightness.light,
-    }),
+    }, supertypes: []),
     FlaxEnumBinding("flax.material/material#type:ListTileStyle", {
       "list": api.ListTileStyle.list,
       "drawer": api.ListTileStyle.drawer,
-    }),
+    }, supertypes: []),
     FlaxEnumBinding("flax.material/material#type:MaterialType", {
       "canvas": api.MaterialType.canvas,
       "card": api.MaterialType.card,
       "circle": api.MaterialType.circle,
       "button": api.MaterialType.button,
       "transparency": api.MaterialType.transparency,
-    }),
+    }, supertypes: []),
     FlaxEnumBinding(
       "flax.material/material#type:NavigationDestinationLabelBehavior",
       {
@@ -42,6 +42,7 @@ const materialBindings = FlaxBindingModule(
         "onlyShowSelected":
             api.NavigationDestinationLabelBehavior.onlyShowSelected,
       },
+      supertypes: [],
     ),
     FlaxEnumBinding("flax.material/material#type:TextInputAction", {
       "none": api.TextInputAction.none,
@@ -57,12 +58,12 @@ const materialBindings = FlaxBindingModule(
       "route": api.TextInputAction.route,
       "emergencyCall": api.TextInputAction.emergencyCall,
       "newline": api.TextInputAction.newline,
-    }),
+    }, supertypes: []),
     FlaxEnumBinding("flax.material/material#type:ThemeMode", {
       "system": api.ThemeMode.system,
       "light": api.ThemeMode.light,
       "dark": api.ThemeMode.dark,
-    }),
+    }, supertypes: []),
     FlaxWidgetBinding(
       "flax.material/material#type:Material",
       {
@@ -6227,7 +6228,7 @@ const materialBindings = FlaxBindingModule(
   ],
   moduleId: "flax.material/material",
   dependencyModules: ["flax.core/flutter"],
-  uiProtocol: 23,
+  uiProtocol: 24,
   requiredCapabilities: const <String>[
     "instance-checks",
     "native-widget-proxies",

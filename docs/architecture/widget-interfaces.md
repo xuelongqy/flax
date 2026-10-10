@@ -1,6 +1,6 @@
 # Widget Interfaces and Material Page Shells
 
-UI protocol 23 supports selected native Widget interfaces and generated Scaffold, AppBar
+UI protocol 24 supports selected native Widget interfaces and generated Scaffold, AppBar
 and PreferredSize bindings on the maintained Flutter engine. The native ABI is
 unchanged.
 
@@ -84,9 +84,9 @@ For example, CupertinoNavigationBar forwards both `preferredSize` and
 therefore uses its real obstruction and layout behavior. AppBar's original preferredSize
 object, including its private theme-height sentinel subtype, is preserved.
 
-Manifest 16 records native member selections, Dart override source and explicit public
+Manifest 17 records native member selections, Dart override source and explicit public
 imports separately from bridge TypeRefs. Native members add no wire operations or owner
-rows; existing declaration IDs, UI protocol 23 and native ABI 2 remain unchanged. See
+rows; existing declaration IDs, UI protocol 24 and native ABI 2 remain unchanged. See
 [ADR 0029](../decisions/0029-native-widget-interface-members.md).
 
 Interface Widgets require fixed constructor arguments and accept ordinary typed

@@ -1,6 +1,8 @@
 import { type DartEnum } from '@flax/core/bindings';
 export interface BoxFit extends DartEnum {
-    readonly type: "flax.core/flutter#type:BoxFit";
+    readonly __BoxFit: unique symbol;
+    readonly name: string;
+    readonly index: number;
 }
 export declare const BoxFit: Readonly<{
     fill: BoxFit;
@@ -10,4 +12,5 @@ export declare const BoxFit: Readonly<{
     fitHeight: BoxFit;
     none: BoxFit;
     scaleDown: BoxFit;
+    values: readonly BoxFit[];
 }>;

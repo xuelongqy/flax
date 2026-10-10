@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/flutter/services","owner":"@flax/core-runtime:dist/flutter/generated/libraries/services/index.js","version":"0.0.0","artifact":"fe9017bde04c23ff65fe4d6326ba7f1d5cd5a5924f4d96c7f7026478aded1449","asset":"assets/flax_modules/_flax_flutter_services-e820dad87955.js","package":"@flax/core-runtime","source":"dist/flutter/generated/libraries/services/index.js","dependencies":{"@flax/core/bindings":"0.0.0","@flax/dart/core":"0.0.0","@flax/flutter/foundation":"0.0.0"},"bindings":[{"moduleId":"flax.core/flutter","uiProtocol":23,"types":["flax.core/flutter#type:Align","flax.core/flutter#type:Alignment","flax.core/flutter#type:AlignmentDirectional","flax.core/flutter#type:AlignmentGeometry","flax.core/flutter#type:AlwaysScrollableScrollPhysics","flax.core/flutter#type:AspectRatio","flax.core/flutter#type:AsyncSnapshot","flax.core/flutter#type:AutovalidateMode","flax.core/flutter#type:Axis","flax.core/flutter#type:Border","flax.core/flutter#type:BorderDirectional","flax.core/flutter#type:BorderRadius","flax.core/flutter#type:BorderRadiusDirectional","flax.core/flutter#type:BorderRadiusGeometry","flax.core/flutter#type:BorderSide","flax.core/flutter#type:BorderStyle","flax.core/flutter#type:BouncingScrollPhysics","flax.core/flutter#type:BoxBorder","flax.core/flutter#type:BoxConstraints","flax.core/flutter#type:BoxDecoration","flax.core/flutter#type:BoxFit","flax.core/flutter#type:BoxShape","flax.core/flutter#type:BuildContext","flax.core/flutter#type:Builder","flax.core/flutter#type:Center","flax.core/flutter#type:CircleBorder","flax.core/flutter#type:ClampingScrollPhysics","flax.core/flutter#type:Clip","flax.core/flutter#type:ClipRRect","flax.core/flutter#type:Color","flax.core/flutter#type:ColoredBox","flax.core/flutter#type:Column","flax.core/flutter#type:ConnectionState","flax.core/flutter#type:ConstrainedBox","flax.core/flutter#type:Container","flax.core/flutter#type:CrossAxisAlignment","flax.core/flutter#type:Cubic","flax.core/flutter#type:Curve","flax.core/flutter#type:Curves","flax.core/flutter#type:DateTime","flax.core/flutter#type:DecoratedBox","flax.core/flutter#type:Decoration","flax.core/flutter#type:DecorationPosition","flax.core/flutter#type:Directionality","flax.core/flutter#type:DragStartBehavior","flax.core/flutter#type:Duration","flax.core/flutter#type:EdgeInsets","flax.core/flutter#type:EdgeInsetsDirectional","flax.core/flutter#type:EdgeInsetsGeometry","flax.core/flutter#type:EventSink","flax.core/flutter#type:Expanded","flax.core/flutter#type:FilteringTextInputFormatter","flax.core/flutter#type:FittedBox","flax.core/flutter#type:FittedSizes","flax.core/flutter#type:FlaxNavigatorObserver","flax.core/flutter#type:FlexFit","flax.core/flutter#type:Flexible","flax.core/flutter#type:Focus","flax.core/flutter#type:FocusNode","flax.core/flutter#type:FontStyle","flax.core/flutter#type:FontWeight","flax.core/flutter#type:Form","flax.core/flutter#type:GestureDetector","flax.core/flutter#type:HitTestBehavior","flax.core/flutter#type:IgnorePointer","flax.core/flutter#type:ImageFilter","flax.core/flutter#type:IndexedStack","flax.core/flutter#type:Key","flax.core/flutter#type:KeyboardListener","flax.core/flutter#type:LayoutBuilder","flax.core/flutter#type:LengthLimitingTextInputFormatter","flax.core/flutter#type:ListView","flax.core/flutter#type:Listenable","flax.core/flutter#type:ListenableBuilder","flax.core/flutter#type:Listener","flax.core/flutter#type:LocalKey","flax.core/flutter#type:MainAxisAlignment","flax.core/flutter#type:MainAxisSize","flax.core/flutter#type:MaxLengthEnforcement","flax.core/flutter#type:MouseCursor","flax.core/flutter#type:MouseRegion","flax.core/flutter#type:MultiStreamController","flax.core/flutter#type:Navigator","flax.core/flutter#type:NavigatorObserver","flax.core/flutter#type:NavigatorPopHandler","flax.core/flutter#type:NavigatorState","flax.core/flutter#type:NeverScrollableScrollPhysics","flax.core/flutter#type:Opacity","flax.core/flutter#type:OutlinedBorder","flax.core/flutter#type:Padding","flax.core/flutter#type:Page","flax.core/flutter#type:Pattern","flax.core/flutter#type:PopScope","flax.core/flutter#type:Positioned","flax.core/flutter#type:PreferredSize","flax.core/flutter#type:PreferredSizeWidget","flax.core/flutter#type:Radius","flax.core/flutter#type:RegExp","flax.core/flutter#type:RoundedRectangleBorder","flax.core/flutter#type:Route","flax.core/flutter#type:RouteSettings","flax.core/flutter#type:Row","flax.core/flutter#type:SafeArea","flax.core/flutter#type:SchedulerBinding","flax.core/flutter#type:ScrollController","flax.core/flutter#type:ScrollPhysics","flax.core/flutter#type:ShapeBorder","flax.core/flutter#type:SingleChildScrollView","flax.core/flutter#type:Sink","flax.core/flutter#type:Size","flax.core/flutter#type:SizedBox","flax.core/flutter#type:Spacer","flax.core/flutter#type:Stack","flax.core/flutter#type:StackFit","flax.core/flutter#type:StackTrace","flax.core/flutter#type:StadiumBorder","flax.core/flutter#type:StatefulBuilder","flax.core/flutter#type:Stream","flax.core/flutter#type:StreamBuilder","flax.core/flutter#type:StreamConsumer","flax.core/flutter#type:StreamController","flax.core/flutter#type:StreamIterator","flax.core/flutter#type:StreamSink","flax.core/flutter#type:StreamSubscription","flax.core/flutter#type:StreamTransformer","flax.core/flutter#type:StreamTransformerBase","flax.core/flutter#type:StreamView","flax.core/flutter#type:StringBuffer","flax.core/flutter#type:SynchronousStreamController","flax.core/flutter#type:SystemMouseCursor","flax.core/flutter#type:SystemMouseCursors","flax.core/flutter#type:TargetPlatform","flax.core/flutter#type:Text","flax.core/flutter#type:TextAffinity","flax.core/flutter#type:TextAlign","flax.core/flutter#type:TextBaseline","flax.core/flutter#type:TextDirection","flax.core/flutter#type:TextEditingController","flax.core/flutter#type:TextEditingValue","flax.core/flutter#type:TextInputFormatter","flax.core/flutter#type:TextOverflow","flax.core/flutter#type:TextRange","flax.core/flutter#type:TextSelection","flax.core/flutter#type:TextStyle","flax.core/flutter#type:TickerProvider","flax.core/flutter#type:UnfocusDisposition","flax.core/flutter#type:Uri","flax.core/flutter#type:ValueKey","flax.core/flutter#type:ValueListenable","flax.core/flutter#type:ValueListenableBuilder","flax.core/flutter#type:VerticalDirection","flax.core/flutter#type:Visibility","flax.core/flutter#type:WidgetState","flax.core/flutter#type:WidgetStateProperty","flax.core/flutter#type:Wrap","flax.core/flutter#type:WrapAlignment","flax.core/flutter#type:WrapCrossAlignment"],"functions":["flax.core/flutter#function:applyBoxFit","flax.core/flutter#read:defaultTargetPlatform","flax.core/flutter#read:kIsWeb"]}],"subpaths":["@flax/flutter/services/index"]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/flutter/services","owner":"@flax/core-runtime:dist/flutter/generated/libraries/services/index.js","version":"0.0.0","artifact":"aa233e6e1786ee9411e506c63cb09850ae259c2b83a97427916526223fe7495a","asset":"assets/flax_modules/_flax_flutter_services-e820dad87955.js","package":"@flax/core-runtime","source":"dist/flutter/generated/libraries/services/index.js","dependencies":{"@flax/core/bindings":"0.0.0","@flax/dart/core":"0.0.0","@flax/flutter/foundation":"0.0.0"},"bindings":[{"moduleId":"flax.core/flutter","uiProtocol":24,"types":["flax.core/flutter#type:Align","flax.core/flutter#type:Alignment","flax.core/flutter#type:AlignmentDirectional","flax.core/flutter#type:AlignmentGeometry","flax.core/flutter#type:AlwaysScrollableScrollPhysics","flax.core/flutter#type:AspectRatio","flax.core/flutter#type:AsyncSnapshot","flax.core/flutter#type:AutovalidateMode","flax.core/flutter#type:Axis","flax.core/flutter#type:Border","flax.core/flutter#type:BorderDirectional","flax.core/flutter#type:BorderRadius","flax.core/flutter#type:BorderRadiusDirectional","flax.core/flutter#type:BorderRadiusGeometry","flax.core/flutter#type:BorderSide","flax.core/flutter#type:BorderStyle","flax.core/flutter#type:BouncingScrollPhysics","flax.core/flutter#type:BoxBorder","flax.core/flutter#type:BoxConstraints","flax.core/flutter#type:BoxDecoration","flax.core/flutter#type:BoxFit","flax.core/flutter#type:BoxShape","flax.core/flutter#type:BuildContext","flax.core/flutter#type:Builder","flax.core/flutter#type:Center","flax.core/flutter#type:CircleBorder","flax.core/flutter#type:ClampingScrollPhysics","flax.core/flutter#type:Clip","flax.core/flutter#type:ClipRRect","flax.core/flutter#type:Color","flax.core/flutter#type:ColoredBox","flax.core/flutter#type:Column","flax.core/flutter#type:ConnectionState","flax.core/flutter#type:ConstrainedBox","flax.core/flutter#type:Container","flax.core/flutter#type:CrossAxisAlignment","flax.core/flutter#type:Cubic","flax.core/flutter#type:Curve","flax.core/flutter#type:Curves","flax.core/flutter#type:DateTime","flax.core/flutter#type:DecoratedBox","flax.core/flutter#type:Decoration","flax.core/flutter#type:DecorationPosition","flax.core/flutter#type:Directionality","flax.core/flutter#type:DragStartBehavior","flax.core/flutter#type:Duration","flax.core/flutter#type:EdgeInsets","flax.core/flutter#type:EdgeInsetsDirectional","flax.core/flutter#type:EdgeInsetsGeometry","flax.core/flutter#type:EventSink","flax.core/flutter#type:Expanded","flax.core/flutter#type:FilteringTextInputFormatter","flax.core/flutter#type:FittedBox","flax.core/flutter#type:FittedSizes","flax.core/flutter#type:FlaxNavigatorObserver","flax.core/flutter#type:FlexFit","flax.core/flutter#type:Flexible","flax.core/flutter#type:Focus","flax.core/flutter#type:FocusNode","flax.core/flutter#type:FontStyle","flax.core/flutter#type:FontWeight","flax.core/flutter#type:Form","flax.core/flutter#type:GestureDetector","flax.core/flutter#type:HitTestBehavior","flax.core/flutter#type:IgnorePointer","flax.core/flutter#type:ImageFilter","flax.core/flutter#type:IndexedStack","flax.core/flutter#type:Key","flax.core/flutter#type:KeyboardListener","flax.core/flutter#type:LayoutBuilder","flax.core/flutter#type:LengthLimitingTextInputFormatter","flax.core/flutter#type:ListView","flax.core/flutter#type:Listenable","flax.core/flutter#type:ListenableBuilder","flax.core/flutter#type:Listener","flax.core/flutter#type:LocalKey","flax.core/flutter#type:MainAxisAlignment","flax.core/flutter#type:MainAxisSize","flax.core/flutter#type:MaxLengthEnforcement","flax.core/flutter#type:MouseCursor","flax.core/flutter#type:MouseRegion","flax.core/flutter#type:MultiStreamController","flax.core/flutter#type:Navigator","flax.core/flutter#type:NavigatorObserver","flax.core/flutter#type:NavigatorPopHandler","flax.core/flutter#type:NavigatorState","flax.core/flutter#type:NeverScrollableScrollPhysics","flax.core/flutter#type:Opacity","flax.core/flutter#type:OutlinedBorder","flax.core/flutter#type:Padding","flax.core/flutter#type:Page","flax.core/flutter#type:Pattern","flax.core/flutter#type:PopScope","flax.core/flutter#type:Positioned","flax.core/flutter#type:PreferredSize","flax.core/flutter#type:PreferredSizeWidget","flax.core/flutter#type:Radius","flax.core/flutter#type:RegExp","flax.core/flutter#type:RoundedRectangleBorder","flax.core/flutter#type:Route","flax.core/flutter#type:RouteSettings","flax.core/flutter#type:Row","flax.core/flutter#type:SafeArea","flax.core/flutter#type:SchedulerBinding","flax.core/flutter#type:ScrollController","flax.core/flutter#type:ScrollPhysics","flax.core/flutter#type:ShapeBorder","flax.core/flutter#type:SingleChildScrollView","flax.core/flutter#type:Sink","flax.core/flutter#type:Size","flax.core/flutter#type:SizedBox","flax.core/flutter#type:Spacer","flax.core/flutter#type:Stack","flax.core/flutter#type:StackFit","flax.core/flutter#type:StackTrace","flax.core/flutter#type:StadiumBorder","flax.core/flutter#type:StatefulBuilder","flax.core/flutter#type:Stream","flax.core/flutter#type:StreamBuilder","flax.core/flutter#type:StreamConsumer","flax.core/flutter#type:StreamController","flax.core/flutter#type:StreamIterator","flax.core/flutter#type:StreamSink","flax.core/flutter#type:StreamSubscription","flax.core/flutter#type:StreamTransformer","flax.core/flutter#type:StreamTransformerBase","flax.core/flutter#type:StreamView","flax.core/flutter#type:StringBuffer","flax.core/flutter#type:SynchronousStreamController","flax.core/flutter#type:SystemMouseCursor","flax.core/flutter#type:SystemMouseCursors","flax.core/flutter#type:TargetPlatform","flax.core/flutter#type:Text","flax.core/flutter#type:TextAffinity","flax.core/flutter#type:TextAlign","flax.core/flutter#type:TextBaseline","flax.core/flutter#type:TextDirection","flax.core/flutter#type:TextEditingController","flax.core/flutter#type:TextEditingValue","flax.core/flutter#type:TextInputFormatter","flax.core/flutter#type:TextOverflow","flax.core/flutter#type:TextRange","flax.core/flutter#type:TextSelection","flax.core/flutter#type:TextStyle","flax.core/flutter#type:TickerProvider","flax.core/flutter#type:UnfocusDisposition","flax.core/flutter#type:Uri","flax.core/flutter#type:ValueKey","flax.core/flutter#type:ValueListenable","flax.core/flutter#type:ValueListenableBuilder","flax.core/flutter#type:VerticalDirection","flax.core/flutter#type:Visibility","flax.core/flutter#type:WidgetState","flax.core/flutter#type:WidgetStateProperty","flax.core/flutter#type:Wrap","flax.core/flutter#type:WrapAlignment","flax.core/flutter#type:WrapCrossAlignment"],"functions":["flax.core/flutter#function:applyBoxFit","flax.core/flutter#read:Alignment.bottomCenter","flax.core/flutter#read:Alignment.bottomLeft","flax.core/flutter#read:Alignment.bottomRight","flax.core/flutter#read:Alignment.center","flax.core/flutter#read:Alignment.centerLeft","flax.core/flutter#read:Alignment.centerRight","flax.core/flutter#read:Alignment.topCenter","flax.core/flutter#read:Alignment.topLeft","flax.core/flutter#read:Alignment.topRight","flax.core/flutter#read:AlignmentDirectional.bottomCenter","flax.core/flutter#read:AlignmentDirectional.bottomEnd","flax.core/flutter#read:AlignmentDirectional.bottomStart","flax.core/flutter#read:AlignmentDirectional.center","flax.core/flutter#read:AlignmentDirectional.centerEnd","flax.core/flutter#read:AlignmentDirectional.centerStart","flax.core/flutter#read:AlignmentDirectional.topCenter","flax.core/flutter#read:AlignmentDirectional.topEnd","flax.core/flutter#read:AlignmentDirectional.topStart","flax.core/flutter#read:BorderRadius.zero","flax.core/flutter#read:BorderRadiusDirectional.zero","flax.core/flutter#read:BorderSide.none","flax.core/flutter#read:BorderSide.strokeAlignCenter","flax.core/flutter#read:BorderSide.strokeAlignInside","flax.core/flutter#read:BorderSide.strokeAlignOutside","flax.core/flutter#read:Curves.ease","flax.core/flutter#read:Curves.easeIn","flax.core/flutter#read:Curves.easeInOut","flax.core/flutter#read:Curves.easeOut","flax.core/flutter#read:Curves.linear","flax.core/flutter#read:Duration.zero","flax.core/flutter#read:EdgeInsets.zero","flax.core/flutter#read:EdgeInsetsDirectional.zero","flax.core/flutter#read:FilteringTextInputFormatter.digitsOnly","flax.core/flutter#read:FilteringTextInputFormatter.singleLineFormatter","flax.core/flutter#read:FontWeight.bold","flax.core/flutter#read:FontWeight.normal","flax.core/flutter#read:FontWeight.w100","flax.core/flutter#read:FontWeight.w200","flax.core/flutter#read:FontWeight.w300","flax.core/flutter#read:FontWeight.w400","flax.core/flutter#read:FontWeight.w500","flax.core/flutter#read:FontWeight.w600","flax.core/flutter#read:FontWeight.w700","flax.core/flutter#read:FontWeight.w800","flax.core/flutter#read:FontWeight.w900","flax.core/flutter#read:MouseCursor.defer","flax.core/flutter#read:MouseCursor.uncontrolled","flax.core/flutter#read:Radius.zero","flax.core/flutter#read:SchedulerBinding.instance","flax.core/flutter#read:StackTrace.current","flax.core/flutter#read:StackTrace.empty","flax.core/flutter#read:SystemMouseCursors.basic","flax.core/flutter#read:SystemMouseCursors.click","flax.core/flutter#read:SystemMouseCursors.forbidden","flax.core/flutter#read:SystemMouseCursors.text","flax.core/flutter#read:TextEditingValue.empty","flax.core/flutter#read:TextRange.empty","flax.core/flutter#read:defaultTargetPlatform","flax.core/flutter#read:kIsWeb"]}],"subpaths":["@flax/flutter/services/index"]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -80,6 +80,8 @@ function _flaxInstallBindingModule(moduleId, uiProtocol, requiredCapabilities) {
     invokeObjectStatic: import_bindings.invokeObjectStatic,
     invokeStream: import_bindings.invokeStream,
     enumValue: import_bindings.enumValue,
+    defineEnum: import_bindings.defineEnum,
+    invokeEnum: import_bindings.invokeEnum,
     defineContext: import_bindings.defineContext,
     defineState: import_bindings.defineState,
     contextHandle: import_bindings.contextHandle,
@@ -88,8 +90,8 @@ function _flaxInstallBindingModule(moduleId, uiProtocol, requiredCapabilities) {
     invokeTopLevel: import_bindings.invokeTopLevel
   });
 }
-var flutterBindingModule = _flaxInstallBindingModule("flax.core/flutter", 23, Object.freeze(["instance-checks", "native-widget-proxies"]));
-var { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, bindInstanceType: _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } = flutterBindingModule;
+var flutterBindingModule = _flaxInstallBindingModule("flax.core/flutter", 24, Object.freeze(["instance-checks", "native-widget-proxies"]));
+var { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, bindInstanceType: _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } = flutterBindingModule;
 
 // ../../../packages/flax/js/dist/flutter/generated/libraries/services/_bindings/flutter_Color.js
 var _flaxMemberParameters0 = [];
@@ -114,16 +116,16 @@ function _ColorFactory(value) {
 var Color = _flaxBindInstanceType(_ColorFactory, "flax.core/flutter#type:Color", ["dart:core::Object"]);
 
 // ../../../packages/flax/js/dist/flutter/generated/libraries/services/_bindings/flutter_FilteringTextInputFormatter.js
-var import_bindings7 = require("@flax/core/bindings");
+var import_bindings8 = require("@flax/core/bindings");
 
 // ../../../packages/flax/js/dist/flutter/generated/libraries/services/_bindings/flutter_TextInputFormatter.js
-var import_bindings6 = require("@flax/core/bindings");
+var import_bindings7 = require("@flax/core/bindings");
 
 // ../../../packages/flax/js/dist/flutter/generated/libraries/services/_bindings/flutter_TextEditingValue.js
-var import_bindings5 = require("@flax/core/bindings");
+var import_bindings6 = require("@flax/core/bindings");
 
 // ../../../packages/flax/js/dist/flutter/generated/libraries/services/_bindings/flutter_TextSelection.js
-var import_bindings4 = require("@flax/core/bindings");
+var import_bindings5 = require("@flax/core/bindings");
 
 // ../../../packages/flax/js/dist/flutter/generated/libraries/services/_bindings/flutter_TextRange.js
 var import_bindings3 = require("@flax/core/bindings");
@@ -150,9 +152,18 @@ function _TextRangeFactory(options) {
 Object.defineProperty(_TextRangeFactory, "empty", { get: () => invokeTopLevel("flax.core/flutter#read:TextRange.empty", []) });
 var TextRange = _flaxBindInstanceType(_TextRangeFactory, "flax.core/flutter#type:TextRange", ["dart:core::Object"]);
 
+// ../../../packages/flax/js/dist/flutter/generated/libraries/services/_bindings/flutter_TextAffinity.js
+var import_bindings4 = require("@flax/core/bindings");
+defineEnum("flax.core/flutter#type:TextAffinity", ["upstream", "downstream"]);
+var TextAffinity = Object.freeze({
+  upstream: enumValue("flax.core/flutter#type:TextAffinity", "upstream"),
+  downstream: enumValue("flax.core/flutter#type:TextAffinity", "downstream"),
+  values: Object.freeze([enumValue("flax.core/flutter#type:TextAffinity", "upstream"), enumValue("flax.core/flutter#type:TextAffinity", "downstream")])
+});
+
 // ../../../packages/flax/js/dist/flutter/generated/libraries/services/_bindings/flutter_TextSelection.js
 var _flaxMemberParameters02 = [{ "name": "affinity", "required": false, "positional": false }, { "name": "baseOffset", "required": false, "positional": false }, { "name": "extentOffset", "required": false, "positional": false }, { "name": "isDirectional", "required": false, "positional": false }];
-defineObject("flax.core/flutter#type:TextSelection", ["start", "end", "isValid", "isCollapsed", "isNormalized", "baseOffset", "extentOffset", "affinity", "isDirectional"], [], (0, import_bindings4.bindingMethods)("flax.core/flutter#type:TextSelection", "object", { "copyWith": _flaxMemberParameters02 }), []);
+defineObject("flax.core/flutter#type:TextSelection", ["start", "end", "isValid", "isCollapsed", "isNormalized", "baseOffset", "extentOffset", "affinity", "isDirectional"], [], (0, import_bindings5.bindingMethods)("flax.core/flutter#type:TextSelection", "object", { "copyWith": _flaxMemberParameters02 }), []);
 function _TextSelectionFactory(options) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -174,7 +185,7 @@ var TextSelection = _flaxBindInstanceType(_TextSelectionFactory, "flax.core/flut
 
 // ../../../packages/flax/js/dist/flutter/generated/libraries/services/_bindings/flutter_TextEditingValue.js
 var _flaxMemberParameters03 = [{ "name": "composing", "required": false, "positional": false }, { "name": "selection", "required": false, "positional": false }, { "name": "text", "required": false, "positional": false }];
-defineObject("flax.core/flutter#type:TextEditingValue", ["text", "selection", "composing", "isComposingRangeValid"], [], (0, import_bindings5.bindingMethods)("flax.core/flutter#type:TextEditingValue", "object", { "copyWith": _flaxMemberParameters03 }), []);
+defineObject("flax.core/flutter#type:TextEditingValue", ["text", "selection", "composing", "isComposingRangeValid"], [], (0, import_bindings6.bindingMethods)("flax.core/flutter#type:TextEditingValue", "object", { "copyWith": _flaxMemberParameters03 }), []);
 function _TextEditingValueFactory(options = {}) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -188,7 +199,7 @@ Object.defineProperty(_TextEditingValueFactory, "empty", { get: () => invokeTopL
 var TextEditingValue = _flaxBindInstanceType(_TextEditingValueFactory, "flax.core/flutter#type:TextEditingValue", ["dart:core::Object"]);
 
 // ../../../packages/flax/js/dist/flutter/generated/libraries/services/_bindings/flutter_TextInputFormatter.js
-defineObject("flax.core/flutter#type:TextInputFormatter", [], [], (0, import_bindings6.bindingMethods)("flax.core/flutter#type:TextInputFormatter", "object", {}), []);
+defineObject("flax.core/flutter#type:TextInputFormatter", [], [], (0, import_bindings7.bindingMethods)("flax.core/flutter#type:TextInputFormatter", "object", {}), []);
 var _TextInputFormatterFactory;
 (function(_TextInputFormatterFactory2) {
   function withFunction(formatFunction) {
@@ -204,7 +215,7 @@ var TextInputFormatter = _flaxBindInstanceType(_TextInputFormatterFactory, "flax
 
 // ../../../packages/flax/js/dist/flutter/generated/libraries/services/_bindings/flutter_FilteringTextInputFormatter.js
 var import_flutter_Pattern = require("@flax/dart/core");
-defineObject("flax.core/flutter#type:FilteringTextInputFormatter", [], [], (0, import_bindings7.bindingMethods)("flax.core/flutter#type:FilteringTextInputFormatter", "object", {}), []);
+defineObject("flax.core/flutter#type:FilteringTextInputFormatter", [], [], (0, import_bindings8.bindingMethods)("flax.core/flutter#type:FilteringTextInputFormatter", "object", {}), []);
 function _FilteringTextInputFormatterFactory(filterPattern, options) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -241,8 +252,8 @@ Object.defineProperty(_FilteringTextInputFormatterFactory, "singleLineFormatter"
 var FilteringTextInputFormatter = _flaxBindInstanceType(_FilteringTextInputFormatterFactory, "flax.core/flutter#type:FilteringTextInputFormatter", ["flax.core/flutter#type:TextInputFormatter", "dart:core::Object"]);
 
 // ../../../packages/flax/js/dist/flutter/generated/libraries/services/_bindings/flutter_FontWeight.js
-var import_bindings8 = require("@flax/core/bindings");
-defineObject("flax.core/flutter#type:FontWeight", ["value"], [], (0, import_bindings8.bindingMethods)("flax.core/flutter#type:FontWeight", "object", {}), []);
+var import_bindings9 = require("@flax/core/bindings");
+defineObject("flax.core/flutter#type:FontWeight", ["value"], [], (0, import_bindings9.bindingMethods)("flax.core/flutter#type:FontWeight", "object", {}), []);
 function _FontWeightFactory(value) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -286,8 +297,20 @@ Object.defineProperty(_FontWeightFactory, "bold", { get: () => invokeTopLevel("f
 var FontWeight = _flaxBindInstanceType(_FontWeightFactory, "flax.core/flutter#type:FontWeight", ["dart:core::Object"]);
 
 // ../../../packages/flax/js/dist/flutter/generated/libraries/services/_bindings/flutter_LengthLimitingTextInputFormatter.js
-var import_bindings9 = require("@flax/core/bindings");
-defineObject("flax.core/flutter#type:LengthLimitingTextInputFormatter", [], [], (0, import_bindings9.bindingMethods)("flax.core/flutter#type:LengthLimitingTextInputFormatter", "object", {}), []);
+var import_bindings11 = require("@flax/core/bindings");
+
+// ../../../packages/flax/js/dist/flutter/generated/libraries/services/_bindings/flutter_MaxLengthEnforcement.js
+var import_bindings10 = require("@flax/core/bindings");
+defineEnum("flax.core/flutter#type:MaxLengthEnforcement", ["none", "enforced", "truncateAfterCompositionEnds"]);
+var MaxLengthEnforcement = Object.freeze({
+  none: enumValue("flax.core/flutter#type:MaxLengthEnforcement", "none"),
+  enforced: enumValue("flax.core/flutter#type:MaxLengthEnforcement", "enforced"),
+  truncateAfterCompositionEnds: enumValue("flax.core/flutter#type:MaxLengthEnforcement", "truncateAfterCompositionEnds"),
+  values: Object.freeze([enumValue("flax.core/flutter#type:MaxLengthEnforcement", "none"), enumValue("flax.core/flutter#type:MaxLengthEnforcement", "enforced"), enumValue("flax.core/flutter#type:MaxLengthEnforcement", "truncateAfterCompositionEnds")])
+});
+
+// ../../../packages/flax/js/dist/flutter/generated/libraries/services/_bindings/flutter_LengthLimitingTextInputFormatter.js
+defineObject("flax.core/flutter#type:LengthLimitingTextInputFormatter", [], [], (0, import_bindings11.bindingMethods)("flax.core/flutter#type:LengthLimitingTextInputFormatter", "object", {}), []);
 function _LengthLimitingTextInputFormatterFactory(maxLength, options = {}) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -298,16 +321,16 @@ function _LengthLimitingTextInputFormatterFactory(maxLength, options = {}) {
 var LengthLimitingTextInputFormatter = _flaxBindInstanceType(_LengthLimitingTextInputFormatterFactory, "flax.core/flutter#type:LengthLimitingTextInputFormatter", ["flax.core/flutter#type:TextInputFormatter", "dart:core::Object"]);
 
 // ../../../packages/flax/js/dist/flutter/generated/libraries/services/_bindings/flutter_MouseCursor.js
-var import_bindings10 = require("@flax/core/bindings");
-defineObject("flax.core/flutter#type:MouseCursor", [], [], (0, import_bindings10.bindingMethods)("flax.core/flutter#type:MouseCursor", "object", {}), []);
+var import_bindings12 = require("@flax/core/bindings");
+defineObject("flax.core/flutter#type:MouseCursor", [], [], (0, import_bindings12.bindingMethods)("flax.core/flutter#type:MouseCursor", "object", {}), []);
 var _MouseCursorFactory = {};
 Object.defineProperty(_MouseCursorFactory, "defer", { get: () => invokeTopLevel("flax.core/flutter#read:MouseCursor.defer", []) });
 Object.defineProperty(_MouseCursorFactory, "uncontrolled", { get: () => invokeTopLevel("flax.core/flutter#read:MouseCursor.uncontrolled", []) });
 var MouseCursor = _flaxBindInstanceType(_MouseCursorFactory, "flax.core/flutter#type:MouseCursor", ["dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax/js/dist/flutter/generated/libraries/services/_bindings/flutter_Size.js
-var import_bindings11 = require("@flax/core/bindings");
-defineObject("flax.core/flutter#type:Size", ["width", "height"], [], (0, import_bindings11.bindingMethods)("flax.core/flutter#type:Size", "object", {}), []);
+var import_bindings13 = require("@flax/core/bindings");
+defineObject("flax.core/flutter#type:Size", ["width", "height"], [], (0, import_bindings13.bindingMethods)("flax.core/flutter#type:Size", "object", {}), []);
 function _SizeFactory(width, height) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -328,13 +351,13 @@ function _SizeFactory(width, height) {
 var Size = _flaxBindInstanceType(_SizeFactory, "flax.core/flutter#type:Size", ["dart:ui::OffsetBase", "dart:core::Object"]);
 
 // ../../../packages/flax/js/dist/flutter/generated/libraries/services/_bindings/flutter_SystemMouseCursor.js
-var import_bindings12 = require("@flax/core/bindings");
-defineObject("flax.core/flutter#type:SystemMouseCursor", [], [], (0, import_bindings12.bindingMethods)("flax.core/flutter#type:SystemMouseCursor", "object", {}), []);
+var import_bindings14 = require("@flax/core/bindings");
+defineObject("flax.core/flutter#type:SystemMouseCursor", [], [], (0, import_bindings14.bindingMethods)("flax.core/flutter#type:SystemMouseCursor", "object", {}), []);
 var SystemMouseCursor = _flaxBindInstanceType({}, "flax.core/flutter#type:SystemMouseCursor", ["flax.core/flutter#type:MouseCursor", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax/js/dist/flutter/generated/libraries/services/_bindings/flutter_SystemMouseCursors.js
-var import_bindings13 = require("@flax/core/bindings");
-defineObject("flax.core/flutter#type:SystemMouseCursors", [], [], (0, import_bindings13.bindingMethods)("flax.core/flutter#type:SystemMouseCursors", "object", {}), []);
+var import_bindings15 = require("@flax/core/bindings");
+defineObject("flax.core/flutter#type:SystemMouseCursors", [], [], (0, import_bindings15.bindingMethods)("flax.core/flutter#type:SystemMouseCursors", "object", {}), []);
 var _SystemMouseCursorsFactory = {};
 Object.defineProperty(_SystemMouseCursorsFactory, "basic", { get: () => invokeTopLevel("flax.core/flutter#read:SystemMouseCursors.basic", []) });
 Object.defineProperty(_SystemMouseCursorsFactory, "click", { get: () => invokeTopLevel("flax.core/flutter#read:SystemMouseCursors.click", []) });
@@ -342,40 +365,29 @@ Object.defineProperty(_SystemMouseCursorsFactory, "text", { get: () => invokeTop
 Object.defineProperty(_SystemMouseCursorsFactory, "forbidden", { get: () => invokeTopLevel("flax.core/flutter#read:SystemMouseCursors.forbidden", []) });
 var SystemMouseCursors = _flaxBindInstanceType(_SystemMouseCursorsFactory, "flax.core/flutter#type:SystemMouseCursors", ["dart:core::Object"]);
 
-// ../../../packages/flax/js/dist/flutter/generated/libraries/services/_bindings/flutter_MaxLengthEnforcement.js
-var import_bindings14 = require("@flax/core/bindings");
-var MaxLengthEnforcement = Object.freeze({
-  none: enumValue("flax.core/flutter#type:MaxLengthEnforcement", "none"),
-  enforced: enumValue("flax.core/flutter#type:MaxLengthEnforcement", "enforced"),
-  truncateAfterCompositionEnds: enumValue("flax.core/flutter#type:MaxLengthEnforcement", "truncateAfterCompositionEnds")
-});
-
 // ../../../packages/flax/js/dist/flutter/generated/libraries/services/index.js
 var import_flutter_TargetPlatform = require("@flax/flutter/foundation");
 
-// ../../../packages/flax/js/dist/flutter/generated/libraries/services/_bindings/flutter_TextAffinity.js
-var import_bindings15 = require("@flax/core/bindings");
-var TextAffinity = Object.freeze({
-  upstream: enumValue("flax.core/flutter#type:TextAffinity", "upstream"),
-  downstream: enumValue("flax.core/flutter#type:TextAffinity", "downstream")
-});
-
 // ../../../packages/flax/js/dist/flutter/generated/libraries/services/_bindings/flutter_TextAlign.js
 var import_bindings16 = require("@flax/core/bindings");
+defineEnum("flax.core/flutter#type:TextAlign", ["left", "right", "center", "justify", "start", "end"]);
 var TextAlign = Object.freeze({
   left: enumValue("flax.core/flutter#type:TextAlign", "left"),
   right: enumValue("flax.core/flutter#type:TextAlign", "right"),
   center: enumValue("flax.core/flutter#type:TextAlign", "center"),
   justify: enumValue("flax.core/flutter#type:TextAlign", "justify"),
   start: enumValue("flax.core/flutter#type:TextAlign", "start"),
-  end: enumValue("flax.core/flutter#type:TextAlign", "end")
+  end: enumValue("flax.core/flutter#type:TextAlign", "end"),
+  values: Object.freeze([enumValue("flax.core/flutter#type:TextAlign", "left"), enumValue("flax.core/flutter#type:TextAlign", "right"), enumValue("flax.core/flutter#type:TextAlign", "center"), enumValue("flax.core/flutter#type:TextAlign", "justify"), enumValue("flax.core/flutter#type:TextAlign", "start"), enumValue("flax.core/flutter#type:TextAlign", "end")])
 });
 
 // ../../../packages/flax/js/dist/flutter/generated/libraries/services/_bindings/flutter_TextDirection.js
 var import_bindings17 = require("@flax/core/bindings");
+defineEnum("flax.core/flutter#type:TextDirection", ["rtl", "ltr"]);
 var TextDirection = Object.freeze({
   rtl: enumValue("flax.core/flutter#type:TextDirection", "rtl"),
-  ltr: enumValue("flax.core/flutter#type:TextDirection", "ltr")
+  ltr: enumValue("flax.core/flutter#type:TextDirection", "ltr"),
+  values: Object.freeze([enumValue("flax.core/flutter#type:TextDirection", "rtl"), enumValue("flax.core/flutter#type:TextDirection", "ltr")])
 });
 
 });

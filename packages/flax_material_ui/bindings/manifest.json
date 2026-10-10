@@ -1,5 +1,5 @@
 {
-  "formatVersion": 16,
+  "formatVersion": 17,
   "package": "flax_material_ui",
   "bindingNamespace": "flax.material",
   "imports": [
@@ -9,7 +9,7 @@
     {
       "name": "material",
       "moduleId": "flax.material/material",
-      "uiProtocol": 23,
+      "uiProtocol": 24,
       "requiredCapabilities": [
         "instance-checks",
         "native-widget-proxies"
@@ -4165,7 +4165,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "foregroundColor",
@@ -4242,7 +4243,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "overlayColor",
@@ -4319,7 +4321,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "elevation",
@@ -4396,7 +4399,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "shape",
@@ -4473,7 +4477,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "mouseCursor",
@@ -4550,7 +4555,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "visualDensity",
@@ -4587,7 +4593,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -5378,7 +5385,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "vertical",
@@ -5415,7 +5423,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -5440,6 +5449,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.material/material#read:VisualDensity.standard"
               },
               {
@@ -5462,6 +5472,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.material/material#read:VisualDensity.comfortable"
               },
               {
@@ -5484,6 +5495,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.material/material#read:VisualDensity.compact"
               }
             ],
@@ -6783,7 +6795,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "colorScheme",
@@ -6820,7 +6833,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "textTheme",
@@ -6857,7 +6871,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -7364,7 +7379,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "titleMedium",
@@ -7401,7 +7417,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "bodyLarge",
@@ -7438,7 +7455,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "bodyMedium",
@@ -7475,7 +7493,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "labelLarge",
@@ -7512,7 +7531,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -7975,7 +7995,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "primary",
@@ -8012,7 +8033,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "onPrimary",
@@ -8049,7 +8071,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "surface",
@@ -8086,7 +8109,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "onSurface",
@@ -8123,7 +8147,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "error",
@@ -8160,7 +8185,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "onError",
@@ -8197,7 +8223,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -9188,7 +9215,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "hintText",
@@ -9225,7 +9253,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "helperText",
@@ -9262,7 +9291,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "errorText",
@@ -9299,7 +9329,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "labelStyle",
@@ -9336,7 +9367,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "hintStyle",
@@ -9373,7 +9405,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "helperStyle",
@@ -9410,7 +9443,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "errorStyle",
@@ -9447,7 +9481,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "isDense",
@@ -9484,7 +9519,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "contentPadding",
@@ -9521,7 +9557,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "filled",
@@ -9558,7 +9595,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "fillColor",
@@ -9595,7 +9633,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -12640,7 +12679,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "name",
@@ -12677,7 +12717,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "arguments",
@@ -12698,7 +12739,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -24573,6 +24615,42 @@
               "dark",
               "light"
             ],
+            "enumValueTypes": {
+              "dark": {
+                "kind": "enum",
+                "id": "flax.material/material#type:Brightness",
+                "name": "Brightness",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "light": {
+                "kind": "enum",
+                "id": "flax.material/material#type:Brightness",
+                "name": "Brightness",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
@@ -24582,6 +24660,42 @@
               "list",
               "drawer"
             ],
+            "enumValueTypes": {
+              "list": {
+                "kind": "enum",
+                "id": "flax.material/material#type:ListTileStyle",
+                "name": "ListTileStyle",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "drawer": {
+                "kind": "enum",
+                "id": "flax.material/material#type:ListTileStyle",
+                "name": "ListTileStyle",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
@@ -24594,6 +24708,93 @@
               "button",
               "transparency"
             ],
+            "enumValueTypes": {
+              "canvas": {
+                "kind": "enum",
+                "id": "flax.material/material#type:MaterialType",
+                "name": "MaterialType",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "card": {
+                "kind": "enum",
+                "id": "flax.material/material#type:MaterialType",
+                "name": "MaterialType",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "circle": {
+                "kind": "enum",
+                "id": "flax.material/material#type:MaterialType",
+                "name": "MaterialType",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "button": {
+                "kind": "enum",
+                "id": "flax.material/material#type:MaterialType",
+                "name": "MaterialType",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "transparency": {
+                "kind": "enum",
+                "id": "flax.material/material#type:MaterialType",
+                "name": "MaterialType",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
@@ -24604,6 +24805,59 @@
               "alwaysHide",
               "onlyShowSelected"
             ],
+            "enumValueTypes": {
+              "alwaysShow": {
+                "kind": "enum",
+                "id": "flax.material/material#type:NavigationDestinationLabelBehavior",
+                "name": "NavigationDestinationLabelBehavior",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "alwaysHide": {
+                "kind": "enum",
+                "id": "flax.material/material#type:NavigationDestinationLabelBehavior",
+                "name": "NavigationDestinationLabelBehavior",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "onlyShowSelected": {
+                "kind": "enum",
+                "id": "flax.material/material#type:NavigationDestinationLabelBehavior",
+                "name": "NavigationDestinationLabelBehavior",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
@@ -24624,6 +24878,229 @@
               "emergencyCall",
               "newline"
             ],
+            "enumValueTypes": {
+              "none": {
+                "kind": "enum",
+                "id": "flax.material/material#type:TextInputAction",
+                "name": "TextInputAction",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "unspecified": {
+                "kind": "enum",
+                "id": "flax.material/material#type:TextInputAction",
+                "name": "TextInputAction",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "done": {
+                "kind": "enum",
+                "id": "flax.material/material#type:TextInputAction",
+                "name": "TextInputAction",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "go": {
+                "kind": "enum",
+                "id": "flax.material/material#type:TextInputAction",
+                "name": "TextInputAction",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "search": {
+                "kind": "enum",
+                "id": "flax.material/material#type:TextInputAction",
+                "name": "TextInputAction",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "send": {
+                "kind": "enum",
+                "id": "flax.material/material#type:TextInputAction",
+                "name": "TextInputAction",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "next": {
+                "kind": "enum",
+                "id": "flax.material/material#type:TextInputAction",
+                "name": "TextInputAction",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "previous": {
+                "kind": "enum",
+                "id": "flax.material/material#type:TextInputAction",
+                "name": "TextInputAction",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "continueAction": {
+                "kind": "enum",
+                "id": "flax.material/material#type:TextInputAction",
+                "name": "TextInputAction",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "join": {
+                "kind": "enum",
+                "id": "flax.material/material#type:TextInputAction",
+                "name": "TextInputAction",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "route": {
+                "kind": "enum",
+                "id": "flax.material/material#type:TextInputAction",
+                "name": "TextInputAction",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "emergencyCall": {
+                "kind": "enum",
+                "id": "flax.material/material#type:TextInputAction",
+                "name": "TextInputAction",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "newline": {
+                "kind": "enum",
+                "id": "flax.material/material#type:TextInputAction",
+                "name": "TextInputAction",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
@@ -24634,42 +25111,101 @@
               "light",
               "dark"
             ],
+            "enumValueTypes": {
+              "system": {
+                "kind": "enum",
+                "id": "flax.material/material#type:ThemeMode",
+                "name": "ThemeMode",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "light": {
+                "kind": "enum",
+                "id": "flax.material/material#type:ThemeMode",
+                "name": "ThemeMode",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "dark": {
+                "kind": "enum",
+                "id": "flax.material/material#type:ThemeMode",
+                "name": "ThemeMode",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
             "name": "ThemeData",
             "id": "flax.material/material#type:ThemeData",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "VisualDensity",
             "id": "flax.material/material#type:VisualDensity",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "ButtonStyle",
             "id": "flax.material/material#type:ButtonStyle",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "ColorScheme",
             "id": "flax.material/material#type:ColorScheme",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "TextTheme",
             "id": "flax.material/material#type:TextTheme",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "InputDecoration",
             "id": "flax.material/material#type:InputDecoration",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           }
         ],

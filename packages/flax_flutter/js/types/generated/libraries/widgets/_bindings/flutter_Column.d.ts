@@ -1,11 +1,17 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type DartListInput, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_MainAxisAlignment';
+import '@flax/flutter/widgets/_bindings/flutter_MainAxisAlignment';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_MainAxisSize';
+import '@flax/flutter/widgets/_bindings/flutter_MainAxisSize';
 import type * as upstream3 from '@flax/flutter/widgets/_bindings/flutter_CrossAxisAlignment';
+import '@flax/flutter/widgets/_bindings/flutter_CrossAxisAlignment';
 import type * as upstream4 from '@flax/flutter/services/_bindings/flutter_TextDirection';
+import '@flax/flutter/services/_bindings/flutter_TextDirection';
 import type * as upstream5 from '@flax/flutter/widgets/_bindings/flutter_VerticalDirection';
+import '@flax/flutter/widgets/_bindings/flutter_VerticalDirection';
 import type * as upstream6 from '@flax/flutter/widgets/_bindings/flutter_TextBaseline';
+import '@flax/flutter/widgets/_bindings/flutter_TextBaseline';
 export interface Column extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Column";
 }

@@ -1,6 +1,6 @@
 # Styles and Themes
 
-Protocol 23 uses generated bindings to construct and read real Dart style and theme
+Protocol 24 uses generated bindings to construct and read real Dart style and theme
 objects. Flutter performs color conversion, typography merging, seed-color generation,
 dependency tracking and rendering. There is no JS theme store or style mirror.
 

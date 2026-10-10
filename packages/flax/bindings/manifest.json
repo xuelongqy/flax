@@ -1,5 +1,5 @@
 {
-  "formatVersion": 16,
+  "formatVersion": 17,
   "package": "flax",
   "bindingNamespace": "flax.core",
   "imports": [],
@@ -7,7 +7,7 @@
     {
       "name": "components",
       "moduleId": "flax.core/components",
-      "uiProtocol": 23,
+      "uiProtocol": 24,
       "requiredCapabilities": [
         "instance-checks",
         "native-widget-proxies"
@@ -130,6 +130,7 @@
             "name": "StatefulWidget",
             "id": "flax.core/components#type:StatefulWidget",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           }
         ],
@@ -276,7 +277,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -378,7 +380,7 @@
     {
       "name": "flutter",
       "moduleId": "flax.core/flutter",
-      "uiProtocol": 23,
+      "uiProtocol": 24,
       "requiredCapabilities": [
         "instance-checks",
         "native-widget-proxies"
@@ -2350,7 +2352,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "length",
@@ -2419,7 +2422,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "isEmpty",
@@ -2488,7 +2492,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "first",
@@ -2557,7 +2562,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "last",
@@ -2626,7 +2632,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "single",
@@ -2695,7 +2702,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -11050,7 +11058,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -12822,7 +12831,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "onListen",
@@ -12907,7 +12917,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "onPause",
@@ -12992,7 +13003,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "onResume",
@@ -13077,7 +13089,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "onCancel",
@@ -13210,7 +13223,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "stream",
@@ -13279,7 +13293,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "sink",
@@ -13356,7 +13371,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "isClosed",
@@ -13393,7 +13409,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "isPaused",
@@ -13430,7 +13447,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "hasListener",
@@ -13467,7 +13485,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [
@@ -13554,7 +13573,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "onPause",
@@ -13639,7 +13659,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "onResume",
@@ -13724,7 +13745,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "onCancel",
@@ -13857,7 +13879,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "staticGetters": [],
@@ -14901,7 +14924,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "onPause",
@@ -14986,7 +15010,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "onResume",
@@ -15071,7 +15096,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "onCancel",
@@ -15204,7 +15230,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "stream",
@@ -15273,7 +15300,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "sink",
@@ -15350,7 +15378,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "isClosed",
@@ -15387,7 +15416,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "isPaused",
@@ -15424,7 +15454,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "hasListener",
@@ -15461,7 +15492,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "done",
@@ -15530,7 +15562,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [
@@ -15617,7 +15650,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "onPause",
@@ -15702,7 +15736,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "onResume",
@@ -15787,7 +15822,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "onCancel",
@@ -15920,7 +15956,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "staticGetters": [],
@@ -17054,7 +17091,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "onPause",
@@ -17139,7 +17177,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "onResume",
@@ -17224,7 +17263,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "onCancel",
@@ -17357,7 +17397,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "stream",
@@ -17426,7 +17467,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "sink",
@@ -17503,7 +17545,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "isClosed",
@@ -17540,7 +17583,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "isPaused",
@@ -17577,7 +17621,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "hasListener",
@@ -17614,7 +17659,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "done",
@@ -17683,7 +17729,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [
@@ -17770,7 +17817,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "onPause",
@@ -17855,7 +17903,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "onResume",
@@ -17940,7 +17989,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "onCancel",
@@ -18073,7 +18123,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "staticGetters": [],
@@ -19655,7 +19706,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "inHours",
@@ -19692,7 +19744,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "inMinutes",
@@ -19729,7 +19782,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "inSeconds",
@@ -19766,7 +19820,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "inMilliseconds",
@@ -19803,7 +19858,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "inMicroseconds",
@@ -19840,7 +19896,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -19865,6 +19922,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:Duration.zero"
               }
             ],
@@ -20078,7 +20136,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "isUtc",
@@ -20115,7 +20174,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -20280,7 +20340,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "host",
@@ -20317,7 +20378,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -20628,7 +20690,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -20851,6 +20914,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:StackTrace.current"
               },
               {
@@ -20873,6 +20937,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:StackTrace.empty"
               }
             ],
@@ -22476,7 +22541,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -27296,7 +27362,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "length",
@@ -27365,7 +27432,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "isEmpty",
@@ -27434,7 +27502,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "first",
@@ -27503,7 +27572,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "last",
@@ -27572,7 +27642,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "single",
@@ -27641,7 +27712,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -35928,7 +36000,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -36465,7 +36538,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "data",
@@ -36502,7 +36576,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "error",
@@ -36539,7 +36614,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": "error"
+                "encodeKind": "error",
+                "cache": false
               },
               {
                 "name": "stackTrace",
@@ -36576,7 +36652,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "hasData",
@@ -36613,7 +36690,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "hasError",
@@ -36650,7 +36728,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "requireData",
@@ -36687,7 +36766,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -38430,7 +38510,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "b",
@@ -38467,7 +38548,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "c",
@@ -38504,7 +38586,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "d",
@@ -38541,7 +38624,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -38772,6 +38856,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:Curves.linear"
               },
               {
@@ -38794,6 +38879,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:Curves.ease"
               },
               {
@@ -38816,6 +38902,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:Curves.easeIn"
               },
               {
@@ -38838,6 +38925,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:Curves.easeOut"
               },
               {
@@ -38860,6 +38948,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:Curves.easeInOut"
               }
             ],
@@ -38927,6 +39016,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:MouseCursor.defer"
               },
               {
@@ -38949,6 +39039,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:MouseCursor.uncontrolled"
               }
             ],
@@ -39134,6 +39225,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:SystemMouseCursors.basic"
               },
               {
@@ -39156,6 +39248,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:SystemMouseCursors.click"
               },
               {
@@ -39178,6 +39271,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:SystemMouseCursors.text"
               },
               {
@@ -39200,6 +39294,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:SystemMouseCursors.forbidden"
               }
             ],
@@ -40612,7 +40707,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -41286,7 +41382,8 @@
                     "tsArguments": [],
                     "slot": null
                   },
-                  "encodeKind": null
+                  "encodeKind": null,
+                  "cache": false
                 }
               ],
               "setters": []
@@ -41342,7 +41439,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "destination",
@@ -41379,7 +41477,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -42751,7 +42850,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -42962,7 +43062,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "borderRadius",
@@ -42999,7 +43100,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -43398,7 +43500,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "eccentricity",
@@ -43435,7 +43538,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -43770,7 +43874,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -44359,7 +44464,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "border",
@@ -44396,7 +44502,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "borderRadius",
@@ -44433,7 +44540,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "shape",
@@ -44470,7 +44578,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -45011,7 +45120,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "width",
@@ -45048,7 +45158,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "style",
@@ -45085,7 +45196,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "strokeAlign",
@@ -45122,7 +45234,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -45147,6 +45260,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:BorderSide.none"
               },
               {
@@ -45169,6 +45283,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:BorderSide.strokeAlignInside"
               },
               {
@@ -45191,6 +45306,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:BorderSide.strokeAlignCenter"
               },
               {
@@ -45213,6 +45329,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:BorderSide.strokeAlignOutside"
               }
             ],
@@ -45900,7 +46017,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "right",
@@ -45937,7 +46055,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "bottom",
@@ -45974,7 +46093,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "left",
@@ -46011,7 +46131,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "isUniform",
@@ -46048,7 +46169,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -46381,7 +46503,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "start",
@@ -46418,7 +46541,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "end",
@@ -46455,7 +46579,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "bottom",
@@ -46492,7 +46617,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "isUniform",
@@ -46529,7 +46655,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -46824,7 +46951,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "y",
@@ -46861,7 +46989,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -46886,6 +47015,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:Radius.zero"
               }
             ],
@@ -47249,7 +47379,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "topRight",
@@ -47286,7 +47417,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "bottomLeft",
@@ -47323,7 +47455,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "bottomRight",
@@ -47360,7 +47493,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -47385,6 +47519,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:BorderRadius.zero"
               }
             ],
@@ -48004,7 +48139,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "topEnd",
@@ -48041,7 +48177,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "bottomStart",
@@ -48078,7 +48215,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "bottomEnd",
@@ -48115,7 +48253,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -48140,6 +48279,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:BorderRadiusDirectional.zero"
               }
             ],
@@ -48763,7 +48903,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "top",
@@ -48800,7 +48941,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "end",
@@ -48837,7 +48979,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "bottom",
@@ -48874,7 +49017,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -48899,6 +49043,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:EdgeInsetsDirectional.zero"
               }
             ],
@@ -49152,7 +49297,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "y",
@@ -49189,7 +49335,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -49214,6 +49361,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:Alignment.topLeft"
               },
               {
@@ -49236,6 +49384,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:Alignment.topCenter"
               },
               {
@@ -49258,6 +49407,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:Alignment.topRight"
               },
               {
@@ -49280,6 +49430,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:Alignment.centerLeft"
               },
               {
@@ -49302,6 +49453,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:Alignment.center"
               },
               {
@@ -49324,6 +49476,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:Alignment.centerRight"
               },
               {
@@ -49346,6 +49499,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:Alignment.bottomLeft"
               },
               {
@@ -49368,6 +49522,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:Alignment.bottomCenter"
               },
               {
@@ -49390,6 +49545,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:Alignment.bottomRight"
               }
             ],
@@ -49599,7 +49755,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "y",
@@ -49636,7 +49793,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -49661,6 +49819,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:AlignmentDirectional.topStart"
               },
               {
@@ -49683,6 +49842,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:AlignmentDirectional.topCenter"
               },
               {
@@ -49705,6 +49865,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:AlignmentDirectional.topEnd"
               },
               {
@@ -49727,6 +49888,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:AlignmentDirectional.centerStart"
               },
               {
@@ -49749,6 +49911,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:AlignmentDirectional.center"
               },
               {
@@ -49771,6 +49934,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:AlignmentDirectional.centerEnd"
               },
               {
@@ -49793,6 +49957,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:AlignmentDirectional.bottomStart"
               },
               {
@@ -49815,6 +49980,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:AlignmentDirectional.bottomCenter"
               },
               {
@@ -49837,6 +50003,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:AlignmentDirectional.bottomEnd"
               }
             ],
@@ -51541,7 +51708,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "r",
@@ -51578,7 +51746,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "g",
@@ -51615,7 +51784,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "b",
@@ -51652,7 +51822,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -52251,7 +52422,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -52276,6 +52448,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:FontWeight.w100"
               },
               {
@@ -52298,6 +52471,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:FontWeight.w200"
               },
               {
@@ -52320,6 +52494,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:FontWeight.w300"
               },
               {
@@ -52342,6 +52517,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:FontWeight.w400"
               },
               {
@@ -52364,6 +52540,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:FontWeight.w500"
               },
               {
@@ -52386,6 +52563,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:FontWeight.w600"
               },
               {
@@ -52408,6 +52586,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:FontWeight.w700"
               },
               {
@@ -52430,6 +52609,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:FontWeight.w800"
               },
               {
@@ -52452,6 +52632,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:FontWeight.w900"
               },
               {
@@ -52474,6 +52655,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:FontWeight.normal"
               },
               {
@@ -52496,6 +52678,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:FontWeight.bold"
               }
             ],
@@ -52979,7 +53162,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "color",
@@ -53016,7 +53200,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "backgroundColor",
@@ -53053,7 +53238,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "fontSize",
@@ -53090,7 +53276,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "fontWeight",
@@ -53127,7 +53314,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "fontStyle",
@@ -53164,7 +53352,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "letterSpacing",
@@ -53201,7 +53390,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "wordSpacing",
@@ -53238,7 +53428,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "height",
@@ -53275,7 +53466,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -54042,7 +54234,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "text",
@@ -54079,7 +54272,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "selection",
@@ -54116,7 +54310,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [
@@ -54155,7 +54350,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "value",
@@ -54192,7 +54388,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "selection",
@@ -54229,7 +54426,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "staticGetters": [],
@@ -55024,7 +55222,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "selection",
@@ -55061,7 +55260,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "composing",
@@ -55098,7 +55298,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "isComposingRangeValid",
@@ -55135,7 +55336,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -55160,6 +55362,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:TextEditingValue.empty"
               }
             ],
@@ -55695,7 +55898,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "end",
@@ -55732,7 +55936,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "isValid",
@@ -55769,7 +55974,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "isCollapsed",
@@ -55806,7 +56012,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "isNormalized",
@@ -55843,7 +56050,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "baseOffset",
@@ -55880,7 +56088,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "extentOffset",
@@ -55917,7 +56126,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "affinity",
@@ -55954,7 +56164,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "isDirectional",
@@ -55991,7 +56202,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -56474,7 +56686,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "end",
@@ -56511,7 +56724,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "isValid",
@@ -56548,7 +56762,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "isCollapsed",
@@ -56585,7 +56800,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "isNormalized",
@@ -56622,7 +56838,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -56647,6 +56864,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:TextRange.empty"
               }
             ],
@@ -57854,7 +58072,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -59051,7 +59270,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "name",
@@ -59088,7 +59308,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "arguments",
@@ -59109,7 +59330,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -59289,7 +59511,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "arguments",
@@ -59310,7 +59533,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -60594,7 +60818,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "size",
@@ -60631,7 +60856,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -60838,7 +61064,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "height",
@@ -60875,7 +61102,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -61009,7 +61237,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -61034,6 +61263,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:SchedulerBinding.instance"
               }
             ],
@@ -61505,7 +61735,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "maxWidth",
@@ -61542,7 +61773,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "minHeight",
@@ -61579,7 +61811,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "maxHeight",
@@ -61616,7 +61849,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -62197,7 +62431,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "key",
@@ -62234,7 +62469,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -62474,7 +62710,8 @@
                     "tsArguments": [],
                     "slot": null
                   },
-                  "encodeKind": null
+                  "encodeKind": null,
+                  "cache": false
                 },
                 {
                   "name": "key",
@@ -62511,7 +62748,8 @@
                     "tsArguments": [],
                     "slot": null
                   },
-                  "encodeKind": null
+                  "encodeKind": null,
+                  "cache": false
                 }
               ],
               "setters": []
@@ -64597,7 +64835,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "top",
@@ -64634,7 +64873,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "right",
@@ -64671,7 +64911,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "bottom",
@@ -64708,7 +64949,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -64733,6 +64975,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:EdgeInsets.zero"
               }
             ],
@@ -64994,7 +65237,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -65301,7 +65545,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "offset",
@@ -65338,7 +65583,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -66144,7 +66390,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -66277,7 +66524,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -66444,7 +66692,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -66611,7 +66860,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -66778,7 +67028,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -68433,7 +68684,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "hasPrimaryFocus",
@@ -68470,7 +68722,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "canRequestFocus",
@@ -68507,7 +68760,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "skipTraversal",
@@ -68544,7 +68798,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [
@@ -68583,7 +68838,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "skipTraversal",
@@ -68620,7 +68876,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "staticGetters": [],
@@ -70017,6 +70274,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:FilteringTextInputFormatter.digitsOnly"
               },
               {
@@ -70039,6 +70297,7 @@
                   "slot": null
                 },
                 "encodeKind": null,
+                "cache": false,
                 "id": "flax.core/flutter#read:FilteringTextInputFormatter.singleLineFormatter"
               }
             ],
@@ -78854,6 +79113,93 @@
               "onUnfocus",
               "onUserInteractionIfError"
             ],
+            "enumValueTypes": {
+              "disabled": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:AutovalidateMode",
+                "name": "AutovalidateMode",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "always": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:AutovalidateMode",
+                "name": "AutovalidateMode",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "onUserInteraction": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:AutovalidateMode",
+                "name": "AutovalidateMode",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "onUnfocus": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:AutovalidateMode",
+                "name": "AutovalidateMode",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "onUserInteractionIfError": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:AutovalidateMode",
+                "name": "AutovalidateMode",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
@@ -78863,6 +79209,42 @@
               "horizontal",
               "vertical"
             ],
+            "enumValueTypes": {
+              "horizontal": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:Axis",
+                "name": "Axis",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "vertical": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:Axis",
+                "name": "Axis",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
@@ -78872,6 +79254,42 @@
               "none",
               "solid"
             ],
+            "enumValueTypes": {
+              "none": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:BorderStyle",
+                "name": "BorderStyle",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "solid": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:BorderStyle",
+                "name": "BorderStyle",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
@@ -78886,6 +79304,127 @@
               "none",
               "scaleDown"
             ],
+            "enumValueTypes": {
+              "fill": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:BoxFit",
+                "name": "BoxFit",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "contain": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:BoxFit",
+                "name": "BoxFit",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "cover": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:BoxFit",
+                "name": "BoxFit",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "fitWidth": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:BoxFit",
+                "name": "BoxFit",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "fitHeight": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:BoxFit",
+                "name": "BoxFit",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "none": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:BoxFit",
+                "name": "BoxFit",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "scaleDown": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:BoxFit",
+                "name": "BoxFit",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
@@ -78895,6 +79434,42 @@
               "rectangle",
               "circle"
             ],
+            "enumValueTypes": {
+              "rectangle": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:BoxShape",
+                "name": "BoxShape",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "circle": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:BoxShape",
+                "name": "BoxShape",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
@@ -78906,6 +79481,76 @@
               "antiAlias",
               "antiAliasWithSaveLayer"
             ],
+            "enumValueTypes": {
+              "none": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:Clip",
+                "name": "Clip",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "hardEdge": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:Clip",
+                "name": "Clip",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "antiAlias": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:Clip",
+                "name": "Clip",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "antiAliasWithSaveLayer": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:Clip",
+                "name": "Clip",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
@@ -78917,6 +79562,76 @@
               "active",
               "done"
             ],
+            "enumValueTypes": {
+              "none": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:ConnectionState",
+                "name": "ConnectionState",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "waiting": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:ConnectionState",
+                "name": "ConnectionState",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "active": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:ConnectionState",
+                "name": "ConnectionState",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "done": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:ConnectionState",
+                "name": "ConnectionState",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
@@ -78929,6 +79644,93 @@
               "stretch",
               "baseline"
             ],
+            "enumValueTypes": {
+              "start": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:CrossAxisAlignment",
+                "name": "CrossAxisAlignment",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "end": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:CrossAxisAlignment",
+                "name": "CrossAxisAlignment",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "center": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:CrossAxisAlignment",
+                "name": "CrossAxisAlignment",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "stretch": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:CrossAxisAlignment",
+                "name": "CrossAxisAlignment",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "baseline": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:CrossAxisAlignment",
+                "name": "CrossAxisAlignment",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
@@ -78938,6 +79740,42 @@
               "background",
               "foreground"
             ],
+            "enumValueTypes": {
+              "background": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:DecorationPosition",
+                "name": "DecorationPosition",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "foreground": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:DecorationPosition",
+                "name": "DecorationPosition",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
@@ -78947,6 +79785,42 @@
               "down",
               "start"
             ],
+            "enumValueTypes": {
+              "down": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:DragStartBehavior",
+                "name": "DragStartBehavior",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "start": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:DragStartBehavior",
+                "name": "DragStartBehavior",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
@@ -78956,6 +79830,42 @@
               "tight",
               "loose"
             ],
+            "enumValueTypes": {
+              "tight": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:FlexFit",
+                "name": "FlexFit",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "loose": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:FlexFit",
+                "name": "FlexFit",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
@@ -78965,6 +79875,42 @@
               "normal",
               "italic"
             ],
+            "enumValueTypes": {
+              "normal": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:FontStyle",
+                "name": "FontStyle",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "italic": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:FontStyle",
+                "name": "FontStyle",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
@@ -78975,6 +79921,59 @@
               "opaque",
               "translucent"
             ],
+            "enumValueTypes": {
+              "deferToChild": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:HitTestBehavior",
+                "name": "HitTestBehavior",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "opaque": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:HitTestBehavior",
+                "name": "HitTestBehavior",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "translucent": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:HitTestBehavior",
+                "name": "HitTestBehavior",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
@@ -78988,6 +79987,110 @@
               "spaceAround",
               "spaceEvenly"
             ],
+            "enumValueTypes": {
+              "start": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:MainAxisAlignment",
+                "name": "MainAxisAlignment",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "end": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:MainAxisAlignment",
+                "name": "MainAxisAlignment",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "center": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:MainAxisAlignment",
+                "name": "MainAxisAlignment",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "spaceBetween": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:MainAxisAlignment",
+                "name": "MainAxisAlignment",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "spaceAround": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:MainAxisAlignment",
+                "name": "MainAxisAlignment",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "spaceEvenly": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:MainAxisAlignment",
+                "name": "MainAxisAlignment",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
@@ -78997,6 +80100,42 @@
               "min",
               "max"
             ],
+            "enumValueTypes": {
+              "min": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:MainAxisSize",
+                "name": "MainAxisSize",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "max": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:MainAxisSize",
+                "name": "MainAxisSize",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
@@ -79007,6 +80146,59 @@
               "enforced",
               "truncateAfterCompositionEnds"
             ],
+            "enumValueTypes": {
+              "none": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:MaxLengthEnforcement",
+                "name": "MaxLengthEnforcement",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "enforced": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:MaxLengthEnforcement",
+                "name": "MaxLengthEnforcement",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "truncateAfterCompositionEnds": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:MaxLengthEnforcement",
+                "name": "MaxLengthEnforcement",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
@@ -79017,6 +80209,59 @@
               "expand",
               "passthrough"
             ],
+            "enumValueTypes": {
+              "loose": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:StackFit",
+                "name": "StackFit",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "expand": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:StackFit",
+                "name": "StackFit",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "passthrough": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:StackFit",
+                "name": "StackFit",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
@@ -79030,6 +80275,110 @@
               "macOS",
               "windows"
             ],
+            "enumValueTypes": {
+              "android": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:TargetPlatform",
+                "name": "TargetPlatform",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "fuchsia": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:TargetPlatform",
+                "name": "TargetPlatform",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "iOS": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:TargetPlatform",
+                "name": "TargetPlatform",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "linux": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:TargetPlatform",
+                "name": "TargetPlatform",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "macOS": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:TargetPlatform",
+                "name": "TargetPlatform",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "windows": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:TargetPlatform",
+                "name": "TargetPlatform",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
@@ -79039,6 +80388,42 @@
               "upstream",
               "downstream"
             ],
+            "enumValueTypes": {
+              "upstream": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:TextAffinity",
+                "name": "TextAffinity",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "downstream": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:TextAffinity",
+                "name": "TextAffinity",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
@@ -79052,6 +80437,110 @@
               "start",
               "end"
             ],
+            "enumValueTypes": {
+              "left": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:TextAlign",
+                "name": "TextAlign",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "right": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:TextAlign",
+                "name": "TextAlign",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "center": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:TextAlign",
+                "name": "TextAlign",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "justify": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:TextAlign",
+                "name": "TextAlign",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "start": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:TextAlign",
+                "name": "TextAlign",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "end": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:TextAlign",
+                "name": "TextAlign",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
@@ -79061,6 +80550,42 @@
               "alphabetic",
               "ideographic"
             ],
+            "enumValueTypes": {
+              "alphabetic": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:TextBaseline",
+                "name": "TextBaseline",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "ideographic": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:TextBaseline",
+                "name": "TextBaseline",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
@@ -79070,6 +80595,42 @@
               "rtl",
               "ltr"
             ],
+            "enumValueTypes": {
+              "rtl": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:TextDirection",
+                "name": "TextDirection",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "ltr": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:TextDirection",
+                "name": "TextDirection",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
@@ -79081,6 +80642,76 @@
               "ellipsis",
               "visible"
             ],
+            "enumValueTypes": {
+              "clip": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:TextOverflow",
+                "name": "TextOverflow",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "fade": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:TextOverflow",
+                "name": "TextOverflow",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "ellipsis": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:TextOverflow",
+                "name": "TextOverflow",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "visible": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:TextOverflow",
+                "name": "TextOverflow",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
@@ -79090,6 +80721,42 @@
               "scope",
               "previouslyFocusedChild"
             ],
+            "enumValueTypes": {
+              "scope": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:UnfocusDisposition",
+                "name": "UnfocusDisposition",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "previouslyFocusedChild": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:UnfocusDisposition",
+                "name": "UnfocusDisposition",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
@@ -79099,6 +80766,42 @@
               "up",
               "down"
             ],
+            "enumValueTypes": {
+              "up": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:VerticalDirection",
+                "name": "VerticalDirection",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "down": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:VerticalDirection",
+                "name": "VerticalDirection",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
@@ -79114,6 +80817,144 @@
               "disabled",
               "error"
             ],
+            "enumValueTypes": {
+              "hovered": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:WidgetState",
+                "name": "WidgetState",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "focused": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:WidgetState",
+                "name": "WidgetState",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "pressed": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:WidgetState",
+                "name": "WidgetState",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "dragged": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:WidgetState",
+                "name": "WidgetState",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "selected": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:WidgetState",
+                "name": "WidgetState",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "scrolledUnder": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:WidgetState",
+                "name": "WidgetState",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "disabled": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:WidgetState",
+                "name": "WidgetState",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "error": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:WidgetState",
+                "name": "WidgetState",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
@@ -79127,6 +80968,110 @@
               "spaceAround",
               "spaceEvenly"
             ],
+            "enumValueTypes": {
+              "start": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:WrapAlignment",
+                "name": "WrapAlignment",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "end": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:WrapAlignment",
+                "name": "WrapAlignment",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "center": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:WrapAlignment",
+                "name": "WrapAlignment",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "spaceBetween": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:WrapAlignment",
+                "name": "WrapAlignment",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "spaceAround": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:WrapAlignment",
+                "name": "WrapAlignment",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "spaceEvenly": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:WrapAlignment",
+                "name": "WrapAlignment",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
@@ -79137,54 +81082,115 @@
               "end",
               "center"
             ],
+            "enumValueTypes": {
+              "start": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:WrapCrossAlignment",
+                "name": "WrapCrossAlignment",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "end": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:WrapCrossAlignment",
+                "name": "WrapCrossAlignment",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "center": {
+                "kind": "enum",
+                "id": "flax.core/flutter#type:WrapCrossAlignment",
+                "name": "WrapCrossAlignment",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            },
             "typeParameters": []
           },
           {
             "name": "Offset",
             "id": "flax.core/flutter#type:Offset",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "PhysicalKeyboardKey",
             "id": "flax.core/flutter#type:PhysicalKeyboardKey",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "LogicalKeyboardKey",
             "id": "flax.core/flutter#type:LogicalKeyboardKey",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "PointerEvent",
             "id": "flax.core/flutter#type:PointerEvent",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "PointerScrollEvent",
             "id": "flax.core/flutter#type:PointerScrollEvent",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "KeyEvent",
             "id": "flax.core/flutter#type:KeyEvent",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "Key",
             "id": "flax.core/flutter#type:Key",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "Stream",
             "id": "flax.core/flutter#type:Stream",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": [
               {
                 "name": "T",
@@ -79214,6 +81220,7 @@
             "name": "StreamSubscription",
             "id": "flax.core/flutter#type:StreamSubscription",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": [
               {
                 "name": "T",
@@ -79243,12 +81250,14 @@
             "name": "StackTrace",
             "id": "flax.core/flutter#type:StackTrace",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "StreamConsumer",
             "id": "flax.core/flutter#type:StreamConsumer",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": [
               {
                 "name": "S",
@@ -79278,6 +81287,7 @@
             "name": "StreamTransformer",
             "id": "flax.core/flutter#type:StreamTransformer",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": [
               {
                 "name": "S",
@@ -79329,12 +81339,14 @@
             "name": "Duration",
             "id": "flax.core/flutter#type:Duration",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "EventSink",
             "id": "flax.core/flutter#type:EventSink",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": [
               {
                 "name": "T",
@@ -79364,6 +81376,7 @@
             "name": "MultiStreamController",
             "id": "flax.core/flutter#type:MultiStreamController",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": [
               {
                 "name": "T",
@@ -79393,6 +81406,7 @@
             "name": "StreamSink",
             "id": "flax.core/flutter#type:StreamSink",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": [
               {
                 "name": "S",
@@ -79422,6 +81436,7 @@
             "name": "Sink",
             "id": "flax.core/flutter#type:Sink",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": [
               {
                 "name": "T",
@@ -79451,6 +81466,7 @@
             "name": "StreamController",
             "id": "flax.core/flutter#type:StreamController",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": [
               {
                 "name": "T",
@@ -79480,18 +81496,21 @@
             "name": "DateTime",
             "id": "flax.core/flutter#type:DateTime",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "Uri",
             "id": "flax.core/flutter#type:Uri",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "AsyncSnapshot",
             "id": "flax.core/flutter#type:AsyncSnapshot",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": [
               {
                 "name": "T",
@@ -79521,12 +81540,14 @@
             "name": "BuildContext",
             "id": "flax.core/flutter#type:BuildContext",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "WidgetStateProperty",
             "id": "flax.core/flutter#type:WidgetStateProperty",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": [
               {
                 "name": "T",
@@ -79556,30 +81577,35 @@
             "name": "Curve",
             "id": "flax.core/flutter#type:Curve",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "Cubic",
             "id": "flax.core/flutter#type:Cubic",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "MouseCursor",
             "id": "flax.core/flutter#type:MouseCursor",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "SystemMouseCursor",
             "id": "flax.core/flutter#type:SystemMouseCursor",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "ValueListenable",
             "id": "flax.core/flutter#type:ValueListenable",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": [
               {
                 "name": "T",
@@ -79609,192 +81635,224 @@
             "name": "Listenable",
             "id": "flax.core/flutter#type:Listenable",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "Size",
             "id": "flax.core/flutter#type:Size",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "NavigatorObserver",
             "id": "flax.core/flutter#type:NavigatorObserver",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "PreferredSizeWidget",
             "id": "flax.core/flutter#type:PreferredSizeWidget",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "AlignmentGeometry",
             "id": "flax.core/flutter#type:AlignmentGeometry",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "EdgeInsetsGeometry",
             "id": "flax.core/flutter#type:EdgeInsetsGeometry",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "Color",
             "id": "flax.core/flutter#type:Color",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "Decoration",
             "id": "flax.core/flutter#type:Decoration",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "BoxConstraints",
             "id": "flax.core/flutter#type:BoxConstraints",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "BorderSide",
             "id": "flax.core/flutter#type:BorderSide",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "ShapeBorder",
             "id": "flax.core/flutter#type:ShapeBorder",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "BorderRadiusGeometry",
             "id": "flax.core/flutter#type:BorderRadiusGeometry",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "RoundedRectangleBorder",
             "id": "flax.core/flutter#type:RoundedRectangleBorder",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "OutlinedBorder",
             "id": "flax.core/flutter#type:OutlinedBorder",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "CircleBorder",
             "id": "flax.core/flutter#type:CircleBorder",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "StadiumBorder",
             "id": "flax.core/flutter#type:StadiumBorder",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "BoxBorder",
             "id": "flax.core/flutter#type:BoxBorder",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "BoxDecoration",
             "id": "flax.core/flutter#type:BoxDecoration",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "Radius",
             "id": "flax.core/flutter#type:Radius",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "BorderRadius",
             "id": "flax.core/flutter#type:BorderRadius",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "BorderRadiusDirectional",
             "id": "flax.core/flutter#type:BorderRadiusDirectional",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "EdgeInsetsDirectional",
             "id": "flax.core/flutter#type:EdgeInsetsDirectional",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "Alignment",
             "id": "flax.core/flutter#type:Alignment",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "AlignmentDirectional",
             "id": "flax.core/flutter#type:AlignmentDirectional",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "ImageFilter",
             "id": "flax.core/flutter#type:ImageFilter",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "FontWeight",
             "id": "flax.core/flutter#type:FontWeight",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "TextStyle",
             "id": "flax.core/flutter#type:TextStyle",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "TextEditingValue",
             "id": "flax.core/flutter#type:TextEditingValue",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "TextSelection",
             "id": "flax.core/flutter#type:TextSelection",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "TextRange",
             "id": "flax.core/flutter#type:TextRange",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "NavigatorState",
             "id": "flax.core/flutter#type:NavigatorState",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "Page",
             "id": "flax.core/flutter#type:Page",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": [
               {
                 "name": "T",
@@ -79824,12 +81882,14 @@
             "name": "RouteSettings",
             "id": "flax.core/flutter#type:RouteSettings",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "Route",
             "id": "flax.core/flutter#type:Route",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": [
               {
                 "name": "T",
@@ -79859,54 +81919,63 @@
             "name": "LocalKey",
             "id": "flax.core/flutter#type:LocalKey",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "SchedulerBinding",
             "id": "flax.core/flutter#type:SchedulerBinding",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "EdgeInsets",
             "id": "flax.core/flutter#type:EdgeInsets",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "ScrollPhysics",
             "id": "flax.core/flutter#type:ScrollPhysics",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "ScrollController",
             "id": "flax.core/flutter#type:ScrollController",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "FocusNode",
             "id": "flax.core/flutter#type:FocusNode",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "TextInputFormatter",
             "id": "flax.core/flutter#type:TextInputFormatter",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "Pattern",
             "id": "flax.core/flutter#type:Pattern",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "FittedSizes",
             "id": "flax.core/flutter#type:FittedSizes",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           }
         ],

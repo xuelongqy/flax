@@ -9,12 +9,12 @@ function capture(t) {
   const calls = [],
     layouts = [];
   globalThis.__flaxPrepareProxy = (version, type, rows) => {
-    assert.equal(version, 23);
+    assert.equal(version, 24);
     layouts.push({ type, rows });
     return layouts.length - 1;
   };
   globalThis.__flaxCreateObject = (version, type, descriptor) => {
-    assert.equal(version, 23);
+    assert.equal(version, 24);
     calls.push(descriptor);
     return descriptor;
   };

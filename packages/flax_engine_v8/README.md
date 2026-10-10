@@ -12,5 +12,5 @@ The SDK lock and adapter sources remain local historical/internal build inputs; 
 Flutter fork owns the current runtime implementation.
 
 Use the [workspace setup](../../README.md#quick-start) and
-[runtime contract](../../docs/architecture/runtime.md). Native ABI 2 and UI protocol 23
+[runtime contract](../../docs/architecture/runtime.md). Native ABI 2 and UI protocol 24
 remain unchanged; conditional GC uses a separately versioned engine extension.

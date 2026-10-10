@@ -138,6 +138,7 @@ final class ApiCallableRecord {
     this.isAbstract = false,
     this.isDeprecated = false,
     this.isOperator = false,
+    this.isEnumConstant = false,
     this.isProtected = false,
     this.isVisibleForTesting = false,
     this.declaredBy,
@@ -156,6 +157,7 @@ final class ApiCallableRecord {
   final bool isAbstract;
   final bool isDeprecated;
   final bool isOperator;
+  final bool isEnumConstant;
   final bool isProtected;
   final bool isVisibleForTesting;
   final String? declaredBy;
@@ -174,6 +176,7 @@ final class ApiCallableRecord {
     'isAbstract': isAbstract,
     'isDeprecated': isDeprecated,
     'isOperator': isOperator,
+    if (isEnumConstant) 'isEnumConstant': true,
     'isProtected': isProtected,
     'isVisibleForTesting': isVisibleForTesting,
     if (declaredBy != null) 'declaredBy': declaredBy,

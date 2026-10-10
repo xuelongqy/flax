@@ -49,12 +49,15 @@ enum FlaxCodegenClassCategory {
   stream,
   route,
   page,
-  object;
+  object,
+  enumeration;
 
-  static FlaxCodegenClassCategory parse(String name) => values.firstWhere(
-    (value) => value.name == name,
-    orElse: () => throw StateError('Unknown model class: $name'),
-  );
+  static FlaxCodegenClassCategory parse(String name) => name == 'enum'
+      ? enumeration
+      : values.firstWhere(
+          (value) => value != enumeration && value.name == name,
+          orElse: () => throw StateError('Unknown model class: $name'),
+        );
 }
 
 class FlaxCodegenRecordFieldModel {
@@ -621,6 +624,7 @@ class FlaxCodegenGetterModel {
     this.type, {
     this.encodeKind,
     this.id,
+    this.cache = false,
   });
   final String name;
   final FlaxCodegenTypeRef type;
@@ -628,6 +632,9 @@ class FlaxCodegenGetterModel {
 
   /// Static accessor operation identity; instance accessors use their owner.
   final String? id;
+
+  /// Only final primitive enum fields may be cached after a real Dart read.
+  final bool cache;
 }
 
 class FlaxCodegenMethodModel {
@@ -768,6 +775,256 @@ class FlaxCodegenClassModel {
   }
 
   FlaxCodegenClassCategory get category => FlaxCodegenClassCategory.parse(kind);
+
+  String enumOperationId(String member, String operation, [String? constant]) {
+    final name = '$member:$operation${constant == null ? '' : ':$constant'}';
+    if (id.contains('::')) return '$id.$name';
+    final owner = FlaxCodegenWireId.parse(id);
+    return FlaxCodegenWireId.function(
+      moduleId: owner.moduleId,
+      publicBindingName: '${owner.publicBindingName}.$name',
+    ).value;
+  }
+
+  Iterable<FlaxCodegenFunctionModel> enumFunctions(
+    FlaxCodegenNamedTypeModel constants,
+  ) sync* {
+    if (kind != 'enum') return;
+    FlaxCodegenParameterModel receiver(
+      FlaxCodegenTypeRef type, [
+      Iterable<FlaxCodegenParameterModel> parameters = const [],
+    ]) {
+      var name = 'receiver';
+      while (parameters.any((parameter) => parameter.name == name)) {
+        name = '_$name';
+      }
+      return FlaxCodegenParameterModel(
+        name: name,
+        type: type,
+        required: true,
+        positional: true,
+        defaultCode: 'null',
+      );
+    }
+
+    final receivers = typeParameters.isEmpty
+        ? <String?, FlaxCodegenTypeRef>{
+            null: FlaxCodegenTypeRef('enum', id: id, name: name),
+          }
+        : <String?, FlaxCodegenTypeRef>{
+            for (final constant in constants.enumValueTypes.entries)
+              constant.key: _specializeEnumType(constant.value, const {}),
+          };
+    final broadType = FlaxCodegenTypeRef(
+      'enum',
+      id: id,
+      name: name,
+      dartArguments: [
+        for (final parameter in typeParameters) parameter.defaultType!,
+      ],
+      tsArguments: [
+        for (final parameter in typeParameters) parameter.defaultType!,
+      ],
+    );
+    FlaxCodegenFunctionModel operation(
+      String member,
+      String action,
+      List<FlaxCodegenParameterModel> parameters,
+      FlaxCodegenTypeRef result, [
+      List<FlaxCodegenGenericParameter> generics = const [],
+      String? constant,
+      List<String> arguments = const [],
+      String? operatorName,
+    ]) => FlaxCodegenFunctionModel(
+      enumOperationId(member, action, constant),
+      FlaxCodegenMethodModel(
+        '_enum_${name}_${action}_$member${constant == null ? '' : '_$constant'}',
+        parameters,
+        result,
+        typeParameters: generics,
+        typeArguments: arguments,
+        operatorName: operatorName,
+      ),
+    );
+    // Enum constants have closed types; erased inputs can otherwise turn int
+    // into double or List<int> into List<Object?> before Dart checks the call.
+    for (final variant in receivers.entries) {
+      final arguments = variant.value.dartArguments;
+      final substitutions = <Object?, FlaxCodegenTypeRef>{
+        for (var index = 0; index < typeParameters.length; index++)
+          typeParameters[index].genericIdentity: arguments[index],
+      };
+      FlaxCodegenTypeRef specialize(FlaxCodegenTypeRef type) =>
+          _specializeEnumType(type, substitutions);
+      for (final getter in getters) {
+        yield operation(
+          getter.name,
+          'get',
+          [receiver(variant.value)],
+          specialize(getter.type),
+          const [],
+          variant.key,
+        );
+      }
+      for (final setter in setters) {
+        yield operation(
+          setter.name,
+          'set',
+          [
+            receiver(variant.value),
+            FlaxCodegenParameterModel(
+              name: 'value',
+              type: specialize(setter.type),
+              required: true,
+              positional: true,
+              defaultCode: 'null',
+            ),
+          ],
+          const FlaxCodegenTypeRef('void'),
+          const [],
+          variant.key,
+        );
+      }
+      for (final method in methods.where((method) => method.instance)) {
+        yield operation(
+          method.name,
+          'call',
+          [
+            receiver(variant.value, method.parameters),
+            for (final parameter in method.parameters)
+              _specializeEnumParameter(parameter, substitutions),
+          ],
+          specialize(method.result),
+          method.typeParameters,
+          variant.key,
+          method.typeArguments,
+          method.operatorName,
+        );
+      }
+    }
+    for (final method in methods.where((method) => !method.instance)) {
+      yield operation(
+        method.name,
+        'call',
+        method.parameters,
+        method.result,
+        method.typeParameters,
+        null,
+        method.typeArguments,
+      );
+    }
+    for (final constructor in constructors) {
+      yield operation(
+        constructor.name,
+        'factory',
+        constructor.parameters,
+        broadType,
+      );
+    }
+  }
+}
+
+FlaxCodegenParameterModel _specializeEnumParameter(
+  FlaxCodegenParameterModel parameter,
+  Map<Object?, FlaxCodegenTypeRef> substitutions, [
+  FlaxCodegenTypeRef? declaration,
+]) => FlaxCodegenParameterModel(
+  name: parameter.name,
+  type: _specializeEnumType(
+    declaration == null
+        ? parameter.type
+        : parameter.type.declaredAs(declaration),
+    substitutions,
+  ),
+  required: parameter.required,
+  positional: parameter.positional,
+  defaultCode: parameter.defaultCode,
+  omitWhenAbsent: parameter.omitWhenAbsent,
+  independentWidgetResult: parameter.independentWidgetResult,
+  snapshot: parameter.snapshot,
+  encodeKind: parameter.encodeKind,
+  scoped: parameter.scoped,
+);
+
+FlaxCodegenTypeRef _specializeEnumType(
+  FlaxCodegenTypeRef type,
+  Map<Object?, FlaxCodegenTypeRef> substitutions,
+) {
+  final parameter = type.kind == 'parameter' ? type : type.declaration;
+  if (parameter?.kind == 'parameter') {
+    final replacement = substitutions[parameter!.genericIdentity];
+    if (replacement != null) {
+      return parameter.nullable ? replacement.asNullable() : replacement;
+    }
+  }
+  FlaxCodegenTypeRef specialize(FlaxCodegenTypeRef type) =>
+      _specializeEnumType(type, substitutions);
+  final declaration = type.declaration;
+  final declaredShape = declaration?.kind == type.kind ? declaration : null;
+  FlaxCodegenTypeRef? child(
+    FlaxCodegenTypeRef? actual,
+    FlaxCodegenTypeRef? declared,
+  ) => actual == null
+      ? null
+      : specialize(declared == null ? actual : actual.declaredAs(declared));
+  final arguments = declaration != null && declaration.tsArguments.isNotEmpty
+      ? declaration.tsArguments
+      : type.tsArguments.isNotEmpty
+      ? type.tsArguments
+      : type.dartArguments;
+  return FlaxCodegenTypeRef(
+    type.kind,
+    id: type.id,
+    name: type.name,
+    nullable: type.nullable,
+    item: child(type.item, declaredShape?.item),
+    key: child(type.key, declaredShape?.key),
+    result: child(type.result, declaredShape?.result),
+    parameters: [
+      for (final (index, parameter) in type.parameters.indexed)
+        _specializeEnumParameter(
+          parameter,
+          substitutions,
+          declaredShape?.parameters.length == type.parameters.length
+              ? declaredShape!.parameters[index].type
+              : null,
+        ),
+    ],
+    typeParameters: [
+      for (final parameter in type.typeParameters)
+        FlaxCodegenGenericParameter(
+          parameter.name,
+          specialize(parameter.bound),
+          defaultType: parameter.defaultType == null
+              ? null
+              : specialize(parameter.defaultType!),
+          genericIdentity: parameter.genericIdentity,
+        ),
+    ],
+    typeArguments: type.typeArguments,
+    dartArguments: [for (final argument in arguments) specialize(argument)],
+    tsArguments: [
+      for (final argument in type.tsArguments) specialize(argument),
+    ],
+    declaration: declaration == null ? null : specialize(declaration),
+    primitiveKinds: type.primitiveKinds,
+    recordFields: [
+      for (final (index, field) in type.recordFields.indexed)
+        FlaxCodegenRecordFieldModel(
+          name: field.name,
+          type: child(
+            field.type,
+            declaredShape?.recordFields.length == type.recordFields.length
+                ? declaredShape!.recordFields[index].type
+                : null,
+          )!,
+          positional: field.positional,
+        ),
+    ],
+    genericIdentity: type.genericIdentity,
+    originatingUri: type.originatingUri,
+    originatingName: type.originatingName,
+  );
 }
 
 class FlaxCodegenNamedTypeModel {
@@ -775,12 +1032,14 @@ class FlaxCodegenNamedTypeModel {
     required this.name,
     required this.id,
     this.enumNames = const [],
+    this.enumValueTypes = const {},
     this.typeParameters = const [],
     this.dependencySuperTypes = const [],
   });
   final String name;
   final String id;
   final List<String> enumNames;
+  final Map<String, FlaxCodegenTypeRef> enumValueTypes;
   final List<FlaxCodegenGenericParameter> typeParameters;
 
   /// Parser-only inheritance metadata used to close dependency-only owners.
@@ -860,11 +1119,18 @@ class FlaxCodegenModuleModel {
   final List<FlaxCodegenFunctionModel> functions;
   final List<FlaxCodegenExtensionModel> extensions;
 
+  Iterable<FlaxCodegenFunctionModel> enumFunctions(
+    FlaxCodegenClassModel type,
+  ) => type.kind != 'enum'
+      ? const []
+      : type.enumFunctions(types.singleWhere((named) => named.id == type.id));
+
   /// All operations that use the existing function binding transport.
   Iterable<FlaxCodegenFunctionModel> get callableFunctions sync* {
     yield* functions;
     for (final type in classes) {
       yield* type.staticFunctions;
+      yield* enumFunctions(type);
     }
     for (final setter
         in topLevel?.setters ?? <FlaxCodegenTopLevelSetterModel>[]) {
@@ -886,6 +1152,7 @@ class FlaxCodegenModuleModel {
     yield* functions;
     for (final type in classes) {
       yield* type.staticFunctions;
+      yield* enumFunctions(type);
     }
     for (final setter
         in topLevel?.setters ?? <FlaxCodegenTopLevelSetterModel>[]) {
@@ -918,6 +1185,22 @@ class FlaxCodegenModuleModel {
       ...classes.map((c) => c.name),
       ...types.map((t) => t.name),
     };
+    for (final type in types) {
+      if (type.enumNames.toSet().length != type.enumNames.length ||
+          type.enumValueTypes.length != type.enumNames.length ||
+          !type.enumValueTypes.keys.toSet().containsAll(type.enumNames)) {
+        throw StateError('Invalid enum constants: ${type.name}');
+      }
+      for (final constant in type.enumValueTypes.entries) {
+        final value = constant.value;
+        if (value.kind != 'enum' || value.id != type.id || value.nullable) {
+          throw StateError(
+            'Invalid enum constant type: ${type.name}.${constant.key}',
+          );
+        }
+        value.validate('${type.name}.${constant.key}');
+      }
+    }
     final variantNames = <String>{};
     final variantIds = <String>{};
     for (final variant in stateVariants) {
@@ -983,6 +1266,7 @@ class FlaxCodegenModuleModel {
       // that cannot be redeclared by a public alias.
       'NavigationData', 'DartIterable', 'DartIterableInput', 'DartList',
       'DartListInput', 'DartMap', 'DartMapInput', 'DartSet', 'DartSetInput',
+      'DartInput',
       'FlaxStreamReference', 'Bindable', 'DartValue', 'DartEnum', 'Widget',
       'WidgetDescription', 'ComponentContext', 'any', 'unknown', 'never',
       'number', 'string', 'boolean', 'symbol', 'bigint', 'object', 'undefined',
@@ -1005,6 +1289,8 @@ class FlaxCodegenModuleModel {
       'invokeObjectStatic',
       'invokeStream',
       'enumValue',
+      'defineEnum',
+      'invokeEnum',
       'defineContext',
       'defineState',
       'contextHandle',
@@ -1071,6 +1357,26 @@ class FlaxCodegenModuleModel {
     }
     for (final type in classes) {
       final category = type.category;
+      if (category == FlaxCodegenClassCategory.enumeration &&
+          (types.where((value) => value.id == type.id && value.isEnum).length !=
+                  1 ||
+              type.proxy != null ||
+              type.jsName != null ||
+              type.listenerPairs.isNotEmpty ||
+              type.disposeMethod != null)) {
+        throw StateError('Invalid enum binding model: ${type.name}');
+      }
+      if (category == FlaxCodegenClassCategory.enumeration &&
+          types
+              .singleWhere((named) => named.id == type.id)
+              .enumValueTypes
+              .values
+              .any(
+                (constant) =>
+                    constant.tsArguments.length != type.typeParameters.length,
+              )) {
+        throw StateError('Invalid closed enum type arguments: ${type.name}');
+      }
       if (type.asyncIterableFactory != null &&
           (category != FlaxCodegenClassCategory.stream ||
               type.typeParameters.length != 1 ||
@@ -1126,6 +1432,7 @@ class FlaxCodegenModuleModel {
               category != FlaxCodegenClassCategory.stream &&
               type.disposeMethod != null) ||
           (category != FlaxCodegenClassCategory.object &&
+              category != FlaxCodegenClassCategory.enumeration &&
               category != FlaxCodegenClassCategory.stream &&
               (type.setters.isNotEmpty || type.listenerPairs.isNotEmpty))) {
         throw StateError('Invalid object binding model: ${type.name}');
@@ -1145,6 +1452,12 @@ class FlaxCodegenModuleModel {
         );
       }
       for (final constructor in type.constructors) {
+        if (category == FlaxCodegenClassCategory.enumeration &&
+            !flaxCodegenIsExportName(constructor.name)) {
+          throw StateError(
+            'Expected a named public enum factory: ${type.name}.${constructor.name}',
+          );
+        }
         for (final parameter in constructor.parameters) {
           parameter.type.validate(
             '${type.name}.${constructor.name}.${parameter.name}',
@@ -1171,6 +1484,10 @@ class FlaxCodegenModuleModel {
         if (type.proxy != null) 'implementation',
         if (type.proxy != null) 'extend',
         if (type.asyncIterableFactory != null) type.asyncIterableFactory!,
+        if (category == FlaxCodegenClassCategory.enumeration) ...[
+          'values',
+          ...types.singleWhere((value) => value.id == type.id).enumNames,
+        ],
       };
       final staticWrites = <String>{};
       for (final getter in type.staticGetters) {
@@ -1202,6 +1519,21 @@ class FlaxCodegenModuleModel {
         ...type.staticGetters,
         ...type.staticSetters,
       ]) {
+        if (getter.cache &&
+            (category != FlaxCodegenClassCategory.enumeration ||
+                !type.getters.contains(getter) ||
+                type.setters.any((setter) => setter.name == getter.name) ||
+                !{
+                  'String',
+                  'bool',
+                  'int',
+                  'double',
+                  'num',
+                }.contains(getter.type.kind))) {
+          throw StateError(
+            'Invalid enum field cache: ${type.name}.${getter.name}',
+          );
+        }
         getter.type.validate('${type.name}.${getter.name}');
         if (type.setters.contains(getter) ||
             type.staticSetters.contains(getter)) {
@@ -1242,7 +1574,7 @@ class FlaxCodegenModuleModel {
               : operator == '[]='
               ? 2
               : 1;
-          if (type.kind != 'object' ||
+          if (!{'object', 'enum'}.contains(type.kind) ||
               !method.instance ||
               flaxCodegenClassOperators[operator] != method.name ||
               method.parameters.length != arity ||

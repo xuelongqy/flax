@@ -492,6 +492,31 @@ class _Session {
       final componentState = decodeComponentStateReference(value, type);
       if (componentState != null) return componentState;
     }
+    if ((type.kind == 'enum' || type.kind == 'object') &&
+        value is FlaxJsObject) {
+      final enumType = helper('enumType').call([value]);
+      if (enumType is FlaxJsString) {
+        final definition = registry._types[enumType.value];
+        final name = helper('enumName').call([value]);
+        if (definition is! FlaxEnumBinding ||
+            name is! FlaxJsString ||
+            !definition.values.containsKey(name.value)) {
+          throw ArgumentError('Unregistered Dart enum');
+        }
+        final entry = definition.values[name.value]!;
+        final expected = registry._types[type.id];
+        final compatible = type.kind == 'enum'
+            ? expected is FlaxEnumBinding &&
+                  expected.values.values.any((value) => identical(value, entry))
+            : expected is FlaxObjectBinding &&
+                  expected.matches?.call(entry) == true;
+        if (!compatible) throw ArgumentError('Incompatible Dart enum');
+        return _Value(entry);
+      }
+      if (type.kind == 'enum') {
+        throw ArgumentError('Expected a genuine Dart enum');
+      }
+    }
     if (type.kind == 'object') {
       final binding = registry._types[type.id];
       final primitive = value is FlaxJsString
@@ -670,21 +695,6 @@ class _Session {
     final definition = id == _pageContentBinding.id
         ? _pageContentBinding
         : registry._types[id];
-    if (type.kind == 'enum' &&
-        kind == 'enum' &&
-        definition is FlaxEnumBinding) {
-      final name = _textProperty(value, 'name');
-      if (!definition.values.containsKey(name)) {
-        throw ArgumentError('Unknown enum value: $id.$name');
-      }
-      final expected = registry._types[type.id];
-      final entry = definition.values[name];
-      if (expected is! FlaxEnumBinding ||
-          !expected.values.values.any((value) => identical(value, entry))) {
-        throw ArgumentError('Incompatible Dart enum');
-      }
-      return _Value(entry);
-    }
     if (type.kind == 'widget' &&
         kind == 'widget' &&
         definition is FlaxWidgetBinding) {

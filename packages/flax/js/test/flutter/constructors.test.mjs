@@ -24,7 +24,10 @@ test('generated constructors preserve omission, null, identity and immutable sna
   assert.throws(() => {
     column.args.spacing = 2;
   }, TypeError);
-  assert.equal(TextDirection.ltr.type, 'flax.core/flutter#type:TextDirection');
+  assert.equal(
+    host.api.enumType(TextDirection.ltr),
+    'flax.core/flutter#type:TextDirection',
+  );
   const padding = EdgeInsets.symmetric({ horizontal: 2 });
   assert.equal(Padding({ padding }).args.padding, padding);
   assert.equal(host.calls.at(-1).descriptor.ctor, 'symmetric');
@@ -47,6 +50,6 @@ test('runApp negotiates the protocol and accepts one root per JS realm', () => {
   };
   const root = Text('root');
   runApp(root);
-  assert.deepEqual(mounted, { widget: root, version: 23 });
+  assert.deepEqual(mounted, { widget: root, version: 24 });
   assert.throws(() => runApp(root), /root/i);
 });

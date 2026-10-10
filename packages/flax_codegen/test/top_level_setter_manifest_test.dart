@@ -15,7 +15,7 @@ void main() {
     final original = _manifest();
     final decoded = _decode(original.toJson());
     expect(decoded.encode(), original.encode());
-    expect(decoded.toJson()['formatVersion'], 16);
+    expect(decoded.toJson()['formatVersion'], 17);
     final values = decoded.modules.single.model.module.topLevel!;
     expect(values.getters.single.id, 'example.values/values#read:answer');
     expect(
@@ -231,7 +231,7 @@ FlaxCodegenManifest _manifest({bool reference = false}) {
       FlaxCodegenManifestModule(
         name: 'values',
         moduleId: moduleId,
-        uiProtocol: 23,
+        uiProtocol: 24,
         requiredCapabilities: [],
         model: FlaxCodegenManifestModel(
           module: FlaxCodegenModuleModel(

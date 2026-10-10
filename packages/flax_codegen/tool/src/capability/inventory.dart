@@ -265,9 +265,11 @@ List<ApiCallableRecord> _interfaceMembers(
   required bool inherited,
 }) {
   return [
-    if (!inherited && element is ClassElement)
+    if (!inherited && (element is ClassElement || element is EnumElement))
       for (final constructor in element.constructors)
-        if (constructor.isPublic) _executable(constructor, kind: 'constructor'),
+        if (constructor.isPublic &&
+            (element is! EnumElement || constructor.isFactory))
+          _executable(constructor, kind: 'constructor'),
     ..._executables(element.getters, kind: 'getter', inherited: inherited),
     ..._executables(element.setters, kind: 'setter', inherited: inherited),
     ..._executables(element.methods, kind: 'method', inherited: inherited),
@@ -334,6 +336,10 @@ ApiCallableRecord _executable(
     isAbstract: element is MethodElement && element.isAbstract,
     isDeprecated: element.metadata.hasDeprecated,
     isOperator: element is MethodElement && element.isOperator,
+    isEnumConstant:
+        element is GetterElement &&
+        element.variable is FieldElement &&
+        (element.variable as FieldElement).isEnumConstant,
     isProtected: element.metadata.hasProtected,
     isVisibleForTesting: element.metadata.hasVisibleForTesting,
     declaredBy: owner is Element ? declarationId(owner) : null,

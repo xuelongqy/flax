@@ -133,7 +133,7 @@ function bindings(value, label, current) {
     if (
       !Number.isSafeInteger(binding.uiProtocol) ||
       binding.uiProtocol < 1 ||
-      (current && binding.uiProtocol !== 23)
+      (current && binding.uiProtocol !== 24)
     )
       fail(`Unsupported binding protocol in ${label}`);
     for (const kind of ['types', 'functions']) {

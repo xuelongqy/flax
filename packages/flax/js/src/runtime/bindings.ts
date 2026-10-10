@@ -2,7 +2,7 @@ import { computed, signal, type Binding, type ReadonlySignal } from './index.js'
 import { ReferenceCache } from './references.js';
 
 /** Experimental generated-binding extension. Independent of the native C ABI. */
-export const bindingVersion = 23;
+export const bindingVersion = 24;
 
 type CallbackParameter = {
   name: string;
@@ -151,9 +151,7 @@ export type DartSetInput<T, I = DartInput<T>> =
   Omit<DartSet<T>, typeof Symbol.iterator> | ReadonlySet<I>;
 
 export interface DartEnum {
-  readonly kind: 'enum';
-  readonly type: string;
-  readonly name: string;
+  readonly __dartEnum: unique symbol;
 }
 
 /** A generated Dart Stream reference. It is unrelated to Web ReadableStream. */
@@ -389,19 +387,118 @@ export function construct(
   return Object.freeze(descriptor);
 }
 
-export function enumValue<T extends DartEnum>(type: T['type'], name: string): T {
+/** Installs one shared prototype. Identity never occupies a business property. */
+export function defineEnum(
+  type: string,
+  names: readonly string[],
+  members: object = {},
+  cached: readonly string[] = [],
+  parents: readonly string[] = [],
+): void {
+  if (enumDefinitions.has(type)) throw new Error(`Duplicate enum type: ${type}`);
+  if (new Set(names).size !== names.length)
+    throw new TypeError('Duplicate enum constant');
+  const prototype = Object.create(null) as object;
+  const requireReceiver = (value: object) => {
+    const identity = enumIdentities.get(value);
+    if (!identity || identity.type !== type)
+      throw new TypeError('Invalid or foreign Dart enum');
+    return identity;
+  };
+  Object.defineProperties(prototype, {
+    name: {
+      get(this: object) {
+        return requireReceiver(this).name;
+      },
+      configurable: true,
+    },
+    index: {
+      get(this: object) {
+        return requireReceiver(this).index;
+      },
+      configurable: true,
+    },
+  });
+  for (const [name, descriptor] of Object.entries(
+    Object.getOwnPropertyDescriptors(members),
+  )) {
+    const values = cached.includes(name) ? new WeakMap<object, unknown>() : undefined;
+    Object.defineProperty(prototype, name, {
+      ...(descriptor.value === undefined
+        ? {}
+        : {
+            value(this: object, ...args: unknown[]) {
+              requireReceiver(this);
+              return descriptor.value.apply(this, args);
+            },
+          }),
+      ...(descriptor.get
+        ? {
+            get(this: object) {
+              requireReceiver(this);
+              if (values?.has(this)) return values.get(this);
+              const value = descriptor.get!.call(this);
+              values?.set(this, value);
+              return value;
+            },
+          }
+        : {}),
+      ...(descriptor.set
+        ? {
+            set(this: object, value: unknown) {
+              requireReceiver(this);
+              descriptor.set!.call(this, value);
+            },
+          }
+        : {}),
+    });
+  }
+  enumDefinitions.set(type, {
+    names: new Set(names),
+    prototype: Object.freeze(prototype),
+  });
+  instanceParents.set(type, Object.freeze([...parents]));
+}
+
+export function enumValue<T extends DartEnum>(type: string, name: string): T {
+  const definition = enumDefinitions.get(type);
+  if (!definition || !definition.names.has(name))
+    throw new TypeError(`Unknown Dart enum: ${type}.${name}`);
   const key = `${type}\n${name}`;
   let value = enums.get(key);
   if (!value) {
-    value = Object.freeze({ kind: 'enum', type, name });
+    value = Object.freeze(Object.create(definition.prototype)) as DartEnum;
     enums.set(key, value);
-    enumTypes.set(value, type);
+    enumIdentities.set(value, {
+      type,
+      name,
+      index: [...definition.names].indexOf(name),
+    });
   }
   return value as T;
 }
 
 const enums = new Map<string, DartEnum>();
-const enumTypes = new WeakMap<object, string>();
+const enumDefinitions = new Map<
+  string,
+  { names: ReadonlySet<string>; prototype: object }
+>();
+const enumIdentities = new WeakMap<
+  object,
+  { type: string; name: string; index: number }
+>();
+
+/** Closed generic constants select typed calls while sharing one prototype. */
+export function invokeEnum(
+  receiver: object,
+  operations: readonly string[],
+  args: readonly unknown[],
+): unknown {
+  const identity = enumIdentities.get(receiver);
+  const operation = identity && operations[identity.index];
+  if (!operation) throw new TypeError('Invalid or foreign Dart enum');
+  return invokeTopLevel(operation, [receiver, ...args]);
+}
 const contextTypes = new Map<string, readonly string[]>();
 type ContextState = { type: string; id: number; alive: boolean };
 const statePrototypes = new Map<string, object>();
@@ -633,6 +730,11 @@ export function bindInstanceType<T, V extends object>(
       }
       if (candidate === null || typeof candidate !== 'object') return false;
       const ref = objectHandles.get(candidate);
+      const enumType = enumIdentities.get(candidate)?.type;
+      if (enumType)
+        return (
+          enumType === type || Boolean(instanceParents.get(enumType)?.includes(type))
+        );
       return Boolean(
         ref?.alive &&
         (ref.type === type || instanceParents.get(ref.type)?.includes(type)),
@@ -1568,7 +1670,7 @@ export function copyNavigationData(
     contextStates.has(value) ||
     stateHandles.has(value) ||
     objectHandles.has(value) ||
-    enumTypes.has(value)
+    enumIdentities.has(value)
   )
     throw new TypeError('Host references are not navigation data');
   const array = Array.isArray(value);
@@ -1990,7 +2092,10 @@ Object.assign(globalThis, {
     },
     enumValue,
     enumType(value: object): string | null {
-      return enumTypes.get(value) ?? null;
+      return enumIdentities.get(value)?.type ?? null;
+    },
+    enumName(value: object): string | null {
+      return enumIdentities.get(value)?.name ?? null;
     },
     copyData: copyNavigationData,
     array: (...values: unknown[]) => Object.freeze(values),

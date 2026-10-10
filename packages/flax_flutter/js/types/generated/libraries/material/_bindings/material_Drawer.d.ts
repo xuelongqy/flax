@@ -2,6 +2,7 @@ import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget,
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/services/_bindings/flutter_Color';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_Clip';
+import '@flax/flutter/widgets/_bindings/flutter_Clip';
 export interface Drawer extends WidgetDescription {
     readonly type: "flax.material/material#type:Drawer";
 }

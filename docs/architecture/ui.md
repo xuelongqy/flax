@@ -170,7 +170,7 @@ checkpoints. UI void events may return a Promise without becoming a Dart Future.
 
 ## Experimental protocol and limits
 
-Protocol 23 generated descriptors carry `kind`, declaration-origin `type`, constructor
+Protocol 24 generated descriptors carry `kind`, declaration-origin `type`, constructor
 `ctor`, and an `args` map; enum descriptors carry type and member name. Binding
 descriptors expose `read()` and `observe(token)`, which returns cleanup.
 `__flaxMount(root, version)` checks the protocol against the Dart registry. The public
@@ -194,7 +194,7 @@ Named page factories also receive an explicit PageLifecycle argument. Its onDisp
 callbacks run after content descendants unmount. Generated Controllers use creator-owned
 object references, while Widgets borrow them. See [owned objects](objects.md).
 
-Protocol 23 retains [Dart references and callbacks](objects.md),
+Protocol 24 retains [Dart references and callbacks](objects.md),
 [collections and generics](interop.md), and
 [editing, focus and formatters](text-input.md). It includes Promise-to-Future callback
 results and the dart:async Stream/FutureOr envelope without changing object ownership or

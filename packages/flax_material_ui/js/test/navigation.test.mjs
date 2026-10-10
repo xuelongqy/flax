@@ -2,7 +2,13 @@ import { operationHost } from '../../../flax/js/test/flutter/support/operations.
 import { objectHost } from './support/host.mjs';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { Navigator, RouteSettings, PopScope, Text } from '@flax/flutter/widgets';
+import {
+  Navigator,
+  RouteSettings,
+  PopScope,
+  Text,
+  TextDirection,
+} from '@flax/flutter/widgets';
 import { MaterialPageRoute } from '../dist/index.js';
 import { copyNavigationData, invokeInstance } from '@flax/core/bindings';
 
@@ -60,7 +66,7 @@ test('State methods dispatch independently and validate named arguments', () => 
     calls.map((args) => args[4]),
     ['push', 'pushNamed', 'pop', 'canPop'],
   );
-  assert.deepEqual(calls[0].slice(0, 5), [23, stateType, 12, 'call', 'push']);
+  assert.deepEqual(calls[0].slice(0, 5), [24, stateType, 12, 'call', 'push']);
   assert.throws(() => state.pushNamed('/a', { extra: 1 }), /Invalid named/);
   assert.throws(() => state.canPop(1), /Too many/);
   assert.throws(() => invokeInstance({}, stateType, 'pop', []), /foreign/);
@@ -91,7 +97,7 @@ test('navigation data copies plain trees without calling accessors or losing key
   cycle.self = cycle;
   for (const value of [
     cycle,
-    globalThis.__flaxBindings.enumValue('test:Mode', 'first'),
+    TextDirection.ltr,
     undefined,
     NaN,
     Infinity,

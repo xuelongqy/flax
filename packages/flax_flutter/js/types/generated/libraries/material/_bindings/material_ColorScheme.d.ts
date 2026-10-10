@@ -2,6 +2,7 @@ import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings'
 import type * as upstream0 from '@flax/flutter/services/_bindings/flutter_Color';
 import '@flax/flutter/services/_bindings/flutter_Color';
 import type * as upstream1 from '@flax/flutter/material/_bindings/material_Brightness';
+import '@flax/flutter/material/_bindings/material_Brightness';
 export interface ColorScheme extends Readonly<{
     "__flaxBound:package:material_ui/src/color_scheme.dart::ColorScheme": readonly [];
 }>, Readonly<{

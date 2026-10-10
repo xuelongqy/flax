@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"a40b07d0fb454569d7c8151d21161b6f128e1d64eb379bc5c17fffc45640c01e","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"3d4e952f19276636b2a89bbbc43be356da7043c2584e009c133304f440ee037c","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -75,12 +75,14 @@ __export(bindings_exports, {
   contextHandle: () => contextHandle,
   copyNavigationData: () => copyNavigationData,
   defineContext: () => defineContext,
+  defineEnum: () => defineEnum,
   defineObject: () => defineObject,
   defineProxyBase: () => defineProxyBase,
   defineState: () => defineState,
   defineStateMembers: () => defineStateMembers,
   defineStream: () => defineStream,
   enumValue: () => enumValue,
+  invokeEnum: () => invokeEnum,
   invokeInstance: () => invokeInstance,
   invokeObject: () => invokeObject,
   invokeObjectStatic: () => invokeObjectStatic,
@@ -185,7 +187,7 @@ var ReferenceCache = class {
 };
 
 // ../../../flax/js/dist/runtime/bindings.js
-var bindingVersion = 23;
+var bindingVersion = 24;
 var components = /* @__PURE__ */ new WeakMap();
 var componentTypes = /* @__PURE__ */ new WeakMap();
 var componentBases = /* @__PURE__ */ new WeakMap();
@@ -310,19 +312,93 @@ function construct(kind, type, ctor, parameters, positional, options) {
   }
   return Object.freeze(descriptor);
 }
+function defineEnum(type, names, members = {}, cached = [], parents = []) {
+  if (enumDefinitions.has(type))
+    throw new Error(`Duplicate enum type: ${type}`);
+  if (new Set(names).size !== names.length)
+    throw new TypeError("Duplicate enum constant");
+  const prototype = /* @__PURE__ */ Object.create(null);
+  const requireReceiver = (value) => {
+    const identity = enumIdentities.get(value);
+    if (!identity || identity.type !== type)
+      throw new TypeError("Invalid or foreign Dart enum");
+    return identity;
+  };
+  Object.defineProperties(prototype, {
+    name: {
+      get() {
+        return requireReceiver(this).name;
+      },
+      configurable: true
+    },
+    index: {
+      get() {
+        return requireReceiver(this).index;
+      },
+      configurable: true
+    }
+  });
+  for (const [name, descriptor] of Object.entries(Object.getOwnPropertyDescriptors(members))) {
+    const values = cached.includes(name) ? /* @__PURE__ */ new WeakMap() : void 0;
+    Object.defineProperty(prototype, name, {
+      ...descriptor.value === void 0 ? {} : {
+        value(...args) {
+          requireReceiver(this);
+          return descriptor.value.apply(this, args);
+        }
+      },
+      ...descriptor.get ? {
+        get() {
+          requireReceiver(this);
+          if (values == null ? void 0 : values.has(this))
+            return values.get(this);
+          const value = descriptor.get.call(this);
+          values == null ? void 0 : values.set(this, value);
+          return value;
+        }
+      } : {},
+      ...descriptor.set ? {
+        set(value) {
+          requireReceiver(this);
+          descriptor.set.call(this, value);
+        }
+      } : {}
+    });
+  }
+  enumDefinitions.set(type, {
+    names: new Set(names),
+    prototype: Object.freeze(prototype)
+  });
+  instanceParents.set(type, Object.freeze([...parents]));
+}
 function enumValue(type, name) {
+  const definition = enumDefinitions.get(type);
+  if (!definition || !definition.names.has(name))
+    throw new TypeError(`Unknown Dart enum: ${type}.${name}`);
   const key = `${type}
 ${name}`;
   let value = enums.get(key);
   if (!value) {
-    value = Object.freeze({ kind: "enum", type, name });
+    value = Object.freeze(Object.create(definition.prototype));
     enums.set(key, value);
-    enumTypes.set(value, type);
+    enumIdentities.set(value, {
+      type,
+      name,
+      index: [...definition.names].indexOf(name)
+    });
   }
   return value;
 }
 var enums = /* @__PURE__ */ new Map();
-var enumTypes = /* @__PURE__ */ new WeakMap();
+var enumDefinitions = /* @__PURE__ */ new Map();
+var enumIdentities = /* @__PURE__ */ new WeakMap();
+function invokeEnum(receiver, operations, args) {
+  const identity = enumIdentities.get(receiver);
+  const operation = identity && operations[identity.index];
+  if (!operation)
+    throw new TypeError("Invalid or foreign Dart enum");
+  return invokeTopLevel(operation, [receiver, ...args]);
+}
 var contextTypes = /* @__PURE__ */ new Map();
 var statePrototypes = /* @__PURE__ */ new Map();
 var contextPrototypes = /* @__PURE__ */ new Map();
@@ -453,14 +529,17 @@ function bindInstanceType(value, type, parents) {
     instanceParents.set(type, Object.freeze([...parents]));
   Object.defineProperty(value, Symbol.hasInstance, {
     value(candidate) {
-      var _a;
+      var _a, _b, _c;
       if (this !== value) {
         return typeof this === "function" && Function.prototype[Symbol.hasInstance].call(this, candidate);
       }
       if (candidate === null || typeof candidate !== "object")
         return false;
       const ref = objectHandles.get(candidate);
-      return Boolean((ref == null ? void 0 : ref.alive) && (ref.type === type || ((_a = instanceParents.get(ref.type)) == null ? void 0 : _a.includes(type))));
+      const enumType = (_a = enumIdentities.get(candidate)) == null ? void 0 : _a.type;
+      if (enumType)
+        return enumType === type || Boolean((_b = instanceParents.get(enumType)) == null ? void 0 : _b.includes(type));
+      return Boolean((ref == null ? void 0 : ref.alive) && (ref.type === type || ((_c = instanceParents.get(ref.type)) == null ? void 0 : _c.includes(type))));
     }
   });
   return value;
@@ -1068,7 +1147,7 @@ function copyNavigationData(value, path = /* @__PURE__ */ new Set()) {
     throw new TypeError("Invalid or cyclic navigation data");
   if (Object.getOwnPropertySymbols(value).length)
     throw new TypeError("Navigation data requires string keys");
-  if (contextStates.has(value) || stateHandles.has(value) || objectHandles.has(value) || enumTypes.has(value))
+  if (contextStates.has(value) || stateHandles.has(value) || objectHandles.has(value) || enumIdentities.has(value))
     throw new TypeError("Host references are not navigation data");
   const array = Array.isArray(value);
   if (!array && Object.getPrototypeOf(value) !== Object.prototype && Object.getPrototypeOf(value) !== null)
@@ -1423,8 +1502,12 @@ Object.assign(globalThis, {
     },
     enumValue,
     enumType(value) {
-      var _a;
-      return (_a = enumTypes.get(value)) != null ? _a : null;
+      var _a, _b;
+      return (_b = (_a = enumIdentities.get(value)) == null ? void 0 : _a.type) != null ? _b : null;
+    },
+    enumName(value) {
+      var _a, _b;
+      return (_b = (_a = enumIdentities.get(value)) == null ? void 0 : _a.name) != null ? _b : null;
     },
     copyData: copyNavigationData,
     array: (...values) => Object.freeze(values),

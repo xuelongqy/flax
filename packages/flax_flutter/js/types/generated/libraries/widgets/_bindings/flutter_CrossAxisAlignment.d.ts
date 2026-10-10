@@ -1,6 +1,8 @@
 import { type DartEnum } from '@flax/core/bindings';
 export interface CrossAxisAlignment extends DartEnum {
-    readonly type: "flax.core/flutter#type:CrossAxisAlignment";
+    readonly __CrossAxisAlignment: unique symbol;
+    readonly name: string;
+    readonly index: number;
 }
 export declare const CrossAxisAlignment: Readonly<{
     start: CrossAxisAlignment;
@@ -8,4 +10,5 @@ export declare const CrossAxisAlignment: Readonly<{
     center: CrossAxisAlignment;
     stretch: CrossAxisAlignment;
     baseline: CrossAxisAlignment;
+    values: readonly CrossAxisAlignment[];
 }>;

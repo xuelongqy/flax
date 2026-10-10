@@ -6,6 +6,7 @@ import '@flax/flutter/services/_bindings/flutter_Color';
 import '@flax/flutter/widgets/_bindings/flutter_Decoration';
 import '@flax/flutter/widgets/_bindings/flutter_BoxConstraints';
 import type * as upstream6 from '@flax/flutter/widgets/_bindings/flutter_Clip';
+import '@flax/flutter/widgets/_bindings/flutter_Clip';
 export interface Container extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Container";
 }

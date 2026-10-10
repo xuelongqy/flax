@@ -2,6 +2,7 @@ import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings'
 import type * as upstream0 from '@flax/flutter/foundation/_bindings/flutter_Listenable';
 import '@flax/flutter/foundation/_bindings/flutter_Listenable';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_UnfocusDisposition';
+import '@flax/flutter/widgets/_bindings/flutter_UnfocusDisposition';
 export interface FocusNode extends upstream0.Listenable, Readonly<{
     "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
 }>, Readonly<{

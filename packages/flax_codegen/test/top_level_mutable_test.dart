@@ -843,7 +843,7 @@ const hosts = helpers.map(name => (...args) => {
 });
 const output = transformSync(source.replace(imports, ''), {loader: 'ts', format: 'cjs'}).code;
 const exported = {exports: {}};
-new Function('module', 'exports', 'bindingVersion', ...helpers, output)(exported, exported.exports, 23, ...hosts);
+new Function('module', 'exports', 'bindingVersion', ...helpers, output)(exported, exported.exports, 24, ...hosts);
 const api = exported.exports;
 assert.equal(calls.length, 0);
 assert.equal(api.setCounter(3), undefined);

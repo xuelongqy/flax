@@ -230,6 +230,7 @@ BindingAssessment _automaticAssessment(
   switch (declaration.kind) {
     case 'class':
     case 'mixin':
+    case 'enum':
       final entry = _namedEntry(proposal.config.classes, names);
       return _fromClassProposal(
         FlaxCodegenProposedBinding(
@@ -251,17 +252,6 @@ BindingAssessment _automaticAssessment(
         selection: selectedName == null
             ? null
             : {'kind': 'extensionType', 'name': selectedName},
-        skips: skips,
-      );
-    case 'enum':
-      final selectedName = _selectedName(proposal.config.types, names);
-      return _fromEnumSelection(
-        declaration: declaration,
-        label: label,
-        selected: selectedName != null,
-        selection: selectedName == null
-            ? null
-            : {'kind': 'enum', 'name': selectedName},
         skips: skips,
       );
     case 'typedef':
@@ -376,75 +366,6 @@ BindingAssessment _automaticAssessment(
         declaration: declaration,
       );
   }
-}
-
-BindingAssessment _fromEnumSelection({
-  required ApiDeclarationRecord declaration,
-  required String label,
-  required bool selected,
-  required Map<String, Object?>? selection,
-  required List<FlaxCodegenSkip> skips,
-}) {
-  if (!selected) {
-    return _fromLibrarySelection(
-      declaration: declaration,
-      label: label,
-      selected: false,
-      selection: selection,
-      skips: skips,
-    );
-  }
-  final selectedMembers = {
-    for (final member in declaration.declaredMembers)
-      if (member.isStatic && member.kind == 'getter')
-        _memberKey(member.kind, member.name),
-  };
-  final customMembers = [
-    for (final member in declaration.declaredMembers)
-      if (!member.isStatic) member,
-  ];
-  if (customMembers.isEmpty && skips.isEmpty) {
-    return _fromLibrarySelection(
-      declaration: declaration,
-      label: label,
-      selected: true,
-      selection: selection,
-      skips: skips,
-      selectedMembers: selectedMembers,
-    );
-  }
-  final diagnostics = <CapabilityDiagnostic>[
-    for (final skip in skips)
-      CapabilityDiagnostic(
-        code: skip.code,
-        message: skip.reason,
-        target: skip.target,
-      ),
-    if (customMembers.isNotEmpty)
-      CapabilityDiagnostic(
-        code: 'enhanced_enum_members_not_bound',
-        message: 'Enum value conversion is supported; custom instance members remain outside the enum adapter',
-        target: declaration.name,
-        chain: [for (final member in customMembers) member.name],
-      ),
-  ];
-  return BindingAssessment(
-    verdict: CapabilityVerdict.limited,
-    reasonKind: CapabilityReasonKind.intentionalBoundary,
-    source: CapabilitySource.automatic,
-    evidence: EvidenceLevel.e1,
-    useCases: {label: CapabilityVerdict.limited.name},
-    surface: _librarySurface(
-      declaration,
-      selectedMembers: selectedMembers,
-      skips: skips.length,
-    ),
-    diagnostics: diagnostics,
-    stages: const CapabilityStages(
-      automatic: CapabilityStageResult(CapabilityStageStatus.passed),
-    ),
-    selection: selection,
-  );
 }
 
 BindingAssessment _fromClassProposal(
@@ -753,6 +674,14 @@ Map<String, Object?> _surface(
       selectedMembers.add(_memberKey('setter', name));
     }
     for (final member in declaration.declaredMembers) {
+      if (selection.kind == 'enum' &&
+          member.isStatic &&
+          member.kind == 'getter') {
+        // Constants and values are intrinsic; selected custom statics are already listed.
+        if (member.name == 'values' || member.isEnumConstant) {
+          selectedMembers.add(_memberKey(member.kind, member.name));
+        }
+      }
       if (member.kind == 'setter' &&
           selectedMembers.contains(_memberKey(member.kind, member.name))) {
         for (final parameter in member.parameters) {

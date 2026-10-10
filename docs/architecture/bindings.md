@@ -10,7 +10,7 @@ fail-closed.
 
 The analyzer-based generator resolves selected public APIs and emits Dart calls,
 TypeScript declarations and shared parameter metadata. Configuration, parsing/model and
-emission remain separate. UI protocol 23 reuses the unchanged native C ABI (ABI 2).
+emission remain separate. UI protocol 24 reuses the unchanged native C ABI (ABI 2).
 
 The `FlaxCodegen*Model` graph produced by parsing is the semantic IR between analyzer
 resolution and emission. It carries resolved types, generics, inheritance, Widget and
@@ -49,7 +49,7 @@ prototype checks for a JS-authored child, preserving sibling discrimination and 
 child's own TypeScript members. Dart `final`, `sealed`, `base` and `interface` rules
 remain enforced during proxy selection; no external Dart child of a sealed class is
 generated. New modules require the additive `instance-checks` capability alongside
-`native-widget-proxies`; Manifest 16, UI protocol 23 and ABI 2 are unchanged. Regenerate
+`native-widget-proxies`; Manifest 17, UI protocol 24 and ABI 2 are unchanged. Regenerate
 providers and consumers together; older generated exports do not gain the new class
 tokens automatically.
 
@@ -91,10 +91,78 @@ fields, arrow fields, inheritance and later member replacement stay ordinary JS.
 Methods use standard receiver semantics. A saved `const call = object.method` requires
 `call.call(object, ...)` or explicit `.bind(object)`; wrappers no longer allocate a
 bound method for each instance. Required properties accept accessors and writable data
-fields. UI protocol 23 rejects old generated modules; Manifest 16, selection 2 and
+fields. UI protocol 24 rejects old generated modules; Manifest 17, selection 2 and
 native ABI 2 remain unchanged. Regeneration can replace an old owned module inventory,
 but runtime loading still rejects its protocol. See
 [proxy properties](proxy-properties.md).
+
+## Enum bindings
+
+Enums are finite Dart values exposed as TypeScript interfaces and frozen JavaScript
+namespaces. They are neither TypeScript numeric enums nor constructible JS classes:
+
+```ts
+const ready = Status.ready;
+ready.label;
+ready.format('hello', { separator: undefined });
+Status.fromCode(200) === ready;
+Status.values[0] === ready;
+```
+
+`types: [Status]` selects constants, `values`, `name` and `index` only. To bind an
+enhanced enum's public members, use the existing class selection with `kind: enum`:
+
+```yaml
+classes:
+  Status:
+    kind: enum
+    constructors:
+      fromCode: [code]
+    getters: [label]
+    instanceMethods:
+      format: [prefix, separator]
+```
+
+Automatic selection discovers enhanced enum fields, accessors, methods, static members,
+named public factories and operators. Factories must return an existing constant;
+unnamed factories, generative constructors, JS construction, subclassing and proxies are
+rejected. Automatic selection reports unnamed factories as skipped while retaining their
+constants and other members. Enum mixin and interface members use the existing
+inherited-member rules. Operators have explicit aliases such as `operatorAdd`; JS
+arithmetic syntax is unchanged.
+
+Members reuse the typed function registry, with an authenticated enum receiver instead
+of an object handle. One shared frozen prototype serves all constants. A final primitive
+field performs one real Dart read per constant/session and then caches its value,
+keeping private constants and application build defines correct. Computed getters and
+static reads stay live; object, collection, callback, Future and Stream results use
+existing conversion and GC. Importing a module never reads application state. Static
+writes use the existing explicit `setProperty(value)` API and are not rolled back on
+session close.
+
+Each generic constant retains its actual closed type, for example `Kind.number` is
+`Kind<number>` while `Kind.text` is `Kind<string>`. Typed Dart calls still validate
+those arguments through finite typed adapters selected by private constant identity.
+Generic collection inputs accept the existing Dart references and JS collection inputs;
+returned values retain their Dart collection interfaces. Callback arguments and results
+use those same closed types. Arbitrary runtime generic specialization and unconfigured
+generic methods remain outside the existing generic call contract. Named generic
+factories reuse ordinary constructor specialization; explicit type arguments keep their
+concrete input types. The `values` array retains the union of its constants' closed
+types, even when a factory is configured for one type. Enums do not provide their own
+`instanceof` class token. A bound compatible interface can recognize an enum value. An
+enum returning through that interface or Object keeps its canonical identity.
+
+Core remains the implicit provider. Automatic selection reuses a dependency enum only
+when its selected member surface is sufficient; independent non-Core bindings keep
+separate wire identities. Source packages provide implementation, public types packages
+provide declarations, and consumers use existing plugin injection. Manifest 17 records
+constant types and field caching; UI protocol 24 rejects earlier enum transport.
+Selection format 2 and native ABI 2 are unchanged. Regenerate providers and consumers
+together.
+
+See [generator tests](../../packages/flax_codegen/test/enum_test.dart) and
+[real-engine tests](../../packages/flax/test/ui/interop_test.dart).
 
 ## Selection and generation
 
@@ -130,7 +198,7 @@ dart run flax_codegen generate --config <direct-yaml>
 Official selection files carry `format: 2` and live as direct children of package
 `bindings/`. Packages with `bindings` capability keep package metadata format 2 and set
 `bindingNamespace` in `flax_package.yaml`. Generated `bindings/manifest.json` uses
-Manifest `formatVersion: 16`; the reader accepts format 16 only. The generator has no
+Manifest `formatVersion: 17`; the reader accepts format 17 only. The generator has no
 reader or normalization path for other binding selection or Manifest formats. See
 [ADR 0035](../decisions/0035-generic-state-variants-and-protocol-21.md) and
 [External Binding Verification](external-binding-verification.md).
@@ -206,7 +274,7 @@ create no implicit reactive subscriptions or cross-session reference cache. Clos
 existing call, reference and pending-delivery cleanup; it does not dispose
 application-owned values.
 
-Manifest 16 stores public-library routing plus each readonly declaration's source,
+Manifest 17 stores public-library routing plus each readonly declaration's source,
 public export, return type, declaration kind, optional literal and ownership/reference
 status. Source kind `readonly` maps to a stable
 `<bindingNamespace>/<module>#read:<name>` operation. Existing type and function IDs are
@@ -225,7 +293,7 @@ synchronous, propagate Dart exceptions and return void; the next read observes c
 Dart state. Top-level state belongs to the Dart application and can be shared across
 sessions; closing a session does not roll back writes. Source identity uses the function
 operation `name=` (wire suffix `#function:name%3D`), leaving existing getter/read IDs
-unchanged. Manifest 16 records `topLevel.setters` and their independent operation IDs.
+unchanged. Manifest 17 records `topLevel.setters` and their independent operation IDs.
 Provider read and write surfaces are checked separately. Core surfaces cannot be
 widened; independent non-Core selections emit local operations. Writes reuse ordinary
 input conversion and existing session cleanup without new ownership rules. See
@@ -268,7 +336,7 @@ inherited. Generated `setX` names must not conflict with selected methods, const
 entries, other static exports or proxy helpers. Explicit selections fail; automatic
 selection skips the conflicting write with `static_setter_export_collision`.
 
-Manifest 16 stores static accessor types and distinct operation IDs:
+Manifest 17 stores static accessor types and distinct operation IDs:
 `#read:Counter.count` and `#function:Counter.count%3D`. Class IDs and unrelated
 operation IDs retain their identities. All workspace manifests are regenerated; older
 formats are rejected. Selection 2 and native ABI 2 are unchanged; the active UI protocol
@@ -291,7 +359,7 @@ See
 ## Literal module tuple and registration
 
 Generated Dart and JavaScript modules carry literal `moduleId`, `uiProtocol` and
-`requiredCapabilities` values. The active UI protocol is 23 and native ABI is 2.
+`requiredCapabilities` values. The active UI protocol is 24 and native ABI is 2.
 `uiProtocol` is the required field for module compatibility; there is no parallel
 `version` field or ambient Core fallback.
 
@@ -395,7 +463,7 @@ declared relationship. A callback declared to return Future requires a JS Promis
 thenable and produces the typed Dart Future awaited by the caller. Future-returning Dart
 members use the reverse conversion and the same UI checkpoint. Future and FutureOr
 values compose recursively through supported collection, Record and callback positions
-under protocol 23; nested completion values retain their own declared async semantics.
+under protocol 24; nested completion values retain their own declared async semantics.
 Asynchronous lifecycle/build callbacks and Map callback keys remain unsupported. Finite
 List/Set/Map/Record and Iterable Widget callback parameters and results support nullable
 containers and elements. Iterable callback signatures accept JS arrays/Sets and Dart
@@ -484,7 +552,7 @@ on the outer one. Defaults, nullability, alias-chain substitution, nested captur
 shadowing use the existing declaration identities. Explicit TS arguments are supported
 without promising identical Dart inference or supplying Dart runtime type tokens.
 
-Manifest 16 stores each alias's public name, originating URI/name, `typeParameters` and
+Manifest 17 stores each alias's public name, originating URI/name, `typeParameters` and
 target type. Even non-generic aliases require an empty `typeParameters` array. Lexical
 slots preserve parameter identity across dependency projections. Bounds and defaults, as
 well as targets, participate in dependency imports and nominal ownership checks.
@@ -502,7 +570,7 @@ the existing TypeRef conversion. JS-to-Dart conversion requires every declared f
 ignores extra properties, validates field nullability independently from whole-Record
 nullability, and reconstructs a real Dart Record. Records themselves have no wire ID,
 owner or session reference identity; provider-owned objects nested inside fields retain
-their normal identity. Manifest 16 carries the complete current Record shape.
+their normal identity. Manifest 17 carries the complete current Record shape.
 
 Generated modules also register compiled Record signatures, native type checks and field
 accessors. An erased `Object?` result, including `Stream<Record>.toList().get()`,
@@ -716,7 +784,7 @@ must preserve the provider's selected signature and public export surface. See
 
 ## Bound-only type references
 
-Generic bounds may name interfaces without runtime bindings. Manifest 16 records their
+Generic bounds may name interfaces without runtime bindings. Manifest 17 records their
 source URI, declaration name and recursively scoped generic arguments as `typeOnly`.
 They never receive an owner, wire ID, reference handle or member selection. Ordinary
 parameters, results and runtime erasure still require convertible concrete types.
@@ -782,10 +850,10 @@ selected ordinary members; `runtimeType` remains native. No JavaScript arithmeti
 operator syntax is overloaded. No per-class mixin, runtime reflection or implicit extra
 bridge call is added.
 
-Manifest 16 records both the Dart operator and its JS method alias and rejects previous
+Manifest 17 records both the Dart operator and its JS method alias and rejects previous
 formats. Provider reuse requires the requested operator surface. Core injection,
 provider isolation and source/types package ownership are unchanged. Selection format 2,
-The active UI protocol is 23; native ABI 2 is unchanged.
+The active UI protocol is 24; native ABI 2 is unchanged.
 
 Flutter ownership remains specialized: `FlaxWidgetHost`, `FlaxStateProxy`,
 `FlaxRouteLease` and `FlaxPageRoute` retain mount, State, route callback and disposal

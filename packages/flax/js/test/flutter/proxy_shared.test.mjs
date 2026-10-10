@@ -24,7 +24,7 @@ test('shared prototype forwarding preserves receiver, direct super and omission'
   globalThis.__flaxPrepareProxy = () => 0;
   globalThis.__flaxCreateObject = () => globalThis.__flaxBindings.object(type, 4001);
   globalThis.__flaxBindPeer = (version, source, target) => {
-    assert.equal(version, 23);
+    assert.equal(version, 24);
     assert.equal(globalThis.__flaxBindings.objectHandle(source), 4001);
     peers.push(target);
   };

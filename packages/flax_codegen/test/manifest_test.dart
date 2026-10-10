@@ -682,6 +682,18 @@ void main() {
       name: 'Axis',
       id: 'com.acme.widgets/widgets#type:Axis',
       enumNames: const ['horizontal', 'vertical'],
+      enumValueTypes: {
+        'horizontal': FlaxCodegenTypeRef(
+          'enum',
+          id: 'com.acme.widgets/widgets#type:Axis',
+          name: 'Axis',
+        ),
+        'vertical': FlaxCodegenTypeRef(
+          'enum',
+          id: 'com.acme.widgets/widgets#type:Axis',
+          name: 'Axis',
+        ),
+      },
       typeParameters: [generic],
     );
     final function = FlaxCodegenFunctionModel(
@@ -1023,6 +1035,18 @@ void main() {
         name: 'Axis',
         id: 'com.acme.widgets/widgets#type:Axis',
         enumNames: const ['horizontal', 'vertical'],
+        enumValueTypes: {
+          'horizontal': FlaxCodegenTypeRef(
+            'enum',
+            id: 'com.acme.widgets/widgets#type:Axis',
+            name: 'Axis',
+          ),
+          'vertical': FlaxCodegenTypeRef(
+            'enum',
+            id: 'com.acme.widgets/widgets#type:Axis',
+            name: 'Axis',
+          ),
+        },
       );
       final function = FlaxCodegenFunctionModel(
         'com.acme.widgets/widgets#function:show',
@@ -1159,6 +1183,18 @@ void main() {
               name: 'Axis',
               id: 'com.acme.widgets/widgets#type:Axis',
               enumNames: ['horizontal', 'vertical'],
+              enumValueTypes: {
+                'horizontal': FlaxCodegenTypeRef(
+                  'enum',
+                  id: 'com.acme.widgets/widgets#type:Axis',
+                  name: 'Axis',
+                ),
+                'vertical': FlaxCodegenTypeRef(
+                  'enum',
+                  id: 'com.acme.widgets/widgets#type:Axis',
+                  name: 'Axis',
+                ),
+              },
             ),
           ],
           typeLibraries: {
@@ -1332,7 +1368,7 @@ void main() {
     }
   });
 
-  group('Manifest 16 typeLibraries URI semantics', () {
+  group('Manifest 17 typeLibraries URI semantics', () {
     test('accepts public package URIs, cross-package names, and dart:core', () {
       final module = _typeLibrariesModule({
         'Core': 'dart:core',
@@ -1579,7 +1615,7 @@ void main() {
     );
   });
 
-  group('Manifest 16 envelope positives', () {
+  group('Manifest 17 envelope positives', () {
     test('fromResolved round-trips rich and zero-entry modules', () {
       final fixture = _envelopeFixture();
       final manifest = FlaxCodegenManifest.fromResolved(
@@ -1740,16 +1776,16 @@ void main() {
     });
   });
 
-  group('Manifest 16 envelope negatives', () {
+  group('Manifest 17 envelope negatives', () {
     test('invalid JSON and duplicate keys fail closed', () {
       _expectEnvelopeFailure('{', [_record('', 'Invalid JSON.')]);
       _expectEnvelopeFailure(
-        '{\n  "formatVersion": 16,\n  "package": "a",\n  "package": "b"\n}\n',
+        '{\n  "formatVersion": 17,\n  "package": "a",\n  "package": "b"\n}\n',
         [_record('', 'Duplicate mapping key.')],
       );
       final withModuleDup =
           '{\n'
-          '  "formatVersion": 16,\n'
+          '  "formatVersion": 17,\n'
           '  "package": "acme_widgets",\n'
           '  "bindingNamespace": "com.acme.widgets",\n'
           '  "imports": [],\n'
@@ -1758,7 +1794,7 @@ void main() {
           '      "name": "host",\n'
           '      "name": "host",\n'
           '      "moduleId": "com.acme.widgets/host",\n'
-          '      "uiProtocol": 23,\n'
+          '      "uiProtocol": 24,\n'
           '      "requiredCapabilities": [],\n'
           '      "model": {"library":"package:acme_widgets/host.dart","jsPackage":"@acme/host","typeLibraries":{},"classes":[],"types":[],"functions":[],"snapshots":[],"identities":[]}\n'
           '    }\n'
@@ -1769,7 +1805,7 @@ void main() {
       ]);
       final withModelDup =
           '{\n'
-          '  "formatVersion": 16,\n'
+          '  "formatVersion": 17,\n'
           '  "package": "acme_widgets",\n'
           '  "bindingNamespace": "com.acme.widgets",\n'
           '  "imports": [],\n'
@@ -1777,7 +1813,7 @@ void main() {
           '    {\n'
           '      "name": "host",\n'
           '      "moduleId": "com.acme.widgets/host",\n'
-          '      "uiProtocol": 23,\n'
+          '      "uiProtocol": 24,\n'
           '      "requiredCapabilities": [],\n'
           '      "model": {"library":"package:acme_widgets/host.dart","library":"package:acme_widgets/host.dart","jsPackage":"@acme/host","typeLibraries":{},"classes":[],"types":[],"functions":[],"snapshots":[],"identities":[]}\n'
           '    }\n'
@@ -1997,7 +2033,7 @@ void main() {
     });
   });
 
-  group('Manifest 16 ownership model and fromResolved negatives', () {
+  group('Manifest 17 ownership model and fromResolved negatives', () {
     test('declaration owner rows are required at id pointers', () {
       const gauge = 'com.acme.widgets/widgets#type:Gauge';
       const axis = 'com.acme.widgets/widgets#type:Axis';
@@ -2015,9 +2051,23 @@ void main() {
       _expectEnvelopeMutation(baseline, (json) {
         _setIdentityOwner(json, 1, axis, false);
       }, [_record('/modules/1/model/types/0/id', 'Missing owner.')]);
-      _expectEnvelopeMutation(baseline, (json) {
-        _removeIdentity(json, 1, axis);
-      }, [_record('/modules/1/model/types/0/id', 'Missing owner.')]);
+      _expectEnvelopeMutation(
+        baseline,
+        (json) {
+          _removeIdentity(json, 1, axis);
+        },
+        [
+          _record(
+            '/modules/1/model/types/0/enumValueTypes/horizontal/id',
+            'Missing identity.',
+          ),
+          _record(
+            '/modules/1/model/types/0/enumValueTypes/vertical/id',
+            'Missing identity.',
+          ),
+          _record('/modules/1/model/types/0/id', 'Missing owner.'),
+        ],
+      );
 
       _expectEnvelopeMutation(baseline, (json) {
         _setIdentityOwner(json, 1, show, false);
@@ -2460,7 +2510,7 @@ void main() {
     });
   });
 
-  group('Manifest 16 generic lexical slot positives', () {
+  group('Manifest 17 generic lexical slot positives', () {
     test(
       'fresh decoded tokens preserve declaration/reference identity sharing',
       () {
@@ -2758,7 +2808,7 @@ void main() {
     });
   });
 
-  group('Manifest 16 generic lexical slot negatives', () {
+  group('Manifest 17 generic lexical slot negatives', () {
     test('missing declaration slot fails closed', () {
       final json = _cloneJsonMap(
         _slotCallbackJson(_slotSharingCallback(Object())),
@@ -2969,7 +3019,7 @@ void main() {
     });
   });
 
-  group('Manifest 16 Quality P1 maximal projection', () {
+  group('Manifest 17 Quality P1 maximal projection', () {
     test('independently constructed maximal module survives fromResolved encode parse projection and input mutation', () {
       final inIntType = FlaxCodegenTypeRef('int');
       final inStringType = FlaxCodegenTypeRef('String', nullable: true);
@@ -3583,6 +3633,18 @@ void main() {
             name: 'Axis',
             id: axisWire.value,
             enumNames: const ['horizontal', 'vertical'],
+            enumValueTypes: {
+              'horizontal': FlaxCodegenTypeRef(
+                'enum',
+                id: axisWire.value,
+                name: 'Axis',
+              ),
+              'vertical': FlaxCodegenTypeRef(
+                'enum',
+                id: axisWire.value,
+                name: 'Axis',
+              ),
+            },
             typeParameters: [
               FlaxCodegenGenericParameter(
                 'T',
@@ -4098,6 +4160,18 @@ void main() {
             name: 'Axis',
             id: axisWire.value,
             enumNames: const ['horizontal', 'vertical'],
+            enumValueTypes: {
+              'horizontal': FlaxCodegenTypeRef(
+                'enum',
+                id: axisWire.value,
+                name: 'Axis',
+              ),
+              'vertical': FlaxCodegenTypeRef(
+                'enum',
+                id: axisWire.value,
+                name: 'Axis',
+              ),
+            },
             typeParameters: [
               FlaxCodegenGenericParameter(
                 'T',
@@ -4562,7 +4636,7 @@ void main() {
     });
   });
 
-  group('Manifest 16 direct dependency projection positives', () {
+  group('Manifest 17 direct dependency projection positives', () {
     test('A→B→C flattens packages owners modules and importedPackages', () {
       final chain = _projectionChain();
       final a = chain.aProjection;
@@ -4886,7 +4960,7 @@ bindingNamespace: com.example.local
     );
   });
 
-  group('Manifest 16 direct dependency projection negatives', () {
+  group('Manifest 17 direct dependency projection negatives', () {
     test('missing direct import fails closed', () {
       final b = _packageB(_packageC());
       final a = _packageA(b);
@@ -5719,7 +5793,7 @@ const _parameterKeys = {
 
 const _genericKeys = {'name', 'bound', 'defaultType', 'slot'};
 
-const _getterKeys = {'name', 'type', 'encodeKind'};
+const _getterKeys = {'name', 'type', 'encodeKind', 'cache'};
 
 const _constructorKeys = {'name', 'parameters', 'specializations'};
 const _constructorSpecializationKeys = {
@@ -5787,7 +5861,13 @@ const _classKeys = {
   'listenerPairs',
 };
 
-const _namedTypeKeys = {'name', 'id', 'enumNames', 'typeParameters'};
+const _namedTypeKeys = {
+  'name',
+  'id',
+  'enumNames',
+  'enumValueTypes',
+  'typeParameters',
+};
 
 const _functionKeys = {'id', 'call', 'route'};
 
@@ -5871,6 +5951,7 @@ final _malformedType = <String, Object?>{
 };
 
 final _malformedGetter = <String, Object?>{
+  'cache': false,
   'name': 1,
   'type': <String, Object?>{
     'kind': 1,
@@ -5921,10 +6002,10 @@ final _malformedProxy = <String, Object?>{
   ],
   'superMethods': <Object?>[1],
   'getters': [
-    <String, Object?>{'name': 1, 'foo/bar': true},
+    <String, Object?>{'name': 1, 'foo/bar': true, 'cache': false},
   ],
   'setters': [
-    <String, Object?>{'encodeKind': 1, '~x': 1},
+    <String, Object?>{'encodeKind': 1, '~x': 1, 'cache': false},
   ],
   'extra': true,
 };
@@ -5958,13 +6039,13 @@ final _malformedClass = <String, Object?>{
     <String, Object?>{'name': 1, 'extra': true, 'foo/bar': true},
   ],
   'getters': [
-    <String, Object?>{'name': 1, 'foo/bar': true},
+    <String, Object?>{'name': 1, 'foo/bar': true, 'cache': false},
   ],
   'setters': [
-    <String, Object?>{'encodeKind': 1, '~x': 1},
+    <String, Object?>{'encodeKind': 1, '~x': 1, 'cache': false},
   ],
   'staticGetters': [
-    <String, Object?>{'name': 1, 'foo/bar': true},
+    <String, Object?>{'name': 1, 'foo/bar': true, 'cache': false},
   ],
   'methods': [
     <String, Object?>{'name': 1, 'extra': true},
@@ -5987,6 +6068,7 @@ final _malformedClass = <String, Object?>{
 };
 
 final _malformedNamedType = <String, Object?>{
+  'enumValueTypes': <String, Object?>{},
   'name': 1,
   'id': true,
   'enumNames': true,
@@ -7318,6 +7400,18 @@ FlaxCodegenModuleModel _widgetsModel({
         name: 'Axis',
         id: 'com.acme.widgets/widgets#type:Axis',
         enumNames: ['horizontal', 'vertical'],
+        enumValueTypes: {
+          'horizontal': FlaxCodegenTypeRef(
+            'enum',
+            id: 'com.acme.widgets/widgets#type:Axis',
+            name: 'Axis',
+          ),
+          'vertical': FlaxCodegenTypeRef(
+            'enum',
+            id: 'com.acme.widgets/widgets#type:Axis',
+            name: 'Axis',
+          ),
+        },
       ),
     ],
     typeLibraries: typeLibraries,
@@ -7362,18 +7456,18 @@ void _expectEnvelopeShape(
   expect(manifest.package, 'acme_widgets');
   expect(manifest.bindingNamespace.value, 'com.acme.widgets');
   expect(manifest.imports, ['flax', 'flax_material']);
-  expect(FlaxCodegenManifest.formatVersion, 16);
-  expect(FlaxCodegenManifest.uiProtocol, 23);
+  expect(FlaxCodegenManifest.formatVersion, 17);
+  expect(FlaxCodegenManifest.uiProtocol, 24);
   final encoded = manifest.toJson();
   _expectExactKeys(encoded, _envelopeKeys);
-  expect(encoded['formatVersion'], 16);
+  expect(encoded['formatVersion'], 17);
   expect(encoded['modules'], isA<List<Object?>>());
   final modules = encoded['modules']! as List<Object?>;
   expect(modules, hasLength(2));
   for (final moduleJson in modules) {
     final module = _expectObject(moduleJson);
     _expectExactKeys(module, _moduleEntryKeys);
-    expect(module['uiProtocol'], 23);
+    expect(module['uiProtocol'], 24);
     expect(module['requiredCapabilities'], [
       'instance-checks',
       'native-widget-proxies',

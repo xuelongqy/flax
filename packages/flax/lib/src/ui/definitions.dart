@@ -1,7 +1,7 @@
 part of '../../bindings.dart';
 
 /// Active UI protocol for Core-owned code and registry comparison.
-const flaxBindingVersion = 23;
+const flaxBindingVersion = 24;
 
 /// Additive features supported without changing the UI protocol.
 const _supportedCapabilities = <String>{
@@ -366,8 +366,9 @@ class FlaxStaticGetter {
 }
 
 class FlaxEnumBinding extends FlaxTypeBinding {
-  const FlaxEnumBinding(super.id, this.values);
+  const FlaxEnumBinding(super.id, this.values, {this.supertypes = const []});
   final Map<String, Object> values;
+  final List<String> supertypes;
 }
 
 class FlaxWidgetBinding extends FlaxTypeBinding {

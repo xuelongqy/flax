@@ -1,6 +1,8 @@
 import { type DartEnum } from '@flax/core/bindings';
 export interface TargetPlatform extends DartEnum {
-    readonly type: "flax.core/flutter#type:TargetPlatform";
+    readonly __TargetPlatform: unique symbol;
+    readonly name: string;
+    readonly index: number;
 }
 export declare const TargetPlatform: Readonly<{
     android: TargetPlatform;
@@ -9,4 +11,5 @@ export declare const TargetPlatform: Readonly<{
     linux: TargetPlatform;
     macOS: TargetPlatform;
     windows: TargetPlatform;
+    values: readonly TargetPlatform[];
 }>;

@@ -2,6 +2,7 @@ import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings'
 import type * as upstream0 from '@flax/flutter/material/_bindings/material_ColorScheme';
 import '@flax/flutter/material/_bindings/material_ColorScheme';
 import type * as upstream1 from '@flax/flutter/material/_bindings/material_Brightness';
+import '@flax/flutter/material/_bindings/material_Brightness';
 import '@flax/flutter/services/_bindings/flutter_Color';
 import type * as upstream3 from '@flax/flutter/material/_bindings/material_TextTheme';
 import '@flax/flutter/material/_bindings/material_TextTheme';

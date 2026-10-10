@@ -7,8 +7,8 @@ import 'model.dart';
 
 part 'library_emitter.dart';
 
-/// Generated modules pin UI protocol 23. Do not read Core `flaxBindingVersion`.
-const _generatedUiProtocol = 23;
+/// Generated modules pin UI protocol 24. Do not read Core `flaxBindingVersion`.
+const _generatedUiProtocol = 24;
 
 // Bound direct dispatch to 32 branches; larger signatures keep Dart defaults
 // through a typed tear-off without duplicating private constants.
@@ -97,7 +97,7 @@ String? _inferModuleIdFromMembers(FlaxCodegenModuleModel module) {
 }
 
 const _typescriptHostImport =
-    "import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, bindingVersion, construct as _flaxHostConstruct, constructProxy as _flaxHostConstructProxy, constructObject as _flaxHostConstructObject, constructDeferredObject as _flaxHostConstructDeferredObject, constructStream as _flaxHostConstructStream, constructAsyncIterableStream as _flaxHostConstructAsyncIterableStream, defineObject as _flaxHostDefineObject, defineStream as _flaxHostDefineStream, invokeObject as _flaxHostInvokeObject, invokeObjectStatic as _flaxHostInvokeObjectStatic, invokeStream as _flaxHostInvokeStream, enumValue as _flaxHostEnumValue, defineContext as _flaxHostDefineContext, defineState as _flaxHostDefineState, contextHandle as _flaxHostContextHandle, invokeStatic as _flaxHostInvokeStatic, invokeInstance as _flaxHostInvokeInstance, invokeTopLevel as _flaxHostInvokeTopLevel, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';";
+    "import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, bindingVersion, construct as _flaxHostConstruct, constructProxy as _flaxHostConstructProxy, constructObject as _flaxHostConstructObject, constructDeferredObject as _flaxHostConstructDeferredObject, constructStream as _flaxHostConstructStream, constructAsyncIterableStream as _flaxHostConstructAsyncIterableStream, defineObject as _flaxHostDefineObject, defineStream as _flaxHostDefineStream, invokeObject as _flaxHostInvokeObject, invokeObjectStatic as _flaxHostInvokeObjectStatic, invokeStream as _flaxHostInvokeStream, enumValue as _flaxHostEnumValue, defineEnum as _flaxHostDefineEnum, invokeEnum as _flaxHostInvokeEnum, defineContext as _flaxHostDefineContext, defineState as _flaxHostDefineState, contextHandle as _flaxHostContextHandle, invokeStatic as _flaxHostInvokeStatic, invokeInstance as _flaxHostInvokeInstance, invokeTopLevel as _flaxHostInvokeTopLevel, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';";
 
 const _typescriptInstallHelper = r'''
 function _flaxInstallBindingModule(
@@ -138,6 +138,8 @@ function _flaxInstallBindingModule(
     invokeObjectStatic: _flaxHostInvokeObjectStatic,
     invokeStream: _flaxHostInvokeStream,
     enumValue: _flaxHostEnumValue,
+    defineEnum: _flaxHostDefineEnum,
+    invokeEnum: _flaxHostInvokeEnum,
     defineContext: _flaxHostDefineContext,
     defineState: _flaxHostDefineState,
     contextHandle: _flaxHostContextHandle,
@@ -328,6 +330,11 @@ class FlaxCodegenBindingEmitter {
         if (parameter.defaultType case final defaults?) {
           yield* _typescriptReachableType(defaults);
         }
+      }
+    }
+    for (final named in module.types) {
+      for (final value in named.enumValueTypes.values) {
+        yield* _typescriptReachableType(value);
       }
     }
     for (final type in module.classes) {
@@ -1770,9 +1777,15 @@ import 'package:flax/bindings.dart';
       for (final name in type.enumNames) {
         out.writeln('${_quote(name)}: ${_dartName(type.name)}.$name,');
       }
-      out.writeln('}),');
+      final surface = module.classes
+          .where((value) => value.id == type.id)
+          .firstOrNull;
+      out.writeln(
+        '}, supertypes: ${jsonEncode(surface?.supertypes ?? const <String>[])}),',
+      );
     }
     for (final type in module.classes) {
+      if (type.kind == 'enum') continue;
       if (type.kind == 'widgetInterface') {
         out.writeln(
           'FlaxWidgetInterfaceBinding(${_quote(type.id)}, _is${type.name}),',
@@ -1861,6 +1874,9 @@ import 'package:flax/bindings.dart';
             .toList() ??
         <FlaxCodegenTopLevelSetterModel>[];
     final functionNames = {
+      for (final type in module.classes)
+        for (final function in module.enumFunctions(type))
+          function.id: function.call.name,
       for (final type in module.classes)
         for (final getter in type.staticGetters)
           type.staticGetterId(getter):
@@ -1992,6 +2008,112 @@ import 'package:flax/bindings.dart';
       out.writeln('}');
     }
     for (final type in module.classes) {
+      if (type.kind == 'enum') {
+        final operations = module.enumFunctions(type).toList();
+        FlaxCodegenMethodModel call(
+          String member,
+          String action, [
+          String? constant,
+        ]) => operations
+            .singleWhere(
+              (function) =>
+                  function.id == type.enumOperationId(member, action, constant),
+            )
+            .call;
+        final constants = module.types.singleWhere(
+          (named) => named.id == type.id,
+        );
+        for (final constant
+            in type.typeParameters.isEmpty
+                ? <String?>[null]
+                : constants.enumNames) {
+          String receiver(FlaxCodegenMethodModel operation) =>
+              '(values[${_quote(operation.parameters.first.name)}] as ${_dartType(operation.parameters.first.type)})';
+          for (final getter in type.getters) {
+            final operation = call(getter.name, 'get', constant);
+            out.writeln(
+              'Object? ${operation.name}(Map<String, Object?> values) => ${receiver(operation)}.${getter.name};',
+            );
+          }
+          for (final setter in type.setters) {
+            final operation = call(setter.name, 'set', constant);
+            out.writeln(
+              "Object? ${operation.name}(Map<String, Object?> values) { ${receiver(operation)}.${setter.name} = ${_cast("values['value']", operation.parameters.last.type)}; return null; }",
+            );
+          }
+          for (final method in type.methods.where(
+            (method) => method.instance,
+          )) {
+            final operation = call(method.name, 'call', constant);
+            out.writeln(
+              'Object? ${operation.name}(Map<String, Object?> values) {',
+            );
+            final target =
+                '${receiver(operation)}.${method.name}${_typeArgs(method.typeArguments)}';
+            if (method.operatorName != null) {
+              final expression = _operatorExpression(
+                receiver(operation),
+                method.operatorName!,
+                [
+                  for (final parameter in operation.parameters.skip(1))
+                    _cast('values[${_quote(parameter.name)}]', parameter.type),
+                ],
+              );
+              out.writeln(
+                '${operation.result.kind == 'void' ? '' : 'return '}$expression;',
+              );
+              if (operation.result.kind == 'void') out.writeln('return null;');
+            } else {
+              _emitCallableCall(
+                out,
+                FlaxCodegenMethodModel(
+                  operation.name,
+                  operation.parameters.skip(1).toList(),
+                  operation.result,
+                ),
+                (arguments) => '$target($arguments)',
+                tearOff: target,
+              );
+            }
+            out.writeln('}');
+          }
+        }
+        for (final method in type.methods.where((method) => !method.instance)) {
+          final operation = call(method.name, 'call');
+          out.writeln(
+            'Object? ${operation.name}(Map<String, Object?> values) {',
+          );
+          final target =
+              '${_dartName(type.name)}.${method.name}${_typeArgs(method.typeArguments)}';
+          _emitCallableCall(
+            out,
+            operation,
+            (arguments) => '$target($arguments)',
+            tearOff: target,
+          );
+          out.writeln('}');
+        }
+        for (final constructor in type.constructors) {
+          final operation = call(constructor.name, 'factory');
+          out.writeln(
+            'Object? ${operation.name}(Map<String, Object?> values) {',
+          );
+          _emitConstructorCalls(out, type, constructor);
+          out.writeln('}');
+        }
+        // Static accessors share the ordinary function registry.
+        for (final getter in type.staticGetters) {
+          out.writeln(
+            'Object? _${type.name}_static_get_${getter.name}(Map<String, Object?> values) => ${_dartName(type.name)}.${getter.name};',
+          );
+        }
+        for (final setter in type.staticSetters) {
+          out.writeln(
+            "Object? _${type.name}_static_set_${setter.name}(Map<String, Object?> values) { ${_dartName(type.name)}.${setter.name} = ${_cast("values['value']", setter.type)}; return null; }",
+          );
+        }
+        continue;
+      }
       if (type.kind == 'object' ||
           type.kind == 'widgetInterface' ||
           type.kind == 'stream' ||
@@ -3488,6 +3610,7 @@ T _genericCallbackResult<T>(Object? value) {
       dependencies.putIfAbsent(owner, () => 'upstream${dependencies.length}');
     }
     var genericNames = <Object, String>{};
+    var enumSignature = false;
     String tsType(
       FlaxCodegenTypeRef type, {
       bool declarations = true,
@@ -3596,7 +3719,9 @@ T _genericCallbackResult<T>(Object? value) {
 
       final base = switch (type.category) {
         FlaxCodegenTypeCategory.parameter =>
-          genericNames[type.genericIdentity] ?? type.name!,
+          enumSignature && input
+              ? '(${genericNames[type.genericIdentity] ?? type.name!} | DartInput<${genericNames[type.genericIdentity] ?? type.name!}>)'
+              : genericNames[type.genericIdentity] ?? type.name!,
         FlaxCodegenTypeCategory.typeOnly =>
           'Readonly<{ ${jsonEncode('__flaxBound:${type.originatingUri}::${type.originatingName}')}: readonly [${type.tsArguments.map((t) => child(t)).join(', ')}] }>',
         FlaxCodegenTypeCategory.string => 'string',
@@ -3770,15 +3895,20 @@ $_typescriptHostImport
       );
       if (!valueImport &&
           _typescriptSignatureTypes(module).any(
-            (t) => entry.key.classes.any(
-              (c) =>
-                  c.id == t.id &&
-                  (c.kind == 'context' ||
-                      c.kind == 'state' ||
-                      c.kind == 'object'),
-            ),
+            (t) =>
+                entry.key.classes.any(
+                  (c) =>
+                      c.id == t.id &&
+                      (c.kind == 'context' ||
+                          c.kind == 'state' ||
+                          c.kind == 'object' ||
+                          c.kind == 'enum'),
+                ) ||
+                entry.key.types.any(
+                  (named) => named.id == t.id && named.isEnum,
+                ),
           )) {
-        // Context factories must also exist when the dependency is type-only.
+        // Reference factories must exist even for type-only dependency imports.
         out.writeln("import '${entry.key.jsPackage}';");
       }
     }
@@ -3789,7 +3919,7 @@ $_typescriptHostImport
         'import { construct, constructProxy, constructObject, '
         'constructDeferredObject, constructStream, constructAsyncIterableStream, '
         '_flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, '
-        'invokeStream, enumValue, defineContext, defineState, contextHandle, '
+        'invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, '
         'invokeStatic, invokeInstance, invokeTopLevel } from '
         '${jsonEncode(moduleInstallImport)};',
       );
@@ -3807,14 +3937,21 @@ $_typescriptHostImport
           : 'export ';
       if (type.isEnum) {
         out.writeln(
-          '${exportPrefix}interface ${type.name} extends DartEnum { readonly type: ${jsonEncode(type.id)}; }',
+          '${exportPrefix}interface ${type.name}${generics(type.typeParameters)} extends DartEnum { readonly __${type.name}: unique symbol; readonly name: string; readonly index: number; }',
+        );
+        out.writeln(
+          'defineEnum(${jsonEncode(type.id)}, ${jsonEncode(type.enumNames)});',
         );
         out.writeln('${exportPrefix}const ${type.name} = Object.freeze({');
         for (final name in type.enumNames) {
+          final constantType = type.enumValueTypes[name];
           out.writeln(
-            '$name: enumValue<${type.name}>(${jsonEncode(type.id)}, ${jsonEncode(name)}),',
+            '$name: enumValue<${constantType == null ? type.name : tsType(constantType, declarations: true)}>(${jsonEncode(type.id)}, ${jsonEncode(name)}),',
           );
         }
+        out.writeln(
+          'values: Object.freeze([${type.enumNames.map((name) => 'enumValue<${type.name}${type.typeParameters.isEmpty ? '' : '<${type.typeParameters.map((p) => tsType(p.defaultType!)).join(', ')}>'}>(${jsonEncode(type.id)}, ${jsonEncode(name)})').join(', ')}]),',
+        );
         out.writeln('});');
       } else if (_intrinsicStreamTypeIds.contains(type.id)) {
         final parameter = type.typeParameters.single;
@@ -3835,6 +3972,10 @@ $_typescriptHostImport
       FlaxCodegenClassCategory? category,
       bool extensionOperation = false,
       bool exportNamespace = true,
+      bool enumOperation = false,
+      String? enumOperationIds,
+      bool literal = false,
+      bool declarations = true,
     }) {
       final previousGenericNames = genericNames;
       if (extensionOperation) {
@@ -3856,18 +3997,18 @@ $_typescriptHostImport
           .where((p) => p.positional)
           .map(
             (p) =>
-                '${p.name}${p.required ? '' : '?'}: ${tsType(p.type, input: true, declarations: !method.instance)}',
+                '${p.name}${p.required ? '' : '?'}: ${tsType(p.type, input: true, declarations: declarations && !method.instance)}',
           )
           .toList();
       if (named.isNotEmpty) {
         args.add(
-          'options: { ${named.map((p) => namedParameter(p, tsType(p.type, input: true, declarations: !method.instance))).join('; ')} }${named.every((p) => !p.required) ? ' = {}' : ''}',
+          'options: { ${named.map((p) => namedParameter(p, tsType(p.type, input: true, declarations: declarations && !method.instance))).join('; ')} }${named.every((p) => !p.required) ? ' = {}' : ''}',
         );
       }
       target.writeln(
-        method.instance
-            ? '${method.name}(this: object${args.isEmpty ? '' : ', ${args.join(', ')}'}): ${tsType(method.result, declarations: !method.instance)} {'
-            : '${namespace == null ? "function _flaxTopLevel_" : "${exportNamespace ? 'export ' : ''}namespace $namespace { export function "}${method.name}${generics(method.typeParameters)}(${args.join(', ')}): ${tsType(method.result, declarations: !method.instance)} {',
+        method.instance || literal
+            ? '${method.name}${literal ? generics(method.typeParameters) : ''}(${[if (method.instance) 'this: object', ...args].join(', ')}): ${tsType(method.result, declarations: declarations && !method.instance)} {'
+            : '${namespace == null ? "function _flaxTopLevel_" : "${exportNamespace ? 'export ' : ''}namespace $namespace { export function "}${method.name}${generics(method.typeParameters)}(${args.join(', ')}): ${tsType(method.result, declarations: declarations && !method.instance)} {',
       );
       target.writeln(
         "if (arguments.length > ${args.length}) throw new TypeError('Too many method arguments');",
@@ -3912,7 +4053,9 @@ $_typescriptHostImport
       var invocation = namespace == null || extensionOperation
           ? 'invokeTopLevel('
           : 'invokeStatic(';
-      if (method.instance) {
+      if (enumOperation) {
+        invocation = 'invokeTopLevel(';
+      } else if (method.instance) {
         final helper = switch (category) {
           FlaxCodegenClassCategory.object => 'invokeObject',
           FlaxCodegenClassCategory.stream => 'invokeStream',
@@ -3921,21 +4064,23 @@ $_typescriptHostImport
         invocation = '$helper(this, ';
       }
       target.writeln(
-        'const _flaxResult = $invocation${jsonEncode(id)}, ${namespace == null || extensionOperation ? "" : "${jsonEncode(method.name)}, "}[$values]);',
+        enumOperationIds == null
+            ? 'const _flaxResult = $invocation${jsonEncode(id)}, ${namespace == null || extensionOperation || enumOperation ? "" : "${jsonEncode(method.name)}, "}[${enumOperation && method.instance ? 'this${values.isEmpty ? '' : ', '}' : ''}$values]);'
+            : 'const _flaxResult = invokeEnum(this, $enumOperationIds, [$values]);',
       );
       if (method.result.kind != 'void') {
         target.writeln(
-          'return _flaxResult as ${tsType(method.result, declarations: !method.instance)};',
+          'return _flaxResult as ${tsType(method.result, declarations: declarations && !method.instance)};',
         );
       }
       target.writeln(
-        method.instance
+        method.instance || literal
             ? '},'
             : namespace == null
             ? '}'
             : '} }',
       );
-      if (namespace == null && !method.instance) {
+      if (namespace == null && !method.instance && !literal) {
         target.writeln(
           'export { _flaxTopLevel_${method.name} as ${method.name} };',
         );
@@ -4205,6 +4350,210 @@ $_typescriptHostImport
       final exportPrefix = module.internalTypeNames.contains(type.name)
           ? ''
           : 'export ';
+      if (type.kind == 'enum') {
+        enumSignature = true;
+        final constants = module.types.singleWhere(
+          (value) => value.id == type.id,
+        );
+        final bases = <String>{
+          'DartEnum',
+          for (final parent in type.superTypes)
+            if (parent.id != type.id && parent.originatingName != type.name)
+              tsType(parent, nominal: true, declarations: true),
+        };
+        out.writeln(
+          '${exportPrefix}interface ${type.name}${generics(type.typeParameters, defaults: true)} extends ${bases.join(', ')} { readonly __${type.name}: unique symbol;',
+        );
+        if (!type.getters.any((getter) => getter.name == 'name')) {
+          out.writeln('readonly name: string;');
+        }
+        if (!type.getters.any((getter) => getter.name == 'index')) {
+          out.writeln('readonly index: number;');
+        }
+        for (final getter in type.getters) {
+          out.writeln(
+            type.setters.any((setter) => setter.name == getter.name)
+                ? 'get ${getter.name}(): ${tsType(getter.type, declarations: true)};'
+                : 'readonly ${getter.name}: ${tsType(getter.type, declarations: true)};',
+          );
+        }
+        for (final setter in type.setters) {
+          out.writeln(
+            'set ${setter.name}(value: ${tsType(setter.type, input: true, declarations: true)});',
+          );
+        }
+        for (final method in type.methods.where((method) => method.instance)) {
+          final positional = method.parameters
+              .where((p) => p.positional)
+              .map(
+                (p) =>
+                    '${p.name}${p.required ? '' : '?'}: ${tsType(p.type, input: true, declarations: true)}',
+              )
+              .toList();
+          final named = method.parameters.where((p) => !p.positional).toList();
+          if (named.isNotEmpty) {
+            positional.add(
+              'options${named.every((p) => !p.required) ? '?' : ''}: {${named.map((p) => namedParameter(p, tsType(p.type, input: true, declarations: true))).join('; ')}}',
+            );
+          }
+          out.writeln(
+            '${method.name}${generics(method.typeParameters)}(${positional.join(', ')}): ${tsType(method.result, declarations: true)};',
+          );
+        }
+        out.writeln('}');
+        String? genericOperations(String member, String action) =>
+            type.typeParameters.isEmpty
+            ? null
+            : '_flaxEnum_${type.name}_${action}_$member';
+        if (type.typeParameters.isNotEmpty) {
+          for (final member in [
+            for (final getter in type.getters) (getter.name, 'get'),
+            for (final setter in type.setters) (setter.name, 'set'),
+            for (final method in type.methods.where(
+              (method) => method.instance,
+            ))
+              (method.name, 'call'),
+          ]) {
+            out.writeln(
+              'const ${genericOperations(member.$1, member.$2)} = ${jsonEncode([for (final constant in constants.enumNames) type.enumOperationId(member.$1, member.$2, constant)])};',
+            );
+          }
+        }
+        String read(String member, String action, List<String> args) {
+          final operations = genericOperations(member, action);
+          return operations == null
+              ? 'invokeTopLevel(${jsonEncode(type.enumOperationId(member, action))}, [${['this', ...args].join(', ')}])'
+              : 'invokeEnum(this, $operations, [${args.join(', ')}])';
+        }
+
+        out.writeln(
+          'defineEnum(${jsonEncode(type.id)}, ${jsonEncode(constants.enumNames)}, {',
+        );
+        for (final getter in type.getters) {
+          out.writeln(
+            'get ${getter.name}(): ${tsType(getter.type, declarations: false)} { return ${read(getter.name, 'get', [])} as ${tsType(getter.type, declarations: false)}; },',
+          );
+        }
+        for (final setter in type.setters) {
+          out.writeln(
+            'set ${setter.name}(value: ${tsType(setter.type, input: true, declarations: false)}) { ${read(setter.name, 'set', ['value'])}; },',
+          );
+        }
+        for (final method in type.methods.where((method) => method.instance)) {
+          emitTsCallable(
+            out,
+            method,
+            id: type.enumOperationId(method.name, 'call'),
+            enumOperation: true,
+            enumOperationIds: genericOperations(method.name, 'call'),
+          );
+        }
+        out.writeln(
+          '}, ${jsonEncode(type.getters.where((getter) => getter.cache).map((getter) => getter.name).toList())}, ${jsonEncode(type.supertypes)});',
+        );
+        final valuesType = constants.enumValueTypes.values
+            .map((type) => tsType(type, declarations: true))
+            .toSet()
+            .join(' | ');
+        out.writeln('${exportPrefix}const ${type.name} = Object.freeze({');
+        for (final name in constants.enumNames) {
+          out.writeln(
+            '$name: enumValue<${tsType(constants.enumValueTypes[name] ?? FlaxCodegenTypeRef('enum', id: type.id, name: type.name), declarations: true)}>(${jsonEncode(type.id)}, ${jsonEncode(name)}),',
+          );
+        }
+        out.writeln(
+          'values: Object.freeze([${constants.enumNames.map((name) => 'enumValue<$valuesType>(${jsonEncode(type.id)}, ${jsonEncode(name)})').join(', ')}]),',
+        );
+        for (final getter in type.staticGetters) {
+          out.writeln(
+            'get ${getter.name}(): ${tsType(getter.type)} { return invokeTopLevel(${jsonEncode(type.staticGetterId(getter))}, []) as ${tsType(getter.type)}; },',
+          );
+        }
+        for (final setter in type.staticSetters) {
+          final call = type.staticFunctions
+              .singleWhere(
+                (operation) => operation.id == type.staticSetterId(setter),
+              )
+              .call;
+          emitTsCallable(
+            out,
+            FlaxCodegenMethodModel(
+              'set${setter.name[0].toUpperCase()}${setter.name.substring(1)}',
+              call.parameters,
+              call.result,
+            ),
+            id: type.staticSetterId(setter),
+            literal: true,
+            enumOperation: true,
+          );
+        }
+        for (final method in type.methods.where((method) => !method.instance)) {
+          emitTsCallable(
+            out,
+            method,
+            id: type.enumOperationId(method.name, 'call'),
+            literal: true,
+            enumOperation: true,
+          );
+        }
+        for (final constructor in type.constructors) {
+          final inferred = constructor.specializations.isNotEmpty;
+          final call = module
+              .enumFunctions(type)
+              .singleWhere(
+                (function) =>
+                    function.id ==
+                    type.enumOperationId(constructor.name, 'factory'),
+              )
+              .call;
+          emitTsCallable(
+            out,
+            FlaxCodegenMethodModel(
+              constructor.name,
+              constructor.parameters,
+              inferred
+                  ? FlaxCodegenTypeRef(
+                      'enum',
+                      id: type.id,
+                      name: type.name,
+                      tsArguments: [
+                        for (final parameter in type.typeParameters)
+                          FlaxCodegenTypeRef(
+                            'parameter',
+                            name: parameter.name,
+                            genericIdentity: parameter.genericIdentity,
+                          ),
+                      ],
+                    )
+                  : call.result,
+              typeParameters: inferred
+                  ? [
+                      for (final parameter in type.typeParameters)
+                        FlaxCodegenGenericParameter(
+                          parameter.name,
+                          constructor.parameters.any(
+                                (input) =>
+                                    input.type.kind == 'scalar' &&
+                                    input.type.declaration?.genericIdentity ==
+                                        parameter.genericIdentity,
+                              )
+                              ? const FlaxCodegenTypeRef('scalar')
+                              : parameter.bound,
+                          genericIdentity: parameter.genericIdentity,
+                        ),
+                    ]
+                  : const [],
+            ),
+            id: type.enumOperationId(constructor.name, 'factory'),
+            literal: true,
+            enumOperation: true,
+            declarations: inferred,
+          );
+        }
+        out.writeln('});');
+        enumSignature = false;
+        continue;
+      }
       final hasJsConstructor =
           type.proxy?.kind == 'extends' ||
           (type.kind == 'widget' && type.proxy != null);
@@ -4634,7 +4983,7 @@ $_typescriptHostImport
       'export const ${module.name}BindingModule = _flaxInstallBindingModule(${jsonEncode(_literalModuleId(module))}, $_generatedUiProtocol, $capabilityLiteral);',
     );
     out.writeln(
-      'const { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, bindInstanceType: _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } = ${module.name}BindingModule;',
+      'const { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, bindInstanceType: _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } = ${module.name}BindingModule;',
     );
   }
 }

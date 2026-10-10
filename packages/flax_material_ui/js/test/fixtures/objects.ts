@@ -149,7 +149,10 @@ import {
   defineObject,
   invokeObject,
   enumValue,
+  defineEnum,
 } from '@flax/core/bindings';
+
+defineEnum('fixture:Mode', ['quiet', 'active']);
 const gaugeType = 'fixture:Gauge';
 defineObject(
   gaugeType,

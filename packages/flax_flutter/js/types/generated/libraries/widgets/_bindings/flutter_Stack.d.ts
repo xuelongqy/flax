@@ -2,8 +2,11 @@ import { type FlaxInstanceType as _FlaxInstanceType, type DartListInput, type Bi
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/widgets/_bindings/flutter_AlignmentGeometry';
 import type * as upstream2 from '@flax/flutter/services/_bindings/flutter_TextDirection';
+import '@flax/flutter/services/_bindings/flutter_TextDirection';
 import type * as upstream3 from '@flax/flutter/widgets/_bindings/flutter_StackFit';
+import '@flax/flutter/widgets/_bindings/flutter_StackFit';
 import type * as upstream4 from '@flax/flutter/widgets/_bindings/flutter_Clip';
+import '@flax/flutter/widgets/_bindings/flutter_Clip';
 export interface Stack extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Stack";
 }

@@ -8,7 +8,7 @@ const _moduleHelpers =
     'construct, constructProxy, constructObject, '
     'constructDeferredObject, constructStream, constructAsyncIterableStream, '
     '_flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, '
-    'enumValue, defineContext, defineState, contextHandle, invokeStatic, '
+    'enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, '
     'invokeInstance, invokeTopLevel';
 
 /// The complete deterministic TypeScript inventory, before any files are written.

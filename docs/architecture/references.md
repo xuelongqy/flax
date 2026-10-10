@@ -88,7 +88,7 @@ does not root business values. Conditional engine tracing owns cross-heap reacha
 including idle and allocation-pressure GC.
 
 The lifetime mechanism is internal, with no separate package or public lifetime
-configuration. Binding transport uses UI protocol 23 and the unchanged native ABI 2.
+configuration. Binding transport uses UI protocol 24 and the unchanged native ABI 2.
 
 ## Boundaries
 

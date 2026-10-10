@@ -11,7 +11,7 @@
       "bindings": [
         {
           "moduleId": "flax.cupertino/cupertino",
-          "uiProtocol": 23,
+          "uiProtocol": 24,
           "types": [
             "flax.cupertino/cupertino#type:CupertinoApp",
             "flax.cupertino/cupertino#type:CupertinoButton",

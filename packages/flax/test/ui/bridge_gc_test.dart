@@ -204,7 +204,7 @@ void main() {
       await tester.pumpWidget(harness.app('interop'));
       runZonedGuarded(() {
         harness.execute('''
-          __flaxInvokeOperation(__flaxResolveOperation(23, 'test/bridge-gc#function:receivePromise', 'top', 'call', ''), 0,
+          __flaxInvokeOperation(__flaxResolveOperation(24, 'test/bridge-gc#function:receivePromise', 'top', 'call', ''), 0,
             () => Promise.resolve(7));
         ''');
         values.receivedFuture!.then<int>(
@@ -252,7 +252,7 @@ void main() {
         await tester.pumpWidget(harness.app('interop'));
         harness.execute('''
         var weakInput;
-        __flaxInvokeOperation(__flaxResolveOperation(23, 'test/bridge-gc#function:receivePromise', 'top', 'call', ''), 0, () => {
+        __flaxInvokeOperation(__flaxResolveOperation(24, 'test/bridge-gc#function:receivePromise', 'top', 'call', ''), 0, () => {
           const promise = new Promise(() => {});
           weakInput = new WeakRef(promise);
           return promise;
@@ -297,7 +297,7 @@ void main() {
     try {
       await tester.pumpWidget(harness.app('interop'));
       harness.execute(
-        "var reviewValues = __flaxInvokeOperation(__flaxResolveOperation(23, 'test/bridge-gc#function:values', 'top', 'call', ''), 0);",
+        "var reviewValues = __flaxInvokeOperation(__flaxResolveOperation(24, 'test/bridge-gc#function:values', 'top', 'call', ''), 0);",
       );
       // Initialize the lazily retained Future and settlement helpers first.
       harness.execute(
@@ -333,7 +333,7 @@ void main() {
       try {
         await tester.pumpWidget(harness.app('interop'));
         harness.execute('''
-        var reviewValues = __flaxInvokeOperation(__flaxResolveOperation(23, 'test/bridge-gc#function:values', 'top', 'call', ''), 0);
+        var reviewValues = __flaxInvokeOperation(__flaxResolveOperation(24, 'test/bridge-gc#function:values', 'top', 'call', ''), 0);
         var completion;
         void reviewValues.present.then(value => completion = value);
       ''');
@@ -373,7 +373,7 @@ void main() {
     try {
       await tester.pumpWidget(harness.app('interop'));
       harness.execute(
-        "var reviewValues = __flaxInvokeOperation(__flaxResolveOperation(23, 'test/bridge-gc#function:values', 'top', 'call', ''), 0);",
+        "var reviewValues = __flaxInvokeOperation(__flaxResolveOperation(24, 'test/bridge-gc#function:values', 'top', 'call', ''), 0);",
       );
       for (final error in <Object>[
         StateError('stream error'),

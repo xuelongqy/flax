@@ -14,7 +14,7 @@ test('showDialog forwards its builder without executing it', () => {
   };
   const promise = Promise.resolve(null);
   operationHost('top', (version, id, ...args) => {
-    assert.equal(version, 23);
+    assert.equal(version, 24);
     assert.match(id, /#function:showDialog$/);
     assert.ok(args.includes(builder));
     assert.ok(args.includes(41));

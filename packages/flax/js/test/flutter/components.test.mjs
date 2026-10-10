@@ -91,9 +91,9 @@ test('setState and explicit super dispatch through the paired host', () => {
   assert.equal(state.count, 1);
   assert.equal(state.mounted, true);
   assert.deepEqual(calls, [
-    [23, 7, 'super:initState'],
-    [23, 7, 'setState'],
-    [23, 7, 'mounted'],
+    [24, 7, 'super:initState'],
+    [24, 7, 'setState'],
+    [24, 7, 'mounted'],
   ]);
 });
 
@@ -131,7 +131,7 @@ test('Context ancestor queries send constructor identity and reject retired Cont
   const context = api.context(type, 72);
   const ancestor = new Counter();
   globalThis.__flaxAncestor = (version, contextType, id, componentType) => {
-    assert.equal(version, 23);
+    assert.equal(version, 24);
     assert.equal(contextType, type);
     assert.equal(id, 72);
     assert.equal(componentType, api.componentType(Counter).type);

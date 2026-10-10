@@ -172,7 +172,7 @@ Implementation delivery uses a versioned `flax_modules.json`, separate from the 
 Manifest. It records public specifiers, the physical npm package and source entry,
 delivery dependencies, and the Dart binding requirements needed if that module is
 actually injected into a session. `tool/module_delivery.mjs` derives official delivery
-metadata from Manifest 16 rather than duplicating binding ownership by hand.
+metadata from Manifest 17 rather than duplicating binding ownership by hand.
 
 An application prepares the modules it can provide, for example:
 

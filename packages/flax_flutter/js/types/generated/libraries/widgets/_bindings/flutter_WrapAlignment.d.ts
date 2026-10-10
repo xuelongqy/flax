@@ -1,6 +1,8 @@
 import { type DartEnum } from '@flax/core/bindings';
 export interface WrapAlignment extends DartEnum {
-    readonly type: "flax.core/flutter#type:WrapAlignment";
+    readonly __WrapAlignment: unique symbol;
+    readonly name: string;
+    readonly index: number;
 }
 export declare const WrapAlignment: Readonly<{
     start: WrapAlignment;
@@ -9,4 +11,5 @@ export declare const WrapAlignment: Readonly<{
     spaceBetween: WrapAlignment;
     spaceAround: WrapAlignment;
     spaceEvenly: WrapAlignment;
+    values: readonly WrapAlignment[];
 }>;

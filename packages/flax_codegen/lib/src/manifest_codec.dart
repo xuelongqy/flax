@@ -40,7 +40,7 @@ const _parameterKeys = {
 
 const _genericKeys = {'name', 'bound', 'defaultType', 'slot'};
 
-const _getterKeys = {'name', 'type', 'encodeKind'};
+const _getterKeys = {'name', 'type', 'encodeKind', 'cache'};
 
 const _constructorKeys = {'name', 'parameters', 'specializations'};
 const _constructorSpecializationKeys = {
@@ -108,7 +108,13 @@ const _classKeys = {
   'listenerPairs',
 };
 
-const _namedTypeKeys = {'name', 'id', 'enumNames', 'typeParameters'};
+const _namedTypeKeys = {
+  'name',
+  'id',
+  'enumNames',
+  'enumValueTypes',
+  'typeParameters',
+};
 const _typedefKeys = {
   'name',
   'originatingUri',
@@ -1331,6 +1337,7 @@ Map<String, Object?> _encodeGetter(
   'name': getter.name,
   'type': _encodeType(getter.type, scope),
   'encodeKind': getter.encodeKind,
+  'cache': getter.cache,
 };
 
 FlaxCodegenGetterModel? _decodeGetter(
@@ -1350,10 +1357,16 @@ FlaxCodegenGetterModel? _decodeGetter(
   final name = object.requiredString('name');
   final type = object.requiredValue('type', _decodeTypeFn(diagnostics, scope));
   final encodeKind = object.nullableString('encodeKind');
+  final cache = object.requiredBool('cache');
   if (diagnostics.items.length != start || name == null || type == null) {
     return null;
   }
-  return FlaxCodegenGetterModel(name, type, encodeKind: encodeKind);
+  return FlaxCodegenGetterModel(
+    name,
+    type,
+    encodeKind: encodeKind,
+    cache: cache!,
+  );
 }
 
 FlaxCodegenGetterModel? _decodeStaticAccessor(
@@ -1383,6 +1396,7 @@ FlaxCodegenGetterModel? _decodeStaticAccessor(
     getter.type,
     encodeKind: getter.encodeKind,
     id: id,
+    cache: getter.cache,
   );
 }
 
@@ -2405,6 +2419,10 @@ Map<String, Object?> _encodeNamedType(FlaxCodegenNamedTypeModel type) {
       'name': type.name,
       'id': type.id,
       'enumNames': List<String>.of(type.enumNames),
+      'enumValueTypes': {
+        for (final entry in type.enumValueTypes.entries)
+          entry.key: _encodeType(entry.value),
+      },
       'typeParameters': [
         for (var index = 0; index < type.typeParameters.length; index++)
           {
@@ -2437,6 +2455,23 @@ FlaxCodegenNamedTypeModel? _decodeNamedType(
   final name = object.requiredString('name');
   final id = object.requiredString('id');
   final enumNames = object.requiredStringList('enumNames');
+  final enumValueTypes = <String, FlaxCodegenTypeRef>{};
+  final valueTypes = object._required('enumValueTypes');
+  if (valueTypes is! Map<String, dynamic>) {
+    diagnostics.add(
+      pointer: object.child('enumValueTypes'),
+      message: 'Expected a type map.',
+    );
+  } else {
+    for (final entry in valueTypes.entries) {
+      final type = _decodeType(
+        entry.value,
+        diagnostics,
+        flaxCodegenManifestPointer(object.child('enumValueTypes'), entry.key),
+      );
+      if (type != null) enumValueTypes[entry.key] = type;
+    }
+  }
 
   final typeParametersValue = object._fields['typeParameters'];
   if (!object._fields.containsKey('typeParameters')) {
@@ -2529,6 +2564,7 @@ FlaxCodegenNamedTypeModel? _decodeNamedType(
     name: name,
     id: id,
     enumNames: enumNames,
+    enumValueTypes: enumValueTypes,
     typeParameters: typeParameters,
   );
 }

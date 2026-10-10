@@ -253,15 +253,44 @@ void main() {
       final enhanced = inventory.declarations.singleWhere(
         (declaration) => declaration.name == 'Enhanced',
       );
-      expect(enhanced.assessment!.verdict, CapabilityVerdict.limited);
-      expect(
-        enhanced.assessment!.reasonKind,
-        CapabilityReasonKind.intentionalBoundary,
-      );
+      expect(enhanced.assessment!.verdict, CapabilityVerdict.supported);
+      expect(enhanced.assessment!.reasonKind, CapabilityReasonKind.none);
       expect(
         enhanced.assessment!.diagnostics.map((diagnostic) => diagnostic.code),
-        contains('enhanced_enum_members_not_bound'),
+        isEmpty,
       );
+      final enumsUri = Uri.file(
+        p.join(repoRoot, 'packages/flax/test/fixtures/enums.dart'),
+      ).toString();
+      final enums = await inventoryLibrary(
+        collection: collection,
+        uri: enumsUri,
+      );
+      final enumProposal = await parser.proposeLibrary(
+        FlaxCodegenBindingConfig(
+          'enums',
+          enumsUri,
+          '@example/enums',
+          'unused.dart',
+          'unused.ts',
+          const {},
+        ),
+      );
+      applyAutomaticLibraryProposal(
+        inventory: enums,
+        baselineProposal: enumProposal,
+        proposal: enumProposal,
+      );
+      final generic = enums.declarations.singleWhere(
+        (type) => type.name == 'GenericKind',
+      );
+      expect(
+        generic.declaredMembers
+            .where((member) => member.isEnumConstant)
+            .map((member) => member.name),
+        ['number', 'text', 'decimal', 'numbers', 'maybe'],
+      );
+      expect(generic.assessment!.surface['droppedMembers'], 0);
     },
   );
 

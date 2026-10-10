@@ -86,10 +86,6 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
         );
       }
 
-      if (element is EnumElement) {
-        types.add(name);
-        continue;
-      }
       if (element is ExtensionTypeElement) {
         if (_autoExtensionTypeSupported(scope, element, name, skips)) {
           types.add(name);
@@ -243,7 +239,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
         if (element == null) continue;
         final selection = entry.value;
         final signatures = <DartType>[];
-        if (element is ClassElement) {
+        if (element is ClassElement || element is EnumElement) {
           for (final constructor in element.constructors) {
             final params =
                 selection.constructors[constructor.name == 'new'
@@ -559,7 +555,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
         for (final supertype in element.allSupertypes) {
           type(supertype);
         }
-        if (element is ClassElement) {
+        if (element is ClassElement || element is EnumElement) {
           for (final constructor in element.constructors) {
             executable(constructor);
             if (constructor.redirectedConstructor case final redirected?) {
@@ -568,6 +564,12 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
           }
         }
         for (final getter in element.getters) {
+          // The compiler's erased values list is not a constructor use site.
+          if (element is EnumElement &&
+              getter.isStatic &&
+              getter.name == 'values') {
+            continue;
+          }
           executable(getter);
         }
         for (final setter in element.setters) {
@@ -701,7 +703,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     }
 
     final constructors = <String, List<String>>{};
-    if (element is ClassElement) {
+    if (element is ClassElement || element is EnumElement) {
       for (final entry in selection.constructors.entries) {
         final constructor = element.constructors
             .where(

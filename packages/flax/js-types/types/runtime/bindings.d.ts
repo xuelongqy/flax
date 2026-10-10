@@ -1,6 +1,6 @@
 import { type Binding, type ReadonlySignal } from './index.js';
 /** Experimental generated-binding extension. Independent of the native C ABI. */
-export declare const bindingVersion = 23;
+export declare const bindingVersion = 24;
 export type Bindable<T> = T | Binding<T>;
 export interface DartValue {
     readonly kind: 'value';
@@ -93,9 +93,7 @@ export type DartListInput<T, I = DartInput<T>> = Omit<DartList<T>, typeof Symbol
 export type DartMapInput<K, V, IK = DartInput<K>, IV = DartInput<V>> = DartMap<K, V> | ReadonlyMap<IK, IV> | (K extends string ? Readonly<Record<string, IV>> : never);
 export type DartSetInput<T, I = DartInput<T>> = Omit<DartSet<T>, typeof Symbol.iterator> | ReadonlySet<I>;
 export interface DartEnum {
-    readonly kind: 'enum';
-    readonly type: string;
-    readonly name: string;
+    readonly __dartEnum: unique symbol;
 }
 /** A generated Dart Stream reference. It is unrelated to Web ReadableStream. */
 export interface FlaxStreamReference<T = unknown> extends AsyncIterable<T> {
@@ -138,7 +136,11 @@ export interface Parameter {
 export declare function isBinding(value: unknown): value is Binding<unknown>;
 /** Called by generated constructors, never a second handwritten widget catalog. */
 export declare function construct(kind: 'widget' | 'value' | 'route' | 'page', type: string, ctor: string, parameters: readonly Parameter[], positional: readonly unknown[], options: Readonly<Record<string, unknown>>): WidgetDescription | DartValue;
-export declare function enumValue<T extends DartEnum>(type: T['type'], name: string): T;
+/** Installs one shared prototype. Identity never occupies a business property. */
+export declare function defineEnum(type: string, names: readonly string[], members?: object, cached?: readonly string[], parents?: readonly string[]): void;
+export declare function enumValue<T extends DartEnum>(type: string, name: string): T;
+/** Closed generic constants select typed calls while sharing one prototype. */
+export declare function invokeEnum(receiver: object, operations: readonly string[], args: readonly unknown[]): unknown;
 export declare function defineContext(type: string, fields: readonly string[]): void;
 export declare function contextHandle(value: unknown, type: string): number | null | undefined;
 export declare function invokeStatic(type: string, member: string, args: readonly unknown[]): unknown;

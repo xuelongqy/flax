@@ -40,7 +40,7 @@ dart run flax_codegen generate --library package:foo/foo.dart
 
 `<direct-yaml>` must be an explicit direct child of the package `bindings/` directory.
 The CLI discovers sibling binding configs in that directory, resolves current-only
-Manifest 16 dependency projections through the package config, and (for `generate`)
+Manifest 17 dependency projections through the package config, and (for `generate`)
 writes `lib/...`, `js/...`, and `bindings/manifest.json` below the owning package. The
 old `dart run flax_codegen [--check] <config>` form is not supported.
 
@@ -121,7 +121,7 @@ and is ignored by explicit config discovery.
 Third-party authors: start from [docs/author-template.md](docs/author-template.md) and
 the copyable skeleton under [example/author_template/](example/author_template/).
 
-Protocol 23 includes ordinary references, returned objects, setters, static properties
+Protocol 24 includes ordinary references, returned objects, setters, static properties
 with explicit setters, abstract factories, typed List/Map conversion, stored callbacks,
 shared generic owners, validated concrete constructor specializations and explicitly
 selected proxies. Objects need no dispose method. Contexts/State remain borrowed, and
@@ -158,10 +158,23 @@ Dart runtime erasure. Explicit generic arguments preserve the declared relations
 complete Dart-equivalent inference is not required. Callback rejection diagnostics name
 the unsupported parameter or result position, including nested callback signatures.
 
-Protocol 23 expands selected inherited instance surfaces before emission and separates
-ordinary Object interop from explicitly selected `data` positions. Enum results are
-canonicalized by the shared Dart encoder, not individual generated wrappers. Earlier
-protocol modules and bundles are rejected.
+UI protocol 24 expands selected inherited instance surfaces before emission and
+separates ordinary Object interop from explicitly selected `data` positions. Enum
+results are canonicalized by the shared Dart encoder, not individual generated wrappers.
+Earlier protocol modules and bundles are rejected.
+
+Enhanced enums use `classes: { Status: { kind: enum, ... } }` and the same member
+selections as ordinary classes. Automatic selection includes public fields, accessors,
+methods, statics, operators and named factories returning existing constants. JS sees
+frozen value objects: `Status.ready.label`, `Status.ready.format('hello')` and
+`Status.fromCode(200)`. There is no `new Status`, subclass or proxy. One shared
+prototype serves all values; final primitive fields cache their first real Dart read.
+Other members retain normal typed dispatch and GC. Generic constants preserve their
+concrete arguments, including across Manifest 17 and dependency providers. Generic named
+factories use the existing constructor specialization rules; `values` preserves each
+constant's type independently of factory configuration. `types: [Status]` remains a
+constants-only selection. See
+[enum bindings](../../docs/architecture/bindings.md#enum-bindings).
 
 See [binding selections](../../docs/architecture/bindings.md),
 [interop and limits](../../docs/architecture/interop.md), and
@@ -204,7 +217,7 @@ Aliases reuse existing callback and collection conversions and create no runtime
 constructor or additional wire identity. Explicit TS type arguments are supported;
 matching all Dart inference is not required. Generic callbacks retain bound erasure and
 concrete-use-site result validation. Unsupported targets, recursive or unbound callback
-bounds, and export-name collisions fail explicitly. Manifest 16 preserves alias origins,
+bounds, and export-name collisions fail explicitly. Manifest 17 preserves alias origins,
 parameters and targets across packages. See
 [ADR 0035](../../docs/decisions/0035-generic-state-variants-and-protocol-21.md).
 Complete Dart type-system coverage remains separate work.
@@ -213,7 +226,7 @@ Records are structural values with no wire ID or session identity. Generated Typ
 uses readonly object fields (`$1`, `$2`, ... for positional fields plus named fields),
 while Dart conversion reconstructs real Records and recursively reuses the existing
 conversion rules for nested callbacks, collections, Futures and provider-owned objects.
-Manifest 16 encodes Record fields and all current recursive type metadata.
+Manifest 17 encodes Record fields and all current recursive type metadata.
 
 Style and Theme selections reuse object, static-member and Widget generation. Optional
 named TS inputs explicitly include undefined for exactOptionalPropertyTypes. An
@@ -310,7 +323,7 @@ See
 Widget interfaces use `kind: widgetInterface` and `widgetInterfaces` selections. Hosts
 generate real implements clauses and native getter/setter/method forwarding, including
 generic methods and BuildContext signatures. Native members stay outside JS conversion
-and are recorded in Manifest 16. Generic interface declarations remain deferred.
+and are recorded in Manifest 17. Generic interface declarations remain deferred.
 Interface Widgets reject direct bindings but accept ordinary constructor callbacks.
 Their fixed native configurations keep original closures; nested child Widgets retain
 normal bindings and mounted subscriptions. Cross-module fixtures compile both Dart and
@@ -334,7 +347,7 @@ their existing Dart and session behavior. Writes emit synchronous `setX(value): 
 functions; getter and setter types follow their separate Dart signatures.
 Const/final/late-final writes and inputs requiring unsupported Flutter ownership are
 rejected; existing mounted Context references are accepted. Provider-owned declarations
-reuse the provider's public module without registering twice. Manifest 16 records source
+reuse the provider's public module without registering twice. Manifest 17 records source
 identity, read/write operations and public-library routing. See
 [readonly generation](../../docs/architecture/bindings.md#public-libraries-and-top-level-readonly-declarations)
 and [ADR 0027](../../docs/decisions/0027-public-library-module-delivery.md).
@@ -347,7 +360,7 @@ writes use the same function channel as top-level declarations; module import do
 read state. Const/final/late-final writes, inherited statics, unsupported conversions
 and generated `setX` export collisions are rejected. Automatic selection skips
 conflicting writes and reports the reason. Static state belongs to the application;
-closing a session does not reset it. Manifest 16 records class-qualified read/write
+closing a session does not reset it. Manifest 17 records class-qualified read/write
 operation IDs and provider capabilities. See
 [static properties](../../docs/architecture/bindings.md#class-static-properties).
 
@@ -363,7 +376,7 @@ application retain API. ValueListenableBuilder and ListenableBuilder preserve th
 static-child optimization and listener lifecycle. See
 [Widget interop](../../docs/architecture/interop.md#widget-configuration-and-mounting).
 
-UI protocol 23 treats selected Dart `Stream<T>` values as lazy, typed references in both
+UI protocol 24 treats selected Dart `Stream<T>` values as lazy, typed references in both
 directions. The same model is used for parameters, results, callbacks, Futures and typed
 collections. Generated Stream views retain Dart identity and event conversion; `listen`,
 subscription control, controllers, sinks, transformers and iterators call the real
@@ -377,7 +390,7 @@ through a weak association; erased callback returns revalidate each field. Fresh
 objects require a concrete Record position. Unknown or ambiguous erased Dart Record
 shapes fail closed instead of guessing a conversion.
 
-Protocol 23 supports Future-returning generated callbacks. Incoming JavaScript must
+Protocol 24 supports Future-returning generated callbacks. Incoming JavaScript must
 return a Promise or thenable; generated Dart adapters expose the exact `Future<T>` shape
 and apply the existing typed conversion when it completes. Selected Future parameters,
 Future collections and `FutureOr` positions are also generated for the dart:async
@@ -401,7 +414,7 @@ their concrete type check. Asynchronous lifecycle overrides and nested Stream ev
 exclusions remain unchanged. See the
 [interop examples](../../docs/architecture/interop.md#future-and-stream-callback-combinations).
 
-Protocol 23 callback models also preserve optional positional parameters, named
+Protocol 24 callback models also preserve optional positional parameters, named
 parameters and function-local generics. Generated Dart adapters use a private omission
 sentinel and direct call branches so Dart and JS defaults execute at their real call
 sites. TS retains generic bounds; runtime calls erase them to analyzer-resolved
@@ -410,7 +423,7 @@ parameter. Public fully closed bounds retain nested generic arguments and nullab
 Dependent or recursive bounds that still contain unresolved type parameters fail
 generation unless an explicit legal specialization is selected.
 
-Protocol 23 also recognizes Iterable and Set throughout generated types and conversion
+Protocol 24 also recognizes Iterable and Set throughout generated types and conversion
 metadata. DartIterable and DartSet wrappers preserve real Dart collection identity;
 iteration and explicit copies use one bulk host call and retain repeated references and
 cycles.
@@ -428,11 +441,11 @@ Explicit `extensions` selections expose named Dart extensions as receiver-first 
 TypeScript adapters: `StringX.getIsBlank(value)` and `StringX.repeat(value, count)`.
 Getters, setters, static getters/methods, generic declarations/members and legal Dart
 operators reuse the function call channel. Dart invocation always uses an explicit
-extension override; no prototype or instance identity is created. Manifest 16 records
+extension override; no prototype or instance identity is created. Manifest 17 records
 these declarations. See the
 [extension binding contract](../../docs/architecture/bindings.md#extension-declarations).
 
-Generic bounds can refer to unbound interfaces through Manifest 16 type-only references.
+Generic bounds can refer to unbound interfaces through Manifest 17 type-only references.
 Explicit recursive/dependent class and method specializations keep Dart subtype checks;
 TS retains nominal source identity and generic arguments without exposing bound members.
 Generic aliases need no runtime erasure when their bounds are type-only. Ordinary values
@@ -479,8 +492,8 @@ each mount must return a fresh JS State. Unoverridden factories preserve native 
 State variants still require a compatible Dart State type; a variant composed for
 `State<StatefulWidget>` cannot impersonate `State<ConcreteWidget>`.
 
-Manifest 16 requires `native-widget-proxies`; selection format 2 and native ABI 2 remain
-unchanged. UI protocol 23 requires regeneration of older generated modules. Generated
+Manifest 17 requires `native-widget-proxies`; selection format 2 and native ABI 2 remain
+unchanged. UI protocol 24 requires regeneration of older generated modules. Generated
 proxies share member metadata and retain one actual JS receiver peer per Dart instance.
 Current lookup preserves private/arrow fields, inheritance and later member replacement.
 Ordinary wrappers share prototypes and standard method receivers; extracting a method

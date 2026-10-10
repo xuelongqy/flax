@@ -1,5 +1,5 @@
 {
-  "formatVersion": 16,
+  "formatVersion": 17,
   "package": "flax_canvas",
   "bindingNamespace": "flax.canvas",
   "imports": [
@@ -9,7 +9,7 @@
     {
       "name": "canvas",
       "moduleId": "flax.canvas/canvas",
-      "uiProtocol": 23,
+      "uiProtocol": 24,
       "requiredCapabilities": [
         "instance-checks",
         "native-widget-proxies"
@@ -70,7 +70,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "height",
@@ -107,7 +108,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [
@@ -146,7 +148,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "height",
@@ -183,7 +186,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "staticGetters": [],
@@ -768,6 +772,7 @@
             "name": "FlaxCanvasSurface",
             "id": "flax.canvas/canvas#type:FlaxCanvasSurface",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           }
         ],

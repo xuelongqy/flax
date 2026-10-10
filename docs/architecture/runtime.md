@@ -6,7 +6,7 @@ Flax uses its maintained Flutter 3.47.6 engine: V8 15.4.80.15 JIT on macOS and A
 arm64, and Hermes 260318099.0.4 without JIT on iOS arm64. `FlaxEngine.createRuntime()`
 is the common entry in `package:flax/runtime.dart`. It checks native ABI 2, internal GC
 extension 1, internal binding extension 1 and the exact Flutter/Dart revisions before
-allocation. Ordinary Flutter and incompatible engines fail explicitly. UI protocol 23
+allocation. Ordinary Flutter and incompatible engines fail explicitly. UI protocol 24
 rejects earlier generated packages.
 
 The Flutter fork owns the C++ bridge, platform adapters and revision-checked Dart patch.

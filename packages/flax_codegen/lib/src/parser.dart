@@ -809,7 +809,9 @@ class FlaxCodegenBindingParser {
                 : null);
         final element = exports[entry.key];
         if (element is! InterfaceElement ||
-            (element is! ClassElement && element is! MixinElement)) {
+            (element is! ClassElement &&
+                element is! MixinElement &&
+                element is! EnumElement)) {
           throw StateError('Unknown adapted class: ${entry.key}');
         }
         if (flaxCodegenIsStateVariantOverlay(selected)) continue;
@@ -1853,12 +1855,24 @@ class FlaxCodegenBindingParser {
     for (final entry in config.classes.entries) {
       final element = exports[entry.key];
       if (element is! InterfaceElement ||
-          (element is! ClassElement && element is! MixinElement)) {
+          (element is! ClassElement &&
+              element is! MixinElement &&
+              element is! EnumElement)) {
         throw StateError(
           'Expected a publicly exported concrete class: ${entry.key}',
         );
       }
       final selection = _effectiveSelection(element, entry.value);
+      if ((element is EnumElement) != (selection.kind == 'enum') ||
+          (element is EnumElement &&
+              (selection.proxy != null ||
+                  selection.jsName != null ||
+                  selection.listenerPairs.isNotEmpty))) {
+        throw StateError(
+          'Enums require kind: enum without proxies or lifecycle adaptations: ${entry.key}',
+        );
+      }
+      if (element is EnumElement) typeRef(element.thisType);
       final stateIdentity = identity(element);
       final isComponentState =
           stateIdentity == 'package:flutter/src/widgets/framework.dart::State';
@@ -2010,6 +2024,7 @@ class FlaxCodegenBindingParser {
             'object',
             'widgetInterface',
             'stream',
+            'enum',
           }.contains(selection.kind)) {
         throw StateError('Unknown type adaptation: ${selection.kind}');
       }
@@ -2114,6 +2129,11 @@ class FlaxCodegenBindingParser {
             name,
             type,
             encodeKind: errorGetter ? 'error' : null,
+            cache:
+                element is EnumElement &&
+                !getter.isOriginDeclaration &&
+                getter.variable.isFinal &&
+                {'String', 'bool', 'int', 'double', 'num'}.contains(type.kind),
           ),
         );
       }
@@ -2134,7 +2154,7 @@ class FlaxCodegenBindingParser {
               ? <String>[]
               : selection.setters) {
         final setter = actualType.lookUpSetter(name, element.library);
-        if (selection.kind != 'object' ||
+        if (!{'object', 'enum'}.contains(selection.kind) ||
             setter == null ||
             setter.isStatic ||
             setter.isPrivate ||
@@ -2171,11 +2191,12 @@ class FlaxCodegenBindingParser {
                   selection.operators.length) {
         throw StateError('Duplicate method selection');
       }
-      if (selection.operators.isNotEmpty && selection.kind != 'object') {
+      if (selection.operators.isNotEmpty &&
+          !{'object', 'enum'}.contains(selection.kind)) {
         throw StateError('Class operators require an object binding');
       }
       if (selection.instanceMethods.isNotEmpty &&
-          !{'state', 'object', 'stream'}.contains(selection.kind) &&
+          !{'state', 'object', 'stream', 'enum'}.contains(selection.kind) &&
           !(isWidget && selection.proxy == 'extends')) {
         throw StateError(
           'Instance methods require a State or object adaptation',
@@ -2555,6 +2576,15 @@ class FlaxCodegenBindingParser {
               (ctor) => (ctor.name == 'new' ? '' : ctor.name) == chosen.key,
             )
             .firstOrNull;
+        if (element is EnumElement &&
+            (chosen.key.isEmpty ||
+                constructor == null ||
+                !constructor.isFactory ||
+                constructor.isPrivate)) {
+          throw StateError(
+            'Expected a named public enum factory: ${entry.key}.${chosen.key}',
+          );
+        }
         if (constructor == null ||
             (element is ClassElement &&
                 element.isAbstract &&
@@ -2671,7 +2701,13 @@ class FlaxCodegenBindingParser {
         }
       }
       if (!isWidget &&
-          !{'route', 'page', 'object', 'stream'}.contains(selection.kind) &&
+          !{
+            'route',
+            'page',
+            'object',
+            'stream',
+            'enum',
+          }.contains(selection.kind) &&
           constructors.any(
             (c) => c.parameters.any((p) => p.type.kind == 'callback'),
           )) {
@@ -2679,9 +2715,10 @@ class FlaxCodegenBindingParser {
           'Stored callbacks currently require a mounted Widget owner',
         );
       }
-      if (getters.any(
-        (g) => {'kind', 'type', 'ctor', 'args'}.contains(g.name),
-      )) {
+      if (element is! EnumElement &&
+          getters.any(
+            (g) => {'kind', 'type', 'ctor', 'args'}.contains(g.name),
+          )) {
         throw StateError('Getter conflicts with a descriptor field');
       }
       FlaxCodegenProxyModel? proxy;
@@ -2979,6 +3016,8 @@ class FlaxCodegenBindingParser {
                 !{'context', 'state', 'members'}.contains(selection.kind))
               for (final parent in element.thisType.allSupertypes)
                 if (!parent.isDartCoreObject &&
+                    !(element is EnumElement &&
+                        parent.element.library.isDartCore) &&
                     !_adaptations.containsKey(identity(parent.element)))
                   typeRef(parent, forTypescript: true, typeOnlyPosition: true),
           ],

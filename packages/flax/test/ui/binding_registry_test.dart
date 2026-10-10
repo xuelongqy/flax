@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 FlaxBindingModule _module(
   String name, {
   String? moduleId,
-  int uiProtocol = 23,
+  int uiProtocol = 24,
   List<String> requiredCapabilities = const <String>[],
   List<FlaxTypeBinding> types = const [],
   List<FlaxFunctionBinding> functions = const [],
@@ -22,11 +22,11 @@ FlaxBindingModule _module(
 Object? _invoke(Map<String, Object?> values) => null;
 
 void main() {
-  test('generated flutter bindings pin a literal protocol-23 tuple', () {
-    expect(flaxBindingVersion, 23);
+  test('generated flutter bindings pin a literal protocol-24 tuple', () {
+    expect(flaxBindingVersion, 24);
     expect(flutterBindings.name, 'flutter');
     expect(flutterBindings.moduleId, 'flax.core/flutter');
-    expect(flutterBindings.uiProtocol, 23);
+    expect(flutterBindings.uiProtocol, 24);
     expect(flutterBindings.requiredCapabilities, [
       'instance-checks',
       'native-widget-proxies',

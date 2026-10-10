@@ -1,6 +1,6 @@
 # Collections, Generics and Generated Proxies
 
-UI protocol 23 shares one conversion and reference mechanism across selected Dart APIs.
+UI protocol 24 shares one conversion and reference mechanism across selected Dart APIs.
 [Bridge references](references.md) describes callback and reference GC;
 [object ownership](objects.md) describes application disposal and session shutdown.
 
@@ -20,9 +20,17 @@ as data retains its TS parameter association and constrains that parameter to
 NavigationData; TS does not change the configured Dart instantiation.
 
 All typed enum results use the canonical JS instance, including getters, methods, static
-fields, collection operations/copies, Futures and callback arguments. Null stays null.
-The Dart cache owns one handle per encountered enum value; each returned handle has its
-own lifetime. JS wrappers do not perform a second string-to-enum conversion.
+fields, collection operations/copies, Futures and callback arguments. Compatible bound
+interfaces and Object results retain that same instance. Null stays null. The Dart cache
+owns one handle per encountered enum value; each returned handle has its own lifetime.
+JS wrappers do not perform a second string-to-enum conversion. Enum identity lives in a
+private WeakMap, so business members named `kind`, `type` or `name` do not collide with
+the bridge. Clones and prototype forgeries are rejected.
+
+Enum members share one frozen prototype per bound enum. Only final primitive fields are
+cached, after their first real Dart read; computed getters, statics, objects,
+collections and callbacks retain ordinary conversion and lifetime rules. Module import
+does not read Dart state. See [enum bindings](bindings.md#enum-bindings).
 
 ## Collections
 
@@ -203,7 +211,7 @@ Widget unmount does not cancel an already returned Future. Session closing compl
 pending Futures with `StateError('FlaxSessionClosed')`, drops their observers and
 ignores later settlement. Promise cancellation is not inferred.
 
-## Dart Stream and FutureOr (UI protocol 23)
+## Dart Stream and FutureOr (UI protocol 24)
 
 Selected Dart `Stream<T>` / `Stream<T>?` results and parameters use the JS interop type
 **`FlaxStreamReference<T>`** (`@flax/core/bindings`). Generated Flutter bindings still

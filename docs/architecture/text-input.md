@@ -1,6 +1,6 @@
 # Material Text Input and Focus
 
-Implemented with the maintained Flutter engine and UI protocol 23. All selected calls
+Implemented with the maintained Flutter engine and UI protocol 24. All selected calls
 use generated Dart APIs; no Controller-specific validation or formatter fallback is
 added.
 

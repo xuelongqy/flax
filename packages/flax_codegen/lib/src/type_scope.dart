@@ -630,6 +630,14 @@ final class _FlaxCodegenTypeScope {
         id: id,
         typeParameters: typeParameters,
         dependencySuperTypes: dependencySuperTypes,
+        enumValueTypes: element is EnumElement
+            ? {
+                for (final field in element.fields.where(
+                  (field) => field.isEnumConstant,
+                ))
+                  field.name!: typeRef(field.type, forTypescript: true),
+              }
+            : const {},
         enumNames: element is EnumElement
             ? element.fields
                   .where((field) => field.isEnumConstant)

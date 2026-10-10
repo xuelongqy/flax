@@ -2,7 +2,7 @@
 
 FlaxSession installs a basic JavaScript environment before application code. Optional
 plugins add capabilities to the same session. Pure FlaxJsRuntime instances remain bare
-and require explicit microtask draining. The UI protocol is 23; copied binary transport
+and require explicit microtask draining. The UI protocol is 24; copied binary transport
 requires native ABI 2. The host itself is not separately versioned.
 
 ## Registration and ownership

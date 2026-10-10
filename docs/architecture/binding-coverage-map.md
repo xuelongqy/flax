@@ -6,7 +6,7 @@ be supported by the generator while a particular SDK library still needs its own
 selection and runtime verification.
 
 The current version domains are binding selection format **2**, package metadata format
-**2**, Manifest **16**, UI protocol **23**, and native ABI **2**. Only the current
+**2**, Manifest **17**, UI protocol **24**, and native ABI **2**. Only the current
 formats are read and written.
 
 ## Capability assessment model
@@ -24,7 +24,7 @@ Dart types and share disposal and listeners. See
 
 Class static reads and writes are independent capabilities on every supported class
 category. Reads use `Class.property`; writes use `Class.setProperty(value)`. They retain
-their own types and operation identities in Manifest 16. Static declarations are not
+their own types and operation identities in Manifest 17. Static declarations are not
 inherited; a read-only provider cannot supply a write. A generated setter name collision
 fails explicit selection or produces `static_setter_export_collision` in automatic
 selection. See [static property rules](bindings.md#class-static-properties) and the
@@ -62,7 +62,7 @@ parent-only/provider views and descriptor-only values have the explicit
 | Mixin and mixin class members                  | Supported   | Ordinary member surfaces can be selected and emitted. Applying mixins to generated classes is a separate capability.                                                                                                           |
 | Arbitrary mixin composition                    | Unsupported | Real Dart composition is generated only for fixed Flutter State `proxyVariants`. Runtime-selected or general class mixin composition is outside the contract.                                                                  |
 | Ordinary enum                                  | Supported   | Enum values and typed conversion are discovered automatically.                                                                                                                                                                 |
-| Enhanced enum                                  | Limited     | Enum values remain supported; custom instance fields and methods are not projected by the enum adapter (`enhanced_enum_members_not_bound`).                                                                                    |
+| Enhanced enum                                  | Supported   | Public fields, accessors, methods, statics, named factories and operators use typed shared dispatch. Generic constants keep closed types; no JS construction, subclass or proxy is generated.                                  |
 | Typedef                                        | Supported   | Basic, generic, callback, collection, Record, Future/FutureOr, Stream, and nested targets retain their declared relationships when the target is representable.                                                                |
 | Top-level function                             | Supported   | Synchronous, Future, Stream, callback, default-parameter, and safely erasable generic signatures are discovered automatically. Concrete generic calls use existing `typeArguments` configuration when erasure is not safe.     |
 | Const, final, getter, mutable variable, setter | Supported   | Reads and writes are assessed independently. Dynamic values use uncached accessors; mutable values keep Dart state.                                                                                                            |
@@ -79,7 +79,8 @@ API can still be selected and produces a notice.
 Evidence:
 [automatic proposal tests](../../packages/flax_codegen/test/bindability_test.dart),
 [inventory tests](../../packages/flax_codegen/test/capability_inventory_test.dart),
-[extension tests](../../packages/flax_codegen/test/extension_test.dart), and
+[extension tests](../../packages/flax_codegen/test/extension_test.dart),
+[enum tests](../../packages/flax_codegen/test/enum_test.dart), and
 [mechanism tests](../../packages/flax_codegen/test/mechanism_coverage_test.dart).
 
 ## Type and signature support
@@ -143,21 +144,21 @@ and [State variant tests](../../packages/flax_material_ui/test/ui/components_tes
 
 ## Stable boundary codes
 
-| Code                                          | Verdict / reason                               | Example                                                                                                  |
-| --------------------------------------------- | ---------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `enhanced_enum_members_not_bound`             | `limited / intentionalBoundary`                | An enhanced enum value is usable, while its custom instance method is not emitted by the enum adapter.   |
-| `extension_type_representation_only`          | `limited / intentionalBoundary`                | `Meters(int)` crosses the bridge as `int`, without a `Meters` owner.                                     |
-| `unnamed_extension`                           | `excluded / visibility`                        | `extension on String { ... }`.                                                                           |
-| `generic_receiver_specialization_required`    | `unsupported / intentionalBoundary`            | `extension X<T extends Comparable<T>> on List<T>`.                                                       |
-| `constructor_specialization_missing_use_site` | `limited or unsupported / intentionalBoundary` | A generic owner is usable, but JS construction has no concrete `T`.                                      |
-| `constructor_specialization_ambiguous`        | `unsupported / intentionalBoundary`            | Two concrete targets share the same JS runtime domain.                                                   |
-| `complex_generic_bound`                       | `unsupported / intentionalBoundary`            | `T extends Comparable<T>` without concrete evidence.                                                     |
-| `runtime_finite_widget_iterable_required`     | `unsupported / intentionalBoundary`            | A bound callback returns an actual lazy `Iterable<Widget>`; finite arrays/Sets and Dart Lists/Sets pass. |
-| `unsupported_core_type`                       | `unsupported / intentionalBoundary`            | Dart `Type` reflection or another core type with no bridge representation.                               |
-| `missing_export`                              | `unsupported / dependencyBoundary`             | No public carrier exposes the referenced declaration identity.                                           |
-| `private_implementation_dependency`           | `unsupported / dependencyBoundary`             | A public signature depends on a private nominal type.                                                    |
-| `provider_surface_insufficient`               | `unsupported / dependencyBoundary`             | Core owns the type but does not expose the requested member or constructor; it cannot be republished.    |
-| `flutter_semantics_configuration_required`    | `limited / configurationRequired`              | A Route, Page, or lifecycle role cannot be inferred from type shape alone.                               |
+| Code                                          | Verdict / reason                               | Example                                                                                                   |
+| --------------------------------------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `extension_type_representation_only`          | `limited / intentionalBoundary`                | `Meters(int)` crosses the bridge as `int`, without a `Meters` owner.                                      |
+| `unnamed_extension`                           | `excluded / visibility`                        | `extension on String { ... }`.                                                                            |
+| `unnamed_enum_factory`                        | `unsupported / intentionalBoundary`            | `factory Status()`: enums expose existing constants and named factories, without a JS construction entry. |
+| `generic_receiver_specialization_required`    | `unsupported / intentionalBoundary`            | `extension X<T extends Comparable<T>> on List<T>`.                                                        |
+| `constructor_specialization_missing_use_site` | `limited or unsupported / intentionalBoundary` | A generic owner is usable, but JS construction has no concrete `T`.                                       |
+| `constructor_specialization_ambiguous`        | `unsupported / intentionalBoundary`            | Two concrete targets share the same JS runtime domain.                                                    |
+| `complex_generic_bound`                       | `unsupported / intentionalBoundary`            | `T extends Comparable<T>` without concrete evidence.                                                      |
+| `runtime_finite_widget_iterable_required`     | `unsupported / intentionalBoundary`            | A bound callback returns an actual lazy `Iterable<Widget>`; finite arrays/Sets and Dart Lists/Sets pass.  |
+| `unsupported_core_type`                       | `unsupported / intentionalBoundary`            | Dart `Type` reflection or another core type with no bridge representation.                                |
+| `missing_export`                              | `unsupported / dependencyBoundary`             | No public carrier exposes the referenced declaration identity.                                            |
+| `private_implementation_dependency`           | `unsupported / dependencyBoundary`             | A public signature depends on a private nominal type.                                                     |
+| `provider_surface_insufficient`               | `unsupported / dependencyBoundary`             | Core owns the type but does not expose the requested member or constructor; it cannot be republished.     |
+| `flutter_semantics_configuration_required`    | `limited / configurationRequired`              | A Route, Page, or lifecycle role cannot be inferred from type shape alone.                                |
 
 A new unsupported case must reuse an accurate code or add a code, fixture, and current
 example. Error message text is presentation only and is not used to infer the primary

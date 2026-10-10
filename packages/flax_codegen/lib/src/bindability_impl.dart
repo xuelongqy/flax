@@ -248,6 +248,39 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
 
   if (!ignoreProvider && parser._dependencyTypeOwners[id] != null) {
     final owner = parser._dependencyTypeOwners[id]!;
+    if (element is EnumElement) {
+      final requested = await _proposeSelection(
+        parser,
+        element,
+        library: library,
+        base: base,
+        concreteUses: concreteUses,
+        automaticTypeCarriers: automaticTypeCarriers,
+        ignoreProvider: true,
+      );
+      final missing = requested.selection == null
+          ? const <FlaxCodegenSkip>[]
+          : _providerSurfaceSkips(
+              typeName: name,
+              provider: owner.jsPackage,
+              requested: requested.selection!,
+              available: const FlaxCodegenClassSelection({}, kind: 'enum'),
+            );
+      if (missing.isNotEmpty &&
+          !(owner.moduleId ?? '').startsWith('flax.core/')) {
+        parser._dependencyTypeOwners.remove(id);
+        parser._selections.remove(id);
+        parser._adaptations.remove(id);
+        parser._argumentsByType.remove(id);
+        return requested;
+      }
+      return FlaxCodegenProposedBinding(
+        name: name,
+        id: id,
+        provider: owner.jsPackage,
+        skips: [...requested.skips, ...missing],
+      );
+    }
     if (base != null) {
       skip(
         name,
@@ -279,21 +312,25 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     return FlaxCodegenProposedBinding(name: name, id: id, skips: skips);
   }
 
-  if (element is EnumElement) {
-    skip(name, 'Enums use types selection', code: 'enum_uses_type_selection');
-    return FlaxCodegenProposedBinding(name: name, id: id, skips: skips);
-  }
-  if (element is! ClassElement && element is! MixinElement) {
+  if (element is! ClassElement &&
+      element is! MixinElement &&
+      element is! EnumElement) {
     skip(
       name,
-      'Expected a class or mixin',
+      'Expected a class, mixin or enum',
       code: 'unsupported_interface_declaration',
     );
     return FlaxCodegenProposedBinding(name: name, id: id, skips: skips);
   }
 
   final widget = parser._isFlutterWidget(element);
-  final kind = base?.kind ?? (widget ? null : 'object');
+  final kind =
+      base?.kind ??
+      (element is EnumElement
+          ? 'enum'
+          : widget
+          ? null
+          : 'object');
   if (base != null &&
       (base.pageAdapter != null ||
           base.widgetInterfaces.isNotEmpty ||
@@ -341,10 +378,21 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
   }
 
   final constructors = <String, List<String>>{};
-  if (element is ClassElement) {
+  if (element is ClassElement || element is EnumElement) {
     for (final constructor in element.constructors) {
-      if (!constructor.isPublic) continue;
+      if (!constructor.isPublic ||
+          (element is EnumElement && !constructor.isFactory)) {
+        continue;
+      }
       final ctorName = constructor.name == 'new' ? '' : constructor.name!;
+      if (element is EnumElement && ctorName.isEmpty) {
+        skip(
+          '$name.new',
+          'Enums expose constants and named factories, without a JS construction entry',
+          code: 'unnamed_enum_factory',
+        );
+        continue;
+      }
       if (!_usableMemberName(ctorName) && ctorName.isNotEmpty) continue;
       final bound = _bindConstructor(
         parser: parser,
@@ -402,10 +450,17 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
       final getterName = getter.name!;
       if (!_usableMemberName(getterName) ||
           {'hashCode', 'runtimeType'}.contains(getterName) ||
-          {'kind', 'type', 'ctor', 'args'}.contains(getterName)) {
+          (element is! EnumElement &&
+              {'kind', 'type', 'ctor', 'args'}.contains(getterName))) {
         continue;
       }
       if (getter.isStatic) {
+        if (element is EnumElement &&
+            (getter.variable is FieldElement &&
+                    (getter.variable as FieldElement).isEnumConstant ||
+                getterName == 'values')) {
+          continue;
+        }
         final converted = _tryMemberType(
           scope,
           getter.returnType,
@@ -479,13 +534,17 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     // actually see, while keeping static members declaration-local.
     for (final parent
         in widget ? const <InterfaceType>[] : element.allSupertypes) {
-      if (parent.isDartCoreObject) continue;
+      if (parent.isDartCoreObject ||
+          (element is EnumElement && parent.element.library.isDartCore)) {
+        continue;
+      }
       for (final declared in parent.getters) {
         final getterName = declared.name!;
         if (getters.contains(getterName) ||
             !_usableMemberName(getterName) ||
             {'hashCode', 'runtimeType'}.contains(getterName) ||
-            {'kind', 'type', 'ctor', 'args'}.contains(getterName)) {
+            (element is! EnumElement &&
+                {'kind', 'type', 'ctor', 'args'}.contains(getterName))) {
           continue;
         }
         final getter = element.thisType.lookUpGetter(
@@ -606,7 +665,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
   }
 
   final operators = <String, List<String>>{};
-  if (kind == 'object') {
+  if (kind == 'object' || kind == 'enum') {
     for (final operator in flaxCodegenClassOperators.keys) {
       final method = _classOperator(element.thisType, operator);
       if (method == null ||
@@ -728,6 +787,11 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     if (proxy != null) 'implementation',
     if (proxy != null) 'extend',
     if (base?.asyncIterableFactory != null) base!.asyncIterableFactory!,
+    if (element is EnumElement) ...[
+      'values',
+      for (final field in element.fields)
+        if (field.isEnumConstant) field.name!,
+    ],
   };
   staticSetters.removeWhere((member) {
     final exported = 'set${member[0].toUpperCase()}${member.substring(1)}';
@@ -753,6 +817,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     );
   }
   if (!widget &&
+      element is! EnumElement &&
       selectedConstructors.isEmpty &&
       getters.isEmpty &&
       setters.isEmpty &&

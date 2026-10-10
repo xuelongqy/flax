@@ -11,7 +11,7 @@
       "bindings": [
         {
           "moduleId": "flax.material/material",
-          "uiProtocol": 23,
+          "uiProtocol": 24,
           "types": [
             "flax.material/material#type:AlertDialog",
             "flax.material/material#type:AppBar",
@@ -56,6 +56,9 @@
           ],
           "functions": [
             "flax.material/material#function:showDialog",
+            "flax.material/material#read:VisualDensity.comfortable",
+            "flax.material/material#read:VisualDensity.compact",
+            "flax.material/material#read:VisualDensity.standard",
             "flax.material/material#read:kTabScrollDuration"
           ]
         }

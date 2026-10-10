@@ -1,9 +1,11 @@
 import 'package:flax_codegen/flax_codegen.dart';
 
 import 'instance_types_selection.dart';
+import 'enums_selection.dart';
 
 const interopSelection = {
   ...instanceTypesSelection,
+  ...enumSelection,
   'CodegenThenObject': FlaxCodegenClassSelection(
     {'': []},
     kind: 'object',

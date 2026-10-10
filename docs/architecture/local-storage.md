@@ -100,7 +100,7 @@ listeners; no polling is used. onstorage shares that same dispatcher.
 
 ## Supported scope
 
-Storage uses UI protocol 23 and native ABI 2 with the [maintained engine](runtime.md).
+Storage uses UI protocol 24 and native ABI 2 with the [maintained engine](runtime.md).
 The current owner-package runtime gate exercises macOS arm64 V8; it does not certify
 storage persistence or notifications on other platforms. There is no encryption, TTL,
 sessionStorage, automatic JSON or cross-isolate/process shared notification contract.

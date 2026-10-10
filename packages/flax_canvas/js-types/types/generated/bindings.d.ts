@@ -1,10 +1,10 @@
-import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as _FlaxInstanceType, construct as _flaxHostConstruct, constructProxy as _flaxHostConstructProxy, constructObject as _flaxHostConstructObject, constructDeferredObject as _flaxHostConstructDeferredObject, constructStream as _flaxHostConstructStream, constructAsyncIterableStream as _flaxHostConstructAsyncIterableStream, defineObject as _flaxHostDefineObject, defineStream as _flaxHostDefineStream, invokeObject as _flaxHostInvokeObject, invokeObjectStatic as _flaxHostInvokeObjectStatic, invokeStream as _flaxHostInvokeStream, enumValue as _flaxHostEnumValue, defineContext as _flaxHostDefineContext, defineState as _flaxHostDefineState, contextHandle as _flaxHostContextHandle, invokeStatic as _flaxHostInvokeStatic, invokeInstance as _flaxHostInvokeInstance, invokeTopLevel as _flaxHostInvokeTopLevel, type Bindable, type WidgetDescription } from '@flax/core/bindings';
+import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as _FlaxInstanceType, construct as _flaxHostConstruct, constructProxy as _flaxHostConstructProxy, constructObject as _flaxHostConstructObject, constructDeferredObject as _flaxHostConstructDeferredObject, constructStream as _flaxHostConstructStream, constructAsyncIterableStream as _flaxHostConstructAsyncIterableStream, defineObject as _flaxHostDefineObject, defineStream as _flaxHostDefineStream, invokeObject as _flaxHostInvokeObject, invokeObjectStatic as _flaxHostInvokeObjectStatic, invokeStream as _flaxHostInvokeStream, enumValue as _flaxHostEnumValue, defineEnum as _flaxHostDefineEnum, invokeEnum as _flaxHostInvokeEnum, defineContext as _flaxHostDefineContext, defineState as _flaxHostDefineState, contextHandle as _flaxHostContextHandle, invokeStatic as _flaxHostInvokeStatic, invokeInstance as _flaxHostInvokeInstance, invokeTopLevel as _flaxHostInvokeTopLevel, type Bindable, type WidgetDescription } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/foundation';
 import '@flax/flutter/foundation';
 import '@flax/flutter/foundation';
 export declare const canvasBindingModule: Readonly<{
     moduleId: string;
-    uiProtocol: 23;
+    uiProtocol: 24;
     requiredCapabilities: readonly string[];
     construct: typeof _flaxHostConstruct;
     constructProxy: typeof _flaxHostConstructProxy;
@@ -19,6 +19,8 @@ export declare const canvasBindingModule: Readonly<{
     invokeObjectStatic: typeof _flaxHostInvokeObjectStatic;
     invokeStream: typeof _flaxHostInvokeStream;
     enumValue: typeof _flaxHostEnumValue;
+    defineEnum: typeof _flaxHostDefineEnum;
+    invokeEnum: typeof _flaxHostInvokeEnum;
     defineContext: typeof _flaxHostDefineContext;
     defineState: typeof _flaxHostDefineState;
     contextHandle: typeof _flaxHostContextHandle;

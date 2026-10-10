@@ -15,6 +15,79 @@ import 'package:test/test.dart';
 
 void main() {
   group('FlaxCodegenPackagePipeline.validateConfig', () {
+    test('enhanced enum identities and generic constants survive projection', () async {
+      final workspace = _tempWorkspace();
+      final host = _writeHostPackage(
+        workspace: workspace,
+        name: 'enum_pkg',
+        bindingNamespace: 'example.enum',
+        libraries: {
+          'api.dart': "export 'src/enums.dart';",
+          'src/enums.dart': '''
+enum Status<T> {
+  ready<int>(3), text<String>('three');
+  const Status(this.value);
+  final T value;
+  T echo(T input) => input;
+  static int reads = 0;
+}
+''',
+        },
+        configs: {
+          'api.yaml': '''
+format: 2
+name: api
+library: package:enum_pkg/api.dart
+jsPackage: '@enum/api'
+dartOutput: lib/api.g.dart
+tsOutput: js/api.ts
+classes:
+  Status:
+    kind: enum
+    getters: [value]
+    instanceMethods:
+      echo: [input]
+    staticGetters: [reads]
+    staticSetters: [reads]
+''',
+        },
+      );
+      final metadata = File(p.join(host.root.path, 'flax_package.yaml'));
+      metadata.writeAsStringSync(
+        '${metadata.readAsStringSync()}javascript: {package: "@enum/api", version: same, mode: runtime}\n',
+      );
+      _writePackageConfig(workspace, {'enum_pkg': host.root});
+      final result = await FlaxCodegenPackagePipeline.validateConfig(
+        host.configPath('api.yaml'),
+      );
+      final type = result.localModels.single.classes.single;
+      expect(
+        type.enumOperationId('value', 'get'),
+        'example.enum/api#function:Status.value%3Aget',
+      );
+      final diagnostics = FlaxCodegenManifestDiagnostics('enum-roundtrip.json');
+      final restored = FlaxCodegenManifest.parse(
+        result.manifest.encode(),
+        diagnostics,
+      )!;
+      expect(diagnostics.items, isEmpty);
+      expect(restored.encode(), result.manifest.encode());
+      for (final model in [
+        result.localModels.single,
+        result.projection.modulesByModuleId['example.enum/api']!,
+        restored.modules.single.model.module,
+      ]) {
+        final values = model.types
+            .singleWhere((type) => type.name == 'Status')
+            .enumValueTypes;
+        expect(values['ready']!.tsArguments.single.kind, 'int');
+        expect(values['text']!.tsArguments.single.kind, 'String');
+        final ts = FlaxCodegenBindingEmitter([model]).typescript(model);
+        expect(ts, contains('Status<number>'));
+        expect(ts, contains('Status<string>'));
+      }
+    });
+
     test(
       'both generation modes require a direct Dart flax dependency',
       () async {
@@ -933,7 +1006,7 @@ extensions:
       expect(module.extensions.single.name, 'ItemX');
       expect(module.classes, isEmpty);
       expect(module.extensions.single.onType.id, 'example.base/base#type:Item');
-      expect(validated.manifest.toJson()['formatVersion'], 16);
+      expect(validated.manifest.toJson()['formatVersion'], 17);
       expect(
         validated.manifest.modules.single.model.identities.where(
           (row) => row.owner,

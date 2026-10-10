@@ -1,6 +1,6 @@
 # Generated proxy properties
 
-UI protocol 23 supports required properties on ordinary `proxy: extends` and
+UI protocol 24 supports required properties on ordinary `proxy: extends` and
 `proxy: implements` bindings. Native ABI 2 is unchanged. The JS entry remains
 `SomeType.implement(arguments, implementation)`; application classes do not need
 handwritten Dart bridges.

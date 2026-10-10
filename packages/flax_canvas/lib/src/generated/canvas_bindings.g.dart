@@ -134,7 +134,7 @@ const canvasBindings = FlaxBindingModule(
   functions: [],
   moduleId: "flax.canvas/canvas",
   dependencyModules: ["flax.core/flutter"],
-  uiProtocol: 23,
+  uiProtocol: 24,
   requiredCapabilities: const <String>[
     "instance-checks",
     "native-widget-proxies",

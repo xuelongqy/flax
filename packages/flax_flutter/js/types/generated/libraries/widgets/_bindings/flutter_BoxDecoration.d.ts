@@ -8,6 +8,7 @@ import '@flax/flutter/widgets/_bindings/flutter_BoxBorder';
 import type * as upstream3 from '@flax/flutter/widgets/_bindings/flutter_BorderRadiusGeometry';
 import '@flax/flutter/widgets/_bindings/flutter_BorderRadiusGeometry';
 import type * as upstream4 from '@flax/flutter/widgets/_bindings/flutter_BoxShape';
+import '@flax/flutter/widgets/_bindings/flutter_BoxShape';
 export interface BoxDecoration extends upstream0.Decoration, Readonly<{
     "__flaxBound:package:flutter/src/painting/box_decoration.dart::BoxDecoration": readonly [];
 }>, Readonly<{

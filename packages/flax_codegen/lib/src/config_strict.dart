@@ -62,7 +62,9 @@ const _proxyVariantFields = {'mixins'};
 const _mixinFields = {'name', 'library'};
 
 final _classKinds = {
-  for (final value in FlaxCodegenClassCategory.values) value.name,
+  'enum',
+  for (final value in FlaxCodegenClassCategory.values)
+    if (value != FlaxCodegenClassCategory.enumeration) value.name,
 };
 
 FlaxCodegenBindingConfig _parseBindingConfigStrict(

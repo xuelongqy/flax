@@ -2,6 +2,7 @@ import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings'
 import type * as upstream0 from '@flax/flutter/services/_bindings/flutter_Color';
 import '@flax/flutter/services/_bindings/flutter_Color';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_BorderStyle';
+import '@flax/flutter/widgets/_bindings/flutter_BorderStyle';
 export interface BorderSide extends Readonly<{
     "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [];
 }>, Readonly<{

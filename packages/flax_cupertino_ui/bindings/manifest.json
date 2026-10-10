@@ -1,5 +1,5 @@
 {
-  "formatVersion": 16,
+  "formatVersion": 17,
   "package": "flax_cupertino_ui",
   "bindingNamespace": "flax.cupertino",
   "imports": [
@@ -9,7 +9,7 @@
     {
       "name": "cupertino",
       "moduleId": "flax.cupertino/cupertino",
-      "uiProtocol": 23,
+      "uiProtocol": 24,
       "requiredCapabilities": [
         "instance-checks",
         "native-widget-proxies"
@@ -866,7 +866,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               },
               {
                 "name": "scaffoldBackgroundColor",
@@ -903,7 +904,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [],
@@ -1501,12 +1503,14 @@
             "name": "CupertinoThemeData",
             "id": "flax.cupertino/cupertino#type:CupertinoThemeData",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           },
           {
             "name": "ObstructingPreferredSizeWidget",
             "id": "flax.cupertino/cupertino#type:ObstructingPreferredSizeWidget",
             "enumNames": [],
+            "enumValueTypes": {},
             "typeParameters": []
           }
         ],

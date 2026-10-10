@@ -34,12 +34,12 @@ test('generated context access uses synchronous selected members and canonical e
   const context = api.context(type, 7);
   let calls = 0;
   operationHost('context', (version, id, handle, member) => {
-    assert.deepEqual([version, id, handle, member], [23, type, 7, 'mounted']);
+    assert.deepEqual([version, id, handle, member], [24, type, 7, 'mounted']);
     calls++;
     return true;
   });
   operationHost('static', (version, id, member, handle) => {
-    assert.equal(version, 23);
+    assert.equal(version, 24);
     assert.match(id, /#type:Directionality$/);
     assert.equal(member, 'of');
     assert.equal(handle, 7);
@@ -102,7 +102,8 @@ test('canonical enum getters return host identity without string conversion', as
   const before = calls.length;
   assert.equal(value.affinity, TextAffinity.upstream);
   assert.equal(calls.length - before, 1);
-  assert.equal(api.enumType(TextAffinity.upstream), TextAffinity.upstream.type);
+  assert.match(api.enumType(TextAffinity.upstream), /#type:TextAffinity$/);
+  assert.equal(api.enumName(TextAffinity.upstream), 'upstream');
   assert.equal(api.enumType({ ...TextAffinity.upstream }), null);
   let read = false;
   assert.equal(

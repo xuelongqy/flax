@@ -28,7 +28,7 @@ test('deferred factories wait for a concrete Dart position and then keep identit
   assert.equal(api.object(pending.type, 901), property);
   assert.equal(property.resolve(new Set([WidgetState.pressed])), 8);
   assert.equal(calls.length, 1);
-  assert.equal(calls[0].version, 23);
+  assert.equal(calls[0].version, 24);
   assert.throws(
     () => api.materializeDeferred(property, pending.type, 901, 'color'),
     /type mismatch/,
@@ -46,7 +46,7 @@ test('ButtonStyle preserves deferred values for Dart materialization', () => {
   const style = ButtonStyle({ elevation });
   assert.ok(style);
   assert.equal(calls.length, 1);
-  assert.equal(calls[0].version, 23);
+  assert.equal(calls[0].version, 24);
   assert.equal(calls[0].descriptor.args.elevation, elevation);
   assert.equal(api.deferredObject(elevation).materializer, null);
 });

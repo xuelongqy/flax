@@ -1,6 +1,8 @@
 import { type DartEnum } from '@flax/core/bindings';
 export interface TextInputAction extends DartEnum {
-    readonly type: "flax.material/material#type:TextInputAction";
+    readonly __TextInputAction: unique symbol;
+    readonly name: string;
+    readonly index: number;
 }
 export declare const TextInputAction: Readonly<{
     none: TextInputAction;
@@ -16,4 +18,5 @@ export declare const TextInputAction: Readonly<{
     route: TextInputAction;
     emergencyCall: TextInputAction;
     newline: TextInputAction;
+    values: readonly TextInputAction[];
 }>;

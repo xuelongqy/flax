@@ -64,8 +64,8 @@ final class FlaxCodegenManifest {
   }) : imports = List.unmodifiable(imports),
        modules = List.unmodifiable(modules);
 
-  static const formatVersion = 16;
-  static const uiProtocol = 23;
+  static const formatVersion = 17;
+  static const uiProtocol = 24;
 
   final String package;
   final FlaxCodegenBindingNamespace bindingNamespace;
@@ -1201,6 +1201,9 @@ void _diagnoseModelIdentityCoverage(
           '$generic',
         ),
       );
+    }
+    for (final entry in type.enumValueTypes.entries) {
+      walkType(entry.value, '$typePointer/enumValueTypes/${entry.key}');
     }
   }
 

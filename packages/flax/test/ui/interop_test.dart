@@ -25,6 +25,162 @@ Future<void> _waitFor(
 
 void main() {
   testWidgets(
+    'enhanced enums preserve identity, members, generics and cleanup',
+    (tester) async {
+      final reads = fixture.EnhancedStatus.reads;
+      final history = List<String>.of(fixture.EnhancedStatus.history);
+      fixture.EnhancedStatus.reads = 0;
+      fixture.EnhancedStatus.history.clear();
+      final h = OwnedHarness(fixture: 'interop', extra: [interopBindings]);
+      try {
+        await tester.pumpWidget(h.app('interop'));
+        expect(fixture.EnhancedStatus.reads, 0);
+        h.execute('''
+          var enumReady = interop.EnhancedStatus.ready;
+          var enumLookup = interop.EnhancedStatus.lookup;
+          var enumFrom = interop.EnumFactory.from;
+        ''');
+        final before = h.runtime.hostCalls['__flaxInvokeOperation'] ?? 0;
+        expect(
+          h.boolean('''
+        Array.from({length: 1000}, () => enumReady.code).every(value => value === 200)
+      '''),
+          isTrue,
+        );
+        expect((h.runtime.hostCalls['__flaxInvokeOperation'] ?? 0) - before, 1);
+        expect(
+          h.boolean('''
+        Object.isFrozen(enumReady) && Object.isFrozen(interop.EnhancedStatus) &&
+        Object.getPrototypeOf(enumReady) === Object.getPrototypeOf(interop.EnhancedStatus.disabled) &&
+        enumReady.name === 'ready' && enumReady.index === 0 &&
+        interop.EnhancedStatus.values[0] === enumReady &&
+        interop.enumIdentity(enumReady) === enumReady &&
+        interop.enumReadable(enumReady) === enumReady &&
+        enumReady instanceof interop.EnumReadable &&
+        interop.enumObject(enumReady) === enumReady &&
+        interop.EnhancedStatus.fromCode(200) === enumReady &&
+        interop.EnhancedStatus.lookup(403) === interop.EnhancedStatus.disabled &&
+        enumLookup(200) === enumReady &&
+        enumReady.format('hello', {separator: undefined}) === 'hello:Ready' &&
+        enumReady.preserveReceiverName(9) === 9 &&
+        enumReady.details() === 'detail:Ready' &&
+        enumReady.through(value => value.next) === interop.EnhancedStatus.disabled &&
+        enumReady.operatorAdd(2) === enumReady &&
+        enumReady.states.get(0) === enumReady &&
+        enumReady.payload.value === 7 && enumReady.adjust(4) === 6 &&
+        interop.MetadataNames.value.kind === 'business-kind' &&
+        interop.MetadataNames.value.type === 42 &&
+        interop.MetadataNames.value.name === 'business-name' &&
+        interop.GenericKind.number.echo(4) === 4 &&
+        interop.GenericKind.text.echo('four') === 'four' &&
+        interop.GenericKind.decimal.echo(4.5) === 4.5 &&
+        interop.GenericKind.numbers.echo([2, 3]).get(1) === 3 &&
+        interop.GenericKind.maybe.echo(null) === null &&
+        interop.GenericKind.number.repeat(5) === 5 &&
+        interop.GenericKind.number.transform(value => value + 1) === 4 &&
+        interop.GenericKind.numbers.transform(value => [value.get(0) + 1]).get(0) === 2 &&
+        interop.GenericKind.numbers.group([4]).get(0).get(0) === 4 &&
+        interop.EnumFactory.from(4) === interop.EnumFactory.number &&
+        interop.EnumFactory.from('four') === interop.EnumFactory.text &&
+        enumFrom('four') === interop.EnumFactory.text &&
+        interop.EnumFactory.values[1].sample === 'one'
+      '''),
+          isTrue,
+        );
+        h.execute(
+          'enumReady.recorded = "recorded"; enumReady.liveLabel; enumReady.liveLabel;',
+        );
+        expect(fixture.EnhancedStatus.reads, 2);
+        expect(fixture.EnhancedStatus.history, ['recorded']);
+        h.execute('enumReady.recorded = true');
+        expect(h.string('enumReady.recorded'), 'true');
+        expect(
+          h.boolean('interop.EnumBuildFlag.value.enabled'),
+          fixture.EnumBuildFlag.value.enabled,
+        );
+        for (final code in [
+          'interop.enumIdentity({...enumReady})',
+          'interop.enumIdentity(Object.create(enumReady))',
+          'interop.enumIdentity({kind: "enum", type: "fake", name: "ready"})',
+          'enumReady.format.call({})',
+          'enumReady.format()',
+          'enumReady.format(null)',
+          'enumReady.format("x", {}, 1)',
+          'enumReady.failure',
+          'interop.EnhancedStatus.fromCode(999)',
+          'interop.enumNumber(interop.GenericKind.text)',
+          'interop.GenericKind.number.echo("wrong")',
+          'interop.GenericKind.number.echo(4.5)',
+          'interop.GenericKind.number.echo(null)',
+          'interop.GenericKind.numbers.echo([4.5])',
+          'interop.GenericKind.number.repeat("wrong")',
+          'interop.GenericKind.number.transform(() => "wrong")',
+          'interop.EnumFactory.from(4.5)',
+          'interop.EnumFactory.from(true)',
+          'new interop.EnhancedStatus()',
+        ]) {
+          expect(
+            () => h.execute(code),
+            throwsA(isA<FlaxJsException>()),
+            reason: code,
+          );
+        }
+        h.execute('''
+        var enumAsync = false;
+        void Promise.all([enumReady.later, enumReady.events.toList()]).then(
+          ([value, values]) => enumAsync = value === enumReady && values.get(0) === enumReady);
+      ''');
+        await _waitFor(tester, h, 'enumAsync');
+        expect(h.boolean('enumAsync'), isTrue);
+        expect(h.errors, isEmpty);
+      } finally {
+        await h.finish(tester);
+        fixture.EnhancedStatus.reads = reads;
+        fixture.EnhancedStatus.history
+          ..clear()
+          ..addAll(history);
+      }
+    },
+  );
+
+  testWidgets('enum statics belong to the application across sessions', (
+    tester,
+  ) async {
+    final reads = fixture.EnhancedStatus.reads;
+    final first = OwnedHarness(fixture: 'interop', extra: [interopBindings]);
+    final second = OwnedHarness(fixture: 'interop', extra: [interopBindings]);
+    try {
+      await tester.pumpWidget(first.app('interop'));
+      first.execute('interop.EnhancedStatus.setReads(17)');
+      await tester.pumpWidget(second.app('interop'));
+      expect(second.number('interop.EnhancedStatus.reads'), 17);
+      final foreign = first.runtime.evaluate(
+        'interop.EnhancedStatus.ready',
+      ) as FlaxJsObject;
+      final echo =
+          second.runtime.evaluate('interop.enumIdentity') as FlaxJsFunction;
+      try {
+        expect(() => echo.call([foreign]), throwsArgumentError);
+      } finally {
+        echo.release();
+        foreign.release();
+      }
+      await first.finish(tester);
+      expect(second.number('interop.EnhancedStatus.reads'), 17);
+      expect(
+        second.boolean(
+          'interop.enumIdentity(interop.EnhancedStatus.ready) === interop.EnhancedStatus.ready',
+        ),
+        isTrue,
+      );
+    } finally {
+      if (!first.runtime.isDisposed) await first.finish(tester);
+      if (!second.runtime.isDisposed) await second.finish(tester);
+      fixture.EnhancedStatus.reads = reads;
+    }
+  });
+
+  testWidgets(
     'instanceof discriminates sealed child views without crossing the bridge',
     (tester) async {
       final harness = OwnedHarness(

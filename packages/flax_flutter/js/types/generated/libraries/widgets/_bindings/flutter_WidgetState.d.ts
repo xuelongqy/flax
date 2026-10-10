@@ -1,6 +1,8 @@
 import { type DartEnum } from '@flax/core/bindings';
 export interface WidgetState extends DartEnum {
-    readonly type: "flax.core/flutter#type:WidgetState";
+    readonly __WidgetState: unique symbol;
+    readonly name: string;
+    readonly index: number;
 }
 export declare const WidgetState: Readonly<{
     hovered: WidgetState;
@@ -11,4 +13,5 @@ export declare const WidgetState: Readonly<{
     scrolledUnder: WidgetState;
     disabled: WidgetState;
     error: WidgetState;
+    values: readonly WidgetState[];
 }>;

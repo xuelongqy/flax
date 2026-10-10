@@ -527,8 +527,10 @@ extension _Collections on _Session {
           .where(
             (candidate) => selected.any(
               (other) =>
-                  other is FlaxObjectBinding &&
-                  other.supertypes.contains(candidate.id),
+                  (other is FlaxObjectBinding &&
+                      other.supertypes.contains(candidate.id)) ||
+                  (other is FlaxEnumBinding &&
+                      other.supertypes.contains(candidate.id)),
             ),
           )
           .toSet();

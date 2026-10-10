@@ -307,7 +307,7 @@ const cupertinoBindings = FlaxBindingModule(
   functions: [],
   moduleId: "flax.cupertino/cupertino",
   dependencyModules: ["flax.core/flutter"],
-  uiProtocol: 23,
+  uiProtocol: 24,
   requiredCapabilities: const <String>[
     "instance-checks",
     "native-widget-proxies",

@@ -4,8 +4,11 @@ import type * as upstream0 from '@flax/flutter/foundation/_bindings/flutter_Key'
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/widgets/_bindings/flutter_TextStyle';
 import type * as upstream2 from '@flax/flutter/services/_bindings/flutter_TextAlign';
+import '@flax/flutter/services/_bindings/flutter_TextAlign';
 import type * as upstream3 from '@flax/flutter/services/_bindings/flutter_TextDirection';
+import '@flax/flutter/services/_bindings/flutter_TextDirection';
 import type * as upstream4 from '@flax/flutter/widgets/_bindings/flutter_TextOverflow';
+import '@flax/flutter/widgets/_bindings/flutter_TextOverflow';
 import type * as upstream5 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 export type Text = TextDescription | _TextNative;

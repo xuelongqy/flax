@@ -4,6 +4,7 @@ import 'package:flax_codegen/flax_codegen.dart';
 import 'package:flax_codegen/src/manifest_codec.dart';
 
 import '../test/fixtures/interop_selection.dart';
+import '../test/fixtures/enums_selection.dart';
 import '../test/fixtures/native_widgets_selection.dart';
 import '../test/fixtures/default_omission_selection.dart';
 import '../test/fixtures/repeated_selection.dart';
@@ -41,6 +42,7 @@ Future<void> main() async {
     interopSelection,
     core,
     rawToWire,
+    functions: enumFunctions,
     typedefs: [
       'CodegenOnChanged',
       'CodegenNames',

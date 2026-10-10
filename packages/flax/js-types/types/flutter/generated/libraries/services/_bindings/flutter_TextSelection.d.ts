@@ -2,6 +2,7 @@ import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings'
 import type * as upstream0 from '@flax/flutter/services/_bindings/flutter_TextRange';
 import '@flax/flutter/services/_bindings/flutter_TextRange';
 import type * as upstream1 from '@flax/flutter/services/_bindings/flutter_TextAffinity';
+import '@flax/flutter/services/_bindings/flutter_TextAffinity';
 export interface TextSelection extends upstream0.TextRange, Readonly<{
     "__flaxBound:package:flutter/src/services/text_editing.dart::TextSelection": readonly [];
 }> {

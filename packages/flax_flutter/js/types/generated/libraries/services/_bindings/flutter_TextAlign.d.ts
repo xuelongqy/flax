@@ -1,6 +1,8 @@
 import { type DartEnum } from '@flax/core/bindings';
 export interface TextAlign extends DartEnum {
-    readonly type: "flax.core/flutter#type:TextAlign";
+    readonly __TextAlign: unique symbol;
+    readonly name: string;
+    readonly index: number;
 }
 export declare const TextAlign: Readonly<{
     left: TextAlign;
@@ -9,4 +11,5 @@ export declare const TextAlign: Readonly<{
     justify: TextAlign;
     start: TextAlign;
     end: TextAlign;
+    values: readonly TextAlign[];
 }>;

@@ -1,5 +1,6 @@
 import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_ConnectionState';
+import '@flax/flutter/widgets/_bindings/flutter_ConnectionState';
 import type * as upstream1 from '@flax/dart/core/_bindings/flutter_StackTrace';
 import '@flax/dart/core/_bindings/flutter_StackTrace';
 export interface AsyncSnapshot<T extends unknown | null = unknown | null> extends Readonly<{

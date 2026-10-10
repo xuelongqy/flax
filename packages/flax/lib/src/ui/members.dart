@@ -345,7 +345,17 @@ extension _MemberCalls on _Session {
       return contextResult(value, type.id!);
     }
     if (type.kind == 'state') return stateResult(value as State, type);
-    if (type.kind == 'object') return objectResult(value!, type);
+    if (type.kind == 'object') {
+      if (value is Enum) {
+        final binding = registry._types[type.id];
+        if (binding is! FlaxObjectBinding ||
+            binding.matches?.call(value) != true) {
+          throw ArgumentError('Incompatible Dart enum interface');
+        }
+        return anyResult(value);
+      }
+      return objectResult(value!, type);
+    }
     return scalarResult(value, type);
   }
 

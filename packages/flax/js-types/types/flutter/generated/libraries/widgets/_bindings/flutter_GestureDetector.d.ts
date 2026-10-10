@@ -1,7 +1,9 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_HitTestBehavior';
+import '@flax/flutter/widgets/_bindings/flutter_HitTestBehavior';
 import type * as upstream2 from '@flax/flutter/gestures/_bindings/flutter_DragStartBehavior';
+import '@flax/flutter/gestures/_bindings/flutter_DragStartBehavior';
 export interface GestureDetector extends WidgetDescription {
     readonly type: "flax.core/flutter#type:GestureDetector";
 }

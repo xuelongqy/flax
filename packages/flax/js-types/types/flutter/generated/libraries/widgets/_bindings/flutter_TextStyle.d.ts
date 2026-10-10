@@ -4,6 +4,7 @@ import '@flax/flutter/services/_bindings/flutter_Color';
 import type * as upstream1 from '@flax/flutter/services/_bindings/flutter_FontWeight';
 import '@flax/flutter/services/_bindings/flutter_FontWeight';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_FontStyle';
+import '@flax/flutter/widgets/_bindings/flutter_FontStyle';
 export interface TextStyle extends Readonly<{
     "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
 }>, Readonly<{

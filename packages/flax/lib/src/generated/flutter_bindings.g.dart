@@ -30,15 +30,15 @@ const flutterBindings = FlaxBindingModule(
       "onUserInteraction": api.AutovalidateMode.onUserInteraction,
       "onUnfocus": api.AutovalidateMode.onUnfocus,
       "onUserInteractionIfError": api.AutovalidateMode.onUserInteractionIfError,
-    }),
+    }, supertypes: []),
     FlaxEnumBinding("flax.core/flutter#type:Axis", {
       "horizontal": api.Axis.horizontal,
       "vertical": api.Axis.vertical,
-    }),
+    }, supertypes: []),
     FlaxEnumBinding("flax.core/flutter#type:BorderStyle", {
       "none": api.BorderStyle.none,
       "solid": api.BorderStyle.solid,
-    }),
+    }, supertypes: []),
     FlaxEnumBinding("flax.core/flutter#type:BoxFit", {
       "fill": api.BoxFit.fill,
       "contain": api.BoxFit.contain,
@@ -47,51 +47,51 @@ const flutterBindings = FlaxBindingModule(
       "fitHeight": api.BoxFit.fitHeight,
       "none": api.BoxFit.none,
       "scaleDown": api.BoxFit.scaleDown,
-    }),
+    }, supertypes: []),
     FlaxEnumBinding("flax.core/flutter#type:BoxShape", {
       "rectangle": api.BoxShape.rectangle,
       "circle": api.BoxShape.circle,
-    }),
+    }, supertypes: []),
     FlaxEnumBinding("flax.core/flutter#type:Clip", {
       "none": api.Clip.none,
       "hardEdge": api.Clip.hardEdge,
       "antiAlias": api.Clip.antiAlias,
       "antiAliasWithSaveLayer": api.Clip.antiAliasWithSaveLayer,
-    }),
+    }, supertypes: []),
     FlaxEnumBinding("flax.core/flutter#type:ConnectionState", {
       "none": api.ConnectionState.none,
       "waiting": api.ConnectionState.waiting,
       "active": api.ConnectionState.active,
       "done": api.ConnectionState.done,
-    }),
+    }, supertypes: []),
     FlaxEnumBinding("flax.core/flutter#type:CrossAxisAlignment", {
       "start": api.CrossAxisAlignment.start,
       "end": api.CrossAxisAlignment.end,
       "center": api.CrossAxisAlignment.center,
       "stretch": api.CrossAxisAlignment.stretch,
       "baseline": api.CrossAxisAlignment.baseline,
-    }),
+    }, supertypes: []),
     FlaxEnumBinding("flax.core/flutter#type:DecorationPosition", {
       "background": api.DecorationPosition.background,
       "foreground": api.DecorationPosition.foreground,
-    }),
+    }, supertypes: []),
     FlaxEnumBinding("flax.core/flutter#type:DragStartBehavior", {
       "down": api2.DragStartBehavior.down,
       "start": api2.DragStartBehavior.start,
-    }),
+    }, supertypes: []),
     FlaxEnumBinding("flax.core/flutter#type:FlexFit", {
       "tight": api.FlexFit.tight,
       "loose": api.FlexFit.loose,
-    }),
+    }, supertypes: []),
     FlaxEnumBinding("flax.core/flutter#type:FontStyle", {
       "normal": api.FontStyle.normal,
       "italic": api.FontStyle.italic,
-    }),
+    }, supertypes: []),
     FlaxEnumBinding("flax.core/flutter#type:HitTestBehavior", {
       "deferToChild": api.HitTestBehavior.deferToChild,
       "opaque": api.HitTestBehavior.opaque,
       "translucent": api.HitTestBehavior.translucent,
-    }),
+    }, supertypes: []),
     FlaxEnumBinding("flax.core/flutter#type:MainAxisAlignment", {
       "start": api.MainAxisAlignment.start,
       "end": api.MainAxisAlignment.end,
@@ -99,22 +99,22 @@ const flutterBindings = FlaxBindingModule(
       "spaceBetween": api.MainAxisAlignment.spaceBetween,
       "spaceAround": api.MainAxisAlignment.spaceAround,
       "spaceEvenly": api.MainAxisAlignment.spaceEvenly,
-    }),
+    }, supertypes: []),
     FlaxEnumBinding("flax.core/flutter#type:MainAxisSize", {
       "min": api.MainAxisSize.min,
       "max": api.MainAxisSize.max,
-    }),
+    }, supertypes: []),
     FlaxEnumBinding("flax.core/flutter#type:MaxLengthEnforcement", {
       "none": api4.MaxLengthEnforcement.none,
       "enforced": api4.MaxLengthEnforcement.enforced,
       "truncateAfterCompositionEnds":
           api4.MaxLengthEnforcement.truncateAfterCompositionEnds,
-    }),
+    }, supertypes: []),
     FlaxEnumBinding("flax.core/flutter#type:StackFit", {
       "loose": api.StackFit.loose,
       "expand": api.StackFit.expand,
       "passthrough": api.StackFit.passthrough,
-    }),
+    }, supertypes: []),
     FlaxEnumBinding("flax.core/flutter#type:TargetPlatform", {
       "android": api.TargetPlatform.android,
       "fuchsia": api.TargetPlatform.fuchsia,
@@ -122,11 +122,11 @@ const flutterBindings = FlaxBindingModule(
       "linux": api.TargetPlatform.linux,
       "macOS": api.TargetPlatform.macOS,
       "windows": api.TargetPlatform.windows,
-    }),
+    }, supertypes: []),
     FlaxEnumBinding("flax.core/flutter#type:TextAffinity", {
       "upstream": api.TextAffinity.upstream,
       "downstream": api.TextAffinity.downstream,
-    }),
+    }, supertypes: []),
     FlaxEnumBinding("flax.core/flutter#type:TextAlign", {
       "left": api.TextAlign.left,
       "right": api.TextAlign.right,
@@ -134,29 +134,29 @@ const flutterBindings = FlaxBindingModule(
       "justify": api.TextAlign.justify,
       "start": api.TextAlign.start,
       "end": api.TextAlign.end,
-    }),
+    }, supertypes: []),
     FlaxEnumBinding("flax.core/flutter#type:TextBaseline", {
       "alphabetic": api.TextBaseline.alphabetic,
       "ideographic": api.TextBaseline.ideographic,
-    }),
+    }, supertypes: []),
     FlaxEnumBinding("flax.core/flutter#type:TextDirection", {
       "rtl": api.TextDirection.rtl,
       "ltr": api.TextDirection.ltr,
-    }),
+    }, supertypes: []),
     FlaxEnumBinding("flax.core/flutter#type:TextOverflow", {
       "clip": api.TextOverflow.clip,
       "fade": api.TextOverflow.fade,
       "ellipsis": api.TextOverflow.ellipsis,
       "visible": api.TextOverflow.visible,
-    }),
+    }, supertypes: []),
     FlaxEnumBinding("flax.core/flutter#type:UnfocusDisposition", {
       "scope": api.UnfocusDisposition.scope,
       "previouslyFocusedChild": api.UnfocusDisposition.previouslyFocusedChild,
-    }),
+    }, supertypes: []),
     FlaxEnumBinding("flax.core/flutter#type:VerticalDirection", {
       "up": api.VerticalDirection.up,
       "down": api.VerticalDirection.down,
-    }),
+    }, supertypes: []),
     FlaxEnumBinding("flax.core/flutter#type:WidgetState", {
       "hovered": api.WidgetState.hovered,
       "focused": api.WidgetState.focused,
@@ -166,7 +166,7 @@ const flutterBindings = FlaxBindingModule(
       "scrolledUnder": api.WidgetState.scrolledUnder,
       "disabled": api.WidgetState.disabled,
       "error": api.WidgetState.error,
-    }),
+    }, supertypes: []),
     FlaxEnumBinding("flax.core/flutter#type:WrapAlignment", {
       "start": api.WrapAlignment.start,
       "end": api.WrapAlignment.end,
@@ -174,12 +174,12 @@ const flutterBindings = FlaxBindingModule(
       "spaceBetween": api.WrapAlignment.spaceBetween,
       "spaceAround": api.WrapAlignment.spaceAround,
       "spaceEvenly": api.WrapAlignment.spaceEvenly,
-    }),
+    }, supertypes: []),
     FlaxEnumBinding("flax.core/flutter#type:WrapCrossAlignment", {
       "start": api.WrapCrossAlignment.start,
       "end": api.WrapCrossAlignment.end,
       "center": api.WrapCrossAlignment.center,
-    }),
+    }, supertypes: []),
     FlaxWidgetBinding(
       "flax.core/flutter#type:Spacer",
       {
@@ -13271,7 +13271,7 @@ const flutterBindings = FlaxBindingModule(
   ],
   moduleId: "flax.core/flutter",
   dependencyModules: [],
-  uiProtocol: 23,
+  uiProtocol: 24,
   requiredCapabilities: const <String>[
     "instance-checks",
     "native-widget-proxies",

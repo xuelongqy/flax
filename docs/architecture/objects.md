@@ -1,6 +1,6 @@
 # Dart Objects and Bridge References
 
-Status: implemented with the [maintained Flutter engine](runtime.md), UI protocol 23.
+Status: implemented with the [maintained Flutter engine](runtime.md), UI protocol 24.
 The native C ABI is unchanged. See
 [the interop decision](../decisions/0009-dart-interop.md).
 
