@@ -1768,6 +1768,11 @@ Object.assign(globalThis, {
       if (state?.retired) throw new Error('Disposed component State');
       return state?.claimed ? state.id : null;
     },
+    stateHandle(value: object, type: string): number | null {
+      const state = stateHandles.get(value);
+      if (state && state.type !== type) throw new TypeError('Incompatible State');
+      return state?.id ?? null;
+    },
     updateComponentState(value: object, widget: object): void {
       const state = componentStates.get(value);
       if (!state || state.retired) throw new Error('Disposed component State');

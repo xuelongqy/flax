@@ -34,6 +34,7 @@ import '../../../packages/flax/test/ui/proxy_properties_test.dart'
     as properties;
 import '../../../packages/flax/test/ui/package_bindings_test.dart' as providers;
 import '../../../packages/flax/test/ui/default_omission_test.dart' as defaults;
+import '../../../packages/flax/test/ui/extensions_test.dart' as extensions;
 
 void main() {
   if (Platform.isIOS &&
@@ -196,6 +197,7 @@ void _registerTests() {
   group('current proxy properties', properties.main);
   group('independent binding providers', providers.main);
   group('default omission', defaults.main);
+  group('extension receiver views', extensions.main);
   if (const bool.fromEnvironment('FLAX_ENGINE_BENCHMARK')) {
     testWidgets('profile GC, frame and memory measurements', (tester) async {
       final previousPolicy = binding.framePolicy;

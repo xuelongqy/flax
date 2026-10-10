@@ -1887,7 +1887,8 @@ import 'package:flax/bindings.dart';
               '_${type.name}_static_set_${setter.name}',
       for (final extension in module.extensions)
         for (final member in extension.members)
-          member.id: '_extension_${extension.name}_${member.call.name}',
+          member.id:
+              '_extension_${extension.name}_${member.kind}_${member.kind == 'operator' ? member.call.name : member.name}',
       for (final setter in setters) setter.id: '_write_${setter.name}',
     };
     // Setters reuse function conversion, but their Dart target is an assignment.
@@ -1928,7 +1929,7 @@ import 'package:flax/bindings.dart';
       for (final member in extension.members) {
         final call = member.call;
         out.writeln(
-          'Object? _extension_${extension.name}_${call.name}(Map<String, Object?> values) {',
+          'Object? ${functionNames[member.id]}(Map<String, Object?> values) {',
         );
         String genericArguments(List<FlaxCodegenGenericParameter> parameters) =>
             parameters.isEmpty
@@ -3976,6 +3977,9 @@ $_typescriptHostImport
       String? enumOperationIds,
       bool literal = false,
       bool declarations = true,
+      FlaxCodegenExtensionModel? extensionView,
+      FlaxCodegenExtensionMemberModel? extensionMember,
+      bool signatureOnly = false,
     }) {
       final previousGenericNames = genericNames;
       if (extensionOperation) {
@@ -3992,8 +3996,31 @@ $_typescriptHostImport
           }
         }
       }
-      final named = method.parameters.where((p) => !p.positional).toList();
-      final args = method.parameters
+      final receiver = extensionView != null && !extensionMember!.isStatic
+          ? method.parameters.first
+          : null;
+      // One prototype serves every receiver specialization; public views retain T.
+      if (receiver != null && !signatureOnly) {
+        for (final parameter in method.typeParameters.take(
+          extensionView!.typeParameters.length,
+        )) {
+          if (parameter.genericIdentity case final identity?) {
+            genericNames[identity] = tsType(parameter.defaultType!);
+          }
+        }
+      }
+      final parameters = receiver == null
+          ? method.parameters
+          : method.parameters.skip(1).toList();
+      final typeParameters = method.typeParameters
+          .skip(receiver == null ? 0 : extensionView!.typeParameters.length)
+          .toList();
+      final memberName = extensionMember?.exportName ?? method.name;
+      final getter =
+          extensionMember?.kind == 'getter' ||
+          extensionMember?.kind == 'staticGetter';
+      final named = parameters.where((p) => !p.positional).toList();
+      final args = parameters
           .where((p) => p.positional)
           .map(
             (p) =>
@@ -4002,18 +4029,43 @@ $_typescriptHostImport
           .toList();
       if (named.isNotEmpty) {
         args.add(
-          'options: { ${named.map((p) => namedParameter(p, tsType(p.type, input: true, declarations: declarations && !method.instance))).join('; ')} }${named.every((p) => !p.required) ? ' = {}' : ''}',
+          'options${signatureOnly && named.every((p) => !p.required) ? '?' : ''}: { ${named.map((p) => namedParameter(p, tsType(p.type, input: true, declarations: declarations && !method.instance))).join('; ')} }${!signatureOnly && named.every((p) => !p.required) ? ' = {}' : ''}',
         );
       }
+      if (receiver != null && !getter) {
+        final arguments = extensionView!.typeParameters.isEmpty
+            ? ''
+            : '<${method.typeParameters.take(extensionView.typeParameters.length).map((p) => genericNames[p.genericIdentity] ?? p.name).join(', ')}>';
+        args.insert(0, 'this: ${extensionView.name}$arguments');
+      }
+      if (signatureOnly) {
+        target.writeln(
+          getter
+              ? 'readonly $memberName: ${tsType(method.result)};'
+              : '$memberName${generics(typeParameters)}(${args.join(', ')}): ${tsType(method.result)};',
+        );
+        genericNames = previousGenericNames;
+        return;
+      }
       target.writeln(
-        method.instance || literal
-            ? '${method.name}${literal ? generics(method.typeParameters) : ''}(${[if (method.instance) 'this: object', ...args].join(', ')}): ${tsType(method.result, declarations: declarations && !method.instance)} {'
+        getter
+            ? 'get $memberName(): ${tsType(method.result)} {'
+            : method.instance || literal
+            ? '$memberName${literal ? generics(typeParameters) : ''}(${[if (method.instance) 'this: object', ...args].join(', ')}): ${tsType(method.result, declarations: declarations && !method.instance)} {'
             : '${namespace == null ? "function _flaxTopLevel_" : "${exportNamespace ? 'export ' : ''}namespace $namespace { export function "}${method.name}${generics(method.typeParameters)}(${args.join(', ')}): ${tsType(method.result, declarations: declarations && !method.instance)} {',
       );
       target.writeln(
-        "if (arguments.length > ${args.length}) throw new TypeError('Too many method arguments');",
+        "if (arguments.length > ${args.length - (receiver != null && !getter ? 1 : 0)}) throw new TypeError('Too many method arguments');",
       );
-      _guardPositionalTs(target, method.parameters);
+      if (receiver != null) {
+        target.writeln(
+          "if (!_flaxExtension_${extensionView!.name}_receivers.has(this)) throw new TypeError('Invalid extension view');",
+        );
+        target.writeln(
+          'const ${receiver.name} = _flaxExtension_${extensionView.name}_receivers.get(this);',
+        );
+      }
+      _guardPositionalTs(target, parameters);
       if (named.isNotEmpty) {
         target.writeln(
           "if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !${jsonEncode(named.map((p) => p.name).toList())}.includes(k))) throw new TypeError('Invalid named method arguments');",
@@ -4945,21 +4997,89 @@ $_typescriptHostImport
       emitTsCallable(out, function.call, id: function.id);
     }
     for (final extension in module.extensions) {
-      for (final member in extension.members) {
-        if (extension.isReference) {
-          out.writeln(
-            'export namespace ${extension.name} { export const ${member.call.name} = ${dependencies[_owners[member.id]]}.${extension.name}.${member.call.name}; }',
-          );
-          continue;
-        }
+      final name = extension.name;
+      final instanceMembers = extension.members.where((m) => !m.isStatic);
+      final staticMembers = extension.members.where((m) => m.isStatic);
+      final typeParameters = generics(extension.typeParameters);
+      final typeArguments = extension.typeParameters.isEmpty
+          ? ''
+          : '<${extension.typeParameters.map((p) => p.name).join(', ')}>';
+      out.writeln('export interface $name$typeParameters {');
+      for (final member in instanceMembers) {
         emitTsCallable(
           out,
           member.call,
           id: member.id,
-          namespace: extension.name,
           extensionOperation: true,
+          extensionView: extension,
+          extensionMember: member,
+          signatureOnly: true,
         );
       }
+      out.writeln('}');
+      final surface = StringBuffer(
+        '{$typeParameters(receiver: ${tsType(extension.onType, input: true)}): $name$typeArguments;\n',
+      );
+      for (final member in staticMembers) {
+        emitTsCallable(
+          surface,
+          member.call,
+          id: member.id,
+          extensionOperation: true,
+          extensionView: extension,
+          extensionMember: member,
+          signatureOnly: true,
+        );
+      }
+      surface.write('}');
+      if (extension.isReference) {
+        final owner = dependencies[_owners[extension.members.first.id]]!;
+        out.writeln('export const $name: $surface = $owner.$name;');
+        continue;
+      }
+      out.writeln(
+        'const _flaxExtension_${name}_receivers = new globalThis.WeakMap<object, unknown>();',
+      );
+      out.writeln('const _flaxExtension_${name}_prototype = {');
+      for (final member in instanceMembers) {
+        emitTsCallable(
+          out,
+          member.call,
+          id: member.id,
+          extensionOperation: true,
+          extensionView: extension,
+          extensionMember: member,
+          literal: true,
+        );
+      }
+      out.writeln('};');
+      out.writeln('const _flaxExtension_${name}_statics = {');
+      for (final member in staticMembers) {
+        emitTsCallable(
+          out,
+          member.call,
+          id: member.id,
+          extensionOperation: true,
+          extensionView: extension,
+          extensionMember: member,
+          literal: true,
+        );
+      }
+      out.writeln('};');
+      out.writeln(
+        'export const $name: $surface = Object.defineProperties({create$typeParameters(receiver: ${tsType(extension.onType, input: true)}): $name$typeArguments {',
+      );
+      out.writeln(
+        "if (arguments.length !== 1 || receiver === undefined) throw new TypeError('Expected one extension receiver');",
+      );
+      out.writeln(
+        'const view = Object.create(_flaxExtension_${name}_prototype);',
+      );
+      out.writeln('_flaxExtension_${name}_receivers.set(view, receiver);');
+      out.writeln('return view;');
+      out.writeln(
+        '}}.create, Object.getOwnPropertyDescriptors(_flaxExtension_${name}_statics)) as typeof $name;',
+      );
     }
     final layouts = memberLayouts.entries
         .map((entry) => 'const ${entry.value} = ${entry.key} as const;\n')

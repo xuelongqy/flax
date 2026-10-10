@@ -75,6 +75,16 @@ extension CollisionX on String {
   int getSize() => length;
 }
 
+extension SetterCollisionX on List<int> {
+  set firstValue(int value) => this[0] = value;
+  void setFirstValue(int value) => this[0] = value;
+}
+
+extension WeakMap on String {
+  static int get prototype => 1;
+  static int get caller => 2;
+}
+
 extension RecursiveX<T extends Comparable<T>> on List<T> {
   T get value => first;
 }

@@ -183,6 +183,13 @@ class FlaxCodegenTypeRef {
       (item?.containsWidget ?? false) ||
       (key?.containsWidget ?? false) ||
       recordFields.any((field) => field.type.containsWidget);
+  bool get requiresRouteOwner =>
+      (kind == 'callback' && result!.kind == 'route') ||
+      (result?.requiresRouteOwner ?? false) ||
+      parameters.any((parameter) => parameter.type.requiresRouteOwner) ||
+      (item?.requiresRouteOwner ?? false) ||
+      (key?.requiresRouteOwner ?? false) ||
+      recordFields.any((field) => field.type.requiresRouteOwner);
   bool get isDirectMountedWidgetResult =>
       (kind == 'widget' && id == null) ||
       (kind == 'list' &&
@@ -300,7 +307,7 @@ class FlaxCodegenTypeRef {
   }
 
   void validateResult(String location) {
-    if ({'route', 'typeOnly'}.contains(kind)) {
+    if ({'route', 'page', 'typeOnly'}.contains(kind)) {
       throw StateError('Unsupported Dart result at $location: $kind');
     }
     // Lexical type-parameter results require a bound genericIdentity token.
@@ -1275,6 +1282,7 @@ class FlaxCodegenModuleModel {
     const reservedValueExports = {
       'Array',
       'Object',
+      'globalThis',
       'TypeError',
       'bindingVersion',
       'construct',
@@ -2047,7 +2055,7 @@ class FlaxCodegenSnapshotModel {
   }
 }
 
-/// A static adapter, never a Dart object or a session-owned reference.
+/// A JS receiver view, never a Dart object or a session-owned reference.
 class FlaxCodegenExtensionModel {
   const FlaxCodegenExtensionModel({
     required this.name,
@@ -2072,32 +2080,12 @@ class FlaxCodegenExtensionModel {
       throw StateError('Expected a public named extension: $name');
     }
     onType.validate('$name receiver');
-    bool unsupported(FlaxCodegenTypeRef type) =>
-        {
-          'widget',
-          'widgetInterface',
-          'context',
-          'state',
-          'page',
-          'route',
-        }.contains(type.kind) ||
-        [
-          ?type.item,
-          ?type.key,
-          ?type.result,
-          ...type.parameters.map((p) => p.type),
-          ...type.recordFields.map((f) => f.type),
-        ].any(unsupported);
-    if (unsupported(onType)) {
-      throw StateError('Unsupported extension receiver: $name');
-    }
-
     final names = <String>{};
     final ids = <String>{};
     for (final member in members) {
-      if (!names.add(member.call.name) ||
+      if (!names.add('${member.isStatic}:${member.exportName}') ||
           !ids.add(member.id) ||
-          !flaxCodegenIsExportName(member.call.name)) {
+          !flaxCodegenIsExportName(member.exportName)) {
         throw StateError(
           'Conflicting extension member: $name.${member.call.name}',
         );
@@ -2163,19 +2151,17 @@ class FlaxCodegenExtensionModel {
               }.contains(member.name))) {
         throw StateError('Invalid extension operation: $name.${member.name}');
       }
-      if ([
-        call.result,
-        ...call.parameters.map((p) => p.type),
-      ].any(unsupported)) {
-        throw StateError(
-          'Unsupported extension semantic position: $name.${call.name}',
-        );
-      }
       call.result.validate('$name.${call.name}');
       call.result.validateResult('$name.${call.name}');
       for (final p in call.parameters) {
         p.type.validate('$name.${call.name}.${p.name}');
         p.type.validateCallbacks('$name.${call.name}.${p.name}', input: true);
+        if (p.type.requiresRouteOwner) {
+          throw StateError(
+            'Callbacks returning Routes require explicit ownership: '
+            '$name.${call.name}.${p.name}',
+          );
+        }
       }
     }
   }
@@ -2193,6 +2179,8 @@ class FlaxCodegenExtensionMemberModel {
   final String kind;
   final FlaxCodegenMethodModel call;
   bool get isStatic => kind == 'staticGetter' || kind == 'staticMethod';
+  String get exportName =>
+      kind == 'getter' || kind == 'staticGetter' ? name : call.name;
 }
 
 const flaxCodegenExtensionOperators = <String, String>{

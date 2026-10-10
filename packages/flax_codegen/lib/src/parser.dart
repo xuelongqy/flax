@@ -76,12 +76,6 @@ bool _containsData(FlaxCodegenTypeRef type) =>
     type.parameters.any((parameter) => _containsData(parameter.type)) ||
     type.recordFields.any((field) => _containsData(field.type));
 
-bool _requiresRouteOwner(FlaxCodegenTypeRef type) =>
-    (type.kind == 'callback' && type.result!.kind == 'route') ||
-    (type.item != null && _requiresRouteOwner(type.item!)) ||
-    (type.key != null && _requiresRouteOwner(type.key!)) ||
-    type.recordFields.any((field) => _requiresRouteOwner(field.type));
-
 bool _containsDeferredTypeParameter(
   DartType type,
   Set<TypeParameterElement> parameters,
@@ -2409,7 +2403,7 @@ class FlaxCodegenBindingParser {
         )) {
           throw StateError('Unsupported method arguments: ${chosen.key}');
         }
-        if (args.any((p) => _requiresRouteOwner(p.type))) {
+        if (args.any((p) => p.type.requiresRouteOwner)) {
           throw StateError(
             'Method callbacks returning Routes require explicit ownership',
           );
@@ -3179,30 +3173,6 @@ class FlaxCodegenBindingParser {
             ...generics(member.typeParameters),
           ],
         );
-        bool unsupported(FlaxCodegenTypeRef type) =>
-            {
-              'widget',
-              'widgetInterface',
-              'context',
-              'state',
-              'page',
-              'route',
-            }.contains(type.kind) ||
-            [
-              ?type.item,
-              ?type.key,
-              ?type.result,
-              ...type.parameters.map((p) => p.type),
-              ...type.recordFields.map((f) => f.type),
-            ].any(unsupported);
-        if ([
-          call.result,
-          ...call.parameters.map((p) => p.type),
-        ].any(unsupported)) {
-          throw StateError(
-            'Unsupported extension semantic position: $name.$memberName',
-          );
-        }
         members.add(
           FlaxCodegenExtensionMemberModel(
             id: '${element.library.uri}::$name.$kind.$memberName',
@@ -3371,7 +3341,7 @@ class FlaxCodegenBindingParser {
         if ({'page', 'state', 'route'}.contains(p.type.kind) ||
             (p.type.containsWidget &&
                 !{'widget', 'callback'}.contains(p.type.kind)) ||
-            (_requiresRouteOwner(p.type) &&
+            (p.type.requiresRouteOwner &&
                 !(route?.builders.contains(p.name) ?? false))) {
           throw StateError(
             'Unsupported function input: ${entry.key}.${p.name}',

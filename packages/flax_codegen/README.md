@@ -437,12 +437,16 @@ and real Dart object. Unsupported inference, conflicting targets, generic collec
 inputs and missing concrete consumers fail generation. This path uses no reflection or
 runtime TS type token.
 
-Explicit `extensions` selections expose named Dart extensions as receiver-first static
-TypeScript adapters: `StringX.getIsBlank(value)` and `StringX.repeat(value, count)`.
-Getters, setters, static getters/methods, generic declarations/members and legal Dart
-operators reuse the function call channel. Dart invocation always uses an explicit
-extension override; no prototype or instance identity is created. Manifest 17 records
-these declarations. See the
+Explicit `extensions` selections expose named Dart extensions as callable receiver
+views: `StringX('a').repeat(3)` and `StringX(' ').isBlank`. Getters are readonly
+properties; setters use `ListX(values).setFirstValue(value)`. Static members remain on
+the factory, such as `StringX.version` and `StringX.parse(value)`. Creating a view does
+not call Dart or allocate a Dart object; views share their methods. Context, Widget and
+other supported receiver, argument and result types reuse ordinary binding conversion
+and lifetime checks. Generic declarations/members and legal Dart operators use the same
+function call channel. Dart always invokes the explicit named extension override.
+Manifest 17 and operation IDs are unchanged; regenerate provider and consumer packages
+together when replacing the previous receiver-first API. See the
 [extension binding contract](../../docs/architecture/bindings.md#extension-declarations).
 
 Generic bounds can refer to unbound interfaces through Manifest 17 type-only references.

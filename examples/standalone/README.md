@@ -19,7 +19,7 @@ example server base for both; `/status` serves JSON and `/socket` echoes WebSock
 messages. State.dispose explicitly closes its page connection.
 
 `integration_test/engine_gc_test.dart` reuses shared runtime/GC and original Widget,
-State, callback, Future, Stream and FlaxView assertions. Run
+State, callback, Future, Stream, FlaxView and extension receiver-view assertions. Run
 `dart run tool/check_engine_application.dart debug|profile|release` from the root.
 Profile adds measured GC/frame/RSS workloads; release launches the signed AOT artifact
 after removing its source consumer and checks actual V8 JIT. Normal application builds

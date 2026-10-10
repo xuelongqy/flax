@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"3d4e952f19276636b2a89bbbc43be356da7043c2584e009c133304f440ee037c","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"9cacd6ca61427acbd3db3415c338a5eb6585879240af373350baa2804c23ca96","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -1219,6 +1219,13 @@ Object.assign(globalThis, {
       if (state == null ? void 0 : state.retired)
         throw new Error("Disposed component State");
       return (state == null ? void 0 : state.claimed) ? state.id : null;
+    },
+    stateHandle(value, type) {
+      var _a;
+      const state = stateHandles.get(value);
+      if (state && state.type !== type)
+        throw new TypeError("Incompatible State");
+      return (_a = state == null ? void 0 : state.id) != null ? _a : null;
     },
     updateComponentState(value, widget) {
       const state = componentStates.get(value);

@@ -756,30 +756,65 @@ extensions:
 ```
 
 ```typescript
-StringX.getIsBlank(' ');
-StringX.repeat('a', 3);
+StringX(' ').isBlank;
+StringX('a').repeat(3);
 ```
 
-Instance getters/setters use `getX(receiver)` / `setX(receiver, value)`. Instance
-methods take the receiver before their selected positional and named arguments.
-`staticGetters` and `staticMethods` omit it. `operators` selects Dart operators with
-ordinary function names: `[]` / `[]=` become `getIndex` / `setIndex`, `+` / `-` become
-`add` / `subtract`, unary `-` is selected as `unary-` and becomes `negate`.
-Multiplicative, comparison, bitwise and shift operators have fixed names in the
-generator model. Dart disallows extension declarations of Object members, including
-`==`.
+The callable factory creates a JS view of its receiver, with shared methods and getter
+accessors. It accepts exactly one defined receiver; `null` is valid for nullable
+receivers. It makes no Dart call, allocates no Dart object or native handle, and does
+not modify the receiver's prototype. Normal type conversion happens when accessing a
+member. Views keep their receiver while reachable; existing reference ownership and
+cross-heap GC remain responsible for the receiver. Context keeps its borrowed Flutter
+lifetime, so retaining a view does not keep a Context mounted.
+
+Instance getters use readonly properties, setters use `setX(value)`, and methods take
+only their selected positional and named arguments. `staticGetters` are readonly factory
+properties and `staticMethods` are factory methods. Importing a module never reads a
+Dart getter. Detached instance methods need an explicit receiver binding:
+
+```typescript
+const text = StringX('a');
+const repeat = text.repeat.bind(text);
+repeat(3);
+
+ListX(values).setFirstValue(value);
+ContextX(context).isMounted;
+```
+
+The view is not constructible with `new` and does not expose a Dart class token. Forged
+views and detached calls without `bind` are rejected. Member name collisions are checked
+separately on the view and factory. `operators` selects Dart operators with ordinary
+method names: `[]` / `[]=` become `getIndex` / `setIndex`, `+` / `-` become `add` /
+`subtract`, unary `-` is selected as `unary-` and becomes `negate`. Multiplicative,
+comparison, bitwise and shift operators have fixed names in the generator model. Dart
+disallows extension declarations of Object members, including `==`.
 
 Every invocation explicitly names the Dart extension override; no implicit resolution or
 TS prototype mutation occurs. Extension and member generic scopes preserve TS type
 relationships, with upper-bound erasure in Dart. Shadowed parameter names are renamed
 only in the TS signature. Receivers, arguments and results reuse existing recursive
 conversions, including Records, aliases, callbacks, collections and Future/FutureOr.
-Existing unsupported Widget/lifecycle semantic positions remain rejected.
+Context, Widget, Widget interfaces, State and Route/Page descriptors use their ordinary
+binding converters. Native State inputs reuse their existing weak handles and require a
+mounted State. Invalid, unmounted and foreign Context access remains rejected.
+Unsupported ordinary result/callback positions remain unsupported; in particular,
+callbacks returning Routes, including nested callbacks, still require explicit ownership
+and cannot be selected on an extension without it. Native Route and Page results have no
+general callable conversion and fail generation.
+
+Views do not reify erased generic arguments. Native Dart subtype checks still apply: an
+unconstrained `T` does not convert a JS number into a Dart `int` for a native
+`List<int>`. An extension explicitly declared on `List<int>` uses the ordinary integer
+converter; wrapping the same list in a generic view does not add runtime specialization.
 
 Extensions have no runtime instance or type wire ID. Each selected operation owns a
 stable package-scoped function ID; reused public re-exports route to the selected
-provider adapter. Independent packages may emit separate adapters. Provider references
-must preserve the provider's selected signature and public export surface. See
+provider's view factory without a duplicate implementation. Independent packages may
+emit separate adapters. Provider references must preserve the provider's selected
+signature and public export surface. This replaces the receiver-first JS API; regenerate
+provider and consumer packages together. Selection format 2, Manifest 17, UI protocol 24
+and native ABI 2 are unchanged. See
 [ADR 0030](../decisions/0030-extension-binding-adapters.md).
 
 ## Bound-only type references

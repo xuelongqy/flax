@@ -491,6 +491,16 @@ class _Session {
         value is FlaxJsObject) {
       final componentState = decodeComponentStateReference(value, type);
       if (componentState != null) return componentState;
+      if (type.kind == 'state') {
+        final id = helper('stateHandle').call([value, FlaxJsString(type.id!)]);
+        final reference = id is FlaxJsNumber ? _states[id.value.toInt()] : null;
+        if (reference == null || reference.type != type.id) {
+          throw ArgumentError('Invalid or foreign State');
+        }
+        final state = reference.mounted;
+        if (state == null) throw StateError('Unmounted State');
+        return _Value(state);
+      }
     }
     if ((type.kind == 'enum' || type.kind == 'object') &&
         value is FlaxJsObject) {

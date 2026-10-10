@@ -11,6 +11,7 @@ import '../test/fixtures/repeated_selection.dart';
 import '../test/fixtures/static_accessors_selection.dart';
 import '../test/fixtures/proxy_operators_selection.dart';
 import '../test/fixtures/context_streams_selection.dart';
+import '../test/fixtures/extensions_selection.dart';
 
 Future<void> main() async {
   final package = Directory.current.absolute;
@@ -18,6 +19,17 @@ Future<void> main() async {
     ..createSync(recursive: true);
   final (core, rawToWire) = _loadCoreManifest(
     File('${package.path}/bindings/manifest.json'),
+  );
+  await _generate(
+    package,
+    output,
+    'extensions',
+    extensionClasses(
+      package.uri.resolve('test/fixtures/extensions.dart').toString(),
+    ),
+    core,
+    rawToWire,
+    extensions: extensionSelection,
   );
   await _generate(
     package,
@@ -107,6 +119,7 @@ Future<void> _generate(
   Map<String, String> rawToWire, {
   List<String> typedefs = const [],
   Map<String, FlaxCodegenFunctionSelection> functions = const {},
+  Map<String, FlaxCodegenExtensionSelection> extensions = const {},
 }) async {
   final parser = FlaxCodegenBindingParser(package.path);
   try {
@@ -126,6 +139,7 @@ Future<void> _generate(
       selected,
       typedefs: typedefs,
       functions: functions,
+      extensions: extensions,
     );
     await parser.prepare([config]);
     final wireToRaw = {
@@ -233,6 +247,7 @@ FlaxCodegenModuleModel _rewriteModuleIds(
     types: rewritten.types,
     typeLibraries: module.typeLibraries,
     functions: rewritten.functions,
+    extensions: rewritten.extensions,
     snapshots: rewritten.snapshots,
     typedefs: rewritten.typedefs,
     topLevel: rewritten.topLevel,

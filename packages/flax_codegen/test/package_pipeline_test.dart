@@ -1025,7 +1025,7 @@ extensions:
       expect(outputs['js/main/index.ts'], contains('export { ItemX }'));
       expect(outputs['js/alias/index.ts'], contains('export { ItemX }'));
       expect(
-        outputs.values.where((text) => text.contains('export namespace ItemX')),
+        outputs.values.where((text) => text.contains('export const ItemX:')),
         hasLength(1),
       );
       final errors = FlaxCodegenManifestDiagnostics('roundtrip');
@@ -1092,7 +1092,7 @@ extensions:
       );
       expect(
         referenceEmitter.typescript(reference),
-        contains('upstream0.ItemX.scaled'),
+        contains('= upstream0.ItemX;'),
       );
       final selection = File(consumer.configPath('api.yaml'));
       selection.writeAsStringSync(
