@@ -30,13 +30,26 @@ Getter implementations return Dart inputs; setter implementations receive Dart o
 For example, a List getter may return a JS array or DartList, while a List setter
 receives a DartList referencing the original collection. The wrapper presented to
 application JS has the reverse read/write directions. Scalars, enums, references, typed
-collections and supported synchronous functions reuse the common converter. TS preserves
-generic relationships; Dart uses the configured concrete arguments.
+collections and supported synchronous functions reuse the common converter. Widget,
+Context and State properties, including nullable values and supported finite aggregates,
+use the same conversion in ordinary extends and implements proxies. TS preserves generic
+relationships; Dart uses the configured concrete arguments.
 
-Private properties, Future values and properties requiring a Widget/Route mounting owner
-are unsupported. Eligible extends proxies support concrete accessors and explicit
-`super` calls through generated direct Dart parent entries. State host proxies keep
-their existing selected lifecycle/super mechanism.
+Widget getters can return native configurations or JS Widget subclasses. Dart can retain
+and mount the result later; normal Dart references and the joint GC preserve JS
+overrides. Widget collections follow the existing structural snapshot rule while
+preserving the identity and overrides of each contained Widget. Context and State remain
+references supplied by Flutter, checked on every conversion; properties do not create,
+mount or extend their lifetime. Forged, foreign-session and unmounted references are
+rejected. Nullable properties accept null, not undefined.
+
+Private properties, Future/Stream values and Route/Page ownership remain unsupported,
+including inside collections and Records. Eligible extends proxies support concrete
+accessors and explicit `super` calls through generated direct Dart parent entries. State
+host proxies keep their existing selected lifecycle/super mechanism.
+
+`@mustCallSuper` enforcement currently covers proxy methods. Getter/setter super entries
+are available, but accessors do not yet track whether JS invoked them.
 
 ## Construction and lifetime
 
@@ -52,7 +65,8 @@ wrapper or extends instance keeps its Dart peer. An independently retained `impl
 object does not retain every proxy that uses it. The maintained engine reclaims rootless
 cycles. Temporary conversions are released on success or failure. Failed construction
 releases the pending receiver facade. Session close deterministically revokes bridge
-entries without waiting for GC or disposing application objects.
+entries without waiting for GC or disposing application objects. Retired reads fail;
+void writes remain inert, like existing void proxy methods.
 
 Returned Dart function wrappers use Dart function equality and the complete conversion
 signature. In particular, repeated instance-method tear-offs can compare equal without
@@ -75,8 +89,7 @@ disconnects listeners during cleanup. Reading a signal's value in the getter doe
 automatically notify Dart or subscribe the consumer.
 
 Framework tests use native Dart ValueListenableBuilder consumers in the existing
-embedded test project. That Widget is not yet a generated JS binding: its Widget
-callback argument remains outside the selected conversion subset. Tests cover
-replacement, multiple consumers, explicit notifications, balanced listener removal,
-constructor-time property dispatch, synchronous errors, and actual JS/Dart collection on
-Hermes and V8.
+embedded test project. Tests cover replacement, multiple consumers, explicit
+notifications, balanced listener removal, constructor-time property dispatch,
+synchronous errors, Flutter property identity and validity, Dart-retained Widget
+overrides, and actual JS/Dart collection on Hermes and V8.

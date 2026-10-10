@@ -440,9 +440,12 @@ shared typed conversion through that peer; there is no parallel Flax abstract-cl
 hierarchy or reflection.
 
 Required properties use JS accessors or ordinary data fields with synchronous typed
-conversion. The generator resolves effective inherited properties and prepares the peer
-before the parent constructor. Native lookup reads the current member, including arrow
-fields and later prototype or instance replacements, with the actual JS receiver. See
+conversion, including Widget, Context and State with the same ordinary conversion and
+lifetime checks. Dart-kept Widget results preserve JS overrides; Context/State
+properties do not extend Flutter lifetimes. The generator resolves effective inherited
+properties and prepares the peer before the parent constructor. Native lookup reads the
+current member, including arrow fields and later prototype or instance replacements,
+with the actual JS receiver. See
 [proxy properties and ValueListenable](proxy-properties.md).
 
 Proxy methods support the same positional, named and generic callback model, including

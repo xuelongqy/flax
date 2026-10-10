@@ -1006,41 +1006,94 @@ void main() {
   );
 
   test(
-    'proxy Widget properties fail with their accessor or result position',
+    'proxy Flutter properties share ordinary conversion in both directions',
     () async {
-      for (final (name, reason) in [
-        (
-          'WidgetProperty',
-          'Unsupported proxy property: WidgetProperty.get:child',
-        ),
-        (
-          'WidgetCollectionProperty',
-          'Unsupported proxy property: WidgetCollectionProperty.get:children',
-        ),
+      for (final (name, property, kind) in [
+        ('WidgetProperty', 'child', 'widget'),
+        ('WidgetCollectionProperty', 'children', 'list'),
+        ('ContextProperty', 'context', 'context'),
+        ('StateProperty', 'state', 'state'),
+        ('WidgetRecordProperty', 'value', 'record'),
       ]) {
         final parser = FlaxCodegenBindingParser(repoRoot);
         addTearDown(parser.dispose);
-        await expectLater(
-          parser.parse(
-            fixture('widget_probe.dart', {
-              name: const FlaxCodegenClassSelection(
-                {},
-                kind: 'object',
-                proxy: 'implements',
-              ),
-            }),
+        await parser.prepare([
+          FlaxCodegenBindingConfig.read(
+            p.join(repoRoot, 'packages/flax/bindings/config.yaml'),
           ),
-          throwsA(
-            isA<StateError>().having(
-              (error) => error.message,
-              'message',
-              reason,
-            ),
+          FlaxCodegenBindingConfig(
+            'components',
+            'package:flutter/widgets.dart',
+            '@example/components',
+            'unused.dart',
+            'unused.ts',
+            const {
+              'State': FlaxCodegenClassSelection({}, kind: 'state'),
+              'StatefulWidget': FlaxCodegenClassSelection({}, kind: 'object'),
+            },
           ),
+        ]);
+        final config = fixture('widget_probe.dart', {
+          name: FlaxCodegenClassSelection(
+            const {},
+            kind: 'object',
+            proxy: 'implements',
+            getters: [property],
+            setters: [property],
+          ),
+        });
+        final proposal = await parser.proposeSelection(
+          await loadType(config.library, name),
+          library: config,
         );
+        expect(
+          proposal.selection,
+          isNotNull,
+          reason: proposal.skips.map((skip) => skip.reason).join('\n'),
+        );
+        expect(proposal.selection!.proxy, isNotNull);
+        expect(proposal.selection!.getters, contains(property));
+        expect(proposal.selection!.setters, contains(property));
+        final module = await parser.parse(config);
+        final proxy = module.classes.single.proxy!;
+        expect(proxy.getters.single.type.kind, kind);
+        expect(proxy.setters.single.type.kind, kind);
       }
     },
   );
+
+  test('proxy property Records preserve nested async restrictions', () async {
+    for (final (name, member) in [
+      ('FutureRecordProperty', 'get:value'),
+      ('StreamRecordProperty', 'set:value'),
+    ]) {
+      final parser = FlaxCodegenBindingParser(repoRoot);
+      addTearDown(parser.dispose);
+      await parser.prepare([
+        FlaxCodegenBindingConfig.read(
+          p.join(repoRoot, 'packages/flax/bindings/config.yaml'),
+        ),
+      ]);
+      await expectLater(
+        parser.parse(
+          fixture('widget_probe.dart', {
+            name: const FlaxCodegenClassSelection(
+              {},
+              kind: 'object',
+              proxy: 'implements',
+            ),
+          }),
+        ),
+        throwsA(
+          isA<StateError>().having(
+            (error) => error.message,
+            'message',
+            'Unsupported proxy property: $name.$member',
+          ),
+        ),
+      );
+    }
+  });
 
   test('reuses a prepared pool Duration without a local export', () async {
     final parser = FlaxCodegenBindingParser(repoRoot);

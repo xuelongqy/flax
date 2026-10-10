@@ -91,10 +91,13 @@ fields, arrow fields, inheritance and later member replacement stay ordinary JS.
 Methods use standard receiver semantics. A saved `const call = object.method` requires
 `call.call(object, ...)` or explicit `.bind(object)`; wrappers no longer allocate a
 bound method for each instance. Required properties accept accessors and writable data
-fields. UI protocol 24 rejects old generated modules; Manifest 17, selection 2 and
-native ABI 2 remain unchanged. Regeneration can replace an old owned module inventory,
-but runtime loading still rejects its protocol. See
-[proxy properties](proxy-properties.md).
+fields. Ordinary proxy Widget, Context and State properties reuse the same typed
+conversion as ordinary member calls, including nullable values and supported finite
+aggregates. Each read/write checks borrowed Context/State validity; Dart-kept Widget
+results preserve JS overrides through joint GC without extra lifetime configuration. UI
+protocol 24 rejects old generated modules; Manifest 17, selection 2 and native ABI 2
+remain unchanged. Regeneration can replace an old owned module inventory, but runtime
+loading still rejects its protocol. See [proxy properties](proxy-properties.md).
 
 ## Enum bindings
 

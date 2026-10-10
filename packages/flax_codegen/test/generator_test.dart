@@ -1,5 +1,6 @@
 import 'fixtures/widget_interfaces_selection.dart';
 import 'fixtures/interop_selection.dart';
+import '../../flax/test/fixtures/interop_selection.dart' as ui;
 import 'fixtures/functions_selection.dart';
 import 'fixtures/repeated_selection.dart';
 
@@ -2539,6 +2540,85 @@ void main() {
           throwsStateError,
         );
       }
+    },
+  );
+
+  test(
+    'proxy Flutter properties compile with shared directional types',
+    () async {
+      final config = FlaxCodegenBindingConfig(
+        'plugin',
+        Uri.file(p.join(root, 'packages/flax/test/fixtures/interop.dart'))
+            .toString(),
+        '@example/plugin',
+        'unused.dart',
+        'unused.ts',
+        {
+          for (final name in [
+            'FlutterPropertyPort',
+            'FlutterPropertyInterface',
+          ])
+            name: ui.interopSelection[name]!,
+        },
+      );
+      final coreConfig = FlaxCodegenBindingConfig.read(
+        p.join(root, 'packages/flax/bindings/config.yaml'),
+      );
+      final componentsConfig = FlaxCodegenBindingConfig(
+        'components',
+        'package:flutter/widgets.dart',
+        '@example/components',
+        'unused.dart',
+        'unused.ts',
+        const {
+          'State': FlaxCodegenClassSelection({}, kind: 'state'),
+          'StatefulWidget': FlaxCodegenClassSelection({}, kind: 'object'),
+        },
+      );
+      await parser.prepare([config, coreConfig, componentsConfig]);
+      final core = await parser.parse(coreConfig);
+      final states = await parser.parse(componentsConfig);
+      final module = await parser.parse(config);
+      await compileFixture(
+        root,
+        FlaxCodegenBindingEmitter([module, core, states]),
+        module,
+        consumerSource: '''
+import { FlutterPropertyInterface, FlutterPropertyPort } from './plugin.js';
+import type { DartList, Widget } from '@flax/core/bindings';
+type Context = NonNullable<FlutterPropertyInterface['context']>;
+type State = NonNullable<FlutterPropertyInterface['state']>;
+function properties(child: Widget, context: Context, state: State) {
+  const implementation = {
+    get child(): Widget | null { return child; },
+    set child(value: Widget | null) {},
+    get context(): Context | null { return context; },
+    set context(value: Context | null) {},
+    get state(): State | null { return state; },
+    set state(value: State | null) {},
+    get children(): ReadonlyArray<Widget | null> { return [child, null]; },
+    set children(value: DartList<Widget | null>) { value.get(0); },
+  };
+  const port = FlutterPropertyInterface.implement([], implementation);
+  const inherited = FlutterPropertyPort.implement([child, context, state], implementation);
+  port.child = inherited.child;
+  port.context = inherited.context;
+  port.state = inherited.state;
+  port.children = [child, null];
+  const values: DartList<Widget | null> = port.children;
+  // @ts-expect-error Context cannot be manufactured in JS.
+  port.context = {mounted: true};
+  // @ts-expect-error State cannot be replaced by a Widget.
+  port.state = child;
+  // @ts-expect-error Undefined is not a nullable property value.
+  port.child = undefined;
+  // @ts-expect-error Getter results must use the declared Widget conversion.
+  FlutterPropertyInterface.implement([], {...implementation, child: 1});
+  // @ts-expect-error Setter implementations receive a real Dart List view.
+  FlutterPropertyInterface.implement([], {...implementation, set children(value: Widget[]) {}});
+}
+''',
+      );
     },
   );
 

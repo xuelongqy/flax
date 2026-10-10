@@ -233,6 +233,22 @@ const interopSelection = {
     getters: ['value'],
     setters: ['value'],
   ),
+  'FlutterPropertyPort': FlaxCodegenClassSelection(
+    {
+      '': ['child', 'context', 'state'],
+    },
+    kind: 'object',
+    proxy: 'extends',
+    getters: ['child', 'context', 'state', 'children'],
+    setters: ['child', 'context', 'state', 'children'],
+  ),
+  'FlutterPropertyInterface': FlaxCodegenClassSelection(
+    {},
+    kind: 'object',
+    proxy: 'implements',
+    getters: ['child', 'context', 'state', 'children'],
+    setters: ['child', 'context', 'state', 'children'],
+  ),
   'FailingProperty': FlaxCodegenClassSelection(
     {'': []},
     kind: 'object',

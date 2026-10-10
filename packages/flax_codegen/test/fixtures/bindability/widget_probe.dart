@@ -43,10 +43,35 @@ class NullableWidgetListCallbackWall {
 
 abstract class WidgetProperty {
   Widget get child;
+  set child(Widget value);
 }
 
 abstract class WidgetCollectionProperty {
   List<Widget> get children;
+  set children(List<Widget> value);
+}
+
+abstract class ContextProperty {
+  BuildContext? get context;
+  set context(BuildContext? value);
+}
+
+abstract class StateProperty {
+  State? get state;
+  set state(State? value);
+}
+
+abstract class WidgetRecordProperty {
+  ({Widget? child, BuildContext? context, State? state}) get value;
+  set value(({Widget? child, BuildContext? context, State? state}) value);
+}
+
+abstract class FutureRecordProperty {
+  ({Widget? child, Future<int> pending}) get value;
+}
+
+abstract class StreamRecordProperty {
+  set value(({Widget? child, Stream<int> events}) value);
 }
 
 class RequiredUriBox extends StatelessWidget {

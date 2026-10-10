@@ -1,7 +1,67 @@
-import type { DartList, DartMap } from '@flax/core/bindings';
+import type { DartList, DartMap, Widget } from '@flax/core/bindings';
 import * as plugin from '../../../.dart_tool/flax/ui/interop_bindings.js';
 import { ValueListenable } from '@flax/flutter/foundation';
-import { Text, registerPage } from '@flax/flutter/widgets';
+import {
+  StatelessWidget,
+  Text,
+  registerPage,
+  type BuildContext,
+  type State,
+} from '@flax/flutter/widgets';
+
+class FlutterProperties {
+  #reads = 0;
+  #writes = 0;
+  get reads() {
+    return this.#reads;
+  }
+  get writes() {
+    return this.#writes;
+  }
+  #child: Widget | null = null;
+  #context: BuildContext | null = null;
+  #state: State | null = null;
+  #children: ReadonlyArray<Widget | null> | DartList<Widget | null> = [];
+  get child() {
+    this.#reads++;
+    return this.#child;
+  }
+  set child(value: Widget | null) {
+    this.#writes++;
+    this.#child = value;
+  }
+  get context() {
+    this.#reads++;
+    return this.#context;
+  }
+  set context(value: BuildContext | null) {
+    this.#writes++;
+    this.#context = value;
+  }
+  get state() {
+    this.#reads++;
+    return this.#state;
+  }
+  set state(value: State | null) {
+    this.#writes++;
+    this.#state = value;
+  }
+  get children(): ReadonlyArray<Widget | null> | DartList<Widget | null> {
+    this.#reads++;
+    return this.#children;
+  }
+  set children(value: DartList<Widget | null>) {
+    this.#writes++;
+    this.#children = value;
+  }
+}
+
+class PropertyWidget extends StatelessWidget {
+  #label = 'Proxy widget';
+  build(): Widget {
+    return Text(this.#label);
+  }
+}
 
 const observations = { reads: 0, writes: 0, adds: 0, removes: 0 };
 let readFailure: 'none' | 'error' | 'promise' | 'type' = 'none';
@@ -27,6 +87,7 @@ const implementation = {
   set writeOnly(value: number) {
     observations.writes++;
     if (writeFailure === 'error') throw Error('property setter failed');
+    // @ts-expect-error Exercise the runtime rejection of asynchronous setters.
     if (writeFailure === 'promise') return Promise.resolve() as never;
   },
   get token() {
@@ -67,6 +128,8 @@ const properties = {
   plugin,
   observations,
   implementation,
+  flutterImplementation: () => new FlutterProperties(),
+  makeWidget: () => new PropertyWidget(),
   createPort: () => plugin.PropertyPort.implement([], implementation),
   setReadFailure: (value: typeof readFailure) => {
     readFailure = value;

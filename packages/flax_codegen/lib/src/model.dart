@@ -1610,19 +1610,12 @@ class FlaxCodegenModuleModel {
           }
           if (!name.startsWith('call:')) {
             bool supported(FlaxCodegenTypeRef value) =>
-                !{
-                  'future',
-                  'stream',
-                  'widget',
-                  'route',
-                  'context',
-                  'state',
-                  'page',
-                }.contains(value.kind) &&
+                !{'future', 'stream', 'route', 'page'}.contains(value.kind) &&
                 (value.item == null || supported(value.item!)) &&
                 (value.key == null || supported(value.key!)) &&
                 (value.result == null || supported(value.result!)) &&
-                value.parameters.every((p) => supported(p.type));
+                value.parameters.every((p) => supported(p.type)) &&
+                value.recordFields.every((field) => supported(field.type));
             if (!supported(callback)) {
               throw StateError(
                 'Unsupported proxy property: ${type.name}.$name',

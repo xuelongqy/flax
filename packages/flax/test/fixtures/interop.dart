@@ -4,8 +4,11 @@ export 'async_stream_callbacks.dart';
 export 'instance_types.dart';
 export 'enums.dart';
 
+export 'package:flutter/widgets.dart' show Widget;
+
 import 'package:flutter/foundation.dart'
     show ValueChanged, ValueGetter, mustCallSuper;
+import 'package:flutter/widgets.dart' show BuildContext, State, Widget;
 
 class CodegenThenObject {
   CodegenThenObject();
@@ -687,6 +690,31 @@ abstract interface class PropertyPort {
   Token Function(Token) get transform;
   set transform(Token Function(Token) value);
 }
+
+abstract class FlutterPropertyPort {
+  FlutterPropertyPort(Widget? child, BuildContext? context, State? state) {
+    this.child = child;
+    this.context = context;
+    this.state = state;
+    if (!identical(this.child, child) ||
+        !identical(this.context, context) ||
+        !identical(this.state, state)) {
+      throw StateError('Property constructor identity changed');
+    }
+  }
+
+  Widget? get child;
+  set child(Widget? value);
+  BuildContext? get context;
+  set context(BuildContext? value);
+  State? get state;
+  set state(State? value);
+  List<Widget?> get children;
+  set children(List<Widget?> value);
+}
+
+abstract interface class FlutterPropertyInterface
+    implements FlutterPropertyPort {}
 
 abstract interface class FieldContract {
   int value = 0;

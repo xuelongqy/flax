@@ -129,7 +129,7 @@ Evidence:
 | Finite Widget callback aggregates                                | Supported | List/Set/Map/Record and Iterable signatures accept finite JS arrays/Sets or compatible Dart Lists/Sets, including nullable values and supported async compositions. Actual lazy iterators fail conversion before iteration; ordinary native method views stay lazy.                                                                                               |
 | Flutter State lifecycle                                          | Supported | Flutter creates the real Dart State host. JS implements the Flutter lifecycle and makes explicit super calls. Flax does not automatically dispose application resources.                                                                                                                                                                                          |
 | State inputs and callbacks                                       | Supported | Explicit and automatic functions, methods and callbacks share borrowed State conversion. Native wrappers and live JS State hosts retain real Dart identity. Returned/nested callbacks, nullable aggregates and supported Future/FutureOr/Stream compositions check validity at invocation or delivery. Forged, foreign-session and unmounted values are rejected. |
-| State/Widget properties and top-level values                     | Supported | Instance/static properties and global variables share ordinary State read/write and Widget write conversion, including nullable values. Dart-kept Widgets preserve JS overrides through GC; stale State access and foreign references fail. Static/global values remain application-owned when a session closes.                                                  |
+| Flutter properties and top-level values                          | Supported | Member/static/global values and ordinary extends/implements proxy properties share Widget/Context/State conversion, including null and finite aggregates. Dart-kept Widgets preserve JS overrides through GC. Stale Context/State and foreign references fail; static/global state remains application-owned.                                                     |
 | Ordinary Widget collection input                                 | Supported | Functions, methods and extensions share recursive conversion, including native Widget lists, nullable/nested lists and supported async inputs. Each Widget keeps its existing configuration ownership and Flutter lifecycle.                                                                                                                                      |
 | State `proxyVariants`                                            | Supported | Ordered Analyzer-validated Dart mixins produce fixed host classes and project their interfaces. Variants do not inherit variants.                                                                                                                                                                                                                                 |
 | Component-State interface conversion                             | Supported | A mounted JS State can be passed to Dart only through its live real State host and only when the generated variant implements the requested interface.                                                                                                                                                                                                            |
@@ -147,8 +147,10 @@ and [State variant tests](../../packages/flax_material_ui/test/ui/components_tes
 
 Context/State/Widget properties, globals and ordinary callable input evidence:
 [generator and strict TypeScript tests](../../packages/flax_codegen/test/generator_test.dart),
-[automatic selection tests](../../packages/flax_codegen/test/bindability_test.dart) and
-[shared extension/function/method runtime fixture](../../packages/flax/test/ui/extensions_test.dart).
+[automatic selection tests](../../packages/flax_codegen/test/bindability_test.dart),
+[shared extension/function/method runtime fixture](../../packages/flax/test/ui/extensions_test.dart),
+and
+[ordinary extends/implements proxy properties](../../packages/flax/test/ui/proxy_properties_test.dart).
 
 ## Stable boundary codes
 

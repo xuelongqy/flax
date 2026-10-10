@@ -388,7 +388,10 @@ Ordinary proxies generate required getter/setter dispatch from effective inherit
 signatures. Implementations use explicit JS accessors, checked without eager reads;
 parent constructors see initialized callbacks. ValueListenable exercises getter and
 listener dispatch, while independent fixtures cover setters and directional collection
-and function types. See [proxy properties](../../docs/architecture/proxy-properties.md).
+and function types. Ordinary extends/implements proxy properties reuse Widget, Context
+and State conversion, including nullable values and supported finite aggregates. Widgets
+follow Dart retention and joint GC; Context/State validity is checked on each
+read/write. See [proxy properties](../../docs/architecture/proxy-properties.md).
 
 Single Widget callback arguments and ordinary Widget-to-Widget calls share generated
 bidirectional conversion. Escaped configurations can be retained by Dart without an

@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
 
 import '../../.dart_tool/flax/ui/interop_bindings.dart';
+import '../fixtures/extensions.dart' show ExtensionAnchor;
 import '../fixtures/interop.dart' as plugin;
 
 import 'package:flax_test/flax_test.dart';
@@ -142,6 +143,231 @@ void main() {
       }
     },
   );
+
+  testWidgets(
+    'ordinary proxies share Flutter property conversions and validity checks',
+    (t) async {
+      for (final type in ['FlutterPropertyInterface', 'FlutterPropertyPort']) {
+        final ports = <plugin.FlutterPropertyPort>[];
+        late State state;
+        final h = _harness(
+          onCreate: (_, value) {
+            if (value is plugin.FlutterPropertyPort) ports.add(value);
+          },
+        );
+        try {
+          await t.pumpWidget(
+            ExtensionAnchor(
+              onState: (value) => state = value,
+              child: h.app('properties'),
+            ),
+          );
+          final arguments = type == 'FlutterPropertyPort'
+              ? '[null, null, null]'
+              : '[]';
+          h.execute('''
+            var implementation = properties.flutterImplementation();
+            var port = properties.plugin.$type.implement($arguments, implementation);
+          ''');
+          final port = ports.first;
+          final initialCalls = type == 'FlutterPropertyPort' ? 3 : 0;
+          expect(h.number('implementation.reads'), initialCalls);
+          expect(h.number('implementation.writes'), initialCalls);
+          final context = state.context;
+          const child = Text('Native property widget');
+          final children = <Widget?>[child, null];
+          port.child = child;
+          port.context = context;
+          port.state = state;
+          port.children = children;
+          expect(h.number('implementation.writes'), initialCalls + 4);
+          expect(port.child, same(child));
+          expect(port.context, same(context));
+          expect(port.state, same(state));
+          expect(port.children, [same(child), null]);
+          expect(h.number('implementation.reads'), initialCalls + 4);
+          h.execute('''
+            var savedChild = port.child, savedContext = port.context, savedState = port.state;
+            port.child = savedChild; port.context = savedContext; port.state = savedState;
+            port.children = [savedChild, null];
+          ''');
+          expect(port.child, same(child));
+          expect(port.context, same(context));
+          expect(port.state, same(state));
+          expect(port.children, [same(child), null]);
+          if (type == 'FlutterPropertyInterface') {
+            h.execute('''
+              var inherited = properties.flutterImplementation();
+              properties.plugin.FlutterPropertyPort.implement(
+                [savedChild, savedContext, savedState], inherited);
+            ''');
+            expect(h.number('inherited.reads'), 3);
+            expect(h.number('inherited.writes'), 3);
+            expect(port.child, same(child));
+            expect(port.context, same(context));
+            expect(port.state, same(state));
+          }
+          final writes = h.number('implementation.writes');
+          for (final code in [
+            'port.child = {}',
+            'port.child = undefined',
+            'port.context = savedChild',
+            'port.context = undefined',
+            'port.state = savedContext',
+            'port.state = undefined',
+            'port.children = [savedContext]',
+          ]) {
+            expect(
+              () => h.execute(code),
+              throwsA(isA<FlaxJsException>()),
+              reason: code,
+            );
+          }
+          expect(h.number('implementation.writes'), writes);
+          for (final read in <String, Object? Function()>{
+            'child': () => port.child,
+            'context': () => port.context,
+            'state': () => port.state,
+          }.entries) {
+            h.execute('implementation.${read.key} = {};');
+            expect(
+              read.value,
+              read.key == 'context'
+                  ? throwsA(isA<FlaxJsException>())
+                  : throwsArgumentError,
+              reason: read.key,
+            );
+            h.execute('implementation.${read.key} = null;');
+            expect(read.value(), isNull);
+          }
+          port.context = context;
+          port.state = state;
+          await t.pumpWidget(h.app('properties'));
+          expect(state.mounted, isFalse);
+          expect(() => port.context, throwsA(isA<FlaxJsException>()));
+          expect(() => port.state, throwsStateError);
+          final beforeStaleWrites = h.number('implementation.writes');
+          expect(() => port.context = context, throwsStateError);
+          expect(() => port.state = state, throwsStateError);
+          expect(h.number('implementation.writes'), beforeStaleWrites);
+          port.context = null;
+          port.state = null;
+          expect(port.context, isNull);
+          expect(port.state, isNull);
+          expect(h.errors, isEmpty);
+        } finally {
+          await h.finish(t);
+        }
+        expect(() => ports.first.child, throwsStateError);
+        // Retired void members stay inert, matching existing proxy methods.
+        ports.first.child = null;
+        expect(h.runtime.handlesAtDispose, 0);
+      }
+    },
+  );
+
+  testWidgets(
+    'proxy properties retain Widget overrides while Dart keeps them',
+    (t) async {
+      late plugin.FlutterPropertyPort port;
+      final h = _harness(
+        onCreate: (_, value) {
+          if (value is plugin.FlutterPropertyPort) port = value;
+        },
+      );
+      Future<void> collect() => t.runAsync(() async {
+        for (var i = 0; i < 3; i++) {
+          h.execute(flaxTestJsGarbagePressure);
+          await flaxTestCollectDartGarbage();
+        }
+      });
+      try {
+        await t.pumpWidget(h.app('properties'));
+        h.execute('''
+        var implementation = properties.flutterImplementation();
+        var port = properties.plugin.FlutterPropertyInterface.implement([], implementation);
+        port.child = properties.makeWidget();
+        port.children = [properties.makeWidget(), null];
+      ''');
+        var child = port.child;
+        var children = port.children;
+        final weak = WeakReference(child!);
+        final weakListChild = WeakReference(children.first!);
+        port.child = null;
+        port.children = [];
+        await collect();
+        expect(weak.target, isNotNull);
+        expect(weakListChild.target, isNotNull);
+        await t.pumpWidget(
+          MaterialApp(home: Column(children: [child, children.first!])),
+        );
+        expect(find.text('Proxy widget'), findsNWidgets(2));
+        await t.pumpWidget(const SizedBox.shrink());
+        await t.pumpAndSettle();
+        child = null;
+        children = [];
+        await collect();
+        expect(weak.target, isNull);
+        expect(weakListChild.target, isNull);
+        expect(h.errors, isEmpty);
+      } finally {
+        await h.finish(t);
+      }
+      expect(h.runtime.handlesAtDispose, 0);
+    },
+  );
+
+  testWidgets('Flutter proxy properties reject foreign-session references', (
+    t,
+  ) async {
+    late plugin.FlutterPropertyPort firstPort;
+    late State state;
+    final first = _harness(
+      onCreate: (_, value) {
+        if (value is plugin.FlutterPropertyPort) firstPort = value;
+      },
+    );
+    final second = _harness();
+    try {
+      await t.pumpWidget(
+        ExtensionAnchor(
+          onState: (value) => state = value,
+          child: Column(
+            children: [
+              Expanded(child: first.app('properties')),
+              Expanded(child: second.app('properties')),
+            ],
+          ),
+        ),
+      );
+      for (final h in [first, second]) {
+        h.execute('''
+          var implementation = properties.flutterImplementation();
+          var port = properties.plugin.FlutterPropertyInterface.implement([], implementation);
+        ''');
+      }
+      firstPort.child = const Text('Foreign Widget');
+      firstPort.context = state.context;
+      firstPort.state = state;
+      for (final property in ['child', 'context', 'state']) {
+        final value = first.runtime.evaluate('port.$property') as FlaxJsObject;
+        final write = second.runtime.evaluate(
+          '(value) => { port.$property = value; }',
+        ) as FlaxJsFunction;
+        try {
+          expect(() => write.call([value]), throwsArgumentError);
+        } finally {
+          write.release();
+          value.release();
+        }
+      }
+      expect(second.number('implementation.writes'), 0);
+      expect([...first.errors, ...second.errors], isEmpty);
+    } finally {
+      await first.finish(t);
+      await second.finish(t);
+    }
+  });
 
   testWidgets('accessor failures remain synchronous and later calls recover', (
     t,
