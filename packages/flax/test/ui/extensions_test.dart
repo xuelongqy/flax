@@ -105,13 +105,20 @@ void main() {
       values.nativeState = nativeState;
       h.execute(
         'var contextView = extensions.ContextX(extensionHooks.context);'
-        'var stateView = extensions.StateX(extensionHooks.values.state());',
+        'var stateInput = extensionHooks.values.state();'
+        'var stateView = extensions.StateX(stateInput);',
       );
       expect(
         h.boolean('''
         contextView.isMounted && contextView.same === extensionHooks.context &&
         contextView.through(value => value) === extensionHooks.context &&
         stateView.isMounted && extensions.StateX(stateView.same).isMounted &&
+        extensions.stateIsMounted(stateInput) &&
+        extensions.ExtensionValues.stateMounted(stateInput) &&
+        extensionHooks.values.matchesState(stateInput) &&
+        extensions.countMountedStates([stateInput, stateInput]) === 2 &&
+        !extensions.optionalStateIsMounted({value: null}) &&
+        !extensions.optionalStateIsMounted({value: undefined}) &&
         extensions.WidgetX(extensionHooks.values.widget).same === extensionHooks.values.widget &&
         extensions.WidgetX(extensionHooks.values.widget).through(value => value) === extensionHooks.values.widget &&
         extensions.PreferredX(extensionHooks.values.preferred).height === 40 &&
@@ -155,6 +162,13 @@ void main() {
         () => h.execute('stateView.isMounted'),
         throwsA(isA<FlaxJsException>()),
       );
+      for (final source in [
+        'extensions.stateIsMounted(stateInput)',
+        'extensionHooks.values.matchesState(stateInput)',
+        'extensions.countMountedStates([stateInput])',
+      ]) {
+        expect(() => h.execute(source), throwsA(isA<FlaxJsException>()));
+      }
       expect(
         () => h.execute('extensions.StateX({mounted: true}).isMounted'),
         throwsA(isA<FlaxJsException>()),
@@ -168,7 +182,123 @@ void main() {
     }
   });
 
-  testWidgets('extension Context views reject foreign sessions', (
+  testWidgets(
+    'ordinary Widget lists preserve native identity and mount results',
+    (tester) async {
+      late fixture.ExtensionValues values;
+      final h = harness(onValues: (value) => values = value);
+      // Page factories run once per mount; re-enter to render the next result.
+      Future<void> mountResult() => tester.pumpWidget(
+        KeyedSubtree(key: UniqueKey(), child: h.app('extension-result')),
+      );
+      try {
+        await tester.pumpWidget(h.app('extensions'));
+        h.execute('''
+        extensionHooks.result = extensions.columnWidgets([
+          extensionHooks.values.widget,
+          extensionHooks.child,
+          extensionHooks.componentWidget,
+        ]);
+      ''');
+        await mountResult();
+        expect(find.byWidget(values.widget), findsOneWidget);
+        expect(find.text('JS list child'), findsOneWidget);
+        expect(find.text('State input true'), findsOneWidget);
+
+        h.execute('''
+        extensionHooks.result = extensionHooks.values.column(extensionHooks.values.widgets);
+      ''');
+        await mountResult();
+        expect(find.byWidget(values.widget), findsOneWidget);
+        expect(find.byWidget(values.preferred as Widget), findsOneWidget);
+
+        h.execute('''
+        extensionHooks.result = extensions.columnWidgetGroups([
+          [extensionHooks.values.widget, null], null, [extensionHooks.child],
+        ]);
+      ''');
+        await mountResult();
+        expect(find.byWidget(values.widget), findsOneWidget);
+        expect(find.text('JS list child'), findsOneWidget);
+
+        h.execute('''
+        extensions.futureColumnWidgets(Promise.resolve([extensionHooks.child]))
+          .then(value => extensionHooks.result = value);
+      ''');
+        for (var i = 0; i < 40; i++) {
+          h.runtime.drainMicrotasks();
+          await tester.pump(const Duration(milliseconds: 1));
+        }
+        await mountResult();
+        expect(find.text('JS list child'), findsOneWidget);
+        expect(find.byWidget(values.widget), findsNothing);
+        for (final source in [
+          'extensions.columnWidgets([extensionHooks.child, null])',
+          'extensions.columnWidgets([extensionHooks.child, {}])',
+          'extensions.columnWidgets([undefined])',
+          'extensions.columnWidgets([,])',
+          'extensions.columnWidgets(null)',
+          'extensions.columnWidgets()',
+        ]) {
+          expect(
+            () => h.execute(source),
+            throwsA(isA<FlaxJsException>()),
+            reason: source,
+          );
+        }
+        h.execute(
+          'extensionHooks.result = extensions.columnWidgetGroups(null);',
+        );
+        await mountResult();
+        expect(find.text('JS list child'), findsNothing);
+        expect(h.errors, isEmpty);
+      } finally {
+        await h.finish(tester);
+      }
+    },
+  );
+
+  testWidgets('ordinary State inputs use live JS State hosts', (tester) async {
+    final h = harness();
+    try {
+      await tester.pumpWidget(h.app('state-inputs'));
+      expect(find.text('State input true'), findsOneWidget);
+      expect(
+        h.boolean('''
+        extensions.stateIsMounted(extensionHooks.componentState) &&
+        extensions.ExtensionValues.stateMounted(extensionHooks.componentState) &&
+        extensions.countMountedStates([extensionHooks.componentState]) === 1
+      '''),
+        isTrue,
+      );
+      for (final source in [
+        'extensions.stateIsMounted({mounted: true})',
+        'extensions.stateIsMounted(null)',
+        'extensions.stateIsMounted(undefined)',
+        'extensions.stateIsMounted()',
+        'extensions.stateIsMounted(extensionHooks.componentState, 1)',
+        'extensions.countMountedStates([extensionHooks.componentState, {}])',
+      ]) {
+        expect(
+          () => h.execute(source),
+          throwsA(isA<FlaxJsException>()),
+          reason: source,
+        );
+      }
+      await tester.pumpWidget(h.app('extensions'));
+      expect(
+        () => h.execute(
+          'extensions.stateIsMounted(extensionHooks.componentState)',
+        ),
+        throwsA(isA<FlaxJsException>()),
+      );
+      expect(h.errors, isEmpty);
+    } finally {
+      await h.finish(tester);
+    }
+  });
+
+  testWidgets('Context and State inputs reject foreign sessions', (
     tester,
   ) async {
     final first = harness();
@@ -177,8 +307,8 @@ void main() {
       await tester.pumpWidget(
         Column(
           children: [
-            Expanded(child: first.app('extensions')),
-            Expanded(child: second.app('extensions')),
+            Expanded(child: first.app('state-inputs')),
+            Expanded(child: second.app('state-inputs')),
           ],
         ),
       );
@@ -193,6 +323,18 @@ void main() {
       } finally {
         read.release();
         context.release();
+      }
+      final state = first.runtime.evaluate(
+        'extensionHooks.componentState',
+      ) as FlaxJsObject;
+      final readState = second.runtime.evaluate(
+        'extensions.stateIsMounted',
+      ) as FlaxJsFunction;
+      try {
+        expect(() => readState.call([state]), throwsA(isA<ArgumentError>()));
+      } finally {
+        readState.release();
+        state.release();
       }
     } finally {
       await first.finish(tester);

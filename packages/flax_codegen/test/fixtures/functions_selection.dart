@@ -1,6 +1,17 @@
 import 'package:flax_codegen/flax_codegen.dart';
 
 const functionClasses = {
+  'StateInputBox': FlaxCodegenClassSelection(
+    {'': []},
+    kind: 'object',
+    instanceMethods: {
+      'isLive': ['input'],
+      'column': ['children'],
+    },
+    methods: {
+      'isMounted': ['input'],
+    },
+  ),
   'ContextBox': FlaxCodegenClassSelection(
     {
       '': ['origin', 'optional'],
@@ -55,6 +66,11 @@ const functionClasses = {
 };
 
 const functionSelections = {
+  'stateMounted': FlaxCodegenFunctionSelection(['value']),
+  'optionalState': FlaxCodegenFunctionSelection(['value']),
+  'mountedStates': FlaxCodegenFunctionSelection(['values']),
+  'widgetColumn': FlaxCodegenFunctionSelection(['children']),
+  'nestedWidgetColumn': FlaxCodegenFunctionSelection(['children']),
   'isDark': FlaxCodegenFunctionSelection(['context']),
   'contextMounted': FlaxCodegenFunctionSelection(['context']),
   'optionalContext': FlaxCodegenFunctionSelection(['context']),

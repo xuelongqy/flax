@@ -59,10 +59,26 @@ extension PageX on Page<Object?> {
   String? get label => name;
 }
 
+bool stateIsMounted(State value) => value.mounted;
+bool optionalStateIsMounted({State? value}) => value?.mounted ?? false;
+int countMountedStates(List<State> values) =>
+    values.where((value) => value.mounted).length;
+Widget columnWidgets(List<Widget> children) =>
+    Column(mainAxisSize: MainAxisSize.min, children: children);
+Widget columnWidgetGroups(List<List<Widget?>?>? children) => columnWidgets([
+  for (final group in children ?? <List<Widget?>?>[])
+    ...?group?.whereType<Widget>(),
+]);
+Future<Widget> futureColumnWidgets(Future<List<Widget>> children) async =>
+    columnWidgets(await children);
+
 class ExtensionValues {
   ExtensionValues();
   State? nativeState;
   State state() => nativeState!;
+  bool matchesState(State value) => identical(nativeState, value);
+  static bool stateMounted(State value) => value.mounted;
+  Widget column(List<Widget> children) => columnWidgets(children);
   final Widget widget = const Text('Native extension Widget');
   final PreferredSizeWidget preferred = const PreferredSize(
     preferredSize: Size(20, 40),
@@ -70,6 +86,7 @@ class ExtensionValues {
   );
   final List<int> numbers = [1, 2];
   final List<String> words = ['a', 'b'];
+  List<Widget> get widgets => [widget, preferred];
 }
 
 class ExtensionRoute extends PageRouteBuilder<Object?> {

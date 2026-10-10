@@ -216,6 +216,10 @@ Widget autoBuild(Widget Function(BuildContext) builder) =>
 
 bool autoContextMounted(BuildContext context) => context.mounted;
 
+bool autoStateMounted(State value) => value.mounted;
+void autoStateCallback(void Function(State) callback) {}
+Widget autoWidgetColumn(List<Widget> children) => Column(children: children);
+
 class AutoContextBox {
   AutoContextBox(this.context, {this.optional});
 
@@ -223,6 +227,7 @@ class AutoContextBox {
   BuildContext? optional;
   bool get mounted => context.mounted;
   bool matches(BuildContext value) => identical(context, value);
+  bool matchesState(State value) => identical(context, value.context);
   static bool isMounted(BuildContext value) => value.mounted;
   static set selected(BuildContext? value) {}
 }

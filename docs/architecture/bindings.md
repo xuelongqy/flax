@@ -743,6 +743,14 @@ Top-level functions have their own selection, model and registration surface; th
 not represented as classes. See [function generation](functions.md) for defaults, data
 boundaries and restricted Route ownership roles.
 
+Ordinary functions and instance/static methods accept direct State inputs through the
+same borrowed converter as extensions. Live JS States resolve to their real Dart hosts;
+native State wrappers require a mounted State. Typed Widget collection inputs, including
+`List<Widget>`, nullable/nested lists and supported async compositions, use the existing
+recursive converters in both explicit and automatic selection. There is no callable
+kind-specific collection ban. State callback signatures and Route/Page ownership keep
+their existing limits.
+
 ## Extension declarations
 
 Select public named extensions independently from classes:

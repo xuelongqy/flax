@@ -35,6 +35,20 @@ may also pass or store that real Dart Context. This is borrowing: it neither kee
 Flutter element mounted nor transfers its ownership. Invalid or inactive references fail
 conversion.
 
+Direct State inputs also use the existing borrowed reference conversion, for example
+`bool isMounted(State state) => state.mounted`. A native State wrapper or a live JS
+State resolves to the real Flutter State; forged, foreign-session and unmounted States
+are rejected. Passing or saving a State does not keep it mounted. This does not widen
+the supported State callback signatures.
+
+Widget collections follow the same input conversion as methods and extensions. For
+example, `Widget stack(List<Widget> children) => Column(children: children)` accepts
+`stack([Text('one'), Text('two')])` or a compatible native Dart Widget list. Native
+Widget identity, JS Widget subclasses, nullable elements and nested typed lists keep
+their existing conversion rules. Supported Future inputs use the same recursive
+conversion. Invalid immediate values fail before invocation; invalid Future completion
+values fail asynchronously. List inputs add no new host or ownership configuration.
+
 Selected scalar, enum, object, collection, synchronous callback, returned function, and
 Future conversions reuse member-call behavior. Dart invocation/conversion errors throw
 synchronously into JS; Future completion uses the UI Promise checkpoint and close

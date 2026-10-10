@@ -13,6 +13,26 @@ int mountedContexts(List<BuildContext> contexts) =>
 bool Function(BuildContext) contextReader() =>
     (context) => context.mounted;
 
+bool stateMounted(State value) => value.mounted;
+void withStateCallback(void Function(State) callback) {}
+bool optionalState({State? value}) => value?.mounted ?? false;
+int mountedStates(List<State> values) =>
+    values.where((value) => value.mounted).length;
+Widget widgetColumn(List<Widget> children) => Column(children: children);
+Widget nestedWidgetColumn(List<List<Widget?>?>? children) => Column(
+  children: [
+    for (final group in children ?? <List<Widget?>?>[])
+      ...?group?.whereType<Widget>(),
+  ],
+);
+
+class StateInputBox {
+  StateInputBox();
+  bool isLive(State input) => input.mounted;
+  static bool isMounted(State input) => input.mounted;
+  Widget column(List<Widget> children) => widgetColumn(children);
+}
+
 final class ContextBox {
   ContextBox(this.origin, {this.optional});
 

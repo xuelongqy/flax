@@ -74,7 +74,11 @@ void main() {
         '@example/auto-library',
         'unused.dart',
         'unused.ts',
-        const {'BuildContext': FlaxCodegenClassSelection({}, kind: 'context')},
+        const {
+          'BuildContext': FlaxCodegenClassSelection({}, kind: 'context'),
+          'State': FlaxCodegenClassSelection({}, kind: 'state'),
+          'StatefulWidget': FlaxCodegenClassSelection({}, kind: 'object'),
+        },
         additionalLibraries: const ['package:flutter/widgets.dart'],
       ),
     );
@@ -95,6 +99,9 @@ void main() {
     expect(config.typedefs, contains('LabelBuilder'));
     expect(config.functions.keys, contains('autoGreeting'));
     expect(config.functions['autoContextMounted']?.parameters, ['context']);
+    expect(config.functions['autoStateMounted']?.parameters, ['value']);
+    expect(config.functions, isNot(contains('autoStateCallback')));
+    expect(config.functions['autoWidgetColumn']?.parameters, ['children']);
     for (final name in [
       'autoIndexedBuild',
       'autoNamedBuild',
@@ -108,6 +115,7 @@ void main() {
     expect(contextBox.setters, containsAll(['context', 'optional']));
     expect(contextBox.getters, containsAll(['context', 'optional']));
     expect(contextBox.instanceMethods['matches'], ['value']);
+    expect(contextBox.instanceMethods['matchesState'], ['value']);
     expect(contextBox.methods['isMounted'], ['value']);
     expect(contextBox.staticSetters, contains('selected'));
     expect(config.topLevel!.setters, contains('autoSelectedContext'));

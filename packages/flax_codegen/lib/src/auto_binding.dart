@@ -1197,9 +1197,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       final type = scope.tryTypeRef(parameter.type).type;
       final unsupported =
           type == null ||
-          {'page', 'state', 'route'}.contains(type.kind) ||
-          (type.containsWidget &&
-              !{'widget', 'callback'}.contains(type.kind)) ||
+          {'page', 'route'}.contains(type.kind) ||
           type.requiresRouteOwner;
       if (bound == null || unsupported) {
         skips.addAll(localSkips);

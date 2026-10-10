@@ -331,8 +331,12 @@ TS. See [interface generation](../../docs/architecture/widget-interfaces.md).
 
 Top-level `functions` selections generate named JS exports and `FlaxFunctionBinding`
 registrations. Function-only modules, public re-exports, typed callbacks and Future
-results share member conversion. Explicit `route` parameter roles require an observed
-synchronous TransitionRoute and per-Route callback ownership. See
+results share member conversion. Explicit and automatic function selection also accept
+direct State and typed Widget collection inputs; instance/static methods accept State.
+All use the existing converters, preserving live State checks, native Widget identity
+and nullable/nested List semantics. No new lifetime configuration or runtime path is
+added. State callbacks retain their existing limits. Explicit `route` parameter roles
+require an observed synchronous TransitionRoute and per-Route callback ownership. See
 [top-level functions](../../docs/architecture/functions.md).
 
 Optional `topLevel: {getters: [name]}` selects public top-level const, final, late final

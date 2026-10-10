@@ -21,6 +21,17 @@ void main() {
       final coreConfig = FlaxCodegenBindingConfig.read(
         p.join(root, 'packages/flax/bindings/config.yaml'),
       );
+      final componentsConfig = FlaxCodegenBindingConfig(
+        'components',
+        'package:flutter/widgets.dart',
+        '@example/components',
+        'unused.dart',
+        'unused.ts',
+        const {
+          'State': FlaxCodegenClassSelection({}, kind: 'state'),
+          'StatefulWidget': FlaxCodegenClassSelection({}, kind: 'object'),
+        },
+      );
       final config = FlaxCodegenBindingConfig(
         'plugin',
         Uri.file(
@@ -48,10 +59,11 @@ void main() {
           ).toString(),
         ],
       );
-      await parser.prepare([config, coreConfig]);
+      await parser.prepare([config, coreConfig, componentsConfig]);
       final core = await parser.parse(coreConfig);
+      final states = await parser.parse(componentsConfig);
       final module = await parser.parse(config);
-      final emitter = FlaxCodegenBindingEmitter([module, core]);
+      final emitter = FlaxCodegenBindingEmitter([module, core, states]);
       expect(module.functions.length, functionSelections.length);
       expect(
         module.functions.singleWhere((f) => f.id.endsWith('::addValues')).id,
@@ -63,7 +75,23 @@ void main() {
         emitter,
         module,
         consumerSource: """
-import {FunctionToken, addValues, invokeTopLevel, echoToken, mapNumbers, multiplyBy, finishLater, copyData, openFixturePanel, callAsync, callNamedCallback, callDebugPrinter, BuilderBox, wrapBuilder, builderWrapper, nativeTile, ContextBox, ContextTile, ContextValues, isDark, optionalContext, mountedContexts, contextReader} from './plugin.js';
+import {FunctionToken, addValues, invokeTopLevel, echoToken, mapNumbers, multiplyBy, finishLater, copyData, openFixturePanel, callAsync, callNamedCallback, callDebugPrinter, BuilderBox, wrapBuilder, builderWrapper, nativeTile, ContextBox, ContextTile, ContextValues, isDark, optionalContext, mountedContexts, contextReader, StateInputBox, stateMounted, optionalState, mountedStates, widgetColumn, nestedWidgetColumn} from './plugin.js';
+const stateBox = StateInputBox();
+function readState(state: Parameters<typeof stateMounted>[0]) {
+  const mounted: boolean = stateMounted(state);
+  StateInputBox.isMounted(state);
+  stateBox.isLive(state);
+  mountedStates([state]);
+}
+optionalState({value: null});
+optionalState({value: undefined});
+const column = widgetColumn([nativeTile()]);
+stateBox.column([column]);
+nestedWidgetColumn([[column, null], null]);
+// @ts-expect-error State inputs require a genuine borrowed State.
+stateMounted({mounted: true});
+// @ts-expect-error Non-null Widget elements cannot be null.
+widgetColumn([null]);
 wrapBuilder(context => {
   const dark: boolean = isDark(context);
   const box = ContextBox(context, {optional: undefined});
@@ -230,6 +258,9 @@ copyData(token);
         callbacks,
       );
       for (final functions in [
+        {
+          'withStateCallback': const FlaxCodegenFunctionSelection(['callback']),
+        },
         {'absent': const FlaxCodegenFunctionSelection([])},
         {'FunctionToken': const FlaxCodegenFunctionSelection([])},
         {

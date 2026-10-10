@@ -12,9 +12,25 @@ Map<String, FlaxCodegenClassSelection> extensionClasses(String library) => {
   'ExtensionValues': FlaxCodegenClassSelection(
     {'': []},
     kind: 'object',
-    getters: ['widget', 'preferred', 'numbers', 'words'],
-    instanceMethods: {'state': []},
+    getters: ['widget', 'preferred', 'numbers', 'words', 'widgets'],
+    instanceMethods: {
+      'state': [],
+      'matchesState': ['value'],
+      'column': ['children'],
+    },
+    methods: {
+      'stateMounted': ['value'],
+    },
   ),
+};
+
+const extensionFunctions = {
+  'stateIsMounted': FlaxCodegenFunctionSelection(['value']),
+  'optionalStateIsMounted': FlaxCodegenFunctionSelection(['value']),
+  'countMountedStates': FlaxCodegenFunctionSelection(['values']),
+  'columnWidgets': FlaxCodegenFunctionSelection(['children']),
+  'columnWidgetGroups': FlaxCodegenFunctionSelection(['children']),
+  'futureColumnWidgets': FlaxCodegenFunctionSelection(['children']),
 };
 
 const extensionSelection = {

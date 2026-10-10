@@ -29,6 +29,7 @@ Future<void> main() async {
     ),
     core,
     rawToWire,
+    functions: extensionFunctions,
     extensions: extensionSelection,
   );
   await _generate(

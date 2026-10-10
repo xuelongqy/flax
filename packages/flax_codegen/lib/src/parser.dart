@@ -2394,6 +2394,7 @@ class FlaxCodegenBindingParser {
             'record',
             'set',
             'route',
+            'state',
             'object',
             'widget',
             'stream',
@@ -3338,9 +3339,7 @@ class FlaxCodegenBindingParser {
         }
       }
       for (final p in args) {
-        if ({'page', 'state', 'route'}.contains(p.type.kind) ||
-            (p.type.containsWidget &&
-                !{'widget', 'callback'}.contains(p.type.kind)) ||
+        if ({'page', 'route'}.contains(p.type.kind) ||
             (p.type.requiresRouteOwner &&
                 !(route?.builders.contains(p.name) ?? false))) {
           throw StateError(
