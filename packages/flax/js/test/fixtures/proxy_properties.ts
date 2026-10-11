@@ -64,6 +64,74 @@ class PropertyWidget extends StatelessWidget {
   }
 }
 
+let superMode:
+  | 'good'
+  | 'missing'
+  | 'wrong'
+  | 'nested-missing'
+  | 'nested-good'
+  | 'throw'
+  | 'late'
+  | 'reject'
+  | 'promise' = 'good';
+
+class SuperProperties extends plugin.AccessorRequiredSuper {
+  get value(): number {
+    if (superMode === 'throw') throw Error('required getter failed');
+    if (superMode === 'missing') return 9;
+    if (superMode === 'wrong') {
+      super.value = 9;
+      return 9;
+    }
+    if (superMode === 'nested-missing' || superMode === 'nested-good') {
+      const mode = superMode;
+      const parent = mode === 'nested-good' ? super.value : 0;
+      superMode = 'good';
+      try {
+        this.read();
+      } finally {
+        superMode = mode;
+      }
+      return parent + 1;
+    }
+    return super.value + 1;
+  }
+  set value(value: number) {
+    if (superMode === 'throw') throw Error('required setter failed');
+    if (superMode === 'missing') return;
+    if (superMode === 'wrong') {
+      void super.value;
+      return;
+    }
+    super.value = value;
+  }
+  get pending(): Promise<number> {
+    if (superMode === 'throw') throw Error('required async getter failed');
+    if (superMode === 'reject')
+      return Promise.reject(Error('required getter rejected'));
+    if (superMode === 'missing') return Promise.resolve(9);
+    if (superMode === 'late') return Promise.resolve().then(() => super.pending);
+    return super.pending.then((value) => value + 1);
+  }
+  get mixed(): number | Promise<number> {
+    if (superMode === 'missing') return 9;
+    if (superMode === 'late') return Promise.resolve().then(() => super.mixed);
+    if (superMode === 'reject') return Promise.reject(Error('required mixed rejected'));
+    const parent = super.mixed;
+    if (typeof parent !== 'number') throw Error('fixture parent must be synchronous');
+    const value = parent + 1;
+    return superMode === 'promise' ? Promise.resolve(value) : value;
+  }
+  get optional(): Promise<number> | null {
+    return superMode === 'missing' ? null : super.optional;
+  }
+  get effect(): void {
+    if (superMode !== 'missing') super.effect;
+  }
+}
+
+class DefaultSuperProperties extends plugin.AccessorRequiredSuper {}
+
 class AsyncProperties {
   #observations = { reads: 0, writes: 0, listens: 0, next: 0, cancels: 0 };
   get observations() {
@@ -224,6 +292,11 @@ const properties = {
   implementation,
   flutterImplementation: () => new FlutterProperties(),
   asyncImplementation: () => new AsyncProperties(),
+  makeSuperPort: (override = true) =>
+    override ? new SuperProperties() : new DefaultSuperProperties(),
+  setSuperMode: (value: typeof superMode) => {
+    superMode = value;
+  },
   makeWidget: () => new PropertyWidget(),
   createPort: () => plugin.PropertyPort.implement([], implementation),
   setReadFailure: (value: typeof readFailure) => {

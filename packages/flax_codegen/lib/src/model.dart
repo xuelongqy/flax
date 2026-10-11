@@ -1538,6 +1538,20 @@ class FlaxCodegenModuleModel {
       }
       if (type.proxy case final proxy?) {
         final names = <String>{};
+        final accessors = {
+          for (final getter in proxy.getters) 'get:${getter.name}',
+          for (final setter in proxy.setters) 'set:${setter.name}',
+        };
+        if (proxy.mustCallSuperAccessors.toSet().length !=
+                proxy.mustCallSuperAccessors.length ||
+            proxy.mustCallSuperAccessors.any(
+              (member) =>
+                  proxy.kind != 'extends' ||
+                  !accessors.contains(member) ||
+                  !proxy.superMethods.contains(member),
+            )) {
+          throw StateError('Invalid required super accessor: ${type.name}');
+        }
         if (proxy.kind == 'extends') {
           for (final getter in proxy.getters) {
             if (proxy.setters.any((setter) => setter.name == getter.name) &&
@@ -1924,10 +1938,12 @@ class FlaxCodegenProxyModel {
     this.kind,
     this.methods, {
     this.superMethods = const [],
+    this.mustCallSuperAccessors = const [],
     this.getters = const [],
     this.setters = const [],
   });
   final List<String> superMethods;
+  final List<String> mustCallSuperAccessors;
   final String kind;
   final List<FlaxCodegenMethodModel> methods;
   final List<FlaxCodegenGetterModel> getters;

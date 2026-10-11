@@ -6,7 +6,7 @@ be supported by the generator while a particular SDK library still needs its own
 selection and runtime verification.
 
 The current version domains are binding selection format **2**, package metadata format
-**2**, Manifest **17**, UI protocol **24**, and native ABI **2**. Only the current
+**2**, Manifest **18**, UI protocol **24**, and native ABI **2**. Only the current
 formats are read and written.
 
 ## Capability assessment model
@@ -24,7 +24,7 @@ Dart types and share disposal and listeners. See
 
 Class static reads and writes are independent capabilities on every supported class
 category. Reads use `Class.property`; writes use `Class.setProperty(value)`. They retain
-their own types and operation identities in Manifest 17. Static declarations are not
+their own types and operation identities in Manifest 18. Static declarations are not
 inherited; a read-only provider cannot supply a write. A generated setter name collision
 fails explicit selection or produces `static_setter_export_collision` in automatic
 selection. See [static property rules](bindings.md#class-static-properties) and the
@@ -75,6 +75,12 @@ Automatic proposal covers `classes`, `types`, `typedefs`, `functions`, `extensio
 `topLevel` selections from the same public inventory. Annotation filtering excludes
 private, `@internal`, `@protected`, and `@visibleForTesting` surfaces. Deprecated public
 API can still be selected and produces a notice.
+
+Selected concrete extends methods and accessors enforce inherited `@mustCallSuper`.
+Reads and writes are separate requirements, reentry restores the outer check, and
+Future/FutureOr getters require super before returning a Promise. Interface-only
+requirements do not transfer to implementations. See
+[proxy property rules](proxy-properties.md).
 
 Evidence:
 [automatic proposal tests](../../packages/flax_codegen/test/bindability_test.dart),

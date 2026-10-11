@@ -551,6 +551,14 @@ const interopSelection = {
       'normalize': ['value', 'input'],
     },
   ),
+  'AccessorRequiredSuper': FlaxCodegenClassSelection(
+    {'': []},
+    kind: 'object',
+    proxy: 'extends',
+    getters: ['value', 'pending', 'mixed', 'optional', 'effect'],
+    setters: ['value'],
+    instanceMethods: {'read': []},
+  ),
   'Selector': FlaxCodegenClassSelection(
     {},
     kind: 'object',

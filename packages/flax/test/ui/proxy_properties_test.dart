@@ -21,6 +21,199 @@ OwnedHarness _harness({void Function(FlaxObjectBinding, Object)? onCreate}) =>
     );
 
 void main() {
+  testWidgets('proxy accessors enforce independent inherited super calls', (
+    t,
+  ) async {
+    final ports = <plugin.AccessorRequiredSuper>[];
+    final methods = <plugin.RequiredSuper>[];
+    final h = _harness(
+      onCreate: (_, value) {
+        if (value is plugin.AccessorRequiredSuper) ports.add(value);
+        if (value is plugin.RequiredSuper) methods.add(value);
+      },
+    );
+    try {
+      await t.pumpWidget(h.app('properties'));
+      h.execute('var port = properties.makeSuperPort()');
+      h.execute('''
+      class RequiredMethod extends properties.plugin.RequiredSuper {
+        refresh() { super.refresh(); }
+      }
+      var requiredMethod = new RequiredMethod();
+      ''');
+      methods.single.refresh();
+      final port = ports.last;
+      expect((port.reads, port.writes, port.effects), (0, 0, 0));
+      expect(port.value, 4);
+      expect(port.reads, 1);
+      port.value = 5;
+      expect(port.writes, 1);
+      port.effect;
+      expect(port.effects, 1);
+      for (final mode in ['missing', 'wrong']) {
+        h.execute('properties.setSuperMode("$mode")');
+        expect(
+          () => port.value,
+          throwsA(
+            isA<StateError>().having(
+              (error) => error.message,
+              'message',
+              contains('get:value must read super.value'),
+            ),
+          ),
+        );
+        expect(
+          () => port.value = 8,
+          throwsA(
+            isA<StateError>().having(
+              (error) => error.message,
+              'message',
+              contains('set:value must write super.value'),
+            ),
+          ),
+        );
+      }
+      h.execute('properties.setSuperMode("missing")');
+      expect(() => port.effect, throwsStateError);
+      h.execute('properties.setSuperMode("throw")');
+      expect(() => port.value, throwsA(isA<FlaxJsException>()));
+      expect(() => port.value = 8, throwsA(isA<FlaxJsException>()));
+      h.execute('properties.setSuperMode("good")');
+      port.value = 6;
+      expect(port.value, 8);
+      h.execute('var defaultPort = properties.makeSuperPort(false)');
+      final inherited = ports.last;
+      expect(inherited.value, 3);
+      inherited.value = 8;
+      expect(inherited.value, 9);
+      inherited.effect;
+      expect((inherited.reads, inherited.writes, inherited.effects), (2, 1, 1));
+      expect(h.errors, isEmpty);
+    } finally {
+      await h.finish(t);
+    }
+    for (final port in ports) {
+      final counts = (port.reads, port.writes, port.effects);
+      expect(() => port.value = 11, returnsNormally);
+      expect(() => port.effect, returnsNormally);
+      expect((port.reads, port.writes, port.effects), counts);
+      expect(() => port.value, throwsStateError);
+    }
+    expect(methods.single.refresh, returnsNormally);
+  });
+
+  testWidgets(
+    'proxy accessor super checks survive nested calls and exceptions',
+    (t) async {
+      late plugin.AccessorRequiredSuper port;
+      final h = _harness(
+        onCreate: (_, value) {
+          if (value is plugin.AccessorRequiredSuper) port = value;
+        },
+      );
+      Future<void>? closing;
+      try {
+        await t.pumpWidget(h.app('properties'));
+        h.execute(
+          'var port = properties.makeSuperPort(); properties.setSuperMode("nested-missing")',
+        );
+        expect(() => port.value, throwsStateError);
+        expect(port.reads, 1);
+        h.execute('properties.setSuperMode("nested-good")');
+        expect(port.value, 4);
+        expect(port.reads, 3);
+        h.execute('properties.setSuperMode("throw")');
+        expect(() => port.value, throwsA(isA<FlaxJsException>()));
+        h.execute('properties.setSuperMode("good")');
+        expect(port.value, 4);
+        expect(h.errors, isEmpty);
+        h.runtime.registerHostFunction('closeProperties', (_, _) {
+          closing = h.session.close();
+          return const FlaxJsUndefined();
+        });
+        h.execute(
+          'Object.defineProperty(port, "value", {set(value) {closeProperties();}})',
+        );
+        expect(() => port.value = 10, throwsStateError);
+      } finally {
+        await h.finish(t);
+      }
+      await closing;
+    },
+  );
+
+  testWidgets(
+    'proxy async accessors enforce super before returning a Promise',
+    (t) async {
+      late plugin.AccessorRequiredSuper port;
+      final h = _harness(
+        onCreate: (_, value) {
+          if (value is plugin.AccessorRequiredSuper) port = value;
+        },
+      );
+      try {
+        await t.pumpWidget(h.app('properties'));
+        h.execute('var port = properties.makeSuperPort()');
+        final pending = port.pending;
+        await t.pump();
+        expect(await pending, 3);
+        expect(port.mixed, 3);
+        expect(port.optional, isNull);
+        h.execute('properties.setSuperMode("promise")');
+        final mixed = port.mixed;
+        await t.pump();
+        expect(await mixed, 3);
+        h.execute('properties.setSuperMode("missing")');
+        expect(() => port.mixed, throwsStateError);
+        expect(() => port.optional, throwsStateError);
+        var failure = expectLater(port.pending, throwsStateError);
+        await t.pump();
+        await failure;
+        h.execute('properties.setSuperMode("late")');
+        final latePending = expectLater(port.pending, throwsStateError);
+        final lateMixed = expectLater(
+          Future<int>.value(port.mixed),
+          throwsStateError,
+        );
+        await t.pump();
+        await t.pump();
+        await Future.wait([latePending, lateMixed]);
+        h.execute('properties.setSuperMode("reject")');
+        failure = expectLater(
+          port.pending,
+          throwsA(
+            isA<FlaxJsException>().having(
+              (error) => error.toString(),
+              'message',
+              contains('required getter rejected'),
+            ),
+          ),
+        );
+        final rejectedMixed = expectLater(
+          Future<int>.value(port.mixed),
+          throwsA(
+            isA<FlaxJsException>().having(
+              (error) => error.toString(),
+              'message',
+              contains('required mixed rejected'),
+            ),
+          ),
+        );
+        await t.pump();
+        await Future.wait([failure, rejectedMixed]);
+        h.execute('properties.setSuperMode("throw")');
+        expect(() => port.pending, throwsA(isA<FlaxJsException>()));
+        h.execute('properties.setSuperMode("good")');
+        final recovered = port.pending;
+        await t.pump();
+        expect(await recovered, 3);
+        expect(h.errors, isEmpty);
+      } finally {
+        await h.finish(t);
+      }
+    },
+  );
+
   testWidgets(
     'proxy async properties share typed Future conversion in both directions',
     (t) async {

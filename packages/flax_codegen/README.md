@@ -40,7 +40,7 @@ dart run flax_codegen generate --library package:foo/foo.dart
 
 `<direct-yaml>` must be an explicit direct child of the package `bindings/` directory.
 The CLI discovers sibling binding configs in that directory, resolves current-only
-Manifest 17 dependency projections through the package config, and (for `generate`)
+Manifest 18 dependency projections through the package config, and (for `generate`)
 writes `lib/...`, `js/...`, and `bindings/manifest.json` below the owning package. The
 old `dart run flax_codegen [--check] <config>` form is not supported.
 
@@ -170,7 +170,7 @@ frozen value objects: `Status.ready.label`, `Status.ready.format('hello')` and
 `Status.fromCode(200)`. There is no `new Status`, subclass or proxy. One shared
 prototype serves all values; final primitive fields cache their first real Dart read.
 Other members retain normal typed dispatch and GC. Generic constants preserve their
-concrete arguments, including across Manifest 17 and dependency providers. Generic named
+concrete arguments, including across Manifest 18 and dependency providers. Generic named
 factories use the existing constructor specialization rules; `values` preserves each
 constant's type independently of factory configuration. `types: [Status]` remains a
 constants-only selection. See
@@ -217,7 +217,7 @@ Aliases reuse existing callback and collection conversions and create no runtime
 constructor or additional wire identity. Explicit TS type arguments are supported;
 matching all Dart inference is not required. Generic callbacks retain bound erasure and
 concrete-use-site result validation. Unsupported targets, recursive or unbound callback
-bounds, and export-name collisions fail explicitly. Manifest 17 preserves alias origins,
+bounds, and export-name collisions fail explicitly. Manifest 18 preserves alias origins,
 parameters and targets across packages. See
 [ADR 0035](../../docs/decisions/0035-generic-state-variants-and-protocol-21.md).
 Complete Dart type-system coverage remains separate work.
@@ -226,7 +226,7 @@ Records are structural values with no wire ID or session identity. Generated Typ
 uses readonly object fields (`$1`, `$2`, ... for positional fields plus named fields),
 while Dart conversion reconstructs real Records and recursively reuses the existing
 conversion rules for nested callbacks, collections, Futures and provider-owned objects.
-Manifest 17 encodes Record fields and all current recursive type metadata.
+Manifest 18 encodes Record fields and all current recursive type metadata.
 
 Style and Theme selections reuse object, static-member and Widget generation. Optional
 named TS inputs explicitly include undefined for exactOptionalPropertyTypes. An
@@ -323,7 +323,7 @@ See
 Widget interfaces use `kind: widgetInterface` and `widgetInterfaces` selections. Hosts
 generate real implements clauses and native getter/setter/method forwarding, including
 generic methods and BuildContext signatures. Native members stay outside JS conversion
-and are recorded in Manifest 17. Generic interface declarations remain deferred.
+and are recorded in Manifest 18. Generic interface declarations remain deferred.
 Interface Widgets reject direct bindings but accept ordinary constructor callbacks.
 Their fixed native configurations keep original closures; nested child Widgets retain
 normal bindings and mounted subscriptions. Cross-module fixtures compile both Dart and
@@ -367,7 +367,7 @@ Reads are lazy, invalid writes fail before invoking Dart, and nullable setters a
 `null` but reject `undefined`. Static/global values belong to the Dart application;
 closing a session does not reset them or keep a stored Context/State mounted.
 Provider-owned declarations reuse the provider's public module without registering
-twice. Manifest 17 records source identity, read/write operations and public-library
+twice. Manifest 18 records source identity, read/write operations and public-library
 routing. See
 [readonly generation](../../docs/architecture/bindings.md#public-libraries-and-top-level-readonly-declarations)
 and [ADR 0027](../../docs/decisions/0027-public-library-module-delivery.md).
@@ -380,7 +380,7 @@ writes use the same function channel as top-level declarations; module import do
 read state. Const/final/late-final writes, inherited statics, unsupported conversions
 and generated `setX` export collisions are rejected. Automatic selection skips
 conflicting writes and reports the reason. Static state belongs to the application;
-closing a session does not reset it. Manifest 17 records class-qualified read/write
+closing a session does not reset it. Manifest 18 records class-qualified read/write
 operation IDs and provider capabilities. See
 [static properties](../../docs/architecture/bindings.md#class-static-properties).
 
@@ -392,7 +392,12 @@ and function types. Ordinary extends/implements proxy properties reuse Future/Fu
 Stream, Widget, Context and State conversion, including nullable values, nested
 Records/collections and returned async functions. Getters return their typed values;
 setter functions remain synchronous even for Future-valued properties. Widgets follow
-Dart retention and joint GC; Context/State validity is checked on each read/write. See
+Dart retention and joint GC; Context/State validity is checked on each read/write.
+Selected concrete extends getters/setters enforce inherited `@mustCallSuper`, with
+separate read/write and nested invocation checks. Async getters require super before
+returning their Promise; nullable results and existing rejections retain the same rules.
+Manifest 18 preserves `proxy.mustCallSuperAccessors` through providers. Regenerate all
+providers and consumers together; previous formats are rejected. See
 [proxy properties](../../docs/architecture/proxy-properties.md).
 
 Single Widget callback arguments and ordinary Widget-to-Widget calls share generated
@@ -470,11 +475,11 @@ not call Dart or allocate a Dart object; views share their methods. Context, Wid
 other supported receiver, argument and result types reuse ordinary binding conversion
 and lifetime checks. Generic declarations/members and legal Dart operators use the same
 function call channel. Dart always invokes the explicit named extension override.
-Manifest 17 and operation IDs are unchanged; regenerate provider and consumer packages
+Manifest 18 and operation IDs are unchanged; regenerate provider and consumer packages
 together when replacing the previous receiver-first API. See the
 [extension binding contract](../../docs/architecture/bindings.md#extension-declarations).
 
-Generic bounds can refer to unbound interfaces through Manifest 17 type-only references.
+Generic bounds can refer to unbound interfaces through Manifest 18 type-only references.
 Explicit recursive/dependent class and method specializations keep Dart subtype checks;
 TS retains nominal source identity and generic arguments without exposing bound members.
 Generic aliases need no runtime erasure when their bounds are type-only. Ordinary values
@@ -521,7 +526,7 @@ each mount must return a fresh JS State. Unoverridden factories preserve native 
 State variants still require a compatible Dart State type; a variant composed for
 `State<StatefulWidget>` cannot impersonate `State<ConcreteWidget>`.
 
-Manifest 17 requires `native-widget-proxies`; selection format 2 and native ABI 2 remain
+Manifest 18 requires `native-widget-proxies`; selection format 2 and native ABI 2 remain
 unchanged. UI protocol 24 requires regeneration of older generated modules. Generated
 proxies share member metadata and retain one actual JS receiver peer per Dart instance.
 Current lookup preserves private/arrow fields, inheritance and later member replacement.

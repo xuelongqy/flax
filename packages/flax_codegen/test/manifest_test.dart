@@ -13,6 +13,51 @@ import 'package:flax_codegen/src/package_metadata.dart';
 import 'package:test/test.dart';
 
 void main() {
+  test(
+    'required super accessor metadata names unique concrete extends accessors',
+    () {
+      const getter = FlaxCodegenGetterModel('value', FlaxCodegenTypeRef('int'));
+      FlaxCodegenModuleModel model(String kind, List<String> members) =>
+          FlaxCodegenModuleModel(
+            name: 'checked',
+            library: 'package:example/checked.dart',
+            jsPackage: '@example/checked',
+            dartOutput: '',
+            tsOutput: '',
+            classes: [
+              FlaxCodegenClassModel(
+                name: 'Checked',
+                id: 'example/checked#type:Checked',
+                kind: 'object',
+                constructors: const [],
+                supertypes: const [],
+                proxy: FlaxCodegenProxyModel(
+                  kind,
+                  const [],
+                  getters: const [getter],
+                  superMethods: const ['get:value'],
+                  mustCallSuperAccessors: members,
+                ),
+              ),
+            ],
+            types: const [],
+          );
+      model('extends', ['get:value']).validate();
+      for (final members in [
+        ['get:missing'],
+        ['get:value', 'get:value'],
+        ['set:value'],
+        ['value'],
+      ]) {
+        expect(() => model('extends', members).validate(), throwsStateError);
+      }
+      expect(
+        () => model('implements', ['get:value']).validate(),
+        throwsStateError,
+      );
+    },
+  );
+
   test('runtime, codegen and official manifests use one UI protocol', () {
     int sourceProtocol(String path, RegExp pattern) {
       final match = pattern.firstMatch(File(path).readAsStringSync());
@@ -351,7 +396,13 @@ void main() {
     final proxy = FlaxCodegenProxyModel(
       'extends',
       [method],
-      superMethods: const ['initState', 'dispose'],
+      superMethods: [
+        'initState',
+        'dispose',
+        'get:${getter.name}',
+        'set:${setter.name}',
+      ],
+      mustCallSuperAccessors: ['get:${getter.name}', 'set:${setter.name}'],
       getters: [getter],
       setters: const [setter],
     );
@@ -526,6 +577,7 @@ void main() {
       _record('/methods/0/startsRoute', 'Missing field.'),
       _record('/methods/0/typeArguments', 'Missing field.'),
       _record('/methods/0/typeParameters', 'Missing field.'),
+      _record('/mustCallSuperAccessors/0', 'Expected a string.'),
       _record('/setters/0/encodeKind', 'Expected a string or null.'),
       _record('/setters/0/name', 'Missing field.'),
       _record('/setters/0/type', 'Missing field.'),
@@ -878,6 +930,7 @@ void main() {
       _record('/proxy/getters', 'Missing field.'),
       _record('/proxy/kind', 'Expected a string.'),
       _record('/proxy/methods', 'Missing field.'),
+      _record('/proxy/mustCallSuperAccessors', 'Missing field.'),
       _record('/proxy/setters', 'Missing field.'),
       _record('/proxy/superMethods', 'Missing field.'),
       _record('/setters/0/encodeKind', 'Expected a string or null.'),
@@ -1368,7 +1421,7 @@ void main() {
     }
   });
 
-  group('Manifest 17 typeLibraries URI semantics', () {
+  group('Manifest 18 typeLibraries URI semantics', () {
     test('accepts public package URIs, cross-package names, and dart:core', () {
       final module = _typeLibrariesModule({
         'Core': 'dart:core',
@@ -1615,7 +1668,7 @@ void main() {
     );
   });
 
-  group('Manifest 17 envelope positives', () {
+  group('Manifest 18 envelope positives', () {
     test('fromResolved round-trips rich and zero-entry modules', () {
       final fixture = _envelopeFixture();
       final manifest = FlaxCodegenManifest.fromResolved(
@@ -1776,16 +1829,16 @@ void main() {
     });
   });
 
-  group('Manifest 17 envelope negatives', () {
+  group('Manifest 18 envelope negatives', () {
     test('invalid JSON and duplicate keys fail closed', () {
       _expectEnvelopeFailure('{', [_record('', 'Invalid JSON.')]);
       _expectEnvelopeFailure(
-        '{\n  "formatVersion": 17,\n  "package": "a",\n  "package": "b"\n}\n',
+        '{\n  "formatVersion": 18,\n  "package": "a",\n  "package": "b"\n}\n',
         [_record('', 'Duplicate mapping key.')],
       );
       final withModuleDup =
           '{\n'
-          '  "formatVersion": 17,\n'
+          '  "formatVersion": 18,\n'
           '  "package": "acme_widgets",\n'
           '  "bindingNamespace": "com.acme.widgets",\n'
           '  "imports": [],\n'
@@ -1805,7 +1858,7 @@ void main() {
       ]);
       final withModelDup =
           '{\n'
-          '  "formatVersion": 17,\n'
+          '  "formatVersion": 18,\n'
           '  "package": "acme_widgets",\n'
           '  "bindingNamespace": "com.acme.widgets",\n'
           '  "imports": [],\n'
@@ -1865,6 +1918,9 @@ void main() {
 
     test('format protocol package namespace and module tuples fail closed', () {
       final baseline = _envelopeBaseline();
+      _expectEnvelopeMutation(baseline, (json) {
+        json['formatVersion'] = 17;
+      }, [_record('/formatVersion', 'Invalid formatVersion.')]);
       _expectEnvelopeMutation(baseline, (json) {
         json['formatVersion'] = 999;
       }, [_record('/formatVersion', 'Invalid formatVersion.')]);
@@ -2033,7 +2089,7 @@ void main() {
     });
   });
 
-  group('Manifest 17 ownership model and fromResolved negatives', () {
+  group('Manifest 18 ownership model and fromResolved negatives', () {
     test('declaration owner rows are required at id pointers', () {
       const gauge = 'com.acme.widgets/widgets#type:Gauge';
       const axis = 'com.acme.widgets/widgets#type:Axis';
@@ -2510,7 +2566,7 @@ void main() {
     });
   });
 
-  group('Manifest 17 generic lexical slot positives', () {
+  group('Manifest 18 generic lexical slot positives', () {
     test(
       'fresh decoded tokens preserve declaration/reference identity sharing',
       () {
@@ -2808,7 +2864,7 @@ void main() {
     });
   });
 
-  group('Manifest 17 generic lexical slot negatives', () {
+  group('Manifest 18 generic lexical slot negatives', () {
     test('missing declaration slot fails closed', () {
       final json = _cloneJsonMap(
         _slotCallbackJson(_slotSharingCallback(Object())),
@@ -3019,7 +3075,7 @@ void main() {
     });
   });
 
-  group('Manifest 17 Quality P1 maximal projection', () {
+  group('Manifest 18 Quality P1 maximal projection', () {
     test('independently constructed maximal module survives fromResolved encode parse projection and input mutation', () {
       final inIntType = FlaxCodegenTypeRef('int');
       final inStringType = FlaxCodegenTypeRef('String', nullable: true);
@@ -4636,7 +4692,7 @@ void main() {
     });
   });
 
-  group('Manifest 17 direct dependency projection positives', () {
+  group('Manifest 18 direct dependency projection positives', () {
     test('A→B→C flattens packages owners modules and importedPackages', () {
       final chain = _projectionChain();
       final a = chain.aProjection;
@@ -4960,7 +5016,7 @@ bindingNamespace: com.example.local
     );
   });
 
-  group('Manifest 17 direct dependency projection negatives', () {
+  group('Manifest 18 direct dependency projection negatives', () {
     test('missing direct import fails closed', () {
       final b = _packageB(_packageC());
       final a = _packageA(b);
@@ -5815,7 +5871,14 @@ const _methodKeys = {
   'operator',
 };
 
-const _proxyKeys = {'kind', 'methods', 'superMethods', 'getters', 'setters'};
+const _proxyKeys = {
+  'kind',
+  'methods',
+  'superMethods',
+  'mustCallSuperAccessors',
+  'getters',
+  'setters',
+};
 const _stateMixinKeys = {'name', 'sourceId', 'library', 'typeArguments'};
 const _stateInterfaceKeys = {'name', 'sourceId', 'wireId', 'library'};
 const _stateVariantKeys = {
@@ -6001,6 +6064,7 @@ final _malformedProxy = <String, Object?>{
     <String, Object?>{'name': 1, 'extra': true},
   ],
   'superMethods': <Object?>[1],
+  'mustCallSuperAccessors': <Object?>[1],
   'getters': [
     <String, Object?>{'name': 1, 'foo/bar': true, 'cache': false},
   ],
@@ -6613,6 +6677,7 @@ void _expectProxy(
     );
   }
   expect(actual.superMethods, expected.superMethods);
+  expect(actual.mustCallSuperAccessors, expected.mustCallSuperAccessors);
   expect(actual.getters, hasLength(expected.getters.length));
   for (var index = 0; index < expected.getters.length; index++) {
     _expectGetter(
@@ -6683,6 +6748,7 @@ void _expectProxyJson(Object? json) {
   _expectJsonList(object['getters'], _expectGetterJson);
   _expectJsonList(object['setters'], _expectGetterJson);
   expect(object['superMethods'], isA<List<String>>());
+  expect(object['mustCallSuperAccessors'], isA<List<String>>());
 }
 
 void _expectStateMixinJson(Object? json) {
@@ -7456,11 +7522,11 @@ void _expectEnvelopeShape(
   expect(manifest.package, 'acme_widgets');
   expect(manifest.bindingNamespace.value, 'com.acme.widgets');
   expect(manifest.imports, ['flax', 'flax_material']);
-  expect(FlaxCodegenManifest.formatVersion, 17);
+  expect(FlaxCodegenManifest.formatVersion, 18);
   expect(FlaxCodegenManifest.uiProtocol, 24);
   final encoded = manifest.toJson();
   _expectExactKeys(encoded, _envelopeKeys);
-  expect(encoded['formatVersion'], 17);
+  expect(encoded['formatVersion'], 18);
   expect(encoded['modules'], isA<List<Object?>>());
   final modules = encoded['modules']! as List<Object?>;
   expect(modules, hasLength(2));

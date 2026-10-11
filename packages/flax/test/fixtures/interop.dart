@@ -312,6 +312,51 @@ abstract class AsyncRequiredSuper {
   FutureOr<int> normalize(int value) => value + 1;
 }
 
+abstract class AccessorRequiredSuperBase {
+  int reads = 0;
+  int writes = 0;
+  int effects = 0;
+  int _value = 2;
+
+  @mustCallSuper
+  int get value {
+    reads++;
+    return _value;
+  }
+
+  @mustCallSuper
+  set value(int value) {
+    writes++;
+    _value = value;
+  }
+
+  @mustCallSuper
+  Future<int> get pending => Future.value(_value);
+
+  @mustCallSuper
+  FutureOr<int> get mixed => _value;
+
+  @mustCallSuper
+  Future<int>? get optional => null;
+
+  @mustCallSuper
+  void get effect {
+    effects++;
+  }
+
+  int read() => value;
+}
+
+abstract class AccessorRequiredSuper extends AccessorRequiredSuperBase {
+  @override
+  int get value => super.value + 1;
+
+  @override
+  // Keep this unannotated override to verify the inherited requirement.
+  // ignore: unnecessary_overrides
+  set value(int value) => super.value = value;
+}
+
 class AsyncRequiredSuperConsumer {
   Future<int> load(AsyncRequiredSuper value, int input) => value.load(input);
 

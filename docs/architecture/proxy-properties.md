@@ -69,8 +69,25 @@ collections and Records. Eligible extends proxies support concrete accessors and
 explicit `super` calls through generated direct Dart parent entries. State host proxies
 keep their existing selected lifecycle/super mechanism.
 
-`@mustCallSuper` enforcement currently covers proxy methods. Getter/setter super entries
-are available, but accessors do not yet track whether JS invoked them.
+`@mustCallSuper` is enforced for selected concrete methods, getters and setters on
+extends proxies. Requirements follow superclass/mixin implementations, including an
+unannotated intermediate override; implementing an interface does not inherit them. The
+getter must read `super.property`, and the setter must assign `super.property`. These
+are independent requirements: reading cannot satisfy a required write. Nested
+invocations cannot satisfy an outer invocation's requirement, and exceptions restore the
+previous invocation state. Members without the annotation add no tracking. Retired void
+methods, setters and void getters remain inert. A close requested during an active
+override does not bypass its super requirement.
+
+For Future/FutureOr getters, super must run before the getter returns its Promise, just
+as for async proxy methods. A super call after awaiting cannot satisfy the requirement.
+Missing super rejects a successful Future; an existing rejection is preserved. A
+nullable Future getter returning null still requires super. An inherited Dart accessor
+with no JS override remains a direct native fallback.
+
+Manifest 18 records `mustCallSuperAccessors` using separate `get:name` and `set:name`
+operations. Regenerate providers and consumers together; previous Manifest formats are
+rejected. Selection format 2, UI protocol 24 and native ABI 2 are unchanged.
 
 ## Construction and lifetime
 
@@ -86,8 +103,8 @@ wrapper or extends instance keeps its Dart peer. An independently retained `impl
 object does not retain every proxy that uses it. The maintained engine reclaims rootless
 cycles. Temporary conversions are released on success or failure. Failed construction
 releases the pending receiver facade. Session close deterministically revokes bridge
-entries without waiting for GC or disposing application objects. Retired reads fail;
-void writes remain inert, like existing void proxy methods.
+entries without waiting for GC or disposing application objects. Retired value reads
+fail; void invocations remain inert.
 
 Returned Dart function wrappers use Dart function equality and the complete conversion
 signature. In particular, repeated instance-method tear-offs can compare equal without

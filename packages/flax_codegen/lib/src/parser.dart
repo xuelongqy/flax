@@ -34,7 +34,12 @@ bool _requiresSuper(InterfaceElement element, String name) {
   while (pending.isNotEmpty) {
     final current = pending.removeLast();
     if (!visited.add(current)) continue;
-    if (current.getMethod(name)?.metadata.hasMustCallSuper == true) return true;
+    final member = name.startsWith('get:')
+        ? current.getGetter(name.substring(4))
+        : name.startsWith('set:')
+        ? current.getSetter(name.substring(4))
+        : current.getMethod(name);
+    if (member?.metadata.hasMustCallSuper == true) return true;
     // Like analyzer's must_call_super check, follow implementation inheritance,
     // not interfaces. An unannotated override does not remove the requirement.
     if (current.supertype case final parent?) pending.add(parent.element);
@@ -2744,6 +2749,7 @@ class FlaxCodegenBindingParser {
             )
             .toList();
         final proxySuperMembers = <String>[];
+        final mustCallSuperAccessors = <String>[];
         final proxyGetters = <FlaxCodegenGetterModel>[];
         final proxySetters = <FlaxCodegenGetterModel>[];
         for (final setter in [false, true]) {
@@ -2806,6 +2812,9 @@ class FlaxCodegenBindingParser {
               final member = '${setter ? 'set' : 'get'}:$name';
               if (!proxySuperMembers.contains(member)) {
                 proxySuperMembers.add(member);
+              }
+              if (_requiresSuper(element, member)) {
+                mustCallSuperAccessors.add(member);
               }
             }
           }
@@ -2928,6 +2937,7 @@ class FlaxCodegenBindingParser {
           selection.proxy!,
           proxyMethods,
           superMethods: proxySuperMembers,
+          mustCallSuperAccessors: mustCallSuperAccessors,
           getters: proxyGetters,
           setters: proxySetters,
         );

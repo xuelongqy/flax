@@ -1,5 +1,5 @@
 {
-  "formatVersion": 17,
+  "formatVersion": 18,
   "package": "flax",
   "bindingNamespace": "flax.core",
   "imports": [],
@@ -21847,6 +21847,7 @@
                 }
               ],
               "superMethods": [],
+              "mustCallSuperAccessors": [],
               "getters": [],
               "setters": []
             },
@@ -22416,6 +22417,7 @@
                 }
               ],
               "superMethods": [],
+              "mustCallSuperAccessors": [],
               "getters": [],
               "setters": []
             },
@@ -26134,6 +26136,7 @@
                 }
               ],
               "superMethods": [],
+              "mustCallSuperAccessors": [],
               "getters": [],
               "setters": []
             },
@@ -27186,6 +27189,7 @@
               "superMethods": [
                 "cast"
               ],
+              "mustCallSuperAccessors": [],
               "getters": [],
               "setters": []
             },
@@ -41346,6 +41350,7 @@
                 }
               ],
               "superMethods": [],
+              "mustCallSuperAccessors": [],
               "getters": [
                 {
                   "name": "value",
@@ -62674,6 +62679,7 @@
                 "get:key",
                 "build"
               ],
+              "mustCallSuperAccessors": [],
               "getters": [
                 {
                   "name": "data",

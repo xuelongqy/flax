@@ -17768,8 +17768,9 @@ final class _ValueListenableProxy extends api8.ValueListenable<Object?> {
 
   @override
   Object? get value {
-    final result = _flaxPeer.call(2, const [], const {});
-    return result.$2;
+    final _flaxResult = _flaxPeer.call(2, const [], const {});
+    final result = _flaxResult.$2;
+    return result;
   }
 }
 
@@ -17804,9 +17805,10 @@ final class _TextProxy extends api.Text with FlaxWidgetProxy {
 
   @override
   String? get data {
-    final result = _flaxPeer.call(1, const [], const {});
-    if (!result.$1) return super.data;
-    return result.$2 as String?;
+    final _flaxResult = _flaxPeer.call(1, const [], const {});
+    if (!_flaxResult.$1) return super.data;
+    final result = _flaxResult.$2 as String?;
+    return result;
   }
 
   String? get _flaxSuperGet_data {
@@ -17815,9 +17817,10 @@ final class _TextProxy extends api.Text with FlaxWidgetProxy {
 
   @override
   api.Key? get key {
-    final result = _flaxPeer.call(2, const [], const {});
-    if (!result.$1) return super.key;
-    return result.$2 as api.Key?;
+    final _flaxResult = _flaxPeer.call(2, const [], const {});
+    if (!_flaxResult.$1) return super.key;
+    final result = _flaxResult.$2 as api.Key?;
+    return result;
   }
 
   api.Key? get _flaxSuperGet_key {

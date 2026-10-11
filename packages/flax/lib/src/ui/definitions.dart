@@ -226,6 +226,8 @@ class FlaxProxyBinding {
 
 /// Generated subclasses retain one peer, without per-member callback fields.
 abstract interface class FlaxProxyPeer {
+  /// False once the JS implementation has been retired.
+  bool get active;
   (bool handled, Object? value) call(
     int member,
     List<Object?> positional,

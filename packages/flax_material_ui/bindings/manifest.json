@@ -1,5 +1,5 @@
 {
-  "formatVersion": 17,
+  "formatVersion": 18,
   "package": "flax_material_ui",
   "bindingNamespace": "flax.material",
   "imports": [

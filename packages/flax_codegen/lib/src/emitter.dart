@@ -2347,12 +2347,71 @@ ${type.widgetMembers.map((m) => m.source).join('\n')}
         out.writeln('// ignore: unused_field');
       }
       out.writeln('final FlaxProxyPeer _flaxPeer;');
-      if (proxy.methods.any(
-        (method) => proxy.hasSuperMethod(method.name) && method.mustCallSuper,
-      )) {
-        out.writeln('String? _flaxActiveSuperMethod;');
+      if (proxy.mustCallSuperAccessors.isNotEmpty ||
+          proxy.methods.any(
+            (method) =>
+                proxy.hasSuperMethod(method.name) && method.mustCallSuper,
+          )) {
+        out.writeln('String? _flaxActiveSuperMember;');
         out.writeln('bool _flaxCalledSuper = false;');
       }
+      void emitSuperGuard(
+        String member,
+        FlaxCodegenTypeRef result,
+        void Function() body,
+      ) {
+        // Retired void invocations are inert; an in-flight override still checks super.
+        if (result.kind == 'void') {
+          out.writeln('if (!_flaxPeer.active) return;');
+        }
+        out.writeln('final _flaxPreviousSuperMember = _flaxActiveSuperMember;');
+        out.writeln('final _flaxPreviousCalledSuper = _flaxCalledSuper;');
+        out.writeln('_flaxActiveSuperMember = ${_quote(member)};');
+        out.writeln('_flaxCalledSuper = false;');
+        out.writeln('try {');
+        body();
+        out.writeln('} finally {');
+        out.writeln('_flaxActiveSuperMember = _flaxPreviousSuperMember;');
+        out.writeln('_flaxCalledSuper = _flaxPreviousCalledSuper;');
+        out.writeln('}');
+      }
+
+      void emitPeerResult(FlaxCodegenTypeRef result, {bool generic = false}) {
+        if (result.kind == 'void') return;
+        final value = result.kind == 'future'
+            ? _futureCallbackValue(
+                '_flaxResult.\$2',
+                result.item!,
+                generic: generic,
+              )
+            : _callbackResultCast('_flaxResult.\$2', result, generic: generic);
+        final nullable = result.kind == 'future' && result.nullable
+            ? '_flaxResult.\$2 == null ? null : '
+            : '';
+        out.writeln('final result = $nullable$value;');
+      }
+
+      void emitRequiredSuperCheck(
+        FlaxCodegenTypeRef result,
+        String message, {
+        bool generic = false,
+      }) {
+        if (result.kind == 'future' || result.kind == 'futureOr') {
+          final item = _dartDeclaredType(result.item!, generic: generic);
+          final async = result.kind == 'futureOr'
+              ? ' && result is Future<$item>'
+              : result.nullable
+              ? ' && result != null'
+              : '';
+          out.writeln(
+            'if (!_flaxCalledSuper$async) return result.then<$item>((_) => throw StateError(${_quote(message)}));',
+          );
+        }
+        out.writeln(
+          'if (!_flaxCalledSuper) throw StateError(${_quote(message)});',
+        );
+      }
+
       final fields = ['this._flaxPeer'];
       final parameters = _superParameters(ctor.parameters);
       if (parameters.isNotEmpty) fields.add(parameters);
@@ -2543,57 +2602,23 @@ ${type.widgetMembers.map((m) => m.source).join('\n')}
           }
           out.writeln('}');
           final result = method.result;
-          if (result.kind != 'void') {
-            if (result.kind == 'future') {
-              if (result.nullable) {
-                out.writeln('if (_flaxResult.\$2 == null) return null;');
-              }
-              final declared = _dartDeclaredType(
-                result.item!,
-                generic: generic,
-              );
-              final converted = _futureCompletionValue(
-                'value',
-                result.item!,
-                generic: generic,
-                callback: true,
-              );
-              out.writeln(
-                'final result = (_flaxResult.\$2 as Future<Object?>).then<$declared>((value) => $converted);',
-              );
-            } else {
-              out.writeln(
-                'final result = ${_callbackResultCast('_flaxResult.\$2', result, generic: generic)};',
-              );
-            }
-          }
+          emitPeerResult(result, generic: generic);
           if (checkRequiredSuper) {
-            if (result.kind == 'future' || result.kind == 'futureOr') {
-              final item = _dartDeclaredType(result.item!, generic: generic);
-              out.writeln(
-                'if (!_flaxCalledSuper${result.kind == 'futureOr' ? ' && result is Future<$item>' : ''}) return result.then<$item>((_) => throw StateError(${_quote('${method.name} must call super.${method.name}()')}));',
-              );
-            }
-            out.writeln(
-              'if (!_flaxCalledSuper) throw StateError(${_quote('${method.name} must call super.${method.name}()')});',
+            emitRequiredSuperCheck(
+              result,
+              '${method.name} must call super.${method.name}()',
+              generic: generic,
             );
           }
           out.writeln(result.kind == 'void' ? 'return;' : 'return result;');
         }
 
         if (superBacked && method.mustCallSuper) {
-          out.writeln(
-            'final _flaxPreviousSuperMethod = _flaxActiveSuperMethod;',
+          emitSuperGuard(
+            method.name,
+            method.result,
+            () => emitPeerCall(checkRequiredSuper: true),
           );
-          out.writeln('final _flaxPreviousCalledSuper = _flaxCalledSuper;');
-          out.writeln('_flaxActiveSuperMethod = ${_quote(method.name)};');
-          out.writeln('_flaxCalledSuper = false;');
-          out.writeln('try {');
-          emitPeerCall(checkRequiredSuper: true);
-          out.writeln('} finally {');
-          out.writeln('_flaxActiveSuperMethod = _flaxPreviousSuperMethod;');
-          out.writeln('_flaxCalledSuper = _flaxPreviousCalledSuper;');
-          out.writeln('}');
         } else {
           emitPeerCall();
         }
@@ -2604,7 +2629,7 @@ ${type.widgetMembers.map((m) => m.source).join('\n')}
           );
           if (method.mustCallSuper) {
             out.writeln(
-              'if (_flaxActiveSuperMethod == ${_quote(method.name)}) _flaxCalledSuper = true;',
+              'if (_flaxActiveSuperMember == ${_quote(method.name)}) _flaxCalledSuper = true;',
             );
           }
           emitDispatch(directSuper: true);
@@ -2615,56 +2640,102 @@ ${type.widgetMembers.map((m) => m.source).join('\n')}
         final member = proxy.methods.length + index;
         final fallback =
             proxy.kind == 'extends' && proxy.hasSuperGetter(getter.name);
+        final operation = 'get:${getter.name}';
+        final requiredSuper = proxy.mustCallSuperAccessors.contains(operation);
         out.writeln(
           '@override ${_dartDeclaredType(getter.type)} get ${getter.name} {',
         );
-        out.writeln(
-          '${fallback || getter.type.kind != 'void' ? 'final result = ' : ''}_flaxPeer.call($member, const [], const {});',
-        );
-        if (fallback) {
+        void emitGetter() {
           out.writeln(
-            getter.type.kind == 'void'
-                ? 'if (!result.\$1) { super.${getter.name}; return; }'
-                : 'if (!result.\$1) return super.${getter.name};',
+            '${fallback || getter.type.kind != 'void' ? 'final _flaxResult = ' : ''}_flaxPeer.call($member, const [], const {});',
+          );
+          if (fallback) {
+            out.writeln(
+              getter.type.kind == 'void'
+                  ? 'if (!_flaxResult.\$1) { super.${getter.name}; return; }'
+                  : 'if (!_flaxResult.\$1) return super.${getter.name};',
+            );
+          }
+          emitPeerResult(getter.type);
+          if (requiredSuper) {
+            emitRequiredSuperCheck(
+              getter.type,
+              '$operation must read super.${getter.name}',
+            );
+          }
+          out.writeln(
+            getter.type.kind == 'void' ? 'return;' : 'return result;',
           );
         }
-        if (getter.type.kind == 'future') {
-          if (getter.type.nullable) {
-            out.writeln('if (result.\$2 == null) return null;');
-          }
-          out.writeln(_futureCallbackReturn('result.\$2', getter.type.item!));
+
+        if (requiredSuper) {
+          emitSuperGuard(operation, getter.type, emitGetter);
         } else {
-          out.writeln(
-            getter.type.kind == 'void'
-                ? 'return;'
-                : 'return ${_callbackResultCast('result.\$2', getter.type, generic: false)};',
-          );
+          emitGetter();
         }
         out.writeln('}');
         if (fallback) {
           out.writeln(
-            '${_dartDeclaredType(getter.type)} get _flaxSuperGet_${getter.name} { ${getter.type.kind == 'void' ? '' : 'return '}super.${getter.name}; }',
+            '${_dartDeclaredType(getter.type)} get _flaxSuperGet_${getter.name} {',
           );
+          if (requiredSuper) {
+            out.writeln(
+              'if (_flaxActiveSuperMember == ${_quote(operation)}) _flaxCalledSuper = true;',
+            );
+          }
+          out.writeln(
+            '${getter.type.kind == 'void' ? '' : 'return '}super.${getter.name};',
+          );
+          out.writeln('}');
         }
       }
       for (final (index, setter) in proxy.setters.indexed) {
         final member = proxy.methods.length + proxy.getters.length + index;
         final fallback =
             proxy.kind == 'extends' && proxy.hasSuperSetter(setter.name);
+        final operation = 'set:${setter.name}';
+        final requiredSuper = proxy.mustCallSuperAccessors.contains(operation);
         out.writeln(
           '@override set ${setter.name}(${_dartDeclaredType(setter.type)} value) {',
         );
-        out.writeln(
-          '${fallback ? 'final result = ' : ''}_flaxPeer.call($member, [value], const {});',
-        );
-        if (fallback) {
-          out.writeln('if (!result.\$1) super.${setter.name} = value;');
+        void emitSetter() {
+          out.writeln(
+            '${fallback ? 'final result = ' : ''}_flaxPeer.call($member, [value], const {});',
+          );
+          if (fallback) {
+            out.writeln(
+              'if (!result.\$1) { super.${setter.name} = value; return; }',
+            );
+          }
+          if (requiredSuper) {
+            emitRequiredSuperCheck(
+              const FlaxCodegenTypeRef('void'),
+              '$operation must write super.${setter.name}',
+            );
+          }
+        }
+
+        if (requiredSuper) {
+          emitSuperGuard(
+            operation,
+            const FlaxCodegenTypeRef('void'),
+            emitSetter,
+          );
+        } else {
+          emitSetter();
         }
         out.writeln('}');
         if (fallback) {
           out.writeln(
-            'void _flaxSuperSet_${setter.name}(${_dartDeclaredType(setter.type)} value) { super.${setter.name} = value; }',
+            'void _flaxSuperSet_${setter.name}(${_dartDeclaredType(setter.type)} value) {',
           );
+          if (requiredSuper) {
+            out.writeln(
+              'if (_flaxActiveSuperMember == ${_quote(operation)}) _flaxCalledSuper = true;',
+            );
+          }
+          out.writeln('super.${setter.name} = value;');
+          out.writeln('}');
         }
       }
       out.writeln('}');
@@ -2771,15 +2842,11 @@ ${type.widgetMembers.map((m) => m.source).join('\n')}
           );
           out.writeln('if (result == null) return null;');
           out.writeln(
-            _futureCallbackReturn('result', result.item!, generic: generic),
+            'return ${_futureCallbackValue('result', result.item!, generic: generic)};',
           );
         } else {
           out.writeln(
-            _futureCallbackReturn(
-              '_flaxBridgeCallback.call(positional, named)',
-              result.item!,
-              generic: generic,
-            ),
+            'return ${_futureCallbackValue('_flaxBridgeCallback.call(positional, named)', result.item!, generic: generic)};',
           );
         }
       } else {
@@ -3242,7 +3309,7 @@ T _genericCallbackResult<T>(Object? value) {
     return value;
   }
 
-  String _futureCallbackReturn(
+  String _futureCallbackValue(
     String value,
     FlaxCodegenTypeRef result, {
     bool generic = false,
@@ -3254,7 +3321,7 @@ T _genericCallbackResult<T>(Object? value) {
       generic: generic,
       callback: true,
     );
-    return 'return ($value as Future<Object?>).then<$declared>((value) => $converted);';
+    return '($value as Future<Object?>).then<$declared>((value) => $converted)';
   }
 
   String _callbackResultCast(

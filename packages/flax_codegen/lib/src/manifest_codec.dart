@@ -62,7 +62,14 @@ const _methodKeys = {
   'operator',
 };
 
-const _proxyKeys = {'kind', 'methods', 'superMethods', 'getters', 'setters'};
+const _proxyKeys = {
+  'kind',
+  'methods',
+  'superMethods',
+  'mustCallSuperAccessors',
+  'getters',
+  'setters',
+};
 const _stateMixinKeys = {'name', 'sourceId', 'library', 'typeArguments'};
 const _stateInterfaceKeys = {'name', 'sourceId', 'wireId', 'library'};
 const _stateVariantKeys = {
@@ -1794,6 +1801,7 @@ Map<String, Object?> _encodeProxy(
   'kind': proxy.kind,
   'methods': [for (final method in proxy.methods) _encodeMethod(method, scope)],
   'superMethods': List<String>.of(proxy.superMethods),
+  'mustCallSuperAccessors': List<String>.of(proxy.mustCallSuperAccessors),
   'getters': [for (final getter in proxy.getters) _encodeGetter(getter, scope)],
   'setters': [for (final setter in proxy.setters) _encodeGetter(setter, scope)],
 };
@@ -1818,6 +1826,9 @@ FlaxCodegenProxyModel? _decodeProxy(
     _decodeMethodFn(diagnostics, scope),
   );
   final superMethods = object.requiredStringList('superMethods');
+  final mustCallSuperAccessors = object.requiredStringList(
+    'mustCallSuperAccessors',
+  );
   final getters = object.requiredList(
     'getters',
     _decodeGetterFn(diagnostics, scope),
@@ -1830,6 +1841,7 @@ FlaxCodegenProxyModel? _decodeProxy(
       kind == null ||
       methods == null ||
       superMethods == null ||
+      mustCallSuperAccessors == null ||
       getters == null ||
       setters == null) {
     return null;
@@ -1838,6 +1850,7 @@ FlaxCodegenProxyModel? _decodeProxy(
     kind,
     methods,
     superMethods: superMethods,
+    mustCallSuperAccessors: mustCallSuperAccessors,
     getters: getters,
     setters: setters,
   );

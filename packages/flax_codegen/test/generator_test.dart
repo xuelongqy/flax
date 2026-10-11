@@ -9,11 +9,101 @@ import 'dart:io';
 
 import 'package:analyzer/dart/analysis/utilities.dart';
 import 'package:flax_codegen/flax_codegen.dart';
+import 'package:flax_codegen/src/manifest_codec.dart';
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
 void main() {
   final root = p.normalize(p.join(Directory.current.path, '../..'));
+  test(
+    'proxy accessors preserve inherited mustCallSuper requirements',
+    () async {
+      final parser = FlaxCodegenBindingParser(root);
+      addTearDown(parser.dispose);
+      final coreConfig = FlaxCodegenBindingConfig.read(
+        p.join(root, 'packages/flax/bindings/config.yaml'),
+      );
+      final config = FlaxCodegenBindingConfig(
+        'plugin',
+        Uri.file(
+          p.join(Directory.current.path, 'test/fixtures/plugin/lifecycle.dart'),
+        ).toString(),
+        '@example/plugin',
+        'unused.dart',
+        'unused.ts',
+        const {
+          'Processor': FlaxCodegenClassSelection(
+            {'': []},
+            kind: 'object',
+            proxy: 'extends',
+            getters: ['value', 'pending', 'mixed', 'optional'],
+            setters: ['value'],
+            instanceMethods: {
+              'attach': ['value'],
+              'calculate': ['value'],
+            },
+          ),
+          'MixedProcessor': FlaxCodegenClassSelection(
+            {'': []},
+            kind: 'object',
+            proxy: 'extends',
+            getters: ['value'],
+            setters: ['value'],
+          ),
+          'InterfaceProcessor': FlaxCodegenClassSelection(
+            {'': []},
+            kind: 'object',
+            proxy: 'extends',
+            getters: ['value'],
+            setters: ['value'],
+          ),
+        },
+      );
+      await parser.prepare([coreConfig, config]);
+      final core = await parser.parse(coreConfig);
+      final module = await parser.parse(config);
+      final expected = {
+        'Processor': [
+          'get:value',
+          'get:pending',
+          'get:mixed',
+          'get:optional',
+          'set:value',
+        ],
+        'MixedProcessor': ['get:value', 'set:value'],
+        'InterfaceProcessor': <String>[],
+      };
+      for (final type in module.classes) {
+        final encoded = FlaxCodegenManifestCodec.encodeProxy(type.proxy!);
+        expect(
+          encoded['mustCallSuperAccessors'],
+          unorderedEquals(expected[type.name]!),
+        );
+      }
+      final emitter = FlaxCodegenBindingEmitter([module, core]);
+      final dart = emitter.dart(module);
+      expect(dart, contains('_flaxActiveSuperMember = "get:value"'));
+      expect(dart, contains('_flaxActiveSuperMember = "set:value"'));
+      await compileFixture(
+        root,
+        emitter,
+        module,
+        consumerSource: '''
+import {Processor} from './plugin.js';
+class Child extends Processor {
+  calculate(value: number): number { return value; }
+  get value(): number { return super.value + 1; }
+  set value(value: number) { super.value = value; }
+  get pending(): Promise<number> { return super.pending; }
+  get mixed(): number | Promise<number> { return super.mixed; }
+  get optional(): Promise<number> | null { return super.optional; }
+}
+const child = new Child();
+child.value = 3;
+''',
+      );
+    },
+  );
   test(
     'top-level functions share typed calls and preserve public exports',
     () async {

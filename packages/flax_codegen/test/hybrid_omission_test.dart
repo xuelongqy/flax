@@ -76,6 +76,8 @@ class _TestPeer implements FlaxProxyPeer {
   _TestPeer(this.handled);
   final bool handled;
   @override
+  bool get active => true;
+  @override
   (bool, Object?) call(int member, List<Object?> positional, Map<String, Object?> named) => (handled, handled ? Future<int>.value(99) : null);
 }
 void main() {
