@@ -1,4 +1,5 @@
 import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
+import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/async/_bindings/flutter_StreamTransformer';
 import '@flax/dart/async/_bindings/flutter_StreamTransformer';
@@ -9,7 +10,7 @@ export interface StreamTransformerBase<S extends unknown | null = unknown | null
     readonly __StreamTransformerBase: unique symbol;
 }
 export interface StreamTransformerBase<S extends unknown | null = unknown | null, T extends unknown | null = unknown | null> {
-    cast<RS extends unknown | null = unknown | null, RT extends unknown | null = unknown | null>(): upstream0.StreamTransformer<RS, RT>;
+    cast<RS extends unknown | null = unknown | null, RT extends unknown | null = unknown | null>(): upstream0.StreamTransformer<_FlaxDartOutput<RS>, _FlaxDartOutput<RT>>;
 }
 export declare abstract class StreamTransformerBase<S extends unknown | null = unknown | null, T extends unknown | null = unknown | null> extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<StreamTransformerBase<any, any>>[typeof globalThis.Symbol.hasInstance];

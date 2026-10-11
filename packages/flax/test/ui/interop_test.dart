@@ -25,6 +25,105 @@ Future<void> _waitFor(
 
 void main() {
   testWidgets(
+    'ordinary generic methods preserve erased calls and native proxy overrides',
+    (tester) async {
+      final created = <fixture.CodegenGenericMethods>[];
+      final h = OwnedHarness(
+        fixture: 'interop',
+        extra: [interopBindings],
+        onCreate: (_, value) {
+          if (value is fixture.CodegenGenericMethods) created.add(value);
+        },
+      );
+      try {
+        await tester.pumpWidget(h.app('interop'));
+        h.execute('var genericMethods = new interop.CodegenGenericMethods();');
+        final before = h.runtime.hostCalls['__flaxInvokeOperation'] ?? 0;
+        expect(h.string('genericMethods.echo("a")'), 'a');
+        expect((h.runtime.hostCalls['__flaxInvokeOperation'] ?? 0) - before, 1);
+        h.execute("var genericRawList = genericMethods.echo(['a']);");
+        expect(h.boolean('Array.isArray(genericRawList)'), isFalse);
+        expect(h.string('genericRawList.get(0)'), 'a');
+        expect(h.string('typeof genericRawList.map'), 'undefined');
+        h.execute('''
+          var genericList = genericMethods.wrap('a');
+          var genericMap = genericMethods.echo(new Map([['a', 2]]));
+          var genericSet = genericMethods.echo(new Set(['a']));
+          var genericPlain = genericMethods.echo({name: 'a'});
+          var genericNested = genericMethods.wrap(['a']);
+          var genericRecord = interop.RecordInterop().echoNamed({id: 2, name: 'a'});
+          var genericRecordAgain = genericMethods.echo(genericRecord);
+          var genericValues = genericMethods.echo(2) === 2
+            && genericMethods.echo(null) === null
+            && genericMethods.echo(genericList) === genericList
+            && genericList.get(0) === 'a'
+            && genericMethods.apply(['a'], value => value).get(0) === 'a'
+            && genericMap.get('a') === 2
+            && genericSet.contains('a')
+            && genericPlain.get('name') === 'a'
+            && genericNested.get(0).get(0) === 'a'
+            && genericRecordAgain.id === 2 && genericRecordAgain.name === 'a'
+            && genericMethods.apply('a', value => value + '!') === 'a!'
+            && genericMethods.optional() === null
+            && genericMethods.optional(undefined) === null
+            && genericMethods.optional(null) === null
+            && interop.CodegenGenericMethods.numeric(2.5) === 2.5;
+          var genericFuture;
+          var genericRawFuture;
+          var genericPromise;
+          var genericStream;
+          genericMethods.later(genericList).then(value => {genericFuture = value === genericList;});
+          genericMethods.later(['a']).then(value => {genericRawFuture = value.get(0) === 'a';});
+          genericMethods.echo(Promise.resolve(['a'])).then(value => {genericPromise = value.get(0) === 'a';});
+          genericMethods.events('event').toList().then(value => {genericStream = value.get(0) === 'event';});
+          class GenericChild extends interop.CodegenGenericMethods {
+            #suffix = '!';
+            echo(value) { return super.echo(value) + this.#suffix; }
+          }
+          var genericChild = new GenericChild();
+        ''');
+        expect(h.boolean('genericValues'), isTrue);
+        expect(h.string('genericChild.echo("a")'), 'a!');
+        expect(created, hasLength(2));
+        expect(created.last.echo<String>('native'), 'native!');
+        h.execute('genericChild.echo = value => 1;');
+        expect(created.last.echo<int>(2), 1);
+        expect(
+          () => created.last.echo<String>('native'),
+          throwsA(isA<TypeError>()),
+        );
+        await _waitFor(
+          tester,
+          h,
+          'genericFuture !== undefined && genericRawFuture !== undefined && genericPromise !== undefined && genericStream !== undefined',
+        );
+        expect(
+          h.boolean(
+            'genericFuture && genericRawFuture && genericPromise && genericStream',
+          ),
+          isTrue,
+        );
+        for (final source in [
+          'genericMethods.echo()',
+          'genericMethods.echo(undefined)',
+          'genericMethods.echo(1, 2)',
+          'interop.CodegenGenericMethods.numeric("wrong")',
+          'interop.CodegenGenericMethods.numeric(null)',
+          'genericMethods.apply("a", null)',
+        ]) {
+          expect(
+            () => h.execute(source),
+            throwsA(isA<FlaxJsException>()),
+            reason: source,
+          );
+        }
+        expect(h.errors, isEmpty);
+      } finally {
+        await h.finish(tester);
+      }
+    },
+  );
+  testWidgets(
     'nested constructors reify JS collections and retain Dart references',
     (tester) async {
       final created = <Object>[];

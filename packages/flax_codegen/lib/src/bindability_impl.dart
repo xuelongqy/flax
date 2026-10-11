@@ -1732,14 +1732,35 @@ List<String>? _bindMethod({
   bool deferredFactory = false,
 }) {
   if (method.typeParameters.isNotEmpty && !deferredFactory) {
-    skips.add(
-      FlaxCodegenSkip(
-        target: location,
-        reason: 'Explicit runtime type arguments required: ${method.name}',
-        code: 'explicit_runtime_type_arguments',
-      ),
+    if (_hasGenericFactoryResult(method)) {
+      skips.add(
+        FlaxCodegenSkip(
+          target: location,
+          reason:
+              'Unsupported generic factory requires explicit runtime type arguments: '
+              '$location',
+          code: 'explicit_runtime_type_arguments',
+        ),
+      );
+      return null;
+    }
+    final sharedArguments = _sharedTypeArguments(
+      parser,
+      scope,
+      method.typeParameters,
+      element.library,
+      location,
     );
-    return null;
+    if (!sharedArguments.supported) {
+      skips.add(
+        FlaxCodegenSkip(
+          target: location,
+          reason: sharedArguments.reason!,
+          code: sharedArguments.code!,
+        ),
+      );
+      return null;
+    }
   }
   final result = _tryMemberType(
     scope,

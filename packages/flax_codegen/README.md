@@ -566,6 +566,31 @@ parameter. Public fully closed bounds retain nested generic arguments and nullab
 Dependent or recursive bounds that still contain unresolved type parameters fail
 generation unless an explicit legal specialization is selected.
 
+Ordinary instance and static generic methods automatically use the same bound resolution
+as top-level functions and callbacks. `T echo<T>(T value)` uses one Dart `Object?` call
+target while TypeScript preserves the input/result relationship through `DartOutput<T>`;
+closed bounds such as `num` or `List<String>` use their existing typed conversion. Known
+concrete owner member views specialize the class parameters without capturing an
+independent method parameter with the same name. Inherited methods, enums and JS proxy
+overrides retain those scopes. No per-JS-type generated branches or runtime type tokens
+are added. This is bound erasure, not Dart runtime inference:
+`wrap<T>(T value) => <T>[value]` creates a `List<Object?>` unless `methodTypeArguments`
+selects a concrete Dart argument. Calls that depend on `T` itself, such as a runtime
+type test or typed allocation, use that selected Dart argument. Recursive/dependent
+bounds that remain open still require explicit legal arguments. Static generic factories
+returning nominal generic objects retain the existing concrete materialization contract
+or require explicit method arguments; ordinary method erasure does not replace it. See
+the [generic method contract](../../docs/architecture/bindings.md#generic-methods).
+
+Generic outputs describe the existing bridge conversion: `echo(['a'])` returns a
+`DartList<string>`, so use `.get(0)` or explicitly copy with `.toArray().map(...)`.
+Maps, Sets, plain field objects and nested async values follow the same rule. Existing
+Dart references retain their declared types. Generated Record outputs carry a type-only
+`DartRecord` brand, distinguishing them from raw JS field objects, which become Maps in
+an `Object?` position. Generic JS callbacks receive `DartOutput<T>` and may return the
+converted reference or an accepted input value; returned Dart callbacks use the same
+output projection. These declarations add no runtime wrapper or bridge operation.
+
 Protocol 24 also recognizes Iterable and Set throughout generated types and conversion
 metadata. DartIterable and DartSet wrappers preserve real Dart collection identity;
 iteration and explicit copies use one bulk host call and retain repeated references and

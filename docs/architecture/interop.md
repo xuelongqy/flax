@@ -412,9 +412,11 @@ notifications and State.setState; Flax adds no notification policy.
 ## Generic declarations and runtime choices
 
 TS declarations preserve generic parameters, bounds, nullability, inherited substitution
-and relationships among fields, arguments and results. Configuration still fixes each
-Dart class and selected non-proxy method's runtime type arguments to Object? or selected
-valid concrete types.
+and relationships among fields, arguments and results. Automatic selection fixes shared
+Dart classes and ordinary generic methods to Object? or an Analyzer-proven fully closed
+bound. Explicit configuration can select valid concrete arguments. TypeScript type
+arguments do not change that Dart choice; see the
+[generic method contract](bindings.md#generic-methods).
 
 Generic callback and proxy methods are different: generated incoming closures are real
 generic Dart functions. Dart chooses the current type argument, Flax converts through
@@ -425,6 +427,14 @@ dependent bounds such as `U extends T` erase transitively. The TS call-site type
 useful for development, but it does not change the Dart erasure used by the bridge.
 Generic callback erasure still rejects recursive bounds, unbound interfaces and bounds
 without an existing conversion.
+
+Object-erased function-local generic results use `DartOutput<T>` in TypeScript. Scalars
+remain scalars; raw JS collections return real Dart collection references, rather than
+retaining JS Array/Map/Set methods. Generic incoming callback arguments use the same
+projection, while callback results accept the existing input forms and converted
+references. For example, `<T>(value: DartOutput<T>) => value` preserves an identity
+callback without copying. Generated Record projections retain their field shape through
+their type-only brand. Generic bounds keep their original declared types.
 
 Generic numeric results use the representation required by the current Dart type
 argument, including nullable `int` and `double`. Integer conversion rejects fractional,

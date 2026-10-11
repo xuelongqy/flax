@@ -51,6 +51,20 @@ abstract class CodegenBagUses {
   CodegenBag<String> get strings;
 }
 
+class CodegenGenericMethods {
+  CodegenGenericMethods();
+  T echo<T>(T value) => value;
+  List<T> wrap<T>(T value) => [value];
+  T apply<T>(T value, T Function(T) callback) => callback(value);
+  Future<T> later<T>(T value) async => value;
+  Stream<T> events<T>(T value) async* {
+    yield value;
+  }
+
+  T? optional<T>([T? value]) => value;
+  static T numeric<T extends num>(T value) => value;
+}
+
 final class CodegenExplicitNestedBox<T> {
   CodegenExplicitNestedBox(this.value);
   final T value;

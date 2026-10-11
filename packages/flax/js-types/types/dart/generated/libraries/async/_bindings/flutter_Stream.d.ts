@@ -1,4 +1,5 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type DartIterableInput, type DartList, type DartSet } from '@flax/core/bindings';
+import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/core/_bindings/flutter_StackTrace';
 import '@flax/dart/core/_bindings/flutter_StackTrace';
 import type * as upstream1 from '@flax/dart/async/_bindings/flutter_MultiStreamController';
@@ -28,30 +29,30 @@ export interface Stream<T extends unknown | null = unknown | null> extends Async
         onError?: ((p0: {}, p1?: upstream0.StackTrace) => void) | null | undefined;
     }): upstream4.StreamSubscription<T>;
     where(test: ((event: T) => boolean)): Stream<T>;
-    map<S extends unknown | null = unknown | null>(convert: ((event: T) => S)): Stream<S>;
-    asyncMap<E extends unknown | null = unknown | null>(convert: ((event: T) => E | Promise<E>)): Stream<E>;
-    asyncExpand<E extends unknown | null = unknown | null>(convert: ((event: T) => Stream<E> | null)): Stream<E>;
+    map<S extends unknown | null = unknown | null>(convert: ((event: T) => (S | _FlaxDartOutput<S>))): Stream<_FlaxDartOutput<S>>;
+    asyncMap<E extends unknown | null = unknown | null>(convert: ((event: T) => (E | _FlaxDartOutput<E>) | Promise<(E | _FlaxDartOutput<E>)>)): Stream<_FlaxDartOutput<E>>;
+    asyncExpand<E extends unknown | null = unknown | null>(convert: ((event: T) => (Stream<_FlaxDartOutput<E>> | Stream<(E | _FlaxDartOutput<E>)>) | null)): Stream<_FlaxDartOutput<E>>;
     handleError(onError: ((p0: {}, p1?: upstream0.StackTrace) => void), options?: {
         test?: ((error: unknown | null) => boolean) | null | undefined;
     }): Stream<T>;
-    expand<S extends unknown | null = unknown | null>(convert: ((element: T) => DartIterableInput<S, S>)): Stream<S>;
+    expand<S extends unknown | null = unknown | null>(convert: ((element: T) => DartIterableInput<_FlaxDartOutput<S>, (S | _FlaxDartOutput<S>)>)): Stream<_FlaxDartOutput<S>>;
     pipe(streamConsumer: Readonly<{
         "__flaxBound:dart:async::StreamConsumer": readonly [T];
     }>): Promise<unknown | null>;
     transform<S extends unknown | null = unknown | null>(streamTransformer: Readonly<{
-        "__flaxBound:dart:async::StreamTransformer": readonly [T, S];
-    }>): Stream<S>;
+        "__flaxBound:dart:async::StreamTransformer": readonly [T, _FlaxDartOutput<S>];
+    }>): Stream<_FlaxDartOutput<S>>;
     reduce(combine: ((previous: T, element: T) => T)): Promise<T>;
-    fold<S extends unknown | null = unknown | null>(initialValue: S, combine: ((previous: S, element: T) => S)): Promise<S>;
+    fold<S extends unknown | null = unknown | null>(initialValue: (S | _FlaxDartOutput<S>), combine: ((previous: _FlaxDartOutput<S>, element: T) => (S | _FlaxDartOutput<S>))): Promise<_FlaxDartOutput<S>>;
     join(separator?: string): Promise<string>;
     contains(needle: unknown | null): Promise<boolean>;
     forEach(action: ((element: T) => void)): Promise<void>;
     every(test: ((element: T) => boolean)): Promise<boolean>;
     any(test: ((element: T) => boolean)): Promise<boolean>;
-    cast<R extends unknown | null = unknown | null>(): Stream<R>;
+    cast<R extends unknown | null = unknown | null>(): Stream<_FlaxDartOutput<R>>;
     toList(): Promise<DartList<T>>;
     toSet(): Promise<DartSet<T>>;
-    drain<E extends unknown | null = unknown | null>(futureValue?: E | null): Promise<E>;
+    drain<E extends unknown | null = unknown | null>(futureValue?: (E | _FlaxDartOutput<E>) | null): Promise<_FlaxDartOutput<E>>;
     take(count: number): Stream<T>;
     takeWhile(test: ((element: T) => boolean)): Stream<T>;
     skip(count: number): Stream<T>;
@@ -114,7 +115,7 @@ declare namespace _StreamFactory {
     }>)): Stream<T>;
 }
 declare namespace _StreamFactory {
-    function castFrom<S extends unknown | null = unknown | null, T extends unknown | null = unknown | null>(source: Stream<S>): Stream<T>;
+    function castFrom<S extends unknown | null = unknown | null, T extends unknown | null = unknown | null>(source: (Stream<_FlaxDartOutput<S>> | Stream<(S | _FlaxDartOutput<S>)>)): Stream<_FlaxDartOutput<T>>;
 }
 export declare const Stream: typeof _StreamFactory & _FlaxInstanceType<Stream<any>>;
 export {};

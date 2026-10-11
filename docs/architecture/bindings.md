@@ -204,13 +204,14 @@ Each generic constant retains its actual closed type, for example `Kind.number` 
 those arguments through finite typed adapters selected by private constant identity.
 Generic collection inputs accept the existing Dart references and JS collection inputs;
 returned values retain their Dart collection interfaces. Callback arguments and results
-use those same closed types. Arbitrary runtime generic specialization and unconfigured
-generic methods remain outside the existing generic call contract. Named generic
-factories reuse ordinary constructor specialization; explicit type arguments keep their
-concrete input types. The `values` array retains the union of its constants' closed
-types, even when a factory is configured for one type. Enums do not provide their own
-`instanceof` class token. A bound compatible interface can recognize an enum value. An
-enum returning through that interface or Object keeps its canonical identity.
+use those same closed types. Ordinary generic methods automatically use supported closed
+bound erasure; arbitrary runtime generic specialization remains outside this contract.
+Named generic factories reuse ordinary constructor specialization; explicit type
+arguments keep their concrete input types. The `values` array retains the union of its
+constants' closed types, even when a factory is configured for one type. Enums do not
+provide their own `instanceof` class token. A bound compatible interface can recognize
+an enum value. An enum returning through that interface or Object keeps its canonical
+identity.
 
 Core remains the implicit provider. Automatic selection reuses a dependency enum only
 when its selected member surface is sufficient; independent non-Core bindings keep
@@ -744,6 +745,71 @@ explicit type arguments remain the way to require a different concrete contract.
 and
 [nested input regression](../../packages/flax_codegen/test/nested_constructor_inputs_test.dart),
 plus the [real bridge regression](../../packages/flax/test/ui/interop_test.dart).
+
+### Generic methods
+
+Ordinary instance and static generic methods use the same shared bound resolution as
+callbacks and top-level functions. Automatic selection and explicit member selection
+without `methodTypeArguments` both choose `Object?` for an unconstrained method
+parameter, or its supported public fully closed bound. Existing conversion handles
+scalar values, native references, collections, callbacks, Future and Stream positions.
+Method parameters keep their lexical identity: specializing a `Box<String>` member view
+does not replace an independent method-local `T` with the class's `T`. An erased
+`Object?` position retains the ordinary Object conversion limits: raw JS functions need
+a typed callback position, and Widget references need a typed Widget position. Erasure
+does not bypass those checks.
+
+For example, `T echo<T>(T value) => value` can be selected automatically:
+
+```ts
+const text: string = object.echo('a');
+const count: number = object.echo(2);
+const items = object.echo(['a']); // DartList<string>, not a JS Array
+const first: string = items.get(0);
+const uppercase: string[] = items.toArray().map((value) => value.toUpperCase());
+```
+
+Both calls use the same Dart `echo<Object?>` entry. TypeScript retains the input/result
+relationship and generic input conversion, including inherited and enum methods; JS
+subclasses continue to override methods and call `super` through the existing proxy. No
+new bridge operation or per-runtime-type materializer is generated. Known concrete
+member views still specialize owner-dependent inputs and results on demand.
+
+Object-erased method-local and callback-local generic results use `DartOutput<T>` to
+describe the actual bridge result. Raw Arrays, Maps, Sets and plain field objects become
+Dart collection references, including recursively inside collections and Promises.
+Existing Dart objects, collections and Streams keep their reference types. Record
+outputs use a type-only `DartRecord` brand: an existing Record retains its field view
+through a generic call, while an unbranded JS field object becomes a Dart Map. Typed
+Record input positions still accept ordinary field objects. No new runtime brand is
+installed.
+
+Generic JS callbacks receive these converted types. For example, an identity callback
+can be written as `<T>(value: DartOutput<T>) => value`; an asynchronous one can return
+`Promise<DartOutput<T>>`. JS subclasses retain ordinary inheritance and `super` calls,
+but their TypeScript overrides must describe the same converted output contract. Generic
+bounds and concrete factory type arguments remain unprojected.
+
+Erasure does not infer a new Dart `T` from a JS value or a TypeScript type argument.
+`List<T> wrap<T>(T value) => [value]` therefore creates `List<Object?>`, even when a
+caller passes a string; runtime type tests and typed allocations observe the erased
+argument. Select `methodTypeArguments: {wrap: [String]}` when the actual Dart
+`List<String>` contract is required. Passing an existing typed Dart reference through
+`echo` retains its identity and concrete type. Dependent or recursive bounds that still
+contain open parameters require explicit checked arguments. A bound inherited from an
+already closed owner, such as `U extends String`, can use that resolved bound.
+
+Static generic factories returning nominal generic objects, directly or through a
+Future, retain the existing concrete materialization contract. A factory whose full
+method parameters cannot be inferred by that contract still requires explicit legal
+`methodTypeArguments`; it must not silently construct an erased object. Ordinary
+collection and Stream results reuse the existing bound erasure.
+
+The [generator regression](../../packages/flax_codegen/test/generic_methods_test.dart)
+checks selection, lexical scopes, legal/illegal explicit arguments, Manifest round
+trips, strict TypeScript and Dart execution. The
+[real bridge regression](../../packages/flax/test/ui/interop_test.dart) covers generic
+calls, proxy overrides, async delivery and cleanup.
 
 An explicitly selected static generic factory is inferred as deferred when it is
 synchronous, returns its generic owner directly, the result determines every method type

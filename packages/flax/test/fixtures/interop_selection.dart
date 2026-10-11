@@ -113,6 +113,22 @@ const interopSelection = {
       'pending': ['items'],
     },
   ),
+  'CodegenGenericMethods': FlaxCodegenClassSelection(
+    {'': []},
+    kind: 'object',
+    proxy: 'extends',
+    instanceMethods: {
+      'echo': ['value'],
+      'wrap': ['value'],
+      'apply': ['value', 'callback'],
+      'later': ['value'],
+      'events': ['value'],
+      'optional': ['value'],
+    },
+    methods: {
+      'numeric': ['value'],
+    },
+  ),
   'CodegenExplicitNestedBox': FlaxCodegenClassSelection(
     {
       '': ['value'],

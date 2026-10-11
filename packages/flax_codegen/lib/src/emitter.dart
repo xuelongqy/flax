@@ -1264,6 +1264,11 @@ class FlaxCodegenBindingEmitter {
     final proxy = type.proxy;
     if (proxy == null) return '';
     final members = <String>[];
+    final ownerArguments = {
+      for (final parameter in type.typeParameters)
+        if (parameter.defaultType case final argument?)
+          parameter.genericIdentity: argument.declaredAs(null),
+    };
     for (final (name, callback) in proxy.callbacks) {
       final kind = name.startsWith('call:')
           ? 0
@@ -1271,7 +1276,7 @@ class FlaxCodegenBindingEmitter {
           ? 1
           : 2;
       members.add(
-        'FlaxProxyMember(${_quote(name.substring(name.indexOf(':') + 1))}, $kind, ${_callbackBinding(callback)}, hasSuper: ${proxy.hasSuperCallback(name)})',
+        'FlaxProxyMember(${_quote(name.substring(name.indexOf(':') + 1))}, $kind, ${_callbackBinding(callback.typeParameters.isEmpty ? callback : callback.specialize(ownerArguments))}, hasSuper: ${proxy.hasSuperCallback(name)})',
       );
     }
     return ', proxy: FlaxProxyBinding([${members.join(', ')}])';
@@ -1565,32 +1570,6 @@ class FlaxCodegenBindingEmitter {
         if (p.type.kind == 'context') 'context': p.type.id,
       },
   ];
-
-  String _proxyMethodSignature(
-    FlaxCodegenMethodModel method,
-    String Function(
-      FlaxCodegenTypeRef, {
-      bool input,
-      bool declarations,
-      bool nominal,
-    })
-    tsType,
-    String Function(List<FlaxCodegenGenericParameter>, {bool defaults})
-    generics,
-    String Function(FlaxCodegenParameterModel, String) namedParameter,
-  ) {
-    final args = [
-      for (final p in method.parameters.where((p) => p.positional))
-        '${p.name}${p.required ? '' : '?'}: ${tsType(p.type, input: true)}',
-    ];
-    final named = method.parameters.where((p) => !p.positional).toList();
-    if (named.isNotEmpty) {
-      args.add(
-        'options${named.every((p) => !p.required) ? '?' : ''}: {${named.map((p) => namedParameter(p, tsType(p.type, input: true))).join('; ')}}',
-      );
-    }
-    return '${method.name}${generics(method.typeParameters)}(${args.join(', ')}): ${tsType(method.result)}';
-  }
 
   void _guardPositionalTs(
     StringBuffer out,
@@ -2660,7 +2639,16 @@ ${type.widgetMembers.map((m) => m.source).join('\n')}
       out.writeln(
         '_${type.name}Proxy(${fields.join(', ')})${proxy.kind == 'extends' && ctor.name.isNotEmpty ? ' : super.${ctor.name}()' : ''};',
       );
-      for (final (memberIndex, method) in proxy.methods.indexed) {
+      final ownerArguments = {
+        for (final parameter in type.typeParameters)
+          if (parameter.defaultType case final argument?)
+            parameter.genericIdentity: argument.declaredAs(null),
+      };
+      for (final (memberIndex, declaredMethod) in proxy.methods.indexed) {
+        // Proxy owners are closed; only the method's own parameters remain generic.
+        final method = declaredMethod.typeParameters.isEmpty
+            ? declaredMethod
+            : declaredMethod.specialize(ownerArguments);
         if (type.kind == 'widget' &&
             method.name == 'createState' &&
             method.result.kind == 'state') {
@@ -4009,12 +3997,33 @@ T _genericCallbackResult<T>(Object? value) {
     }
     var genericNames = <Object, String>{};
     var genericInputConversions = false;
+    var callTypeParameters = <String, bool>{};
+    final conversionImports = <String>{};
+    Map<String, bool> callParameters(
+      Iterable<FlaxCodegenGenericParameter> parameters, {
+      bool includeOuter = false,
+    }) {
+      final result = includeOuter ? {...callTypeParameters} : <String, bool>{};
+      for (final parameter in parameters) {
+        final bound = parameter.bound;
+        final name = genericNames[parameter.genericIdentity] ?? parameter.name;
+        // Only Object conversion changes a raw collection's declared shape.
+        result[name] =
+            bound.kind == 'any' ||
+            (bound.kind == 'parameter' &&
+                result[genericNames[bound.genericIdentity] ?? bound.name] ==
+                    true);
+      }
+      return result;
+    }
+
     String tsType(
       FlaxCodegenTypeRef type, {
       bool declarations = true,
       bool input = false,
       bool nominal = false,
       bool withinCallback = false,
+      bool bridgeGenerics = true,
     }) {
       if (type.isExtensionTypeDeclaration) {
         return tsType(
@@ -4023,6 +4032,7 @@ T _genericCallbackResult<T>(Object? value) {
           input: input,
           nominal: nominal,
           withinCallback: withinCallback,
+          bridgeGenerics: bridgeGenerics,
         );
       }
       final extensionDeclaration = declarations
@@ -4035,6 +4045,7 @@ T _genericCallbackResult<T>(Object? value) {
           input: input,
           nominal: nominal,
           withinCallback: withinCallback,
+          bridgeGenerics: bridgeGenerics,
         );
       }
       if (declarations && type.declaration != null) {
@@ -4043,6 +4054,7 @@ T _genericCallbackResult<T>(Object? value) {
           input: input,
           nominal: nominal,
           withinCallback: withinCallback,
+          bridgeGenerics: bridgeGenerics,
         );
       }
       String child(FlaxCodegenTypeRef t, {bool? asInput}) => tsType(
@@ -4050,18 +4062,31 @@ T _genericCallbackResult<T>(Object? value) {
         declarations: declarations,
         input: asInput ?? input,
         withinCallback: withinCallback,
+        bridgeGenerics: bridgeGenerics,
       );
       String callback(FlaxCodegenTypeRef callback) {
+        final previousNames = genericNames;
+        final previousParameters = callTypeParameters;
+        genericNames = {
+          ...genericNames,
+          for (final parameter in callback.typeParameters)
+            ?parameter.genericIdentity: parameter.name,
+        };
+        callTypeParameters = callParameters(
+          callback.typeParameters,
+          includeOuter: true,
+        );
         String callbackValue(FlaxCodegenTypeRef t, {required bool asInput}) =>
             tsType(
               t,
               declarations: declarations,
               input: asInput,
               withinCallback: true,
+              bridgeGenerics: bridgeGenerics,
             );
         final generic = callback.typeParameters.isEmpty
             ? ''
-            : '<${callback.typeParameters.map((p) => '${p.name} extends ${child(p.bound, asInput: false)}').join(', ')}>';
+            : '<${callback.typeParameters.map((p) => '${p.name} extends ${tsType(p.bound, bridgeGenerics: false)}').join(', ')}>';
         final arguments = callback.parameters
             .where((p) => p.positional)
             .map(
@@ -4076,7 +4101,34 @@ T _genericCallbackResult<T>(Object? value) {
             'options${optional ? '?' : ''}: { ${named.map((p) => '${p.name}${p.required ? '' : '?'}: ${callbackValue(p.type, asInput: !input)}${p.required ? '' : ' | undefined'}').join('; ')} }',
           );
         }
-        return '($generic(${arguments.join(', ')}) => ${callbackValue(callback.result!, asInput: input)})';
+        final result =
+            '($generic(${arguments.join(', ')}) => ${callbackValue(callback.result!, asInput: input)})';
+        genericNames = previousNames;
+        callTypeParameters = previousParameters;
+        return result;
+      }
+
+      String parameter() {
+        final name = genericNames[type.genericIdentity] ?? type.name!;
+        if (bridgeGenerics && callTypeParameters[name] == true) {
+          conversionImports.add('DartOutput');
+          return input
+              ? '($name | _FlaxDartOutput<$name>)'
+              : '_FlaxDartOutput<$name>';
+        }
+        return input &&
+                (genericInputConversions ||
+                    callTypeParameters.containsKey(name))
+            ? '($name | DartInput<$name>)'
+            : name;
+      }
+
+      String record() {
+        final fields =
+            '{ ${type.recordFields.map((field) => 'readonly ${field.name}: ${child(field.type)}').join('; ')} }';
+        if (input) return fields;
+        conversionImports.add('DartRecord');
+        return '_FlaxDartRecord<$fields>';
       }
 
       String stream() {
@@ -4116,10 +4168,7 @@ T _genericCallbackResult<T>(Object? value) {
       }
 
       final base = switch (type.category) {
-        FlaxCodegenTypeCategory.parameter =>
-          genericInputConversions && input
-              ? '(${genericNames[type.genericIdentity] ?? type.name!} | DartInput<${genericNames[type.genericIdentity] ?? type.name!}>)'
-              : genericNames[type.genericIdentity] ?? type.name!,
+        FlaxCodegenTypeCategory.parameter => parameter(),
         FlaxCodegenTypeCategory.typeOnly =>
           'Readonly<{ ${jsonEncode('__flaxBound:${type.originatingUri}::${type.originatingName}')}: readonly [${type.tsArguments.map((t) => child(t)).join(', ')}] }>',
         FlaxCodegenTypeCategory.string => 'string',
@@ -4158,8 +4207,7 @@ T _genericCallbackResult<T>(Object? value) {
         FlaxCodegenTypeCategory.futureOr =>
           '${child(type.item!)} | Promise<${child(type.item!)}>',
         FlaxCodegenTypeCategory.stream => stream(),
-        FlaxCodegenTypeCategory.record =>
-          '{ ${type.recordFields.map((field) => 'readonly ${field.name}: ${child(field.type)}').join('; ')} }',
+        FlaxCodegenTypeCategory.record => record(),
         FlaxCodegenTypeCategory.enumeration ||
         FlaxCodegenTypeCategory.context ||
         FlaxCodegenTypeCategory.state ||
@@ -4206,7 +4254,7 @@ T _genericCallbackResult<T>(Object? value) {
             ? parameter.bound
             : parameter.defaultType ?? parameter.bound;
         declarations.add(
-          '${genericNames[parameter.genericIdentity] ?? parameter.name} extends ${tsType(parameter.bound)} ${defaults ? '= ${tsType(defaultType)}' : ''}',
+          '${genericNames[parameter.genericIdentity] ?? parameter.name} extends ${tsType(parameter.bound, bridgeGenerics: false)} ${defaults ? '= ${tsType(defaultType, bridgeGenerics: false)}' : ''}',
         );
         remaining.remove(parameter.name);
       }
@@ -4364,6 +4412,28 @@ $_typescriptHostImport
         );
       }
     }
+    String methodSignature(FlaxCodegenMethodModel method) {
+      // TS uses lexical names even when Analyzer specializes an inherited method.
+      final previousCallTypeParameters = callTypeParameters;
+      callTypeParameters = callParameters(
+        method.deferredFactory ? const [] : method.typeParameters,
+      );
+      final args = [
+        for (final p in method.parameters.where((p) => p.positional))
+          '${p.name}${p.required ? '' : '?'}: ${tsType(p.type, input: true)}',
+      ];
+      final named = method.parameters.where((p) => !p.positional).toList();
+      if (named.isNotEmpty) {
+        args.add(
+          'options${named.every((p) => !p.required) ? '?' : ''}: {${named.map((p) => namedParameter(p, tsType(p.type, input: true))).join('; ')}}',
+        );
+      }
+      final signature =
+          '${method.name}${generics(method.typeParameters)}(${args.join(', ')}): ${tsType(method.result)}';
+      callTypeParameters = previousCallTypeParameters;
+      return signature;
+    }
+
     void emitTsCallable(
       StringBuffer target,
       FlaxCodegenMethodModel method, {
@@ -4382,6 +4452,7 @@ $_typescriptHostImport
       List<FlaxCodegenMethodModel> literalOverloads = const [],
     }) {
       final previousGenericNames = genericNames;
+      final previousCallTypeParameters = callTypeParameters;
       if (extensionOperation) {
         genericNames = {};
         final used = <String>{};
@@ -4415,6 +4486,9 @@ $_typescriptHostImport
       final typeParameters = method.typeParameters
           .skip(receiver == null ? 0 : extensionView!.typeParameters.length)
           .toList();
+      callTypeParameters = callParameters(
+        method.deferredFactory ? const [] : typeParameters,
+      );
       final memberName = extensionMember?.exportName ?? method.name;
       final getter =
           extensionMember?.kind == 'getter' ||
@@ -4445,6 +4519,7 @@ $_typescriptHostImport
               : '$memberName${generics(typeParameters)}(${args.join(', ')}): ${tsType(method.result)};',
         );
         genericNames = previousGenericNames;
+        callTypeParameters = previousCallTypeParameters;
         return;
       }
       target.writeln(
@@ -4500,6 +4575,8 @@ $_typescriptHostImport
           '${tsType(method.result, declarations: !method.instance)};',
         );
         target.writeln(namespace == null ? '}' : '} }');
+        genericNames = previousGenericNames;
+        callTypeParameters = previousCallTypeParameters;
         return;
       }
       var invocation = namespace == null || extensionOperation
@@ -4552,6 +4629,7 @@ $_typescriptHostImport
         );
       }
       genericNames = previousGenericNames;
+      callTypeParameters = previousCallTypeParameters;
     }
 
     final memberLayouts = <String, String>{};
@@ -4625,9 +4703,7 @@ $_typescriptHostImport
         for (final method in proxy.methods.where(
           (m) => proxy.hasSuperMethod(m.name),
         )) {
-          target.writeln(
-            '${_proxyMethodSignature(method, tsType, generics, namedParameter)};',
-          );
+          target.writeln('${methodSignature(method)};');
         }
         for (final getter in proxy.getters.where(
           (g) => proxy.hasSuperGetter(g.name),
@@ -4654,9 +4730,7 @@ $_typescriptHostImport
         for (final method in proxy.methods.where(
           (m) => !proxy.hasSuperMethod(m.name),
         )) {
-          target.writeln(
-            'abstract ${_proxyMethodSignature(method, tsType, generics, namedParameter)};',
-          );
+          target.writeln('abstract ${methodSignature(method)};');
         }
         for (final getter in proxy.getters.where(
           (g) => !proxy.hasSuperGetter(g.name),
@@ -4759,9 +4833,7 @@ $_typescriptHostImport
       for (final method in variant.methods.where(
         (m) => variant.superMethods.contains('call:${m.name}'),
       )) {
-        out.writeln(
-          '${_proxyMethodSignature(method, tsType, generics, namedParameter)};',
-        );
+        out.writeln('${methodSignature(method)};');
       }
       out.writeln('}');
       out.writeln(
@@ -4787,9 +4859,7 @@ $_typescriptHostImport
       for (final method in variant.methods.where(
         (m) => !variant.superMethods.contains('call:${m.name}'),
       )) {
-        out.writeln(
-          'abstract ${_proxyMethodSignature(method, tsType, generics, namedParameter)};',
-        );
+        out.writeln('abstract ${methodSignature(method)};');
       }
       if (variant.superMethods.contains('call:build')) {
         final contextType = stateType.methods
@@ -4851,22 +4921,7 @@ $_typescriptHostImport
           );
         }
         for (final method in type.methods.where((method) => method.instance)) {
-          final positional = method.parameters
-              .where((p) => p.positional)
-              .map(
-                (p) =>
-                    '${p.name}${p.required ? '' : '?'}: ${tsType(p.type, input: true, declarations: true)}',
-              )
-              .toList();
-          final named = method.parameters.where((p) => !p.positional).toList();
-          if (named.isNotEmpty) {
-            positional.add(
-              'options${named.every((p) => !p.required) ? '?' : ''}: {${named.map((p) => namedParameter(p, tsType(p.type, input: true, declarations: true))).join('; ')}}',
-            );
-          }
-          out.writeln(
-            '${method.name}${generics(method.typeParameters)}(${positional.join(', ')}): ${tsType(method.result, declarations: true)};',
-          );
+          out.writeln('${methodSignature(method)};');
         }
         out.writeln('}');
         String? genericOperations(String member, String action) =>
@@ -5142,24 +5197,7 @@ $_typescriptHostImport
             );
           }
           for (final method in type.methods.where((m) => m.instance)) {
-            final positional = method.parameters
-                .where((p) => p.positional)
-                .map(
-                  (p) =>
-                      '${p.name}${p.required ? '' : '?'}: ${tsType(p.type, input: true)}',
-                )
-                .toList();
-            final named = method.parameters
-                .where((p) => !p.positional)
-                .toList();
-            if (named.isNotEmpty) {
-              positional.add(
-                'options${named.every((p) => !p.required) ? '?' : ''}: {${named.map((p) => namedParameter(p, tsType(p.type, input: true))).join('; ')}}',
-              );
-            }
-            out.writeln(
-              '${method.name}${generics(method.typeParameters)}(${positional.join(', ')}): ${tsType(method.result)};',
-            );
+            out.writeln('${methodSignature(method)};');
           }
           for (final setter in type.setters) {
             out.writeln(
@@ -5584,7 +5622,7 @@ $_typescriptHostImport
         .join();
     return out.toString().replaceFirst(
       '$_typescriptHostImport\n',
-      '$_typescriptHostImport\n$layouts',
+      '$_typescriptHostImport\n${conversionImports.isEmpty ? '' : "import type { ${conversionImports.map((name) => '$name as _Flax$name').join(', ')} } from '@flax/core/bindings';\n"}$layouts',
     );
   }
 

@@ -108,6 +108,18 @@ Future<List<Map<String, Object?>>> runExplicitGenericExperiments({
       },
     ),
   });
+  await run('GenericMethods identity automatic num bound', {
+    'GenericMethods': const FlaxCodegenClassSelection(
+      {'': []},
+      kind: 'object',
+      instanceMethods: {
+        'identity': ['value'],
+      },
+      methods: {
+        'staticIdentity': ['value'],
+      },
+    ),
+  });
   await run('GenericMethods identity instantiated as int', {
     'GenericMethods': const FlaxCodegenClassSelection(
       {'': []},

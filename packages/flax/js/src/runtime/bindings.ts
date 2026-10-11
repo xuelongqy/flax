@@ -21,6 +21,10 @@ export interface DartValue {
 declare const dartCollectionKind: unique symbol;
 declare const dartCollectionItem: unique symbol;
 declare const dartCollectionKey: unique symbol;
+declare const dartRecordKind: unique symbol;
+
+/** A Dart Record projection retains its identity when passed through Object?. */
+export type DartRecord<T extends object> = T & { readonly [dartRecordKind]: true };
 
 /** Collection copies preserve graphs; ordinary Dart objects stay references. */
 export type DartCopy<T> = T extends {
@@ -45,20 +49,38 @@ export type DartCopy<T> = T extends {
           }
         ? Array<DartCopy<V>>
         : T;
-type DartOutput<T> =
-  T extends ReadonlyArray<infer V>
-    ? DartList<DartOutput<V>>
-    : T extends ReadonlyMap<infer K, infer V>
-      ? DartMap<DartOutput<K>, DartOutput<V>>
-      : T extends ReadonlySet<infer V>
-        ? DartSet<DartOutput<V>>
-        : T;
+/** Raw JS collections become Dart references; existing references stay typed. */
+export type DartOutput<T> = T extends object
+  ? T extends
+      | { readonly [dartCollectionKind]: string }
+      | { readonly [dartRecordKind]: true }
+      | FlaxStreamReference<unknown>
+      | ((...args: never[]) => unknown)
+    ? T
+    : T extends ReadonlyArray<infer V>
+      ? DartList<DartOutput<V>>
+      : T extends ReadonlyMap<infer K, infer V>
+        ? DartMap<DartOutput<K>, DartOutput<V>>
+        : T extends ReadonlySet<infer V>
+          ? DartSet<DartOutput<V>>
+          : T extends Promise<infer V>
+            ? Promise<DartOutput<V>>
+            : T extends Iterable<infer V>
+              ? DartIterable<DartOutput<V>>
+              : DartReferenceBrand<T> extends never
+                ? DartMap<string, DartOutput<T[keyof T]>>
+                : T
+  : T;
+// Generated references carry a __Type symbol brand or a nominal bound marker.
+type DartReferenceBrand<T> =
+  | Extract<T[Extract<keyof T, `__${string}`>], symbol>
+  | Extract<keyof T, `__flaxBound:${string}`>;
 type DartCallbackResult<R> =
   R extends Promise<infer V>
-    ? Promise<V extends Widget ? V : DartInput<V>>
+    ? Promise<V extends Widget ? V : DartInput<DartOutput<V>>>
     : R extends Widget
       ? R
-      : DartInput<R>;
+      : DartInput<DartOutput<R>>;
 type DartCallbackInput<A extends readonly unknown[], R> = (
   ...args: { [K in keyof A]: DartOutput<A[K]> }
 ) => DartCallbackResult<R>;
@@ -71,28 +93,33 @@ export type DartInput<T> = T extends Widget
     ? DartCallbackInput<A, R>
     : T extends Promise<unknown>
       ? never
-      : T extends {
-            readonly [dartCollectionKind]: 'list';
-            readonly [dartCollectionItem]: infer V;
+      : T extends { readonly [dartRecordKind]: true }
+        ? {
+            [K in keyof T as K extends typeof dartRecordKind ? never : K]:
+              T[K] | DartInput<T[K]>;
           }
-        ? DartListInput<V>
         : T extends {
-              readonly [dartCollectionKind]: 'map';
-              readonly [dartCollectionKey]: infer K;
+              readonly [dartCollectionKind]: 'list';
               readonly [dartCollectionItem]: infer V;
             }
-          ? DartMapInput<K, V>
+          ? DartListInput<V>
           : T extends {
-                readonly [dartCollectionKind]: 'set';
+                readonly [dartCollectionKind]: 'map';
+                readonly [dartCollectionKey]: infer K;
                 readonly [dartCollectionItem]: infer V;
               }
-            ? DartSetInput<V>
+            ? DartMapInput<K, V>
             : T extends {
-                  readonly [dartCollectionKind]: 'iterable';
+                  readonly [dartCollectionKind]: 'set';
                   readonly [dartCollectionItem]: infer V;
                 }
-              ? DartIterableInput<V>
-              : T;
+              ? DartSetInput<V>
+              : T extends {
+                    readonly [dartCollectionKind]: 'iterable';
+                    readonly [dartCollectionItem]: infer V;
+                  }
+                ? DartIterableInput<V>
+                : T;
 
 /** References to real Dart collections. Explicit copying never installs observers. */
 export interface DartIterable<T> extends Iterable<DartCopy<T>> {

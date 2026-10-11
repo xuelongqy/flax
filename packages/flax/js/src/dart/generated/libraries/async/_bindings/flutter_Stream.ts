@@ -1,6 +1,7 @@
 // GENERATED CODE. Selected public API subset; do not edit.
 // Regenerate with dart run melos run bindings:generate.
 import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, bindingVersion, construct as _flaxHostConstruct, constructProxy as _flaxHostConstructProxy, constructObject as _flaxHostConstructObject, constructDeferredObject as _flaxHostConstructDeferredObject, constructStream as _flaxHostConstructStream, constructAsyncIterableStream as _flaxHostConstructAsyncIterableStream, defineObject as _flaxHostDefineObject, defineStream as _flaxHostDefineStream, invokeObject as _flaxHostInvokeObject, invokeObjectStatic as _flaxHostInvokeObjectStatic, invokeStream as _flaxHostInvokeStream, enumValue as _flaxHostEnumValue, defineEnum as _flaxHostDefineEnum, invokeEnum as _flaxHostInvokeEnum, defineContext as _flaxHostDefineContext, defineState as _flaxHostDefineState, contextHandle as _flaxHostContextHandle, invokeStatic as _flaxHostInvokeStatic, invokeInstance as _flaxHostInvokeInstance, invokeTopLevel as _flaxHostInvokeTopLevel, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
 const _flaxMemberParameters0 = [{"name":"onCancel","required":false,"positional":false},{"name":"onListen","required":false,"positional":false}] as const;
 const _flaxMemberParameters1 = [{"name":"onData","required":true,"positional":true},{"name":"cancelOnError","required":false,"positional":false},{"name":"onDone","required":false,"positional":false},{"name":"onError","required":false,"positional":false}] as const;
 const _flaxMemberParameters2 = [{"name":"test","required":true,"positional":true}] as const;
@@ -45,24 +46,24 @@ readonly single: Promise<T>;
 asBroadcastStream(options?: {onCancel?: ((subscription: upstream4.StreamSubscription<T>) => void) | null | undefined; onListen?: ((subscription: upstream4.StreamSubscription<T>) => void) | null | undefined}): Stream<T>;
 listen(onData: ((event: T) => void) | null, options?: {cancelOnError?: boolean | null | undefined; onDone?: (() => void) | null | undefined; onError?: ((p0: {}, p1?: upstream0.StackTrace) => void) | null | undefined}): upstream4.StreamSubscription<T>;
 where(test: ((event: T) => boolean)): Stream<T>;
-map<S extends unknown | null = unknown | null>(convert: ((event: T) => S)): Stream<S>;
-asyncMap<E extends unknown | null = unknown | null>(convert: ((event: T) => E | Promise<E>)): Stream<E>;
-asyncExpand<E extends unknown | null = unknown | null>(convert: ((event: T) => Stream<E> | null)): Stream<E>;
+map<S extends unknown | null = unknown | null>(convert: ((event: T) => (S | _FlaxDartOutput<S>))): Stream<_FlaxDartOutput<S>>;
+asyncMap<E extends unknown | null = unknown | null>(convert: ((event: T) => (E | _FlaxDartOutput<E>) | Promise<(E | _FlaxDartOutput<E>)>)): Stream<_FlaxDartOutput<E>>;
+asyncExpand<E extends unknown | null = unknown | null>(convert: ((event: T) => (Stream<_FlaxDartOutput<E>> | Stream<(E | _FlaxDartOutput<E>)>) | null)): Stream<_FlaxDartOutput<E>>;
 handleError(onError: ((p0: {}, p1?: upstream0.StackTrace) => void), options?: {test?: ((error: unknown | null) => boolean) | null | undefined}): Stream<T>;
-expand<S extends unknown | null = unknown | null>(convert: ((element: T) => DartIterableInput<S, S>)): Stream<S>;
+expand<S extends unknown | null = unknown | null>(convert: ((element: T) => DartIterableInput<_FlaxDartOutput<S>, (S | _FlaxDartOutput<S>)>)): Stream<_FlaxDartOutput<S>>;
 pipe(streamConsumer: Readonly<{ "__flaxBound:dart:async::StreamConsumer": readonly [T] }>): Promise<unknown | null>;
-transform<S extends unknown | null = unknown | null>(streamTransformer: Readonly<{ "__flaxBound:dart:async::StreamTransformer": readonly [T, S] }>): Stream<S>;
+transform<S extends unknown | null = unknown | null>(streamTransformer: Readonly<{ "__flaxBound:dart:async::StreamTransformer": readonly [T, _FlaxDartOutput<S>] }>): Stream<_FlaxDartOutput<S>>;
 reduce(combine: ((previous: T, element: T) => T)): Promise<T>;
-fold<S extends unknown | null = unknown | null>(initialValue: S, combine: ((previous: S, element: T) => S)): Promise<S>;
+fold<S extends unknown | null = unknown | null>(initialValue: (S | _FlaxDartOutput<S>), combine: ((previous: _FlaxDartOutput<S>, element: T) => (S | _FlaxDartOutput<S>))): Promise<_FlaxDartOutput<S>>;
 join(separator?: string): Promise<string>;
 contains(needle: unknown | null): Promise<boolean>;
 forEach(action: ((element: T) => void)): Promise<void>;
 every(test: ((element: T) => boolean)): Promise<boolean>;
 any(test: ((element: T) => boolean)): Promise<boolean>;
-cast<R extends unknown | null = unknown | null>(): Stream<R>;
+cast<R extends unknown | null = unknown | null>(): Stream<_FlaxDartOutput<R>>;
 toList(): Promise<DartList<T>>;
 toSet(): Promise<DartSet<T>>;
-drain<E extends unknown | null = unknown | null>(futureValue?: E | null): Promise<E>;
+drain<E extends unknown | null = unknown | null>(futureValue?: (E | _FlaxDartOutput<E>) | null): Promise<_FlaxDartOutput<E>>;
 take(count: number): Stream<T>;
 takeWhile(test: ((element: T) => boolean)): Stream<T>;
 skip(count: number): Stream<T>;
@@ -142,9 +143,9 @@ if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
 return constructStream("stream", "flax.core/flutter#type:Stream", "eventTransformed", [{"name":"source","required":true,"positional":true},{"name":"mapSink","required":true,"positional":true}], [source, mapSink], {}) as Stream<T>;
 }
 }
-namespace _StreamFactory { export function castFrom<S extends unknown | null = unknown | null, T extends unknown | null = unknown | null>(source: Stream<S>): Stream<T> {
+namespace _StreamFactory { export function castFrom<S extends unknown | null = unknown | null, T extends unknown | null = unknown | null>(source: (Stream<_FlaxDartOutput<S>> | Stream<(S | _FlaxDartOutput<S>)>)): Stream<_FlaxDartOutput<T>> {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeStatic("flax.core/flutter#type:Stream", "castFrom", [source]);
-return _flaxResult as Stream<T>;
+return _flaxResult as Stream<_FlaxDartOutput<T>>;
 } }
 export const Stream: typeof _StreamFactory & _FlaxInstanceType<Stream<any>> = _flaxBindInstanceType<Stream<any>, typeof _StreamFactory>(_StreamFactory, "flax.core/flutter#type:Stream", ["dart:core::Object"]);

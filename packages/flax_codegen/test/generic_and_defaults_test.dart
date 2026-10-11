@@ -194,24 +194,41 @@ void main() {
     },
   );
 
-  test('does not auto-instantiate generic methods', () async {
-    final parser = FlaxCodegenBindingParser(repoRoot);
-    addTearDown(parser.dispose);
-    final proposed = await parser.proposeSelection(
-      await load('generic_cases.dart', 'GenericMethods'),
-      library: config('generic_cases.dart'),
-    );
-    expect(proposed.selection, isNotNull);
-    expect(
-      proposed.selection!.instanceMethods.containsKey('identity'),
-      isFalse,
-    );
-    expect(proposed.selection!.methods.containsKey('staticIdentity'), isFalse);
-    expect(
-      proposed.skips.map((skip) => skip.reason).join(' '),
-      contains('Explicit runtime type arguments required'),
-    );
-  });
+  test(
+    'automatically binds generic methods through their closed bounds',
+    () async {
+      final parser = FlaxCodegenBindingParser(repoRoot);
+      addTearDown(parser.dispose);
+      final proposed = await parser.proposeSelection(
+        await load('generic_cases.dart', 'GenericMethods'),
+        library: config('generic_cases.dart'),
+      );
+      expect(proposed.selection, isNotNull);
+      expect(
+        proposed.selection!.instanceMethods.containsKey('identity'),
+        isTrue,
+      );
+      expect(proposed.selection!.methods.containsKey('staticIdentity'), isTrue);
+      expect(proposed.skips, isEmpty);
+      final library = config('generic_cases.dart');
+      final module = await parser.parse(
+        FlaxCodegenBindingConfig(
+          library.name,
+          library.library,
+          library.jsPackage,
+          library.dartOutput,
+          library.tsOutput,
+          {'GenericMethods': proposed.selection!},
+        ),
+      );
+      expect(module.classes.single.methods, hasLength(2));
+      for (final method in module.classes.single.methods) {
+        expect(method.typeArguments, ['num']);
+        expect(method.parameters.single.type.kind, 'num');
+        expect(method.result.kind, 'num');
+      }
+    },
+  );
 
   test('automatic selection retains every omission parameter', () async {
     final parser = FlaxCodegenBindingParser(repoRoot);
@@ -357,6 +374,10 @@ void main() {
         named('RecursiveBox with adapted ComparableLeaf')['ok'],
         isTrue,
         reason: '${named('RecursiveBox with adapted ComparableLeaf')}',
+      );
+      expect(
+        named('GenericMethods identity automatic num bound')['ok'],
+        isTrue,
       );
       expect(
         named('GenericMethods identity instantiated as int')['ok'],

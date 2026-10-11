@@ -192,6 +192,23 @@ bool _validInferredDeferredCallbackType(
   return valid(type);
 }
 
+bool _hasGenericFactoryResult(MethodElement method) {
+  if (!method.isStatic || method.typeParameters.isEmpty) return false;
+  final result = method.library.typeSystem.flatten(method.returnType);
+  if (result is! InterfaceType || result.element is ExtensionTypeElement) {
+    return false;
+  }
+  final owner = result.element;
+  if ((owner.library.uri.toString() == 'dart:core' &&
+          {'Iterable', 'List', 'Map', 'Set'}.contains(owner.name)) ||
+      (owner.library.uri.toString() == 'dart:async' &&
+          owner.name == 'Stream')) {
+    return false;
+  }
+  // Nominal factories need a concrete materializer, not a shared erased owner.
+  return _containsDeferredTypeParameter(result, method.typeParameters.toSet());
+}
+
 bool _isInferredDeferredFactory(
   _FlaxCodegenTypeScope scope,
   InterfaceElement owner,
@@ -2202,16 +2219,42 @@ class FlaxCodegenBindingParser {
             })
             .toSet()
             .toList();
-        final typeArgs =
-            selection.methodTypeArguments[chosen.key] ?? const <String>[];
+        final originalMethod = operatorName != null
+            ? _classOperator(element.thisType, operatorName)!
+            : instance
+            ? element.thisType.lookUpMethod(chosen.key, element.library)!
+            : method;
         final deferredFactory = effectiveDeferredFactories.contains(chosen.key);
+        final explicitTypeArgs =
+            selection.methodTypeArguments[chosen.key] ?? const <String>[];
         if (!deferredFactory &&
-            method.typeParameters.isNotEmpty &&
-            typeArgs.isEmpty) {
+            explicitTypeArgs.isEmpty &&
+            _hasGenericFactoryResult(method)) {
           throw StateError(
-            'Explicit runtime type arguments required: ${entry.key}.${chosen.key}',
+            'Unsupported generic factory requires explicit runtime type arguments: '
+            '${entry.key}.${chosen.key}',
           );
         }
+        final sharedArguments =
+            !deferredFactory &&
+                method.typeParameters.isNotEmpty &&
+                explicitTypeArgs.isEmpty
+            ? _sharedTypeArguments(
+                this,
+                scope,
+                selection.typeArguments.isEmpty
+                    ? originalMethod.typeParameters
+                    : method.typeParameters,
+                element.library,
+                '${entry.key}.${chosen.key}',
+              )
+            : null;
+        if (sharedArguments?.supported == false) {
+          throw StateError(sharedArguments!.reason!);
+        }
+        final typeArgs = explicitTypeArgs.isNotEmpty
+            ? explicitTypeArgs
+            : sharedArguments?.sources ?? const <String>[];
         if (deferredFactory &&
             (instance ||
                 method.typeParameters.isEmpty ||
@@ -2240,11 +2283,6 @@ class FlaxCodegenBindingParser {
             : typeArgs.isEmpty
             ? method.type
             : method.type.instantiate(runtimeMethodArguments);
-        final originalMethod = operatorName != null
-            ? _classOperator(element.thisType, operatorName)!
-            : instance
-            ? element.thisType.lookUpMethod(chosen.key, element.library)!
-            : method;
         var result = typeRef(
           signature.returnType,
           allowRecursiveErasure: deferredFactory,

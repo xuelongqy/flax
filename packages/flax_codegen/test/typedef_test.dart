@@ -247,16 +247,17 @@ onChanged('wrong');
 import type { GenericInput, HigherRankInput, MapperInput, MapperChainInput,
   ConverterInput, AsyncMapperInput, AsyncGenericMapperInput, NullableItemsInput,
   DependentInput, InnerShadowInput } from './plugin.js';
+import type { DartOutput } from '@flax/core/bindings';
 const items: GenericInput<number> = [1, 2];
 const raw: GenericInput = ['value', 1];
-const higher: HigherRankInput = <T>(value: T): T => value;
+const higher: HigherRankInput = <T>(value: DartOutput<T>) => value;
 const numberResult: number = higher<number>(3);
 const mapper: MapperInput<string> = value => value;
 const chain: MapperChainInput<string> = mapper;
 const converter: ConverterInput<number> = <U extends number>(value: U): number => value;
 const converted: number = converter<1>(1);
 const asyncMapper: AsyncMapperInput<number> = async value => value;
-const asyncGeneric: AsyncGenericMapperInput = async <T>(value: T): Promise<T> => value;
+const asyncGeneric: AsyncGenericMapperInput = async <T>(value: DartOutput<T>): Promise<DartOutput<T>> => value;
 const nullable: NullableItemsInput<number> = [null, 2];
 const absent: NullableItemsInput<number> = null;
 const dependent: DependentInput<number, 1> = new Map([[1, 1]]);
@@ -323,7 +324,7 @@ mapper<string>('wrong');
       expect(
         ts,
         contains(
-          'export type RecordAlias = { readonly \$1: number; readonly \$2: number };',
+          'export type RecordAlias = _FlaxDartRecord<{ readonly \$1: number; readonly \$2: number }>;',
         ),
       );
       await compileFixture(
@@ -332,8 +333,11 @@ mapper<string>('wrong');
         module,
         consumerSource: '''
 import type { RecordAlias, RecordAliasInput } from './plugin.js';
-const output: RecordAlias = { \$1: 1, \$2: 2 };
+declare const output: RecordAlias;
+const first: number = output.\$1;
 const input: RecordAliasInput = { \$1: 3, \$2: 4 };
+// @ts-expect-error a raw field object is input, not an existing Dart Record
+const rawOutput: RecordAlias = input;
 // @ts-expect-error record fields keep their declared type
 const invalid: RecordAliasInput = { \$1: 'wrong', \$2: 4 };
 ''',

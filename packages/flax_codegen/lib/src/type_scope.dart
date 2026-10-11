@@ -419,7 +419,7 @@ final class _FlaxCodegenTypeScope {
     if (element.library.uri.toString() == 'dart:async' && name == 'Stream') {
       final streamId = identity(element);
       final selected = parser._adaptations[streamId] == 'stream';
-      if (selected) usesStream = true;
+      usesStream = true;
       if (selected && !types.containsKey(streamId)) {
         types[streamId] = FlaxCodegenNamedTypeModel(
           name: name,

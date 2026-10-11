@@ -1948,19 +1948,26 @@ AlignmentGeometry();
       contextResult.classes.single.methods.single.result.item!.kind,
       'context',
     );
-    await expectLater(
-      parser.parse(
-        fixture('navigation.dart', {
-          'Probe': const FlaxCodegenClassSelection(
-            {},
-            kind: 'state',
-            instanceMethods: {
-              'choose': ['value'],
-            },
-          ),
-        }),
-      ),
-      throwsStateError,
+    final automatic = await parser.parse(
+      fixture('navigation.dart', {
+        'Probe': const FlaxCodegenClassSelection(
+          {},
+          kind: 'state',
+          instanceMethods: {
+            'choose': ['value'],
+          },
+        ),
+      }),
+    );
+    final choose = automatic.classes.single.methods.single;
+    expect(choose.typeArguments, ['Object?']);
+    expect(choose.parameters.single.type.kind, 'any');
+    expect(choose.result.kind, 'future');
+    expect(choose.result.item!.kind, 'any');
+    await compileFixture(
+      root,
+      FlaxCodegenBindingEmitter([automatic]),
+      automatic,
     );
   });
 

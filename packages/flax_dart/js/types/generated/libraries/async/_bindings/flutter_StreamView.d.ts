@@ -1,4 +1,5 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type DartIterableInput, type DartList, type DartSet } from '@flax/core/bindings';
+import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/async/_bindings/flutter_Stream';
 import type * as upstream1 from '@flax/dart/async/_bindings/flutter_StreamSubscription';
 import '@flax/dart/async/_bindings/flutter_StreamSubscription';
@@ -27,30 +28,30 @@ export interface StreamView<T extends unknown | null = unknown | null> extends A
         onError?: ((p0: {}, p1?: upstream2.StackTrace) => void) | null | undefined;
     }): upstream1.StreamSubscription<T>;
     where(test: ((event: T) => boolean)): upstream0.Stream<T>;
-    map<S extends unknown | null = unknown | null>(convert: ((event: T) => S)): upstream0.Stream<S>;
-    asyncMap<E extends unknown | null = unknown | null>(convert: ((event: T) => E | Promise<E>)): upstream0.Stream<E>;
-    asyncExpand<E extends unknown | null = unknown | null>(convert: ((event: T) => upstream0.Stream<E> | null)): upstream0.Stream<E>;
+    map<S extends unknown | null = unknown | null>(convert: ((event: T) => (S | _FlaxDartOutput<S>))): upstream0.Stream<_FlaxDartOutput<S>>;
+    asyncMap<E extends unknown | null = unknown | null>(convert: ((event: T) => (E | _FlaxDartOutput<E>) | Promise<(E | _FlaxDartOutput<E>)>)): upstream0.Stream<_FlaxDartOutput<E>>;
+    asyncExpand<E extends unknown | null = unknown | null>(convert: ((event: T) => (upstream0.Stream<_FlaxDartOutput<E>> | upstream0.Stream<(E | _FlaxDartOutput<E>)>) | null)): upstream0.Stream<_FlaxDartOutput<E>>;
     handleError(onError: ((p0: {}, p1?: upstream2.StackTrace) => void), options?: {
         test?: ((error: unknown | null) => boolean) | null | undefined;
     }): upstream0.Stream<T>;
-    expand<S extends unknown | null = unknown | null>(convert: ((element: T) => DartIterableInput<S, S>)): upstream0.Stream<S>;
+    expand<S extends unknown | null = unknown | null>(convert: ((element: T) => DartIterableInput<_FlaxDartOutput<S>, (S | _FlaxDartOutput<S>)>)): upstream0.Stream<_FlaxDartOutput<S>>;
     pipe(streamConsumer: Readonly<{
         "__flaxBound:dart:async::StreamConsumer": readonly [T];
     }>): Promise<unknown | null>;
     transform<S extends unknown | null = unknown | null>(streamTransformer: Readonly<{
-        "__flaxBound:dart:async::StreamTransformer": readonly [T, S];
-    }>): upstream0.Stream<S>;
+        "__flaxBound:dart:async::StreamTransformer": readonly [T, _FlaxDartOutput<S>];
+    }>): upstream0.Stream<_FlaxDartOutput<S>>;
     reduce(combine: ((previous: T, element: T) => T)): Promise<T>;
-    fold<S extends unknown | null = unknown | null>(initialValue: S, combine: ((previous: S, element: T) => S)): Promise<S>;
+    fold<S extends unknown | null = unknown | null>(initialValue: (S | _FlaxDartOutput<S>), combine: ((previous: _FlaxDartOutput<S>, element: T) => (S | _FlaxDartOutput<S>))): Promise<_FlaxDartOutput<S>>;
     join(separator?: string): Promise<string>;
     contains(needle: unknown | null): Promise<boolean>;
     forEach(action: ((element: T) => void)): Promise<void>;
     every(test: ((element: T) => boolean)): Promise<boolean>;
     any(test: ((element: T) => boolean)): Promise<boolean>;
-    cast<R extends unknown | null = unknown | null>(): upstream0.Stream<R>;
+    cast<R extends unknown | null = unknown | null>(): upstream0.Stream<_FlaxDartOutput<R>>;
     toList(): Promise<DartList<T>>;
     toSet(): Promise<DartSet<T>>;
-    drain<E extends unknown | null = unknown | null>(futureValue?: E | null): Promise<E>;
+    drain<E extends unknown | null = unknown | null>(futureValue?: (E | _FlaxDartOutput<E>) | null): Promise<_FlaxDartOutput<E>>;
     take(count: number): upstream0.Stream<T>;
     takeWhile(test: ((element: T) => boolean)): upstream0.Stream<T>;
     skip(count: number): upstream0.Stream<T>;
