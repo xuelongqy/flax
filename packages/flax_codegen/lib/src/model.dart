@@ -1830,57 +1830,65 @@ bool flaxCodegenIsModuleSpecifier(String value) =>
     !value.split('/').any((part) => part == '.' || part == '..');
 
 bool flaxCodegenIsExportName(String name) =>
-    RegExp(r'^[A-Za-z$][A-Za-z0-9_$]*$').hasMatch(name) &&
-    !const {
-      'arguments',
-      'eval',
-      'await',
-      'break',
-      'case',
-      'catch',
-      'class',
-      'const',
-      'continue',
-      'debugger',
-      'default',
-      'delete',
-      'do',
-      'else',
-      'enum',
-      'export',
-      'extends',
-      'false',
-      'finally',
-      'for',
-      'function',
-      'if',
-      'implements',
-      'import',
-      'in',
-      'instanceof',
-      'interface',
-      'let',
-      'new',
-      'null',
-      'package',
-      'private',
-      'protected',
-      'public',
-      'return',
-      'static',
-      'super',
-      'switch',
-      'this',
-      'throw',
-      'true',
-      'try',
-      'typeof',
-      'var',
-      'void',
-      'while',
-      'with',
-      'yield',
-    }.contains(name);
+    !name.startsWith('_') && flaxCodegenIsIdentifierName(name);
+
+bool flaxCodegenIsMemberName(String name) =>
+    !name.startsWith('_') &&
+    flaxCodegenIsIdentifierName(name, allowReserved: true);
+
+bool flaxCodegenIsIdentifierName(String name, {bool allowReserved = false}) =>
+    RegExp(r'^[A-Za-z_$][A-Za-z0-9_$]*$').hasMatch(name) &&
+    (allowReserved ||
+        !const {
+          'arguments',
+          'eval',
+          'await',
+          'break',
+          'case',
+          'catch',
+          'class',
+          'const',
+          'continue',
+          'debugger',
+          'default',
+          'delete',
+          'do',
+          'else',
+          'enum',
+          'export',
+          'extends',
+          'false',
+          'finally',
+          'for',
+          'function',
+          'if',
+          'implements',
+          'import',
+          'in',
+          'instanceof',
+          'interface',
+          'let',
+          'new',
+          'null',
+          'package',
+          'private',
+          'protected',
+          'public',
+          'return',
+          'static',
+          'super',
+          'switch',
+          'this',
+          'throw',
+          'true',
+          'try',
+          'typeof',
+          'var',
+          'void',
+          'while',
+          'with',
+          'yield',
+        }.contains(name));
 
 class FlaxCodegenFunctionModel {
   const FlaxCodegenFunctionModel(this.id, this.call, {this.route});
@@ -2060,7 +2068,7 @@ class FlaxCodegenExtensionModel {
     for (final member in members) {
       if (!names.add('${member.isStatic}:${member.exportName}') ||
           !ids.add(member.id) ||
-          !flaxCodegenIsExportName(member.exportName)) {
+          !flaxCodegenIsMemberName(member.exportName)) {
         throw StateError(
           'Conflicting extension member: $name.${member.call.name}',
         );

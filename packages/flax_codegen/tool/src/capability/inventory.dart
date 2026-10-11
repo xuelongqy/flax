@@ -2,17 +2,42 @@ import 'package:analyzer/dart/analysis/analysis_context_collection.dart';
 import 'package:analyzer/dart/analysis/results.dart';
 import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/type.dart';
+import 'package:flax_codegen/flax_codegen.dart'
+    show
+        flaxCodegenClassOperators,
+        flaxCodegenExtensionOperators,
+        flaxCodegenIsExportName,
+        flaxCodegenIsMemberName;
 
 import 'model.dart';
 import 'workspace.dart';
 
-final _jsName = RegExp(r'^[A-Za-z][A-Za-z0-9]*$');
-
 bool isJsLegalName(String? name) =>
-    name != null &&
-    name.isNotEmpty &&
-    !name.startsWith('_') &&
-    _jsName.hasMatch(name);
+    name != null && flaxCodegenIsExportName(name);
+
+bool isJsLegalMemberName(
+  ApiDeclarationRecord declaration,
+  ApiCallableRecord member,
+) {
+  if (member.kind == 'constructor') {
+    return member.name.isEmpty || isJsLegalName(member.name);
+  }
+  final operatorName = member.name == '-' && member.parameters.isEmpty
+      ? 'unary-'
+      : member.name;
+  final name = member.isOperator
+      ? (declaration.kind == 'extension'
+            ? flaxCodegenExtensionOperators[operatorName]
+            : flaxCodegenClassOperators[operatorName])
+      : member.name;
+  if (name == null) return false;
+  final property =
+      member.isEnumConstant ||
+      declaration.kind == 'extension' ||
+      (!member.isStatic &&
+          {'getter', 'setter', 'method'}.contains(member.kind));
+  return property ? flaxCodegenIsMemberName(name) : isJsLegalName(name);
+}
 
 String publicElementName(Element element) {
   final name = element.name ?? '<unnamed>';

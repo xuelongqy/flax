@@ -967,7 +967,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       final selected = <String>[];
       for (final parameter in member.formalParameters) {
         final parameterName = parameter.name;
-        if (!_usableMemberName(parameterName)) {
+        if (!_usableParameterName(parameter)) {
           if (parameter.isRequired || parameter.isPositional) {
             skips.add(
               FlaxCodegenSkip(
@@ -1167,7 +1167,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     final selected = <String>[];
     for (final parameter in function.formalParameters) {
       final paramName = parameter.name;
-      if (!_usableMemberName(paramName)) {
+      if (!_usableParameterName(parameter)) {
         if (parameter.isRequired || parameter.isPositional) {
           skips.add(
             FlaxCodegenSkip(

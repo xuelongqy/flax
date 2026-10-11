@@ -280,7 +280,9 @@ BindingAssessment _automaticAssessment(
                 'typeArguments': entry.value.typeArguments,
               },
         skips: skips,
-        selectedMembers: entry == null ? const {} : const {'function.new'},
+        selectedMembers: entry == null
+            ? const {}
+            : {_memberKey('function', entry.key)},
         selectedParameters: entry?.value.parameters.toSet() ?? const {},
       );
     case 'extension':
@@ -730,12 +732,7 @@ Map<String, Object?> _librarySurface(
         ? 'unary-'
         : member.name;
     final key = _memberKey(member.kind, name);
-    final exportedName = member.isOperator
-        ? flaxCodegenClassOperators[name] ?? name
-        : name.isEmpty
-        ? 'new'
-        : name;
-    final legal = isJsLegalName(exportedName);
+    final legal = isJsLegalMemberName(declaration, member);
     if (!legal) illegalJsNames++;
     final selected =
         selectedMembers.contains(key) ||
@@ -756,7 +753,12 @@ Map<String, Object?> _librarySurface(
     }
     for (final parameter in member.parameters) {
       declaredParameters++;
-      if (!isJsLegalName(parameter.name)) illegalJsNames++;
+      if (!flaxCodegenIsIdentifierName(
+        parameter.name,
+        allowReserved: parameter.named,
+      )) {
+        illegalJsNames++;
+      }
       final selectedParameter =
           selectedParameters.contains(parameter.name) ||
           selectedParameters.contains('$name.${parameter.name}');

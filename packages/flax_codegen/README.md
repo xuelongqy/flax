@@ -65,6 +65,17 @@ non-generic, implementable Widget interfaces reuse the existing native interface
 forwarding path. Private, `@internal`, `@visibleForTesting`, and `@protected` API is
 excluded from automatic exposure.
 
+Automatic and explicit naming checks share the same JavaScript identifier rules. Names
+such as `total_count`, `dollar$value` and `$value` keep their Dart spelling. Reserved
+names are checked at their actual position: `object.eval()` and named arguments such as
+`{arguments: 5}` are valid properties, while a positional parameter named `arguments`
+cannot become a strict-mode JS local. Positional parameter names starting with `_` are
+locals, not private Dart declarations. The single `_` Dart wildcard remains excluded
+from automatic parameters because it creates no readable local for proxy forwarding.
+Public exports and members still exclude private names; generated class namespace
+declarations still require legal binding names. Generated-name conflict checks remain in
+force. The capability inventory uses the same distinctions.
+
 Extension types reuse the same conversion in automatic and explicit mode, including
 Widget, selected Widget interfaces, Context, State and supported nested collections,
 Records, callbacks, Futures and Streams. For example,

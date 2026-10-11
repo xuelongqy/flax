@@ -8,6 +8,19 @@ binding contracts below, skips unsupported declarations, and accepts optional ov
 for binding semantics that cannot be inferred safely. Explicit configuration remains
 fail-closed.
 
+Automatic and explicit name checks share JavaScript identifier validation. Embedded
+underscores and dollar signs, including a leading `$`, are supported without renaming.
+Public exports use binding-identifier rules; instance and extension members and named
+parameters use property-name rules. For example, `object.eval()` and `{arguments: 5}`
+are legal, while a positional `arguments` parameter is rejected as a strict-mode local.
+A leading `_` hides Dart declarations and members, but positional parameter names are
+local names and can start with `_`. A single `_` is a Dart wildcard rather than a
+readable local and remains excluded from automatic parameters. Class namespace
+declarations retain binding-name rules. Generated API name collisions remain rejected,
+and the capability inventory applies these same distinctions. Automatic discovery of
+`static int total_count` exposes the same `Counter.total_count` read and
+`Counter.setTotal_count(value)` write as explicit selection.
+
 The analyzer-based generator resolves selected public APIs and emits Dart calls,
 TypeScript declarations and shared parameter metadata. Configuration, parsing/model and
 emission remain separate. UI protocol 24 reuses the unchanged native C ABI (ABI 2).

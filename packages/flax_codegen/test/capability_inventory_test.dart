@@ -82,8 +82,21 @@ void main() {
       child.interfaceMembers.map((m) => m.name),
       containsAll(['inheritedMethod', 'inheritedGetter']),
     );
-    expect(isJsLegalName('under_score'), isFalse);
-    expect(isJsLegalName('dollar\$value'), isFalse);
+    expect(isJsLegalName('under_score'), isTrue);
+    expect(isJsLegalName('dollar\$value'), isTrue);
+    expect(isJsLegalName('\$value'), isTrue);
+    for (final name in [null, '', '_private', '1value', 'class', 'arguments']) {
+      expect(isJsLegalName(name), isFalse, reason: '$name');
+    }
+    expect(flaxCodegenIsMemberName('arguments'), isTrue);
+    expect(flaxCodegenIsMemberName('eval'), isTrue);
+    expect(flaxCodegenIsMemberName('_private'), isFalse);
+    expect(flaxCodegenIsIdentifierName('_value'), isTrue);
+    expect(flaxCodegenIsIdentifierName('arguments'), isFalse);
+    expect(
+      flaxCodegenIsIdentifierName('arguments', allowReserved: true),
+      isTrue,
+    );
 
     final circular = shown.declarations.singleWhere(
       (d) => d.name == 'CircularA',
@@ -228,6 +241,53 @@ void main() {
     }
   });
 
+  test('name assessment respects property and parameter positions', () async {
+    final uri = Uri.file(
+      p.join(
+        repoRoot,
+        'packages/flax_codegen/test/fixtures/bindability/public_names.dart',
+      ),
+    ).toString();
+    final inventory = await inventoryLibrary(collection: collection, uri: uri);
+    final parser = FlaxCodegenBindingParser(repoRoot);
+    addTearDown(parser.dispose);
+    final proposal = await parser.proposeLibrary(
+      FlaxCodegenBindingConfig(
+        'public_names',
+        uri,
+        '@example/public-names',
+        'unused.dart',
+        'unused.ts',
+        const {},
+      ),
+    );
+    applyAutomaticLibraryProposal(
+      inventory: inventory,
+      baselineProposal: proposal,
+      proposal: proposal,
+    );
+    for (final name in ['named_arguments', 'String_names', 'Names_enum']) {
+      final assessment = inventory.declarations
+          .singleWhere((declaration) => declaration.name == name)
+          .assessment!;
+      expect(assessment.verdict, CapabilityVerdict.supported, reason: name);
+      expect(assessment.surface['illegalJsNames'], 0, reason: name);
+      expect(assessment.surface['droppedParameters'], 0, reason: name);
+    }
+    final counter = inventory.declarations.singleWhere(
+      (declaration) => declaration.name == 'Counter_names',
+    );
+    expect(counter.assessment!.surface['illegalJsNames'], 3);
+    expect(
+      counter.declaredMembers
+          .where(
+            (member) => !{'invalidParameter', 'function'}.contains(member.name),
+          )
+          .every((member) => isJsLegalMemberName(counter, member)),
+      isTrue,
+    );
+  });
+
   test('an inventory lookup failure is a generator gap', () async {
     final uri = fixture('discovery_show.dart');
     final inventory = await inventoryLibrary(collection: collection, uri: uri);
@@ -276,6 +336,27 @@ void main() {
         baselineProposal: proposal,
         proposal: proposal,
       );
+
+      for (final name in ['under_score_function', 'dollar\$value', 'Child']) {
+        final declaration = inventory.declarations.singleWhere(
+          (value) => value.name == name,
+        );
+        expect(
+          declaration.assessment!.verdict,
+          CapabilityVerdict.supported,
+          reason: name,
+        );
+        expect(
+          declaration.assessment!.surface['illegalJsNames'],
+          0,
+          reason: name,
+        );
+        expect(
+          declaration.assessment!.surface['droppedParameters'],
+          0,
+          reason: name,
+        );
+      }
 
       final simple = inventory.declarations.singleWhere(
         (declaration) => declaration.name == 'Simple',

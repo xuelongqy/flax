@@ -48,6 +48,16 @@ fixture.
 
 ## Declaration support
 
+Automatic member/parameter name selection and the inventory share explicit naming rules.
+Public names containing `_` or `$`, such as `total_count` and `dollar$value`, are
+supported. Property names such as `eval` and named parameters such as `arguments` remain
+legal; strict-mode locals and public exports still reject reserved binding identifiers.
+Class namespace declarations retain binding-name rules. Positional parameter names can
+start with `_` without exposing private Dart members; the single `_` Dart wildcard
+remains excluded from automatic parameters because proxy forwarding needs a local.
+Generated-name collisions retain their existing checks. See the
+[name regression](../../packages/flax_codegen/test/automatic_names_test.dart).
+
 Bound class exports provide authenticated `Symbol.hasInstance` checks and TypeScript
 narrowing across selected parent/interface/mixin views. Sealed parents retain their
 legal factories and can discriminate selected public children; no illegal Dart proxy or

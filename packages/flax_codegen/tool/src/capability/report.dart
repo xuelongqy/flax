@@ -53,7 +53,7 @@ Map<String, Object?> capabilityInsights(LibraryInventory inventory) {
       if (!isJsLegalName(name)) illegalJsNames++;
     }
     for (final member in declaration.declaredMembers) {
-      if (member.name.isNotEmpty && !isJsLegalName(member.name)) {
+      if (!isJsLegalMemberName(declaration, member)) {
         illegalJsNames++;
       }
     }

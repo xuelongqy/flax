@@ -393,7 +393,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
         );
         continue;
       }
-      if (!_usableMemberName(ctorName) && ctorName.isNotEmpty) continue;
+      if (!flaxCodegenIsExportName(ctorName) && ctorName.isNotEmpty) continue;
       final bound = _bindConstructor(
         parser: parser,
         scope: scope,
@@ -449,6 +449,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
       if (!getter.isPublic) continue;
       final getterName = getter.name!;
       if (!_usableMemberName(getterName) ||
+          (getter.isStatic && !flaxCodegenIsExportName(getterName)) ||
           {'hashCode', 'runtimeType'}.contains(getterName) ||
           (element is! EnumElement &&
               {'kind', 'type', 'ctor', 'args'}.contains(getterName))) {
@@ -489,7 +490,10 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
         continue;
       }
       final setterName = setter.name!.replaceFirst(RegExp(r'=$'), '');
-      if (!_usableMemberName(setterName)) continue;
+      if (!_usableMemberName(setterName) ||
+          (setter.isStatic && !flaxCodegenIsExportName(setterName))) {
+        continue;
+      }
       final converted = _tryMemberType(
         scope,
         setter.formalParameters.single.type,
@@ -506,6 +510,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
       if (!method.isPublic || widget) continue;
       final methodName = method.name!;
       if (!_usableMemberName(methodName) ||
+          (method.isStatic && !flaxCodegenIsExportName(methodName)) ||
           methodName == 'toString' ||
           methodName == 'noSuchMethod') {
         continue;
@@ -929,10 +934,15 @@ bool _hasData(FlaxCodegenDataSelection data) =>
     data.results.isNotEmpty;
 
 bool _usableMemberName(String? name) =>
-    name != null &&
-    name.isNotEmpty &&
-    !name.startsWith('_') &&
-    RegExp(r'^[A-Za-z][A-Za-z0-9]*$').hasMatch(name);
+    name != null && flaxCodegenIsMemberName(name);
+
+bool _usableParameterName(FormalParameterElement parameter) =>
+    parameter.name != null &&
+    parameter.name != '_' &&
+    flaxCodegenIsIdentifierName(
+      parameter.name!,
+      allowReserved: parameter.isNamed,
+    );
 
 const _complexGenericBoundCode = 'complex_generic_bound';
 const _constructorSpecializationMissingUseSiteCode =
@@ -1389,7 +1399,7 @@ List<String>? _bindConstructor({
   final chosen = <String>[];
   for (final parameter in constructor.formalParameters) {
     final paramName = parameter.name;
-    if (!_usableMemberName(paramName)) {
+    if (!_usableParameterName(parameter)) {
       if (parameter.isRequired || parameter.isPositional) {
         skips.add(
           FlaxCodegenSkip(
@@ -1665,7 +1675,7 @@ List<String>? _bindMethod({
   final chosen = <String>[];
   for (final parameter in method.formalParameters) {
     final paramName = parameter.name;
-    if (!_usableMemberName(paramName)) {
+    if (!_usableParameterName(parameter)) {
       if (parameter.isRequired || parameter.isPositional) {
         skips.add(
           FlaxCodegenSkip(
