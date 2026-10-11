@@ -30,6 +30,13 @@ imported inputs), private brands, superclass changes, removed classes or modules
 root/page inventory changes, and `@flax/*` host-module contract changes require a
 Session restart.
 
+Named development classes compile to anonymous class expressions with a mutable outer
+binding. The binding is initialized before static fields evaluate and then replaced by
+the canonical constructor. Class methods that refer to their own name therefore resolve
+the canonical type after a reload, including factories and `instanceof` checks. Named
+and default exports use the same binding. The compiler preserves class names when
+lowering these expressions to ES2019.
+
 Updates follow `evaluate -> validate -> commit -> reassemble`. `runApp` and
 `registerPage` capture candidates during staging. After validation, Dart stages the new
 root/page content, the registry commits JS behavior, and Flutter runs one application

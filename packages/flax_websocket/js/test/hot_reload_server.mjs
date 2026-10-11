@@ -10,9 +10,10 @@ const writeVersion = (version, removed = false) =>
   writeFile(
     entry,
     `${removed ? '' : "import { value } from './value.ts';\n"}${version > 1 && !removed ? "import { Suffix } from './suffix.ts';\n" : ''}
-class Label { static value() { return 'base'; } }
+class Label { static value() { return 'base'; } value() { return Label.value(); } }
 Label.value = () => 'V${version}';
 globalThis.__flaxHotTestLabel = Label;
+globalThis.__flaxHotTestLabelInstance ??= new Label();
 ${removed ? '' : 'if (value === 2 && ' + version + " === 1) throw new Error('temporary HMR application error');"}
 globalThis.__flaxHotTestRunApp(globalThis.__flaxHotTestText(Label.value() + ':' + ${removed ? '0' : 'value'}${version > 1 && !removed ? ' + new Suffix().value()' : ''}));\n`,
   );

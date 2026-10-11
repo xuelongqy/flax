@@ -50,7 +50,7 @@ function classDeclaration(statement) {
 export function instrumentReloadableClasses(code, id) {
   if (id.split(sep).includes('node_modules')) return code;
   const ast = parseSync(id, code).program;
-  const insertions = [];
+  const edits = [];
   const context = ast.body
     .filter((statement) => !classDeclaration(statement))
     .map((statement) => code.slice(statement.start, statement.end))
@@ -75,15 +75,28 @@ export function instrumentReloadableClasses(code, id) {
       }
     }
     const name = declaration.id.name;
-    insertions.push({
-      at: statement.end,
+    // Methods must close over the binding that is replaced by the canonical class.
+    edits.push({
+      start: statement.start,
+      end: declaration.body.start + 1,
       source:
-        `\n${name} = globalThis.__flaxModules.dev.class(` +
-        `${JSON.stringify(name)}, ${name}, ${JSON.stringify({ fields, private: privateFields, init: init.join('\n'), context })});`,
+        `${statement.type === 'ExportNamedDeclaration' ? 'export ' : ''}let ${name};\n` +
+        `${name} = class${code.slice(declaration.id.end, declaration.body.start + 1)}\n` +
+        `static { ${name} = this; }\n`,
+    });
+    edits.push({
+      start: statement.end,
+      end: statement.end,
+      source:
+        `;\n${name} = globalThis.__flaxModules.dev.class(` +
+        `${JSON.stringify(name)}, ${name}, ${JSON.stringify({ fields, private: privateFields, init: init.join('\n'), context })});` +
+        (statement.type === 'ExportDefaultDeclaration'
+          ? `\nexport { ${name} as default };`
+          : ''),
     });
   }
-  for (const insertion of insertions.sort((a, b) => b.at - a.at)) {
-    code = code.slice(0, insertion.at) + insertion.source + code.slice(insertion.at);
+  for (const edit of edits.sort((a, b) => b.start - a.start)) {
+    code = code.slice(0, edit.start) + edit.source + code.slice(edit.end);
   }
   return code;
 }
@@ -109,6 +122,7 @@ async function compileModule(state, node) {
     platform: 'neutral',
     format: 'cjs',
     target: 'es2019',
+    keepNames: true,
     supported: { 'async-generator': false, 'for-await': false },
     logLevel: 'silent',
     legalComments: 'inline',

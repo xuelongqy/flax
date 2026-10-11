@@ -91,7 +91,7 @@ Future<void> _waitForRejection(
 }
 
 String _liveLabel(RuntimeTracker tracker) => (tracker.evaluate(
-  'globalThis.__flaxHotTestLabel.value()',
+  'globalThis.__flaxHotTestLabelInstance.value()',
 ) as FlaxJsString).value;
 
 void main() {

@@ -68,6 +68,10 @@ initialization changes (including changed module-level or imported inputs), fiel
 private brands, superclass, page inventory, and module removal require a session
 restart. Runtime reload failures are reported by `flax-dev`.
 
+Class methods retain canonical self references after a reload, including `new Counter()`
+and `instanceof Counter`. Named and default exports keep the same constructor identity,
+and development compilation preserves the original class names.
+
 Each successful compilation atomically refreshes the complete startup asset, even when
 the running Session rejects that update and requires a restart. Compile errors retain
 the last valid asset. Restart the Flutter host with the refreshed asset to load the

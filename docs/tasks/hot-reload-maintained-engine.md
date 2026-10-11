@@ -31,7 +31,11 @@ classes, and coalesce saves behind a single in-flight batch. A missing cached de
 is compiled again when reintroduced. Module completion captures final class member
 assignments; failed evaluation restores the original descriptors and member inventory.
 Edits made while an importer has a syntax error remain dirty until the complete startup
-asset is published, so recovery recompiles those pending dependencies.
+asset is published, so recovery recompiles those pending dependencies. Class methods
+also retain canonical self references after a reload. The compiler uses an outer
+class-name binding, initializes it before static fields evaluate, and preserves class
+names during ES2019 lowering. Named/default exports, inheritance, factories and
+`instanceof` share the existing constructor identity.
 
 ## Results and validation
 
@@ -62,14 +66,18 @@ handles at both Session shutdowns. The Android emulator was not rerun.
 Before the review fixes, `dart run melos run check:ui:v8` passed: 532/532 framework
 cases, package examples and aggregate composition; the UI runner suite passed 5/5. The
 latest `check:runtime:v8` and `check:runtime` each passed 42/42 cases with reproducible
-FFI, and the tools JS suite passed 35/35. Regressions cover failed descriptor staging
+FFI, and the tools JS suite passed 36/36. Regressions cover failed descriptor staging
 and member assignments, dependency addition/removal/retry/reuse, compilation error
 recovery, late Session connections and independently acknowledged Sessions whose saves
 coalesce behind an in-flight batch. A normal importer-only save sends only that factory;
 the commit acknowledgement carries its batch ID rather than a full inventory. Workspace
 Dart analysis found no issues; JS typecheck, formatting, Markdown lint and local
 documentation links passed. All 11 generated example registries match the current
-source. The complete 532-case UI gate was not repeated.
+source. Integration against `5ef3c1e4` subsequently passed 539/539 framework cases and
+558/558 generator tests with reproducible bindings. The complete V8 UI gate also passed
+the package examples and aggregate composition again. The focused macOS, Android and iOS
+gates passed again after the class self-reference fix; the watched-source case now reads
+updated behavior through an existing class instance.
 
 The existing Android debug engine artifact initially lacked the current binding API
 export. An incremental rebuild from the maintained engine source fixed that validation
@@ -101,6 +109,7 @@ Use the maintained Flutter fork on PATH, build the matching debug engines first,
 
 The latest macOS, Android physical-device and iOS simulator development gates are
 complete; the earlier Android emulator gate also passed. Implementation and validation
-are complete on `feat/hmr-maintained-engine`. The integration target is `main`; no
+are complete on `feat/hmr-maintained-engine`. The integration target is
+`feat/dynamic-engine-sdk`, whose maintained-engine changes are not yet in `main`. No
 remote publication has been performed. Physical iOS devices and release/distribution
 builds remain unverified.

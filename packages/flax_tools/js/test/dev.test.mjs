@@ -96,6 +96,62 @@ test('class instrumentation records stable structural metadata', () => {
   );
 });
 
+test('named class bodies retain canonical self references across Vite reloads', async (t) => {
+  const root = await mkdtemp(join(tmpdir(), 'flax-dev-self-'));
+  const entry = join(root, 'main.ts');
+  const source = (version) => `
+export class Counter {
+  static version() { return ${version}; }
+  static initialVersion = Counter.version();
+  static initialName = Counter.name;
+  static create() { return new Counter(); }
+  static accepts(value) { return value instanceof Counter; }
+  identity() { return Counter; }
+  shadow(Counter) { return Counter; }
+}
+export default class DefaultCounter extends Counter {
+  identity() { return DefaultCounter; }
+}
+`;
+  await writeFile(entry, source(1));
+  const dev = await startFlaxDev({
+    root,
+    entry: 'main.ts',
+    out: 'app.js',
+    port: 0,
+  });
+  t.after(async () => {
+    await dev.server.close();
+    await rm(root, { recursive: true, force: true });
+  });
+  const client = await connectClient(dev, t);
+  const exports = client.registry.dev.require('/main.ts');
+  const { Counter, default: DefaultCounter } = exports;
+  const instance = new Counter();
+  const child = new DefaultCounter();
+  assert.equal(Counter.name, 'Counter');
+  assert.equal(DefaultCounter.name, 'DefaultCounter');
+  assert.equal(Counter.initialVersion, 1);
+  assert.equal(Counter.initialName, 'Counter');
+  assert.equal(instance.identity(), Counter);
+  assert.equal(child.identity(), DefaultCounter);
+
+  const applied = waitServerEvent(dev.server, 'flax:applied');
+  await writeFile(entry, source(2));
+  await applied;
+  const next = client.registry.dev.require('/main.ts');
+  assert.equal(next.Counter, Counter);
+  assert.equal(next.default, DefaultCounter);
+  assert.equal(instance.identity(), Counter);
+  assert.equal(child.identity(), DefaultCounter);
+  assert.equal(Counter.create().constructor, Counter);
+  assert.equal(Counter.accepts(instance), true);
+  assert.equal(Counter.initialVersion, 2);
+  assert.equal(Counter.initialName, 'Counter');
+  assert.equal(instance.shadow('local'), 'local');
+  assert.deepEqual(client.errors, []);
+});
+
 test('vite emits importer batches, refreshes the startup asset, and recovers after errors', async (t) => {
   const root = await mkdtemp(join(tmpdir(), 'flax-dev-'));
   const sourceDir = join(root, 'src');
