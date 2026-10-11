@@ -13,7 +13,30 @@ extension StringX on String {
   static String echo(String value) => value;
 }
 
+extension StaticX on String {
+  static int count = 3;
+  static int _tracked = 0;
+  static int writes = 0;
+  static int get tracked => _tracked;
+  static set tracked(num value) {
+    writes++;
+    if (value < 0) throw RangeError.value(value);
+    _tracked = value.toInt();
+  }
+
+  static set writeOnly(int value) => count = value;
+  static int? optional;
+  static List<int> numbers = [];
+  static Widget? widget;
+  static BuildContext? context;
+  static State? state;
+  static int Function(int)? callback;
+  static Future<int>? future;
+  static Stream<int>? events;
+}
+
 extension ListX<T> on List<T> {
+  static int count = 0;
   T get firstValue => first;
   set firstValue(T value) => this[0] = value;
   R mapFirst<R>(R Function(T) callback) => callback(first);

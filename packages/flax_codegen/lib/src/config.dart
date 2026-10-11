@@ -559,6 +559,7 @@ class FlaxCodegenExtensionSelection {
     this.setters = const [],
     this.methods = const {},
     this.staticGetters = const [],
+    this.staticSetters = const [],
     this.staticMethods = const {},
     this.operators = const {},
   });
@@ -566,6 +567,7 @@ class FlaxCodegenExtensionSelection {
   final List<String> setters;
   final Map<String, List<String>> methods;
   final List<String> staticGetters;
+  final List<String> staticSetters;
   final Map<String, List<String>> staticMethods;
   final Map<String, List<String>> operators;
 
@@ -581,6 +583,7 @@ class FlaxCodegenExtensionSelection {
       setters: names('setters'),
       methods: calls('methods'),
       staticGetters: names('staticGetters'),
+      staticSetters: names('staticSetters'),
       staticMethods: calls('staticMethods'),
       operators: calls('operators'),
     );

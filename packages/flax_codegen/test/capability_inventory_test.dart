@@ -195,6 +195,39 @@ void main() {
     expect(assessment.surface['droppedParameters'], 0);
   });
 
+  test('extension setter inputs are not dropped parameters', () async {
+    final uri = fixture('extension_shapes.dart');
+    final inventory = await inventoryLibrary(collection: collection, uri: uri);
+    final parser = FlaxCodegenBindingParser(repoRoot);
+    addTearDown(parser.dispose);
+    final proposal = await parser.proposeLibrary(
+      FlaxCodegenBindingConfig(
+        'extensions',
+        uri,
+        '@example/extensions',
+        'unused.dart',
+        'unused.ts',
+        const {},
+      ),
+    );
+    applyAutomaticLibraryProposal(
+      inventory: inventory,
+      baselineProposal: proposal,
+      proposal: proposal,
+    );
+    for (final entry in {'StaticX': 9, 'ListX': 5}.entries) {
+      final assessment = inventory.declarations
+          .singleWhere((declaration) => declaration.name == entry.key)
+          .assessment!;
+      expect(
+        assessment.surface['selectedParameters'],
+        entry.value,
+        reason: entry.key,
+      );
+      expect(assessment.surface['droppedParameters'], 0, reason: entry.key);
+    }
+  });
+
   test('an inventory lookup failure is a generator gap', () async {
     final uri = fixture('discovery_show.dart');
     final inventory = await inventoryLibrary(collection: collection, uri: uri);

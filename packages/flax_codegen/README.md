@@ -492,13 +492,20 @@ runtime TS type token.
 Explicit `extensions` selections expose named Dart extensions as callable receiver
 views: `StringX('a').repeat(3)` and `StringX(' ').isBlank`. Getters are readonly
 properties; setters use `ListX(values).setFirstValue(value)`. Static members remain on
-the factory, such as `StringX.version` and `StringX.parse(value)`. Creating a view does
-not call Dart or allocate a Dart object; views share their methods. Context, Widget and
-other supported receiver, argument and result types reuse ordinary binding conversion
-and lifetime checks. Generic declarations/members and legal Dart operators use the same
-function call channel. Dart always invokes the explicit named extension override.
-Manifest 18 and operation IDs are unchanged; regenerate provider and consumer packages
-together when replacing the previous receiver-first API. See the
+the factory, such as `StringX.version` and `StringX.parse(value)`. Select static writes
+with `staticSetters: [times]` to generate `StringX.setTimes(value)`; automatic discovery
+also includes public mutable fields and setters. Read/write types are independent and
+setter-only members work. Static writes reuse ordinary input conversion, including
+supported Flutter references, callbacks and async values. Static state is shared by the
+Dart application and session close does not reset it. Readonly/private writes are
+rejected; automatic selection reports conflicting `setX` exports and preserves selected
+static methods/getters. Creating a view does not call Dart or allocate a Dart object;
+views share their methods. Context, Widget and other supported receiver, argument and
+result types reuse ordinary binding conversion and lifetime checks. Generic
+declarations/members and legal Dart operators use the same function call channel. Dart
+always invokes the explicit named extension override. Manifest 18 and operation IDs are
+unchanged; regenerate provider and consumer packages together when replacing the
+previous receiver-first API. See the
 [extension binding contract](../../docs/architecture/bindings.md#extension-declarations).
 
 Generic bounds can refer to unbound interfaces through Manifest 18 type-only references.

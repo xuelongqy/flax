@@ -2071,6 +2071,7 @@ class FlaxCodegenExtensionModel {
         'method',
         'operator',
         'staticGetter',
+        'staticSetter',
         'staticMethod',
       }.contains(member.kind)) {
         throw StateError('Invalid extension member kind: ${member.kind}');
@@ -2081,7 +2082,7 @@ class FlaxCodegenExtensionModel {
           member.name.isEmpty
               ? ''
               : 'get${member.name[0].toUpperCase()}${member.name.substring(1)}',
-        'setter' =>
+        'setter' || 'staticSetter' =>
           member.name.isEmpty
               ? ''
               : 'set${member.name[0].toUpperCase()}${member.name.substring(1)}',
@@ -2093,7 +2094,7 @@ class FlaxCodegenExtensionModel {
           : call.parameters.skip(1).toList();
       final arity = switch (member.kind) {
         'getter' || 'staticGetter' => 0,
-        'setter' => 1,
+        'setter' || 'staticSetter' => 1,
         'operator' => switch (member.name) {
           'unary-' || '~' => 0,
           '[]=' => 2,
@@ -2115,7 +2116,9 @@ class FlaxCodegenExtensionModel {
                   !call.parameters.first.positional ||
                   !call.parameters.first.required)) ||
           (arity != null && args.length != arity) ||
-          (member.kind == 'setter' && call.result.kind != 'void') ||
+          ({'setter', 'staticSetter'}.contains(member.kind) &&
+              (call.result.kind != 'void' ||
+                  args.any((p) => !p.positional || !p.required))) ||
           (!member.isStatic &&
               {
                 '==',
@@ -2153,7 +2156,7 @@ class FlaxCodegenExtensionMemberModel {
   final String name;
   final String kind;
   final FlaxCodegenMethodModel call;
-  bool get isStatic => kind == 'staticGetter' || kind == 'staticMethod';
+  bool get isStatic => kind.startsWith('static');
   String get exportName =>
       kind == 'getter' || kind == 'staticGetter' ? name : call.name;
 }

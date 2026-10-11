@@ -32,6 +32,14 @@ cached, after their first real Dart read; computed getters, statics, objects,
 collections and callbacks retain ordinary conversion and lifetime rules. Module import
 does not read Dart state. See [enum bindings](bindings.md#enum-bindings).
 
+Named extension static writes use the same function parameter conversion as class static
+setters. `StringX.setTimes(5)` writes the real Dart static property once; supported
+Widget, Context, State, callback, Future and Stream inputs add no separate owner or
+conversion path. Static reads stay readonly and execute the real Dart getter. The Dart
+application owns this shared state; closing a session clears bridge resources without
+resetting static properties. See
+[extension bindings](bindings.md#extension-declarations).
+
 ## Extension types
 
 Extension types reuse their erased representation in both binding directions, including

@@ -3083,7 +3083,7 @@ class FlaxCodegenBindingParser {
         final ExecutableElement? member = switch (kind) {
           'getter' || 'staticGetter' =>
             element.getters.where((m) => m.name == memberName).firstOrNull,
-          'setter' =>
+          'setter' || 'staticSetter' =>
             element.setters
                 .where(
                   (m) =>
@@ -3106,6 +3106,9 @@ class FlaxCodegenBindingParser {
         if (member == null ||
             member.isPrivate ||
             member.isStatic != isStatic ||
+            (member is SetterElement &&
+                member.variable.isOriginDeclaration &&
+                (member.variable.isConst || member.variable.isFinal)) ||
             (member is MethodElement &&
                 member.isOperator != (kind == 'operator'))) {
           throw StateError('Unknown extension $kind: $name.$memberName');
@@ -3119,7 +3122,7 @@ class FlaxCodegenBindingParser {
         final jsName = switch (kind) {
           'getter' || 'staticGetter' =>
             'get${memberName[0].toUpperCase()}${memberName.substring(1)}',
-          'setter' =>
+          'setter' || 'staticSetter' =>
             'set${memberName[0].toUpperCase()}${memberName.substring(1)}',
           'operator' =>
             flaxCodegenExtensionOperators[memberName] ??
@@ -3152,7 +3155,7 @@ class FlaxCodegenBindingParser {
               ),
             ...args,
           ],
-          kind == 'setter'
+          kind == 'setter' || kind == 'staticSetter'
               ? const FlaxCodegenTypeRef('void')
               : ref(member.returnType),
           typeParameters: [
@@ -3181,6 +3184,9 @@ class FlaxCodegenBindingParser {
       }
       for (final getter in selection.staticGetters) {
         add(getter, 'staticGetter', const []);
+      }
+      for (final setter in selection.staticSetters) {
+        add(setter, 'staticSetter', null);
       }
       for (final method in selection.staticMethods.entries) {
         add(method.key, 'staticMethod', method.value);

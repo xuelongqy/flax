@@ -7,6 +7,7 @@ extension StringA on String {
   int size() => length;
   String repeat(int count) => this * count;
   static String get version => '1';
+  static int count = 0;
   static int parse(String value) => int.parse(value);
   String operator [](int index) => substring(index, index + 1);
   String operator +(String other) => '$this:$other';
@@ -91,4 +92,33 @@ extension RecursiveX<T extends Comparable<T>> on List<T> {
 
 extension RawFunctionX on Function {
   int get value => 1;
+}
+
+extension StaticX on String {
+  static int count = 0;
+  static int _tracked = 0;
+  static int get tracked => _tracked;
+  static set tracked(num value) {
+    if (value < 0) throw RangeError.value(value);
+    _tracked = value.toInt();
+  }
+
+  static int? optional;
+  static List<int> values = [];
+  static int Function(int)? callback;
+  static Future<int>? future;
+  static Stream<int>? events;
+  static late int pending;
+  static set writeOnly(int value) => count = value;
+  static const constant = 1;
+  static final frozen = 2;
+  static late final int once;
+  static int _hidden = 0;
+  static Type reflected = int;
+  int get instanceValue => length + _hidden++;
+}
+
+extension StaticCollisionX on String {
+  static int count = 0;
+  static void setCount(int value) {}
 }

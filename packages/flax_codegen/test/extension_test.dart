@@ -42,13 +42,251 @@ $selection
     }
   }
 
+  test('extension static writes reuse typed calls and shared state', () async {
+    final parser = FlaxCodegenBindingParser(root.path);
+    addTearDown(parser.dispose);
+    final module = await parser.parse(
+      FlaxCodegenBindingConfig.parseStrict(
+        yaml(
+          '''
+  StaticX:
+    staticGetters: [count, tracked, optional, values, callback, future, events, pending]
+    staticSetters: [count, tracked, optional, values, callback, future, events, pending, writeOnly]
+''',
+        ).replaceFirst(
+          'types: [ExtensionMode]',
+          'types: [ExtensionMode]\nadditionalLibraries: [dart:async]\nclasses: {Stream: {kind: stream}}',
+        ),
+      ),
+    );
+    final extension = module.extensions.single;
+    final writes = extension.members.where((m) => m.kind == 'staticSetter');
+    expect(writes, hasLength(9));
+    expect(writes.every((m) => m.isStatic), isTrue);
+    expect(writes.every((m) => m.call.parameters.length == 1), isTrue);
+    expect(
+      extension.members
+          .firstWhere((m) => m.kind == 'staticGetter' && m.name == 'tracked')
+          .call
+          .result
+          .kind,
+      'int',
+    );
+    expect(
+      writes
+          .firstWhere((m) => m.name == 'tracked')
+          .call
+          .parameters
+          .single
+          .type
+          .kind,
+      'num',
+    );
+    final diagnostics = FlaxCodegenManifestDiagnostics('static-extension');
+    final encoded = FlaxCodegenManifestCodec.encodeModule(module);
+    encoded['typeLibraries'] = (encoded['typeLibraries'] as Map<String, String>)
+        .map(
+          (name, library) => MapEntry(
+            name,
+            library == uri ? 'package:example/extensions.dart' : library,
+          ),
+        );
+    final decoded = FlaxCodegenManifestCodec.decodeModule(
+      encoded,
+      diagnostics,
+      '',
+      module.name,
+    );
+    diagnostics.throwIfAny();
+    expect(FlaxCodegenManifestCodec.encodeModule(decoded!), encoded);
+    for (final mutate in <void Function(Map<String, dynamic>)>[
+      (call) => call['result'] = {'kind': 'int', 'nullable': false},
+      (call) =>
+          ((call['parameters'] as List).single as Map)['required'] = false,
+      (call) => (call['parameters'] as List).clear(),
+    ]) {
+      final malformed = jsonDecode(jsonEncode(encoded)) as Map<String, dynamic>;
+      final member =
+          ((malformed['extensions'] as List).single['members'] as List)
+                  .firstWhere((member) => member['kind'] == 'staticSetter')
+              as Map;
+      mutate(member['call'] as Map<String, dynamic>);
+      final errors = FlaxCodegenManifestDiagnostics('invalid-static-write');
+      expect(
+        FlaxCodegenManifestCodec.decodeModule(
+          malformed,
+          errors,
+          '',
+          module.name,
+        ),
+        isNull,
+      );
+      expect(errors.items, isNotEmpty);
+    }
+    final emitter = FlaxCodegenBindingEmitter([module]);
+    expect(emitter.dart(module), contains('StaticX.count ='));
+    await compileFixture(
+      root.path,
+      emitter,
+      module,
+      consumerSource: '''
+import {StaticX} from './plugin.js';
+StaticX.setCount(3);
+const current: number = StaticX.count;
+StaticX.setTracked(2.5);
+StaticX.setOptional(null);
+StaticX.setValues([1, 2]);
+StaticX.setCallback(value => value + 1);
+StaticX.setFuture(Promise.resolve(1));
+StaticX.setWriteOnly(4);
+// @ts-expect-error reads remain readonly
+StaticX.count = 5;
+// @ts-expect-error nullable writes reject undefined
+StaticX.setOptional(undefined);
+// @ts-expect-error writes require exactly one argument
+StaticX.setCount();
+// @ts-expect-error writes reject extra arguments
+StaticX.setCount(1, 2);
+// @ts-expect-error writes retain the actual input type
+StaticX.setCount('bad');
+// @ts-expect-error write-only members have no getter
+StaticX.writeOnly;
+''',
+      dartTestSource: '''
+void main() {
+  test('static extension adapters preserve Dart semantics', () async {
+    expect(() => _extension_StaticX_staticGetter_pending({}), throwsA(anything));
+    _extension_StaticX_staticSetter_pending({'value': 7});
+    expect(_extension_StaticX_staticGetter_pending({}), 7);
+    _extension_StaticX_staticSetter_count({'value': 3});
+    expect(_extension_StaticX_staticGetter_count({}), 3);
+    _extension_StaticX_staticSetter_writeOnly({'value': 4});
+    expect(_extension_StaticX_staticGetter_count({}), 4);
+    _extension_StaticX_staticSetter_tracked({'value': 2.5});
+    expect(_extension_StaticX_staticGetter_tracked({}), 2);
+    expect(() => _extension_StaticX_staticSetter_tracked({'value': -1}), throwsRangeError);
+    expect(_extension_StaticX_staticGetter_tracked({}), 2);
+    _extension_StaticX_staticSetter_optional({'value': null});
+    expect(_extension_StaticX_staticGetter_optional({}), null);
+    _extension_StaticX_staticSetter_values({'value': <int>[1, 2]});
+    expect(_extension_StaticX_staticGetter_values({}), [1, 2]);
+    _extension_StaticX_staticSetter_callback({'value': (int n) => n + 1});
+    final callback = _extension_StaticX_staticGetter_callback({}) as int Function(int);
+    expect(callback(2), 3);
+    _extension_StaticX_staticSetter_future({'value': Future<int>.value(8)});
+    expect(await (_extension_StaticX_staticGetter_future({}) as Future<int>), 8);
+    _extension_StaticX_staticSetter_events({'value': api1.Stream<int>.value(9)});
+    expect(await (_extension_StaticX_staticGetter_events({}) as api1.Stream<int>).toList(), [9]);
+  });
+}
+''',
+    );
+  });
+
+  test('automatic extension static writes retain validation and collision priority', () async {
+    final parser = FlaxCodegenBindingParser(root.path);
+    try {
+      final proposal = await parser.proposeLibrary(
+        FlaxCodegenBindingConfig(
+          'extensions',
+          uri,
+          '@example/extensions',
+          '',
+          '',
+          const {},
+        ),
+      );
+      final model = await parser.parse(proposal.config);
+      final writes = model.extensions
+          .firstWhere((e) => e.name == 'StaticX')
+          .members
+          .where((m) => m.kind == 'staticSetter')
+          .map((m) => m.name);
+      expect(
+        writes,
+        unorderedEquals([
+          'count',
+          'tracked',
+          'optional',
+          'values',
+          'callback',
+          'future',
+          'events',
+          'pending',
+          'writeOnly',
+        ]),
+      );
+      final collision = model.extensions.firstWhere(
+        (e) => e.name == 'StaticCollisionX',
+      );
+      expect(
+        collision.members.any(
+          (m) => m.kind == 'staticMethod' && m.name == 'setCount',
+        ),
+        isTrue,
+      );
+      expect(collision.members.any((m) => m.kind == 'staticSetter'), isFalse);
+      expect(
+        proposal.skips.any(
+          (s) =>
+              s.target == 'StaticCollisionX.count=' &&
+              s.code == 'extension_export_collision',
+        ),
+        isTrue,
+      );
+      expect(
+        proposal.skips.any((s) => s.target.startsWith('StaticX.reflected')),
+        isTrue,
+      );
+    } finally {
+      await parser.dispose();
+    }
+  });
+
+  test(
+    'extension static writes reject readonly, private and conflicting members',
+    () async {
+      for (final name in [
+        'constant',
+        'frozen',
+        'once',
+        '_hidden',
+        'reflected',
+        'instanceValue',
+        'missing',
+      ]) {
+        await expectLater(
+          parse('  StaticX: {staticSetters: [$name]}'),
+          throwsStateError,
+          reason: name,
+        );
+      }
+      await expectLater(
+        parse(
+          '  StaticCollisionX: {staticSetters: [count], staticMethods: {setCount: [value]}}',
+        ),
+        throwsStateError,
+      );
+      expect(
+        () => FlaxCodegenBindingConfig.parseStrict(
+          yaml('  StaticX: {staticSetters: [count, count]}'),
+        ),
+        throwsA(isA<FlaxCodegenException>()),
+      );
+      final setterOnly = await parse('  StaticX: {staticSetters: [writeOnly]}');
+      expect(setterOnly.extensions.single.members.single.kind, 'staticSetter');
+    },
+  );
+
   test(
     'extension providers reuse one complete surface or emit local members',
     () async {
       final full = await parse(
-        '  StringA:\n    methods: {size: [], repeat: [count]}',
+        '  StringA:\n    methods: {size: [], repeat: [count]}\n    staticGetters: [version]\n    staticSetters: [count]',
       );
-      final partial = await parse('  StringA:\n    methods: {size: []}');
+      final partial = await parse(
+        '  StringA:\n    methods: {size: [], repeat: [count]}\n    staticGetters: [version]',
+      );
       FlaxCodegenModuleModel provider(
         FlaxCodegenModuleModel source,
         String id,
@@ -75,11 +313,13 @@ $selection
           parser.prepareModules(providers);
           final actual = await parser.parse(
             FlaxCodegenBindingConfig.parseStrict(
-              yaml('  StringA:\n    methods: {size: [], repeat: [count]}'),
+              yaml(
+                '  StringA:\n    methods: {size: [], repeat: [count]}\n    staticGetters: [version]\n    staticSetters: [count]',
+              ),
             ),
           );
           expect(actual.extensions.single.isReference, reused);
-          expect(actual.extensions.single.members, hasLength(2));
+          expect(actual.extensions.single.members, hasLength(4));
         } finally {
           await parser.dispose();
         }
@@ -92,6 +332,7 @@ $selection
     methods: {delayed: []}
   StringA:
     staticGetters: [version]
+    staticSetters: [count]
     staticMethods: {parse: [value]}
 '''),
         'example.generic',
@@ -107,6 +348,7 @@ $selection
     setters: [firstValue]
   StringA:
     staticGetters: [version]
+    staticSetters: [count]
     staticMethods: {parse: [value]}
 '''),
           ),
@@ -125,6 +367,7 @@ const list = ListX(['a']);
 const first: string = list.firstValue;
 list.setFirstValue('b');
 const version: string = StringA.version;
+StringA.setCount(3);
 const parsed: number = StringA.parse('2');
 // @ts-expect-error the reused receiver still fixes T
 list.setFirstValue(1);

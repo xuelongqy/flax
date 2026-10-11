@@ -994,6 +994,7 @@ Map<String, FlaxCodegenExtensionSelection> _readExtensions(_StrictMap root) {
       'setters',
       'methods',
       'staticGetters',
+      'staticSetters',
       'staticMethods',
       'operators',
     });
@@ -1002,6 +1003,7 @@ Map<String, FlaxCodegenExtensionSelection> _readExtensions(_StrictMap root) {
       setters: selection.stringList('setters'),
       methods: selection.stringListMap('methods'),
       staticGetters: selection.stringList('staticGetters'),
+      staticSetters: selection.stringList('staticSetters'),
       staticMethods: selection.stringListMap('staticMethods'),
       operators: selection.stringListMap('operators'),
     );

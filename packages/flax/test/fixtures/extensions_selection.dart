@@ -69,6 +69,33 @@ const extensionFunctions = {
 
 const extensionSelection = {
   'IntListX': FlaxCodegenExtensionSelection(setters: ['firstValue']),
+  'StaticX': FlaxCodegenExtensionSelection(
+    staticGetters: [
+      'count',
+      'tracked',
+      'optional',
+      'numbers',
+      'widget',
+      'context',
+      'state',
+      'callback',
+      'future',
+      'events',
+    ],
+    staticSetters: [
+      'count',
+      'tracked',
+      'writeOnly',
+      'optional',
+      'numbers',
+      'widget',
+      'context',
+      'state',
+      'callback',
+      'future',
+      'events',
+    ],
+  ),
   'StringX': FlaxCodegenExtensionSelection(
     getters: ['isBlank'],
     methods: {
@@ -80,6 +107,8 @@ const extensionSelection = {
     },
   ),
   'ListX': FlaxCodegenExtensionSelection(
+    staticGetters: ['count'],
+    staticSetters: ['count'],
     getters: ['firstValue'],
     setters: ['firstValue'],
     methods: {

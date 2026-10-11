@@ -1951,7 +1951,7 @@ import 'package:flax/bindings.dart';
             if (member.kind == 'getter' || member.kind == 'staticGetter') {
               return '$receiver.${member.name}';
             }
-            if (member.kind == 'setter') {
+            if (member.kind == 'setter' || member.kind == 'staticSetter') {
               return '$receiver.${member.name} = $arguments';
             }
             if (member.kind == 'operator') {

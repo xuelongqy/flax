@@ -845,11 +845,15 @@ extensions:
     getters: [isBlank]
     methods:
       repeat: [count]
+    staticGetters: [times]
+    staticSetters: [times]
 ```
 
 ```typescript
 StringX(' ').isBlank;
 StringX('a').repeat(3);
+StringX.setTimes(5);
+StringX('a').repeat(StringX.times); // 'aaaaa'
 ```
 
 The callable factory creates a JS view of its receiver, with shared methods and getter
@@ -862,8 +866,21 @@ lifetime, so retaining a view does not keep a Context mounted.
 
 Instance getters use readonly properties, setters use `setX(value)`, and methods take
 only their selected positional and named arguments. `staticGetters` are readonly factory
-properties and `staticMethods` are factory methods. Importing a module never reads a
-Dart getter. Detached instance methods need an explicit receiver binding:
+properties, `staticSetters` generate `setX(value)` on the factory, and `staticMethods`
+are factory methods. Read and write selections are independent, including setter-only
+members and accessors with different read/write types. Static writes use one ordinary
+function call with the actual setter input conversion; supported references, callbacks,
+collections and async values use their existing validation and lifetime rules. Missing
+or undefined values, extra arguments and wrong types remain rejected. Each access
+executes the real Dart getter or setter, preserving side effects, exceptions and late
+initialization errors. Static state belongs to the Dart application, is shared across
+sessions, and is not rolled back on session close.
+
+Private and readonly static fields cannot be written. Explicit conflicting `setX`
+exports fail generation; automatic selection keeps a selected static method/getter and
+reports the conflicting write as `extension_export_collision`. A readonly provider does
+not supply write capability. Importing a module never reads a Dart getter. Detached
+instance methods need an explicit receiver binding:
 
 ```typescript
 const text = StringX('a');

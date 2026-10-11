@@ -63,6 +63,24 @@ registerPage('state-inputs', () => new InputComponent());
 
 // Compiled only: the views retain their receiver and method generic scopes.
 function typeContract(context: BuildContext) {
+  extensions.StaticX.setCount(5);
+  extensions.StaticX.setOptional(null);
+  extensions.StaticX.setWidget(extensionHooks.child);
+  extensions.StaticX.setContext(context);
+  extensions.StaticX.setCallback((value) => value + 1);
+  extensions.StaticX.setFuture(Promise.resolve(5));
+  extensions.StaticX.setEvents(Stream.fromIterable([1, 2]));
+  extensions.ListX.setCount(3);
+  // @ts-expect-error static reads remain readonly
+  extensions.StaticX.count = 1;
+  // @ts-expect-error nullable static values still reject undefined
+  extensions.StaticX.setWidget(undefined);
+  // @ts-expect-error static setters require one argument
+  extensions.StaticX.setCount();
+  // @ts-expect-error static setters reject extra arguments
+  extensions.StaticX.setCount(1, 2);
+  // @ts-expect-error static writes retain the input type
+  extensions.StaticX.setState(extensionHooks.child);
   const result: string = extensions.ListX([1]).mapFirst((value) => value.toFixed());
   const same: BuildContext = extensions.ContextX(context).same;
   extensions.ReferenceValues.setGlobalContext(context);

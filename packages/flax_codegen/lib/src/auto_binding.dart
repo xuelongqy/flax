@@ -887,6 +887,8 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     final setters = <String>[];
     final methods = <String, List<String>>{};
     final staticGetters = <String>[];
+    final staticSetters = <String>[];
+    final staticSetterCandidates = <String>[];
     final staticMethods = <String, List<String>>{};
     final operators = <String, List<String>>{};
     final generatedNames = <String>{};
@@ -1026,13 +1028,18 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       final memberName = setter.name!.replaceFirst(RegExp(r'=$'), '');
       final target = '$name.$memberName=';
       if (setter.isPrivate ||
-          setter.isStatic ||
+          (setter.variable.isOriginDeclaration &&
+              (setter.variable.isConst || setter.variable.isFinal)) ||
           !_usableMemberName(memberName) ||
           !visible(setter, target)) {
         continue;
       }
       final selected = parameters(setter, target);
       if (selected == null) continue;
+      if (setter.isStatic) {
+        staticSetterCandidates.add(memberName);
+        continue;
+      }
       final generated =
           'set${memberName[0].toUpperCase()}${memberName.substring(1)}';
       if (!reserve(generated, target)) continue;
@@ -1076,10 +1083,20 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       (method.isStatic ? staticMethods : methods)[memberName] = selected;
     }
 
+    // Keep declared static methods when a generated setX name would collide.
+    for (final memberName in staticSetterCandidates) {
+      final generated =
+          'set${memberName[0].toUpperCase()}${memberName.substring(1)}';
+      if (reserve(generated, '$name.$memberName=', isStatic: true)) {
+        staticSetters.add(memberName);
+      }
+    }
+
     if (getters.isEmpty &&
         setters.isEmpty &&
         methods.isEmpty &&
         staticGetters.isEmpty &&
+        staticSetters.isEmpty &&
         staticMethods.isEmpty &&
         operators.isEmpty) {
       skips.add(
@@ -1096,6 +1113,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       setters: setters,
       methods: methods,
       staticGetters: staticGetters,
+      staticSetters: staticSetters,
       staticMethods: staticMethods,
       operators: operators,
     );

@@ -17,6 +17,156 @@ void main() {
         },
       );
 
+  testWidgets(
+    'extension static writes reuse references, callbacks and async conversion',
+    (tester) async {
+      late fixture.ExtensionValues values;
+      final h = harness(onValues: (value) => values = value);
+      final count = fixture.StaticX.count;
+      final tracked = fixture.StaticX.tracked;
+      final writes = fixture.StaticX.writes;
+      final listCount = fixture.ListX.count;
+      try {
+        await tester.pumpWidget(h.app('state-inputs'));
+        expect(fixture.StaticX.count, count);
+        final calls = h.runtime.hostCalls['__flaxInvokeOperation'] ?? 0;
+        h.execute('extensions.StaticX.setCount(5);');
+        expect((h.runtime.hostCalls['__flaxInvokeOperation'] ?? 0) - calls, 1);
+        expect(fixture.StaticX.count, 5);
+        h.execute('''
+        extensions.StaticX.setTracked(2.5);
+        extensions.StaticX.setWriteOnly(7);
+        extensions.StaticX.setOptional(null);
+        extensions.StaticX.setNumbers([1, 2]);
+        extensions.StaticX.setWidget(extensionHooks.child);
+        extensions.StaticX.setContext(extensionHooks.context);
+        extensions.StaticX.setState(extensionHooks.componentState);
+        extensionHooks.values.nativeState = extensionHooks.componentState;
+        extensions.StaticX.setCallback(value => value + 2);
+        extensions.StaticX.setFuture(Promise.resolve(9));
+        extensions.StaticX.setEvents(Stream.fromIterable([1, 2]));
+        extensions.ListX.setCount(8);
+      ''');
+        expect(fixture.StaticX.writes, writes + 1);
+        expect(fixture.StaticX.tracked, 2);
+        expect(fixture.StaticX.numbers, [1, 2]);
+        expect(fixture.StaticX.state, same(values.nativeState));
+        expect(fixture.StaticX.context, same(fixture.StaticX.state!.context));
+        final checks = [
+          'extensions.StaticX.count === 7',
+          'extensions.StaticX.optional === null',
+          'extensions.WidgetX(extensions.StaticX.widget).same === extensions.StaticX.widget',
+          'extensions.StaticX.context === extensionHooks.context',
+          'extensions.stateIsMounted(extensions.StaticX.state)',
+          'extensions.StaticX.callback(3) === 5',
+          'extensions.ListX.count === 8',
+        ];
+        expect([
+          for (final check in checks)
+            if (!h.boolean(check)) check,
+        ], isEmpty);
+        h.execute('''
+        var staticFuture = null;
+        var staticEvents = null;
+        extensions.StaticX.future.then(value => staticFuture = value);
+        extensions.StaticX.events.toList().then(values => staticEvents = values.toArray());
+      ''');
+        await tester.pumpAndSettle();
+        h.runtime.drainMicrotasks();
+        expect(h.number('staticFuture'), 9);
+        expect(h.boolean('JSON.stringify(staticEvents) === "[1,2]"'), isTrue);
+        for (final source in [
+          'extensions.StaticX.setCount()',
+          'extensions.StaticX.setCount(undefined)',
+          'extensions.StaticX.setCount(null)',
+          'extensions.StaticX.setCount("wrong")',
+          'extensions.StaticX.setCount(1, 2)',
+          'extensions.StaticX.setOptional(undefined)',
+          'extensions.StaticX.setNumbers([1, "wrong"])',
+          'extensions.StaticX.setWidget(1)',
+          'extensions.StaticX.setContext({mounted: true})',
+          'extensions.StaticX.setState(extensionHooks.child)',
+          'extensions.StaticX.setCallback(1)',
+          'extensions.StaticX.setFuture(1)',
+          'extensions.StaticX.setEvents([1, 2])',
+          'extensions.StaticX.setTracked(-1)',
+        ]) {
+          expect(
+            () => h.execute(source),
+            throwsA(isA<FlaxJsException>()),
+            reason: source,
+          );
+        }
+        expect(fixture.StaticX.tracked, 2);
+        expect(fixture.StaticX.writes, writes + 2);
+        h.execute('''
+        extensions.StaticX.setCallback(() => { throw new Error('static callback failed'); });
+      ''');
+        expect(
+          () => h.execute('extensions.StaticX.callback(1)'),
+          throwsA(isA<FlaxJsException>()),
+        );
+        h.execute('extensions.StaticX.setCallback(value => value);');
+        expect(h.number('extensions.StaticX.callback(6)'), 6);
+        h.execute('extensionHooks.result = extensions.StaticX.widget;');
+        await tester.pumpWidget(h.app('extension-result'));
+        expect(find.text('JS list child'), findsOneWidget);
+        for (final member in ['context', 'state']) {
+          expect(
+            () => h.execute('extensions.StaticX.$member'),
+            throwsA(isA<FlaxJsException>()),
+            reason: member,
+          );
+        }
+      } finally {
+        fixture.StaticX.count = count;
+        fixture.StaticX.tracked = tracked;
+        fixture.StaticX.writes = writes;
+        fixture.ListX.count = listCount;
+        fixture.StaticX.optional = null;
+        fixture.StaticX.numbers = [];
+        fixture.StaticX.widget = null;
+        fixture.StaticX.context = null;
+        fixture.StaticX.state = null;
+        fixture.StaticX.callback = null;
+        fixture.StaticX.future = null;
+        fixture.StaticX.events = null;
+        await h.finish(tester);
+      }
+    },
+  );
+
+  testWidgets(
+    'extension static state is shared and session close does not roll it back',
+    (tester) async {
+      final first = harness();
+      final second = harness();
+      final count = fixture.StaticX.count;
+      try {
+        await tester.pumpWidget(
+          Column(
+            children: [
+              Expanded(child: first.app('extensions')),
+              Expanded(child: second.app('extensions')),
+            ],
+          ),
+        );
+        first.execute('extensions.StaticX.setCount(11);');
+        expect(second.number('extensions.StaticX.count'), 11);
+        await first.finish(tester);
+        expect(fixture.StaticX.count, 11);
+        await tester.pumpWidget(second.app('extensions'));
+        expect(second.number('extensions.StaticX.count'), 11);
+        second.execute('extensions.StaticX.setCount(12);');
+        expect(fixture.StaticX.count, 12);
+      } finally {
+        fixture.StaticX.count = count;
+        await first.finish(tester);
+        await second.finish(tester);
+      }
+    },
+  );
+
   testWidgets('extension views share methods and preserve typed operations', (
     tester,
   ) async {
@@ -953,15 +1103,20 @@ void main() {
       final echoContext = second.runtime.evaluate(
         'extensions.echoContextBox',
       ) as FlaxJsFunction;
+      final writeStaticContext = second.runtime.evaluate(
+        'extensions.StaticX.setContext',
+      ) as FlaxJsFunction;
       try {
         expect(() => read.call([context]), throwsA(isA<ArgumentError>()));
         expect(() => echoContext.call([context]), throwsArgumentError);
+        expect(() => writeStaticContext.call([context]), throwsArgumentError);
         expect(
           () => writeContext.call([context]),
           throwsA(isA<ArgumentError>()),
         );
       } finally {
         echoContext.release();
+        writeStaticContext.release();
         writeContext.release();
         read.release();
         context.release();
@@ -980,13 +1135,18 @@ void main() {
       ) as FlaxJsFunction;
       final echoState =
           second.runtime.evaluate('extensions.echoStateBox') as FlaxJsFunction;
+      final writeStaticState = second.runtime.evaluate(
+        'extensions.StaticX.setState',
+      ) as FlaxJsFunction;
       try {
         expect(() => readState.call([state]), throwsA(isA<ArgumentError>()));
         expect(() => writeState.call([state]), throwsA(isA<ArgumentError>()));
         expect(() => readCallback.call([state]), throwsArgumentError);
         expect(() => echoState.call([state]), throwsArgumentError);
+        expect(() => writeStaticState.call([state]), throwsArgumentError);
       } finally {
         echoState.release();
+        writeStaticState.release();
         readCallback.release();
         writeState.release();
         readState.release();
@@ -1000,11 +1160,16 @@ void main() {
       ) as FlaxJsFunction;
       final echoWidget =
           second.runtime.evaluate('extensions.echoWidgetBox') as FlaxJsFunction;
+      final writeStaticWidget = second.runtime.evaluate(
+        'extensions.StaticX.setWidget',
+      ) as FlaxJsFunction;
       try {
         expect(() => writeWidget.call([widget]), throwsA(isA<ArgumentError>()));
         expect(() => echoWidget.call([widget]), throwsArgumentError);
+        expect(() => writeStaticWidget.call([widget]), throwsArgumentError);
       } finally {
         echoWidget.release();
+        writeStaticWidget.release();
         writeWidget.release();
         widget.release();
       }

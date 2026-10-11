@@ -306,7 +306,7 @@ BindingAssessment _automaticAssessment(
           : _extensionMemberKeys(entry.value);
       final parameters = entry == null
           ? const <String>{}
-          : _extensionParameterKeys(entry.value);
+          : _extensionParameterKeys(entry.value, declaration);
       return _fromLibrarySelection(
         declaration: declaration,
         label: label,
@@ -807,6 +807,7 @@ Map<String, Object?> _extensionSelectionJson(
   'setters': selection.setters,
   'methods': selection.methods,
   'staticGetters': selection.staticGetters,
+  'staticSetters': selection.staticSetters,
   'staticMethods': selection.staticMethods,
   'operators': selection.operators,
 };
@@ -816,19 +817,28 @@ Set<String> _extensionMemberKeys(FlaxCodegenExtensionSelection selection) => {
   for (final name in selection.setters) 'setter.$name',
   for (final name in selection.methods.keys) 'method.$name',
   for (final name in selection.staticGetters) 'getter.$name',
+  for (final name in selection.staticSetters) 'setter.$name',
   for (final name in selection.staticMethods.keys) 'method.$name',
   for (final name in selection.operators.keys) 'method.$name',
 };
 
-Set<String> _extensionParameterKeys(FlaxCodegenExtensionSelection selection) =>
-    {
-      for (final entry in selection.methods.entries)
-        for (final parameter in entry.value) '${entry.key}.$parameter',
-      for (final entry in selection.staticMethods.entries)
-        for (final parameter in entry.value) '${entry.key}.$parameter',
-      for (final entry in selection.operators.entries)
-        for (final parameter in entry.value) '${entry.key}.$parameter',
-    };
+Set<String> _extensionParameterKeys(
+  FlaxCodegenExtensionSelection selection,
+  ApiDeclarationRecord declaration,
+) => {
+  for (final entry in selection.methods.entries)
+    for (final parameter in entry.value) '${entry.key}.$parameter',
+  for (final entry in selection.staticMethods.entries)
+    for (final parameter in entry.value) '${entry.key}.$parameter',
+  for (final entry in selection.operators.entries)
+    for (final parameter in entry.value) '${entry.key}.$parameter',
+  for (final member in declaration.declaredMembers)
+    if (member.kind == 'setter' &&
+        (member.isStatic ? selection.staticSetters : selection.setters)
+            .contains(member.name))
+      for (final parameter in member.parameters)
+        '${member.name}.${parameter.name}',
+};
 
 MapEntry<String, T>? _namedEntry<T>(Map<String, T> values, Set<String> names) {
   for (final name in names) {

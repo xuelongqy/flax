@@ -300,6 +300,50 @@ overrides:
       },
     );
 
+    test(
+      'automatic library generation publishes named extension static writes',
+      () async {
+        final package = _tempWidgetCliPackage();
+        File(p.join(package.path, 'bindings', 'overrides.yaml')).deleteSync();
+        File(p.join(package.path, 'lib', 'widget_package.dart'))
+            .writeAsStringSync('''
+extension SharedX on String {
+  static int count = 3;
+  static set writeOnly(int value) => count = value;
+  static const frozen = 1;
+}
+''');
+        const library = 'package:widget_cli_pkg/widget_package.dart';
+        final generated = await FlaxCodegenPackagePipeline.generateLibrary(
+          library,
+          packageRoot: package.path,
+        );
+        await FlaxCodegenPackagePipeline.checkLibrary(
+          library,
+          packageRoot: package.path,
+        );
+        final extension = generated.localModels.single.extensions.single;
+        expect(
+          extension.members
+              .where((member) => member.kind == 'staticSetter')
+              .map((member) => member.name),
+          unorderedEquals(['count', 'writeOnly']),
+        );
+        final owners = generated.resolvedPackage.modules.single.owners;
+        expect(
+          owners.map((owner) => owner.sourceIdentity.name),
+          containsAll([
+            'SharedX.staticSetter.count',
+            'SharedX.staticSetter.writeOnly',
+          ]),
+        );
+        expect(
+          owners.map((owner) => owner.sourceIdentity.name),
+          isNot(contains('SharedX.staticSetter.frozen')),
+        );
+      },
+    );
+
     test('extension type generation retains representations without claiming owners', () async {
       final package = _tempWidgetCliPackage();
       File(p.join(package.path, 'bindings', 'overrides.yaml')).deleteSync();
