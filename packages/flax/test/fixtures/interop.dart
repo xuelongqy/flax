@@ -39,6 +39,18 @@ abstract class CodegenNestedUses {
   CodegenNestedBox<List<Map<String, int?>>> get nested;
 }
 
+final class CodegenBag<T> {
+  CodegenBag(this.items);
+  List<T> items;
+  T first() => items.first;
+  List<T> map(T Function(T) callback) => items.map(callback).toList();
+  Future<List<T>> pending(Future<List<T>> items) => items;
+}
+
+abstract class CodegenBagUses {
+  CodegenBag<String> get strings;
+}
+
 final class CodegenExplicitNestedBox<T> {
   CodegenExplicitNestedBox(this.value);
   final T value;

@@ -656,12 +656,14 @@ parameters. An unconstrained owner uses `Object?`; a simple upper bound such as 
 used when required. Existing Dart values such as `Box<String>` and `Box<int>` therefore
 share one owner without losing their TypeScript relationships.
 
-Constructors are emitted only when selected direct inputs determine every class type
-parameter. Concrete targets normally come from Analyzer-observed use sites. For one
-direct scalar parameter, evidence for either `String` or `int` completes the pair when
-both satisfy the Dart bound; the runtime input remains restricted to strings and safe
-integers. Multiple targets must have disjoint bridge domains. Overlapping targets such
-as `num` and `int`, inference from a `List<T>` parameter, unresolved type parameters,
+Constructors are emitted only when every class type parameter occurs in a selected
+required input signature. This includes nested collections, Records, async values,
+nominal arguments and callback signatures, using the existing recursive TypeRef rules.
+Concrete targets normally come from Analyzer-observed use sites. For one direct scalar
+parameter, evidence for either `String` or `int` completes the pair when both satisfy
+the Dart bound; the runtime input remains restricted to strings and safe integers.
+Multiple targets must have disjoint bridge domains. Overlapping targets such as `num`
+and `int`, inference from runtime collection contents, unresolved type parameters,
 invalid bounds and runtime type-token requirements fail closed or leave the shared owner
 non-constructible. `typeArguments` and `methodTypeArguments` remain for concrete cases
 that cannot be inferred safely.
@@ -678,6 +680,20 @@ require the ordinary selected Stream owner. When a shared `Iterable` bound decod
 JS Set into a typed List copy, constructor dispatch uses its original weakly recorded
 shape. Native List/Set references use their actual Dart shape; no collection elements
 are inspected to choose a target.
+
+For `Bag<T>(List<T> items)`, one observed `Bag<String>` use closes the constructor's
+List conversion and its generic result to `Bag<string>`. Empty arrays are valid and
+numeric elements are rejected by the ordinary converter. Type parameters inside
+`Map<K, List<V?>>`, `Future<List<T>>` or a callback result follow the same signature
+matching; nullability on a `T?` leaf does not change the selected `T`. Simultaneously
+observed `Bag<String>` and `Bag<int>` uses remain ambiguous because both accept the same
+JS array shape. Optional-only or missing generic inputs are not inferred. The
+String/safe-int completion applies only to direct `T` inputs and never creates an
+unobserved nested target. Named enum factories also expose only their compiled targets
+and keep multi-input correlations through overloads. Extension types reuse their
+representation conversion. A parameter erased out of that representation, such as
+`Token<T>` represented by `int`, is not inference evidence and still needs explicit
+class arguments.
 
 Specialized Dart factory functions expose the actual concrete TypeScript signature. A
 single target accepts only its supported input conversion and returns its closed generic
@@ -725,7 +741,9 @@ schema, protocol or ABI version is introduced. Native objects matching no known 
 and automatic JS proxies keep their shared erased owner. Matching uses Dart type checks;
 explicit type arguments remain the way to require a different concrete contract. See the
 [generator regression](../../packages/flax_codegen/test/nested_generic_constructors_test.dart)
-and [real bridge regression](../../packages/flax/test/ui/interop_test.dart).
+and
+[nested input regression](../../packages/flax_codegen/test/nested_constructor_inputs_test.dart),
+plus the [real bridge regression](../../packages/flax/test/ui/interop_test.dart).
 
 An explicitly selected static generic factory is inferred as deferred when it is
 synchronous, returns its generic owner directly, the result determines every method type

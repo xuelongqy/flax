@@ -52,6 +52,110 @@ final class Envelope<T> {
   final T value;
 }
 
+final class Bag<T> {
+  Bag(this.items);
+  Bag.fromSet(Set<T> items) : items = items.toList();
+  Bag.fromRecord((List<T>, {T? value}) input) : items = input.$1;
+  Bag.fromFuture(Future<List<T>> this.pending) : items = [];
+  Bag.fromCallback(List<T> Function() build) : items = build();
+  Bag.fromEnvelope(Envelope<List<T>> input) : items = input.value;
+  Bag.fromGeneric(void Function<R extends T>(R) visit) : items = [];
+
+  List<T> items;
+  Future<List<T>>? pending;
+  T first() => items.first;
+  List<T> map(T Function(T) callback) => items.map(callback).toList();
+}
+
+final class NullableBag<T> {
+  NullableBag(this.items);
+  List<T?>? items;
+  T first() => items!.whereType<T>().first;
+}
+
+final class PairBag<K, V> {
+  PairBag(this.items);
+  Map<K, List<V?>> items;
+  V first(K key) => items[key]!.whereType<V>().first;
+}
+
+final class CorrelatedBag<T> {
+  CorrelatedBag(this.tag, this.items);
+  final T tag;
+  final List<T> items;
+}
+
+final class AmbiguousBag<T> {
+  AmbiguousBag(this.items);
+  final List<T> items;
+}
+
+final class OptionalBag<T> {
+  OptionalBag({this.items});
+  final List<T>? items;
+}
+
+final class PhantomBag<T, U> {
+  PhantomBag(this.items);
+  final List<T> items;
+}
+
+extension type PhantomToken<T>(int value) {}
+
+extension type ItemsToken<T>(List<T> values) {}
+
+final class TokenBag<T> {
+  TokenBag(ItemsToken<T> items) : items = items.values;
+  final List<T> items;
+}
+
+final class PhantomTokenBag<T> {
+  PhantomTokenBag(this.token);
+  final PhantomToken<T> token;
+}
+
+final class DataInputBag<T> {
+  DataInputBag(this.items);
+  final List<T> items;
+}
+
+abstract class BagUses {
+  Bag<String> get strings;
+  Envelope<List<String>> get envelope;
+  NullableBag<String> get nullable;
+  PairBag<String, int> get pairs;
+  CorrelatedBag<String> get correlated;
+  AmbiguousBag<String> get ambiguousStrings;
+  AmbiguousBag<int> get ambiguousIntegers;
+  OptionalBag<String> get optional;
+  PhantomBag<String, int> get phantom;
+  TokenBag<String> get token;
+  PhantomTokenBag<String> get phantomToken;
+  DataInputBag<Object?> get data;
+}
+
+enum NestedBagEnum<T> {
+  strings<String>(['a']);
+
+  const NestedBagEnum(this.items);
+  factory NestedBagEnum.fromItems(List<T> items) => strings as NestedBagEnum<T>;
+  final List<T> items;
+}
+
+enum CorrelatedBagEnum<T> {
+  strings<String>('a', ['a']),
+  integers<int>(1, [1]);
+
+  const CorrelatedBagEnum(this.tag, this.items);
+  factory CorrelatedBagEnum.fromItems(T tag, List<T> items) {
+    if (T == String) return strings as CorrelatedBagEnum<T>;
+    if (T == int) return integers as CorrelatedBagEnum<T>;
+    throw StateError('Unexpected enum factory target: $T');
+  }
+  final T tag;
+  final List<T> items;
+}
+
 final class ExplicitBox<T> {
   ExplicitBox(this.value);
   final T value;

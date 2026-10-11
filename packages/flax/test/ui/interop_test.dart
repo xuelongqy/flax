@@ -192,6 +192,50 @@ void main() {
             reason: source,
           );
         }
+        h.execute('''
+          var bagEmpty = interop.CodegenBag([]);
+          var bag = interop.CodegenBag(['a']);
+          var bagItems = bag.items;
+          var bagAgain = interop.CodegenBag(bagItems);
+          var bagIdentity = bagAgain.items === bagItems;
+          bag.items = ['b'];
+          var bagMapped = bag.map(value => value.toUpperCase());
+          var bagFuture;
+          bag.pending(Promise.resolve(['later'])).then(value => {bagFuture = value.get(0);});
+          var badBagFuture;
+          bag.pending(Promise.resolve([1])).then(
+            () => {badBagFuture = false;}, () => {badBagFuture = true;}
+          );
+        ''');
+        expect(created.whereType<fixture.CodegenBag<String>>(), hasLength(3));
+        expect(
+          h.boolean(
+            'bagIdentity && bagEmpty.items.length === 0 && bag.first() === "b" && bagMapped.get(0) === "B"',
+          ),
+          isTrue,
+        );
+        await _waitFor(
+          tester,
+          h,
+          'bagFuture !== undefined && badBagFuture !== undefined',
+        );
+        expect(h.boolean('bagFuture === "later" && badBagFuture'), isTrue);
+        for (final source in [
+          'interop.CodegenBag()',
+          'interop.CodegenBag(undefined)',
+          'interop.CodegenBag(null)',
+          'interop.CodegenBag([1])',
+          'interop.CodegenBag(new Set(["a"]))',
+          'bag.items = [1]',
+          'bag.map(() => 1)',
+        ]) {
+          expect(
+            () => h.execute(source),
+            throwsA(isA<FlaxJsException>()),
+            reason: source,
+          );
+        }
+        expect(h.boolean('bag.first() === "b"'), isTrue);
         expect(h.errors, isEmpty);
       } finally {
         await h.finish(tester);

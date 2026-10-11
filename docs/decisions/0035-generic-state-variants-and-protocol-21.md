@@ -42,11 +42,14 @@ the Dart declaration. Dependent and recursive bounds such as `U extends List<T>`
 
 The shared owner only permits existing Dart instances to use one generated owner. It
 does not make the generic constructor universally callable. Constructor calls are
-emitted only when selected direct inputs identify every class type parameter. Concrete
-targets normally come from Analyzer use sites. For one direct scalar parameter, evidence
-for either `String` or `int` completes the pair when both satisfy the Dart bound; the
-bridge then accepts only strings and safe integers. Runtime domains must remain
-disjoint, and overlapping targets fail closed. Nested inference, runtime type tokens and
+emitted only when selected required input signatures identify every class type
+parameter, including parameters nested in supported collections, Records, async types
+and callbacks. Concrete targets normally come from Analyzer use sites. For one direct
+scalar parameter, evidence for either `String` or `int` completes the pair when both
+satisfy the Dart bound; the bridge then accepts only strings and safe integers. Runtime
+domains must remain disjoint, and overlapping targets fail closed. Signatures such as
+`Bag<T>(List<T> items)` can use an observed `Bag<String>` target; two different List
+targets remain ambiguous. Runtime collection inspection, runtime type tokens and
 permissive dynamic fallback are not introduced.
 
 Capability census output reports generic behavior with the current semantic categories:

@@ -65169,9 +65169,9 @@
                         "dartArguments": [],
                         "primitiveKinds": [],
                         "declaration": {
-                          "kind": "parameter",
+                          "kind": "String",
                           "id": null,
-                          "name": "T",
+                          "name": null,
                           "nullable": false,
                           "item": null,
                           "key": null,
@@ -65183,7 +65183,7 @@
                           "primitiveKinds": [],
                           "declaration": null,
                           "tsArguments": [],
-                          "slot": "g0"
+                          "slot": null
                         },
                         "tsArguments": [],
                         "slot": null
@@ -65212,9 +65212,9 @@
                         "dartArguments": [],
                         "primitiveKinds": [],
                         "declaration": {
-                          "kind": "parameter",
+                          "kind": "int",
                           "id": null,
-                          "name": "T",
+                          "name": null,
                           "nullable": false,
                           "item": null,
                           "key": null,
@@ -65226,7 +65226,7 @@
                           "primitiveKinds": [],
                           "declaration": null,
                           "tsArguments": [],
-                          "slot": "g0"
+                          "slot": null
                         },
                         "tsArguments": [],
                         "slot": null

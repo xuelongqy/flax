@@ -100,6 +100,19 @@ const interopSelection = {
     kind: 'object',
     getters: ['value', 'history', 'record'],
   ),
+  'CodegenBag': FlaxCodegenClassSelection(
+    {
+      '': ['items'],
+    },
+    kind: 'object',
+    getters: ['items'],
+    setters: ['items'],
+    instanceMethods: {
+      'first': [],
+      'map': ['callback'],
+      'pending': ['items'],
+    },
+  ),
   'CodegenExplicitNestedBox': FlaxCodegenClassSelection(
     {
       '': ['value'],

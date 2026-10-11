@@ -1308,6 +1308,100 @@ class FlaxCodegenBindingEmitter {
     return out.toString();
   }
 
+  Map<Object?, FlaxCodegenTypeRef> _constructorTypeArguments(
+    FlaxCodegenClassModel type,
+    FlaxCodegenConstructorModel constructor,
+    FlaxCodegenConstructorSpecializationModel target,
+  ) {
+    final inferred = <Object?, FlaxCodegenTypeRef>{};
+    void infer(FlaxCodegenTypeRef declared, FlaxCodegenTypeRef concrete) {
+      final parameter = declared.kind == 'parameter'
+          ? declared
+          : declared.declaration?.kind == 'parameter'
+          ? declared.declaration
+          : null;
+      if (parameter != null) {
+        final index = type.typeParameters.indexWhere(
+          (p) => p.genericIdentity == parameter.genericIdentity,
+        );
+        if (index < 0) return;
+        var argument = concrete.declaredAs(null);
+        // T? within any input does not make the selected T nullable.
+        if (parameter.nullable && !target.typeArguments[index].endsWith('?')) {
+          argument = argument.withNullability(false);
+        }
+        final previous = inferred[parameter.genericIdentity];
+        if (previous != null &&
+            _typeId(previous.withDataConversion(false)) !=
+                _typeId(argument.withDataConversion(false))) {
+          throw StateError(
+            'Conflicting constructor type arguments: ${type.name}',
+          );
+        }
+        if (previous == null || argument.kind == 'data') {
+          inferred[parameter.genericIdentity] = argument;
+        }
+        return;
+      }
+      if (declared.isExtensionTypeDeclaration) {
+        infer(declared.item!, concrete);
+        return;
+      }
+      final declaredArguments = declared.tsArguments.isNotEmpty
+          ? declared.tsArguments
+          : declared.dartArguments;
+      final concreteArguments = concrete.dartArguments.isNotEmpty
+          ? concrete.dartArguments
+          : concrete.tsArguments;
+      if (declaredArguments.length != concreteArguments.length ||
+          declared.recordFields.length != concrete.recordFields.length ||
+          declared.parameters.length != concrete.parameters.length ||
+          declared.typeParameters.length != concrete.typeParameters.length) {
+        throw StateError('Mismatched constructor input types: ${type.name}');
+      }
+      for (var i = 0; i < declaredArguments.length; i++) {
+        infer(declaredArguments[i], concreteArguments[i]);
+      }
+      if (declared.item != null && concrete.item != null) {
+        infer(declared.item!, concrete.item!);
+      }
+      if (declared.key != null && concrete.key != null) {
+        infer(declared.key!, concrete.key!);
+      }
+      if (declared.result != null && concrete.result != null) {
+        infer(declared.result!, concrete.result!);
+      }
+      for (var i = 0; i < declared.recordFields.length; i++) {
+        infer(declared.recordFields[i].type, concrete.recordFields[i].type);
+      }
+      for (var i = 0; i < declared.parameters.length; i++) {
+        infer(declared.parameters[i].type, concrete.parameters[i].type);
+      }
+      for (var i = 0; i < declared.typeParameters.length; i++) {
+        infer(
+          declared.typeParameters[i].bound,
+          concrete.typeParameters[i].bound,
+        );
+      }
+    }
+
+    for (final (index, parameter) in constructor.parameters.indexed) {
+      if (!parameter.required) continue;
+      infer(
+        parameter.type.declaration ?? parameter.type,
+        target.parameterTypes[index],
+      );
+    }
+    if (type.typeParameters.any(
+      (p) => !inferred.containsKey(p.genericIdentity),
+    )) {
+      throw StateError(
+        'Missing concrete constructor type arguments: ${type.name}',
+      );
+    }
+    return inferred;
+  }
+
   List<_ConcreteMemberView> _concreteMemberViews(FlaxCodegenClassModel type) {
     if (type.kind != 'object' || type.typeParameters.isEmpty) return const [];
     final views = <_ConcreteMemberView>[];
@@ -1315,32 +1409,12 @@ class FlaxCodegenBindingEmitter {
     for (final constructor in type.constructors) {
       for (final target in constructor.specializations) {
         if (!seen.add(jsonEncode(target.typeArguments))) continue;
-        final substitutions = <Object?, FlaxCodegenTypeRef>{};
-        for (final (index, parameter) in constructor.parameters.indexed) {
-          final declared = parameter.type.declaration;
-          if (declared?.kind == 'parameter') {
-            final argument = type.typeParameters.indexWhere(
-              (p) => p.genericIdentity == declared!.genericIdentity,
+        // Constructor data conversion does not determine native member conversion.
+        final substitutions =
+            _constructorTypeArguments(type, constructor, target).map(
+              (identity, argument) =>
+                  MapEntry(identity, argument.withDataConversion(false)),
             );
-            // Use the closed Dart type, independently of constructor data conversion.
-            final concrete = target.parameterTypes[index]
-                .withDataConversion(false)
-                .declaredAs(null);
-            // A nullable T? input does not make its selected T nullable.
-            substitutions[declared!.genericIdentity] =
-                declared.nullable &&
-                    !target.typeArguments[argument].endsWith('?')
-                ? concrete.withNullability(false)
-                : concrete;
-          }
-        }
-        if (type.typeParameters.any(
-          (p) => !substitutions.containsKey(p.genericIdentity),
-        )) {
-          throw StateError(
-            'Missing concrete member type arguments: ${type.name}',
-          );
-        }
         List<FlaxCodegenGetterModel> specialize(
           List<FlaxCodegenGetterModel> members,
         ) => [
@@ -4305,6 +4379,7 @@ $_typescriptHostImport
       FlaxCodegenExtensionModel? extensionView,
       FlaxCodegenExtensionMemberModel? extensionMember,
       bool signatureOnly = false,
+      List<FlaxCodegenMethodModel> literalOverloads = const [],
     }) {
       final previousGenericNames = genericNames;
       if (extensionOperation) {
@@ -4376,7 +4451,7 @@ $_typescriptHostImport
         getter
             ? 'get $memberName(): ${tsType(method.result)} {'
             : method.instance || literal
-            ? '$memberName${literal ? generics(typeParameters) : ''}(${[if (method.instance) 'this: object', ...args].join(', ')}): ${tsType(method.result, declarations: declarations && !method.instance)} {'
+            ? '${literalOverloads.isEmpty ? memberName : '$memberName: function'}${literal ? generics(typeParameters) : ''}(${[if (method.instance) 'this: object', ...args].join(', ')}): ${tsType(method.result, declarations: declarations && !method.instance)} {'
             : '${namespace == null ? "function _flaxTopLevel_" : "${exportNamespace ? 'export ' : ''}namespace $namespace { export function "}${method.name}${generics(method.typeParameters)}(${args.join(', ')}): ${tsType(method.result, declarations: declarations && !method.instance)} {',
       );
       target.writeln(
@@ -4450,13 +4525,27 @@ $_typescriptHostImport
           'return _flaxResult as ${tsType(method.result, declarations: declarations && !method.instance)};',
         );
       }
-      target.writeln(
-        method.instance || literal
-            ? '},'
-            : namespace == null
-            ? '}'
-            : '} }',
-      );
+      if (literalOverloads.isNotEmpty) {
+        target.writeln('} as {');
+        for (final overload in literalOverloads) {
+          emitTsCallable(
+            target,
+            FlaxCodegenMethodModel('', overload.parameters, overload.result),
+            id: id,
+            signatureOnly: true,
+            declarations: false,
+          );
+        }
+        target.writeln('},');
+      } else {
+        target.writeln(
+          method.instance || literal
+              ? '},'
+              : namespace == null
+              ? '}'
+              : '} }',
+        );
+      }
       if (namespace == null && !method.instance && !literal) {
         target.writeln(
           'export { _flaxTopLevel_${method.name} as ${method.name} };',
@@ -4876,7 +4965,6 @@ $_typescriptHostImport
           );
         }
         for (final constructor in type.constructors) {
-          final inferred = constructor.specializations.isNotEmpty;
           final call = module
               .enumFunctions(type)
               .singleWhere(
@@ -4885,48 +4973,45 @@ $_typescriptHostImport
                     type.enumOperationId(constructor.name, 'factory'),
               )
               .call;
+          final targets = <FlaxCodegenMethodModel>[];
+          for (final target in constructor.specializations) {
+            final arguments = _constructorTypeArguments(
+              type,
+              constructor,
+              target,
+            );
+            targets.add(
+              FlaxCodegenMethodModel(
+                constructor.name,
+                constructor.parameters
+                    .map((p) => p.specialize(arguments))
+                    .toList(),
+                FlaxCodegenTypeRef(
+                  'enum',
+                  id: type.id,
+                  name: type.name,
+                  tsArguments: [
+                    for (final parameter in type.typeParameters)
+                      arguments[parameter.genericIdentity]!,
+                  ],
+                ),
+              ),
+            );
+          }
           emitTsCallable(
             out,
-            FlaxCodegenMethodModel(
-              constructor.name,
-              constructor.parameters,
-              inferred
-                  ? FlaxCodegenTypeRef(
-                      'enum',
-                      id: type.id,
-                      name: type.name,
-                      tsArguments: [
-                        for (final parameter in type.typeParameters)
-                          FlaxCodegenTypeRef(
-                            'parameter',
-                            name: parameter.name,
-                            genericIdentity: parameter.genericIdentity,
-                          ),
-                      ],
-                    )
-                  : call.result,
-              typeParameters: inferred
-                  ? [
-                      for (final parameter in type.typeParameters)
-                        FlaxCodegenGenericParameter(
-                          parameter.name,
-                          constructor.parameters.any(
-                                (input) =>
-                                    input.type.kind == 'scalar' &&
-                                    input.type.declaration?.genericIdentity ==
-                                        parameter.genericIdentity,
-                              )
-                              ? const FlaxCodegenTypeRef('scalar')
-                              : parameter.bound,
-                          genericIdentity: parameter.genericIdentity,
-                        ),
-                    ]
-                  : const [],
-            ),
+            targets.length == 1
+                ? targets.single
+                : FlaxCodegenMethodModel(
+                    constructor.name,
+                    constructor.parameters,
+                    call.result,
+                  ),
             id: type.enumOperationId(constructor.name, 'factory'),
             literal: true,
             enumOperation: true,
-            declarations: inferred,
+            declarations: false,
+            literalOverloads: targets.length > 1 ? targets : const [],
           );
         }
         out.writeln('});');
@@ -5181,27 +5266,31 @@ $_typescriptHostImport
                   (parameter) =>
                       parameter.type.kind == 'any' ||
                       (parameter.type.kind == 'iterable' &&
-                          parameter.type.declaration?.kind == 'parameter'),
+                          parameter.type.declaration?.kind == 'parameter') ||
+                      (parameter.type.declaration?.kind != 'parameter' &&
+                          _containsParameter(
+                            parameter.type.declaration ?? parameter.type,
+                            type.typeParameters.map((p) => p.name).toSet(),
+                          )),
                 )
             ? ctor.specializations
             : const <FlaxCodegenConstructorSpecializationModel>[];
         String resultArguments(
           FlaxCodegenConstructorSpecializationModel? target,
-        ) => !fixed && target == null
-            ? genericUse(type)
-            : '<${type.typeParameters.map((parameter) {
-                if (target == null) {
-                  return tsType(parameter.defaultType ?? parameter.bound);
-                }
-                final index = ctor.parameters.indexWhere((input) => input.type.declaration?.kind == 'parameter' && input.type.declaration?.name == parameter.name);
-                if (index < 0) {
-                  throw StateError('Missing concrete constructor input: ${type.name}.${parameter.name}');
-                }
-                final input = target.parameterTypes[index];
-                final result = tsType(input, declarations: false);
-                // A T? input does not make a selected non-nullable T nullable.
-                return input.nullable && !target.typeArguments[type.typeParameters.indexOf(parameter)].endsWith('?') ? 'NonNullable<$result>' : result;
-              }).join(', ')}>';
+        ) {
+          if (!fixed && target == null) return genericUse(type);
+          final arguments = target == null
+              ? null
+              : _constructorTypeArguments(type, ctor, target);
+          return '<${type.typeParameters.map((parameter) {
+            if (target == null) {
+              return tsType(parameter.defaultType ?? parameter.bound);
+            }
+            final input = arguments![parameter.genericIdentity]!;
+            return tsType(input, declarations: false);
+          }).join(', ')}>';
+        }
+
         final resultType = overloads.isEmpty
             ? '${type.name}${resultArguments(specialization)}'
             : overloads

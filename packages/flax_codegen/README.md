@@ -195,10 +195,12 @@ unsupported parameter or result position, including nested callback signatures.
 
 Constructor specialization accepts closed nested arguments such as `List<String>`,
 `Map<String, List<int?>>`, nullable collections and selected nominal types. Automatic
-selection uses Analyzer-observed targets when every class type parameter is a required
-direct input. Collection shape can distinguish a List from a scalar, Map or Set;
-`Iterable` overlaps List and Set. Two List targets with different element types remain
-ambiguous, including for empty arrays. Existing explicit selection resolves that choice:
+selection uses Analyzer-observed targets when every class type parameter occurs in a
+required input signature, including nested collections, Records, async types, nominal
+arguments and callbacks. Collection shape can distinguish a List from a scalar, Map or
+Set; `Iterable` overlaps List and Set. Two List targets with different element types
+remain ambiguous, including for empty arrays. Existing explicit selection resolves that
+choice:
 
 ```yaml
 Box:
@@ -213,9 +215,23 @@ The generated Dart factory accepts `Box([])` and `Box(['a'])`, and returns
 Already-compatible Dart collections retain identity; an incompatible Dart reference is
 never narrowed by copying. Multiple disjoint targets reuse the existing checked erased
 collection and async adapters. No runtime type token, engine change or new configuration
-is needed. This does not infer `T` from a `List<T>` parameter's contents or reify the
-shared Dart owner of an automatically selected JS proxy. See the
-[nested constructor regression](test/nested_generic_constructors_test.dart).
+is needed. For `Bag<T>(List<T> items)` with an observed `Bag<String>` use, automatic
+generation accepts `Bag([])` or `Bag(['a'])`, returns `Bag<string>`, and checks every
+element with the existing String conversion. Its properties and methods retain that same
+concrete `T`. If both `Bag<String>` and `Bag<int>` are observed, their List inputs
+overlap and require explicit `typeArguments: [String]` or `[int]`. The String/safe-int
+pair is completed only for a direct `T` input, never for a nested `List<T>` input. Named
+enum factories expose the same closed target signatures; multiple targets retain their
+input/result correlations through overloads, including detached factory calls.
+Optional-only or missing type parameters still need explicit arguments. An extension
+type's erased representation must retain the parameter; a phantom argument such as
+`extension type Token<T>(int value)` is not inference evidence.
+
+This resolves type parameters from the declared signature and existing concrete Dart
+uses; it does not infer `T` from runtime collection contents or reify the shared Dart
+owner of an automatically selected JS proxy. See the
+[nested target regression](test/nested_generic_constructors_test.dart) and
+[nested input regression](test/nested_constructor_inputs_test.dart).
 
 Native objects in ordinary Object bindings matching these known constructor targets also
 get concrete member conversion. For `Box<T extends Iterable<String>>` with List and Set

@@ -84,33 +84,37 @@ bool _containsData(FlaxCodegenTypeRef type) =>
 
 bool _containsDeferredTypeParameter(
   DartType type,
-  Set<TypeParameterElement> parameters,
-) {
+  Set<TypeParameterElement> parameters, {
+  bool representationOnly = false,
+}) {
+  bool contains(DartType type) => _containsDeferredTypeParameter(
+    type,
+    parameters,
+    representationOnly: representationOnly,
+  );
   if (type is TypeParameterType) return parameters.contains(type.element);
   if (type is InterfaceType) {
-    return type.typeArguments.any(
-      (argument) => _containsDeferredTypeParameter(argument, parameters),
-    );
+    final owner = type.element;
+    if (representationOnly && owner is ExtensionTypeElement) {
+      return contains(
+        Substitution.fromPairs2(
+          owner.typeParameters,
+          type.typeArguments,
+        ).substituteType(owner.typeErasure),
+      );
+    }
+    return type.typeArguments.any(contains);
   }
   if (type is FunctionType) {
-    return _containsDeferredTypeParameter(type.returnType, parameters) ||
-        type.formalParameters.any(
-          (parameter) =>
-              _containsDeferredTypeParameter(parameter.type, parameters),
-        ) ||
+    return contains(type.returnType) ||
+        type.formalParameters.any((parameter) => contains(parameter.type)) ||
         type.typeParameters.any(
-          (parameter) =>
-              parameter.bound != null &&
-              _containsDeferredTypeParameter(parameter.bound!, parameters),
+          (parameter) => parameter.bound != null && contains(parameter.bound!),
         );
   }
   if (type is RecordType) {
-    return type.positionalFields.any(
-          (field) => _containsDeferredTypeParameter(field.type, parameters),
-        ) ||
-        type.namedFields.any(
-          (field) => _containsDeferredTypeParameter(field.type, parameters),
-        );
+    return type.positionalFields.any((field) => contains(field.type)) ||
+        type.namedFields.any((field) => contains(field.type));
   }
   return false;
 }
@@ -2609,7 +2613,17 @@ class FlaxCodegenBindingParser {
               FlaxCodegenConstructorSpecializationModel(
                 typeArguments: target.typeArguments,
                 parameterTypes: [
-                  for (final parameter in concreteParameters) parameter.type,
+                  for (final parameter in concreteParameters)
+                    parameter.type.declaredAs(
+                      parameter.type.declaration == null
+                          ? null
+                          : typeRef(
+                              concreteConstructor.formalParameters
+                                  .firstWhere((p) => p.name == parameter.name)
+                                  .type,
+                              forTypescript: true,
+                            ),
+                    ),
                 ],
                 runtimeDomains: target.runtimeDomains,
               ),

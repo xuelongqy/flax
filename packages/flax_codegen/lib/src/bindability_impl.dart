@@ -1119,26 +1119,33 @@ _ConstructorSpecializationPlan _constructorSpecializationPlan({
   if (parameters.isEmpty) {
     return const _ConstructorSpecializationPlan([]);
   }
-  final directInputs = <TypeParameterElement, FormalParameterElement>{};
-  for (final typeParameter in parameters) {
-    final input = constructor.formalParameters.where((parameter) {
-      if (!selectedParameters.contains(parameter.name) ||
-          !parameter.isRequired) {
-        return false;
-      }
-      final type = parameter.type;
-      return type is TypeParameterType && type.element == typeParameter;
-    }).firstOrNull;
-    if (input == null) {
-      return _ConstructorSpecializationPlan(
-        const [],
-        reason:
-            'Generic constructor specialization requires every type parameter '
-            'as a required direct input',
-        code: _constructorSpecializationMissingUseSiteCode,
-      );
-    }
-    directInputs[typeParameter] = input;
+  final parameterSet = parameters.toSet();
+  final inputs = constructor.formalParameters
+      .where(
+        (parameter) =>
+            selectedParameters.contains(parameter.name) &&
+            parameter.isRequired &&
+            _containsDeferredTypeParameter(
+              parameter.type,
+              parameterSet,
+              representationOnly: true,
+            ),
+      )
+      .toList();
+  if (parameters.any(
+    (typeParameter) => !inputs.any(
+      (input) => _containsDeferredTypeParameter(input.type, {
+        typeParameter,
+      }, representationOnly: true),
+    ),
+  )) {
+    return const _ConstructorSpecializationPlan(
+      [],
+      reason:
+          'Generic constructor specialization requires every type parameter '
+          'in a required input',
+      code: _constructorSpecializationMissingUseSiteCode,
+    );
   }
 
   final targets = <_ConstructorSpecializationTarget>[];
@@ -1188,12 +1195,12 @@ _ConstructorSpecializationPlan _constructorSpecializationPlan({
       );
     }
     final domains = <String, String>{};
-    for (final entry in directInputs.entries) {
+    for (final input in inputs) {
       final concrete = targetConstructor.formalParameters
-          .firstWhere((parameter) => parameter.name == entry.value.name)
+          .firstWhere((parameter) => parameter.name == input.name)
           .type;
       final domain = _constructorJsDomain(concrete);
-      if (domain != null) domains[entry.value.name!] = domain;
+      if (domain != null) domains[input.name!] = domain;
     }
     targets.add(
       _ConstructorSpecializationTarget(
@@ -1207,7 +1214,13 @@ _ConstructorSpecializationPlan _constructorSpecializationPlan({
   // String and safe integers are the two stable scalar bridge domains. Once
   // Analyzer evidence selects either one for a direct generic input, complete
   // the pair when both satisfy the declared Dart bound.
-  if (parameters.length == 1 && targets.isNotEmpty) {
+  if (parameters.length == 1 &&
+      targets.isNotEmpty &&
+      inputs.any(
+        (input) =>
+            input.type is TypeParameterType &&
+            (input.type as TypeParameterType).element == parameters.single,
+      )) {
     final observed = targets
         .map((target) => target.typeArguments.single)
         .toSet();
@@ -1230,12 +1243,12 @@ _ConstructorSpecializationPlan _constructorSpecializationPlan({
             .firstOrNull;
         if (targetConstructor == null) continue;
         final domains = <String, String>{};
-        for (final entry in directInputs.entries) {
+        for (final input in inputs) {
           final concrete = targetConstructor.formalParameters
-              .firstWhere((parameter) => parameter.name == entry.value.name)
+              .firstWhere((parameter) => parameter.name == input.name)
               .type;
           final domain = _constructorJsDomain(concrete);
-          if (domain != null) domains[entry.value.name!] = domain;
+          if (domain != null) domains[input.name!] = domain;
         }
         targets.add(
           _ConstructorSpecializationTarget(
@@ -1349,9 +1362,7 @@ _ConstructorSpecializationPlan _constructorSpecializationPlan({
       final a = targets[left].runtimeDomains;
       final b = targets[right].runtimeDomains;
       var disjoint = false;
-      for (final name in directInputs.values.map(
-        (parameter) => parameter.name!,
-      )) {
+      for (final name in inputs.map((parameter) => parameter.name!)) {
         final aDomain = a[name];
         final bDomain = b[name];
         if (aDomain != null &&
