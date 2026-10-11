@@ -249,6 +249,7 @@ class FlaxCodegenTypeRef {
       throw StateError('Invalid $kind model at $location');
     }
     if (category == FlaxCodegenTypeCategory.typeOnly) {
+      // An extension type can erase to a nullable value without its own ? suffix.
       final uri = Uri.tryParse(originatingUri ?? '');
       if (id != null ||
           name == null ||
@@ -263,7 +264,7 @@ class FlaxCodegenTypeRef {
           typeArguments.isNotEmpty ||
           dartArguments.isNotEmpty ||
           declaration != null ||
-          (item != null && item!.nullable != nullable)) {
+          (item != null && nullable && !item!.nullable)) {
         throw StateError('Invalid type-only reference at $location');
       }
     } else if (originatingUri != null || originatingName != null) {
@@ -351,7 +352,6 @@ class FlaxCodegenTypeRef {
         String position, {
         required bool toDart,
         bool argument = false,
-        bool insideStream = false,
       }) {
         if (type.kind == 'future' || type.kind == 'futureOr') {
           final item = type.item!;
@@ -359,26 +359,15 @@ class FlaxCodegenTypeRef {
           if ({'route', 'page'}.contains(item.kind)) {
             return itemPosition;
           }
-          return unsupportedPosition(
-            item,
-            itemPosition,
-            toDart: toDart,
-            insideStream: insideStream,
-          );
+          return unsupportedPosition(item, itemPosition, toDart: toDart);
         }
         if (type.kind == 'stream') {
-          if (insideStream) return position;
           final item = type.item!;
           final itemPosition = '$position item';
-          if ({'route', 'page', 'parameter', 'stream'}.contains(item.kind)) {
+          if ({'route', 'page', 'parameter'}.contains(item.kind)) {
             return itemPosition;
           }
-          return unsupportedPosition(
-            item,
-            itemPosition,
-            toDart: toDart,
-            insideStream: true,
-          );
+          return unsupportedPosition(item, itemPosition, toDart: toDart);
         }
         if ({'iterable', 'list', 'map', 'set'}.contains(type.kind)) {
           final itemError = unsupportedPosition(
@@ -386,7 +375,6 @@ class FlaxCodegenTypeRef {
             '$position item',
             toDart: toDart,
             argument: argument,
-            insideStream: insideStream,
           );
           if (itemError != null) return itemError;
           if (type.key != null) {
@@ -395,7 +383,6 @@ class FlaxCodegenTypeRef {
               '$position key',
               toDart: toDart,
               argument: argument,
-              insideStream: insideStream,
             );
           }
           return null;
@@ -407,7 +394,6 @@ class FlaxCodegenTypeRef {
               '$position.${field.name}',
               toDart: toDart,
               argument: argument,
-              insideStream: insideStream,
             );
             if (error != null) return error;
           }

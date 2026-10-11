@@ -47,6 +47,9 @@ void main() {
           'echoList',
           'echoMap',
           'echoRecord',
+          'echoNested',
+          'echoNullableNested',
+          'echoNestedRecord',
         ]),
       );
       final module = await parser.parse(proposal.config);
@@ -100,6 +103,9 @@ callbacks.echoStreamFutureSet(value => value);
 callbacks.echoStreamFutureIterable(value => value);
 callbacks.echoStreamFutureRecord(value => value);
 callbacks.echoStreamFutureVoid(value => value);
+callbacks.echoNested(value => value);
+callbacks.echoNullableNested(value => value);
+callbacks.echoNestedRecord(value => value);
 // @ts-expect-error A stream callback result cannot be a scalar.
 callbacks.echoStreamFuture(() => 1);
 // @ts-expect-error A Future callback cannot return a bare Stream.
@@ -137,7 +143,7 @@ callbacks.echoFutureStream(value => callbacks.futureOrStream(value));
       });
     }
   }
-  test('nested Streams remain outside this callback expansion', () {
+  test('nested Streams share recursive callback validation', () {
     const callback = FlaxCodegenTypeRef(
       'callback',
       result: FlaxCodegenTypeRef(
@@ -148,10 +154,12 @@ callbacks.echoFutureStream(value => callbacks.futureOrStream(value));
         ),
       ),
     );
-    expect(
-      () => callback.validateCallbacks('fixture', input: true),
-      throwsStateError,
-    );
+    for (final input in [true, false]) {
+      expect(
+        () => callback.validateCallbacks('fixture', input: input),
+        returnsNormally,
+      );
+    }
   });
   test('Context inside a Stream aggregate uses ordinary conversion', () {
     const callback = FlaxCodegenTypeRef(

@@ -847,11 +847,6 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       final representation = scope.typeRef(element.thisType);
       representation.validate('$name representation');
       representation.validateCallbacks('$name representation', input: true);
-      if (_unsupportedExtensionTypeRepresentation(representation)) {
-        throw StateError(
-          'Extension type representation uses Flutter lifecycle semantics',
-        );
-      }
       return true;
     } on StateError catch (error) {
       skips.add(
@@ -864,23 +859,6 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       return false;
     }
   }
-
-  bool _unsupportedExtensionTypeRepresentation(FlaxCodegenTypeRef type) =>
-      {
-        'widget',
-        'widgetInterface',
-        'context',
-        'state',
-        'page',
-        'route',
-      }.contains(type.kind) ||
-      [
-        ?type.item,
-        ?type.key,
-        ?type.result,
-        ...type.parameters.map((p) => p.type),
-        ...type.recordFields.map((f) => f.type),
-      ].any(_unsupportedExtensionTypeRepresentation);
 
   FlaxCodegenExtensionSelection? _autoExtensionSelection({
     required _FlaxCodegenTypeScope scope,

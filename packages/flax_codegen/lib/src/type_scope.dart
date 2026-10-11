@@ -346,18 +346,20 @@ final class _FlaxCodegenTypeScope {
       );
       final represented = nullable ? converted.asNullable() : converted;
       final source = typeOnlyReference(type);
-      return represented.declaredAs(
-        FlaxCodegenTypeRef(
-          'typeOnly',
-          name: source.name,
-          nullable: source.nullable,
-          item: represented,
-          primitiveKinds: source.primitiveKinds,
-          tsArguments: source.tsArguments,
-          originatingUri: source.originatingUri,
-          originatingName: source.originatingName,
-        ),
+      final declaration = FlaxCodegenTypeRef(
+        'typeOnly',
+        name: source.name,
+        nullable: source.nullable,
+        item: represented,
+        primitiveKinds: source.primitiveKinds,
+        tsArguments: source.tsArguments,
+        originatingUri: source.originatingUri,
+        originatingName: source.originatingName,
       );
+      // Type-only positions keep the extension declaration without another layer.
+      return represented.kind == 'typeOnly'
+          ? declaration
+          : represented.declaredAs(declaration);
     }
     if (typeOnlyPosition &&
         !parser._adaptations.containsKey(identity(element)) &&

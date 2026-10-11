@@ -13,6 +13,7 @@ typedef WidgetIterableRecord = (
   Iterable<FutureOr<Iterable<Widget>>?> pending,
   Future<Iterable<Widget>> later,
 });
+typedef WidgetStreamRecord = ({List<Stream<Iterable<Widget>?>?> groups});
 
 class WidgetValues {
   WidgetValues();
@@ -28,6 +29,8 @@ class WidgetValues {
   late Stream<Iterable<Widget?>> Function() iterableStream;
   late Stream<WidgetIterableRecord> Function() iterableRecords;
   late WidgetIterableRecord nativeIterableRecord;
+  late Stream<WidgetStreamRecord> Function() nestedIterableRecords;
+  late WidgetStreamRecord nativeWidgetStreamRecord;
 
   Iterable<Widget> Function() keepIterable(
     Iterable<Widget> Function() callback,
@@ -57,6 +60,9 @@ class WidgetValues {
   Stream<WidgetIterableRecord> Function() keepIterableRecords(
     Stream<WidgetIterableRecord> Function() callback,
   ) => iterableRecords = callback;
+  Stream<WidgetStreamRecord> Function() keepNestedIterableRecords(
+    Stream<WidgetStreamRecord> Function() callback,
+  ) => nestedIterableRecords = callback;
   Widget firstFromIterable(
     Widget Function(Iterable<Widget>) callback, {
     bool lazy = false,
@@ -74,6 +80,8 @@ class WidgetValues {
   Stream<Iterable<Widget?>> get nativeLazyStream => Stream.value(nativeLazy);
   Stream<WidgetIterableRecord> get nativeIterableRecords =>
       Stream.value(nativeIterableRecord);
+  Stream<WidgetStreamRecord> get nativeNestedIterableRecords =>
+      Stream.value(nativeWidgetStreamRecord);
   int lazyIterations = 0;
   Iterable<Widget> get nativeLazy sync* {
     lazyIterations++;

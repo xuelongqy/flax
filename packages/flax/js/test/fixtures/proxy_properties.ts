@@ -64,6 +64,17 @@ class PropertyWidget extends StatelessWidget {
   }
 }
 
+class WidgetFactory extends plugin.WidgetFactory {
+  #label = 'Factory widget';
+  create(context: BuildContext): Widget {
+    Object.assign(properties, { factoryContext: context });
+    return new PropertyWidget();
+  }
+  createText(): Text {
+    return Text(`${this.#label}: ${super.createText().data}`);
+  }
+}
+
 let superMode:
   | 'good'
   | 'missing'
@@ -298,6 +309,22 @@ const properties = {
     superMode = value;
   },
   makeWidget: () => new PropertyWidget(),
+  makeFactory: (extendsClass: boolean) => {
+    const implementation = extendsClass
+      ? new WidgetFactory()
+      : ({
+          create(context: BuildContext) {
+            Object.assign(properties, { factoryContext: context });
+            return new PropertyWidget();
+          },
+          createText: () => Text('Interface factory'),
+          optional: () => null,
+        } satisfies Parameters<typeof plugin.WidgetFactoryInterface.implement>[1]);
+    Object.assign(properties, { factoryImplementation: implementation });
+    return extendsClass
+      ? (implementation as WidgetFactory)
+      : plugin.WidgetFactoryInterface.implement([], implementation);
+  },
   createPort: () => plugin.PropertyPort.implement([], implementation),
   setReadFailure: (value: typeof readFailure) => {
     readFailure = value;

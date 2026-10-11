@@ -300,6 +300,79 @@ overrides:
       },
     );
 
+    test('extension type generation retains representations without claiming owners', () async {
+      final package = _tempWidgetCliPackage();
+      File(p.join(package.path, 'bindings', 'overrides.yaml')).deleteSync();
+      final repoRoot = p.normalize(p.join(Directory.current.path, '../..'));
+      File(p.join(repoRoot, 'packages/flax/test/fixtures/extension_types.dart'))
+          .copySync(p.join(package.path, 'lib', 'widget_package.dart'));
+      const library = 'package:widget_cli_pkg/widget_package.dart';
+      final automatic = await FlaxCodegenPackagePipeline.generateLibrary(
+        library,
+        packageRoot: package.path,
+      );
+      await FlaxCodegenPackagePipeline.checkLibrary(
+        library,
+        packageRoot: package.path,
+      );
+      final module = automatic.localModels.single;
+      const aliases = [
+        'WidgetBox',
+        'MaybeWidget',
+        'MaybeCount',
+        'ContextBox',
+        'StateBox',
+        'PreferredBox',
+        'GenericBox',
+        'WidgetGroup',
+        'WidgetInfo',
+        'FutureWidget',
+        'WidgetStream',
+        'WidgetCallback',
+        'RouteBox',
+        'PageBox',
+      ];
+      expect(module.typeLibraries.keys, containsAll(aliases));
+      expect(module.functions, hasLength(16));
+      expect(
+        automatic.resolvedPackage.modules.single.owners.map(
+          (owner) => owner.sourceIdentity.name,
+        ),
+        isNot(anyElement(isIn(aliases))),
+      );
+      final config = File(p.join(package.path, 'bindings', 'explicit.yaml'))
+        ..writeAsStringSync(
+          jsonEncode({
+            'format': 2,
+            'name': 'explicit',
+            'library': library,
+            'jsPackage': '@cli/extension-types',
+            'dartOutput': 'lib/extension_types.g.dart',
+            'tsOutput': 'js/extension_types.ts',
+            'types': aliases,
+            'classes': <String, Object>{},
+            'functions': {
+              for (final function in module.functions)
+                function.call.name: {
+                  'parameters': function.call.parameters
+                      .map((p) => p.name)
+                      .toList(),
+                },
+            },
+          }),
+        );
+      await FlaxCodegenPackagePipeline.generateConfig(config.path);
+      await FlaxCodegenPackagePipeline.checkConfig(config.path);
+      final explicit = await FlaxCodegenPackagePipeline.validateConfig(
+        config.path,
+      );
+      expect(
+        explicit.localModels.single.typeLibraries.keys,
+        containsAll(aliases),
+      );
+      expect(explicit.localModels.single.functions, hasLength(16));
+    });
+
     test('automatic library mode carries same-package public dependency routing into parse', () async {
       final package = _tempCarrierCliPackage();
       final validation = await FlaxCodegenPackagePipeline.validateLibrary(

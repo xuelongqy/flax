@@ -65,6 +65,18 @@ non-generic, implementable Widget interfaces reuse the existing native interface
 forwarding path. Private, `@internal`, `@visibleForTesting`, and `@protected` API is
 excluded from automatic exposure.
 
+Extension types reuse the same conversion in automatic and explicit mode, including
+Widget, selected Widget interfaces, Context, State and supported nested collections,
+Records, callbacks, Futures and Streams. For example,
+`extension type Panel(Widget value) {}` lets `Panel echo(Panel value)` accept and return
+the existing JS Widget reference. There is no JS `Panel` constructor, wrapper, member
+surface or independent `instanceof` token. The underlying type's argument, result and
+lifecycle checks still apply: stale Contexts/States and foreign-session references fail,
+and a Page/Route representation does not add an otherwise unsupported result or callback
+position. Representation-only declarations retain the
+`extension_type_representation_only` boundary diagnostic; unsupported representations
+are skipped with their actual conversion reason.
+
 Run automatic mode from the owning binding package (the package receiving generated
 files). Its `pubspec.yaml` resolves the target Dart package and any Flax providers.
 Minimal package metadata is:
@@ -393,11 +405,15 @@ Stream, Widget, Context and State conversion, including nullable values, nested
 Records/collections and returned async functions. Getters return their typed values;
 setter functions remain synchronous even for Future-valued properties. Widgets follow
 Dart retention and joint GC; Context/State validity is checked on each read/write.
-Selected concrete extends getters/setters enforce inherited `@mustCallSuper`, with
-separate read/write and nested invocation checks. Async getters require super before
-returning their Promise; nullable results and existing rejections retain the same rules.
-Manifest 18 preserves `proxy.mustCallSuperAccessors` through providers. Regenerate all
-providers and consumers together; previous formats are rejected. See
+Ordinary proxy methods can also return native or JS-subclass Widgets using this same
+conversion. Both extends and implements proxies support direct, nullable and concrete
+Widget results, native fallback and explicit super calls; Dart can retain and mount the
+result later without an additional host or lease. Selected concrete extends
+getters/setters enforce inherited `@mustCallSuper`, with separate read/write and nested
+invocation checks. Async getters require super before returning their Promise; nullable
+results and existing rejections retain the same rules. Manifest 18 preserves
+`proxy.mustCallSuperAccessors` through providers. Regenerate all providers and consumers
+together; previous formats are rejected. See
 [proxy properties](../../docs/architecture/proxy-properties.md).
 
 Single Widget callback arguments and ordinary Widget-to-Widget calls share generated
@@ -440,8 +456,14 @@ collection and Record positions. A Stream of Futures delivers independently comp
 Future events rather than flattening them. Typed views remain lazy and validate erased
 source events at concrete use sites. Erased collection restoration only copies
 compatible raw JS collection shapes. Existing Dart collections retain identity or fail
-their concrete type check. Asynchronous lifecycle overrides and nested Stream event
-exclusions remain unchanged. See the
+their concrete type check. Nested Streams, including through Futures, Records and
+collections, use lazy recursive typed views in incoming and returned callbacks. Each
+inner Stream remains an independent source: neither callback conversion nor an outer
+subscription merges or implicitly listens to its events. Cancelling an outer
+subscription leaves independently subscribed inner Streams alone; session close cleans
+up all bridge-owned subscriptions and AsyncIterable sources. Restricted Widget Iterable
+callback views check inner Stream events lazily, including inside native Records and
+collections. Asynchronous lifecycle overrides remain unsupported. See the
 [interop examples](../../docs/architecture/interop.md#future-and-stream-callback-combinations).
 
 Protocol 24 callback models also preserve optional positional parameters, named

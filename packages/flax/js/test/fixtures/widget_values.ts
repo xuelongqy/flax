@@ -59,6 +59,11 @@ const hooks = {
   iterableStream: store.keepIterableStream(() =>
     Stream.fromIterable([[null, child()], new Set([child(), null])]),
   ),
+  nestedIterableRecords: store.keepNestedIterableRecords(() =>
+    Stream.fromIterable([
+      { groups: [null, Stream.fromIterable([null, [child()], new Set([child()])])] },
+    ]),
+  ),
   pending: () => store.keepFuture(() => new Promise(() => {}))(),
   pendingIterable: () =>
     store.keepSuggestions(() => new Promise(() => {}))(hooks.saved!, ''),

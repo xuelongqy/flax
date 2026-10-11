@@ -1804,6 +1804,13 @@ FlaxCodegenSiblingModuleInput _siblingInput({
     listing: listing,
     claims: [...automaticClaims, ...extensionClaims],
     references: references,
+    // Parsed extension types have a public carrier, but no nominal owner.
+    representationTypes: {
+      for (final name in config.types)
+        if (!listing.containsKey(name) &&
+            module.typeLibraries.containsKey(name))
+          name,
+    },
     readonlyReferences: {
       for (final getter
           in module.topLevel?.getters ?? <FlaxCodegenTopLevelGetterModel>[])

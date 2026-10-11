@@ -4,6 +4,10 @@ final _anyState = FlaxTypeRef(
   'state',
   id: componentsBindings.types.whereType<FlaxStateBinding>().single.id,
 );
+final _anyStream = flutterBindings.types
+    .whereType<FlaxStreamTypeBinding>()
+    .singleWhere((type) => type.id == '${flutterBindings.moduleId}#type:Stream')
+    .view;
 
 class _CollectionConversion {
   final inputs = <(FlaxJsObject, Object)>[];
@@ -494,6 +498,7 @@ extension _Collections on _Session {
     if (value is Future<Object?>) {
       return futureResult(value, const FlaxTypeRef('any', nullable: true));
     }
+    if (value is Stream<Object?>) return streamResult(value, _anyStream);
     if (value is List) return collectionResult(value, _anyList);
     if (value is Map) return collectionResult(value, _anyMap);
     if (value is Set) return collectionResult(value, _anySet);

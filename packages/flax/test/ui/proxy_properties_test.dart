@@ -21,6 +21,84 @@ OwnedHarness _harness({void Function(FlaxObjectBinding, Object)? onCreate}) =>
     );
 
 void main() {
+  testWidgets('ordinary factory proxies return real Widgets and keep overrides', (
+    t,
+  ) async {
+    for (final extendsClass in [true, false]) {
+      late plugin.WidgetFactory factory;
+      final h = _harness(
+        onCreate: (_, value) {
+          if (value is plugin.WidgetFactory) factory = value;
+        },
+      );
+      try {
+        await t.pumpWidget(h.app('properties'));
+        final context = t.element(find.byType(FlaxView).first);
+        h.execute(
+          'var factory = properties.makeFactory($extendsClass); var factoryImplementation = properties.factoryImplementation',
+        );
+        var child = factory.create(context);
+        final weak = WeakReference(child);
+        expect(
+          factory.createText().data,
+          extendsClass ? 'Factory widget: Native factory' : 'Interface factory',
+        );
+        expect(factory.optional(), isNull);
+        h.execute(
+          'factoryImplementation.optional = () => factoryImplementation.create(properties.factoryContext)',
+        );
+        expect(factory.optional(), isA<StatelessWidget>());
+        for (final value in [
+          'null',
+          'undefined',
+          '{}',
+          'Promise.resolve(null)',
+        ]) {
+          h.execute('factoryImplementation.create = () => $value');
+          expect(
+            () => factory.create(context),
+            throwsArgumentError,
+            reason: value,
+          );
+        }
+        h.execute(
+          'factoryImplementation.create = () => {throw Error("factory failed")}',
+        );
+        expect(() => factory.create(context), throwsA(isA<FlaxJsException>()));
+        h.execute(
+          'factoryImplementation.create = () => properties.makeWidget()',
+        );
+        expect(factory.create(context), isA<StatelessWidget>());
+        h.execute(
+          'factoryImplementation.createText = () => properties.makeWidget()',
+        );
+        expect(factory.createText, throwsArgumentError);
+        await t.runAsync(() async {
+          h.execute(flaxTestJsGarbagePressure);
+          await flaxTestCollectDartGarbage();
+        });
+        expect(weak.target, isNotNull);
+        await t.pumpWidget(MaterialApp(home: child));
+        expect(find.text('Proxy widget'), findsOneWidget);
+        expect(() => factory.create(context), throwsStateError);
+        await t.pumpWidget(const SizedBox.shrink());
+        child = const SizedBox.shrink();
+        await t.runAsync(() async {
+          for (var i = 0; i < 3; i++) {
+            h.execute(flaxTestJsGarbagePressure);
+            await flaxTestCollectDartGarbage();
+          }
+        });
+        expect(weak.target, isNull);
+        expect(h.errors, isEmpty);
+      } finally {
+        await h.finish(t);
+      }
+      expect(factory.createText, throwsStateError);
+      expect(h.runtime.handlesAtDispose, 0);
+    }
+  });
+
   testWidgets('proxy accessors enforce independent inherited super calls', (
     t,
   ) async {

@@ -201,6 +201,153 @@ void main() {
   });
 
   testWidgets(
+    'extension types reuse Flutter references and nested conversion',
+    (tester) async {
+      late fixture.ExtensionValues values;
+      late State nativeState;
+      final h = harness(onValues: (value) => values = value);
+      Future<void> settle(String expression) async {
+        h.execute('''
+        var boxedDone = false;
+        var boxedResult = false;
+        var boxedError = null;
+        ($expression).then(value => {
+          boxedResult = value;
+          boxedDone = true;
+        }, error => {
+          boxedError = String(error);
+          boxedDone = true;
+        });
+      ''');
+        for (var turn = 0; turn < 80 && !h.boolean('boxedDone'); turn++) {
+          await tester.pump(const Duration(milliseconds: 1));
+          await tester.runAsync(
+            () => Future<void>.delayed(const Duration(milliseconds: 1)),
+          );
+          h.runtime.drainMicrotasks();
+        }
+        expect(h.boolean('boxedDone'), isTrue, reason: expression);
+        expect(h.string('String(boxedError)'), 'null', reason: expression);
+        expect(h.boolean('boxedResult'), isTrue, reason: expression);
+      }
+
+      try {
+        await tester.pumpWidget(
+          fixture.ExtensionAnchor(
+            onState: (state) => nativeState = state,
+            child: h.app('extensions'),
+          ),
+        );
+        values.nativeState = nativeState;
+        h.execute('''
+        var boxedWidget = extensionHooks.values.widget;
+        var boxedContext = extensionHooks.context;
+        var boxedState = extensionHooks.values.state();
+        var boxedInfo = extensions.echoWidgetInfo({
+          child: boxedWidget, context: boxedContext,
+        });
+        var boxedCallback = extensions.keepWidgetCallback(context => {
+          if (context !== boxedContext) throw new Error('Context changed');
+          return boxedWidget;
+        });
+      ''');
+        final calls = h.runtime.hostCalls['__flaxInvokeOperation'] ?? 0;
+        expect(
+          h.boolean('extensions.echoWidgetBox(boxedWidget) === boxedWidget'),
+          isTrue,
+        );
+        expect((h.runtime.hostCalls['__flaxInvokeOperation'] ?? 0) - calls, 1);
+        expect(
+          h.boolean('''
+        typeof extensions.WidgetBox === 'undefined' &&
+        typeof extensions.ContextBox === 'undefined' &&
+        extensions.echoMaybeWidget(null) === null &&
+        extensions.echoMaybeWidget(boxedWidget) === boxedWidget &&
+        extensions.echoMaybeCount(null) === null &&
+        extensions.echoMaybeCount(3) === 3 &&
+        extensions.echoContextBox(boxedContext) === boxedContext &&
+        extensionHooks.values.matchesState(extensions.echoStateBox(boxedState)) &&
+        extensions.echoPreferredBox(extensionHooks.values.preferred) === extensionHooks.values.preferred &&
+        extensions.optionalWidgetBox() === null &&
+        extensions.optionalWidgetBox({value: null}) === null &&
+        extensions.optionalWidgetBox({value: undefined}) === null &&
+        extensions.echoWidgetGroup([boxedWidget, null]).get(0) === boxedWidget &&
+        extensions.echoWidgetGroup([boxedWidget, null]).get(1) === null &&
+        boxedInfo.child === boxedWidget && boxedInfo.context === boxedContext &&
+        extensions.buildWidgetBox(boxedCallback, boxedContext) === boxedWidget &&
+        boxedCallback(boxedContext) === boxedWidget &&
+        extensions.echoGenericWidgetBox(boxedWidget) === boxedWidget
+      '''),
+          isTrue,
+        );
+        for (final source in [
+          'extensions.echoWidgetBox()',
+          'extensions.echoWidgetBox(null)',
+          'extensions.echoWidgetBox(undefined)',
+          'extensions.echoMaybeWidget(undefined)',
+          'extensions.echoMaybeCount(undefined)',
+          'extensions.echoWidgetBox(1)',
+          'extensions.echoWidgetBox(boxedWidget, boxedWidget)',
+          'extensions.echoContextBox({mounted: true})',
+          'extensions.echoStateBox({mounted: true})',
+          'extensions.echoWidgetGroup([1])',
+          'extensions.echoWidgetInfo({child: boxedWidget, context: {mounted: true}})',
+          'extensions.buildWidgetBox(() => null, boxedContext)',
+          'extensions.buildWidgetBox(async () => boxedWidget, boxedContext)',
+          'extensions.buildWidgetBox(() => {throw new Error("boxed failure")}, boxedContext)',
+        ]) {
+          expect(
+            () => h.execute(source),
+            throwsA(isA<FlaxJsException>()),
+            reason: source,
+          );
+        }
+        expect(
+          h.boolean('boxedCallback(boxedContext) === boxedWidget'),
+          isTrue,
+        );
+        await settle(
+          'extensions.echoFutureWidget(Promise.resolve(boxedWidget))'
+          '.then(value => value === boxedWidget)',
+        );
+        await settle(
+          'extensions.echoFutureWidget(Promise.resolve(1))'
+          '.then(() => false, () => true)',
+        );
+        await settle(
+          'extensions.collectWidgetEvents(extensions.echoWidgetStream('
+          'extensions.widgetEvents(boxedWidget)))'
+          '.then(values => values.get(0) === boxedWidget && values.get(1) === null)',
+        );
+        await settle(
+          'extensions.collectWidgetEvents(Stream.fromIterable([1]))'
+          '.then(() => false, () => true)',
+        );
+        h.execute(
+          'extensionHooks.result = '
+          'extensions.echoWidgetBox(extensionHooks.makeComponent());',
+        );
+        await tester.pumpWidget(h.app('extension-result'));
+        expect(find.text('State input true'), findsOneWidget);
+        for (final source in [
+          'extensions.echoContextBox(boxedContext)',
+          'extensions.echoStateBox(boxedState)',
+          'boxedCallback(boxedContext)',
+        ]) {
+          expect(
+            () => h.execute(source),
+            throwsA(isA<FlaxJsException>()),
+            reason: source,
+          );
+        }
+        expect(h.errors, isEmpty);
+      } finally {
+        await h.finish(tester);
+      }
+    },
+  );
+
+  testWidgets(
     'ordinary Widget lists preserve native identity and mount results',
     (tester) async {
       late fixture.ExtensionValues values;
@@ -803,13 +950,18 @@ void main() {
       final writeContext = second.runtime.evaluate(
         'extensions.ReferenceValues.setGlobalContext',
       ) as FlaxJsFunction;
+      final echoContext = second.runtime.evaluate(
+        'extensions.echoContextBox',
+      ) as FlaxJsFunction;
       try {
         expect(() => read.call([context]), throwsA(isA<ArgumentError>()));
+        expect(() => echoContext.call([context]), throwsArgumentError);
         expect(
           () => writeContext.call([context]),
           throwsA(isA<ArgumentError>()),
         );
       } finally {
+        echoContext.release();
         writeContext.release();
         read.release();
         context.release();
@@ -826,11 +978,15 @@ void main() {
       final readCallback = second.runtime.evaluate(
         'extensions.StateX(extensionHooks.componentState).reader()',
       ) as FlaxJsFunction;
+      final echoState =
+          second.runtime.evaluate('extensions.echoStateBox') as FlaxJsFunction;
       try {
         expect(() => readState.call([state]), throwsA(isA<ArgumentError>()));
         expect(() => writeState.call([state]), throwsA(isA<ArgumentError>()));
         expect(() => readCallback.call([state]), throwsArgumentError);
+        expect(() => echoState.call([state]), throwsArgumentError);
       } finally {
+        echoState.release();
         readCallback.release();
         writeState.release();
         readState.release();
@@ -842,9 +998,13 @@ void main() {
       final writeWidget = second.runtime.evaluate(
         'extensions.ReferenceValues.setGlobalWidget',
       ) as FlaxJsFunction;
+      final echoWidget =
+          second.runtime.evaluate('extensions.echoWidgetBox') as FlaxJsFunction;
       try {
         expect(() => writeWidget.call([widget]), throwsA(isA<ArgumentError>()));
+        expect(() => echoWidget.call([widget]), throwsArgumentError);
       } finally {
+        echoWidget.release();
         writeWidget.release();
         widget.release();
       }
