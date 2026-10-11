@@ -70,6 +70,7 @@ final class FlaxCodegenSiblingModuleInput {
     Map<String, FlaxCodegenSourceLocation> locations = const {},
     Set<String> readonlyReferences = const {},
     Set<String> setterReferences = const {},
+    Set<String> representationTypes = const {},
   }) {
     final types = List<String>.unmodifiable(List<String>.of(config.types));
     final classNames = List<String>.unmodifiable([
@@ -139,11 +140,12 @@ final class FlaxCodegenSiblingModuleInput {
               ]),
             ),
         for (var index = 0; index < types.length; index++)
-          _ClaimSpec(
-            types[index],
-            FlaxCodegenDeclarationKind.type,
-            FlaxCodegenDiagnostic.jsonPointer(['types', '$index']),
-          ),
+          if (!representationTypes.contains(types[index]))
+            _ClaimSpec(
+              types[index],
+              FlaxCodegenDeclarationKind.type,
+              FlaxCodegenDiagnostic.jsonPointer(['types', '$index']),
+            ),
       ]),
     );
   }

@@ -32,6 +32,17 @@ cached, after their first real Dart read; computed getters, statics, objects,
 collections and callbacks retain ordinary conversion and lifetime rules. Module import
 does not read Dart state. See [enum bindings](bindings.md#enum-bindings).
 
+## Extension types
+
+Extension types reuse their erased representation in both binding directions, including
+Flutter references and supported collection, Record, callback, Future and Stream
+combinations. A `Panel(Widget)` value remains the existing Widget reference; it adds no
+bridge owner or GC responsibility. Nullable representations retain null, while required
+arguments still reject missing values and undefined. Context and State validity, foreign
+session rejection and Route/Page ownership boundaries are unchanged. See
+[representation binding](bindings.md#extension-type-representations) and its
+[real UI regression](../../packages/flax/test/ui/extensions_test.dart).
+
 ## Collections
 
 JS arrays become generated `List<T>` instances. JS Maps become `Map<K,V>`; plain JS

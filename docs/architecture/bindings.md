@@ -17,6 +17,39 @@ resolution and emission. It carries resolved types, generics, inheritance, Widge
 callback roles, and capabilities such as `Disposable`. Emitters consume that semantic
 model; they do not infer application ownership or lifecycle policy from method names.
 
+## Extension type representations
+
+Dart extension types cross the bridge as their erased representation. Automatic and
+explicit generation use the same type conversion, including Flutter Widget, selected
+Widget interfaces, Context and State, and supported nested collections, Records,
+callbacks, Futures and Streams. For example:
+
+```dart
+extension type Panel(Widget value) {}
+Panel echoPanel(Panel value) => value;
+```
+
+JS calls `echoPanel(widget)` and receives the underlying Widget reference. Generated
+Dart calls preserve the declared `Panel` signature through a static representation cast.
+No additional runtime object, binding owner, JS constructor, extension-type member
+surface or independent `instanceof` token is created. This differs from ordinary named
+extensions, which expose receiver views such as `StringX('a').repeat(3)`.
+
+Every use site retains the representation's existing validation. Required and nullable
+arguments, callback results, stale Context/State checks, session ownership and Widget
+retention follow the ordinary binding path. For
+`extension type MaybePanel(Widget? value) {}`, the JS value can be null even when the
+declared Dart type has no `?` suffix; required arguments still reject missing values and
+undefined. A Route/Page representation does not enable unsupported results or callbacks.
+Unsupported representations fail closed; automatic selection reports their conversion
+reason. Representation-only declarations retain the `extension_type_representation_only`
+diagnostic because they do not expose a class.
+
+Wrapping a Stream does not recover types lost by ordinary erased generic operations. In
+JS, after `const items = await widgetStream.toList()`, `items.get(0)` no longer carries
+Widget conversion metadata; use a typed Dart collection result when extracting Widget
+events.
+
 ## Instance checks and sealed results
 
 Generated class exports implement `Symbol.hasInstance`, including non-constructible

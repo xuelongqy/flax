@@ -249,6 +249,7 @@ class FlaxCodegenTypeRef {
       throw StateError('Invalid $kind model at $location');
     }
     if (category == FlaxCodegenTypeCategory.typeOnly) {
+      // An extension type can erase to a nullable value without its own ? suffix.
       final uri = Uri.tryParse(originatingUri ?? '');
       if (id != null ||
           name == null ||
@@ -263,7 +264,7 @@ class FlaxCodegenTypeRef {
           typeArguments.isNotEmpty ||
           dartArguments.isNotEmpty ||
           declaration != null ||
-          (item != null && item!.nullable != nullable)) {
+          (item != null && nullable && !item!.nullable)) {
         throw StateError('Invalid type-only reference at $location');
       }
     } else if (originatingUri != null || originatingName != null) {

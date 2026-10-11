@@ -65,6 +65,18 @@ non-generic, implementable Widget interfaces reuse the existing native interface
 forwarding path. Private, `@internal`, `@visibleForTesting`, and `@protected` API is
 excluded from automatic exposure.
 
+Extension types reuse the same conversion in automatic and explicit mode, including
+Widget, selected Widget interfaces, Context, State and supported nested collections,
+Records, callbacks, Futures and Streams. For example,
+`extension type Panel(Widget value) {}` lets `Panel echo(Panel value)` accept and return
+the existing JS Widget reference. There is no JS `Panel` constructor, wrapper, member
+surface or independent `instanceof` token. The underlying type's argument, result and
+lifecycle checks still apply: stale Contexts/States and foreign-session references fail,
+and a Page/Route representation does not add an otherwise unsupported result or callback
+position. Representation-only declarations retain the
+`extension_type_representation_only` boundary diagnostic; unsupported representations
+are skipped with their actual conversion reason.
+
 Run automatic mode from the owning binding package (the package receiving generated
 files). Its `pubspec.yaml` resolves the target Dart package and any Flax providers.
 Minimal package metadata is:

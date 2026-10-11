@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flax/bindings.dart';
 import 'package:flutter/widgets.dart';
 
+export 'extension_types.dart';
+
 extension StringX on String {
   String repeat(int count) => this * count;
   bool get isBlank => trim().isEmpty;

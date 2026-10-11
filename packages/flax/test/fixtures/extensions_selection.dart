@@ -49,6 +49,22 @@ const extensionFunctions = {
   'columnWidgets': FlaxCodegenFunctionSelection(['children']),
   'columnWidgetGroups': FlaxCodegenFunctionSelection(['children']),
   'futureColumnWidgets': FlaxCodegenFunctionSelection(['children']),
+  'echoWidgetBox': FlaxCodegenFunctionSelection(['value']),
+  'echoMaybeWidget': FlaxCodegenFunctionSelection(['value']),
+  'echoMaybeCount': FlaxCodegenFunctionSelection(['value']),
+  'echoContextBox': FlaxCodegenFunctionSelection(['value']),
+  'echoStateBox': FlaxCodegenFunctionSelection(['value']),
+  'echoPreferredBox': FlaxCodegenFunctionSelection(['value']),
+  'optionalWidgetBox': FlaxCodegenFunctionSelection(['value']),
+  'echoWidgetGroup': FlaxCodegenFunctionSelection(['value']),
+  'echoWidgetInfo': FlaxCodegenFunctionSelection(['value']),
+  'echoFutureWidget': FlaxCodegenFunctionSelection(['value']),
+  'echoWidgetStream': FlaxCodegenFunctionSelection(['value']),
+  'widgetEvents': FlaxCodegenFunctionSelection(['value']),
+  'collectWidgetEvents': FlaxCodegenFunctionSelection(['value']),
+  'buildWidgetBox': FlaxCodegenFunctionSelection(['callback', 'context']),
+  'keepWidgetCallback': FlaxCodegenFunctionSelection(['callback']),
+  'echoGenericWidgetBox': FlaxCodegenFunctionSelection(['value']),
 };
 
 const extensionSelection = {

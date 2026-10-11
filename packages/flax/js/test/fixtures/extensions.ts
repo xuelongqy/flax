@@ -72,6 +72,27 @@ function typeContract(context: BuildContext) {
   // @ts-expect-error undefined is not a Context setter value
   extensions.ReferenceValues.setGlobalContext(undefined);
   const state = extensionHooks.values.state();
+  const boxedWidget: Widget = extensions.echoWidgetBox(extensionHooks.child);
+  const nullableWidget: Widget | null = extensions.echoMaybeWidget(null);
+  const nullableCount: number | null = extensions.echoMaybeCount(null);
+  const boxedContext: BuildContext = extensions.echoContextBox(context);
+  const boxedState: State = extensions.echoStateBox(state);
+  extensions.echoPreferredBox(extensionHooks.values.preferred);
+  extensions.optionalWidgetBox();
+  extensions.optionalWidgetBox({ value: null });
+  extensions.optionalWidgetBox({ value: undefined });
+  extensions.echoWidgetGroup([boxedWidget, null]);
+  extensions.echoWidgetInfo({ child: boxedWidget, context: boxedContext });
+  extensions.echoFutureWidget(Promise.resolve(boxedWidget));
+  extensions.echoWidgetStream(extensions.widgetEvents(boxedWidget));
+  extensions.collectWidgetEvents(extensions.widgetEvents(boxedWidget));
+  extensions.buildWidgetBox(() => boxedWidget, boxedContext);
+  extensions.keepWidgetCallback(() => boxedWidget)(boxedContext);
+  extensions.echoGenericWidgetBox(boxedWidget);
+  // @ts-expect-error erased extension types preserve their Widget input checks
+  extensions.echoWidgetBox(boxedState);
+  // @ts-expect-error extension type callback results remain synchronous
+  extensions.buildWidgetBox(async () => boxedWidget, boxedContext);
   extensionHooks.values.nativeState = state;
   const savedState: State | null = extensionHooks.values.nativeState;
   extensions.ExtensionValues.setSharedState(savedState);
