@@ -661,10 +661,71 @@ parameter. Concrete targets normally come from Analyzer-observed use sites. For 
 direct scalar parameter, evidence for either `String` or `int` completes the pair when
 both satisfy the Dart bound; the runtime input remains restricted to strings and safe
 integers. Multiple targets must have disjoint bridge domains. Overlapping targets such
-as `num` and `int`, nested inference such as `List<T>`, unresolved type parameters,
+as `num` and `int`, inference from a `List<T>` parameter, unresolved type parameters,
 invalid bounds and runtime type-token requirements fail closed or leave the shared owner
 non-constructible. `typeArguments` and `methodTypeArguments` remain for concrete cases
 that cannot be inferred safely.
+
+Closed targets may themselves contain nested supported arguments, for example
+`Box<List<String>>` or `Box<Map<String, List<int?>>>`. Parsing and bound validation
+recurse through the entire configured or observed argument. A List can be distinguished
+from a scalar, Map or Set without examining its elements; Iterable overlaps List and
+Set. `Box<List<String>>` and `Box<List<int>>` therefore cannot share an automatic
+construction entry, even for nonempty input. Select one with
+`typeArguments: ['List<String>']` when that is the intended API. Missing targets,
+invalid arity and unresolved nested types still fail closed. Nested Stream arguments
+require the ordinary selected Stream owner. When a shared `Iterable` bound decodes a raw
+JS Set into a typed List copy, constructor dispatch uses its original weakly recorded
+shape. Native List/Set references use their actual Dart shape; no collection elements
+are inspected to choose a target.
+
+Specialized Dart factory functions expose the actual concrete TypeScript signature. A
+single target accepts only its supported input conversion and returns its closed generic
+type; multiple collection/scalar targets use overloads. Raw JS collections reaching a
+shared erased input reuse the checked collection reconstruction used by Stream adapters,
+including numeric validation and nested async adapters. Correctly typed Dart references
+retain identity; incompatible native collections cannot acquire a narrower type through
+copying. Other constructor inputs such as `List<Future<T>>` use the same selected
+concrete target. Erased Records restore each field through the same checked conversion;
+they cannot narrow incompatible native collection fields. A nullable `T?` input does not
+change a selected non-nullable `T`. Multiple targets share callback conversion before
+dispatch. When that erased callback is not assignable to every selected target,
+generation requires explicit `typeArguments` and automatic selection reports
+`constructor_specialization_callback`. For example, `T Function()` needs a concrete
+target, including inside collections or async inputs; a compatible `void Function(T)`
+remains supported without one. A single target already uses its concrete callback
+conversion. Automatic JS proxies retain their existing shared owner and inheritance
+rules.
+
+For real Dart objects in ordinary Object bindings matching a known constructor target,
+instance conversion uses that target as well. A `Box<List<String>>` therefore returns a
+List view, accepts an array or compatible native List in its writable `T` property, and
+adapts `T Function(T)` and `Future<T>` without falling back to the Iterable bound.
+TypeScript generic inputs reuse the existing `DartInput<T>` conversion types. Wrong
+shapes or incompatible native collections still fail before a write or invocation.
+Generic callback bounds such as `R extends T` use the selected class argument without
+capturing the callback's own `R` or an independently shadowed type parameter. Fixed
+generic method arguments are checked against every constructor target. If a bound
+depends on `T` and the configured method argument does not fit all targets, parsing
+rejects the selection; select concrete class `typeArguments` instead. Constructor `data`
+annotations do not determine a member's conversion. Ordinary members retain real
+references, while explicitly marked members retain their data positions. If a `data`
+annotation constrains `T` itself, an automatic collection or other native view target
+requires explicit class `typeArguments`; parsing rejects the conflicting plain-data and
+native-view signatures. A concrete selection applies data conversion to the member's
+Object/dynamic leaves.
+
+The generator emits private member metadata and direct calls only where substituting the
+class type parameters changes conversion. The JS class, unrelated methods and conversion
+adapters stay shared. The runtime selects metadata on the first affected operation and
+caches it per object and requested binding owner, including parent and provider views.
+The cache contains metadata only, so it adds no business root and no JS round trip.
+Constructor evidence already exists in the Manifest; no extra runtime type token,
+schema, protocol or ABI version is introduced. Native objects matching no known target
+and automatic JS proxies keep their shared erased owner. Matching uses Dart type checks;
+explicit type arguments remain the way to require a different concrete contract. See the
+[generator regression](../../packages/flax_codegen/test/nested_generic_constructors_test.dart)
+and [real bridge regression](../../packages/flax/test/ui/interop_test.dart).
 
 An explicitly selected static generic factory is inferred as deferred when it is
 synchronous, returns its generic owner directly, the result determines every method type

@@ -93,6 +93,51 @@ const interopSelection = {
     typeArguments: ['Object?'],
     getters: ['value', 'reads'],
   ),
+  'CodegenNestedBox': FlaxCodegenClassSelection(
+    {
+      '': ['value', 'history', 'record'],
+    },
+    kind: 'object',
+    getters: ['value', 'history', 'record'],
+  ),
+  'CodegenExplicitNestedBox': FlaxCodegenClassSelection(
+    {
+      '': ['value'],
+    },
+    kind: 'object',
+    typeArguments: ['List<String>'],
+    getters: ['value'],
+  ),
+  'CodegenBoundedNestedBox': FlaxCodegenClassSelection(
+    {
+      '': ['value'],
+    },
+    kind: 'object',
+    getters: ['value', 'identity'],
+    setters: ['value'],
+    methods: {'erased': []},
+    instanceMethods: {
+      'echo': ['value'],
+      'map': ['callback'],
+      'generic': ['callback'],
+      'pending': ['value'],
+      'size': [],
+    },
+  ),
+  'CodegenBoundedNestedProxy': FlaxCodegenClassSelection(
+    {
+      '': ['value'],
+    },
+    kind: 'object',
+    typeArguments: ['Iterable<String>'],
+    proxy: 'extends',
+    getters: ['value'],
+    setters: ['value'],
+    instanceMethods: {
+      'echo': ['value'],
+      'size': [],
+    },
+  ),
   'VoidBox': FlaxCodegenClassSelection(
     {'': []},
     kind: 'object',

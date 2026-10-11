@@ -13,6 +13,19 @@ class _ObjectReference {
   final _Session session;
   final int id;
   final FlaxObjectBinding binding;
+  late final FlaxObjectMemberView? _nativeMemberView = binding.memberView?.call(
+    value,
+  );
+  Map<FlaxObjectBinding, FlaxObjectMemberView?>? _memberViews;
+
+  FlaxObjectMemberView? memberView(FlaxObjectBinding requested) {
+    if (identical(requested, binding)) return _nativeMemberView;
+    return (_memberViews ??= {}).putIfAbsent(
+      requested,
+      () => requested.memberView?.call(value),
+    );
+  }
+
   final _BindingContext? context = _bindingContext;
   WeakReference<Object>? _weakValue;
   Object? get _value => _weakValue?.target;
@@ -667,20 +680,35 @@ extension _ObjectCalls on _Session {
         return holdHostResult(memberResult(getter.read(), getter.type));
       };
     }
-    final getter = binding.getters.where((g) => g.name == name).firstOrNull;
-    final setter = binding.setters.where((s) => s.name == name).firstOrNull;
-    final method = binding.instanceMethods[name];
-    if (!(operation == 'get' && getter != null ||
-        operation == 'set' && setter != null ||
-        operation == 'call' && method != null)) {
+    final baseGetter = binding.getters.where((g) => g.name == name).firstOrNull;
+    final baseSetter = binding.setters.where((s) => s.name == name).firstOrNull;
+    final baseMethod = binding.instanceMethods[name];
+    if (!(operation == 'get' && baseGetter != null ||
+        operation == 'set' && baseSetter != null ||
+        operation == 'call' && baseMethod != null)) {
       throw ArgumentError('Unknown object operation');
     }
+    final specialize = binding.memberViewOperations.contains(
+      '$operation:$name',
+    );
     return (id, args) {
       final object = _objects[id];
       if (object == null || !object.accepts(type)) {
         throw ArgumentError('Foreign or disposed Dart object');
       }
       final receiver = object.value;
+      var getter = baseGetter;
+      var setter = baseSetter;
+      var method = baseMethod;
+      FlaxObjectMemberView? view;
+      if (specialize) {
+        view = object.memberView(binding);
+        if (view != null) {
+          getter = view.getters[name] ?? getter;
+          setter = view.setters[name] ?? setter;
+          method = view.instanceMethods[name] ?? method;
+        }
+      }
       if (operation == 'get') {
         if (getter == null || args.isNotEmpty) {
           throw ArgumentError('Unknown object getter');
@@ -741,7 +769,8 @@ extension _ObjectCalls on _Session {
             listener = _ObjectListener(
               object,
               addName,
-              binding.instanceMethods[binding.listenerPairs[addName]]!,
+              view?.instanceMethods[binding.listenerPairs[addName]] ??
+                  binding.instanceMethods[binding.listenerPairs[addName]]!,
               native == null ? null : function.retain() as FlaxJsFunction,
               native != null && source == null
                   ? null

@@ -1417,6 +1417,7 @@ const _intentionalBoundaryCodes = {
   'complex_generic_bound',
   'constructor_specialization_missing_use_site',
   'constructor_specialization_ambiguous',
+  'constructor_specialization_callback',
   'unsupported_core_type',
   'unsupported_input_shape',
 };

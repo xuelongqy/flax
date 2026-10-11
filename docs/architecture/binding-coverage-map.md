@@ -101,20 +101,20 @@ Evidence:
 
 ## Type and signature support
 
-| Type mechanism                        | Verdict   | Current contract                                                                                                                                                                                                                     |
-| ------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Nullable values                       | Supported | Nullability is recursive and preserved through Manifest round-trip and TypeScript emission.                                                                                                                                          |
-| List, Map, Set, Iterable              | Supported | Ordinary API positions preserve element/key/value types and real Dart references. Callback map keys must remain representable.                                                                                                       |
-| Record                                | Supported | Positional, named, and mixed Records recurse through callbacks, collections, async values, typedefs, and generics.                                                                                                                   |
-| Future and FutureOr                   | Supported | Parameters, results, callbacks, proxy properties, nested collections, and returned callbacks use Promise/Future conversion without inventing ownership.                                                                              |
-| Dart Stream                           | Supported | Parameters, results, callbacks, proxy properties, controllers, subscriptions, operators, and nested Streams preserve Dart stream semantics. Each layer stays lazy and independent; application controllers remain application-owned. |
-| Callback and returned callback        | Supported | Required/optional positional and named parameters, recursive results, typedef callbacks, and safely erasable generic callbacks share the same TypeRef validation.                                                                    |
-| Recursive combinations                | Supported | The same recursive TypeRef rules apply to constructors, getters/setters, methods, top-level functions, callbacks, typedefs, inherited members, and dependency closure.                                                               |
-| Shared generic owner                  | Supported | Dart uses `Object?` or an Analyzer-proven public fully closed bound; TypeScript keeps the declared generic relationship.                                                                                                             |
-| Generic constructor specialization    | Limited   | Every class type parameter must come from required direct input, Analyzer must provide concrete use sites, bounds must pass, and JS runtime domains must be disjoint.                                                                |
-| Generic method/top-level function     | Limited   | Safe bound erasure is automatic. Concrete runtime specialization uses existing explicit type arguments. No runtime type token is introduced.                                                                                         |
-| Provider-owned nominal type           | Supported | A dependency Manifest owner is a recursion boundary. The consumer preserves identity, nullability, and type arguments without expanding provider inheritance.                                                                        |
-| Public carrier and dependency closure | Supported | Declaration identity chooses a same-package public carrier. Same-name different identities fail closed. Dependency-only types stay internal in automatic mode.                                                                       |
+| Type mechanism                        | Verdict   | Current contract                                                                                                                                                                                                                        |
+| ------------------------------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Nullable values                       | Supported | Nullability is recursive and preserved through Manifest round-trip and TypeScript emission.                                                                                                                                             |
+| List, Map, Set, Iterable              | Supported | Ordinary API positions preserve element/key/value types and real Dart references. Callback map keys must remain representable.                                                                                                          |
+| Record                                | Supported | Positional, named, and mixed Records recurse through callbacks, collections, async values, typedefs, and generics.                                                                                                                      |
+| Future and FutureOr                   | Supported | Parameters, results, callbacks, proxy properties, nested collections, and returned callbacks use Promise/Future conversion without inventing ownership.                                                                                 |
+| Dart Stream                           | Supported | Parameters, results, callbacks, proxy properties, controllers, subscriptions, operators, and nested Streams preserve Dart stream semantics. Each layer stays lazy and independent; application controllers remain application-owned.    |
+| Callback and returned callback        | Supported | Required/optional positional and named parameters, recursive results, typedef callbacks, and safely erasable generic callbacks share the same TypeRef validation.                                                                       |
+| Recursive combinations                | Supported | The same recursive TypeRef rules apply to constructors, getters/setters, methods, top-level functions, callbacks, typedefs, inherited members, and dependency closure.                                                                  |
+| Shared generic owner                  | Supported | Dart uses `Object?` or an Analyzer-proven public fully closed bound; TypeScript keeps the declared generic relationship.                                                                                                                |
+| Generic constructor specialization    | Limited   | Closed nested targets reuse ordinary conversion. Required direct inputs and Analyzer use sites determine automatic targets; bounds and disjoint runtime domains remain mandatory. Explicit type arguments resolve same-shape ambiguity. |
+| Generic method/top-level function     | Limited   | Safe bound erasure is automatic. Concrete runtime specialization uses existing explicit type arguments. No runtime type token is introduced.                                                                                            |
+| Provider-owned nominal type           | Supported | A dependency Manifest owner is a recursion boundary. The consumer preserves identity, nullability, and type arguments without expanding provider inheritance.                                                                           |
+| Public carrier and dependency closure | Supported | Declaration identity chooses a same-package public carrier. Same-name different identities fail closed. Dependency-only types stay internal in automatic mode.                                                                          |
 
 Default omission preserves missing/`undefined` separately from explicit `null`. Up to
 five independently omitted parameters use direct calls; six or more use `Function.apply`
@@ -123,13 +123,27 @@ dispatch and reject holes.
 
 The generator does not infer `T` from callback results, `List<T>` contents, nested
 object contents, or a runtime `Type` token. Overlapping runtime domains such as `num`
-and `int` are rejected. Dependent or recursive bounds without concrete evidence are
-rejected.
+and `int`, two different List element types, or Iterable versus List/Set are rejected.
+Empty collections follow the same rule. Specialized factory signatures expose only
+compiled targets, including nested collections, selected nominal references and
+supported async arguments. Dependent or recursive bounds without concrete evidence are
+rejected. Multi-target constructor callbacks require explicit type arguments when their
+shared erased signature cannot satisfy every concrete target; compatible input-only
+callbacks retain automatic dispatch. Ordinary Object bindings matching known constructor
+targets also preserve their concrete getter, setter, method, callback and async member
+conversion. Only affected selected members gain private Dart metadata; the JS class and
+unrelated members stay shared. Metadata is cached on first affected use per object and
+binding owner. Native objects matching no known target and automatic JS proxies keep the
+shared erased view, and same-shape targets still require explicit type arguments.
+Constructor `data` positions do not change ordinary member conversion. A plain-data
+constraint on `T` itself with an automatic native-view target requires explicit class
+type arguments; invalid combinations are rejected before generation.
 
 Evidence:
 [recursive type tests](../../packages/flax_codegen/test/recursive_type_automation_test.dart),
 [generic tests](../../packages/flax_codegen/test/generic_and_defaults_test.dart),
 [constructor specialization tests](../../packages/flax_codegen/test/concrete_generic_specialization_test.dart),
+[nested constructor tests](../../packages/flax_codegen/test/nested_generic_constructors_test.dart),
 [provider tests](../../packages/flax_codegen/test/package_pipeline_test.dart), and
 [Record tests](../../packages/flax_codegen/test/mechanism_coverage_test.dart).
 
@@ -185,6 +199,7 @@ and
 | `generic_receiver_specialization_required`    | `unsupported / intentionalBoundary`            | `extension X<T extends Comparable<T>> on List<T>`.                                                        |
 | `constructor_specialization_missing_use_site` | `limited or unsupported / intentionalBoundary` | A generic owner is usable, but JS construction has no concrete `T`.                                       |
 | `constructor_specialization_ambiguous`        | `unsupported / intentionalBoundary`            | Two concrete targets share the same JS runtime domain.                                                    |
+| `constructor_specialization_callback`         | `unsupported / intentionalBoundary`            | A multi-target constructor's `T Function()` input needs explicit runtime type arguments.                  |
 | `complex_generic_bound`                       | `unsupported / intentionalBoundary`            | `T extends Comparable<T>` without concrete evidence.                                                      |
 | `runtime_finite_widget_iterable_required`     | `unsupported / intentionalBoundary`            | A bound callback returns an actual lazy `Iterable<Widget>`; finite arrays/Sets and Dart Lists/Sets pass.  |
 | `unsupported_core_type`                       | `unsupported / intentionalBoundary`            | Dart `Type` reflection or another core type with no bridge representation.                                |

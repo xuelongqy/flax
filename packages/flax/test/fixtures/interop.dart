@@ -27,6 +27,47 @@ class Box<T> {
   }
 }
 
+final class CodegenNestedBox<T> {
+  CodegenNestedBox(this.value, {this.history, this.record});
+  final T value;
+  final List<Future<T>>? history;
+  final (List<T>,)? record;
+}
+
+abstract class CodegenNestedUses {
+  CodegenNestedBox<String> get text;
+  CodegenNestedBox<List<Map<String, int?>>> get nested;
+}
+
+final class CodegenExplicitNestedBox<T> {
+  CodegenExplicitNestedBox(this.value);
+  final T value;
+}
+
+class CodegenBoundedNestedBox<T extends Iterable<String>> {
+  CodegenBoundedNestedBox(this.value);
+  T value;
+  T echo(T value) => value;
+  T map(T Function(T) callback) => callback(value);
+  T generic(T Function<R extends T>(R) callback) => callback<T>(value);
+  R Function<R extends T>(R) get identity => _identity;
+  R _identity<R extends T>(R value) => value;
+  Future<T> pending(T value) async => value;
+  int size() => value.length;
+  static Object erased() =>
+      CodegenBoundedNestedBox<Iterable<String>>(['erased']);
+}
+
+class CodegenBoundedNestedProxy<T extends Iterable<String>>
+    extends CodegenBoundedNestedBox<T> {
+  CodegenBoundedNestedProxy(super.value);
+}
+
+abstract class CodegenBoundedNestedUses {
+  CodegenBoundedNestedBox<List<String>> get list;
+  CodegenBoundedNestedBox<Set<String>> get set;
+}
+
 class VoidBox extends Box<void> {
   VoidBox() : super(null);
   void get explicitValue {

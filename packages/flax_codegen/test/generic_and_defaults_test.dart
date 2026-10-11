@@ -403,10 +403,10 @@ void main() {
         module,
         consumerSource: '''
 import {DependentBox} from './plugin.js';
-const box: DependentBox<number> = DependentBox<number, number>(1.5, 2);
+const box: DependentBox<number> = DependentBox(1.5, 2);
 const result: number = box.choose(3.5, box.second);
 // @ts-expect-error Explicit specialization keeps the dependent numeric input.
-DependentBox<number, number>(1.5, 'wrong');
+DependentBox(1.5, 'wrong');
 // @ts-expect-error The second argument still obeys its declared bound.
 type InvalidBound = DependentBox<number, string>;
 ''',

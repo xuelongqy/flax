@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:analyzer/dart/analysis/analysis_context_collection.dart';
 import 'package:analyzer/dart/analysis/results.dart';
 import 'package:analyzer/dart/analysis/session.dart';
+import 'package:analyzer/dart/analysis/utilities.dart' show parseString;
 import 'package:analyzer/dart/ast/visitor.dart';
 import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/constant/value.dart';
@@ -460,68 +461,8 @@ FlaxCodegenParameterModel _parameterWithType(
 
 /// Rewrite only Object/dynamic leaves, retaining concrete types and TS parameters.
 FlaxCodegenTypeRef _dataType(FlaxCodegenTypeRef type, String location) {
-  var applicable = false;
-  FlaxCodegenTypeRef visit(
-    FlaxCodegenTypeRef actual, [
-    FlaxCodegenTypeRef? declaration,
-  ]) {
-    final declared = actual.declaration ?? declaration;
-    if (actual.kind == 'any') {
-      applicable = true;
-      return FlaxCodegenTypeRef(
-        'data',
-        nullable: actual.nullable,
-        declaration: declared?.kind == 'parameter' ? declared : null,
-      );
-    }
-    if (!{
-      'callback',
-      'future',
-      'stream',
-      'iterable',
-      'list',
-      'map',
-      'record',
-      'set',
-    }.contains(actual.kind)) {
-      return declared == null ? actual : actual.declaredAs(declared);
-    }
-    return FlaxCodegenTypeRef(
-      actual.kind,
-      nullable: actual.nullable,
-      item: actual.item == null ? null : visit(actual.item!, declared?.item),
-      key: actual.key == null ? null : visit(actual.key!, declared?.key),
-      result: actual.result == null
-          ? null
-          : visit(actual.result!, declared?.result),
-      parameters: [
-        for (final (index, p) in actual.parameters.indexed)
-          _parameterWithType(
-            p,
-            visit(p.type, declared?.parameters[index].type),
-          ),
-      ],
-      recordFields: [
-        for (final (index, field) in actual.recordFields.indexed)
-          FlaxCodegenRecordFieldModel(
-            name: field.name,
-            type: visit(
-              field.type,
-              declared != null && index < declared.recordFields.length
-                  ? declared.recordFields[index].type
-                  : null,
-            ),
-            positional: field.positional,
-          ),
-      ],
-      dartArguments: actual.dartArguments,
-      typeParameters: actual.typeParameters,
-      genericIdentity: actual.genericIdentity,
-    );
-  }
-
-  final result = visit(type);
-  if (!applicable) {
+  final result = type.withDataConversion(true);
+  if (!_containsData(result)) {
     throw StateError(
       'Data selection has no Object/dynamic position: $location',
     );
@@ -2569,8 +2510,10 @@ class FlaxCodegenBindingParser {
                 selection.proxy != 'extends')) {
           throw StateError('Unknown constructor: ${entry.key}.${chosen.key}');
         }
-        var constructorParameters = parameters(
-          constructor.formalParameters,
+        List<FlaxCodegenParameterModel> constructorParametersFor(
+          ConstructorElement candidate,
+        ) => parameters(
+          candidate.formalParameters,
           chosen.value,
           '${entry.key}.${chosen.key}',
           data: selection.data.constructors[chosen.key] ?? const [],
@@ -2583,6 +2526,7 @@ class FlaxCodegenBindingParser {
           callbackErrorParameters: selection.callbackErrorParameters,
           callbackScopedParameters: selection.callbackScopedParameters,
         );
+        var constructorParameters = constructorParametersFor(constructor);
         final specializations = <FlaxCodegenConstructorSpecializationModel>[];
         if (element.typeParameters.isNotEmpty &&
             selection.typeArguments.isEmpty) {
@@ -2593,6 +2537,7 @@ class FlaxCodegenBindingParser {
             parser: this,
             element: element,
             constructor: declaredConstructor,
+            runtimeConstructor: constructor,
             selectedParameters: chosen.value,
             concreteUses: concreteUses[identity(element)] ?? const [],
           );
@@ -2623,43 +2568,48 @@ class FlaxCodegenBindingParser {
                 else
                   parameter,
             ];
-          } else if (plan.targets.length == 1) {
-            final targetConstructor = plan.targets.single.type.constructors
-                .firstWhere((candidate) => candidate.name == constructor.name);
-            constructorParameters = [
-              for (final parameter in constructorParameters)
-                if (parameter.type.kind != 'data' &&
-                    parameter.type.declaration?.kind == 'parameter')
-                  _parameterWithType(
-                    parameter,
-                    typeRef(
-                      targetConstructor.formalParameters
-                          .firstWhere(
-                            (candidate) => candidate.name == parameter.name,
-                          )
-                          .type,
-                    ).declaredAs(parameter.type.declaration!),
-                  )
-                else
-                  parameter,
-            ];
           }
           for (final target in plan.targets) {
+            // Fixed method arguments must satisfy every selected native owner.
+            for (final method in methods.where(
+              (method) => method.instance && method.typeArguments.isNotEmpty,
+            )) {
+              final concreteMethod = target.type.lookUpMethod(
+                method.name,
+                element.library,
+              )!;
+              try {
+                _checkBounds(
+                  concreteMethod.typeParameters,
+                  [
+                    for (final argument in method.typeArguments)
+                      _runtimeType(argument, exports, element.library),
+                  ],
+                  element.library,
+                  false,
+                );
+              } on StateError catch (error) {
+                throw StateError(
+                  'Invalid generic method arguments for constructor target '
+                  '${entry.key}<${target.typeArguments.join(', ')}>.${method.name}: '
+                  '${error.message}',
+                );
+              }
+            }
             final concreteConstructor = target.type.constructors.firstWhere(
               (candidate) => candidate.name == constructor.name,
             );
+            final concreteParameters = constructorParametersFor(
+              concreteConstructor,
+            );
+            if (plan.targets.length == 1) {
+              constructorParameters = concreteParameters;
+            }
             specializations.add(
               FlaxCodegenConstructorSpecializationModel(
                 typeArguments: target.typeArguments,
                 parameterTypes: [
-                  for (final parameter in constructorParameters)
-                    typeRef(
-                      concreteConstructor.formalParameters
-                          .firstWhere(
-                            (candidate) => candidate.name == parameter.name,
-                          )
-                          .type,
-                    ),
+                  for (final parameter in concreteParameters) parameter.type,
                 ],
                 runtimeDomains: target.runtimeDomains,
               ),
@@ -2955,6 +2905,29 @@ class FlaxCodegenBindingParser {
       }
       for (var i = 0; i < genericParameters.length; i++) {
         if (dataParameters.contains(genericParameters[i].name)) {
+          for (final ctor in constructors) {
+            for (final target in ctor.specializations) {
+              final argument = typeRef(
+                _runtimeType(target.typeArguments[i], exports, element.library),
+              );
+              // A native generic view is not a plain JS data value.
+              if (!{
+                'any',
+                'String',
+                'bool',
+                'int',
+                'double',
+                'num',
+                'scalar',
+              }.contains(argument.kind)) {
+                throw StateError(
+                  'Data generic constructor target '
+                  '${entry.key}<${target.typeArguments.join(', ')}> requires '
+                  'explicit class typeArguments for member conversion',
+                );
+              }
+            }
+          }
           genericParameters[i] = _dataGeneric(genericParameters[i]);
         }
       }
@@ -3723,32 +3696,73 @@ class FlaxCodegenBindingParser {
     Map<String, Element> exports,
     LibraryElement library,
   ) {
-    final nullable = source.endsWith('?');
-    final name = nullable ? source.substring(0, source.length - 1) : source;
-    final provider = library.typeProvider;
-    final primitive = {
-      'Object': provider.objectType,
-      'String': provider.stringType,
-      'bool': provider.boolType,
-      'int': provider.intType,
-      'double': provider.doubleType,
-      'num': provider.numType,
-    }[name];
-    final element = primitive?.element ?? exports[name] ?? _poolInterface(name);
-    if (element is! InterfaceElement || element.typeParameters.isNotEmpty) {
-      throw StateError(
-        'Runtime type arguments require a concrete selected type: $source',
+    final parsed = parseString(
+      content: 'typedef _FlaxRuntimeType = $source;',
+      throwIfDiagnostics: false,
+    );
+    if (parsed.errors.isNotEmpty ||
+        parsed.unit.declarations.length != 1 ||
+        parsed.unit.declarations.single is! GenericTypeAlias) {
+      throw StateError('Invalid runtime type argument: $source');
+    }
+    DartType resolve(TypeAnnotation annotation) {
+      if (annotation is! NamedType || annotation.importPrefix != null) {
+        throw StateError(
+          'Runtime type arguments require a concrete selected type: $source',
+        );
+      }
+      final name = annotation.name.lexeme;
+      final builtin = _builtinRuntimeElement(name, library);
+      final element = builtin ?? exports[name] ?? _poolInterface(name);
+      final arguments = [
+        for (final argument
+            in annotation.typeArguments?.arguments ?? const <TypeAnnotation>[])
+          resolve(argument),
+      ];
+      if (element is! InterfaceElement ||
+          arguments.length != element.typeParameters.length) {
+        throw StateError(
+          'Runtime type arguments require a concrete selected type: $source',
+        );
+      }
+      if (builtin == null && !_adaptations.containsKey(identity(element))) {
+        throw StateError('Unbound runtime type argument: $source');
+      }
+      _checkBounds(element.typeParameters, arguments, element.library, false);
+      return element.instantiate(
+        typeArguments: arguments,
+        nullabilitySuffix: annotation.question != null
+            ? NullabilitySuffix.question
+            : NullabilitySuffix.none,
       );
     }
-    if (primitive == null && !_adaptations.containsKey(identity(element))) {
-      throw StateError('Unbound runtime type argument: $source');
-    }
-    return element.instantiate(
-      typeArguments: const [],
-      nullabilitySuffix: nullable
-          ? NullabilitySuffix.question
-          : NullabilitySuffix.none,
-    );
+
+    return resolve((parsed.unit.declarations.single as GenericTypeAlias).type);
+  }
+
+  InterfaceElement? _builtinRuntimeElement(
+    String name,
+    LibraryElement library,
+  ) {
+    final provider = library.typeProvider;
+    return switch (name) {
+      'Object' => provider.objectElement,
+      'String' => provider.stringElement,
+      'bool' => provider.boolElement,
+      'int' => provider.intElement,
+      'double' => provider.doubleElement,
+      'num' => provider.numElement,
+      'Iterable' => provider.iterableElement,
+      'List' => provider.listElement,
+      'Map' => provider.mapElement,
+      'Set' => provider.setElement,
+      'Future' => provider.futureElement,
+      'FutureOr' => provider.futureOrElement,
+      'Stream'
+          when _adaptations[identity(provider.streamElement)] == 'stream' =>
+        provider.streamElement,
+      _ => null,
+    };
   }
 
   LibraryElement _runtimeTypeLibrary(Map<String, Element> exports) {

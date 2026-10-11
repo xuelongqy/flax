@@ -113,6 +113,15 @@ class FlaxCodegenTypeRef {
   final String? originatingUri;
   final String? originatingName;
 
+  /// Reuse lexical generic substitution for enum constants and native members.
+  FlaxCodegenTypeRef specialize(
+    Map<Object?, FlaxCodegenTypeRef> substitutions,
+  ) => _specializeType(this, substitutions);
+
+  /// Toggle Object/dynamic data leaves without changing their Dart declarations.
+  FlaxCodegenTypeRef withDataConversion(bool enabled) =>
+      _withDataConversion(this, enabled);
+
   /// A type-only declaration whose [item] is the erased Dart representation.
   ///
   /// Extension types have no runtime identity, so the wire shape remains the
@@ -120,7 +129,7 @@ class FlaxCodegenTypeRef {
   /// needed by generated callback signatures and direct calls.
   bool get isExtensionTypeDeclaration => kind == 'typeOnly' && item != null;
 
-  FlaxCodegenTypeRef declaredAs(FlaxCodegenTypeRef type) => FlaxCodegenTypeRef(
+  FlaxCodegenTypeRef declaredAs(FlaxCodegenTypeRef? type) => FlaxCodegenTypeRef(
     kind,
     id: id,
     name: name,
@@ -141,13 +150,15 @@ class FlaxCodegenTypeRef {
     originatingName: originatingName,
   );
 
-  FlaxCodegenTypeRef asNullable() => nullable
+  FlaxCodegenTypeRef asNullable() => withNullability(true);
+
+  FlaxCodegenTypeRef withNullability(bool nullable) => this.nullable == nullable
       ? this
       : FlaxCodegenTypeRef(
           kind,
           id: id,
           name: name,
-          nullable: true,
+          nullable: nullable,
           item: item,
           key: key,
           parameters: parameters,
@@ -486,6 +497,10 @@ class FlaxCodegenParameterModel {
   final String defaultCode;
   final bool omitWhenAbsent;
   final bool independentWidgetResult;
+
+  FlaxCodegenParameterModel specialize(
+    Map<Object?, FlaxCodegenTypeRef> substitutions,
+  ) => _specializeParameter(this, substitutions);
 }
 
 class FlaxCodegenConstructorSpecializationModel {
@@ -636,6 +651,29 @@ class FlaxCodegenMethodModel {
   final String name;
   final List<FlaxCodegenParameterModel> parameters;
   final FlaxCodegenTypeRef result;
+
+  FlaxCodegenMethodModel specialize(
+    Map<Object?, FlaxCodegenTypeRef> substitutions,
+  ) => FlaxCodegenMethodModel(
+    name,
+    [for (final parameter in parameters) parameter.specialize(substitutions)],
+    result.specialize(substitutions),
+    instance: instance,
+    typeArguments: typeArguments,
+    startsRoute: startsRoute,
+    typeParameters: [
+      for (final parameter in typeParameters)
+        FlaxCodegenGenericParameter(
+          parameter.name,
+          parameter.bound.specialize(substitutions),
+          defaultType: parameter.defaultType?.specialize(substitutions),
+          genericIdentity: parameter.genericIdentity,
+        ),
+    ],
+    mustCallSuper: mustCallSuper,
+    deferredFactory: deferredFactory,
+    operatorName: operatorName,
+  );
 }
 
 /// A Dart-only interface override. No bridge types or wire operations are added.
@@ -789,7 +827,7 @@ class FlaxCodegenClassModel {
           }
         : <String?, FlaxCodegenTypeRef>{
             for (final constant in constants.enumValueTypes.entries)
-              constant.key: _specializeEnumType(constant.value, const {}),
+              constant.key: _specializeType(constant.value, const {}),
           };
     final broadType = FlaxCodegenTypeRef(
       'enum',
@@ -831,7 +869,7 @@ class FlaxCodegenClassModel {
           typeParameters[index].genericIdentity: arguments[index],
       };
       FlaxCodegenTypeRef specialize(FlaxCodegenTypeRef type) =>
-          _specializeEnumType(type, substitutions);
+          _specializeType(type, substitutions);
       for (final getter in getters) {
         yield operation(
           getter.name,
@@ -868,7 +906,7 @@ class FlaxCodegenClassModel {
           [
             receiver(variant.value, method.parameters),
             for (final parameter in method.parameters)
-              _specializeEnumParameter(parameter, substitutions),
+              _specializeParameter(parameter, substitutions),
           ],
           specialize(method.result),
           method.typeParameters,
@@ -900,13 +938,13 @@ class FlaxCodegenClassModel {
   }
 }
 
-FlaxCodegenParameterModel _specializeEnumParameter(
+FlaxCodegenParameterModel _specializeParameter(
   FlaxCodegenParameterModel parameter,
   Map<Object?, FlaxCodegenTypeRef> substitutions, [
   FlaxCodegenTypeRef? declaration,
 ]) => FlaxCodegenParameterModel(
   name: parameter.name,
-  type: _specializeEnumType(
+  type: _specializeType(
     declaration == null
         ? parameter.type
         : parameter.type.declaredAs(declaration),
@@ -922,27 +960,171 @@ FlaxCodegenParameterModel _specializeEnumParameter(
   scoped: parameter.scoped,
 );
 
-FlaxCodegenTypeRef _specializeEnumType(
+FlaxCodegenTypeRef _withDataConversion(FlaxCodegenTypeRef type, bool enabled) {
+  final declared = type.declaration;
+  if (type.kind == (enabled ? 'any' : 'data')) {
+    return FlaxCodegenTypeRef(
+      enabled ? 'data' : 'any',
+      nullable: type.nullable,
+      declaration: declared?.kind == 'parameter' ? declared : null,
+    );
+  }
+  if (!{
+    'callback',
+    'future',
+    'stream',
+    'iterable',
+    'list',
+    'map',
+    'record',
+    'set',
+  }.contains(type.kind)) {
+    return type;
+  }
+  FlaxCodegenTypeRef? child(
+    FlaxCodegenTypeRef? actual,
+    FlaxCodegenTypeRef? declaration,
+  ) => actual == null
+      ? null
+      : (actual.declaration != null || declaration == null
+                ? actual
+                : actual.declaredAs(declaration))
+            .withDataConversion(enabled);
+  return FlaxCodegenTypeRef(
+    type.kind,
+    id: type.id,
+    name: type.name,
+    nullable: type.nullable,
+    item: child(type.item, declared?.item),
+    key: child(type.key, declared?.key),
+    result: child(type.result, declared?.result),
+    parameters: [
+      for (final (index, p) in type.parameters.indexed)
+        FlaxCodegenParameterModel(
+          name: p.name,
+          type: child(
+            p.type,
+            declared?.parameters.length == type.parameters.length
+                ? declared!.parameters[index].type
+                : null,
+          )!,
+          required: p.required,
+          positional: p.positional,
+          defaultCode: p.defaultCode,
+          omitWhenAbsent: p.omitWhenAbsent,
+          independentWidgetResult: p.independentWidgetResult,
+          snapshot: p.snapshot,
+          encodeKind: p.encodeKind,
+          scoped: p.scoped,
+        ),
+    ],
+    typeParameters: type.typeParameters,
+    typeArguments: type.typeArguments,
+    dartArguments: type.dartArguments,
+    primitiveKinds: type.primitiveKinds,
+    declaration: !enabled || declared?.kind == 'parameter' ? declared : null,
+    tsArguments: type.tsArguments,
+    recordFields: [
+      for (final (index, field) in type.recordFields.indexed)
+        FlaxCodegenRecordFieldModel(
+          name: field.name,
+          type: child(
+            field.type,
+            declared != null && index < declared.recordFields.length
+                ? declared.recordFields[index].type
+                : null,
+          )!,
+          positional: field.positional,
+        ),
+    ],
+    genericIdentity: type.genericIdentity,
+    originatingUri: type.originatingUri,
+    originatingName: type.originatingName,
+  );
+}
+
+FlaxCodegenTypeRef _specializeType(
   FlaxCodegenTypeRef type,
   Map<Object?, FlaxCodegenTypeRef> substitutions,
 ) {
+  // Keep unaffected types identical so existing callback adapters are shared.
+  bool needsSubstitution(FlaxCodegenTypeRef candidate) =>
+      (candidate.kind == 'parameter' &&
+          substitutions.containsKey(candidate.genericIdentity)) ||
+      [
+        ?candidate.declaration,
+        ?candidate.item,
+        ?candidate.key,
+        ?candidate.result,
+        ...candidate.dartArguments,
+        ...candidate.tsArguments,
+        ...candidate.parameters.map((p) => p.type),
+        ...candidate.recordFields.map((f) => f.type),
+        ...candidate.typeParameters.expand((p) => [p.bound, ?p.defaultType]),
+      ].any(needsSubstitution);
+  if (substitutions.isNotEmpty && !needsSubstitution(type)) return type;
   final parameter = type.kind == 'parameter' ? type : type.declaration;
   if (parameter?.kind == 'parameter') {
     final replacement = substitutions[parameter!.genericIdentity];
     if (replacement != null) {
-      return parameter.nullable ? replacement.asNullable() : replacement;
+      final closed = parameter.nullable
+          ? replacement.asNullable()
+          : replacement;
+      return type.kind == 'data' ? closed.withDataConversion(true) : closed;
     }
   }
   FlaxCodegenTypeRef specialize(FlaxCodegenTypeRef type) =>
-      _specializeEnumType(type, substitutions);
-  final declaration = type.declaration;
-  final declaredShape = declaration?.kind == type.kind ? declaration : null;
+      _specializeType(type, substitutions);
   FlaxCodegenTypeRef? child(
     FlaxCodegenTypeRef? actual,
     FlaxCodegenTypeRef? declared,
   ) => actual == null
       ? null
       : specialize(declared == null ? actual : actual.declaredAs(declared));
+  final declaration = type.declaration;
+  final declaredShape = declaration?.kind == type.kind ? declaration : null;
+  final typeParameters = <FlaxCodegenGenericParameter>[];
+  for (final (index, parameter) in type.typeParameters.indexed) {
+    final declaredParameter =
+        declaredShape?.typeParameters.length == type.typeParameters.length
+        ? declaredShape!.typeParameters[index]
+        : null;
+    final bound = specialize(
+      declaredParameter == null
+          ? parameter.bound
+          : parameter.bound.declaredAs(declaredParameter.bound),
+    );
+    final defaultType = child(
+      parameter.defaultType,
+      declaredParameter?.defaultType,
+    );
+    typeParameters.add(
+      FlaxCodegenGenericParameter(
+        parameter.name,
+        bound,
+        defaultType: defaultType,
+        genericIdentity: parameter.genericIdentity,
+      ),
+    );
+    // Close the erased bound without replacing the callback's own generic name.
+    if (defaultType != null &&
+        needsSubstitution(declaredParameter?.bound ?? parameter.bound)) {
+      substitutions = {
+        ...substitutions,
+        for (final identity in [
+          parameter.genericIdentity,
+          ?declaredParameter?.genericIdentity,
+        ])
+          identity: defaultType.declaredAs(
+            FlaxCodegenTypeRef(
+              'parameter',
+              name: parameter.name,
+              genericIdentity: identity,
+            ),
+          ),
+      };
+    }
+  }
   final arguments = declaration != null && declaration.tsArguments.isNotEmpty
       ? declaration.tsArguments
       : type.tsArguments.isNotEmpty
@@ -958,7 +1140,7 @@ FlaxCodegenTypeRef _specializeEnumType(
     result: child(type.result, declaredShape?.result),
     parameters: [
       for (final (index, parameter) in type.parameters.indexed)
-        _specializeEnumParameter(
+        _specializeParameter(
           parameter,
           substitutions,
           declaredShape?.parameters.length == type.parameters.length
@@ -966,17 +1148,7 @@ FlaxCodegenTypeRef _specializeEnumType(
               : null,
         ),
     ],
-    typeParameters: [
-      for (final parameter in type.typeParameters)
-        FlaxCodegenGenericParameter(
-          parameter.name,
-          specialize(parameter.bound),
-          defaultType: parameter.defaultType == null
-              ? null
-              : specialize(parameter.defaultType!),
-          genericIdentity: parameter.genericIdentity,
-        ),
-    ],
+    typeParameters: typeParameters,
     typeArguments: type.typeArguments,
     dartArguments: [for (final argument in arguments) specialize(argument)],
     tsArguments: [

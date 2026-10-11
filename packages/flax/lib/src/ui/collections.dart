@@ -34,11 +34,27 @@ class _CollectionCopy {
   final values = <List<FlaxJsValue>>[];
 }
 
-// Only erased copies of raw JS collections may be reconstructed at a concrete
-// Stream use site. Weak keys add no session or collection ownership.
+// Only copies of raw JS collections may be reconstructed at a concrete
+// use site. Weak keys add no session or collection ownership.
 final _jsCollectionShapes = Expando<String>();
 
-/// Restores an erased JS collection for generated Stream event adapters.
+/// Preserves the input shape when typed Iterable decoding creates a List copy.
+String? flaxJsCollectionShape(Object? value) {
+  if (value == null ||
+      (value is! Iterable<Object?> && value is! Map<Object?, Object?>)) {
+    return null;
+  }
+  final shape = _jsCollectionShapes[value];
+  if (shape != null) return shape == 'record' ? 'map' : shape;
+  return switch (value) {
+    List<Object?>() => 'list',
+    Set<Object?>() => 'set',
+    Map<Object?, Object?>() => 'map',
+    _ => 'iterable',
+  };
+}
+
+/// Restores a raw JS collection copy for generated concrete-value adapters.
 ///
 /// Callers preserve already-compatible Dart values before using this helper.
 /// Existing Dart references must fail closed instead of being narrowed by a copy.
@@ -169,6 +185,7 @@ extension _Collections on _Session {
       } finally {
         entries.release();
       }
+      _jsCollectionShapes[output] = shape.value;
       return _Value(output, resources);
     } catch (_) {
       for (final resource in resources.reversed) {
@@ -272,14 +289,12 @@ extension _Collections on _Session {
           return decode(input, record.$1, conversion: memo);
         }
       }
-      final decoded = decodeCollection(input, switch (shape.value) {
+      return decodeCollection(input, switch (shape.value) {
         'list' => _anyList,
         'map' || 'record' => _anyMap,
         'set' => _anySet,
         _ => _anyIterable,
       }, memo);
-      _jsCollectionShapes[decoded.data as Object] = shape.value;
-      return decoded;
     }
     throw ArgumentError('Expected a supported value or Dart reference');
   }

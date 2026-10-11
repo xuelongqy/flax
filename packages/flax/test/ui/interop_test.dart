@@ -25,6 +25,181 @@ Future<void> _waitFor(
 
 void main() {
   testWidgets(
+    'nested constructors reify JS collections and retain Dart references',
+    (tester) async {
+      final created = <Object>[];
+      final h = OwnedHarness(
+        fixture: 'interop',
+        extra: [interopBindings],
+        onCreate: (_, value) => created.add(value),
+      );
+      try {
+        await tester.pumpWidget(h.app('interop'));
+        h.execute('''
+        var nestedEmpty = interop.CodegenNestedBox([]);
+        var nested = interop.CodegenNestedBox([new Map([['a', 2], ['nil', null]])]);
+        var nestedAgain = interop.CodegenNestedBox(nested.value);
+        var nestedHistory = interop.CodegenNestedBox(nested.value, {history: [Promise.resolve(nested.value)]});
+        var nestedRecord = interop.CodegenNestedBox(nested.value, {record: {\$1: [nested.value]}});
+        var historyIdentity;
+        nestedHistory.history.get(0).then(value => {historyIdentity = value === nested.value;});
+        var nestedText = interop.CodegenNestedBox('text');
+        var explicitNested = interop.CodegenExplicitNestedBox([]);
+        var boundedList = interop.CodegenBoundedNestedBox(['a']);
+        var boundedSet = interop.CodegenBoundedNestedBox(new Set(['a']));
+      ''');
+        expect(
+          created
+              .whereType<fixture.CodegenNestedBox<List<Map<String, int?>>>>(),
+          hasLength(5),
+        );
+        expect(
+          created.whereType<fixture.CodegenNestedBox<String>>(),
+          hasLength(1),
+        );
+        expect(
+          created.whereType<fixture.CodegenExplicitNestedBox<List<String>>>(),
+          hasLength(1),
+        );
+        expect(
+          created.whereType<fixture.CodegenBoundedNestedBox<List<String>>>(),
+          hasLength(1),
+        );
+        expect(
+          created.whereType<fixture.CodegenBoundedNestedBox<Set<String>>>(),
+          hasLength(1),
+        );
+        expect(
+          h.boolean(
+            'typeof boundedList.value.get === "function" && typeof boundedSet.value.add === "function"',
+          ),
+          isTrue,
+        );
+        h.execute('''
+          var savedBoundedList = boundedList.value;
+          var savedBoundedSet = boundedSet.value;
+          var boundedFutureIdentity;
+          boundedSet.pending(savedBoundedSet).then(value => {boundedFutureIdentity = value === savedBoundedSet;});
+          var boundedIdentity = boundedList.echo(savedBoundedList) === savedBoundedList
+            && boundedSet.echo(savedBoundedSet) === savedBoundedSet
+            && boundedList.map(value => value) === savedBoundedList
+            && boundedSet.map(value => value) === savedBoundedSet
+            && boundedList.generic(value => value) === savedBoundedList
+            && boundedSet.generic(value => value) === savedBoundedSet
+            && boundedList.identity(savedBoundedList) === savedBoundedList
+            && boundedSet.identity(savedBoundedSet) === savedBoundedSet;
+          boundedList.value = ['b'];
+          boundedSet.value = new Set(['c']);
+          var boundedConversions = boundedIdentity && boundedList.value.get(0) === 'b'
+            && boundedSet.value.contains('c') && boundedList.map(() => ['d']).get(0) === 'd'
+            && boundedSet.map(() => new Set(['e'])).contains('e')
+            && boundedList.generic(() => ['f']).get(0) === 'f'
+            && boundedSet.generic(() => new Set(['g'])).contains('g')
+            && boundedList.identity(['h']).get(0) === 'h'
+            && boundedSet.identity(new Set(['i'])).contains('i');
+          class NestedChild extends interop.CodegenBoundedNestedProxy {
+            #extra = 2;
+            size() {return super.size() + this.#extra;}
+            echo(value) {return super.echo(value);}
+          }
+          var nestedChild = new NestedChild(['a']);
+          var nestedChildValue = nestedChild.value;
+          var nestedErased = interop.CodegenBoundedNestedBox.erased();
+          var nestedErasedView = nestedErased.value;
+          var nestedInheritance = nestedChild.size() === 3 && nestedChild.echo(nestedChildValue) === nestedChildValue
+            && nestedChild instanceof NestedChild && nestedChild instanceof interop.CodegenBoundedNestedProxy
+            && nestedChild instanceof interop.CodegenBoundedNestedBox
+            && nestedErasedView === nestedErased.value && nestedErasedView.contains('erased')
+            && typeof nestedErasedView.get === 'undefined';
+        ''');
+        expect(h.boolean('boundedConversions && nestedInheritance'), isTrue);
+        await _waitFor(tester, h, 'boundedFutureIdentity !== undefined');
+        expect(h.boolean('boundedFutureIdentity'), isTrue);
+        final boundedBinding = interopBindings.types
+            .whereType<FlaxObjectBinding>()
+            .singleWhere(
+              (type) => type.id.endsWith('::CodegenBoundedNestedBox'),
+            );
+        expect(h.calls['@memberView:${boundedBinding.id}'], 3);
+        expect(h.calls['@super:size'], 1);
+        expect(h.calls['map'], 4);
+        expect(h.calls['generic'], 4);
+        for (final source in [
+          'boundedList.value = new Set(["bad"])',
+          'boundedSet.value = ["bad"]',
+          'boundedList.value = savedBoundedSet',
+          'boundedSet.echo(savedBoundedList)',
+          'boundedList.map(() => new Set(["bad"]))',
+          'boundedSet.map(() => ["bad"])',
+          'boundedList.generic(() => new Set(["bad"]))',
+          'boundedSet.generic(() => ["bad"])',
+          'boundedList.identity(savedBoundedSet)',
+          'boundedList.value = [1]',
+          'boundedSet.echo(null)',
+          'boundedList.echo(undefined)',
+        ]) {
+          expect(
+            () => h.execute(source),
+            throwsA(isA<FlaxJsException>()),
+            reason: source,
+          );
+        }
+        expect(
+          h.boolean(
+            'boundedList.value.get(0) === "b" && boundedSet.value.contains("c")',
+          ),
+          isTrue,
+        );
+        expect(
+          h.boolean(
+            'nestedAgain.value === nested.value && nestedEmpty.value.length === 0 && nested.value.get(0).get("a") === 2 && nested.value.get(0).get("nil") === null && nestedText.value === "text"',
+          ),
+          isTrue,
+        );
+        await _waitFor(tester, h, 'historyIdentity !== undefined');
+        expect(h.boolean('historyIdentity'), isTrue);
+        expect(
+          h.boolean('nestedRecord.record.\$1.get(0) === nested.value'),
+          isTrue,
+        );
+        h.execute('''
+        var rejectedHistory;
+        var badHistory = interop.CodegenNestedBox(nested.value, {history: [Promise.resolve([2])]});
+        badHistory.history.get(0).then(
+          () => {rejectedHistory = false;},
+          () => {rejectedHistory = true;}
+        );
+      ''');
+        await _waitFor(tester, h, 'rejectedHistory !== undefined');
+        expect(h.boolean('rejectedHistory'), isTrue);
+        for (final source in [
+          'interop.CodegenNestedBox([new Map([["a", 1.5]])])',
+          'interop.CodegenNestedBox([new Map([["a", "wrong"]])])',
+          'interop.CodegenNestedBox([2])',
+          'interop.CodegenNestedBox(explicitNested.value)',
+          'interop.CodegenNestedBox(true)',
+          'interop.CodegenNestedBox(null)',
+          'interop.CodegenNestedBox()',
+          'interop.CodegenNestedBox(undefined)',
+          'interop.CodegenExplicitNestedBox([2])',
+          'interop.CodegenNestedBox(nested.value, {history: [2]})',
+          'interop.CodegenNestedBox(nested.value, {record: {\$1: [2]}})',
+          'interop.CodegenNestedBox(nested.value, {record: {\$1: explicitNested.value}})',
+        ]) {
+          expect(
+            () => h.execute(source),
+            throwsA(isA<FlaxJsException>()),
+            reason: source,
+          );
+        }
+        expect(h.errors, isEmpty);
+      } finally {
+        await h.finish(tester);
+      }
+    },
+  );
+
+  testWidgets(
     'enhanced enums preserve identity, members, generics and cleanup',
     (tester) async {
       final reads = fixture.EnhancedStatus.reads;

@@ -14,7 +14,7 @@ function waitOpen(socket) {
   });
 }
 
-function waitCustom(socket, name) {
+function waitCustom(socket, name, accepts = () => true) {
   return new Promise((resolve, reject) => {
     const timer = setTimeout(() => {
       socket.removeEventListener('message', receive);
@@ -22,7 +22,8 @@ function waitCustom(socket, name) {
     }, 5000);
     function receive(event) {
       const payload = JSON.parse(event.data);
-      if (payload.type !== 'custom' || payload.event !== name) return;
+      if (payload.type !== 'custom' || payload.event !== name || !accepts(payload.data))
+        return;
       clearTimeout(timer);
       socket.removeEventListener('message', receive);
       resolve(payload.data);
@@ -192,7 +193,21 @@ export class Counter {
   assert.match(initial, /"\/src\/dep\.ts"/);
   assert.match(initial, /@flax\/flutter\/widgets/);
 
-  const update = waitCustom(socket, 'flax:update');
+  const dependencyValue = (batch) => {
+    const module = { exports: {} };
+    const factory = batch.modules.find(
+      (module) => module.id === '/src/dep.ts',
+    )?.factory;
+    if (!factory) return undefined;
+    runInContext(`(${factory})(module, module.exports)`, createContext({ module }));
+    return module.exports.value;
+  };
+  // A watcher may deliver an unchanged snapshot before the edited source batch.
+  const update = waitCustom(
+    socket,
+    'flax:update',
+    (batch) => dependencyValue(batch) === 2,
+  );
   await writeFile(dependency, 'export const value: number = 2;\n');
   const batch = await update;
   assert.deepEqual(batch.inventory, ['/src/dep.ts', '/src/main.ts']);
@@ -231,7 +246,11 @@ export class Counter {
   assert.match((await failed).message, /Unexpected|Expected|error/i);
   assert.equal(await readFile(asset, 'utf8'), latest);
 
-  const recovered = waitCustom(socket, 'flax:update');
+  const recovered = waitCustom(
+    socket,
+    'flax:update',
+    (batch) => dependencyValue(batch) === 3,
+  );
   await writeFile(dependency, 'export const value: number = 3;\n');
   const recovery = await recovered;
   assert.deepEqual(recovery.inventory, ['/src/dep.ts', '/src/main.ts']);

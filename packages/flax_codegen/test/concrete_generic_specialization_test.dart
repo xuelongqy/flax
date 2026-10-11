@@ -62,10 +62,7 @@ void main() {
       );
       final genericBox = module.classes.single;
       expect(genericBox.typeArguments, ['Object?']);
-      expect(
-        genericBox.constructors.single.parameters.single.type.kind,
-        'scalar',
-      );
+      expect(genericBox.constructors.single.parameters.single.type.kind, 'any');
       expect(
         genericBox.constructors.single.specializations.map(
           (specialization) => specialization.typeArguments,
@@ -73,6 +70,7 @@ void main() {
         containsAll(<List<String>>[
           ['String'],
           ['int'],
+          ['List<String>'],
         ]),
       );
     },
@@ -141,7 +139,7 @@ void main() {
     );
   });
 
-  test('keeps the shared owner but omits constructors for nested generic arguments', () async {
+  test('selects a constructor from a closed nested generic use', () async {
     final proposed = await parser.proposeSelection(
       library.getClass('GenericBox')!,
       library: config(),
@@ -149,10 +147,10 @@ void main() {
     );
 
     expect(proposed.selection, isNotNull);
-    expect(proposed.selection!.constructors, isEmpty);
+    expect(proposed.selection!.constructors[''], ['value']);
     expect(
       proposed.skips.map((skip) => skip.code),
-      contains('constructor_specialization_missing_use_site'),
+      isNot(contains('constructor_specialization_missing_use_site')),
     );
   });
 

@@ -116,16 +116,28 @@ void main() {
           message: 'dependent generic bound',
         ),
       );
+      final callback = _declaration(
+        'CallbackConstructor',
+        generic: true,
+        diagnostic: const CapabilityDiagnostic(
+          code: 'constructor_specialization_callback',
+          message: 'callback needs a concrete target',
+        ),
+      );
       final inventory = LibraryInventory(
         entry: 'package:fixture/main.dart',
         resolved: true,
         elapsedMilliseconds: 0,
-        declarations: [missing, ambiguous, complex],
+        declarations: [missing, ambiguous, complex, callback],
       );
       final proposal = FlaxCodegenAutoBindingProposal(
         config: _config({
           'MissingUseSite': const FlaxCodegenClassSelection({}, kind: 'object'),
           'AmbiguousConstructor': const FlaxCodegenClassSelection(
+            {},
+            kind: 'object',
+          ),
+          'CallbackConstructor': const FlaxCodegenClassSelection(
             {},
             kind: 'object',
           ),
@@ -146,6 +158,11 @@ void main() {
             reason: 'dependent generic bound',
             code: 'complex_generic_bound',
           ),
+          FlaxCodegenSkip(
+            target: 'CallbackConstructor.',
+            reason: 'callback needs a concrete target',
+            code: 'constructor_specialization_callback',
+          ),
         ],
       );
 
@@ -156,7 +173,7 @@ void main() {
       );
 
       final insights = capabilityInsights(inventory);
-      expect(insights['sharedOwnerResolved'], 2);
+      expect(insights['sharedOwnerResolved'], 3);
       expect(insights['constructorSpecializationMissingUseSite'], 1);
       expect(insights['constructorSpecializationAmbiguous'], 1);
       expect(insights['complexGenericBound'], 1);

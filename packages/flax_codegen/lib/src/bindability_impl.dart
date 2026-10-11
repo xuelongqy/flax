@@ -356,6 +356,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
         method.name!,
   };
   final typeArguments = [...?base?.typeArguments];
+  var runtimeType = element.thisType;
   if (element.typeParameters.isNotEmpty &&
       typeArguments.length != element.typeParameters.length) {
     if (typeArguments.isNotEmpty) {
@@ -375,6 +376,10 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
       );
       return FlaxCodegenProposedBinding(name: name, id: id, skips: skips);
     }
+    runtimeType = element.instantiate(
+      typeArguments: sharedOwner.arguments,
+      nullabilitySuffix: NullabilitySuffix.none,
+    );
   }
 
   final constructors = <String, List<String>>{};
@@ -410,6 +415,9 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
             parser: parser,
             element: element,
             constructor: constructor,
+            runtimeConstructor: runtimeType.constructors.firstWhere(
+              (candidate) => candidate.name == constructor.name,
+            ),
             selectedParameters: bound,
             concreteUses: concreteUses,
           );
@@ -949,6 +957,8 @@ const _constructorSpecializationMissingUseSiteCode =
     'constructor_specialization_missing_use_site';
 const _constructorSpecializationAmbiguousCode =
     'constructor_specialization_ambiguous';
+const _constructorSpecializationCallbackCode =
+    'constructor_specialization_callback';
 
 final class _SharedTypeArgumentPlan {
   const _SharedTypeArgumentPlan({
@@ -1101,6 +1111,7 @@ _ConstructorSpecializationPlan _constructorSpecializationPlan({
   required FlaxCodegenBindingParser parser,
   required InterfaceElement element,
   required ConstructorElement constructor,
+  required ConstructorElement runtimeConstructor,
   required List<String> selectedParameters,
   required Iterable<InterfaceType> concreteUses,
 }) {
@@ -1267,6 +1278,72 @@ _ConstructorSpecializationPlan _constructorSpecializationPlan({
     );
   }
 
+  bool incompatibleCallback(DartType erased, DartType concrete) {
+    if (erased is FunctionType && concrete is FunctionType) {
+      return !element.library.typeSystem.isSubtypeOf(erased, concrete);
+    }
+    if (erased is RecordType && concrete is RecordType) {
+      return [...erased.positionalFields, ...erased.namedFields].indexed.any(
+        (entry) => incompatibleCallback(
+          entry.$2.type,
+          [
+            ...concrete.positionalFields,
+            ...concrete.namedFields,
+          ][entry.$1].type,
+        ),
+      );
+    }
+    if (erased is InterfaceType && concrete is InterfaceType) {
+      if (erased.element case final ExtensionTypeElement owner) {
+        DartType representation(InterfaceType type) => Substitution.fromPairs2(
+          owner.typeParameters,
+          type.typeArguments,
+        ).substituteType(owner.typeErasure);
+        return incompatibleCallback(
+          representation(erased),
+          representation(concrete),
+        );
+      }
+      if ((erased.element.library.isDartCore &&
+              {
+                'List',
+                'Map',
+                'Set',
+                'Iterable',
+              }.contains(erased.element.name)) ||
+          (erased.element.library.isDartAsync &&
+              {'Future', 'FutureOr', 'Stream'}.contains(erased.element.name))) {
+        return erased.typeArguments.indexed.any(
+          (entry) =>
+              incompatibleCallback(entry.$2, concrete.typeArguments[entry.$1]),
+        );
+      }
+    }
+    return false;
+  }
+
+  for (final target in targets) {
+    final concrete = target.type.constructors.firstWhere(
+      (candidate) => candidate.name == constructor.name,
+    );
+    for (final parameter in runtimeConstructor.formalParameters) {
+      if (selectedParameters.contains(parameter.name) &&
+          incompatibleCallback(
+            parameter.type,
+            concrete.formalParameters
+                .firstWhere((candidate) => candidate.name == parameter.name)
+                .type,
+          )) {
+        return _ConstructorSpecializationPlan(
+          const [],
+          reason:
+              'Constructor callback ${parameter.name} requires explicit runtime type arguments',
+          code: _constructorSpecializationCallbackCode,
+        );
+      }
+    }
+  }
+
   for (var left = 0; left < targets.length; left++) {
     for (var right = left + 1; right < targets.length; right++) {
       final a = targets[left].runtimeDomains;
@@ -1300,13 +1377,17 @@ _ConstructorSpecializationPlan _constructorSpecializationPlan({
 }
 
 String? _constructorJsDomain(DartType type) {
-  if (type is! InterfaceType || type.typeArguments.isNotEmpty) return null;
+  if (type is! InterfaceType) return null;
   final element = type.element;
   if (!element.library.isDartCore) return null;
   final base = switch (element.name) {
     'String' => 'string',
     'bool' => 'boolean',
     'int' || 'double' || 'num' => 'number',
+    'List' => 'list',
+    'Map' => 'map',
+    'Set' => 'set',
+    'Iterable' => 'iterable',
     _ => null,
   };
   if (base == null) return null;
@@ -1317,7 +1398,11 @@ bool _constructorDomainsOverlap(String left, String right) {
   Set<String> values(String value) {
     final nullable = value.endsWith('?');
     final base = nullable ? value.substring(0, value.length - 1) : value;
-    return {base, if (nullable) 'null'};
+    return {
+      base,
+      if (base == 'iterable') ...['list', 'set'],
+      if (nullable) 'null',
+    };
   }
 
   return values(left).intersection(values(right)).isNotEmpty;
@@ -1331,38 +1416,39 @@ DartType? _localConcreteTypeArgument(
   if (type is DynamicType) {
     return target.library.typeProvider.objectQuestionType;
   }
-  if (type is! InterfaceType || type.typeArguments.isNotEmpty) return null;
+  if (type is! InterfaceType) return null;
 
   final sourceElement = type.element;
-  InterfaceElement? localElement;
-  if (sourceElement.library.isDartCore &&
-      {
-        'Object',
-        'String',
-        'bool',
-        'int',
-        'double',
-        'num',
-      }.contains(sourceElement.name)) {
-    final provider = target.library.typeProvider;
-    localElement = switch (sourceElement.name) {
-      'Object' => provider.objectType.element,
-      'String' => provider.stringType.element,
-      'bool' => provider.boolType.element,
-      'int' => provider.intType.element,
-      'double' => provider.doubleType.element,
-      'num' => provider.numType.element,
-      _ => null,
-    };
-  } else {
-    localElement = parser._elementsByIdentity[identity(sourceElement)];
-  }
-  if (localElement == null || localElement.typeParameters.isNotEmpty) {
+  final builtin = parser._builtinRuntimeElement(
+    sourceElement.name!,
+    target.library,
+  );
+  final localElement =
+      builtin != null && identity(builtin) == identity(sourceElement)
+      ? builtin
+      : parser._elementsByIdentity[identity(sourceElement)];
+  if (localElement == null ||
+      localElement.typeParameters.length != type.typeArguments.length) {
     return null;
   }
-
+  final arguments = <DartType>[];
+  for (final argument in type.typeArguments) {
+    final local = _localConcreteTypeArgument(parser, target, argument);
+    if (local == null) return null;
+    arguments.add(local);
+  }
+  try {
+    parser._checkBounds(
+      localElement.typeParameters,
+      arguments,
+      localElement.library,
+      false,
+    );
+  } on StateError {
+    return null;
+  }
   final local = localElement.instantiate(
-    typeArguments: const [],
+    typeArguments: arguments,
     nullabilitySuffix: type.nullabilitySuffix,
   );
   return _typeArgumentSource(parser, local) == null ? null : local;
@@ -1374,15 +1460,19 @@ String? _typeArgumentSource(FlaxCodegenBindingParser parser, DartType type) {
   final element = type.element;
   final name = element.name!;
   final nullable = type.nullabilitySuffix == NullabilitySuffix.question;
-  if (element.library.isDartCore &&
-      {'Object', 'String', 'bool', 'int', 'double', 'num'}.contains(name)) {
-    return nullable ? '$name?' : name;
-  }
-  if (!parser._isPoolType(element) &&
+  final builtin = parser._builtinRuntimeElement(name, element.library);
+  if ((builtin == null || identity(builtin) != identity(element)) &&
+      !parser._isPoolType(element) &&
       !parser._adaptations.containsKey(identity(element))) {
     return null;
   }
-  return nullable ? '$name?' : name;
+  final arguments = <String>[];
+  for (final argument in type.typeArguments) {
+    final source = _typeArgumentSource(parser, argument);
+    if (source == null) return null;
+    arguments.add(source);
+  }
+  return '$name${arguments.isEmpty ? '' : '<${arguments.join(', ')}>'}${nullable ? '?' : ''}';
 }
 
 List<String>? _bindConstructor({

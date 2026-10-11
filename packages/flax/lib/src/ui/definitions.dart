@@ -189,6 +189,8 @@ class FlaxObjectBinding extends FlaxTypeBinding {
     this.listenerPairs = const {},
     this.supertypes = const [],
     this.proxy,
+    this.memberView,
+    this.memberViewOperations = const {},
   });
   final Map<String, List<FlaxParameter>> constructors;
   final Object Function(String, Map<String, Object?>) create;
@@ -201,6 +203,22 @@ class FlaxObjectBinding extends FlaxTypeBinding {
   final Map<String, String> listenerPairs;
   final List<String> supertypes;
   final FlaxProxyBinding? proxy;
+
+  /// Select once on the first affected operation; shared members bypass this.
+  final FlaxObjectMemberView? Function(Object)? memberView;
+  final Set<String> memberViewOperations;
+}
+
+/// Only the members whose conversion changes for a closed generic Dart owner.
+class FlaxObjectMemberView {
+  const FlaxObjectMemberView({
+    this.getters = const {},
+    this.setters = const {},
+    this.instanceMethods = const {},
+  });
+  final Map<String, FlaxGetter> getters;
+  final Map<String, FlaxSetter> setters;
+  final Map<String, FlaxInstanceMethod> instanceMethods;
 }
 
 /// One selected Dart member; metadata is shared by every proxy of this type.

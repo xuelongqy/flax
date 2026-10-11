@@ -10295,6 +10295,8 @@ const flutterBindings = FlaxBindingModule(
       setters: [],
       matches: _isValueKey,
       methods: {},
+      memberView: __ValueKeyMemberView,
+      memberViewOperations: {"get:value"},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:ScrollController",
@@ -16656,6 +16658,38 @@ Object _createEdgeInsets(String ctor, Map<String, Object?> values) {
 
 bool _isValueKey(Object value) => value is api.ValueKey<Object?>;
 Object? _ValueKey_value(Object value) => (value as api.ValueKey<Object?>).value;
+FlaxObjectMemberView? __ValueKeyMemberView(Object value) {
+  if (value is api.ValueKey<String>) return __ValueKeyMemberView0;
+  if (value is api.ValueKey<int>) return __ValueKeyMemberView1;
+  return null;
+}
+
+const __ValueKeyMemberView0 = FlaxObjectMemberView(
+  getters: {
+    "value": FlaxGetter(
+      "value",
+      FlaxTypeRef("String"),
+      __ValueKeyMemberView0_value,
+    ),
+  },
+  setters: {},
+  instanceMethods: {},
+);
+Object? __ValueKeyMemberView0_value(Object value) =>
+    (value as api.ValueKey<String>).value;
+const __ValueKeyMemberView1 = FlaxObjectMemberView(
+  getters: {
+    "value": FlaxGetter(
+      "value",
+      FlaxTypeRef("int"),
+      __ValueKeyMemberView1_value,
+    ),
+  },
+  setters: {},
+  instanceMethods: {},
+);
+Object? __ValueKeyMemberView1_value(Object value) =>
+    (value as api.ValueKey<int>).value;
 Object _createValueKey(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":

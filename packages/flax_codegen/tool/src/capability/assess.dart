@@ -542,7 +542,8 @@ List<CapabilityDiagnostic> _proposalDiagnostics(
   final codes = diagnostics.map((diagnostic) => diagnostic.code).toSet();
   final constructorBoundary =
       codes.contains('constructor_specialization_missing_use_site') ||
-      codes.contains('constructor_specialization_ambiguous');
+      codes.contains('constructor_specialization_ambiguous') ||
+      codes.contains('constructor_specialization_callback');
   final sharedOwnerResolved =
       !codes.contains('complex_generic_bound') &&
       ((proposed.selection?.typeArguments.isEmpty ?? false) ||
@@ -562,7 +563,7 @@ List<CapabilityDiagnostic> _proposalDiagnostics(
     diagnostics.add(
       const CapabilityDiagnostic(
         code: 'constructor_specialization_resolved',
-        message: 'Analyzer use sites and direct inputs resolved a concrete constructor specialization',
+        message: 'Analyzer use sites and direct inputs resolved concrete constructor targets and on-demand native member views',
       ),
     );
   }

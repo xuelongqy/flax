@@ -10,7 +10,7 @@ export interface ValueKey<T extends unknown | null = unknown | null> extends ups
 readonly value: T;
 }
 defineObject("flax.core/flutter#type:ValueKey", ["value"], [], _flaxBindingMethods("flax.core/flutter#type:ValueKey", "object", {}), []);
-function _ValueKeyFactory<T extends (string | number) = (string | number)>(value: T): ValueKey<T> {
+function _ValueKeyFactory<T extends (string | number) = (string | number)>(value: (T | DartInput<T>)): ValueKey<T> {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:ValueKey", "", [{"name":"value","required":true,"positional":true}], [value], {}) as ValueKey<T>;

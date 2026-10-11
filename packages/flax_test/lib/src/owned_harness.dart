@@ -14,6 +14,7 @@ class FlaxOwnedTestHarness {
     List<FlaxBindingModule> extra = const [],
     void Function(FlaxObjectBinding binding, Object value)? onCreate,
   }) : runtime = FlaxTestRuntimeTracker(createRuntime()) {
+    final memberViews = <FlaxObjectMemberView, FlaxObjectMemberView>{};
     final modules = [...bindings.modules, ...extra]
         .map(
           (module) => FlaxBindingModule(
@@ -24,24 +25,7 @@ class FlaxOwnedTestHarness {
                   FlaxObjectBinding(
                     type.id,
                     type.getters,
-                    {
-                      for (final entry in type.instanceMethods.entries)
-                        entry.key: FlaxInstanceMethod(
-                          entry.value.parameters,
-                          entry.value.result,
-                          (receiver, args) {
-                            calls.update(
-                              entry.key,
-                              (count) => count + 1,
-                              ifAbsent: () => 1,
-                            );
-                            if (entry.key == type.disposeMethod) {
-                              actualDisposals++;
-                            }
-                            return entry.value.invoke(receiver, args);
-                          },
-                        ),
-                    },
+                    _trackMethods(type, type.instanceMethods),
                     constructors: type.constructors,
                     create: (constructor, arguments) {
                       final value = type.create(constructor, arguments);
@@ -62,6 +46,30 @@ class FlaxOwnedTestHarness {
                     setters: type.setters,
                     supertypes: type.supertypes,
                     proxy: type.proxy,
+                    memberViewOperations: type.memberViewOperations,
+                    memberView: type.memberView == null
+                        ? null
+                        : (value) {
+                            calls.update(
+                              '@memberView:${type.id}',
+                              (count) => count + 1,
+                              ifAbsent: () => 1,
+                            );
+                            final view = type.memberView!(value);
+                            return view == null
+                                ? null
+                                : memberViews.putIfAbsent(
+                                    view,
+                                    () => FlaxObjectMemberView(
+                                      getters: view.getters,
+                                      setters: view.setters,
+                                      instanceMethods: _trackMethods(
+                                        type,
+                                        view.instanceMethods,
+                                      ),
+                                    ),
+                                  );
+                          },
                   )
                 else
                   type,
@@ -93,6 +101,23 @@ class FlaxOwnedTestHarness {
   final errors = <Object>[];
   final created = <Object>[];
   final calls = <String, int>{};
+
+  Map<String, FlaxInstanceMethod> _trackMethods(
+    FlaxObjectBinding type,
+    Map<String, FlaxInstanceMethod> methods,
+  ) => {
+    for (final entry in methods.entries)
+      entry.key: FlaxInstanceMethod(
+        entry.value.parameters,
+        entry.value.result,
+        (receiver, args) {
+          calls.update(entry.key, (count) => count + 1, ifAbsent: () => 1);
+          if (entry.key == type.disposeMethod) actualDisposals++;
+          return entry.value.invoke(receiver, args);
+        },
+        startsRoute: entry.value.startsRoute,
+      ),
+  };
   final constructions = <String, int>{};
   int actualDisposals = 0;
   late final FlaxSession session;

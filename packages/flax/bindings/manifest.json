@@ -65168,7 +65168,23 @@
                         "typeArguments": [],
                         "dartArguments": [],
                         "primitiveKinds": [],
-                        "declaration": null,
+                        "declaration": {
+                          "kind": "parameter",
+                          "id": null,
+                          "name": "T",
+                          "nullable": false,
+                          "item": null,
+                          "key": null,
+                          "parameters": [],
+                          "typeParameters": [],
+                          "result": null,
+                          "typeArguments": [],
+                          "dartArguments": [],
+                          "primitiveKinds": [],
+                          "declaration": null,
+                          "tsArguments": [],
+                          "slot": "g0"
+                        },
                         "tsArguments": [],
                         "slot": null
                       }
@@ -65195,7 +65211,23 @@
                         "typeArguments": [],
                         "dartArguments": [],
                         "primitiveKinds": [],
-                        "declaration": null,
+                        "declaration": {
+                          "kind": "parameter",
+                          "id": null,
+                          "name": "T",
+                          "nullable": false,
+                          "item": null,
+                          "key": null,
+                          "parameters": [],
+                          "typeParameters": [],
+                          "result": null,
+                          "typeArguments": [],
+                          "dartArguments": [],
+                          "primitiveKinds": [],
+                          "declaration": null,
+                          "tsArguments": [],
+                          "slot": "g0"
+                        },
                         "tsArguments": [],
                         "slot": null
                       }
