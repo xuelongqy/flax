@@ -4,7 +4,7 @@
   "bootstrap": "assets/flax_modules/registry.js",
   "lock": {
     "manager": "pnpm",
-    "digest": "693f161c1ef7b3826a843dd1c37f01210e9fab06cddebc1e81e0fcba158793c6"
+    "digest": "beaa69c9154768ae6938817ea1b77341277786988ea0fd85929df26a5782c118"
   },
   "modules": [
     {
@@ -23,7 +23,7 @@
       "specifier": "@flax/core/bindings",
       "owner": "@flax/core-runtime:dist/runtime/bindings.js",
       "version": "0.0.0",
-      "artifact": "a25fdb2364cb9d4962df000b3ceb879350c691ee416c8018a7ff29c3f8d810d9",
+      "artifact": "d9ff19648c5536e2db511219ad417eea11d007cecac6a9e6b644cc086eb82faa",
       "asset": "assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js",
       "package": "@flax/core-runtime",
       "source": "dist/runtime/bindings.js",

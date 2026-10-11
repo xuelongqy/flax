@@ -53,3 +53,36 @@ Runtime format `flax-cjs-1` registers factories before business execution. Facto
 once, lazily, within one runtime. Dependency cycles reuse published CommonJS exports;
 failed initializers remain failed. The artifact digest detects stale contract pairings;
 it is not a code-signing or untrusted-code security boundary.
+
+For local Flutter development, `flax-dev` keeps the normal synchronous asset startup and
+uses Vite only for watching, module graph updates, transforms, and its HMR WebSocket:
+
+```sh
+flax-dev --entry js/src/main.ts --out assets/app.js --port 5173
+```
+
+The generated asset requires the existing Flax module registry. Install
+`FlaxWebSocketPlugin` in the session to receive updates. Compatible class method changes
+preserve the canonical constructor and existing State instances; constructor or instance
+initialization changes (including changed module-level or imported inputs), field shape,
+private brands, superclass, page inventory, and module removal require a session
+restart. Runtime reload failures are reported by `flax-dev`.
+
+Each successful compilation atomically refreshes the complete startup asset, even when
+the running Session rejects that update and requires a restart. Compile errors retain
+the last valid asset. Restart the Flutter host with the refreshed asset to load the
+current source. Content revisions and per-Session commit acknowledgements keep live
+updates consistent with that asset: rejected dependencies are retried with the next
+update, while unchanged dependencies, including private-field classes, reuse their
+existing runtime instances. The server sends only changed factories and their importers,
+keeps one batch in flight per Session, and coalesces later saves into the latest
+snapshot. Edits made during a syntax error remain dirty until a complete asset is
+published, so fixing the importer also compiles its pending dependency changes. Class
+members assigned after their declaration are captured when the module finishes; ordinary
+configurable assignments participate in commit and rollback.
+
+The maintained engine uses V8 on macOS and Android arm64 and Hermes on iOS arm64.
+Android USB development forwards the default port with `adb reverse tcp:5173 tcp:5173`;
+the iOS simulator can reach the host loopback directly. Keep staged module
+initialization free of business side effects: registry validation does not undo
+arbitrary effects.

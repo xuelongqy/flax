@@ -81,11 +81,13 @@ class _PageBodyState extends State<_PageBody> {
   Object? _arguments;
   bool _hasArguments = false;
   Object? _error;
+  int _hotGeneration = 0;
 
   @override
   void initState() {
     super.initState();
     widget.session.retainMount();
+    _hotGeneration = widget.session.hotPageGeneration(widget.name);
   }
 
   @override
@@ -115,39 +117,87 @@ class _PageBodyState extends State<_PageBody> {
       if (_hasArguments && _sameNavigationData(_arguments, next)) return;
       encoded = session.encodeData(next);
       if (_instance == null) {
-        final instance = session.helper('createPage').call([
-          FlaxJsString(widget.name),
-          encoded,
-        ]);
-        if (instance is! FlaxJsObject) {
-          throw StateError('Invalid page instance');
-        }
-        try {
-          _content = _property(
-            instance,
-            'widget',
-            (value) => session.decode(value, const FlaxTypeRef('widget')),
-          );
-          _update = instance.getProperty('update') as FlaxJsFunction;
-          _instance = instance;
-        } catch (_) {
-          _content?.release();
-          _content = null;
-          session.disposePage(instance);
-          instance.release();
-          rethrow;
-        }
+        _replacePage(encoded);
       } else {
         _releaseJs(_update!.call([encoded]));
       }
       _arguments = next;
       _hasArguments = true;
+      _error = null;
     } catch (error, stack) {
       _error = error;
       session.report(error, stack);
     } finally {
       if (encoded != null) _releaseJs(encoded);
       session.checkpoint();
+    }
+  }
+
+  void _replacePage(FlaxJsValue encoded, {bool retire = false}) {
+    final session = widget.session;
+    final result = session.helper('createPage').call([
+      FlaxJsString(widget.name),
+      encoded,
+    ]);
+    if (result is! FlaxJsObject) {
+      _releaseJs(result);
+      throw StateError('Invalid page instance');
+    }
+    _Value? content;
+    FlaxJsFunction? update;
+    try {
+      content = _property(
+        result,
+        'widget',
+        (value) => session.decode(value, const FlaxTypeRef('widget')),
+      );
+      update = result.getProperty('update') as FlaxJsFunction;
+    } catch (_) {
+      content?.release();
+      update?.release();
+      session.disposePage(result);
+      result.release();
+      rethrow;
+    }
+
+    final previousContent = _content;
+    final previousUpdate = _update;
+    final previousInstance = _instance;
+    _content = content;
+    _update = update;
+    _instance = result;
+    if (previousInstance == null) return;
+    void releasePrevious() {
+      previousContent?.release();
+      previousUpdate?.release();
+      session.disposePage(previousInstance);
+      previousInstance.release();
+    }
+
+    if (retire) {
+      session.retireHot(releasePrevious);
+    } else {
+      releasePrevious();
+    }
+  }
+
+  @override
+  void reassemble() {
+    super.reassemble();
+    final generation = widget.session.hotPageGeneration(widget.name);
+    if (generation == _hotGeneration || !_hasArguments) return;
+    _hotGeneration = generation;
+    FlaxJsValue? encoded;
+    try {
+      encoded = widget.session.encodeData(_arguments);
+      _replacePage(encoded, retire: true);
+      _error = null;
+    } catch (error, stack) {
+      _error ??= error;
+      widget.session.report(error, stack);
+    } finally {
+      if (encoded != null) _releaseJs(encoded);
+      widget.session.checkpoint();
     }
   }
 

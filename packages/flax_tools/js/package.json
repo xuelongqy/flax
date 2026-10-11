@@ -9,6 +9,7 @@
     "./register-node-loader": "./src/register-node-loader.mjs"
   },
   "bin": {
+    "flax-dev": "./bin/flax-dev.mjs",
     "flax-modules": "./bin/flax-modules.mjs"
   },
   "files": [
@@ -17,12 +18,13 @@
     "README.md"
   ],
   "scripts": {
-    "build": "node --check src/modules.mjs && node --check src/registry.mjs && node --check src/node-loader.mjs && node --check src/register-node-loader.mjs",
-    "typecheck": "node --check src/modules.mjs && node --check src/registry.mjs && node --check src/node-loader.mjs && node --check src/register-node-loader.mjs",
+    "build": "node --check src/modules.mjs && node --check src/registry.mjs && node --check src/dev.mjs && node --check src/node-loader.mjs && node --check src/register-node-loader.mjs && node --check bin/flax-dev.mjs",
+    "typecheck": "node --check src/modules.mjs && node --check src/registry.mjs && node --check src/dev.mjs && node --check src/node-loader.mjs && node --check src/register-node-loader.mjs && node --check bin/flax-dev.mjs",
     "test": "node --test test/*.test.mjs"
   },
   "dependencies": {
     "esbuild": "0.28.2",
-    "js-yaml": "5.2.2"
+    "js-yaml": "5.2.2",
+    "vite": "8.3.1"
   }
 }

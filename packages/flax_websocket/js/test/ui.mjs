@@ -2,7 +2,11 @@ import { createHash } from 'node:crypto';
 import { readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
-export async function bundleUiFixtures({ outdir }) {
+export async function bundleUiFixtures({ outdir, packageRoot }) {
+  await writeFile(
+    resolve(outdir, 'hot_reload_server.json'),
+    JSON.stringify({ script: resolve(packageRoot, 'js/test/hot_reload_server.mjs') }),
+  );
   await writeFile(resolve(outdir, 'websocket_wpt.js'), await wptSource());
 }
 

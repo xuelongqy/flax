@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"a25fdb2364cb9d4962df000b3ceb879350c691ee416c8018a7ff29c3f8d810d9","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"d9ff19648c5536e2db511219ad417eea11d007cecac6a9e6b644cc086eb82faa","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -485,11 +485,18 @@ function settlePromise(id, record, success, value) {
 }
 var pageFactories = /* @__PURE__ */ new Map();
 var registrationOpen = true;
+function hotDev() {
+  var _a;
+  return (_a = globalThis.__flaxModules) == null ? void 0 : _a.dev;
+}
 function registerPage(name, factory) {
-  if (!registrationOpen)
-    throw new Error("Page registration is closed");
+  var _a;
   if (typeof name !== "string" || name.length === 0 || typeof factory !== "function")
     throw new TypeError("Expected a page name and synchronous factory");
+  if ((_a = hotDev()) == null ? void 0 : _a.capturePage(name, factory, (next) => pageFactories.set(name, next)))
+    return;
+  if (!registrationOpen)
+    throw new Error("Page registration is closed");
   if (pageFactories.has(name))
     throw new Error(`Duplicate page: ${name}`);
   pageFactories.set(name, factory);
@@ -1667,6 +1674,9 @@ Object.assign(globalThis, {
 });
 var mounted = false;
 function mountRoot(widget) {
+  var _a;
+  if ((_a = hotDev()) == null ? void 0 : _a.captureRoot(widget))
+    return;
   if (mounted)
     throw new Error("This runtime already has an application root");
   const host = globalThis;

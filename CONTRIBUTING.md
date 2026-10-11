@@ -52,6 +52,7 @@ Run commands from the repository root.
 | FFI declaration reproducibility                        | `dart run melos run ffi:check`                            |
 | Real macOS engine application                          | `dart run tool/check_engine_application.dart profile`     |
 | Live sessions across three hot restarts                | `dart run tool/check_engine_restart.dart`                 |
+| Development HMR State and real Vite/WebSocket delivery | `dart run tool/check_hot_reload.dart`                     |
 | Runtime, callbacks, or native packaging                | `dart run melos run check:runtime`                        |
 | Binding rules or generator                             | `dart run melos run bindings:check`                       |
 | Regenerate Dart and TS bindings                        | `dart run melos run bindings:generate`                    |
@@ -102,6 +103,11 @@ and matching `flax_mac_release_arm64` host tools. Set
 development signature and provisioning profile, verifies Dart AOT and the engine content
 hash, and installs after removing the temporary source. Physical-device debug/profile,
 distribution signing and Hermes GC/frame performance remain outside this gate.
+
+`tool/check_hot_reload.dart` runs the focused development reload gate on macOS V8,
+Android V8 or iOS simulator Hermes using the same target/device environment variables.
+It starts Vite on the development host; Android uses a temporary `adb reverse` mapping.
+It does not certify physical iOS devices or release builds.
 
 The old multi-platform SDK matrix is historical; it does not certify this engine. See
 [platform verification](docs/testing-platforms.md). Other platforms require a maintained

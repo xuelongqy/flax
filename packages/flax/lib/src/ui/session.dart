@@ -157,6 +157,8 @@ class _Session {
   // These entries are installed after plugins or by the application UI bundle.
   final _hostGlobals = <String>{
     '__flaxBindings',
+    '__flaxHotCommit',
+    '__flaxHotStage',
     '__flaxMount',
     '__flaxInvalidate',
   };
@@ -217,6 +219,10 @@ class _Session {
   FlaxJsFunction? _objectKeys;
   FlaxJsFunction? _arrayCheck;
   _Value? _root;
+  _Value? _hotRoot;
+  Set<String>? _hotPages;
+  int _hotRootGeneration = 0;
+  final _hotPageGenerations = <String, int>{};
   int _nextToken = 1;
   int? _frame;
   final _subscriptions = <int, _MountedProperty>{};
@@ -302,6 +308,47 @@ class _Session {
         _root = decode(args[0], const FlaxTypeRef('widget'));
         return const FlaxJsUndefined();
       });
+      runtime.registerHostFunction('__flaxHotStage', (_, args) {
+        if (args.length != 2 || args[1] is! FlaxJsString) {
+          throw ArgumentError('Invalid hot reload stage');
+        }
+        _Value? root;
+        try {
+          if (args[0] is! FlaxJsUndefined) {
+            root = decode(args[0], const FlaxTypeRef('widget'))..validate();
+          }
+          final value = jsonDecode((args[1] as FlaxJsString).value);
+          if (value is! List || value.any((item) => item is! String)) {
+            throw ArgumentError('Invalid hot reload pages');
+          }
+          _hotRoot?.release();
+          _hotRoot = root;
+          root = null;
+          _hotPages = value.cast<String>().toSet();
+        } finally {
+          root?.release();
+        }
+        return const FlaxJsUndefined();
+      });
+      runtime.registerHostFunction('__flaxHotCommit', (_, args) {
+        if (args.isNotEmpty || _hotPages == null) {
+          throw StateError('No staged hot reload');
+        }
+        final root = _hotRoot;
+        _hotRoot = null;
+        if (root != null) {
+          final previous = _root;
+          _root = root;
+          _hotRootGeneration++;
+          if (previous != null) retireHot(previous.release);
+        }
+        for (final name in _hotPages!) {
+          _hotPageGenerations[name] = (_hotPageGenerations[name] ?? 0) + 1;
+        }
+        _hotPages = null;
+        unawaited(WidgetsBinding.instance.reassembleApplication());
+        return const FlaxJsUndefined();
+      });
       _releaseJs(runtime.evaluate(source, sourceUrl: sourceUrl));
       final pages = helper('finishRegistration').call(const []) as FlaxJsNumber;
       if (_root == null && pages.value == 0) {
@@ -348,6 +395,21 @@ class _Session {
         if (active && entry.key.mounted && entry.key._active) {
           entry.key.refresh(entry.value);
         }
+      }
+    });
+  }
+
+  int hotPageGeneration(String name) => _hotPageGenerations[name] ?? 0;
+
+  void retireHot(void Function() release) {
+    retainMount();
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      try {
+        release();
+      } catch (error, stack) {
+        report(error, stack);
+      } finally {
+        releaseMount();
       }
     });
   }
@@ -908,6 +970,9 @@ class _Session {
     _frame = null;
     _dirty.clear();
     _subscriptions.clear();
+    _hotRoot?.release();
+    _hotRoot = null;
+    _hotPages = null;
     _root?.release();
     _root = null;
     for (final context in _contexts.values.toList()) {

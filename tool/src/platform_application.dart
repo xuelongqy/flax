@@ -765,6 +765,8 @@ Future<String> runMobileApplication(
       timeout: timeout,
       uiResultsPath: uiResultsPath,
     );
+    // Tests may fail before launch returns; await the same failure below.
+    waiting.ignore();
     try {
       await run('xcrun', [
         'simctl',
@@ -847,6 +849,8 @@ Future<String> runMobileApplication(
     timeout: timeout,
     uiResultsPath: uiResultsPath,
   );
+  // Tests may fail before launch returns; await the same failure below.
+  waiting.ignore();
   // Start monitoring before launch; the unique marker excludes older device logs.
   try {
     await run(adb, ['-s', device, 'shell', 'am', 'force-stop', bundle]);

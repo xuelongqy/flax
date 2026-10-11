@@ -231,9 +231,11 @@ leases. Named-page lifecycle cleanup remains available for page-factory resource
 UI protocol 24 includes component type metadata, ancestor queries, returned Dart
 functions and Widget references; previous protocols are rejected. The C ABI and runtime
 microtask API are unchanged. Unselected Flutter concrete-class inheritance, dynamic
-mixin composition, JS GlobalKey/currentState, state restoration, JS source hot reload,
-automatic build tracking and new engines/platforms remain unavailable. `reassemble`
-forwards Flutter's lifecycle only.
+mixin composition, JS GlobalKey/currentState, state restoration, automatic build
+tracking and new engines/platforms remain unavailable. Development
+[hot reload](../decisions/0040-vite-hot-reload.md) preserves compatible JS class
+identity and mounted Flutter State through `reassemble`; incompatible structural changes
+require a Session restart.
 
 ## Native Widget inheritance
 

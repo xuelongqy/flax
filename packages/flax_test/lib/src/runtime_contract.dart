@@ -540,6 +540,141 @@ void flaxRuntimeContract(
     );
   });
 
+  test(
+    'existing objects can use replaced prototype methods without losing state',
+    () {
+      runtime.evaluate(r'''
+      globalThis.HotReloadProbe = class HotReloadProbe {
+        constructor() { this.count = 7; }
+        label() { return `v1:${this.count}`; }
+      };
+      globalThis.hotReloadProbe = new HotReloadProbe();
+      globalThis.hotReloadDynamic = () => hotReloadProbe.label();
+      globalThis.hotReloadBound = hotReloadProbe.label.bind(hotReloadProbe);
+      undefined;
+    ''');
+      expect(_string(runtime.evaluate('hotReloadDynamic()')), 'v1:7');
+      expect(_string(runtime.evaluate('hotReloadBound()')), 'v1:7');
+
+      runtime.evaluate(r'''
+      HotReloadProbe.prototype.label = function() { return `v2:${this.count}`; };
+      HotReloadProbe.prototype.added = function() { return this.count + 1; };
+      undefined;
+    ''');
+      expect(_string(runtime.evaluate('hotReloadDynamic()')), 'v2:7');
+      expect(_string(runtime.evaluate('hotReloadBound()')), 'v1:7');
+      expect(_number(runtime.evaluate('hotReloadProbe.added()')), 8);
+      expect(_number(runtime.evaluate('hotReloadProbe.count')), 7);
+
+      expect(
+        () => runtime.evaluate('HotReloadProbe.prototype.label ='),
+        throwsA(isA<FlaxJsException>()),
+      );
+      expect(_string(runtime.evaluate('hotReloadDynamic()')), 'v2:7');
+
+      expect(
+        () => runtime.evaluate(
+          "HotReloadProbe.prototype.label = function() { return 'partial'; }; throw Error('patch failed')",
+        ),
+        throwsA(isA<FlaxJsException>()),
+      );
+      expect(_string(runtime.evaluate('hotReloadDynamic()')), 'partial');
+    },
+  );
+
+  test('private fields, field initializers and pending jobs expose reload boundaries', () {
+    runtime.evaluate(r'''
+      globalThis.HotReloadPrivateV1 = class HotReloadPrivateV1 {};
+      globalThis.hotReloadPrivate = new HotReloadPrivateV1();
+      globalThis.HotReloadPrivateV2 = class HotReloadPrivateV2 {
+        #secret = 9;
+        added = 11;
+        readSecret() { return this.#secret; }
+      };
+      HotReloadPrivateV1.prototype.readSecret = HotReloadPrivateV2.prototype.readSecret;
+
+      globalThis.HotReloadBaseV1 = class HotReloadBaseV1 {
+        inherited() { return `base-v1:${this.count}`; }
+      };
+      globalThis.HotReloadDerivedV1 = class HotReloadDerivedV1 extends HotReloadBaseV1 {
+        constructor() { super(); this.count = 7; }
+      };
+      globalThis.hotReloadDerived = new HotReloadDerivedV1();
+      globalThis.HotReloadBaseV2 = class HotReloadBaseV2 {
+        added = 12;
+        #secret = 13;
+        inherited() { return `base-v2:${this.count}`; }
+        addedMethod() { return this.count + 1; }
+        privateMethod() { return this.#secret; }
+      };
+      globalThis.HotReloadDerivedV2 = class HotReloadDerivedV2 extends HotReloadBaseV2 {};
+
+      globalThis.hotReloadEvents = [];
+      globalThis.hotReloadGate = new Promise((resolve) => {
+        globalThis.hotReloadRelease = resolve;
+      });
+      globalThis.hotReloadJob = async function() {
+        hotReloadEvents.push('old:start');
+        await hotReloadGate;
+        hotReloadEvents.push('old:end');
+      };
+      globalThis.hotReloadPending = hotReloadJob();
+      undefined;
+    ''');
+    expect(
+      () => runtime.evaluate('hotReloadPrivate.readSecret()'),
+      throwsA(isA<FlaxJsException>()),
+    );
+    expect(
+      runtime.evaluate("typeof hotReloadPrivate.added") as FlaxJsString,
+      isA<FlaxJsString>().having((value) => value.value, 'value', 'undefined'),
+    );
+    expect(_number(runtime.evaluate('(new HotReloadPrivateV2()).added')), 11);
+    expect(
+      _string(runtime.evaluate('hotReloadDerived.inherited()')),
+      'base-v1:7',
+    );
+    expect(
+      runtime.evaluate("typeof hotReloadDerived.addedMethod") as FlaxJsString,
+      isA<FlaxJsString>().having((value) => value.value, 'value', 'undefined'),
+    );
+    runtime.evaluate(
+      'Object.setPrototypeOf(HotReloadDerivedV1.prototype, HotReloadBaseV2.prototype); undefined;',
+    );
+    expect(
+      _string(runtime.evaluate('hotReloadDerived.inherited()')),
+      'base-v2:7',
+    );
+    expect(_number(runtime.evaluate('hotReloadDerived.addedMethod()')), 8);
+    expect(
+      runtime.evaluate("typeof hotReloadDerived.added") as FlaxJsString,
+      isA<FlaxJsString>().having((value) => value.value, 'value', 'undefined'),
+    );
+    expect(
+      () => runtime.evaluate('hotReloadDerived.privateMethod()'),
+      throwsA(isA<FlaxJsException>()),
+    );
+
+    runtime.drainMicrotasks();
+    expect(_string(runtime.evaluate("hotReloadEvents.join(',')")), 'old:start');
+    runtime.evaluate(r'''
+      hotReloadJob = async function() { hotReloadEvents.push('new'); };
+      hotReloadRelease();
+      undefined;
+    ''');
+    runtime.drainMicrotasks();
+    expect(
+      _string(runtime.evaluate("hotReloadEvents.join(',')")),
+      'old:start,old:end',
+    );
+    runtime.evaluate('hotReloadJob(); undefined;');
+    runtime.drainMicrotasks();
+    expect(
+      _string(runtime.evaluate("hotReloadEvents.join(',')")),
+      'old:start,old:end,new',
+    );
+  });
+
   test('borrowed callback references expire and retained ones survive', () {
     late FlaxJsObject borrowed;
     late FlaxJsObject retained;

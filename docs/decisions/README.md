@@ -70,7 +70,6 @@ current language support is in the
   is accepted; ADR 0037 updates the package and protocol domains.
 - [0036: Shared engine SDK and locally compiled ABI](0036-shared-engine-sdk.md) is
   accepted and supersedes the native distribution details of ADR 0002 and ADR 0012.
-
 - [0037: Package-scoped binding providers and plugin delivery](0037-package-scoped-binding-providers.md)
   is accepted. Metadata 2 and UI protocol 22 remain current-only; ADR 0038 updates
   Manifest 13 to 14. Native ABI 2 is unchanged.
@@ -81,6 +80,9 @@ current language support is in the
 - [0039: Engine-owned cross-heap GC](0039-engine-owned-cross-heap-gc.md) is accepted
   with macOS arm64 acceptance in progress. It supersedes ADR 0036's independent runtime
   deployment and fixes platform selection to iOS Hermes and other native V8 JIT.
+
+- [0040: Vite-driven development hot reload](0040-vite-hot-reload.md) is accepted. It
+  preserves compatible JS instances and Flutter State on the maintained engine.
 
 [Open Questions](open-questions.md) records decisions that have not been made. Use the
 [decision template](TEMPLATE.md) for a new significant decision. Record the decision,

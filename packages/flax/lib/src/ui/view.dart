@@ -182,6 +182,7 @@ class _SessionRootState extends State<_SessionRoot> {
   late final FlaxSession _session;
   late Widget _root;
   bool _attached = false;
+  int _hotGeneration = 0;
 
   void _report(Object error, StackTrace stack) {
     final callback = widget.configuration.onError ?? _session.onError;
@@ -211,6 +212,7 @@ class _SessionRootState extends State<_SessionRoot> {
     try {
       _root = _session._mount(configuration._session == null ? _report : null);
       _attached = true;
+      _hotGeneration = _session._session!._hotRootGeneration;
     } catch (error, stack) {
       _root = _errorWidget(error);
       _report(error, stack);
@@ -219,6 +221,18 @@ class _SessionRootState extends State<_SessionRoot> {
 
   @override
   Widget build(BuildContext context) => _root;
+
+  @override
+  void reassemble() {
+    super.reassemble();
+    if (!_attached) return;
+    final current = _session._session;
+    if (current == null || current._hotRootGeneration == _hotGeneration) return;
+    final root = current._root;
+    if (root == null) return;
+    _root = root.data as Widget;
+    _hotGeneration = current._hotRootGeneration;
+  }
 
   @override
   void dispose() {

@@ -225,7 +225,7 @@ void main() {
   ${ios ? iosSemanticsSetup : ''}
   ${mobile ? mobileViewportSetup : ''}
   ${[for (var i = 0; i < tests.length; i++) "group(${jsonEncode('${tests[i].packageName}/${tests[i].path}')}, t$i.main);"].join('\n  ')}
-  ${mobile ? "binding.allTestsPassed.future.then((passed) { for (final entry in binding.results.entries) { print('FLAX_UI_RESULT:' + jsonEncode({'name': entry.key, 'status': entry.value == true ? 'success' : entry.value.toString()})); } });" : ''}
+  ${mobile ? "binding.allTestsPassed.future.then((passed) { for (final entry in binding.results.entries) { print('FLAX_UI_RESULT:' + jsonEncode({'name': entry.key, 'status': entry.value == 'success' ? 'success' : 'failure'})); } });" : ''}
   ${mobile && directLaunch ? "binding.allTestsPassed.future.then((passed) { print(passed ? '$marker' : 'FLAX_PLATFORM_FAILED'); exit(passed ? 0 : 1); });" : ''}
 }
 ''';

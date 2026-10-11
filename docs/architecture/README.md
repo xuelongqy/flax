@@ -56,6 +56,10 @@ process exports and rejects incompatible engines before allocating a runtime. Se
 The UI path adds JS descriptors -> generated factories -> native Widgets. Flutter events
 invoke JS callbacks, and signals invalidate individual mounted properties for the next
 frame. Dynamic children are reconciled by Flutter Elements, not a second JS tree engine.
+Development hot reload reuses that ownership model: Vite transforms staged module
+factories, the existing module registry preserves compatible JS class identity, and one
+Flutter reassemble applies the committed update. See
+[ADR 0040](../decisions/0040-vite-hot-reload.md).
 
 ## Build-time paths
 

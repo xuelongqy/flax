@@ -637,10 +637,29 @@ function settlePromise(
 const pageFactories = new Map<string, PageFactory>();
 let registrationOpen = true;
 
+type HotDev = {
+  captureRoot(root: Widget): boolean;
+  capturePage(
+    name: string,
+    factory: PageFactory,
+    apply: (factory: PageFactory) => void,
+  ): boolean;
+};
+
+function hotDev(): HotDev | undefined {
+  return (
+    globalThis as typeof globalThis & {
+      __flaxModules?: { dev?: HotDev };
+    }
+  ).__flaxModules?.dev;
+}
+
 export function registerPage(name: string, factory: PageFactory): void {
-  if (!registrationOpen) throw new Error('Page registration is closed');
   if (typeof name !== 'string' || name.length === 0 || typeof factory !== 'function')
     throw new TypeError('Expected a page name and synchronous factory');
+  if (hotDev()?.capturePage(name, factory, (next) => pageFactories.set(name, next)))
+    return;
+  if (!registrationOpen) throw new Error('Page registration is closed');
   if (pageFactories.has(name)) throw new Error(`Duplicate page: ${name}`);
   pageFactories.set(name, factory);
 }
@@ -2274,6 +2293,7 @@ Object.assign(globalThis, {
 let mounted = false;
 
 export function mountRoot(widget: Widget): void {
+  if (hotDev()?.captureRoot(widget)) return;
   if (mounted) throw new Error('This runtime already has an application root');
   const host = globalThis as typeof globalThis & {
     __flaxMount?: (root: Widget, version: number) => void;
