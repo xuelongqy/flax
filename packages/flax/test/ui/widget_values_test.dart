@@ -274,6 +274,68 @@ void main() {
     },
   );
 
+  testWidgets(
+    'nested Stream callback views keep finite Widget checks in Records and Lists',
+    (t) async {
+      final h = harness();
+      try {
+        await t.pumpWidget(h.app('widget-values'));
+        await t.pumpAndSettle();
+        final pending = values.nestedIterableRecords().single;
+        await _pump(t);
+        final jsRecord = await pending;
+        expect(jsRecord.groups.first, isNull);
+        final jsEvents = jsRecord.groups.last!.toList();
+        await _pump(t);
+        final jsChildren = await jsEvents;
+        expect(jsChildren.first, isNull);
+        expect(
+          jsChildren.skip(1).map((value) => value!.single),
+          everyElement(isA<Text>()),
+        );
+
+        h.execute(
+          'widgetValues.store.keepNestedIterableRecords(() => widgetValues.store.nativeNestedIterableRecords)',
+        );
+        final native = values.nativeList;
+        final inner = StreamController<Iterable<Widget>?>(sync: true);
+        try {
+          values.nativeWidgetStreamRecord = (groups: [null, inner.stream]);
+          final result = values.nestedIterableRecords().single;
+          expect(inner.hasListener, isFalse);
+          await _pump(t);
+          final record = await result;
+          expect(record.groups.first, isNull);
+          expect(inner.hasListener, isFalse);
+          final events = <Iterable<Widget>?>[];
+          final errors = <Object>[];
+          final subscription = record.groups.last!.listen(
+            events.add,
+            onError: errors.add,
+          );
+          try {
+            inner.add(null);
+            inner.add(native);
+            inner.add(values.nativeLazy);
+            inner.add(native);
+            await _pump(t);
+            expect(events, [null, same(native), same(native)]);
+            expect(errors, [isA<ArgumentError>()]);
+            expect(values.lazyIterations, 0);
+            expect(h.errors, isEmpty);
+          } finally {
+            await t.runAsync(subscription.cancel);
+          }
+        } finally {
+          await t.runAsync(inner.close);
+        }
+      } finally {
+        await h.finish(t);
+      }
+      expect(h.runtime.handlesAtDispose, 0);
+    },
+  );
+
   testWidgets('finite Widget Iterables compose with FutureOr and Stream', (
     t,
   ) async {

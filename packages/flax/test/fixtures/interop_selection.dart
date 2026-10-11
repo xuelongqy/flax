@@ -6,6 +6,26 @@ import 'enums_selection.dart';
 const interopSelection = {
   ...instanceTypesSelection,
   ...enumSelection,
+  'WidgetFactory': FlaxCodegenClassSelection(
+    {'': []},
+    kind: 'object',
+    proxy: 'extends',
+    instanceMethods: {
+      'create': ['context'],
+      'createText': [],
+      'optional': [],
+    },
+  ),
+  'WidgetFactoryInterface': FlaxCodegenClassSelection(
+    {},
+    kind: 'object',
+    proxy: 'implements',
+    instanceMethods: {
+      'create': ['context'],
+      'createText': [],
+      'optional': [],
+    },
+  ),
   'CodegenThenObject': FlaxCodegenClassSelection(
     {'': []},
     kind: 'object',
@@ -30,6 +50,9 @@ const interopSelection = {
       'echoStreamFutureIterable': ['callback'],
       'echoStreamFutureRecord': ['callback'],
       'echoStreamFutureVoid': ['callback'],
+      'echoNested': ['callback'],
+      'echoNullableNested': ['callback'],
+      'echoNestedRecord': ['callback'],
     },
   ),
   'CodegenGenericAliasConsumer': FlaxCodegenClassSelection(

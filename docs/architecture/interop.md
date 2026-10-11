@@ -305,11 +305,36 @@ Invalid completion values fail their Future; Stream errors retain Dart's normal
 nonterminal behavior unless the subscription requests `cancelOnError`. Wrapping stays
 lazy, and cancellation and session cleanup keep the ownership rules above.
 
+Nested Streams use the same recursive conversion in incoming and returned callbacks,
+including inside supported Futures, Records and collections. A `Stream<Stream<int>>`
+delivers each inner Stream as a reference; it does not merge or subscribe to its events:
+
+```ts
+const outer = Stream.fromIterable([
+  Stream.fromIterable([1, 2]),
+  Stream.fromIterable([3]),
+]);
+for await (const inner of outer) {
+  // The consumer chooses when to subscribe to each inner Stream.
+  for await (const value of inner) console.log(value);
+}
+```
+
+Callback conversion never listens to either layer. Ordinary typed Dart Streams preserve
+identity; erased JS sources gain lazy typed views at each layer. Both generated `listen`
+callbacks and async iteration carry inner Streams as references. Restricted Widget
+Iterable callback views also wrap inner Streams carried by native Records and
+collections, keeping each event check lazy before iterator execution. Invalid inner
+references or events fail at delivery, preserving normal Stream error semantics.
+Cancelling the outer subscription leaves an independently subscribed inner Stream alone.
+Session close cancels all bridge-owned subscriptions and AsyncIterable sources at both
+levels; application controllers remain application-owned.
+
 These combinations do not expand async Widget ownership, Context/State/Route/Page
-lifetimes, unbound generic callbacks or nested Stream event types. To create a JS source
-with Promise-valued events, use a StreamController or an explicit AsyncIterator whose
-`next()` returns `{ value: promise, done: false }`; an async generator's `yield promise`
-awaits that Promise and therefore describes a different event type.
+lifetimes or unbound generic callbacks. To create a JS source with Promise-valued
+events, use a StreamController or an explicit AsyncIterator whose `next()` returns
+`{ value: promise, done: false }`; an async generator's `yield promise` awaits that
+Promise and therefore describes a different event type.
 
 ## Widget configuration and mounting
 
@@ -344,8 +369,9 @@ releases mount resources immediately, while Dart may retain the configuration fo
 mounting. Finalizers do not implement State.dispose or listener removal. After all
 accepted mounts and Routes exit, session close revokes configuration records without
 waiting for GC. Retained Flax Widgets then fail safely on mounting, and late finalizers
-are harmless. Application object disposal remains explicit. Cross-language cycles still
-require the application to break them or close the session.
+are harmless. Application object disposal remains explicit. The maintained engine's
+joint GC reclaims rootless Dart/JS cycles; session close provides deterministic bridge
+cleanup.
 
 ## Listenable builders
 

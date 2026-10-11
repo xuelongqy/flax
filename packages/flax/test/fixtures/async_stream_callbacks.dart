@@ -8,6 +8,7 @@ class AsyncStreamCallbacks {
   late FutureOr<Stream<int>> Function(FutureOr<Stream<int>>) futureOrStream;
   late Stream<Future<int>> Function(Stream<Future<int>>) streamFuture;
   late Stream<FutureOr<int>> Function(Stream<FutureOr<int>>) streamFutureOr;
+  late Stream<Stream<int?>> Function(Stream<Stream<int?>>) nested;
 
   Future<Stream<int>> Function(Future<Stream<int>>) echoFutureStream(
     Future<Stream<int>> Function(Future<Stream<int>>) callback,
@@ -94,5 +95,26 @@ class AsyncStreamCallbacks {
 
   Stream<Future<void>> Function(Stream<Future<void>>) echoStreamFutureVoid(
     Stream<Future<void>> Function(Stream<Future<void>>) callback,
+  ) => callback;
+
+  Stream<Stream<int?>> Function(Stream<Stream<int?>>) echoNested(
+    Stream<Stream<int?>> Function(Stream<Stream<int?>>) callback,
+  ) {
+    nested = callback;
+    return (value) => callback(value);
+  }
+
+  Stream<Stream<int?>?>? Function(Stream<Stream<int?>?>?) echoNullableNested(
+    Stream<Stream<int?>?>? Function(Stream<Stream<int?>?>?) callback,
+  ) => callback;
+
+  Stream<({Future<List<Stream<int>>> sources})> Function(
+    Stream<({Future<List<Stream<int>>> sources})>,
+  )
+  echoNestedRecord(
+    Stream<({Future<List<Stream<int>>> sources})> Function(
+      Stream<({Future<List<Stream<int>>> sources})>,
+    )
+    callback,
   ) => callback;
 }

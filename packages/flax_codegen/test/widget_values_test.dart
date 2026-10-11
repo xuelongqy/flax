@@ -148,6 +148,7 @@ values.keepInterfaceIterable(() => new Set([null]));
 values.keepSuggestions(async (_context, _text) => []);
 values.keepIterableStream(() => { throw new Error('unused'); });
 values.keepIterableRecords(() => values.nativeIterableRecords);
+values.keepNestedIterableRecords(() => values.nativeNestedIterableRecords);
 values.firstFromIterable(children => children.toArray()[0]!);
 // @ts-expect-error Widget Iterable callback elements retain their type.
 values.keepIterable(() => [42]);

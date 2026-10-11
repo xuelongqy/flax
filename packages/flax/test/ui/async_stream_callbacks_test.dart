@@ -62,6 +62,184 @@ void main() {
     return event.future!.adapt(Future<Object?>.value(value));
   }
 
+  testWidgets(
+    'nested Dart Streams stay lazy and have independent subscriptions',
+    (tester) async {
+      final h = harness();
+      final outer = StreamController<Stream<int?>>(sync: true);
+      final inner = StreamController<int?>(sync: true);
+      final native = outer.stream;
+      try {
+        await tester.pumpWidget(h.app('async-stream-callbacks'));
+        await tester.pumpAndSettle();
+        expect(callbacks.nested(native), same(native));
+        expect(outer.hasListener, isFalse);
+        expect(inner.hasListener, isFalse);
+        h.execute('asyncStreamHooks.mode = "observe"');
+        expect(callbacks.nested(native), same(native));
+        outer.add(inner.stream);
+        await _pump(tester);
+        expect(outer.hasListener, isTrue);
+        expect(inner.hasListener, isFalse);
+        h.execute('asyncStreamHooks.listenNestedInner()');
+        expect(inner.hasListener, isTrue);
+        inner.add(1);
+        inner.add(null);
+        inner.addError(StateError('native inner failed'));
+        inner.add(2);
+        await _pump(tester);
+        expect(
+          h.string('JSON.stringify(asyncStreamHooks.nestedState.events)'),
+          '[1,null,2]',
+        );
+        expect(
+          h.string('asyncStreamHooks.nestedState.errors.join(",")'),
+          contains('native inner failed'),
+        );
+        h.execute(
+          'void asyncStreamHooks.cancelNestedOuter(); asyncStreamHooks.pauseNestedInner()',
+        );
+        await _pump(tester);
+        expect(outer.hasListener, isFalse);
+        expect(inner.hasListener, isTrue);
+        inner.add(3);
+        await _pump(tester);
+        expect(
+          h.string('JSON.stringify(asyncStreamHooks.nestedState.events)'),
+          '[1,null,2]',
+        );
+        h.execute('asyncStreamHooks.resumeNestedInner()');
+        await _pump(tester);
+        expect(
+          h.string('JSON.stringify(asyncStreamHooks.nestedState.events)'),
+          '[1,null,2,3]',
+        );
+        expect(h.errors, isEmpty);
+      } finally {
+        await h.finish(tester);
+        expect(inner.hasListener, isFalse);
+        expect((outer.isClosed, inner.isClosed), (false, false));
+        unawaited(outer.close());
+        unawaited(inner.close());
+      }
+      expect(h.runtime.handlesAtDispose, 0);
+    },
+  );
+
+  testWidgets(
+    'nested JS Streams validate each layer lazily and recover after errors',
+    (tester) async {
+      final h = harness();
+      final delivered = <Stream<int?>>[];
+      final values = <int?>[];
+      final errors = <Object>[];
+      StreamSubscription<Stream<int?>>? outer;
+      StreamSubscription<int?>? inner;
+      try {
+        await tester.pumpWidget(h.app('async-stream-callbacks'));
+        await tester.pumpAndSettle();
+        h.execute('asyncStreamHooks.mode = "controller"');
+        final result = callbacks.nested(const Stream<Stream<int?>>.empty());
+        outer = result.listen(delivered.add, onError: errors.add);
+        h.execute(
+          'asyncStreamHooks.addWrongNestedInner(); asyncStreamHooks.addNestedInner()',
+        );
+        await _pump(tester);
+        expect(errors.single, isA<TypeError>());
+        expect(delivered, hasLength(1));
+        errors.clear();
+        inner = delivered.single.listen(values.add, onError: errors.add);
+        h.execute(
+          'asyncStreamHooks.addNestedValue(1); asyncStreamHooks.addNestedValue(null); asyncStreamHooks.addWrongNestedValue(); asyncStreamHooks.addNestedError(); asyncStreamHooks.addNestedValue(2)',
+        );
+        await _pump(tester);
+        expect(values, [1, null, 2]);
+        expect(errors, [isA<TypeError>(), isA<FlaxJsException>()]);
+        await _settle(tester, outer.cancel());
+        h.execute('asyncStreamHooks.addNestedValue(3)');
+        await _pump(tester);
+        expect(values, [1, null, 2, 3]);
+        expect(h.errors, isEmpty);
+      } finally {
+        if (inner != null) await _settle(tester, inner.cancel());
+        if (outer != null) await _settle(tester, outer.cancel());
+        await h.finish(tester);
+      }
+      expect(h.runtime.handlesAtDispose, 0);
+    },
+  );
+
+  testWidgets(
+    'nested AsyncIterable sources stay lazy and both return on close',
+    (tester) async {
+      final h = harness();
+      StreamSubscription<Stream<int?>>? outer;
+      StreamSubscription<int?>? inner;
+      try {
+        await tester.pumpWidget(h.app('async-stream-callbacks'));
+        await tester.pumpAndSettle();
+        h.execute('asyncStreamHooks.mode = "iterable"');
+        final result = callbacks.nested(const Stream<Stream<int?>>.empty());
+        await _pump(tester);
+        expect(h.number('asyncStreamHooks.nestedState.outerNext'), 0);
+        expect(h.number('asyncStreamHooks.nestedState.innerNext'), 0);
+        Stream<int?>? delivered;
+        outer = result.listen((value) {
+          delivered = value;
+          outer!.pause();
+        });
+        await _pump(tester);
+        expect(delivered, isNotNull);
+        expect(h.number('asyncStreamHooks.nestedState.outerNext'), 1);
+        expect(h.number('asyncStreamHooks.nestedState.innerNext'), 0);
+        final values = <int?>[];
+        inner = delivered!.listen((value) {
+          values.add(value);
+          inner!.pause();
+        });
+        await _pump(tester);
+        expect(values, [7]);
+        expect(h.number('asyncStreamHooks.nestedState.innerNext'), 1);
+        final closed = h.session.close();
+        await _pump(tester);
+        expect(h.number('asyncStreamHooks.nestedState.outerReturns'), 1);
+        expect(h.number('asyncStreamHooks.nestedState.innerReturns'), 1);
+        await h.finish(tester);
+        await closed;
+        expect(h.runtime.handlesAtDispose, 0);
+        expect(h.errors, isEmpty);
+      } finally {
+        if (inner != null) await _settle(tester, inner.cancel());
+        if (outer != null) await _settle(tester, outer.cancel());
+        await h.finish(tester);
+      }
+    },
+  );
+
+  testWidgets('Streams nested through Records Futures and Lists round-trip', (
+    tester,
+  ) async {
+    final h = harness();
+    try {
+      await tester.pumpWidget(h.app('async-stream-callbacks'));
+      await tester.pumpAndSettle();
+      h.execute(
+        'asyncStreamHooks.structuredNested().catch(error => {asyncStreamHooks.failure = String(error)})',
+      );
+      await _pump(tester, 80);
+      expect(
+        h.boolean('asyncStreamHooks.nestedDone === true'),
+        isTrue,
+        reason: h.string('String(asyncStreamHooks.failure)'),
+      );
+      expect(h.string('asyncStreamHooks.nestedValues'), '3,4');
+      expect(h.string('asyncStreamHooks.nestedNullable'), '[null,null,5]');
+      expect(h.errors, isEmpty);
+    } finally {
+      await h.finish(tester);
+    }
+  });
+
   test(
     'erased collection adapters reject wrong kinds and broad Dart references',
     () async {

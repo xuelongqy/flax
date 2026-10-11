@@ -67,6 +67,107 @@ const streamFutureOr = callbacks.echoStreamFutureOr((value) =>
   hooks.mode === 'controller' ? mixedController.stream : value,
 );
 
+const nestedOuter = StreamController<Stream<number | null>>({ sync: true });
+const nestedInner = StreamController<number | null>({ sync: true });
+const nestedState = {
+  outerNext: 0,
+  innerNext: 0,
+  outerReturns: 0,
+  innerReturns: 0,
+  events: [] as (number | null)[],
+  errors: [] as string[],
+  inner: null as Stream<number | null> | null,
+};
+const nestedInnerSource = Stream.fromAsyncIterable<number | null>({
+  [Symbol.asyncIterator]() {
+    return {
+      async next() {
+        nestedState.innerNext++;
+        return { value: 7, done: false as const };
+      },
+      async return() {
+        nestedState.innerReturns++;
+        return { value: undefined, done: true as const };
+      },
+    };
+  },
+});
+const nestedSource = Stream.fromAsyncIterable<Stream<number | null>>({
+  [Symbol.asyncIterator]() {
+    return {
+      async next() {
+        nestedState.outerNext++;
+        return { value: nestedInnerSource, done: false as const };
+      },
+      async return() {
+        nestedState.outerReturns++;
+        return { value: undefined, done: true as const };
+      },
+    };
+  },
+});
+const nested = callbacks.echoNested((value) => {
+  if (hooks.mode === 'controller') return nestedOuter.stream;
+  if (hooks.mode === 'iterable') return nestedSource;
+  if (hooks.mode === 'observe') {
+    const outer = value.listen(
+      (inner) => {
+        nestedState.inner = inner;
+      },
+      { onError: (error) => nestedState.errors.push(String(error)) },
+    );
+    Object.assign(hooks, { cancelNestedOuter: () => outer.cancel() });
+  }
+  return value;
+});
+Object.assign(hooks, {
+  nestedState,
+  listenNestedInner: () => {
+    const inner = nestedState.inner!.listen((value) => nestedState.events.push(value), {
+      onError: (error) => nestedState.errors.push(String(error)),
+    });
+    Object.assign(hooks, {
+      pauseNestedInner: () => inner.pause(),
+      resumeNestedInner: () => inner.resume(),
+      cancelNestedInner: () => inner.cancel(),
+    });
+  },
+  addNestedInner: () => nestedOuter.add(nestedInner.stream),
+  addWrongNestedInner: () => nestedOuter.add(3 as never),
+  addNestedValue: (value: number | null) => nestedInner.add(value),
+  addWrongNestedValue: () => nestedInner.add('wrong' as never),
+  addNestedError: () => nestedInner.addError(new Error('inner failed')),
+  structuredNested: async () => {
+    const echoed = callbacks.echoNestedRecord((value) => value)(
+      Stream.fromIterable([
+        { sources: Promise.resolve([Stream.fromIterable([3, 4])]) },
+      ]),
+    );
+    const results: number[] = [];
+    for await (const event of echoed) {
+      for (const stream of await event.sources) {
+        for await (const value of stream) results.push(value);
+      }
+    }
+    const nullable = callbacks.echoNullableNested((value) => value);
+    if (nullable(null) !== null) throw Error('nullable outer identity');
+    const optional = nullable(
+      Stream.fromIterable([null, Stream.fromIterable([null, 5])]),
+    )!;
+    const nullableValues: (number | null)[] = [];
+    for await (const inner of optional) {
+      if (inner === null) nullableValues.push(null);
+      else for await (const event of inner) nullableValues.push(event);
+    }
+    Object.assign(hooks, {
+      nestedValues: results.join(','),
+      nestedNullable: JSON.stringify(nullableValues),
+      nestedDone: true,
+    });
+  },
+  nested,
+});
+
 function observeTasks(value: Stream<Promise<number>>) {
   const subscription = value.listen(
     (task) => {

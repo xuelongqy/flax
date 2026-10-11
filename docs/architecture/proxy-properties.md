@@ -64,6 +64,15 @@ references supplied by Flutter, checked on every conversion; properties do not c
 mount or extend their lifetime. Forged, foreign-session and unmounted references are
 rejected. Nullable properties accept null, not undefined.
 
+Ordinary proxy methods use the same Widget result conversion as getters, for both
+extends and implements proxies. For example, an object implementing
+`Widget create(BuildContext context)` can return `Text('Created by JS')` or a JS
+StatelessWidget subclass. Dart receives the actual Widget and may mount it later without
+an extra host, callback lease or lifecycle configuration. Concrete results such as
+`Text` check the actual subtype; nullable results accept null. Wrong values and JS
+exceptions propagate to the Dart caller, and Context inputs retain their mounted/session
+checks. Concrete Dart methods and explicit JS super calls keep the existing fallback.
+
 Private properties and Route/Page ownership remain unsupported, including inside
 collections and Records. Eligible extends proxies support concrete accessors and
 explicit `super` calls through generated direct Dart parent entries. State host proxies

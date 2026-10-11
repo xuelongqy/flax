@@ -2941,6 +2941,9 @@ ${type.widgetMembers.map((m) => m.source).join('\n')}
       }
       out.writeln('}');
     }
+    // Record projections register ordinary views before their helpers are emitted.
+    final recordTypes = _records.values.map((entry) => entry.$1).toList();
+    final recordRefs = recordTypes.map((type) => _ref(type)).join(', ');
     for (final entry in _records.values) {
       final (type, name) = entry;
       final dartType = _dartRecordType(type);
@@ -3095,8 +3098,6 @@ T _genericCallbackResult<T>(Object? value) {
 }
 ''');
     }
-    final recordTypes = _records.values.map((entry) => entry.$1).toList();
-    final recordRefs = recordTypes.map((type) => _ref(type)).join(', ');
     out.writeln('const _recordTypes = <FlaxTypeRef>[$recordRefs];');
     return out.toString();
   }
@@ -3168,6 +3169,12 @@ T _genericCallbackResult<T>(Object? value) {
                 ? pending
                 : '($value is $nonNullable ? $value : $pending)'
           : '($value is Future<Object?> ? ${pending.replaceFirst('$value as Future<Object?>', value)} : ${child(value, type.item!)})';
+    } else if (type.kind == 'stream') {
+      final stream =
+          _streams[_typeId(type, omitNullable: true) +
+                  (finite ? ':finite-widget-iterable' : '')]!
+              .$2;
+      converted = '${stream}Adapt($value as Object) as $declared';
     } else if ({'list', 'iterable', 'set'}.contains(type.kind)) {
       final item = _dartType(type.item!);
       final mapped =
@@ -3202,17 +3209,16 @@ T _genericCallbackResult<T>(Object? value) {
     return type.nullable ? '($value == null ? null : $converted)' : converted;
   }
 
-  bool _hasCheckedWidgetIterableFuture(FlaxCodegenTypeRef type) =>
-      ({'future', 'futureOr'}.contains(type.kind) &&
+  bool _hasCheckedWidgetIterableAsync(FlaxCodegenTypeRef type) =>
+      ({'future', 'futureOr', 'stream'}.contains(type.kind) &&
           _containsWidgetIterable(type)) ||
-      (type.item != null && _hasCheckedWidgetIterableFuture(type.item!)) ||
-      (type.key != null && _hasCheckedWidgetIterableFuture(type.key!)) ||
+      (type.item != null && _hasCheckedWidgetIterableAsync(type.item!)) ||
+      (type.key != null && _hasCheckedWidgetIterableAsync(type.key!)) ||
       type.recordFields.any(
-        (field) => _hasCheckedWidgetIterableFuture(field.type),
+        (field) => _hasCheckedWidgetIterableAsync(field.type),
       );
 
-  // Reuse native containers when checks leave every child unchanged. Future
-  // children need checked Futures, so only that case reconstructs a container.
+  // Reuse native containers unless Future/Stream children need checked views.
   String _finiteWidgetIterableValue(
     String value,
     FlaxCodegenTypeRef type, {
@@ -3242,6 +3248,12 @@ T _genericCallbackResult<T>(Object? value) {
           '? ${future}Adapt(source) as Future<$item> : ${child('source', type.item!)}; return checked; })'
           '(${nativeValue ? value : '$value as $declared'})';
     }
+    if (type.kind == 'stream') {
+      final stream =
+          _streams['${_typeId(type, omitNullable: true)}:finite-widget-iterable']!
+              .$2;
+      return '${stream}Adapt(${nativeValue ? value : '$value as Object'}) as $declared';
+    }
 
     final parameter = nativeValue ? '$declared source' : 'Object? input';
     final initial = nativeValue ? '' : 'final source = input as $declared;';
@@ -3253,7 +3265,7 @@ T _genericCallbackResult<T>(Object? value) {
     if (type.kind == 'iterable' && !_containsWidgetIterable(type.item!)) {
       return call('return source;');
     }
-    if (!_hasCheckedWidgetIterableFuture(type)) {
+    if (!_hasCheckedWidgetIterableAsync(type)) {
       final checks = switch (type.kind) {
         'list' || 'set' || 'iterable' =>
           'for (final item in source) { ${child('item', type.item!)}; }',

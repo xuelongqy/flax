@@ -1,6 +1,7 @@
 import 'dart:async';
 
 export 'async_stream_callbacks.dart';
+export 'widget_factory.dart';
 export 'instance_types.dart';
 export 'enums.dart';
 

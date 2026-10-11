@@ -91,7 +91,10 @@ fields, arrow fields, inheritance and later member replacement stay ordinary JS.
 Methods use standard receiver semantics. A saved `const call = object.method` requires
 `call.call(object, ...)` or explicit `.bind(object)`; wrappers no longer allocate a
 bound method for each instance. Required properties accept accessors and writable data
-fields. Ordinary proxy Widget, Context and State properties reuse the same typed
+fields. Ordinary proxy methods can return Widgets through the same typed conversion as
+Widget getters, including native configurations, JS subclasses, nullable results and
+concrete subtype checks. Dart may retain and mount them later using normal references
+and joint GC. Ordinary proxy Widget, Context and State properties reuse the same typed
 conversion as ordinary member calls, including nullable values and supported finite
 aggregates. Future/FutureOr/Stream properties use existing async conversion, including
 nested Records/collections and returned async functions. Getter invocation returns the
@@ -792,10 +795,12 @@ real State can have separate base and concrete binding views without changing ei
 view's type. Saving a callback or a State does not keep the Flutter State mounted.
 Escaped callbacks retain their existing Dart/JS ownership and session-close behavior.
 Context arguments still register their mount owner; Page arguments and Route results
-retain their explicit lease rules. Unresolved runtime types, nested Streams and
-unsupported Route/Page positions remain rejected. No additional State callback adapter,
-lifecycle configuration, protocol version or GC mechanism is introduced. See the same
-reference property tests for synchronous, asynchronous and retained State callbacks.
+retain their explicit lease rules. Nested Streams recurse through the same lazy typed
+views in callback arguments and results, without flattening or implicit subscriptions.
+Unresolved runtime types and unsupported Route/Page positions remain rejected. No
+additional State callback adapter, lifecycle configuration, protocol version or GC
+mechanism is introduced. See the same reference property tests for synchronous,
+asynchronous and retained State callbacks.
 
 ## Extension declarations
 

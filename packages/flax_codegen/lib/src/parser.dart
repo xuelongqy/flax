@@ -2897,8 +2897,7 @@ class FlaxCodegenBindingParser {
             result = _dataType(result, '${entry.key}.$name result');
           }
           final mustCallSuper = _requiresSuper(element, name);
-          if (result.kind == 'route' ||
-              (result.kind == 'widget' && !isWidget)) {
+          if (result.kind == 'route') {
             throw StateError('Unsupported proxy result: $name');
           }
           proxyMethods.add(
