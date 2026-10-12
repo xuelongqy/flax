@@ -4,8 +4,9 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/material.__module";
 export interface Brightness extends DartEnum { readonly __Brightness: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.material/material#type:Brightness", ["dark","light"]);
-export const Brightness = Object.freeze({
+const _flaxEnum_Brightness_api = {
 dark: enumValue<Brightness>("flax.material/material#type:Brightness", "dark"),
 light: enumValue<Brightness>("flax.material/material#type:Brightness", "light"),
 values: Object.freeze([enumValue<Brightness>("flax.material/material#type:Brightness", "dark"), enumValue<Brightness>("flax.material/material#type:Brightness", "light")]),
-});
+};
+export const Brightness = Object.freeze(_flaxBindInstanceType<Brightness, typeof _flaxEnum_Brightness_api>(_flaxEnum_Brightness_api, "flax.material/material#type:Brightness", []));

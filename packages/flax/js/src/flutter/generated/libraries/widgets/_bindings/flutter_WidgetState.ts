@@ -4,7 +4,7 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface WidgetState extends DartEnum { readonly __WidgetState: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.core/flutter#type:WidgetState", ["hovered","focused","pressed","dragged","selected","scrolledUnder","disabled","error"]);
-export const WidgetState = Object.freeze({
+const _flaxEnum_WidgetState_api = {
 hovered: enumValue<WidgetState>("flax.core/flutter#type:WidgetState", "hovered"),
 focused: enumValue<WidgetState>("flax.core/flutter#type:WidgetState", "focused"),
 pressed: enumValue<WidgetState>("flax.core/flutter#type:WidgetState", "pressed"),
@@ -14,4 +14,5 @@ scrolledUnder: enumValue<WidgetState>("flax.core/flutter#type:WidgetState", "scr
 disabled: enumValue<WidgetState>("flax.core/flutter#type:WidgetState", "disabled"),
 error: enumValue<WidgetState>("flax.core/flutter#type:WidgetState", "error"),
 values: Object.freeze([enumValue<WidgetState>("flax.core/flutter#type:WidgetState", "hovered"), enumValue<WidgetState>("flax.core/flutter#type:WidgetState", "focused"), enumValue<WidgetState>("flax.core/flutter#type:WidgetState", "pressed"), enumValue<WidgetState>("flax.core/flutter#type:WidgetState", "dragged"), enumValue<WidgetState>("flax.core/flutter#type:WidgetState", "selected"), enumValue<WidgetState>("flax.core/flutter#type:WidgetState", "scrolledUnder"), enumValue<WidgetState>("flax.core/flutter#type:WidgetState", "disabled"), enumValue<WidgetState>("flax.core/flutter#type:WidgetState", "error")]),
-});
+};
+export const WidgetState = Object.freeze(_flaxBindInstanceType<WidgetState, typeof _flaxEnum_WidgetState_api>(_flaxEnum_WidgetState_api, "flax.core/flutter#type:WidgetState", []));

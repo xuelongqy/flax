@@ -68,27 +68,53 @@ export type DartCopy<T> = T extends {
         : T;
 /** Raw JS collections become Dart references; existing references stay typed. */
 export type DartOutput<T> = T extends object
-  ? T extends
-      | { readonly [dartCollectionKind]: string }
-      | { readonly [dartRecordKind]: true }
-      | FlaxStreamReference<unknown>
-      | NativeBuffer
-      | ((...args: never[]) => unknown)
-    ? T
-    : T extends ReadonlyArray<infer V>
-      ? DartList<DartOutput<V>>
-      : T extends ReadonlyMap<infer K, infer V>
-        ? DartMap<DartOutput<K>, DartOutput<V>>
-        : T extends ReadonlySet<infer V>
-          ? DartSet<DartOutput<V>>
-          : T extends Promise<infer V>
-            ? Promise<DartOutput<V>>
-            : T extends Iterable<infer V>
-              ? DartIterable<DartOutput<V>>
-              : DartReferenceBrand<T> extends never
-                ? DartMap<string, DartOutput<T[keyof T]>>
-                : T
+  ? T extends { readonly [dartCollectionKind]: string }
+    ? DartReferenceBrand<T> extends never
+      ? DartCollectionOutput<T>
+      : T
+    : T extends
+          | { readonly [dartRecordKind]: true }
+          | FlaxStreamReference<unknown>
+          | NativeBuffer
+          | ((...args: never[]) => unknown)
+      ? T
+      : T extends ReadonlyArray<infer V>
+        ? DartList<DartOutput<V>>
+        : T extends ReadonlyMap<infer K, infer V>
+          ? DartMap<DartOutput<K>, DartOutput<V>>
+          : T extends ReadonlySet<infer V>
+            ? DartSet<DartOutput<V>>
+            : T extends Promise<infer V>
+              ? Promise<DartOutput<V>>
+              : T extends Iterable<infer V>
+                ? DartIterable<DartOutput<V>>
+                : DartReferenceBrand<T> extends never
+                  ? DartMap<string, DartOutput<T[keyof T]>>
+                  : T
   : T;
+// A minimal input brand is returned as a full native collection view; selected
+// class references keep their own member signatures and nominal identity.
+type DartCollectionOutput<T> = T extends {
+  readonly [dartCollectionKind]: 'list';
+  readonly [dartCollectionItem]: infer V;
+}
+  ? DartList<DartOutput<V>>
+  : T extends {
+        readonly [dartCollectionKind]: 'map';
+        readonly [dartCollectionKey]: infer K;
+        readonly [dartCollectionItem]: infer V;
+      }
+    ? DartMap<DartOutput<K>, DartOutput<V>>
+    : T extends {
+          readonly [dartCollectionKind]: 'set';
+          readonly [dartCollectionItem]: infer V;
+        }
+      ? DartSet<DartOutput<V>>
+      : T extends {
+            readonly [dartCollectionItem]: infer V;
+          }
+        ? DartIterable<DartOutput<V>>
+        : never;
 // Generated references carry a __Type symbol brand or a nominal bound marker.
 type DartReferenceBrand<T> =
   | Extract<T[Extract<keyof T, `__${string}`>], symbol>
@@ -203,18 +229,24 @@ export interface DartSet<T> extends DartIterable<T> {
   toSet(): Set<DartCopy<T>>;
 }
 
-// Omitting the iterator from the Dart-reference branch lets TypeScript
-// contextually type array and Set literals from the JavaScript branch.
+// Native subclasses may override methods such as toSet. Inputs need only the
+// collection type brand; the host validates the original Dart instance.
 export type DartIterableInput<T, I = DartInput<T>> =
-  Omit<DartIterable<T>, typeof Symbol.iterator> | Iterable<I>;
+  | Pick<DartIterable<T>, typeof dartCollectionKind | typeof dartCollectionItem>
+  | Iterable<I>;
 export type DartListInput<T, I = DartInput<T>> =
-  Omit<DartList<T>, typeof Symbol.iterator> | ReadonlyArray<I>;
+  | Pick<DartList<T>, typeof dartCollectionKind | typeof dartCollectionItem>
+  | ReadonlyArray<I>;
 export type DartMapInput<K, V, IK = DartInput<K>, IV = DartInput<V>> =
-  | DartMap<K, V>
+  | Pick<
+      DartMap<K, V>,
+      typeof dartCollectionKind | typeof dartCollectionKey | typeof dartCollectionItem
+    >
   | ReadonlyMap<IK, IV>
   | (K extends string ? Readonly<Record<string, IV>> : never);
 export type DartSetInput<T, I = DartInput<T>> =
-  Omit<DartSet<T>, typeof Symbol.iterator> | ReadonlySet<I>;
+  | Pick<DartSet<T>, typeof dartCollectionKind | typeof dartCollectionItem>
+  | ReadonlySet<I>;
 
 export interface DartEnum {
   readonly __dartEnum: unique symbol;
@@ -789,6 +821,8 @@ export function invokeInstance(
 }
 
 type ObjectDefinition = {
+  collectionKind: string | undefined;
+  iteratorMember: string;
   fields: readonly string[];
   setters: readonly string[];
   methods: Readonly<Record<string, StateMethod>>;
@@ -798,6 +832,53 @@ const objectTypes = new Map<string, ObjectDefinition>();
 const references = new ReferenceCache();
 const objectHandles = references.handles;
 const instanceParents = new Map<string, readonly string[]>();
+const instanceTypes = new WeakMap<object, string>();
+
+/** The instance represented by a generated Dart class or reference-only token. */
+export type FlaxDartInstance<C> = C extends abstract new (...args: any[]) => infer I
+  ? I
+  : C extends { readonly prototype: infer I }
+    ? unknown extends I
+      ? C extends FlaxInstanceType<infer T>
+        ? T
+        : never
+      : I
+    : C extends FlaxInstanceType<infer T>
+      ? T
+      : never;
+
+function requireDartReference(value: unknown): object {
+  if (value === null || (typeof value !== 'object' && typeof value !== 'function'))
+    throw new TypeError('Expected a Dart reference');
+  const ref = objectHandles.get(value);
+  if (ref) {
+    if (!ref.alive) throw new TypeError('Released Dart reference');
+    return value;
+  }
+  if (stateHandles.has(value) || enumIdentities.has(value)) return value;
+  const state = componentStates.get(value);
+  if (state && !state.retired && state.id !== null) return value;
+  throw new TypeError('Expected a live Dart reference from this session');
+}
+
+/** Checks the original Dart object and returns a view; never copies or constructs. */
+export function asDart<C extends FlaxInstanceType<unknown>>(
+  value: unknown,
+  target: C,
+): FlaxDartInstance<C> {
+  const type = instanceTypes.get(target);
+  if (!type) throw new TypeError('Expected a generated Dart type');
+  return invokeOperation('reference', type, 0, 'cast', '', [
+    requireDartReference(value),
+  ]) as FlaxDartInstance<C>;
+}
+
+/** Diagnostic Dart runtimeType text. It is not a stable type ID or cast token. */
+export function getDartType(value: unknown): string {
+  return invokeOperation('reference', '', 0, 'type', '', [
+    requireDartReference(value),
+  ]) as string;
+}
 
 /** A bound view check; it never constructs, casts, or reads the Dart object. */
 export interface FlaxInstanceType<T> {
@@ -843,6 +924,7 @@ export function bindInstanceType<T, V extends object>(
       );
     },
   });
+  instanceTypes.set(value, type);
   return value as V & FlaxInstanceType<T>;
 }
 
@@ -931,9 +1013,60 @@ export function defineObject(
   setters: readonly string[],
   methods: ObjectDefinition['methods'],
   removers: readonly string[],
+  collectionKind?: string,
 ): void {
   if (objectTypes.has(type)) throw new Error(`Duplicate object type: ${type}`);
-  objectTypes.set(type, { fields, setters, methods, removers });
+  let iteratorMember = 'toArray';
+  if (collectionKind !== undefined) {
+    const selected = new Set([...fields, ...setters, ...Object.keys(methods)]);
+    const collection = collectionDefinition(type, collectionKind, selected);
+    if (selected.has('toArray')) iteratorMember = '@collection:toArray';
+    fields = [...collection.fields, ...fields];
+    methods = {
+      ...collection.methods,
+      ...methods,
+    };
+    if (collectionKind !== 'map') iterableObjectTypes.add(type);
+  }
+  objectTypes.set(type, {
+    fields,
+    setters,
+    methods,
+    removers,
+    collectionKind,
+    iteratorMember,
+  });
+}
+
+function collectionDefinition(
+  type: string,
+  kind: string,
+  selected: ReadonlySet<string>,
+): Pick<ObjectDefinition, 'fields' | 'methods'> {
+  const names =
+    kind === 'map'
+      ? ['get', 'set', 'containsKey', 'remove', 'clear', 'toMap']
+      : kind === 'list'
+        ? ['contains', 'get', 'set', 'add', 'addAll', 'removeAt', 'clear', 'toArray']
+        : kind === 'set'
+          ? ['contains', 'add', 'addAll', 'remove', 'clear', 'toArray', 'toSet']
+          : kind === 'iterable'
+            ? ['contains', 'toArray']
+            : null;
+  if (names === null) throw new TypeError(`Invalid collection kind: ${kind}`);
+  const methods: Record<string, StateMethod> = {};
+  for (const name of names) {
+    if (selected.has(name)) continue;
+    methods[name] = function (this: object, ...args: unknown[]): unknown {
+      return invokeObject(this, type, name, args);
+    };
+  }
+  return {
+    fields: (kind === 'map' ? ['length'] : ['length', 'isEmpty']).filter(
+      (name) => !selected.has(name),
+    ),
+    methods,
+  };
 }
 
 type StreamDefinition = {
@@ -1595,6 +1728,23 @@ export function defineProxyBase(
       invokeProxySuper(receiver, definition.type, member, args),
   );
   proxyLayouts.set(definition, { prototype });
+  if (objectTypes.get(definition.type)?.collectionKind !== undefined) {
+    const selected = new Set([
+      ...nativeGetters,
+      ...definition.getters,
+      ...definition.setters,
+      ...Object.keys(definition.methods),
+    ]);
+    const base = objectPrototype(definition.type);
+    for (const name of Reflect.ownKeys(base)) {
+      if (!selected.has(name as string) && !Reflect.has(prototype, name))
+        Object.defineProperty(
+          prototype,
+          name,
+          Object.getOwnPropertyDescriptor(base, name)!,
+        );
+    }
+  }
 }
 
 export function defineStateMembers(
@@ -1694,9 +1844,9 @@ export function invokeObjectStatic(type: string, member: string): unknown {
 }
 
 const objectPrototypes = new Map<string, object>();
-function createObjectWrapper(type: string): object {
+function objectPrototype(type: string): object {
   const cached = objectPrototypes.get(type);
-  if (cached) return Object.create(cached) as object;
+  if (cached) return cached;
   const definition = objectTypes.get(type);
   if (!definition) throw new TypeError(`Unknown object: ${type}`);
   const value = {};
@@ -1727,7 +1877,7 @@ function createObjectWrapper(type: string): object {
   if (iterableObjectTypes.has(type)) {
     Object.defineProperty(value, Symbol.iterator, {
       value: function* (this: object): IterableIterator<unknown> {
-        const copy = callObject(this, type, 'call', 'toArray', []);
+        const copy = callObject(this, type, 'call', definition.iteratorMember, []);
         if (!Array.isArray(copy)) throw new TypeError('Invalid Dart Iterable copy');
         yield* copy;
       },
@@ -1735,7 +1885,11 @@ function createObjectWrapper(type: string): object {
   }
   Object.freeze(value);
   objectPrototypes.set(type, value);
-  return Object.create(value) as object;
+  return value;
+}
+
+function createObjectWrapper(type: string): object {
+  return Object.create(objectPrototype(type)) as object;
 }
 
 function objectWrapper(type: string, id: number): object {
@@ -2139,37 +2293,7 @@ Object.assign(globalThis, {
     },
     defineCollection(type: string, kind: string): void {
       if (objectTypes.has(type)) return;
-      const names =
-        kind === 'map'
-          ? ['get', 'set', 'containsKey', 'remove', 'clear', 'toMap']
-          : kind === 'list'
-            ? [
-                'contains',
-                'get',
-                'set',
-                'add',
-                'addAll',
-                'removeAt',
-                'clear',
-                'toArray',
-              ]
-            : kind === 'set'
-              ? ['contains', 'add', 'addAll', 'remove', 'clear', 'toArray', 'toSet']
-              : ['contains', 'toArray'];
-      const methods: Record<string, StateMethod> = {};
-      for (const name of names) {
-        methods[name] = function (this: object, ...args: unknown[]): unknown {
-          return invokeObject(this, type, name, args);
-        };
-      }
-      if (kind !== 'map') iterableObjectTypes.add(type);
-      defineObject(
-        type,
-        kind === 'map' ? ['length'] : ['length', 'isEmpty'],
-        [],
-        methods,
-        [],
-      );
+      defineObject(type, [], [], {}, [], kind);
     },
     object: objectWrapper,
     scopedObject: scopedObjectWrapper,

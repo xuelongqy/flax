@@ -46,8 +46,18 @@ declarations and multiple runtime specializations remain outside this iteration.
 
 The automatic workflow uses the current format-2 selection semantics, Manifest 12 and UI
 protocol 21 defined by [ADR 0035](0035-generic-state-variants-and-protocol-21.md).
-Native ABI 2 is unchanged. This settles the initial library-discovery and
-annotation-policy questions in ADR 0018; explicit configuration remains supported.
+
+## Collection subclass follow-up
+
+The original collection-subclass deferral above has been resolved. Automatic discovery
+now combines selected native members with the existing shared collection table. Native
+members keep their Dart semantics; overlapping helper signatures are omitted from the
+TypeScript parent projection, and typed inputs authenticate the same Dart instance.
+Inherited generic proxy methods retain one lexical declaration scope through strict
+Manifest round-trips. See
+[collection subclasses](../architecture/interop.md#collection-subclasses). Native ABI 2
+is unchanged. This settles the initial library-discovery and annotation-policy questions
+in ADR 0018; explicit configuration remains supported.
 
 ## Verification
 

@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"d9ff19648c5536e2db511219ad417eea11d007cecac6a9e6b644cc086eb82faa","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"5eb7937fc99d4beb953465e676fb74b5f4d3dd243bd393493c37169a3e31bb3e","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -60,6 +60,7 @@ var __yieldStar = (value) => {
 var bindings_exports = {};
 __export(bindings_exports, {
   FlaxProxyBase: () => FlaxProxyBase,
+  asDart: () => asDart,
   bindInstanceType: () => bindInstanceType,
   bindingMethods: () => bindingMethods,
   bindingVersion: () => bindingVersion,
@@ -82,6 +83,7 @@ __export(bindings_exports, {
   defineStateMembers: () => defineStateMembers,
   defineStream: () => defineStream,
   enumValue: () => enumValue,
+  getDartType: () => getDartType,
   invokeEnum: () => invokeEnum,
   invokeInstance: () => invokeInstance,
   invokeObject: () => invokeObject,
@@ -531,7 +533,38 @@ var objectTypes = /* @__PURE__ */ new Map();
 var references = new ReferenceCache();
 var objectHandles = references.handles;
 var instanceParents = /* @__PURE__ */ new Map();
+var instanceTypes = /* @__PURE__ */ new WeakMap();
+function requireDartReference(value) {
+  if (value === null || typeof value !== "object" && typeof value !== "function")
+    throw new TypeError("Expected a Dart reference");
+  const ref = objectHandles.get(value);
+  if (ref) {
+    if (!ref.alive)
+      throw new TypeError("Released Dart reference");
+    return value;
+  }
+  if (stateHandles.has(value) || enumIdentities.has(value))
+    return value;
+  const state = componentStates.get(value);
+  if (state && !state.retired && state.id !== null)
+    return value;
+  throw new TypeError("Expected a live Dart reference from this session");
+}
+function asDart(value, target) {
+  const type = instanceTypes.get(target);
+  if (!type)
+    throw new TypeError("Expected a generated Dart type");
+  return invokeOperation("reference", type, 0, "cast", "", [
+    requireDartReference(value)
+  ]);
+}
+function getDartType(value) {
+  return invokeOperation("reference", "", 0, "type", "", [
+    requireDartReference(value)
+  ]);
+}
 function bindInstanceType(value, type, parents) {
+  instanceTypes.set(value, type);
   if (!instanceParents.has(type))
     instanceParents.set(type, Object.freeze([...parents]));
   Object.defineProperty(value, Symbol.hasInstance, {
@@ -580,10 +613,48 @@ function transferObjectAlias(source, target) {
   host.__flaxBindPeer(bindingVersion, source, target);
   references.transfer(source, target);
 }
-function defineObject(type, fields, setters, methods, removers) {
+function defineObject(type, fields, setters, methods, removers, collectionKind) {
   if (objectTypes.has(type))
     throw new Error(`Duplicate object type: ${type}`);
-  objectTypes.set(type, { fields, setters, methods, removers });
+  let iteratorMember = "toArray";
+  if (collectionKind !== void 0) {
+    const selected = /* @__PURE__ */ new Set([...fields, ...setters, ...Object.keys(methods)]);
+    const collection = collectionDefinition(type, collectionKind, selected);
+    if (selected.has("toArray"))
+      iteratorMember = "@collection:toArray";
+    fields = [...collection.fields, ...fields];
+    methods = {
+      ...collection.methods,
+      ...methods
+    };
+    if (collectionKind !== "map")
+      iterableObjectTypes.add(type);
+  }
+  objectTypes.set(type, {
+    fields,
+    setters,
+    methods,
+    removers,
+    collectionKind,
+    iteratorMember
+  });
+}
+function collectionDefinition(type, kind, selected) {
+  const names = kind === "map" ? ["get", "set", "containsKey", "remove", "clear", "toMap"] : kind === "list" ? ["contains", "get", "set", "add", "addAll", "removeAt", "clear", "toArray"] : kind === "set" ? ["contains", "add", "addAll", "remove", "clear", "toArray", "toSet"] : kind === "iterable" ? ["contains", "toArray"] : null;
+  if (names === null)
+    throw new TypeError(`Invalid collection kind: ${kind}`);
+  const methods = {};
+  for (const name of names) {
+    if (selected.has(name))
+      continue;
+    methods[name] = function(...args) {
+      return invokeObject(this, type, name, args);
+    };
+  }
+  return {
+    fields: (kind === "map" ? ["length"] : ["length", "isEmpty"]).filter((name) => !selected.has(name)),
+    methods
+  };
 }
 var streamTypes = /* @__PURE__ */ new Map();
 function defineStream(type, fields, methods) {
@@ -1009,6 +1080,7 @@ function installMembers(prototype, methods, getters, setters, invoke) {
   }
 }
 function defineProxyBase(prototype, definition, nativeGetters = []) {
+  var _a;
   installMembers(prototype, {}, nativeGetters, [], (receiver, member, args) => callObject(receiver, definition.type, "get", member.slice(4), args));
   for (const parameters of Object.values(definition.methods)) {
     for (const parameter of parameters)
@@ -1026,6 +1098,19 @@ function defineProxyBase(prototype, definition, nativeGetters = []) {
   const members = new Set(definition.superMembers);
   installMembers(prototype, Object.fromEntries(Object.entries(definition.methods).filter(([name]) => members.has(name))), definition.getters.filter((name) => members.has(`get:${name}`)), definition.setters.filter((name) => members.has(`set:${name}`)), (receiver, member, args) => invokeProxySuper(receiver, definition.type, member, args));
   proxyLayouts.set(definition, { prototype });
+  if (((_a = objectTypes.get(definition.type)) == null ? void 0 : _a.collectionKind) !== void 0) {
+    const selected = /* @__PURE__ */ new Set([
+      ...nativeGetters,
+      ...definition.getters,
+      ...definition.setters,
+      ...Object.keys(definition.methods)
+    ]);
+    const base = objectPrototype(definition.type);
+    for (const name of Reflect.ownKeys(base)) {
+      if (!selected.has(name) && !Reflect.has(prototype, name))
+        Object.defineProperty(prototype, name, Object.getOwnPropertyDescriptor(base, name));
+    }
+  }
 }
 function defineStateMembers(prototype, methods, getters, setters) {
   installMembers(prototype, methods, getters, setters, (receiver, member, args) => componentStateCall(receiver, `native:${member}`, args));
@@ -1086,10 +1171,10 @@ function invokeObjectStatic(type, member) {
   return invokeOperation("object", type, 0, "static", member, []);
 }
 var objectPrototypes = /* @__PURE__ */ new Map();
-function createObjectWrapper(type) {
+function objectPrototype(type) {
   const cached = objectPrototypes.get(type);
   if (cached)
-    return Object.create(cached);
+    return cached;
   const definition = objectTypes.get(type);
   if (!definition)
     throw new TypeError(`Unknown object: ${type}`);
@@ -1117,7 +1202,7 @@ function createObjectWrapper(type) {
   if (iterableObjectTypes.has(type)) {
     Object.defineProperty(value, Symbol.iterator, {
       value: function* () {
-        const copy = callObject(this, type, "call", "toArray", []);
+        const copy = callObject(this, type, "call", definition.iteratorMember, []);
         if (!Array.isArray(copy))
           throw new TypeError("Invalid Dart Iterable copy");
         yield* __yieldStar(copy);
@@ -1126,7 +1211,10 @@ function createObjectWrapper(type) {
   }
   Object.freeze(value);
   objectPrototypes.set(type, value);
-  return Object.create(value);
+  return value;
+}
+function createObjectWrapper(type) {
+  return Object.create(objectPrototype(type));
 }
 function objectWrapper(type, id) {
   const cached = cachedObject(type, id);
@@ -1185,6 +1273,7 @@ function finishComponentState(value, widget, id) {
   state.id = id;
   return Object.freeze({ state: value, variant: state.variant });
 }
+var typedArrayTag = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(Uint8Array.prototype), Symbol.toStringTag).get;
 Object.assign(globalThis, {
   __flaxBindings: Object.freeze({
     version: bindingVersion,
@@ -1392,25 +1481,7 @@ Object.assign(globalThis, {
     defineCollection(type, kind) {
       if (objectTypes.has(type))
         return;
-      const names = kind === "map" ? ["get", "set", "containsKey", "remove", "clear", "toMap"] : kind === "list" ? [
-        "contains",
-        "get",
-        "set",
-        "add",
-        "addAll",
-        "removeAt",
-        "clear",
-        "toArray"
-      ] : kind === "set" ? ["contains", "add", "addAll", "remove", "clear", "toArray", "toSet"] : ["contains", "toArray"];
-      const methods = {};
-      for (const name of names) {
-        methods[name] = function(...args) {
-          return invokeObject(this, type, name, args);
-        };
-      }
-      if (kind !== "map")
-        iterableObjectTypes.add(type);
-      defineObject(type, kind === "map" ? ["length"] : ["length", "isEmpty"], [], methods, []);
+      defineObject(type, [], [], {}, [], kind);
     },
     object: objectWrapper,
     scopedObject: scopedObjectWrapper,
@@ -1515,6 +1586,10 @@ Object.assign(globalThis, {
       references.release(id);
     },
     enumValue,
+    valueType(value) {
+      var _a, _b;
+      return (_b = (_a = enumIdentities.get(value)) == null ? void 0 : _a.type) != null ? _b : Reflect.apply(typedArrayTag, value, []) === "Uint8Array" ? "Uint8List" : null;
+    },
     enumType(value) {
       var _a, _b;
       return (_b = (_a = enumIdentities.get(value)) == null ? void 0 : _a.type) != null ? _b : null;

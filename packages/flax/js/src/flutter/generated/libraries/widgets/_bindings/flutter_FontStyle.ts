@@ -4,8 +4,9 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface FontStyle extends DartEnum { readonly __FontStyle: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.core/flutter#type:FontStyle", ["normal","italic"]);
-export const FontStyle = Object.freeze({
+const _flaxEnum_FontStyle_api = {
 normal: enumValue<FontStyle>("flax.core/flutter#type:FontStyle", "normal"),
 italic: enumValue<FontStyle>("flax.core/flutter#type:FontStyle", "italic"),
 values: Object.freeze([enumValue<FontStyle>("flax.core/flutter#type:FontStyle", "normal"), enumValue<FontStyle>("flax.core/flutter#type:FontStyle", "italic")]),
-});
+};
+export const FontStyle = Object.freeze(_flaxBindInstanceType<FontStyle, typeof _flaxEnum_FontStyle_api>(_flaxEnum_FontStyle_api, "flax.core/flutter#type:FontStyle", []));

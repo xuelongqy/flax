@@ -93,11 +93,12 @@ the original collection back.
 
 Collection wrappers are typed views, indexed by Dart identity and conversion type. The
 same type view reuses its live JS wrapper; different views of one collection do not
-promise `===`. An Object/dynamic result uses the broad view, while List<int> uses the
-integer view. Both operate on the same Dart instance, so mutations remain visible
-through either. Each view retains its own conversion rules regardless of return order.
-Outer container nullability does not split non-null views. Type identifiers include
-element/key nullability, callback signatures and explicit data-conversion semantics.
+promise `===`. Unbound Object/dynamic collection results use the broad view, while
+List<int> uses the integer view. Both operate on the same Dart instance, so mutations
+remain visible through either. Each view retains its own conversion rules regardless of
+return order. Outer container nullability does not split non-null views. Type
+identifiers include element/key nullability, callback signatures and explicit
+data-conversion semantics.
 
 An expired view releases only its own handle. The last expired view removes the Dart
 collection index; session close clears all views. Compatible views may be passed to
@@ -118,6 +119,57 @@ recursively copy collection contents, preserving repeated references and cycles.
 Ordinary object elements remain references. Navigation data continues to reject cycles
 and host references. Bulk copies still incur conversion/allocation cost proportional to
 the graph; one host invocation does not mean zero work.
+
+### Collection subclasses
+
+Bound subclasses of List, Map, Set and Iterable combine their selected native members
+with the existing collection operations on one real Dart object. For example:
+
+```ts
+const items = createShoppingList();
+items.add('apple'); // Executes ShoppingList's Dart override.
+console.log(items.summary); // A selected business getter.
+console.log(items.get(0), items.toArray());
+listView(items).add('pear'); // The same Dart instance through List<String>.
+```
+
+Selected native members always win name collisions. A native `Tags.toSet()` returns
+`DartSet<string>`, while `setView(tags).toSet()` makes the ordinary JS Set copy. A
+native getter named `toArray` remains a getter; `[...items]` still uses a separate
+internal snapshot operation. No business method is renamed or silently replaced. The
+TypeScript surface omits overlapping bridge declarations before adding the native
+signatures, and removes redundant Iterable parents of List/Set. All Dart supertype
+identities remain available to the existing instance-check mechanism.
+
+Collection inputs check the reference's element/key type brand rather than requiring
+every bridge helper to have its default signature. The host still authenticates the
+handle, session and actual Dart collection type. This lets a Set subclass with native
+`toSet()` be used as a `Set<T>` parameter without claiming that its complete surface is
+structurally identical to `DartSet<T>`.
+
+Known generic constructor targets reuse on-demand member views for collection helpers
+and nested copies. Existing object views also cache the shared-owner fallback. Copies
+recurse into bound collection subclasses and preserve repeated references/cycles;
+ordinary object members stay native references. Returning a subclass as
+List/Map/Set/Iterable selects that signature's ordinary collection view, not an
+automatic downcast to its business API. Typed/provider views still do not promise `===`.
+Legal JS proxy subclasses can override selected methods using the existing super-call
+path. This adds no collection state mirror, observer, extra object owner or GC backend.
+Unbounded generic/Object round-trips of existing subclass references keep their bound
+view and business members; newly returned unbound collections retain the broad
+collection view. Explicit List/Map/Set/Iterable signatures retain their ordinary
+collection view. Method-local generics lowered to a collection bound likewise return the
+standard view, including inside aggregates and callbacks. Use Core
+`asDart(view, ShoppingList)` to recover a checked class view; it leaves the original
+view and Dart object unchanged. `getDartType(view)` reports the Dart runtime type
+independently of the selected view. See
+[checked views](objects.md#checked-views-and-dart-type-diagnostics). Nullable Map reads
+preserve the complete nested conversion metadata, including Records, callbacks and async
+values. Unsupported native signatures, generic specialization and Widget mutation
+boundaries retain the ordinary binding rules. An unusual Dart class implementing
+unrelated collection shapes, such as both List and Set, has no unique copy shape.
+Explicit selection rejects it and automatic selection reports
+`ambiguous_core_collection`; use an ordinary List/Set-returning API for that view.
 
 ## Shared Uint8List bytes
 
@@ -562,6 +614,14 @@ projection, while callback results accept the existing input forms and converted
 references. For example, `<T>(value: DartOutput<T>) => value` preserves an identity
 callback without copying. Generated Record projections retain their field shape through
 their type-only brand. Generic bounds keep their original declared types.
+
+Collection-bound function-local generic results use `DartOutput<DartInput<T>>`: a
+selected collection subclass and a raw JS collection both produce the standard bound
+collection view. This also applies to nested result/callback positions. A shared
+`T extends List<String>` call actually invokes Dart with `List<String>`; it cannot
+promise that a new collection returned by the function has T's business members.
+`asDart(result, ShoppingList)` restores those members only when the original Dart object
+satisfies that class. This introduces no runtime generic type arguments.
 
 Generic numeric results use the representation required by the current Dart type
 argument, including nullable `int` and `double`. Integer conversion rejects fractional,

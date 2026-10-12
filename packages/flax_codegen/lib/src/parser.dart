@@ -216,6 +216,17 @@ bool _hasGenericFactoryResult(MethodElement method) {
   return _containsDeferredTypeParameter(result, method.typeParameters.toSet());
 }
 
+Set<String> _coreCollectionKinds(InterfaceElement element) {
+  final kinds = {
+    for (final parent in element.allSupertypes)
+      if (parent.element.library.isDartCore &&
+          {'Iterable', 'List', 'Map', 'Set'}.contains(parent.element.name))
+        parent.element.name!,
+  };
+  if (kinds.contains('List') || kinds.contains('Set')) kinds.remove('Iterable');
+  return kinds;
+}
+
 bool _isInferredDeferredFactory(
   _FlaxCodegenTypeScope scope,
   InterfaceElement owner,
@@ -1877,6 +1888,9 @@ class FlaxCodegenBindingParser {
         );
       }
       _validateDataTargets(selection, entry.key);
+      if (_coreCollectionKinds(element).length > 1) {
+        throw StateError('Ambiguous core collection shape: ${entry.key}');
+      }
       final sharedOwner =
           element.typeParameters.isNotEmpty && selection.typeArguments.isEmpty
           ? _defaultTypeArguments(this, scope, element)
@@ -2887,55 +2901,95 @@ class FlaxCodegenBindingParser {
               !concreteOverride) {
             continue;
           }
-          final callback = typeRef(
-            method.type,
-            forTypescript:
-                isWidget &&
-                name == 'createState' &&
-                element.allSupertypes.any(
-                  (parent) => identity(parent.element) == 'package:flutter/src/widgets/framework.dart::StatefulWidget',
-                ),
-          );
           final declaredMethod = operatorName == null
               ? element.thisType.lookUpMethod(name, element.library)
               : _classOperator(element.thisType, name);
           if (declaredMethod == null || declaredMethod.isPrivate) {
             throw StateError('Proxy methods must be public: $name');
           }
-          var result = callback.result!.declaredAs(
-            typeRef(declaredMethod.returnType, forTypescript: true),
-          );
-          if (selection.data.results.contains(name)) {
-            result = _dataType(result, '${entry.key}.$name result');
+          // Normalize lexical identities without erasing the configured owner bound.
+          final previous = Map<TypeParameterElement, Object?>.identity();
+          for (final (index, declared)
+              in declaredMethod.typeParameters.indexed) {
+            for (final parameter in [
+              method.typeParameters[index],
+              method.type.typeParameters[index],
+              declaredMethod.type.typeParameters[index],
+            ]) {
+              previous.putIfAbsent(
+                parameter,
+                () => scope._callbackIdentities[parameter],
+              );
+              scope._callbackIdentities[parameter] = declared;
+            }
           }
-          final mustCallSuper = _requiresSuper(element, name);
-          if (result.kind == 'route') {
-            throw StateError('Unsupported proxy result: $name');
-          }
-          proxyMethods.add(
-            FlaxCodegenMethodModel(
-              alias,
-              parameters(
-                method.formalParameters,
-                method.formalParameters.map((p) => p.name!).toList(),
-                '${entry.key}.$name',
-                declared: declaredMethod.formalParameters,
-                data: selection.data.methods[name] ?? const [],
-                callbackSignatures: selection.callbackSignatures,
-                callbackOptionalParameters:
-                    selection.callbackOptionalParameters,
-                callbackErrorParameters: selection.callbackErrorParameters,
-                callbackScopedParameters: selection.callbackScopedParameters,
+          try {
+            final callback = typeRef(
+              method.type,
+              forTypescript:
+                  isWidget &&
+                  name == 'createState' &&
+                  element.allSupertypes.any(
+                    (parent) => identity(parent.element) == 'package:flutter/src/widgets/framework.dart::StatefulWidget',
+                  ),
+            );
+            var result = callback.result!.declaredAs(
+              typeRef(declaredMethod.returnType, forTypescript: true),
+            );
+            if (selection.data.results.contains(name)) {
+              result = _dataType(result, '${entry.key}.$name result');
+            }
+            final mustCallSuper = _requiresSuper(element, name);
+            if (result.kind == 'route') {
+              throw StateError('Unsupported proxy result: $name');
+            }
+            proxyMethods.add(
+              FlaxCodegenMethodModel(
+                alias,
+                parameters(
+                  method.formalParameters,
+                  method.formalParameters.map((p) => p.name!).toList(),
+                  '${entry.key}.$name',
+                  declared: declaredMethod.formalParameters,
+                  data: selection.data.methods[name] ?? const [],
+                  callbackSignatures: selection.callbackSignatures,
+                  callbackOptionalParameters:
+                      selection.callbackOptionalParameters,
+                  callbackErrorParameters: selection.callbackErrorParameters,
+                  callbackScopedParameters: selection.callbackScopedParameters,
+                ),
+                result,
+                typeParameters: [
+                  for (final (index, parameter)
+                      in declaredMethod.typeParameters.indexed)
+                    FlaxCodegenGenericParameter(
+                      parameter.name!,
+                      typeRef(
+                        parameter.bound ??
+                            element.library.typeProvider.objectQuestionType,
+                        forTypescript: true,
+                        typeOnlyPosition: true,
+                      ),
+                      defaultType: callback.typeParameters[index].defaultType,
+                      genericIdentity: parameter,
+                    ),
+                ],
+                mustCallSuper: mustCallSuper,
+                instance: true,
+                operatorName: operatorName,
               ),
-              result,
-              typeParameters: callback.typeParameters,
-              mustCallSuper: mustCallSuper,
-              instance: true,
-              operatorName: operatorName,
-            ),
-          );
-          if (concreteOverride && !proxySuperMembers.contains(alias)) {
-            proxySuperMembers.add(alias);
+            );
+            if (concreteOverride && !proxySuperMembers.contains(alias)) {
+              proxySuperMembers.add(alias);
+            }
+          } finally {
+            for (final entry in previous.entries) {
+              if (entry.value case final identity?) {
+                scope._callbackIdentities[entry.key] = identity;
+              } else {
+                scope._callbackIdentities.remove(entry.key);
+              }
+            }
           }
         }
         if (proxyMethods.any((m) => m.operatorName == '==') &&

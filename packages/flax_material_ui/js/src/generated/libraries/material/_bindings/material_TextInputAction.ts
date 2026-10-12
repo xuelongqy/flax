@@ -4,7 +4,7 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/material.__module";
 export interface TextInputAction extends DartEnum { readonly __TextInputAction: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.material/material#type:TextInputAction", ["none","unspecified","done","go","search","send","next","previous","continueAction","join","route","emergencyCall","newline"]);
-export const TextInputAction = Object.freeze({
+const _flaxEnum_TextInputAction_api = {
 none: enumValue<TextInputAction>("flax.material/material#type:TextInputAction", "none"),
 unspecified: enumValue<TextInputAction>("flax.material/material#type:TextInputAction", "unspecified"),
 done: enumValue<TextInputAction>("flax.material/material#type:TextInputAction", "done"),
@@ -19,4 +19,5 @@ route: enumValue<TextInputAction>("flax.material/material#type:TextInputAction",
 emergencyCall: enumValue<TextInputAction>("flax.material/material#type:TextInputAction", "emergencyCall"),
 newline: enumValue<TextInputAction>("flax.material/material#type:TextInputAction", "newline"),
 values: Object.freeze([enumValue<TextInputAction>("flax.material/material#type:TextInputAction", "none"), enumValue<TextInputAction>("flax.material/material#type:TextInputAction", "unspecified"), enumValue<TextInputAction>("flax.material/material#type:TextInputAction", "done"), enumValue<TextInputAction>("flax.material/material#type:TextInputAction", "go"), enumValue<TextInputAction>("flax.material/material#type:TextInputAction", "search"), enumValue<TextInputAction>("flax.material/material#type:TextInputAction", "send"), enumValue<TextInputAction>("flax.material/material#type:TextInputAction", "next"), enumValue<TextInputAction>("flax.material/material#type:TextInputAction", "previous"), enumValue<TextInputAction>("flax.material/material#type:TextInputAction", "continueAction"), enumValue<TextInputAction>("flax.material/material#type:TextInputAction", "join"), enumValue<TextInputAction>("flax.material/material#type:TextInputAction", "route"), enumValue<TextInputAction>("flax.material/material#type:TextInputAction", "emergencyCall"), enumValue<TextInputAction>("flax.material/material#type:TextInputAction", "newline")]),
-});
+};
+export const TextInputAction = Object.freeze(_flaxBindInstanceType<TextInputAction, typeof _flaxEnum_TextInputAction_api>(_flaxEnum_TextInputAction_api, "flax.material/material#type:TextInputAction", []));

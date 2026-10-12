@@ -4,9 +4,10 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/material.__module";
 export interface NavigationDestinationLabelBehavior extends DartEnum { readonly __NavigationDestinationLabelBehavior: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.material/material#type:NavigationDestinationLabelBehavior", ["alwaysShow","alwaysHide","onlyShowSelected"]);
-export const NavigationDestinationLabelBehavior = Object.freeze({
+const _flaxEnum_NavigationDestinationLabelBehavior_api = {
 alwaysShow: enumValue<NavigationDestinationLabelBehavior>("flax.material/material#type:NavigationDestinationLabelBehavior", "alwaysShow"),
 alwaysHide: enumValue<NavigationDestinationLabelBehavior>("flax.material/material#type:NavigationDestinationLabelBehavior", "alwaysHide"),
 onlyShowSelected: enumValue<NavigationDestinationLabelBehavior>("flax.material/material#type:NavigationDestinationLabelBehavior", "onlyShowSelected"),
 values: Object.freeze([enumValue<NavigationDestinationLabelBehavior>("flax.material/material#type:NavigationDestinationLabelBehavior", "alwaysShow"), enumValue<NavigationDestinationLabelBehavior>("flax.material/material#type:NavigationDestinationLabelBehavior", "alwaysHide"), enumValue<NavigationDestinationLabelBehavior>("flax.material/material#type:NavigationDestinationLabelBehavior", "onlyShowSelected")]),
-});
+};
+export const NavigationDestinationLabelBehavior = Object.freeze(_flaxBindInstanceType<NavigationDestinationLabelBehavior, typeof _flaxEnum_NavigationDestinationLabelBehavior_api>(_flaxEnum_NavigationDestinationLabelBehavior_api, "flax.material/material#type:NavigationDestinationLabelBehavior", []));

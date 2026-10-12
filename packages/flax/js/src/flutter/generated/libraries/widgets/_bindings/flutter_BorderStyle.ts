@@ -4,8 +4,9 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface BorderStyle extends DartEnum { readonly __BorderStyle: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.core/flutter#type:BorderStyle", ["none","solid"]);
-export const BorderStyle = Object.freeze({
+const _flaxEnum_BorderStyle_api = {
 none: enumValue<BorderStyle>("flax.core/flutter#type:BorderStyle", "none"),
 solid: enumValue<BorderStyle>("flax.core/flutter#type:BorderStyle", "solid"),
 values: Object.freeze([enumValue<BorderStyle>("flax.core/flutter#type:BorderStyle", "none"), enumValue<BorderStyle>("flax.core/flutter#type:BorderStyle", "solid")]),
-});
+};
+export const BorderStyle = Object.freeze(_flaxBindInstanceType<BorderStyle, typeof _flaxEnum_BorderStyle_api>(_flaxEnum_BorderStyle_api, "flax.core/flutter#type:BorderStyle", []));

@@ -4,7 +4,7 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface MainAxisAlignment extends DartEnum { readonly __MainAxisAlignment: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.core/flutter#type:MainAxisAlignment", ["start","end","center","spaceBetween","spaceAround","spaceEvenly"]);
-export const MainAxisAlignment = Object.freeze({
+const _flaxEnum_MainAxisAlignment_api = {
 start: enumValue<MainAxisAlignment>("flax.core/flutter#type:MainAxisAlignment", "start"),
 end: enumValue<MainAxisAlignment>("flax.core/flutter#type:MainAxisAlignment", "end"),
 center: enumValue<MainAxisAlignment>("flax.core/flutter#type:MainAxisAlignment", "center"),
@@ -12,4 +12,5 @@ spaceBetween: enumValue<MainAxisAlignment>("flax.core/flutter#type:MainAxisAlign
 spaceAround: enumValue<MainAxisAlignment>("flax.core/flutter#type:MainAxisAlignment", "spaceAround"),
 spaceEvenly: enumValue<MainAxisAlignment>("flax.core/flutter#type:MainAxisAlignment", "spaceEvenly"),
 values: Object.freeze([enumValue<MainAxisAlignment>("flax.core/flutter#type:MainAxisAlignment", "start"), enumValue<MainAxisAlignment>("flax.core/flutter#type:MainAxisAlignment", "end"), enumValue<MainAxisAlignment>("flax.core/flutter#type:MainAxisAlignment", "center"), enumValue<MainAxisAlignment>("flax.core/flutter#type:MainAxisAlignment", "spaceBetween"), enumValue<MainAxisAlignment>("flax.core/flutter#type:MainAxisAlignment", "spaceAround"), enumValue<MainAxisAlignment>("flax.core/flutter#type:MainAxisAlignment", "spaceEvenly")]),
-});
+};
+export const MainAxisAlignment = Object.freeze(_flaxBindInstanceType<MainAxisAlignment, typeof _flaxEnum_MainAxisAlignment_api>(_flaxEnum_MainAxisAlignment_api, "flax.core/flutter#type:MainAxisAlignment", []));

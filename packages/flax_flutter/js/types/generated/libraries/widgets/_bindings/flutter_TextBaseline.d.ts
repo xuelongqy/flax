@@ -1,4 +1,4 @@
-import { type DartEnum } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartEnum } from '@flax/core/bindings';
 export interface TextBaseline extends DartEnum {
     readonly __TextBaseline: unique symbol;
     readonly name: string;
@@ -8,4 +8,4 @@ export declare const TextBaseline: Readonly<{
     alphabetic: TextBaseline;
     ideographic: TextBaseline;
     values: readonly TextBaseline[];
-}>;
+} & _FlaxInstanceType<TextBaseline>>;

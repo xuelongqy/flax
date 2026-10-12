@@ -34,6 +34,7 @@ class FlaxTypeRef {
   final bool nullable;
   // Callback Widget Iterables must be inspectable without running an iterator.
   final bool finiteWidgetIterable;
+
   final FlaxTypeRef? item;
   final FlaxTypeRef? key;
   final FlaxCollectionBinding? collection;
@@ -196,6 +197,7 @@ class FlaxObjectBinding extends FlaxTypeBinding {
     this.proxy,
     this.memberView,
     this.memberViewOperations = const {},
+    this.collectionView,
   });
   final Map<String, List<FlaxParameter>> constructors;
   final Object Function(String, Map<String, Object?>) create;
@@ -215,6 +217,9 @@ class FlaxObjectBinding extends FlaxTypeBinding {
   /// Select once on the first affected operation; shared members bypass this.
   final FlaxObjectMemberView? Function(Object)? memberView;
   final Set<String> memberViewOperations;
+
+  /// The collection interface of a bound subclass; selected native members win.
+  final FlaxTypeRef? collectionView;
 }
 
 /// Only the members whose conversion changes for a closed generic Dart owner.
@@ -223,10 +228,12 @@ class FlaxObjectMemberView {
     this.getters = const {},
     this.setters = const {},
     this.instanceMethods = const {},
+    this.collectionView,
   });
   final Map<String, FlaxGetter> getters;
   final Map<String, FlaxSetter> setters;
   final Map<String, FlaxInstanceMethod> instanceMethods;
+  final FlaxTypeRef? collectionView;
 }
 
 /// One selected Dart member; metadata is shared by every proxy of this type.
@@ -324,9 +331,15 @@ class FlaxInstanceMethod {
 }
 
 class FlaxStateBinding extends FlaxTypeBinding {
-  const FlaxStateBinding(super.id, this.getters, this.instanceMethods);
+  const FlaxStateBinding(
+    super.id,
+    this.getters,
+    this.instanceMethods, {
+    this.matches,
+  });
   final List<FlaxGetter> getters;
   final Map<String, FlaxInstanceMethod> instanceMethods;
+  final bool Function(Object)? matches;
 }
 
 class FlaxRouteBinding extends FlaxTypeBinding {
@@ -383,8 +396,9 @@ class FlaxMemberBinding extends FlaxTypeBinding {
 }
 
 class FlaxContextBinding extends FlaxTypeBinding {
-  const FlaxContextBinding(super.id, this.getters);
+  const FlaxContextBinding(super.id, this.getters, {this.matches});
   final List<FlaxGetter> getters;
+  final bool Function(Object)? matches;
 }
 
 class FlaxStaticGetter {

@@ -1,4 +1,4 @@
-import { type DartEnum } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartEnum } from '@flax/core/bindings';
 export interface ThemeMode extends DartEnum {
     readonly __ThemeMode: unique symbol;
     readonly name: string;
@@ -9,4 +9,4 @@ export declare const ThemeMode: Readonly<{
     light: ThemeMode;
     dark: ThemeMode;
     values: readonly ThemeMode[];
-}>;
+} & _FlaxInstanceType<ThemeMode>>;

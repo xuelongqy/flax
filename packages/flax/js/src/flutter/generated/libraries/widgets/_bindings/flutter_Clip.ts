@@ -4,10 +4,11 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface Clip extends DartEnum { readonly __Clip: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.core/flutter#type:Clip", ["none","hardEdge","antiAlias","antiAliasWithSaveLayer"]);
-export const Clip = Object.freeze({
+const _flaxEnum_Clip_api = {
 none: enumValue<Clip>("flax.core/flutter#type:Clip", "none"),
 hardEdge: enumValue<Clip>("flax.core/flutter#type:Clip", "hardEdge"),
 antiAlias: enumValue<Clip>("flax.core/flutter#type:Clip", "antiAlias"),
 antiAliasWithSaveLayer: enumValue<Clip>("flax.core/flutter#type:Clip", "antiAliasWithSaveLayer"),
 values: Object.freeze([enumValue<Clip>("flax.core/flutter#type:Clip", "none"), enumValue<Clip>("flax.core/flutter#type:Clip", "hardEdge"), enumValue<Clip>("flax.core/flutter#type:Clip", "antiAlias"), enumValue<Clip>("flax.core/flutter#type:Clip", "antiAliasWithSaveLayer")]),
-});
+};
+export const Clip = Object.freeze(_flaxBindInstanceType<Clip, typeof _flaxEnum_Clip_api>(_flaxEnum_Clip_api, "flax.core/flutter#type:Clip", []));

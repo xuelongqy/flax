@@ -4,8 +4,9 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface TextDirection extends DartEnum { readonly __TextDirection: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.core/flutter#type:TextDirection", ["rtl","ltr"]);
-export const TextDirection = Object.freeze({
+const _flaxEnum_TextDirection_api = {
 rtl: enumValue<TextDirection>("flax.core/flutter#type:TextDirection", "rtl"),
 ltr: enumValue<TextDirection>("flax.core/flutter#type:TextDirection", "ltr"),
 values: Object.freeze([enumValue<TextDirection>("flax.core/flutter#type:TextDirection", "rtl"), enumValue<TextDirection>("flax.core/flutter#type:TextDirection", "ltr")]),
-});
+};
+export const TextDirection = Object.freeze(_flaxBindInstanceType<TextDirection, typeof _flaxEnum_TextDirection_api>(_flaxEnum_TextDirection_api, "flax.core/flutter#type:TextDirection", []));

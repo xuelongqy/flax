@@ -4,7 +4,7 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface WrapAlignment extends DartEnum { readonly __WrapAlignment: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.core/flutter#type:WrapAlignment", ["start","end","center","spaceBetween","spaceAround","spaceEvenly"]);
-export const WrapAlignment = Object.freeze({
+const _flaxEnum_WrapAlignment_api = {
 start: enumValue<WrapAlignment>("flax.core/flutter#type:WrapAlignment", "start"),
 end: enumValue<WrapAlignment>("flax.core/flutter#type:WrapAlignment", "end"),
 center: enumValue<WrapAlignment>("flax.core/flutter#type:WrapAlignment", "center"),
@@ -12,4 +12,5 @@ spaceBetween: enumValue<WrapAlignment>("flax.core/flutter#type:WrapAlignment", "
 spaceAround: enumValue<WrapAlignment>("flax.core/flutter#type:WrapAlignment", "spaceAround"),
 spaceEvenly: enumValue<WrapAlignment>("flax.core/flutter#type:WrapAlignment", "spaceEvenly"),
 values: Object.freeze([enumValue<WrapAlignment>("flax.core/flutter#type:WrapAlignment", "start"), enumValue<WrapAlignment>("flax.core/flutter#type:WrapAlignment", "end"), enumValue<WrapAlignment>("flax.core/flutter#type:WrapAlignment", "center"), enumValue<WrapAlignment>("flax.core/flutter#type:WrapAlignment", "spaceBetween"), enumValue<WrapAlignment>("flax.core/flutter#type:WrapAlignment", "spaceAround"), enumValue<WrapAlignment>("flax.core/flutter#type:WrapAlignment", "spaceEvenly")]),
-});
+};
+export const WrapAlignment = Object.freeze(_flaxBindInstanceType<WrapAlignment, typeof _flaxEnum_WrapAlignment_api>(_flaxEnum_WrapAlignment_api, "flax.core/flutter#type:WrapAlignment", []));

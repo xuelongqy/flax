@@ -6,13 +6,19 @@ final _objectFinalizer = Finalizer<WeakReference<_ObjectReference>>(
 
 /// An ID indexes weak metadata. The engine follows actual Dart and JS owners.
 class _ObjectReference {
-  _ObjectReference(this.session, this.id, this.binding, Object value)
-    : _weakValue = WeakReference(value) {
+  _ObjectReference(
+    this.session,
+    this.id,
+    this.binding,
+    Object value, {
+    this.scoped = false,
+  }) : _weakValue = WeakReference(value) {
     _objectFinalizer.attach(value, WeakReference(this), detach: this);
   }
   final _Session session;
   final int id;
   final FlaxObjectBinding binding;
+  final bool scoped;
   late final FlaxObjectMemberView? _nativeMemberView = binding.memberView?.call(
     value,
   );
@@ -220,7 +226,13 @@ extension _ObjectCalls on _Session {
   ) {
     if (type.id == null) throw ArgumentError('Missing scoped object type');
     final binding = _objectBinding(value, type.id!);
-    final reference = _ObjectReference(this, _nextObject++, binding, value);
+    final reference = _ObjectReference(
+      this,
+      _nextObject++,
+      binding,
+      value,
+      scoped: true,
+    );
     _objects[reference.id] = reference;
     final lease = _ScopedObjectLease(this, reference);
     leases.add(lease);
@@ -686,9 +698,28 @@ extension _ObjectCalls on _Session {
         return holdHostResult(memberResult(getter.read(), getter.type));
       };
     }
-    final baseGetter = binding.getters.where((g) => g.name == name).firstOrNull;
+    final collectionName = name == '@collection:toArray' ? 'toArray' : name;
+    final nativeGetter = binding.getters
+        .where((g) => g.name == name)
+        .firstOrNull;
+    final nativeMethod =
+        binding.instanceMethods[_collectionBindings.containsKey(type)
+            ? collectionName
+            : name];
+    final collection =
+        binding.collectionView == null ||
+            (operation == 'get' && nativeGetter != null) ||
+            (operation == 'call' && nativeMethod != null) ||
+            operation == 'set'
+        ? null
+        : _collectionBinding(binding.collectionView!);
+    final baseGetter =
+        nativeGetter ??
+        collection?.getters.where((g) => g.name == name).firstOrNull;
     final baseSetter = binding.setters.where((s) => s.name == name).firstOrNull;
-    final baseMethod = binding.instanceMethods[name];
+    final baseMethod =
+        nativeMethod ?? collection?.instanceMethods[collectionName];
+    final collectionMethod = nativeMethod == null && baseMethod != null;
     if (!(operation == 'get' && baseGetter != null ||
         operation == 'set' && baseSetter != null ||
         operation == 'call' && baseMethod != null)) {
@@ -707,12 +738,15 @@ extension _ObjectCalls on _Session {
       var setter = baseSetter;
       var method = baseMethod;
       FlaxObjectMemberView? view;
-      if (specialize) {
+      if (specialize || collectionMethod) {
         view = object.memberView(binding);
         if (view != null) {
           getter = view.getters[name] ?? getter;
           setter = view.setters[name] ?? setter;
-          method = view.instanceMethods[name] ?? method;
+          method = collectionMethod && view.collectionView != null
+              ? _collectionBinding(view.collectionView!)
+                    .instanceMethods[collectionName]
+              : view.instanceMethods[name] ?? method;
         }
       }
       if (operation == 'get') {
@@ -818,7 +852,7 @@ extension _ObjectCalls on _Session {
         }
         return const FlaxJsUndefined();
       }
-      if (object is _CollectionReference &&
+      if ((object is _CollectionReference || collectionMethod) &&
           method.parameters.any((p) => p.type.containsWidget)) {
         throw UnsupportedError(
           'Inserting or replacing Widgets through collection views is unsupported',

@@ -4,7 +4,7 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface TextAlign extends DartEnum { readonly __TextAlign: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.core/flutter#type:TextAlign", ["left","right","center","justify","start","end"]);
-export const TextAlign = Object.freeze({
+const _flaxEnum_TextAlign_api = {
 left: enumValue<TextAlign>("flax.core/flutter#type:TextAlign", "left"),
 right: enumValue<TextAlign>("flax.core/flutter#type:TextAlign", "right"),
 center: enumValue<TextAlign>("flax.core/flutter#type:TextAlign", "center"),
@@ -12,4 +12,5 @@ justify: enumValue<TextAlign>("flax.core/flutter#type:TextAlign", "justify"),
 start: enumValue<TextAlign>("flax.core/flutter#type:TextAlign", "start"),
 end: enumValue<TextAlign>("flax.core/flutter#type:TextAlign", "end"),
 values: Object.freeze([enumValue<TextAlign>("flax.core/flutter#type:TextAlign", "left"), enumValue<TextAlign>("flax.core/flutter#type:TextAlign", "right"), enumValue<TextAlign>("flax.core/flutter#type:TextAlign", "center"), enumValue<TextAlign>("flax.core/flutter#type:TextAlign", "justify"), enumValue<TextAlign>("flax.core/flutter#type:TextAlign", "start"), enumValue<TextAlign>("flax.core/flutter#type:TextAlign", "end")]),
-});
+};
+export const TextAlign = Object.freeze(_flaxBindInstanceType<TextAlign, typeof _flaxEnum_TextAlign_api>(_flaxEnum_TextAlign_api, "flax.core/flutter#type:TextAlign", []));

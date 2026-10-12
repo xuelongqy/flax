@@ -4,8 +4,9 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface Axis extends DartEnum { readonly __Axis: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.core/flutter#type:Axis", ["horizontal","vertical"]);
-export const Axis = Object.freeze({
+const _flaxEnum_Axis_api = {
 horizontal: enumValue<Axis>("flax.core/flutter#type:Axis", "horizontal"),
 vertical: enumValue<Axis>("flax.core/flutter#type:Axis", "vertical"),
 values: Object.freeze([enumValue<Axis>("flax.core/flutter#type:Axis", "horizontal"), enumValue<Axis>("flax.core/flutter#type:Axis", "vertical")]),
-});
+};
+export const Axis = Object.freeze(_flaxBindInstanceType<Axis, typeof _flaxEnum_Axis_api>(_flaxEnum_Axis_api, "flax.core/flutter#type:Axis", []));

@@ -4,7 +4,7 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface TargetPlatform extends DartEnum { readonly __TargetPlatform: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.core/flutter#type:TargetPlatform", ["android","fuchsia","iOS","linux","macOS","windows"]);
-export const TargetPlatform = Object.freeze({
+const _flaxEnum_TargetPlatform_api = {
 android: enumValue<TargetPlatform>("flax.core/flutter#type:TargetPlatform", "android"),
 fuchsia: enumValue<TargetPlatform>("flax.core/flutter#type:TargetPlatform", "fuchsia"),
 iOS: enumValue<TargetPlatform>("flax.core/flutter#type:TargetPlatform", "iOS"),
@@ -12,4 +12,5 @@ linux: enumValue<TargetPlatform>("flax.core/flutter#type:TargetPlatform", "linux
 macOS: enumValue<TargetPlatform>("flax.core/flutter#type:TargetPlatform", "macOS"),
 windows: enumValue<TargetPlatform>("flax.core/flutter#type:TargetPlatform", "windows"),
 values: Object.freeze([enumValue<TargetPlatform>("flax.core/flutter#type:TargetPlatform", "android"), enumValue<TargetPlatform>("flax.core/flutter#type:TargetPlatform", "fuchsia"), enumValue<TargetPlatform>("flax.core/flutter#type:TargetPlatform", "iOS"), enumValue<TargetPlatform>("flax.core/flutter#type:TargetPlatform", "linux"), enumValue<TargetPlatform>("flax.core/flutter#type:TargetPlatform", "macOS"), enumValue<TargetPlatform>("flax.core/flutter#type:TargetPlatform", "windows")]),
-});
+};
+export const TargetPlatform = Object.freeze(_flaxBindInstanceType<TargetPlatform, typeof _flaxEnum_TargetPlatform_api>(_flaxEnum_TargetPlatform_api, "flax.core/flutter#type:TargetPlatform", []));

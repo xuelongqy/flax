@@ -1,4 +1,4 @@
-import { type DartEnum } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartEnum } from '@flax/core/bindings';
 export interface BoxFit extends DartEnum {
     readonly __BoxFit: unique symbol;
     readonly name: string;
@@ -13,4 +13,4 @@ export declare const BoxFit: Readonly<{
     none: BoxFit;
     scaleDown: BoxFit;
     values: readonly BoxFit[];
-}>;
+} & _FlaxInstanceType<BoxFit>>;

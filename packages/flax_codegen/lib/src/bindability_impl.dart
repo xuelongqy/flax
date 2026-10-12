@@ -200,6 +200,15 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     return FlaxCodegenProposedBinding(name: name, id: id, skips: skips);
   }
 
+  if (_coreCollectionKinds(element).length > 1) {
+    skip(
+      name,
+      'Ambiguous core collection shape: $name',
+      code: 'ambiguous_core_collection',
+    );
+    return FlaxCodegenProposedBinding(name: name, id: id, skips: skips);
+  }
+
   if (!ignoreProvider && parser._dependencyOwners[id] != null) {
     final owner = parser._dependencyOwners[id]!;
     final available = _selectionFromModel(

@@ -1,4 +1,4 @@
-import { type DartEnum } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartEnum } from '@flax/core/bindings';
 export interface AutovalidateMode extends DartEnum {
     readonly __AutovalidateMode: unique symbol;
     readonly name: string;
@@ -11,4 +11,4 @@ export declare const AutovalidateMode: Readonly<{
     onUnfocus: AutovalidateMode;
     onUserInteractionIfError: AutovalidateMode;
     values: readonly AutovalidateMode[];
-}>;
+} & _FlaxInstanceType<AutovalidateMode>>;

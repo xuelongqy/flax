@@ -4,8 +4,9 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/material.__module";
 export interface ListTileStyle extends DartEnum { readonly __ListTileStyle: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.material/material#type:ListTileStyle", ["list","drawer"]);
-export const ListTileStyle = Object.freeze({
+const _flaxEnum_ListTileStyle_api = {
 list: enumValue<ListTileStyle>("flax.material/material#type:ListTileStyle", "list"),
 drawer: enumValue<ListTileStyle>("flax.material/material#type:ListTileStyle", "drawer"),
 values: Object.freeze([enumValue<ListTileStyle>("flax.material/material#type:ListTileStyle", "list"), enumValue<ListTileStyle>("flax.material/material#type:ListTileStyle", "drawer")]),
-});
+};
+export const ListTileStyle = Object.freeze(_flaxBindInstanceType<ListTileStyle, typeof _flaxEnum_ListTileStyle_api>(_flaxEnum_ListTileStyle_api, "flax.material/material#type:ListTileStyle", []));

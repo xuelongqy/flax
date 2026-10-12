@@ -4,8 +4,9 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface FlexFit extends DartEnum { readonly __FlexFit: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.core/flutter#type:FlexFit", ["tight","loose"]);
-export const FlexFit = Object.freeze({
+const _flaxEnum_FlexFit_api = {
 tight: enumValue<FlexFit>("flax.core/flutter#type:FlexFit", "tight"),
 loose: enumValue<FlexFit>("flax.core/flutter#type:FlexFit", "loose"),
 values: Object.freeze([enumValue<FlexFit>("flax.core/flutter#type:FlexFit", "tight"), enumValue<FlexFit>("flax.core/flutter#type:FlexFit", "loose")]),
-});
+};
+export const FlexFit = Object.freeze(_flaxBindInstanceType<FlexFit, typeof _flaxEnum_FlexFit_api>(_flaxEnum_FlexFit_api, "flax.core/flutter#type:FlexFit", []));

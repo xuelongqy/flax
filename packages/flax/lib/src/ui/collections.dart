@@ -303,19 +303,12 @@ extension _Collections on _Session {
     throw ArgumentError('Expected a supported value or Dart reference');
   }
 
-  FlaxJsValue collectionResult(Object value, FlaxTypeRef type) {
-    _checkFiniteWidgetIterable(value, type);
-    final definition = type.collection!;
-    if (!definition.matches(value)) {
-      throw ArgumentError('Incompatible collection result');
-    }
-    // Once exposed as a Dart reference, even a former JS copy obeys the Dart
-    // collection contract on every subsequent round-trip.
-    _jsCollectionShapes[value] = null;
-    final viewId = _bindingViewKey(definition.id, _usesBindingContext(type));
-    var record = _collectionViews[value]?[viewId];
-    final created = record == null;
-    if (record == null) {
+  FlaxObjectBinding _collectionBinding(FlaxTypeRef type) {
+    final viewId = _bindingViewKey(
+      type.collection!.id,
+      _usesBindingContext(type),
+    );
+    return _collectionBindings.putIfAbsent(viewId, () {
       final item = type.item!;
       const integer = FlaxTypeRef('int');
       const nothing = FlaxTypeRef('void');
@@ -412,7 +405,10 @@ extension _Collections on _Session {
           key: item.key,
           collection: item.collection,
           iterable: item.iterable,
+          future: item.future,
+          stream: item.stream,
           callback: item.callback,
+          record: item.record,
           deferredFactories: item.deferredFactories,
         );
         methods.addAll({
@@ -446,7 +442,7 @@ extension _Collections on _Session {
           'toMap': method([], FlaxTypeRef('copy', item: type), (v, _) => v),
         });
       }
-      final binding = FlaxObjectBinding(
+      return FlaxObjectBinding(
         viewId,
         [
           FlaxGetter(
@@ -464,9 +460,25 @@ extension _Collections on _Session {
         methods,
         constructors: const {},
         create: _noCollectionConstructor,
-        matches: definition.matches,
+        matches: type.collection!.matches,
       );
-      _collectionBindings[viewId] = binding;
+    });
+  }
+
+  FlaxJsValue collectionResult(Object value, FlaxTypeRef type) {
+    _checkFiniteWidgetIterable(value, type);
+    final definition = type.collection!;
+    if (!definition.matches(value)) {
+      throw ArgumentError('Incompatible collection result');
+    }
+    // Once exposed as a Dart reference, even a former JS copy obeys the Dart
+    // collection contract on every subsequent round-trip.
+    _jsCollectionShapes[value] = null;
+    final viewId = _bindingViewKey(definition.id, _usesBindingContext(type));
+    var record = _collectionViews[value]?[viewId];
+    final created = record == null;
+    if (record == null) {
+      final binding = _collectionBinding(type);
       record = _CollectionReference(this, _nextObject++, binding, value);
       _objects[record.id] = record;
       (_collectionViews[value] ??= {})[viewId] = record;
@@ -491,6 +503,14 @@ extension _Collections on _Session {
       if (created) record.release();
       rethrow;
     }
+  }
+
+  FlaxJsValue? _boundCollectionResult(Object value) {
+    final reference = _objectIds[value];
+    if (reference == null || reference.binding.collectionView == null) {
+      return null;
+    }
+    return objectResult(value, FlaxTypeRef('object', id: reference.binding.id));
   }
 
   FlaxJsValue anyResult(Object? value) {
@@ -521,6 +541,10 @@ extension _Collections on _Session {
     if (value is Stream<Object?>) return streamResult(value, _anyStream);
     if (FlaxBufferType.of(value) != null) {
       return runtime.createSharedBuffer(value);
+    }
+    if (value is Iterable || value is Map) {
+      final result = _boundCollectionResult(value);
+      if (result != null) return result;
     }
     if (value is List) return collectionResult(value, _anyList);
     if (value is Map) return collectionResult(value, _anyMap);
@@ -605,6 +629,21 @@ extension _Collections on _Session {
     final copies = Map<Object, _CollectionCopy>.identity();
     final temporary = <FlaxJsObject>[];
     FlaxJsValue copy(Object? input, FlaxTypeRef declared) {
+      if (declared.kind == 'object' &&
+          input != null &&
+          (input is Iterable || input is Map)) {
+        final binding = _objectView(registry._types[declared.id]);
+        if (binding?.collectionView case final collection?) {
+          if (binding!.matches?.call(input) == false) {
+            throw ArgumentError('Incompatible collection subclass copy');
+          }
+          final object = _objectIds[input];
+          final view = object == null
+              ? binding.memberView?.call(input)
+              : object.memberView(binding);
+          declared = view?.collectionView ?? collection;
+        }
+      }
       if (declared.kind == 'any' && input is Object) {
         declared = input is List
             ? _anyList

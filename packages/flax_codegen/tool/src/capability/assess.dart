@@ -605,7 +605,6 @@ const _visibilityCodes = {
   'illegal_js_name',
 };
 const _configurationCodes = {
-  'custom_core_collection',
   'explicit_runtime_type_arguments',
   'flutter_semantics_configuration_required',
 };

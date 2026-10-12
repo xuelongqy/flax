@@ -1,4 +1,4 @@
-import { type DartEnum } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartEnum } from '@flax/core/bindings';
 export interface WrapAlignment extends DartEnum {
     readonly __WrapAlignment: unique symbol;
     readonly name: string;
@@ -12,4 +12,4 @@ export declare const WrapAlignment: Readonly<{
     spaceAround: WrapAlignment;
     spaceEvenly: WrapAlignment;
     values: readonly WrapAlignment[];
-}>;
+} & _FlaxInstanceType<WrapAlignment>>;

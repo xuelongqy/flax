@@ -4,8 +4,9 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface DragStartBehavior extends DartEnum { readonly __DragStartBehavior: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.core/flutter#type:DragStartBehavior", ["down","start"]);
-export const DragStartBehavior = Object.freeze({
+const _flaxEnum_DragStartBehavior_api = {
 down: enumValue<DragStartBehavior>("flax.core/flutter#type:DragStartBehavior", "down"),
 start: enumValue<DragStartBehavior>("flax.core/flutter#type:DragStartBehavior", "start"),
 values: Object.freeze([enumValue<DragStartBehavior>("flax.core/flutter#type:DragStartBehavior", "down"), enumValue<DragStartBehavior>("flax.core/flutter#type:DragStartBehavior", "start")]),
-});
+};
+export const DragStartBehavior = Object.freeze(_flaxBindInstanceType<DragStartBehavior, typeof _flaxEnum_DragStartBehavior_api>(_flaxEnum_DragStartBehavior_api, "flax.core/flutter#type:DragStartBehavior", []));

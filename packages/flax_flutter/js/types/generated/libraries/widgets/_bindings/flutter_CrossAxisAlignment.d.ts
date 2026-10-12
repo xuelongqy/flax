@@ -1,4 +1,4 @@
-import { type DartEnum } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartEnum } from '@flax/core/bindings';
 export interface CrossAxisAlignment extends DartEnum {
     readonly __CrossAxisAlignment: unique symbol;
     readonly name: string;
@@ -11,4 +11,4 @@ export declare const CrossAxisAlignment: Readonly<{
     stretch: CrossAxisAlignment;
     baseline: CrossAxisAlignment;
     values: readonly CrossAxisAlignment[];
-}>;
+} & _FlaxInstanceType<CrossAxisAlignment>>;

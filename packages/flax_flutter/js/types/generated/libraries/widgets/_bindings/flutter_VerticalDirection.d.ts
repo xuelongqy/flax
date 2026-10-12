@@ -1,4 +1,4 @@
-import { type DartEnum } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartEnum } from '@flax/core/bindings';
 export interface VerticalDirection extends DartEnum {
     readonly __VerticalDirection: unique symbol;
     readonly name: string;
@@ -8,4 +8,4 @@ export declare const VerticalDirection: Readonly<{
     up: VerticalDirection;
     down: VerticalDirection;
     values: readonly VerticalDirection[];
-}>;
+} & _FlaxInstanceType<VerticalDirection>>;

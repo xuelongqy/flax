@@ -51,7 +51,7 @@ Duration retains explicit named units. SIMD, Symbol, Type and mutable builders g
 forced JS projection. Decimal BigInt transfer allocates in proportion to digit count;
 binary arrays incur no per-element scalar transfer.
 
-The full Core suite passed 294 checks on each engine; the focused subset passed 61.
+The full Core suite passed 297 checks on each engine; the focused subset passed 61.
 Tester-only probes passed 2/2 on each engine, confirming identical addresses and
 balanced GC/accounting for all 13 kinds, plus successful isolate shutdown with retained
 views. This is macOS arm64 debug evidence; Android/iOS/AOT, repeated shutdown churn and

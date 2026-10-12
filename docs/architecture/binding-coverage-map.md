@@ -22,6 +22,15 @@ through callbacks, Futures, collections and Streams. Cross-package views check a
 Dart types and share disposal and listeners. See
 [ADR 0037](../decisions/0037-package-scoped-binding-providers.md).
 
+Core's shared `asDart(value, Target)` validates the original Dart instance and exposes
+an existing selected view. `getDartType(value)` explicitly reads diagnostic runtime-type
+text. Object, collection, Widget, Context, State, Stream, enum and native callback
+references retain their existing ownership and validity rules. Descriptors, raw JS data
+and unregistered JS classes do not become Dart objects. Collection-bound generic outputs
+describe standard collection views; checked casts recover nominal APIs when the actual
+Dart value permits them. See
+[checked views](objects.md#checked-views-and-dart-type-diagnostics).
+
 Class static reads and writes are independent capabilities on every supported class
 category. Reads use `Class.property`; writes use `Class.setProperty(value)`. They retain
 their own types and operation identities in Manifest 18. Static declarations are not
@@ -109,6 +118,7 @@ Evidence:
 | ------------------------------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Nullable values                       | Supported | Nullability is recursive and preserved through Manifest round-trip and TypeScript emission.                                                                                                                                                                                                                                 |
 | List, Map, Set, Iterable              | Supported | Ordinary API positions preserve element/key/value types and real Dart references. Callback map keys must remain representable.                                                                                                                                                                                              |
+| Custom core collection subclasses     | Supported | Automatic and explicit object bindings combine selected native members with shared collection operations. Native name collisions retain Dart semantics; compatible typed inputs reuse the same object, and known generic targets specialize helper conversion on demand.                                                    |
 | Record                                | Supported | Positional, named, and mixed Records recurse through callbacks, collections, async values, typedefs, and generics.                                                                                                                                                                                                          |
 | Future and FutureOr                   | Supported | Parameters, results, callbacks, proxy properties, nested collections, and returned callbacks use Promise/Future conversion without inventing ownership.                                                                                                                                                                     |
 | Dart Stream                           | Supported | Parameters, results, callbacks, proxy properties, controllers, subscriptions, operators, and nested Streams preserve Dart stream semantics. Each layer stays lazy and independent; application controllers remain application-owned.                                                                                        |

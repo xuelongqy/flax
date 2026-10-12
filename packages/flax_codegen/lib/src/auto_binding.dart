@@ -156,30 +156,6 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       elements[name] = element;
       final classOverride = overrides.classes[name];
       if (classOverride != null) seenOverrides.add(name);
-      if (_nativeJsValueType(element) == null &&
-          classOverride == null &&
-          !_dependencyTypeOwners.containsKey(identity(element)) &&
-          element.allSupertypes.any(
-            (parent) =>
-                parent.element.library.uri.toString() == 'dart:core' &&
-                const {
-                  'Iterable',
-                  'List',
-                  'Set',
-                  'Map',
-                }.contains(parent.element.name),
-          )) {
-        skips.add(
-          FlaxCodegenSkip(
-            target: name,
-            reason:
-                'Custom core collection subclasses require explicit binding; '
-                'their native members can conflict with collection bridge methods',
-            code: 'custom_core_collection',
-          ),
-        );
-        continue;
-      }
       final widgetInterface = _isAutoWidgetInterface(element);
       final inferred = widgetInterface
           ? await _autoWidgetInterfaceSelection(seed, element, skips, notices)

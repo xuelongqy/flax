@@ -4,11 +4,12 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface CrossAxisAlignment extends DartEnum { readonly __CrossAxisAlignment: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.core/flutter#type:CrossAxisAlignment", ["start","end","center","stretch","baseline"]);
-export const CrossAxisAlignment = Object.freeze({
+const _flaxEnum_CrossAxisAlignment_api = {
 start: enumValue<CrossAxisAlignment>("flax.core/flutter#type:CrossAxisAlignment", "start"),
 end: enumValue<CrossAxisAlignment>("flax.core/flutter#type:CrossAxisAlignment", "end"),
 center: enumValue<CrossAxisAlignment>("flax.core/flutter#type:CrossAxisAlignment", "center"),
 stretch: enumValue<CrossAxisAlignment>("flax.core/flutter#type:CrossAxisAlignment", "stretch"),
 baseline: enumValue<CrossAxisAlignment>("flax.core/flutter#type:CrossAxisAlignment", "baseline"),
 values: Object.freeze([enumValue<CrossAxisAlignment>("flax.core/flutter#type:CrossAxisAlignment", "start"), enumValue<CrossAxisAlignment>("flax.core/flutter#type:CrossAxisAlignment", "end"), enumValue<CrossAxisAlignment>("flax.core/flutter#type:CrossAxisAlignment", "center"), enumValue<CrossAxisAlignment>("flax.core/flutter#type:CrossAxisAlignment", "stretch"), enumValue<CrossAxisAlignment>("flax.core/flutter#type:CrossAxisAlignment", "baseline")]),
-});
+};
+export const CrossAxisAlignment = Object.freeze(_flaxBindInstanceType<CrossAxisAlignment, typeof _flaxEnum_CrossAxisAlignment_api>(_flaxEnum_CrossAxisAlignment_api, "flax.core/flutter#type:CrossAxisAlignment", []));

@@ -4,8 +4,9 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface UnfocusDisposition extends DartEnum { readonly __UnfocusDisposition: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.core/flutter#type:UnfocusDisposition", ["scope","previouslyFocusedChild"]);
-export const UnfocusDisposition = Object.freeze({
+const _flaxEnum_UnfocusDisposition_api = {
 scope: enumValue<UnfocusDisposition>("flax.core/flutter#type:UnfocusDisposition", "scope"),
 previouslyFocusedChild: enumValue<UnfocusDisposition>("flax.core/flutter#type:UnfocusDisposition", "previouslyFocusedChild"),
 values: Object.freeze([enumValue<UnfocusDisposition>("flax.core/flutter#type:UnfocusDisposition", "scope"), enumValue<UnfocusDisposition>("flax.core/flutter#type:UnfocusDisposition", "previouslyFocusedChild")]),
-});
+};
+export const UnfocusDisposition = Object.freeze(_flaxBindInstanceType<UnfocusDisposition, typeof _flaxEnum_UnfocusDisposition_api>(_flaxEnum_UnfocusDisposition_api, "flax.core/flutter#type:UnfocusDisposition", []));

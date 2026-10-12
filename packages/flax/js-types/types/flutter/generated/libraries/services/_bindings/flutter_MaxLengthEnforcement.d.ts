@@ -1,4 +1,4 @@
-import { type DartEnum } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartEnum } from '@flax/core/bindings';
 export interface MaxLengthEnforcement extends DartEnum {
     readonly __MaxLengthEnforcement: unique symbol;
     readonly name: string;
@@ -9,4 +9,4 @@ export declare const MaxLengthEnforcement: Readonly<{
     enforced: MaxLengthEnforcement;
     truncateAfterCompositionEnds: MaxLengthEnforcement;
     values: readonly MaxLengthEnforcement[];
-}>;
+} & _FlaxInstanceType<MaxLengthEnforcement>>;

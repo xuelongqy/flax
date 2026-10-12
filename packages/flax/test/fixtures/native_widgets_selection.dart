@@ -18,6 +18,11 @@ const nativeWidgetsSelection = {
     proxy: 'extends',
     instanceMethods: {'createState': []},
   ),
+  'NativeCounterState': FlaxCodegenClassSelection(
+    {},
+    kind: 'object',
+    getters: ['count', 'mounted', 'context'],
+  ),
   'NativeBox': FlaxCodegenClassSelection(
     {
       '': ['key'],
@@ -44,6 +49,7 @@ const nativeWidgetsSelection = {
     {'': []},
     kind: 'object',
     instanceMethods: {
+      'producer': ['value'],
       'text': ['callback'],
       'input': ['value'],
       'nullable': ['callback'],

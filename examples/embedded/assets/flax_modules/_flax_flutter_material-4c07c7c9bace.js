@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/flutter/material","owner":"@flax/material-ui:dist/generated/libraries/material/index.js","version":"0.0.0","artifact":"c98dccbd7b77914cc7d66cea2f90c5d14af2ab20ed1513b06ae06a8de2950921","asset":"assets/flax_modules/_flax_flutter_material-4c07c7c9bace.js","package":"@flax/material-ui","source":"dist/generated/libraries/material/index.js","dependencies":{"@flax/core/bindings":"0.0.0","@flax/dart/core":"0.0.0","@flax/flutter/foundation":"0.0.0","@flax/flutter/services":"0.0.0","@flax/flutter/widgets":"0.0.0"},"bindings":[{"moduleId":"flax.material/material","uiProtocol":24,"types":["flax.material/material#type:AlertDialog","flax.material/material#type:AppBar","flax.material/material#type:Brightness","flax.material/material#type:ButtonStyle","flax.material/material#type:Card","flax.material/material#type:Checkbox","flax.material/material#type:CircularProgressIndicator","flax.material/material#type:ColorScheme","flax.material/material#type:Divider","flax.material/material#type:Drawer","flax.material/material#type:ElevatedButton","flax.material/material#type:FilledButton","flax.material/material#type:FloatingActionButton","flax.material/material#type:IconButton","flax.material/material#type:InkWell","flax.material/material#type:InputDecoration","flax.material/material#type:LinearProgressIndicator","flax.material/material#type:ListTile","flax.material/material#type:ListTileStyle","flax.material/material#type:Material","flax.material/material#type:MaterialApp","flax.material/material#type:MaterialPage","flax.material/material#type:MaterialPageRoute","flax.material/material#type:MaterialType","flax.material/material#type:NavigationBar","flax.material/material#type:NavigationDestination","flax.material/material#type:NavigationDestinationLabelBehavior","flax.material/material#type:OutlinedButton","flax.material/material#type:RefreshIndicator","flax.material/material#type:Scaffold","flax.material/material#type:Switch","flax.material/material#type:TextButton","flax.material/material#type:TextField","flax.material/material#type:TextInputAction","flax.material/material#type:TextTheme","flax.material/material#type:Theme","flax.material/material#type:ThemeData","flax.material/material#type:ThemeMode","flax.material/material#type:VerticalDivider","flax.material/material#type:VisualDensity"],"functions":["flax.material/material#function:showDialog","flax.material/material#read:VisualDensity.comfortable","flax.material/material#read:VisualDensity.compact","flax.material/material#read:VisualDensity.standard","flax.material/material#read:kTabScrollDuration"]}],"subpaths":["@flax/flutter/material/index"]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/flutter/material","owner":"@flax/material-ui:dist/generated/libraries/material/index.js","version":"0.0.0","artifact":"c828e873e4d640eb0e6e4c934b554c83b5f61f0caec62f5bb4452a9445ef431d","asset":"assets/flax_modules/_flax_flutter_material-4c07c7c9bace.js","package":"@flax/material-ui","source":"dist/generated/libraries/material/index.js","dependencies":{"@flax/core/bindings":"0.0.0","@flax/dart/core":"0.0.0","@flax/flutter/foundation":"0.0.0","@flax/flutter/services":"0.0.0","@flax/flutter/widgets":"0.0.0"},"bindings":[{"moduleId":"flax.material/material","uiProtocol":24,"types":["flax.material/material#type:AlertDialog","flax.material/material#type:AppBar","flax.material/material#type:Brightness","flax.material/material#type:ButtonStyle","flax.material/material#type:Card","flax.material/material#type:Checkbox","flax.material/material#type:CircularProgressIndicator","flax.material/material#type:ColorScheme","flax.material/material#type:Divider","flax.material/material#type:Drawer","flax.material/material#type:ElevatedButton","flax.material/material#type:FilledButton","flax.material/material#type:FloatingActionButton","flax.material/material#type:IconButton","flax.material/material#type:InkWell","flax.material/material#type:InputDecoration","flax.material/material#type:LinearProgressIndicator","flax.material/material#type:ListTile","flax.material/material#type:ListTileStyle","flax.material/material#type:Material","flax.material/material#type:MaterialApp","flax.material/material#type:MaterialPage","flax.material/material#type:MaterialPageRoute","flax.material/material#type:MaterialType","flax.material/material#type:NavigationBar","flax.material/material#type:NavigationDestination","flax.material/material#type:NavigationDestinationLabelBehavior","flax.material/material#type:OutlinedButton","flax.material/material#type:RefreshIndicator","flax.material/material#type:Scaffold","flax.material/material#type:Switch","flax.material/material#type:TextButton","flax.material/material#type:TextField","flax.material/material#type:TextInputAction","flax.material/material#type:TextTheme","flax.material/material#type:Theme","flax.material/material#type:ThemeData","flax.material/material#type:ThemeMode","flax.material/material#type:VerticalDivider","flax.material/material#type:VisualDensity"],"functions":["flax.material/material#function:showDialog","flax.material/material#read:VisualDensity.comfortable","flax.material/material#read:VisualDensity.compact","flax.material/material#read:VisualDensity.standard","flax.material/material#read:kTabScrollDuration"]}],"subpaths":["@flax/flutter/material/index"]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -92,7 +92,7 @@ function _flaxInstallBindingModule(moduleId, uiProtocol, requiredCapabilities) {
       throw new TypeError("requiredCapabilities must be sorted unique strings");
     }
     previous = capability;
-    if (capability !== "instance-checks" && capability !== "native-widget-proxies") {
+    if (capability !== "instance-checks" && capability !== "native-widget-proxies" && capability !== "shared-uint8") {
       throw new TypeError(`Unsupported binding capability ${capability}`);
     }
   }
@@ -166,11 +166,12 @@ var import_flutter_Color2 = require("@flax/flutter/services");
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_Brightness.js
 var import_bindings4 = require("@flax/core/bindings");
 defineEnum("flax.material/material#type:Brightness", ["dark", "light"]);
-var Brightness = Object.freeze({
+var _flaxEnum_Brightness_api = {
   dark: enumValue("flax.material/material#type:Brightness", "dark"),
   light: enumValue("flax.material/material#type:Brightness", "light"),
   values: Object.freeze([enumValue("flax.material/material#type:Brightness", "dark"), enumValue("flax.material/material#type:Brightness", "light")])
-});
+};
+var Brightness = Object.freeze(_flaxBindInstanceType(_flaxEnum_Brightness_api, "flax.material/material#type:Brightness", []));
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_ColorScheme.js
 var _flaxMemberParameters03 = [{ "name": "brightness", "required": false, "positional": false }, { "name": "error", "required": false, "positional": false }, { "name": "onError", "required": false, "positional": false }, { "name": "onPrimary", "required": false, "positional": false }, { "name": "onSurface", "required": false, "positional": false }, { "name": "primary", "required": false, "positional": false }, { "name": "surface", "required": false, "positional": false }];
@@ -509,11 +510,12 @@ var import_flutter_Key14 = require("@flax/flutter/foundation");
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_ListTileStyle.js
 var import_bindings22 = require("@flax/core/bindings");
 defineEnum("flax.material/material#type:ListTileStyle", ["list", "drawer"]);
-var ListTileStyle = Object.freeze({
+var _flaxEnum_ListTileStyle_api = {
   list: enumValue("flax.material/material#type:ListTileStyle", "list"),
   drawer: enumValue("flax.material/material#type:ListTileStyle", "drawer"),
   values: Object.freeze([enumValue("flax.material/material#type:ListTileStyle", "list"), enumValue("flax.material/material#type:ListTileStyle", "drawer")])
-});
+};
+var ListTileStyle = Object.freeze(_flaxBindInstanceType(_flaxEnum_ListTileStyle_api, "flax.material/material#type:ListTileStyle", []));
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_ListTile.js
 var import_flutter_Color15 = require("@flax/flutter/services");
@@ -536,14 +538,15 @@ var import_flutter_Key15 = require("@flax/flutter/foundation");
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_MaterialType.js
 var import_bindings24 = require("@flax/core/bindings");
 defineEnum("flax.material/material#type:MaterialType", ["canvas", "card", "circle", "button", "transparency"]);
-var MaterialType = Object.freeze({
+var _flaxEnum_MaterialType_api = {
   canvas: enumValue("flax.material/material#type:MaterialType", "canvas"),
   card: enumValue("flax.material/material#type:MaterialType", "card"),
   circle: enumValue("flax.material/material#type:MaterialType", "circle"),
   button: enumValue("flax.material/material#type:MaterialType", "button"),
   transparency: enumValue("flax.material/material#type:MaterialType", "transparency"),
   values: Object.freeze([enumValue("flax.material/material#type:MaterialType", "canvas"), enumValue("flax.material/material#type:MaterialType", "card"), enumValue("flax.material/material#type:MaterialType", "circle"), enumValue("flax.material/material#type:MaterialType", "button"), enumValue("flax.material/material#type:MaterialType", "transparency")])
-});
+};
+var MaterialType = Object.freeze(_flaxBindInstanceType(_flaxEnum_MaterialType_api, "flax.material/material#type:MaterialType", []));
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_Material.js
 var import_flutter_Color16 = require("@flax/flutter/services");
@@ -568,12 +571,13 @@ var import_flutter_NavigatorObserver = require("@flax/flutter/widgets");
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_ThemeMode.js
 var import_bindings26 = require("@flax/core/bindings");
 defineEnum("flax.material/material#type:ThemeMode", ["system", "light", "dark"]);
-var ThemeMode = Object.freeze({
+var _flaxEnum_ThemeMode_api = {
   system: enumValue("flax.material/material#type:ThemeMode", "system"),
   light: enumValue("flax.material/material#type:ThemeMode", "light"),
   dark: enumValue("flax.material/material#type:ThemeMode", "dark"),
   values: Object.freeze([enumValue("flax.material/material#type:ThemeMode", "system"), enumValue("flax.material/material#type:ThemeMode", "light"), enumValue("flax.material/material#type:ThemeMode", "dark")])
-});
+};
+var ThemeMode = Object.freeze(_flaxBindInstanceType(_flaxEnum_ThemeMode_api, "flax.material/material#type:ThemeMode", []));
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_MaterialApp.js
 function _MaterialAppFactory(options = {}) {
@@ -618,12 +622,13 @@ var import_flutter_Color17 = require("@flax/flutter/services");
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_NavigationDestinationLabelBehavior.js
 var import_bindings30 = require("@flax/core/bindings");
 defineEnum("flax.material/material#type:NavigationDestinationLabelBehavior", ["alwaysShow", "alwaysHide", "onlyShowSelected"]);
-var NavigationDestinationLabelBehavior = Object.freeze({
+var _flaxEnum_NavigationDestinationLabelBehavior_api = {
   alwaysShow: enumValue("flax.material/material#type:NavigationDestinationLabelBehavior", "alwaysShow"),
   alwaysHide: enumValue("flax.material/material#type:NavigationDestinationLabelBehavior", "alwaysHide"),
   onlyShowSelected: enumValue("flax.material/material#type:NavigationDestinationLabelBehavior", "onlyShowSelected"),
   values: Object.freeze([enumValue("flax.material/material#type:NavigationDestinationLabelBehavior", "alwaysShow"), enumValue("flax.material/material#type:NavigationDestinationLabelBehavior", "alwaysHide"), enumValue("flax.material/material#type:NavigationDestinationLabelBehavior", "onlyShowSelected")])
-});
+};
+var NavigationDestinationLabelBehavior = Object.freeze(_flaxBindInstanceType(_flaxEnum_NavigationDestinationLabelBehavior_api, "flax.material/material#type:NavigationDestinationLabelBehavior", []));
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_NavigationBar.js
 function _NavigationBarFactory(options) {
@@ -720,7 +725,7 @@ var import_flutter_FocusNode6 = require("@flax/flutter/widgets");
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_TextInputAction.js
 var import_bindings38 = require("@flax/core/bindings");
 defineEnum("flax.material/material#type:TextInputAction", ["none", "unspecified", "done", "go", "search", "send", "next", "previous", "continueAction", "join", "route", "emergencyCall", "newline"]);
-var TextInputAction = Object.freeze({
+var _flaxEnum_TextInputAction_api = {
   none: enumValue("flax.material/material#type:TextInputAction", "none"),
   unspecified: enumValue("flax.material/material#type:TextInputAction", "unspecified"),
   done: enumValue("flax.material/material#type:TextInputAction", "done"),
@@ -735,7 +740,8 @@ var TextInputAction = Object.freeze({
   emergencyCall: enumValue("flax.material/material#type:TextInputAction", "emergencyCall"),
   newline: enumValue("flax.material/material#type:TextInputAction", "newline"),
   values: Object.freeze([enumValue("flax.material/material#type:TextInputAction", "none"), enumValue("flax.material/material#type:TextInputAction", "unspecified"), enumValue("flax.material/material#type:TextInputAction", "done"), enumValue("flax.material/material#type:TextInputAction", "go"), enumValue("flax.material/material#type:TextInputAction", "search"), enumValue("flax.material/material#type:TextInputAction", "send"), enumValue("flax.material/material#type:TextInputAction", "next"), enumValue("flax.material/material#type:TextInputAction", "previous"), enumValue("flax.material/material#type:TextInputAction", "continueAction"), enumValue("flax.material/material#type:TextInputAction", "join"), enumValue("flax.material/material#type:TextInputAction", "route"), enumValue("flax.material/material#type:TextInputAction", "emergencyCall"), enumValue("flax.material/material#type:TextInputAction", "newline")])
-});
+};
+var TextInputAction = Object.freeze(_flaxBindInstanceType(_flaxEnum_TextInputAction_api, "flax.material/material#type:TextInputAction", []));
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_TextField.js
 var import_flutter_TextStyle5 = require("@flax/flutter/widgets");

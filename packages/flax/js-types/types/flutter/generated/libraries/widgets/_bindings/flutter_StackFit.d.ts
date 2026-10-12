@@ -1,4 +1,4 @@
-import { type DartEnum } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartEnum } from '@flax/core/bindings';
 export interface StackFit extends DartEnum {
     readonly __StackFit: unique symbol;
     readonly name: string;
@@ -9,4 +9,4 @@ export declare const StackFit: Readonly<{
     expand: StackFit;
     passthrough: StackFit;
     values: readonly StackFit[];
-}>;
+} & _FlaxInstanceType<StackFit>>;

@@ -4,9 +4,10 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface HitTestBehavior extends DartEnum { readonly __HitTestBehavior: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.core/flutter#type:HitTestBehavior", ["deferToChild","opaque","translucent"]);
-export const HitTestBehavior = Object.freeze({
+const _flaxEnum_HitTestBehavior_api = {
 deferToChild: enumValue<HitTestBehavior>("flax.core/flutter#type:HitTestBehavior", "deferToChild"),
 opaque: enumValue<HitTestBehavior>("flax.core/flutter#type:HitTestBehavior", "opaque"),
 translucent: enumValue<HitTestBehavior>("flax.core/flutter#type:HitTestBehavior", "translucent"),
 values: Object.freeze([enumValue<HitTestBehavior>("flax.core/flutter#type:HitTestBehavior", "deferToChild"), enumValue<HitTestBehavior>("flax.core/flutter#type:HitTestBehavior", "opaque"), enumValue<HitTestBehavior>("flax.core/flutter#type:HitTestBehavior", "translucent")]),
-});
+};
+export const HitTestBehavior = Object.freeze(_flaxBindInstanceType<HitTestBehavior, typeof _flaxEnum_HitTestBehavior_api>(_flaxEnum_HitTestBehavior_api, "flax.core/flutter#type:HitTestBehavior", []));

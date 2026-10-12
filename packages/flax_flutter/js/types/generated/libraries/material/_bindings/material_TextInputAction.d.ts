@@ -1,4 +1,4 @@
-import { type DartEnum } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartEnum } from '@flax/core/bindings';
 export interface TextInputAction extends DartEnum {
     readonly __TextInputAction: unique symbol;
     readonly name: string;
@@ -19,4 +19,4 @@ export declare const TextInputAction: Readonly<{
     emergencyCall: TextInputAction;
     newline: TextInputAction;
     values: readonly TextInputAction[];
-}>;
+} & _FlaxInstanceType<TextInputAction>>;

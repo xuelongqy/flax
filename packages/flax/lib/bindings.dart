@@ -19,6 +19,7 @@ part 'src/ui/references.dart';
 part 'src/ui/resources.dart';
 part 'src/ui/members.dart';
 part 'src/ui/objects.dart';
+part 'src/ui/dart_references.dart';
 part 'src/ui/streams.dart';
 part 'src/ui/functions.dart';
 part 'src/ui/collections.dart';

@@ -4,8 +4,9 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface VerticalDirection extends DartEnum { readonly __VerticalDirection: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.core/flutter#type:VerticalDirection", ["up","down"]);
-export const VerticalDirection = Object.freeze({
+const _flaxEnum_VerticalDirection_api = {
 up: enumValue<VerticalDirection>("flax.core/flutter#type:VerticalDirection", "up"),
 down: enumValue<VerticalDirection>("flax.core/flutter#type:VerticalDirection", "down"),
 values: Object.freeze([enumValue<VerticalDirection>("flax.core/flutter#type:VerticalDirection", "up"), enumValue<VerticalDirection>("flax.core/flutter#type:VerticalDirection", "down")]),
-});
+};
+export const VerticalDirection = Object.freeze(_flaxBindInstanceType<VerticalDirection, typeof _flaxEnum_VerticalDirection_api>(_flaxEnum_VerticalDirection_api, "flax.core/flutter#type:VerticalDirection", []));

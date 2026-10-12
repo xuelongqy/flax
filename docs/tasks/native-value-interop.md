@@ -1,6 +1,6 @@
 # Task: Native value interop batch
 
-Status: review complete; merge waiting for the concurrent target task to finish
+Status: review and combined validation complete; target integration pending
 
 ## Goal and scope
 
@@ -10,10 +10,11 @@ Deliver one conversion contract, one generated artifact set and one V8/Hermes ac
 report. Do not introduce per-type conversion modes or a copy fallback.
 
 The batch started at `5463d6f8` on `feat/uint8-zero-copy-prototype`, based on
-`feat/dynamic-engine-sdk`. Its reviewed Flax commit now includes the target's committed
-Widget work at `84b6252d`. The matching common engine bridge changes are committed on
-`feat/uint8-shared-buffers` in the isolated Flutter worktree. The target checkout's
-ongoing collection-binding changes remain untouched.
+`feat/dynamic-engine-sdk`. Its reviewed branch now includes the target's committed
+Widget work at `84b6252d` and collection/checked-view work at `65c87710`. The matching
+common engine bridge changes are committed on `feat/uint8-shared-buffers` in the
+isolated Flutter worktree. The target checkout's collection-binding task is complete,
+and its commit is retained in the combined branch.
 
 ### Conversion inventory
 
@@ -131,15 +132,15 @@ platform acceptance work. This batch validates the maintained macOS arm64 debug 
 
 ## Results and validation
 
-| Evidence                                                          | Result                                                                        |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| Full Core UI suite, matching maintained macOS arm64 debug engines | V8 294/294; Hermes 294/294                                                    |
-| Focused generated interop, native values, runtime and joint GC    | V8 61/61; Hermes 61/61; included in the full suite                            |
-| Tester-only binary lifetime probes                                | V8 2/2; Hermes 2/2; both tester processes exited with code 0                  |
-| Generator suite                                                   | 588 cases covered: 587 passed in the full run; one passed on sequential retry |
-| JS workspace suites and type declarations                         | 156/156; workspace typecheck passed                                           |
-| Dart static analysis                                              | Flax, codegen and test support: no issues                                     |
-| Reproducible outputs                                              | Bindings/manifests/public declarations, embedded host scripts and FFI passed  |
+| Evidence                                                          | Result                                                                       |
+| ----------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Full Core UI suite, matching maintained macOS arm64 debug engines | V8 297/297; Hermes 297/297                                                   |
+| Focused generated interop, native values, runtime and joint GC    | V8 61/61; Hermes 61/61; included in the full suite                           |
+| Tester-only binary lifetime probes                                | V8 2/2; Hermes 2/2; both tester processes exited with code 0                 |
+| Generator suite                                                   | 591/591                                                                      |
+| JS workspace suites and type declarations                         | 158/158; workspace typecheck passed                                          |
+| Dart static analysis                                              | Flax, codegen and test support: no issues                                    |
+| Reproducible outputs                                              | Bindings/manifests/public declarations, embedded host scripts and FFI passed |
 
 Review fixed two conversion gaps. Dart object and Stream constructor failures now use
 the same original-error transport as methods and Futures. Selecting SDK BigInt or a
@@ -150,8 +151,7 @@ fixture verifies both the diagnostic and the supported API projection.
 The failed-construction lifecycle check now primes cached helpers and drains the normal
 bridge checkpoint before comparing handle counts. This distinguishes pending error
 delivery from leaked receiver facades. Both engines passed the focused regression. The
-generator retry addressed a shared native-assets build-output race; its test passed when
-run sequentially without another fixture-preparation process.
+combined generator suite passed in a fresh full run.
 
 The 13 binary kinds have identical Dart/JS addresses in both directions. After forced
 GC, pins, pinned pages, external Dart leases and indexed backing stores returned to zero
@@ -177,11 +177,13 @@ The isolated Flax and matching Flutter bridge commits are ready for the authoriz
 merge. Matching engine binaries must be rebuilt with internal binding extension 3. No
 open conversion or ownership decision remains from this batch.
 
-Wait for the target's concurrent collection-binding task to finish before merging either
-repository. Then refresh the target HEAD and dirty-file snapshot, preserve all of that
-task's work, resolve the shared collection/native-value conversion points and regenerate
-outputs from the combined sources. Validate the integrated result on both engines.
-Neither target repository has been merged, pushed or published by this batch.
+The target's collection-binding task has completed at `65c87710`. Its commit is retained
+in the combined branch, and all 187 non-overlapping files remain unchanged. Shared
+collection and native-value conversion points were integrated together; declarations and
+bindings were regenerated from the combined sources. Both engines passed the full Core
+suite. Fast-forward the two clean target checkouts, rebuild the matching macOS debug
+engine and verify its production tester. No push or publication is authorized for this
+batch.
 
 Relevant existing contracts: [interop](../architecture/interop.md),
 [real Dart references](../decisions/0009-dart-interop.md),

@@ -4,10 +4,11 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface ConnectionState extends DartEnum { readonly __ConnectionState: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.core/flutter#type:ConnectionState", ["none","waiting","active","done"]);
-export const ConnectionState = Object.freeze({
+const _flaxEnum_ConnectionState_api = {
 none: enumValue<ConnectionState>("flax.core/flutter#type:ConnectionState", "none"),
 waiting: enumValue<ConnectionState>("flax.core/flutter#type:ConnectionState", "waiting"),
 active: enumValue<ConnectionState>("flax.core/flutter#type:ConnectionState", "active"),
 done: enumValue<ConnectionState>("flax.core/flutter#type:ConnectionState", "done"),
 values: Object.freeze([enumValue<ConnectionState>("flax.core/flutter#type:ConnectionState", "none"), enumValue<ConnectionState>("flax.core/flutter#type:ConnectionState", "waiting"), enumValue<ConnectionState>("flax.core/flutter#type:ConnectionState", "active"), enumValue<ConnectionState>("flax.core/flutter#type:ConnectionState", "done")]),
-});
+};
+export const ConnectionState = Object.freeze(_flaxBindInstanceType<ConnectionState, typeof _flaxEnum_ConnectionState_api>(_flaxEnum_ConnectionState_api, "flax.core/flutter#type:ConnectionState", []));

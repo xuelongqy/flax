@@ -4,8 +4,9 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface TextAffinity extends DartEnum { readonly __TextAffinity: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.core/flutter#type:TextAffinity", ["upstream","downstream"]);
-export const TextAffinity = Object.freeze({
+const _flaxEnum_TextAffinity_api = {
 upstream: enumValue<TextAffinity>("flax.core/flutter#type:TextAffinity", "upstream"),
 downstream: enumValue<TextAffinity>("flax.core/flutter#type:TextAffinity", "downstream"),
 values: Object.freeze([enumValue<TextAffinity>("flax.core/flutter#type:TextAffinity", "upstream"), enumValue<TextAffinity>("flax.core/flutter#type:TextAffinity", "downstream")]),
-});
+};
+export const TextAffinity = Object.freeze(_flaxBindInstanceType<TextAffinity, typeof _flaxEnum_TextAffinity_api>(_flaxEnum_TextAffinity_api, "flax.core/flutter#type:TextAffinity", []));

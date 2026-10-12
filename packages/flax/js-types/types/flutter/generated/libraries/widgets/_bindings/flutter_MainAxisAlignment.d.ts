@@ -1,4 +1,4 @@
-import { type DartEnum } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartEnum } from '@flax/core/bindings';
 export interface MainAxisAlignment extends DartEnum {
     readonly __MainAxisAlignment: unique symbol;
     readonly name: string;
@@ -12,4 +12,4 @@ export declare const MainAxisAlignment: Readonly<{
     spaceAround: MainAxisAlignment;
     spaceEvenly: MainAxisAlignment;
     values: readonly MainAxisAlignment[];
-}>;
+} & _FlaxInstanceType<MainAxisAlignment>>;
