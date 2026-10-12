@@ -38,10 +38,9 @@ test('generated context access uses synchronous selected members and canonical e
     calls++;
     return true;
   });
-  operationHost('static', (version, id, member, handle) => {
+  operationHost('top', (version, id, handle) => {
     assert.equal(version, 24);
-    assert.match(id, /#type:Directionality$/);
-    assert.equal(member, 'of');
+    assert.match(id, /#function:Directionality\.of$/);
     assert.equal(handle, 7);
     calls++;
     return TextDirection.rtl;

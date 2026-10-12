@@ -145,7 +145,7 @@ return constructStream("stream", "flax.core/flutter#type:Stream", "eventTransfor
 }
 namespace _StreamFactory { export function castFrom<S extends unknown | null = unknown | null, T extends unknown | null = unknown | null>(source: (Stream<_FlaxDartOutput<S>> | Stream<(S | _FlaxDartOutput<S>)>)): Stream<_FlaxDartOutput<T>> {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeStatic("flax.core/flutter#type:Stream", "castFrom", [source]);
+const _flaxResult = invokeTopLevel("flax.core/flutter#function:Stream.castFrom", [source]);
 return _flaxResult as Stream<_FlaxDartOutput<T>>;
 } }
 export const Stream: typeof _StreamFactory & _FlaxInstanceType<Stream<any>> = _flaxBindInstanceType<Stream<any>, typeof _StreamFactory>(_StreamFactory, "flax.core/flutter#type:Stream", ["dart:core::Object"]);

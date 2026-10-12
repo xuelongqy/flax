@@ -41,7 +41,7 @@ namespace _StreamTransformerFactory { export function implement<S extends unknow
 return constructProxy(_StreamTransformerProxy, args, implementation) as StreamTransformer<S, T>; } }
 namespace _StreamTransformerFactory { export function castFrom<SS extends unknown | null = unknown | null, ST extends unknown | null = unknown | null, TS extends unknown | null = unknown | null, TT extends unknown | null = unknown | null>(source: Readonly<{ "__flaxBound:dart:async::StreamTransformer": readonly [_FlaxDartOutput<SS>, _FlaxDartOutput<ST>] }>): StreamTransformer<_FlaxDartOutput<TS>, _FlaxDartOutput<TT>> {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeStatic("flax.core/flutter#type:StreamTransformer", "castFrom", [source]);
+const _flaxResult = invokeTopLevel("flax.core/flutter#function:StreamTransformer.castFrom", [source]);
 return _flaxResult as StreamTransformer<_FlaxDartOutput<TS>, _FlaxDartOutput<TT>>;
 } }
 export const StreamTransformer: typeof _StreamTransformerFactory & _FlaxInstanceType<StreamTransformer<any, any>> = _flaxBindInstanceType<StreamTransformer<any, any>, typeof _StreamTransformerFactory>(_StreamTransformerFactory, "flax.core/flutter#type:StreamTransformer", ["dart:core::Object"]);

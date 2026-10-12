@@ -2003,12 +2003,6 @@ class FlaxCodegenBindingParser {
         );
       }
       final getters = <FlaxCodegenGetterModel>[];
-      if ({'context', 'route', 'page'}.contains(selection.kind) &&
-          selection.methods.isNotEmpty) {
-        throw StateError(
-          'Adapted types currently expose only selected getters',
-        );
-      }
       for (final name
           in selection.kind == 'widgetInterface'
               ? <String>[]
@@ -2117,16 +2111,21 @@ class FlaxCodegenBindingParser {
         setters.add(FlaxCodegenGetterModel(name, type));
       }
       final methods = <FlaxCodegenMethodModel>[];
+      final staticMethods = {
+        for (final entry in selection.methods.entries)
+          if (selection.kind != 'widgetInterface' ||
+              element.getMethod(entry.key)?.isStatic == true)
+            entry.key: entry.value,
+      };
       final selectedMethods = {
-        if (selection.kind != 'widgetInterface') ...selection.methods,
+        ...staticMethods,
         ...selection.instanceMethods,
         ...selection.operators,
       };
-      if (selection.kind != 'widgetInterface' &&
-          selectedMethods.length !=
-              selection.methods.length +
-                  selection.instanceMethods.length +
-                  selection.operators.length) {
+      if (selectedMethods.length !=
+          staticMethods.length +
+              selection.instanceMethods.length +
+              selection.operators.length) {
         throw StateError('Duplicate method selection');
       }
       if (selection.operators.isNotEmpty &&
@@ -2989,10 +2988,10 @@ class FlaxCodegenBindingParser {
           id: identity(element),
           kind:
               selection.kind ??
-              (constructors.isEmpty
-                  ? 'members'
-                  : isWidget
+              (isWidget
                   ? 'widget'
+                  : constructors.isEmpty
+                  ? 'members'
                   : 'object'),
           constructors: constructors,
           supertypes: element.allSupertypes

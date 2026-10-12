@@ -23,7 +23,7 @@ return construct("widget", "flax.core/flutter#type:Navigator", "", [{"name":"key
 namespace _NavigatorFactory { export function of(context: upstream6.BuildContext, options: { rootNavigator?: boolean | undefined } = {}): upstream5.NavigatorState {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["rootNavigator"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeStatic("flax.core/flutter#type:Navigator", "of", [contextHandle(context, "flax.core/flutter#type:BuildContext"), options.rootNavigator]);
+const _flaxResult = invokeTopLevel("flax.core/flutter#function:Navigator.of", [contextHandle(context, "flax.core/flutter#type:BuildContext"), options.rootNavigator]);
 return _flaxResult as upstream5.NavigatorState;
 } }
 export const Navigator: typeof _NavigatorFactory & _FlaxInstanceType<Navigator> = _flaxBindInstanceType<Navigator, typeof _NavigatorFactory>(_NavigatorFactory, "flax.core/flutter#type:Navigator", ["flax.core/components#type:StatefulWidget","package:flutter/src/widgets/framework.dart::Widget","package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree","dart:core::Object","package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);

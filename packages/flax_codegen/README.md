@@ -591,6 +591,17 @@ an `Object?` position. Generic JS callbacks receive `DartOutput<T>` and may retu
 converted reference or an accepted input value; returned Dart callbacks use the same
 output projection. These declarations add no runtime wrapper or bridge operation.
 
+Generic extension receivers share that projection in getters, setters, operators,
+callbacks and async values: `ListX([['a']]).firstValue` returns a `DartList<string>`.
+The extension's captured parameter and a member-local parameter retain separate scopes;
+closed native bounds and existing Dart references keep their existing conversion.
+
+Ordinary static methods share the static-accessor function transport on every supported
+class category, including Widgets, static-only classes and Widget interfaces. Automatic
+selection keeps statics declaration-local and checks generated setter collisions against
+real static methods. Native Widget interface instance requirements and deferred generic
+factory materialization retain their own contracts; no new configuration is needed.
+
 Protocol 24 also recognizes Iterable and Set throughout generated types and conversion
 metadata. DartIterable and DartSet wrappers preserve real Dart collection identity;
 iteration and explicit copies use one bulk host call and retain repeated references and

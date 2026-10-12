@@ -6,10 +6,10 @@ import '@flax/flutter/services/_bindings/flutter_TextDirection';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
-export interface Directionality { readonly __Directionality: unique symbol; }
+export type Directionality = Widget & { readonly __Directionality: unique symbol; };
 namespace _DirectionalityFactory { export function of(context: upstream1.BuildContext): upstream0.TextDirection {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeStatic("flax.core/flutter#type:Directionality", "of", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.core/flutter#function:Directionality.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
 return _flaxResult as upstream0.TextDirection;
 } }
 export const Directionality: typeof _DirectionalityFactory & _FlaxInstanceType<Directionality> = _flaxBindInstanceType<Directionality, typeof _DirectionalityFactory>(_DirectionalityFactory, "flax.core/flutter#type:Directionality", ["package:flutter/src/widgets/basic.dart::_UbiquitousInheritedWidget","package:flutter/src/widgets/framework.dart::InheritedWidget","package:flutter/src/widgets/framework.dart::ProxyWidget","package:flutter/src/widgets/framework.dart::Widget","package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree","dart:core::Object","package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);

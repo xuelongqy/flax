@@ -2,6 +2,9 @@ import 'package:flax_codegen/flax_codegen.dart';
 
 const _reads = ['count'];
 const _writes = ['count'];
+const _methods = {
+  'twice': ['value'],
+};
 const staticAccessorsSelection = {
   'StaticToken': FlaxCodegenClassSelection(
     {
@@ -45,40 +48,54 @@ const staticAccessorsSelection = {
     {'': []},
     staticGetters: _reads,
     staticSetters: _writes,
+    methods: _methods,
   ),
   'StaticState': FlaxCodegenClassSelection(
     {},
     kind: 'state',
     staticGetters: _reads,
     staticSetters: _writes,
+    methods: _methods,
   ),
   'StaticRenamedWidget': FlaxCodegenClassSelection(
     {'': []},
     jsName: 'MakeStaticWidget',
     staticGetters: _reads,
   ),
+  'StaticOnlyWidget': FlaxCodegenClassSelection(
+    {},
+    methods: {
+      ..._methods,
+      'create': [],
+      'echo': ['value'],
+    },
+  ),
   'StaticRoute': FlaxCodegenClassSelection(
     {},
     kind: 'route',
     staticGetters: _reads,
     staticSetters: _writes,
+    methods: _methods,
   ),
   'StaticPage': FlaxCodegenClassSelection(
     {},
     kind: 'page',
     staticGetters: _reads,
     staticSetters: _writes,
+    methods: _methods,
   ),
   'StaticStream': FlaxCodegenClassSelection(
     {},
     kind: 'stream',
     staticGetters: _reads,
     staticSetters: _writes,
+    methods: _methods,
   ),
   'StaticMembers': FlaxCodegenClassSelection(
     {},
     staticGetters: _reads,
     staticSetters: _writes,
+    methods: _methods,
   ),
   'StaticInterface': FlaxCodegenClassSelection(
     {},
@@ -86,6 +103,10 @@ const staticAccessorsSelection = {
     getters: ['label'],
     staticGetters: _reads,
     staticSetters: _writes,
+    methods: {
+      'decorate': ['value'],
+      ..._methods,
+    },
   ),
   'StaticProxy': FlaxCodegenClassSelection(
     {'': []},
@@ -93,5 +114,6 @@ const staticAccessorsSelection = {
     proxy: 'extends',
     staticGetters: _reads,
     staticSetters: _writes,
+    methods: _methods,
   ),
 };

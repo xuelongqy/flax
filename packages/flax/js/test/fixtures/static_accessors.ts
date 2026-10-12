@@ -5,6 +5,9 @@ const C = statics.StaticCounter;
 const hooks = {
   rejected: 0,
   pending: 0,
+  twice(value: number) {
+    return statics.StaticWidget.twice(value);
+  },
   exercise() {
     if ((C.reads as number) !== 0) throw Error('eager static read');
     try {
@@ -76,7 +79,13 @@ const hooks = {
     ]) {
       owner.setCount(23);
       if (owner.count !== 23) throw Error('static class category');
+      if (owner.twice(3) !== 6) throw Error('static method class category');
     }
+    if (statics.StaticOnlyWidget.twice(3) !== 6)
+      throw Error('static method without a public constructor');
+    const nativeWidget = statics.StaticOnlyWidget.create();
+    if (statics.StaticOnlyWidget.echo(nativeWidget) !== nativeWidget)
+      throw Error('native Widget static factory round trip');
     if (statics.StaticRenamedWidget.count !== 23)
       throw Error('readonly static with renamed constructor');
   },
@@ -93,3 +102,4 @@ const hooks = {
 };
 Object.assign(globalThis, { staticHooks: hooks });
 registerPage('static-accessors', () => Text('static accessors'));
+registerPage('static-accessors-native', () => statics.StaticOnlyWidget.create());

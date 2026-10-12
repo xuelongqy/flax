@@ -82,7 +82,7 @@ const canvasBindings = FlaxBindingModule(
         FlaxSetter("height", FlaxTypeRef("int"), _FlaxCanvasSurface_set_height),
       ],
       matches: _isFlaxCanvasSurface,
-      methods: {},
+      methods: const {},
     ),
     FlaxWidgetBinding(
       "flax.canvas/canvas#type:FlaxCanvasView",

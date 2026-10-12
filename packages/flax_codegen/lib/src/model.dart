@@ -744,21 +744,22 @@ class FlaxCodegenClassModel {
   final List<FlaxCodegenGetterModel> staticSetters;
 
   String staticGetterId(FlaxCodegenGetterModel getter) =>
-      getter.id ?? _staticAccessorId(getter.name, false);
+      getter.id ?? _staticOperationId(getter.name, read: true);
   String staticSetterId(FlaxCodegenGetterModel setter) =>
-      setter.id ?? _staticAccessorId(setter.name, true);
+      setter.id ?? _staticOperationId('${setter.name}=', read: false);
+  String staticMethodId(FlaxCodegenMethodModel method) =>
+      _staticOperationId(method.name, read: false);
 
-  String _staticAccessorId(String member, bool write) {
-    final operation = '$member${write ? '=' : ''}';
-    if (id.contains('::')) return '$id.$operation';
+  String _staticOperationId(String member, {required bool read}) {
+    if (id.contains('::')) return '$id.$member';
     final owner = FlaxCodegenWireId.parse(id);
-    final name = '${owner.publicBindingName}.$operation';
-    return (write
-            ? FlaxCodegenWireId.function(
+    final name = '${owner.publicBindingName}.$member';
+    return (read
+            ? FlaxCodegenWireId.read(
                 moduleId: owner.moduleId,
                 publicBindingName: name,
               )
-            : FlaxCodegenWireId.read(
+            : FlaxCodegenWireId.function(
                 moduleId: owner.moduleId,
                 publicBindingName: name,
               ))
@@ -766,6 +767,13 @@ class FlaxCodegenClassModel {
   }
 
   Iterable<FlaxCodegenFunctionModel> get staticFunctions sync* {
+    if (kind != 'enum') {
+      for (final method in methods.where(
+        (method) => !method.instance && !method.deferredFactory,
+      )) {
+        yield FlaxCodegenFunctionModel(staticMethodId(method), method);
+      }
+    }
     for (final getter in staticGetters) {
       yield FlaxCodegenFunctionModel(
         staticGetterId(getter),
@@ -1569,7 +1577,7 @@ class FlaxCodegenModuleModel {
       }
       if (category == FlaxCodegenClassCategory.widgetInterface &&
           (type.constructors.isNotEmpty ||
-              type.methods.isNotEmpty ||
+              type.methods.any((method) => method.instance) ||
               type.setters.isNotEmpty ||
               type.typeParameters.isNotEmpty ||
               type.proxy != null)) {

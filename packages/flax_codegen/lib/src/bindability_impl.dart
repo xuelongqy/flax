@@ -183,6 +183,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
   Iterable<InterfaceType> concreteUses = const [],
   Map<String, String> automaticTypeCarriers = const {},
   bool ignoreProvider = false,
+  FlaxCodegenClassSelection? inferred,
 }) async {
   final name = element.name!;
   final id = identity(element);
@@ -197,12 +198,13 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     );
     final core = (owner.moduleId ?? '').startsWith('flax.core/');
     if (core) {
-      if (base != null) {
+      final requested = inferred ?? base;
+      if (requested != null) {
         skips.addAll(
           _providerSurfaceSkips(
             typeName: name,
             provider: owner.jsPackage,
-            requested: base,
+            requested: requested,
             available: available,
           ),
         );
@@ -223,6 +225,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
       concreteUses: concreteUses,
       automaticTypeCarriers: automaticTypeCarriers,
       ignoreProvider: true,
+      inferred: inferred,
     );
     if (requested.selection != null &&
         _providerSurfaceSkips(
@@ -248,7 +251,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
 
   if (!ignoreProvider && parser._dependencyTypeOwners[id] != null) {
     final owner = parser._dependencyTypeOwners[id]!;
-    if (element is EnumElement) {
+    if (element is EnumElement || inferred != null) {
       final requested = await _proposeSelection(
         parser,
         element,
@@ -257,6 +260,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
         concreteUses: concreteUses,
         automaticTypeCarriers: automaticTypeCarriers,
         ignoreProvider: true,
+        inferred: inferred,
       );
       final missing = requested.selection == null
           ? const <FlaxCodegenSkip>[]
@@ -264,7 +268,10 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
               typeName: name,
               provider: owner.jsPackage,
               requested: requested.selection!,
-              available: const FlaxCodegenClassSelection({}, kind: 'enum'),
+              available: FlaxCodegenClassSelection(
+                const {},
+                kind: element is EnumElement ? 'enum' : null,
+              ),
             );
       if (missing.isNotEmpty &&
           !(owner.moduleId ?? '').startsWith('flax.core/')) {
@@ -294,6 +301,10 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
       provider: owner.jsPackage,
       skips: skips,
     );
+  }
+
+  if (inferred != null) {
+    return FlaxCodegenProposedBinding(name: name, id: id, selection: inferred);
   }
 
   if (!ignoreProvider &&
@@ -515,7 +526,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
       }
     }
     for (final method in element.methods) {
-      if (!method.isPublic || widget) continue;
+      if (!method.isPublic || (widget && !method.isStatic)) continue;
       final methodName = method.name!;
       if (!_usableMemberName(methodName) ||
           (method.isStatic && !flaxCodegenIsExportName(methodName)) ||

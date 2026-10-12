@@ -52,6 +52,7 @@ class StaticCounter<T> {
 class StaticWidget extends StatelessWidget {
   const StaticWidget({super.key});
   static int count = 0;
+  static int twice(int value) => value * 2;
   @override
   Widget build(BuildContext context) => const SizedBox();
 }
@@ -63,36 +64,65 @@ class StaticRenamedWidget extends StatelessWidget {
   Widget build(BuildContext context) => const SizedBox();
 }
 
+class StaticOnlyWidget extends StatelessWidget {
+  const StaticOnlyWidget._();
+  static int twice(int value) => value * 2;
+  static StaticOnlyWidget create() => const StaticOnlyWidget._();
+  static StaticOnlyWidget echo(StaticOnlyWidget value) => value;
+  @override
+  Widget build(BuildContext context) => const Text('static factory Widget');
+}
+
+class StaticWidgetChild extends StaticWidget {
+  const StaticWidgetChild({super.key});
+}
+
+class StaticWidgetCollision extends StatelessWidget {
+  const StaticWidgetCollision({super.key});
+  static int count = 0;
+  static void setCount(int value) => count = value + 1;
+  @override
+  Widget build(BuildContext context) => const SizedBox();
+}
+
 class StaticState extends State<StatefulWidget> {
   static int count = 0;
+  static int twice(int value) => value * 2;
   @override
   Widget build(BuildContext context) => const SizedBox();
 }
 
 abstract class StaticRoute extends Route<void> {
   static int count = 0;
+  static int twice(int value) => value * 2;
 }
 
 abstract class StaticPage extends Page<void> {
   static int count = 0;
+  static int twice(int value) => value * 2;
 }
 
 abstract class StaticStream<T> extends Stream<T> {
   static int count = 0;
+  static int twice(int value) => value * 2;
 }
 
 class StaticMembers<T> {
   static int count = 0;
+  static int twice(int value) => value * 2;
 }
 
 abstract class StaticInterface implements Widget {
   static int count = 0;
+  static int twice(int value) => value * 2;
   String get label;
+  String decorate(String value);
 }
 
 class StaticProxy {
   StaticProxy();
   static int count = 0;
+  static int twice(int value) => value * 2;
 }
 
 void resetStaticAccessors() {

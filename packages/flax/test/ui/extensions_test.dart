@@ -200,15 +200,31 @@ void main() {
       );
       expect(values.numbers, [7, 2]);
       expect(values.words, ['c', 'b']);
+      h.execute("var nestedView = extensions.ListX([['x']]);");
+      expect(h.boolean('Array.isArray(nestedView.firstValue)'), isFalse);
+      expect(h.string('nestedView.firstValue.get(0)'), 'x');
+      expect(h.string('nestedView.getIndex(0).get(0)'), 'x');
+      expect(h.string('nestedView.mapFirst(value => value.get(0))'), 'x');
+      expect(
+        h.string("extensions.ListX(['x']).mapFirst(value => [value]).get(0)"),
+        'x',
+      );
+      expect(
+        h.string("extensions.ListX([{name: 'x'}]).firstValue.get('name')"),
+        'x',
+      );
       h.execute('''
         var detachedEcho = extensions.StringX.echo;
         var extensionLater = null;
+        var nestedLater = null;
         extensions.ListX([9]).later().then(value => extensionLater = value);
+        nestedView.later().then(value => nestedLater = value.get(0));
       ''');
       expect(h.string("detachedEcho('static')"), 'static');
       await tester.pumpAndSettle();
       h.runtime.drainMicrotasks();
       expect(h.number('extensionLater'), 9);
+      expect(h.string('nestedLater'), 'x');
       for (final source in [
         'extensions.StringX()',
         'extensions.StringX(undefined)',

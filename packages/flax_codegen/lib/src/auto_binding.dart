@@ -179,41 +179,32 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
         );
         continue;
       }
-      final FlaxCodegenClassSelection? selection;
-      if (_isAutoWidgetInterface(element)) {
-        selection = await _autoWidgetInterfaceSelection(
-          seed,
-          element,
-          skips,
-          notices,
+      final widgetInterface = _isAutoWidgetInterface(element);
+      final inferred = widgetInterface
+          ? await _autoWidgetInterfaceSelection(seed, element, skips, notices)
+          : null;
+      if (widgetInterface && inferred == null) continue;
+      final proposed = await _proposeSelection(
+        this,
+        element,
+        library: seed,
+        base: _autoProposalBase(classOverride),
+        concreteUses: concreteUses[identity(element)] ?? const [],
+        automaticTypeCarriers: typeCarriers,
+        inferred: inferred,
+      );
+      skips.addAll(proposed.skips);
+      final selection = proposed.selection == null || widgetInterface
+          ? proposed.selection
+          : _filterAutoSelection(element, proposed.selection!, skips, notices);
+      if (proposed.provider != null && selection == null) {
+        skips.add(
+          FlaxCodegenSkip(
+            target: name,
+            reason: 'Reuses existing provider ${proposed.provider}',
+            code: 'existing_provider',
+          ),
         );
-      } else {
-        final proposed = await _proposeSelection(
-          this,
-          element,
-          library: seed,
-          base: _autoProposalBase(classOverride),
-          concreteUses: concreteUses[identity(element)] ?? const [],
-          automaticTypeCarriers: typeCarriers,
-        );
-        skips.addAll(proposed.skips);
-        selection = proposed.selection == null
-            ? null
-            : _filterAutoSelection(
-                element,
-                proposed.selection!,
-                skips,
-                notices,
-              );
-        if (proposed.provider != null && selection == null) {
-          skips.add(
-            FlaxCodegenSkip(
-              target: name,
-              reason: 'Reuses existing provider ${proposed.provider}',
-              code: 'existing_provider',
-            ),
-          );
-        }
       }
       if (selection != null) classes[name] = selection;
     }
@@ -657,7 +648,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
         kind: 'widgetInterface',
         getters: getters,
         setters: setters,
-        methods: methods,
+        methods: {...methods, ...?statics.selection?.methods},
       );
       await native.parse(element.thisType, selection);
       return selection;

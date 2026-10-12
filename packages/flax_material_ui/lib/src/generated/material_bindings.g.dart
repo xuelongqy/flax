@@ -2076,7 +2076,7 @@ const materialBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isButtonStyle,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.material/material#type:VisualDensity",
@@ -2141,7 +2141,7 @@ const materialBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isVisualDensity,
-      methods: {},
+      methods: const {},
     ),
     FlaxWidgetBinding(
       "flax.material/material#type:AppBar",
@@ -2307,21 +2307,7 @@ const materialBindings = FlaxBindingModule(
       _ThemeHost.new,
       matches: _isTheme,
       fixedArguments: false,
-      methods: {
-        "of": FlaxStaticMethod(
-          [
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-              defaultValue: null,
-              omitWhenAbsent: false,
-            ),
-          ],
-          FlaxTypeRef("object", id: "flax.material/material#type:ThemeData"),
-          _Theme_of,
-        ),
-      },
+      methods: {},
     ),
     FlaxObjectBinding(
       "flax.material/material#type:ThemeData",
@@ -2441,7 +2427,7 @@ const materialBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isThemeData,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.material/material#type:TextTheme",
@@ -2624,7 +2610,7 @@ const materialBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isTextTheme,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.material/material#type:ColorScheme",
@@ -2778,7 +2764,7 @@ const materialBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isColorScheme,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.material/material#type:InputDecoration",
@@ -3106,7 +3092,7 @@ const materialBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isInputDecoration,
-      methods: {},
+      methods: const {},
     ),
     FlaxWidgetBinding(
       "flax.material/material#type:TextField",
@@ -6224,6 +6210,20 @@ const materialBindings = FlaxBindingModule(
       [],
       FlaxTypeRef("object", id: "flax.material/material#type:VisualDensity"),
       _VisualDensity_static_get_compact,
+    ),
+    FlaxFunctionBinding(
+      "flax.material/material#function:Theme.of",
+      [
+        FlaxParameter(
+          "context",
+          FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
+          required: true,
+          defaultValue: null,
+          omitWhenAbsent: false,
+        ),
+      ],
+      FlaxTypeRef("object", id: "flax.material/material#type:ThemeData"),
+      _Theme_of,
     ),
   ],
   moduleId: "flax.material/material",

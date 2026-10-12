@@ -405,11 +405,28 @@ inherited. Generated `setX` names must not conflict with selected methods, const
 entries, other static exports or proxy helpers. Explicit selections fail; automatic
 selection skips the conflicting write with `static_setter_export_collision`.
 
+Ordinary static methods use the same `FlaxFunctionBinding` and `invokeTopLevel`
+transport as these accessors. Automatic selection includes declared public Widget static
+methods; State, Route, Page, Stream, object, member-only and Widget-interface namespaces
+share the same typed call. No instance, public constructor or mounted owner is required.
+A Widget with no selected public constructor retains its native type matcher and an
+opaque `Widget` view, so a static factory can return it without inventing a JS
+constructor or exposing unselected Flutter ancestors. `methods` selects static methods
+on classes. On a Widget interface, the Analyzer distinguishes declared static methods
+from native instance requirements in the same selection: statics use function conversion
+and native requirements keep direct Flutter forwarding. Deferred generic factories
+retain their existing materialization path; enums already use function operations. No
+extra runtime branch or duplicate static operation is registered. Reexported Widget
+interfaces use the same provider capability check as ordinary classes, including native
+requirements and statics. A type-only or incomplete non-Core provider cannot replace
+that surface; automatic selection binds it locally. Regenerate provider and consumer
+outputs together.
+
 Manifest 18 stores static accessor types and distinct operation IDs:
 `#read:Counter.count` and `#function:Counter.count%3D`. Class IDs and unrelated
 operation IDs retain their identities. All workspace manifests are regenerated; older
 formats are rejected. Selection 2 and native ABI 2 are unchanged; the active UI protocol
-is 23. Core remains implicit and cannot be republished. Non-Core packages can bind the
+is 24. Core remains implicit and cannot be republished. Non-Core packages can bind the
 same source independently; automatic reuse requires the complete requested read/write
 surface from a unique dependency provider. Types packages publish declarations and
 source packages publish implementations through the existing plugin injection path.
@@ -1062,6 +1079,16 @@ TS prototype mutation occurs. Extension and member generic scopes preserve TS ty
 relationships, with upper-bound erasure in Dart. Shadowed parameter names are renamed
 only in the TS signature. Receivers, arguments and results reuse existing recursive
 conversions, including Records, aliases, callbacks, collections and Future/FutureOr.
+
+Captured receiver parameters and a member's own parameters use the same `DartOutput<T>`
+projection as ordinary generic functions. For example, `ListX([['a']]).firstValue` is a
+`DartList<string>`: use `.get(0)` or explicitly copy with `.toArray()`. Setters accept
+raw inputs or compatible converted references; callback arguments, operators, Records
+and Future/FutureOr results retain this recursive projection. Scalars, existing Dart
+references and closed native bounds stay typed. An Object-erased input cannot invent a
+native Record from a raw field object, and this declaration rule adds no runtime copy,
+adapter, bridge operation or generic type token.
+
 Context, Widget, Widget interfaces, State and Route/Page descriptors use their ordinary
 binding converters. Native State inputs reuse their existing weak handles and require a
 mounted State. Invalid, unmounted and foreign Context access remains rejected.

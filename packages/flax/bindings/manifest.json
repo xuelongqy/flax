@@ -61915,7 +61915,7 @@
           {
             "name": "Directionality",
             "id": "flax.core/flutter#type:Directionality",
-            "kind": "members",
+            "kind": "widget",
             "jsName": null,
             "asyncIterableFactory": null,
             "typeArguments": [],

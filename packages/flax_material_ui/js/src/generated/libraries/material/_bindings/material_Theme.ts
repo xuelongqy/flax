@@ -16,7 +16,7 @@ return construct("widget", "flax.material/material#type:Theme", "", [{"name":"ke
 }
 namespace _ThemeFactory { export function of(context: upstream2.BuildContext): upstream1.ThemeData {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeStatic("flax.material/material#type:Theme", "of", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
+const _flaxResult = invokeTopLevel("flax.material/material#function:Theme.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")]);
 return _flaxResult as upstream1.ThemeData;
 } }
 export const Theme: typeof _ThemeFactory & _FlaxInstanceType<Theme> = _flaxBindInstanceType<Theme, typeof _ThemeFactory>(_ThemeFactory, "flax.material/material#type:Theme", ["package:flutter/src/widgets/framework.dart::StatelessWidget","package:flutter/src/widgets/framework.dart::Widget","package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree","dart:core::Object","package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);

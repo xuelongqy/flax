@@ -1505,7 +1505,7 @@ class FlaxCodegenBindingEmitter {
         );
       }
       out.writeln(
-        '}, instanceMethods: ${_methods(type, instance: true, members: view.methods, prefix: prefix)});',
+        '}, instanceMethods: ${_instanceMethods(type, members: view.methods, prefix: prefix)});',
       );
       final receiver =
           '${_dartName(type.name)}${_typeArgs(view.typeArguments)}';
@@ -2028,7 +2028,8 @@ import 'package:flax/bindings.dart';
     }
     for (final type in module.classes) {
       if (type.kind == 'enum') continue;
-      if (type.kind == 'widgetInterface') {
+      if (type.kind == 'widgetInterface' ||
+          (type.kind == 'widget' && _bindingConstructors(type).isEmpty)) {
         out.writeln(
           'FlaxWidgetInterfaceBinding(${_quote(type.id)}, _is${type.name}),',
         );
@@ -2051,12 +2052,12 @@ import 'package:flax/bindings.dart';
         if (type.kind == 'state' ||
             type.kind == 'object' ||
             type.kind == 'stream') {
-          out.write(', ${_methods(type, instance: true)}');
+          out.write(', ${_instanceMethods(type)}');
         }
         if (type.kind == 'stream') {
           out.write(
             ', constructors: ${_constructors(type)}, create: _create${type.name}, '
-            'matches: _is${type.name}, methods: ${_methods(type)}, '
+            'matches: _is${type.name}, methods: {}, '
             'view: ${_ref(FlaxCodegenTypeRef('stream', id: type.id, name: type.name, item: type.typeParameters.single.defaultType!))}',
           );
         }
@@ -2070,7 +2071,7 @@ import 'package:flax/bindings.dart';
             );
           }
           out.write(
-            '], matches: _is${type.name}, methods: ${_methods(type)}${_proxyBinding(type)}${_memberViewBinding(type, memberViews[type]!)}',
+            '], matches: _is${type.name}, methods: const {}${_proxyBinding(type)}${_memberViewBinding(type, memberViews[type]!)}',
           );
         }
         out.writeln('),');
@@ -2083,9 +2084,7 @@ import 'package:flax/bindings.dart';
         continue;
       }
       if (type.kind == 'members') {
-        out.writeln(
-          'FlaxMemberBinding(${_quote(type.id)}, ${_methods(type)}),',
-        );
+        out.writeln('FlaxMemberBinding(${_quote(type.id)}, {}),');
         continue;
       }
       out.writeln('FlaxWidgetBinding(${_quote(type.id)}, {');
@@ -2099,7 +2098,7 @@ import 'package:flax/bindings.dart';
         out.writeln('],');
       }
       out.writeln(
-        '}, _${type.name}Host.new, matches: _is${type.name}, fixedArguments: ${type.widgetInterfaces.isNotEmpty}, methods: ${_methods(type)}, ${type.proxy == null ? '' : 'objectView: FlaxObjectBinding(${_quote(type.id)}, [${type.getters.map((g) => 'FlaxGetter(${_quote(g.name)}, ${_ref(g.type)}, _${type.name}_${g.name}),').join()}], ${_methods(type, instance: true)}, constructors: ${_constructors(type)}, create: _create${type.name}, matches: _is${type.name}, supertypes: ${jsonEncode(type.supertypes)}${_proxyBinding(type)}),'}),',
+        '}, _${type.name}Host.new, matches: _is${type.name}, fixedArguments: ${type.widgetInterfaces.isNotEmpty}, methods: {}, ${type.proxy == null ? '' : 'objectView: FlaxObjectBinding(${_quote(type.id)}, [${type.getters.map((g) => 'FlaxGetter(${_quote(g.name)}, ${_ref(g.type)}, _${type.name}_${g.name}),').join()}], ${_instanceMethods(type)}, constructors: ${_constructors(type)}, create: _create${type.name}, matches: _is${type.name}, supertypes: ${jsonEncode(type.supertypes)}${_proxyBinding(type)}),'}),',
       );
     }
     out.writeln('], functions: [');
@@ -2116,6 +2115,11 @@ import 'package:flax/bindings.dart';
             .toList() ??
         <FlaxCodegenTopLevelSetterModel>[];
     final functionNames = {
+      for (final type in module.classes.where((type) => type.kind != 'enum'))
+        for (final method in type.methods.where(
+          (method) => !method.instance && !method.deferredFactory,
+        ))
+          type.staticMethodId(method): '_${type.name}_${method.name}',
       for (final type in module.classes)
         for (final function in module.enumFunctions(type))
           function.id: function.call.name,
@@ -3881,19 +3885,16 @@ T _genericCallbackResult<T>(Object? value) {
     return '$out}';
   }
 
-  String _methods(
+  String _instanceMethods(
     FlaxCodegenClassModel type, {
-    bool instance = false,
     Iterable<FlaxCodegenMethodModel>? members,
     String? prefix,
   }) {
     final out = StringBuffer('{');
     for (final method in (members ?? type.methods).where(
-      (method) => method.instance == instance && !method.deferredFactory,
+      (method) => method.instance && !method.deferredFactory,
     )) {
-      out.write(
-        '${_quote(method.name)}: ${instance ? 'FlaxInstanceMethod' : 'FlaxStaticMethod'}([',
-      );
+      out.write('${_quote(method.name)}: FlaxInstanceMethod([');
       for (final parameter in method.parameters) {
         out.write(
           'FlaxParameter(${_quote(parameter.name)}, ${_ref(parameter.type)}, '
@@ -3901,11 +3902,11 @@ T _genericCallbackResult<T>(Object? value) {
         );
       }
       out.write(
-        '], ${_ref(method.result)}, ${prefix ?? '_${type.name}'}_${method.name}${instance ? ', startsRoute: ${method.startsRoute}' : ''}),',
+        '], ${_ref(method.result)}, ${prefix ?? '_${type.name}'}_${method.name}, startsRoute: ${method.startsRoute}),',
       );
     }
     final proxy = type.proxy;
-    if (members == null && instance && proxy?.kind == 'extends') {
+    if (members == null && proxy?.kind == 'extends') {
       for (final method in proxy!.methods.where(
         (method) => proxy.hasSuperMethod(method.name),
       )) {
@@ -3997,13 +3998,13 @@ T _genericCallbackResult<T>(Object? value) {
     }
     var genericNames = <Object, String>{};
     var genericInputConversions = false;
-    var callTypeParameters = <String, bool>{};
+    var genericConversions = <String, bool>{};
     final conversionImports = <String>{};
-    Map<String, bool> callParameters(
+    Map<String, bool> parameterConversions(
       Iterable<FlaxCodegenGenericParameter> parameters, {
       bool includeOuter = false,
     }) {
-      final result = includeOuter ? {...callTypeParameters} : <String, bool>{};
+      final result = includeOuter ? {...genericConversions} : <String, bool>{};
       for (final parameter in parameters) {
         final bound = parameter.bound;
         final name = genericNames[parameter.genericIdentity] ?? parameter.name;
@@ -4066,13 +4067,13 @@ T _genericCallbackResult<T>(Object? value) {
       );
       String callback(FlaxCodegenTypeRef callback) {
         final previousNames = genericNames;
-        final previousParameters = callTypeParameters;
+        final previousParameters = genericConversions;
         genericNames = {
           ...genericNames,
           for (final parameter in callback.typeParameters)
             ?parameter.genericIdentity: parameter.name,
         };
-        callTypeParameters = callParameters(
+        genericConversions = parameterConversions(
           callback.typeParameters,
           includeOuter: true,
         );
@@ -4104,13 +4105,13 @@ T _genericCallbackResult<T>(Object? value) {
         final result =
             '($generic(${arguments.join(', ')}) => ${callbackValue(callback.result!, asInput: input)})';
         genericNames = previousNames;
-        callTypeParameters = previousParameters;
+        genericConversions = previousParameters;
         return result;
       }
 
       String parameter() {
         final name = genericNames[type.genericIdentity] ?? type.name!;
-        if (bridgeGenerics && callTypeParameters[name] == true) {
+        if (bridgeGenerics && genericConversions[name] == true) {
           conversionImports.add('DartOutput');
           return input
               ? '($name | _FlaxDartOutput<$name>)'
@@ -4118,7 +4119,7 @@ T _genericCallbackResult<T>(Object? value) {
         }
         return input &&
                 (genericInputConversions ||
-                    callTypeParameters.containsKey(name))
+                    genericConversions.containsKey(name))
             ? '($name | DartInput<$name>)'
             : name;
       }
@@ -4414,8 +4415,8 @@ $_typescriptHostImport
     }
     String methodSignature(FlaxCodegenMethodModel method) {
       // TS uses lexical names even when Analyzer specializes an inherited method.
-      final previousCallTypeParameters = callTypeParameters;
-      callTypeParameters = callParameters(
+      final previousGenericConversions = genericConversions;
+      genericConversions = parameterConversions(
         method.deferredFactory ? const [] : method.typeParameters,
       );
       final args = [
@@ -4430,7 +4431,7 @@ $_typescriptHostImport
       }
       final signature =
           '${method.name}${generics(method.typeParameters)}(${args.join(', ')}): ${tsType(method.result)}';
-      callTypeParameters = previousCallTypeParameters;
+      genericConversions = previousGenericConversions;
       return signature;
     }
 
@@ -4440,7 +4441,7 @@ $_typescriptHostImport
       required String id,
       String? namespace,
       FlaxCodegenClassCategory? category,
-      bool extensionOperation = false,
+      bool functionTransport = false,
       bool exportNamespace = true,
       bool enumOperation = false,
       String? enumOperationIds,
@@ -4452,8 +4453,8 @@ $_typescriptHostImport
       List<FlaxCodegenMethodModel> literalOverloads = const [],
     }) {
       final previousGenericNames = genericNames;
-      final previousCallTypeParameters = callTypeParameters;
-      if (extensionOperation) {
+      final previousGenericConversions = genericConversions;
+      if (extensionView != null) {
         genericNames = {};
         final used = <String>{};
         for (final p in method.typeParameters) {
@@ -4486,8 +4487,8 @@ $_typescriptHostImport
       final typeParameters = method.typeParameters
           .skip(receiver == null ? 0 : extensionView!.typeParameters.length)
           .toList();
-      callTypeParameters = callParameters(
-        method.deferredFactory ? const [] : typeParameters,
+      genericConversions = parameterConversions(
+        method.deferredFactory ? const [] : method.typeParameters,
       );
       final memberName = extensionMember?.exportName ?? method.name;
       final getter =
@@ -4519,7 +4520,7 @@ $_typescriptHostImport
               : '$memberName${generics(typeParameters)}(${args.join(', ')}): ${tsType(method.result)};',
         );
         genericNames = previousGenericNames;
-        callTypeParameters = previousCallTypeParameters;
+        genericConversions = previousGenericConversions;
         return;
       }
       target.writeln(
@@ -4576,10 +4577,10 @@ $_typescriptHostImport
         );
         target.writeln(namespace == null ? '}' : '} }');
         genericNames = previousGenericNames;
-        callTypeParameters = previousCallTypeParameters;
+        genericConversions = previousGenericConversions;
         return;
       }
-      var invocation = namespace == null || extensionOperation
+      var invocation = namespace == null || functionTransport
           ? 'invokeTopLevel('
           : 'invokeStatic(';
       if (enumOperation) {
@@ -4594,7 +4595,7 @@ $_typescriptHostImport
       }
       target.writeln(
         enumOperationIds == null
-            ? 'const _flaxResult = $invocation${jsonEncode(id)}, ${namespace == null || extensionOperation || enumOperation ? "" : "${jsonEncode(method.name)}, "}[${enumOperation && method.instance ? 'this${values.isEmpty ? '' : ', '}' : ''}$values]);'
+            ? 'const _flaxResult = $invocation${jsonEncode(id)}, ${namespace == null || functionTransport || enumOperation ? "" : "${jsonEncode(method.name)}, "}[${enumOperation && method.instance ? 'this${values.isEmpty ? '' : ', '}' : ''}$values]);'
             : 'const _flaxResult = invokeEnum(this, $enumOperationIds, [$values]);',
       );
       if (method.result.kind != 'void') {
@@ -4629,7 +4630,7 @@ $_typescriptHostImport
         );
       }
       genericNames = previousGenericNames;
-      callTypeParameters = previousCallTypeParameters;
+      genericConversions = previousGenericConversions;
     }
 
     final memberLayouts = <String, String>{};
@@ -5147,7 +5148,7 @@ $_typescriptHostImport
             id: operation.id,
             namespace: valueName(type),
             exportNamespace: valueName(type) == type.name,
-            extensionOperation: true,
+            functionTransport: true,
           );
         }
         for (final getter in type.staticGetters) {
@@ -5165,15 +5166,22 @@ $_typescriptHostImport
         emitTsCallable(
           staticMethods,
           method,
-          id: type.id,
+          id: method.deferredFactory ? type.id : type.staticMethodId(method),
           namespace: valueName(type),
           exportNamespace: valueName(type) == type.name,
           category: type.category,
+          functionTransport: !method.deferredFactory,
         );
       }
       if (type.kind == 'widgetInterface') {
         out.writeln(
           '${exportPrefix}type ${type.name} = Widget & { readonly __${type.name}: unique symbol; }${type.superTypes.map((t) => ' & ${tsType(t, nominal: true)}').join('')};',
+        );
+        continue;
+      }
+      if (type.kind == 'widget' && type.constructors.isEmpty) {
+        out.writeln(
+          '${exportPrefix}type ${type.name}${generics(type.typeParameters)} = Widget & { readonly __${type.name}: unique symbol; }${type.widgetInterfaces.map((t) => ' & ${tsType(t)}').join()};',
         );
         continue;
       }
@@ -5533,6 +5541,8 @@ $_typescriptHostImport
       emitTsCallable(out, function.call, id: function.id);
     }
     for (final extension in module.extensions) {
+      final previousGenericConversions = genericConversions;
+      genericConversions = parameterConversions(extension.typeParameters);
       final name = extension.name;
       final instanceMembers = extension.members.where((m) => !m.isStatic);
       final staticMembers = extension.members.where((m) => m.isStatic);
@@ -5546,7 +5556,7 @@ $_typescriptHostImport
           out,
           member.call,
           id: member.id,
-          extensionOperation: true,
+          functionTransport: true,
           extensionView: extension,
           extensionMember: member,
           signatureOnly: true,
@@ -5561,7 +5571,7 @@ $_typescriptHostImport
           surface,
           member.call,
           id: member.id,
-          extensionOperation: true,
+          functionTransport: true,
           extensionView: extension,
           extensionMember: member,
           signatureOnly: true,
@@ -5571,6 +5581,7 @@ $_typescriptHostImport
       if (extension.isReference) {
         final owner = dependencies[_owners[extension.members.first.id]]!;
         out.writeln('export const $name: $surface = $owner.$name;');
+        genericConversions = previousGenericConversions;
         continue;
       }
       out.writeln(
@@ -5582,7 +5593,7 @@ $_typescriptHostImport
           out,
           member.call,
           id: member.id,
-          extensionOperation: true,
+          functionTransport: true,
           extensionView: extension,
           extensionMember: member,
           literal: true,
@@ -5595,7 +5606,7 @@ $_typescriptHostImport
           out,
           member.call,
           id: member.id,
-          extensionOperation: true,
+          functionTransport: true,
           extensionView: extension,
           extensionMember: member,
           literal: true,
@@ -5616,6 +5627,7 @@ $_typescriptHostImport
       out.writeln(
         '}}.create, Object.getOwnPropertyDescriptors(_flaxExtension_${name}_statics)) as typeof $name;',
       );
+      genericConversions = previousGenericConversions;
     }
     final layouts = memberLayouts.entries
         .map((entry) => 'const ${entry.value} = ${entry.key} as const;\n')

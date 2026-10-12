@@ -554,7 +554,9 @@ final class _FlaxCodegenTypeScope {
           ),
       ];
       final dependencySuperTypes =
-          element is! EnumElement && !parser._adaptations.containsKey(id)
+          element is! EnumElement &&
+              !nativeWidget &&
+              !parser._adaptations.containsKey(id)
           ? <FlaxCodegenTypeRef>[
               typeOnlyReference(element.thisType),
               for (final parent in element.thisType.allSupertypes)

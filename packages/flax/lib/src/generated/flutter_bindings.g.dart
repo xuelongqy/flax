@@ -1699,39 +1699,7 @@ const flutterBindings = FlaxBindingModule(
       },
       create: _createStream,
       matches: _isStream,
-      methods: {
-        "castFrom": FlaxStaticMethod(
-          [
-            FlaxParameter(
-              "source",
-              FlaxTypeRef(
-                "stream",
-                id: "flax.core/flutter#type:Stream",
-                item: FlaxTypeRef("any", nullable: true),
-                stream: FlaxStreamBinding(
-                  "stream:flax.core/flutter#type:Stream[any?:]",
-                  _stream0Matches,
-                  _stream0Adapt,
-                ),
-              ),
-              required: true,
-              defaultValue: null,
-              omitWhenAbsent: false,
-            ),
-          ],
-          FlaxTypeRef(
-            "stream",
-            id: "flax.core/flutter#type:Stream",
-            item: FlaxTypeRef("any", nullable: true),
-            stream: FlaxStreamBinding(
-              "stream:flax.core/flutter#type:Stream[any?:]",
-              _stream0Matches,
-              _stream0Adapt,
-            ),
-          ),
-          _Stream_castFrom,
-        ),
-      },
+      methods: {},
       view: FlaxTypeRef(
         "stream",
         id: "flax.core/flutter#type:Stream",
@@ -1913,7 +1881,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isStreamSubscription,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:StreamController",
@@ -2320,7 +2288,7 @@ const flutterBindings = FlaxBindingModule(
         ),
       ],
       matches: _isStreamController,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:SynchronousStreamController",
@@ -2605,7 +2573,7 @@ const flutterBindings = FlaxBindingModule(
         ),
       ],
       matches: _isSynchronousStreamController,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:MultiStreamController",
@@ -2935,7 +2903,7 @@ const flutterBindings = FlaxBindingModule(
         ),
       ],
       matches: _isMultiStreamController,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:Duration",
@@ -3008,7 +2976,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object", "dart:core::Comparable"],
       setters: [],
       matches: _isDuration,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:DateTime",
@@ -3048,7 +3016,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object", "dart:core::Comparable"],
       setters: [],
       matches: _isDateTime,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:Uri",
@@ -3064,35 +3032,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isUri,
-      methods: {
-        "parse": FlaxStaticMethod(
-          [
-            FlaxParameter(
-              "uri",
-              FlaxTypeRef("String"),
-              required: true,
-              defaultValue: null,
-              omitWhenAbsent: false,
-            ),
-            FlaxParameter(
-              "start",
-              FlaxTypeRef("int"),
-              required: false,
-              defaultValue: 0,
-              omitWhenAbsent: false,
-            ),
-            FlaxParameter(
-              "end",
-              FlaxTypeRef("int", nullable: true),
-              required: false,
-              defaultValue: null,
-              omitWhenAbsent: false,
-            ),
-          ],
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Uri"),
-          _Uri_parse,
-        ),
-      },
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:StringBuffer",
@@ -3136,7 +3076,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object", "dart:core::StringSink"],
       setters: [],
       matches: _isStringBuffer,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:StackTrace",
@@ -3156,7 +3096,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isStackTrace,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:Sink",
@@ -3169,7 +3109,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isSink,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:EventSink",
@@ -3228,7 +3168,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object", "flax.core/flutter#type:Sink"],
       setters: [],
       matches: _isEventSink,
-      methods: {},
+      methods: const {},
       proxy: FlaxProxyBinding([
         FlaxProxyMember(
           "add",
@@ -3344,7 +3284,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isStreamConsumer,
-      methods: {},
+      methods: const {},
       proxy: FlaxProxyBinding([
         FlaxProxyMember(
           "addStream",
@@ -3501,7 +3441,7 @@ const flutterBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isStreamSink,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:StreamTransformer",
@@ -3753,24 +3693,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isStreamTransformer,
-      methods: {
-        "castFrom": FlaxStaticMethod(
-          [
-            FlaxParameter(
-              "source",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:StreamTransformer",
-              ),
-              required: true,
-              defaultValue: null,
-              omitWhenAbsent: false,
-            ),
-          ],
-          FlaxTypeRef("object", id: "flax.core/flutter#type:StreamTransformer"),
-          _StreamTransformer_castFrom,
-        ),
-      },
+      methods: const {},
       proxy: FlaxProxyBinding([
         FlaxProxyMember(
           "bind",
@@ -3886,7 +3809,7 @@ const flutterBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isStreamTransformerBase,
-      methods: {},
+      methods: const {},
       proxy: FlaxProxyBinding([
         FlaxProxyMember(
           "bind",
@@ -5317,7 +5240,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isStreamIterator,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:AsyncSnapshot",
@@ -5420,7 +5343,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isAsyncSnapshot,
-      methods: {},
+      methods: const {},
     ),
     FlaxWidgetBinding(
       "flax.core/flutter#type:StreamBuilder",
@@ -5554,7 +5477,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isWidgetStateProperty,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:TickerProvider",
@@ -5567,7 +5490,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isTickerProvider,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:Curve",
@@ -5598,7 +5521,7 @@ const flutterBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isCurve,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:Cubic",
@@ -5666,7 +5589,7 @@ const flutterBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isCubic,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:Curves",
@@ -5679,7 +5602,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isCurves,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:MouseCursor",
@@ -5695,7 +5618,7 @@ const flutterBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isMouseCursor,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:SystemMouseCursor",
@@ -5712,7 +5635,7 @@ const flutterBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isSystemMouseCursor,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:SystemMouseCursors",
@@ -5725,7 +5648,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isSystemMouseCursors,
-      methods: {},
+      methods: const {},
     ),
     FlaxWidgetBinding(
       "flax.core/flutter#type:ValueListenableBuilder",
@@ -5933,7 +5856,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isListenable,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:ValueListenable",
@@ -6001,7 +5924,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["flax.core/flutter#type:Listenable", "dart:core::Object"],
       setters: [],
       matches: _isValueListenable,
-      methods: {},
+      methods: const {},
       proxy: FlaxProxyBinding([
         FlaxProxyMember(
           "addListener",
@@ -6100,7 +6023,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isFittedSizes,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:NavigatorObserver",
@@ -6113,7 +6036,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isNavigatorObserver,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:FlaxNavigatorObserver",
@@ -6129,7 +6052,7 @@ const flutterBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isFlaxNavigatorObserver,
-      methods: {},
+      methods: const {},
     ),
     FlaxWidgetInterfaceBinding(
       "flax.core/flutter#type:PreferredSizeWidget",
@@ -6365,7 +6288,7 @@ const flutterBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isDecoration,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:ShapeBorder",
@@ -6378,7 +6301,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isShapeBorder,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:OutlinedBorder",
@@ -6397,7 +6320,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["flax.core/flutter#type:ShapeBorder", "dart:core::Object"],
       setters: [],
       matches: _isOutlinedBorder,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:RoundedRectangleBorder",
@@ -6482,7 +6405,7 @@ const flutterBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isRoundedRectangleBorder,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:CircleBorder",
@@ -6553,7 +6476,7 @@ const flutterBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isCircleBorder,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:StadiumBorder",
@@ -6605,7 +6528,7 @@ const flutterBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isStadiumBorder,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:BoxBorder",
@@ -6618,7 +6541,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["flax.core/flutter#type:ShapeBorder", "dart:core::Object"],
       setters: [],
       matches: _isBoxBorder,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:BorderRadiusGeometry",
@@ -6631,7 +6554,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isBorderRadiusGeometry,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:EdgeInsetsGeometry",
@@ -6644,7 +6567,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isEdgeInsetsGeometry,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:BoxDecoration",
@@ -6789,7 +6712,7 @@ const flutterBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isBoxDecoration,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:BorderSide",
@@ -6897,7 +6820,7 @@ const flutterBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isBorderSide,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:Border",
@@ -6997,7 +6920,7 @@ const flutterBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isBorder,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:BorderDirectional",
@@ -7071,7 +6994,7 @@ const flutterBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isBorderDirectional,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:Radius",
@@ -7113,7 +7036,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isRadius,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:BorderRadius",
@@ -7251,7 +7174,7 @@ const flutterBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isBorderRadius,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:BorderRadiusDirectional",
@@ -7337,7 +7260,7 @@ const flutterBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isBorderRadiusDirectional,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:EdgeInsetsDirectional",
@@ -7452,7 +7375,7 @@ const flutterBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isEdgeInsetsDirectional,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:AlignmentGeometry",
@@ -7465,7 +7388,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isAlignmentGeometry,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:Alignment",
@@ -7501,7 +7424,7 @@ const flutterBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isAlignment,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:AlignmentDirectional",
@@ -7537,7 +7460,7 @@ const flutterBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isAlignmentDirectional,
-      methods: {},
+      methods: const {},
     ),
     FlaxWidgetBinding(
       "flax.core/flutter#type:Expanded",
@@ -7887,7 +7810,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isColor,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:ImageFilter",
@@ -7965,7 +7888,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isImageFilter,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:FontWeight",
@@ -7988,7 +7911,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isFontWeight,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:TextStyle",
@@ -8231,7 +8154,7 @@ const flutterBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isTextStyle,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:Key",
@@ -8244,7 +8167,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isKey,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:LocalKey",
@@ -8257,7 +8180,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["flax.core/flutter#type:Key", "dart:core::Object"],
       setters: [],
       matches: _isLocalKey,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:TextEditingController",
@@ -8394,7 +8317,7 @@ const flutterBindings = FlaxBindingModule(
         ),
       ],
       matches: _isTextEditingController,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:TextEditingValue",
@@ -8485,7 +8408,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isTextEditingValue,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:TextSelection",
@@ -8615,7 +8538,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["flax.core/flutter#type:TextRange", "dart:core::Object"],
       setters: [],
       matches: _isTextSelection,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:TextRange",
@@ -8664,7 +8587,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isTextRange,
-      methods: {},
+      methods: const {},
     ),
     FlaxWidgetBinding(
       "flax.core/flutter#type:Navigator",
@@ -8836,28 +8759,7 @@ const flutterBindings = FlaxBindingModule(
       _NavigatorHost.new,
       matches: _isNavigator,
       fixedArguments: false,
-      methods: {
-        "of": FlaxStaticMethod(
-          [
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-              defaultValue: null,
-              omitWhenAbsent: false,
-            ),
-            FlaxParameter(
-              "rootNavigator",
-              FlaxTypeRef("bool"),
-              required: false,
-              defaultValue: false,
-              omitWhenAbsent: false,
-            ),
-          ],
-          FlaxTypeRef("state", id: "flax.core/flutter#type:NavigatorState"),
-          _Navigator_of,
-        ),
-      },
+      methods: {},
     ),
     FlaxStateBinding(
       "flax.core/flutter#type:NavigatorState",
@@ -9018,7 +8920,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isRouteSettings,
-      methods: {},
+      methods: const {},
     ),
     FlaxWidgetBinding(
       "flax.core/flutter#type:NavigatorPopHandler",
@@ -9309,7 +9211,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:ui::OffsetBase", "dart:core::Object"],
       setters: [],
       matches: _isSize,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:SchedulerBinding",
@@ -9335,7 +9237,7 @@ const flutterBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isSchedulerBinding,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:BoxConstraints",
@@ -9427,23 +9329,12 @@ const flutterBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isBoxConstraints,
-      methods: {},
+      methods: const {},
     ),
-    FlaxMemberBinding("flax.core/flutter#type:Directionality", {
-      "of": FlaxStaticMethod(
-        [
-          FlaxParameter(
-            "context",
-            FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-        ],
-        FlaxTypeRef("enum", id: "flax.core/flutter#type:TextDirection"),
-        _Directionality_of,
-      ),
-    }),
+    FlaxWidgetInterfaceBinding(
+      "flax.core/flutter#type:Directionality",
+      _isDirectionality,
+    ),
     FlaxWidgetBinding(
       "flax.core/flutter#type:Text",
       {
@@ -10261,7 +10152,7 @@ const flutterBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isEdgeInsets,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:ValueKey",
@@ -10294,7 +10185,7 @@ const flutterBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isValueKey,
-      methods: {},
+      methods: const {},
       memberView: __ValueKeyMemberView,
       memberViewOperations: {"get:value"},
     ),
@@ -10445,7 +10336,7 @@ const flutterBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isScrollController,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:ScrollPhysics",
@@ -10482,7 +10373,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isScrollPhysics,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:ClampingScrollPhysics",
@@ -10519,7 +10410,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["flax.core/flutter#type:ScrollPhysics", "dart:core::Object"],
       setters: [],
       matches: _isClampingScrollPhysics,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:BouncingScrollPhysics",
@@ -10556,7 +10447,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["flax.core/flutter#type:ScrollPhysics", "dart:core::Object"],
       setters: [],
       matches: _isBouncingScrollPhysics,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:AlwaysScrollableScrollPhysics",
@@ -10593,7 +10484,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["flax.core/flutter#type:ScrollPhysics", "dart:core::Object"],
       setters: [],
       matches: _isAlwaysScrollableScrollPhysics,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:NeverScrollableScrollPhysics",
@@ -10630,7 +10521,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["flax.core/flutter#type:ScrollPhysics", "dart:core::Object"],
       setters: [],
       matches: _isNeverScrollableScrollPhysics,
-      methods: {},
+      methods: const {},
     ),
     FlaxWidgetBinding(
       "flax.core/flutter#type:ListView",
@@ -11064,7 +10955,7 @@ const flutterBindings = FlaxBindingModule(
         ),
       ],
       matches: _isFocusNode,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:TextInputFormatter",
@@ -11119,7 +11010,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isTextInputFormatter,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:FilteringTextInputFormatter",
@@ -11191,7 +11082,7 @@ const flutterBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isFilteringTextInputFormatter,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:LengthLimitingTextInputFormatter",
@@ -11228,7 +11119,7 @@ const flutterBindings = FlaxBindingModule(
       ],
       setters: [],
       matches: _isLengthLimitingTextInputFormatter,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:Pattern",
@@ -11241,7 +11132,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isPattern,
-      methods: {},
+      methods: const {},
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:RegExp",
@@ -11292,7 +11183,7 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object", "flax.core/flutter#type:Pattern"],
       setters: [],
       matches: _isRegExp,
-      methods: {},
+      methods: const {},
     ),
     FlaxWidgetBinding(
       "flax.core/flutter#type:Listener",
@@ -12926,10 +12817,70 @@ const flutterBindings = FlaxBindingModule(
       _function_applyBoxFit,
     ),
     FlaxFunctionBinding(
+      "flax.core/flutter#function:Stream.castFrom",
+      [
+        FlaxParameter(
+          "source",
+          FlaxTypeRef(
+            "stream",
+            id: "flax.core/flutter#type:Stream",
+            item: FlaxTypeRef("any", nullable: true),
+            stream: FlaxStreamBinding(
+              "stream:flax.core/flutter#type:Stream[any?:]",
+              _stream0Matches,
+              _stream0Adapt,
+            ),
+          ),
+          required: true,
+          defaultValue: null,
+          omitWhenAbsent: false,
+        ),
+      ],
+      FlaxTypeRef(
+        "stream",
+        id: "flax.core/flutter#type:Stream",
+        item: FlaxTypeRef("any", nullable: true),
+        stream: FlaxStreamBinding(
+          "stream:flax.core/flutter#type:Stream[any?:]",
+          _stream0Matches,
+          _stream0Adapt,
+        ),
+      ),
+      _Stream_castFrom,
+    ),
+    FlaxFunctionBinding(
       "flax.core/flutter#read:Duration.zero",
       [],
       FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
       _Duration_static_get_zero,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#function:Uri.parse",
+      [
+        FlaxParameter(
+          "uri",
+          FlaxTypeRef("String"),
+          required: true,
+          defaultValue: null,
+          omitWhenAbsent: false,
+        ),
+        FlaxParameter(
+          "start",
+          FlaxTypeRef("int"),
+          required: false,
+          defaultValue: 0,
+          omitWhenAbsent: false,
+        ),
+        FlaxParameter(
+          "end",
+          FlaxTypeRef("int", nullable: true),
+          required: false,
+          defaultValue: null,
+          omitWhenAbsent: false,
+        ),
+      ],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:Uri"),
+      _Uri_parse,
     ),
     FlaxFunctionBinding(
       "flax.core/flutter#read:StackTrace.current",
@@ -12942,6 +12893,20 @@ const flutterBindings = FlaxBindingModule(
       [],
       FlaxTypeRef("object", id: "flax.core/flutter#type:StackTrace"),
       _StackTrace_static_get_empty,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#function:StreamTransformer.castFrom",
+      [
+        FlaxParameter(
+          "source",
+          FlaxTypeRef("object", id: "flax.core/flutter#type:StreamTransformer"),
+          required: true,
+          defaultValue: null,
+          omitWhenAbsent: false,
+        ),
+      ],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:StreamTransformer"),
+      _StreamTransformer_castFrom,
     ),
     FlaxFunctionBinding(
       "flax.core/flutter#read:Curves.linear",
@@ -13247,10 +13212,45 @@ const flutterBindings = FlaxBindingModule(
       _TextRange_static_get_empty,
     ),
     FlaxFunctionBinding(
+      "flax.core/flutter#function:Navigator.of",
+      [
+        FlaxParameter(
+          "context",
+          FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
+          required: true,
+          defaultValue: null,
+          omitWhenAbsent: false,
+        ),
+        FlaxParameter(
+          "rootNavigator",
+          FlaxTypeRef("bool"),
+          required: false,
+          defaultValue: false,
+          omitWhenAbsent: false,
+        ),
+      ],
+      FlaxTypeRef("state", id: "flax.core/flutter#type:NavigatorState"),
+      _Navigator_of,
+    ),
+    FlaxFunctionBinding(
       "flax.core/flutter#read:SchedulerBinding.instance",
       [],
       FlaxTypeRef("object", id: "flax.core/flutter#type:SchedulerBinding"),
       _SchedulerBinding_static_get_instance,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#function:Directionality.of",
+      [
+        FlaxParameter(
+          "context",
+          FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
+          required: true,
+          defaultValue: null,
+          omitWhenAbsent: false,
+        ),
+      ],
+      FlaxTypeRef("enum", id: "flax.core/flutter#type:TextDirection"),
+      _Directionality_of,
     ),
     FlaxFunctionBinding(
       "flax.core/flutter#read:EdgeInsets.zero",
@@ -16400,6 +16400,7 @@ Object _createBoxConstraints(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isDirectionality(Object value) => value is api.Directionality;
 Object? _Directionality_of(Map<String, Object?> values) {
   return api.Directionality.of(values["context"] as api.BuildContext);
 }

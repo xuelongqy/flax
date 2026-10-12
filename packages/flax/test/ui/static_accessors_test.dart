@@ -16,6 +16,9 @@ void main() {
     final h = harness();
     try {
       await tester.pumpWidget(h.app('static-accessors'));
+      final calls = h.runtime.hostCalls['__flaxInvokeOperation'] ?? 0;
+      expect(h.number('staticHooks.twice(3)'), 6);
+      expect((h.runtime.hostCalls['__flaxInvokeOperation'] ?? 0) - calls, 1);
       h.execute('staticHooks.exercise()');
       for (var i = 0; i < 50 && h.number('staticHooks.pending') == 0; i++) {
         await tester.pump(const Duration(milliseconds: 1));
@@ -32,6 +35,9 @@ void main() {
       h.execute('staticHooks.release()');
       expect(StaticCounter.transform, isNull);
       expect(StaticCounter.tokens, isEmpty);
+      await tester.pumpWidget(h.app('static-accessors-native'));
+      expect(find.byType(StaticOnlyWidget), findsOneWidget);
+      expect(find.text('static factory Widget'), findsOneWidget);
       await h.finish(tester);
       expect(StaticCounter.count, 17);
     } finally {

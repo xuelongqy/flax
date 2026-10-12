@@ -8,6 +8,7 @@ import '../../flax/test/fixtures/static_accessors_selection.dart';
 import 'generator_test.dart' show compileFixture;
 
 import 'package:flax_codegen/flax_codegen.dart';
+import 'package:flax_codegen/src/manifest_codec.dart';
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
@@ -202,6 +203,9 @@ void main() {
           jsName: 'CreateStaticProxy',
           staticGetters: ['count'],
           staticSetters: ['count'],
+          methods: {
+            'twice': ['value'],
+          },
         ),
       }..remove('StaticInterface'),
     );
@@ -213,19 +217,175 @@ void main() {
     expect(interface.kind, 'widgetInterface');
     expect(interface.staticGetters, ['count']);
     expect(interface.staticSetters, ['count']);
+    expect(interface.methods.keys, containsAll(['decorate', 'twice']));
+    expect(proposal.config.classes['StaticOnlyWidget']!.constructors, isEmpty);
+    expect(
+      proposal.config.classes['StaticOnlyWidget']!.methods,
+      contains('twice'),
+    );
+    expect(
+      proposal.config.classes['StaticWidgetChild']!.methods,
+      isNot(contains('twice')),
+    );
+    expect(
+      proposal.config.classes['StaticWidgetCollision']!.methods,
+      contains('setCount'),
+    );
+    expect(
+      proposal.config.classes['StaticWidgetCollision']!.staticSetters,
+      isNot(contains('count')),
+    );
+    expect(
+      proposal.skips.any(
+        (skip) =>
+            skip.target == 'StaticWidgetCollision.count=' &&
+            skip.code == 'static_setter_export_collision',
+      ),
+      isTrue,
+    );
     final module = await parser.parse(proposal.config);
+    expect(
+      module.classes
+          .singleWhere((type) => type.name == 'StaticOnlyWidget')
+          .kind,
+      'widget',
+    );
+    final encoded = FlaxCodegenManifestCodec.encodeModule(module)
+      ..['typeLibraries'] = {
+        for (final key in module.typeLibraries.keys.toList()..sort())
+          key: module.typeLibraries[key]!.startsWith('file:')
+              ? 'package:example/statics.dart'
+              : module.typeLibraries[key],
+      };
+    for (final type in encoded['classes'] as List) {
+      for (final member in type['widgetMembers'] as List? ?? const []) {
+        final imports = member['imports'] as Map<String, dynamic>;
+        final publicImports = {
+          for (final entry in imports.entries)
+            entry.key.startsWith('file:')
+                    ? 'package:example/statics.dart'
+                    : entry.key:
+                entry.value,
+        };
+        member['imports'] = {
+          for (final key in publicImports.keys.toList()..sort())
+            key: publicImports[key],
+        };
+      }
+    }
+    final diagnostics = FlaxCodegenManifestDiagnostics('static-methods');
+    final restored = FlaxCodegenManifestCodec.decodeModule(
+      encoded,
+      diagnostics,
+      '',
+      module.name,
+    );
+    diagnostics.throwIfAny();
+    final restoredInterface = restored!.classes.singleWhere(
+      (type) => type.name == 'StaticInterface',
+    );
+    expect(restoredInterface.methods.single.name, 'twice');
+    expect(
+      restoredInterface.widgetMembers.any(
+        (member) => member.name == 'decorate',
+      ),
+      isTrue,
+    );
+    final contract = module.classes.singleWhere(
+      (type) => type.name == 'StaticInterface',
+    );
+    final nativeOnly = FlaxCodegenClassModel(
+      name: contract.name,
+      id: contract.id,
+      kind: contract.kind,
+      constructors: contract.constructors,
+      supertypes: contract.supertypes,
+      superTypes: contract.superTypes,
+      widgetMembers: contract.widgetMembers,
+    );
+    final reexportDirectory = Directory(p.join(root.path, '.dart_tool', 'flax'))
+      ..createSync(recursive: true);
+    final reexport = reexportDirectory.createTempSync('static-provider-');
+    addTearDown(() => reexport.deleteSync(recursive: true));
+    final consumerLibrary = File(p.join(reexport.path, 'consumer.dart'))
+      ..writeAsStringSync("export '${module.library}' show StaticInterface;\n");
+    for (final (classes, namespace, reused) in [
+      ([contract], 'example.statics', true),
+      ([nativeOnly], 'example.statics', false),
+      (<FlaxCodegenClassModel>[], 'example.statics', false),
+      ([nativeOnly], 'flax.core', true),
+      (<FlaxCodegenClassModel>[], 'flax.core', true),
+    ]) {
+      final provider = FlaxCodegenModuleModel(
+        name: 'static_provider',
+        moduleId: '$namespace/static_provider',
+        library: module.library,
+        jsPackage: '@example/static-provider',
+        dartOutput: 'unused.dart',
+        tsOutput: 'unused.ts',
+        classes: classes,
+        types: [
+          FlaxCodegenNamedTypeModel(name: contract.name, id: contract.id),
+        ],
+        typeLibraries: module.typeLibraries,
+      );
+      final consumerParser = FlaxCodegenBindingParser(root.path);
+      addTearDown(consumerParser.dispose);
+      consumerParser.prepareModules(
+        [core, provider],
+        dependencyTypeOwnerModules: {contract.id: provider.moduleId!},
+      );
+      final proposed = await consumerParser.proposeLibrary(
+        FlaxCodegenBindingConfig(
+          'static_consumer',
+          Uri.file(consumerLibrary.path).toString(),
+          '@example/static-consumer',
+          'unused.dart',
+          'unused.ts',
+          const {},
+        ),
+      );
+      expect(proposed.config.classes.containsKey(contract.name), !reused);
+      if (namespace == 'flax.core') {
+        expect(
+          proposed.skips.any(
+            (skip) => skip.code == 'provider_surface_insufficient',
+          ),
+          isTrue,
+        );
+      }
+      if (!reused) {
+        expect(
+          proposed.config.classes[contract.name]!.methods,
+          contains('twice'),
+        );
+      }
+      final consumer = await consumerParser.parse(proposed.config);
+      expect(consumer.classes.any((type) => type.id == contract.id), !reused);
+    }
     final emitter = FlaxCodegenBindingEmitter([module, core]);
+    final widget = module.classes.singleWhere(
+      (type) => type.name == 'StaticWidget',
+    );
+    expect(
+      emitter.dart(module),
+      contains(
+        'FlaxFunctionBinding("${widget.staticMethodId(widget.methods.singleWhere((method) => method.name == 'twice'))}"',
+      ),
+    );
     await compileFixture(
       root.path,
       emitter,
       module,
       consumerSource: """
 import * as statics from './plugin.js';
+import type { Widget } from '@flax/core/bindings';
 for (const owner of [statics.StaticWidget, statics.StaticState, statics.StaticRoute,
   statics.StaticPage, statics.StaticStream, statics.StaticMembers,
   statics.StaticInterface, statics.StaticProxy]) {
   owner.setCount(23);
   const current: number = owner.count;
+  const doubled: number = owner.twice(2);
 }
 const unknown: unknown = {};
 if (unknown instanceof statics.StaticMembers) {
@@ -233,6 +393,13 @@ if (unknown instanceof statics.StaticMembers) {
 }
 class StaticPeer extends statics.CreateStaticProxy {}
 const peer = new StaticPeer();
+const onlyStatic: number = statics.StaticOnlyWidget.twice(3);
+const nativeWidget: Widget = statics.StaticOnlyWidget.create();
+const echoedNative: Widget = statics.StaticOnlyWidget.echo(statics.StaticOnlyWidget.create());
+// @ts-expect-error a private constructor does not become a JS construction entry
+statics.StaticOnlyWidget();
+// @ts-expect-error static methods are declaration-local
+statics.StaticWidgetChild.twice(2);
 statics.StaticCounter.setTokens([statics.StaticToken(12)]);
 const token: statics.StaticToken = statics.StaticCounter.tokens.get(0);
 statics.StaticCounter.setRecord({\$1: 5, label: 'static record'});

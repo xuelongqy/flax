@@ -75,10 +75,9 @@ test('Theme binds whole Dart values and queries only the supplied real context',
   assert.throws(() => ThemeData({ inputDecorationTheme: null }), /Unsupported/);
   const context = api.context('flax.core/flutter#type:BuildContext', 501);
   let queries = 0;
-  operationHost('static', (version, type, method, handle) => {
+  operationHost('top', (version, type, handle) => {
     assert.equal(version, 24);
-    assert.match(type, /#type:Theme$/);
-    assert.equal(method, 'of');
+    assert.match(type, /#function:Theme\.of$/);
     assert.equal(handle, 501);
     queries++;
     return data;

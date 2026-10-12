@@ -623,6 +623,7 @@ void main() {
 ''',
         consumerSource: '''
 import { StringA, StringB, ListX, NullableX, NumberX, RecordX, ModeX, ExtensionMode, BoundX, ShadowX, WeakMap } from './plugin.js';
+import type { DartList, DartMap, DartRecord, DartSet } from '@flax/core/bindings';
 const a: boolean = StringA(' ').isBlank;
 const b: number = StringB('text').size();
 const text: string = StringA('a').repeat(2);
@@ -634,6 +635,28 @@ ListX(['x']).setFirstValue('y');
 const mapped: number = ListX(['x']).mapFirst(value => value.length);
 const deferred: Promise<string> = ListX(['x']).delayed();
 const record: {readonly \$1: string; readonly length: number} = ListX(['x']).describe();
+const nested = ListX([['x']]);
+const nestedItem: DartList<string> = nested.firstValue;
+const nestedIndex: DartList<string> = nested.getIndex(0);
+nested.setFirstValue(['y']);
+nested.setFirstValue(nestedItem);
+const nestedMapped: string = nested.mapFirst(value => value.get(0));
+const returnedList: DartList<string> = ListX(['x']).mapFirst(value => [value]);
+const nestedLater: Promise<DartList<string>> = nested.delayed();
+const nestedImmediate: DartList<string> | Promise<DartList<string>> = nested.immediate();
+const nestedRecord: DartList<string> = nested.describe().\$1;
+const plain: DartMap<string, string> = ListX([{name: 'x'}]).firstValue;
+const set: DartSet<string> = ListX([new Set(['x'])]).firstValue;
+const promise: Promise<DartList<string>> = ListX([Promise.resolve(['x'])]).firstValue;
+declare const nativeRecord: DartRecord<{readonly id: number}>;
+const keptRecord: typeof nativeRecord = ListX([nativeRecord]).firstValue;
+const shadowedList: DartList<string> = ShadowX([1]).shadow(['x']);
+// @ts-expect-error captured generic outputs have real Dart collection APIs
+nested.firstValue.map(value => value);
+// @ts-expect-error callback inputs use the same converted receiver type
+nested.mapFirst(value => value.map(item => item));
+// @ts-expect-error Object erasure cannot reconstruct an explicitly claimed Record
+ListX<typeof nativeRecord>([{id: 1}]);
 NullableX(null).missing;
 NumberX(1).negate();
 const mode: number = ModeX(ExtensionMode.first).ordinal;

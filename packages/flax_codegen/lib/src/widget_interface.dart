@@ -238,7 +238,8 @@ final class _WidgetInterfaceParser {
       for (final name in selection.getters) 'getter:$name': [],
       for (final name in selection.setters) 'setter:$name': [],
       for (final entry in selection.methods.entries)
-        'method:${entry.key}': entry.value,
+        if (type.element.getMethod(entry.key)?.isStatic != true)
+          'method:${entry.key}': entry.value,
     };
     if (selection.constructors.isNotEmpty ||
         selection.instanceMethods.isNotEmpty ||
