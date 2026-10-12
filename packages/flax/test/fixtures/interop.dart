@@ -111,9 +111,92 @@ class IndirectVoidBox extends VoidBox {}
 
 class CoreValueConsumer {
   CoreValueConsumer(this.date, this.uri, this.buffer);
-  final DateTime date;
-  final Uri uri;
+  DateTime date;
+  Uri uri;
   final StringBuffer buffer;
+
+  DateTime echoDate(DateTime value) => value;
+  Uri echoUri(Uri value) => value;
+  T genericDate<T extends DateTime>(T value) => value;
+  T genericUri<T extends Uri>(T value) => value;
+  List<DateTime> dates(List<DateTime> values) => values;
+  List<Uri> uris(List<Uri> values) => values;
+  Map<String, DateTime> namedDates(Map<String, DateTime> values) => values;
+  Set<Uri> uniqueUris(Set<Uri> values) => values;
+  (DateTime, Uri) pair((DateTime, Uri) value) => value;
+  DateTime applyDate(DateTime Function(DateTime) callback) => callback(date);
+  Future<DateTime> applyLaterDate(Future<DateTime> Function() callback) =>
+      callback();
+  Future<Uri> laterUri(Future<Uri> value) => value;
+  void dateSubtype(CoreDateSubtype value) {}
+  void uriSubtype(CoreUriSubtype value) {}
+}
+
+abstract interface class CoreDateSubtype implements DateTime {}
+
+abstract interface class CoreUriSubtype implements Uri {}
+
+class NativeValueConsumer {
+  NativeValueConsumer();
+  factory NativeValueConsumer.throwing(NativeValueConsumer source) =>
+      Error.throwWithStackTrace(source.failure, source.failureStack);
+  RegExp expression = RegExp('initial');
+  BigInt integer = BigInt.zero;
+  Int16List samples = Int16List(0);
+  final Object failure = StateError('native value failure');
+  final StackTrace failureStack = StackTrace.fromString('original Dart stack');
+
+  RegExp regex(RegExp value) => value;
+  bool pattern(Pattern value, String input) =>
+      value.allMatches(input).isNotEmpty;
+  RegExp applyRegex(RegExp Function(RegExp) callback) => callback(expression);
+  List<RegExp> regexes(List<RegExp> values) => values;
+  T genericRegex<T extends RegExp>(T value) => value;
+  BigInt bigInteger(BigInt value) => value;
+  List<BigInt> integers(List<BigInt> values) => values;
+  (BigInt, Int16List) pair((BigInt, Int16List) value) => value;
+  T genericInteger<T extends BigInt>(T value) => value;
+  T genericSamples<T extends Int16List>(T value) => value;
+  Future<BigInt> laterInteger(Future<BigInt> value) => value;
+  BigInt applyInteger(BigInt Function(BigInt) callback) => callback(integer);
+  Future<Int16List> applyLaterSamples(Future<Int16List> Function() callback) =>
+      callback();
+  Object? identity(Object? value) => value;
+  Int8List int8(Int8List value) => value;
+  Uint8ClampedList clamped(Uint8ClampedList value) => value;
+  Int16List int16(Int16List value) => value;
+  Uint16List uint16(Uint16List value) => value;
+  Int32List int32(Int32List value) => value;
+  Uint32List uint32(Uint32List value) => value;
+  Int64List int64(Int64List value) => value;
+  Uint64List uint64(Uint64List value) => value;
+  Float32List float32(Float32List value) => value;
+  Float64List float64(Float64List value) => value;
+  ByteData byteData(ByteData value) => value;
+  ByteBuffer byteBuffer(ByteBuffer value) => value;
+  List<Int16List?> nullableSamples(List<Int16List?> values) => values;
+
+  void fail() => Error.throwWithStackTrace(failure, failureStack);
+  Future<void> failLater() => Future<void>.error(failure, failureStack);
+  bool checkFailure(Object error, StackTrace stack) =>
+      identical(error, failure) && identical(stack, failureStack);
+  Future<bool> recover(Future<void> value) async {
+    try {
+      await value;
+    } catch (error, stack) {
+      return checkFailure(error, stack);
+    }
+    return false;
+  }
+
+  bool recoverCallback(void Function() callback) {
+    try {
+      callback();
+    } catch (error, stack) {
+      return checkFailure(error, stack);
+    }
+    return false;
+  }
 }
 
 typedef CodegenOnChanged = void Function(int value);

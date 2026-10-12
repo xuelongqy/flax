@@ -97,6 +97,14 @@ class FlaxTestRuntimeTracker implements FlaxJsRuntime {
       inner.readUint8Array(unwrap(value) as FlaxJsObject);
 
   @override
+  FlaxJsObject createSharedBuffer(Object data) =>
+      wrap(inner.createSharedBuffer(data), 'shared-buffer') as FlaxJsObject;
+
+  @override
+  Object readSharedBuffer(FlaxJsObject value, FlaxBufferType type) =>
+      inner.readSharedBuffer(unwrap(value) as FlaxJsObject, type);
+
+  @override
   void registerHostFunction(String name, FlaxJsHostFunction callback) {
     inner.registerHostFunction(name, (receiver, args) {
       if (args.isNotEmpty && args.first is FlaxJsString) {

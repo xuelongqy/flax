@@ -2983,6 +2983,11 @@ const flutterBindings = FlaxBindingModule(
       [
         FlaxGetter("year", FlaxTypeRef("int"), _DateTime_year),
         FlaxGetter("isUtc", FlaxTypeRef("bool"), _DateTime_isUtc),
+        FlaxGetter(
+          "millisecondsSinceEpoch",
+          FlaxTypeRef("int"),
+          _DateTime_millisecondsSinceEpoch,
+        ),
       ],
       {
         "toIso8601String": FlaxInstanceMethod(
@@ -2992,6 +2997,7 @@ const flutterBindings = FlaxBindingModule(
           startsRoute: false,
         ),
       },
+      nativeInput: "DateTime",
       constructors: {
         "fromMillisecondsSinceEpoch": [
           FlaxParameter(
@@ -3024,7 +3030,15 @@ const flutterBindings = FlaxBindingModule(
         FlaxGetter("scheme", FlaxTypeRef("String"), _Uri_scheme),
         FlaxGetter("host", FlaxTypeRef("String"), _Uri_host),
       ],
-      {},
+      {
+        "toString": FlaxInstanceMethod(
+          [],
+          FlaxTypeRef("String"),
+          _Uri_toString,
+          startsRoute: false,
+        ),
+      },
+      nativeInput: "Uri",
       constructors: {},
       create: _createUri,
       disposeMethod: null,
@@ -11125,6 +11139,7 @@ const flutterBindings = FlaxBindingModule(
       "flax.core/flutter#type:Pattern",
       [],
       {},
+      nativeInput: "Pattern",
       constructors: {},
       create: _createPattern,
       disposeMethod: null,
@@ -11136,8 +11151,34 @@ const flutterBindings = FlaxBindingModule(
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:RegExp",
-      [],
-      {},
+      [
+        FlaxGetter("pattern", FlaxTypeRef("String"), _RegExp_pattern),
+        FlaxGetter("isMultiLine", FlaxTypeRef("bool"), _RegExp_isMultiLine),
+        FlaxGetter(
+          "isCaseSensitive",
+          FlaxTypeRef("bool"),
+          _RegExp_isCaseSensitive,
+        ),
+        FlaxGetter("isUnicode", FlaxTypeRef("bool"), _RegExp_isUnicode),
+        FlaxGetter("isDotAll", FlaxTypeRef("bool"), _RegExp_isDotAll),
+      ],
+      {
+        "hasMatch": FlaxInstanceMethod(
+          [
+            FlaxParameter(
+              "input",
+              FlaxTypeRef("String"),
+              required: true,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+          ],
+          FlaxTypeRef("bool"),
+          _RegExp_hasMatch,
+          startsRoute: false,
+        ),
+      },
+      nativeInput: "RegExp",
       constructors: {
         "": [
           FlaxParameter(
@@ -13276,6 +13317,7 @@ const flutterBindings = FlaxBindingModule(
   uiProtocol: 24,
   requiredCapabilities: const <String>[
     "instance-checks",
+    "native-core-inputs",
     "native-widget-proxies",
   ],
   stateVariants: [],
@@ -13945,6 +13987,8 @@ Object _createDuration(String ctor, Map<String, Object?> values) {
 bool _isDateTime(Object value) => value is api1.DateTime;
 Object? _DateTime_year(Object value) => (value as api1.DateTime).year;
 Object? _DateTime_isUtc(Object value) => (value as api1.DateTime).isUtc;
+Object? _DateTime_millisecondsSinceEpoch(Object value) =>
+    (value as api1.DateTime).millisecondsSinceEpoch;
 Object? _DateTime_toIso8601String(
   Object receiver,
   Map<String, Object?> values,
@@ -13973,6 +14017,10 @@ Object? _Uri_parse(Map<String, Object?> values) {
     values["start"] as int,
     values["end"] as int?,
   );
+}
+
+Object? _Uri_toString(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.Uri).toString();
 }
 
 Object _createUri(String ctor, Map<String, Object?> values) =>
@@ -17061,6 +17109,16 @@ bool _isPattern(Object value) => value is api1.Pattern;
 Object _createPattern(String ctor, Map<String, Object?> values) =>
     throw ArgumentError('Abstract object has no constructor');
 bool _isRegExp(Object value) => value is api1.RegExp;
+Object? _RegExp_pattern(Object value) => (value as api1.RegExp).pattern;
+Object? _RegExp_isMultiLine(Object value) => (value as api1.RegExp).isMultiLine;
+Object? _RegExp_isCaseSensitive(Object value) =>
+    (value as api1.RegExp).isCaseSensitive;
+Object? _RegExp_isUnicode(Object value) => (value as api1.RegExp).isUnicode;
+Object? _RegExp_isDotAll(Object value) => (value as api1.RegExp).isDotAll;
+Object? _RegExp_hasMatch(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.RegExp).hasMatch(values["input"] as String);
+}
+
 Object _createRegExp(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":

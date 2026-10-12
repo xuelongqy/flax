@@ -146,10 +146,58 @@ class _Session {
           ? _streamReferences[receiver]?.context ?? context
           : context ??
                 (category == 'object' ? _objects[receiver]?.context : null);
-      return origin == null
-          ? invoke(receiver, args.sublist(2))
-          : origin.run(() => invoke(receiver, args.sublist(2)));
+      return bindingCall(
+        () => origin == null
+            ? invoke(receiver, args.sublist(2))
+            : origin.run(() => invoke(receiver, args.sublist(2))),
+      );
     });
+  }
+
+  FlaxJsValue bindingCall(FlaxJsValue Function() invoke) {
+    try {
+      return invoke();
+    } catch (error, stack) {
+      final exception = exceptionResult(error, stack);
+      try {
+        return holdHostResult(helper('failedCall').call([exception]));
+      } finally {
+        _releaseJs(exception);
+      }
+    }
+  }
+
+  _DartErrorReference? originalDartError(FlaxJsValue value) {
+    if (value is! FlaxJsObject) return null;
+    final id = helper('tryObjectHandle').call([value]);
+    final error = id is FlaxJsNumber ? _dartErrors[id.value.toInt()] : null;
+    return error != null && !error.released ? error : null;
+  }
+
+  void throwCallFailure(FlaxJsValue value) {
+    if (value is! FlaxJsObject) return;
+    final failure = helper('callFailure').call([value]);
+    if (failure is! FlaxJsObject) return;
+    try {
+      _DartErrorReference? original;
+      try {
+        original = _property(failure, 'error', originalDartError);
+      } catch (_) {
+        // Even an unbridgeable rejection retains its safe text diagnostics.
+      }
+      if (original != null) {
+        Error.throwWithStackTrace(original.error, original.stack);
+      }
+      final message = _textProperty(failure, 'message');
+      final stack = _property(
+        failure,
+        'stack',
+        (v) => v is FlaxJsString ? v.value : '',
+      );
+      throw FlaxJsException(message, jsStack: stack);
+    } finally {
+      failure.release();
+    }
   }
 
   final _hostInstallations = <_HostInstallation>[];
@@ -462,9 +510,14 @@ class _Session {
       }
       return _Value(null);
     }
-    if (type.kind == 'Uint8List') {
-      if (value is! FlaxJsObject) throw ArgumentError('Expected a Uint8Array');
-      return _Value(runtime.readUint8Array(value));
+    if (FlaxBufferType.byDartName[type.kind] case final bufferType?) {
+      if (value is! FlaxJsObject) {
+        throw ArgumentError('Expected native ${type.kind} data');
+      }
+      return _Value(runtime.readSharedBuffer(value, bufferType));
+    }
+    if (type.kind == 'BigInt' && value is FlaxJsBigInt) {
+      return _Value(value.value);
     }
     if (type.kind == 'context') {
       final handle = helper('contextHandle')
@@ -595,6 +648,11 @@ class _Session {
     }
     if (type.kind == 'object') {
       final binding = registry._types[type.id];
+      if (binding is FlaxObjectBinding &&
+          binding.nativeInput == 'Uri' &&
+          value is FlaxJsString) {
+        return _Value(Uri.parse(value.value));
+      }
       final primitive = value is FlaxJsString
           ? value.value
           : value is FlaxJsBoolean
@@ -620,6 +678,53 @@ class _Session {
           knownHandle: handle.value.toInt(),
         );
       } else {
+        if (binding is FlaxObjectBinding) {
+          if (binding.nativeInput == 'DateTime') {
+            final milliseconds = helper('nativeDateMilliseconds').call([value]);
+            return _Value(
+              DateTime.fromMillisecondsSinceEpoch(
+                (milliseconds as FlaxJsNumber).value.toInt(),
+              ),
+            );
+          }
+          if (binding.nativeInput == 'Uri') {
+            final text = helper('nativeUriText').call([value]);
+            return _Value(Uri.parse((text as FlaxJsString).value));
+          }
+          if (binding.nativeInput == 'RegExp' ||
+              binding.nativeInput == 'Pattern') {
+            final result = helper('nativeRegExp').call([value]) as FlaxJsObject;
+            try {
+              return _Value(
+                RegExp(
+                  _textProperty(result, '0'),
+                  multiLine: _property(
+                    result,
+                    '1',
+                    (v) => (v as FlaxJsBoolean).value,
+                  ),
+                  caseSensitive: _property(
+                    result,
+                    '2',
+                    (v) => (v as FlaxJsBoolean).value,
+                  ),
+                  unicode: _property(
+                    result,
+                    '3',
+                    (v) => (v as FlaxJsBoolean).value,
+                  ),
+                  dotAll: _property(
+                    result,
+                    '4',
+                    (v) => (v as FlaxJsBoolean).value,
+                  ),
+                ),
+              );
+            } finally {
+              result.release();
+            }
+          }
+        }
         if (type.deferredFactories.isEmpty) {
           throw ArgumentError('Expected a Dart object reference');
         }

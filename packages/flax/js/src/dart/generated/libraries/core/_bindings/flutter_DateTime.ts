@@ -6,9 +6,10 @@ import { construct, constructProxy, constructObject, constructDeferredObject, co
 export interface DateTime extends Readonly<{ "__flaxBound:dart:core::DateTime": readonly [] }>, Readonly<{ "__flaxBound:dart:core::Comparable": readonly [DateTime] }> { readonly __DateTime: unique symbol;
 readonly year: number;
 readonly isUtc: boolean;
+readonly millisecondsSinceEpoch: number;
 toIso8601String(): string;
 }
-defineObject("flax.core/flutter#type:DateTime", ["year","isUtc"], [], _flaxBindingMethods("flax.core/flutter#type:DateTime", "object", {"toIso8601String":_flaxMemberParameters0}), []);
+defineObject("flax.core/flutter#type:DateTime", ["year","isUtc","millisecondsSinceEpoch"], [], _flaxBindingMethods("flax.core/flutter#type:DateTime", "object", {"toIso8601String":_flaxMemberParameters0}), []);
 namespace _DateTimeFactory {
 export function fromMillisecondsSinceEpoch(millisecondsSinceEpoch: number, options: { isUtc?: boolean | undefined } = {}): DateTime {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');

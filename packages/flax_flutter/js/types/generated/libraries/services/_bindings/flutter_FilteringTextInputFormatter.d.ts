@@ -1,4 +1,4 @@
-import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartInput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/services/_bindings/flutter_TextInputFormatter';
 import '@flax/flutter/services/_bindings/flutter_TextInputFormatter';
 import '@flax/dart/core/_bindings/flutter_Pattern';
@@ -7,23 +7,23 @@ export interface FilteringTextInputFormatter extends upstream0.TextInputFormatte
 }> {
     readonly __FilteringTextInputFormatter: unique symbol;
 }
-declare function _FilteringTextInputFormatterFactory(filterPattern: Readonly<{
+declare function _FilteringTextInputFormatterFactory(filterPattern: DartInput<Readonly<{
     "__flaxBound:dart:core::Pattern": readonly [];
-}> | string, options: {
+}>> | string, options: {
     allow: boolean;
     replacementString?: string | undefined;
 }): FilteringTextInputFormatter;
 declare namespace _FilteringTextInputFormatterFactory {
-    function allow(filterPattern: Readonly<{
+    function allow(filterPattern: DartInput<Readonly<{
         "__flaxBound:dart:core::Pattern": readonly [];
-    }> | string, options?: {
+    }>> | string, options?: {
         replacementString?: string | undefined;
     }): FilteringTextInputFormatter;
 }
 declare namespace _FilteringTextInputFormatterFactory {
-    function deny(filterPattern: Readonly<{
+    function deny(filterPattern: DartInput<Readonly<{
         "__flaxBound:dart:core::Pattern": readonly [];
-    }> | string, options?: {
+    }>> | string, options?: {
         replacementString?: string | undefined;
     }): FilteringTextInputFormatter;
 }

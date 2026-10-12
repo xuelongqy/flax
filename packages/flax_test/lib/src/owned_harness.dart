@@ -40,6 +40,7 @@ class FlaxOwnedTestHarness {
                     },
                     disposeMethod: type.disposeMethod,
                     matches: type.matches,
+                    nativeInput: type.nativeInput,
                     methods: type.methods,
                     staticGetters: type.staticGetters,
                     listenerPairs: type.listenerPairs,

@@ -397,6 +397,7 @@ mixin _JsInvocation {
       }
       if (value == null) return (false, null);
       try {
+        if (member == null) session.throwCallFailure(value);
         if (scope == _CallbackScope.ui && signature.result.kind == 'route') {
           return (true, _routeResult(signature, value));
         }

@@ -1,6 +1,8 @@
 import { computed, signal, type Binding, type ReadonlySignal } from './index.js';
 import { ReferenceCache } from './references.js';
 
+const nativeApply = Reflect.apply;
+
 /** Experimental generated-binding extension. Independent of the native C ABI. */
 export const bindingVersion = 24;
 
@@ -22,6 +24,21 @@ declare const dartCollectionKind: unique symbol;
 declare const dartCollectionItem: unique symbol;
 declare const dartCollectionKey: unique symbol;
 declare const dartRecordKind: unique symbol;
+
+type NativeBuffer =
+  | globalThis.ArrayBuffer
+  | globalThis.DataView
+  | globalThis.Int8Array
+  | globalThis.Uint8Array
+  | globalThis.Uint8ClampedArray
+  | globalThis.Int16Array
+  | globalThis.Uint16Array
+  | globalThis.Int32Array
+  | globalThis.Uint32Array
+  | globalThis.BigInt64Array
+  | globalThis.BigUint64Array
+  | globalThis.Float32Array
+  | globalThis.Float64Array;
 
 /** A Dart Record projection retains its identity when passed through Object?. */
 export type DartRecord<T extends object> = T & { readonly [dartRecordKind]: true };
@@ -55,7 +72,7 @@ export type DartOutput<T> = T extends object
       | { readonly [dartCollectionKind]: string }
       | { readonly [dartRecordKind]: true }
       | FlaxStreamReference<unknown>
-      | globalThis.Uint8Array
+      | NativeBuffer
       | ((...args: never[]) => unknown)
     ? T
     : T extends ReadonlyArray<infer V>
@@ -88,39 +105,60 @@ type DartCallbackInput<A extends readonly unknown[], R> = (
 type DartElementInput<T> = T extends (...args: infer A) => infer R
   ? DartCallbackInput<A, R>
   : DartInput<T>;
+// A generated subtype has its own symbol brand and must not accept a base SDK value.
+type DartNativeInput<T, Brand extends string, Native> =
+  Exclude<
+    Extract<keyof T, `__${string}`>,
+    Brand | `__flaxBound:${string}`
+  > extends never
+    ? T | Native
+    : T;
+type DartCoreInput<T> = T extends {
+  readonly '__flaxBound:dart:core::DateTime': readonly [];
+}
+  ? DartNativeInput<T, '__DateTime', globalThis.Date>
+  : T extends { readonly '__flaxBound:dart:core::Uri': readonly [] }
+    ? DartNativeInput<T, '__Uri', import('../host/url.js').URL | string>
+    : T extends { readonly '__flaxBound:dart:core::RegExp': readonly [] }
+      ? DartNativeInput<T, '__RegExp' | '__Pattern', globalThis.RegExp>
+      : T extends { readonly '__flaxBound:dart:core::Pattern': readonly [] }
+        ? DartNativeInput<T, '__Pattern', globalThis.RegExp | string>
+        : T;
 export type DartInput<T> = T extends Widget
   ? never
-  : T extends (...args: infer A) => infer R
-    ? DartCallbackInput<A, R>
-    : T extends Promise<unknown>
-      ? never
-      : T extends { readonly [dartRecordKind]: true }
-        ? {
-            [K in keyof T as K extends typeof dartRecordKind ? never : K]:
-              T[K] | DartInput<T[K]>;
-          }
-        : T extends {
-              readonly [dartCollectionKind]: 'list';
-              readonly [dartCollectionItem]: infer V;
+  : T extends NativeBuffer
+    ? T
+    : T extends (...args: infer A) => infer R
+      ? DartCallbackInput<A, R>
+      : T extends Promise<unknown>
+        ? never
+        : T extends { readonly [dartRecordKind]: true }
+          ? {
+              [K in keyof T as K extends typeof dartRecordKind ? never : K]:
+                T[K] | DartInput<T[K]>;
             }
-          ? DartListInput<V>
           : T extends {
-                readonly [dartCollectionKind]: 'map';
-                readonly [dartCollectionKey]: infer K;
+                readonly [dartCollectionKind]: 'list';
                 readonly [dartCollectionItem]: infer V;
               }
-            ? DartMapInput<K, V>
+            ? DartListInput<V>
             : T extends {
-                  readonly [dartCollectionKind]: 'set';
+                  readonly [dartCollectionKind]: 'map';
+                  readonly [dartCollectionKey]: infer K;
                   readonly [dartCollectionItem]: infer V;
                 }
-              ? DartSetInput<V>
+              ? DartMapInput<K, V>
               : T extends {
-                    readonly [dartCollectionKind]: 'iterable';
+                    readonly [dartCollectionKind]: 'set';
                     readonly [dartCollectionItem]: infer V;
                   }
-                ? DartIterableInput<V>
-                : T;
+                ? DartSetInput<V>
+                : T extends {
+                      readonly [dartCollectionKind]: 'iterable';
+                      readonly [dartCollectionItem]: infer V;
+                    }
+                  ? DartIterableInput<V>
+                  : DartCoreInput<T>;
 
 /** References to real Dart collections. Explicit copying never installs observers. */
 export interface DartIterable<T> extends Iterable<DartCopy<T>> {
@@ -618,6 +656,19 @@ function errorDetails(
   return rejectionDetails(value);
 }
 
+const callFailures = new WeakMap<object, unknown>();
+const NativeError = Error;
+function failedCall(error: unknown): object {
+  const failure = Object.freeze({ error, ...rejectionDetails(error) });
+  callFailures.set(failure, error);
+  return failure;
+}
+function unwrapCall<T>(value: T): T {
+  if (value !== null && typeof value === 'object' && callFailures.has(value))
+    throw callFailures.get(value);
+  return value;
+}
+
 function reportCleanupError(error: unknown): void {
   const host = globalThis as typeof globalThis & {
     __flaxAsyncError?: (error: string) => void;
@@ -657,7 +708,11 @@ function settlePromise(
     bindingVersion,
     id,
     false,
-    rejection!.message,
+    value !== null &&
+      typeof value === 'object' &&
+      objectHandles.get(value)?.type === 'flax:dart-error'
+      ? value
+      : rejection!.message,
     rejection!.stack,
   );
 }
@@ -706,7 +761,7 @@ const stateTypes = new Map<
   { fields: readonly string[]; methods: Readonly<Record<string, StateMethod>> }
 >();
 const stateHandles = new WeakMap<object, { type: string; id: number }>();
-type FutureSettlement = { resolve(value: unknown): void; reject(error: Error): void };
+type FutureSettlement = { resolve(value: unknown): void; reject(error: unknown): void };
 const futures = new Map<number, WeakRef<FutureSettlement>>();
 const futureOwners = new WeakMap<object, FutureSettlement>();
 const futureFinalizer = new FinalizationRegistry<number>((id) => futures.delete(id));
@@ -838,7 +893,7 @@ function invokeOperation(
     );
     operationIds.set(key, slot);
   }
-  return host.__flaxInvokeOperation(slot, id, ...args);
+  return unwrapCall(host.__flaxInvokeOperation(slot, id, ...args));
 }
 
 type ObjectHost = typeof globalThis & {
@@ -969,7 +1024,7 @@ function asyncIterableNext(id: number): Promise<readonly unknown[]> {
       const factory = record.source[Symbol.asyncIterator];
       if (typeof factory !== 'function')
         throw new TypeError('Expected an AsyncIterable');
-      const iterator = Reflect.apply(factory, record.source, []);
+      const iterator = nativeApply(factory, record.source, []);
       if (iterator === null || typeof iterator !== 'object')
         throw new TypeError('Invalid AsyncIterator');
       record.iterator = iterator;
@@ -1016,7 +1071,7 @@ function asyncIterableReturn(id: number): Promise<void> {
   const close = record.iterator.return;
   if (typeof close !== 'function') return Promise.resolve();
   try {
-    return Promise.resolve(Reflect.apply(close, record.iterator, [])).then(() => {});
+    return Promise.resolve(nativeApply(close, record.iterator, [])).then(() => {});
   } catch (error) {
     return Promise.reject(error);
   }
@@ -1046,7 +1101,7 @@ export function constructStream(
   ) as DartValue;
   const create = (globalThis as StreamHost).__flaxCreateStream;
   if (!create) throw new Error('Dart Streams require a Flax host');
-  return create(bindingVersion, type, descriptor);
+  return unwrapCall(create(bindingVersion, type, descriptor));
 }
 
 function callStream(
@@ -1172,7 +1227,7 @@ export function constructObject(
   ) as DartValue;
   const create = (globalThis as ObjectHost).__flaxCreateObject;
   if (!create) throw new Error('Dart objects require a Flax host');
-  return create(bindingVersion, type, descriptor);
+  return unwrapCall(create(bindingVersion, type, descriptor));
 }
 
 /** Records a generic factory call until a concrete Dart parameter supplies T. */
@@ -1307,11 +1362,13 @@ export function constructProxy(
   const descriptor = proxyDescriptor(definition, args);
   const create = (globalThis as ObjectHost).__flaxCreateObject;
   if (!create) throw new Error('Dart proxies require a Flax host');
-  return create(bindingVersion, definition.type, {
-    ...descriptor,
-    receiver: implementation,
-    layout: proxyLayout(definition),
-  });
+  return unwrapCall(
+    create(bindingVersion, definition.type, {
+      ...descriptor,
+      receiver: implementation,
+      layout: proxyLayout(definition),
+    }),
+  );
 }
 
 function proxyDescriptor(
@@ -1372,7 +1429,7 @@ export function widgetProxyFactory<
     if (new.target) return Reflect.construct(native, args, new.target);
     if (typeof factory !== 'function')
       throw new TypeError('This Widget has only named constructors');
-    return Reflect.apply(factory, undefined, args);
+    return nativeApply(factory, undefined, args);
   };
   callable.prototype = native.prototype;
   Object.setPrototypeOf(callable, factory);
@@ -1570,12 +1627,14 @@ export function constructExtendedProxy(
   if (!create) throw new Error('Dart proxies require a Flax host');
   constructingExtendedProxies.add(receiver);
   try {
-    const created = create(bindingVersion, definition.type, {
-      ...descriptor,
-      receiver,
-      layout: proxyLayout(definition),
-      ...(widgetType === undefined ? {} : { widgetType }),
-    });
+    const created = unwrapCall(
+      create(bindingVersion, definition.type, {
+        ...descriptor,
+        receiver,
+        layout: proxyLayout(definition),
+        ...(widgetType === undefined ? {} : { widgetType }),
+      }),
+    );
     const ref = objectHandles.get(created);
     if (!ref || !ref.alive || ref.type !== definition.type)
       throw new TypeError('Invalid Dart proxy result');
@@ -1770,10 +1829,91 @@ const typedArrayTag = Object.getOwnPropertyDescriptor(
   Object.getPrototypeOf(Uint8Array.prototype),
   Symbol.toStringTag,
 )!.get!;
+const dateGetTime = Date.prototype.getTime;
+const regExpPrototype = RegExp.prototype;
+const regExpSource = Object.getOwnPropertyDescriptor(regExpPrototype, 'source')!.get!;
+const regExpFlags = Object.fromEntries(
+  [
+    'ignoreCase',
+    'multiline',
+    'dotAll',
+    'unicode',
+    'global',
+    'sticky',
+    'hasIndices',
+    'unicodeSets',
+  ].map((name) => [name, Object.getOwnPropertyDescriptor(regExpPrototype, name)?.get]),
+);
+const bufferDartTypes: Readonly<Record<string, string>> = Object.freeze({
+  Int8Array: 'Int8List',
+  Uint8Array: 'Uint8List',
+  Uint8ClampedArray: 'Uint8ClampedList',
+  Int16Array: 'Int16List',
+  Uint16Array: 'Uint16List',
+  Int32Array: 'Int32List',
+  Uint32Array: 'Uint32List',
+  BigInt64Array: 'Int64List',
+  BigUint64Array: 'Uint64List',
+  Float32Array: 'Float32List',
+  Float64Array: 'Float64List',
+});
+const arrayBufferLength = Object.getOwnPropertyDescriptor(
+  ArrayBuffer.prototype,
+  'byteLength',
+)!.get!;
+const dataViewBuffer = Object.getOwnPropertyDescriptor(
+  DataView.prototype,
+  'buffer',
+)!.get!;
+const nativeURL = (globalThis as { URL?: { prototype: object } }).URL;
+const urlHref =
+  nativeURL && Object.getOwnPropertyDescriptor(nativeURL.prototype, 'href')?.get;
 // One synchronous helper boundary per realm; no browser, Node, or module loader.
 Object.assign(globalThis, {
   __flaxBindings: Object.freeze({
     version: bindingVersion,
+    nativeDateMilliseconds(value: object): number {
+      let milliseconds: number;
+      try {
+        milliseconds = nativeApply(dateGetTime, value, []) as number;
+      } catch {
+        throw new TypeError('Expected a JS Date');
+      }
+      if (!Number.isFinite(milliseconds)) throw new TypeError('Invalid JS Date');
+      return milliseconds;
+    },
+    nativeUriText(value: object): string {
+      // Session host globals are installed before application modules execute.
+      if (!urlHref) throw new TypeError('Expected a JS URL or URI string');
+      try {
+        return nativeApply(urlHref!, value, []) as string;
+      } catch {
+        throw new TypeError('Expected a JS URL or URI string');
+      }
+    },
+    nativeRegExp(value: object): readonly [string, boolean, boolean, boolean, boolean] {
+      let source: string;
+      try {
+        source = nativeApply(regExpSource, value, []) as string;
+        // RegExp.prototype itself has no compiled regular expression.
+        if (value === regExpPrototype) throw new TypeError();
+      } catch {
+        throw new TypeError('Expected a JS RegExp');
+      }
+      const flag = (name: string): boolean => {
+        const getter = regExpFlags[name];
+        return getter !== undefined && nativeApply(getter, value, []) === true;
+      };
+      if (['global', 'sticky', 'hasIndices', 'unicodeSets'].some(flag))
+        throw new TypeError('Dart RegExp supports only i, m, s and u flags');
+      return [
+        source,
+        flag('multiline'),
+        !flag('ignoreCase'),
+        flag('unicode'),
+        flag('dotAll'),
+      ];
+    },
     invokeCallback(
       callback: (...args: unknown[]) => unknown,
       positionalCount: number,
@@ -1781,13 +1921,23 @@ Object.assign(globalThis, {
     ): unknown {
       const positional = values.slice(0, positionalCount);
       const namedCount = values[positionalCount] as number;
-      if (namedCount === 0) return Reflect.apply(callback, undefined, positional);
+      if (namedCount === 0) {
+        try {
+          return nativeApply(callback, undefined, positional);
+        } catch (error) {
+          return failedCall(error);
+        }
+      }
       const options: Record<string, unknown> = {};
       for (let i = 0; i < namedCount; i++) {
         options[values[positionalCount + 1 + i * 2] as string] =
           values[positionalCount + 2 + i * 2];
       }
-      return Reflect.apply(callback, undefined, [...positional, options]);
+      try {
+        return nativeApply(callback, undefined, [...positional, options]);
+      } catch (error) {
+        return failedCall(error);
+      }
     },
     callbackOptions(...entries: unknown[]): object {
       const options: Record<string, unknown> = {};
@@ -1810,7 +1960,7 @@ Object.assign(globalThis, {
       id: number,
     ): { state: object; variant: string | null } | { native: number } {
       const value = synchronous(
-        Reflect.apply((widget as { createState: Function }).createState, widget, []),
+        nativeApply((widget as { createState: Function }).createState, widget, []),
       );
       return finishComponentState(value, widget, id);
     },
@@ -1855,7 +2005,7 @@ Object.assign(globalThis, {
       const fn = (value as Record<string, unknown>)[method];
       if (typeof fn !== 'function')
         throw new TypeError(`Missing component method: ${method}`);
-      return synchronous(Reflect.apply(fn, value, args));
+      return synchronous(nativeApply(fn, value, args));
     },
     invokeSynchronous(fn: () => unknown): unknown {
       return synchronous(fn());
@@ -2028,10 +2178,14 @@ Object.assign(globalThis, {
     asyncIterableReturn,
     cancelAsyncIterables,
     errorDetails,
+    failedCall,
+    callFailure(value: object): object | null {
+      return callFailures.has(value) ? value : null;
+    },
     dartError(id: number, message: string, stack: string | null): Error {
       const cached = cachedObject('flax:dart-error', id);
       if (cached) return cached as Error;
-      const value = new Error(message);
+      const value = new NativeError(message);
       if (stack !== null) {
         try {
           value.stack = stack;
@@ -2122,14 +2276,16 @@ Object.assign(globalThis, {
             }
           }
         }
-        return call(
-          bindingVersion,
-          type,
-          id,
-          positionalValues.length,
-          ...positionalValues,
-          namedValues.length / 2,
-          ...namedValues,
+        return unwrapCall(
+          call(
+            bindingVersion,
+            type,
+            id,
+            positionalValues.length,
+            ...positionalValues,
+            namedValues.length / 2,
+            ...namedValues,
+          ),
         );
       };
       Object.defineProperty(value, 'kind', { value: 'dart-function' });
@@ -2151,10 +2307,22 @@ Object.assign(globalThis, {
     },
     enumValue,
     valueType(value: object): string | null {
-      return (
-        enumIdentities.get(value)?.type ??
-        (Reflect.apply(typedArrayTag, value, []) === 'Uint8Array' ? 'Uint8List' : null)
-      );
+      const enumeration = enumIdentities.get(value)?.type;
+      if (enumeration) return enumeration;
+      const tag = nativeApply(typedArrayTag, value, []) as string | undefined;
+      if (tag && Object.hasOwn(bufferDartTypes, tag)) return bufferDartTypes[tag]!;
+      try {
+        nativeApply(dataViewBuffer, value, []);
+        return 'ByteData';
+      } catch {
+        /* Not a DataView. */
+      }
+      try {
+        nativeApply(arrayBufferLength, value, []);
+        return 'ByteBuffer';
+      } catch {
+        return null;
+      }
     },
     enumType(value: object): string | null {
       return enumIdentities.get(value)?.type ?? null;
@@ -2191,7 +2359,7 @@ Object.assign(globalThis, {
       if (!pending) return;
       futures.delete(id);
       if (success) pending.resolve(value);
-      else pending.reject(new Error(String(value)));
+      else pending.reject(value);
     },
     observePromise(id: number, value: unknown): void {
       if (
@@ -2220,7 +2388,7 @@ Object.assign(globalThis, {
       promiseFinalizer.register(record, id);
       const assimilated = Promise.resolve({
         then(resolve: (result: unknown) => void, reject: (reason: unknown) => void) {
-          Reflect.apply(then as Function, value, [resolve, reject]);
+          nativeApply(then as Function, value, [resolve, reject]);
         },
       });
       void assimilated

@@ -28,6 +28,52 @@ final class FlaxJsString extends FlaxJsValue {
   final String value;
 }
 
+final class FlaxJsBigInt extends FlaxJsValue {
+  const FlaxJsBigInt(this.value);
+  final BigInt value;
+}
+
+/// Native view kinds. Indices match the checked engine binding extension.
+enum FlaxBufferType {
+  byteBuffer('ByteBuffer'),
+  int8('Int8List'),
+  uint8('Uint8List'),
+  uint8Clamped('Uint8ClampedList'),
+  int16('Int16List'),
+  uint16('Uint16List'),
+  int32('Int32List'),
+  uint32('Uint32List'),
+  int64('Int64List'),
+  uint64('Uint64List'),
+  float32('Float32List'),
+  float64('Float64List'),
+  byteData('ByteData');
+
+  const FlaxBufferType(this.dartName);
+  final String dartName;
+
+  static final Map<String, FlaxBufferType> byDartName = Map.unmodifiable({
+    for (final type in values) type.dartName: type,
+  });
+
+  static FlaxBufferType? of(Object? value) => switch (value) {
+    ByteBuffer() => byteBuffer,
+    Int8List() => int8,
+    Uint8List() => uint8,
+    Uint8ClampedList() => uint8Clamped,
+    Int16List() => int16,
+    Uint16List() => uint16,
+    Int32List() => int32,
+    Uint32List() => uint32,
+    Int64List() => int64,
+    Uint64List() => uint64,
+    Float32List() => float32,
+    Float64List() => float64,
+    ByteData() => byteData,
+    _ => null,
+  };
+}
+
 /// A reference into one runtime. Release owned references when no longer needed.
 /// Callback references are borrowed; retain them before storing them for later.
 abstract class FlaxJsObject extends FlaxJsValue {
@@ -70,6 +116,14 @@ abstract class FlaxJsRuntime {
   /// Shares the actual range of an attached Uint8Array. The returned Dart view
   /// keeps its bytes alive after JS transfer, GC, or runtime disposal.
   Uint8List readUint8Array(FlaxJsObject value);
+
+  /// Shares a writable primitive TypedData view or ByteBuffer as its native
+  /// TypedArray, DataView or ArrayBuffer. No payload copy is made.
+  FlaxJsObject createSharedBuffer(Object data);
+
+  /// Imports the exact native view kind. Retained Dart data survives transfer,
+  /// GC and runtime disposal. Shared, resizable and detached stores are rejected.
+  Object readSharedBuffer(FlaxJsObject value, FlaxBufferType type);
   void registerHostFunction(String name, FlaxJsHostFunction callback);
 
   /// Internal binding edge. JS reachability retains [target]; Dart reachability

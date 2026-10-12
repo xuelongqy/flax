@@ -423,8 +423,9 @@ String _decode(String encoded) {
   }
 }
 
-const _primitiveKinds = {
-  'Uint8List',
+final _primitiveKinds = {
+  ...flaxCodegenBufferTypes.keys,
+  'BigInt',
   'String',
   'bool',
   'int',

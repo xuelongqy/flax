@@ -62,6 +62,7 @@ class _PendingFuture {
   bool ready = false;
   Object? value;
   Object? error;
+  StackTrace? stack;
 }
 
 class _PendingPromise {
@@ -80,7 +81,7 @@ void _observeFuture(
   // JS only attaches .then() and keeps no Promise alias. A closed session must
   // not be retained by that listener; completed Futures retain no view metadata.
   final owner = WeakReference(session);
-  void complete(Object? value, Object? error) {
+  void complete(Object? value, Object? error, [StackTrace? stack]) {
     final session = owner.target;
     if (session == null ||
         !session.active ||
@@ -90,6 +91,7 @@ void _observeFuture(
     }
     pending.value = value;
     pending.error = error;
+    pending.stack = stack;
     pending.ready = true;
     session._readyFutures[id] = pending;
     session.checkpoint();
@@ -97,7 +99,7 @@ void _observeFuture(
 
   future.then<void>(
     (value) => complete(value, null),
-    onError: (Object error, StackTrace _) => complete(null, error),
+    onError: (Object error, StackTrace stack) => complete(null, error, stack),
   );
 }
 
@@ -146,6 +148,11 @@ extension _AsyncCalls on _Session {
       final pending = _promises.remove(id);
       if (pending == null) return const FlaxJsUndefined();
       if (!(args[2] as FlaxJsBoolean).value) {
+        final original = originalDartError(args[3]);
+        if (original != null) {
+          pending.completer.completeError(original.error, original.stack);
+          return const FlaxJsUndefined();
+        }
         if (args[3] is! FlaxJsString ||
             (args[4] is! FlaxJsString && args[4] is! FlaxJsNull)) {
           pending.completer.completeError(
@@ -324,17 +331,22 @@ extension _AsyncCalls on _Session {
                     () => memberResult(pending.value, pending.result),
                   );
           }
-        } catch (error) {
+        } catch (error, stack) {
           pending.error = error;
+          pending.stack = stack;
+        }
+        if (pending.error != null) {
+          result = exceptionResult(
+            pending.error!,
+            pending.stack ?? StackTrace.current,
+          );
         }
         try {
           _releaseJs(
             helper('settleFuture').call([
               FlaxJsNumber(entry.key.toDouble()),
               FlaxJsBoolean(pending.error == null),
-              pending.error == null
-                  ? result!
-                  : FlaxJsString(pending.error.toString()),
+              result!,
             ]),
           );
         } finally {

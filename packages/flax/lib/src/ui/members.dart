@@ -301,8 +301,11 @@ extension _MemberCalls on _Session {
       return errorResult(value!, StackTrace.current);
     }
     if (value == null && type.nullable) return const FlaxJsNull();
-    if (type.kind == 'Uint8List') {
-      return runtime.createUint8Array(value as Uint8List);
+    if (FlaxBufferType.byDartName[type.kind] case final bufferType?) {
+      if (FlaxBufferType.of(value) != bufferType) {
+        throw ArgumentError('Expected a ${type.kind} result');
+      }
+      return runtime.createSharedBuffer(value!);
     }
     if (type.kind == 'copy') return copyCollection(value!, type.item!);
     if (type.kind == 'any') {
@@ -514,6 +517,7 @@ extension _MemberCalls on _Session {
       return FlaxJsString(value);
     }
     if (type.kind == 'bool' && value is bool) return FlaxJsBoolean(value);
+    if (type.kind == 'BigInt' && value is BigInt) return FlaxJsBigInt(value);
     if ((type.kind == 'int' ||
             type.kind == 'double' ||
             type.kind == 'num' ||

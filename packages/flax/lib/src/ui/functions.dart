@@ -193,12 +193,14 @@ extension _FunctionCalls on _Session {
           values[i].escapeCallbacks();
           escapeWidget(values[i].data, valueTypes[i]);
         }
-        final result = signature.invoke(
-          function,
-          positionalValues,
-          namedValues,
-        );
-        return holdHostResult(memberResult(result, signature.result));
+        return bindingCall(() {
+          final result = signature.invoke(
+            function,
+            positionalValues,
+            namedValues,
+          );
+          return holdHostResult(memberResult(result, signature.result));
+        });
       } finally {
         for (final value in values.reversed) {
           value.release();

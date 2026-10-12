@@ -51,6 +51,37 @@ session rejection and Route/Page ownership boundaries are unchanged. See
 [representation binding](bindings.md#extension-type-representations) and its
 [real UI regression](../../packages/flax/test/ui/extensions_test.dart).
 
+## Native Date, URL and RegExp inputs
+
+Exact `dart:core` DateTime parameters accept real JS Date objects. The bridge reads the
+intrinsic millisecond timestamp and constructs a local Dart DateTime. Invalid dates and
+numeric or string timestamp guesses are rejected. Existing Dart DateTime references pass
+through unchanged, including UTC status and microsecond precision.
+
+Exact `dart:core` Uri parameters accept real base-host URL objects or strings. URL
+inputs use the intrinsic href getter; strings use Dart Uri.parse and may be relative.
+Objects that merely expose getTime or href, including prototype forgeries, are rejected.
+Each native input is a value snapshot; later JS mutations do not change the Dart value.
+
+Exact `dart:core` RegExp and Pattern parameters also accept real JS RegExp values. The
+bridge captures intrinsic source and flag getters. Only `i`, `m`, `s` and `u` are
+accepted; `g`, `y`, `d` and `v` are rejected instead of dropping behavior. lastIndex is
+not transferred. Pattern still accepts literal strings and existing Dart references.
+RegExp results remain Dart references; `pattern`, the four flag getters and `hasMatch`
+provide explicit inspection and matching.
+
+These rules use the shared decoder for constructors, methods, setters, nested collection
+and Record elements, Future inputs and callback returns. Results and callback arguments
+remain Dart references. DateTime.millisecondsSinceEpoch and Uri.toString provide
+explicit JS snapshot conversion; a relative Uri requires a base when constructing a JS
+URL. Converting a Dart DateTime to JS Date loses sub-millisecond precision and its
+UTC/local anchor. Ordinary Object/dynamic positions do not infer these SDK objects.
+Custom Dart subtypes and unrelated same-named declarations retain their own reference
+requirements.
+
+Generated modules using these SDK types require the additive `native-core-inputs`
+capability. UI protocol 24 and native ABI 2 remain unchanged.
+
 ## Collections
 
 JS arrays become generated `List<T>` instances. JS Maps become `Map<K,V>`; plain JS
@@ -124,9 +155,64 @@ and same-size transfer, then removes it on detach or collection.
 `FlaxJsRuntime.createUint8Array` and `readUint8Array` expose the same sharing contract.
 The existing `createArrayBuffer` / `readBytes` operations retain their explicit copying
 semantics for Blob/Fetch and other snapshot APIs. The internal binding engine table is
-version 2; native ABI 2, UI protocol 24 and Manifest 18 remain independent. Modules
-using Uint8List require the additive `shared-uint8` capability. Other TypedData types
-are not automatically projected by this implementation.
+version 3; native ABI 2, UI protocol 24 and Manifest 18 remain independent. Modules
+using Uint8List require the additive `shared-uint8` capability. Other supported binary
+types require `shared-buffers` and use this same storage lease:
+
+| Dart                        | JS                             |
+| --------------------------- | ------------------------------ |
+| Int8List / Uint8ClampedList | Int8Array / Uint8ClampedArray  |
+| Int16List / Uint16List      | Int16Array / Uint16Array       |
+| Int32List / Uint32List      | Int32Array / Uint32Array       |
+| Int64List / Uint64List      | BigInt64Array / BigUint64Array |
+| Float32List / Float64List   | Float32Array / Float64Array    |
+| ByteData / ByteBuffer       | DataView / ArrayBuffer         |
+
+Views reinterpret the same bytes without copying the payload. Exact view kinds, element
+widths and alignment are checked. Ranges and overlapping aliases remain shared;
+importing a JS-origin slice may normalize its Dart buffer offset to zero. ByteData and
+DataView retain their explicit endian operations. Int64/Uint64 sharing preserves bits:
+the native Dart VM reads an all-FF Uint64List element as `-1`, while BigUint64Array
+reads `18446744073709551615n`. SIMD types have no direct JS counterpart and do not
+receive automatic binary projection.
+
+`FlaxJsRuntime.createSharedBuffer` and `readSharedBuffer` cover these views. The
+existing Uint8 convenience methods delegate to the same implementation. Readonly access
+stays readonly through byte reinterpretation and is rejected before export.
+
+## BigInt and explicit Duration units
+
+Exact `dart:core` BigInt values map to primitive JS bigint in both directions, including
+Object/dynamic, nested values, callbacks and Future results. The native bridge uses an
+exact decimal UTF-16 payload and captured JS intrinsics; it never converts through
+double/Number. Modules using BigInt require `native-bigint`. Existing num/int behavior
+is unchanged. Shared 64-bit arrays do not convert their elements through this scalar
+protocol.
+
+Duration remains a Dart reference. Construct it with explicit `milliseconds`, `seconds`
+or other named units, then read the corresponding getters. A bare number does not imply
+a Duration unit. Symbol, Type and mutable builders retain their existing binding
+behavior instead of receiving an unrelated native JS projection.
+
+Native-value SDK classes (BigInt and the mapped binary types) do not acquire a second
+Dart object facade. Automatic selection omits these classes; explicit class selection
+fails before output. Use native JS constructors/APIs and bind Dart APIs that consume or
+return these values. Same-named application classes retain ordinary nominal binding.
+
+## Error references
+
+Generated Dart object/proxy and Stream constructor errors, synchronous member/function
+errors and rejected Dart Futures use JS Error values carrying the original Dart error
+and StackTrace references. Rethrowing these through a typed callback or rejecting a JS
+Promise with them restores those originals. Changing the JS Error's diagnostic stack
+text does not replace its Dart StackTrace. Different stack occurrences of one error use
+separate reference metadata. Normal results keep the existing path; failed synchronous
+calls alone allocate an error envelope, released through the normal host-result
+checkpoint.
+
+Unknown JS errors retain the existing FlaxJsException message/stack diagnostics. Typed
+custom Dart exception and StackTrace parameters still require nominal references;
+diagnostic text does not impersonate a Dart exception subtype or original stack.
 
 ## Returned functions and Widgets
 
@@ -265,6 +351,7 @@ use the declared generated conversion, including callbacks and Widget configurat
 holds. When a direct nested Future is part of the declared completion type, generated
 adapters rebuild the required Dart Future layers after JavaScript Promise assimilation;
 direct nested FutureOr completion recovers to its immediate value branch. Rejections
+restore original Dart errors when carrying bridge error references; other rejections
 become FlaxJsException with the available JS message and stack. Reading or converting a
 hostile rejection value cannot strand the Dart Future; Flax falls back to
 `Promise rejected` when no message can be obtained safely. A callback replacement or
@@ -502,7 +589,6 @@ until it reaches an exact selected parameter such as `WidgetStateProperty<Color?
 then invokes the generated concrete factory once and the wrapper retains that real Dart
 object. A later use with another concrete type is an error. Members cannot be called
 before materialization, and Object/dynamic positions do not provide enough information
-to materialize. The generator validates concrete type arguments against the complete
 bound, including parameterized supertypes, nullability, numeric subtypes and
 self-referential bounds. A self-referential bound is permitted here because the concrete
 use specializes it before validation. Multiple deferred wrappers may resolve to the same

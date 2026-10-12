@@ -132,7 +132,7 @@ function _flaxInstallBindingModule(
       throw new TypeError('requiredCapabilities must be sorted unique strings');
     }
     previous = capability;
-    if (capability !== 'instance-checks' && capability !== 'native-widget-proxies' && capability !== 'shared-uint8') {
+    if (capability !== 'instance-checks' && capability !== 'native-core-inputs' && capability !== 'native-bigint' && capability !== 'native-widget-proxies' && capability !== 'shared-buffers' && capability !== 'shared-uint8') {
       throw new TypeError(`Unsupported binding capability ${capability}`);
     }
   }
@@ -253,6 +253,17 @@ class FlaxCodegenBindingEmitter {
   final _owners = <String, FlaxCodegenModuleModel>{};
   final _classes = <String, FlaxCodegenClassModel>{};
   final _types = <String, FlaxCodegenNamedTypeModel>{};
+
+  String? _nativeObjectInput(FlaxCodegenClassModel? type) {
+    if (type == null ||
+        _owners[type.id]?.typeLibraries[type.name] != 'dart:core') {
+      return null;
+    }
+    return {'DateTime', 'Uri', 'RegExp', 'Pattern'}.contains(type.name)
+        ? type.name
+        : null;
+  }
+
   late final Set<String> _intrinsicStreamTypeIds;
   final _callbacks = <FlaxCodegenTypeRef, String>{};
   final _collections = <String, (FlaxCodegenTypeRef, String)>{};
@@ -643,7 +654,9 @@ class FlaxCodegenBindingEmitter {
       FlaxCodegenTypeCategory.typeOnly => throw StateError(
         'Type-only reference cannot cross the Dart bridge: ${type.name}',
       ),
-      FlaxCodegenTypeCategory.uint8List => _dartName('Uint8List'),
+      FlaxCodegenTypeCategory.uint8List ||
+      FlaxCodegenTypeCategory.buffer => _dartName(type.kind),
+      FlaxCodegenTypeCategory.bigInt => _dartName('BigInt'),
       FlaxCodegenTypeCategory.widget => _dartName(type.name ?? 'Widget'),
       FlaxCodegenTypeCategory.callback =>
         '${_dartDeclaredType(type.result!, generic: type.typeParameters.isNotEmpty)} Function${_dartGenerics(type.typeParameters)}(${_dartFunctionParameters(type.parameters, generic: type.typeParameters.isNotEmpty)})',
@@ -732,7 +745,9 @@ class FlaxCodegenBindingEmitter {
     final base = switch (type.category) {
       FlaxCodegenTypeCategory.parameter => type.name!,
       FlaxCodegenTypeCategory.typeOnly => _dartTypeOnlyDeclaration(type),
-      FlaxCodegenTypeCategory.uint8List => _dartName('Uint8List'),
+      FlaxCodegenTypeCategory.uint8List ||
+      FlaxCodegenTypeCategory.buffer => _dartName(type.kind),
+      FlaxCodegenTypeCategory.bigInt => _dartName('BigInt'),
       FlaxCodegenTypeCategory.widget => _dartName(type.name ?? 'Widget'),
       FlaxCodegenTypeCategory.callback =>
         '${_dartStaticType(type.result!)} Function${_dartStaticGenerics(type.typeParameters)}(${_dartStaticFunctionParameters(type.parameters)})',
@@ -2081,6 +2096,10 @@ import 'package:flax/bindings.dart';
           );
         }
         if (type.kind == 'object') {
+          final nativeInput = _nativeObjectInput(type);
+          if (nativeInput != null) {
+            out.write(', nativeInput: ${_quote(nativeInput)}');
+          }
           out.write(
             ', constructors: ${_constructors(type)}, create: _create${type.name}, disposeMethod: ${type.disposeMethod == null ? 'null' : _quote(type.disposeMethod!)}, listenerPairs: ${jsonEncode(_sortedStringMap(type.listenerPairs))}, supertypes: ${jsonEncode(type.supertypes)}, setters: [',
           );
@@ -4190,6 +4209,7 @@ T _genericCallbackResult<T>(Object? value) {
 
       if (input && !nominal && type.kind == 'object') {
         final owner = _classes[type.id];
+        final nativeInput = _nativeObjectInput(owner);
         final identity = owner?.superTypes
             .where(
               (parent) =>
@@ -4203,7 +4223,8 @@ T _genericCallbackResult<T>(Object? value) {
               : type.dartArguments;
           final marker =
               'Readonly<{ ${jsonEncode('__flaxBound:${identity.originatingUri}::${identity.originatingName}')}: readonly [${arguments.map((argument) => child(argument, asInput: false)).join(', ')}] }>';
-          return '$marker${type.primitiveKinds.map((kind) => kind == 'String'
+          final accepted = nativeInput == null ? marker : 'DartInput<$marker>';
+          return '$accepted${type.primitiveKinds.map((kind) => kind == 'String'
               ? ' | string'
               : kind == 'bool'
               ? ' | boolean'
@@ -4215,7 +4236,9 @@ T _genericCallbackResult<T>(Object? value) {
         FlaxCodegenTypeCategory.parameter => parameter(),
         FlaxCodegenTypeCategory.typeOnly =>
           'Readonly<{ ${jsonEncode('__flaxBound:${type.originatingUri}::${type.originatingName}')}: readonly [${type.tsArguments.map((t) => child(t)).join(', ')}] }>',
-        FlaxCodegenTypeCategory.uint8List => 'globalThis.Uint8Array',
+        FlaxCodegenTypeCategory.uint8List || FlaxCodegenTypeCategory.buffer =>
+          'globalThis.${flaxCodegenBufferTypes[type.kind]}',
+        FlaxCodegenTypeCategory.bigInt => 'bigint',
         FlaxCodegenTypeCategory.string => 'string',
         FlaxCodegenTypeCategory.boolean => 'boolean',
         FlaxCodegenTypeCategory.integer ||

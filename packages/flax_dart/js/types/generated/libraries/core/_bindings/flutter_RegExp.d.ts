@@ -5,6 +5,12 @@ export interface RegExp extends upstream0.Pattern, Readonly<{
     "__flaxBound:dart:core::RegExp": readonly [];
 }> {
     readonly __RegExp: unique symbol;
+    readonly pattern: string;
+    readonly isMultiLine: boolean;
+    readonly isCaseSensitive: boolean;
+    readonly isUnicode: boolean;
+    readonly isDotAll: boolean;
+    hasMatch(input: string): boolean;
 }
 declare function _RegExpFactory(source: string, options?: {
     multiLine?: boolean | undefined;

@@ -203,6 +203,7 @@ extension _Collections on _Session {
     if (input is FlaxJsNull && type.nullable) return _Value(null);
     if (input is FlaxJsString) return _Value(input.value);
     if (input is FlaxJsBoolean) return _Value(input.value);
+    if (input is FlaxJsBigInt) return _Value(input.value);
     if (input is FlaxJsNumber) {
       _checkInteropNumber(input.value);
       return _Value(input.value);
@@ -212,8 +213,8 @@ extension _Collections on _Session {
     }
     final valueType = helper('valueType').call([input]);
     if (valueType is FlaxJsString) {
-      if (valueType.value == 'Uint8List') {
-        return _Value(runtime.readUint8Array(input));
+      if (FlaxBufferType.byDartName[valueType.value] case final bufferType?) {
+        return _Value(runtime.readSharedBuffer(input, bufferType));
       }
       return decode(input, FlaxTypeRef('enum', id: valueType.value));
     }
@@ -509,6 +510,7 @@ extension _Collections on _Session {
     }
     if (value is String) return FlaxJsString(value);
     if (value is bool) return FlaxJsBoolean(value);
+    if (value is BigInt) return FlaxJsBigInt(value);
     if (value is num) {
       _checkInteropNumber(value);
       return FlaxJsNumber(value.toDouble());
@@ -517,7 +519,9 @@ extension _Collections on _Session {
       return futureResult(value, const FlaxTypeRef('any', nullable: true));
     }
     if (value is Stream<Object?>) return streamResult(value, _anyStream);
-    if (value is Uint8List) return runtime.createUint8Array(value);
+    if (FlaxBufferType.of(value) != null) {
+      return runtime.createSharedBuffer(value);
+    }
     if (value is List) return collectionResult(value, _anyList);
     if (value is Map) return collectionResult(value, _anyMap);
     if (value is Set) return collectionResult(value, _anySet);
@@ -770,6 +774,7 @@ bool _sameJsValue(FlaxJsValue a, FlaxJsValue b) {
     return true;
   }
   if (a is FlaxJsString && b is FlaxJsString) return a.value == b.value;
+  if (a is FlaxJsBigInt && b is FlaxJsBigInt) return a.value == b.value;
   if (a is FlaxJsBoolean && b is FlaxJsBoolean) return a.value == b.value;
   if (a is FlaxJsNumber && b is FlaxJsNumber) {
     return a.value == b.value || (a.value.isNaN && b.value.isNaN);

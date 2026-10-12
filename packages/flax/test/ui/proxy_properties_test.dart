@@ -1133,6 +1133,14 @@ void main() {
       try {
         await t.pumpWidget(h.app('properties'));
         h.execute('var reads = 0;');
+        expect(
+          () => h.execute(
+            'properties.plugin.FailingProperty.implement([], {get value(){ reads++; return 1; }})',
+          ),
+          throwsA(isA<FlaxJsException>()),
+        );
+        await t.pumpAndSettle();
+        h.execute('reads = 0;');
         final before = h.runtime.handles;
         for (var i = 0; i < 20; i++) {
           expect(
@@ -1142,6 +1150,7 @@ void main() {
             throwsA(isA<FlaxJsException>()),
           );
         }
+        await t.pumpAndSettle();
         expect(h.number('reads'), 20);
         expect(
           h.runtime.handleLabels

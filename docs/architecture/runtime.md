@@ -5,7 +5,7 @@
 Flax uses its maintained Flutter 3.47.6 engine: V8 15.4.80.15 JIT on macOS and Android
 arm64, and Hermes 260318099.0.4 without JIT on iOS arm64. `FlaxEngine.createRuntime()`
 is the common entry in `package:flax/runtime.dart`. It checks native ABI 2, internal GC
-extension 1, internal binding extension 2 and the exact Flutter/Dart revisions before
+extension 1, internal binding extension 3 and the exact Flutter/Dart revisions before
 allocation. Ordinary Flutter and incompatible engines fail explicitly. UI protocol 24
 rejects earlier generated packages.
 
@@ -40,12 +40,14 @@ compilation, ES6 block scoping and explicit microtask checkpoints.
 
 ## Values and references
 
-`FlaxJsUndefined`, `FlaxJsNull`, `FlaxJsBoolean`, `FlaxJsNumber`, and `FlaxJsString` are
-Dart value objects. Numbers preserve JS double semantics, including NaN and negative
-zero. String values and property names use UTF-16, preserving empty strings, embedded
-NULs, and unpaired surrogates. Source text, source URLs, and exception text use UTF-8.
-V8 creates and reads UTF-16 through native adapter operations, including property names;
-conversion does not invoke or inspect the application's global `eval`.
+`FlaxJsUndefined`, `FlaxJsNull`, `FlaxJsBoolean`, `FlaxJsNumber`, `FlaxJsString` and
+`FlaxJsBigInt` are Dart value objects. Numbers preserve JS double semantics, including
+NaN and negative zero. String values and property names use UTF-16, preserving empty
+strings, embedded NULs, and unpaired surrogates. Source text, source URLs, and exception
+text use UTF-8. V8 creates and reads UTF-16 through native adapter operations, including
+property names; conversion does not invoke or inspect the application's global `eval`.
+BigInt uses exact decimal UTF-16 text and captured JS constructor/toString intrinsics;
+application replacement of BigInt globals or prototypes does not change its value.
 
 `FlaxJsObject` and `FlaxJsFunction` hold references into exactly one runtime. Objects
 stay in the selected engine; they are not serialized through JSON. Properties, function
@@ -67,9 +69,10 @@ caller's ownership. Releasing a wrapper does not destroy an object that JS or an
 reference still holds. Runtime disposal releases remaining owned references. There is no
 automatic GC-based runtime disposal.
 
-Symbol and BigInt conversion, property enumeration, symbol keys, and dedicated buffer
-views are not implemented. Arrays and other objects can be retained as ordinary object
-references; there is no automatic collection conversion.
+Symbol conversion, property enumeration and symbol keys are not implemented. Arrays and
+other objects can be retained as ordinary object references; the low-level runtime does
+not automatically convert collections. Binary views use the explicit shared-buffer API
+below.
 
 ## Calls, scheduling, and errors
 
@@ -128,10 +131,11 @@ TypedArray/DataView views; callers never retain native byte pointers. Detached s
 comes from the engine, not an object's mutable `detached` property. A detached buffer is
 rejected even when its length is zero; an ordinary empty buffer remains valid.
 
-Binding extension 2 adds shared Uint8List/Uint8Array creation and reads. Numeric Dart
-backing data is pinned while a JS view retains it; JS-owned storage uses a native lease
-in external Dart data. These operations preserve writes and surviving Dart bytes across
-GC, transfer and runtime disposal. See the
+Binding extension 3 generalizes shared bytes to primitive TypedArrays, DataView and
+ArrayBuffer. Uint8 convenience methods use the same implementation. Numeric Dart backing
+data is pinned while a JS view retains it; JS-owned storage uses a native lease in
+external Dart data. These operations preserve writes and surviving Dart bytes across GC,
+transfer and runtime disposal. See the
 [byte contract](interop.md#shared-uint8list-bytes).
 
 ## Verification

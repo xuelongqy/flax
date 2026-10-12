@@ -25,7 +25,7 @@ final class _FlaxCodegenTypeScope {
   var usesWidget = false;
   var usesFutureOr = false;
   var usesStream = false;
-  var usesUint8List = false;
+  final nativeTypes = <String, String>{};
 
   ({FlaxCodegenTypeRef? type, String? skip}) tryTypeRef(
     DartType type, {
@@ -362,10 +362,10 @@ final class _FlaxCodegenTypeScope {
           ? declaration
           : represented.declaredAs(declaration);
     }
-    if (element.library.uri.toString() == 'dart:typed_data' &&
-        name == 'Uint8List') {
-      usesUint8List = true;
-      return FlaxCodegenTypeRef('Uint8List', nullable: nullable);
+    if (_nativeJsValueType(element) != null) {
+      nativeTypes[name] = element.library.uri.toString();
+      parser._elementsByIdentity.putIfAbsent(identity(element), () => element);
+      return FlaxCodegenTypeRef(name, nullable: nullable);
     }
     if (typeOnlyPosition &&
         !parser._adaptations.containsKey(identity(element)) &&

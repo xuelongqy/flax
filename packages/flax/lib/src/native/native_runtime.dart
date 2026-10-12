@@ -66,8 +66,8 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
         binding.ref.register_members == nullptr ||
         binding.ref.invoke_member == nullptr ||
         binding.ref.call == nullptr ||
-        binding.ref.share_uint8 == nullptr ||
-        binding.ref.read_uint8 == nullptr) {
+        binding.ref.share_buffer == nullptr ||
+        binding.ref.read_buffer == nullptr) {
       throw UnsupportedError('Incompatible Flax binding engine extension');
     }
     return FlaxNativeJsRuntime._(NativeCalls(table.ref), gc.ref, binding.ref);
@@ -144,18 +144,19 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
           Pointer<FlaxError>,
         )
       >();
-  late final _shareUint8 = _binding.share_uint8
+  late final _shareBuffer = _binding.share_buffer
       .asFunction<
         int Function(
           Pointer<FlaxRuntime>,
           Object,
+          int,
           Pointer<Uint64>,
           Pointer<FlaxError>,
         )
       >();
-  late final _readUint8 = _binding.read_uint8
+  late final _readBuffer = _binding.read_buffer
       .asFunction<
-        Object Function(Pointer<FlaxRuntime>, int, Pointer<FlaxError>)
+        Object Function(Pointer<FlaxRuntime>, int, int, Pointer<FlaxError>)
       >();
   final SendPort _owner = Isolate.current.controlPort;
   late final Pointer<FlaxRuntime> _handle;
@@ -252,6 +253,14 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
               info.ref.string_data.asTypedList(info.ref.string_length),
             ),
           );
+        case FlaxValueKind.FLAX_BIGINT:
+          return FlaxJsBigInt(
+            BigInt.parse(
+              String.fromCharCodes(
+                info.ref.string_data.asTypedList(info.ref.string_length),
+              ),
+            ),
+          );
         case FlaxValueKind.FLAX_OBJECT:
         case FlaxValueKind.FLAX_FUNCTION:
           final value = kind == FlaxValueKind.FLAX_FUNCTION
@@ -286,6 +295,7 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
         FlaxJsBoolean() => FlaxValueKind.FLAX_BOOLEAN,
         FlaxJsNumber() => FlaxValueKind.FLAX_NUMBER,
         FlaxJsString() => FlaxValueKind.FLAX_STRING,
+        FlaxJsBigInt() => FlaxValueKind.FLAX_BIGINT,
         _ => throw ArgumentError('Unsupported FlaxJsValue implementation'),
       };
       final number = switch (value) {
@@ -293,9 +303,11 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
         FlaxJsBoolean(:final value) => value ? 1.0 : 0.0,
         _ => 0.0,
       };
-      final (text, length) = value is FlaxJsString
-          ? _codeUnits(arena, value.value)
-          : (nullptr.cast<Uint16>(), 0);
+      final (text, length) = switch (value) {
+        FlaxJsString(:final value) => _codeUnits(arena, value),
+        FlaxJsBigInt(:final value) => _codeUnits(arena, value.toString()),
+        _ => (nullptr.cast<Uint16>(), 0),
+      };
       _checked(
         arena,
         (error) => _calls.makeValue(
@@ -377,24 +389,67 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
   });
 
   @override
-  FlaxJsObject createUint8Array(Uint8List bytes) => _entry((arena) {
+  FlaxJsObject createUint8Array(Uint8List bytes) => createSharedBuffer(bytes);
+
+  @override
+  FlaxJsObject createSharedBuffer(Object data) => _entry((arena) {
+    final type = FlaxBufferType.of(data);
+    if (type == null) {
+      throw ArgumentError('Expected primitive TypedData or ByteBuffer');
+    }
+    // ByteBuffer preserves readonly access; viewing bytes adds no payload copy.
+    final bytes = data is Uint8List
+        ? data
+        : data is ByteBuffer
+        ? data.asUint8List()
+        : (data as TypedData).buffer.asUint8List(
+            data.offsetInBytes,
+            data.lengthInBytes,
+          );
     final output = arena<Uint64>();
-    _checked(arena, (error) => _shareUint8(_handle, bytes, output, error));
+    _checked(
+      arena,
+      (error) => _shareBuffer(_handle, bytes, type.index, output, error),
+    );
     return _read(arena, output.value) as FlaxJsObject;
   });
 
   @override
-  Uint8List readUint8Array(FlaxJsObject value) => _entry((arena) {
+  Uint8List readUint8Array(FlaxJsObject value) =>
+      readSharedBuffer(value, FlaxBufferType.uint8) as Uint8List;
+
+  @override
+  Object readSharedBuffer(FlaxJsObject value, FlaxBufferType type) => _entry((
+    arena,
+  ) {
     if (value is! _NativeObject) {
       throw ArgumentError('Unsupported object implementation');
     }
     value._check(this);
     Object? result;
     _checked(arena, (error) {
-      result = _readUint8(_handle, value._id, error);
+      result = _readBuffer(_handle, value._id, type.index, error);
       return error.ref.code;
     });
-    return result as Uint8List;
+    final bytes = result as Uint8List;
+    final buffer = bytes.buffer;
+    final offset = bytes.offsetInBytes;
+    final length = bytes.lengthInBytes;
+    return switch (type) {
+      FlaxBufferType.byteBuffer => buffer,
+      FlaxBufferType.int8 => buffer.asInt8List(offset, length),
+      FlaxBufferType.uint8 => bytes,
+      FlaxBufferType.uint8Clamped => buffer.asUint8ClampedList(offset, length),
+      FlaxBufferType.int16 => buffer.asInt16List(offset, length ~/ 2),
+      FlaxBufferType.uint16 => buffer.asUint16List(offset, length ~/ 2),
+      FlaxBufferType.int32 => buffer.asInt32List(offset, length ~/ 4),
+      FlaxBufferType.uint32 => buffer.asUint32List(offset, length ~/ 4),
+      FlaxBufferType.int64 => buffer.asInt64List(offset, length ~/ 8),
+      FlaxBufferType.uint64 => buffer.asUint64List(offset, length ~/ 8),
+      FlaxBufferType.float32 => buffer.asFloat32List(offset, length ~/ 4),
+      FlaxBufferType.float64 => buffer.asFloat64List(offset, length ~/ 8),
+      FlaxBufferType.byteData => buffer.asByteData(offset, length),
+    };
   });
 
   // Create the native root in a separate closure context. Sharing the
@@ -537,6 +592,11 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
       case FlaxJsString(:final value):
         output.kind = FlaxValueKind.FLAX_STRING.value;
         final (text, length) = _codeUnits(arena, value);
+        output.text = text;
+        output.length = length;
+      case FlaxJsBigInt(:final value):
+        output.kind = FlaxValueKind.FLAX_BIGINT.value;
+        final (text, length) = _codeUnits(arena, value.toString());
         output.text = text;
         output.length = length;
       case _NativeObject():

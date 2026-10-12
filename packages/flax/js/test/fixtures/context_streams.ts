@@ -1,5 +1,6 @@
 import { Builder, Text, registerPage, type BuildContext } from '@flax/flutter/widgets';
 import { Stream, StreamController } from '@flax/dart/async';
+import { invokeTopLevel } from '@flax/core/bindings';
 import { ContextStreams } from '../../../.dart_tool/flax/ui/context_streams_bindings.js';
 
 const store = ContextStreams();
@@ -188,7 +189,7 @@ const hooks = {
     return store.stream(() => Stream.fromAsyncIterable(source)).first;
   },
 };
-Object.assign(globalThis, { contextStreamHooks: hooks });
+Object.assign(globalThis, { contextStreamHooks: hooks, invokeTopLevel });
 registerPage('context-streams', () =>
   Builder({
     builder: (context) => {

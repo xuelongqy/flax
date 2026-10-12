@@ -156,7 +156,7 @@ class ForeignType {}
       expect(proposal.config.classes, contains('Consumer'));
       expect(proposal.config.classes, isNot(contains('PrivateConsumer')));
       expect(proposal.config.classes, isNot(contains('ForeignConsumer')));
-      expect(proposal.config.classes, isNot(contains('SdkConsumer')));
+      expect(proposal.config.classes, contains('SdkConsumer'));
       expect(
         proposal.skips
             .where((skip) => skip.target.contains('PrivateConsumer'))
@@ -179,6 +179,8 @@ class ForeignType {}
         'package:carrier_pkg/dependency.dart',
       );
       expect(module.typeLibraries['SharedType'], 'package:carrier_pkg/a.dart');
+      expect(module.typeLibraries['ByteData'], 'dart:typed_data');
+      expect(module.requiredCapabilities, contains('shared-buffers'));
       expect(module.publicLibraries, isEmpty);
     },
   );

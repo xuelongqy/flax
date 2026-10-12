@@ -29,6 +29,13 @@ part 'widget_interface.dart';
 String identity(InterfaceElement element) =>
     '${element.library.uri}::${element.name}';
 
+String? _nativeJsValueType(InterfaceElement element) {
+  if (element.library.isDartCore && element.name == 'BigInt') return 'bigint';
+  return element.library.uri.toString() == 'dart:typed_data'
+      ? flaxCodegenBufferTypes[element.name]
+      : null;
+}
+
 bool _requiresSuper(InterfaceElement element, String name) {
   final pending = [element];
   final visited = <InterfaceElement>{};
@@ -1823,6 +1830,12 @@ class FlaxCodegenBindingParser {
           'Expected a publicly exported concrete class: ${entry.key}',
         );
       }
+      if (_nativeJsValueType(element) case final native?) {
+        throw StateError(
+          '${entry.key} maps to native JS $native and cannot be selected '
+          'as a Dart object binding; select APIs that use this value instead',
+        );
+      }
       final selection = _effectiveSelection(element, entry.value);
       if ((element is EnumElement) != (selection.kind == 'enum') ||
           (element is EnumElement &&
@@ -2293,13 +2306,14 @@ class FlaxCodegenBindingParser {
           );
         }
 
-        const results = {
+        final results = {
           'String',
           'bool',
           'int',
           'double',
           'num',
-          'Uint8List',
+          ...flaxCodegenBufferTypes.keys,
+          'BigInt',
           'enum',
           'void',
           'data',
@@ -2342,7 +2356,8 @@ class FlaxCodegenBindingParser {
             'int',
             'double',
             'num',
-            'Uint8List',
+            ...flaxCodegenBufferTypes.keys,
+            'BigInt',
             'enum',
             'context',
             'callback',
@@ -3621,7 +3636,7 @@ class FlaxCodegenBindingParser {
       typeLibraries: {
         if (scope.usesFutureOr) 'FutureOr': 'dart:async',
         if (scope.usesStream) 'Stream': 'dart:async',
-        if (scope.usesUint8List) 'Uint8List': 'dart:typed_data',
+        ...scope.nativeTypes,
         for (final name in {
           if (scope.usesWidget || classes.any((c) => c.kind == 'widget'))
             'Widget',
@@ -3649,16 +3664,14 @@ class FlaxCodegenBindingParser {
     Map<String, String> automaticTypeCarriers,
   ) {
     final identitiesByName = <String, Map<String, String>>{};
-    if (scope.usesUint8List) {
-      identitiesByName['Uint8List'] = {
-        'dart:typed_data::Uint8List': 'dart:typed_data',
-      };
-      final selected = scope.exports['Uint8List'];
-      if (scope.config.classes.containsKey('Uint8List') &&
+    for (final entry in scope.nativeTypes.entries) {
+      final name = entry.key;
+      identitiesByName[name] = {'${entry.value}::$name': entry.value};
+      final selected = scope.exports[name];
+      if (scope.config.classes.containsKey(name) &&
           selected is InterfaceElement) {
-        identitiesByName['Uint8List']![identity(selected)] =
-            scope.publicLibraries['Uint8List'] ??
-            selected.library.uri.toString();
+        identitiesByName[name]![identity(selected)] =
+            scope.publicLibraries[name] ?? selected.library.uri.toString();
       }
     }
     for (final type in scope.types.values) {
@@ -3798,7 +3811,10 @@ class FlaxCodegenBindingParser {
           'Runtime type arguments require a concrete selected type: $source',
         );
       }
-      if (builtin == null && !_adaptations.containsKey(identity(element))) {
+      final native = _nativeJsValueType(element) != null;
+      if (builtin == null &&
+          !native &&
+          !_adaptations.containsKey(identity(element))) {
         throw StateError('Unbound runtime type argument: $source');
       }
       _checkBounds(element.typeParameters, arguments, element.library, false);

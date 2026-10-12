@@ -1,6 +1,7 @@
 # ADR 0041: Shared Uint8List buffers
 
-Status: Accepted; local macOS arm64 V8 and Hermes debug validation passed.
+Status: Accepted; generalized to additional binary views by
+[ADR 0042](0042-native-value-interop.md).
 
 Date: 2026-10-12
 
@@ -57,3 +58,7 @@ collection elements, Object conversion, transfer, GC and session close with both
 on macOS arm64. Android/iOS execution, AOT and prolonged heap-fragmentation behavior are
 not accepted by this validation. Other TypedData types remain outside this
 implementation.
+
+ADR 0042 extends the same lease to the remaining primitive numeric lists, ByteData and
+ByteBuffer. It advances the internal binding extension to 3 and preserves the original
+pinning, transfer, readonly rejection and shutdown contract.

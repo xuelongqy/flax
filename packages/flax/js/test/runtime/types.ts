@@ -23,6 +23,28 @@ import type {
   DartOutput,
   DartRecord,
 } from '../../src/runtime/bindings.js';
+import type { DateTime, Uri } from '../../src/dart/generated/libraries/core/index.js';
+const dateInput: DartInput<DateTime> = new Date(123);
+const uriInput: DartInput<Uri> = new URL('https://example.com');
+const relativeInput: DartInput<Uri> = '../relative';
+const dateCallback: DartInput<(value: DateTime) => DateTime> = () => new Date(456);
+declare const dates: DartList<DateTime>;
+dates.add(dateInput);
+interface DerivedDate extends DateTime {
+  readonly __DerivedDate: unique symbol;
+}
+// @ts-expect-error A native Date cannot implement a more specific Dart subtype.
+const derivedDate: DartInput<DerivedDate> = new Date();
+interface DerivedUri extends Uri {
+  readonly __DerivedUri: unique symbol;
+}
+// @ts-expect-error A string cannot implement a more specific Dart subtype.
+const derivedUri: DartInput<DerivedUri> = '../relative';
+// @ts-expect-error DateTime does not guess the units of numeric inputs.
+const numericDate: DartInput<DateTime> = 123;
+void uriInput;
+void relativeInput;
+void dateCallback;
 declare function roundTrip<T>(value: T): DartOutput<T>;
 const list: DartList<string> = roundTrip(['a']);
 const nested: DartList<DartList<string>> = roundTrip([['a']]);

@@ -19,6 +19,8 @@ struct FlaxRuntime {
   // Declared after js so references are released before the engine.
   std::unique_ptr<jsi::Function> byteView;
   std::unique_ptr<jsi::Function> arrayBufferConstructor;
+  std::unique_ptr<jsi::Function> bigIntConstructor;
+  std::unique_ptr<jsi::Function> bigIntText;
   std::unordered_map<FlaxValueId, jsi::Value> values;
 };
 
@@ -164,7 +166,14 @@ int32_t create(FlaxRuntime **output, FlaxError *error) {
     auto runtime = std::make_unique<FlaxRuntime>();
     runtime->js = flax::createEngineRuntime();
     runtime->arrayBufferConstructor = std::make_unique<jsi::Function>(
-        runtime->js->global().getPropertyAsFunction(*runtime->js, "ArrayBuffer"));
+        runtime->js->global().getPropertyAsFunction(*runtime->js,
+                                                    "ArrayBuffer"));
+    runtime->bigIntConstructor = std::make_unique<jsi::Function>(
+        runtime->js->global().getPropertyAsFunction(*runtime->js, "BigInt"));
+    runtime->bigIntText = std::make_unique<jsi::Function>(
+        runtime->bigIntConstructor
+            ->getPropertyAsObject(*runtime->js, "prototype")
+            .getPropertyAsFunction(*runtime->js, "toString"));
     // Capture intrinsic getters: a view's own buffer/offset properties may lie.
     auto helper = std::make_shared<jsi::StringBuffer>(R"JS((() => {
       const getter = (p, n) => Object.getOwnPropertyDescriptor(p, n).get;
@@ -184,7 +193,8 @@ int32_t create(FlaxRuntime **output, FlaxError *error) {
     })())JS");
     runtime->byteView = std::make_unique<jsi::Function>(
         runtime->js->evaluateJavaScript(helper, "flax:bytes")
-            .getObject(*runtime->js).getFunction(*runtime->js));
+            .getObject(*runtime->js)
+            .getFunction(*runtime->js));
     *output = runtime.release();
   });
 }
@@ -202,6 +212,8 @@ int32_t destroy(FlaxRuntime *runtime, FlaxError *error) {
       runtime->values.clear();
       runtime->byteView.reset();
       runtime->arrayBufferConstructor.reset();
+      runtime->bigIntConstructor.reset();
+      runtime->bigIntText.reset();
       runtime->js.reset();
     }
     delete runtime;
@@ -247,6 +259,12 @@ int32_t makeValue(FlaxRuntime *runtime, int32_t kind, double number,
           keep(runtime,
                jsi::String::createFromUtf16(*runtime->js, utf16(data, length)));
       break;
+    case FLAX_BIGINT:
+      *output = keep(runtime,
+                     runtime->bigIntConstructor->call(
+                         *runtime->js, jsi::String::createFromUtf16(
+                                           *runtime->js, utf16(data, length))));
+      break;
     default:
       throw BridgeError(FLAX_ARGUMENT_ERROR, "Unsupported primitive kind");
     }
@@ -268,9 +286,13 @@ int32_t inspect(FlaxRuntime *runtime, FlaxValueId id, FlaxValueInfo *info,
     } else if (v.isNumber()) {
       info->kind = FLAX_NUMBER;
       info->number = v.getNumber();
-    } else if (v.isString()) {
-      info->kind = FLAX_STRING;
-      auto string = v.getString(*runtime->js).utf16(*runtime->js);
+    } else if (v.isString() || v.isBigInt()) {
+      info->kind = v.isBigInt() ? FLAX_BIGINT : FLAX_STRING;
+      auto &js = *runtime->js;
+      auto string = v.isBigInt() ? js.call(*runtime->bigIntText, v, nullptr, 0)
+                                       .getString(js)
+                                       .utf16(js)
+                                 : v.getString(js).utf16(js);
       info->string_data = reinterpret_cast<uint16_t *>(
           copyBytes(reinterpret_cast<const uint8_t *>(string.data()),
                     string.size() * sizeof(char16_t)));
@@ -283,7 +305,7 @@ int32_t inspect(FlaxRuntime *runtime, FlaxValueId id, FlaxValueInfo *info,
                        : FLAX_OBJECT;
     } else {
       throw BridgeError(FLAX_ARGUMENT_ERROR,
-                        "Symbol and BigInt conversion is not implemented");
+                        "Symbol conversion is not implemented");
     }
   });
 }

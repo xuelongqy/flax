@@ -80,7 +80,9 @@ class _DartErrorReference {
     if (released) return;
     released = true;
     session._dartErrors.remove(id);
-    if (indexed) session._dartErrorIds.remove(error);
+    if (indexed && identical(session._dartErrorIds[error], this)) {
+      session._dartErrorIds.remove(error);
+    }
   }
 }
 
@@ -437,6 +439,10 @@ extension _StreamCalls on _Session {
       // Any Dart object can be an asynchronous error. Only explicitly marked
       // error positions widen the ordinary Object conversion in this way.
     }
+    return exceptionResult(error, stack);
+  }
+
+  FlaxJsValue exceptionResult(Object error, StackTrace stack) {
     _DartErrorReference? reference;
     var indexed = true;
     try {
@@ -446,7 +452,7 @@ extension _StreamCalls on _Session {
       // error view still restores the original value and StackTrace.
       indexed = false;
     }
-    if (reference == null) {
+    if (reference == null || !identical(reference.stack, stack)) {
       reference = _DartErrorReference(
         this,
         _nextObject++,
@@ -457,10 +463,20 @@ extension _StreamCalls on _Session {
       _dartErrors[reference.id] = reference;
       if (indexed) _dartErrorIds[error] = reference;
     }
-    final message = error is FlaxJsException ? error.message : error.toString();
-    final text = error is FlaxJsException && error.jsStack.isNotEmpty
-        ? error.jsStack
-        : stack.toString();
+    String message;
+    String text;
+    try {
+      message = error is FlaxJsException ? error.message : error.toString();
+    } catch (_) {
+      message = 'Dart error';
+    }
+    try {
+      text = error is FlaxJsException && error.jsStack.isNotEmpty
+          ? error.jsStack
+          : stack.toString();
+    } catch (_) {
+      text = '';
+    }
     return _peerResult(
       helper('dartError').call([
         FlaxJsNumber(reference.id.toDouble()),
@@ -624,11 +640,13 @@ extension _StreamCalls on _Session {
           source.initial.escapeCallbacks();
           escapeWidget(source.initial.data, source.type);
         }
-        final value = binding.create(
-          ctor,
-          sources.map((name, source) => MapEntry(name, source.initial.data)),
-        );
-        return holdHostResult(streamResult(value, binding.view));
+        return bindingCall(() {
+          final value = binding.create(
+            ctor,
+            sources.map((name, source) => MapEntry(name, source.initial.data)),
+          );
+          return holdHostResult(streamResult(value, binding.view));
+        });
       } finally {
         for (final source in sources.values.toList().reversed) {
           source.release();

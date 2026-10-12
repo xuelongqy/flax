@@ -7,6 +7,355 @@ import '../../.dart_tool/flax/ui/repeated_bindings.dart';
 import '../support/owned_harness.dart';
 
 void main() {
+  testWidgets(
+    'native RegExp, BigInt and binary parameters use one recursive conversion',
+    (t) async {
+      final h = OwnedHarness(
+        fixture: 'codegen_basics',
+        extra: [interopBindings, repeatedBindings],
+      );
+      try {
+        await t.pumpWidget(h.app('codegen-basics'));
+        h.execute('''
+var uriProbe = interop.CoreValueConsumer(new Date(0), '../probe', StringBuffer());
+var realURL = URL;
+globalThis.URL = class { get href() { return 'https://forged.example'; } };
+''');
+        expect(
+          h.boolean(
+            '(() => { try { uriProbe.echoUri(new URL()); return false; } catch (_) { return true; } })()',
+          ),
+          isTrue,
+        );
+        h.execute('globalThis.URL = realURL;');
+        h.execute('''
+var native = nativeValuesRoundtrip();
+var nativeLater;
+Promise.all([native.laterInteger, native.laterSamples]).then(values => { nativeLater = values; });
+''');
+        await t.pumpAndSettle();
+        expect(
+          h.boolean(
+            'native.regex instanceof DartRegExp && !(native.regex instanceof RegExp)',
+          ),
+          isTrue,
+        );
+        expect(h.boolean('native.regex.hasMatch("A\\nB")'), isTrue);
+        expect(
+          h.boolean(
+            'native.regex.isMultiLine && !native.regex.isCaseSensitive && native.regex.isUnicode && native.regex.isDotAll',
+          ),
+          isTrue,
+        );
+        expect(h.string('native.callback.pattern'), 'callback');
+        expect(
+          h.boolean(
+            'native.consumer.genericRegex(/generic/).hasMatch("generic")',
+          ),
+          isTrue,
+        );
+        expect(
+          h.boolean('native.consumer.regex(native.regex) === native.regex'),
+          isTrue,
+        );
+        expect(h.boolean('native.consumer.pattern("a.b", "axb")'), isFalse);
+        expect(h.boolean('native.consumer.pattern(/a.b/, "axb")'), isTrue);
+        expect(
+          h.boolean(
+            'native.consumer.regexes([/one/, /two/]).get(1).hasMatch("two")',
+          ),
+          isTrue,
+        );
+        expect(
+          h.boolean(
+            'native.integer === native.huge && native.integers.get(1) === -native.huge && native.applied === native.huge + 1n',
+          ),
+          isTrue,
+        );
+        expect(
+          h.boolean(
+            'native.genericInteger === native.huge && nativeLater[0] === -native.huge',
+          ),
+          isTrue,
+        );
+        expect(
+          h.boolean(
+            'native.output instanceof Int16Array && native.samples[0] === 23 && native.pair.\$2[0] === 23',
+          ),
+          isTrue,
+        );
+        expect(
+          h.boolean(
+            'native.nullable.get(0) instanceof Int16Array && native.nullable.get(1) === null && nativeLater[1] instanceof Int16Array',
+          ),
+          isTrue,
+        );
+        expect(
+          h.boolean(
+            'native.views[0] instanceof Int8Array && native.views[1] instanceof Uint8ClampedArray && native.views[2] instanceof Uint16Array && native.views[3] instanceof Int32Array && native.views[4] instanceof Uint32Array',
+          ),
+          isTrue,
+        );
+        expect(
+          h.boolean(
+            'native.views[5] instanceof BigInt64Array && native.views[5][0] === -1n && native.views[6] instanceof BigUint64Array && native.views[6][0] === 18446744073709551615n',
+          ),
+          isTrue,
+        );
+        expect(
+          h.boolean(
+            'Number.isNaN(native.views[7][0]) && native.views[7][1] === Infinity && Object.is(native.views[7][2], -0) && native.views[8][0] === -Infinity && Object.is(native.views[8][1], -0)',
+          ),
+          isTrue,
+        );
+        expect(
+          h.boolean(
+            'native.views[9] instanceof DataView && native.views[9].byteLength === 5 && native.views[10] instanceof ArrayBuffer',
+          ),
+          isTrue,
+        );
+        h.execute('native.views[0][3] = 71; native.views[1][0] = 999;');
+        expect(h.number('native.views[9].getUint8(0)'), 71);
+        expect(h.number('native.views[0][0]'), -1);
+        expect(
+          h.boolean(
+            'native.consumer.identity(native.huge) === native.huge && native.consumer.identity(native.samples) instanceof Int16Array',
+          ),
+          isTrue,
+        );
+        for (final expression in [
+          'native.consumer.regex(/a/g)',
+          'native.consumer.regex(/a/y)',
+          'native.consumer.regex(Object.create(RegExp.prototype))',
+          'native.consumer.regex({source:"a", flags:"i"})',
+          'native.consumer.bigInteger(123)',
+          'native.consumer.bigInteger("123")',
+          'native.consumer.int16(new Uint16Array(2))',
+        ]) {
+          expect(
+            h.boolean(
+              '(() => { try { $expression; return false; } catch (_) { return true; } })()',
+            ),
+            isTrue,
+            reason: expression,
+          );
+        }
+        expect(h.errors, isEmpty);
+      } finally {
+        await h.finish(t);
+      }
+    },
+  );
+
+  testWidgets(
+    'Dart throw, callback and Future errors retain original references and stacks',
+    (t) async {
+      final h = OwnedHarness(
+        fixture: 'codegen_basics',
+        extra: [interopBindings, repeatedBindings],
+      );
+      try {
+        await t.pumpWidget(h.app('codegen-basics'));
+        h.execute('''
+var failures = interop.NativeValueConsumer();
+var originalFailure;
+try { failures.fail(); } catch (error) { originalFailure = error; }
+var constructorFailure;
+try { interop.NativeValueConsumer.throwing(failures); }
+catch (error) { constructorFailure = error; }
+var sameFailureLater, recoveredFailure, recoveredLater;
+failures.failLater().catch(error => {
+  sameFailureLater = error === originalFailure;
+  error.stack = 'spoofed JS stack';
+  return failures.recover(Promise.reject(error));
+}).then(value => { recoveredLater = value; });
+failures.recover(Promise.reject(originalFailure)).then(value => { recoveredFailure = value; });
+''');
+        await t.pumpAndSettle();
+        expect(h.boolean('originalFailure instanceof Error'), isTrue);
+        expect(h.boolean('constructorFailure === originalFailure'), isTrue);
+        expect(
+          h.boolean(
+            'failures.recoverCallback(() => { throw constructorFailure; })',
+          ),
+          isTrue,
+        );
+        expect(
+          h.boolean('sameFailureLater && recoveredFailure && recoveredLater'),
+          isTrue,
+        );
+        expect(
+          h.boolean(
+            'failures.recoverCallback(() => { throw originalFailure; })',
+          ),
+          isTrue,
+        );
+        expect(
+          h.boolean(
+            'failures.recoverCallback(() => { throw new Error("fresh JS error"); })',
+          ),
+          isFalse,
+        );
+        expect(
+          h.boolean(
+            'failures.recoverCallback(() => { throw Symbol("unbridgeable"); })',
+          ),
+          isFalse,
+        );
+        expect(h.errors, isEmpty);
+      } finally {
+        await h.finish(t);
+      }
+    },
+  );
+
+  testWidgets('native Date and URL inputs preserve Dart output references', (
+    t,
+  ) async {
+    final h = OwnedHarness(
+      fixture: 'codegen_basics',
+      extra: [interopBindings, repeatedBindings],
+    );
+    try {
+      await t.pumpWidget(h.app('codegen-basics'));
+      expect(h.errors, isEmpty);
+      h.execute('''
+var coreInputs = coreInputsRoundtrip();
+var resolvedCoreDate, resolvedCoreUri;
+coreInputs.laterDate.then(value => { resolvedCoreDate = value; });
+coreInputs.laterUri.then(value => { resolvedCoreUri = value; });
+''');
+      await t.pumpAndSettle();
+      expect(h.number('coreInputs.date.millisecondsSinceEpoch'), 123456);
+      expect(
+        h.number(
+          'coreInputs.consumer.genericDate(new Date(111)).millisecondsSinceEpoch',
+        ),
+        111,
+      );
+      expect(
+        h.string('coreInputs.consumer.genericUri("../generic").toString()'),
+        '../generic',
+      );
+      expect(h.boolean('coreInputs.date.isUtc'), isFalse);
+      expect(h.boolean('coreInputs.date instanceof Date'), isFalse);
+      expect(h.boolean('coreInputs.date instanceof DateTime'), isTrue);
+      expect(
+        h.boolean(
+          'coreInputs.consumer.echoDate(coreInputs.date) === coreInputs.date',
+        ),
+        isTrue,
+      );
+      expect(h.string('coreInputs.uri.toString()'), '../images/a.png?x=1#frag');
+      expect(h.boolean('coreInputs.uri instanceof URL'), isFalse);
+      expect(
+        h.boolean(
+          'coreInputs.consumer.echoUri(coreInputs.uri) === coreInputs.uri',
+        ),
+        isTrue,
+      );
+      expect(
+        h.number('coreInputs.dates.get(0).millisecondsSinceEpoch'),
+        123456,
+      );
+      expect(h.number('coreInputs.dates.get(1).millisecondsSinceEpoch'), 456);
+      expect(
+        h.string('coreInputs.uris.get(0).toString()'),
+        'https://example.com/path?x=1#frag',
+      );
+      expect(h.string('coreInputs.uris.get(1).toString()'), '../relative');
+      expect(h.string('coreInputs.uris.get(2).toString()'), 'another');
+      expect(
+        h.number('coreInputs.map.get("second").millisecondsSinceEpoch'),
+        789,
+      );
+      expect(
+        h.boolean(
+          'coreInputs.set.contains("../relative") && coreInputs.set.contains("another")',
+        ),
+        isTrue,
+      );
+      expect(h.number('coreInputs.pair.\$1.millisecondsSinceEpoch'), 123456);
+      expect(
+        h.string('coreInputs.pair.\$2.toString()'),
+        'https://example.com/path?x=1#frag',
+      );
+      expect(h.number('coreInputs.callback.millisecondsSinceEpoch'), 321);
+      expect(h.number('resolvedCoreDate.millisecondsSinceEpoch'), 654);
+      expect(h.string('resolvedCoreUri.toString()'), '../later');
+      expect(h.number('coreInputs.consumer.date.millisecondsSinceEpoch'), 987);
+      expect(
+        h.string('coreInputs.consumer.uri.toString()'),
+        'https://example.com/path?x=1#frag',
+      );
+      expect(h.number('coreInputs.inputDate.getTime()'), 999);
+      expect(h.string('coreInputs.inputUrl.pathname'), '/changed');
+      h.execute(
+        'var retainedUtc = DateTime.fromMillisecondsSinceEpoch(1, {isUtc:true})',
+      );
+      expect(
+        h.boolean(
+          'coreInputs.consumer.echoDate(retainedUtc) === retainedUtc && retainedUtc.isUtc',
+        ),
+        isTrue,
+      );
+      expect(h.errors, isEmpty);
+    } finally {
+      await h.finish(t);
+    }
+  });
+
+  testWidgets('core native inputs reject invalid values and Dart subtypes', (
+    t,
+  ) async {
+    final h = OwnedHarness(
+      fixture: 'codegen_basics',
+      extra: [interopBindings, repeatedBindings],
+    );
+    try {
+      await t.pumpWidget(h.app('codegen-basics'));
+      expect(h.errors, isEmpty);
+      h.execute(
+        'var coreConsumer = interop.CoreValueConsumer(new Date(0), "../relative", StringBuffer())',
+      );
+      for (final expression in [
+        'coreConsumer.echoDate(new Date(NaN))',
+        'coreConsumer.echoDate(123)',
+        'coreConsumer.echoDate("2026-10-12")',
+        'coreConsumer.echoDate(Object.create(Date.prototype))',
+        'coreConsumer.echoDate({getTime: () => 1, [Symbol.toStringTag]: "Date"})',
+        'coreConsumer.echoUri({href: "https://example.com"})',
+        'coreConsumer.echoUri(Object.create(URL.prototype))',
+        'coreConsumer.echoUri("https://[invalid")',
+        'coreConsumer.echoUri(123)',
+        'coreConsumer.dateSubtype(new Date(0))',
+        'coreConsumer.uriSubtype("../relative")',
+        'interop.Box(new Date(0))',
+        'interop.Box(new URL("https://example.com"))',
+      ]) {
+        expect(
+          h.boolean(
+            '(() => { try { $expression; return false; } catch (_) { return true; } })()',
+          ),
+          isTrue,
+          reason: expression,
+        );
+      }
+      h.execute(
+        'var overriddenDate = new Date(12); overriddenDate.getTime = () => 99',
+      );
+      expect(
+        h.number(
+          'coreConsumer.echoDate(overriddenDate).millisecondsSinceEpoch',
+        ),
+        12,
+      );
+      expect(h.errors, isEmpty);
+    } finally {
+      await h.finish(t);
+    }
+  });
+
   testWidgets('Records round-trip as structural values', (t) async {
     final h = OwnedHarness(
       fixture: 'codegen_basics',

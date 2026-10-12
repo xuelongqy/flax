@@ -7,6 +7,7 @@ export interface DateTime extends Readonly<{
     readonly __DateTime: unique symbol;
     readonly year: number;
     readonly isUtc: boolean;
+    readonly millisecondsSinceEpoch: number;
     toIso8601String(): string;
 }
 declare namespace _DateTimeFactory {

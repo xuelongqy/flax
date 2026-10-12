@@ -5,6 +5,7 @@ export interface Uri extends Readonly<{
     readonly __Uri: unique symbol;
     readonly scheme: string;
     readonly host: string;
+    toString(): string;
 }
 declare namespace _UriFactory {
     function parse(uri: string, start?: number, end?: number | null): Uri;

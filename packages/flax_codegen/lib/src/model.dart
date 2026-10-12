@@ -2,13 +2,31 @@ import 'dart:convert';
 
 import 'identity.dart';
 
+const flaxCodegenBufferTypes = {
+  'Int8List': 'Int8Array',
+  'Uint8List': 'Uint8Array',
+  'Uint8ClampedList': 'Uint8ClampedArray',
+  'Int16List': 'Int16Array',
+  'Uint16List': 'Uint16Array',
+  'Int32List': 'Int32Array',
+  'Uint32List': 'Uint32Array',
+  'Int64List': 'BigInt64Array',
+  'Uint64List': 'BigUint64Array',
+  'Float32List': 'Float32Array',
+  'Float64List': 'Float64Array',
+  'ByteData': 'DataView',
+  'ByteBuffer': 'ArrayBuffer',
+};
+
 enum FlaxCodegenTypeCategory {
   string('String'),
   boolean('bool'),
   integer('int'),
   number('double'),
   numeric('num'),
+  bigInt('BigInt'),
   uint8List('Uint8List'),
+  buffer('Int8List'),
   scalar('scalar'),
   data('data'),
   voidType('void'),
@@ -35,10 +53,13 @@ enum FlaxCodegenTypeCategory {
   const FlaxCodegenTypeCategory(this.wireName);
   final String wireName;
 
-  static FlaxCodegenTypeCategory parse(String name) => values.firstWhere(
-    (value) => value.wireName == name,
-    orElse: () => throw StateError('Unknown model type: $name'),
-  );
+  static FlaxCodegenTypeCategory parse(String name) =>
+      name != 'Uint8List' && flaxCodegenBufferTypes.containsKey(name)
+      ? buffer
+      : values.firstWhere(
+          (value) => value.wireName == name,
+          orElse: () => throw StateError('Unknown model type: $name'),
+        );
 }
 
 enum FlaxCodegenClassCategory {
@@ -1330,10 +1351,29 @@ class FlaxCodegenModuleModel {
 
   /// Sorted unique capability literals. Protocol 21 is empty.
   final List<String> _requiredCapabilities;
-  List<String> get requiredCapabilities =>
-      typeLibraries['Uint8List'] == 'dart:typed_data'
-      ? ({..._requiredCapabilities, 'shared-uint8'}.toList()..sort())
-      : _requiredCapabilities;
+  List<String> get requiredCapabilities {
+    final sharedBytes = typeLibraries['Uint8List'] == 'dart:typed_data';
+    final sharedBuffers = flaxCodegenBufferTypes.keys.any(
+      (name) => name != 'Uint8List' && typeLibraries[name] == 'dart:typed_data',
+    );
+    final nativeBigInt = typeLibraries['BigInt'] == 'dart:core';
+    final nativeCoreInputs = [
+      'DateTime',
+      'Uri',
+      'RegExp',
+      'Pattern',
+    ].any((name) => typeLibraries[name] == 'dart:core');
+    if (!sharedBytes && !sharedBuffers && !nativeBigInt && !nativeCoreInputs) {
+      return _requiredCapabilities;
+    }
+    return ({
+      ..._requiredCapabilities,
+      if (sharedBytes) 'shared-uint8',
+      if (sharedBuffers) 'shared-buffers',
+      if (nativeBigInt) 'native-bigint',
+      if (nativeCoreInputs) 'native-core-inputs',
+    }.toList()..sort());
+  }
 
   /// Generator-only visibility for dependency-owned nominal types.
   ///

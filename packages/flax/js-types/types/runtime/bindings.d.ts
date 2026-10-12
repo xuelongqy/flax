@@ -12,6 +12,7 @@ declare const dartCollectionKind: unique symbol;
 declare const dartCollectionItem: unique symbol;
 declare const dartCollectionKey: unique symbol;
 declare const dartRecordKind: unique symbol;
+type NativeBuffer = globalThis.ArrayBuffer | globalThis.DataView | globalThis.Int8Array | globalThis.Uint8Array | globalThis.Uint8ClampedArray | globalThis.Int16Array | globalThis.Uint16Array | globalThis.Int32Array | globalThis.Uint32Array | globalThis.BigInt64Array | globalThis.BigUint64Array | globalThis.Float32Array | globalThis.Float64Array;
 /** A Dart Record projection retains its identity when passed through Object?. */
 export type DartRecord<T extends object> = T & {
     readonly [dartRecordKind]: true;
@@ -36,14 +37,24 @@ export type DartOutput<T> = T extends object ? T extends {
     readonly [dartCollectionKind]: string;
 } | {
     readonly [dartRecordKind]: true;
-} | FlaxStreamReference<unknown> | globalThis.Uint8Array | ((...args: never[]) => unknown) ? T : T extends ReadonlyArray<infer V> ? DartList<DartOutput<V>> : T extends ReadonlyMap<infer K, infer V> ? DartMap<DartOutput<K>, DartOutput<V>> : T extends ReadonlySet<infer V> ? DartSet<DartOutput<V>> : T extends Promise<infer V> ? Promise<DartOutput<V>> : T extends Iterable<infer V> ? DartIterable<DartOutput<V>> : DartReferenceBrand<T> extends never ? DartMap<string, DartOutput<T[keyof T]>> : T : T;
+} | FlaxStreamReference<unknown> | NativeBuffer | ((...args: never[]) => unknown) ? T : T extends ReadonlyArray<infer V> ? DartList<DartOutput<V>> : T extends ReadonlyMap<infer K, infer V> ? DartMap<DartOutput<K>, DartOutput<V>> : T extends ReadonlySet<infer V> ? DartSet<DartOutput<V>> : T extends Promise<infer V> ? Promise<DartOutput<V>> : T extends Iterable<infer V> ? DartIterable<DartOutput<V>> : DartReferenceBrand<T> extends never ? DartMap<string, DartOutput<T[keyof T]>> : T : T;
 type DartReferenceBrand<T> = Extract<T[Extract<keyof T, `__${string}`>], symbol> | Extract<keyof T, `__flaxBound:${string}`>;
 type DartCallbackResult<R> = R extends Promise<infer V> ? Promise<V extends Widget ? V : DartInput<DartOutput<V>>> : R extends Widget ? R : DartInput<DartOutput<R>>;
 type DartCallbackInput<A extends readonly unknown[], R> = (...args: {
     [K in keyof A]: DartOutput<A[K]>;
 }) => DartCallbackResult<R>;
 type DartElementInput<T> = T extends (...args: infer A) => infer R ? DartCallbackInput<A, R> : DartInput<T>;
-export type DartInput<T> = T extends Widget ? never : T extends (...args: infer A) => infer R ? DartCallbackInput<A, R> : T extends Promise<unknown> ? never : T extends {
+type DartNativeInput<T, Brand extends string, Native> = Exclude<Extract<keyof T, `__${string}`>, Brand | `__flaxBound:${string}`> extends never ? T | Native : T;
+type DartCoreInput<T> = T extends {
+    readonly '__flaxBound:dart:core::DateTime': readonly [];
+} ? DartNativeInput<T, '__DateTime', globalThis.Date> : T extends {
+    readonly '__flaxBound:dart:core::Uri': readonly [];
+} ? DartNativeInput<T, '__Uri', import('../host/url.js').URL | string> : T extends {
+    readonly '__flaxBound:dart:core::RegExp': readonly [];
+} ? DartNativeInput<T, '__RegExp' | '__Pattern', globalThis.RegExp> : T extends {
+    readonly '__flaxBound:dart:core::Pattern': readonly [];
+} ? DartNativeInput<T, '__Pattern', globalThis.RegExp | string> : T;
+export type DartInput<T> = T extends Widget ? never : T extends NativeBuffer ? T : T extends (...args: infer A) => infer R ? DartCallbackInput<A, R> : T extends Promise<unknown> ? never : T extends {
     readonly [dartRecordKind]: true;
 } ? {
     [K in keyof T as K extends typeof dartRecordKind ? never : K]: T[K] | DartInput<T[K]>;
@@ -60,7 +71,7 @@ export type DartInput<T> = T extends Widget ? never : T extends (...args: infer 
 } ? DartSetInput<V> : T extends {
     readonly [dartCollectionKind]: 'iterable';
     readonly [dartCollectionItem]: infer V;
-} ? DartIterableInput<V> : T;
+} ? DartIterableInput<V> : DartCoreInput<T>;
 /** References to real Dart collections. Explicit copying never installs observers. */
 export interface DartIterable<T> extends Iterable<DartCopy<T>> {
     readonly __dartIterable: unique symbol;

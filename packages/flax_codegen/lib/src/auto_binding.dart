@@ -156,7 +156,8 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       elements[name] = element;
       final classOverride = overrides.classes[name];
       if (classOverride != null) seenOverrides.add(name);
-      if (classOverride == null &&
+      if (_nativeJsValueType(element) == null &&
+          classOverride == null &&
           !_dependencyTypeOwners.containsKey(identity(element)) &&
           element.allSupertypes.any(
             (parent) =>

@@ -613,46 +613,52 @@ extension _ObjectCalls on _Session {
           source.initial.escapeCallbacks();
           escapeWidget(source.initial.data, source.type);
         }
-        final value = binding.create(ctor, {
-          ...sources.map((k, v) => MapEntry(k, v.initial.data)),
-          '@peer': ?peer,
-        });
-        // The peer's native facade already retains its receiver from Dart.
-        // Only the returned wrapper (or transferred extends alias) owns the proxy.
-        if (value is FlaxWidgetProxy) {
-          final identity = descriptor.getProperty('widgetType');
-          try {
-            if (identity is! FlaxJsUndefined) {
-              if (identity is! FlaxJsNumber ||
-                  !identity.value.isFinite ||
-                  identity.value <= 0 ||
-                  identity.value.truncateToDouble() != identity.value) {
-                throw ArgumentError('Invalid Widget proxy identity');
-              }
-              final key = identity.value.toInt();
-              final existingType = _componentTypes[key];
-              if (existingType != null && existingType.name != binding.id) {
-                throw ArgumentError(
-                  'Widget proxy identity belongs to another native class',
+        return bindingCall(() {
+          final value = binding.create(ctor, {
+            ...sources.map((k, v) => MapEntry(k, v.initial.data)),
+            '@peer': ?peer,
+          });
+          // The peer's native facade already retains its receiver from Dart.
+          // Only the returned wrapper (or transferred extends alias) owns the proxy.
+          if (value is FlaxWidgetProxy) {
+            final identity = descriptor.getProperty('widgetType');
+            try {
+              if (identity is! FlaxJsUndefined) {
+                if (identity is! FlaxJsNumber ||
+                    !identity.value.isFinite ||
+                    identity.value <= 0 ||
+                    identity.value.truncateToDouble() != identity.value) {
+                  throw ArgumentError('Invalid Widget proxy identity');
+                }
+                final key = identity.value.toInt();
+                final existingType = _componentTypes[key];
+                if (existingType != null && existingType.name != binding.id) {
+                  throw ArgumentError(
+                    'Widget proxy identity belongs to another native class',
+                  );
+                }
+                _flaxWidgetProxyTypes[value] = _componentTypes.putIfAbsent(
+                  key,
+                  () => _ComponentType(
+                    _componentSessionId,
+                    key,
+                    binding.id,
+                    false,
+                  ),
                 );
               }
-              _flaxWidgetProxyTypes[value] = _componentTypes.putIfAbsent(
-                key,
-                () =>
-                    _ComponentType(_componentSessionId, key, binding.id, false),
-              );
+            } finally {
+              _releaseJs(identity);
             }
-          } finally {
-            _releaseJs(identity);
           }
-        }
-        final result = objectResult(
-          value,
-          FlaxTypeRef('object', id: binding.id),
-        );
-        final held = holdHostResult(result);
-        createdPeer = true;
-        return held;
+          final result = objectResult(
+            value,
+            FlaxTypeRef('object', id: binding.id),
+          );
+          final held = holdHostResult(result);
+          createdPeer = true;
+          return held;
+        });
       } finally {
         if (!createdPeer) peer?._handle.release();
         for (final source in sources.values) {

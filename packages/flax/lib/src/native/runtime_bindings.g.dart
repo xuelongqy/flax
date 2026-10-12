@@ -84,7 +84,7 @@ const int FLAX_ABI_VERSION = 2;
 
 const int FLAX_CALLBACK_FAILURE = 4;
 
-const int FLAX_ENGINE_BINDING_VERSION = 2;
+const int FLAX_ENGINE_BINDING_VERSION = 3;
 
 const int FLAX_ENGINE_GC_VERSION = 1;
 
@@ -590,6 +590,42 @@ final class FlaxBindingArgument extends ffi.Struct {
     ..ref.length = length;
 }
 
+enum FlaxBufferKind {
+  FLAX_ARRAY_BUFFER(0),
+  FLAX_INT8_ARRAY(1),
+  FLAX_UINT8_ARRAY(2),
+  FLAX_UINT8_CLAMPED_ARRAY(3),
+  FLAX_INT16_ARRAY(4),
+  FLAX_UINT16_ARRAY(5),
+  FLAX_INT32_ARRAY(6),
+  FLAX_UINT32_ARRAY(7),
+  FLAX_BIGINT64_ARRAY(8),
+  FLAX_BIGUINT64_ARRAY(9),
+  FLAX_FLOAT32_ARRAY(10),
+  FLAX_FLOAT64_ARRAY(11),
+  FLAX_DATA_VIEW(12);
+
+  final int value;
+  const FlaxBufferKind(this.value);
+
+  static FlaxBufferKind fromValue(int value) => switch (value) {
+    0 => FLAX_ARRAY_BUFFER,
+    1 => FLAX_INT8_ARRAY,
+    2 => FLAX_UINT8_ARRAY,
+    3 => FLAX_UINT8_CLAMPED_ARRAY,
+    4 => FLAX_INT16_ARRAY,
+    5 => FLAX_UINT16_ARRAY,
+    6 => FLAX_INT32_ARRAY,
+    7 => FLAX_UINT32_ARRAY,
+    8 => FLAX_BIGINT64_ARRAY,
+    9 => FLAX_BIGUINT64_ARRAY,
+    10 => FLAX_FLOAT32_ARRAY,
+    11 => FLAX_FLOAT64_ARRAY,
+    12 => FLAX_DATA_VIEW,
+    _ => throw ArgumentError('Unknown value for FlaxBufferKind: $value'),
+  };
+}
+
 final class FlaxEngineBindingApi extends ffi.Struct {
   @ffi.Uint32()
   external int version;
@@ -645,23 +681,25 @@ final class FlaxEngineBindingApi extends ffi.Struct {
       ffi.Int32 Function(
         ffi.Pointer<FlaxRuntime>,
         ffi.Handle,
+        ffi.Uint32,
         ffi.Pointer<FlaxValueId>,
         ffi.Pointer<FlaxError>,
       )
     >
   >
-  share_uint8;
+  share_buffer;
 
   external ffi.Pointer<
     ffi.NativeFunction<
       ffi.Handle Function(
         ffi.Pointer<FlaxRuntime>,
         FlaxValueId,
+        ffi.Uint32,
         ffi.Pointer<FlaxError>,
       )
     >
   >
-  read_uint8;
+  read_buffer;
 
   static ffi.Pointer<FlaxEngineBindingApi> $allocate(
     ffi.Allocator $allocator, {
@@ -712,30 +750,32 @@ final class FlaxEngineBindingApi extends ffi.Struct {
         ffi.Int32 Function(
           ffi.Pointer<FlaxRuntime>,
           ffi.Handle,
+          ffi.Uint32,
           ffi.Pointer<FlaxValueId>,
           ffi.Pointer<FlaxError>,
         )
       >
     >
-    share_uint8,
+    share_buffer,
     required ffi.Pointer<
       ffi.NativeFunction<
         ffi.Handle Function(
           ffi.Pointer<FlaxRuntime>,
           FlaxValueId,
+          ffi.Uint32,
           ffi.Pointer<FlaxError>,
         )
       >
     >
-    read_uint8,
+    read_buffer,
   }) => $allocator<FlaxEngineBindingApi>()
     ..ref.version = version
     ..ref.struct_size = struct_size
     ..ref.register_members = register_members
     ..ref.invoke_member = invoke_member
     ..ref.call = call
-    ..ref.share_uint8 = share_uint8
-    ..ref.read_uint8 = read_uint8;
+    ..ref.share_buffer = share_buffer
+    ..ref.read_buffer = read_buffer;
 }
 
 final class FlaxEngineGcApi extends ffi.Struct {
@@ -959,7 +999,8 @@ enum FlaxValueKind {
   FLAX_NUMBER(3),
   FLAX_STRING(4),
   FLAX_OBJECT(5),
-  FLAX_FUNCTION(6);
+  FLAX_FUNCTION(6),
+  FLAX_BIGINT(7);
 
   final int value;
   const FlaxValueKind(this.value);
@@ -972,6 +1013,7 @@ enum FlaxValueKind {
     4 => FLAX_STRING,
     5 => FLAX_OBJECT,
     6 => FLAX_FUNCTION,
+    7 => FLAX_BIGINT,
     _ => throw ArgumentError('Unknown value for FlaxValueKind: $value'),
   };
 }

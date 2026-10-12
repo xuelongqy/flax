@@ -252,7 +252,7 @@ classes:
     kind: object
     constructors:
       fromMillisecondsSinceEpoch: [millisecondsSinceEpoch, isUtc]
-    getters: [year, isUtc]
+    getters: [year, isUtc, millisecondsSinceEpoch]
     instanceMethods:
       toIso8601String: []
   Uri:
@@ -260,6 +260,8 @@ classes:
     methods:
       parse: [uri, start, end]
     getters: [scheme, host]
+    instanceMethods:
+      toString: []
   StringBuffer:
     kind: object
     constructors:
@@ -956,6 +958,9 @@ classes:
     kind: object
     constructors:
       '': [source, multiLine, caseSensitive, unicode, dotAll]
+    getters: [pattern, isMultiLine, isCaseSensitive, isUnicode, isDotAll]
+    instanceMethods:
+      hasMatch: [input]
   Listener:
     constructors:
       '':

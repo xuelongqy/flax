@@ -191,6 +191,15 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
   void skip(String target, String reason, {required String code}) =>
       skips.add(FlaxCodegenSkip(target: target, reason: reason, code: code));
 
+  if (_nativeJsValueType(element) case final native?) {
+    skip(
+      name,
+      'Maps to native JS $native; use its JS APIs and bind typed consumers',
+      code: 'native_js_value',
+    );
+    return FlaxCodegenProposedBinding(name: name, id: id, skips: skips);
+  }
+
   if (!ignoreProvider && parser._dependencyOwners[id] != null) {
     final owner = parser._dependencyOwners[id]!;
     final available = _selectionFromModel(
@@ -865,14 +874,15 @@ bool _isConventionalDisposer(MethodElement? method) =>
       (fragment) => fragment.isAsynchronous || fragment.isGenerator,
     );
 
-const _getterKinds = {
+final _getterKinds = {
   'void',
   'String',
   'bool',
   'int',
   'double',
   'num',
-  'Uint8List',
+  ...flaxCodegenBufferTypes.keys,
+  'BigInt',
   'enum',
   'data',
   'any',
@@ -892,13 +902,14 @@ const _getterKinds = {
   'state',
 };
 
-const _setterKinds = {
+final _setterKinds = {
   'String',
   'bool',
   'int',
   'double',
   'num',
-  'Uint8List',
+  ...flaxCodegenBufferTypes.keys,
+  'BigInt',
   'enum',
   'context',
   'state',
@@ -1762,7 +1773,8 @@ List<String>? _bindMethod({
       'int',
       'double',
       'num',
-      'Uint8List',
+      ...flaxCodegenBufferTypes.keys,
+      'BigInt',
       'enum',
       'void',
       'data',

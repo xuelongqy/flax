@@ -342,8 +342,11 @@ FlaxCodegenManifestModule? _decodeModuleEntry(
   if (requiredCapabilities.any(
     (capability) => !{
       'instance-checks',
+      'native-core-inputs',
+      'native-bigint',
       'native-widget-proxies',
       'shared-uint8',
+      'shared-buffers',
     }.contains(capability),
   )) {
     diagnostics.add(

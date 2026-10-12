@@ -6,8 +6,11 @@ const flaxBindingVersion = 24;
 /// Additive features supported without changing the UI protocol.
 const _supportedCapabilities = <String>{
   'instance-checks',
+  'native-core-inputs',
+  'native-bigint',
   'native-widget-proxies',
   'shared-uint8',
+  'shared-buffers',
 };
 
 class FlaxTypeRef {
@@ -184,6 +187,7 @@ class FlaxObjectBinding extends FlaxTypeBinding {
     required this.create,
     this.disposeMethod,
     this.matches,
+    this.nativeInput,
     this.staticGetters = const {},
     super.methods,
     this.setters = const [],
@@ -200,6 +204,9 @@ class FlaxObjectBinding extends FlaxTypeBinding {
   final Map<String, FlaxInstanceMethod> instanceMethods;
   final String? disposeMethod;
   final bool Function(Object)? matches;
+
+  /// Native JS input for an exact Dart SDK declaration, never for its subtypes.
+  final String? nativeInput;
   final Map<String, FlaxStaticGetter> staticGetters;
   final Map<String, String> listenerPairs;
   final List<String> supertypes;
