@@ -26,6 +26,13 @@ import type {
 declare function roundTrip<T>(value: T): DartOutput<T>;
 const list: DartList<string> = roundTrip(['a']);
 const nested: DartList<DartList<string>> = roundTrip([['a']]);
+const inputBytes = new Uint8Array(2);
+const bytes: typeof inputBytes = roundTrip(inputBytes);
+const byteList: DartList<typeof inputBytes> = roundTrip([inputBytes]);
+const byteCallback: DartInput<(value: Uint8Array) => Uint8Array> = (value) =>
+  value.subarray(1);
+// @ts-expect-error Shared bytes remain a native Uint8Array.
+bytes.get(0);
 interface Fields {
   readonly name: string;
 }

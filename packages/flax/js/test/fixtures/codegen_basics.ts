@@ -37,8 +37,12 @@ function genericAliasRoundtrip() {
   const getter: ValueGetterInput<number> = () => 23;
   consumer.foundation(onChanged, getter);
   consumer.callbacks.add(generic);
+  const bytes = new Uint8Array([3, 4]);
+  const sharedBytes: Uint8Array = consumer.identity(bytes);
   return {
     consumer,
+    bytes,
+    sharedBytes,
     mapped: consumer.map(mapper, 3),
     generic: consumer.generic(generic, 7),
     inline: consumer.inline(generic, 7),

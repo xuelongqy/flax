@@ -36,7 +36,7 @@ export type DartOutput<T> = T extends object ? T extends {
     readonly [dartCollectionKind]: string;
 } | {
     readonly [dartRecordKind]: true;
-} | FlaxStreamReference<unknown> | ((...args: never[]) => unknown) ? T : T extends ReadonlyArray<infer V> ? DartList<DartOutput<V>> : T extends ReadonlyMap<infer K, infer V> ? DartMap<DartOutput<K>, DartOutput<V>> : T extends ReadonlySet<infer V> ? DartSet<DartOutput<V>> : T extends Promise<infer V> ? Promise<DartOutput<V>> : T extends Iterable<infer V> ? DartIterable<DartOutput<V>> : DartReferenceBrand<T> extends never ? DartMap<string, DartOutput<T[keyof T]>> : T : T;
+} | FlaxStreamReference<unknown> | globalThis.Uint8Array | ((...args: never[]) => unknown) ? T : T extends ReadonlyArray<infer V> ? DartList<DartOutput<V>> : T extends ReadonlyMap<infer K, infer V> ? DartMap<DartOutput<K>, DartOutput<V>> : T extends ReadonlySet<infer V> ? DartSet<DartOutput<V>> : T extends Promise<infer V> ? Promise<DartOutput<V>> : T extends Iterable<infer V> ? DartIterable<DartOutput<V>> : DartReferenceBrand<T> extends never ? DartMap<string, DartOutput<T[keyof T]>> : T : T;
 type DartReferenceBrand<T> = Extract<T[Extract<keyof T, `__${string}`>], symbol> | Extract<keyof T, `__flaxBound:${string}`>;
 type DartCallbackResult<R> = R extends Promise<infer V> ? Promise<V extends Widget ? V : DartInput<DartOutput<V>>> : R extends Widget ? R : DartInput<DartOutput<R>>;
 type DartCallbackInput<A extends readonly unknown[], R> = (...args: {

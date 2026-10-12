@@ -111,6 +111,13 @@ recordValues.future.then(value => { recordFuture = value; });
     try {
       await t.pumpWidget(h.app('codegen-basics'));
       h.execute('var genericAliases = genericAliasRoundtrip()');
+      h.execute('genericAliases.sharedBytes[0] = 9');
+      expect(
+        h.boolean(
+          'genericAliases.sharedBytes instanceof Uint8Array && genericAliases.bytes[0] === 9',
+        ),
+        isTrue,
+      );
       expect(h.number('genericAliases.mapped'), 5);
       expect(h.number('genericAliases.generic'), 7);
       expect(h.number('genericAliases.inline'), 7);

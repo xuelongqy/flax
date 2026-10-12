@@ -55,6 +55,7 @@ export type DartOutput<T> = T extends object
       | { readonly [dartCollectionKind]: string }
       | { readonly [dartRecordKind]: true }
       | FlaxStreamReference<unknown>
+      | globalThis.Uint8Array
       | ((...args: never[]) => unknown)
     ? T
     : T extends ReadonlyArray<infer V>
