@@ -23,7 +23,7 @@ function _flaxInstallBindingModule(
       throw new TypeError('requiredCapabilities must be sorted unique strings');
     }
     previous = capability;
-    if (capability !== 'instance-checks' && capability !== 'native-widget-proxies') {
+    if (capability !== 'instance-checks' && capability !== 'native-widget-proxies' && capability !== 'shared-uint8') {
       throw new TypeError(`Unsupported binding capability ${capability}`);
     }
   }

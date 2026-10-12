@@ -88,6 +88,46 @@ Ordinary object elements remain references. Navigation data continues to reject 
 and host references. Bulk copies still incur conversion/allocation cost proportional to
 the graph; one host invocation does not mean zero work.
 
+## Shared Uint8List bytes
+
+Generated `dart:typed_data` `Uint8List` parameters and results use real JavaScript
+`Uint8Array` values. This also applies inside callbacks, Future results and collection
+elements. Object/dynamic conversion recognizes byte arrays before ordinary Lists. Plain
+JS arrays and other TypedArrays do not satisfy a Uint8List parameter.
+
+The bridge shares the actual view range. Writes in either language immediately affect
+the same bytes. Already-created Dart lists and aliases work: first export promotes young
+storage through normal GC, then roots the numeric backing object and temporarily fixes
+its old-space page. JSI MutableBuffer owns that pin. Its last release schedules
+unpinning on the UI thread; isolate shutdown retires roots before the VM frees them.
+Importing a Dart-backed JS view reconstructs a Dart heap view rather than external data
+pointing into the Dart heap. JS-origin bytes use an external Dart view with a native
+storage lease. These owners contain bytes, not application objects or a retained JS
+runtime. Storage sharing preserves bytes and ranges; repeated conversions may create
+different Uint8Array wrappers or Dart view objects.
+
+Same-size ArrayBuffer transfer detaches the old JS buffer while retaining the shared
+allocation in V8 and Hermes. Resizing transfer follows JS copy semantics: the new buffer
+contains independent bytes, and existing Dart views remain valid. Retained Dart views
+also survive session close. JS facade access still requires a live session/runtime.
+
+Sharing requires fixed, writable, unshared storage. Readonly Dart views, detached JS
+buffers, SharedArrayBuffer, resizable buffers and incompatible views are rejected.
+Hermes retains its 32-bit buffer-size limit. The maintained V8 SDK must disable its
+sandbox, which cannot directly expose Dart heap addresses. No copy fallback or
+allocation mode is selected. The first share of young data can trigger promotion; pinned
+small objects temporarily prevent compaction of their whole 512 KiB page.
+External-memory accounting conservatively charges each imported JS view and each Hermes
+ArrayBuffer for its retained backing store. Hermes keeps that charge through adoption
+and same-size transfer, then removes it on detach or collection.
+
+`FlaxJsRuntime.createUint8Array` and `readUint8Array` expose the same sharing contract.
+The existing `createArrayBuffer` / `readBytes` operations retain their explicit copying
+semantics for Blob/Fetch and other snapshot APIs. The internal binding engine table is
+version 2; native ABI 2, UI protocol 24 and Manifest 18 remain independent. Modules
+using Uint8List require the additive `shared-uint8` capability. Other TypedData types
+are not automatically projected by this implementation.
+
 ## Returned functions and Widgets
 
 Typed functions returned by getters, methods, Futures or List/Map operations are

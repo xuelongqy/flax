@@ -210,9 +210,12 @@ extension _Collections on _Session {
     if (input is! FlaxJsObject || input is FlaxJsFunction) {
       throw ArgumentError('Unsupported Dart value');
     }
-    final enumType = helper('enumType').call([input]);
-    if (enumType is FlaxJsString) {
-      return decode(input, FlaxTypeRef('enum', id: enumType.value));
+    final valueType = helper('valueType').call([input]);
+    if (valueType is FlaxJsString) {
+      if (valueType.value == 'Uint8List') {
+        return _Value(runtime.readUint8Array(input));
+      }
+      return decode(input, FlaxTypeRef('enum', id: valueType.value));
     }
     final id = helper('tryObjectHandle').call([input]);
     if (id is FlaxJsNumber) {
@@ -514,6 +517,7 @@ extension _Collections on _Session {
       return futureResult(value, const FlaxTypeRef('any', nullable: true));
     }
     if (value is Stream<Object?>) return streamResult(value, _anyStream);
+    if (value is Uint8List) return runtime.createUint8Array(value);
     if (value is List) return collectionResult(value, _anyList);
     if (value is Map) return collectionResult(value, _anyMap);
     if (value is Set) return collectionResult(value, _anySet);

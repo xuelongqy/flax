@@ -65,7 +65,9 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
         binding.ref.struct_size != sizeOf<FlaxEngineBindingApi>() ||
         binding.ref.register_members == nullptr ||
         binding.ref.invoke_member == nullptr ||
-        binding.ref.call == nullptr) {
+        binding.ref.call == nullptr ||
+        binding.ref.share_uint8 == nullptr ||
+        binding.ref.read_uint8 == nullptr) {
       throw UnsupportedError('Incompatible Flax binding engine extension');
     }
     return FlaxNativeJsRuntime._(NativeCalls(table.ref), gc.ref, binding.ref);
@@ -141,6 +143,19 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
           Object,
           Pointer<FlaxError>,
         )
+      >();
+  late final _shareUint8 = _binding.share_uint8
+      .asFunction<
+        int Function(
+          Pointer<FlaxRuntime>,
+          Object,
+          Pointer<Uint64>,
+          Pointer<FlaxError>,
+        )
+      >();
+  late final _readUint8 = _binding.read_uint8
+      .asFunction<
+        Object Function(Pointer<FlaxRuntime>, int, Pointer<FlaxError>)
       >();
   final SendPort _owner = Isolate.current.controlPort;
   late final Pointer<FlaxRuntime> _handle;
@@ -359,6 +374,27 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
     } finally {
       _calls.bufferFree(output.value.cast());
     }
+  });
+
+  @override
+  FlaxJsObject createUint8Array(Uint8List bytes) => _entry((arena) {
+    final output = arena<Uint64>();
+    _checked(arena, (error) => _shareUint8(_handle, bytes, output, error));
+    return _read(arena, output.value) as FlaxJsObject;
+  });
+
+  @override
+  Uint8List readUint8Array(FlaxJsObject value) => _entry((arena) {
+    if (value is! _NativeObject) {
+      throw ArgumentError('Unsupported object implementation');
+    }
+    value._check(this);
+    Object? result;
+    _checked(arena, (error) {
+      result = _readUint8(_handle, value._id, error);
+      return error.ref.code;
+    });
+    return result as Uint8List;
   });
 
   // Create the native root in a separate closure context. Sharing the

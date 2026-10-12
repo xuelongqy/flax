@@ -36,6 +36,39 @@ void flaxRuntimeContract(
     });
   }
 
+  test('shared byte views with one address preserve different ranges', () {
+    final wholeJs = runtime.evaluate(
+      'globalThis.rangedBytes = new Uint8Array(8); rangedBytes',
+    ) as FlaxJsObject;
+    final prefixJs =
+        runtime.evaluate('rangedBytes.subarray(0, 4)') as FlaxJsObject;
+    final whole = runtime.readUint8Array(wholeJs);
+    final prefix = runtime.readUint8Array(prefixJs);
+    final sharedPrefix = runtime.createUint8Array(prefix);
+    final sharedWhole = runtime.createUint8Array(whole);
+    final global = runtime.evaluate('globalThis') as FlaxJsObject;
+    try {
+      global.setProperty('sharedPrefix', sharedPrefix);
+      global.setProperty('sharedWhole', sharedWhole);
+      expect(_number(runtime.evaluate('sharedPrefix.buffer.byteLength')), 4);
+      expect(_number(runtime.evaluate('sharedWhole.buffer.byteLength')), 8);
+      runtime.evaluate('sharedPrefix[1] = 23; sharedWhole[7] = 42;');
+      expect(prefix[1], 23);
+      expect(whole[1], 23);
+      expect(whole[7], 42);
+      expect(runtime.readUint8Array(sharedPrefix), [0, 23, 0, 0]);
+    } finally {
+      global.release();
+      sharedWhole.release();
+      sharedPrefix.release();
+      prefixJs.release();
+      wholeJs.release();
+    }
+    runtime.dispose();
+    prefix[0] = 17;
+    expect(whole[0], 17);
+  });
+
   test('bulk bytes copy views and transfer actually detaches every view', () {
     final bytes = Uint8List.fromList([0, 127, 255, 8]);
     final buffer = runtime.createArrayBuffer(bytes);

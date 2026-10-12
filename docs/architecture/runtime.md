@@ -5,7 +5,7 @@
 Flax uses its maintained Flutter 3.47.6 engine: V8 15.4.80.15 JIT on macOS and Android
 arm64, and Hermes 260318099.0.4 without JIT on iOS arm64. `FlaxEngine.createRuntime()`
 is the common entry in `package:flax/runtime.dart`. It checks native ABI 2, internal GC
-extension 1, internal binding extension 1 and the exact Flutter/Dart revisions before
+extension 1, internal binding extension 2 and the exact Flutter/Dart revisions before
 allocation. Ordinary Flutter and incompatible engines fail explicitly. UI protocol 24
 rejects earlier generated packages.
 
@@ -127,6 +127,12 @@ bare runtime. ABI 2 adds copied ArrayBuffer creation and byte-range reads for ac
 TypedArray/DataView views; callers never retain native byte pointers. Detached state
 comes from the engine, not an object's mutable `detached` property. A detached buffer is
 rejected even when its length is zero; an ordinary empty buffer remains valid.
+
+Binding extension 2 adds shared Uint8List/Uint8Array creation and reads. Numeric Dart
+backing data is pinned while a JS view retains it; JS-owned storage uses a native lease
+in external Dart data. These operations preserve writes and surviving Dart bytes across
+GC, transfer and runtime disposal. See the
+[byte contract](interop.md#shared-uint8list-bytes).
 
 ## Verification
 

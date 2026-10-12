@@ -82,10 +82,19 @@ class FlaxTestRuntimeTracker implements FlaxJsRuntime {
   @override
   Uint8List readBytes(FlaxJsObject value) {
     final bytes = inner.readBytes(unwrap(value) as FlaxJsObject);
+
     copiedFromJs += bytes.length;
     byteReads++;
     return bytes;
   }
+
+  @override
+  FlaxJsObject createUint8Array(Uint8List bytes) =>
+      wrap(inner.createUint8Array(bytes), 'uint8') as FlaxJsObject;
+
+  @override
+  Uint8List readUint8Array(FlaxJsObject value) =>
+      inner.readUint8Array(unwrap(value) as FlaxJsObject);
 
   @override
   void registerHostFunction(String name, FlaxJsHostFunction callback) {

@@ -619,6 +619,73 @@ ExtentFrame({item});
     );
   });
 
+  test('Uint8List uses Uint8Array in both binding directions', () async {
+    final module = await parser.parse(
+      fixture('interop.dart', {
+        'Collections': const FlaxCodegenClassSelection(
+          {'': []},
+          kind: 'object',
+          getters: ['bytes', 'broadBytes'],
+          setters: ['bytes'],
+          instanceMethods: {
+            'shareBytes': ['input'],
+            'optionalBytes': ['input'],
+            'futureBytes': ['input'],
+            'applyBytes': ['input', 'callback'],
+            'nestedBytes': ['input'],
+            'anyBytes': ['input'],
+          },
+        ),
+      }),
+    );
+    final emitter = FlaxCodegenBindingEmitter([module]);
+    expect(module.typeLibraries['Uint8List'], 'dart:typed_data');
+    expect(module.requiredCapabilities, contains('shared-uint8'));
+    expect(emitter.dart(module), contains('FlaxTypeRef("Uint8List"'));
+    await compileFixture(
+      root,
+      emitter,
+      module,
+      consumerSource: """
+import {Collections} from './plugin.js';
+class Uint8Array {} // A consumer name must not shadow the builtin type.
+const c = Collections();
+const input = new globalThis.Uint8Array([1, 2]);
+const output: globalThis.Uint8Array = c.shareBytes(input);
+const nullable: globalThis.Uint8Array | null = c.optionalBytes(null);
+const future: Promise<globalThis.Uint8Array> = c.futureBytes(input);
+c.applyBytes(input, value => value.subarray(1));
+c.nestedBytes([input]).get(0).set(input);
+c.bytes = output;
+// @ts-expect-error Plain arrays do not satisfy the shared byte contract.
+c.shareBytes([1, 2]);
+""",
+    );
+  });
+
+  test('Uint8List rejects ambiguous Dart library routing', () async {
+    final config = fixture('uint8_names.dart', {
+      'Uint8List': const FlaxCodegenClassSelection({'': []}, kind: 'object'),
+      'ByteConsumer': const FlaxCodegenClassSelection(
+        {'': []},
+        kind: 'object',
+        instanceMethods: {
+          'echo': ['value'],
+        },
+      ),
+    });
+    await expectLater(
+      parser.parse(config),
+      throwsA(
+        isA<StateError>().having(
+          (error) => error.message,
+          'message',
+          contains('Ambiguous type library routing for Uint8List'),
+        ),
+      ),
+    );
+  });
+
   test('returned functions compile both conversion directions', () async {
     final widgetCallbacks = await parser.parse(
       fixture('repeated.dart', {

@@ -24,6 +24,78 @@ Future<void> _waitFor(
 }
 
 void main() {
+  testWidgets('generated Uint8List bindings share bytes in both directions', (
+    tester,
+  ) async {
+    final created = <fixture.Collections>[];
+    final h = OwnedHarness(
+      fixture: 'interop',
+      extra: [interopBindings],
+      onCreate: (_, value) {
+        if (value is fixture.Collections) created.add(value);
+      },
+    );
+    late List<int> surviving;
+    try {
+      await tester.pumpWidget(h.app('interop'));
+      expect(h.errors, isEmpty);
+      expect(tester.takeException(), isNull);
+      final copiedToJs = h.runtime.copiedToJs;
+      final copiedFromJs = h.runtime.copiedFromJs;
+      h.execute(
+        'var bytesOwner = interop.Collections(); var dartBytes = bytesOwner.bytes; dartBytes[0] = 9;',
+      );
+      final owner = created.single;
+      expect(owner.bytes[0], 9);
+      owner.bytes[1] = 8;
+      expect(
+        h.boolean(
+          'dartBytes instanceof Uint8Array && dartBytes[1] === 8 && bytesOwner.broadBytes instanceof Uint8Array',
+        ),
+        isTrue,
+      );
+      h.execute('''
+        var jsBytes = new Uint8Array([0, 4, 5, 6]).subarray(1);
+        bytesOwner.bytes = jsBytes;
+        var sharedBytes = bytesOwner.shareBytes(jsBytes);
+        sharedBytes[0] = 7;
+        var callbackBytes = bytesOwner.applyBytes(jsBytes, value => { value[1] = 11; return value.subarray(1); });
+        var nestedBytes = bytesOwner.nestedBytes([jsBytes]).get(0);
+        nestedBytes[2] = 12;
+        var anyBytes = bytesOwner.anyBytes(jsBytes);
+        anyBytes[0] = 13;
+        var futureBytesReady = false;
+        bytesOwner.futureBytes(jsBytes).then(value => { value[2] = 14; futureBytesReady = true; });
+      ''');
+      await _waitFor(tester, h, 'futureBytesReady');
+      expect(owner.bytes, [13, 11, 14]);
+      expect(
+        h.boolean(
+          'jsBytes[0] === 13 && jsBytes[2] === 14 && callbackBytes[0] === 11 && bytesOwner.optionalBytes(null) === null',
+        ),
+        isTrue,
+      );
+      for (final invalid in [
+        '[1, 2]',
+        'new Uint16Array(2)',
+        'Object.create(Uint8Array.prototype)',
+      ]) {
+        expect(
+          h.boolean(
+            '(() => { try { bytesOwner.shareBytes($invalid); return false; } catch (_) { return true; } })()',
+          ),
+          isTrue,
+        );
+      }
+      expect(h.runtime.copiedToJs, copiedToJs);
+      expect(h.runtime.copiedFromJs, copiedFromJs);
+      surviving = owner.bytes;
+    } finally {
+      await h.finish(tester);
+    }
+    surviving[0] = 21;
+    expect(surviving, [21, 11, 14]);
+  });
   testWidgets(
     'ordinary generic methods preserve erased calls and native proxy overrides',
     (tester) async {

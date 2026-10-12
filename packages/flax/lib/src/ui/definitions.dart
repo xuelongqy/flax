@@ -7,6 +7,7 @@ const flaxBindingVersion = 24;
 const _supportedCapabilities = <String>{
   'instance-checks',
   'native-widget-proxies',
+  'shared-uint8',
 };
 
 class FlaxTypeRef {

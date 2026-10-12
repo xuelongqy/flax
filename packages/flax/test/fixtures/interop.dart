@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:typed_data';
 
 export 'async_stream_callbacks.dart';
 export 'widget_factory.dart';
@@ -243,6 +244,17 @@ class Store<T extends Token> {
 }
 
 class Collections {
+  Uint8List bytes = Uint8List.fromList([1, 2, 3, 4]);
+  Object get broadBytes => bytes;
+  Uint8List shareBytes(Uint8List input) => input;
+  Uint8List? optionalBytes(Uint8List? input) => input;
+  Future<Uint8List> futureBytes(Uint8List input) async => input;
+  Uint8List applyBytes(
+    Uint8List input,
+    Uint8List Function(Uint8List) callback,
+  ) => callback(input);
+  List<Uint8List> nestedBytes(List<Uint8List> input) => input;
+  Object anyBytes(Object input) => input;
   Collections() {
     lastNumbers = WeakReference(numbers);
   }

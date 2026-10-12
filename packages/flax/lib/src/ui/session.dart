@@ -462,6 +462,10 @@ class _Session {
       }
       return _Value(null);
     }
+    if (type.kind == 'Uint8List') {
+      if (value is! FlaxJsObject) throw ArgumentError('Expected a Uint8Array');
+      return _Value(runtime.readUint8Array(value));
+    }
     if (type.kind == 'context') {
       final handle = helper('contextHandle')
           .call([value, FlaxJsString(type.id!)]);

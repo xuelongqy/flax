@@ -62,6 +62,14 @@ abstract class FlaxJsRuntime {
 
   /// Copies an ArrayBuffer or the actual range of a TypedArray/DataView.
   Uint8List readBytes(FlaxJsObject value);
+
+  /// Shares writable, fixed bytes with JavaScript. Changes in either language
+  /// are visible to the other; the memory lives until the last view is collected.
+  FlaxJsObject createUint8Array(Uint8List bytes);
+
+  /// Shares the actual range of an attached Uint8Array. The returned Dart view
+  /// keeps its bytes alive after JS transfer, GC, or runtime disposal.
+  Uint8List readUint8Array(FlaxJsObject value);
   void registerHostFunction(String name, FlaxJsHostFunction callback);
 
   /// Internal binding edge. JS reachability retains [target]; Dart reachability

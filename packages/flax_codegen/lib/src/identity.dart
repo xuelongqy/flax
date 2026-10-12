@@ -424,6 +424,7 @@ String _decode(String encoded) {
 }
 
 const _primitiveKinds = {
+  'Uint8List',
   'String',
   'bool',
   'int',

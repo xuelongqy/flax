@@ -2305,6 +2305,7 @@ class FlaxCodegenBindingParser {
           'int',
           'double',
           'num',
+          'Uint8List',
           'enum',
           'void',
           'data',
@@ -2347,6 +2348,7 @@ class FlaxCodegenBindingParser {
             'int',
             'double',
             'num',
+            'Uint8List',
             'enum',
             'context',
             'callback',
@@ -3612,6 +3614,7 @@ class FlaxCodegenBindingParser {
       typeLibraries: {
         if (scope.usesFutureOr) 'FutureOr': 'dart:async',
         if (scope.usesStream) 'Stream': 'dart:async',
+        if (scope.usesUint8List) 'Uint8List': 'dart:typed_data',
         for (final name in {
           if (scope.usesWidget || classes.any((c) => c.kind == 'widget'))
             'Widget',
@@ -3639,6 +3642,18 @@ class FlaxCodegenBindingParser {
     Map<String, String> automaticTypeCarriers,
   ) {
     final identitiesByName = <String, Map<String, String>>{};
+    if (scope.usesUint8List) {
+      identitiesByName['Uint8List'] = {
+        'dart:typed_data::Uint8List': 'dart:typed_data',
+      };
+      final selected = scope.exports['Uint8List'];
+      if (scope.config.classes.containsKey('Uint8List') &&
+          selected is InterfaceElement) {
+        identitiesByName['Uint8List']![identity(selected)] =
+            scope.publicLibraries['Uint8List'] ??
+            selected.library.uri.toString();
+      }
+    }
     for (final type in scope.types.values) {
       final split = type.id.lastIndexOf('::');
       final declarationUri = split < 0 ? type.id : type.id.substring(0, split);

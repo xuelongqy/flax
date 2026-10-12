@@ -8,6 +8,7 @@ enum FlaxCodegenTypeCategory {
   integer('int'),
   number('double'),
   numeric('num'),
+  uint8List('Uint8List'),
   scalar('scalar'),
   data('data'),
   voidType('void'),
@@ -1257,13 +1258,15 @@ class FlaxCodegenModuleModel {
     this.topLevel,
     this.publicLibraries = const [],
     this.moduleId,
-    this.requiredCapabilities = const <String>[
+    List<String> requiredCapabilities = const <String>[
       'instance-checks',
       'native-widget-proxies',
     ],
     this.internalTypeNames = const <String>{},
     this.stateVariants = const [],
-  });
+    // Keep the public parameter name while deriving built-in capabilities.
+    // ignore: prefer_initializing_formals
+  }) : _requiredCapabilities = requiredCapabilities;
   final String name;
   final String library;
   final String jsPackage;
@@ -1326,7 +1329,11 @@ class FlaxCodegenModuleModel {
   final String? moduleId;
 
   /// Sorted unique capability literals. Protocol 21 is empty.
-  final List<String> requiredCapabilities;
+  final List<String> _requiredCapabilities;
+  List<String> get requiredCapabilities =>
+      typeLibraries['Uint8List'] == 'dart:typed_data'
+      ? ({..._requiredCapabilities, 'shared-uint8'}.toList()..sort())
+      : _requiredCapabilities;
 
   /// Generator-only visibility for dependency-owned nominal types.
   ///

@@ -84,6 +84,9 @@ current language support is in the
 - [0040: Vite-driven development hot reload](0040-vite-hot-reload.md) is accepted. It
   preserves compatible JS instances and Flutter State on the maintained engine.
 
+- [0041: Shared Uint8List buffers](0041-shared-uint8-buffers.md) is accepted. Generated
+  bytes use Uint8Array and one native ownership contract in V8 and Hermes.
+
 [Open Questions](open-questions.md) records decisions that have not been made. Use the
 [decision template](TEMPLATE.md) for a new significant decision. Record the decision,
 its reason and practical consequences, and update this index.

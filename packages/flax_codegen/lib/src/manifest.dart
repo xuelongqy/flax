@@ -340,8 +340,11 @@ FlaxCodegenManifestModule? _decodeModuleEntry(
     duplicateMessage: 'Duplicate capability.',
   );
   if (requiredCapabilities.any(
-    (capability) =>
-        !{'instance-checks', 'native-widget-proxies'}.contains(capability),
+    (capability) => !{
+      'instance-checks',
+      'native-widget-proxies',
+      'shared-uint8',
+    }.contains(capability),
   )) {
     diagnostics.add(
       pointer: flaxCodegenManifestPointer(pointer, 'requiredCapabilities'),

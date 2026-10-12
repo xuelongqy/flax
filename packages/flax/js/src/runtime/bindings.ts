@@ -1763,6 +1763,12 @@ function finishComponentState(
   return Object.freeze({ state: value as object, variant: state.variant });
 }
 
+// Capture the intrinsic brand getter; prototype changes and custom tags cannot
+// turn an ordinary object into shared native bytes.
+const typedArrayTag = Object.getOwnPropertyDescriptor(
+  Object.getPrototypeOf(Uint8Array.prototype),
+  Symbol.toStringTag,
+)!.get!;
 // One synchronous helper boundary per realm; no browser, Node, or module loader.
 Object.assign(globalThis, {
   __flaxBindings: Object.freeze({
@@ -2143,6 +2149,12 @@ Object.assign(globalThis, {
       references.release(id);
     },
     enumValue,
+    valueType(value: object): string | null {
+      return (
+        enumIdentities.get(value)?.type ??
+        (Reflect.apply(typedArrayTag, value, []) === 'Uint8Array' ? 'Uint8List' : null)
+      );
+    },
     enumType(value: object): string | null {
       return enumIdentities.get(value)?.type ?? null;
     },

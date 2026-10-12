@@ -301,6 +301,9 @@ extension _MemberCalls on _Session {
       return errorResult(value!, StackTrace.current);
     }
     if (value == null && type.nullable) return const FlaxJsNull();
+    if (type.kind == 'Uint8List') {
+      return runtime.createUint8Array(value as Uint8List);
+    }
     if (type.kind == 'copy') return copyCollection(value!, type.item!);
     if (type.kind == 'any') {
       if (value == null && !type.nullable) {
