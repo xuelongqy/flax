@@ -1,6 +1,6 @@
 # Task: Native value interop batch
 
-Status: review and combined validation complete; target integration pending
+Status: complete; integrated into the maintained Flax and Flutter branches
 
 ## Goal and scope
 
@@ -173,17 +173,21 @@ headers are the only new engine changes; no second allocator or GC strategy was 
 
 ## Handoff
 
-The isolated Flax and matching Flutter bridge commits are ready for the authorized
-merge. Matching engine binaries must be rebuilt with internal binding extension 3. No
-open conversion or ownership decision remains from this batch.
+The reviewed Flax changes are merged into `feat/dynamic-engine-sdk`, and the matching
+Flutter bridge commit `daab8a81feb` is merged into `flax/main`. The maintained macOS
+debug framework and tester were rebuilt with internal binding extension 3. No open
+conversion or ownership decision remains from this batch.
 
-The target's collection-binding task has completed at `65c87710`. Its commit is retained
-in the combined branch, and all 187 non-overlapping files remain unchanged. Shared
-collection and native-value conversion points were integrated together; declarations and
-bindings were regenerated from the combined sources. Both engines passed the full Core
-suite. Fast-forward the two clean target checkouts, rebuild the matching macOS debug
-engine and verify its production tester. No push or publication is authorized for this
-batch.
+The collection-binding task's commit `65c87710` is retained in the combined branch, and
+all 187 non-overlapping files remain unchanged. Shared collection and native-value
+conversion points were integrated together; declarations and bindings were regenerated
+from the combined sources. Both engines passed the full Core suite. The rebuilt
+production V8 tester also passed all 297 Core checks from the main Flax checkout.
+
+Both target checkouts were clean before integration; the completed collection task
+remains an ancestor. No push or publication was performed for this batch. Integration
+and preservation receipts are in `.local/native-value-interop/integration/` in the
+isolated Flax worktree.
 
 Relevant existing contracts: [interop](../architecture/interop.md),
 [real Dart references](../decisions/0009-dart-interop.md),
