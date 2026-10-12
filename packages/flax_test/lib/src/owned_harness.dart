@@ -47,6 +47,7 @@ class FlaxOwnedTestHarness {
                     supertypes: type.supertypes,
                     proxy: type.proxy,
                     memberViewOperations: type.memberViewOperations,
+                    collectionView: type.collectionView,
                     memberView: type.memberView == null
                         ? null
                         : (value) {
@@ -63,6 +64,7 @@ class FlaxOwnedTestHarness {
                                     () => FlaxObjectMemberView(
                                       getters: view.getters,
                                       setters: view.setters,
+                                      collectionView: view.collectionView,
                                       instanceMethods: _trackMethods(
                                         type,
                                         view.instanceMethods,

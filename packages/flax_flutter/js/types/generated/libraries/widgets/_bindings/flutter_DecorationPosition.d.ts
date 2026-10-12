@@ -1,4 +1,4 @@
-import { type DartEnum } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartEnum } from '@flax/core/bindings';
 export interface DecorationPosition extends DartEnum {
     readonly __DecorationPosition: unique symbol;
     readonly name: string;
@@ -8,4 +8,4 @@ export declare const DecorationPosition: Readonly<{
     background: DecorationPosition;
     foreground: DecorationPosition;
     values: readonly DecorationPosition[];
-}>;
+} & _FlaxInstanceType<DecorationPosition>>;

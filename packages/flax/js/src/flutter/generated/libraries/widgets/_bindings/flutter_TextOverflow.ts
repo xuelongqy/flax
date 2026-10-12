@@ -4,10 +4,11 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface TextOverflow extends DartEnum { readonly __TextOverflow: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.core/flutter#type:TextOverflow", ["clip","fade","ellipsis","visible"]);
-export const TextOverflow = Object.freeze({
+const _flaxEnum_TextOverflow_api = {
 clip: enumValue<TextOverflow>("flax.core/flutter#type:TextOverflow", "clip"),
 fade: enumValue<TextOverflow>("flax.core/flutter#type:TextOverflow", "fade"),
 ellipsis: enumValue<TextOverflow>("flax.core/flutter#type:TextOverflow", "ellipsis"),
 visible: enumValue<TextOverflow>("flax.core/flutter#type:TextOverflow", "visible"),
 values: Object.freeze([enumValue<TextOverflow>("flax.core/flutter#type:TextOverflow", "clip"), enumValue<TextOverflow>("flax.core/flutter#type:TextOverflow", "fade"), enumValue<TextOverflow>("flax.core/flutter#type:TextOverflow", "ellipsis"), enumValue<TextOverflow>("flax.core/flutter#type:TextOverflow", "visible")]),
-});
+};
+export const TextOverflow = Object.freeze(_flaxBindInstanceType<TextOverflow, typeof _flaxEnum_TextOverflow_api>(_flaxEnum_TextOverflow_api, "flax.core/flutter#type:TextOverflow", []));

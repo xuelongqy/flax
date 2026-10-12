@@ -8872,6 +8872,7 @@ const flutterBindings = FlaxBindingModule(
           startsRoute: false,
         ),
       },
+      matches: _isNavigatorState,
     ),
     FlaxRouteBinding("flax.core/flutter#type:Route", {}, _createRoute, [
       "package:flutter/src/widgets/navigator.dart::_RoutePlaceholder",
@@ -9170,7 +9171,7 @@ const flutterBindings = FlaxBindingModule(
         ),
         _BuildContext_size,
       ),
-    ]),
+    ], matches: _isBuildContext),
     FlaxObjectBinding(
       "flax.core/flutter#type:Size",
       [
@@ -16171,6 +16172,7 @@ api.Widget _createNavigator(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isNavigatorState(Object value) => value is api.NavigatorState;
 Object? _NavigatorState_mounted(Object value) =>
     (value as api.NavigatorState).mounted;
 Object? _NavigatorState_push(Object receiver, Map<String, Object?> values) {
@@ -16343,6 +16345,7 @@ api.Widget _createLayoutBuilder(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _isBuildContext(Object value) => value is api.BuildContext;
 Object? _BuildContext_mounted(Object value) =>
     (value as api.BuildContext).mounted;
 Object? _BuildContext_size(Object value) => (value as api.BuildContext).size;

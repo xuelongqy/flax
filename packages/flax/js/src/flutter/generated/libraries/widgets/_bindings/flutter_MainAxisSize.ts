@@ -4,8 +4,9 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface MainAxisSize extends DartEnum { readonly __MainAxisSize: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.core/flutter#type:MainAxisSize", ["min","max"]);
-export const MainAxisSize = Object.freeze({
+const _flaxEnum_MainAxisSize_api = {
 min: enumValue<MainAxisSize>("flax.core/flutter#type:MainAxisSize", "min"),
 max: enumValue<MainAxisSize>("flax.core/flutter#type:MainAxisSize", "max"),
 values: Object.freeze([enumValue<MainAxisSize>("flax.core/flutter#type:MainAxisSize", "min"), enumValue<MainAxisSize>("flax.core/flutter#type:MainAxisSize", "max")]),
-});
+};
+export const MainAxisSize = Object.freeze(_flaxBindInstanceType<MainAxisSize, typeof _flaxEnum_MainAxisSize_api>(_flaxEnum_MainAxisSize_api, "flax.core/flutter#type:MainAxisSize", []));

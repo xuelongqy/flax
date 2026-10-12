@@ -4,8 +4,9 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface BoxShape extends DartEnum { readonly __BoxShape: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.core/flutter#type:BoxShape", ["rectangle","circle"]);
-export const BoxShape = Object.freeze({
+const _flaxEnum_BoxShape_api = {
 rectangle: enumValue<BoxShape>("flax.core/flutter#type:BoxShape", "rectangle"),
 circle: enumValue<BoxShape>("flax.core/flutter#type:BoxShape", "circle"),
 values: Object.freeze([enumValue<BoxShape>("flax.core/flutter#type:BoxShape", "rectangle"), enumValue<BoxShape>("flax.core/flutter#type:BoxShape", "circle")]),
-});
+};
+export const BoxShape = Object.freeze(_flaxBindInstanceType<BoxShape, typeof _flaxEnum_BoxShape_api>(_flaxEnum_BoxShape_api, "flax.core/flutter#type:BoxShape", []));

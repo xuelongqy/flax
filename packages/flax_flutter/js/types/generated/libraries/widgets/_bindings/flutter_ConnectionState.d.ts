@@ -1,4 +1,4 @@
-import { type DartEnum } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartEnum } from '@flax/core/bindings';
 export interface ConnectionState extends DartEnum {
     readonly __ConnectionState: unique symbol;
     readonly name: string;
@@ -10,4 +10,4 @@ export declare const ConnectionState: Readonly<{
     active: ConnectionState;
     done: ConnectionState;
     values: readonly ConnectionState[];
-}>;
+} & _FlaxInstanceType<ConnectionState>>;

@@ -1,4 +1,4 @@
-import { type DartEnum } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartEnum } from '@flax/core/bindings';
 export interface WrapCrossAlignment extends DartEnum {
     readonly __WrapCrossAlignment: unique symbol;
     readonly name: string;
@@ -9,4 +9,4 @@ export declare const WrapCrossAlignment: Readonly<{
     end: WrapCrossAlignment;
     center: WrapCrossAlignment;
     values: readonly WrapCrossAlignment[];
-}>;
+} & _FlaxInstanceType<WrapCrossAlignment>>;

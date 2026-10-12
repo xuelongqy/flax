@@ -8,6 +8,15 @@ binding contracts below, skips unsupported declarations, and accepts optional ov
 for binding semantics that cannot be inferred safely. Explicit configuration remains
 fail-closed.
 
+Custom core collection subclasses reuse the same object member conversion and shared
+collection table. TypeScript keeps the most specific collection parent and selected
+native signatures; Dart supertype identities and legal JS proxy overrides remain intact.
+Collection ancestors that only contribute nominal/type views require no extra binding
+provider or public re-export. Business names take precedence over bridge helpers, and
+collection parameters authenticate the original reference. See
+[collection subclasses](interop.md#collection-subclasses) for copying and view
+semantics.
+
 Automatic and explicit name checks share JavaScript identifier validation. Embedded
 underscores and dollar signs, including a leading `$`, are supported without renaming.
 Public exports use binding-identifier rules; instance and extension members and named
@@ -796,6 +805,15 @@ does not replace an independent method-local `T` with the class's `T`. An erased
 `Object?` position retains the ordinary Object conversion limits: raw JS functions need
 a typed callback position, and Widget references need a typed Widget position. Erasure
 does not bypass those checks.
+
+Collection-bound method-local results describe the actual standard collection view,
+using `DartOutput<DartInput<T>>` through nested aggregate and callback positions. An
+erased `T extends List<String>` call does not guarantee that a newly created result is
+the caller's concrete collection subclass. Core's shared `asDart(value, Target)` checks
+the original Dart type and exposes its selected class API; `getDartType(value)` provides
+explicit diagnostic text. These are shared runtime operations, not per-class generated
+methods or generic-specialization tokens. See
+[checked views](objects.md#checked-views-and-dart-type-diagnostics).
 
 For example, `T echo<T>(T value) => value` can be selected automatically:
 

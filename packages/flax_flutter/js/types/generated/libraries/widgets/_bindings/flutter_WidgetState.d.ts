@@ -1,4 +1,4 @@
-import { type DartEnum } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartEnum } from '@flax/core/bindings';
 export interface WidgetState extends DartEnum {
     readonly __WidgetState: unique symbol;
     readonly name: string;
@@ -14,4 +14,4 @@ export declare const WidgetState: Readonly<{
     disabled: WidgetState;
     error: WidgetState;
     values: readonly WidgetState[];
-}>;
+} & _FlaxInstanceType<WidgetState>>;

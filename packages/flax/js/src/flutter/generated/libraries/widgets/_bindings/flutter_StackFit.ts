@@ -4,9 +4,10 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface StackFit extends DartEnum { readonly __StackFit: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.core/flutter#type:StackFit", ["loose","expand","passthrough"]);
-export const StackFit = Object.freeze({
+const _flaxEnum_StackFit_api = {
 loose: enumValue<StackFit>("flax.core/flutter#type:StackFit", "loose"),
 expand: enumValue<StackFit>("flax.core/flutter#type:StackFit", "expand"),
 passthrough: enumValue<StackFit>("flax.core/flutter#type:StackFit", "passthrough"),
 values: Object.freeze([enumValue<StackFit>("flax.core/flutter#type:StackFit", "loose"), enumValue<StackFit>("flax.core/flutter#type:StackFit", "expand"), enumValue<StackFit>("flax.core/flutter#type:StackFit", "passthrough")]),
-});
+};
+export const StackFit = Object.freeze(_flaxBindInstanceType<StackFit, typeof _flaxEnum_StackFit_api>(_flaxEnum_StackFit_api, "flax.core/flutter#type:StackFit", []));

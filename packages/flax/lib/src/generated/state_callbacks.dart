@@ -30,7 +30,12 @@ const componentsBindings = FlaxBindingModule(
       matches: _isStatefulWidget,
       methods: const {},
     ),
-    FlaxStateBinding("flax.core/components#type:State", [], {}),
+    FlaxStateBinding(
+      "flax.core/components#type:State",
+      [],
+      {},
+      matches: _isState,
+    ),
   ],
   functions: [],
   moduleId: "flax.core/components",
@@ -142,4 +147,5 @@ Object? _KeepAliveTickerState_call_updateKeepAlive(
 bool _isStatefulWidget(Object value) => value is api.StatefulWidget;
 Object _createStatefulWidget(String ctor, Map<String, Object?> values) =>
     throw ArgumentError('Abstract object has no constructor');
+bool _isState(Object value) => value is api.State<api.StatefulWidget>;
 const _recordTypes = <FlaxTypeRef>[];

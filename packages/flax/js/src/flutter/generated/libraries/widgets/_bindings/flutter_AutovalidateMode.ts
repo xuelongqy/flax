@@ -4,11 +4,12 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface AutovalidateMode extends DartEnum { readonly __AutovalidateMode: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.core/flutter#type:AutovalidateMode", ["disabled","always","onUserInteraction","onUnfocus","onUserInteractionIfError"]);
-export const AutovalidateMode = Object.freeze({
+const _flaxEnum_AutovalidateMode_api = {
 disabled: enumValue<AutovalidateMode>("flax.core/flutter#type:AutovalidateMode", "disabled"),
 always: enumValue<AutovalidateMode>("flax.core/flutter#type:AutovalidateMode", "always"),
 onUserInteraction: enumValue<AutovalidateMode>("flax.core/flutter#type:AutovalidateMode", "onUserInteraction"),
 onUnfocus: enumValue<AutovalidateMode>("flax.core/flutter#type:AutovalidateMode", "onUnfocus"),
 onUserInteractionIfError: enumValue<AutovalidateMode>("flax.core/flutter#type:AutovalidateMode", "onUserInteractionIfError"),
 values: Object.freeze([enumValue<AutovalidateMode>("flax.core/flutter#type:AutovalidateMode", "disabled"), enumValue<AutovalidateMode>("flax.core/flutter#type:AutovalidateMode", "always"), enumValue<AutovalidateMode>("flax.core/flutter#type:AutovalidateMode", "onUserInteraction"), enumValue<AutovalidateMode>("flax.core/flutter#type:AutovalidateMode", "onUnfocus"), enumValue<AutovalidateMode>("flax.core/flutter#type:AutovalidateMode", "onUserInteractionIfError")]),
-});
+};
+export const AutovalidateMode = Object.freeze(_flaxBindInstanceType<AutovalidateMode, typeof _flaxEnum_AutovalidateMode_api>(_flaxEnum_AutovalidateMode_api, "flax.core/flutter#type:AutovalidateMode", []));

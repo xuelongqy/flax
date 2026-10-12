@@ -1,11 +1,16 @@
 import * as native from '../../../.dart_tool/flax/ui/native_widgets_bindings.js';
 import { signal } from '@flax/core';
+import { asDart, getDartType } from '@flax/core/bindings';
+import { Stream } from '@flax/dart/async';
 import {
   Text,
   Column,
   State,
+  BuildContext,
+  Navigator,
+  NavigatorState,
+  Axis,
   registerPage,
-  type BuildContext,
 } from '@flax/flutter/widgets';
 let builds = 0;
 let renderCreates = 0;
@@ -30,6 +35,9 @@ let created = 0;
 let disposed = 0;
 let stateUpdates = 0;
 let latest: CounterState;
+let latestNative: ReturnType<NativeCounter['createState']>;
+let borrowedContext: BuildContext;
+let borrowedNavigator: NavigatorState;
 class Counter extends native.NativeCounter {
   override createState() {
     created++;
@@ -52,7 +60,7 @@ class CounterState extends State<Counter> {
 }
 class NativeCounter extends native.NativeCounter {
   override createState() {
-    return super.createState();
+    return (latestNative = super.createState());
   }
 }
 class ReusedCounter extends native.NativeCounter {
@@ -192,5 +200,77 @@ Object.assign(globalThis, {
     created: () => created,
     disposed: () => disposed,
     increment: () => latest.setState(() => latest.count++),
+    referenceContext: () => borrowedContext,
+    referenceType: (value: unknown) => getDartType(value),
+    references() {
+      borrowedContext = latest.context;
+      borrowedNavigator = Navigator.of(borrowedContext);
+      const state = asDart(latestNative, native.NativeCounterState);
+      const navigator = asDart(borrowedNavigator, NavigatorState);
+      const stream = Stream.value(7);
+      const callback = calls.producer(title);
+      const check = (name: string, valid: boolean) => {
+        if (!valid) throw new Error(name);
+      };
+      check('Widget canonical peer', asDart(calls.input(title), Text) === title);
+      const nativeLabel = asDart(label, native.NativeLabel);
+      check('Widget provider view', nativeLabel.data === 'Label');
+      check('Widget provider round-trip', asDart(nativeLabel, Text) === label);
+      check(
+        'Context identity',
+        asDart(borrowedContext, BuildContext) === borrowedContext,
+      );
+      check('Native State fields', state.count === 0 && state.mounted);
+      check('Navigator mounted', navigator.mounted);
+      check('Native State type', getDartType(latestNative) === 'NativeCounterState');
+      check('JS State type', getDartType(latest) === '_NativeCounterState');
+      check('Context Element type', getDartType(borrowedContext).includes('Element'));
+      check('Navigator type', getDartType(borrowedNavigator) === 'NavigatorState');
+      check('Enum type', getDartType(Axis.horizontal) === 'Axis');
+      check('Enum identity', asDart(Axis.horizontal, Axis) === Axis.horizontal);
+      check('Stream type', getDartType(stream).includes('Stream'));
+      check('Stream cast type', getDartType(asDart(stream, Stream)).includes('Stream'));
+      check('Callback type', getDartType(callback).includes('Text'));
+      check('Callback identity', callback() === title);
+      for (const operation of [
+        () => asDart(title, native.NativeCounterState),
+        () => asDart(latestNative, NavigatorState),
+        () => asDart(latest, native.NativeCounterState),
+        () => asDart(label, CounterState as never),
+        () => getDartType(Text('descriptor') as never),
+      ]) {
+        let rejected = false;
+        try {
+          operation();
+        } catch {
+          rejected = true;
+        }
+        if (!rejected) throw new Error('Invalid native reference conversion');
+      }
+    },
+    expiredReferences() {
+      for (const value of [borrowedContext, borrowedNavigator, latestNative, latest]) {
+        let rejected = false;
+        try {
+          getDartType(value);
+        } catch {
+          rejected = true;
+        }
+        if (!rejected) throw new Error('Expired reference type query');
+      }
+      for (const operation of [
+        () => asDart(borrowedContext, BuildContext),
+        () => asDart(borrowedNavigator, NavigatorState),
+        () => asDart(latestNative, native.NativeCounterState),
+      ]) {
+        let rejected = false;
+        try {
+          operation();
+        } catch {
+          rejected = true;
+        }
+        if (!rejected) throw new Error('Expired reference cast');
+      }
+    },
   },
 });

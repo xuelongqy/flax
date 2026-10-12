@@ -1,4 +1,4 @@
-import { type DartEnum } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartEnum } from '@flax/core/bindings';
 export interface TextAlign extends DartEnum {
     readonly __TextAlign: unique symbol;
     readonly name: string;
@@ -12,4 +12,4 @@ export declare const TextAlign: Readonly<{
     start: TextAlign;
     end: TextAlign;
     values: readonly TextAlign[];
-}>;
+} & _FlaxInstanceType<TextAlign>>;

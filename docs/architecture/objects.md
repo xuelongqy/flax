@@ -15,6 +15,56 @@ aliases and share the Dart identity's lifetime. Collections use
 [typed views](interop.md) of the same original instance. Invalid, released,
 type-incompatible and cross-session JS references fail before invoking Dart.
 
+## Checked views and Dart type diagnostics
+
+Core exports `asDart(value, Target)` and `getDartType(value)` from
+`@flax/core/bindings`. Both use one shared reference operation; generated classes do not
+receive individual cast or diagnostic methods.
+
+```ts
+import { asDart, getDartType } from '@flax/core/bindings';
+
+const view = listView(shopping);
+const restored = asDart(view, ShoppingList);
+restored.summary; // The selected ShoppingList API on the same Dart object.
+getDartType(view); // "ShoppingList", even though view exposes standard List helpers.
+```
+
+The target must be an authenticated generated class, enum namespace or reference-only
+type token installed in the session. The bridge checks the original Dart value using
+generated Dart type checks. A ShoppingList or one of its Dart subclasses can acquire
+that view; a genuine ordinary List cannot. This is not a TypeScript assertion, data
+copy, constructor invocation or reflection-based factory. The old view remains usable
+with its own selected API. Native business members take precedence in the restored class
+view, while the standard collection view retains its standard helper signatures.
+
+Ordinary objects, collections, real Widget references, active Contexts, mounted native
+States, Dart Streams and enums reuse their existing conversion and lifecycle. Live JS
+component States and returned Dart callbacks can also be queried. Casts to generated
+native Widget bases preserve an existing JS subclass peer, its private fields and its
+virtual overrides. Pure JS subclasses are not Dart cast targets; use ordinary JS
+`instanceof` after obtaining the native base view. The handwritten JS component State
+base is likewise not a generated Dart type token.
+
+Descriptors, unpaired component objects, raw JS arrays/objects, Promises and copied
+structural values have no original Dart reference and are rejected. Record projections
+and JS byte views also lack an original object handle; shared byte storage is not Dart
+object identity. Context/State queries and casts recheck the mounted lifecycle,
+including when the source is an ordinary object view. Neither operation mounts a Widget,
+revives an expired reference, changes application ownership nor creates a Stream
+subscription. Session close and explicit disposal retain their existing revocation
+behavior. Scoped callback arguments retain their original lease: casting one cannot turn
+it into a lasting object reference, and every view is revoked when the callback
+finishes. Such arguments can acquire compatible object binding views; conversion into a
+separate State, Context, Stream or enum representation is rejected rather than extending
+the lease.
+
+`getDartType` reads Dart `runtimeType.toString()` on demand. Its text may contain
+private implementation/proxy names and generic arguments; it is diagnostic display, not
+a stable ID, provider-qualified name, runtime type argument or authorization check. Both
+APIs make one JS-to-Dart host invocation per request. Obtain a checked view once at an
+API boundary and reuse it; ordinary object reads do not perform type queries.
+
 Applications follow Flutter ownership rules and call exposed disposal methods
 themselves. The bridge does not restrict disposal based on where an object came from.
 Successful disposal revokes its wrapper; repeated disposal or other access then fails.

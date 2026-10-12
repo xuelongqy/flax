@@ -19,7 +19,11 @@ new Headers();
 import type {
   DartInput,
   DartList,
+  DartListInput,
   DartMap,
+  DartMapInput,
+  DartSet,
+  DartSetInput,
   DartOutput,
   DartRecord,
 } from '../../src/runtime/bindings.js';
@@ -45,6 +49,29 @@ const retained: typeof nativeList = roundTrip(nativeList);
 declare const nativeObject: { readonly __Example: unique symbol; name: string };
 const reference: typeof nativeObject = roundTrip(nativeObject);
 const callback: DartInput<(value: string[]) => string[]> = (value) => value;
+const listInputCallback: DartInput<(value: DartListInput<string>) => void> = (
+  value,
+) => {
+  const native: DartList<string> = value;
+  native.get(0);
+};
+const mapInputCallback: DartInput<(value: DartMapInput<number, string>) => void> = (
+  value,
+) => {
+  const native: DartMap<number, string> = value;
+  native.get(0);
+};
+const setInputCallback: DartInput<(value: DartSetInput<string>) => void> = (value) => {
+  const native: DartSet<string> = value;
+  native.toSet();
+};
+interface NativeTags extends Omit<DartSet<string>, 'toSet'> {
+  readonly __NativeTags: unique symbol;
+  readonly summary: string;
+  toSet(): DartSet<string>;
+}
+declare const nativeTags: NativeTags;
+const retainedTags: NativeTags = roundTrip(nativeTags);
 const recordInput: DartInput<typeof nativeRecord> = { name: 'a' };
 declare const recordList: DartList<typeof nativeRecord>;
 recordList.add(recordInput);

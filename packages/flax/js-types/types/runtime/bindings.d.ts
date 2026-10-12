@@ -34,9 +34,22 @@ export type DartCopy<T> = T extends {
 /** Raw JS collections become Dart references; existing references stay typed. */
 export type DartOutput<T> = T extends object ? T extends {
     readonly [dartCollectionKind]: string;
-} | {
+} ? DartReferenceBrand<T> extends never ? DartCollectionOutput<T> : T : T extends {
     readonly [dartRecordKind]: true;
 } | FlaxStreamReference<unknown> | globalThis.Uint8Array | ((...args: never[]) => unknown) ? T : T extends ReadonlyArray<infer V> ? DartList<DartOutput<V>> : T extends ReadonlyMap<infer K, infer V> ? DartMap<DartOutput<K>, DartOutput<V>> : T extends ReadonlySet<infer V> ? DartSet<DartOutput<V>> : T extends Promise<infer V> ? Promise<DartOutput<V>> : T extends Iterable<infer V> ? DartIterable<DartOutput<V>> : DartReferenceBrand<T> extends never ? DartMap<string, DartOutput<T[keyof T]>> : T : T;
+type DartCollectionOutput<T> = T extends {
+    readonly [dartCollectionKind]: 'list';
+    readonly [dartCollectionItem]: infer V;
+} ? DartList<DartOutput<V>> : T extends {
+    readonly [dartCollectionKind]: 'map';
+    readonly [dartCollectionKey]: infer K;
+    readonly [dartCollectionItem]: infer V;
+} ? DartMap<DartOutput<K>, DartOutput<V>> : T extends {
+    readonly [dartCollectionKind]: 'set';
+    readonly [dartCollectionItem]: infer V;
+} ? DartSet<DartOutput<V>> : T extends {
+    readonly [dartCollectionItem]: infer V;
+} ? DartIterable<DartOutput<V>> : never;
 type DartReferenceBrand<T> = Extract<T[Extract<keyof T, `__${string}`>], symbol> | Extract<keyof T, `__flaxBound:${string}`>;
 type DartCallbackResult<R> = R extends Promise<infer V> ? Promise<V extends Widget ? V : DartInput<DartOutput<V>>> : R extends Widget ? R : DartInput<DartOutput<R>>;
 type DartCallbackInput<A extends readonly unknown[], R> = (...args: {
@@ -103,10 +116,10 @@ export interface DartSet<T> extends DartIterable<T> {
     clear(): void;
     toSet(): Set<DartCopy<T>>;
 }
-export type DartIterableInput<T, I = DartInput<T>> = Omit<DartIterable<T>, typeof Symbol.iterator> | Iterable<I>;
-export type DartListInput<T, I = DartInput<T>> = Omit<DartList<T>, typeof Symbol.iterator> | ReadonlyArray<I>;
-export type DartMapInput<K, V, IK = DartInput<K>, IV = DartInput<V>> = DartMap<K, V> | ReadonlyMap<IK, IV> | (K extends string ? Readonly<Record<string, IV>> : never);
-export type DartSetInput<T, I = DartInput<T>> = Omit<DartSet<T>, typeof Symbol.iterator> | ReadonlySet<I>;
+export type DartIterableInput<T, I = DartInput<T>> = Pick<DartIterable<T>, typeof dartCollectionKind | typeof dartCollectionItem> | Iterable<I>;
+export type DartListInput<T, I = DartInput<T>> = Pick<DartList<T>, typeof dartCollectionKind | typeof dartCollectionItem> | ReadonlyArray<I>;
+export type DartMapInput<K, V, IK = DartInput<K>, IV = DartInput<V>> = Pick<DartMap<K, V>, typeof dartCollectionKind | typeof dartCollectionKey | typeof dartCollectionItem> | ReadonlyMap<IK, IV> | (K extends string ? Readonly<Record<string, IV>> : never);
+export type DartSetInput<T, I = DartInput<T>> = Pick<DartSet<T>, typeof dartCollectionKind | typeof dartCollectionItem> | ReadonlySet<I>;
 export interface DartEnum {
     readonly __dartEnum: unique symbol;
 }
@@ -173,11 +186,21 @@ type StateMethod = (this: object, ...args: never[]) => unknown;
 export declare function defineState(type: string, fields: readonly string[], methods: Readonly<Record<string, StateMethod>>): void;
 export declare function invokeInstance(receiver: object, type: string, method: string, args: readonly unknown[]): unknown;
 type ObjectDefinition = {
+    collectionKind: string | undefined;
+    iteratorMember: string;
     fields: readonly string[];
     setters: readonly string[];
     methods: Readonly<Record<string, StateMethod>>;
     removers: readonly string[];
 };
+/** The instance represented by a generated Dart class or reference-only token. */
+export type FlaxDartInstance<C> = C extends abstract new (...args: any[]) => infer I ? I : C extends {
+    readonly prototype: infer I;
+} ? unknown extends I ? C extends FlaxInstanceType<infer T> ? T : never : I : C extends FlaxInstanceType<infer T> ? T : never;
+/** Checks the original Dart object and returns a view; never copies or constructs. */
+export declare function asDart<C extends FlaxInstanceType<unknown>>(value: unknown, target: C): FlaxDartInstance<C>;
+/** Diagnostic Dart runtimeType text. It is not a stable type ID or cast token. */
+export declare function getDartType(value: unknown): string;
 /** A bound view check; it never constructs, casts, or reads the Dart object. */
 export interface FlaxInstanceType<T> {
     [Symbol.hasInstance]<C>(this: C, value: unknown): value is C extends abstract new (...args: any[]) => infer I ? I : C extends {
@@ -185,7 +208,7 @@ export interface FlaxInstanceType<T> {
     } ? unknown extends I ? T : I : T;
 }
 export declare function bindInstanceType<T, V extends object>(value: V, type: string, parents: readonly string[]): V & FlaxInstanceType<T>;
-export declare function defineObject(type: string, fields: ObjectDefinition['fields'], setters: readonly string[], methods: ObjectDefinition['methods'], removers: readonly string[]): void;
+export declare function defineObject(type: string, fields: ObjectDefinition['fields'], setters: readonly string[], methods: ObjectDefinition['methods'], removers: readonly string[], collectionKind?: string): void;
 export declare function defineStream(type: string, fields: readonly string[], methods: Readonly<Record<string, StateMethod>>): void;
 export declare function constructAsyncIterableStream<T>(type: string, source: AsyncIterable<T>): object;
 export declare function constructStream(_kind: 'stream', type: string, ctor: string, parameters: readonly Parameter[], positional: readonly unknown[], options: Readonly<Record<string, unknown>>): object;

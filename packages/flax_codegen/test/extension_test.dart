@@ -534,6 +534,7 @@ const values = [];
 const hosts = Object.fromEntries(helpers.map(name => [name, (...args) => {
   if (name === '_flaxHostEnumValue') return {enum: args[1]};
   if (name === '_flaxHostDefineEnum') return;
+  if (name === '_flaxHostBindInstanceType') return args[0];
   assert.equal(name, '_flaxHostInvokeTopLevel');
   calls.push(args);
   const result = values.shift();

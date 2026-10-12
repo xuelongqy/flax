@@ -4,9 +4,10 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface MaxLengthEnforcement extends DartEnum { readonly __MaxLengthEnforcement: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.core/flutter#type:MaxLengthEnforcement", ["none","enforced","truncateAfterCompositionEnds"]);
-export const MaxLengthEnforcement = Object.freeze({
+const _flaxEnum_MaxLengthEnforcement_api = {
 none: enumValue<MaxLengthEnforcement>("flax.core/flutter#type:MaxLengthEnforcement", "none"),
 enforced: enumValue<MaxLengthEnforcement>("flax.core/flutter#type:MaxLengthEnforcement", "enforced"),
 truncateAfterCompositionEnds: enumValue<MaxLengthEnforcement>("flax.core/flutter#type:MaxLengthEnforcement", "truncateAfterCompositionEnds"),
 values: Object.freeze([enumValue<MaxLengthEnforcement>("flax.core/flutter#type:MaxLengthEnforcement", "none"), enumValue<MaxLengthEnforcement>("flax.core/flutter#type:MaxLengthEnforcement", "enforced"), enumValue<MaxLengthEnforcement>("flax.core/flutter#type:MaxLengthEnforcement", "truncateAfterCompositionEnds")]),
-});
+};
+export const MaxLengthEnforcement = Object.freeze(_flaxBindInstanceType<MaxLengthEnforcement, typeof _flaxEnum_MaxLengthEnforcement_api>(_flaxEnum_MaxLengthEnforcement_api, "flax.core/flutter#type:MaxLengthEnforcement", []));

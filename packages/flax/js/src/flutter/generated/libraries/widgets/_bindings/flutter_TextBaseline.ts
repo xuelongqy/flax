@@ -4,8 +4,9 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface TextBaseline extends DartEnum { readonly __TextBaseline: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.core/flutter#type:TextBaseline", ["alphabetic","ideographic"]);
-export const TextBaseline = Object.freeze({
+const _flaxEnum_TextBaseline_api = {
 alphabetic: enumValue<TextBaseline>("flax.core/flutter#type:TextBaseline", "alphabetic"),
 ideographic: enumValue<TextBaseline>("flax.core/flutter#type:TextBaseline", "ideographic"),
 values: Object.freeze([enumValue<TextBaseline>("flax.core/flutter#type:TextBaseline", "alphabetic"), enumValue<TextBaseline>("flax.core/flutter#type:TextBaseline", "ideographic")]),
-});
+};
+export const TextBaseline = Object.freeze(_flaxBindInstanceType<TextBaseline, typeof _flaxEnum_TextBaseline_api>(_flaxEnum_TextBaseline_api, "flax.core/flutter#type:TextBaseline", []));

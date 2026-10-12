@@ -4,11 +4,12 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/material.__module";
 export interface MaterialType extends DartEnum { readonly __MaterialType: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.material/material#type:MaterialType", ["canvas","card","circle","button","transparency"]);
-export const MaterialType = Object.freeze({
+const _flaxEnum_MaterialType_api = {
 canvas: enumValue<MaterialType>("flax.material/material#type:MaterialType", "canvas"),
 card: enumValue<MaterialType>("flax.material/material#type:MaterialType", "card"),
 circle: enumValue<MaterialType>("flax.material/material#type:MaterialType", "circle"),
 button: enumValue<MaterialType>("flax.material/material#type:MaterialType", "button"),
 transparency: enumValue<MaterialType>("flax.material/material#type:MaterialType", "transparency"),
 values: Object.freeze([enumValue<MaterialType>("flax.material/material#type:MaterialType", "canvas"), enumValue<MaterialType>("flax.material/material#type:MaterialType", "card"), enumValue<MaterialType>("flax.material/material#type:MaterialType", "circle"), enumValue<MaterialType>("flax.material/material#type:MaterialType", "button"), enumValue<MaterialType>("flax.material/material#type:MaterialType", "transparency")]),
-});
+};
+export const MaterialType = Object.freeze(_flaxBindInstanceType<MaterialType, typeof _flaxEnum_MaterialType_api>(_flaxEnum_MaterialType_api, "flax.material/material#type:MaterialType", []));

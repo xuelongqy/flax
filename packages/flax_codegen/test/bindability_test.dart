@@ -182,11 +182,8 @@ void main() {
           .map((skip) => skip.reason),
       contains('No bindable members'),
     );
-    expect(config.classes, isNot(contains('AutoSet')));
-    expect(
-      proposal.skips.where((skip) => skip.target == 'AutoSet').single.reason,
-      contains('Custom core collection subclasses'),
-    );
+    expect(config.classes, contains('AutoSet'));
+    expect(config.classes['AutoSet']!.instanceMethods, contains('toSet'));
     expect(config.topLevel!.getters, containsAll(['autoLimit', 'autoMutable']));
     expect(config.topLevel!.setters, contains('autoMutable'));
     expect(config.classes['AutoPreferred']!.kind, 'widgetInterface');

@@ -4,7 +4,7 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface BoxFit extends DartEnum { readonly __BoxFit: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.core/flutter#type:BoxFit", ["fill","contain","cover","fitWidth","fitHeight","none","scaleDown"]);
-export const BoxFit = Object.freeze({
+const _flaxEnum_BoxFit_api = {
 fill: enumValue<BoxFit>("flax.core/flutter#type:BoxFit", "fill"),
 contain: enumValue<BoxFit>("flax.core/flutter#type:BoxFit", "contain"),
 cover: enumValue<BoxFit>("flax.core/flutter#type:BoxFit", "cover"),
@@ -13,4 +13,5 @@ fitHeight: enumValue<BoxFit>("flax.core/flutter#type:BoxFit", "fitHeight"),
 none: enumValue<BoxFit>("flax.core/flutter#type:BoxFit", "none"),
 scaleDown: enumValue<BoxFit>("flax.core/flutter#type:BoxFit", "scaleDown"),
 values: Object.freeze([enumValue<BoxFit>("flax.core/flutter#type:BoxFit", "fill"), enumValue<BoxFit>("flax.core/flutter#type:BoxFit", "contain"), enumValue<BoxFit>("flax.core/flutter#type:BoxFit", "cover"), enumValue<BoxFit>("flax.core/flutter#type:BoxFit", "fitWidth"), enumValue<BoxFit>("flax.core/flutter#type:BoxFit", "fitHeight"), enumValue<BoxFit>("flax.core/flutter#type:BoxFit", "none"), enumValue<BoxFit>("flax.core/flutter#type:BoxFit", "scaleDown")]),
-});
+};
+export const BoxFit = Object.freeze(_flaxBindInstanceType<BoxFit, typeof _flaxEnum_BoxFit_api>(_flaxEnum_BoxFit_api, "flax.core/flutter#type:BoxFit", []));

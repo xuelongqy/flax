@@ -566,22 +566,35 @@ final class _FlaxCodegenTypeScope {
                 !parser._adaptations.containsKey(id)
             ? <FlaxCodegenTypeRef>[
                 typeOnlyReference(element.thisType),
-                for (final parent in element.thisType.allSupertypes)
-                  if (!parent.isDartCoreObject &&
-                      !parser._adaptations.containsKey(
-                        identity(parent.element),
-                      ) &&
-                      parent.element.library.isDartCore)
-                    typeOnlyReference(parent),
-                if (element.supertype case final parent?
-                    when !parent.isDartCoreObject)
-                  typeRef(parent)
-                      .declaredAs(typeRef(parent, forTypescript: true)),
-                for (final parent in element.interfaces)
-                  if (!parent.element.library.isDartCore ||
-                      parser._adaptations.containsKey(identity(parent.element)))
+                // Collection ancestors contribute type views, not extra providers.
+                if (_coreCollectionKinds(element).isNotEmpty) ...[
+                  for (final parent in element.thisType.allSupertypes)
+                    if (!parent.isDartCoreObject)
+                      typeRef(
+                        parent,
+                        forTypescript: true,
+                        typeOnlyPosition: true,
+                      ),
+                ] else ...[
+                  for (final parent in element.thisType.allSupertypes)
+                    if (!parent.isDartCoreObject &&
+                        !parser._adaptations.containsKey(
+                          identity(parent.element),
+                        ) &&
+                        parent.element.library.isDartCore)
+                      typeOnlyReference(parent),
+                  if (element.supertype case final parent?
+                      when !parent.isDartCoreObject)
                     typeRef(parent)
                         .declaredAs(typeRef(parent, forTypescript: true)),
+                  for (final parent in element.interfaces)
+                    if (!parent.element.library.isDartCore ||
+                        parser._adaptations.containsKey(
+                          identity(parent.element),
+                        ))
+                      typeRef(parent)
+                          .declaredAs(typeRef(parent, forTypescript: true)),
+                ],
               ]
             : const <FlaxCodegenTypeRef>[];
         types[id] = FlaxCodegenNamedTypeModel(

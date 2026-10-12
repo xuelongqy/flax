@@ -1,4 +1,4 @@
-import { type DartEnum } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartEnum } from '@flax/core/bindings';
 export interface TextDirection extends DartEnum {
     readonly __TextDirection: unique symbol;
     readonly name: string;
@@ -8,4 +8,4 @@ export declare const TextDirection: Readonly<{
     rtl: TextDirection;
     ltr: TextDirection;
     values: readonly TextDirection[];
-}>;
+} & _FlaxInstanceType<TextDirection>>;

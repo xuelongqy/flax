@@ -120,12 +120,24 @@ The CLI defaults to `lib/src/generated/<library-name>_bindings.g.dart`,
 can be the target while these files belong to your binding package. JavaScript package
 setup and registering the generated bindings remain the normal author workflow.
 
-Custom core collection subclasses are skipped because native collection members can
-conflict with bridge copy methods. Ordinary collection parameters/results remain
-supported. Declarations depending on a skipped runtime type are also skipped. Generic
-runtime specialization beyond observed constructor targets with disjoint input domains
-remains deferred, as does cross-barrel arbitration. Generic extension receivers that
-require concrete runtime specialization are also deferred.
+Custom List, Map, Set and Iterable subclasses reuse ordinary object bindings and the
+existing typed collection operations. Selected Dart members take precedence over bridge
+helpers, so a native `toSet()` still returns a Dart Set reference. Missing helpers such
+as `toArray()` are supplied by the shared collection table; iteration uses one snapshot
+call even when a business member has that name. Compatible subclasses can be passed
+directly to collection parameters, without copying or another provider. See
+[collection subclass semantics](../../docs/architecture/interop.md#collection-subclasses).
+Shared method-local collection bounds return standard collection views rather than
+promising the concrete subtype's business API. Core exports `asDart(value, Target)` for
+a checked view and `getDartType(value)` for explicit Dart runtime-type diagnostics. Both
+share one reference operation; the generator adds no class-specific cast/query methods.
+Targets reuse authenticated generated class, enum and reference-only tokens;
+Context/State metadata includes actual Dart type checks. See
+[checked views](../../docs/architecture/objects.md#checked-views-and-dart-type-diagnostics).
+Declarations depending on a skipped runtime type are also skipped. Generic runtime
+specialization beyond observed constructor targets with disjoint input domains remains
+deferred, as does cross-barrel arbitration. Generic extension receivers that require
+concrete runtime specialization are also deferred.
 
 Observed constructor targets may contain closed nested types such as
 `Box<List<String>>`. Single targets use their full concrete input conversion. Multiple

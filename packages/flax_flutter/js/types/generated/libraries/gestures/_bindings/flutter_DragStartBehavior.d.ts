@@ -1,4 +1,4 @@
-import { type DartEnum } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartEnum } from '@flax/core/bindings';
 export interface DragStartBehavior extends DartEnum {
     readonly __DragStartBehavior: unique symbol;
     readonly name: string;
@@ -8,4 +8,4 @@ export declare const DragStartBehavior: Readonly<{
     down: DragStartBehavior;
     start: DragStartBehavior;
     values: readonly DragStartBehavior[];
-}>;
+} & _FlaxInstanceType<DragStartBehavior>>;

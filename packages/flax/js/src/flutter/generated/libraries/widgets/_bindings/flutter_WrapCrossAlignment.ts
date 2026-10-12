@@ -4,9 +4,10 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface WrapCrossAlignment extends DartEnum { readonly __WrapCrossAlignment: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.core/flutter#type:WrapCrossAlignment", ["start","end","center"]);
-export const WrapCrossAlignment = Object.freeze({
+const _flaxEnum_WrapCrossAlignment_api = {
 start: enumValue<WrapCrossAlignment>("flax.core/flutter#type:WrapCrossAlignment", "start"),
 end: enumValue<WrapCrossAlignment>("flax.core/flutter#type:WrapCrossAlignment", "end"),
 center: enumValue<WrapCrossAlignment>("flax.core/flutter#type:WrapCrossAlignment", "center"),
 values: Object.freeze([enumValue<WrapCrossAlignment>("flax.core/flutter#type:WrapCrossAlignment", "start"), enumValue<WrapCrossAlignment>("flax.core/flutter#type:WrapCrossAlignment", "end"), enumValue<WrapCrossAlignment>("flax.core/flutter#type:WrapCrossAlignment", "center")]),
-});
+};
+export const WrapCrossAlignment = Object.freeze(_flaxBindInstanceType<WrapCrossAlignment, typeof _flaxEnum_WrapCrossAlignment_api>(_flaxEnum_WrapCrossAlignment_api, "flax.core/flutter#type:WrapCrossAlignment", []));

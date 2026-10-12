@@ -19,7 +19,22 @@ typedef _ConcreteMemberView = ({
   List<FlaxCodegenGetterModel> getters,
   List<FlaxCodegenGetterModel> setters,
   List<FlaxCodegenMethodModel> methods,
+  FlaxCodegenTypeRef? collectionView,
 });
+
+FlaxCodegenTypeRef? _classCollection(FlaxCodegenClassModel type) {
+  if (type.kind != 'object') return null;
+  final parents = type.superTypes
+      .where((t) => {'list', 'map', 'set', 'iterable'}.contains(t.kind))
+      .toList();
+  if (parents.any((t) => t.kind == 'list' || t.kind == 'set')) {
+    parents.removeWhere((t) => t.kind == 'iterable');
+  }
+  if (parents.map((t) => t.kind).toSet().length > 1) {
+    throw StateError('Ambiguous core collection shape: ${type.name}');
+  }
+  return parents.firstOrNull;
+}
 
 String _quote(String value) => jsonEncode(value).replaceAll(r'$', r'\$');
 
@@ -1460,17 +1475,57 @@ class FlaxCodegenBindingEmitter {
         }
         final getters = specialize(type.getters);
         final setters = specialize(type.setters);
-        if (getters.isNotEmpty || setters.isNotEmpty || methods.isNotEmpty) {
+        final collection = _classCollection(type);
+        final collectionView = collection?.specialize(substitutions);
+        if (getters.isNotEmpty ||
+            setters.isNotEmpty ||
+            methods.isNotEmpty ||
+            (collectionView != null &&
+                _typeId(collectionView) != _typeId(_collectionView(type)!))) {
           views.add((
             typeArguments: target.typeArguments,
             getters: getters,
             setters: setters,
             methods: methods,
+            collectionView: collectionView,
           ));
         }
       }
     }
     return views;
+  }
+
+  FlaxCodegenTypeRef? _collectionView(FlaxCodegenClassModel type) =>
+      _classCollection(type)?.specialize({
+        for (final parameter in type.typeParameters)
+          parameter.genericIdentity: parameter.defaultType ?? parameter.bound,
+      });
+
+  String _collectionViewBinding(FlaxCodegenClassModel type) {
+    final collection = _collectionView(type);
+    return collection == null ? '' : ', collectionView: ${_ref(collection)}';
+  }
+
+  List<String> _objectSuperTypes(
+    FlaxCodegenClassModel type,
+    String Function(FlaxCodegenTypeRef) parentName,
+  ) {
+    final collection = _classCollection(type);
+    final members = {
+      ...type.getters.map((g) => g.name),
+      ...type.setters.map((g) => g.name),
+      ...type.methods.where((m) => m.instance).map((m) => m.name),
+    };
+    return [
+      for (final parent in type.superTypes)
+        if (parent.kind != 'iterable' || collection?.kind == 'iterable')
+          if (collection != null &&
+              members.isNotEmpty &&
+              parent.kind != 'typeOnly')
+            'Omit<${parentName(parent)}, ${members.map(_quote).join(' | ')}>'
+          else
+            parentName(parent),
+    ];
   }
 
   String _memberViewBinding(
@@ -1518,7 +1573,7 @@ class FlaxCodegenBindingEmitter {
         );
       }
       out.writeln(
-        '}, instanceMethods: ${_instanceMethods(type, members: view.methods, prefix: prefix)});',
+        '}, instanceMethods: ${_instanceMethods(type, members: view.methods, prefix: prefix)}${view.collectionView == null ? '' : ', collectionView: ${_ref(view.collectionView!)}'});',
       );
       final receiver =
           '${_dartName(type.name)}${_typeArgs(view.typeArguments)}';
@@ -2073,6 +2128,9 @@ import 'package:flax/bindings.dart';
             type.kind == 'stream') {
           out.write(', ${_instanceMethods(type)}');
         }
+        if (type.kind == 'context' || type.kind == 'state') {
+          out.write(', matches: _is${type.name}');
+        }
         if (type.kind == 'stream') {
           out.write(
             ', constructors: ${_constructors(type)}, create: _create${type.name}, '
@@ -2090,7 +2148,7 @@ import 'package:flax/bindings.dart';
             );
           }
           out.write(
-            '], matches: _is${type.name}, methods: const {}${_proxyBinding(type)}${_memberViewBinding(type, memberViews[type]!)}',
+            '], matches: _is${type.name}, methods: const {}${_proxyBinding(type)}${_memberViewBinding(type, memberViews[type]!)}${_collectionViewBinding(type)}',
           );
         }
         out.writeln('),');
@@ -2381,6 +2439,8 @@ import 'package:flax/bindings.dart';
         continue;
       }
       if (type.kind == 'object' ||
+          type.kind == 'context' ||
+          type.kind == 'state' ||
           type.kind == 'widgetInterface' ||
           type.kind == 'stream' ||
           type.kind == 'widget') {
@@ -4030,22 +4090,32 @@ T _genericCallbackResult<T>(Object? value) {
     }
     var genericNames = <Object, String>{};
     var genericInputConversions = false;
-    var genericConversions = <String, bool>{};
+    var genericConversions = <String, String?>{};
     final conversionImports = <String>{};
-    Map<String, bool> parameterConversions(
+    Map<String, String?> parameterConversions(
       Iterable<FlaxCodegenGenericParameter> parameters, {
       bool includeOuter = false,
     }) {
-      final result = includeOuter ? {...genericConversions} : <String, bool>{};
+      final result = includeOuter
+          ? {...genericConversions}
+          : <String, String?>{};
       for (final parameter in parameters) {
         final bound = parameter.bound;
         final name = genericNames[parameter.genericIdentity] ?? parameter.name;
-        // Only Object conversion changes a raw collection's declared shape.
+        // A shared collection bound returns its standard view, not a nominal T.
         result[name] =
-            bound.kind == 'any' ||
-            (bound.kind == 'parameter' &&
-                result[genericNames[bound.genericIdentity] ?? bound.name] ==
-                    true);
+            {
+              'list',
+              'map',
+              'set',
+              'iterable',
+            }.contains(parameter.defaultType?.kind)
+            ? 'collection'
+            : bound.kind == 'any'
+            ? 'object'
+            : bound.kind == 'parameter'
+            ? result[genericNames[bound.genericIdentity] ?? bound.name]
+            : null;
       }
       return result;
     }
@@ -4143,11 +4213,17 @@ T _genericCallbackResult<T>(Object? value) {
 
       String parameter() {
         final name = genericNames[type.genericIdentity] ?? type.name!;
-        if (bridgeGenerics && genericConversions[name] == true) {
+        if (bridgeGenerics && genericConversions[name] == 'object') {
           conversionImports.add('DartOutput');
           return input
               ? '($name | _FlaxDartOutput<$name>)'
               : '_FlaxDartOutput<$name>';
+        }
+        if (bridgeGenerics &&
+            !input &&
+            genericConversions[name] == 'collection') {
+          conversionImports.add('DartOutput');
+          return '_FlaxDartOutput<DartInput<$name>>';
         }
         return input &&
                 (genericInputConversions ||
@@ -4436,7 +4512,8 @@ $_typescriptHostImport
         out.writeln(
           'defineEnum(${jsonEncode(type.id)}, ${jsonEncode(type.enumNames)});',
         );
-        out.writeln('${exportPrefix}const ${type.name} = Object.freeze({');
+        final enumApi = '_flaxEnum_${type.name}_api';
+        out.writeln('const $enumApi = {');
         for (final name in type.enumNames) {
           final constantType = type.enumValueTypes[name];
           out.writeln(
@@ -4446,7 +4523,15 @@ $_typescriptHostImport
         out.writeln(
           'values: Object.freeze([${type.enumNames.map((name) => 'enumValue<${type.name}${type.typeParameters.isEmpty ? '' : '<${type.typeParameters.map((p) => tsType(p.defaultType!)).join(', ')}>'}>(${jsonEncode(type.id)}, ${jsonEncode(name)})').join(', ')}]),',
         );
-        out.writeln('});');
+        out.writeln('};');
+        final enumType =
+            type.name +
+            (type.typeParameters.isEmpty
+                ? ''
+                : '<${type.typeParameters.map((_) => 'any').join(', ')}>');
+        out.writeln(
+          '${exportPrefix}const ${type.name} = Object.freeze(_flaxBindInstanceType<$enumType, typeof $enumApi>($enumApi, ${jsonEncode(type.id)}, []));',
+        );
       } else if (_intrinsicStreamTypeIds.contains(type.id)) {
         final parameter = type.typeParameters.single;
         out.writeln(
@@ -5024,7 +5109,8 @@ $_typescriptHostImport
             .map((type) => tsType(type, declarations: true))
             .toSet()
             .join(' | ');
-        out.writeln('${exportPrefix}const ${type.name} = Object.freeze({');
+        final enumApi = '_flaxEnum_${type.name}_api';
+        out.writeln('const $enumApi = {');
         for (final name in constants.enumNames) {
           out.writeln(
             '$name: enumValue<${tsType(constants.enumValueTypes[name] ?? FlaxCodegenTypeRef('enum', id: type.id, name: type.name), declarations: true)}>(${jsonEncode(type.id)}, ${jsonEncode(name)}),',
@@ -5115,7 +5201,10 @@ $_typescriptHostImport
             literalOverloads: targets.length > 1 ? targets : const [],
           );
         }
-        out.writeln('});');
+        out.writeln('};');
+        out.writeln(
+          '${exportPrefix}const ${type.name} = Object.freeze(_flaxBindInstanceType<$valuesType, typeof $enumApi>($enumApi, ${jsonEncode(type.id)}, ${jsonEncode(type.supertypes)}));',
+        );
         genericInputConversions = false;
         continue;
       }
@@ -5248,7 +5337,7 @@ $_typescriptHostImport
           '${exportPrefix}interface ${type.name}${generics(type.typeParameters)}${type.kind == 'context'
               ? ' extends ComponentContext'
               : type.kind == 'object' && type.superTypes.isNotEmpty
-              ? ' extends ${type.superTypes.map((parent) => tsType(parent, nominal: true)).join(', ')}'
+              ? ' extends ${_objectSuperTypes(type, (parent) => tsType(parent, nominal: true)).join(', ')}'
               : type.kind == 'stream'
               ? ' extends AsyncIterable<${type.typeParameters.single.name}>'
               : ''} { ${type.constructors.isEmpty || type.kind == 'object' || type.kind == 'stream' ? 'readonly __${type.name}: unique symbol;' : ''}',
@@ -5281,8 +5370,9 @@ $_typescriptHostImport
           '_flaxBindingMethods(${jsonEncode(type.id)}, ${jsonEncode(type.kind == 'widget' ? 'object' : type.kind)}, ${memberMetadata(type.methods.where((m) => m.instance))})';
       if (type.kind == 'object' || _hasWidgetObjectView(type)) {
         final listeners = _sortedStringMap(type.listenerPairs).values.toList();
+        final collection = _classCollection(type);
         out.writeln(
-          'defineObject(${jsonEncode(type.id)}, ${jsonEncode(type.getters.map((g) => g.name).toList())}, ${jsonEncode(type.setters.map((g) => g.name).toList())}, ${sharedMethods()}, ${jsonEncode(listeners)});',
+          'defineObject(${jsonEncode(type.id)}, ${jsonEncode(type.getters.map((g) => g.name).toList())}, ${jsonEncode(type.setters.map((g) => g.name).toList())}, ${sharedMethods()}, ${jsonEncode(listeners)}${collection == null ? '' : ', ${jsonEncode(collection.kind)}'});',
         );
       }
       if (type.kind == 'stream') {

@@ -1,4 +1,4 @@
-import { type DartEnum } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartEnum } from '@flax/core/bindings';
 export interface MaterialType extends DartEnum {
     readonly __MaterialType: unique symbol;
     readonly name: string;
@@ -11,4 +11,4 @@ export declare const MaterialType: Readonly<{
     button: MaterialType;
     transparency: MaterialType;
     values: readonly MaterialType[];
-}>;
+} & _FlaxInstanceType<MaterialType>>;

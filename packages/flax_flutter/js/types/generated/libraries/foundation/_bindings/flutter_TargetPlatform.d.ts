@@ -1,4 +1,4 @@
-import { type DartEnum } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartEnum } from '@flax/core/bindings';
 export interface TargetPlatform extends DartEnum {
     readonly __TargetPlatform: unique symbol;
     readonly name: string;
@@ -12,4 +12,4 @@ export declare const TargetPlatform: Readonly<{
     macOS: TargetPlatform;
     windows: TargetPlatform;
     values: readonly TargetPlatform[];
-}>;
+} & _FlaxInstanceType<TargetPlatform>>;

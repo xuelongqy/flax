@@ -22,3 +22,10 @@ environment. `flax_modules.json` describes public modules physically delivered b
 package for host preparation and bundler resolution.
 
 This package is private while Flax is under development.
+
+`@flax/core/bindings` exports shared `asDart(value, Target)` and `getDartType(value)`.
+The former checks the real Dart instance before returning a selected class view; the
+latter returns diagnostic Dart `runtimeType` text on demand. They do not construct or
+copy objects. Generated target tokens, session identity and Context/State lifetimes are
+validated by the existing bridge. See
+[checked views](../../../docs/architecture/objects.md#checked-views-and-dart-type-diagnostics).

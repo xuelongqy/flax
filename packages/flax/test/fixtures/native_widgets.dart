@@ -50,6 +50,8 @@ class NativeDependency extends InheritedWidget {
 
 class NativeWidgetCalls {
   const NativeWidgetCalls();
+  Text Function() producer(Text value) =>
+      () => value;
   Text text(Text Function() callback) => callback();
   Text input(Text value) => value;
   Text? nullable(Text? Function() callback) => callback();

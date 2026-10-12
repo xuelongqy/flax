@@ -1,4 +1,4 @@
-import { type DartEnum } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartEnum } from '@flax/core/bindings';
 export interface HitTestBehavior extends DartEnum {
     readonly __HitTestBehavior: unique symbol;
     readonly name: string;
@@ -9,4 +9,4 @@ export declare const HitTestBehavior: Readonly<{
     opaque: HitTestBehavior;
     translucent: HitTestBehavior;
     values: readonly HitTestBehavior[];
-}>;
+} & _FlaxInstanceType<HitTestBehavior>>;

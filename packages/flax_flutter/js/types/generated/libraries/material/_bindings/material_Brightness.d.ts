@@ -1,4 +1,4 @@
-import { type DartEnum } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartEnum } from '@flax/core/bindings';
 export interface Brightness extends DartEnum {
     readonly __Brightness: unique symbol;
     readonly name: string;
@@ -8,4 +8,4 @@ export declare const Brightness: Readonly<{
     dark: Brightness;
     light: Brightness;
     values: readonly Brightness[];
-}>;
+} & _FlaxInstanceType<Brightness>>;

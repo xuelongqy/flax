@@ -4,8 +4,9 @@ import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 export interface DecorationPosition extends DartEnum { readonly __DecorationPosition: unique symbol; readonly name: string; readonly index: number; }
 defineEnum("flax.core/flutter#type:DecorationPosition", ["background","foreground"]);
-export const DecorationPosition = Object.freeze({
+const _flaxEnum_DecorationPosition_api = {
 background: enumValue<DecorationPosition>("flax.core/flutter#type:DecorationPosition", "background"),
 foreground: enumValue<DecorationPosition>("flax.core/flutter#type:DecorationPosition", "foreground"),
 values: Object.freeze([enumValue<DecorationPosition>("flax.core/flutter#type:DecorationPosition", "background"), enumValue<DecorationPosition>("flax.core/flutter#type:DecorationPosition", "foreground")]),
-});
+};
+export const DecorationPosition = Object.freeze(_flaxBindInstanceType<DecorationPosition, typeof _flaxEnum_DecorationPosition_api>(_flaxEnum_DecorationPosition_api, "flax.core/flutter#type:DecorationPosition", []));

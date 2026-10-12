@@ -1,4 +1,4 @@
-import { type DartEnum } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartEnum } from '@flax/core/bindings';
 export interface NavigationDestinationLabelBehavior extends DartEnum {
     readonly __NavigationDestinationLabelBehavior: unique symbol;
     readonly name: string;
@@ -9,4 +9,4 @@ export declare const NavigationDestinationLabelBehavior: Readonly<{
     alwaysHide: NavigationDestinationLabelBehavior;
     onlyShowSelected: NavigationDestinationLabelBehavior;
     values: readonly NavigationDestinationLabelBehavior[];
-}>;
+} & _FlaxInstanceType<NavigationDestinationLabelBehavior>>;
