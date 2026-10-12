@@ -65,6 +65,19 @@ non-generic, implementable Widget interfaces reuse the existing native interface
 forwarding path. Private, `@internal`, `@visibleForTesting`, and `@protected` API is
 excluded from automatic exposure.
 
+Ordinary Widget instance getters and methods, including inherited members, use the same
+automatic conversion rules as object members. Selecting an instance API gives the Widget
+a real object view: `ComputedWidget('hello').uppercase` and
+`ComputedWidget('hello').textLength()` call the actual Dart instance. Constructor
+arguments are fixed and typed; these factories do not accept signals or support JS
+`new`/inheritance. Final Widgets and Widgets returned from Dart without a public
+constructor use the same path. Selected native parent types and generic arguments are
+preserved, including on-demand member views for known constructor specializations.
+Rendering-only selections retain reactive descriptions. Use explicit `proxy: extends`
+when JS needs to override native virtual members; ordinary member selection does not
+infer a Flutter lifecycle override. See
+[Widget member regression](test/widget_members_test.dart).
+
 Automatic and explicit naming checks share the same JavaScript identifier rules. Names
 such as `total_count`, `dollar$value` and `$value` keep their Dart spelling. Reserved
 names are checked at their actual position: `object.eval()` and named arguments such as

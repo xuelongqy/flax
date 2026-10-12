@@ -126,6 +126,27 @@ contains binding metadata and provider context, never a business-instance root.
 Top-level and static calls use the same table with receiver zero. Conversion, ownership,
 provider visibility and foreign-receiver checks remain at the Dart boundary.
 
+Ordinary Widget instance APIs use this same object view and member dispatch. Automatic
+selection includes convertible getters and methods from the effective Dart hierarchy,
+including computed getters, non-virtual methods and final classes. A factory with an
+instance API creates a fixed real Dart Widget; a constructorless declaration exposes
+only references returned by Dart. No proxy subclass or new GC owner is generated for
+these calls. Reactive descriptions remain available for rendering-only selections and
+the factory side of explicitly selected Widget proxies. JS inheritance and native
+lifecycle overrides still require the existing explicit `proxy: extends` selection.
+Getter reads stay live; warm calls reuse the existing cached operation slot. Generic
+Widget references preserve selected native parent types and their TypeScript arguments
+through the common reference projection. Known constructor specializations reuse the
+ordinary on-demand member view so returned List/Set values keep their concrete APIs.
+Unsupported public dependencies are skipped without retaining incomplete type-cache
+entries.
+
+The
+[automatic generation test](../../packages/flax_codegen/test/widget_members_test.dart)
+and [real UI fixture](../../packages/flax/test/ui/widget_members_test.dart) exercise
+inherited/final/constructorless Widgets, getter side effects, typed methods, callback,
+Future/Stream results, identity, invalid arguments and mount/unmount cleanup.
+
 Generated Dart subclasses retain one peer for the actual JS receiver. Shared member
 metadata goes through internal engine binding extension 1. The engine looks up the
 current property and invokes it with real `this`; it does not snapshot callbacks or wrap

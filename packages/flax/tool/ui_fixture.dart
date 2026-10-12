@@ -23,6 +23,15 @@ Future<void> main() async {
   await _generate(
     package,
     output,
+    'widget_members',
+    const {},
+    core,
+    rawToWire,
+    automatic: true,
+  );
+  await _generate(
+    package,
+    output,
     'extensions',
     extensionClasses(
       package.uri.resolve('test/fixtures/extensions.dart').toString(),
@@ -123,6 +132,7 @@ Future<void> _generate(
   Map<String, FlaxCodegenFunctionSelection> functions = const {},
   Map<String, FlaxCodegenExtensionSelection> extensions = const {},
   FlaxCodegenTopLevelSelection? topLevel,
+  bool automatic = false,
 }) async {
   final parser = FlaxCodegenBindingParser(package.path);
   try {
@@ -153,7 +163,13 @@ Future<void> _generate(
       for (final dependency in dependencies)
         _rewriteModuleIds(dependency, wireToRaw),
     ]);
-    final module = _rewriteModuleIds(await parser.parse(config), rawToWire);
+    final selectedConfig = automatic
+        ? (await parser.proposeLibrary(config)).config
+        : config;
+    final module = _rewriteModuleIds(
+      await parser.parse(selectedConfig),
+      rawToWire,
+    );
     final emitter = FlaxCodegenBindingEmitter([...dependencies, module]);
     File('${output.path}/${name}_bindings.dart')
         .writeAsStringSync(emitter.dart(module));

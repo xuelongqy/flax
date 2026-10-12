@@ -136,15 +136,16 @@ only compiled targets, including nested collections, selected nominal references
 supported async arguments. Dependent or recursive bounds without concrete evidence are
 rejected. Multi-target constructor callbacks require explicit type arguments when their
 shared erased signature cannot satisfy every concrete target; compatible input-only
-callbacks retain automatic dispatch. Ordinary Object bindings matching known constructor
-targets also preserve their concrete getter, setter, method, callback and async member
-conversion. Only affected selected members gain private Dart metadata; the JS class and
-unrelated members stay shared. Metadata is cached on first affected use per object and
-binding owner. Native objects matching no known target and automatic JS proxies keep the
-shared erased view, and same-shape targets still require explicit type arguments.
-Constructor `data` positions do not change ordinary member conversion. A plain-data
-constraint on `T` itself with an automatic native-view target requires explicit class
-type arguments; invalid combinations are rejected before generation.
+callbacks retain automatic dispatch. Ordinary Object bindings and native Widget member
+views matching known constructor targets also preserve their concrete getter, setter,
+method, callback and async member conversion. Only affected selected members gain
+private Dart metadata; the JS class and unrelated members stay shared. Metadata is
+cached on first affected use per object and binding owner. Native objects matching no
+known target and automatic JS proxies keep the shared erased view, and same-shape
+targets still require explicit type arguments. Constructor `data` positions do not
+change ordinary member conversion. A plain-data constraint on `T` itself with an
+automatic native-view target requires explicit class type arguments; invalid
+combinations are rejected before generation.
 
 Evidence:
 [recursive type tests](../../packages/flax_codegen/test/recursive_type_automation_test.dart),
@@ -160,6 +161,7 @@ Evidence:
 | Semantic position                                                | Verdict   | Current contract                                                                                                                                                                                                                                                                                                                                                  |
 | ---------------------------------------------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Widget constructor value                                         | Supported | Widget inputs retain the normal Flutter tree and ownership rules.                                                                                                                                                                                                                                                                                                 |
+| Automatic Widget instance getters and methods                    | Supported | Convertible computed and inherited members use the existing real object view, including final classes and returned Widgets without public constructors. Member factories take fixed typed inputs; reactive descriptions and JS lifecycle overrides retain their existing explicit paths. Generic references preserve their TypeScript arguments.                  |
 | Mounted callback returning Widget or a selected Widget interface | Supported | Ordinary typed result conversion preserves native identity and selected interfaces, including nullable results, supported Futures/Streams and direct typed lists. Escaped configurations follow Dart references and GC; mounted subscriptions release at unmount.                                                                                                 |
 | Ordinary callback with Context arguments                         | Supported | Functions, constructors, methods and returned Dart functions call JS directly with the actual native Context; indexed, named and optional arguments, nullable Widget results and supported Futures use shared conversion. No extra content host or inferred Route ownership.                                                                                      |
 | Direct Context input and result                                  | Supported | Functions, members, top-level variables/getters and callbacks share weak borrowed Context identity, including null, typed finite aggregates and Future/FutureOr/Stream results. Shared conversion preserves derived collection reads and registered Record fields. Forged, foreign-session and unmounted values are rejected, including late events.              |
@@ -196,6 +198,11 @@ Ordinary Widget factory and nested Stream callback evidence:
 [recursive Stream generation](../../packages/flax_codegen/test/async_stream_callbacks_test.dart),
 and
 [bidirectional lazy Stream tests](../../packages/flax/test/ui/async_stream_callbacks_test.dart).
+
+Automatic Widget instance API evidence:
+[generation and strict TypeScript](../../packages/flax_codegen/test/widget_members_test.dart)
+and
+[native identity, member calls and cleanup](../../packages/flax/test/ui/widget_members_test.dart).
 
 ## Stable boundary codes
 

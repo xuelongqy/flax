@@ -453,7 +453,6 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     return FlaxCodegenProposedBinding(name: name, id: id, skips: skips);
   }
 
-  final ctorFields = {for (final params in constructors.values) ...params};
   final getters = <String>[];
   final setters = <String>[];
   final staticGetters = <String>[];
@@ -490,7 +489,6 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
         if (converted != null) staticGetters.add(getterName);
         continue;
       }
-      if (widget) continue;
       final converted = _tryMemberType(
         scope,
         getter.returnType,
@@ -526,7 +524,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
       }
     }
     for (final method in element.methods) {
-      if (!method.isPublic || (widget && !method.isStatic)) continue;
+      if (!method.isPublic) continue;
       final methodName = method.name!;
       if (!_usableMemberName(methodName) ||
           (method.isStatic && !flaxCodegenIsExportName(methodName)) ||
@@ -556,8 +554,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     // Public instance API is inherited in Dart. Collect the effective member
     // from thisType so generic substitutions and overrides match what callers
     // actually see, while keeping static members declaration-local.
-    for (final parent
-        in widget ? const <InterfaceType>[] : element.allSupertypes) {
+    for (final parent in element.allSupertypes) {
       if (parent.isDartCoreObject ||
           (element is EnumElement && parent.element.library.isDartCore)) {
         continue;
@@ -586,6 +583,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
         if (converted != null) getters.add(getterName);
       }
       for (final declared in parent.setters) {
+        if (widget) continue;
         final setterName = declared.name!.replaceFirst(RegExp(r'=$'), '');
         if (setters.contains(setterName) || !_usableMemberName(setterName)) {
           continue;
@@ -654,37 +652,6 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
           inferredDisposeMethod = 'dispose';
         }
       }
-    }
-  }
-  if (widget) {
-    for (final getter in element.getters) {
-      if (!getter.isPublic || getter.isStatic) continue;
-      final getterName = getter.name!;
-      if (!_usableMemberName(getterName) ||
-          {'hashCode', 'runtimeType'}.contains(getterName)) {
-        continue;
-      }
-      if (!ctorFields.contains(getterName)) {
-        skip(
-          '$name.$getterName',
-          'Value getters require selected constructor fields',
-          code: 'widget_getter_requires_constructor_field',
-        );
-      }
-    }
-    for (final method in element.methods) {
-      if (!method.isPublic || method.isStatic) continue;
-      final methodName = method.name!;
-      if (!_usableMemberName(methodName) ||
-          methodName == 'toString' ||
-          methodName == 'noSuchMethod') {
-        continue;
-      }
-      skip(
-        '$name.$methodName',
-        'Widget instance methods are not auto-selected',
-        code: 'widget_instance_method',
-      );
     }
   }
 
@@ -829,6 +796,8 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
   });
   if (widget &&
       constructors.isEmpty &&
+      getters.isEmpty &&
+      instanceMethods.isEmpty &&
       staticGetters.isEmpty &&
       staticSetters.isEmpty &&
       methods.isEmpty) {
@@ -1708,6 +1677,13 @@ FlaxCodegenTypeRef? _tryMemberType(
   }
   final result = converted.type!;
   try {
+    // Match the explicit parser's public TypeScript declaration as well as
+    // its runtime conversion, including inherited generic member types.
+    scope.typeRef(
+      type,
+      forTypescript: true,
+      allowRecursiveErasure: allowRecursiveErasure,
+    );
     result.validate(location);
     if (result.kind == 'callback') {
       result.validateCallbacks(location, input: input);

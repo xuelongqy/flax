@@ -26,6 +26,9 @@ packages/flax_engine_v8/native/generated/
 packages/flax_fetch/js/test/wpt/
 packages/flax_websocket/js/test/wpt/
 
+# Prettier treats C++ include fragments as HTML.
+experiments/**/native/*.inc
+
 # Intentionally malformed input for strict metadata parser regression tests.
 tests/compatibility/package_metadata/yaml-syntax.yaml
 

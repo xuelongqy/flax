@@ -546,63 +546,70 @@ final class _FlaxCodegenTypeScope {
     if (!types.containsKey(id)) {
       // Seed the identity before resolving recursive generic bounds.
       types[id] = FlaxCodegenNamedTypeModel(name: name, id: id);
-      final typeParameters = [
-        for (final parameter in element.typeParameters)
-          FlaxCodegenGenericParameter(
-            parameter.name!,
-            typeRef(
-              parameter.bound ??
-                  element.library.typeProvider.objectQuestionType,
-              forTypescript: true,
-              typeOnlyPosition: true,
+      try {
+        final typeParameters = [
+          for (final parameter in element.typeParameters)
+            FlaxCodegenGenericParameter(
+              parameter.name!,
+              typeRef(
+                parameter.bound ??
+                    element.library.typeProvider.objectQuestionType,
+                forTypescript: true,
+                typeOnlyPosition: true,
+              ),
+              genericIdentity: parameter,
             ),
-            genericIdentity: parameter,
-          ),
-      ];
-      final dependencySuperTypes =
-          element is! EnumElement &&
-              !nativeWidget &&
-              !parser._adaptations.containsKey(id)
-          ? <FlaxCodegenTypeRef>[
-              typeOnlyReference(element.thisType),
-              for (final parent in element.thisType.allSupertypes)
-                if (!parent.isDartCoreObject &&
-                    !parser._adaptations.containsKey(
-                      identity(parent.element),
-                    ) &&
-                    parent.element.library.isDartCore)
-                  typeOnlyReference(parent),
-              if (element.supertype case final parent?
-                  when !parent.isDartCoreObject)
-                typeRef(parent)
-                    .declaredAs(typeRef(parent, forTypescript: true)),
-              for (final parent in element.interfaces)
-                if (!parent.element.library.isDartCore ||
-                    parser._adaptations.containsKey(identity(parent.element)))
+        ];
+        final dependencySuperTypes =
+            element is! EnumElement &&
+                !nativeWidget &&
+                !parser._adaptations.containsKey(id)
+            ? <FlaxCodegenTypeRef>[
+                typeOnlyReference(element.thisType),
+                for (final parent in element.thisType.allSupertypes)
+                  if (!parent.isDartCoreObject &&
+                      !parser._adaptations.containsKey(
+                        identity(parent.element),
+                      ) &&
+                      parent.element.library.isDartCore)
+                    typeOnlyReference(parent),
+                if (element.supertype case final parent?
+                    when !parent.isDartCoreObject)
                   typeRef(parent)
                       .declaredAs(typeRef(parent, forTypescript: true)),
-            ]
-          : const <FlaxCodegenTypeRef>[];
-      types[id] = FlaxCodegenNamedTypeModel(
-        name: name,
-        id: id,
-        typeParameters: typeParameters,
-        dependencySuperTypes: dependencySuperTypes,
-        enumValueTypes: element is EnumElement
-            ? {
-                for (final field in element.fields.where(
-                  (field) => field.isEnumConstant,
-                ))
-                  field.name!: typeRef(field.type, forTypescript: true),
-              }
-            : const {},
-        enumNames: element is EnumElement
-            ? element.fields
-                  .where((field) => field.isEnumConstant)
-                  .map((field) => field.name!)
-                  .toList()
-            : [],
-      );
+                for (final parent in element.interfaces)
+                  if (!parent.element.library.isDartCore ||
+                      parser._adaptations.containsKey(identity(parent.element)))
+                    typeRef(parent)
+                        .declaredAs(typeRef(parent, forTypescript: true)),
+              ]
+            : const <FlaxCodegenTypeRef>[];
+        types[id] = FlaxCodegenNamedTypeModel(
+          name: name,
+          id: id,
+          typeParameters: typeParameters,
+          dependencySuperTypes: dependencySuperTypes,
+          enumValueTypes: element is EnumElement
+              ? {
+                  for (final field in element.fields.where(
+                    (field) => field.isEnumConstant,
+                  ))
+                    field.name!: typeRef(field.type, forTypescript: true),
+                }
+              : const {},
+          enumNames: element is EnumElement
+              ? element.fields
+                    .where((field) => field.isEnumConstant)
+                    .map((field) => field.name!)
+                    .toList()
+              : [],
+        );
+      } catch (_) {
+        // A skipped signature must not leave a partial type that makes a later
+        // member appear convertible without checking its public dependencies.
+        types.remove(id);
+        rethrow;
+      }
     }
     return FlaxCodegenTypeRef(
       element is EnumElement

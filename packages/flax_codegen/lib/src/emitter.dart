@@ -23,6 +23,14 @@ typedef _ConcreteMemberView = ({
 
 String _quote(String value) => jsonEncode(value).replaceAll(r'$', r'\$');
 
+// Widget instance APIs need a real receiver; rendering-only bindings keep
+// descriptions and their reactive constructor arguments.
+bool _hasWidgetObjectView(FlaxCodegenClassModel type) =>
+    type.kind == 'widget' &&
+    (type.proxy != null ||
+        type.getters.isNotEmpty ||
+        type.methods.any((method) => method.instance));
+
 /// Stable key order so reversed [Map] insertion cannot change emission.
 Map<String, String> _sortedStringMap(Map<String, String> map) {
   final entries = map.entries.toList()
@@ -1410,7 +1418,10 @@ class FlaxCodegenBindingEmitter {
   }
 
   List<_ConcreteMemberView> _concreteMemberViews(FlaxCodegenClassModel type) {
-    if (type.kind != 'object' || type.typeParameters.isEmpty) return const [];
+    if ((type.kind != 'object' && !_hasWidgetObjectView(type)) ||
+        type.typeParameters.isEmpty) {
+      return const [];
+    }
     final views = <_ConcreteMemberView>[];
     final seen = <String>{};
     for (final constructor in type.constructors) {
@@ -2031,10 +2042,16 @@ import 'package:flax/bindings.dart';
     for (final type in module.classes) {
       if (type.kind == 'enum') continue;
       if (type.kind == 'widgetInterface' ||
-          (type.kind == 'widget' && _bindingConstructors(type).isEmpty)) {
+          (type.kind == 'widget' &&
+              _bindingConstructors(type).isEmpty &&
+              !_hasWidgetObjectView(type))) {
         out.writeln(
           'FlaxWidgetInterfaceBinding(${_quote(type.id)}, _is${type.name}),',
         );
+        continue;
+      }
+      if (_hasWidgetObjectView(type) && type.proxy == null) {
+        out.writeln('${_widgetObjectBinding(type, memberViews[type]!)},');
         continue;
       }
       if ({'context', 'state', 'object', 'stream'}.contains(type.kind)) {
@@ -2100,7 +2117,7 @@ import 'package:flax/bindings.dart';
         out.writeln('],');
       }
       out.writeln(
-        '}, _${type.name}Host.new, matches: _is${type.name}, fixedArguments: ${type.widgetInterfaces.isNotEmpty}, methods: {}, ${type.proxy == null ? '' : 'objectView: FlaxObjectBinding(${_quote(type.id)}, [${type.getters.map((g) => 'FlaxGetter(${_quote(g.name)}, ${_ref(g.type)}, _${type.name}_${g.name}),').join()}], ${_instanceMethods(type)}, constructors: ${_constructors(type)}, create: _create${type.name}, matches: _is${type.name}, supertypes: ${jsonEncode(type.supertypes)}${_proxyBinding(type)}),'}),',
+        '}, _${type.name}Host.new, matches: _is${type.name}, fixedArguments: ${type.widgetInterfaces.isNotEmpty}, methods: {}, ${_hasWidgetObjectView(type) ? 'objectView: ${_widgetObjectBinding(type, memberViews[type]!)},' : ''}),',
       );
     }
     out.writeln('], functions: [');
@@ -2374,7 +2391,7 @@ import 'package:flax/bindings.dart';
       for (final getter in type.getters.where(
         (_) =>
             ({'context', 'state', 'object', 'stream'}.contains(type.kind) ||
-            (type.kind == 'widget' && type.proxy != null)),
+            _hasWidgetObjectView(type)),
       )) {
         final read =
             '(value as ${_dartName(type.name)}${_typeArgs(type.typeArguments)}).${getter.name}';
@@ -2462,7 +2479,9 @@ import 'package:flax/bindings.dart';
         }
       }
       if (_bindingConstructors(type).isEmpty) {
-        if (type.kind == 'object' || type.kind == 'stream') {
+        if (type.kind == 'object' ||
+            type.kind == 'stream' ||
+            _hasWidgetObjectView(type)) {
           out.writeln(
             "Object _create${type.name}(String ctor, Map<String, Object?> values) => throw ArgumentError('Abstract object has no constructor');",
           );
@@ -2474,7 +2493,8 @@ import 'package:flax/bindings.dart';
         }
         continue;
       }
-      if (type.kind == 'widget') {
+      if (type.kind == 'widget' &&
+          (type.proxy != null || !_hasWidgetObjectView(type))) {
         out.writeln(
           '''class _${type.name}Host extends FlaxWidgetHost${type.widgetInterfaces.isEmpty ? '' : ' implements ${type.widgetInterfaces.map(_dartType).join(', ')}'} {
   _${type.name}Host(super.node);
@@ -3873,6 +3893,16 @@ T _genericCallbackResult<T>(Object? value) {
       ? const FlaxCodegenConstructorModel('', [])
       : type.constructors.single;
 
+  String _widgetObjectBinding(
+    FlaxCodegenClassModel type,
+    List<_ConcreteMemberView> views,
+  ) =>
+      'FlaxObjectBinding(${_quote(type.id)}, ['
+      '${type.getters.map((getter) => 'FlaxGetter(${_quote(getter.name)}, ${_ref(getter.type)}, _${type.name}_${getter.name}${getter.encodeKind == null ? '' : ', encode: const FlaxTypeRef(${_quote(getter.encodeKind!)})'}),').join()}], '
+      '${_instanceMethods(type)}, constructors: ${_constructors(type)}, '
+      'create: _create${type.name}, matches: _is${type.name}, '
+      'supertypes: ${jsonEncode(type.supertypes)}${_proxyBinding(type)}${_memberViewBinding(type, views)})';
+
   String _constructors(FlaxCodegenClassModel type) {
     final out = StringBuffer('{');
     for (final ctor in _bindingConstructors(type)) {
@@ -4147,6 +4177,17 @@ T _genericCallbackResult<T>(Object? value) {
             : '($output | $name<$inputItem>)';
       }
 
+      String reference() {
+        final name =
+            '${_owners[type.id] == module ? '' : '${dependencies[_owners[type.id]]}.'}${type.name}';
+        final arguments = type.tsArguments.isNotEmpty
+            ? type.tsArguments
+            : type.dartArguments;
+        return arguments.isEmpty
+            ? name
+            : '$name<${arguments.map((argument) => child(argument)).join(', ')}>';
+      }
+
       if (input && !nominal && type.kind == 'object') {
         final owner = _classes[type.id];
         final identity = owner?.superTypes
@@ -4182,9 +4223,7 @@ T _genericCallbackResult<T>(Object? value) {
         FlaxCodegenTypeCategory.numeric => 'number',
         FlaxCodegenTypeCategory.scalar => '(string | number)',
         FlaxCodegenTypeCategory.widget =>
-          type.id == null
-              ? 'Widget'
-              : '${_owners[type.id] == module ? '' : '${dependencies[_owners[type.id]]}.'}${type.name}',
+          type.id == null ? 'Widget' : reference(),
         FlaxCodegenTypeCategory.callback => callback(type),
         FlaxCodegenTypeCategory.iterable =>
           input
@@ -4217,8 +4256,7 @@ T _genericCallbackResult<T>(Object? value) {
         FlaxCodegenTypeCategory.state ||
         FlaxCodegenTypeCategory.route ||
         FlaxCodegenTypeCategory.object ||
-        FlaxCodegenTypeCategory.page =>
-          '${_owners[type.id] == module ? '' : '${dependencies[_owners[type.id]]}.'}${type.name}${(type.tsArguments.isNotEmpty ? type.tsArguments : type.dartArguments).isEmpty ? '' : '<${(type.tsArguments.isNotEmpty ? type.tsArguments : type.dartArguments).map((t) => child(t)).join(', ')}>'}',
+        FlaxCodegenTypeCategory.page => reference(),
         FlaxCodegenTypeCategory.voidType => 'void',
       };
       final primitives = (nominal ? <String>[] : type.primitiveKinds)
@@ -4338,6 +4376,10 @@ $_typescriptHostImport
     if (module.classes.any((c) => c.proxy?.kind == 'extends')) {
       out.writeln(
         "import { FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';",
+      );
+    } else if (module.classes.any(_hasWidgetObjectView)) {
+      out.writeln(
+        "import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';",
       );
     }
     for (final entry in dependencies.entries) {
@@ -5182,7 +5224,19 @@ $_typescriptHostImport
         );
         continue;
       }
-      if (type.kind == 'widget' && type.constructors.isEmpty) {
+      final nativeWidget = _hasWidgetObjectView(type) && type.proxy == null;
+      if (nativeWidget) {
+        out.writeln(
+          '${exportPrefix}interface ${type.name}${generics(type.typeParameters)} extends _FlaxDartWidget${type.superTypes.map((parent) => ', ${tsType(parent, nominal: true)}').join()}${type.widgetInterfaces.map((parent) => ", Omit<${tsType(parent)}, 'kind'>").join()} { readonly __${type.name}: unique symbol;',
+        );
+        for (final getter in type.getters) {
+          out.writeln('readonly ${getter.name}: ${tsType(getter.type)};');
+        }
+        for (final method in type.methods.where((method) => method.instance)) {
+          out.writeln('${methodSignature(method)};');
+        }
+        out.writeln('}');
+      } else if (type.kind == 'widget' && type.constructors.isEmpty) {
         out.writeln(
           '${exportPrefix}type ${type.name}${generics(type.typeParameters)} = Widget & { readonly __${type.name}: unique symbol; }${type.widgetInterfaces.map((t) => ' & ${tsType(t)}').join()};',
         );
@@ -5225,8 +5279,7 @@ $_typescriptHostImport
       }
       String sharedMethods() =>
           '_flaxBindingMethods(${jsonEncode(type.id)}, ${jsonEncode(type.kind == 'widget' ? 'object' : type.kind)}, ${memberMetadata(type.methods.where((m) => m.instance))})';
-      if (type.kind == 'object' ||
-          (type.kind == 'widget' && type.proxy != null)) {
+      if (type.kind == 'object' || _hasWidgetObjectView(type)) {
         final listeners = _sortedStringMap(type.listenerPairs).values.toList();
         out.writeln(
           'defineObject(${jsonEncode(type.id)}, ${jsonEncode(type.getters.map((g) => g.name).toList())}, ${jsonEncode(type.setters.map((g) => g.name).toList())}, ${sharedMethods()}, ${jsonEncode(listeners)});',
@@ -5256,7 +5309,7 @@ $_typescriptHostImport
         );
       }
       if (type.constructors.isEmpty && type.proxy == null) {
-        if (type.kind == 'widget') {
+        if (type.kind == 'widget' && !nativeWidget) {
           out.writeln(
             '${exportPrefix}type ${type.name}${generics(type.typeParameters)} = Widget & { readonly __${type.name}: unique symbol; };',
           );
@@ -5279,11 +5332,13 @@ $_typescriptHostImport
           '${exportPrefix}type ${type.name}Description${generics(type.typeParameters)} = WidgetDescription & { readonly type: ${jsonEncode(type.id)}; }${type.widgetInterfaces.map((i) => ' & ${tsType(i)}').join()};',
         );
         emitProxy(out, type, type.proxy!);
-      } else if (type.widgetInterfaces.isNotEmpty) {
+      } else if (type.widgetInterfaces.isNotEmpty && !nativeWidget) {
         out.writeln(
           '${exportPrefix}type ${type.name} = WidgetDescription & { readonly type: ${jsonEncode(type.id)}; } & ${type.widgetInterfaces.map((t) => tsType(t)).join(' & ')};',
         );
-      } else if (type.kind != 'object' && type.kind != 'stream') {
+      } else if (type.kind != 'object' &&
+          type.kind != 'stream' &&
+          !nativeWidget) {
         out.writeln(
           '${exportPrefix}interface ${type.name}${generics(type.typeParameters)} extends ${type.kind == 'widget' ? 'WidgetDescription' : 'DartValue'}${bases.isEmpty ? '' : ', ${bases.join(', ')}'} { readonly type: ${jsonEncode(type.id)};${type.kind == 'widget' ? '' : ' readonly __${type.name}: unique symbol;'} ${type.getters.map((g) => 'readonly ${g.name}: ${tsType(g.type)};').join(' ')} }',
         );
@@ -5382,6 +5437,7 @@ $_typescriptHostImport
                   declarations: !fixed && target == null,
                 );
           return type.kind == 'widget' &&
+                  !nativeWidget &&
                   type.widgetInterfaces.isEmpty &&
                   param.name != 'key'
               ? 'Bindable<$input>'
@@ -5426,6 +5482,7 @@ $_typescriptHostImport
         _guardPositionalTs(out, ctor.parameters);
         final params = ctor.parameters.map((param) {
           final readonly =
+              !nativeWidget &&
               type.kind != 'object' &&
               type.kind != 'stream' &&
               type.getters.any((g) => g.name == param.name);
@@ -5447,13 +5504,14 @@ $_typescriptHostImport
             .where((param) => param.positional)
             .map((param) => param.name)
             .join(', ');
-        final construct = switch (type.kind) {
+        final constructionKind = nativeWidget ? 'object' : type.kind;
+        final construct = switch (constructionKind) {
           'object' => 'constructObject',
           'stream' => 'constructStream',
           _ => 'construct',
         };
         out.writeln(
-          'return $construct(${jsonEncode(type.kind)}, ${jsonEncode(type.id)}, ${jsonEncode(ctor.name)}, ${jsonEncode(params)}, [$positional], ${named.isEmpty ? '{}' : 'options'}) as $resultType;',
+          'return $construct(${jsonEncode(constructionKind)}, ${jsonEncode(type.id)}, ${jsonEncode(ctor.name)}, ${jsonEncode(params)}, [$positional], ${named.isEmpty ? '{}' : 'options'}) as $resultType;',
         );
         out.writeln('}');
         if (ctor.name.isNotEmpty) out.writeln('}');

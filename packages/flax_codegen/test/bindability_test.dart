@@ -836,7 +836,7 @@ void main() {
     );
   });
 
-  test('does not auto-select Widget getters or methods', () async {
+  test('Widget getters and methods share ordinary member selection', () async {
     final parser = FlaxCodegenBindingParser(repoRoot);
     addTearDown(parser.dispose);
     final config = fixture('widget_probe.dart', const {});
@@ -847,11 +847,12 @@ void main() {
     expect(proposed.bindable, isTrue);
     expect(proposed.selection!.kind, isNull);
     expect(proposed.selection!.constructors[''], ['label']);
-    expect(proposed.selection!.getters, isEmpty);
-    expect(proposed.selection!.instanceMethods, isEmpty);
+    expect(proposed.selection!.getters, containsAll(['label', 'title']));
+    expect(proposed.selection!.instanceMethods, contains('poke'));
+    expect(proposed.selection!.proxy, isNull);
     expect(
       proposed.skips.map((skip) => skip.target),
-      containsAll(['ProbeBox.title', 'ProbeBox.poke', 'ProbeBox.build']),
+      isNot(contains('ProbeBox.title')),
     );
     await parser.parse(
       fixture('widget_probe.dart', {'ProbeBox': proposed.selection!}),
@@ -868,31 +869,28 @@ void main() {
           ),
         }),
       ),
-      throwsA(
-        isA<StateError>().having(
-          (error) => error.message,
-          'message',
-          contains('Value getters require selected constructor fields'),
-        ),
-      ),
+      completes,
     );
   });
 
-  test('skips a Widget with no bindable constructors', () async {
-    final parser = FlaxCodegenBindingParser(repoRoot);
-    addTearDown(parser.dispose);
-    final config = fixture('widget_probe.dart', const {});
-    final proposed = await parser.proposeSelection(
-      await loadType(config.library, 'RequiredUriBox'),
-      library: config,
-    );
-    expect(proposed.bindable, isFalse);
-    expect(proposed.selection, isNull);
-    expect(
-      proposed.skips.map((skip) => skip.reason),
-      contains('No bindable constructors'),
-    );
-  });
+  test(
+    'a Widget without bindable constructors can expose a returned member view',
+    () async {
+      final parser = FlaxCodegenBindingParser(repoRoot);
+      addTearDown(parser.dispose);
+      final config = fixture('widget_probe.dart', const {});
+      final proposed = await parser.proposeSelection(
+        await loadType(config.library, 'RequiredUriBox'),
+        library: config,
+      );
+      expect(proposed.bindable, isTrue);
+      expect(proposed.selection!.constructors, isEmpty);
+      expect(proposed.selection!.instanceMethods, isNotEmpty);
+      await parser.parse(
+        fixture('widget_probe.dart', {'RequiredUriBox': proposed.selection!}),
+      );
+    },
+  );
 
   test('skips an object with no bindable members', () async {
     final parser = FlaxCodegenBindingParser(repoRoot);
@@ -1495,8 +1493,9 @@ void main() {
       );
 
       for (final name in ['AnnotatedRegion']) {
-        final result = await inspect(name, parse: false);
-        expect(result.proposal.selection, isNull, reason: name);
+        final result = await inspect(name, parse: true);
+        expect(result.proposal.selection, isNotNull, reason: name);
+        expect(result.proposal.selection!.constructors, isEmpty, reason: name);
         expect(
           result.proposal.skips.map((skip) => skip.code),
           contains('constructor_specialization_missing_use_site'),

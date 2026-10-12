@@ -1926,12 +1926,7 @@ class FlaxCodegenBindingParser {
             genericIdentity: element.typeParameters[i],
           ),
       ];
-      final isWidget = element.allSupertypes.any(
-        (type) =>
-            type.element.name == 'Widget' &&
-            type.element.library.uri.toString() ==
-                'package:flutter/src/widgets/framework.dart',
-      );
+      final isWidget = _isFlutterWidget(element);
       if (selection.kind == 'widgetInterface') {
         if (!isWidget ||
             element is! ClassElement ||
@@ -2071,13 +2066,12 @@ class FlaxCodegenBindingParser {
       }
       if (getters.isNotEmpty &&
           selection.kind == null &&
-          !(isWidget && selection.proxy == 'extends') &&
-          (isWidget ||
-              getters.any(
-                (g) => !selection.constructors.values.every(
-                  (params) => params.contains(g.name),
-                ),
-              ))) {
+          !isWidget &&
+          getters.any(
+            (g) => !selection.constructors.values.every(
+              (params) => params.contains(g.name),
+            ),
+          )) {
         throw StateError('Value getters require selected constructor fields');
       }
       final setters = <FlaxCodegenGetterModel>[];
@@ -2134,7 +2128,7 @@ class FlaxCodegenBindingParser {
       }
       if (selection.instanceMethods.isNotEmpty &&
           !{'state', 'object', 'stream', 'enum'}.contains(selection.kind) &&
-          !(isWidget && selection.proxy == 'extends')) {
+          !isWidget) {
         throw StateError(
           'Instance methods require a State or object adaptation',
         );
@@ -3000,6 +2994,19 @@ class FlaxCodegenBindingParser {
               .map((type) => identity(type.element))
               .toList(),
           superTypes: [
+            if (isWidget &&
+                selection.kind == null &&
+                selection.proxy == null &&
+                (selection.getters.isNotEmpty ||
+                    selection.instanceMethods.isNotEmpty))
+              for (final parent in element.thisType.allSupertypes)
+                if (_selections[identity(parent.element)] case final selected?
+                    when selected.kind == null &&
+                        selected.proxy == null &&
+                        (selected.getters.isNotEmpty ||
+                            selected.instanceMethods.isNotEmpty))
+                  typeRef(parent)
+                      .declaredAs(typeRef(parent, forTypescript: true)),
             if (selection.kind == 'widgetInterface')
               for (final parent in element.allSupertypes)
                 if (_adaptations[identity(parent.element)] == 'widgetInterface')
