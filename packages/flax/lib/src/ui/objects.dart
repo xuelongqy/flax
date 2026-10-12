@@ -12,13 +12,17 @@ class _ObjectReference {
     this.binding,
     Object value, {
     this.scoped = false,
-  }) : _weakValue = WeakReference(value) {
+  }) : _weakValue = WeakReference(value),
+       _borrowedContext = value is BuildContext
+           ? session._contextIds[value]
+           : null {
     _objectFinalizer.attach(value, WeakReference(this), detach: this);
   }
   final _Session session;
   final int id;
   final FlaxObjectBinding binding;
   final bool scoped;
+  final _ContextReference? _borrowedContext;
   late final FlaxObjectMemberView? _nativeMemberView = binding.memberView?.call(
     value,
   );
@@ -38,7 +42,17 @@ class _ObjectReference {
   final listeners = _WeakReferences<_ObjectListener>();
   bool disposing = false;
 
-  Object get value => _value ?? (throw StateError('Released Dart object'));
+  Object get value {
+    final value = _value ?? (throw StateError('Released Dart object'));
+    if (value is State && !value.mounted) {
+      throw StateError('Unmounted State');
+    }
+    if (value is BuildContext) {
+      _borrowedContext?.requireActive();
+      if (!value.mounted) throw StateError('Unmounted BuildContext');
+    }
+    return value;
+  }
 
   bool accepts(String type) {
     final expected = _objectView(session.registry._types[type]);
@@ -186,6 +200,8 @@ extension _ObjectCalls on _Session {
     if (result is! FlaxJsObject) {
       throw StateError('Expected a JS binding object');
     }
+    // Object views must not turn borrowed Flutter owners into strong Dart peers.
+    if (value is BuildContext || value is State) return result;
     try {
       runtime.bindDartPeer(result, value, origin: origin);
       return result;
@@ -412,10 +428,28 @@ extension _ObjectCalls on _Session {
       }
       return anyResult(value);
     }
+    if (value is BuildContext &&
+        (_contextIds[value] == null || _contextIds[value]!.retired)) {
+      contextResult(value, registry._contextType.id).release();
+    }
     final selected = _objectBinding(value, type.id!);
     var object = _objectIds[value];
+    if (object != null &&
+        value is BuildContext &&
+        !identical(object._borrowedContext, _contextIds[value])) {
+      object.release();
+      _releaseJs(
+        helper('releaseObject').call([FlaxJsNumber(object.id.toDouble())]),
+      );
+      object = null;
+    }
     if (object == null) {
-      object = _ObjectReference(this, _nextObject++, selected, value);
+      object = _ObjectReference(
+        this,
+        value is BuildContext ? _contextIds[value]!.id : _nextObject++,
+        selected,
+        value,
+      );
       _objects[object.id] = object;
       _objectIds[value] = object;
     }

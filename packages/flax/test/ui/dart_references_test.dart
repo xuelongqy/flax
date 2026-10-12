@@ -1,10 +1,11 @@
 import 'package:flax/flax.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flax_test/flax_test.dart';
 
 import '../../.dart_tool/flax/ui/native_widgets_bindings.dart';
 import '../../.dart_tool/flax/ui/collection_members_bindings.dart';
 import '../fixtures/collection_members.dart';
+import '../fixtures/native_widgets.dart';
 import '../support/owned_harness.dart';
 
 void main() {
@@ -101,6 +102,18 @@ void main() {
           ),
         );
         h.execute('nativeWidgets.references()');
+        List<WeakReference<NativeCounterState>> captureStates() => [
+          for (final state in tester.allStates.whereType<NativeCounterState>())
+            WeakReference(state),
+        ];
+        List<WeakReference<Element>> captureElements() => [
+          for (final element in tester.allElements)
+            if (element.widget is NativeCounter) WeakReference(element),
+        ];
+        final states = captureStates();
+        final elements = captureElements();
+        expect(states, isNotEmpty);
+        expect(elements, isNotEmpty);
         h.execute('nativeWidgets.increment()');
         await tester.pump();
         expect(find.text('JS: 1'), findsOneWidget);
@@ -116,8 +129,21 @@ void main() {
           context.release();
           query.release();
         }
+        h.execute('nativeWidgets.dropContextAlias()');
+        await tester.runAsync(() async {
+          h.execute(flaxTestJsGarbagePressure);
+          await flaxTestCollectDartGarbage();
+        });
+        expect(h.boolean('nativeWidgets.contextObjectAlive()'), isTrue);
         await tester.pumpWidget(const SizedBox());
         h.execute('nativeWidgets.expiredReferences()');
+        await tester.pumpAndSettle();
+        await tester.runAsync(() async {
+          h.execute(flaxTestJsGarbagePressure);
+          await flaxTestCollectDartGarbage();
+        });
+        expect(states.every((reference) => reference.target == null), isTrue);
+        expect(elements.every((reference) => reference.target == null), isTrue);
         expect(h.errors, isEmpty);
         await h.finish(tester);
         await second.finish(tester);

@@ -38,6 +38,8 @@ let latest: CounterState;
 let latestNative: ReturnType<NativeCounter['createState']>;
 let borrowedContext: BuildContext;
 let borrowedNavigator: NavigatorState;
+let borrowedStateView: native.NativeCounterState;
+let borrowedElementView: native.Element;
 class Counter extends native.NativeCounter {
   override createState() {
     created++;
@@ -201,11 +203,17 @@ Object.assign(globalThis, {
     disposed: () => disposed,
     increment: () => latest.setState(() => latest.count++),
     referenceContext: () => borrowedContext,
+    dropContextAlias: () => (borrowedContext = undefined as never),
+    contextObjectAlive: () => borrowedElementView.mounted,
     referenceType: (value: unknown) => getDartType(value),
     references() {
       borrowedContext = latest.context;
+      borrowedElementView = asDart(borrowedContext, native.Element);
       borrowedNavigator = Navigator.of(borrowedContext);
-      const state = asDart(latestNative, native.NativeCounterState);
+      const state = (borrowedStateView = asDart(
+        latestNative,
+        native.NativeCounterState,
+      ));
       const navigator = asDart(borrowedNavigator, NavigatorState);
       const stream = Stream.value(7);
       const callback = calls.producer(title);
@@ -221,6 +229,7 @@ Object.assign(globalThis, {
         asDart(borrowedContext, BuildContext) === borrowedContext,
       );
       check('Native State fields', state.count === 0 && state.mounted);
+      check('Context object view', borrowedElementView.mounted);
       check('Navigator mounted', navigator.mounted);
       check('Native State type', getDartType(latestNative) === 'NativeCounterState');
       check('JS State type', getDartType(latest) === '_NativeCounterState');
@@ -262,6 +271,8 @@ Object.assign(globalThis, {
         () => asDart(borrowedContext, BuildContext),
         () => asDart(borrowedNavigator, NavigatorState),
         () => asDart(latestNative, native.NativeCounterState),
+        () => borrowedStateView.count,
+        () => borrowedElementView.mounted,
       ]) {
         let rejected = false;
         try {

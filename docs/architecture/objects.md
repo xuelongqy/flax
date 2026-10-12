@@ -49,21 +49,24 @@ base is likewise not a generated Dart type token.
 Descriptors, unpaired component objects, raw JS arrays/objects, Promises and copied
 structural values have no original Dart reference and are rejected. Record projections
 and JS byte views also lack an original object handle; shared byte storage is not Dart
-object identity. Context/State queries and casts recheck the mounted lifecycle,
-including when the source is an ordinary object view. Neither operation mounts a Widget,
-revives an expired reference, changes application ownership nor creates a Stream
-subscription. Session close and explicit disposal retain their existing revocation
-behavior. Scoped callback arguments retain their original lease: casting one cannot turn
-it into a lasting object reference, and every view is revoked when the callback
-finishes. Such arguments can acquire compatible object binding views; conversion into a
-separate State, Context, Stream or enum representation is rejected rather than extending
-the lease.
+object identity. Context/State queries, casts and object-view member access recheck the
+mounted lifecycle. Object views retain weak Flutter borrowing, including the original
+Context owner lease; they do not add a strong Dart peer. Context views share one alias
+identity, so collecting the original wrapper does not retire a still-used object view.
+Neither operation mounts a Widget, revives an expired reference, changes application
+ownership nor creates a Stream subscription. Session close and explicit disposal retain
+their existing revocation behavior. Scoped callback arguments retain their original
+lease: casting one cannot turn it into a lasting object reference, and every view is
+revoked when the callback finishes. Such arguments can acquire compatible object binding
+views; conversion into a separate State, Context, Stream or enum representation is
+rejected rather than extending the lease.
 
 `getDartType` reads Dart `runtimeType.toString()` on demand. Its text may contain
 private implementation/proxy names and generic arguments; it is diagnostic display, not
 a stable ID, provider-qualified name, runtime type argument or authorization check. Both
-APIs make one JS-to-Dart host invocation per request. Obtain a checked view once at an
-API boundary and reuse it; ordinary object reads do not perform type queries.
+APIs invoke one cached typed operation per request; the first use also resolves its
+dispatch slot. Obtain a checked view once at an API boundary and reuse it; ordinary
+object reads do not perform type queries.
 
 Applications follow Flutter ownership rules and call exposed disposal methods
 themselves. The bridge does not restrict disposal based on where an object came from.

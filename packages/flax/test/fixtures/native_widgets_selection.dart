@@ -1,6 +1,11 @@
 import 'package:flax_codegen/flax_codegen.dart';
 
 const nativeWidgetsSelection = {
+  'Element': FlaxCodegenClassSelection(
+    {},
+    kind: 'object',
+    getters: ['mounted'],
+  ),
   'NativeLabel': FlaxCodegenClassSelection(
     {
       '': ['data', 'key'],
