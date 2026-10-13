@@ -24,6 +24,12 @@ TextEditingController plus Dart-built TextEditingValue, TextSelection and TextRa
 references. Calls use Flutter's own validation and disposal contracts; see
 [editing values](../../../docs/architecture/text-input.md).
 
+The dart:core selection includes the ordinary `Iterator<E>` interface with `current` and
+`moveNext()`. It has no JS constructor or source adapter. Downstream automatic APIs
+reuse this Core provider and the ordinary object/generic conversion rules. Closed
+signatures keep callback, nested collection, async and Record element conversion in
+shared native metadata; all signature views reuse the Core JS prototype.
+
 Color, FontWeight and TextStyle use ordinary object generation. Text.style accepts a
 plain or bound value; copyWith preserves unexposed fields. See
 [styles and themes](../../../docs/architecture/styles.md).

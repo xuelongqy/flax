@@ -40,6 +40,8 @@ let borrowedContext: BuildContext;
 let borrowedNavigator: NavigatorState;
 let borrowedStateView: native.NativeCounterState;
 let borrowedElementView: native.Element;
+let contextCursor: ReturnType<typeof calls.contextCursor>;
+let stateCursor: ReturnType<typeof calls.stateCursor>;
 class Counter extends native.NativeCounter {
   override createState() {
     created++;
@@ -220,6 +222,23 @@ Object.assign(globalThis, {
       const check = (name: string, valid: boolean) => {
         if (!valid) throw new Error(name);
       };
+      const widgetCursor = calls.widgetCursor(title);
+      contextCursor = calls.contextCursor(borrowedContext);
+      stateCursor = calls.stateCursor(latestNative);
+      check(
+        'Generic Widget member keeps JS override peer',
+        widgetCursor.moveNext() && widgetCursor.current === title,
+      );
+      check(
+        'Generic Context member keeps borrowed identity',
+        contextCursor.moveNext() && contextCursor.current === borrowedContext,
+      );
+      check(
+        'Generic State member keeps mounted native state',
+        stateCursor.moveNext() &&
+          asDart(stateCursor.current, native.NativeCounterState).mounted &&
+          getDartType(stateCursor.current) === getDartType(latestNative),
+      );
       check('Widget canonical peer', asDart(calls.input(title), Text) === title);
       const nativeLabel = asDart(label, native.NativeLabel);
       check('Widget provider view', nativeLabel.data === 'Label');
@@ -269,6 +288,8 @@ Object.assign(globalThis, {
       }
       for (const operation of [
         () => asDart(borrowedContext, BuildContext),
+        () => contextCursor.current,
+        () => stateCursor.current,
         () => asDart(borrowedNavigator, NavigatorState),
         () => asDart(latestNative, native.NativeCounterState),
         () => borrowedStateView.count,
@@ -282,6 +303,8 @@ Object.assign(globalThis, {
         }
         if (!rejected) throw new Error('Expired reference cast');
       }
+      contextCursor = undefined as never;
+      stateCursor = undefined as never;
     },
   },
 });

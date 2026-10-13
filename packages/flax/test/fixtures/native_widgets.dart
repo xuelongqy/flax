@@ -50,6 +50,10 @@ class NativeDependency extends InheritedWidget {
 
 class NativeWidgetCalls {
   const NativeWidgetCalls();
+  Iterator<Text> widgetCursor(Text value) => [value].iterator;
+  Iterator<BuildContext> contextCursor(BuildContext value) => [value].iterator;
+  Iterator<State<StatefulWidget>> stateCursor(State<StatefulWidget> value) =>
+      [value].iterator;
   Text Function() producer(Text value) =>
       () => value;
   Text text(Text Function() callback) => callback();

@@ -47,6 +47,7 @@ void main() {
       );
       for (final module in package.modules) {
         expect(module.requiredCapabilities, [
+          'generic-member-views',
           'instance-checks',
           'native-widget-proxies',
         ]);
@@ -383,6 +384,7 @@ void main() {
     expect(package.modules.single.owners, isEmpty);
     expect(package.modules.single.references, isEmpty);
     expect(package.modules.single.requiredCapabilities, [
+      'generic-member-views',
       'instance-checks',
       'native-widget-proxies',
     ]);
@@ -486,6 +488,7 @@ bindingNamespace: flax.core
       [show, offset, state, widget],
     );
     expect(package.modules.single.requiredCapabilities, [
+      'generic-member-views',
       'instance-checks',
       'native-widget-proxies',
     ]);

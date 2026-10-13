@@ -188,6 +188,22 @@ FlaxBindingModule _module(String namespace) {
           matches: (value) => value.runtimeType == Object,
         ),
     ],
+    functions: [
+      FlaxFunctionBinding(
+        '$namespace/money#function:view',
+        [FlaxParameter('value', FlaxTypeRef('object', id: id), required: true)],
+        FlaxTypeRef(
+          'object',
+          id: id,
+          objectView: FlaxObjectViewBinding(
+            'fixture:package-money-view',
+            (value) => value is _Money,
+            () => const FlaxObjectMemberView(),
+          ),
+        ),
+        (values) => values['value'],
+      ),
+    ],
     moduleId: '$namespace/money',
     uiProtocol: flaxBindingVersion,
     requiredCapabilities: const [],
@@ -288,6 +304,12 @@ void main() {
           expect(h.boolean('a === av && a !== bv && bv === b.echo(a)'), isTrue);
           expect(h.number('a.amount'), 3);
           expect(h.number('bv.doubled'), 6);
+          expect(
+            h.boolean(
+              'moneyHooks.castA(bv) === a && moneyHooks.castB(a) === bv',
+            ),
+            isTrue,
+          );
           h.execute(
             'var notices=0; var listener=()=>notices++; a.addListener(listener); bv.notify(); bv.removeListener(listener); a.notify();',
           );
@@ -356,6 +378,11 @@ void main() {
           ]) {
             expect(() => h.execute(call), throwsA(isA<FlaxJsException>()));
           }
+          h.execute(
+            'var viewB=__flaxInvokeOperation(__flaxResolveOperation(24,"test.b/money#function:view","top","call",""),0,a)',
+          );
+          expect(h.string('viewB.erased().provider'), 'test.b');
+          expect(h.string('viewB.items().get(0).provider'), 'test.b');
           h.execute('bv.dispose()');
           expect(h.actualDisposals, 1);
           for (final call in [

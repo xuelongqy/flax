@@ -275,6 +275,11 @@ classes:
     staticGetters: [current, empty]
     instanceMethods:
       toString: []
+  Iterator:
+    kind: object
+    getters: [current]
+    instanceMethods:
+      moveNext: []
   Sink:
     kind: object
     typeArguments: ['Object?']

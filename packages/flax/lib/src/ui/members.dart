@@ -340,7 +340,10 @@ extension _MemberCalls on _Session {
     if (type.kind == 'widget') {
       checkWidgetType(value as Widget, type);
       if (_objectView(registry._types[type.id]) != null) {
-        return objectResult(value, FlaxTypeRef('object', id: type.id));
+        return objectResult(
+          value,
+          FlaxTypeRef('object', id: type.id, objectView: type.objectView),
+        );
       }
       return widgetResult(value);
     }

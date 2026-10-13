@@ -1,4 +1,6 @@
 import {
+  asDart,
+  bindInstanceType,
   constructObject,
   defineObject,
   invokeObject,
@@ -58,8 +60,12 @@ for (const [id, fields] of [
     [],
   );
 }
+const typeA = bindInstanceType<object, object>({}, a, []);
+const typeB = bindInstanceType<object, object>({}, b, []);
 Object.assign(globalThis, {
   moneyHooks: {
+    castA: (value: unknown) => asDart(value, typeA),
+    castB: (value: unknown) => asDart(value, typeB),
     erased: () => invokeTopLevel('test.c/functions#function:erased', []),
     typed: () => invokeTopLevel('test.c/functions#function:typed', []),
     createA: () => constructObject('object', a, '', [], [], {}),

@@ -54,6 +54,9 @@ const nativeWidgetsSelection = {
     {'': []},
     kind: 'object',
     instanceMethods: {
+      'widgetCursor': ['value'],
+      'contextCursor': ['value'],
+      'stateCursor': ['value'],
       'producer': ['value'],
       'text': ['callback'],
       'input': ['value'],

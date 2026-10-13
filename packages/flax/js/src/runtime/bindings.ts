@@ -829,6 +829,7 @@ type ObjectDefinition = {
   removers: readonly string[];
 };
 const objectTypes = new Map<string, ObjectDefinition>();
+const objectViewTypes = new Map<string, string>();
 const references = new ReferenceCache();
 const objectHandles = references.handles;
 const instanceParents = new Map<string, readonly string[]>();
@@ -1819,13 +1820,14 @@ function callObject(
       throw new Error('Deferred Dart object has not been materialized');
     throw new TypeError('Invalid or foreign Dart object');
   }
-  if (ref.type !== type) throw new TypeError('Invalid or foreign Dart object');
+  if (ref.type !== type && objectViewTypes.get(ref.type) !== type)
+    throw new TypeError('Invalid or foreign Dart object');
   if (!ref.alive) {
     if (operation === 'call' && objectTypes.get(type)!.removers.includes(member))
       return;
     throw new Error('Disposed Dart object');
   }
-  return invokeOperation('object', type, ref.id, operation, member, args);
+  return invokeOperation('object', ref.type, ref.id, operation, member, args);
 }
 
 export function invokeObject(
@@ -1845,6 +1847,8 @@ export function invokeObjectStatic(type: string, member: string): unknown {
 
 const objectPrototypes = new Map<string, object>();
 function objectPrototype(type: string): object {
+  const base = objectViewTypes.get(type);
+  if (base) return objectPrototype(base);
   const cached = objectPrototypes.get(type);
   if (cached) return cached;
   const definition = objectTypes.get(type);
@@ -1901,7 +1905,24 @@ function objectWrapper(type: string, id: number): object {
   return frozen;
 }
 
-function scopedObjectWrapper(type: string, id: number): object {
+function registerObjectView(type: string, base: string): void {
+  const existing = objectViewTypes.get(type);
+  if (
+    !objectTypes.has(base) ||
+    objectTypes.has(type) ||
+    (existing !== undefined && existing !== base)
+  )
+    throw new TypeError('Conflicting object view');
+  if (existing !== undefined) return;
+  objectViewTypes.set(type, base);
+  instanceParents.set(
+    type,
+    Object.freeze([base, ...(instanceParents.get(base) ?? [])]),
+  );
+}
+
+function scopedObjectWrapper(type: string, id: number, base?: string): object {
+  if (base !== undefined) registerObjectView(type, base);
   const value = Object.freeze(createObjectWrapper(type));
   trackObject(value, type, id);
   return value;
@@ -2273,6 +2294,12 @@ Object.assign(globalThis, {
       if (ref && !ref.alive) throw new Error('Released Dart object');
       return ref?.id ?? null;
     },
+    hasObjectView(value: object, type: string): boolean {
+      const ref = objectHandles.get(value);
+      return Boolean(
+        ref?.alive && (ref.type === type || objectViewTypes.get(ref.type) === type),
+      );
+    },
     deferredObject(value: object): DeferredObject | null {
       const record = deferredObjects.get(value);
       return record ? Object.freeze({ ...record }) : null;
@@ -2296,6 +2323,10 @@ Object.assign(globalThis, {
       defineObject(type, [], [], {}, [], kind);
     },
     object: objectWrapper,
+    objectView(type: string, id: number, base: string): object {
+      registerObjectView(type, base);
+      return objectWrapper(type, id);
+    },
     scopedObject: scopedObjectWrapper,
     streamObject: streamWrapper,
     asyncIterableNext,

@@ -31,8 +31,27 @@ import {
   callBound,
   callbackLists,
   createWords,
+  integerIterator,
+  nullableIterator,
+  nestedIterator,
+  objectIterator,
+  echoIterator,
+  readIteratorCurrent,
+  callbackIterator,
+  throwingIterator,
+  callbackElementIterator,
+  callbackListIterator,
+  futureCallbackIterator,
+  recordElementIterator,
+  numberElementIterator,
+  narrowNumberIterator,
+  directNarrowCallback,
+  sameIterator,
+  sharedNumberElementIterator,
+  callbackMemberCell,
 } from '../../../.dart_tool/flax/ui/collection_members_bindings.js';
 import { asDart, getDartType } from '@flax/core/bindings';
+import { Iterator } from '@flax/dart/core';
 import { SizedBox, registerPage } from '@flax/flutter/widgets';
 
 registerPage('collectionMembers', () => SizedBox());
@@ -42,7 +61,140 @@ let rejected = 0;
 let scoped: ReturnType<typeof createShoppingList> | undefined;
 Object.assign(globalThis, {
   collectionMemberHooks: {
+    exerciseGenericViews() {
+      const cell = callbackMemberCell();
+      if (cell.self !== cell || cell.value() !== 'cell callback')
+        throw new Error('Self-referential generic object view');
+      cell.value = () => 'replacement';
+      if (cell.value() !== 'replacement' || cell.echo(() => 'echo')() !== 'echo')
+        throw new Error('Generic setter and method conversion');
+      const cursor = callbackElementIterator();
+      if (!(cursor instanceof Iterator) || !cursor.moveNext())
+        throw new Error('Generic Iterator advance');
+      const callback = cursor.current;
+      if (callback() !== 'callback element' || cursor.current !== callback)
+        throw new Error('Generic callback conversion and identity');
+      const wide = numberElementIterator();
+      if (!wide.moveNext() || wide.current(1.5) !== 2)
+        throw new Error('Wide callback signature');
+      const narrow = narrowNumberIterator(wide);
+      if (
+        narrow === wide ||
+        !sameIterator(narrow, wide) ||
+        Object.getPrototypeOf(narrow) !== Object.getPrototypeOf(wide) ||
+        !(narrow instanceof Iterator) ||
+        narrowNumberIterator(wide) !== narrow
+      )
+        throw new Error('One Dart object and shared JS class, cached per signature');
+      const rejects = (action: () => unknown) => {
+        try {
+          action();
+        } catch {
+          return true;
+        }
+        return false;
+      };
+      if (
+        !rejects(() => directNarrowCallback()(1.5)) ||
+        !rejects(() => narrow.current(1.5)) ||
+        !rejects(() => Reflect.apply(callback, undefined, [1])) ||
+        wide.current(2.5) !== 3
+      )
+        throw new Error('Each view must preserve its declared signature');
+      const rows = callbackListIterator();
+      const records = recordElementIterator();
+      if (
+        !rows.moveNext() ||
+        rows.current.get(0)() !== 'nested callback' ||
+        !records.moveNext() ||
+        records.current.label !== 'iterator record' ||
+        records.current.values.get(1) !== 2
+      )
+        throw new Error('Nested collection and Record member conversion');
+      cursor.current;
+      Object.assign(globalThis, {
+        genericViewReads() {
+          for (let i = 0; i < 100; i++) cursor.current;
+        },
+      });
+    },
+    asyncGenericView() {
+      const cursor = futureCallbackIterator();
+      if (!cursor.moveNext()) throw new Error('Future Iterator advance');
+      return cursor.current.then((fn) => fn());
+    },
+    sharedGenericView() {
+      return sharedNumberElementIterator().current(1.5);
+    },
     rejected: () => rejected,
+    exerciseIterators() {
+      const iterator = createWords().iterator;
+      if (
+        !(iterator instanceof Iterator) ||
+        asDart(iterator, Iterator) !== iterator ||
+        !iterator.moveNext() ||
+        iterator.current !== 'one' ||
+        echoIterator(iterator) !== iterator
+      )
+        throw new Error('Native Iterator identity and current');
+      const returned = callbackIterator((value) => {
+        if (value.current !== 'one') throw new Error('Iterator callback input');
+        return value;
+      }, iterator);
+      if (
+        returned !== iterator ||
+        readIteratorCurrent(returned) !== 'one' ||
+        !iterator.moveNext() ||
+        String(iterator.current) !== 'two' ||
+        iterator.moveNext() ||
+        iterator.moveNext()
+      )
+        throw new Error('Native Iterator callback and exhaustion');
+      const nullable = nullableIterator();
+      if (!nullable.moveNext() || nullable.current !== null)
+        throw new Error('Nullable Iterator element');
+      if (!nullable.moveNext() || nullable.current !== 'last')
+        throw new Error('Nullable Iterator advance');
+      const nested = nestedIterator();
+      if (!nested.moveNext() || nested.current.get(0) !== 1)
+        throw new Error('Nested Iterator collection view');
+      const owner = createShoppingList();
+      owner.add('iterator');
+      const objects = objectIterator(owner);
+      if (!objects.moveNext() || objects.current !== owner)
+        throw new Error('Iterator business object identity');
+      const broken = throwingIterator();
+      let rejectedInputs = 0;
+      for (const operation of [
+        () => readIteratorCurrent(integerIterator() as never),
+        () => readIteratorCurrent(null as never),
+        () => readIteratorCurrent(['raw'][Symbol.iterator]() as never),
+        () => Reflect.apply(iterator.moveNext, iterator, [true]),
+        () => callbackIterator(() => [] as never, iterator),
+      ]) {
+        let failed = false;
+        try {
+          operation();
+        } catch {
+          failed = true;
+        }
+        if (!failed) throw new Error('Invalid Iterator input accepted');
+        rejectedInputs++;
+      }
+      for (const [operation, message] of [
+        [() => broken.current, 'iterator current failure'],
+        [() => broken.moveNext(), 'iterator move failure'],
+      ] as const) {
+        let failed = false;
+        try {
+          operation();
+        } catch (error) {
+          failed = error instanceof Error && error.message.includes(message);
+        }
+        if (!failed) throw new Error('Iterator lost the Dart exception');
+      }
+      return rejectedInputs;
+    },
     copyLength: () => list!.toArray().length,
     iteratedLength: () => [...list!].length,
     captureScoped(value: unknown) {

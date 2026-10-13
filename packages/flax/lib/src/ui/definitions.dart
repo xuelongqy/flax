@@ -5,6 +5,7 @@ const flaxBindingVersion = 24;
 
 /// Additive features supported without changing the UI protocol.
 const _supportedCapabilities = <String>{
+  'generic-member-views',
   'instance-checks',
   'native-core-inputs',
   'native-bigint',
@@ -27,6 +28,7 @@ class FlaxTypeRef {
     this.stream,
     this.callback,
     this.record,
+    this.objectView,
     this.deferredFactories = const {},
   });
   final String kind;
@@ -43,6 +45,7 @@ class FlaxTypeRef {
   final FlaxStreamBinding? stream;
   final FlaxCallbackBinding? callback;
   final FlaxRecordBinding? record;
+  final FlaxObjectViewBinding? objectView;
   final Map<String, FlaxDeferredFactoryBinding> deferredFactories;
   bool get containsWidget =>
       kind == 'widget' ||
@@ -234,6 +237,15 @@ class FlaxObjectMemberView {
   final Map<String, FlaxSetter> setters;
   final Map<String, FlaxInstanceMethod> instanceMethods;
   final FlaxTypeRef? collectionView;
+}
+
+/// Conversion for one declared generic signature, sharing the owner's JS class.
+class FlaxObjectViewBinding {
+  const FlaxObjectViewBinding(this.id, this.matches, this.members);
+  final String id;
+  final bool Function(Object) matches;
+  // Lazy metadata allows self-referential member signatures.
+  final FlaxObjectMemberView Function() members;
 }
 
 /// One selected Dart member; metadata is shared by every proxy of this type.

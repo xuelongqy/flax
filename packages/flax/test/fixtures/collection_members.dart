@@ -122,6 +122,27 @@ Map<String, ({String label, List<int> values})> recordCollections() => {
 };
 List<ShoppingList> callbackLists(ShoppingList Function() create) => [create()];
 Words createWords() => Words(['one', 'two']);
+Iterator<int> integerIterator() => [1, 2].iterator;
+Iterator<String?> nullableIterator() => <String?>[null, 'last'].iterator;
+Iterator<List<int>> nestedIterator() => <List<int>>[
+  [1, 2],
+].iterator;
+Iterator<ShoppingList> objectIterator(ShoppingList value) => [value].iterator;
+Iterator<T> echoIterator<T>(Iterator<T> value) => value;
+String readIteratorCurrent(Iterator<String> value) => value.current;
+Iterator<String> callbackIterator(
+  Iterator<String> Function(Iterator<String>) callback,
+  Iterator<String> value,
+) => callback(value);
+
+Iterator<String> throwingIterator() => _ThrowingIterator();
+
+class _ThrowingIterator implements Iterator<String> {
+  @override
+  String get current => throw StateError('iterator current failure');
+  @override
+  bool moveNext() => throw StateError('iterator move failure');
+}
 
 // Legal Dart interfaces, but neither a List nor a Set copy uniquely represents it.
 class AmbiguousCollection<T> implements List<T>, Set<T> {
@@ -136,3 +157,44 @@ class AmbiguousCollection<T> implements List<T>, Set<T> {
 
 AmbiguousCollection<String> createAmbiguousCollection() =>
     AmbiguousCollection<String>();
+
+Iterator<String Function()> callbackElementIterator() =>
+    <String Function()>[() => 'callback element'].iterator;
+
+Iterator<int Function(num)> numberElementIterator() =>
+    <int Function(num)>[(value) => value.round()].iterator;
+
+Iterator<int Function(int)> narrowNumberIterator(
+  Iterator<int Function(num)> value,
+) => value;
+
+Iterator<List<String Function()>> callbackListIterator() => [
+  <String Function()>[() => 'nested callback'],
+].iterator;
+
+Iterator<Future<String Function()>> futureCallbackIterator() =>
+    [Future<String Function()>.value(() => 'future callback')].iterator;
+
+Iterator<({String label, List<int> values})> recordElementIterator() => [
+  (label: 'iterator record', values: [1, 2]),
+].iterator;
+
+int Function(int) directNarrowCallback() =>
+    (num value) => value.round();
+
+bool sameIterator(Iterator<Object?> first, Iterator<Object?> second) =>
+    identical(first, second);
+
+final _sharedNumberCursor = numberElementIterator()..moveNext();
+Iterator<int Function(num)> sharedNumberElementIterator() =>
+    _sharedNumberCursor;
+
+class MemberCell<T> {
+  MemberCell._(this.value);
+  T value;
+  MemberCell<T> get self => this;
+  T echo(T value) => value;
+}
+
+MemberCell<String Function()> callbackMemberCell() =>
+    MemberCell._(() => 'cell callback');

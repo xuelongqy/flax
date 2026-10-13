@@ -14,8 +14,12 @@ const _generatedUiProtocol = 24;
 // through a typed tear-off without duplicating private constants.
 const _applyOmissionThreshold = 6;
 
+// shortcut: each root signature discovers at most 64 views, revisit if a real
+// API needs a larger finite closure.
+const _maxMemberViewExpansion = 64;
+
 typedef _ConcreteMemberView = ({
-  List<String> typeArguments,
+  List<FlaxCodegenTypeRef> typeArguments,
   List<FlaxCodegenGetterModel> getters,
   List<FlaxCodegenGetterModel> setters,
   List<FlaxCodegenMethodModel> methods,
@@ -147,7 +151,7 @@ function _flaxInstallBindingModule(
       throw new TypeError('requiredCapabilities must be sorted unique strings');
     }
     previous = capability;
-    if (capability !== 'instance-checks' && capability !== 'native-core-inputs' && capability !== 'native-bigint' && capability !== 'native-widget-proxies' && capability !== 'shared-buffers' && capability !== 'shared-uint8') {
+    if (capability !== 'generic-member-views' && capability !== 'instance-checks' && capability !== 'native-core-inputs' && capability !== 'native-bigint' && capability !== 'native-widget-proxies' && capability !== 'shared-buffers' && capability !== 'shared-uint8') {
       throw new TypeError(`Unsupported binding capability ${capability}`);
     }
   }
@@ -285,6 +289,11 @@ class FlaxCodegenBindingEmitter {
   final _futures = <String, (FlaxCodegenTypeRef, String)>{};
   final _streams = <String, (FlaxCodegenTypeRef, String)>{};
   final _records = <String, (FlaxCodegenTypeRef, String)>{};
+  final _signatureViews =
+      <String, (FlaxCodegenClassModel, _ConcreteMemberView, String)>{};
+  final _signatureViewRoots = <String, String>{};
+  final _signatureViewCounts = <String, int>{};
+  String? _emittingSignatureView;
   final _erasedFutureItems = <String>{};
   bool _usesErasedValueCast = false;
   final _deferred =
@@ -660,8 +669,20 @@ class FlaxCodegenBindingEmitter {
 
   late FlaxCodegenModuleModel _dartModule;
   final _dartImports = <String, String>{};
-  String _dartName(String name) =>
-      '${_dartImports[_dartModule.typeLibraries[name] ?? _dartModule.library]}.$name';
+  String _dartName(String name) {
+    final library =
+        _dartModule.typeLibraries[name] ??
+        modules
+            .map((module) => module.typeLibraries[name])
+            .whereType<String>()
+            .firstOrNull ??
+        _dartModule.library;
+    final prefix = _dartImports.putIfAbsent(
+      library,
+      () => 'api${_dartImports.length}',
+    );
+    return '$prefix.$name';
+  }
 
   String _dartType(FlaxCodegenTypeRef type, {String scalar = 'Object'}) {
     final base = switch (type.category) {
@@ -1175,6 +1196,44 @@ class FlaxCodegenBindingEmitter {
     }
     final out = StringBuffer('FlaxTypeRef(${_quote(type.kind)}');
     if (type.id != null) out.write(', id: ${_quote(type.id!)}');
+    final owner = _classes[type.id];
+    if ((type.kind == 'object' ||
+            (owner != null &&
+                type.kind == 'widget' &&
+                _hasWidgetObjectView(owner))) &&
+        owner != null &&
+        owner.typeParameters.isNotEmpty &&
+        type.dartArguments.length == owner.typeParameters.length &&
+        !type.dartArguments.any(_containsAnyParameter)) {
+      final substitutions = <Object?, FlaxCodegenTypeRef>{
+        for (final (index, parameter) in owner.typeParameters.indexed)
+          parameter.genericIdentity: type.dartArguments[index]
+              .withDataConversion(false),
+      };
+      final view = _specializedMemberView(owner, substitutions);
+      if (view != null) {
+        final signature =
+            '${type.id}<${view.typeArguments.map(_typeId).join(',')}>';
+        if (!_signatureViews.containsKey(signature)) {
+          final root = _emittingSignatureView == null
+              ? signature
+              : _signatureViewRoots[_emittingSignatureView]!;
+          final count = (_signatureViewCounts[root] ?? 0) + 1;
+          if (count > _maxMemberViewExpansion) {
+            throw StateError(
+              'Generic member view expansion exceeds $_maxMemberViewExpansion signatures: ${owner.name}',
+            );
+          }
+          _signatureViewRoots[signature] = root;
+          _signatureViewCounts[root] = count;
+        }
+        final entry = _signatureViews.putIfAbsent(
+          signature,
+          () => (owner, view, '_objectView${_signatureViews.length}'),
+        );
+        out.write(', objectView: ${entry.$3}');
+      }
+    }
     if (type.nullable) out.write(', nullable: true');
     if (withinCallback && type.kind == 'iterable' && type.containsWidget) {
       out.write(', finiteWidgetIterable: true');
@@ -1447,6 +1506,57 @@ class FlaxCodegenBindingEmitter {
     return inferred;
   }
 
+  _ConcreteMemberView? _specializedMemberView(
+    FlaxCodegenClassModel type,
+    Map<Object?, FlaxCodegenTypeRef> substitutions,
+  ) {
+    List<FlaxCodegenGetterModel> specialize(
+      List<FlaxCodegenGetterModel> members,
+    ) => [
+      for (final member in members)
+        if (member.type.specialize(substitutions) case final closed
+            when _typeId(closed) != _typeId(member.type))
+          FlaxCodegenGetterModel(
+            member.name,
+            closed,
+            encodeKind: member.encodeKind,
+          ),
+    ];
+    final methods = <FlaxCodegenMethodModel>[];
+    for (final method in type.methods.where(
+      (m) => m.instance && !m.deferredFactory,
+    )) {
+      final closed = method.specialize(substitutions);
+      if (_typeId(closed.result) != _typeId(method.result) ||
+          closed.parameters.indexed.any(
+            (p) => _typeId(p.$2.type) != _typeId(method.parameters[p.$1].type),
+          )) {
+        methods.add(closed);
+      }
+    }
+    final getters = specialize(type.getters);
+    final setters = specialize(type.setters);
+    final collection = _classCollection(type);
+    final collectionView = collection?.specialize(substitutions);
+    if (getters.isEmpty &&
+        setters.isEmpty &&
+        methods.isEmpty &&
+        (collectionView == null ||
+            _typeId(collectionView) == _typeId(_collectionView(type)!))) {
+      return null;
+    }
+    return (
+      typeArguments: [
+        for (final parameter in type.typeParameters)
+          substitutions[parameter.genericIdentity]!,
+      ],
+      getters: getters,
+      setters: setters,
+      methods: methods,
+      collectionView: collectionView,
+    );
+  }
+
   List<_ConcreteMemberView> _concreteMemberViews(FlaxCodegenClassModel type) {
     if ((type.kind != 'object' && !_hasWidgetObjectView(type)) ||
         type.typeParameters.isEmpty) {
@@ -1463,51 +1573,62 @@ class FlaxCodegenBindingEmitter {
               (identity, argument) =>
                   MapEntry(identity, argument.withDataConversion(false)),
             );
-        List<FlaxCodegenGetterModel> specialize(
-          List<FlaxCodegenGetterModel> members,
-        ) => [
-          for (final member in members)
-            if (member.type.specialize(substitutions) case final closed
-                when _typeId(closed) != _typeId(member.type))
-              FlaxCodegenGetterModel(
-                member.name,
-                closed,
-                encodeKind: member.encodeKind,
-              ),
-        ];
-        final methods = <FlaxCodegenMethodModel>[];
-        for (final method in type.methods.where(
-          (m) => m.instance && !m.deferredFactory,
-        )) {
-          final closed = method.specialize(substitutions);
-          if (_typeId(closed.result) != _typeId(method.result) ||
-              closed.parameters.indexed.any(
-                (p) =>
-                    _typeId(p.$2.type) != _typeId(method.parameters[p.$1].type),
-              )) {
-            methods.add(closed);
-          }
-        }
-        final getters = specialize(type.getters);
-        final setters = specialize(type.setters);
-        final collection = _classCollection(type);
-        final collectionView = collection?.specialize(substitutions);
-        if (getters.isNotEmpty ||
-            setters.isNotEmpty ||
-            methods.isNotEmpty ||
-            (collectionView != null &&
-                _typeId(collectionView) != _typeId(_collectionView(type)!))) {
-          views.add((
-            typeArguments: target.typeArguments,
-            getters: getters,
-            setters: setters,
-            methods: methods,
-            collectionView: collectionView,
-          ));
-        }
+        final view = _specializedMemberView(type, substitutions);
+        if (view != null) views.add(view);
       }
     }
     return views;
+  }
+
+  void _writeSignatureViews(StringBuffer out) {
+    for (var index = 0; index < _signatureViews.length; index++) {
+      final entry = _signatureViews.entries.elementAt(index);
+      final (type, view, prefix) = entry.value;
+      _emittingSignatureView = entry.key;
+      final provider = _owners[type.id]!;
+      final library = _dartImports.putIfAbsent(
+        provider.typeLibraries[type.name] ?? provider.library,
+        () => 'api${_dartImports.length}',
+      );
+      final receiver =
+          '$library.${type.name}<${view.typeArguments.map(_dartDeclaredType).join(', ')}>';
+      out.writeln(
+        'const $prefix = FlaxObjectViewBinding(${_quote(entry.key)}, ${prefix}Matches, ${prefix}Members);',
+      );
+      out.writeln('bool ${prefix}Matches(Object value) => value is $receiver;');
+      out.writeln(
+        'FlaxObjectMemberView ${prefix}Members() => const FlaxObjectMemberView(getters: {',
+      );
+      for (final getter in view.getters) {
+        out.writeln(
+          '${_quote(getter.name)}: FlaxGetter(${_quote(getter.name)}, ${_ref(getter.type)}, ${prefix}_${getter.name}${getter.encodeKind == null ? '' : ", encode: const FlaxTypeRef('${getter.encodeKind}')"}),',
+        );
+      }
+      out.writeln('}, setters: {');
+      for (final setter in view.setters) {
+        out.writeln(
+          '${_quote(setter.name)}: FlaxSetter(${_quote(setter.name)}, ${_ref(setter.type)}, ${prefix}_set_${setter.name}),',
+        );
+      }
+      out.writeln(
+        '}, instanceMethods: ${_instanceMethods(type, members: view.methods, prefix: prefix)}${view.collectionView == null ? '' : ', collectionView: ${_ref(view.collectionView!)}'});',
+      );
+      for (final getter in view.getters) {
+        final read = '(value as $receiver).${getter.name}';
+        out.writeln(
+          'Object? ${prefix}_${getter.name}(Object value) ${getter.type.kind == 'void' ? '{ $read; return null; }' : '=> $read;'}',
+        );
+      }
+      for (final setter in view.setters) {
+        out.writeln(
+          'void ${prefix}_set_${setter.name}(Object receiver, Object? value) { (receiver as $receiver).${setter.name} = ${_cast('value', setter.type)}; }',
+        );
+      }
+      for (final method in view.methods) {
+        _writeMethod(out, type, method, prefix: prefix, receiverType: receiver);
+      }
+    }
+    _emittingSignatureView = null;
   }
 
   FlaxCodegenTypeRef? _collectionView(FlaxCodegenClassModel type) =>
@@ -1569,7 +1690,7 @@ class FlaxCodegenBindingEmitter {
     );
     for (final (index, view) in views.indexed) {
       out.writeln(
-        'if (value is ${_dartName(type.name)}${_typeArgs(view.typeArguments)}) return __${type.name}MemberView$index;',
+        'if (value is ${_dartName(type.name)}${'<${view.typeArguments.map(_dartDeclaredType).join(', ')}>'}) return __${type.name}MemberView$index;',
       );
     }
     out.writeln('return null;\n}');
@@ -1591,7 +1712,7 @@ class FlaxCodegenBindingEmitter {
         '}, instanceMethods: ${_instanceMethods(type, members: view.methods, prefix: prefix)}${view.collectionView == null ? '' : ', collectionView: ${_ref(view.collectionView!)}'});',
       );
       final receiver =
-          '${_dartName(type.name)}${_typeArgs(view.typeArguments)}';
+          '${_dartName(type.name)}${'<${view.typeArguments.map(_dartDeclaredType).join(', ')}>'}';
       for (final getter in view.getters) {
         final read = '(value as $receiver).${getter.name}';
         out.writeln(
@@ -1604,13 +1725,7 @@ class FlaxCodegenBindingEmitter {
         );
       }
       for (final method in view.methods) {
-        _writeMethod(
-          out,
-          type,
-          method,
-          prefix: prefix,
-          receiverTypeArguments: view.typeArguments,
-        );
+        _writeMethod(out, type, method, prefix: prefix, receiverType: receiver);
       }
     }
   }
@@ -2040,6 +2155,10 @@ class FlaxCodegenBindingEmitter {
     _futures.clear();
     _streams.clear();
     _records.clear();
+    _signatureViews.clear();
+    _signatureViewRoots.clear();
+    _signatureViewCounts.clear();
+    _emittingSignatureView = null;
     _erasedFutureItems.clear();
     _usesErasedValueCast = false;
     _deferred.clear();
@@ -2060,36 +2179,7 @@ class FlaxCodegenBindingEmitter {
         );
       }
     }
-    // Shared conversion casts can become redundant after Dart flow promotion.
-    final out = StringBuffer(
-      '''// GENERATED CODE. Selected public API subset; do not edit.
-// Regenerate with dart run melos run bindings:generate.
-// ignore_for_file: type=lint, unused_import, unnecessary_cast
-import 'dart:core';
-import '${module.library}' as api;
-import 'package:flax/bindings.dart';
-''',
-    );
-    for (final entry in _dartImports.entries.where(
-      (e) => e.key != module.library,
-    )) {
-      out.writeln("import '${entry.key}' as ${entry.value};");
-    }
-    final nativeImports = <String, String>{};
-    for (final type in module.classes) {
-      for (final member in type.widgetMembers) {
-        nativeImports.addAll(member.imports);
-      }
-    }
-    for (final entry in nativeImports.entries) {
-      out.writeln("import '${entry.key}' as ${entry.value};");
-    }
-    // Adapter imports stay explicit in the binding selection.
-    final imports = module.classes
-        .where((c) => c.pageAdapter != null)
-        .map((c) => "import '${c.pageAdapter!.library}' as adapter${c.name};")
-        .join('\n');
-    out.writeln(imports);
+    final out = StringBuffer();
     out.writeln('// ignore: unused_element');
     out.writeln('const _flaxOmitted = Object();');
     out.writeln(
@@ -3103,6 +3193,7 @@ ${type.widgetMembers.map((m) => m.source).join('\n')}
       );
     }
     _writeSnapshots(out, module);
+    _writeSignatureViews(out);
     var usesGenericCallbackResult = false;
     for (final entry in _callbacks.entries) {
       final type = entry.key;
@@ -3429,7 +3520,38 @@ T _genericCallbackResult<T>(Object? value) {
 ''');
     }
     out.writeln('const _recordTypes = <FlaxTypeRef>[$recordRefs];');
-    return out.toString();
+    // Nested provider views can discover imports while their members are emitted.
+    final imports = StringBuffer(
+      '''// GENERATED CODE. Selected public API subset; do not edit.
+// Regenerate with dart run melos run bindings:generate.
+// ignore_for_file: type=lint, unused_import, unnecessary_cast
+import 'dart:core';
+import '${module.library}' as api;
+import 'package:flax/bindings.dart';
+''',
+    );
+    for (final entry in _dartImports.entries.where(
+      (e) => e.key != module.library,
+    )) {
+      imports.writeln("import '${entry.key}' as ${entry.value};");
+    }
+    final nativeImports = <String, String>{};
+    for (final type in module.classes) {
+      for (final member in type.widgetMembers) {
+        nativeImports.addAll(member.imports);
+      }
+    }
+    for (final entry in nativeImports.entries) {
+      imports.writeln("import '${entry.key}' as ${entry.value};");
+    }
+    // Adapter imports stay explicit in the binding selection.
+    for (final type in module.classes.where((c) => c.pageAdapter != null)) {
+      imports.writeln(
+        "import '${type.pageAdapter!.library}' as adapter${type.name};",
+      );
+    }
+    imports.writeln();
+    return '$imports$out';
   }
 
   String _futureCompletionValue(
@@ -3908,9 +4030,10 @@ T _genericCallbackResult<T>(Object? value) {
     FlaxCodegenClassModel type,
     FlaxCodegenMethodModel method, {
     List<String>? receiverTypeArguments,
+    String? receiverType,
   }) {
     final receiver =
-        'receiver as ${_dartName(type.name)}${_typeArgs(receiverTypeArguments ?? type.typeArguments)}';
+        'receiver as ${receiverType ?? '${_dartName(type.name)}${_typeArgs(receiverTypeArguments ?? type.typeArguments)}'}';
 
     final target = method.instance ? '($receiver)' : _dartName(type.name);
     return '$target.${method.name}${_typeArgs(method.typeArguments)}';
@@ -3922,13 +4045,14 @@ T _genericCallbackResult<T>(Object? value) {
     FlaxCodegenMethodModel method, {
     String? prefix,
     List<String>? receiverTypeArguments,
+    String? receiverType,
   }) {
     out.writeln(
       'Object? ${prefix ?? '_${type.name}'}_${method.name}(${method.instance ? 'Object receiver, ' : ''}Map<String, Object?> values) {',
     );
     if (method.operatorName != null) {
       final call = _operatorExpression(
-        '(receiver as ${_dartName(type.name)}${_typeArgs(receiverTypeArguments ?? type.typeArguments)})',
+        '(receiver as ${receiverType ?? '${_dartName(type.name)}${_typeArgs(receiverTypeArguments ?? type.typeArguments)}'})',
         method.operatorName!,
         [
           for (final p in method.parameters)
@@ -3942,6 +4066,7 @@ T _genericCallbackResult<T>(Object? value) {
         type,
         method,
         receiverTypeArguments: receiverTypeArguments,
+        receiverType: receiverType,
       );
       _emitCallableCall(
         out,

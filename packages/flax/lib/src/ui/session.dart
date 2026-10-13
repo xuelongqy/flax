@@ -48,7 +48,7 @@ class _Session {
         () => _BindingContext(module.moduleId, module.dependencyModules),
       );
     }
-    return null;
+    return _genericObjectBindings[id]?.context;
   }
 
   final _bindingContexts = <String, _BindingContext>{};
@@ -236,6 +236,8 @@ class _Session {
   final _operations = <(String, _BindingContext?, _BindingOperation)>[];
   final _operationIds = <(String, String, String, String), int>{};
   final _collectionBindings = <String, FlaxObjectBinding>{};
+  final _genericObjectBindings =
+      <String, ({FlaxObjectBinding binding, _BindingContext? context})>{};
   final _proxyLayouts = <(FlaxObjectBinding, int)>[];
   final _objects = <int, _ObjectReference>{};
   final _objectIds = _IdentityIndex<_ObjectReference>();
@@ -731,7 +733,11 @@ class _Session {
         }
         object = materializeDeferredObject(value, type);
       }
-      return _Value(object.value, [_ObjectBorrow(object, value.retain())]);
+      final native = object.value;
+      if (type.objectView?.matches(native) == false) {
+        throw ArgumentError('Incompatible generic Dart object');
+      }
+      return _Value(native, [_ObjectBorrow(object, value.retain())]);
     }
     if (type.kind == 'String' && value is FlaxJsString) {
       return _Value(value.value);
@@ -1121,6 +1127,7 @@ class _Session {
     _operationIds.clear();
     _proxyLayouts.clear();
     _collectionBindings.clear();
+    _genericObjectBindings.clear();
     _objectKeys?.release();
     _arrayCheck?.release();
     for (final result in _hostResults) {

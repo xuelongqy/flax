@@ -2,6 +2,7 @@
 // Regenerate with dart run melos run bindings:generate.
 import "@flax/dart/core/_bindings/flutter_DateTime";
 import "@flax/dart/core/_bindings/flutter_Duration";
+import "@flax/dart/core/_bindings/flutter_Iterator";
 import "@flax/dart/core/_bindings/flutter_Pattern";
 import "@flax/dart/core/_bindings/flutter_RegExp";
 import "@flax/dart/core/_bindings/flutter_Sink";
@@ -10,6 +11,7 @@ import "@flax/dart/core/_bindings/flutter_StringBuffer";
 import "@flax/dart/core/_bindings/flutter_Uri";
 export { DateTime } from "@flax/dart/core/_bindings/flutter_DateTime";
 export { Duration } from "@flax/dart/core/_bindings/flutter_Duration";
+export { Iterator } from "@flax/dart/core/_bindings/flutter_Iterator";
 export { Pattern } from "@flax/dart/core/_bindings/flutter_Pattern";
 export { RegExp } from "@flax/dart/core/_bindings/flutter_RegExp";
 export { Sink } from "@flax/dart/core/_bindings/flutter_Sink";

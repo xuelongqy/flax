@@ -120,6 +120,47 @@ Ordinary object elements remain references. Navigation data continues to reject 
 and host references. Bulk copies still incur conversion/allocation cost proportional to
 the graph; one host invocation does not mean zero work.
 
+### Native iterators
+
+Core exports the Dart `Iterator<E>` binding through `@flax/dart/core`. It is an ordinary
+object reference with read-only `current` and `moveNext(): boolean`, without a JS
+constructor. Automatic selection reuses that provider for getters, methods, functions
+and callbacks carrying Iterator references; it does not introduce a new type kind,
+source adapter or cursor state in JS.
+
+For a bound Dart API such as `Iterator<String> values() => ['one', 'two'].iterator`,
+JavaScript uses the native cursor:
+
+```ts
+const cursor = values();
+while (cursor.moveNext()) {
+  console.log(cursor.current);
+}
+```
+
+Each advance and read uses the shared cached member dispatch. Dart owns position,
+exhaustion, concurrent-modification behavior and exceptions. Read `current` only after
+`moveNext()` returns true; the SDK leaves other positions unspecified. Element values
+use the same shared generic conversion as ordinary object members, preserving null,
+registered object identity and nested Dart collection views. Raw JS iterators are not
+Dart Iterator inputs; selected typed calls also validate the actual Dart generic type.
+Closed signatures retain their element converters, including callback elements, nested
+collections, Future/Stream values and Records. `Iterator<String Function()>` exposes a
+callable `current`; `Iterator<List<String Function()>>` exposes a typed Dart List whose
+items are callable. Widget, Context and State elements keep their normal lifetime
+checks.
+
+Different declared signatures can expose distinct weakly cached JS wrappers for one Dart
+cursor, sharing the same prototype. This keeps callback argument guards independent: a
+`num` callback accepts `1.5`, while an `int` view rejects it. Repeated reads and
+conversions through the same signature reuse their wrappers. Do not use JS `===` to
+compare views from different signatures; Dart still receives the identical underlying
+object.
+
+The JS `next()`/`Symbol.iterator` protocol is not generated for this interface. Existing
+DartIterable iteration continues to make one snapshot call, so callers can choose that
+existing bulk path when they do not need a native cursor.
+
 ### Collection subclasses
 
 Bound subclasses of List, Map, Set and Iterable combine their selected native members

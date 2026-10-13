@@ -343,6 +343,7 @@ FlaxCodegenManifestModule? _decodeModuleEntry(
     (capability) => !{
       'instance-checks',
       'native-core-inputs',
+      'generic-member-views',
       'native-bigint',
       'native-widget-proxies',
       'shared-uint8',

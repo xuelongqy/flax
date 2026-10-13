@@ -27,6 +27,7 @@ class _ObjectReference {
     value,
   );
   Map<FlaxObjectBinding, FlaxObjectMemberView?>? _memberViews;
+  FlaxObjectBinding? _signatureBinding;
 
   FlaxObjectMemberView? memberView(FlaxObjectBinding requested) {
     if (identical(requested, binding)) return _nativeMemberView;
@@ -55,7 +56,9 @@ class _ObjectReference {
   }
 
   bool accepts(String type) {
-    final expected = _objectView(session.registry._types[type]);
+    final expected =
+        _objectView(session.registry._types[type]) ??
+        session._genericObjectBindings[type]?.binding;
     // Each binding view shares the actual session-owned Dart value.
     // Generated matches preserves concrete Dart type and generic checks.
     return expected is FlaxObjectBinding && expected.matches != null
@@ -234,6 +237,39 @@ extension _ObjectCalls on _Session {
     return selected;
   }
 
+  FlaxObjectBinding _signatureObjectBinding(
+    FlaxObjectBinding base,
+    FlaxObjectViewBinding view,
+  ) {
+    final id = _bindingViewKey('${base.id}::${view.id}', true);
+    return _genericObjectBindings.putIfAbsent(id, () {
+      final members = view.members();
+      return (
+        context: _bindingContext,
+        binding: FlaxObjectBinding(
+          id,
+          [
+            for (final getter in base.getters)
+              members.getters[getter.name] ?? getter,
+          ],
+          {...base.instanceMethods, ...members.instanceMethods},
+          setters: [
+            for (final setter in base.setters)
+              members.setters[setter.name] ?? setter,
+          ],
+          constructors: const {},
+          create: base.create,
+          matches: (value) =>
+              base.matches?.call(value) != false && view.matches(value),
+          disposeMethod: base.disposeMethod,
+          listenerPairs: base.listenerPairs,
+          collectionView: members.collectionView ?? base.collectionView,
+          supertypes: [base.id, ...base.supertypes],
+        ),
+      );
+    }).binding;
+  }
+
   FlaxJsValue scopedObjectResult(
     Object value,
     FlaxTypeRef type,
@@ -241,7 +277,10 @@ extension _ObjectCalls on _Session {
     List<FlaxJsObject> temporary,
   ) {
     if (type.id == null) throw ArgumentError('Missing scoped object type');
-    final binding = _objectBinding(value, type.id!);
+    final base = _objectBinding(value, type.id!);
+    final binding = type.objectView == null
+        ? base
+        : _signatureObjectBinding(base, type.objectView!);
     final reference = _ObjectReference(
       this,
       _nextObject++,
@@ -253,9 +292,11 @@ extension _ObjectCalls on _Session {
     final lease = _ScopedObjectLease(this, reference);
     leases.add(lease);
     try {
-      final wrapper = helper(
-        'scopedObject',
-      ).call([FlaxJsString(binding.id), FlaxJsNumber(reference.id.toDouble())]);
+      final wrapper = helper('scopedObject').call([
+        FlaxJsString(binding.id),
+        FlaxJsNumber(reference.id.toDouble()),
+        if (type.objectView != null) FlaxJsString(base.id),
+      ]);
       _peerResult(wrapper, value);
       if (wrapper is FlaxJsObject) temporary.add(wrapper);
       return wrapper;
@@ -433,6 +474,10 @@ extension _ObjectCalls on _Session {
       contextResult(value, registry._contextType.id).release();
     }
     final selected = _objectBinding(value, type.id!);
+    final view = type.objectView;
+    if (view != null && !view.matches(value)) {
+      throw ArgumentError('Incompatible generic Dart object');
+    }
     var object = _objectIds[value];
     if (object != null &&
         value is BuildContext &&
@@ -457,10 +502,22 @@ extension _ObjectCalls on _Session {
       throw ArgumentError('Incompatible Dart object');
     }
     object.value;
+    final remembered = object._signatureBinding;
+    final binding = view != null
+        ? _signatureObjectBinding(selected, view)
+        : remembered?.supertypes.first == selected.id
+        ? remembered!
+        : selected;
+    if (view != null) object._signatureBinding ??= binding;
+    final sharedPrototype = _genericObjectBindings.containsKey(binding.id)
+        ? selected.id
+        : null;
     return _peerResult(
-      helper(
-        'object',
-      ).call([FlaxJsString(selected.id), FlaxJsNumber(object.id.toDouble())]),
+      helper(sharedPrototype == null ? 'object' : 'objectView').call([
+        FlaxJsString(binding.id),
+        FlaxJsNumber(object.id.toDouble()),
+        if (sharedPrototype != null) FlaxJsString(sharedPrototype),
+      ]),
       value,
       origin: value,
     );
@@ -720,7 +777,9 @@ extension _ObjectCalls on _Session {
     String name,
   ) {
     final binding =
-        _objectView(registry._types[type]) ?? _collectionBindings[type];
+        _objectView(registry._types[type]) ??
+        _genericObjectBindings[type]?.binding ??
+        _collectionBindings[type];
     if (binding == null) throw ArgumentError('Unknown object type');
     if (operation == 'static') {
       final getter = binding.staticGetters[name];

@@ -257,6 +257,7 @@ final class FlaxCodegenImportedPackage {
 /// Generated views require authenticated instance checks and native Widget proxies.
 List<String> flaxCodegenProtocol21RequiredCapabilities() =>
     List<String>.unmodifiable(const <String>[
+      'generic-member-views',
       'instance-checks',
       'native-widget-proxies',
     ]);

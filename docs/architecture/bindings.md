@@ -781,13 +781,16 @@ Object/dynamic leaves.
 
 The generator emits private member metadata and direct calls only where substituting the
 class type parameters changes conversion. The JS class, unrelated methods and conversion
-adapters stay shared. The runtime selects metadata on the first affected operation and
-caches it per object and requested binding owner, including parent and provider views.
-The cache contains metadata only, so it adds no business root and no JS round trip.
-Constructor evidence already exists in the Manifest; no extra runtime type token,
-schema, protocol or ABI version is introduced. Native objects matching no known target
-and automatic JS proxies keep their shared erased owner. Matching uses Dart type checks;
-explicit type arguments remain the way to require a different concrete contract. See the
+adapters stay shared. For constructor-created objects, the runtime selects metadata on
+the first affected operation and caches it per object and requested binding owner.
+Closed API signatures also provide explicit conversion views, including constructorless
+provider objects; see
+[generic member conversion views](#generic-member-conversion-views). The cache contains
+metadata only, so it adds no business root and no JS round trip. Constructor evidence
+already exists in the Manifest; no extra runtime type token, schema, protocol or ABI
+version is introduced. Native objects matching no known target and automatic JS proxies
+keep their shared erased owner. Matching uses Dart type checks; explicit type arguments
+remain the way to require a different concrete contract. See the
 [generator regression](../../packages/flax_codegen/test/nested_generic_constructors_test.dart)
 and
 [nested input regression](../../packages/flax_codegen/test/nested_constructor_inputs_test.dart),
@@ -1240,3 +1243,26 @@ observations, not end-to-end Dart bridge latency or universal speed guarantees. 
 immutable parameter layouts avoid duplicating conversion plans; fully required
 positional calls reuse their existing argument array after validation. There are no
 timing assertions.
+
+## Generic member conversion views
+
+Closed generic object signatures reuse the declaration model from the owning provider
+Manifest. The emitter specializes only affected getters, setters, methods and collection
+interfaces, using the existing TypeRef converters. Known constructor views use this same
+specialization logic. Lazy member metadata permits ordinary self-referential signatures.
+
+A signature view retains the public binding identity and JS prototype. Private operation
+metadata carries its declared generic conversions; weak wrapper caches distinguish
+signatures without copying the Dart object. A narrower callback signature therefore
+keeps its own argument guards regardless of registration order. Unaffected members,
+native virtual dispatch, borrowed Context/State checks and Session cleanup keep their
+usual paths. Each private view also retains its binding context, so erased nested
+results keep the correct provider even when another provider first exposed the same Dart
+object. Expansion is bounded to 64 new views per root signature. Finite shifts retain
+their conversions; larger closures and unbounded recursive growth fail explicitly.
+
+Repeated conversion through one signature reuses its wrapper. Different signature views
+can be unequal under JS `===` while representing the same Dart object. An erased return
+can reuse a known view, but cannot invent a callback signature for an unknown function.
+The additive `generic-member-views` capability requires the updated Core runtime;
+Manifest 18, UI protocol 24 and native ABI 2 are unchanged.
