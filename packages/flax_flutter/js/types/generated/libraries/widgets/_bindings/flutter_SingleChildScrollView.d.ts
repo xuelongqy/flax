@@ -5,6 +5,7 @@ import '@flax/flutter/widgets/_bindings/flutter_Axis';
 import '@flax/flutter/widgets/_bindings/flutter_EdgeInsetsGeometry';
 import '@flax/flutter/widgets/_bindings/flutter_ScrollPhysics';
 import '@flax/flutter/widgets/_bindings/flutter_ScrollController';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface SingleChildScrollView extends WidgetDescription {
     readonly type: "flax.core/flutter#type:SingleChildScrollView";
 }
@@ -26,5 +27,5 @@ declare function _SingleChildScrollViewFactory(options?: {
     }> | null> | undefined;
     child?: Bindable<Widget | null> | undefined;
 }): SingleChildScrollView;
-export declare const SingleChildScrollView: typeof _SingleChildScrollViewFactory & _FlaxInstanceType<SingleChildScrollView>;
+export declare const SingleChildScrollView: typeof _SingleChildScrollViewFactory & _FlaxInstanceType<SingleChildScrollView> & _FlaxDartType<SingleChildScrollView, readonly ["class", "flax.core/flutter#type:SingleChildScrollView", readonly [], false]>;
 export {};

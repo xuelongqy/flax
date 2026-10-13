@@ -5,6 +5,7 @@ import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_ShapeBo
 import '@flax/flutter/widgets/_bindings/flutter_ShapeBorder';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_BorderSide';
 import '@flax/flutter/widgets/_bindings/flutter_BorderSide';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface StadiumBorder extends upstream0.OutlinedBorder, upstream1.ShapeBorder, Readonly<{
     "__flaxBound:package:flutter/src/painting/stadium_border.dart::StadiumBorder": readonly [];
 }> {
@@ -21,5 +22,5 @@ declare function _StadiumBorderFactory(options?: {
         "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [];
     }> | undefined;
 }): StadiumBorder;
-export declare const StadiumBorder: typeof _StadiumBorderFactory & _FlaxInstanceType<StadiumBorder>;
+export declare const StadiumBorder: typeof _StadiumBorderFactory & _FlaxInstanceType<StadiumBorder> & _FlaxDartType<StadiumBorder, readonly ["class", "flax.core/flutter#type:StadiumBorder", readonly [], false]>;
 export {};

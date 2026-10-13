@@ -1,4 +1,5 @@
 import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Color extends Readonly<{
     "__flaxBound:dart:ui::Color": readonly [];
 }> {
@@ -13,5 +14,5 @@ declare function _ColorFactory(value: number): Color;
 declare namespace _ColorFactory {
     function fromARGB(a: number, r: number, g: number, b: number): Color;
 }
-export declare const Color: typeof _ColorFactory & _FlaxInstanceType<Color>;
+export declare const Color: typeof _ColorFactory & _FlaxInstanceType<Color> & _FlaxDartType<Color, readonly ["class", "flax.core/flutter#type:Color", readonly [], false]>;
 export {};

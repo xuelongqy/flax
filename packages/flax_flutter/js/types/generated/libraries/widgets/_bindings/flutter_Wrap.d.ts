@@ -12,6 +12,7 @@ import type * as upstream5 from '@flax/flutter/widgets/_bindings/flutter_Vertica
 import '@flax/flutter/widgets/_bindings/flutter_VerticalDirection';
 import type * as upstream6 from '@flax/flutter/widgets/_bindings/flutter_Clip';
 import '@flax/flutter/widgets/_bindings/flutter_Clip';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Wrap extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Wrap";
 }
@@ -30,5 +31,5 @@ declare function _WrapFactory(options?: {
     clipBehavior?: Bindable<upstream6.Clip> | undefined;
     children?: Bindable<DartListInput<Widget, Widget>> | undefined;
 }): Wrap;
-export declare const Wrap: typeof _WrapFactory & _FlaxInstanceType<Wrap>;
+export declare const Wrap: typeof _WrapFactory & _FlaxInstanceType<Wrap> & _FlaxDartType<Wrap, readonly ["class", "flax.core/flutter#type:Wrap", readonly [], false]>;
 export {};

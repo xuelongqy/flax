@@ -1,6 +1,7 @@
 import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/services/_bindings/flutter_Size';
 import '@flax/flutter/services/_bindings/flutter_Size';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface FittedSizes extends Readonly<{
     "__flaxBound:package:flutter/src/painting/box_fit.dart::FittedSizes": readonly [];
 }> {
@@ -8,4 +9,4 @@ export interface FittedSizes extends Readonly<{
     readonly source: upstream0.Size;
     readonly destination: upstream0.Size;
 }
-export declare const FittedSizes: object & _FlaxInstanceType<FittedSizes>;
+export declare const FittedSizes: object & _FlaxInstanceType<FittedSizes> & _FlaxDartType<FittedSizes, readonly ["class", "flax.core/flutter#type:FittedSizes", readonly [], false]>;

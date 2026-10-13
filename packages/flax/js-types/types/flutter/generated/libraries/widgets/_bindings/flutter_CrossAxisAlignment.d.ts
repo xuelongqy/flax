@@ -11,4 +11,5 @@ export declare const CrossAxisAlignment: Readonly<{
     stretch: CrossAxisAlignment;
     baseline: CrossAxisAlignment;
     values: readonly CrossAxisAlignment[];
-} & _FlaxInstanceType<CrossAxisAlignment>>;
+} & _FlaxInstanceType<CrossAxisAlignment> & _FlaxDartType<CrossAxisAlignment, readonly ["class", "flax.core/flutter#type:CrossAxisAlignment", readonly [], false]>>;
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';

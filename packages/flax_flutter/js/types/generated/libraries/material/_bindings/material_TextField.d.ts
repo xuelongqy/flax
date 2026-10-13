@@ -8,6 +8,7 @@ import '@flax/flutter/material/_bindings/material_TextInputAction';
 import '@flax/flutter/widgets/_bindings/flutter_TextStyle';
 import type * as upstream6 from '@flax/flutter/services/_bindings/flutter_TextInputFormatter';
 import '@flax/flutter/services/_bindings/flutter_TextInputFormatter';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface TextField extends WidgetDescription {
     readonly type: "flax.material/material#type:TextField";
 }
@@ -43,5 +44,5 @@ declare function _TextFieldFactory(options?: {
     }>> | null> | undefined;
     enabled?: Bindable<boolean | null> | undefined;
 }): TextField;
-export declare const TextField: typeof _TextFieldFactory & _FlaxInstanceType<TextField>;
+export declare const TextField: typeof _TextFieldFactory & _FlaxInstanceType<TextField> & _FlaxDartType<TextField, readonly ["class", "flax.material/material#type:TextField", readonly [], false]>;
 export {};

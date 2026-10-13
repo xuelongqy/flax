@@ -9,4 +9,5 @@ export declare const ThemeMode: Readonly<{
     light: ThemeMode;
     dark: ThemeMode;
     values: readonly ThemeMode[];
-} & _FlaxInstanceType<ThemeMode>>;
+} & _FlaxInstanceType<ThemeMode> & _FlaxDartType<ThemeMode, readonly ["class", "flax.material/material#type:ThemeMode", readonly [], false]>>;
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';

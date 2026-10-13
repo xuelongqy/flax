@@ -3,6 +3,7 @@ import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_Curve';
 import '@flax/flutter/widgets/_bindings/flutter_Curve';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_Cubic';
 import '@flax/flutter/widgets/_bindings/flutter_Cubic';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Curves extends Readonly<{
     "__flaxBound:package:flutter/src/animation/curves.dart::Curves": readonly [];
 }> {
@@ -15,5 +16,5 @@ declare const _CurvesFactory: {
     readonly easeOut: upstream1.Cubic;
     readonly easeInOut: upstream1.Cubic;
 };
-export declare const Curves: typeof _CurvesFactory & _FlaxInstanceType<Curves>;
+export declare const Curves: typeof _CurvesFactory & _FlaxInstanceType<Curves> & _FlaxDartType<Curves, readonly ["class", "flax.core/flutter#type:Curves", readonly [], false]>;
 export {};

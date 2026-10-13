@@ -1,9 +1,15 @@
+import {
+  dartType as selectDartType,
+  dartTypes as nativeTypes,
+} from '@flax/core/bindings';
 import { bind, signal } from '@flax/core';
 import * as dartCore from '@flax/dart/core';
 import * as foundation from '@flax/flutter/foundation';
 import * as services from '@flax/flutter/services';
 import * as widgets from '@flax/flutter/widgets';
 import * as material from '@flax/flutter/material';
+
+const StringKey = selectDartType(foundation.ValueKey, nativeTypes.string);
 
 const core = Object.freeze({ ...dartCore, ...foundation, ...services, ...widgets });
 
@@ -63,13 +69,13 @@ widgets.registerPage('shared-objects', () =>
   widgets.Column({
     children: [
       material.Material({
-        key: foundation.ValueKey('shared-surface'),
+        key: StringKey('shared-surface'),
         type: material.MaterialType.card,
         color: services.Color(0xffe3f2fd),
         shape: shared.shape.bind,
         clipBehavior: widgets.Clip.antiAlias,
         child: material.InkWell({
-          key: foundation.ValueKey('shared-ink'),
+          key: StringKey('shared-ink'),
           mouseCursor: shared.cursor.bind,
           customBorder: shared.outline.bind,
           onTap: () => shared.taps++,
@@ -82,7 +88,7 @@ widgets.registerPage('shared-objects', () =>
           child: bind(() =>
             shared.showButton.value
               ? material.TextButton({
-                  key: foundation.ValueKey('shared-button'),
+                  key: StringKey('shared-button'),
                   style: bind(() =>
                     material.ButtonStyle({
                       shape: shapeProperty,
@@ -100,7 +106,7 @@ widgets.registerPage('shared-objects', () =>
         }),
       }),
       widgets.Container({
-        key: foundation.ValueKey('shared-decoration'),
+        key: StringKey('shared-decoration'),
         width: 40,
         height: 40,
         decoration: widgets.BoxDecoration({ border }),
@@ -125,7 +131,7 @@ widgets.registerPage('shared-scroll', (_, lifecycle) => {
         width: 240,
         height: 180,
         child: widgets.SingleChildScrollView({
-          key: foundation.ValueKey('shared-scroll'),
+          key: StringKey('shared-scroll'),
           controller,
           primary: false,
           physics: shared.physics.bind,
@@ -136,7 +142,7 @@ widgets.registerPage('shared-scroll', (_, lifecycle) => {
         width: 240,
         height: 180,
         child: widgets.ListView.builder({
-          key: foundation.ValueKey('shared-list'),
+          key: StringKey('shared-list'),
           controller: listController,
           primary: false,
           physics: shared.physics.bind,

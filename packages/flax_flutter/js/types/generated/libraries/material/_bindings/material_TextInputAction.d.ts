@@ -19,4 +19,5 @@ export declare const TextInputAction: Readonly<{
     emergencyCall: TextInputAction;
     newline: TextInputAction;
     values: readonly TextInputAction[];
-} & _FlaxInstanceType<TextInputAction>>;
+} & _FlaxInstanceType<TextInputAction> & _FlaxDartType<TextInputAction, readonly ["class", "flax.material/material#type:TextInputAction", readonly [], false]>>;
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';

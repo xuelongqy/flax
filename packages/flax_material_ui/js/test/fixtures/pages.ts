@@ -1,3 +1,7 @@
+import {
+  dartType as selectDartType,
+  dartTypes as nativeTypes,
+} from '@flax/core/bindings';
 import { bind, signal } from '@flax/core';
 import {
   Builder,
@@ -13,6 +17,8 @@ import {
 } from '@flax/flutter/widgets';
 import { ValueKey } from '@flax/flutter/foundation';
 import { MaterialPage, MaterialPageRoute, TextButton } from '@flax/flutter/material';
+
+const StringKey = selectDartType(ValueKey, nativeTypes.string);
 
 const list = signal<readonly Page[]>([]);
 const hooks = {
@@ -71,7 +77,7 @@ function make(
   canPop = true,
 ) {
   return MaterialPage({
-    key: ValueKey(key),
+    key: StringKey(key),
     name: `${key}`,
     arguments: args,
     maintainState,

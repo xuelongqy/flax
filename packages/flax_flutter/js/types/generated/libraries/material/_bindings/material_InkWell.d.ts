@@ -4,6 +4,7 @@ import '@flax/flutter/services/_bindings/flutter_MouseCursor';
 import '@flax/flutter/services/_bindings/flutter_Color';
 import '@flax/flutter/widgets/_bindings/flutter_BorderRadius';
 import '@flax/flutter/widgets/_bindings/flutter_ShapeBorder';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface InkWell extends WidgetDescription {
     readonly type: "flax.material/material#type:InkWell";
 }
@@ -36,5 +37,5 @@ declare function _InkWellFactory(options?: {
     }> | null> | undefined;
     enableFeedback?: Bindable<boolean> | undefined;
 }): InkWell;
-export declare const InkWell: typeof _InkWellFactory & _FlaxInstanceType<InkWell>;
+export declare const InkWell: typeof _InkWellFactory & _FlaxInstanceType<InkWell> & _FlaxDartType<InkWell, readonly ["class", "flax.material/material#type:InkWell", readonly [], false]>;
 export {};

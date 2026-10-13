@@ -616,6 +616,7 @@ extension _Collections on _Session {
         if (binding is FlaxEnumBinding &&
                 binding.values.values.any((entry) => identical(entry, value)) ||
             binding is FlaxObjectBinding &&
+                binding.aliasOf == null &&
                 binding.matches?.call(value) == true)
           binding,
     ];

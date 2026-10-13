@@ -3,6 +3,7 @@ import type * as upstream0 from '@flax/dart/core/_bindings/flutter_Match';
 import '@flax/dart/core/_bindings/flutter_Match';
 import type * as upstream1 from '@flax/dart/core/_bindings/flutter_RegExp';
 import '@flax/dart/core/_bindings/flutter_RegExp';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface RegExpMatch extends upstream0.Match, Readonly<{
     "__flaxBound:dart:core::RegExpMatch": readonly [];
 }> {
@@ -17,4 +18,4 @@ export interface RegExpMatch extends upstream0.Match, Readonly<{
     groups(groupIndices: DartListInput<number, number>): DartList<string | null>;
     namedGroup(name: string): string | null;
 }
-export declare const RegExpMatch: object & _FlaxInstanceType<RegExpMatch>;
+export declare const RegExpMatch: object & _FlaxInstanceType<RegExpMatch> & _FlaxDartType<RegExpMatch, readonly ["class", "flax.core/flutter#type:RegExpMatch", readonly [], false]>;

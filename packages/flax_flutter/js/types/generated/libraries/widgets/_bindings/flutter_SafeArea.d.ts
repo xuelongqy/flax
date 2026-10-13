@@ -1,6 +1,7 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/widgets/_bindings/flutter_EdgeInsets';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface SafeArea extends WidgetDescription {
     readonly type: "flax.core/flutter#type:SafeArea";
 }
@@ -18,5 +19,5 @@ declare function _SafeAreaFactory(options: {
     maintainBottomViewPadding?: Bindable<boolean> | undefined;
     child: Bindable<Widget>;
 }): SafeArea;
-export declare const SafeArea: typeof _SafeAreaFactory & _FlaxInstanceType<SafeArea>;
+export declare const SafeArea: typeof _SafeAreaFactory & _FlaxInstanceType<SafeArea> & _FlaxDartType<SafeArea, readonly ["class", "flax.core/flutter#type:SafeArea", readonly [], false]>;
 export {};

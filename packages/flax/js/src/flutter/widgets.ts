@@ -51,6 +51,7 @@ export {
   StatelessWidget,
   StatefulWidget,
   State,
+  DartState,
   type WidgetOptions,
 } from './components.js';
 export {

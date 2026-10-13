@@ -90,7 +90,11 @@ void main() {
         config(classes: {'NumericBox': proposed.selection!}),
       );
       final constructor = module.classes.single.constructors.single;
-      expect(constructor.parameters.single.type.kind, 'int');
+      expect(constructor.parameters.single.type.kind, 'num');
+      expect(
+        constructor.specializations.single.parameterTypes.single.kind,
+        'int',
+      );
       expect(constructor.parameters.single.type.declaration?.kind, 'parameter');
       expect(constructor.specializations.single.typeArguments, ['int']);
     },
@@ -124,20 +128,23 @@ void main() {
     expect(proposed.selection!.constructors[''], ['value']);
   });
 
-  test('keeps the shared owner but omits constructors for unresolved type parameters', () async {
-    final proposed = await parser.proposeSelection(
-      library.getClass('GenericBox')!,
-      library: config(),
-      concreteUses: [useOf('GenericBoxPage', 'value')],
-    );
+  test(
+    'keeps the default constructor when observed parameters remain open',
+    () async {
+      final proposed = await parser.proposeSelection(
+        library.getClass('GenericBox')!,
+        library: config(),
+        concreteUses: [useOf('GenericBoxPage', 'value')],
+      );
 
-    expect(proposed.selection, isNotNull);
-    expect(proposed.selection!.constructors, isEmpty);
-    expect(
-      proposed.skips.map((skip) => skip.code),
-      contains('constructor_specialization_missing_use_site'),
-    );
-  });
+      expect(proposed.selection, isNotNull);
+      expect(proposed.selection!.constructors, isNotEmpty);
+      expect(
+        proposed.skips.map((skip) => skip.code),
+        isNot(contains('constructor_specialization_missing_use_site')),
+      );
+    },
+  );
 
   test('selects a constructor from a closed nested generic use', () async {
     final proposed = await parser.proposeSelection(
@@ -154,7 +161,7 @@ void main() {
     );
   });
 
-  test('rejects overlapping num and int constructor domains', () async {
+  test('keeps independently selectable num and int targets', () async {
     final box = library.getClass('GenericBox')!;
     final proposed = await parser.proposeSelection(
       box,
@@ -169,10 +176,10 @@ void main() {
     );
 
     expect(proposed.selection, isNotNull);
-    expect(proposed.selection!.constructors, isEmpty);
+    expect(proposed.selection!.constructors, isNotEmpty);
     expect(
       proposed.skips.map((skip) => skip.code),
-      contains('constructor_specialization_ambiguous'),
+      isNot(contains('constructor_specialization_ambiguous')),
     );
   });
 

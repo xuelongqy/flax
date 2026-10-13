@@ -39,6 +39,7 @@ class FlaxOwnedTestHarness {
                       return value;
                     },
                     disposeMethod: type.disposeMethod,
+                    aliasOf: type.aliasOf,
                     matches: type.matches,
                     nativeInput: type.nativeInput,
                     methods: type.methods,

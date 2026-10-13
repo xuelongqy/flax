@@ -4,6 +4,7 @@ import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_BuildCo
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_BoxConstraints';
 import '@flax/flutter/widgets/_bindings/flutter_BoxConstraints';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface LayoutBuilder extends WidgetDescription {
     readonly type: "flax.core/flutter#type:LayoutBuilder";
 }
@@ -13,5 +14,5 @@ declare function _LayoutBuilderFactory(options: {
     }> | null | undefined;
     builder: Bindable<((context: upstream1.BuildContext, constraints: upstream2.BoxConstraints) => Widget)>;
 }): LayoutBuilder;
-export declare const LayoutBuilder: typeof _LayoutBuilderFactory & _FlaxInstanceType<LayoutBuilder>;
+export declare const LayoutBuilder: typeof _LayoutBuilderFactory & _FlaxInstanceType<LayoutBuilder> & _FlaxDartType<LayoutBuilder, readonly ["class", "flax.core/flutter#type:LayoutBuilder", readonly [], false]>;
 export {};

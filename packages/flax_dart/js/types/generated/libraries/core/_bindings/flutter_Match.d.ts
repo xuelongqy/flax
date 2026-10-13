@@ -1,6 +1,7 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type DartList, type DartListInput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/core/_bindings/flutter_Pattern';
 import '@flax/dart/core/_bindings/flutter_Pattern';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Match extends Readonly<{
     "__flaxBound:dart:core::Match": readonly [];
 }> {
@@ -13,4 +14,4 @@ export interface Match extends Readonly<{
     group(group: number): string | null;
     groups(groupIndices: DartListInput<number, number>): DartList<string | null>;
 }
-export declare const Match: object & _FlaxInstanceType<Match>;
+export declare const Match: object & _FlaxInstanceType<Match> & _FlaxDartType<Match, readonly ["class", "flax.core/flutter#type:Match", readonly [], false]>;

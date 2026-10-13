@@ -1,3 +1,7 @@
+import {
+  dartType as selectDartType,
+  dartTypes as nativeTypes,
+} from '@flax/core/bindings';
 import * as ui from '@flax/flutter/widgets';
 import * as material from '@flax/flutter/material';
 import * as scheduler from '@flax/flutter/scheduler';
@@ -6,6 +10,8 @@ import {
   ContextInputState,
   TickerProviderProbe,
 } from '../../../.dart_tool/flax/ui/state_variant_bindings.js';
+
+const StringKey = selectDartType(ui.ValueKey, nativeTypes.string);
 
 const hooks = {
   events: [] as string[],
@@ -75,8 +81,8 @@ class CounterState extends ui.State<Counter> {
     if (hooks.fail === 'duplicate')
       return ui.Column({
         children: [
-          ui.Text('a', { key: ui.ValueKey('same') }),
-          ui.Text('b', { key: ui.ValueKey('same') }),
+          ui.Text('a', { key: StringKey('same') }),
+          ui.Text('b', { key: StringKey('same') }),
         ],
       });
     const direction = ui.Directionality.of(context);
@@ -86,8 +92,8 @@ class CounterState extends ui.State<Counter> {
         ui.Text(
           `${this.widget.label}:${this.count}:${direction === ui.TextDirection.ltr ? 'ltr' : 'rtl'}`,
         ),
-        ui.Text(this.detail.bind, { key: ui.ValueKey(`${this.widget.label}:detail`) }),
-        ui.Text('static', { key: ui.ValueKey(`${this.widget.label}:static`) }),
+        ui.Text(this.detail.bind, { key: StringKey(`${this.widget.label}:detail`) }),
+        ui.Text('static', { key: StringKey(`${this.widget.label}:static`) }),
         material.TextButton({
           onPressed: () =>
             this.setState(() => {
@@ -129,3 +135,5 @@ Object.assign(globalThis, {
   },
   componentHooks: hooks,
 });
+
+Object.assign(globalThis, { dartType: selectDartType, dartTypes: nativeTypes });

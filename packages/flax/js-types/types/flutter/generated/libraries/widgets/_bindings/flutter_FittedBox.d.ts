@@ -5,6 +5,7 @@ import '@flax/flutter/widgets/_bindings/flutter_BoxFit';
 import '@flax/flutter/widgets/_bindings/flutter_AlignmentGeometry';
 import type * as upstream3 from '@flax/flutter/widgets/_bindings/flutter_Clip';
 import '@flax/flutter/widgets/_bindings/flutter_Clip';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface FittedBox extends WidgetDescription {
     readonly type: "flax.core/flutter#type:FittedBox";
 }
@@ -19,5 +20,5 @@ declare function _FittedBoxFactory(options?: {
     clipBehavior?: Bindable<upstream3.Clip> | undefined;
     child?: Bindable<Widget | null> | undefined;
 }): FittedBox;
-export declare const FittedBox: typeof _FittedBoxFactory & _FlaxInstanceType<FittedBox>;
+export declare const FittedBox: typeof _FittedBoxFactory & _FlaxInstanceType<FittedBox> & _FlaxDartType<FittedBox, readonly ["class", "flax.core/flutter#type:FittedBox", readonly [], false]>;
 export {};

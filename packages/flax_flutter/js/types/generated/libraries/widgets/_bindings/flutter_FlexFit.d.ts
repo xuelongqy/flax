@@ -8,4 +8,5 @@ export declare const FlexFit: Readonly<{
     tight: FlexFit;
     loose: FlexFit;
     values: readonly FlexFit[];
-} & _FlaxInstanceType<FlexFit>>;
+} & _FlaxInstanceType<FlexFit> & _FlaxDartType<FlexFit, readonly ["class", "flax.core/flutter#type:FlexFit", readonly [], false]>>;
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';

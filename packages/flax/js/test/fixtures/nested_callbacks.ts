@@ -1,3 +1,7 @@
+import {
+  dartType as selectDartType,
+  dartTypes as nativeTypes,
+} from '@flax/core/bindings';
 import { signal, bind } from '@flax/core';
 import {
   registerPage,
@@ -17,6 +21,9 @@ import {
   ContextBatch,
   RetainedTile,
 } from '../../../.dart_tool/flax/ui/repeated_bindings.js';
+
+const IntKey = selectDartType(ValueKey, nativeTypes.int);
+const StringKey = selectDartType(ValueKey, nativeTypes.string);
 
 const state = {
   extent: signal<number | null>(50),
@@ -83,18 +90,18 @@ registerPage('nested', () => {
     }
     if (state.mode === 'shared') return shared;
     return RetainedTile({
-      key: ValueKey(index),
+      key: IntKey(index),
       label: `nested-${index}`,
       child: Text(
         bind(() => `Nested ${index}: ${state.count.value}`),
-        { key: ValueKey(`nested-label-${index}`) },
+        { key: StringKey(`nested-label-${index}`) },
       ),
     });
   };
   const store = CallbackStore([render, render]);
   Object.assign(globalThis, { callbackStore: store });
   const descriptor = NestedBatch({
-    key: ValueKey('batch'),
+    key: StringKey('batch'),
     builders: bind(() => {
       state.revision.value;
       if (state.input === 'dart') return store.builders;
@@ -138,10 +145,10 @@ registerPage('nested', () => {
   });
   return Column({
     children: [
-      Text('Static nested sibling', { key: ValueKey('nested-static') }),
+      Text('Static nested sibling', { key: StringKey('nested-static') }),
       Text(
         bind(() => `Marker ${state.count.value}`),
-        { key: ValueKey('nested-marker') },
+        { key: StringKey('nested-marker') },
       ),
       SizedBox({ child: bind(() => (state.show.value ? descriptor : null)) }),
     ],

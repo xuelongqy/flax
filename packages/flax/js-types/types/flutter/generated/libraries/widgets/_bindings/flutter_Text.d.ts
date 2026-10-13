@@ -11,6 +11,7 @@ import type * as upstream4 from '@flax/flutter/widgets/_bindings/flutter_TextOve
 import '@flax/flutter/widgets/_bindings/flutter_TextOverflow';
 import type * as upstream5 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export type Text = TextDescription | _TextNative;
 export type TextDescription = WidgetDescription & {
     readonly type: "flax.core/flutter#type:Text";
@@ -22,6 +23,8 @@ export interface _TextNative extends _FlaxDartWidget {
 }
 export declare abstract class _TextNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<Text>[typeof globalThis.Symbol.hasInstance];
+    static [_flaxDartTypeValue]: Text;
+    static [_flaxDartTypeKey]: readonly ["class", "flax.core/flutter#type:Text", readonly [], false];
     constructor(data: string, options?: {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
@@ -64,5 +67,5 @@ declare const _TextBinding: typeof _TextFactory & {
         maxLines?: number | null | undefined;
     }): _TextNative;
 };
-export declare const Text: typeof _TextBinding & _FlaxInstanceType<Text>;
+export declare const Text: typeof _TextBinding & _FlaxInstanceType<Text> & _FlaxDartType<Text, readonly ["class", "flax.core/flutter#type:Text", readonly [], false]>;
 export {};

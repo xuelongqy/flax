@@ -3,6 +3,7 @@ import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/widgets/_bindings/flutter_Decoration';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_DecorationPosition';
 import '@flax/flutter/widgets/_bindings/flutter_DecorationPosition';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface DecoratedBox extends WidgetDescription {
     readonly type: "flax.core/flutter#type:DecoratedBox";
 }
@@ -16,5 +17,5 @@ declare function _DecoratedBoxFactory(options: {
     position?: Bindable<upstream2.DecorationPosition> | undefined;
     child?: Bindable<Widget | null> | undefined;
 }): DecoratedBox;
-export declare const DecoratedBox: typeof _DecoratedBoxFactory & _FlaxInstanceType<DecoratedBox>;
+export declare const DecoratedBox: typeof _DecoratedBoxFactory & _FlaxInstanceType<DecoratedBox> & _FlaxDartType<DecoratedBox, readonly ["class", "flax.core/flutter#type:DecoratedBox", readonly [], false]>;
 export {};

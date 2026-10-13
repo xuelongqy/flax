@@ -12,4 +12,5 @@ export declare const WrapAlignment: Readonly<{
     spaceAround: WrapAlignment;
     spaceEvenly: WrapAlignment;
     values: readonly WrapAlignment[];
-} & _FlaxInstanceType<WrapAlignment>>;
+} & _FlaxInstanceType<WrapAlignment> & _FlaxDartType<WrapAlignment, readonly ["class", "flax.core/flutter#type:WrapAlignment", readonly [], false]>>;
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';

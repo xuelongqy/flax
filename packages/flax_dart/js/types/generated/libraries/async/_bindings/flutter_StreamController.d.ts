@@ -9,6 +9,7 @@ import type * as upstream3 from '@flax/dart/async/_bindings/flutter_StreamConsum
 import '@flax/dart/async/_bindings/flutter_StreamConsumer';
 import type * as upstream4 from '@flax/dart/async/_bindings/flutter_Stream';
 import '@flax/dart/core/_bindings/flutter_StackTrace';
+import { type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface StreamController<T extends unknown | null = unknown | null> extends upstream0.StreamSink<T>, upstream1.EventSink<T>, upstream2.Sink<T>, upstream3.StreamConsumer<T>, Readonly<{
     "__flaxBound:dart:async::StreamController": readonly [T];
 }> {
@@ -36,19 +37,36 @@ export interface StreamController<T extends unknown | null = unknown | null> ext
     set onResume(value: (() => void) | null);
     set onCancel(value: (() => void | Promise<void>) | null);
 }
-declare function _StreamControllerFactory<T extends unknown | null = unknown | null>(options?: {
+declare function _StreamControllerFactory(options?: {
     onListen?: (() => void) | null | undefined;
     onPause?: (() => void) | null | undefined;
     onResume?: (() => void) | null | undefined;
     onCancel?: (() => void | Promise<void>) | null | undefined;
     sync?: boolean | undefined;
-}): StreamController<T>;
+}): StreamController<unknown | null>;
 declare namespace _StreamControllerFactory {
-    function broadcast<T extends unknown | null = unknown | null>(options?: {
+    function broadcast(options?: {
         onListen?: (() => void) | null | undefined;
         onCancel?: (() => void) | null | undefined;
         sync?: boolean | undefined;
-    }): StreamController<T>;
+    }): StreamController<unknown | null>;
 }
-export declare const StreamController: typeof _StreamControllerFactory & _FlaxInstanceType<StreamController<any>>;
+export declare const StreamController: typeof _StreamControllerFactory & _FlaxInstanceType<StreamController<unknown | null>> & _FlaxDartType<StreamController<unknown | null>, readonly ["class", "flax.core/flutter#type:StreamController", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<{
+    arguments: readonly [readonly ["any", null, readonly [], true]];
+    value: {
+        (options?: {
+            onListen?: (() => void) | null | undefined;
+            onPause?: (() => void) | null | undefined;
+            onResume?: (() => void) | null | undefined;
+            onCancel?: (() => void | Promise<void>) | null | undefined;
+            sync?: boolean | undefined;
+        }): StreamController<unknown | null>;
+        broadcast: (options?: {
+            onListen?: (() => void) | null | undefined;
+            onCancel?: (() => void) | null | undefined;
+            sync?: boolean | undefined;
+        }) => StreamController<unknown | null>;
+        readonly prototype: StreamController<unknown | null>;
+    } & _FlaxInstanceType<StreamController<unknown | null>> & _FlaxDartType<StreamController<unknown | null>, readonly ["class", "flax.core/flutter#type:StreamController", readonly [readonly ["any", null, readonly [], true]], false]>;
+}>;
 export {};

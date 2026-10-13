@@ -1,3 +1,7 @@
+import {
+  dartType as selectDartType,
+  dartTypes as nativeTypes,
+} from '@flax/core/bindings';
 import { signal } from '@flax/core';
 import { BorderRadius, Clip, Spacer, Text, TextStyle } from '@flax/flutter/widgets';
 import { ValueKey } from '@flax/flutter/foundation';
@@ -9,11 +13,13 @@ import {
   MaterialType,
 } from '@flax/flutter/material';
 
+const StringKey = selectDartType(ValueKey, nativeTypes.string);
+
 const radius = BorderRadius.circular(8);
 const color = Color(0xff1565c0);
 const progress = signal<number | null>(0.25);
 const child = InkWell({
-  key: ValueKey('ink'),
+  key: StringKey('ink'),
   child: Text('Tap'),
   onTap: () => {},
   onLongPress: null,

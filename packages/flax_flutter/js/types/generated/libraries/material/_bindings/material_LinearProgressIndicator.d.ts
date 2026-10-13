@@ -2,6 +2,7 @@ import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type WidgetD
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/services/_bindings/flutter_Color';
 import '@flax/flutter/widgets/_bindings/flutter_BorderRadiusGeometry';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface LinearProgressIndicator extends WidgetDescription {
     readonly type: "flax.material/material#type:LinearProgressIndicator";
 }
@@ -23,5 +24,5 @@ declare function _LinearProgressIndicatorFactory(options?: {
         "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [];
     }> | null> | undefined;
 }): LinearProgressIndicator;
-export declare const LinearProgressIndicator: typeof _LinearProgressIndicatorFactory & _FlaxInstanceType<LinearProgressIndicator>;
+export declare const LinearProgressIndicator: typeof _LinearProgressIndicatorFactory & _FlaxInstanceType<LinearProgressIndicator> & _FlaxDartType<LinearProgressIndicator, readonly ["class", "flax.material/material#type:LinearProgressIndicator", readonly [], false]>;
 export {};

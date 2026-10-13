@@ -1,3 +1,7 @@
+import {
+  dartType as selectDartType,
+  dartTypes as nativeTypes,
+} from '@flax/core/bindings';
 import { bind, signal } from '@flax/core';
 import {
   Builder,
@@ -18,6 +22,8 @@ import {
   TextButton,
   TextField,
 } from '@flax/flutter/material';
+
+const StringKey = selectDartType(ValueKey, nativeTypes.string);
 
 const normalColor = Color(0xff315cba);
 const pressedColor = Color(0xffba315c);
@@ -54,22 +60,22 @@ registerPage('styles', () => {
   return Column({
     children: [
       Text('Styled', {
-        key: ValueKey('styled'),
+        key: StringKey('styled'),
         style: bind(() => {
           if (hooks.fail.value) throw Error('style failed');
           return hooks.style.value;
         }),
       }),
       TextField({
-        key: ValueKey('decorated'),
+        key: StringKey('decorated'),
         style: hooks.style.bind,
         decoration: hooks.decoration.bind,
       }),
-      TextField({ key: ValueKey('default') }),
-      TextField({ key: ValueKey('undefined'), decoration: undefined }),
-      TextField({ key: ValueKey('plain'), decoration: null }),
+      TextField({ key: StringKey('default') }),
+      TextField({ key: StringKey('undefined'), decoration: undefined }),
+      TextField({ key: StringKey('plain'), decoration: null }),
       TextButton({
-        key: ValueKey('state-style'),
+        key: StringKey('state-style'),
         style: ButtonStyle({
           backgroundColor: background,
           overlayColor: background,
@@ -79,7 +85,7 @@ registerPage('styles', () => {
         child: Text('State styled'),
       }),
       Builder({
-        key: ValueKey('static'),
+        key: StringKey('static'),
         builder: () => {
           hooks.staticBuilds++;
           return Text('Static style sibling');

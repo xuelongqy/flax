@@ -63,7 +63,7 @@ var OtherLabel = class Label extends componentApi.StatelessWidget {
   build() { return componentApi.Text('other'); }
 };
 var Unused = class Unused extends Label { constructor() { super(); throw new Error('must not construct'); } }
-componentApi.runApp(componentApi.Column({children: [new Label(), new Label({key: componentApi.ValueKey('label')})]}));
+componentApi.runApp(componentApi.Column({children: [new Label(), new Label({key: dartType(componentApi.ValueKey, dartTypes.string)('label')})]}));
 ''');
       await t.pumpWidget(MaterialApp(home: FlaxView.session(session: session)));
       final type = componentType(session, h, 'Label');

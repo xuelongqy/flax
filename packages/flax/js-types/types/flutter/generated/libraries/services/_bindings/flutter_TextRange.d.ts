@@ -1,4 +1,5 @@
 import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface TextRange extends Readonly<{
     "__flaxBound:dart:ui::TextRange": readonly [];
 }> {
@@ -19,5 +20,5 @@ declare namespace _TextRangeFactory {
 declare namespace _TextRangeFactory {
     const empty: TextRange;
 }
-export declare const TextRange: typeof _TextRangeFactory & _FlaxInstanceType<TextRange>;
+export declare const TextRange: typeof _TextRangeFactory & _FlaxInstanceType<TextRange> & _FlaxDartType<TextRange, readonly ["class", "flax.core/flutter#type:TextRange", readonly [], false]>;
 export {};

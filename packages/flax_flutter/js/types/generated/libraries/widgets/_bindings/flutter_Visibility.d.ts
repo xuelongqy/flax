@@ -1,5 +1,6 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Visibility extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Visibility";
 }
@@ -25,5 +26,5 @@ declare namespace _VisibilityFactory {
         visible?: Bindable<boolean> | undefined;
     }): Visibility;
 }
-export declare const Visibility: typeof _VisibilityFactory & _FlaxInstanceType<Visibility>;
+export declare const Visibility: typeof _VisibilityFactory & _FlaxInstanceType<Visibility> & _FlaxDartType<Visibility, readonly ["class", "flax.core/flutter#type:Visibility", readonly [], false]>;
 export {};

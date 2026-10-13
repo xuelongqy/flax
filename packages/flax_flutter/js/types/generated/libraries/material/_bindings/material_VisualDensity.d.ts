@@ -1,4 +1,5 @@
 import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface VisualDensity extends Readonly<{
     "__flaxBound:package:material_ui/src/theme_data.dart::VisualDensity": readonly [];
 }>, Readonly<{
@@ -25,5 +26,5 @@ declare namespace _VisualDensityFactory {
 declare namespace _VisualDensityFactory {
     const compact: VisualDensity;
 }
-export declare const VisualDensity: typeof _VisualDensityFactory & _FlaxInstanceType<VisualDensity>;
+export declare const VisualDensity: typeof _VisualDensityFactory & _FlaxInstanceType<VisualDensity> & _FlaxDartType<VisualDensity, readonly ["class", "flax.material/material#type:VisualDensity", readonly [], false]>;
 export {};

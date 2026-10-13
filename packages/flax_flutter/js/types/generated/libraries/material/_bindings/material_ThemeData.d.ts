@@ -6,6 +6,7 @@ import '@flax/flutter/material/_bindings/material_Brightness';
 import '@flax/flutter/services/_bindings/flutter_Color';
 import type * as upstream3 from '@flax/flutter/material/_bindings/material_TextTheme';
 import '@flax/flutter/material/_bindings/material_TextTheme';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ThemeData extends Readonly<{
     "__flaxBound:package:material_ui/src/theme_data.dart::ThemeData": readonly [];
 }>, Readonly<{
@@ -37,5 +38,5 @@ declare function _ThemeDataFactory(options?: {
         "__flaxBound:package:material_ui/src/text_theme.dart::TextTheme": readonly [];
     }> | null | undefined;
 }): ThemeData;
-export declare const ThemeData: typeof _ThemeDataFactory & _FlaxInstanceType<ThemeData>;
+export declare const ThemeData: typeof _ThemeDataFactory & _FlaxInstanceType<ThemeData> & _FlaxDartType<ThemeData, readonly ["class", "flax.material/material#type:ThemeData", readonly [], false]>;
 export {};

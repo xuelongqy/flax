@@ -255,8 +255,7 @@ void main() {
       await collectWidgetConfigurations(t);
       final handles = h.runtime.handles;
       final subscriptions = h.runtime.activeSubscriptions;
-      final bridge =
-          h.runtime.hostOperations['__flaxInvokeOperation:static'] ?? 0;
+      final bridge = h.runtime.hostOperations['__flaxInvokeOperation:top'] ?? 0;
       final localReads = h.number('themes.localBuilds');
       for (var i = 0; i < 20; i++) {
         await t.pumpWidget(app(view, i.isEven ? light : dark));
@@ -266,9 +265,9 @@ void main() {
       await collectWidgetConfigurations(t);
       expect(h.runtime.handles, handles);
       expect(
-        h.runtime.hostOperations['__flaxInvokeOperation:static'],
-        bridge + 60,
-      ); // Host, derived and inherited Cupertino dependencies; matched against Dart above.
+        h.runtime.hostOperations['__flaxInvokeOperation:top'],
+        bridge + 60, // Three Theme.of calls per host theme change.
+      );
       expect(h.number('themes.factories'), 1);
       expect(h.number('themes.localBuilds'), localReads + 20);
       expect(h.number('themes.staticBuilds'), 1);

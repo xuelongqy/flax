@@ -5,6 +5,7 @@ import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_ShapeBo
 import '@flax/flutter/widgets/_bindings/flutter_ShapeBorder';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_BorderSide';
 import '@flax/flutter/widgets/_bindings/flutter_BorderSide';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface BorderDirectional extends upstream0.BoxBorder, upstream1.ShapeBorder, Readonly<{
     "__flaxBound:package:flutter/src/painting/box_border.dart::BorderDirectional": readonly [];
 }> {
@@ -29,5 +30,5 @@ declare function _BorderDirectionalFactory(options?: {
         "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [];
     }> | undefined;
 }): BorderDirectional;
-export declare const BorderDirectional: typeof _BorderDirectionalFactory & _FlaxInstanceType<BorderDirectional>;
+export declare const BorderDirectional: typeof _BorderDirectionalFactory & _FlaxInstanceType<BorderDirectional> & _FlaxDartType<BorderDirectional, readonly ["class", "flax.core/flutter#type:BorderDirectional", readonly [], false]>;
 export {};

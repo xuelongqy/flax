@@ -2086,7 +2086,7 @@ AlignmentGeometry();
       (type) => type.name == 'ValueKey',
     );
     final valueKeyConstructor = valueKey.constructors.single;
-    expect(valueKeyConstructor.parameters.single.type.kind, 'scalar');
+    expect(valueKeyConstructor.parameters.single.type.kind, 'any');
     expect(
       valueKeyConstructor.specializations.map(
         (specialization) => specialization.typeArguments.single,
@@ -2102,12 +2102,7 @@ AlignmentGeometry();
     expect(dart, contains('ValueKey<int>'));
     final typescript = emitter.typescript(module);
     expect(typescript, contains('readonly value: T'));
-    expect(
-      typescript,
-      contains(
-        'function _ValueKeyFactory<T extends (string | number) = (string | number)>',
-      ),
-    );
+    expect(typescript, contains('function _ValueKeyFactory(value: unknown'));
     await compileFixture(root, emitter, module);
     await expectLater(
       parser.parse(
@@ -3405,7 +3400,17 @@ Future<void> compileFixture(
         : (File(p.join(directory.path, 'execution_test.dart'))
             ..writeAsStringSync(
               "import 'package:flutter_test/flutter_test.dart';\n"
-              '${emitter.dart(module)}\n$dartTestSource',
+              "import 'dart:convert' as fixtureJson;\n"
+              '${emitter.dart(module)}\n'
+              '''
+Object createTypedFixture(FlaxBindingModule module, String name, List<Object?> arguments, String constructor, Map<String, Object?> values) {
+  final owner = module.types.whereType<FlaxObjectBinding>().singleWhere((binding) => binding.aliasOf == null && binding.id.endsWith('::\$name'));
+  final suffix = ':\${fixtureJson.jsonEncode(arguments)}';
+  final selected = module.types.whereType<FlaxObjectBinding>().singleWhere((binding) => binding.aliasOf == owner.id && binding.id.endsWith(suffix));
+  return selected.create(constructor, values);
+}
+'''
+              '$dartTestSource',
             ));
     final dependencyPaths = <String, List<String>>{};
     final tsFiles = <String>[];

@@ -6,6 +6,7 @@ import '@flax/flutter/services/_bindings/flutter_Color';
 import '@flax/flutter/widgets/_bindings/flutter_TextStyle';
 import '@flax/flutter/widgets/_bindings/flutter_EdgeInsetsGeometry';
 import '@flax/flutter/widgets/_bindings/flutter_FocusNode';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ListTile extends WidgetDescription {
     readonly type: "flax.material/material#type:ListTile";
 }
@@ -49,5 +50,5 @@ declare function _ListTileFactory(options?: {
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null> | undefined;
 }): ListTile;
-export declare const ListTile: typeof _ListTileFactory & _FlaxInstanceType<ListTile>;
+export declare const ListTile: typeof _ListTileFactory & _FlaxInstanceType<ListTile> & _FlaxDartType<ListTile, readonly ["class", "flax.material/material#type:ListTile", readonly [], false]>;
 export {};

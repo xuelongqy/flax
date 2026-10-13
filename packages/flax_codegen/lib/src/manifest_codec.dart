@@ -42,8 +42,14 @@ const _genericKeys = {'name', 'bound', 'defaultType', 'slot'};
 
 const _getterKeys = {'name', 'type', 'encodeKind', 'cache'};
 
-const _constructorKeys = {'name', 'parameters', 'specializations'};
+const _constructorKeys = {
+  'name',
+  'parameters',
+  'specializations',
+  'runtimeParameterTypes',
+};
 const _constructorSpecializationKeys = {
+  'typeArgumentTypes',
   'typeArguments',
   'parameterTypes',
   'runtimeDomains',
@@ -1416,10 +1422,19 @@ Map<String, Object?> _encodeConstructor(
     for (final parameter in constructor.parameters)
       _encodeParameter(parameter, scope),
   ],
+  if (constructor.runtimeParameterTypes.isNotEmpty)
+    'runtimeParameterTypes': [
+      for (final type in constructor.runtimeParameterTypes)
+        _encodeType(type, scope),
+    ],
   'specializations': [
     for (final specialization in constructor.specializations)
       {
         'typeArguments': List<String>.of(specialization.typeArguments),
+        'typeArgumentTypes': [
+          for (final type in specialization.typeArgumentTypes)
+            _encodeType(type, scope),
+        ],
         'parameterTypes': [
           for (final type in specialization.parameterTypes)
             _encodeType(type, scope),
@@ -1448,6 +1463,21 @@ FlaxCodegenConstructorModel? _decodeConstructor(
     'parameters',
     _decodeParameterFn(diagnostics, scope),
   );
+  final runtimeParameterTypes =
+      object._fields.containsKey('runtimeParameterTypes')
+      ? object.requiredList(
+              'runtimeParameterTypes',
+              _decodeTypeFn(diagnostics, scope),
+            ) ??
+            <FlaxCodegenTypeRef>[]
+      : <FlaxCodegenTypeRef>[];
+  if (runtimeParameterTypes.isNotEmpty &&
+      runtimeParameterTypes.length != parameters?.length) {
+    diagnostics.add(
+      pointer: object.child('runtimeParameterTypes'),
+      message: 'Constructor runtime parameter count mismatch.',
+    );
+  }
   final specializations = object.requiredList('specializations', (
     value,
     pointer,
@@ -1460,11 +1490,26 @@ FlaxCodegenConstructorModel? _decodeConstructor(
     );
     if (entry == null) return null;
     final typeArguments = entry.requiredStringList('typeArguments');
+    final typeArgumentTypes = entry._fields.containsKey('typeArgumentTypes')
+        ? entry.requiredList(
+                'typeArgumentTypes',
+                _decodeTypeFn(diagnostics, scope),
+              ) ??
+              <FlaxCodegenTypeRef>[]
+        : <FlaxCodegenTypeRef>[];
     final parameterTypes = entry.requiredList(
       'parameterTypes',
       _decodeTypeFn(diagnostics, scope),
     );
     final runtimeDomains = entry.requiredStringMap('runtimeDomains');
+    if (typeArguments != null &&
+        typeArgumentTypes.isNotEmpty &&
+        typeArgumentTypes.length != typeArguments.length) {
+      diagnostics.add(
+        pointer: entry.child('typeArgumentTypes'),
+        message: 'Constructor type argument count mismatch.',
+      );
+    }
     if (typeArguments == null ||
         parameterTypes == null ||
         runtimeDomains == null) {
@@ -1472,6 +1517,7 @@ FlaxCodegenConstructorModel? _decodeConstructor(
     }
     return FlaxCodegenConstructorSpecializationModel(
       typeArguments: typeArguments,
+      typeArgumentTypes: typeArgumentTypes,
       parameterTypes: parameterTypes,
       runtimeDomains: runtimeDomains,
     );
@@ -1496,6 +1542,7 @@ FlaxCodegenConstructorModel? _decodeConstructor(
     name,
     parameters,
     specializations: specializations,
+    runtimeParameterTypes: runtimeParameterTypes,
   );
 }
 

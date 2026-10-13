@@ -7,6 +7,7 @@ import type * as upstream3 from '@flax/flutter/widgets/_bindings/flutter_StackFi
 import '@flax/flutter/widgets/_bindings/flutter_StackFit';
 import type * as upstream4 from '@flax/flutter/widgets/_bindings/flutter_Clip';
 import '@flax/flutter/widgets/_bindings/flutter_Clip';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Stack extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Stack";
 }
@@ -22,5 +23,5 @@ declare function _StackFactory(options?: {
     clipBehavior?: Bindable<upstream4.Clip> | undefined;
     children?: Bindable<DartListInput<Widget, Widget>> | undefined;
 }): Stack;
-export declare const Stack: typeof _StackFactory & _FlaxInstanceType<Stack>;
+export declare const Stack: typeof _StackFactory & _FlaxInstanceType<Stack> & _FlaxDartType<Stack, readonly ["class", "flax.core/flutter#type:Stack", readonly [], false]>;
 export {};

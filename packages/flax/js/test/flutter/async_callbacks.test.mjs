@@ -171,3 +171,18 @@ test('cancelled Promise observers ignore late settlement', async () => {
   await flush();
   assert.deepEqual(settlements, []);
 });
+
+test('event rejection reporting keeps a Dart message alongside its stack', async () => {
+  const previous = globalThis.__flaxAsyncError;
+  const reports = [];
+  globalThis.__flaxAsyncError = (message) => reports.push(message);
+  try {
+    const error = new Error('FlaxSessionClosed');
+    error.stack = '#0 Dart checkpoint';
+    globalThis.__flaxBindings.observeEvent(Promise.reject(error));
+    await Promise.resolve();
+    assert.deepEqual(reports, ['FlaxSessionClosed\n#0 Dart checkpoint']);
+  } finally {
+    globalThis.__flaxAsyncError = previous;
+  }
+});

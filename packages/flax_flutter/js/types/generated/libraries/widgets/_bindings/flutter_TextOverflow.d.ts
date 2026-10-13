@@ -10,4 +10,5 @@ export declare const TextOverflow: Readonly<{
     ellipsis: TextOverflow;
     visible: TextOverflow;
     values: readonly TextOverflow[];
-} & _FlaxInstanceType<TextOverflow>>;
+} & _FlaxInstanceType<TextOverflow> & _FlaxDartType<TextOverflow, readonly ["class", "flax.core/flutter#type:TextOverflow", readonly [], false]>>;
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';

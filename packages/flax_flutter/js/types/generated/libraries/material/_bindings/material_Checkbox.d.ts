@@ -4,6 +4,7 @@ import type * as upstream1 from '@flax/flutter/services/_bindings/flutter_Color'
 import '@flax/flutter/services/_bindings/flutter_Color';
 import '@flax/flutter/widgets/_bindings/flutter_WidgetStateProperty';
 import '@flax/flutter/widgets/_bindings/flutter_FocusNode';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Checkbox extends WidgetDescription {
     readonly type: "flax.material/material#type:Checkbox";
 }
@@ -32,5 +33,5 @@ declare function _CheckboxFactory(options: {
     autofocus?: Bindable<boolean> | undefined;
     isError?: Bindable<boolean> | undefined;
 }): Checkbox;
-export declare const Checkbox: typeof _CheckboxFactory & _FlaxInstanceType<Checkbox>;
+export declare const Checkbox: typeof _CheckboxFactory & _FlaxInstanceType<Checkbox> & _FlaxDartType<Checkbox, readonly ["class", "flax.material/material#type:Checkbox", readonly [], false]>;
 export {};

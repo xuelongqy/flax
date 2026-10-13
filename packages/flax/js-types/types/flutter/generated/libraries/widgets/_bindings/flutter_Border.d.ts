@@ -8,6 +8,7 @@ import '@flax/flutter/widgets/_bindings/flutter_BorderSide';
 import '@flax/flutter/services/_bindings/flutter_Color';
 import type * as upstream4 from '@flax/flutter/widgets/_bindings/flutter_BorderStyle';
 import '@flax/flutter/widgets/_bindings/flutter_BorderStyle';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Border extends upstream0.BoxBorder, upstream1.ShapeBorder, Readonly<{
     "__flaxBound:package:flutter/src/painting/box_border.dart::Border": readonly [];
 }> {
@@ -42,5 +43,5 @@ declare namespace _BorderFactory {
         strokeAlign?: number | undefined;
     }): Border;
 }
-export declare const Border: typeof _BorderFactory & _FlaxInstanceType<Border>;
+export declare const Border: typeof _BorderFactory & _FlaxInstanceType<Border> & _FlaxDartType<Border, readonly ["class", "flax.core/flutter#type:Border", readonly [], false]>;
 export {};

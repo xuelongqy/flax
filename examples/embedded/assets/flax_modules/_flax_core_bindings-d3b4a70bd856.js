@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"ff8d659d5fb7fb518ce5df7cb5af051cf15171abe60d37383d1f4aef4409d3d4","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"1575654c632e1cff8938a0f73fb79119be418d8489a7928b580b3bff52a07ebd","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -75,7 +75,10 @@ __export(bindings_exports, {
   constructStream: () => constructStream,
   contextHandle: () => contextHandle,
   copyNavigationData: () => copyNavigationData,
+  dartType: () => dartType,
+  dartTypes: () => dartTypes,
   defineContext: () => defineContext,
+  defineDartTypes: () => defineDartTypes,
   defineEnum: () => defineEnum,
   defineObject: () => defineObject,
   defineProxyBase: () => defineProxyBase,
@@ -83,6 +86,9 @@ __export(bindings_exports, {
   defineStateMembers: () => defineStateMembers,
   defineStream: () => defineStream,
   enumValue: () => enumValue,
+  flaxDartTypeCases: () => flaxDartTypeCases,
+  flaxDartTypeKey: () => flaxDartTypeKey,
+  flaxDartTypeValue: () => flaxDartTypeValue,
   getDartType: () => getDartType,
   invokeEnum: () => invokeEnum,
   invokeInstance: () => invokeInstance,
@@ -128,7 +134,7 @@ var ReferenceCache = class {
     return null;
   }
   track(value, type, id) {
-    var _a;
+    var _a2;
     const current = this.handles.get(value);
     if (current) {
       if (!current.alive || current.type !== type || current.id !== id)
@@ -136,7 +142,7 @@ var ReferenceCache = class {
       return;
     }
     this.handles.set(value, { type, id, alive: true });
-    const aliases = (_a = this.aliases.get(id)) != null ? _a : /* @__PURE__ */ new Set();
+    const aliases = (_a2 = this.aliases.get(id)) != null ? _a2 : /* @__PURE__ */ new Set();
     aliases.add(new WeakRef(value));
     this.aliases.set(id, aliases);
   }
@@ -153,8 +159,8 @@ var ReferenceCache = class {
     this.handles.delete(source);
   }
   release(id) {
-    var _a;
-    for (const alias of (_a = this.aliases.get(id)) != null ? _a : []) {
+    var _a2;
+    for (const alias of (_a2 = this.aliases.get(id)) != null ? _a2 : []) {
       const value = alias.deref();
       const handle = value && this.handles.get(value);
       if (handle)
@@ -163,9 +169,9 @@ var ReferenceCache = class {
     this.aliases.delete(id);
   }
   sweep() {
-    var _a;
+    var _a2;
     const expired = [];
-    (_a = this.cursor) != null ? _a : this.cursor = this.aliases.keys();
+    (_a2 = this.cursor) != null ? _a2 : this.cursor = this.aliases.keys();
     for (let i = 0; i < 64; i++) {
       const next = this.cursor.next();
       if (next.done) {
@@ -188,7 +194,64 @@ var ReferenceCache = class {
   }
 };
 
+// ../../../packages/flax/js/dist/runtime/dart_types.js
+var flaxDartTypeValue = /* @__PURE__ */ Symbol("Flax Dart type value");
+var flaxDartTypeKey = /* @__PURE__ */ Symbol("Flax Dart type key");
+var flaxDartTypeCases = /* @__PURE__ */ Symbol("Flax Dart type cases");
+var descriptions = /* @__PURE__ */ new WeakMap();
+function registerDartTypeDescription(value, description) {
+  descriptions.set(value, description);
+}
+function dartTypeDescription(value) {
+  const description = value !== null && (typeof value === "object" || typeof value === "function") ? descriptions.get(value) : void 0;
+  if (!description)
+    throw new TypeError("Expected an authenticated Dart type");
+  return description;
+}
+function token(description) {
+  const value = Object.freeze({});
+  descriptions.set(value, Object.freeze(description));
+  return value;
+}
+function primitive(kind, nullable) {
+  return token([kind, null, [], nullable]);
+}
+var dartTypes = Object.freeze({
+  string: primitive("String", false),
+  bool: primitive("bool", false),
+  int: primitive("int", false),
+  double: primitive("double", false),
+  num: primitive("num", false),
+  object: primitive("any", false),
+  unknown: primitive("any", true),
+  list(item) {
+    return token(["list", null, [dartTypeDescription(item)], false]);
+  },
+  iterable(item) {
+    return token(["iterable", null, [dartTypeDescription(item)], false]);
+  },
+  map(key, value) {
+    return token([
+      "map",
+      null,
+      [dartTypeDescription(key), dartTypeDescription(value)],
+      false
+    ]);
+  },
+  set(item) {
+    return token(["set", null, [dartTypeDescription(item)], false]);
+  },
+  nullable(type) {
+    const [kind, id, args] = dartTypeDescription(type);
+    return token([kind, id, args, true]);
+  }
+});
+
 // ../../../packages/flax/js/dist/runtime/bindings.js
+var nativeApply = Reflect.apply;
+var nativeWeakMap = WeakMap;
+var nativeIsArray = Array.isArray;
+var nativeIsView = ArrayBuffer.isView;
 var bindingVersion = 24;
 var components = /* @__PURE__ */ new WeakMap();
 var componentTypes = /* @__PURE__ */ new WeakMap();
@@ -460,18 +523,32 @@ function errorDetails(value) {
   }
   return rejectionDetails(value);
 }
+var callFailures = /* @__PURE__ */ new WeakMap();
+var NativeError = Error;
+function failedCall(error) {
+  const failure = Object.freeze({ error, ...rejectionDetails(error) });
+  callFailures.set(failure, error);
+  return failure;
+}
+function unwrapCall(value) {
+  if (value !== null && typeof value === "object" && callFailures.has(value))
+    throw callFailures.get(value);
+  return value;
+}
 function reportCleanupError(error) {
-  var _a, _b;
+  var _a2, _b;
   const host = globalThis;
   const details = rejectionDetails(error);
   try {
-    (_b = host.__flaxAsyncError) == null ? void 0 : _b.call(host, (_a = details.stack) != null ? _a : details.message);
+    const report = details.stack && !details.stack.includes(details.message) ? `${details.message}
+${details.stack}` : (_a2 = details.stack) != null ? _a2 : details.message;
+    (_b = host.__flaxAsyncError) == null ? void 0 : _b.call(host, report);
   } catch {
   }
 }
 function settlePromise(id, record, success, value) {
-  var _a;
-  if (!record.active || ((_a = promises.get(id)) == null ? void 0 : _a.deref()) !== record)
+  var _a2, _b;
+  if (!record.active || ((_a2 = promises.get(id)) == null ? void 0 : _a2.deref()) !== record)
     return;
   const host = globalThis;
   const rejection = success ? null : rejectionDetails(value);
@@ -483,19 +560,19 @@ function settlePromise(id, record, success, value) {
     host.__flaxPromiseSettlement(bindingVersion, id, true, value, null);
     return;
   }
-  host.__flaxPromiseSettlement(bindingVersion, id, false, rejection.message, rejection.stack);
+  host.__flaxPromiseSettlement(bindingVersion, id, false, value !== null && typeof value === "object" && ((_b = objectHandles.get(value)) == null ? void 0 : _b.type) === "flax:dart-error" ? value : rejection.message, rejection.stack);
 }
 var pageFactories = /* @__PURE__ */ new Map();
 var registrationOpen = true;
 function hotDev() {
-  var _a;
-  return (_a = globalThis.__flaxModules) == null ? void 0 : _a.dev;
+  var _a2;
+  return (_a2 = globalThis.__flaxModules) == null ? void 0 : _a2.dev;
 }
 function registerPage(name, factory) {
-  var _a;
+  var _a2;
   if (typeof name !== "string" || name.length === 0 || typeof factory !== "function")
     throw new TypeError("Expected a page name and synchronous factory");
-  if ((_a = hotDev()) == null ? void 0 : _a.capturePage(name, factory, (next) => pageFactories.set(name, next)))
+  if ((_a2 = hotDev()) == null ? void 0 : _a2.capturePage(name, factory, (next) => pageFactories.set(name, next)))
     return;
   if (!registrationOpen)
     throw new Error("Page registration is closed");
@@ -530,10 +607,85 @@ function invokeInstance(receiver, type, method, args) {
   return invokeOperation("state", type, ref.id, "call", method, args);
 }
 var objectTypes = /* @__PURE__ */ new Map();
+var objectViewTypes = /* @__PURE__ */ new Map();
 var references = new ReferenceCache();
 var objectHandles = references.handles;
 var instanceParents = /* @__PURE__ */ new Map();
 var instanceTypes = /* @__PURE__ */ new WeakMap();
+var genericTypes = /* @__PURE__ */ new WeakMap();
+var selectedProxyTypes = /* @__PURE__ */ new WeakMap();
+function defineDartTypes(value, type, defaults, targets) {
+  if (instanceTypes.get(value) !== type || genericTypes.has(value))
+    throw new TypeError("Conflicting generated Dart type");
+  if (defaults !== null)
+    registerDartTypeDescription(value, ["class", type, defaults, false]);
+  const entries = /* @__PURE__ */ new Map();
+  for (const target of targets) {
+    const key = JSON.stringify(target.arguments);
+    if (entries.has(key))
+      throw new TypeError("Duplicate generated Dart target");
+    entries.set(key, target);
+    if (target.id !== type)
+      registerObjectView(target.id, type);
+  }
+  genericTypes.set(value, { type, targets: entries, selected: /* @__PURE__ */ new Map() });
+}
+function dartType(value, ...args) {
+  if (!instanceTypes.has(value))
+    throw new TypeError("Expected a generated Dart class");
+  if (!args.length)
+    return value;
+  const metadata = genericTypes.get(value);
+  const arguments_ = args.map(dartTypeDescription);
+  const key = JSON.stringify(arguments_);
+  const target = metadata == null ? void 0 : metadata.targets.get(key);
+  if (!metadata || !target)
+    throw new TypeError("Dart type arguments are not a generated target");
+  if (target.id === metadata.type)
+    return value;
+  const cached = metadata.selected.get(key);
+  if (cached)
+    return cached;
+  const create = (name, inputs) => {
+    const parameters = target.constructors[name];
+    if (!parameters)
+      throw new TypeError("No selected Dart constructor");
+    const positional = parameters.filter((p) => p.positional).length;
+    const named = parameters.some((p) => !p.positional);
+    if (inputs.length > positional + (named ? 1 : 0))
+      throw new TypeError("Too many constructor arguments");
+    return constructObject("object", target.id, name, parameters, inputs.slice(0, positional), named && inputs[positional] !== void 0 ? inputs[positional] : {});
+  };
+  const selected = function(...inputs) {
+    if (new.target) {
+      if (!target.proxy)
+        throw new TypeError("This Dart factory is not a JS subclass constructor");
+      return Reflect.construct(value, inputs, new.target);
+    }
+    return create("", inputs);
+  };
+  if ("prototype" in value)
+    selected.prototype = value.prototype;
+  Object.setPrototypeOf(selected, value);
+  for (const name of Object.keys(target.constructors)) {
+    if (name)
+      Object.defineProperty(selected, name, {
+        value: (...inputs) => create(name, inputs)
+      });
+  }
+  if (target.proxy) {
+    const proxy = target.proxy;
+    proxyLayouts.set(proxy, { prototype: selected.prototype });
+    selectedProxyTypes.set(selected, proxy);
+    Object.defineProperty(selected, "implement", {
+      value: (inputs, implementation) => constructProxy(proxy, inputs, implementation)
+    });
+  }
+  bindInstanceType(selected, target.id, [metadata.type]);
+  registerDartTypeDescription(selected, ["class", metadata.type, arguments_, false]);
+  metadata.selected.set(key, selected);
+  return selected;
+}
 function requireDartReference(value) {
   if (value === null || typeof value !== "object" && typeof value !== "function")
     throw new TypeError("Expected a Dart reference");
@@ -563,25 +715,27 @@ function getDartType(value) {
     requireDartReference(value)
   ]);
 }
-function bindInstanceType(value, type, parents) {
-  instanceTypes.set(value, type);
+function bindInstanceType(value, type, parents, defaults = []) {
   if (!instanceParents.has(type))
     instanceParents.set(type, Object.freeze([...parents]));
   Object.defineProperty(value, Symbol.hasInstance, {
     value(candidate) {
-      var _a, _b, _c;
+      var _a2, _b, _c;
       if (this !== value) {
         return typeof this === "function" && Function.prototype[Symbol.hasInstance].call(this, candidate);
       }
       if (candidate === null || typeof candidate !== "object")
         return false;
       const ref = objectHandles.get(candidate);
-      const enumType = (_a = enumIdentities.get(candidate)) == null ? void 0 : _a.type;
+      const enumType = (_a2 = enumIdentities.get(candidate)) == null ? void 0 : _a2.type;
       if (enumType)
         return enumType === type || Boolean((_b = instanceParents.get(enumType)) == null ? void 0 : _b.includes(type));
       return Boolean((ref == null ? void 0 : ref.alive) && (ref.type === type || ((_c = instanceParents.get(ref.type)) == null ? void 0 : _c.includes(type))));
     }
   });
+  instanceTypes.set(value, type);
+  if (defaults !== null)
+    registerDartTypeDescription(value, ["class", type, defaults, false]);
   return value;
 }
 var constructingExtendedProxies = /* @__PURE__ */ new WeakSet();
@@ -598,7 +752,7 @@ function invokeOperation(category, type, id, operation, member, args) {
     slot = host.__flaxResolveOperation(bindingVersion, type, category, operation, member);
     operationIds.set(key, slot);
   }
-  return host.__flaxInvokeOperation(slot, id, ...args);
+  return unwrapCall(host.__flaxInvokeOperation(slot, id, ...args));
 }
 function cachedObject(type, id) {
   return references.get(type, id);
@@ -691,8 +845,8 @@ function constructAsyncIterableStream(type, source) {
   }
 }
 function asyncIterableSource(id) {
-  var _a;
-  const record = (_a = asyncIterableSources.get(id)) == null ? void 0 : _a.deref();
+  var _a2;
+  const record = (_a2 = asyncIterableSources.get(id)) == null ? void 0 : _a2.deref();
   if (!record || record.closed)
     throw new Error("Released AsyncIterable Stream");
   return record;
@@ -705,7 +859,7 @@ function asyncIterableNext(id) {
       const factory = record.source[Symbol.asyncIterator];
       if (typeof factory !== "function")
         throw new TypeError("Expected an AsyncIterable");
-      const iterator = Reflect.apply(factory, record.source, []);
+      const iterator = nativeApply(factory, record.source, []);
       if (iterator === null || typeof iterator !== "object")
         throw new TypeError("Invalid AsyncIterator");
       record.iterator = iterator;
@@ -738,8 +892,8 @@ function asyncIterableNext(id) {
   }
 }
 function asyncIterableReturn(id) {
-  var _a;
-  const record = (_a = asyncIterableSources.get(id)) == null ? void 0 : _a.deref();
+  var _a2;
+  const record = (_a2 = asyncIterableSources.get(id)) == null ? void 0 : _a2.deref();
   if (!record || record.closed)
     return Promise.resolve();
   record.closed = true;
@@ -753,7 +907,7 @@ function asyncIterableReturn(id) {
   if (typeof close !== "function")
     return Promise.resolve();
   try {
-    return Promise.resolve(Reflect.apply(close, record.iterator, [])).then(() => {
+    return Promise.resolve(nativeApply(close, record.iterator, [])).then(() => {
     });
   } catch (error) {
     return Promise.reject(error);
@@ -769,7 +923,7 @@ function constructStream(_kind, type, ctor, parameters, positional, options) {
   const create = globalThis.__flaxCreateStream;
   if (!create)
     throw new Error("Dart Streams require a Flax host");
-  return create(bindingVersion, type, descriptor);
+  return unwrapCall(create(bindingVersion, type, descriptor));
 }
 function callStream(receiver, type, operation, member, args) {
   const ref = objectHandles.get(receiver);
@@ -873,7 +1027,7 @@ function constructObject(_kind, type, ctor, parameters, positional, options) {
   const create = globalThis.__flaxCreateObject;
   if (!create)
     throw new Error("Dart objects require a Flax host");
-  return create(bindingVersion, type, descriptor);
+  return unwrapCall(create(bindingVersion, type, descriptor));
 }
 function constructDeferredObject(type, factory, parameters, positional, options) {
   const descriptor = construct("value", type, factory, parameters, positional, options);
@@ -961,22 +1115,30 @@ function constructProxy(definition, args, implementation) {
   const create = globalThis.__flaxCreateObject;
   if (!create)
     throw new Error("Dart proxies require a Flax host");
-  return create(bindingVersion, definition.type, {
+  return unwrapCall(create(bindingVersion, definition.type, {
     ...descriptor,
     receiver: implementation,
     layout: proxyLayout(definition)
-  });
+  }));
 }
 function proxyDescriptor(definition, args) {
-  var _a;
   const positional = definition.parameters.filter((p) => p.positional).length;
   const hasNamed = definition.parameters.some((p) => !p.positional);
   if (args.length > positional + (hasNamed ? 1 : 0))
     throw new TypeError("Too many proxy constructor arguments");
-  return construct("value", definition.type, "@implementation", definition.parameters, args.slice(0, positional), (_a = args[positional]) != null ? _a : {});
+  return construct("value", definition.type, "@implementation", definition.parameters, args.slice(0, positional), args[positional] === void 0 ? {} : args[positional]);
 }
 var FlaxProxyBase = class {
   constructor(definition, args) {
+    for (let owner = new.target; owner; owner = Object.getPrototypeOf(owner)) {
+      const selected = selectedProxyTypes.get(owner);
+      if (selected) {
+        if (objectViewTypes.get(selected.type) !== definition.type)
+          throw new TypeError("Incompatible proxy type selection");
+        definition = selected;
+        break;
+      }
+    }
     constructExtendedProxy(this, definition, args, definition.nativeWidget && !componentBases.has(new.target.prototype) ? componentType(new.target).type : void 0);
   }
 };
@@ -986,7 +1148,7 @@ function widgetProxyFactory(factory, native) {
       return Reflect.construct(native, args, new.target);
     if (typeof factory !== "function")
       throw new TypeError("This Widget has only named constructors");
-    return Reflect.apply(factory, void 0, args);
+    return nativeApply(factory, void 0, args);
   };
   callable.prototype = native.prototype;
   Object.setPrototypeOf(callable, factory);
@@ -1080,7 +1242,7 @@ function installMembers(prototype, methods, getters, setters, invoke) {
   }
 }
 function defineProxyBase(prototype, definition, nativeGetters = []) {
-  var _a;
+  var _a2;
   installMembers(prototype, {}, nativeGetters, [], (receiver, member, args) => callObject(receiver, definition.type, "get", member.slice(4), args));
   for (const parameters of Object.values(definition.methods)) {
     for (const parameter of parameters)
@@ -1098,7 +1260,7 @@ function defineProxyBase(prototype, definition, nativeGetters = []) {
   const members = new Set(definition.superMembers);
   installMembers(prototype, Object.fromEntries(Object.entries(definition.methods).filter(([name]) => members.has(name))), definition.getters.filter((name) => members.has(`get:${name}`)), definition.setters.filter((name) => members.has(`set:${name}`)), (receiver, member, args) => invokeProxySuper(receiver, definition.type, member, args));
   proxyLayouts.set(definition, { prototype });
-  if (((_a = objectTypes.get(definition.type)) == null ? void 0 : _a.collectionKind) !== void 0) {
+  if (((_a2 = objectTypes.get(definition.type)) == null ? void 0 : _a2.collectionKind) !== void 0) {
     const selected = /* @__PURE__ */ new Set([
       ...nativeGetters,
       ...definition.getters,
@@ -1126,12 +1288,12 @@ function constructExtendedProxy(receiver, definition, args, widgetType) {
     throw new Error("Dart proxies require a Flax host");
   constructingExtendedProxies.add(receiver);
   try {
-    const created = create(bindingVersion, definition.type, {
+    const created = unwrapCall(create(bindingVersion, definition.type, {
       ...descriptor,
       receiver,
       layout: proxyLayout(definition),
       ...widgetType === void 0 ? {} : { widgetType }
-    });
+    }));
     const ref = objectHandles.get(created);
     if (!ref || !ref.alive || ref.type !== definition.type)
       throw new TypeError("Invalid Dart proxy result");
@@ -1153,14 +1315,14 @@ function callObject(receiver, type, operation, member, args) {
       throw new Error("Deferred Dart object has not been materialized");
     throw new TypeError("Invalid or foreign Dart object");
   }
-  if (ref.type !== type)
+  if (ref.type !== type && objectViewTypes.get(ref.type) !== type)
     throw new TypeError("Invalid or foreign Dart object");
   if (!ref.alive) {
     if (operation === "call" && objectTypes.get(type).removers.includes(member))
       return;
     throw new Error("Disposed Dart object");
   }
-  return invokeOperation("object", type, ref.id, operation, member, args);
+  return invokeOperation("object", ref.type, ref.id, operation, member, args);
 }
 function invokeObject(receiver, type, method, args) {
   if (args.some(isBinding))
@@ -1172,6 +1334,9 @@ function invokeObjectStatic(type, member) {
 }
 var objectPrototypes = /* @__PURE__ */ new Map();
 function objectPrototype(type) {
+  const base = objectViewTypes.get(type);
+  if (base)
+    return objectPrototype(base);
   const cached = objectPrototypes.get(type);
   if (cached)
     return cached;
@@ -1225,7 +1390,20 @@ function objectWrapper(type, id) {
   trackObject(frozen, type, id);
   return frozen;
 }
-function scopedObjectWrapper(type, id) {
+function registerObjectView(type, base) {
+  var _a2, _b;
+  const root = (_a2 = objectViewTypes.get(base)) != null ? _a2 : base;
+  const existing = objectViewTypes.get(type);
+  if (!objectTypes.has(root) || objectTypes.has(type) || existing !== void 0 && existing !== root)
+    throw new TypeError("Conflicting object view");
+  if (existing !== void 0)
+    return;
+  objectViewTypes.set(type, root);
+  instanceParents.set(type, Object.freeze([base, ...(_b = instanceParents.get(base)) != null ? _b : []]));
+}
+function scopedObjectWrapper(type, id, base) {
+  if (base !== void 0)
+    registerObjectView(type, base);
   const value = Object.freeze(createObjectWrapper(type));
   trackObject(value, type, id);
   return value;
@@ -1274,19 +1452,168 @@ function finishComponentState(value, widget, id) {
   return Object.freeze({ state: value, variant: state.variant });
 }
 var typedArrayTag = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(Uint8Array.prototype), Symbol.toStringTag).get;
+var dateGetTime = Date.prototype.getTime;
+var regExpPrototype = RegExp.prototype;
+var regExpSource = Object.getOwnPropertyDescriptor(regExpPrototype, "source").get;
+var regExpFlags = Object.fromEntries([
+  "ignoreCase",
+  "multiline",
+  "dotAll",
+  "unicode",
+  "global",
+  "sticky",
+  "hasIndices",
+  "unicodeSets"
+].map((name) => {
+  var _a2;
+  return [name, (_a2 = Object.getOwnPropertyDescriptor(regExpPrototype, name)) == null ? void 0 : _a2.get];
+}));
+var bufferDartTypes = Object.freeze({
+  Int8Array: "Int8List",
+  Uint8Array: "Uint8List",
+  Uint8ClampedArray: "Uint8ClampedList",
+  Int16Array: "Int16List",
+  Uint16Array: "Uint16List",
+  Int32Array: "Int32List",
+  Uint32Array: "Uint32List",
+  BigInt64Array: "Int64List",
+  BigUint64Array: "Uint64List",
+  Float32Array: "Float32List",
+  Float64Array: "Float64List"
+});
+var arrayBufferLength = Object.getOwnPropertyDescriptor(ArrayBuffer.prototype, "byteLength").get;
+var dataViewBuffer = Object.getOwnPropertyDescriptor(DataView.prototype, "buffer").get;
+var nativeURL = globalThis.URL;
+var _a;
+var urlHref = nativeURL && ((_a = Object.getOwnPropertyDescriptor(nativeURL.prototype, "href")) == null ? void 0 : _a.get);
+function tryComponentStateId(value) {
+  const state = componentStates.get(value);
+  if (state == null ? void 0 : state.retired)
+    throw new Error("Disposed component State");
+  return (state == null ? void 0 : state.claimed) ? state.id : null;
+}
+function stateHandle(value, type) {
+  var _a2;
+  const state = stateHandles.get(value);
+  if (state && type !== null && state.type !== type)
+    throw new TypeError("Incompatible State");
+  return (_a2 = state == null ? void 0 : state.id) != null ? _a2 : null;
+}
+function collectionShape(value, finiteWidgetIterable = false) {
+  if (Array.isArray(value))
+    return "list";
+  if (value instanceof Map)
+    return "map";
+  if (value instanceof Set)
+    return "set";
+  if (finiteWidgetIterable)
+    return null;
+  if (typeof value[Symbol.iterator] === "function")
+    return "iterable";
+  const prototype = Object.getPrototypeOf(value);
+  if (prototype === null || prototype === Object.prototype)
+    return "record";
+  return null;
+}
+function tryObjectHandle(value) {
+  var _a2;
+  const ref = objectHandles.get(value);
+  if (ref && !ref.alive)
+    throw new Error("Released Dart object");
+  return (_a2 = ref == null ? void 0 : ref.id) != null ? _a2 : null;
+}
+function valueType(value) {
+  var _a2;
+  const enumeration = (_a2 = enumIdentities.get(value)) == null ? void 0 : _a2.type;
+  if (enumeration)
+    return enumeration;
+  try {
+    if (nativeIsArray(value))
+      return null;
+  } catch {
+  }
+  const tag = nativeApply(typedArrayTag, value, []);
+  if (tag && Object.hasOwn(bufferDartTypes, tag))
+    return bufferDartTypes[tag];
+  if (nativeIsView(value)) {
+    try {
+      nativeApply(dataViewBuffer, value, []);
+      return "ByteData";
+    } catch {
+    }
+  }
+  try {
+    nativeApply(arrayBufferLength, value, []);
+    return "ByteBuffer";
+  } catch {
+    return null;
+  }
+}
 Object.assign(globalThis, {
   __flaxBindings: Object.freeze({
     version: bindingVersion,
+    nativeDateMilliseconds(value) {
+      let milliseconds;
+      try {
+        milliseconds = nativeApply(dateGetTime, value, []);
+      } catch {
+        throw new TypeError("Expected a JS Date");
+      }
+      if (!Number.isFinite(milliseconds))
+        throw new TypeError("Invalid JS Date");
+      return milliseconds;
+    },
+    nativeUriText(value) {
+      if (!urlHref)
+        throw new TypeError("Expected a JS URL or URI string");
+      try {
+        return nativeApply(urlHref, value, []);
+      } catch {
+        throw new TypeError("Expected a JS URL or URI string");
+      }
+    },
+    nativeRegExp(value) {
+      let source;
+      try {
+        source = nativeApply(regExpSource, value, []);
+        if (value === regExpPrototype)
+          throw new TypeError();
+      } catch {
+        throw new TypeError("Expected a JS RegExp");
+      }
+      const flag = (name) => {
+        const getter = regExpFlags[name];
+        return getter !== void 0 && nativeApply(getter, value, []) === true;
+      };
+      if (["global", "sticky", "hasIndices", "unicodeSets"].some(flag))
+        throw new TypeError("Dart RegExp supports only i, m, s and u flags");
+      return [
+        source,
+        flag("multiline"),
+        !flag("ignoreCase"),
+        flag("unicode"),
+        flag("dotAll")
+      ];
+    },
     invokeCallback(callback, positionalCount, ...values) {
       const positional = values.slice(0, positionalCount);
       const namedCount = values[positionalCount];
-      if (namedCount === 0)
-        return Reflect.apply(callback, void 0, positional);
+      if (namedCount === 0) {
+        try {
+          return nativeApply(callback, void 0, positional);
+        } catch (error) {
+          return failedCall(error);
+        }
+      }
       const options = {};
       for (let i = 0; i < namedCount; i++) {
         options[values[positionalCount + 1 + i * 2]] = values[positionalCount + 2 + i * 2];
       }
-      return Reflect.apply(callback, void 0, [...positional, options]);
+      try {
+        return nativeApply(callback, void 0, [...positional, options]);
+      } catch (error) {
+        return failedCall(error);
+      }
     },
     callbackOptions(...entries) {
       const options = {};
@@ -1306,23 +1633,12 @@ Object.assign(globalThis, {
       return info;
     },
     createComponentState(widget, id) {
-      const value = synchronous(Reflect.apply(widget.createState, widget, []));
+      const value = synchronous(nativeApply(widget.createState, widget, []));
       return finishComponentState(value, widget, id);
     },
     finishComponentState,
-    tryComponentStateId(value) {
-      const state = componentStates.get(value);
-      if (state == null ? void 0 : state.retired)
-        throw new Error("Disposed component State");
-      return (state == null ? void 0 : state.claimed) ? state.id : null;
-    },
-    stateHandle(value, type) {
-      var _a;
-      const state = stateHandles.get(value);
-      if (state && type !== null && state.type !== type)
-        throw new TypeError("Incompatible State");
-      return (_a = state == null ? void 0 : state.id) != null ? _a : null;
-    },
+    tryComponentStateId,
+    stateHandle,
     updateComponentState(value, widget) {
       const state = componentStates.get(value);
       if (!state || state.retired)
@@ -1355,7 +1671,7 @@ Object.assign(globalThis, {
       const fn = value[method];
       if (typeof fn !== "function")
         throw new TypeError(`Missing component method: ${method}`);
-      return synchronous(Reflect.apply(fn, value, args));
+      return synchronous(nativeApply(fn, value, args));
     },
     invokeSynchronous(fn) {
       return synchronous(fn());
@@ -1418,22 +1734,40 @@ Object.assign(globalThis, {
         initializing = false;
       }
     },
-    collectionShape(value, finiteWidgetIterable = false) {
-      if (Array.isArray(value))
-        return "list";
-      if (value instanceof Map)
-        return "map";
-      if (value instanceof Set)
-        return "set";
-      if (finiteWidgetIterable)
-        return null;
-      if (typeof value[Symbol.iterator] === "function")
-        return "iterable";
-      const prototype = Object.getPrototypeOf(value);
-      if (prototype === null || prototype === Object.prototype)
-        return "record";
-      return null;
+    classifyAny(value) {
+      const type = valueType(value);
+      if (type !== null)
+        return enumIdentities.has(value) ? "type:" + type : type;
+      const object = tryObjectHandle(value);
+      if (object !== null)
+        return object;
+      const state = stateHandle(value, null);
+      if (state !== null)
+        return ["state", state];
+      const component = tryComponentStateId(value);
+      if (component !== null)
+        return ["componentState", component];
+      const then = value.then;
+      if (typeof then === "symbol")
+        return then;
+      if (typeof then === "function")
+        return "promise";
+      const error = errorDetails(value);
+      if (error)
+        return ["error", error.message, error.stack];
+      return collectionShape(value);
     },
+    collectionIdentity() {
+      const ids = new nativeWeakMap();
+      let next = 0;
+      return (value) => {
+        let id = ids.get(value);
+        if (id === void 0)
+          ids.set(value, id = next++);
+        return id;
+      };
+    },
+    collectionShape,
     collectionEntries(value, finiteWidgetIterable = false) {
       if (finiteWidgetIterable && value instanceof Set) {
         return [...Set.prototype.values.call(value)];
@@ -1446,8 +1780,8 @@ Object.assign(globalThis, {
       return value;
     },
     recordType(value) {
-      var _a;
-      return (_a = recordShapes.get(value)) != null ? _a : null;
+      var _a2;
+      return (_a2 = recordShapes.get(value)) != null ? _a2 : null;
     },
     emptyCollection(kind) {
       return kind === "map" ? /* @__PURE__ */ new Map() : kind === "set" ? /* @__PURE__ */ new Set() : [];
@@ -1458,12 +1792,10 @@ Object.assign(globalThis, {
     setAdd(set, value) {
       set.add(value);
     },
-    tryObjectHandle(value) {
-      var _a;
+    tryObjectHandle,
+    hasObjectView(value, type) {
       const ref = objectHandles.get(value);
-      if (ref && !ref.alive)
-        throw new Error("Released Dart object");
-      return (_a = ref == null ? void 0 : ref.id) != null ? _a : null;
+      return Boolean((ref == null ? void 0 : ref.alive) && (ref.type === type || objectViewTypes.get(ref.type) === type));
     },
     deferredObject(value) {
       const record = deferredObjects.get(value);
@@ -1484,17 +1816,25 @@ Object.assign(globalThis, {
       defineObject(type, [], [], {}, [], kind);
     },
     object: objectWrapper,
+    objectView(type, id, base) {
+      registerObjectView(type, base);
+      return objectWrapper(type, id);
+    },
     scopedObject: scopedObjectWrapper,
     streamObject: streamWrapper,
     asyncIterableNext,
     asyncIterableReturn,
     cancelAsyncIterables,
     errorDetails,
+    failedCall,
+    callFailure(value) {
+      return callFailures.has(value) ? value : null;
+    },
     dartError(id, message, stack) {
       const cached = cachedObject("flax:dart-error", id);
       if (cached)
         return cached;
-      const value = new Error(message);
+      const value = new NativeError(message);
       if (stack !== null) {
         try {
           value.stack = stack;
@@ -1566,7 +1906,7 @@ Object.assign(globalThis, {
             }
           }
         }
-        return call(bindingVersion, type, id, positionalValues.length, ...positionalValues, namedValues.length / 2, ...namedValues);
+        return unwrapCall(call(bindingVersion, type, id, positionalValues.length, ...positionalValues, namedValues.length / 2, ...namedValues));
       };
       Object.defineProperty(value, "kind", { value: "dart-function" });
       const frozen = Object.freeze(value);
@@ -1586,17 +1926,14 @@ Object.assign(globalThis, {
       references.release(id);
     },
     enumValue,
-    valueType(value) {
-      var _a, _b;
-      return (_b = (_a = enumIdentities.get(value)) == null ? void 0 : _a.type) != null ? _b : Reflect.apply(typedArrayTag, value, []) === "Uint8Array" ? "Uint8List" : null;
-    },
+    valueType,
     enumType(value) {
-      var _a, _b;
-      return (_b = (_a = enumIdentities.get(value)) == null ? void 0 : _a.type) != null ? _b : null;
+      var _a2, _b;
+      return (_b = (_a2 = enumIdentities.get(value)) == null ? void 0 : _a2.type) != null ? _b : null;
     },
     enumName(value) {
-      var _a, _b;
-      return (_b = (_a = enumIdentities.get(value)) == null ? void 0 : _a.name) != null ? _b : null;
+      var _a2, _b;
+      return (_b = (_a2 = enumIdentities.get(value)) == null ? void 0 : _a2.name) != null ? _b : null;
     },
     copyData: copyNavigationData,
     array: (...values) => Object.freeze(values),
@@ -1617,15 +1954,15 @@ Object.assign(globalThis, {
       return promise;
     },
     settleFuture(id, success, value) {
-      var _a;
-      const pending = (_a = futures.get(id)) == null ? void 0 : _a.deref();
+      var _a2;
+      const pending = (_a2 = futures.get(id)) == null ? void 0 : _a2.deref();
       if (!pending)
         return;
       futures.delete(id);
       if (success)
         pending.resolve(value);
       else
-        pending.reject(new Error(String(value)));
+        pending.reject(value);
     },
     observePromise(id, value) {
       if (value === null || typeof value !== "object" && typeof value !== "function") {
@@ -1649,7 +1986,7 @@ Object.assign(globalThis, {
       promiseFinalizer.register(record, id);
       const assimilated = Promise.resolve({
         then(resolve, reject) {
-          Reflect.apply(then, value, [resolve, reject]);
+          nativeApply(then, value, [resolve, reject]);
         }
       });
       void assimilated.then((result) => settlePromise(id, record, true, result), (reason) => settlePromise(id, record, false, reason)).catch(reportCleanupError);
@@ -1663,13 +2000,8 @@ Object.assign(globalThis, {
       promises.clear();
     },
     observeEvent(value) {
-      if (value instanceof Promise) {
-        void value.catch((error) => {
-          var _a, _b;
-          const host = globalThis;
-          (_b = host.__flaxAsyncError) == null ? void 0 : _b.call(host, error instanceof Error ? (_a = error.stack) != null ? _a : error.message : String(error));
-        });
-      }
+      if (value instanceof Promise)
+        void value.catch(reportCleanupError);
     },
     state(type, id) {
       let prototype = statePrototypes.get(type);
@@ -1749,8 +2081,8 @@ Object.assign(globalThis, {
 });
 var mounted = false;
 function mountRoot(widget) {
-  var _a;
-  if ((_a = hotDev()) == null ? void 0 : _a.captureRoot(widget))
+  var _a2;
+  if ((_a2 = hotDev()) == null ? void 0 : _a2.captureRoot(widget))
     return;
   if (mounted)
     throw new Error("This runtime already has an application root");

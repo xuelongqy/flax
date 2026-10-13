@@ -1,3 +1,7 @@
+import {
+  dartType as selectDartType,
+  dartTypes as nativeTypes,
+} from '@flax/core/bindings';
 import { bind, signal } from '@flax/core';
 import {
   Builder,
@@ -37,6 +41,8 @@ import {
 import type { ExtentContract } from '../../../.dart_tool/flax/ui/widget_interfaces_bindings.js';
 import type { PreferredSizeWidget, Widget, Page } from '@flax/flutter/widgets';
 
+const StringKey = selectDartType(ValueKey, nativeTypes.string);
+
 export const height = signal<number | null>(null);
 export const bottomHeight = signal<number | null>(null);
 export const title = signal('Orders');
@@ -66,7 +72,7 @@ class ToolbarState extends State<Toolbar> {
 }
 
 function appBar(): PreferredSizeWidget | null {
-  const widgetKey = ValueKey(key.value);
+  const widgetKey = StringKey(key.value);
   if (mode.value === 'none') return null;
   if (mode.value === 'native')
     return ExtentProbe.plain as unknown as PreferredSizeWidget;
@@ -93,7 +99,7 @@ function appBar(): PreferredSizeWidget | null {
   return AppBar({
     key: widgetKey,
     toolbarHeight: height.value,
-    title: Text(title.bind, { key: ValueKey('bar-title') }),
+    title: Text(title.bind, { key: StringKey('bar-title') }),
     bottom:
       bottomHeight.value === null
         ? null
@@ -115,17 +121,17 @@ registerPage('scaffold-test', (_, lifecycle) => {
   });
   const count = signal(0);
   const body = Column({
-    key: ValueKey('body'),
+    key: StringKey('body'),
     children: [
       TextField({ controller, focusNode: focus }),
       TextButton({
         onPressed: () => count.value++,
         child: Text(bind(() => `Count ${count.value}`)),
       }),
-      Text('Static sibling', { key: ValueKey('static-sibling') }),
+      Text('Static sibling', { key: StringKey('static-sibling') }),
     ],
   });
-  return Scaffold({ key: ValueKey('scaffold'), appBar: bind(appBar), body });
+  return Scaffold({ key: StringKey('scaffold'), appBar: bind(appBar), body });
 });
 
 export const extent = signal(24);
@@ -239,7 +245,7 @@ registerPage('callback-fixture', () =>
 registerPage('callback-pages', () =>
   Navigator({
     pages: bind(() => [
-      InterfacePage({ key: ValueKey('base'), builder: () => ExtentProbe.native }),
+      InterfacePage({ key: StringKey('base'), builder: () => ExtentProbe.native }),
       ...callbackPages.value,
     ]),
     onDidRemovePage: (page) => {
@@ -267,7 +273,7 @@ Object.assign(globalThis, {
     setPage: (revision: number) => {
       callbackPages.value = [
         InterfacePage({
-          key: ValueKey('page'),
+          key: StringKey('page'),
           builder: () => ExtentTile({ child: Text(`Page ${revision}`) }),
         }),
       ];

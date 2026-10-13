@@ -1,6 +1,7 @@
 import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/services/_bindings/flutter_MouseCursor';
 import '@flax/flutter/services/_bindings/flutter_MouseCursor';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface SystemMouseCursor extends upstream0.MouseCursor, Readonly<{
     "__flaxBound:package:flutter/src/services/mouse_cursor.dart::SystemMouseCursor": readonly [];
 }>, Readonly<{
@@ -8,4 +9,4 @@ export interface SystemMouseCursor extends upstream0.MouseCursor, Readonly<{
 }> {
     readonly __SystemMouseCursor: unique symbol;
 }
-export declare const SystemMouseCursor: object & _FlaxInstanceType<SystemMouseCursor>;
+export declare const SystemMouseCursor: object & _FlaxInstanceType<SystemMouseCursor> & _FlaxDartType<SystemMouseCursor, readonly ["class", "flax.core/flutter#type:SystemMouseCursor", readonly [], false]>;

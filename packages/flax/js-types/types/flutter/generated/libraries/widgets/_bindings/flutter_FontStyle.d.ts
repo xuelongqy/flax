@@ -8,4 +8,5 @@ export declare const FontStyle: Readonly<{
     normal: FontStyle;
     italic: FontStyle;
     values: readonly FontStyle[];
-} & _FlaxInstanceType<FontStyle>>;
+} & _FlaxInstanceType<FontStyle> & _FlaxDartType<FontStyle, readonly ["class", "flax.core/flutter#type:FontStyle", readonly [], false]>>;
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';

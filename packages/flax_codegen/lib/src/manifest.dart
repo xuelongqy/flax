@@ -344,6 +344,7 @@ FlaxCodegenManifestModule? _decodeModuleEntry(
       'instance-checks',
       'native-core-inputs',
       'generic-member-views',
+      'dart-type-tokens',
       'native-bigint',
       'native-widget-proxies',
       'shared-uint8',

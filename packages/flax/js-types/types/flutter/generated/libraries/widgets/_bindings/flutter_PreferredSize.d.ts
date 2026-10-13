@@ -2,6 +2,7 @@ import { type FlaxInstanceType as _FlaxInstanceType, type Widget, type WidgetDes
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_PreferredSizeWidget';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/services/_bindings/flutter_Size';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export type PreferredSize = WidgetDescription & {
     readonly type: "flax.core/flutter#type:PreferredSize";
 } & upstream0.PreferredSizeWidget;
@@ -14,5 +15,5 @@ declare function _PreferredSizeFactory(options: {
     }>;
     child: Widget;
 }): PreferredSize;
-export declare const PreferredSize: typeof _PreferredSizeFactory & _FlaxInstanceType<PreferredSize>;
+export declare const PreferredSize: typeof _PreferredSizeFactory & _FlaxInstanceType<PreferredSize> & _FlaxDartType<PreferredSize, readonly ["class", "flax.core/flutter#type:PreferredSize", readonly [], false]>;
 export {};

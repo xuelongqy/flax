@@ -3,6 +3,7 @@ import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/foundation/_bindings/flutter_ValueListenable';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ValueListenableBuilder<T extends unknown | null = unknown | null> extends WidgetDescription {
     readonly type: "flax.core/flutter#type:ValueListenableBuilder";
 }
@@ -16,5 +17,5 @@ declare function _ValueListenableBuilderFactory<T extends unknown | null = unkno
     builder: Bindable<((context: upstream2.BuildContext, value: T, child: Widget | null) => Widget)>;
     child?: Bindable<Widget | null> | undefined;
 }): ValueListenableBuilder<T>;
-export declare const ValueListenableBuilder: typeof _ValueListenableBuilderFactory & _FlaxInstanceType<ValueListenableBuilder<any>>;
+export declare const ValueListenableBuilder: typeof _ValueListenableBuilderFactory & _FlaxInstanceType<ValueListenableBuilder<unknown | null>> & _FlaxDartType<ValueListenableBuilder<unknown | null>, readonly ["class", "flax.core/flutter#type:ValueListenableBuilder", readonly [readonly ["any", null, readonly [], true]], false]>;
 export {};

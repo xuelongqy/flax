@@ -2,6 +2,7 @@ import { type FlaxInstanceType as _FlaxInstanceType, type DartListInput, type Wi
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_PreferredSizeWidget';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/services/_bindings/flutter_Color';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export type AppBar = WidgetDescription & {
     readonly type: "flax.material/material#type:AppBar";
 } & upstream0.PreferredSizeWidget;
@@ -25,5 +26,5 @@ declare function _AppBarFactory(options?: {
     centerTitle?: boolean | null | undefined;
     toolbarHeight?: number | null | undefined;
 }): AppBar;
-export declare const AppBar: typeof _AppBarFactory & _FlaxInstanceType<AppBar>;
+export declare const AppBar: typeof _AppBarFactory & _FlaxInstanceType<AppBar> & _FlaxDartType<AppBar, readonly ["class", "flax.material/material#type:AppBar", readonly [], false]>;
 export {};

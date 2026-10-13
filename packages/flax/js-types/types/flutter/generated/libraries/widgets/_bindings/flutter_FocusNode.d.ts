@@ -3,6 +3,7 @@ import type * as upstream0 from '@flax/flutter/foundation/_bindings/flutter_List
 import '@flax/flutter/foundation/_bindings/flutter_Listenable';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_UnfocusDisposition';
 import '@flax/flutter/widgets/_bindings/flutter_UnfocusDisposition';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface FocusNode extends upstream0.Listenable, Readonly<{
     "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
 }>, Readonly<{
@@ -38,5 +39,5 @@ declare function _FocusNodeFactory(options?: {
     skipTraversal?: boolean | undefined;
     canRequestFocus?: boolean | undefined;
 }): FocusNode;
-export declare const FocusNode: typeof _FocusNodeFactory & _FlaxInstanceType<FocusNode>;
+export declare const FocusNode: typeof _FocusNodeFactory & _FlaxInstanceType<FocusNode> & _FlaxDartType<FocusNode, readonly ["class", "flax.core/flutter#type:FocusNode", readonly [], false]>;
 export {};

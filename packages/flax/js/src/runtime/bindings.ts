@@ -1,5 +1,25 @@
 import { computed, signal, type Binding, type ReadonlySignal } from './index.js';
 import { ReferenceCache } from './references.js';
+import {
+  dartTypeDescription,
+  registerDartTypeDescription,
+  type FlaxDartType,
+  type FlaxDartTypeDescription,
+  type FlaxDartTypeInput,
+  type FlaxDartTypeSelection,
+} from './dart_types.js';
+export {
+  dartTypes,
+  flaxDartTypeCases,
+  flaxDartTypeKey,
+  flaxDartTypeValue,
+} from './dart_types.js';
+export type {
+  FlaxDartType,
+  FlaxDartTypeCases,
+  FlaxDartTypeInput,
+  FlaxDartTypeSelection,
+} from './dart_types.js';
 
 const nativeApply = Reflect.apply;
 const nativeWeakMap = WeakMap;
@@ -712,7 +732,11 @@ function reportCleanupError(error: unknown): void {
   };
   const details = rejectionDetails(error);
   try {
-    host.__flaxAsyncError?.(details.stack ?? details.message);
+    const report =
+      details.stack && !details.stack.includes(details.message)
+        ? `${details.message}\n${details.stack}`
+        : (details.stack ?? details.message);
+    host.__flaxAsyncError?.(report);
   } catch {
     // An error reporter cannot report its own failure.
   }
@@ -839,19 +863,126 @@ const references = new ReferenceCache();
 const objectHandles = references.handles;
 const instanceParents = new Map<string, readonly string[]>();
 const instanceTypes = new WeakMap<object, string>();
+type DartTypeTarget = {
+  readonly arguments: readonly FlaxDartTypeDescription[];
+  readonly id: string;
+  readonly constructors: Readonly<Record<string, readonly Parameter[]>>;
+  readonly proxy?: ProxyDefinition;
+};
+const genericTypes = new WeakMap<
+  object,
+  {
+    type: string;
+    targets: Map<string, DartTypeTarget>;
+    selected: Map<string, object>;
+  }
+>();
+const selectedProxyTypes = new WeakMap<object, ProxyDefinition>();
+
+/** Generated finite targets; no runtime reflection or class-specific selector. */
+export function defineDartTypes(
+  value: object,
+  type: string,
+  defaults: readonly FlaxDartTypeDescription[] | null,
+  targets: readonly DartTypeTarget[],
+): void {
+  if (instanceTypes.get(value) !== type || genericTypes.has(value))
+    throw new TypeError('Conflicting generated Dart type');
+  if (defaults !== null)
+    registerDartTypeDescription(value, ['class', type, defaults, false]);
+  const entries = new Map<string, DartTypeTarget>();
+  for (const target of targets) {
+    const key = JSON.stringify(target.arguments);
+    if (entries.has(key)) throw new TypeError('Duplicate generated Dart target');
+    entries.set(key, target);
+    if (target.id !== type) registerObjectView(target.id, type);
+  }
+  genericTypes.set(value, { type, targets: entries, selected: new Map() });
+}
+
+/** Selects an already compiled Dart type; business arguments stay unchanged. */
+export function dartType<
+  C extends FlaxInstanceType<unknown>,
+  const A extends readonly FlaxDartTypeInput[],
+>(
+  value: C,
+  ...args: A & (FlaxDartTypeSelection<C, A> extends never ? never : unknown)
+): FlaxDartTypeSelection<C, A> {
+  if (!instanceTypes.has(value)) throw new TypeError('Expected a generated Dart class');
+  if (!args.length) return value as FlaxDartTypeSelection<C, A>;
+  const metadata = genericTypes.get(value);
+  const arguments_ = args.map(dartTypeDescription);
+  const key = JSON.stringify(arguments_);
+  const target = metadata?.targets.get(key);
+  if (!metadata || !target)
+    throw new TypeError('Dart type arguments are not a generated target');
+  if (target.id === metadata.type) return value as FlaxDartTypeSelection<C, A>;
+  const cached = metadata.selected.get(key);
+  if (cached) return cached as FlaxDartTypeSelection<C, A>;
+  const create = (name: string, inputs: readonly unknown[]) => {
+    const parameters = target.constructors[name];
+    if (!parameters) throw new TypeError('No selected Dart constructor');
+    const positional = parameters.filter((p) => p.positional).length;
+    const named = parameters.some((p) => !p.positional);
+    if (inputs.length > positional + (named ? 1 : 0))
+      throw new TypeError('Too many constructor arguments');
+    return constructObject(
+      'object',
+      target.id,
+      name,
+      parameters,
+      inputs.slice(0, positional),
+      (named && inputs[positional] !== undefined ? inputs[positional] : {}) as Record<
+        string,
+        unknown
+      >,
+    );
+  };
+  const selected = function (this: object, ...inputs: unknown[]) {
+    if (new.target) {
+      if (!target.proxy)
+        throw new TypeError('This Dart factory is not a JS subclass constructor');
+      return Reflect.construct(value as unknown as Function, inputs, new.target);
+    }
+    return create('', inputs);
+  };
+  if ('prototype' in value) selected.prototype = value.prototype;
+  Object.setPrototypeOf(selected, value);
+  for (const name of Object.keys(target.constructors)) {
+    if (name)
+      Object.defineProperty(selected, name, {
+        value: (...inputs: unknown[]) => create(name, inputs),
+      });
+  }
+  if (target.proxy) {
+    const proxy = target.proxy;
+    proxyLayouts.set(proxy, { prototype: selected.prototype as object });
+    selectedProxyTypes.set(selected, proxy);
+    Object.defineProperty(selected, 'implement', {
+      value: (inputs: readonly unknown[], implementation: object) =>
+        constructProxy(proxy, inputs, implementation),
+    });
+  }
+  bindInstanceType(selected, target.id, [metadata.type]);
+  registerDartTypeDescription(selected, ['class', metadata.type, arguments_, false]);
+  metadata.selected.set(key, selected);
+  return selected as FlaxDartTypeSelection<C, A>;
+}
 
 /** The instance represented by a generated Dart class or reference-only token. */
 export type FlaxDartInstance<C> = C extends abstract new (...args: any[]) => infer I
   ? I
-  : C extends { readonly prototype: infer I }
-    ? unknown extends I
-      ? C extends FlaxInstanceType<infer T>
+  : C extends FlaxDartType<infer I>
+    ? I
+    : C extends { readonly prototype: infer I }
+      ? unknown extends I
+        ? C extends FlaxInstanceType<infer T>
+          ? T
+          : never
+        : I
+      : C extends FlaxInstanceType<infer T>
         ? T
-        : never
-      : I
-    : C extends FlaxInstanceType<infer T>
-      ? T
-      : never;
+        : never;
 
 function requireDartReference(value: unknown): object {
   if (value === null || (typeof value !== 'object' && typeof value !== 'function'))
@@ -905,6 +1036,7 @@ export function bindInstanceType<T, V extends object>(
   value: V,
   type: string,
   parents: readonly string[],
+  defaults: readonly FlaxDartTypeDescription[] | null = [],
 ): V & FlaxInstanceType<T> {
   if (!instanceParents.has(type))
     instanceParents.set(type, Object.freeze([...parents]));
@@ -931,6 +1063,8 @@ export function bindInstanceType<T, V extends object>(
     },
   });
   instanceTypes.set(value, type);
+  if (defaults !== null)
+    registerDartTypeDescription(value, ['class', type, defaults, false]);
   return value as V & FlaxInstanceType<T>;
 }
 
@@ -1524,7 +1658,7 @@ function proxyDescriptor(
     '@implementation',
     definition.parameters,
     args.slice(0, positional),
-    (args[positional] ?? {}) as Record<string, unknown>,
+    (args[positional] === undefined ? {} : args[positional]) as Record<string, unknown>,
   ) as DartValue;
 }
 
@@ -1545,6 +1679,19 @@ export interface MemberParameter extends Parameter {
 
 export abstract class FlaxProxyBase {
   protected constructor(definition: ProxyDefinition, args: readonly unknown[]) {
+    for (
+      let owner: object | null = new.target;
+      owner;
+      owner = Object.getPrototypeOf(owner)
+    ) {
+      const selected = selectedProxyTypes.get(owner);
+      if (selected) {
+        if (objectViewTypes.get(selected.type) !== definition.type)
+          throw new TypeError('Incompatible proxy type selection');
+        definition = selected;
+        break;
+      }
+    }
     constructExtendedProxy(
       this,
       definition,
@@ -1911,15 +2058,16 @@ function objectWrapper(type: string, id: number): object {
 }
 
 function registerObjectView(type: string, base: string): void {
+  const root = objectViewTypes.get(base) ?? base;
   const existing = objectViewTypes.get(type);
   if (
-    !objectTypes.has(base) ||
+    !objectTypes.has(root) ||
     objectTypes.has(type) ||
-    (existing !== undefined && existing !== base)
+    (existing !== undefined && existing !== root)
   )
     throw new TypeError('Conflicting object view');
   if (existing !== undefined) return;
-  objectViewTypes.set(type, base);
+  objectViewTypes.set(type, root);
   instanceParents.set(
     type,
     Object.freeze([base, ...(instanceParents.get(base) ?? [])]),
@@ -2611,16 +2759,7 @@ Object.assign(globalThis, {
       promises.clear();
     },
     observeEvent(value: unknown): void {
-      if (value instanceof Promise) {
-        void value.catch((error) => {
-          const host = globalThis as typeof globalThis & {
-            __flaxAsyncError?: (error: string) => void;
-          };
-          host.__flaxAsyncError?.(
-            error instanceof Error ? (error.stack ?? error.message) : String(error),
-          );
-        });
-      }
+      if (value instanceof Promise) void value.catch(reportCleanupError);
     },
     state(type: string, id: number): object {
       let prototype = statePrototypes.get(type);

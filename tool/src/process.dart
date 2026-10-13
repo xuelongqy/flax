@@ -14,7 +14,11 @@ Future<void> run(
   bool captureWindowsCrash = false,
   Duration timeout = const Duration(minutes: 30),
 }) async {
-  if (!useLocalEngine) {
+  final loadsEngine =
+      executable == 'flutter' &&
+      arguments.isNotEmpty &&
+      {'test', 'run', 'drive', 'build'}.contains(arguments.first);
+  if (!useLocalEngine || executable == 'flutter' && !loadsEngine) {
     // Nested Flutter commands also treat this as a local-engine request.
     environment = {
       if (inheritEnvironment) ...Platform.environment,

@@ -2,6 +2,7 @@ import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget,
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/widgets/_bindings/flutter_FocusNode';
 import type * as upstream2 from '@flax/flutter/services/_bindings/flutter_KeyEvent';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface KeyboardListener extends WidgetDescription {
     readonly type: "flax.core/flutter#type:KeyboardListener";
 }
@@ -17,5 +18,5 @@ declare function _KeyboardListenerFactory(options: {
     onKeyEvent?: Bindable<((value: upstream2.KeyEvent) => void) | null> | undefined;
     child: Bindable<Widget>;
 }): KeyboardListener;
-export declare const KeyboardListener: typeof _KeyboardListenerFactory & _FlaxInstanceType<KeyboardListener>;
+export declare const KeyboardListener: typeof _KeyboardListenerFactory & _FlaxInstanceType<KeyboardListener> & _FlaxDartType<KeyboardListener, readonly ["class", "flax.core/flutter#type:KeyboardListener", readonly [], false]>;
 export {};

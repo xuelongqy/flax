@@ -10,4 +10,5 @@ export declare const Clip: Readonly<{
     antiAlias: Clip;
     antiAliasWithSaveLayer: Clip;
     values: readonly Clip[];
-} & _FlaxInstanceType<Clip>>;
+} & _FlaxInstanceType<Clip> & _FlaxDartType<Clip, readonly ["class", "flax.core/flutter#type:Clip", readonly [], false]>>;
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';

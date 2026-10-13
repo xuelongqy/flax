@@ -8,6 +8,7 @@ import '@flax/flutter/widgets/_bindings/flutter_ScrollPhysics';
 import '@flax/flutter/widgets/_bindings/flutter_EdgeInsetsGeometry';
 import type * as upstream5 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ListView extends WidgetDescription {
     readonly type: "flax.core/flutter#type:ListView";
 }
@@ -38,5 +39,5 @@ declare namespace _ListViewFactory {
         addSemanticIndexes?: Bindable<boolean> | undefined;
     }): ListView;
 }
-export declare const ListView: typeof _ListViewFactory & _FlaxInstanceType<ListView>;
+export declare const ListView: typeof _ListViewFactory & _FlaxInstanceType<ListView> & _FlaxDartType<ListView, readonly ["class", "flax.core/flutter#type:ListView", readonly [], false]>;
 export {};

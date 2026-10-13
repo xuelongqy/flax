@@ -12,6 +12,7 @@ import type * as upstream5 from '@flax/flutter/widgets/_bindings/flutter_Vertica
 import '@flax/flutter/widgets/_bindings/flutter_VerticalDirection';
 import type * as upstream6 from '@flax/flutter/widgets/_bindings/flutter_TextBaseline';
 import '@flax/flutter/widgets/_bindings/flutter_TextBaseline';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Row extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Row";
 }
@@ -28,5 +29,5 @@ declare function _RowFactory(options?: {
     spacing?: Bindable<number> | undefined;
     children?: Bindable<DartListInput<Widget, Widget>> | undefined;
 }): Row;
-export declare const Row: typeof _RowFactory & _FlaxInstanceType<Row>;
+export declare const Row: typeof _RowFactory & _FlaxInstanceType<Row> & _FlaxDartType<Row, readonly ["class", "flax.core/flutter#type:Row", readonly [], false]>;
 export {};

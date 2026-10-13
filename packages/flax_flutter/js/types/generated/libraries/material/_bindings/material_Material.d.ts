@@ -8,6 +8,7 @@ import '@flax/flutter/widgets/_bindings/flutter_BorderRadiusGeometry';
 import '@flax/flutter/widgets/_bindings/flutter_ShapeBorder';
 import type * as upstream6 from '@flax/flutter/widgets/_bindings/flutter_Clip';
 import '@flax/flutter/widgets/_bindings/flutter_Clip';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Material extends WidgetDescription {
     readonly type: "flax.material/material#type:Material";
 }
@@ -38,5 +39,5 @@ declare function _MaterialFactory(options?: {
     clipBehavior?: Bindable<upstream6.Clip> | undefined;
     child?: Bindable<Widget | null> | undefined;
 }): Material;
-export declare const Material: typeof _MaterialFactory & _FlaxInstanceType<Material>;
+export declare const Material: typeof _MaterialFactory & _FlaxInstanceType<Material> & _FlaxDartType<Material, readonly ["class", "flax.material/material#type:Material", readonly [], false]>;
 export {};

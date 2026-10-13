@@ -12,6 +12,7 @@ import type * as upstream5 from '@flax/flutter/widgets/_bindings/flutter_Vertica
 import '@flax/flutter/widgets/_bindings/flutter_VerticalDirection';
 import type * as upstream6 from '@flax/flutter/widgets/_bindings/flutter_TextBaseline';
 import '@flax/flutter/widgets/_bindings/flutter_TextBaseline';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Column extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Column";
 }
@@ -28,5 +29,5 @@ declare function _ColumnFactory(options?: {
     spacing?: Bindable<number> | undefined;
     children?: Bindable<DartListInput<Widget, Widget>> | undefined;
 }): Column;
-export declare const Column: typeof _ColumnFactory & _FlaxInstanceType<Column>;
+export declare const Column: typeof _ColumnFactory & _FlaxInstanceType<Column> & _FlaxDartType<Column, readonly ["class", "flax.core/flutter#type:Column", readonly [], false]>;
 export {};

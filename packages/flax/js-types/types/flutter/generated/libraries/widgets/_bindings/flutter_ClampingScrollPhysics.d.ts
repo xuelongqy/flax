@@ -1,6 +1,7 @@
 import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_ScrollPhysics';
 import '@flax/flutter/widgets/_bindings/flutter_ScrollPhysics';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ClampingScrollPhysics extends upstream0.ScrollPhysics, Readonly<{
     "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ClampingScrollPhysics": readonly [];
 }> {
@@ -12,5 +13,5 @@ declare function _ClampingScrollPhysicsFactory(options?: {
         "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [];
     }> | null | undefined;
 }): ClampingScrollPhysics;
-export declare const ClampingScrollPhysics: typeof _ClampingScrollPhysicsFactory & _FlaxInstanceType<ClampingScrollPhysics>;
+export declare const ClampingScrollPhysics: typeof _ClampingScrollPhysicsFactory & _FlaxInstanceType<ClampingScrollPhysics> & _FlaxDartType<ClampingScrollPhysics, readonly ["class", "flax.core/flutter#type:ClampingScrollPhysics", readonly [], false]>;
 export {};

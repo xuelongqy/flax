@@ -3,6 +3,7 @@ import type * as upstream0 from '@flax/flutter/services/_bindings/flutter_TextRa
 import '@flax/flutter/services/_bindings/flutter_TextRange';
 import type * as upstream1 from '@flax/flutter/services/_bindings/flutter_TextAffinity';
 import '@flax/flutter/services/_bindings/flutter_TextAffinity';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface TextSelection extends upstream0.TextRange, Readonly<{
     "__flaxBound:package:flutter/src/services/text_editing.dart::TextSelection": readonly [];
 }> {
@@ -35,5 +36,5 @@ declare namespace _TextSelectionFactory {
         affinity?: upstream1.TextAffinity | undefined;
     }): TextSelection;
 }
-export declare const TextSelection: typeof _TextSelectionFactory & _FlaxInstanceType<TextSelection>;
+export declare const TextSelection: typeof _TextSelectionFactory & _FlaxInstanceType<TextSelection> & _FlaxDartType<TextSelection, readonly ["class", "flax.core/flutter#type:TextSelection", readonly [], false]>;
 export {};

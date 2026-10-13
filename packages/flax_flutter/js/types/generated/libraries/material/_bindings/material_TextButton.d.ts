@@ -1,6 +1,7 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/material/_bindings/material_ButtonStyle';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface TextButton extends WidgetDescription {
     readonly type: "flax.material/material#type:TextButton";
 }
@@ -14,5 +15,5 @@ declare function _TextButtonFactory(options: {
     }> | null> | undefined;
     child: Bindable<Widget>;
 }): TextButton;
-export declare const TextButton: typeof _TextButtonFactory & _FlaxInstanceType<TextButton>;
+export declare const TextButton: typeof _TextButtonFactory & _FlaxInstanceType<TextButton> & _FlaxDartType<TextButton, readonly ["class", "flax.material/material#type:TextButton", readonly [], false]>;
 export {};

@@ -12,4 +12,5 @@ export declare const TextAlign: Readonly<{
     start: TextAlign;
     end: TextAlign;
     values: readonly TextAlign[];
-} & _FlaxInstanceType<TextAlign>>;
+} & _FlaxInstanceType<TextAlign> & _FlaxDartType<TextAlign, readonly ["class", "flax.core/flutter#type:TextAlign", readonly [], false]>>;
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';

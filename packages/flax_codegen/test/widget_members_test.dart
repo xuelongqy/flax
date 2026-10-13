@@ -69,7 +69,7 @@ import {ComputedWidget, FinalComputedWidget, createReturnedComputedWidget,
   WidgetMemberBase, GenericComputedWidget, createGenericComputedWidget,
   DerivedGenericWidget, AggregateComputedWidget} from './plugin.js';
 import {Column} from '@flax/flutter/widgets';
-import {type Widget} from '@flax/core/bindings';
+import {type Widget, dartType, dartTypes} from '@flax/core/bindings';
 const widget = ComputedWidget('hello');
 const parent: WidgetMemberBase = widget;
 const parentResult: WidgetMemberBase = widget.asBase();
@@ -82,10 +82,11 @@ const named: Widget = ComputedWidget.named('named');
 const finalLength: number = FinalComputedWidget('final').textLength();
 const returned: string = createReturnedComputedWidget().uppercase;
 const generic: string = createGenericComputedWidget().value;
-const echoed: string = GenericComputedWidget<string>('typed').echo('next');
+const echoed: string = dartType(GenericComputedWidget, dartTypes.string)('typed').echo('next');
 const genericParent: GenericComputedWidget<string> = DerivedGenericWidget('child');
 const inherited: string = genericParent.echo('next');
-const aggregate = AggregateComputedWidget(['list']);
+const Aggregates = dartType(AggregateComputedWidget, dartTypes.list(dartTypes.string));
+const aggregate = Aggregates(['list']);
 const aggregateItem: string = aggregate.items.get(0);
 const echoItem: string = aggregate.echo(['next']).get(0);
 Column({children: [widget, named]});

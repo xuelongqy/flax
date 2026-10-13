@@ -9,4 +9,5 @@ export declare const NavigationDestinationLabelBehavior: Readonly<{
     alwaysHide: NavigationDestinationLabelBehavior;
     onlyShowSelected: NavigationDestinationLabelBehavior;
     values: readonly NavigationDestinationLabelBehavior[];
-} & _FlaxInstanceType<NavigationDestinationLabelBehavior>>;
+} & _FlaxInstanceType<NavigationDestinationLabelBehavior> & _FlaxDartType<NavigationDestinationLabelBehavior, readonly ["class", "flax.material/material#type:NavigationDestinationLabelBehavior", readonly [], false]>>;
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';

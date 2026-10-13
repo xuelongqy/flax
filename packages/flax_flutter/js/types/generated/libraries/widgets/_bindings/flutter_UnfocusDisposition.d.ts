@@ -8,4 +8,5 @@ export declare const UnfocusDisposition: Readonly<{
     scope: UnfocusDisposition;
     previouslyFocusedChild: UnfocusDisposition;
     values: readonly UnfocusDisposition[];
-} & _FlaxInstanceType<UnfocusDisposition>>;
+} & _FlaxInstanceType<UnfocusDisposition> & _FlaxDartType<UnfocusDisposition, readonly ["class", "flax.core/flutter#type:UnfocusDisposition", readonly [], false]>>;
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';

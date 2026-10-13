@@ -8,4 +8,5 @@ export declare const Brightness: Readonly<{
     dark: Brightness;
     light: Brightness;
     values: readonly Brightness[];
-} & _FlaxInstanceType<Brightness>>;
+} & _FlaxInstanceType<Brightness> & _FlaxDartType<Brightness, readonly ["class", "flax.material/material#type:Brightness", readonly [], false]>>;
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';

@@ -1,4 +1,7 @@
 import { type Binding, type ReadonlySignal } from './index.js';
+import { type FlaxDartType, type FlaxDartTypeDescription, type FlaxDartTypeInput, type FlaxDartTypeSelection } from './dart_types.js';
+export { dartTypes, flaxDartTypeCases, flaxDartTypeKey, flaxDartTypeValue, } from './dart_types.js';
+export type { FlaxDartType, FlaxDartTypeCases, FlaxDartTypeInput, FlaxDartTypeSelection, } from './dart_types.js';
 /** Experimental generated-binding extension. Independent of the native C ABI. */
 export declare const bindingVersion = 24;
 export type Bindable<T> = T | Binding<T>;
@@ -205,8 +208,18 @@ type ObjectDefinition = {
     methods: Readonly<Record<string, StateMethod>>;
     removers: readonly string[];
 };
+type DartTypeTarget = {
+    readonly arguments: readonly FlaxDartTypeDescription[];
+    readonly id: string;
+    readonly constructors: Readonly<Record<string, readonly Parameter[]>>;
+    readonly proxy?: ProxyDefinition;
+};
+/** Generated finite targets; no runtime reflection or class-specific selector. */
+export declare function defineDartTypes(value: object, type: string, defaults: readonly FlaxDartTypeDescription[] | null, targets: readonly DartTypeTarget[]): void;
+/** Selects an already compiled Dart type; business arguments stay unchanged. */
+export declare function dartType<C extends FlaxInstanceType<unknown>, const A extends readonly FlaxDartTypeInput[]>(value: C, ...args: A & (FlaxDartTypeSelection<C, A> extends never ? never : unknown)): FlaxDartTypeSelection<C, A>;
 /** The instance represented by a generated Dart class or reference-only token. */
-export type FlaxDartInstance<C> = C extends abstract new (...args: any[]) => infer I ? I : C extends {
+export type FlaxDartInstance<C> = C extends abstract new (...args: any[]) => infer I ? I : C extends FlaxDartType<infer I> ? I : C extends {
     readonly prototype: infer I;
 } ? unknown extends I ? C extends FlaxInstanceType<infer T> ? T : never : I : C extends FlaxInstanceType<infer T> ? T : never;
 /** Checks the original Dart object and returns a view; never copies or constructs. */
@@ -219,7 +232,7 @@ export interface FlaxInstanceType<T> {
         readonly prototype: infer I;
     } ? unknown extends I ? T : I : T;
 }
-export declare function bindInstanceType<T, V extends object>(value: V, type: string, parents: readonly string[]): V & FlaxInstanceType<T>;
+export declare function bindInstanceType<T, V extends object>(value: V, type: string, parents: readonly string[], defaults?: readonly FlaxDartTypeDescription[] | null): V & FlaxInstanceType<T>;
 export declare function defineObject(type: string, fields: ObjectDefinition['fields'], setters: readonly string[], methods: ObjectDefinition['methods'], removers: readonly string[], collectionKind?: string): void;
 export declare function defineStream(type: string, fields: readonly string[], methods: Readonly<Record<string, StateMethod>>): void;
 export declare function constructAsyncIterableStream<T>(type: string, source: AsyncIterable<T>): object;
@@ -261,4 +274,3 @@ export declare function invokeObjectStatic(type: string, member: string): unknow
 /** A plain-data snapshot, without invoking getters or serializing through JSON. */
 export declare function copyNavigationData(value: unknown, path?: Set<object>): NavigationData;
 export declare function mountRoot(widget: Widget): void;
-export {};

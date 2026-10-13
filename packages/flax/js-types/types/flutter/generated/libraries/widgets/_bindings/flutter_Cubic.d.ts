@@ -1,6 +1,7 @@
 import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_Curve';
 import '@flax/flutter/widgets/_bindings/flutter_Curve';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Cubic extends upstream0.Curve, Readonly<{
     "__flaxBound:package:flutter/src/animation/curves.dart::Cubic": readonly [];
 }>, Readonly<{
@@ -14,5 +15,5 @@ export interface Cubic extends upstream0.Curve, Readonly<{
     transform(t: number): number;
 }
 declare function _CubicFactory(a: number, b: number, c: number, d: number): Cubic;
-export declare const Cubic: typeof _CubicFactory & _FlaxInstanceType<Cubic>;
+export declare const Cubic: typeof _CubicFactory & _FlaxInstanceType<Cubic> & _FlaxDartType<Cubic, readonly ["class", "flax.core/flutter#type:Cubic", readonly [], false]>;
 export {};

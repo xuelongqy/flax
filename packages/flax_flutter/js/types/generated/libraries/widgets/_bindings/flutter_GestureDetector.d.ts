@@ -4,6 +4,7 @@ import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_HitTest
 import '@flax/flutter/widgets/_bindings/flutter_HitTestBehavior';
 import type * as upstream2 from '@flax/flutter/gestures/_bindings/flutter_DragStartBehavior';
 import '@flax/flutter/gestures/_bindings/flutter_DragStartBehavior';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface GestureDetector extends WidgetDescription {
     readonly type: "flax.core/flutter#type:GestureDetector";
 }
@@ -24,5 +25,5 @@ declare function _GestureDetectorFactory(options?: {
     excludeFromSemantics?: Bindable<boolean> | undefined;
     dragStartBehavior?: Bindable<upstream2.DragStartBehavior> | undefined;
 }): GestureDetector;
-export declare const GestureDetector: typeof _GestureDetectorFactory & _FlaxInstanceType<GestureDetector>;
+export declare const GestureDetector: typeof _GestureDetectorFactory & _FlaxInstanceType<GestureDetector> & _FlaxDartType<GestureDetector, readonly ["class", "flax.core/flutter#type:GestureDetector", readonly [], false]>;
 export {};

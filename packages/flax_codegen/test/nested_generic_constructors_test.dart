@@ -58,7 +58,20 @@ void main() {
       final history = list.constructors.single.parameters.singleWhere(
         (parameter) => parameter.name == 'history',
       );
-      expect(history.type.item!.item!.kind, 'list');
+      expect(
+        list
+            .constructors
+            .single
+            .specializations
+            .single
+            .parameterTypes[list.constructors.single.parameters.indexOf(
+              history,
+            )]
+            .item!
+            .item!
+            .kind,
+        'list',
+      );
       await compileFixture(
         root.path,
         FlaxCodegenBindingEmitter([module]),
@@ -67,15 +80,15 @@ void main() {
 void main() {
   test('nested values keep concrete types and identity', () {
     final strings = <String>[];
-    final list = _createListBox('', {'value': strings}) as api.ListBox<List<String>>;
+    final list = createTypedFixture(nested_constructorsBindings, 'ListBox', [['list', null, [['String', null, <Object?>[], false]], false]], '', {'value': strings}) as api.ListBox<List<String>>;
     expect(list, isA<api.ListBox<List<String>>>());
     expect(identical(list.value, strings), isTrue);
-    final map = _createMapBox('', {'value': <String, List<int?>>{'a': [1, null]}});
+    final map = createTypedFixture(nested_constructorsBindings, 'MapBox', [['map', null, [['String', null, <Object?>[], false], ['list', null, [['int', null, <Object?>[], true]], false]], false]], '', {'value': <String, List<int?>>{'a': [1, null]}});
     expect(map, isA<api.MapBox<Map<String, List<int?>>>>());
-    final nullable = _createNullableBox('', {'value': null});
+    final nullable = createTypedFixture(nested_constructorsBindings, 'NullableBox', [['list', null, [['String', null, <Object?>[], true]], true]], '', {'value': null});
     expect(nullable, isA<api.NullableBox<List<String?>?>>());
-    expect((_createNullableBox('', {'value': <String?>[null]}) as api.NullableBox<List<String?>?>).value, [null]);
-    final optional = _createOptionalBox('', {'value': null}) as api.OptionalBox<List<String>>;
+    expect((createTypedFixture(nested_constructorsBindings, 'NullableBox', [['list', null, [['String', null, <Object?>[], true]], true]], '', {'value': <String?>[null]}) as api.NullableBox<List<String?>?>).value, [null]);
+    final optional = createTypedFixture(nested_constructorsBindings, 'OptionalBox', [['list', null, [['String', null, <Object?>[], false]], false]], '', {'value': null}) as api.OptionalBox<List<String>>;
     final optionalView = __OptionalBoxMemberView(optional)!;
     expect(optionalView.getters['value']!.type.nullable, isTrue);
     expect(optionalView.getters['requiredValue']!.type.nullable, isFalse);
@@ -84,13 +97,18 @@ void main() {
     expect(identical(optional.requiredValue, strings), isTrue);
     expect(() => optionalView.setters['requiredValue']!.write(optional, null), throwsA(isA<TypeError>()));
     expect(__NullableBoxMemberView(nullable)!.getters['value']!.type.nullable, isTrue);
-    expect(() => _createListBox('', {'value': <int>[]}), throwsA(isA<TypeError>()));
-    expect(() => _createMapBox('', {'value': <String, List<String>>{'a': ['bad']}}), throwsA(isA<TypeError>()));
+    expect(() => createTypedFixture(nested_constructorsBindings, 'ListBox', [['list', null, [['String', null, <Object?>[], false]], false]], '', {'value': <int>[]}), throwsA(isA<TypeError>()));
+    expect(() => createTypedFixture(nested_constructorsBindings, 'MapBox', [['map', null, [['String', null, <Object?>[], false], ['list', null, [['int', null, <Object?>[], true]], false]], false]], '', {'value': <String, List<String>>{'a': ['bad']}}), throwsA(isA<TypeError>()));
   });
 }
 ''',
         consumerSource: '''
-import { ListBox, MapBox, NullableBox, OptionalBox } from './plugin.js';
+import { ListBox as ListBoxBase, MapBox as MapBoxBase, NullableBox as NullableBoxBase, OptionalBox as OptionalBoxBase } from './plugin.js';
+import { dartType, dartTypes } from '@flax/core/bindings';
+const ListBox = dartType(ListBoxBase, dartTypes.list(dartTypes.string));
+const MapBox = dartType(MapBoxBase, dartTypes.map(dartTypes.string, dartTypes.list(dartTypes.nullable(dartTypes.int))));
+const NullableBox = dartType(NullableBoxBase, dartTypes.nullable(dartTypes.list(dartTypes.nullable(dartTypes.string))));
+const OptionalBox = dartType(OptionalBoxBase, dartTypes.list(dartTypes.string));
 const list = ListBox(['a']);
 const first: string = list.value.get(0);
 ListBox(['a'], {history: [Promise.resolve(['earlier'])]});
@@ -98,7 +116,7 @@ ListBox(['a'], {history: [Promise.resolve(['earlier'])]});
 ListBox(['a'], {history: [Promise.resolve([2])]});
 MapBox(new Map([['a', [1, null]]]));
 NullableBox(null);
-const optional: OptionalBox<typeof list.value> = OptionalBox(null);
+const optional: import('./plugin.js').OptionalBox<typeof list.value> = OptionalBox(null);
 optional.requiredValue = ['a'];
 // @ts-expect-error a T? constructor input does not make the selected T nullable
 optional.requiredValue = null;
@@ -109,14 +127,10 @@ optional.requiredValue = null;
 
   test('ambiguous nested targets require an explicit specialization', () async {
     final proposal = await parser.proposeLibrary(config());
-    expect(proposal.config.classes['AmbiguousBox']!.constructors, isEmpty);
+    expect(proposal.config.classes['AmbiguousBox']!.constructors, isNotEmpty);
     expect(
-      proposal.skips.any(
-        (skip) =>
-            skip.target == 'AmbiguousBox.' &&
-            skip.code == 'constructor_specialization_ambiguous',
-      ),
-      isTrue,
+      proposal.skips.where((skip) => skip.target == 'AmbiguousBox.'),
+      isEmpty,
     );
     final module = await parser.parse(
       config(
@@ -222,36 +236,38 @@ void main() {
 void main() {
   test('mixed targets preserve native identity and reject narrowing', () {
     final strings = <String>[];
-    final list = _createMixedBox('', {'value': strings}) as api.MixedBox<List<String>>;
+    final list = createTypedFixture(nested_constructorsBindings, 'MixedBox', [['list', null, [['String', null, <Object?>[], false]], false]], '', {'value': strings}) as api.MixedBox<List<String>>;
     expect(identical(list.value, strings), isTrue);
-    expect(_createMixedBox('', {'value': 'a'}), isA<api.MixedBox<String>>());
-    expect(_createMixedBox('', {'value': 2}), isA<api.MixedBox<int>>());
-    expect(_createMixedBox('', {'value': <int>{2}}), isA<api.MixedBox<Set<int>>>());
-    expect(_createMixedBox('', {'value': <String, List<int?>>{'a': [null]}}), isA<api.MixedBox<Map<String, List<int?>>>>());
-    expect(() => _createMixedBox('', {'value': <int>[]}), throwsArgumentError);
-    expect(() => _createMixedBox('', {'value': 1.5}), throwsArgumentError);
+    expect(createTypedFixture(nested_constructorsBindings, 'MixedBox', [['String', null, <Object?>[], false]], '', {'value': 'a'}), isA<api.MixedBox<String>>());
+    expect(createTypedFixture(nested_constructorsBindings, 'MixedBox', [['int', null, <Object?>[], false]], '', {'value': 2}), isA<api.MixedBox<int>>());
+    expect(createTypedFixture(nested_constructorsBindings, 'MixedBox', [['set', null, [['int', null, <Object?>[], false]], false]], '', {'value': <int>{2}}), isA<api.MixedBox<Set<int>>>());
+    expect(createTypedFixture(nested_constructorsBindings, 'MixedBox', [['map', null, [['String', null, <Object?>[], false], ['list', null, [['int', null, <Object?>[], true]], false]], false]], '', {'value': <String, List<int?>>{'a': [null]}}), isA<api.MixedBox<Map<String, List<int?>>>>());
+    expect(() => createTypedFixture(nested_constructorsBindings, 'MixedBox', [['list', null, [['String', null, <Object?>[], false]], false]], '', {'value': <int>[]}), throwsA(isA<TypeError>()));
+    expect(() => createTypedFixture(nested_constructorsBindings, 'MixedBox', [['int', null, <Object?>[], false]], '', {'value': 1.5}), throwsA(isA<TypeError>()));
     final record = (<List<String>>[strings],);
-    final recorded = _createMixedBox('', {'value': strings, 'record': record}) as api.MixedBox<List<String>>;
+    final recorded = createTypedFixture(nested_constructorsBindings, 'MixedBox', [['list', null, [['String', null, <Object?>[], false]], false]], '', {'value': strings, 'record': record}) as api.MixedBox<List<String>>;
     expect(identical(recorded.record!.$1.single, strings), isTrue);
-    expect(() => _createMixedBox('', {'value': strings, 'record': (<Object?>[strings],)}), throwsArgumentError);
+    expect(() => createTypedFixture(nested_constructorsBindings, 'MixedBox', [['list', null, [['String', null, <Object?>[], false]], false]], '', {'value': strings, 'record': (<Object?>[strings],)}), throwsA(isA<TypeError>()));
   });
 }
 ''',
         consumerSource: r'''
 import { MixedBox } from './plugin.js';
-const list = MixedBox([]);
+import { dartType, dartTypes } from '@flax/core/bindings';
+const ListBox = dartType(MixedBox, dartTypes.list(dartTypes.string));
+const list = ListBox([]);
 const value: string = list.value.get(0);
-const text: string = MixedBox('a').value;
-const number: number = MixedBox(2).value;
-MixedBox(new Set([2]));
-MixedBox(new Map([['a', [1, null]]]));
-MixedBox(['a'], {record: {$1: [['a']]}});
+const text: string = dartType(MixedBox, dartTypes.string)('a').value;
+const number: number = dartType(MixedBox, dartTypes.int)(2).value;
+dartType(MixedBox, dartTypes.set(dartTypes.int))(new Set([2]));
+dartType(MixedBox, dartTypes.map(dartTypes.string, dartTypes.list(dartTypes.nullable(dartTypes.int))))(new Map([['a', [1, null]]]));
+ListBox(['a'], {record: {$1: [['a']]}});
 // @ts-expect-error a closed List<String> target cannot accept numbers
-MixedBox([2]);
+ListBox([2]);
 // @ts-expect-error Record fields retain the same concrete target
-MixedBox(['a'], {record: {$1: [[2]]}});
+ListBox(['a'], {record: {$1: [[2]]}});
 // @ts-expect-error the constructor has no boolean target
-MixedBox(true);
+dartType(MixedBox, dartTypes.bool)(true);
 ''',
       );
     },
@@ -298,9 +314,9 @@ void main() {
   test('native member views keep concrete conversions and shared methods', () async {
     final list = <String>['a'];
     final set = <String>{'a'};
-    final listBox = _createBoundedIterableBox('', {'value': list}) as api.BoundedIterableBox<List<String>>;
-    final setBox = _createBoundedIterableBox('', {'value': set}) as api.BoundedIterableBox<Set<String>>;
-    final binding = nested_constructorsBindings.types.single as FlaxObjectBinding;
+    final listBox = createTypedFixture(nested_constructorsBindings, 'BoundedIterableBox', [['list', null, [['String', null, <Object?>[], false]], false]], '', {'value': list}) as api.BoundedIterableBox<List<String>>;
+    final setBox = createTypedFixture(nested_constructorsBindings, 'BoundedIterableBox', [['set', null, [['String', null, <Object?>[], false]], false]], '', {'value': set}) as api.BoundedIterableBox<Set<String>>;
+    final binding = nested_constructorsBindings.types.whereType<FlaxObjectBinding>().singleWhere((binding) => binding.aliasOf == null);
     final listView = binding.memberView!(listBox)!;
     final setView = binding.memberView!(setBox)!;
     expect(listView.getters['value']!.type.kind, 'list');
@@ -333,9 +349,12 @@ void main() {
 }
 ''',
         consumerSource: '''
-import { BoundedIterableBox } from './plugin.js';
+import { BoundedIterableBox as BaseBox } from './plugin.js';
+import { dartType, dartTypes } from '@flax/core/bindings';
+const BoundedIterableBox = dartType(BaseBox, dartTypes.list(dartTypes.string));
+const SetBox = dartType(BaseBox, dartTypes.set(dartTypes.string));
 const list: string = BoundedIterableBox(['a']).value.get(0);
-const set: boolean = BoundedIterableBox(new Set(['a'])).value.contains('a');
+const set: boolean = SetBox(new Set(['a'])).value.contains('a');
 const listBox = BoundedIterableBox(['a']);
 listBox.value = ['b'];
 listBox.map(value => value).get(0);
@@ -452,6 +471,7 @@ BoundedIterableBox([1]);
                 '': ['value'],
               },
               kind: 'object',
+              typeArguments: ['List<Object?>'],
               getters: ['value'],
               setters: ['value'],
               data: FlaxCodegenDataSelection(
@@ -487,15 +507,16 @@ void main() {
     expect(identical(valueGetter.read(object), values), isTrue);
     objectBinding.setters.single.write(object, values);
     final list = _createDataListBox('', {'value': values}) as api.DataListBox<List<Object?>>;
-    final view = listBinding.memberView!(list)!;
+    final getter = listBinding.getters.singleWhere((g) => g.name == 'value');
+    final setter = listBinding.setters.single;
     expect(listBinding.constructors['']!.single.type.item!.kind, 'data');
-    expect(view.getters['value']!.type.kind, 'list');
-    expect(view.getters['value']!.type.item!.kind, 'any');
-    expect(view.setters['value']!.type.item!.kind, 'any');
-    expect(identical(view.getters['value']!.read(list), values), isTrue);
-    view.setters['value']!.write(list, values);
+    expect(getter.type.kind, 'list');
+    expect(getter.type.item!.kind, 'any');
+    expect(setter.type.item!.kind, 'any');
+    expect(identical(getter.read(list), values), isTrue);
+    setter.write(list, values);
     expect(identical(list.value, values), isTrue);
-    expect(() => view.setters['value']!.write(list, <Object?>{null}), throwsA(isA<TypeError>()));
+    expect(() => setter.write(list, <Object?>{null}), throwsA(isA<TypeError>()));
   });
 }
 ''',
@@ -542,37 +563,25 @@ void main() {
 
   test('multi-target callbacks require compatible erased signatures', () async {
     final proposal = await parser.proposeLibrary(config());
-    expect(proposal.config.classes['CallbackBox']!.constructors, isEmpty);
-    expect(
-      proposal.skips.any(
-        (skip) =>
-            skip.target == 'CallbackBox.' &&
-            skip.code == 'constructor_specialization_callback',
-      ),
-      isTrue,
-    );
+    expect(proposal.config.classes['CallbackBox']!.constructors, isNotEmpty);
     for (final callback in ['next', 'pending']) {
-      expect(
-        () => parser.parse(
-          config(
-            classes: {
-              'CallbackBox': FlaxCodegenClassSelection(
-                {
-                  '': ['value', callback],
-                },
-                kind: 'object',
-                getters: ['value'],
-              ),
-            },
-          ),
+      final selected = await parser.parse(
+        config(
+          classes: {
+            'CallbackBox': FlaxCodegenClassSelection(
+              {
+                '': ['value', callback],
+              },
+              kind: 'object',
+              getters: ['value'],
+            ),
+          },
         ),
-        throwsA(
-          isA<StateError>().having(
-            (error) => error.message,
-            'callback',
-            contains('Constructor callback $callback requires explicit'),
-          ),
-        ),
+      );
+      await compileFixture(
+        root.path,
+        FlaxCodegenBindingEmitter([selected]),
+        selected,
       );
     }
     final concrete = await parser.parse(
@@ -649,10 +658,10 @@ void main() {
     final values = <String>['a'];
     Object? visited;
     void visit(Object? value) { visited = value; }
-    final list = _createCallbackBox('', {'value': values, 'visit': visit}) as api.CallbackBox<List<String>>;
+    final list = createTypedFixture(nested_constructorsBindings, 'CallbackBox', [['list', null, [['String', null, <Object?>[], false]], false]], '', {'value': values, 'visit': visit}) as api.CallbackBox<List<String>>;
     list.visit!(values);
     expect(identical(visited, values), isTrue);
-    final text = _createCallbackBox('', {'value': 'a', 'visit': visit}) as api.CallbackBox<String>;
+    final text = createTypedFixture(nested_constructorsBindings, 'CallbackBox', [['String', null, <Object?>[], false]], '', {'value': 'a', 'visit': visit}) as api.CallbackBox<String>;
     text.visit!('a');
     expect(visited, 'a');
   });
@@ -660,8 +669,9 @@ void main() {
 ''',
       consumerSource: '''
 import { CallbackBox } from './plugin.js';
-CallbackBox(['a'], {visit: (value) => { const text: string = value.get(0); }});
-CallbackBox('a', {visit: (value) => { const text: string = value; }});
+import { dartType, dartTypes } from '@flax/core/bindings';
+dartType(CallbackBox, dartTypes.list(dartTypes.string))(['a'], {visit: (value) => { const text: string = value.get(0); }});
+dartType(CallbackBox, dartTypes.string)('a', {visit: (value) => { const text: string = value; }});
 ''',
     );
   });

@@ -1,3 +1,4 @@
+import { dartType, dartTypes } from '@flax/core/bindings';
 import { bind, signal } from '@flax/core';
 import * as f from '@flax/flutter/widgets';
 import { RetainedTile } from '../../../.dart_tool/flax/ui/repeated_bindings.js';
@@ -16,12 +17,17 @@ const state = {
   bad: signal(false),
   clip: signal(f.Clip.none),
   node: signal<f.Widget | null>(
-    f.SizedBox({ key: f.ValueKey('valid'), width: 20, height: 20 }),
+    f.SizedBox({
+      key: dartType(f.ValueKey, dartTypes.string)('valid'),
+      width: 20,
+      height: 20,
+    }),
   ),
   factories: 0,
 };
 Object.assign(globalThis, { decoration: state });
-const key = (value: string) => f.ValueKey(value);
+const StringKey = dartType(f.ValueKey, dartTypes.string);
+const key = (value: string) => StringKey(value);
 const leaf = () =>
   f.Container({ key: key('leaf'), width: 24, height: 18, color: green });
 

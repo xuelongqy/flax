@@ -1,3 +1,7 @@
+import {
+  dartType as selectDartType,
+  dartTypes as nativeTypes,
+} from '@flax/core/bindings';
 import { signal } from '@flax/core';
 import {
   Column,
@@ -23,6 +27,8 @@ import {
   Theme,
 } from '@flax/flutter/material';
 import { Builder } from '@flax/flutter/widgets';
+const StringKey = selectDartType(ValueKey, nativeTypes.string);
+
 const mode = signal(ThemeMode.system);
 const title = signal('Application');
 const result = signal('Pending');
@@ -59,7 +65,7 @@ class HomeState extends State<Home> {
     if (Reflect.get(globalThis, 'failApplicationBuild'))
       throw new Error('first application build');
     return Scaffold({
-      appBar: AppBar({ title: Text(title.bind, { key: ValueKey('title') }) }),
+      appBar: AppBar({ title: Text(title.bind, { key: StringKey('title') }) }),
       body: Column({
         children: [
           TextField({ controller: this.editing }),
@@ -91,7 +97,7 @@ class HomeState extends State<Home> {
             builder: (ctx) =>
               Text(Theme.of(ctx).brightness === Brightness.dark ? 'Dark' : 'Light'),
           }),
-          Text('Static', { key: ValueKey('static') }),
+          Text('Static', { key: StringKey('static') }),
         ],
       }),
     });
@@ -100,7 +106,7 @@ class HomeState extends State<Home> {
 Object.assign(globalThis, { application: info });
 runApp(
   MaterialApp({
-    key: ValueKey('application'),
+    key: StringKey('application'),
     home: new Home(),
     theme: ThemeData({ brightness: Brightness.light }),
     darkTheme: ThemeData({ brightness: Brightness.dark }),

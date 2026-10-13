@@ -1,6 +1,7 @@
 import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/services/_bindings/flutter_Color';
 import '@flax/flutter/services/_bindings/flutter_Color';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface CupertinoThemeData extends Readonly<{
     "__flaxBound:package:cupertino_ui/src/theme.dart::CupertinoThemeData": readonly [];
 }>, Readonly<{
@@ -20,5 +21,5 @@ declare function _CupertinoThemeDataFactory(options?: {
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null | undefined;
 }): CupertinoThemeData;
-export declare const CupertinoThemeData: typeof _CupertinoThemeDataFactory & _FlaxInstanceType<CupertinoThemeData>;
+export declare const CupertinoThemeData: typeof _CupertinoThemeDataFactory & _FlaxInstanceType<CupertinoThemeData> & _FlaxDartType<CupertinoThemeData, readonly ["class", "flax.cupertino/cupertino#type:CupertinoThemeData", readonly [], false]>;
 export {};

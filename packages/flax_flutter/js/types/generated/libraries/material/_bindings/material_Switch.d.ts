@@ -3,6 +3,7 @@ import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/services/_bindings/flutter_Color';
 import '@flax/flutter/widgets/_bindings/flutter_FocusNode';
 import '@flax/flutter/widgets/_bindings/flutter_EdgeInsetsGeometry';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Switch extends WidgetDescription {
     readonly type: "flax.material/material#type:Switch";
 }
@@ -29,5 +30,5 @@ declare function _SwitchFactory(options: {
         "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
     }> | null> | undefined;
 }): Switch;
-export declare const Switch: typeof _SwitchFactory & _FlaxInstanceType<Switch>;
+export declare const Switch: typeof _SwitchFactory & _FlaxInstanceType<Switch> & _FlaxDartType<Switch, readonly ["class", "flax.material/material#type:Switch", readonly [], false]>;
 export {};

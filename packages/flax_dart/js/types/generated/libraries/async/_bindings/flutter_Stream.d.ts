@@ -11,6 +11,7 @@ import type * as upstream4 from '@flax/dart/async/_bindings/flutter_StreamSubscr
 import '@flax/dart/async/_bindings/flutter_StreamSubscription';
 import '@flax/dart/async/_bindings/flutter_StreamConsumer';
 import '@flax/dart/async/_bindings/flutter_StreamTransformer';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Stream<T extends unknown | null = unknown | null> extends AsyncIterable<T> {
     readonly __Stream: unique symbol;
     readonly isBroadcast: boolean;
@@ -117,5 +118,5 @@ declare namespace _StreamFactory {
 declare namespace _StreamFactory {
     function castFrom<S extends unknown | null = unknown | null, T extends unknown | null = unknown | null>(source: (Stream<_FlaxDartOutput<S>> | Stream<(S | _FlaxDartOutput<S>)>)): Stream<_FlaxDartOutput<T>>;
 }
-export declare const Stream: typeof _StreamFactory & _FlaxInstanceType<Stream<any>>;
+export declare const Stream: typeof _StreamFactory & _FlaxInstanceType<Stream<unknown | null>> & _FlaxDartType<Stream<unknown | null>, readonly ["class", "flax.core/flutter#type:Stream", readonly [readonly ["any", null, readonly [], true]], false]>;
 export {};

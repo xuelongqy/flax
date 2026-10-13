@@ -7,7 +7,7 @@ const _libraryGeneratedHeader =
 const _moduleHelpers =
     'construct, constructProxy, constructObject, '
     'constructDeferredObject, constructStream, constructAsyncIterableStream, '
-    '_flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, '
+    '_flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, '
     'enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, '
     'invokeInstance, invokeTopLevel';
 

@@ -3,6 +3,7 @@ import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_Route';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_RouteSettings';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface MaterialPageRoute<T extends unknown | null = unknown | null> extends DartValue, Omit<upstream0.Route<T>, 'type'>, Omit<Readonly<{
     "__flaxBound:package:material_ui/src/page.dart::MaterialPageRoute": readonly [T];
 }>, 'type'>, Omit<Readonly<{
@@ -33,5 +34,5 @@ declare function _MaterialPageRouteFactory<T extends unknown | null = unknown | 
     maintainState?: boolean | undefined;
     fullscreenDialog?: boolean | undefined;
 }): MaterialPageRoute<T>;
-export declare const MaterialPageRoute: typeof _MaterialPageRouteFactory & _FlaxInstanceType<MaterialPageRoute<any>>;
+export declare const MaterialPageRoute: typeof _MaterialPageRouteFactory & _FlaxInstanceType<MaterialPageRoute<unknown | null>> & _FlaxDartType<MaterialPageRoute<unknown | null>, readonly ["class", "flax.material/material#type:MaterialPageRoute", readonly [readonly ["any", null, readonly [], true]], false]>;
 export {};

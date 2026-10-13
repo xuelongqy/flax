@@ -1,4 +1,8 @@
 import {
+  dartType as selectDartType,
+  dartTypes as nativeTypes,
+} from '@flax/core/bindings';
+import {
   Builder,
   Column,
   Text,
@@ -27,6 +31,8 @@ import {
 import { signal } from '@flax/core';
 import * as functions from '../../../.dart_tool/flax/ui/functions_bindings.js';
 
+const StringKey = selectDartType(ValueKey, nativeTypes.string);
+
 let context: BuildContext;
 let mode = 'valid';
 let builds = 0;
@@ -53,7 +59,7 @@ class DialogState extends State<DialogContent> {
   build(dialogContext: BuildContext): Widget {
     builds++;
     return AlertDialog({
-      title: Text(label.bind, { key: ValueKey('dialog-label') }),
+      title: Text(label.bind, { key: StringKey('dialog-label') }),
       content: Column({
         children: [
           Text(`Local ${this.count}`),
@@ -105,7 +111,7 @@ const root = Builder({
     if (inline !== null) return inline;
     return Column({
       children: [
-        Text('Static source', { key: ValueKey('static-source') }),
+        Text('Static source', { key: StringKey('static-source') }),
         TextButton({
           onPressed: () => {
             open();

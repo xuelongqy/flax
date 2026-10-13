@@ -2,6 +2,7 @@ import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings'
 import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/core/_bindings/flutter_StackTrace';
 import '@flax/dart/core/_bindings/flutter_StackTrace';
+import { type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface StreamSubscription<T extends unknown | null = unknown | null> extends Readonly<{
     "__flaxBound:dart:async::StreamSubscription": readonly [T];
 }> {
@@ -15,4 +16,9 @@ export interface StreamSubscription<T extends unknown | null = unknown | null> e
     resume(): void;
     asFuture<E extends unknown | null = unknown | null>(futureValue?: (E | _FlaxDartOutput<E>) | null): Promise<_FlaxDartOutput<E>>;
 }
-export declare const StreamSubscription: object & _FlaxInstanceType<StreamSubscription<any>>;
+export declare const StreamSubscription: object & _FlaxInstanceType<StreamSubscription<unknown | null>> & _FlaxDartType<StreamSubscription<unknown | null>, readonly ["class", "flax.core/flutter#type:StreamSubscription", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<{
+    arguments: readonly [readonly ["any", null, readonly [], true]];
+    value: {
+        readonly prototype: StreamSubscription<unknown | null>;
+    } & _FlaxInstanceType<StreamSubscription<unknown | null>> & _FlaxDartType<StreamSubscription<unknown | null>, readonly ["class", "flax.core/flutter#type:StreamSubscription", readonly [readonly ["any", null, readonly [], true]], false]>;
+}>;

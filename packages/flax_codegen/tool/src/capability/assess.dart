@@ -563,7 +563,7 @@ List<CapabilityDiagnostic> _proposalDiagnostics(
     diagnostics.add(
       const CapabilityDiagnostic(
         code: 'constructor_specialization_resolved',
-        message: 'Analyzer use sites and required input signatures resolved concrete constructor targets and on-demand native member views',
+        message: 'A shared bound default and analyzer-validated closed targets support construction; ordinary object/native Widget handles select types before argument conversion',
       ),
     );
   }

@@ -12,6 +12,7 @@ import '../test/fixtures/static_accessors_selection.dart';
 import '../test/fixtures/proxy_operators_selection.dart';
 import '../test/fixtures/context_streams_selection.dart';
 import '../test/fixtures/extensions_selection.dart';
+import '../test/fixtures/dart_types_selection.dart';
 
 Future<void> main() async {
   final package = Directory.current.absolute;
@@ -19,6 +20,14 @@ Future<void> main() async {
     ..createSync(recursive: true);
   final (core, rawToWire) = _loadCoreManifest(
     File('${package.path}/bindings/manifest.json'),
+  );
+  await _generate(
+    package,
+    output,
+    'dart_types',
+    dartTypesSelection,
+    core,
+    rawToWire,
   );
   await _generate(
     package,

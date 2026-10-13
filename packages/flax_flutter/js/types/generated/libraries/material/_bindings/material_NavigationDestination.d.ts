@@ -1,5 +1,6 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface NavigationDestination extends WidgetDescription {
     readonly type: "flax.material/material#type:NavigationDestination";
 }
@@ -13,5 +14,5 @@ declare function _NavigationDestinationFactory(options: {
     tooltip?: Bindable<string | null> | undefined;
     enabled?: Bindable<boolean> | undefined;
 }): NavigationDestination;
-export declare const NavigationDestination: typeof _NavigationDestinationFactory & _FlaxInstanceType<NavigationDestination>;
+export declare const NavigationDestination: typeof _NavigationDestinationFactory & _FlaxInstanceType<NavigationDestination> & _FlaxDartType<NavigationDestination, readonly ["class", "flax.material/material#type:NavigationDestination", readonly [], false]>;
 export {};

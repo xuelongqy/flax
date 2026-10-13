@@ -207,17 +207,19 @@ void main() {
       try {
         await tester.pumpWidget(h.app('interop'));
         h.execute('''
-        var nestedEmpty = interop.CodegenNestedBox([]);
-        var nested = interop.CodegenNestedBox([new Map([['a', 2], ['nil', null]])]);
-        var nestedAgain = interop.CodegenNestedBox(nested.value);
-        var nestedHistory = interop.CodegenNestedBox(nested.value, {history: [Promise.resolve(nested.value)]});
-        var nestedRecord = interop.CodegenNestedBox(nested.value, {record: {\$1: [nested.value]}});
+        var Nested = dartType(interop.CodegenNestedBox, dartTypes.list(dartTypes.map(dartTypes.string, dartTypes.nullable(dartTypes.int))));
+        var StringBag = dartType(interop.CodegenBag, dartTypes.string);
+        var nestedEmpty = Nested([]);
+        var nested = Nested([new Map([['a', 2], ['nil', null]])]);
+        var nestedAgain = Nested(nested.value);
+        var nestedHistory = Nested(nested.value, {history: [Promise.resolve(nested.value)]});
+        var nestedRecord = Nested(nested.value, {record: {\$1: [nested.value]}});
         var historyIdentity;
         nestedHistory.history.get(0).then(value => {historyIdentity = value === nested.value;});
-        var nestedText = interop.CodegenNestedBox('text');
+        var nestedText = dartType(interop.CodegenNestedBox, dartTypes.string)('text');
         var explicitNested = interop.CodegenExplicitNestedBox([]);
-        var boundedList = interop.CodegenBoundedNestedBox(['a']);
-        var boundedSet = interop.CodegenBoundedNestedBox(new Set(['a']));
+        var boundedList = dartType(interop.CodegenBoundedNestedBox, dartTypes.list(dartTypes.string))(['a']);
+        var boundedSet = dartType(interop.CodegenBoundedNestedBox, dartTypes.set(dartTypes.string))(new Set(['a']));
       ''');
         expect(
           created
@@ -291,7 +293,7 @@ void main() {
             .singleWhere(
               (type) => type.id.endsWith('::CodegenBoundedNestedBox'),
             );
-        expect(h.calls['@memberView:${boundedBinding.id}'], 3);
+        expect(h.calls['@memberView:${boundedBinding.id}'], 1);
         expect(h.calls['@super:size'], 1);
         expect(h.calls['map'], 4);
         expect(h.calls['generic'], 4);
@@ -335,7 +337,7 @@ void main() {
         );
         h.execute('''
         var rejectedHistory;
-        var badHistory = interop.CodegenNestedBox(nested.value, {history: [Promise.resolve([2])]});
+        var badHistory = Nested(nested.value, {history: [Promise.resolve([2])]});
         badHistory.history.get(0).then(
           () => {rejectedHistory = false;},
           () => {rejectedHistory = true;}
@@ -344,18 +346,18 @@ void main() {
         await _waitFor(tester, h, 'rejectedHistory !== undefined');
         expect(h.boolean('rejectedHistory'), isTrue);
         for (final source in [
-          'interop.CodegenNestedBox([new Map([["a", 1.5]])])',
-          'interop.CodegenNestedBox([new Map([["a", "wrong"]])])',
-          'interop.CodegenNestedBox([2])',
-          'interop.CodegenNestedBox(explicitNested.value)',
-          'interop.CodegenNestedBox(true)',
-          'interop.CodegenNestedBox(null)',
-          'interop.CodegenNestedBox()',
-          'interop.CodegenNestedBox(undefined)',
+          'Nested([new Map([["a", 1.5]])])',
+          'Nested([new Map([["a", "wrong"]])])',
+          'Nested([2])',
+          'Nested(explicitNested.value)',
+          'Nested(true)',
+          'Nested(null)',
+          'Nested()',
+          'Nested(undefined)',
           'interop.CodegenExplicitNestedBox([2])',
-          'interop.CodegenNestedBox(nested.value, {history: [2]})',
-          'interop.CodegenNestedBox(nested.value, {record: {\$1: [2]}})',
-          'interop.CodegenNestedBox(nested.value, {record: {\$1: explicitNested.value}})',
+          'Nested(nested.value, {history: [2]})',
+          'Nested(nested.value, {record: {\$1: [2]}})',
+          'Nested(nested.value, {record: {\$1: explicitNested.value}})',
         ]) {
           expect(
             () => h.execute(source),
@@ -364,10 +366,10 @@ void main() {
           );
         }
         h.execute('''
-          var bagEmpty = interop.CodegenBag([]);
-          var bag = interop.CodegenBag(['a']);
+          var bagEmpty = StringBag([]);
+          var bag = StringBag(['a']);
           var bagItems = bag.items;
-          var bagAgain = interop.CodegenBag(bagItems);
+          var bagAgain = StringBag(bagItems);
           var bagIdentity = bagAgain.items === bagItems;
           bag.items = ['b'];
           var bagMapped = bag.map(value => value.toUpperCase());
@@ -392,11 +394,11 @@ void main() {
         );
         expect(h.boolean('bagFuture === "later" && badBagFuture'), isTrue);
         for (final source in [
-          'interop.CodegenBag()',
-          'interop.CodegenBag(undefined)',
-          'interop.CodegenBag(null)',
-          'interop.CodegenBag([1])',
-          'interop.CodegenBag(new Set(["a"]))',
+          'StringBag()',
+          'StringBag(undefined)',
+          'StringBag(null)',
+          'StringBag([1])',
+          'StringBag(new Set(["a"]))',
           'bag.items = [1]',
           'bag.map(() => 1)',
         ]) {

@@ -1,6 +1,7 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/widgets/_bindings/flutter_FocusNode';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Focus extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Focus";
 }
@@ -21,5 +22,5 @@ declare function _FocusFactory(options: {
     includeSemantics?: Bindable<boolean> | undefined;
     debugLabel?: Bindable<string | null> | undefined;
 }): Focus;
-export declare const Focus: typeof _FocusFactory & _FlaxInstanceType<Focus>;
+export declare const Focus: typeof _FocusFactory & _FlaxInstanceType<Focus> & _FlaxDartType<Focus, readonly ["class", "flax.core/flutter#type:Focus", readonly [], false]>;
 export {};

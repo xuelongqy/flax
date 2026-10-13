@@ -1,3 +1,7 @@
+import {
+  dartType as selectDartType,
+  dartTypes as nativeTypes,
+} from '@flax/core/bindings';
 import { signal, bind } from '@flax/core';
 import {
   Builder,
@@ -17,6 +21,8 @@ import {
 } from '@flax/flutter/services';
 import { ValueKey } from '@flax/flutter/foundation';
 import { TextField, TextInputAction } from '@flax/flutter/material';
+
+const StringKey = selectDartType(ValueKey, nativeTypes.string);
 
 const hooks = {
   mount: () => runApp(PageContent('editing')),
@@ -61,7 +67,7 @@ registerPage('editing', (params, lifecycle) => {
   return Column({
     children: [
       TextField({
-        key: ValueKey('input'),
+        key: StringKey('input'),
         controller: hooks.selected.bind,
         onChanged: hooks.changed.bind,
         onSubmitted: (text) => hooks.submissions.push(text),
@@ -72,17 +78,17 @@ registerPage('editing', (params, lifecycle) => {
       }),
       Text(
         bind(() => `Text: ${value.value.text}`),
-        { key: ValueKey('editing-text') },
+        { key: StringKey('editing-text') },
       ),
       Text(
         bind(() => {
           const v = value.value;
           return `Selection ${v.selection.baseOffset}:${v.selection.extentOffset}; composing ${v.composing.start}:${v.composing.end}`;
         }),
-        { key: ValueKey('editing-state') },
+        { key: StringKey('editing-state') },
       ),
       Builder({
-        key: ValueKey('static'),
+        key: StringKey('static'),
         builder: () => {
           hooks.staticBuilds++;
           return Text('Static editing sibling');
@@ -109,11 +115,11 @@ registerPage('shared', (_, lifecycle) => {
   lifecycle.onDispose(() => controller.dispose());
   return Column({
     children: [
-      TextField({ key: ValueKey('first-input'), controller }),
+      TextField({ key: StringKey('first-input'), controller }),
       SizedBox({
         child: bind(() =>
           hooks.show.value
-            ? TextField({ key: ValueKey('second-input'), controller })
+            ? TextField({ key: StringKey('second-input'), controller })
             : null,
         ),
       }),

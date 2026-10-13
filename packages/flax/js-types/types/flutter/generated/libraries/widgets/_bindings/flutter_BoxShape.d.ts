@@ -8,4 +8,5 @@ export declare const BoxShape: Readonly<{
     rectangle: BoxShape;
     circle: BoxShape;
     values: readonly BoxShape[];
-} & _FlaxInstanceType<BoxShape>>;
+} & _FlaxInstanceType<BoxShape> & _FlaxDartType<BoxShape, readonly ["class", "flax.core/flutter#type:BoxShape", readonly [], false]>>;
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';

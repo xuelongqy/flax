@@ -270,8 +270,8 @@ void main() {
       unorderedEquals(['String', 'int']),
     );
     expect(
-      specializations.map((value) => value.runtimeDomains['value']),
-      unorderedEquals(['string', 'number']),
+      specializations.map((value) => value.typeArgumentTypes.single.kind),
+      unorderedEquals(['String', 'int']),
     );
     expect(
       module.functions.map((function) => function.call.name),
@@ -761,22 +761,20 @@ void main() {
       );
       expect(proposed.selection, isNotNull);
       expect(proposed.selection!.typeArguments, isEmpty);
-      expect(proposed.selection!.constructors, isEmpty);
+      expect(proposed.selection!.constructors, isNotEmpty);
       expect(proposed.selection!.getters, ['value']);
       expect(
         proposed.skips
             .where((skip) => skip.target == 'Box.')
             .map((skip) => skip.reason),
-        contains(
-          'Generic constructor specialization needs a concrete use-site',
-        ),
+        isEmpty,
       );
 
       final parsed = await parser.parse(
         fixture('objects.dart', {'Box': proposed.selection!}),
       );
       expect(parsed.classes.single.typeArguments, ['Object?']);
-      expect(parsed.classes.single.constructors, isEmpty);
+      expect(parsed.classes.single.constructors, isNotEmpty);
 
       final explicit = await parser.parse(
         fixture('objects.dart', {
@@ -1446,10 +1444,10 @@ void main() {
 
       final restorable = await inspect('RestorableChangeNotifier', parse: true);
       expect(restorable.proposal.selection, isNotNull);
-      expect(restorable.proposal.selection!.constructors, isEmpty);
+      expect(restorable.proposal.selection!.constructors, isNotEmpty);
       expect(
         restorable.proposal.skips.map((skip) => skip.code),
-        contains('constructor_specialization_missing_use_site'),
+        isNot(contains('constructor_specialization_missing_use_site')),
       );
       expect(
         restorable.module!.classes
@@ -1460,10 +1458,10 @@ void main() {
 
       final observer = await inspect('RouteObserver', parse: true);
       expect(observer.proposal.selection, isNotNull);
-      expect(observer.proposal.selection!.constructors, isEmpty);
+      expect(observer.proposal.selection!.constructors, isNotEmpty);
       expect(
         observer.proposal.skips.map((skip) => skip.code),
-        contains('constructor_specialization_missing_use_site'),
+        isNot(contains('constructor_specialization_missing_use_site')),
       );
       expect(
         observer.module!.classes
@@ -1473,7 +1471,7 @@ void main() {
       );
 
       final futureBuilder = await inspect('FutureBuilder', parse: true);
-      expect(futureBuilder.proposal.selection!.constructors, isEmpty);
+      expect(futureBuilder.proposal.selection!.constructors, isNotEmpty);
       expect(futureBuilder.proposal.selection!.staticGetters, [
         'debugRethrowError',
       ]);
@@ -1486,16 +1484,20 @@ void main() {
       );
       expect(
         futureBuilder.proposal.skips.map((skip) => skip.code),
-        contains('constructor_specialization_missing_use_site'),
+        isNot(contains('constructor_specialization_missing_use_site')),
       );
 
       for (final name in ['AnnotatedRegion']) {
         final result = await inspect(name, parse: true);
         expect(result.proposal.selection, isNotNull, reason: name);
-        expect(result.proposal.selection!.constructors, isEmpty, reason: name);
+        expect(
+          result.proposal.selection!.constructors,
+          isNotEmpty,
+          reason: name,
+        );
         expect(
           result.proposal.skips.map((skip) => skip.code),
-          contains('constructor_specialization_missing_use_site'),
+          isNot(contains('constructor_specialization_missing_use_site')),
           reason: name,
         );
       }

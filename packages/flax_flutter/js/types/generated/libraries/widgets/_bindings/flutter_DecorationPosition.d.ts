@@ -8,4 +8,5 @@ export declare const DecorationPosition: Readonly<{
     background: DecorationPosition;
     foreground: DecorationPosition;
     values: readonly DecorationPosition[];
-} & _FlaxInstanceType<DecorationPosition>>;
+} & _FlaxInstanceType<DecorationPosition> & _FlaxDartType<DecorationPosition, readonly ["class", "flax.core/flutter#type:DecorationPosition", readonly [], false]>>;
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';

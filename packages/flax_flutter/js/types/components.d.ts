@@ -34,3 +34,5 @@ export declare abstract class State<T extends Widget = StatefulWidget> {
     abstract build(context: BuildContext): Widget;
     protected invokeSuper(name: string, args: readonly unknown[]): unknown;
 }
+/** Native State reference token, independent of the JS lifecycle base above. */
+export { State as DartState } from './generated/libraries/widgets/_bindings/components_State.js';

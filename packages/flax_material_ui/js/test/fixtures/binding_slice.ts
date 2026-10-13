@@ -1,3 +1,7 @@
+import {
+  dartType as selectDartType,
+  dartTypes as nativeTypes,
+} from '@flax/core/bindings';
 import { bind, signal } from '@flax/core';
 import {
   BorderRadius,
@@ -19,6 +23,8 @@ import {
   MaterialType,
 } from '@flax/flutter/material';
 
+const StringKey = selectDartType(ValueKey, nativeTypes.string);
+
 const slice = {
   flex: signal(2),
   progress: signal<number | null>(0.25),
@@ -37,7 +43,7 @@ registerPage('binding-slice', () => {
   const textStyle = TextStyle({ inherit: false, color: foreground, fontSize: 22 });
   const radius = BorderRadius.circular(8);
   return Material({
-    key: ValueKey('slice-material'),
+    key: StringKey('slice-material'),
     type: MaterialType.card,
     elevation: 2,
     color: bind(() => (slice.styled.value ? background : null)),
@@ -52,11 +58,14 @@ registerPage('binding-slice', () => {
           height: 40,
           child: Row({
             children: [
-              SizedBox({ key: ValueKey('slice-left'), width: 20, height: 20 }),
-              Spacer({ key: ValueKey('slice-default-spacer') }),
-              SizedBox({ key: ValueKey('slice-middle'), width: 20, height: 20 }),
-              Spacer({ key: ValueKey('slice-weighted-spacer'), flex: slice.flex.bind }),
-              SizedBox({ key: ValueKey('slice-right'), width: 20, height: 20 }),
+              SizedBox({ key: StringKey('slice-left'), width: 20, height: 20 }),
+              Spacer({ key: StringKey('slice-default-spacer') }),
+              SizedBox({ key: StringKey('slice-middle'), width: 20, height: 20 }),
+              Spacer({
+                key: StringKey('slice-weighted-spacer'),
+                flex: slice.flex.bind,
+              }),
+              SizedBox({ key: StringKey('slice-right'), width: 20, height: 20 }),
             ],
           }),
         }),
@@ -65,7 +74,7 @@ registerPage('binding-slice', () => {
           child: bind(() =>
             slice.showInk.value
               ? InkWell({
-                  key: ValueKey('slice-ink'),
+                  key: StringKey('slice-ink'),
                   onTap: () => {
                     slice.taps.value++;
                     slice.progress.value = 0.5;
@@ -84,7 +93,7 @@ registerPage('binding-slice', () => {
                     child: Text(
                       bind(() => `Taps ${slice.taps.value}`),
                       {
-                        key: ValueKey('slice-text'),
+                        key: StringKey('slice-text'),
                       },
                     ),
                   }),
@@ -93,7 +102,7 @@ registerPage('binding-slice', () => {
           ),
         }),
         LinearProgressIndicator({
-          key: ValueKey('slice-progress'),
+          key: StringKey('slice-progress'),
           value: slice.progress.bind,
           color: bind(() => (slice.styled.value ? foreground : null)),
           backgroundColor: bind(() => (slice.styled.value ? background : null)),

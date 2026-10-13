@@ -1,5 +1,6 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type NavigationData, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface NavigatorPopHandler<T extends unknown | null = unknown | null> extends WidgetDescription {
     readonly type: "flax.core/flutter#type:NavigatorPopHandler";
 }
@@ -11,5 +12,5 @@ declare function _NavigatorPopHandlerFactory<T extends unknown | null = unknown 
     enabled?: Bindable<boolean> | undefined;
     child: Bindable<Widget>;
 }): NavigatorPopHandler<T>;
-export declare const NavigatorPopHandler: typeof _NavigatorPopHandlerFactory & _FlaxInstanceType<NavigatorPopHandler<any>>;
+export declare const NavigatorPopHandler: typeof _NavigatorPopHandlerFactory & _FlaxInstanceType<NavigatorPopHandler<unknown | null>> & _FlaxDartType<NavigatorPopHandler<unknown | null>, readonly ["class", "flax.core/flutter#type:NavigatorPopHandler", readonly [readonly ["any", null, readonly [], true]], false]>;
 export {};

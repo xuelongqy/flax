@@ -144,20 +144,13 @@ share one reference operation; the generator adds no class-specific cast/query m
 Targets reuse authenticated generated class, enum and reference-only tokens;
 Context/State metadata includes actual Dart type checks. See
 [checked views](../../docs/architecture/objects.md#checked-views-and-dart-type-diagnostics).
-Declarations depending on a skipped runtime type are also skipped. Generic runtime
-specialization beyond observed constructor targets with disjoint input domains remains
-deferred, as does cross-barrel arbitration. Generic extension receivers that require
-concrete runtime specialization are also deferred.
-
-Observed constructor targets may contain closed nested types such as
-`Box<List<String>>`. Single targets use their full concrete input conversion. Multiple
-targets require disjoint input shapes; `List<String>` and `List<int>` need an explicit
-`typeArguments` selection. Auxiliary collections and async inputs follow the same
-target. A multi-target constructor with a callback such as `T Function()` also needs
-explicit type arguments when the shared erased callback cannot satisfy every target
-(`constructor_specialization_callback`). Compatible callbacks such as `void Function(T)`
-still use automatic dispatch. See the
-[nested constructor tests](test/nested_generic_constructors_test.dart).
+Declarations depending on a skipped runtime type are also skipped. Generic construction
+uses the shared `dartType` selector for ordinary objects and native Widget objects. The
+bare export constructs the legal shared default owner; `dartType(Export, ...)` selects
+an already compiled concrete owner. Equal JS shapes, empty collections, optional inputs
+and unused type parameters need no input guessing. Cross-barrel arbitration and concrete
+generic Extension receivers remain deferred. See the
+[Dart type selection contract](../../docs/architecture/bindings.md#dart-type-selection).
 
 Most packages need no binding YAML in automatic mode. If analyzer types cannot express a
 lifecycle or product decision, an optional `bindings/overrides.yaml` can change only the
@@ -228,63 +221,79 @@ of allowing a TypeScript type argument to select an uncompiled Dart target. Comp
 Dart-equivalent inference is not required. Callback rejection diagnostics name the
 unsupported parameter or result position, including nested callback signatures.
 
-Constructor specialization accepts closed nested arguments such as `List<String>`,
-`Map<String, List<int?>>`, nullable collections and selected nominal types. Automatic
-selection uses Analyzer-observed targets when every class type parameter occurs in a
-required input signature, including nested collections, Records, async types, nominal
-arguments and callbacks. Collection shape can distinguish a List from a scalar, Map or
-Set; `Iterable` overlaps List and Set. Two List targets with different element types
-remain ambiguous, including for empty arrays. Existing explicit selection resolves that
-choice:
+Existing analyzer-evidenced direct scalar inputs retain their bounded String/safe-int
+compiled pair. Choosing a target still requires `dartType`; input values do not select
+it.
 
-```yaml
-Box:
-  kind: object
-  typeArguments: ['List<String>']
-  constructors: { '': [value] }
-  getters: [value]
+Constructor targets come from Analyzer-observed closed uses and configured signatures,
+with bounds validated before generation. Selection is separate from business arguments:
+
+```ts
+import { dartType, dartTypes, asDart } from '@flax/core/bindings';
+
+const StringBag = dartType(Bag, dartTypes.string);
+const strings = StringBag([]); // Bag<String>
+StringBag.named({ items: [] }); // named Dart constructor/arguments
+StringBag.labeled([], { capacity: 20 }); // mixed positional/named arguments
+const NestedBag = dartType(Bag, dartTypes.list(dartTypes.string));
+NestedBag([['a'], []]); // Bag<List<String>>
+const ObjectBag = dartType(Bag, StringBag);
+ObjectBag([strings]); // Bag<Bag<String>>
+asDart(strings, StringBag); // checked view of the same Dart object
+Bag(['a', 1, null]); // shared default, normally Bag<Object?>
 ```
 
-The generated Dart factory accepts `Box([])` and `Box(['a'])`, and returns
-`Box<DartList<string>>`. It rejects `Box([1])` in strict TypeScript and at the bridge.
-Already-compatible Dart collections retain identity; an incompatible Dart reference is
-never narrowed by copying. Multiple disjoint targets reuse the existing checked erased
-collection and async adapters. No runtime type token, engine change or new configuration
-is needed. For `Bag<T>(List<T> items)` with an observed `Bag<String>` use, automatic
-generation accepts `Bag([])` or `Bag(['a'])`, returns `Bag<string>`, and checks every
-element with the existing String conversion. Its properties and methods retain that same
-concrete `T`. If both `Bag<String>` and `Bag<int>` are observed, their List inputs
-overlap and require explicit `typeArguments: [String]` or `[int]`. The String/safe-int
-pair is completed only for a direct `T` input, never for a nested `List<T>` input. Named
-enum factories expose the same closed target signatures; multiple targets retain their
-input/result correlations through overloads, including detached factory calls.
-Optional-only or missing type parameters still need explicit arguments. An extension
-type's erased representation must retain the parameter; a phantom argument such as
-`extension type Token<T>(int value)` is not inference evidence.
+These calls require the corresponding Dart class signatures and compiled targets. Type
+descriptors compose List, Map, Set, Iterable and nullability; generated class tokens
+represent their actual compiled owner. `dartTypes.int`, `.double` and `.num` preserve
+Dart identity even though all three expose TypeScript `number`. Unsupported/uncompiled
+combinations fail before construction. Passing no type selects the analyzer-validated
+bound default; it does not infer a type from array contents or from a TypeScript type
+argument. Explicit class `typeArguments` still fixes a single owner at generation time.
+When a legal bound default has no composable type description, its default construction
+and checked casts still work, and supported concrete targets remain selectable.
 
-This resolves type parameters from the declared signature and existing concrete Dart
-uses; it does not infer `T` from runtime collection contents or reify the shared Dart
-owner of an automatically selected JS proxy. See the
+Select explicitly when Dart behavior depends on the runtime type argument. For example,
+`const StringKey = dartType(ValueKey, dartTypes.string); StringKey('row')` preserves
+equality with Dart `ValueKey<String>('row')`. Bare `ValueKey('row')` constructs the
+shared `ValueKey<Object?>` owner and does not infer String from its value.
+
+The selected handle shares the original prototype and static members. Ordinary object
+factories remain callable without `new`. Configured `proxy: extends` handles support JS
+subclasses, private fields, overrides and `super`, with the selected concrete Dart
+constructor and callback conversion. Intrinsic Stream, enum, Route/Page adapter and
+State-variant construction retain their existing APIs; `dartType` does not introduce new
+constructor roles for those exports. Higher-rank callback and data-conversion boundaries
+remain checked by the ordinary converter.
+
+Type arguments use existing `DartInput<T>` conversion, so JS arrays/Maps/Sets and
+compatible native collection references retain the established behavior. An incompatible
+Dart reference cannot be narrowed by copying. Missing, extra or invalid business
+arguments, and unavailable type tokens, still fail. No engine changes or new YAML/CLI
+configuration are required. See the
+[Dart/TypeScript regression](test/dart_types_test.dart),
 [nested target regression](test/nested_generic_constructors_test.dart) and
 [nested input regression](test/nested_constructor_inputs_test.dart).
 
 Native objects in ordinary Object bindings matching these known constructor targets also
 get concrete member conversion. For `Box<T extends Iterable<String>>` with List and Set
-targets, `Box(['a']).value.get(0)` and `Box(new Set(['a'])).value.add('b')` expose the
-correct collection APIs. Writable properties accept their matching raw JS collection;
-methods, callbacks, Records and Future results retain the selected `T` as well.
-TypeScript inputs reuse `DartInput<T>` so a native List view and a JS array can both
-satisfy a List input. A `T?` constructor input does not make a non-nullable target's `T`
-members nullable. Generic callback bounds referring to the class also use that target,
-while the callback's own type parameters and independently shadowed generics remain
-distinct. Configured generic method arguments must satisfy every known constructor
-target. For `select<R extends T>`, use class-level `typeArguments` when a fixed `R` only
-fits one target; parsing rejects invalid combinations before emitting Dart calls.
-Constructor `data` annotations stay local to that input; ordinary members keep reference
-conversion and explicitly marked members keep their own data conversion. When a `data`
-annotation constrains `T` itself and its automatic target is a collection or another
-native view, select explicit class `typeArguments` to apply data conversion to the
-concrete member's Object/dynamic leaves. Invalid combinations fail during parsing.
+targets, `dartType(Box, dartTypes.list(dartTypes.string))(['a']).value.get(0)` and
+`dartType(Box, dartTypes.set(dartTypes.string))(new Set(['a'])).value.add('b')` expose
+the correct collection APIs. Writable properties accept their matching raw JS
+collection; methods, callbacks, Records and Future results retain the selected `T` as
+well. TypeScript inputs reuse `DartInput<T>` so a native List view and a JS array can
+both satisfy a List input. A `T?` constructor input does not make a non-nullable
+target's `T` members nullable. Generic callback bounds referring to the class also use
+that target, while the callback's own type parameters and independently shadowed
+generics remain distinct. Configured generic method arguments must satisfy every known
+constructor target. For `select<R extends T>`, use class-level `typeArguments` when a
+fixed `R` only fits one target; parsing rejects invalid combinations before emitting
+Dart calls. Constructor `data` annotations stay local to that input; ordinary members
+keep reference conversion and explicitly marked members keep their own data conversion.
+When a `data` annotation constrains `T` itself and its automatic target is a collection
+or another native view, select explicit class `typeArguments` to apply data conversion
+to the concrete member's Object/dynamic leaves. Invalid combinations fail during
+parsing.
 
 Only selected members whose conversion changes get private Dart metadata and call
 delegates. Known constructor targets retain their existing on-demand conversion. Closed

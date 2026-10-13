@@ -9,4 +9,5 @@ export declare const StackFit: Readonly<{
     expand: StackFit;
     passthrough: StackFit;
     values: readonly StackFit[];
-} & _FlaxInstanceType<StackFit>>;
+} & _FlaxInstanceType<StackFit> & _FlaxDartType<StackFit, readonly ["class", "flax.core/flutter#type:StackFit", readonly [], false]>>;
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';

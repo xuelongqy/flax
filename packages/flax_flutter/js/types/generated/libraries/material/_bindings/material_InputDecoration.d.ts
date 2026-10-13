@@ -5,6 +5,7 @@ import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_EdgeIns
 import '@flax/flutter/widgets/_bindings/flutter_EdgeInsetsGeometry';
 import type * as upstream2 from '@flax/flutter/services/_bindings/flutter_Color';
 import '@flax/flutter/services/_bindings/flutter_Color';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface InputDecoration extends Readonly<{
     "__flaxBound:package:material_ui/src/input_decorator.dart::InputDecoration": readonly [];
 }> {
@@ -74,5 +75,5 @@ declare function _InputDecorationFactory(options?: {
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null | undefined;
 }): InputDecoration;
-export declare const InputDecoration: typeof _InputDecorationFactory & _FlaxInstanceType<InputDecoration>;
+export declare const InputDecoration: typeof _InputDecorationFactory & _FlaxInstanceType<InputDecoration> & _FlaxDartType<InputDecoration, readonly ["class", "flax.material/material#type:InputDecoration", readonly [], false]>;
 export {};

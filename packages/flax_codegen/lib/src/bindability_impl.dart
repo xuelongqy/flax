@@ -449,6 +449,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
             ),
             selectedParameters: bound,
             concreteUses: concreteUses,
+            runtimeTypes: kind == 'object' || widget,
           );
           if (!plan.supported) {
             skip(
@@ -1106,10 +1107,101 @@ final class _ConstructorSpecializationPlan {
   final String? code;
   final Set<String> scalarParameters;
 
-  bool get supported => reason == null && targets.isNotEmpty;
+  bool get supported => reason == null;
 }
 
 _ConstructorSpecializationPlan _constructorSpecializationPlan({
+  required FlaxCodegenBindingParser parser,
+  required InterfaceElement element,
+  required ConstructorElement constructor,
+  required ConstructorElement runtimeConstructor,
+  required List<String> selectedParameters,
+  required Iterable<InterfaceType> concreteUses,
+  bool runtimeTypes = false,
+}) {
+  if (!runtimeTypes || element is EnumElement) {
+    return _legacyConstructorSpecializationPlan(
+      parser: parser,
+      element: element,
+      constructor: constructor,
+      runtimeConstructor: runtimeConstructor,
+      selectedParameters: selectedParameters,
+      concreteUses: concreteUses,
+    );
+  }
+  final targets = <_ConstructorSpecializationTarget>[];
+  final seen = <String>{};
+  for (final use in concreteUses) {
+    if (identity(use.element) != identity(element) ||
+        use.typeArguments.length != element.typeParameters.length) {
+      continue;
+    }
+    final arguments = <DartType>[];
+    final sources = <String>[];
+    for (final argument in use.typeArguments) {
+      final local = _localConcreteTypeArgument(parser, element, argument);
+      final source = local == null ? null : _typeArgumentSource(parser, local);
+      if (local == null || source == null) break;
+      arguments.add(local);
+      sources.add(source);
+    }
+    if (arguments.length != element.typeParameters.length ||
+        !seen.add(sources.join('|'))) {
+      continue;
+    }
+    try {
+      parser._checkBounds(
+        element.typeParameters,
+        arguments,
+        element.library,
+        false,
+      );
+    } on StateError catch (error) {
+      return _ConstructorSpecializationPlan(
+        const [],
+        reason: error.message.toString(),
+        code: 'constructor_specialization_invalid_bounds',
+      );
+    }
+    targets.add(
+      _ConstructorSpecializationTarget(
+        type: element.instantiate(
+          typeArguments: arguments,
+          nullabilitySuffix: NullabilitySuffix.none,
+        ),
+        typeArguments: sources,
+        runtimeDomains: const {},
+      ),
+    );
+  }
+  // Retain already-supported scalar targets; selection is explicit, never input dispatch.
+  if (element.typeParameters.length == 1 &&
+      constructor.formalParameters.any(
+        (p) =>
+            p.isRequired &&
+            selectedParameters.contains(p.name) &&
+            p.type is TypeParameterType &&
+            (p.type as TypeParameterType).element ==
+                element.typeParameters.single,
+      )) {
+    final scalarTargets = _legacyConstructorSpecializationPlan(
+      parser: parser,
+      element: element,
+      constructor: constructor,
+      runtimeConstructor: runtimeConstructor,
+      selectedParameters: selectedParameters,
+      concreteUses: concreteUses,
+    );
+    if (scalarTargets.supported) {
+      for (final target in scalarTargets.targets) {
+        if (seen.add(target.typeArguments.join('|'))) targets.add(target);
+      }
+    }
+  }
+  return _ConstructorSpecializationPlan(targets);
+}
+
+_ConstructorSpecializationPlan _legacyConstructorSpecializationPlan({
   required FlaxCodegenBindingParser parser,
   required InterfaceElement element,
   required ConstructorElement constructor,

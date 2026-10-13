@@ -1,3 +1,7 @@
+import {
+  dartType as selectDartType,
+  dartTypes as nativeTypes,
+} from '@flax/core/bindings';
 import type {} from '@flax/canvas/globals';
 import { CanvasView } from '@flax/canvas';
 import {
@@ -11,6 +15,8 @@ import {
   runApp,
 } from '@flax/flutter/widgets';
 import { ValueKey } from '@flax/flutter/foundation';
+
+const StringKey = selectDartType(ValueKey, nativeTypes.string);
 
 const canvas = new OffscreenCanvas(40, 20);
 const context = canvas.getContext('2d')!;
@@ -38,7 +44,7 @@ runApp(
     child: Column({
       children: [
         Listener({
-          key: ValueKey('left'),
+          key: StringKey('left'),
           behavior: HitTestBehavior.opaque,
           onPointerDown: (event) => {
             hooks.events.push(`down:${event.pointer}`);
@@ -54,13 +60,13 @@ runApp(
               hooks.events.push('exit');
             },
             child: CanvasView(canvas, {
-              key: ValueKey('view-a'),
+              key: StringKey('view-a'),
               width: 40,
               height: 20,
             }),
           }),
         }),
-        CanvasView(canvas, { key: ValueKey('view-b'), width: 40, height: 20 }),
+        CanvasView(canvas, { key: StringKey('view-b'), width: 40, height: 20 }),
         Text('Canvas fixture'),
       ],
     }),

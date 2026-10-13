@@ -1,4 +1,5 @@
 import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ImageFilter extends Readonly<{
     "__flaxBound:dart:ui::ImageFilter": readonly [];
 }> {
@@ -32,5 +33,5 @@ declare namespace _ImageFilterFactory {
         }>;
     }): ImageFilter;
 }
-export declare const ImageFilter: typeof _ImageFilterFactory & _FlaxInstanceType<ImageFilter>;
+export declare const ImageFilter: typeof _ImageFilterFactory & _FlaxInstanceType<ImageFilter> & _FlaxDartType<ImageFilter, readonly ["class", "flax.core/flutter#type:ImageFilter", readonly [], false]>;
 export {};

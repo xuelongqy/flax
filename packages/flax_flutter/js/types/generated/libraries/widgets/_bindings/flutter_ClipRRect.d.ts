@@ -3,6 +3,7 @@ import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/widgets/_bindings/flutter_BorderRadiusGeometry';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_Clip';
 import '@flax/flutter/widgets/_bindings/flutter_Clip';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ClipRRect extends WidgetDescription {
     readonly type: "flax.core/flutter#type:ClipRRect";
 }
@@ -16,5 +17,5 @@ declare function _ClipRRectFactory(options?: {
     clipBehavior?: Bindable<upstream2.Clip> | undefined;
     child?: Bindable<Widget | null> | undefined;
 }): ClipRRect;
-export declare const ClipRRect: typeof _ClipRRectFactory & _FlaxInstanceType<ClipRRect>;
+export declare const ClipRRect: typeof _ClipRRectFactory & _FlaxInstanceType<ClipRRect> & _FlaxDartType<ClipRRect, readonly ["class", "flax.core/flutter#type:ClipRRect", readonly [], false]>;
 export {};

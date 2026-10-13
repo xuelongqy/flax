@@ -11,4 +11,5 @@ export declare const MaterialType: Readonly<{
     button: MaterialType;
     transparency: MaterialType;
     values: readonly MaterialType[];
-} & _FlaxInstanceType<MaterialType>>;
+} & _FlaxInstanceType<MaterialType> & _FlaxDartType<MaterialType, readonly ["class", "flax.material/material#type:MaterialType", readonly [], false]>>;
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';

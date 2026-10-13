@@ -1,5 +1,6 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface AspectRatio extends WidgetDescription {
     readonly type: "flax.core/flutter#type:AspectRatio";
 }
@@ -10,5 +11,5 @@ declare function _AspectRatioFactory(options: {
     aspectRatio: Bindable<number>;
     child?: Bindable<Widget | null> | undefined;
 }): AspectRatio;
-export declare const AspectRatio: typeof _AspectRatioFactory & _FlaxInstanceType<AspectRatio>;
+export declare const AspectRatio: typeof _AspectRatioFactory & _FlaxInstanceType<AspectRatio> & _FlaxDartType<AspectRatio, readonly ["class", "flax.core/flutter#type:AspectRatio", readonly [], false]>;
 export {};

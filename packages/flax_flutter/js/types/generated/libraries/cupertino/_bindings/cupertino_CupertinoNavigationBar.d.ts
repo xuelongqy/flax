@@ -3,6 +3,7 @@ import type * as upstream0 from '@flax/flutter/cupertino/_bindings/cupertino_Obs
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/widgets/_bindings/flutter_Border';
 import '@flax/flutter/services/_bindings/flutter_Color';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export type CupertinoNavigationBar = WidgetDescription & {
     readonly type: "flax.cupertino/cupertino#type:CupertinoNavigationBar";
 } & upstream0.ObstructingPreferredSizeWidget;
@@ -22,5 +23,5 @@ declare function _CupertinoNavigationBarFactory(options?: {
     }> | null | undefined;
     transitionBetweenRoutes?: boolean | undefined;
 }): CupertinoNavigationBar;
-export declare const CupertinoNavigationBar: typeof _CupertinoNavigationBarFactory & _FlaxInstanceType<CupertinoNavigationBar>;
+export declare const CupertinoNavigationBar: typeof _CupertinoNavigationBarFactory & _FlaxInstanceType<CupertinoNavigationBar> & _FlaxDartType<CupertinoNavigationBar, readonly ["class", "flax.cupertino/cupertino#type:CupertinoNavigationBar", readonly [], false]>;
 export {};

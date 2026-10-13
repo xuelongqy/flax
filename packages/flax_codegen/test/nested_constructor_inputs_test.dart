@@ -88,7 +88,7 @@ void main() {
 void main() {
   test('nested inputs retain closed Dart types, identity and member views', () async {
     final items = <String>[];
-    final bag = _createBag('', {'items': items}) as api.Bag<String>;
+    final bag = createTypedFixture(nested_inputsBindings, 'Bag', [['String', null, <Object?>[], false]], '', {'items': items}) as api.Bag<String>;
     expect(identical(bag.items, items), isTrue);
     final view = __BagMemberView(bag)!;
     expect(view.getters['items']!.type.item!.kind, 'String');
@@ -97,39 +97,44 @@ void main() {
     expect(view.instanceMethods['first']!.invoke(bag, {}), 'a');
     expect(view.instanceMethods['map']!.invoke(bag, {'callback': (String value) => value.toUpperCase()}), ['A']);
     expect(() => view.setters['items']!.write(bag, <int>[1]), throwsA(isA<TypeError>()));
-    expect(() => _createBag('', {'items': <int>[]}), throwsA(isA<TypeError>()));
-    expect((_createBag('fromSet', {'items': <String>{'set'}}) as api.Bag<String>).first(), 'set');
-    expect((_createBag('fromRecord', {'input': (<String>['record'], value: null)}) as api.Bag<String>).first(), 'record');
-    expect((_createBag('fromCallback', {'build': () => <String>['callback']}) as api.Bag<String>).first(), 'callback');
+    expect(() => createTypedFixture(nested_inputsBindings, 'Bag', [['String', null, <Object?>[], false]], '', {'items': <int>[]}), throwsA(isA<TypeError>()));
+    expect((createTypedFixture(nested_inputsBindings, 'Bag', [['String', null, <Object?>[], false]], 'fromSet', {'items': <String>{'set'}}) as api.Bag<String>).first(), 'set');
+    expect((createTypedFixture(nested_inputsBindings, 'Bag', [['String', null, <Object?>[], false]], 'fromRecord', {'input': (<String>['record'], value: null)}) as api.Bag<String>).first(), 'record');
+    expect((createTypedFixture(nested_inputsBindings, 'Bag', [['String', null, <Object?>[], false]], 'fromCallback', {'build': () => <String>['callback']}) as api.Bag<String>).first(), 'callback');
     final envelope = api.Envelope<List<String>>(items);
-    expect(identical((_createBag('fromEnvelope', {'input': envelope}) as api.Bag<String>).items, items), isTrue);
+    expect(identical((createTypedFixture(nested_inputsBindings, 'Bag', [['String', null, <Object?>[], false]], 'fromEnvelope', {'input': envelope}) as api.Bag<String>).items, items), isTrue);
     final future = Future<List<String>>.value(['future']);
-    final later = _createBag('fromFuture', {'pending': future}) as api.Bag<String>;
+    final later = createTypedFixture(nested_inputsBindings, 'Bag', [['String', null, <Object?>[], false]], 'fromFuture', {'pending': future}) as api.Bag<String>;
     expect(identical(later.pending, future), isTrue);
     expect(await later.pending, ['future']);
     void visit<R extends String>(R value) {}
-    expect(_createBag('fromGeneric', {'visit': visit}), isA<api.Bag<String>>());
-    final nullable = _createNullableBag('', {'items': <String?>[null, 'value']}) as api.NullableBag<String>;
+    expect(createTypedFixture(nested_inputsBindings, 'Bag', [['String', null, <Object?>[], false]], 'fromGeneric', {'visit': visit}), isA<api.Bag<String>>());
+    final nullable = createTypedFixture(nested_inputsBindings, 'NullableBag', [['String', null, <Object?>[], false]], '', {'items': <String?>[null, 'value']}) as api.NullableBag<String>;
     final nullableView = __NullableBagMemberView(nullable)!;
     expect(nullableView.getters['items']!.type.nullable, isTrue);
     expect(nullableView.getters['items']!.type.item!.nullable, isTrue);
     expect(nullableView.instanceMethods['first']!.result.nullable, isFalse);
-    expect(_createNullableBag('', {'items': null}), isA<api.NullableBag<String>>());
+    expect(createTypedFixture(nested_inputsBindings, 'NullableBag', [['String', null, <Object?>[], false]], '', {'items': null}), isA<api.NullableBag<String>>());
     final values = <String, List<int?>>{'one': [null, 1]};
-    final pair = _createPairBag('', {'items': values}) as api.PairBag<String, int>;
+    final pair = createTypedFixture(nested_inputsBindings, 'PairBag', [['String', null, <Object?>[], false], ['int', null, <Object?>[], false]], '', {'items': values}) as api.PairBag<String, int>;
     expect(identical(pair.items, values), isTrue);
     expect(pair.first('one'), 1);
-    expect(() => _createPairBag('', {'items': <int, List<int?>>{1: [2]}}), throwsA(isA<TypeError>()));
-    expect(_createCorrelatedBag('', {'tag': 'a', 'items': <String>['b']}), isA<api.CorrelatedBag<String>>());
-    expect(_createCorrelatedBag('', {'tag': 1, 'items': <int>[2]}), isA<api.CorrelatedBag<int>>());
-    expect(() => _createCorrelatedBag('', {'tag': 1, 'items': <String>['bad']}), throwsArgumentError);
-    expect((_createTokenBag('', {'items': <String>['token']}) as api.TokenBag<String>).items, ['token']);
+    expect(() => createTypedFixture(nested_inputsBindings, 'PairBag', [['String', null, <Object?>[], false], ['int', null, <Object?>[], false]], '', {'items': <int, List<int?>>{1: [2]}}), throwsA(isA<TypeError>()));
+    expect(createTypedFixture(nested_inputsBindings, 'CorrelatedBag', [['String', null, <Object?>[], false]], '', {'tag': 'a', 'items': <String>['b']}), isA<api.CorrelatedBag<String>>());
+    expect(createTypedFixture(nested_inputsBindings, 'CorrelatedBag', [['int', null, <Object?>[], false]], '', {'tag': 1, 'items': <int>[2]}), isA<api.CorrelatedBag<int>>());
+    expect(() => createTypedFixture(nested_inputsBindings, 'CorrelatedBag', [['int', null, <Object?>[], false]], '', {'tag': 1, 'items': <String>['bad']}), throwsA(isA<TypeError>()));
+    expect((createTypedFixture(nested_inputsBindings, 'TokenBag', [['String', null, <Object?>[], false]], '', {'items': <String>['token']}) as api.TokenBag<String>).items, ['token']);
   });
 }
 ''',
         consumerSource: '''
-import { Bag, Envelope, NullableBag, PairBag, CorrelatedBag, TokenBag } from './plugin.js';
-const bag: Bag<string> = Bag([]);
+import { Bag as BagBase, Envelope, NullableBag as NullableBase, PairBag as PairBase, CorrelatedBag, TokenBag as TokenBase } from './plugin.js';
+import { dartType, dartTypes } from '@flax/core/bindings';
+const Bag = dartType(BagBase, dartTypes.string);
+const NullableBag = dartType(NullableBase, dartTypes.string);
+const PairBag = dartType(PairBase, dartTypes.string, dartTypes.int);
+const TokenBag = dartType(TokenBase, dartTypes.string);
+const bag = Bag([]);
 bag.items = ['a'];
 const first: string = bag.first();
 const mapped: string = bag.map(value => value.toUpperCase()).get(0);
@@ -137,18 +142,18 @@ Bag.fromSet(new Set(['a']));
 Bag.fromRecord({\$1: ['a'], value: null});
 Bag.fromFuture(Promise.resolve(['a']));
 Bag.fromCallback(() => ['a']);
-Bag.fromEnvelope(Envelope(['a']));
+Bag.fromEnvelope(dartType(Envelope, dartTypes.list(dartTypes.string))(['a']));
 Bag.fromGeneric(value => {});
-const nullable: NullableBag<string> = NullableBag([null, 'a']);
+const nullable = NullableBag([null, 'a']);
 const required: string = nullable.first();
 NullableBag(null);
-const pairs: PairBag<string, number> = PairBag(new Map([['a', [null, 1]]]));
+const pairs = PairBag(new Map([['a', [null, 1]]]));
 const number: number = pairs.first('a');
-const text: string = CorrelatedBag('a', ['b']).items.get(0);
-const integer: number = CorrelatedBag(1, [2]).items.get(0);
+const text: string = dartType(CorrelatedBag, dartTypes.string)('a', ['b']).items.get(0);
+const integer: number = dartType(CorrelatedBag, dartTypes.int)(1, [2]).items.get(0);
 const token: string = TokenBag(['token']).items.get(0);
 // @ts-expect-error both inputs must use the same compiled target
-CorrelatedBag('a', [1]);
+dartType(CorrelatedBag, dartTypes.string)('a', [1]);
 // @ts-expect-error a union does not select a concrete Dart specialization
 CorrelatedBag<string | number>('a', [1]);
 // @ts-expect-error the observed Bag<String> target cannot be selected by JS type arguments
@@ -176,34 +181,24 @@ PairBag(new Map([[1, [2]]]));
         'PhantomBag',
         'PhantomTokenBag',
       ]) {
-        expect(proposal.config.classes[name]!.constructors, isEmpty);
+        expect(proposal.config.classes[name]!.constructors, isNotEmpty);
         expect(
-          proposal.skips.any(
-            (skip) =>
-                skip.target == '$name.' &&
-                skip.code ==
-                    (name == 'AmbiguousBag'
-                        ? 'constructor_specialization_ambiguous'
-                        : 'constructor_specialization_missing_use_site'),
-          ),
-          isTrue,
+          proposal.skips.where((skip) => skip.target == '$name.'),
+          isEmpty,
         );
       }
-      await expectLater(
-        parser.parse(
-          config({
-            'AmbiguousBag': const FlaxCodegenClassSelection({
-              '': ['items'],
-            }, kind: 'object'),
-          }),
-        ),
-        throwsA(
-          isA<StateError>().having(
-            (e) => e.message,
-            'message',
-            contains('overlapping'),
-          ),
-        ),
+      final defaults = await parser.parse(
+        config({
+          'AmbiguousBag': const FlaxCodegenClassSelection({
+            '': ['items'],
+          }, kind: 'object'),
+        }),
+      );
+      await compileFixture(
+        root.path,
+        FlaxCodegenBindingEmitter([defaults]),
+        defaults,
+        consumerSource: "import { AmbiguousBag } from './plugin.js'; AmbiguousBag([]); AmbiguousBag(['a', 1, null]);",
       );
       final explicit = await parser.parse(
         config({

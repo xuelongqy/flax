@@ -520,6 +520,20 @@ class FlaxCodegenParameterModel {
   final bool omitWhenAbsent;
   final bool independentWidgetResult;
 
+  FlaxCodegenParameterModel withType(FlaxCodegenTypeRef value) =>
+      FlaxCodegenParameterModel(
+        name: name,
+        type: value,
+        required: required,
+        positional: positional,
+        defaultCode: defaultCode,
+        omitWhenAbsent: omitWhenAbsent,
+        independentWidgetResult: independentWidgetResult,
+        snapshot: snapshot,
+        encodeKind: encodeKind,
+        scoped: scoped,
+      );
+
   FlaxCodegenParameterModel specialize(
     Map<Object?, FlaxCodegenTypeRef> substitutions,
   ) => _specializeParameter(this, substitutions);
@@ -529,11 +543,13 @@ class FlaxCodegenConstructorSpecializationModel {
   const FlaxCodegenConstructorSpecializationModel({
     required this.typeArguments,
     required this.parameterTypes,
+    this.typeArgumentTypes = const [],
     this.runtimeDomains = const {},
   });
 
   final List<String> typeArguments;
   final List<FlaxCodegenTypeRef> parameterTypes;
+  final List<FlaxCodegenTypeRef> typeArgumentTypes;
 
   /// JavaScript-observable runtime domains used only to select among multiple
   /// concrete Dart generic constructor targets.
@@ -545,10 +561,14 @@ class FlaxCodegenConstructorModel {
     this.name,
     this.parameters, {
     this.specializations = const [],
+    this.runtimeParameterTypes = const [],
   });
   final String name;
   final List<FlaxCodegenParameterModel> parameters;
   final List<FlaxCodegenConstructorSpecializationModel> specializations;
+
+  /// Analyzer-resolved inputs of the shared default owner, without open declarations.
+  final List<FlaxCodegenTypeRef> runtimeParameterTypes;
 }
 
 class FlaxCodegenStateMixinModel {
@@ -972,22 +992,13 @@ FlaxCodegenParameterModel _specializeParameter(
   FlaxCodegenParameterModel parameter,
   Map<Object?, FlaxCodegenTypeRef> substitutions, [
   FlaxCodegenTypeRef? declaration,
-]) => FlaxCodegenParameterModel(
-  name: parameter.name,
-  type: _specializeType(
+]) => parameter.withType(
+  _specializeType(
     declaration == null
         ? parameter.type
         : parameter.type.declaredAs(declaration),
     substitutions,
   ),
-  required: parameter.required,
-  positional: parameter.positional,
-  defaultCode: parameter.defaultCode,
-  omitWhenAbsent: parameter.omitWhenAbsent,
-  independentWidgetResult: parameter.independentWidgetResult,
-  snapshot: parameter.snapshot,
-  encodeKind: parameter.encodeKind,
-  scoped: parameter.scoped,
 );
 
 FlaxCodegenTypeRef _withDataConversion(FlaxCodegenTypeRef type, bool enabled) {
@@ -1353,6 +1364,15 @@ class FlaxCodegenModuleModel {
   /// Sorted unique capability literals. Protocol 21 is empty.
   final List<String> _requiredCapabilities;
   List<String> get requiredCapabilities {
+    final dartTypes = classes.any(
+      (type) =>
+          type.typeParameters.isNotEmpty &&
+          (type.kind == 'object' ||
+              type.kind == 'widget' &&
+                  (type.proxy != null ||
+                      type.getters.isNotEmpty ||
+                      type.methods.any((m) => m.instance))),
+    );
     final sharedBytes = typeLibraries['Uint8List'] == 'dart:typed_data';
     final sharedBuffers = flaxCodegenBufferTypes.keys.any(
       (name) => name != 'Uint8List' && typeLibraries[name] == 'dart:typed_data',
@@ -1364,11 +1384,16 @@ class FlaxCodegenModuleModel {
       'RegExp',
       'Pattern',
     ].any((name) => typeLibraries[name] == 'dart:core');
-    if (!sharedBytes && !sharedBuffers && !nativeBigInt && !nativeCoreInputs) {
+    if (!dartTypes &&
+        !sharedBytes &&
+        !sharedBuffers &&
+        !nativeBigInt &&
+        !nativeCoreInputs) {
       return _requiredCapabilities;
     }
     return ({
       ..._requiredCapabilities,
+      if (dartTypes) 'dart-type-tokens',
       if (sharedBytes) 'shared-uint8',
       if (sharedBuffers) 'shared-buffers',
       if (nativeBigInt) 'native-bigint',
@@ -1661,6 +1686,20 @@ class FlaxCodegenModuleModel {
             !flaxCodegenIsExportName(constructor.name)) {
           throw StateError(
             'Expected a named public enum factory: ${type.name}.${constructor.name}',
+          );
+        }
+        if (constructor.runtimeParameterTypes.isNotEmpty &&
+            constructor.runtimeParameterTypes.length !=
+                constructor.parameters.length) {
+          throw StateError(
+            'Constructor runtime parameter count mismatch: ${type.name}.${constructor.name}',
+          );
+        }
+        for (final input in constructor.runtimeParameterTypes) {
+          input.validate('${type.name}.${constructor.name} runtime input');
+          input.validateCallbacks(
+            '${type.name}.${constructor.name} runtime input',
+            input: true,
           );
         }
         for (final parameter in constructor.parameters) {

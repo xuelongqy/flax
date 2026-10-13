@@ -1,6 +1,7 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/material/_bindings/material_ButtonStyle';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface FilledButton extends WidgetDescription {
     readonly type: "flax.material/material#type:FilledButton";
 }
@@ -26,5 +27,5 @@ declare namespace _FilledButtonFactory {
         child: Bindable<Widget | null>;
     }): FilledButton;
 }
-export declare const FilledButton: typeof _FilledButtonFactory & _FlaxInstanceType<FilledButton>;
+export declare const FilledButton: typeof _FilledButtonFactory & _FlaxInstanceType<FilledButton> & _FlaxDartType<FilledButton, readonly ["class", "flax.material/material#type:FilledButton", readonly [], false]>;
 export {};

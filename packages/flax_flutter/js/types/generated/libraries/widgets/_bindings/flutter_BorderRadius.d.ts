@@ -3,6 +3,7 @@ import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_BorderR
 import '@flax/flutter/widgets/_bindings/flutter_BorderRadiusGeometry';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_Radius';
 import '@flax/flutter/widgets/_bindings/flutter_Radius';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface BorderRadius extends upstream0.BorderRadiusGeometry, Readonly<{
     "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadius": readonly [];
 }> {
@@ -53,5 +54,5 @@ declare namespace _BorderRadiusFactory {
 declare namespace _BorderRadiusFactory {
     const zero: BorderRadius;
 }
-export declare const BorderRadius: typeof _BorderRadiusFactory & _FlaxInstanceType<BorderRadius>;
+export declare const BorderRadius: typeof _BorderRadiusFactory & _FlaxInstanceType<BorderRadius> & _FlaxDartType<BorderRadius, readonly ["class", "flax.core/flutter#type:BorderRadius", readonly [], false]>;
 export {};

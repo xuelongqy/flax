@@ -5,6 +5,7 @@ import '@flax/flutter/widgets/_bindings/flutter_NavigatorObserver';
 import '@flax/flutter/material/_bindings/material_ThemeData';
 import type * as upstream3 from '@flax/flutter/material/_bindings/material_ThemeMode';
 import '@flax/flutter/material/_bindings/material_ThemeMode';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface MaterialApp extends WidgetDescription {
     readonly type: "flax.material/material#type:MaterialApp";
 }
@@ -26,5 +27,5 @@ declare function _MaterialAppFactory(options?: {
     themeMode?: Bindable<upstream3.ThemeMode | null> | undefined;
     debugShowCheckedModeBanner?: Bindable<boolean> | undefined;
 }): MaterialApp;
-export declare const MaterialApp: typeof _MaterialAppFactory & _FlaxInstanceType<MaterialApp>;
+export declare const MaterialApp: typeof _MaterialAppFactory & _FlaxInstanceType<MaterialApp> & _FlaxDartType<MaterialApp, readonly ["class", "flax.material/material#type:MaterialApp", readonly [], false]>;
 export {};

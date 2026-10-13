@@ -1,3 +1,7 @@
+import {
+  dartType as selectDartType,
+  dartTypes as nativeTypes,
+} from '@flax/core/bindings';
 import { signal, bind } from '@flax/core';
 import {
   Builder,
@@ -14,6 +18,8 @@ import {
 } from '@flax/flutter/widgets';
 import { ValueKey } from '@flax/flutter/foundation';
 import { MaterialPageRoute, TextButton } from '@flax/flutter/material';
+
+const StringKey = selectDartType(ValueKey, nativeTypes.string);
 
 const rootCount = signal(0);
 const result = signal<NavigationData>(null);
@@ -65,7 +71,7 @@ function route(name: string, maintainState = true) {
             Text(name),
             Text(
               bind(() => `Detail count ${count.value}`),
-              { key: ValueKey('detail-count') },
+              { key: StringKey('detail-count') },
             ),
             TextButton({
               onPressed: () => count.value++,

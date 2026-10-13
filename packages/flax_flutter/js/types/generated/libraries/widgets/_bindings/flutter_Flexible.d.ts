@@ -2,6 +2,7 @@ import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget,
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_FlexFit';
 import '@flax/flutter/widgets/_bindings/flutter_FlexFit';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Flexible extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Flexible";
 }
@@ -13,5 +14,5 @@ declare function _FlexibleFactory(options: {
     fit?: Bindable<upstream1.FlexFit> | undefined;
     child: Bindable<Widget>;
 }): Flexible;
-export declare const Flexible: typeof _FlexibleFactory & _FlaxInstanceType<Flexible>;
+export declare const Flexible: typeof _FlexibleFactory & _FlaxInstanceType<Flexible> & _FlaxDartType<Flexible, readonly ["class", "flax.core/flutter#type:Flexible", readonly [], false]>;
 export {};

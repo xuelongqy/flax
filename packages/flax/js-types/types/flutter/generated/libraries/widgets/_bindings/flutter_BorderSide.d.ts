@@ -3,6 +3,7 @@ import type * as upstream0 from '@flax/flutter/services/_bindings/flutter_Color'
 import '@flax/flutter/services/_bindings/flutter_Color';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_BorderStyle';
 import '@flax/flutter/widgets/_bindings/flutter_BorderStyle';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface BorderSide extends Readonly<{
     "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [];
 }>, Readonly<{
@@ -42,5 +43,5 @@ declare namespace _BorderSideFactory {
 declare namespace _BorderSideFactory {
     const strokeAlignOutside: number;
 }
-export declare const BorderSide: typeof _BorderSideFactory & _FlaxInstanceType<BorderSide>;
+export declare const BorderSide: typeof _BorderSideFactory & _FlaxInstanceType<BorderSide> & _FlaxDartType<BorderSide, readonly ["class", "flax.core/flutter#type:BorderSide", readonly [], false]>;
 export {};

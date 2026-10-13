@@ -5,6 +5,7 @@ import '@flax/flutter/widgets/_bindings/flutter_AlignmentGeometry';
 import '@flax/flutter/services/_bindings/flutter_Color';
 import '@flax/flutter/widgets/_bindings/flutter_FocusNode';
 import '@flax/flutter/material/_bindings/material_ButtonStyle';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface IconButton extends WidgetDescription {
     readonly type: "flax.material/material#type:IconButton";
 }
@@ -134,5 +135,5 @@ declare namespace _IconButtonFactory {
         icon: Bindable<Widget>;
     }): IconButton;
 }
-export declare const IconButton: typeof _IconButtonFactory & _FlaxInstanceType<IconButton>;
+export declare const IconButton: typeof _IconButtonFactory & _FlaxInstanceType<IconButton> & _FlaxDartType<IconButton, readonly ["class", "flax.material/material#type:IconButton", readonly [], false]>;
 export {};

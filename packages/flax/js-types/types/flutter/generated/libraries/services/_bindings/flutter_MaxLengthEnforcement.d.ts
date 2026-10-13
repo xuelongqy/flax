@@ -9,4 +9,5 @@ export declare const MaxLengthEnforcement: Readonly<{
     enforced: MaxLengthEnforcement;
     truncateAfterCompositionEnds: MaxLengthEnforcement;
     values: readonly MaxLengthEnforcement[];
-} & _FlaxInstanceType<MaxLengthEnforcement>>;
+} & _FlaxInstanceType<MaxLengthEnforcement> & _FlaxDartType<MaxLengthEnforcement, readonly ["class", "flax.core/flutter#type:MaxLengthEnforcement", readonly [], false]>>;
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';

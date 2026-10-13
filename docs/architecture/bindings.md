@@ -141,14 +141,13 @@ including computed getters, non-virtual methods and final classes. A factory wit
 instance API creates a fixed real Dart Widget; a constructorless declaration exposes
 only references returned by Dart. No proxy subclass or new GC owner is generated for
 these calls. Reactive descriptions remain available for rendering-only selections and
-the factory side of explicitly selected Widget proxies. JS inheritance and native
-lifecycle overrides still require the existing explicit `proxy: extends` selection.
-Getter reads stay live; warm calls reuse the existing cached operation slot. Generic
-Widget references preserve selected native parent types and their TypeScript arguments
-through the common reference projection. Known constructor specializations reuse the
-ordinary on-demand member view so returned List/Set values keep their concrete APIs.
-Unsupported public dependencies are skipped without retaining incomplete type-cache
-entries.
+the bare factory side of configured Widget proxies. JS inheritance and native lifecycle
+overrides still require the existing explicit `proxy: extends` selection. Getter reads
+stay live; warm calls reuse the existing cached operation slot. Generic Widget
+references preserve selected native parent types and their TypeScript arguments through
+the common reference projection. Known constructor specializations reuse the ordinary
+on-demand member view so returned List/Set values keep their concrete APIs. Unsupported
+public dependencies are skipped without retaining incomplete type-cache entries.
 
 The
 [automatic generation test](../../packages/flax_codegen/test/widget_members_test.dart)
@@ -704,62 +703,80 @@ parameters. An unconstrained owner uses `Object?`; a simple upper bound such as 
 used when required. Existing Dart values such as `Box<String>` and `Box<int>` therefore
 share one owner without losing their TypeScript relationships.
 
-Constructors are emitted only when every class type parameter occurs in a selected
-required input signature. This includes nested collections, Records, async values,
-nominal arguments and callback signatures, using the existing recursive TypeRef rules.
-Concrete targets normally come from Analyzer-observed use sites. For one direct scalar
-parameter, evidence for either `String` or `int` completes the pair when both satisfy
-the Dart bound; the runtime input remains restricted to strings and safe integers.
-Multiple targets must have disjoint bridge domains. Overlapping targets such as `num`
-and `int`, inference from runtime collection contents, unresolved type parameters,
-invalid bounds and runtime type-token requirements fail closed or leave the shared owner
-non-constructible. `typeArguments` and `methodTypeArguments` remain for concrete cases
-that cannot be inferred safely.
+### Dart type selection
 
-Closed targets may themselves contain nested supported arguments, for example
-`Box<List<String>>` or `Box<Map<String, List<int?>>>`. Parsing and bound validation
-recurse through the entire configured or observed argument. A List can be distinguished
-from a scalar, Map or Set without examining its elements; Iterable overlaps List and
-Set. `Box<List<String>>` and `Box<List<int>>` therefore cannot share an automatic
-construction entry, even for nonempty input. Select one with
-`typeArguments: ['List<String>']` when that is the intended API. Missing targets,
-invalid arity and unresolved nested types still fail closed. Nested Stream arguments
-require the ordinary selected Stream owner. When a shared `Iterable` bound decodes a raw
-JS Set into a typed List copy, constructor dispatch uses its original weakly recorded
-shape. Native List/Set references use their actual Dart shape; no collection elements
-are inspected to choose a target.
+Ordinary generic objects and native Widget objects separate the Dart type from business
+arguments. `dartType(Export, ...types)` returns a cached handle for one compiled owner:
 
-For `Bag<T>(List<T> items)`, one observed `Bag<String>` use closes the constructor's
-List conversion and its generic result to `Bag<string>`. Empty arrays are valid and
-numeric elements are rejected by the ordinary converter. Type parameters inside
-`Map<K, List<V?>>`, `Future<List<T>>` or a callback result follow the same signature
-matching; nullability on a `T?` leaf does not change the selected `T`. Simultaneously
-observed `Bag<String>` and `Bag<int>` uses remain ambiguous because both accept the same
-JS array shape. Optional-only or missing generic inputs are not inferred. The
-String/safe-int completion applies only to direct `T` inputs and never creates an
-unobserved nested target. Named enum factories also expose only their compiled targets
-and keep multi-input correlations through overloads. Extension types reuse their
-representation conversion. A parameter erased out of that representation, such as
-`Token<T>` represented by `int`, is not inference evidence and still needs explicit
-class arguments.
+```ts
+const StringBag = dartType(Bag, dartTypes.string);
+StringBag([]); // Bag<String>
+StringBag.named({ items: [] }); // Dart named constructor
+StringBag.labeled([], { capacity: 20 }); // ordinary argument layout unchanged
+const NestedBag = dartType(
+  Bag,
+  dartTypes.map(dartTypes.string, dartTypes.list(dartTypes.nullable(dartTypes.int))),
+);
+NestedBag([new Map([['items', [1, null]]])]); // Bag<Map<String, List<int?>>>
+const Bags = dartType(Bag, StringBag);
+Bags([StringBag.empty()]); // nested nominal generic
+asDart(existingBag, StringBag); // checked view, never constructs/copies
+```
 
-Specialized Dart factory functions expose the actual concrete TypeScript signature. A
-single target accepts only its supported input conversion and returns its closed generic
-type; multiple collection/scalar targets use overloads. Raw JS collections reaching a
-shared erased input reuse the checked collection reconstruction used by Stream adapters,
-including numeric validation and nested async adapters. Correctly typed Dart references
-retain identity; incompatible native collections cannot acquire a narrower type through
-copying. Other constructor inputs such as `List<Future<T>>` use the same selected
-concrete target. Erased Records restore each field through the same checked conversion;
-they cannot narrow incompatible native collection fields. A nullable `T?` input does not
-change a selected non-nullable `T`. Multiple targets share callback conversion before
-dispatch. When that erased callback is not assignable to every selected target,
-generation requires explicit `typeArguments` and automatic selection reports
-`constructor_specialization_callback`. For example, `T Function()` needs a concrete
-target, including inside collections or async inputs; a compatible `void Function(T)`
-remains supported without one. A single target already uses its concrete callback
-conversion. Automatic JS proxies retain their existing shared owner and inheritance
-rules.
+The examples require those constructors and closed targets in the Dart API. When all
+type arguments are omitted, the shared analyzer-validated bound defaults apply, commonly
+`Object?`; `dartType(Bag)` is the bare export. Array contents, JS input shapes and TS
+`<T>` syntax never choose the Dart instantiation. Optional-only inputs, empty/named
+constructors and type parameters absent from inputs therefore follow the same rule.
+Provide the complete type-argument tuple when selecting a concrete target. Omitted
+arguments authenticate the generated class independently of its optional type
+description, so a supported `T extends List<BigInt>` constructor and its checked cast
+retain their legal defaults even without a composable type token. An unavailable default
+description does not disable supported concrete targets; a bound such as
+`Iterable<BigInt>` can still select an already compiled bound collection subclass.
+
+`dartTypes` supplies String, bool, int, double, num, Object and Object? tokens, with
+List, Map, Set, Iterable and nullable composition. Generated class tokens include their
+actual compiled default arguments when those defaults have supported descriptions,
+including reference-only Context/State and Route/Stream owners. A selected object handle
+is also a nominal token for nesting or `asDart`. Type descriptors are authenticated by a
+shared WeakMap; a user-created object with matching properties is not a type token.
+Descriptor phantom keys preserve numeric and nominal identities during TS selection as
+well as at runtime, even when numeric value types are all `number`. `DartState` from
+`@flax/flutter/widgets` supplies the native State reference token; the JS component
+`State` base remains its lifecycle API. Explicitly selected native Widget proxy
+factories return real native objects, so their handles expose a concrete constructible
+type instead of a union with deferred descriptions.
+
+Existing analyzer-evidenced direct scalar inputs retain their bounded String/safe-int
+compiled pair. Choosing a target still requires `dartType`; input values do not select
+it.
+
+Concrete entries are discovered from analyzer uses, constructor targets and supported
+closed signatures. Only finite, compiled combinations can be selected; unsupported
+combinations reject before any Dart construction. This is not runtime reflection or
+arbitrary AOT generic instantiation. Existing configured `typeArguments` keeps its
+single-owner semantics. Callback/function, Record and arbitrary union type descriptors
+are not composition APIs. Intrinsic Stream, enhanced enum, Route/Page adapter and
+State-variant factories retain their existing construction rules rather than acquiring
+new generic constructor roles.
+
+The generator retains both open declaration types and analyzer-resolved default input
+types. Closed targets use structured type arguments and the same recursive member,
+callback, collection and async conversion. This preserves callback-local generic scopes,
+Dart defaults and extension-type representations without reconstructing types from JS
+values. Manifest 18 carries those additive fields and `dart-type-tokens` rejects older
+runtimes. Selection format 2, UI protocol 24 and native ABI 2 are unchanged.
+
+Each concrete entry uses a module-qualified private binding ID; original declaration IDs
+remain unchanged. Native metadata identifies its public owner through `aliasOf`.
+Automatic subtype/erased Object discovery excludes private aliases; an explicit call or
+checked cast selects and validates the exact row. JS registers the alias as a view of
+the original prototype, never as a separate public class. Repeated selection returns the
+same handle and does not cross the bridge. Static members are shared. Configured
+`proxy: extends` handles preserve JS subclass identity, private fields, override
+dispatch, `super` and native peer/lease ownership. The native proxy implements the
+selected Dart type. Ordinary object factories remain non-constructible with `new`.
 
 For real Dart objects in ordinary Object bindings matching a known constructor target,
 instance conversion uses that target as well. A `Box<List<String>>` therefore returns a

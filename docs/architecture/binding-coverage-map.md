@@ -127,7 +127,7 @@ Evidence:
 | Recursive combinations                | Supported | The same recursive TypeRef rules apply to constructors, getters/setters, methods, top-level functions, callbacks, typedefs, inherited members, and dependency closure.                                                                                                                                                                         |
 | Closed generic member views           | Supported | Declared signatures and provider Manifest models specialize changed getters, setters and methods. Views share one JS prototype and Dart identity, with weak JS wrappers cached per signature; distinct signatures keep independent argument guards.                                                                                            |
 | Shared generic owner                  | Supported | Dart uses `Object?` or an Analyzer-proven public fully closed bound; TypeScript keeps the declared generic relationship.                                                                                                                                                                                                                       |
-| Generic constructor specialization    | Limited   | Closed nested targets reuse ordinary conversion. Required input signatures, including nested type parameters, and Analyzer use sites determine automatic targets; bounds and disjoint runtime domains remain mandatory. Explicit type arguments resolve same-shape ambiguity.                                                                  |
+| Generic constructor specialization    | Limited   | Ordinary object/native Widget targets use `dartType` with finite analyzer-validated closed types. Nested and equal-shape inputs share ordinary conversion; omitted types keep the legal bound default. Intrinsic Stream/enum and lifecycle adapters retain existing construction rules.                                                        |
 | Generic method/top-level function     | Limited   | Top-level functions and ordinary methods use automatic closed bound erasure. Generic results describe converted Dart references, not raw JS collection shapes. Open recursive/dependent bounds require explicit arguments. Supported deferred factories reuse concrete result targets. No runtime type token is introduced.                    |
 | Provider-owned nominal type           | Supported | A dependency Manifest owner is a recursion boundary. The consumer preserves identity, nullability, and type arguments without expanding provider inheritance.                                                                                                                                                                                  |
 | Public carrier and dependency closure | Supported | Declaration identity chooses a same-package public carrier. Same-name different identities fail closed. Dependency-only types stay internal in automatic mode.                                                                                                                                                                                 |
@@ -137,27 +137,17 @@ five independently omitted parameters use direct calls; six or more use `Functio
 without trimming the selected surface. Optional positional parameters keep linear tail
 dispatch and reject holes.
 
-Required signatures such as `Bag<T>(List<T> items)` can use a known `Bag<String>`
-target, including for empty arrays. The generator matches declared and concrete type
-signatures; it does not inspect runtime callback results, collection contents, nested
-object contents, or a runtime `Type` token to infer `T`. Optional-only or missing
-generic inputs require explicit type arguments. Overlapping runtime domains such as
-`num` and `int`, two different List element types, or Iterable versus List/Set are
-rejected. Empty collections follow the same rule. Specialized factory signatures expose
-only compiled targets, including nested collections, selected nominal references and
-supported async arguments. Dependent or recursive bounds without concrete evidence are
-rejected. Multi-target constructor callbacks require explicit type arguments when their
-shared erased signature cannot satisfy every concrete target; compatible input-only
-callbacks retain automatic dispatch. Ordinary Object bindings and native Widget member
-views matching known constructor targets also preserve their concrete getter, setter,
-method, callback and async member conversion. Only affected selected members gain
-private Dart metadata; the JS class and unrelated members stay shared. Metadata is
-cached on first affected use per object and binding owner. Native objects matching no
-known target and automatic JS proxies keep the shared erased view, and same-shape
-targets still require explicit type arguments. Constructor `data` positions do not
-change ordinary member conversion. A plain-data constraint on `T` itself with an
-automatic native-view target requires explicit class type arguments; invalid
-combinations are rejected before generation.
+`Bag<T>(List<T> items)` constructs its legal bound default when no type is supplied.
+`dartType(Bag, dartTypes.string)` selects an observed `Bag<String>` target, including
+for empty arrays; the same rule supports positional/named/empty constructors and phantom
+type parameters. Types are selected before normal argument conversion. Equal JS shapes
+and numeric bounds remain distinct type descriptions rather than inference domains.
+Unavailable combinations and invalid bounds fail before construction. Ordinary objects
+and native Widget views retain their selected member, callback and async conversion.
+Private aliases share the public JS prototype and preserve native peer/lease ownership.
+Constructor `data` positions do not change ordinary member conversion. A plain-data
+constraint on `T` itself with an automatic native-view target requires explicit class
+type arguments; invalid combinations are rejected before generation.
 
 Closed signature expansion discovers at most 64 new member views per root. Self
 references and finite type shifts are supported; larger finite closures and unbounded

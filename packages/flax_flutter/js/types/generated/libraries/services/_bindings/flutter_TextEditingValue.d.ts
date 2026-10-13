@@ -3,6 +3,7 @@ import type * as upstream0 from '@flax/flutter/services/_bindings/flutter_TextSe
 import '@flax/flutter/services/_bindings/flutter_TextSelection';
 import type * as upstream1 from '@flax/flutter/services/_bindings/flutter_TextRange';
 import '@flax/flutter/services/_bindings/flutter_TextRange';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface TextEditingValue extends Readonly<{
     "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [];
 }> {
@@ -33,5 +34,5 @@ declare function _TextEditingValueFactory(options?: {
 declare namespace _TextEditingValueFactory {
     const empty: TextEditingValue;
 }
-export declare const TextEditingValue: typeof _TextEditingValueFactory & _FlaxInstanceType<TextEditingValue>;
+export declare const TextEditingValue: typeof _TextEditingValueFactory & _FlaxInstanceType<TextEditingValue> & _FlaxDartType<TextEditingValue, readonly ["class", "flax.core/flutter#type:TextEditingValue", readonly [], false]>;
 export {};

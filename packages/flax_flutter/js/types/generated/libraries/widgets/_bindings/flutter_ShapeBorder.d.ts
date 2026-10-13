@@ -1,7 +1,8 @@
 import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ShapeBorder extends Readonly<{
     "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
 }> {
     readonly __ShapeBorder: unique symbol;
 }
-export declare const ShapeBorder: object & _FlaxInstanceType<ShapeBorder>;
+export declare const ShapeBorder: object & _FlaxInstanceType<ShapeBorder> & _FlaxDartType<ShapeBorder, readonly ["class", "flax.core/flutter#type:ShapeBorder", readonly [], false]>;

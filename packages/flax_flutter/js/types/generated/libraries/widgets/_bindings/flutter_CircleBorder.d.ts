@@ -5,6 +5,7 @@ import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_ShapeBo
 import '@flax/flutter/widgets/_bindings/flutter_ShapeBorder';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_BorderSide';
 import '@flax/flutter/widgets/_bindings/flutter_BorderSide';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface CircleBorder extends upstream0.OutlinedBorder, upstream1.ShapeBorder, Readonly<{
     "__flaxBound:package:flutter/src/painting/circle_border.dart::CircleBorder": readonly [];
 }> {
@@ -24,5 +25,5 @@ declare function _CircleBorderFactory(options?: {
     }> | undefined;
     eccentricity?: number | undefined;
 }): CircleBorder;
-export declare const CircleBorder: typeof _CircleBorderFactory & _FlaxInstanceType<CircleBorder>;
+export declare const CircleBorder: typeof _CircleBorderFactory & _FlaxInstanceType<CircleBorder> & _FlaxDartType<CircleBorder, readonly ["class", "flax.core/flutter#type:CircleBorder", readonly [], false]>;
 export {};

@@ -125,6 +125,7 @@ abstract class BagUses {
   NullableBag<String> get nullable;
   PairBag<String, int> get pairs;
   CorrelatedBag<String> get correlated;
+  CorrelatedBag<int> get correlatedInts;
   AmbiguousBag<String> get ambiguousStrings;
   AmbiguousBag<int> get ambiguousIntegers;
   OptionalBag<String> get optional;

@@ -10,6 +10,7 @@ import type * as upstream5 from '@flax/flutter/widgets/_bindings/flutter_Navigat
 import '@flax/flutter/widgets/_bindings/flutter_NavigatorState';
 import type * as upstream6 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Navigator extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Navigator";
 }
@@ -31,5 +32,5 @@ declare namespace _NavigatorFactory {
         rootNavigator?: boolean | undefined;
     }): upstream5.NavigatorState;
 }
-export declare const Navigator: typeof _NavigatorFactory & _FlaxInstanceType<Navigator>;
+export declare const Navigator: typeof _NavigatorFactory & _FlaxInstanceType<Navigator> & _FlaxDartType<Navigator, readonly ["class", "flax.core/flutter#type:Navigator", readonly [], false]>;
 export {};

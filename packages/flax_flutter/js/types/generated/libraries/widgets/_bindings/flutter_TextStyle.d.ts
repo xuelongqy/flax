@@ -5,6 +5,7 @@ import type * as upstream1 from '@flax/flutter/services/_bindings/flutter_FontWe
 import '@flax/flutter/services/_bindings/flutter_FontWeight';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_FontStyle';
 import '@flax/flutter/widgets/_bindings/flutter_FontStyle';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface TextStyle extends Readonly<{
     "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
 }>, Readonly<{
@@ -55,5 +56,5 @@ declare function _TextStyleFactory(options?: {
     wordSpacing?: number | null | undefined;
     height?: number | null | undefined;
 }): TextStyle;
-export declare const TextStyle: typeof _TextStyleFactory & _FlaxInstanceType<TextStyle>;
+export declare const TextStyle: typeof _TextStyleFactory & _FlaxInstanceType<TextStyle> & _FlaxDartType<TextStyle, readonly ["class", "flax.core/flutter#type:TextStyle", readonly [], false]>;
 export {};

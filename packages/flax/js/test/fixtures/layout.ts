@@ -1,3 +1,7 @@
+import {
+  dartType as selectDartType,
+  dartTypes as nativeTypes,
+} from '@flax/core/bindings';
 import { bind, signal } from '@flax/core';
 import {
   registerPage,
@@ -20,6 +24,8 @@ import {
 } from '@flax/flutter/widgets';
 import { ValueKey } from '@flax/flutter/foundation';
 import { RetainedTile } from '../../../.dart_tool/flax/ui/repeated_bindings.js';
+
+const StringKey = selectDartType(ValueKey, nativeTypes.string);
 
 const state = {
   flex: signal(1),
@@ -48,7 +54,7 @@ const state = {
   Clip,
 };
 Object.assign(globalThis, { layout: state });
-const key = (name: string) => ValueKey(name);
+const key = (name: string) => StringKey(name);
 const box = (name: string, width: number, height: number) =>
   SizedBox({ key: key(name), width, height, child: Text(name) });
 

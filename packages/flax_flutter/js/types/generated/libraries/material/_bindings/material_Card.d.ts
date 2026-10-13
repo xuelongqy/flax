@@ -4,6 +4,7 @@ import '@flax/flutter/services/_bindings/flutter_Color';
 import '@flax/flutter/widgets/_bindings/flutter_EdgeInsetsGeometry';
 import type * as upstream3 from '@flax/flutter/widgets/_bindings/flutter_Clip';
 import '@flax/flutter/widgets/_bindings/flutter_Clip';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Card extends WidgetDescription {
     readonly type: "flax.material/material#type:Card";
 }
@@ -74,5 +75,5 @@ declare namespace _CardFactory {
         semanticContainer?: Bindable<boolean> | undefined;
     }): Card;
 }
-export declare const Card: typeof _CardFactory & _FlaxInstanceType<Card>;
+export declare const Card: typeof _CardFactory & _FlaxInstanceType<Card> & _FlaxDartType<Card, readonly ["class", "flax.material/material#type:Card", readonly [], false]>;
 export {};

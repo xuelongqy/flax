@@ -1,6 +1,7 @@
 import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_AlignmentGeometry';
 import '@flax/flutter/widgets/_bindings/flutter_AlignmentGeometry';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Alignment extends upstream0.AlignmentGeometry, Readonly<{
     "__flaxBound:package:flutter/src/painting/alignment.dart::Alignment": readonly [];
 }> {
@@ -36,5 +37,5 @@ declare namespace _AlignmentFactory {
 declare namespace _AlignmentFactory {
     const bottomRight: Alignment;
 }
-export declare const Alignment: typeof _AlignmentFactory & _FlaxInstanceType<Alignment>;
+export declare const Alignment: typeof _AlignmentFactory & _FlaxInstanceType<Alignment> & _FlaxDartType<Alignment, readonly ["class", "flax.core/flutter#type:Alignment", readonly [], false]>;
 export {};

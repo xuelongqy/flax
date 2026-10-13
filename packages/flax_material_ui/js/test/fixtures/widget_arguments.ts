@@ -1,3 +1,7 @@
+import {
+  dartType as selectDartType,
+  dartTypes as nativeTypes,
+} from '@flax/core/bindings';
 import { signal } from '@flax/core';
 import {
   Column,
@@ -21,6 +25,8 @@ import {
   mapContent,
   wrapContent,
 } from '../../../.dart_tool/flax/ui/functions_bindings.js';
+
+const StringKey = selectDartType(ValueKey, nativeTypes.string);
 
 const label = signal('Saved 0');
 const cache = WidgetCache();
@@ -89,7 +95,7 @@ const makeValue = (initial: number) => {
 const first = makeValue(1),
   second = makeValue(20);
 const selected = signal(first.object);
-const child = signal<Widget | null>(new StaticChild({ key: ValueKey('static') }));
+const child = signal<Widget | null>(new StaticChild({ key: StringKey('static') }));
 const showChild = signal(true);
 let failure = 'none';
 let lastChild: Widget | null;

@@ -1,6 +1,7 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/material/_bindings/material_ButtonStyle';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface OutlinedButton extends WidgetDescription {
     readonly type: "flax.material/material#type:OutlinedButton";
 }
@@ -14,5 +15,5 @@ declare function _OutlinedButtonFactory(options: {
     }> | null> | undefined;
     child: Bindable<Widget | null>;
 }): OutlinedButton;
-export declare const OutlinedButton: typeof _OutlinedButtonFactory & _FlaxInstanceType<OutlinedButton>;
+export declare const OutlinedButton: typeof _OutlinedButtonFactory & _FlaxInstanceType<OutlinedButton> & _FlaxDartType<OutlinedButton, readonly ["class", "flax.material/material#type:OutlinedButton", readonly [], false]>;
 export {};

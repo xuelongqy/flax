@@ -9,4 +9,5 @@ export declare const HitTestBehavior: Readonly<{
     opaque: HitTestBehavior;
     translucent: HitTestBehavior;
     values: readonly HitTestBehavior[];
-} & _FlaxInstanceType<HitTestBehavior>>;
+} & _FlaxInstanceType<HitTestBehavior> & _FlaxDartType<HitTestBehavior, readonly ["class", "flax.core/flutter#type:HitTestBehavior", readonly [], false]>>;
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';

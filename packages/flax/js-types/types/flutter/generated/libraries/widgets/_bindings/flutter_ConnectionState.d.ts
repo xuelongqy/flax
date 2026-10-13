@@ -10,4 +10,5 @@ export declare const ConnectionState: Readonly<{
     active: ConnectionState;
     done: ConnectionState;
     values: readonly ConnectionState[];
-} & _FlaxInstanceType<ConnectionState>>;
+} & _FlaxInstanceType<ConnectionState> & _FlaxDartType<ConnectionState, readonly ["class", "flax.core/flutter#type:ConnectionState", readonly [], false]>>;
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';

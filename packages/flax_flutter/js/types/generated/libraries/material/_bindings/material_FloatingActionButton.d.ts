@@ -2,6 +2,7 @@ import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget,
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/services/_bindings/flutter_Color';
 import '@flax/flutter/widgets/_bindings/flutter_FocusNode';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface FloatingActionButton extends WidgetDescription {
     readonly type: "flax.material/material#type:FloatingActionButton";
 }
@@ -89,5 +90,5 @@ declare namespace _FloatingActionButtonFactory {
         label: Bindable<Widget>;
     }): FloatingActionButton;
 }
-export declare const FloatingActionButton: typeof _FloatingActionButtonFactory & _FlaxInstanceType<FloatingActionButton>;
+export declare const FloatingActionButton: typeof _FloatingActionButtonFactory & _FlaxInstanceType<FloatingActionButton> & _FlaxDartType<FloatingActionButton, readonly ["class", "flax.material/material#type:FloatingActionButton", readonly [], false]>;
 export {};

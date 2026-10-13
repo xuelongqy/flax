@@ -246,7 +246,10 @@ void main() {
         "__flaxInvokeOperation(__flaxResolveOperation($flaxBindingVersion, 'test:Members', 'static', 'call', 'missing'), 0)",
         "__flaxInvokeOperation(__flaxResolveOperation(7, 'test:Members', 'static', 'call', 'apply'), 0, () => 'x')",
       ]) {
-        expect(() => h.execute(script), throwsA(isA<FlaxJsException>()));
+        expect(
+          () => h.execute(flaxTestCheckedBinding(script)),
+          throwsA(isA<FlaxJsException>()),
+        );
       }
       h.execute(
         "if (__flaxInvokeOperation(__flaxResolveOperation($flaxBindingVersion, 'test:Members', 'static', 'call', 'apply'), 0, n => String(n), 9) !== '9') throw Error('recovery');",

@@ -1,5 +1,6 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Spacer extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Spacer";
 }
@@ -9,5 +10,5 @@ declare function _SpacerFactory(options?: {
     }> | null | undefined;
     flex?: Bindable<number> | undefined;
 }): Spacer;
-export declare const Spacer: typeof _SpacerFactory & _FlaxInstanceType<Spacer>;
+export declare const Spacer: typeof _SpacerFactory & _FlaxInstanceType<Spacer> & _FlaxDartType<Spacer, readonly ["class", "flax.core/flutter#type:Spacer", readonly [], false]>;
 export {};

@@ -1,3 +1,7 @@
+import {
+  dartType as selectDartType,
+  dartTypes as nativeTypes,
+} from '@flax/core/bindings';
 import { bind, signal } from '@flax/core';
 import {
   Builder,
@@ -19,6 +23,8 @@ import {
   Theme,
   ThemeData,
 } from '@flax/flutter/material';
+
+const StringKey = selectDartType(ValueKey, nativeTypes.string);
 
 const hooks = {
   Color,
@@ -59,18 +65,18 @@ registerPage('theme', (_, lifecycle) => {
     hooks.cleanups++;
   });
   const localContent = Builder({
-    key: ValueKey('local-reader'),
+    key: StringKey('local-reader'),
     builder: (context) => {
       hooks.localBuilds++;
       const theme = Theme.of(context);
       return Column({
         children: [
           Text(theme.brightness === Brightness.dark ? 'Local dark' : 'Local light', {
-            key: ValueKey('local-label'),
+            key: StringKey('local-label'),
             style: theme.textTheme.titleLarge,
           }),
           TextField({
-            key: ValueKey('theme-input'),
+            key: StringKey('theme-input'),
             controller,
             focusNode: focus,
             style: theme.textTheme.bodyMedium,
@@ -85,27 +91,27 @@ registerPage('theme', (_, lifecycle) => {
     },
   });
   const derivedContent = Builder({
-    key: ValueKey('derived-reader'),
+    key: StringKey('derived-reader'),
     builder: (context) => {
       hooks.derivedBuilds++;
       const theme = Theme.of(context);
       return Text(
         theme.brightness === Brightness.dark ? 'Derived dark' : 'Derived light',
-        { key: ValueKey('derived-label'), style: theme.textTheme.titleLarge },
+        { key: StringKey('derived-label'), style: theme.textTheme.titleLarge },
       );
     },
   });
   return Column({
     children: [
       Builder({
-        key: ValueKey('host-reader'),
+        key: StringKey('host-reader'),
         builder: (context) => {
           hooks.hostBuilds++;
           const host = Theme.of(context);
           return Column({
             children: [
               Text(host.brightness === Brightness.dark ? 'Host dark' : 'Host light', {
-                key: ValueKey('host-label'),
+                key: StringKey('host-label'),
                 style: host.textTheme.titleLarge,
               }),
               Theme({
@@ -121,16 +127,16 @@ registerPage('theme', (_, lifecycle) => {
         },
       }),
       Theme({
-        key: ValueKey('independent'),
+        key: StringKey('independent'),
         data: bind(() => hooks.local.value!),
         child: localContent,
       }),
       Text(
         bind(() => `Count ${count.value}`),
-        { key: ValueKey('theme-count') },
+        { key: StringKey('theme-count') },
       ),
       Builder({
-        key: ValueKey('theme-static'),
+        key: StringKey('theme-static'),
         builder: () => {
           hooks.staticBuilds++;
           return Text('Static theme sibling');

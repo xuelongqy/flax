@@ -1,3 +1,7 @@
+import {
+  dartType as selectDartType,
+  dartTypes as nativeTypes,
+} from '@flax/core/bindings';
 import { signal, bind, type Binding } from '@flax/core';
 import {
   Builder,
@@ -67,11 +71,11 @@ registerPage('scroll', (_, lifecycle) => {
       scroll(hooks.selected.bind),
       Text(
         bind(() => `Offset ${offset.value.toFixed(0)}`),
-        { key: ValueKey('offset') },
+        { key: StringKey('offset') },
       ),
       TextButton({ onPressed: () => controller.jumpTo(0), child: Text('Top') }),
       Builder({
-        key: ValueKey('static'),
+        key: StringKey('static'),
         builder: () => {
           hooks.staticBuilds++;
           return Text('Static sibling');
@@ -151,6 +155,8 @@ import {
   enumValue,
   defineEnum,
 } from '@flax/core/bindings';
+
+const StringKey = selectDartType(ValueKey, nativeTypes.string);
 
 defineEnum('fixture:Mode', ['quiet', 'active']);
 const gaugeType = 'fixture:Gauge';

@@ -13,7 +13,7 @@ test('bundled loop callbacks retain independent signals and subscriptions', () =
   const context = createContext({
     __flaxCreateObject(version, type, descriptor) {
       assert.equal(version, 24);
-      assert.match(type, /#type:ValueKey$/);
+      assert.match(type, /#type:ValueKey:\[\["String",null,\[\],false\]\]$/);
       return Object.freeze({ value: descriptor.args.value });
     },
     __flaxMount(widget, version) {

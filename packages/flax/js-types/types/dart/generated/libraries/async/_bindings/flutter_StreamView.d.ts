@@ -10,6 +10,7 @@ import '@flax/dart/async/_bindings/flutter_StreamTransformer';
 import '@flax/dart/core/_bindings/flutter_Duration';
 import type * as upstream6 from '@flax/dart/async/_bindings/flutter_EventSink';
 import '@flax/dart/async/_bindings/flutter_EventSink';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface StreamView<T extends unknown | null = unknown | null> extends AsyncIterable<T> {
     readonly __StreamView: unique symbol;
     readonly isBroadcast: boolean;
@@ -74,5 +75,5 @@ export interface StreamView<T extends unknown | null = unknown | null> extends A
     }): upstream0.Stream<T>;
 }
 declare function _StreamViewFactory<T extends unknown | null = unknown | null>(stream: upstream0.Stream<T>): StreamView<T>;
-export declare const StreamView: typeof _StreamViewFactory & _FlaxInstanceType<StreamView<any>>;
+export declare const StreamView: typeof _StreamViewFactory & _FlaxInstanceType<StreamView<unknown | null>> & _FlaxDartType<StreamView<unknown | null>, readonly ["class", "flax.core/flutter#type:StreamView", readonly [readonly ["any", null, readonly [], true]], false]>;
 export {};

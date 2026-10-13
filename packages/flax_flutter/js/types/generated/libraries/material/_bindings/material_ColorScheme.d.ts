@@ -3,6 +3,7 @@ import type * as upstream0 from '@flax/flutter/services/_bindings/flutter_Color'
 import '@flax/flutter/services/_bindings/flutter_Color';
 import type * as upstream1 from '@flax/flutter/material/_bindings/material_Brightness';
 import '@flax/flutter/material/_bindings/material_Brightness';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ColorScheme extends Readonly<{
     "__flaxBound:package:material_ui/src/color_scheme.dart::ColorScheme": readonly [];
 }>, Readonly<{
@@ -46,5 +47,5 @@ declare namespace _ColorSchemeFactory {
         brightness?: upstream1.Brightness | undefined;
     }): ColorScheme;
 }
-export declare const ColorScheme: typeof _ColorSchemeFactory & _FlaxInstanceType<ColorScheme>;
+export declare const ColorScheme: typeof _ColorSchemeFactory & _FlaxInstanceType<ColorScheme> & _FlaxDartType<ColorScheme, readonly ["class", "flax.material/material#type:ColorScheme", readonly [], false]>;
 export {};

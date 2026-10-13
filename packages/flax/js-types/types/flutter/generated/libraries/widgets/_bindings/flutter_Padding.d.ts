@@ -1,6 +1,7 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/widgets/_bindings/flutter_EdgeInsetsGeometry';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Padding extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Padding";
 }
@@ -13,5 +14,5 @@ declare function _PaddingFactory(options: {
     }>>;
     child?: Bindable<Widget | null> | undefined;
 }): Padding;
-export declare const Padding: typeof _PaddingFactory & _FlaxInstanceType<Padding>;
+export declare const Padding: typeof _PaddingFactory & _FlaxInstanceType<Padding> & _FlaxDartType<Padding, readonly ["class", "flax.core/flutter#type:Padding", readonly [], false]>;
 export {};

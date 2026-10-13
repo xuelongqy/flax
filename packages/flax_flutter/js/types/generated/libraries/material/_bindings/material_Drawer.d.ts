@@ -3,6 +3,7 @@ import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/services/_bindings/flutter_Color';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_Clip';
 import '@flax/flutter/widgets/_bindings/flutter_Clip';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Drawer extends WidgetDescription {
     readonly type: "flax.material/material#type:Drawer";
 }
@@ -22,5 +23,5 @@ declare function _DrawerFactory(options?: {
     semanticLabel?: Bindable<string | null> | undefined;
     clipBehavior?: Bindable<upstream2.Clip | null> | undefined;
 }): Drawer;
-export declare const Drawer: typeof _DrawerFactory & _FlaxInstanceType<Drawer>;
+export declare const Drawer: typeof _DrawerFactory & _FlaxInstanceType<Drawer> & _FlaxDartType<Drawer, readonly ["class", "flax.material/material#type:Drawer", readonly [], false]>;
 export {};

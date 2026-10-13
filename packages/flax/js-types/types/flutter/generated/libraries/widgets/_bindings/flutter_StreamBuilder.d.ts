@@ -5,6 +5,7 @@ import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_BuildCo
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import type * as upstream3 from '@flax/flutter/widgets/_bindings/flutter_AsyncSnapshot';
 import '@flax/flutter/widgets/_bindings/flutter_AsyncSnapshot';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface StreamBuilder<T extends unknown | null = unknown | null> extends WidgetDescription {
     readonly type: "flax.core/flutter#type:StreamBuilder";
 }
@@ -16,5 +17,5 @@ declare function _StreamBuilderFactory<T extends unknown | null = unknown | null
     stream: Bindable<upstream1.Stream<T> | null>;
     builder: Bindable<((context: upstream2.BuildContext, snapshot: upstream3.AsyncSnapshot<T>) => Widget)>;
 }): StreamBuilder<T>;
-export declare const StreamBuilder: typeof _StreamBuilderFactory & _FlaxInstanceType<StreamBuilder<any>>;
+export declare const StreamBuilder: typeof _StreamBuilderFactory & _FlaxInstanceType<StreamBuilder<unknown | null>> & _FlaxDartType<StreamBuilder<unknown | null>, readonly ["class", "flax.core/flutter#type:StreamBuilder", readonly [readonly ["any", null, readonly [], true]], false]>;
 export {};

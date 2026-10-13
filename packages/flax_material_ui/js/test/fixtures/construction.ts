@@ -1,26 +1,32 @@
+import {
+  dartType as selectDartType,
+  dartTypes as nativeTypes,
+} from '@flax/core/bindings';
 import { bind, signal } from '@flax/core';
 import { Builder, Column, Text, runApp } from '@flax/flutter/widgets';
 import { ValueKey } from '@flax/flutter/foundation';
 import { TextButton } from '@flax/flutter/material';
 
+const StringKey = selectDartType(ValueKey, nativeTypes.string);
+
 const count = signal(0);
 const callback = signal<(() => void) | null>(() => count.value++);
 Object.assign(globalThis, { construction: { count, callback } });
 const content = Column({
-  key: ValueKey('content'),
+  key: StringKey('content'),
   children: [
-    Text('Static', { key: ValueKey('static') }),
+    Text('Static', { key: StringKey('static') }),
     Text(
       bind(() => `Count: ${count.value}`),
-      { key: ValueKey('count') },
+      { key: StringKey('count') },
     ),
     TextButton({
-      key: ValueKey('button'),
+      key: StringKey('button'),
       onPressed: callback.bind,
       child: Text('Increment'),
     }),
     Builder({
-      key: ValueKey('builder'),
+      key: StringKey('builder'),
       builder: () => {
         const local = signal(0);
         return TextButton({

@@ -9,6 +9,12 @@ Finder flaxTestHost(Object key) => find.byWidgetPredicate(
       (widget.key as ValueKey).value == key,
 );
 
+/// Mirror generated-call unwrapping when a test deliberately invokes the host directly.
+String flaxTestCheckedBinding(String expression) =>
+    '(() => { const result = ($expression); '
+    'const failure = __flaxBindings.callFailure(result); '
+    'if (failure) throw failure.error; return result; })()';
+
 class FlaxTestHarness {
   FlaxTestHarness({
     required this.createRuntime,

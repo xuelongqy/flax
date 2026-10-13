@@ -1,3 +1,7 @@
+import {
+  dartType as selectDartType,
+  dartTypes as nativeTypes,
+} from '@flax/core/bindings';
 import { bind, signal, batch } from '@flax/core';
 import {
   runApp,
@@ -11,6 +15,9 @@ import {
   Listener,
 } from '@flax/flutter/widgets';
 import { ValueKey } from '@flax/flutter/foundation';
+
+const StringKey = selectDartType(ValueKey, nativeTypes.string);
+const IntKey = selectDartType(ValueKey, nativeTypes.int);
 
 const count = signal(0);
 const visible = signal(true);
@@ -67,7 +74,7 @@ Object.assign(globalThis, {
 
 runApp(
   Column({
-    key: ValueKey('root'),
+    key: StringKey('root'),
     mainAxisSize: MainAxisSize.min,
     children: [
       Text(
@@ -75,11 +82,11 @@ runApp(
           if (fail.value) throw Error('binding failed');
           return `Count: ${count.value}`;
         }),
-        { key: ValueKey('count') },
+        { key: StringKey('count') },
       ),
-      Text('Static', { key: ValueKey('static') }),
+      Text('Static', { key: StringKey('static') }),
       Listener({
-        key: ValueKey('button'),
+        key: StringKey('button'),
         onPointerDown: bind(() => {
           const current = callback.value;
           return current === null ? null : () => current();
@@ -87,22 +94,22 @@ runApp(
         child: Text('Increment'),
       }),
       SizedBox({
-        key: ValueKey('conditional'),
+        key: StringKey('conditional'),
         child: bind(() =>
           visible.value
             ? variant.value
-              ? Row({ key: ValueKey('detail'), children: [Text('Other type')] })
-              : Text(tracked, { key: ValueKey(detailKey.value) })
+              ? Row({ key: StringKey('detail'), children: [Text('Other type')] })
+              : Text(tracked, { key: StringKey(detailKey.value) })
             : null,
         ),
       }),
       Column({
-        key: ValueKey('list'),
+        key: StringKey('list'),
         mainAxisSize: MainAxisSize.min,
         children: bind(() =>
           items.value.map((id) =>
             Listener({
-              key: keyed.value ? ValueKey(id) : null,
+              key: keyed.value ? IntKey(id) : null,
               onPointerDown: () => {},
               child: Text(`Item ${id}`),
             }),

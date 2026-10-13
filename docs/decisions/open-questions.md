@@ -5,9 +5,9 @@ wire identity, package-atomic generation and trusted compile-time dependencies. 
 selection format 2, package metadata format 2, current-only Manifest 18, UI protocol 24
 and native ABI 2 remain separate domains. Generic declarations use shared Dart owners
 while TypeScript preserves relationships; safe constructor specializations come from
-Analyzer-observed concrete use sites plus the bounded String/safe-int scalar pair.
-Runtime type tokens are not a requirement. See
-[Binding Generation](../architecture/bindings.md) and
+Analyzer-observed closed uses and supported concrete signatures. Ordinary objects and
+native Widgets select compiled targets through `dartType`; omitted arguments keep the
+shared bound default. See [Binding Generation](../architecture/bindings.md) and
 [ADR 0035](0035-generic-state-variants-and-protocol-21.md). Explicit top-level readonly
 selections use library-level exports with uncached `getX()` reads under
 [ADR 0027](0027-public-library-module-delivery.md). Mutable top-level reads and setters
@@ -25,10 +25,10 @@ composition and specialization. Package-scoped provider selection is defined by
 the five/six-parameter hybrid described in
 [Binding Generation](../architecture/bindings.md).
 
-| Decision                                          | Evidence required before choosing                                                                                                                                                                                                                                                                                                                                                                                                        |
-| ------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| General mixin composition beyond State variants   | Revisit only with concrete demand for applying arbitrary mixins to non-State owners; fixed analyzer-validated State variants are implemented                                                                                                                                                                                                                                                                                             |
-| Broader generic runtime specialization (deferred) | Revisit only with concrete SDK/API demand. Current scope excludes runtime type tokens, whole-graph nested inference, overlapping constructor domains, callback erasure requiring concrete runtime specialization, generalized deferred-factory inference and generic Widget-interface declarations. Ordinary higher-rank callbacks with erasable bounds remain supported; concrete generic Extension specialization remains unsupported. |
+| Decision                                          | Evidence required before choosing                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| ------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| General mixin composition beyond State variants   | Revisit only with concrete demand for applying arbitrary mixins to non-State owners; fixed analyzer-validated State variants are implemented                                                                                                                                                                                                                                                                                                                                                 |
+| Broader generic runtime specialization (deferred) | Revisit only with concrete SDK/API demand. Current scope excludes arbitrary uncompiled type combinations, callback/Record type-token composition, whole-graph inference, generalized deferred-factory inference and generic Widget-interface declarations. Equal-shape ordinary object/native Widget constructors use explicit compiled type selection. Ordinary higher-rank callbacks with erasable bounds remain supported; concrete generic Extension specialization remains unsupported. |
 
 A proposed Core, Material, Cupertino or third-party slice is not implemented until its
 selection, generation and actual behavior are verified. Record a durable task only when

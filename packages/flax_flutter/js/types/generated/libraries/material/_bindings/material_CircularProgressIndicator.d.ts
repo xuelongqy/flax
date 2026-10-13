@@ -1,6 +1,7 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/services/_bindings/flutter_Color';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface CircularProgressIndicator extends WidgetDescription {
     readonly type: "flax.material/material#type:CircularProgressIndicator";
 }
@@ -18,5 +19,5 @@ declare function _CircularProgressIndicatorFactory(options?: {
     strokeWidth?: Bindable<number | null> | undefined;
     semanticsLabel?: Bindable<string | null> | undefined;
 }): CircularProgressIndicator;
-export declare const CircularProgressIndicator: typeof _CircularProgressIndicatorFactory & _FlaxInstanceType<CircularProgressIndicator>;
+export declare const CircularProgressIndicator: typeof _CircularProgressIndicatorFactory & _FlaxInstanceType<CircularProgressIndicator> & _FlaxDartType<CircularProgressIndicator, readonly ["class", "flax.material/material#type:CircularProgressIndicator", readonly [], false]>;
 export {};

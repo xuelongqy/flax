@@ -221,11 +221,13 @@ extension _ObjectCalls on _Session {
       throw ArgumentError('Unsupported returned Dart object');
     }
     var selected = expected;
+    if (expected.aliasOf != null) return expected;
     // Preserve concrete identity within the signature's provider, without
     // exposing a subtype view registered by another provider.
     final owner = registry._bindingOwners[type];
     for (final binding in registry._types.values) {
       if (binding is FlaxObjectBinding &&
+          binding.aliasOf == null &&
           registry._bindingOwners[binding.id] == owner &&
           binding.id != type &&
           binding.supertypes.contains(type) &&

@@ -1,4 +1,5 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type DartIterableInput, type DartList, type DartMap, type DartMapInput, type DartInput } from '@flax/core/bindings';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Uri extends Readonly<{
     "__flaxBound:dart:core::Uri": readonly [];
 }> {
@@ -74,5 +75,5 @@ declare namespace _UriFactory {
 declare namespace _UriFactory {
     function decodeQueryComponent(encodedComponent: string): string;
 }
-export declare const Uri: typeof _UriFactory & _FlaxInstanceType<Uri>;
+export declare const Uri: typeof _UriFactory & _FlaxInstanceType<Uri> & _FlaxDartType<Uri, readonly ["class", "flax.core/flutter#type:Uri", readonly [], false]>;
 export {};

@@ -14,4 +14,5 @@ export declare const WidgetState: Readonly<{
     disabled: WidgetState;
     error: WidgetState;
     values: readonly WidgetState[];
-} & _FlaxInstanceType<WidgetState>>;
+} & _FlaxInstanceType<WidgetState> & _FlaxDartType<WidgetState, readonly ["class", "flax.core/flutter#type:WidgetState", readonly [], false]>>;
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';

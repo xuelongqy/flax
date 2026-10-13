@@ -1,3 +1,7 @@
+import {
+  dartType as selectDartType,
+  dartTypes as nativeTypes,
+} from '@flax/core/bindings';
 import type {} from '@flax/local-storage/globals';
 import type {} from '@flax/fetch/globals';
 import type {} from '@flax/websocket/globals';
@@ -29,6 +33,8 @@ import {
 } from '@flax/flutter/material';
 import { Color } from '@flax/flutter/services';
 import { CanvasView } from '@flax/canvas';
+
+const StringKey = selectDartType(ValueKey, nativeTypes.string);
 
 const themeMode = signal(ThemeMode.system);
 
@@ -110,11 +116,11 @@ class HomeState extends State<HomePage> {
 
   build(_context: BuildContext) {
     return Scaffold({
-      appBar: AppBar({ title: Text(this.title.bind, { key: ValueKey('app-title') }) }),
+      appBar: AppBar({ title: Text(this.title.bind, { key: StringKey('app-title') }) }),
       body: Column({
         children: [
           TextField({
-            key: ValueKey('editor'),
+            key: StringKey('editor'),
             controller: this.editing,
             onChanged: (text) => {
               if (typeof localStorage !== 'undefined')
@@ -158,7 +164,7 @@ class HomeState extends State<HomePage> {
             child: Text('WebSocket echo'),
           }),
           Text(this.socketStatus.bind),
-          Text('Static application content', { key: ValueKey('static') }),
+          Text('Static application content', { key: StringKey('static') }),
         ],
       }),
     });
@@ -224,6 +230,6 @@ runApp(
     }),
     themeMode: themeMode.bind,
     debugShowCheckedModeBanner: false,
-    home: new HomePage({ key: ValueKey('home') }),
+    home: new HomePage({ key: StringKey('home') }),
   }),
 );

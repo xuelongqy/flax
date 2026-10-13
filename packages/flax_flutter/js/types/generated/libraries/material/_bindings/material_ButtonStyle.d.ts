@@ -9,6 +9,7 @@ import type * as upstream3 from '@flax/flutter/services/_bindings/flutter_MouseC
 import '@flax/flutter/services/_bindings/flutter_MouseCursor';
 import type * as upstream4 from '@flax/flutter/material/_bindings/material_VisualDensity';
 import '@flax/flutter/material/_bindings/material_VisualDensity';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ButtonStyle extends Readonly<{
     "__flaxBound:package:material_ui/src/button_style.dart::ButtonStyle": readonly [];
 }>, Readonly<{
@@ -69,5 +70,5 @@ declare function _ButtonStyleFactory(options?: {
         "__flaxBound:package:material_ui/src/theme_data.dart::VisualDensity": readonly [];
     }> | null | undefined;
 }): ButtonStyle;
-export declare const ButtonStyle: typeof _ButtonStyleFactory & _FlaxInstanceType<ButtonStyle>;
+export declare const ButtonStyle: typeof _ButtonStyleFactory & _FlaxInstanceType<ButtonStyle> & _FlaxDartType<ButtonStyle, readonly ["class", "flax.material/material#type:ButtonStyle", readonly [], false]>;
 export {};

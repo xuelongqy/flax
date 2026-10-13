@@ -1,6 +1,7 @@
 import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/services/_bindings/flutter_TextEditingValue';
 import '@flax/flutter/services/_bindings/flutter_TextEditingValue';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface TextInputFormatter extends Readonly<{
     "__flaxBound:package:flutter/src/services/text_formatter.dart::TextInputFormatter": readonly [];
 }> {
@@ -11,5 +12,5 @@ declare namespace _TextInputFormatterFactory {
         "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [];
     }>)): TextInputFormatter;
 }
-export declare const TextInputFormatter: typeof _TextInputFormatterFactory & _FlaxInstanceType<TextInputFormatter>;
+export declare const TextInputFormatter: typeof _TextInputFormatterFactory & _FlaxInstanceType<TextInputFormatter> & _FlaxDartType<TextInputFormatter, readonly ["class", "flax.core/flutter#type:TextInputFormatter", readonly [], false]>;
 export {};

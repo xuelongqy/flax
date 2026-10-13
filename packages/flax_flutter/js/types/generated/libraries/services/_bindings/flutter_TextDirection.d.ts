@@ -8,4 +8,5 @@ export declare const TextDirection: Readonly<{
     rtl: TextDirection;
     ltr: TextDirection;
     values: readonly TextDirection[];
-} & _FlaxInstanceType<TextDirection>>;
+} & _FlaxInstanceType<TextDirection> & _FlaxDartType<TextDirection, readonly ["class", "flax.core/flutter#type:TextDirection", readonly [], false]>>;
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';

@@ -1,4 +1,5 @@
 import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Curve extends Readonly<{
     "__flaxBound:package:flutter/src/animation/curves.dart::Curve": readonly [];
 }>, Readonly<{
@@ -7,4 +8,4 @@ export interface Curve extends Readonly<{
     readonly __Curve: unique symbol;
     transform(t: number): number;
 }
-export declare const Curve: object & _FlaxInstanceType<Curve>;
+export declare const Curve: object & _FlaxInstanceType<Curve> & _FlaxDartType<Curve, readonly ["class", "flax.core/flutter#type:Curve", readonly [], false]>;

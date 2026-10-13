@@ -379,7 +379,9 @@ void main() {
       ]) {
         expect(
           () => h.execute(
-            "__flaxInvokeOperation(__flaxResolveOperation($flaxBindingVersion, 'test:Async', 'static', 'call', 'later'), 0, $input)",
+            flaxTestCheckedBinding(
+              "__flaxInvokeOperation(__flaxResolveOperation($flaxBindingVersion, 'test:Async', 'static', 'call', 'later'), 0, $input)",
+            ),
           ),
           throwsA(isA<FlaxJsException>()),
         );

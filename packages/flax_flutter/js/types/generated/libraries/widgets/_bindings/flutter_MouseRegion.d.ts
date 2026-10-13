@@ -3,6 +3,7 @@ import '@flax/flutter/foundation/_bindings/flutter_Key';
 import type * as upstream1 from '@flax/flutter/gestures/_bindings/flutter_PointerEvent';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_HitTestBehavior';
 import '@flax/flutter/widgets/_bindings/flutter_HitTestBehavior';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface MouseRegion extends WidgetDescription {
     readonly type: "flax.core/flutter#type:MouseRegion";
 }
@@ -17,5 +18,5 @@ declare function _MouseRegionFactory(options?: {
     hitTestBehavior?: Bindable<upstream2.HitTestBehavior | null> | undefined;
     child?: Bindable<Widget | null> | undefined;
 }): MouseRegion;
-export declare const MouseRegion: typeof _MouseRegionFactory & _FlaxInstanceType<MouseRegion>;
+export declare const MouseRegion: typeof _MouseRegionFactory & _FlaxInstanceType<MouseRegion> & _FlaxDartType<MouseRegion, readonly ["class", "flax.core/flutter#type:MouseRegion", readonly [], false]>;
 export {};

@@ -1,3 +1,4 @@
+import { dartType, dartTypes } from '@flax/core/bindings';
 import {
   ComputedWidget,
   FinalComputedWidget,
@@ -28,8 +29,11 @@ Object.assign(globalThis, {
     pending: () => pending,
     rejected: () => rejected,
     exercise() {
-      const generic = GenericComputedWidget<string>('typed');
-      const aggregate = AggregateComputedWidget(['list']);
+      const generic = dartType(GenericComputedWidget, dartTypes.string)('typed');
+      const aggregate = dartType(
+        AggregateComputedWidget,
+        dartTypes.list(dartTypes.string),
+      )(['list']);
       if (
         widget!.uppercase !== 'HELLO' ||
         widget!.textLength() !== 5 ||

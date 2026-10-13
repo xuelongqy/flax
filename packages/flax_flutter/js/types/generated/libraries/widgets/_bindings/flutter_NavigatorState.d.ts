@@ -1,5 +1,6 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type NavigationData, type DartInput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_Route';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface NavigatorState {
     readonly __NavigatorState: unique symbol;
     readonly mounted: boolean;
@@ -14,4 +15,4 @@ export interface NavigatorState {
     maybePop<T extends NavigationData | null = NavigationData | null>(result?: (T | DartInput<T>) | null): Promise<boolean>;
     canPop(): boolean;
 }
-export declare const NavigatorState: object & _FlaxInstanceType<NavigatorState>;
+export declare const NavigatorState: object & _FlaxInstanceType<NavigatorState> & _FlaxDartType<NavigatorState, readonly ["class", "flax.core/flutter#type:NavigatorState", readonly [], false]>;

@@ -8,4 +8,5 @@ export declare const TextAffinity: Readonly<{
     upstream: TextAffinity;
     downstream: TextAffinity;
     values: readonly TextAffinity[];
-} & _FlaxInstanceType<TextAffinity>>;
+} & _FlaxInstanceType<TextAffinity> & _FlaxDartType<TextAffinity, readonly ["class", "flax.core/flutter#type:TextAffinity", readonly [], false]>>;
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';

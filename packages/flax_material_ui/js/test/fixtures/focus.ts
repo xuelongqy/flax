@@ -1,3 +1,7 @@
+import {
+  dartType as selectDartType,
+  dartTypes as nativeTypes,
+} from '@flax/core/bindings';
 import { bind, signal } from '@flax/core';
 import {
   Builder,
@@ -21,6 +25,8 @@ import {
 } from '@flax/flutter/services';
 import { RegExp } from '@flax/dart/core';
 import { TextField } from '@flax/flutter/material';
+
+const StringKey = selectDartType(ValueKey, nativeTypes.string);
 
 const hooks = {
   FocusNode,
@@ -80,7 +86,7 @@ registerPage('focus', (_, lifecycle) => {
         child: bind(() =>
           hooks.showFirst.value
             ? TextField({
-                key: ValueKey('first'),
+                key: StringKey('first'),
                 controller: hooks.controllers[0],
                 focusNode: hooks.selected.bind,
                 inputFormatters: hooks.formatters.bind,
@@ -89,17 +95,17 @@ registerPage('focus', (_, lifecycle) => {
         ),
       }),
       TextField({
-        key: ValueKey('second'),
+        key: StringKey('second'),
         controller: hooks.controllers[1],
         focusNode: hooks.nodes[1],
         inputFormatters: hooks.formatters.bind,
       }),
       Text(
         bind(() => `Focus ${state.value}`),
-        { key: ValueKey('focus-status') },
+        { key: StringKey('focus-status') },
       ),
       Builder({
-        key: ValueKey('focus-static'),
+        key: StringKey('focus-static'),
         builder: () => {
           hooks.staticBuilds++;
           return Text('Static focus sibling');

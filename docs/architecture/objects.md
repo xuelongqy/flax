@@ -61,6 +61,12 @@ revoked when the callback finishes. Such arguments can acquire compatible object
 views; conversion into a separate State, Context, Stream or enum representation is
 rejected rather than extending the lease.
 
+`asDart(value, dartType(Bag, dartTypes.string))` also accepts a generated closed object
+target. Dart checks the actual object against `Bag<String>`; a broad `Bag<Object?>`
+containing only strings does not become a `Bag<String>`. Selection and casting preserve
+the existing native peer, weak cache and lease. They neither copy the object nor keep a
+scoped argument alive beyond its original callback.
+
 `getDartType` reads Dart `runtimeType.toString()` on demand. Its text may contain
 private implementation/proxy names and generic arguments; it is diagnostic display, not
 a stable ID, provider-qualified name, runtime type argument or authorization check. Both

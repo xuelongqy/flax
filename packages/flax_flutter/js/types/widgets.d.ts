@@ -11,5 +11,5 @@ export declare function PageContent(name: string, options?: {
     key?: ValueKey | null;
     arguments?: Bindable<NavigationData>;
 }): Widget;
-export { StatelessWidget, StatefulWidget, State, type WidgetOptions, } from './components.js';
+export { StatelessWidget, StatefulWidget, State, DartState, type WidgetOptions, } from './components.js';
 export { SingleTickerProviderState, TickerProviderState, KeepAliveTickerState, } from './generated/libraries/widgets/components.js';

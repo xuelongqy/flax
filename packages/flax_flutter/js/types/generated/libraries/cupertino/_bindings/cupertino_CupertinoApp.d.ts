@@ -1,6 +1,7 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/cupertino/_bindings/cupertino_CupertinoThemeData';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface CupertinoApp extends WidgetDescription {
     readonly type: "flax.cupertino/cupertino#type:CupertinoApp";
 }
@@ -14,5 +15,5 @@ declare function _CupertinoAppFactory(options?: {
     }> | null> | undefined;
     debugShowCheckedModeBanner?: Bindable<boolean> | undefined;
 }): CupertinoApp;
-export declare const CupertinoApp: typeof _CupertinoAppFactory & _FlaxInstanceType<CupertinoApp>;
+export declare const CupertinoApp: typeof _CupertinoAppFactory & _FlaxInstanceType<CupertinoApp> & _FlaxDartType<CupertinoApp, readonly ["class", "flax.cupertino/cupertino#type:CupertinoApp", readonly [], false]>;
 export {};

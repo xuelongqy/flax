@@ -7,6 +7,7 @@ import '@flax/flutter/widgets/_bindings/flutter_Decoration';
 import '@flax/flutter/widgets/_bindings/flutter_BoxConstraints';
 import type * as upstream6 from '@flax/flutter/widgets/_bindings/flutter_Clip';
 import '@flax/flutter/widgets/_bindings/flutter_Clip';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Container extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Container";
 }
@@ -41,5 +42,5 @@ declare function _ContainerFactory(options?: {
     child?: Bindable<Widget | null> | undefined;
     clipBehavior?: Bindable<upstream6.Clip> | undefined;
 }): Container;
-export declare const Container: typeof _ContainerFactory & _FlaxInstanceType<Container>;
+export declare const Container: typeof _ContainerFactory & _FlaxInstanceType<Container> & _FlaxDartType<Container, readonly ["class", "flax.core/flutter#type:Container", readonly [], false]>;
 export {};

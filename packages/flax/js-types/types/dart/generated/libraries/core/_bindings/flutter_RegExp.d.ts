@@ -5,6 +5,7 @@ import type * as upstream1 from '@flax/dart/core/_bindings/flutter_RegExpMatch';
 import '@flax/dart/core/_bindings/flutter_RegExpMatch';
 import type * as upstream2 from '@flax/dart/core/_bindings/flutter_Match';
 import '@flax/dart/core/_bindings/flutter_Match';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface RegExp extends upstream0.Pattern, Readonly<{
     "__flaxBound:dart:core::RegExp": readonly [];
 }> {
@@ -29,5 +30,5 @@ declare function _RegExpFactory(source: string, options?: {
 declare namespace _RegExpFactory {
     function escape(text: string): string;
 }
-export declare const RegExp: typeof _RegExpFactory & _FlaxInstanceType<RegExp>;
+export declare const RegExp: typeof _RegExpFactory & _FlaxInstanceType<RegExp> & _FlaxDartType<RegExp, readonly ["class", "flax.core/flutter#type:RegExp", readonly [], false]>;
 export {};

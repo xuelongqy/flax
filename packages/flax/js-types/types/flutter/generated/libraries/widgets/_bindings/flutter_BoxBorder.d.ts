@@ -1,9 +1,10 @@
 import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_ShapeBorder';
 import '@flax/flutter/widgets/_bindings/flutter_ShapeBorder';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface BoxBorder extends upstream0.ShapeBorder, Readonly<{
     "__flaxBound:package:flutter/src/painting/box_border.dart::BoxBorder": readonly [];
 }> {
     readonly __BoxBorder: unique symbol;
 }
-export declare const BoxBorder: object & _FlaxInstanceType<BoxBorder>;
+export declare const BoxBorder: object & _FlaxInstanceType<BoxBorder> & _FlaxDartType<BoxBorder, readonly ["class", "flax.core/flutter#type:BoxBorder", readonly [], false]>;

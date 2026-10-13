@@ -28,6 +28,7 @@ void main() {
     expect(flutterBindings.moduleId, 'flax.core/flutter');
     expect(flutterBindings.uiProtocol, 24);
     expect(flutterBindings.requiredCapabilities, [
+      'dart-type-tokens',
       'generic-member-views',
       'instance-checks',
       'native-core-inputs',

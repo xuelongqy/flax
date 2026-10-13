@@ -7,6 +7,7 @@ import type * as upstream3 from '@flax/flutter/widgets/_bindings/flutter_Clip';
 import '@flax/flutter/widgets/_bindings/flutter_Clip';
 import type * as upstream4 from '@flax/flutter/widgets/_bindings/flutter_StackFit';
 import '@flax/flutter/widgets/_bindings/flutter_StackFit';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface IndexedStack extends WidgetDescription {
     readonly type: "flax.core/flutter#type:IndexedStack";
 }
@@ -23,5 +24,5 @@ declare function _IndexedStackFactory(options?: {
     index?: Bindable<number | null> | undefined;
     children?: Bindable<DartListInput<Widget, Widget>> | undefined;
 }): IndexedStack;
-export declare const IndexedStack: typeof _IndexedStackFactory & _FlaxInstanceType<IndexedStack>;
+export declare const IndexedStack: typeof _IndexedStackFactory & _FlaxInstanceType<IndexedStack> & _FlaxDartType<IndexedStack, readonly ["class", "flax.core/flutter#type:IndexedStack", readonly [], false]>;
 export {};

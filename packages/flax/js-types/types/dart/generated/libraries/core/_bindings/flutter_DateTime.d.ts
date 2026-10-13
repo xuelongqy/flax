@@ -1,6 +1,7 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type DartInput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/core/_bindings/flutter_Duration';
 import '@flax/dart/core/_bindings/flutter_Duration';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface DateTime extends Readonly<{
     "__flaxBound:dart:core::DateTime": readonly [];
 }>, Readonly<{
@@ -70,5 +71,5 @@ declare namespace _DateTimeFactory {
 declare namespace _DateTimeFactory {
     function tryParse(formattedString: string): DateTime | null;
 }
-export declare const DateTime: typeof _DateTimeFactory & _FlaxInstanceType<DateTime>;
+export declare const DateTime: typeof _DateTimeFactory & _FlaxInstanceType<DateTime> & _FlaxDartType<DateTime, readonly ["class", "flax.core/flutter#type:DateTime", readonly [], false]>;
 export {};

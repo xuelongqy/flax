@@ -11,4 +11,5 @@ export declare const AutovalidateMode: Readonly<{
     onUnfocus: AutovalidateMode;
     onUserInteractionIfError: AutovalidateMode;
     values: readonly AutovalidateMode[];
-} & _FlaxInstanceType<AutovalidateMode>>;
+} & _FlaxInstanceType<AutovalidateMode> & _FlaxDartType<AutovalidateMode, readonly ["class", "flax.core/flutter#type:AutovalidateMode", readonly [], false]>>;
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';

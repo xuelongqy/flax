@@ -2,6 +2,7 @@ import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget,
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import type * as upstream1 from '@flax/flutter/cupertino/_bindings/cupertino_ObstructingPreferredSizeWidget';
 import '@flax/flutter/services/_bindings/flutter_Color';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface CupertinoPageScaffold extends WidgetDescription {
     readonly type: "flax.cupertino/cupertino#type:CupertinoPageScaffold";
 }
@@ -16,5 +17,5 @@ declare function _CupertinoPageScaffoldFactory(options: {
     resizeToAvoidBottomInset?: Bindable<boolean> | undefined;
     child: Bindable<Widget>;
 }): CupertinoPageScaffold;
-export declare const CupertinoPageScaffold: typeof _CupertinoPageScaffoldFactory & _FlaxInstanceType<CupertinoPageScaffold>;
+export declare const CupertinoPageScaffold: typeof _CupertinoPageScaffoldFactory & _FlaxInstanceType<CupertinoPageScaffold> & _FlaxDartType<CupertinoPageScaffold, readonly ["class", "flax.cupertino/cupertino#type:CupertinoPageScaffold", readonly [], false]>;
 export {};

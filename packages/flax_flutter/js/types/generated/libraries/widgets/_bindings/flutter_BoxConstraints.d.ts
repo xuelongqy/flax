@@ -1,4 +1,5 @@
 import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface BoxConstraints extends Readonly<{
     "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
 }>, Readonly<{
@@ -28,5 +29,5 @@ declare namespace _BoxConstraintsFactory {
         height?: number | null | undefined;
     }): BoxConstraints;
 }
-export declare const BoxConstraints: typeof _BoxConstraintsFactory & _FlaxInstanceType<BoxConstraints>;
+export declare const BoxConstraints: typeof _BoxConstraintsFactory & _FlaxInstanceType<BoxConstraints> & _FlaxDartType<BoxConstraints, readonly ["class", "flax.core/flutter#type:BoxConstraints", readonly [], false]>;
 export {};

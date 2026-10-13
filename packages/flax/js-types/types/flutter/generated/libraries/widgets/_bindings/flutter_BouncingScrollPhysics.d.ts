@@ -1,6 +1,7 @@
 import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_ScrollPhysics';
 import '@flax/flutter/widgets/_bindings/flutter_ScrollPhysics';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface BouncingScrollPhysics extends upstream0.ScrollPhysics, Readonly<{
     "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::BouncingScrollPhysics": readonly [];
 }> {
@@ -12,5 +13,5 @@ declare function _BouncingScrollPhysicsFactory(options?: {
         "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [];
     }> | null | undefined;
 }): BouncingScrollPhysics;
-export declare const BouncingScrollPhysics: typeof _BouncingScrollPhysicsFactory & _FlaxInstanceType<BouncingScrollPhysics>;
+export declare const BouncingScrollPhysics: typeof _BouncingScrollPhysicsFactory & _FlaxInstanceType<BouncingScrollPhysics> & _FlaxDartType<BouncingScrollPhysics, readonly ["class", "flax.core/flutter#type:BouncingScrollPhysics", readonly [], false]>;
 export {};

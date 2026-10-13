@@ -1,6 +1,7 @@
 import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_EdgeInsetsGeometry';
 import '@flax/flutter/widgets/_bindings/flutter_EdgeInsetsGeometry';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface EdgeInsets extends upstream0.EdgeInsetsGeometry, Readonly<{
     "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
 }> {
@@ -33,5 +34,5 @@ declare namespace _EdgeInsetsFactory {
 declare namespace _EdgeInsetsFactory {
     const zero: EdgeInsets;
 }
-export declare const EdgeInsets: typeof _EdgeInsetsFactory & _FlaxInstanceType<EdgeInsets>;
+export declare const EdgeInsets: typeof _EdgeInsetsFactory & _FlaxInstanceType<EdgeInsets> & _FlaxDartType<EdgeInsets, readonly ["class", "flax.core/flutter#type:EdgeInsets", readonly [], false]>;
 export {};

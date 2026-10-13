@@ -1,5 +1,6 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Positioned extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Positioned";
 }
@@ -15,5 +16,5 @@ declare function _PositionedFactory(options: {
     height?: Bindable<number | null> | undefined;
     child: Bindable<Widget>;
 }): Positioned;
-export declare const Positioned: typeof _PositionedFactory & _FlaxInstanceType<Positioned>;
+export declare const Positioned: typeof _PositionedFactory & _FlaxInstanceType<Positioned> & _FlaxDartType<Positioned, readonly ["class", "flax.core/flutter#type:Positioned", readonly [], false]>;
 export {};

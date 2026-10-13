@@ -1,6 +1,7 @@
 import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_TextStyle';
 import '@flax/flutter/widgets/_bindings/flutter_TextStyle';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface TextTheme extends Readonly<{
     "__flaxBound:package:material_ui/src/text_theme.dart::TextTheme": readonly [];
 }>, Readonly<{
@@ -47,5 +48,5 @@ declare function _TextThemeFactory(options?: {
         "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
     }> | null | undefined;
 }): TextTheme;
-export declare const TextTheme: typeof _TextThemeFactory & _FlaxInstanceType<TextTheme>;
+export declare const TextTheme: typeof _TextThemeFactory & _FlaxInstanceType<TextTheme> & _FlaxDartType<TextTheme, readonly ["class", "flax.material/material#type:TextTheme", readonly [], false]>;
 export {};

@@ -1,4 +1,5 @@
 import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface FontWeight extends Readonly<{
     "__flaxBound:dart:ui::FontWeight": readonly [];
 }> {
@@ -39,5 +40,5 @@ declare namespace _FontWeightFactory {
 declare namespace _FontWeightFactory {
     const bold: FontWeight;
 }
-export declare const FontWeight: typeof _FontWeightFactory & _FlaxInstanceType<FontWeight>;
+export declare const FontWeight: typeof _FontWeightFactory & _FlaxInstanceType<FontWeight> & _FlaxDartType<FontWeight, readonly ["class", "flax.core/flutter#type:FontWeight", readonly [], false]>;
 export {};

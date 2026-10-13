@@ -401,7 +401,9 @@ void main() {
     expect(foreign.finishes, 0);
     expect(
       () => second.execute(
-        "__flaxCreateObject($flaxBindingVersion, 'fixture:Unwrapped', {ctor: '', args: {}})",
+        flaxTestCheckedBinding(
+          "__flaxCreateObject($flaxBindingVersion, 'fixture:Unwrapped', {ctor: '', args: {}})",
+        ),
       ),
       throwsA(isA<FlaxJsException>()),
     );

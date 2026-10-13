@@ -2,6 +2,7 @@ import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type WidgetD
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/services/_bindings/flutter_Color';
 import '@flax/flutter/widgets/_bindings/flutter_BorderRadiusGeometry';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Divider extends WidgetDescription {
     readonly type: "flax.material/material#type:Divider";
 }
@@ -20,5 +21,5 @@ declare function _DividerFactory(options?: {
         "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [];
     }> | null> | undefined;
 }): Divider;
-export declare const Divider: typeof _DividerFactory & _FlaxInstanceType<Divider>;
+export declare const Divider: typeof _DividerFactory & _FlaxInstanceType<Divider> & _FlaxDartType<Divider, readonly ["class", "flax.material/material#type:Divider", readonly [], false]>;
 export {};

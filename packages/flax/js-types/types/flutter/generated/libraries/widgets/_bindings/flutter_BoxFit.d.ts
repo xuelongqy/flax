@@ -13,4 +13,5 @@ export declare const BoxFit: Readonly<{
     none: BoxFit;
     scaleDown: BoxFit;
     values: readonly BoxFit[];
-} & _FlaxInstanceType<BoxFit>>;
+} & _FlaxInstanceType<BoxFit> & _FlaxDartType<BoxFit, readonly ["class", "flax.core/flutter#type:BoxFit", readonly [], false]>>;
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';

@@ -1,6 +1,7 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/widgets/_bindings/flutter_AlignmentGeometry';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Align extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Align";
 }
@@ -15,5 +16,5 @@ declare function _AlignFactory(options?: {
     heightFactor?: Bindable<number | null> | undefined;
     child?: Bindable<Widget | null> | undefined;
 }): Align;
-export declare const Align: typeof _AlignFactory & _FlaxInstanceType<Align>;
+export declare const Align: typeof _AlignFactory & _FlaxInstanceType<Align> & _FlaxDartType<Align, readonly ["class", "flax.core/flutter#type:Align", readonly [], false]>;
 export {};

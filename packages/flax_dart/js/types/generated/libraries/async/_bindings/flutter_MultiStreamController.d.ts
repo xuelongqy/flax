@@ -11,6 +11,7 @@ import type * as upstream4 from '@flax/dart/async/_bindings/flutter_StreamConsum
 import '@flax/dart/async/_bindings/flutter_StreamConsumer';
 import type * as upstream5 from '@flax/dart/async/_bindings/flutter_Stream';
 import '@flax/dart/core/_bindings/flutter_StackTrace';
+import { type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface MultiStreamController<T extends unknown | null = unknown | null> extends upstream0.StreamController<T>, upstream1.StreamSink<T>, upstream2.EventSink<T>, upstream3.Sink<T>, upstream4.StreamConsumer<T>, Readonly<{
     "__flaxBound:dart:async::MultiStreamController": readonly [T];
 }> {
@@ -43,4 +44,9 @@ export interface MultiStreamController<T extends unknown | null = unknown | null
     set onResume(value: (() => void) | null);
     set onCancel(value: (() => void | Promise<void>) | null);
 }
-export declare const MultiStreamController: object & _FlaxInstanceType<MultiStreamController<any>>;
+export declare const MultiStreamController: object & _FlaxInstanceType<MultiStreamController<unknown | null>> & _FlaxDartType<MultiStreamController<unknown | null>, readonly ["class", "flax.core/flutter#type:MultiStreamController", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<{
+    arguments: readonly [readonly ["any", null, readonly [], true]];
+    value: {
+        readonly prototype: MultiStreamController<unknown | null>;
+    } & _FlaxInstanceType<MultiStreamController<unknown | null>> & _FlaxDartType<MultiStreamController<unknown | null>, readonly ["class", "flax.core/flutter#type:MultiStreamController", readonly [readonly ["any", null, readonly [], true]], false]>;
+}>;

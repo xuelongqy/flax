@@ -9,6 +9,7 @@ import type * as upstream3 from '@flax/flutter/widgets/_bindings/flutter_BorderR
 import '@flax/flutter/widgets/_bindings/flutter_BorderRadiusGeometry';
 import type * as upstream4 from '@flax/flutter/widgets/_bindings/flutter_BoxShape';
 import '@flax/flutter/widgets/_bindings/flutter_BoxShape';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface BoxDecoration extends upstream0.Decoration, Readonly<{
     "__flaxBound:package:flutter/src/painting/box_decoration.dart::BoxDecoration": readonly [];
 }>, Readonly<{
@@ -44,5 +45,5 @@ declare function _BoxDecorationFactory(options?: {
     }> | null | undefined;
     shape?: upstream4.BoxShape | undefined;
 }): BoxDecoration;
-export declare const BoxDecoration: typeof _BoxDecorationFactory & _FlaxInstanceType<BoxDecoration>;
+export declare const BoxDecoration: typeof _BoxDecorationFactory & _FlaxInstanceType<BoxDecoration> & _FlaxDartType<BoxDecoration, readonly ["class", "flax.core/flutter#type:BoxDecoration", readonly [], false]>;
 export {};

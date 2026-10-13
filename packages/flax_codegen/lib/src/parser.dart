@@ -481,23 +481,6 @@ void _validateDataTargets(
   }
 }
 
-/// Copy [parameter] replacing only [type]; preserve every other field.
-FlaxCodegenParameterModel _parameterWithType(
-  FlaxCodegenParameterModel parameter,
-  FlaxCodegenTypeRef type,
-) => FlaxCodegenParameterModel(
-  name: parameter.name,
-  type: type,
-  required: parameter.required,
-  positional: parameter.positional,
-  defaultCode: parameter.defaultCode,
-  omitWhenAbsent: parameter.omitWhenAbsent,
-  independentWidgetResult: parameter.independentWidgetResult,
-  snapshot: parameter.snapshot,
-  encodeKind: parameter.encodeKind,
-  scoped: parameter.scoped,
-);
-
 /// Rewrite only Object/dynamic leaves, retaining concrete types and TS parameters.
 FlaxCodegenTypeRef _dataType(FlaxCodegenTypeRef type, String location) {
   final result = type.withDataConversion(true);
@@ -2554,6 +2537,13 @@ class FlaxCodegenBindingParser {
         }
         staticSetters.add(FlaxCodegenGetterModel(name, type));
       }
+      final runtimeTypeSelection =
+          selection.kind == 'object' ||
+          selection.kind == null && !isWidget ||
+          isWidget &&
+              (selection.proxy != null ||
+                  getters.isNotEmpty ||
+                  methods.any((m) => m.instance));
       for (final chosen in entry.value.constructors.entries) {
         final constructor = actualType.constructors
             .where(
@@ -2577,16 +2567,19 @@ class FlaxCodegenBindingParser {
           throw StateError('Unknown constructor: ${entry.key}.${chosen.key}');
         }
         List<FlaxCodegenParameterModel> constructorParametersFor(
-          ConstructorElement candidate,
-        ) => parameters(
+          ConstructorElement candidate, {
+          bool closed = false,
+        }) => parameters(
           candidate.formalParameters,
           chosen.value,
           '${entry.key}.${chosen.key}',
           data: selection.data.constructors[chosen.key] ?? const [],
           mountedWidgetCallbacks: isWidget,
-          declared: element.thisType.constructors
-              .firstWhere((c) => c.name == constructor.name)
-              .formalParameters,
+          declared: closed
+              ? null
+              : element.thisType.constructors
+                    .firstWhere((c) => c.name == constructor.name)
+                    .formalParameters,
           callbackSignatures: selection.callbackSignatures,
           callbackOptionalParameters: selection.callbackOptionalParameters,
           callbackErrorParameters: selection.callbackErrorParameters,
@@ -2606,6 +2599,7 @@ class FlaxCodegenBindingParser {
             runtimeConstructor: constructor,
             selectedParameters: chosen.value,
             concreteUses: concreteUses[identity(element)] ?? const [],
+            runtimeTypes: runtimeTypeSelection,
           );
           if (!plan.supported) {
             throw StateError(
@@ -2617,8 +2611,7 @@ class FlaxCodegenBindingParser {
             constructorParameters = [
               for (final parameter in constructorParameters)
                 if (plan.scalarParameters.contains(parameter.name))
-                  _parameterWithType(
-                    parameter,
+                  parameter.withType(
                     FlaxCodegenTypeRef(
                       'scalar',
                       nullable:
@@ -2668,12 +2661,16 @@ class FlaxCodegenBindingParser {
             final concreteParameters = constructorParametersFor(
               concreteConstructor,
             );
-            if (plan.targets.length == 1) {
+            if (!runtimeTypeSelection && plan.targets.length == 1) {
               constructorParameters = concreteParameters;
             }
             specializations.add(
               FlaxCodegenConstructorSpecializationModel(
                 typeArguments: target.typeArguments,
+                typeArgumentTypes: [
+                  for (final argument in target.type.typeArguments)
+                    typeRef(argument),
+                ],
                 parameterTypes: [
                   for (final parameter in concreteParameters)
                     parameter.type.declaredAs(
@@ -2692,11 +2689,21 @@ class FlaxCodegenBindingParser {
             );
           }
         }
+        final runtimeParameterTypes = <FlaxCodegenTypeRef>[];
+        if (element.typeParameters.isNotEmpty && runtimeTypeSelection) {
+          runtimeParameterTypes.addAll(
+            constructorParametersFor(
+              constructor,
+              closed: true,
+            ).map((p) => p.type),
+          );
+        }
         constructors.add(
           FlaxCodegenConstructorModel(
             chosen.key,
             constructorParameters,
             specializations: specializations,
+            runtimeParameterTypes: runtimeParameterTypes,
           ),
         );
         if (constructors.last.parameters.any((p) => p.type.kind == 'void')) {

@@ -6,6 +6,7 @@ const flaxBindingVersion = 24;
 /// Additive features supported without changing the UI protocol.
 const _supportedCapabilities = <String>{
   'generic-member-views',
+  'dart-type-tokens',
   'instance-checks',
   'native-core-inputs',
   'native-bigint',
@@ -201,6 +202,7 @@ class FlaxObjectBinding extends FlaxTypeBinding {
     this.memberView,
     this.memberViewOperations = const {},
     this.collectionView,
+    this.aliasOf,
   });
   final Map<String, List<FlaxParameter>> constructors;
   final Object Function(String, Map<String, Object?>) create;
@@ -223,6 +225,9 @@ class FlaxObjectBinding extends FlaxTypeBinding {
 
   /// The collection interface of a bound subclass; selected native members win.
   final FlaxTypeRef? collectionView;
+
+  /// Explicit closed type entry; excluded from automatic subtype discovery.
+  final String? aliasOf;
 }
 
 /// Only the members whose conversion changes for a closed generic Dart owner.

@@ -8,4 +8,5 @@ export declare const BorderStyle: Readonly<{
     none: BorderStyle;
     solid: BorderStyle;
     values: readonly BorderStyle[];
-} & _FlaxInstanceType<BorderStyle>>;
+} & _FlaxInstanceType<BorderStyle> & _FlaxDartType<BorderStyle, readonly ["class", "flax.core/flutter#type:BorderStyle", readonly [], false]>>;
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';

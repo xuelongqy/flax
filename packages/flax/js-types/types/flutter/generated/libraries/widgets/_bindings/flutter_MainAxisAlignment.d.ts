@@ -12,4 +12,5 @@ export declare const MainAxisAlignment: Readonly<{
     spaceAround: MainAxisAlignment;
     spaceEvenly: MainAxisAlignment;
     values: readonly MainAxisAlignment[];
-} & _FlaxInstanceType<MainAxisAlignment>>;
+} & _FlaxInstanceType<MainAxisAlignment> & _FlaxDartType<MainAxisAlignment, readonly ["class", "flax.core/flutter#type:MainAxisAlignment", readonly [], false]>>;
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';

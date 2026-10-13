@@ -10840,7 +10840,7 @@ const flutterBindings = FlaxBindingModule(
         "": [
           FlaxParameter(
             "value",
-            FlaxTypeRef("scalar"),
+            FlaxTypeRef("any", nullable: true),
             required: true,
             defaultValue: null,
             omitWhenAbsent: false,
@@ -13816,6 +13816,215 @@ const flutterBindings = FlaxBindingModule(
       fixedArguments: false,
       methods: {},
     ),
+    FlaxObjectBinding(
+      "flax.core/flutter::dartType:flax.core/flutter#type:ValueListenable:[[\"class\",\"flax.core/flutter#type:TextEditingValue\",[],false]]",
+      [
+        FlaxGetter(
+          "value",
+          FlaxTypeRef("object", id: "flax.core/flutter#type:TextEditingValue"),
+          __ValueListenableDartType1_value,
+        ),
+      ],
+      {
+        "addListener": FlaxInstanceMethod(
+          [
+            FlaxParameter(
+              "listener",
+              FlaxTypeRef(
+                "callback",
+                callback: FlaxCallbackBinding(
+                  [],
+                  FlaxTypeRef("void"),
+                  _callback109,
+                  id: "callback:<>()->void:",
+                  invoke: _callback109Invoke,
+                  matches: _callback109Matches,
+                ),
+              ),
+              required: true,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+          ],
+          FlaxTypeRef("void"),
+          __ValueListenableDartType1_addListener,
+          startsRoute: false,
+        ),
+        "removeListener": FlaxInstanceMethod(
+          [
+            FlaxParameter(
+              "listener",
+              FlaxTypeRef(
+                "callback",
+                callback: FlaxCallbackBinding(
+                  [],
+                  FlaxTypeRef("void"),
+                  _callback110,
+                  id: "callback:<>()->void:",
+                  invoke: _callback110Invoke,
+                  matches: _callback110Matches,
+                ),
+              ),
+              required: true,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+          ],
+          FlaxTypeRef("void"),
+          __ValueListenableDartType1_removeListener,
+          startsRoute: false,
+        ),
+      },
+      constructors: {"@implementation": []},
+      create: _create_ValueListenableDartType1,
+      disposeMethod: null,
+      listenerPairs: {"addListener": "removeListener"},
+      supertypes: [
+        "flax.core/flutter#type:ValueListenable",
+        "flax.core/flutter#type:Listenable",
+        "dart:core::Object",
+      ],
+      setters: [],
+      matches: _is_ValueListenableDartType1,
+      methods: const {},
+      aliasOf: "flax.core/flutter#type:ValueListenable",
+      proxy: FlaxProxyBinding([
+        FlaxProxyMember(
+          "addListener",
+          0,
+          FlaxCallbackBinding(
+            [
+              FlaxCallbackParameter(
+                "listener",
+                FlaxTypeRef(
+                  "callback",
+                  callback: FlaxCallbackBinding(
+                    [],
+                    FlaxTypeRef("void"),
+                    _callback111,
+                    id: "callback:<>()->void:",
+                    invoke: _callback111Invoke,
+                    matches: _callback111Matches,
+                  ),
+                ),
+                required: true,
+                positional: true,
+              ),
+            ],
+            FlaxTypeRef("void"),
+            _callback159,
+            id: "callback:<>(p:r:listener:callback:<>()->void:)->void:",
+            invoke: _callback159Invoke,
+            matches: _callback159Matches,
+          ),
+          hasSuper: false,
+        ),
+        FlaxProxyMember(
+          "removeListener",
+          0,
+          FlaxCallbackBinding(
+            [
+              FlaxCallbackParameter(
+                "listener",
+                FlaxTypeRef(
+                  "callback",
+                  callback: FlaxCallbackBinding(
+                    [],
+                    FlaxTypeRef("void"),
+                    _callback113,
+                    id: "callback:<>()->void:",
+                    invoke: _callback113Invoke,
+                    matches: _callback113Matches,
+                  ),
+                ),
+                required: true,
+                positional: true,
+              ),
+            ],
+            FlaxTypeRef("void"),
+            _callback160,
+            id: "callback:<>(p:r:listener:callback:<>()->void:)->void:",
+            invoke: _callback160Invoke,
+            matches: _callback160Matches,
+          ),
+          hasSuper: false,
+        ),
+        FlaxProxyMember(
+          "value",
+          1,
+          FlaxCallbackBinding(
+            [],
+            FlaxTypeRef(
+              "object",
+              id: "flax.core/flutter#type:TextEditingValue",
+            ),
+            _callback161,
+            id: "callback:<>()->object:flax.core/flutter#type:TextEditingValue",
+            invoke: _callback161Invoke,
+            matches: _callback161Matches,
+          ),
+          hasSuper: false,
+        ),
+      ]),
+    ),
+    FlaxObjectBinding(
+      "flax.core/flutter::dartType:flax.core/flutter#type:ValueKey:[[\"String\",null,[],false]]",
+      [FlaxGetter("value", FlaxTypeRef("String"), __ValueKeyDartType0_value)],
+      {},
+      constructors: {
+        "": [
+          FlaxParameter(
+            "value",
+            FlaxTypeRef("String"),
+            required: true,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+        ],
+      },
+      create: _create_ValueKeyDartType0,
+      disposeMethod: null,
+      listenerPairs: {},
+      supertypes: [
+        "flax.core/flutter#type:ValueKey",
+        "flax.core/flutter#type:LocalKey",
+        "flax.core/flutter#type:Key",
+        "dart:core::Object",
+      ],
+      setters: [],
+      matches: _is_ValueKeyDartType0,
+      methods: const {},
+      aliasOf: "flax.core/flutter#type:ValueKey",
+    ),
+    FlaxObjectBinding(
+      "flax.core/flutter::dartType:flax.core/flutter#type:ValueKey:[[\"int\",null,[],false]]",
+      [FlaxGetter("value", FlaxTypeRef("int"), __ValueKeyDartType2_value)],
+      {},
+      constructors: {
+        "": [
+          FlaxParameter(
+            "value",
+            FlaxTypeRef("int"),
+            required: true,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+        ],
+      },
+      create: _create_ValueKeyDartType2,
+      disposeMethod: null,
+      listenerPairs: {},
+      supertypes: [
+        "flax.core/flutter#type:ValueKey",
+        "flax.core/flutter#type:LocalKey",
+        "flax.core/flutter#type:Key",
+        "dart:core::Object",
+      ],
+      setters: [],
+      matches: _is_ValueKeyDartType2,
+      methods: const {},
+      aliasOf: "flax.core/flutter#type:ValueKey",
+    ),
   ],
   functions: [
     FlaxFunctionBinding(
@@ -14447,6 +14656,7 @@ const flutterBindings = FlaxBindingModule(
   dependencyModules: [],
   uiProtocol: 24,
   requiredCapabilities: const <String>[
+    "dart-type-tokens",
     "generic-member-views",
     "instance-checks",
     "native-core-inputs",
@@ -18089,14 +18299,8 @@ Object? __ValueKeyMemberView1_value(Object value) =>
 Object _createValueKey(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      if (values["value"] is String) {
-        return api.ValueKey<String>(values["value"] as String);
-      }
-      if (values["value"] is num) {
-        return api.ValueKey<int>(values["value"] as int);
-      }
-      throw ArgumentError(
-        'No matching generated generic constructor specialization: ValueKey.',
+      return api.ValueKey<Object?>(
+        ((values["value"] == null ? null : values["value"])) as Object?,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -19132,6 +19336,66 @@ api.Widget _createStatefulBuilder(String ctor, Map<String, Object?> values) {
   }
 }
 
+bool _is_ValueListenableDartType1(Object value) =>
+    value is api8.ValueListenable<api.TextEditingValue>;
+Object? __ValueListenableDartType1_value(Object value) =>
+    (value as api8.ValueListenable<api.TextEditingValue>).value;
+Object? __ValueListenableDartType1_addListener(
+  Object receiver,
+  Map<String, Object?> values,
+) {
+  (receiver as api8.ValueListenable<api.TextEditingValue>).addListener(
+    values["listener"] as void Function(),
+  );
+  return null;
+}
+
+Object? __ValueListenableDartType1_removeListener(
+  Object receiver,
+  Map<String, Object?> values,
+) {
+  (receiver as api8.ValueListenable<api.TextEditingValue>).removeListener(
+    values["listener"] as void Function(),
+  );
+  return null;
+}
+
+Object _create_ValueListenableDartType1(
+  String ctor,
+  Map<String, Object?> values,
+) {
+  switch (ctor) {
+    case '@implementation':
+      return __ValueListenableDartType1Proxy(values['@peer'] as FlaxProxyPeer);
+    default:
+      throw ArgumentError('Unknown generated constructor');
+  }
+}
+
+bool _is_ValueKeyDartType0(Object value) => value is api.ValueKey<String>;
+Object? __ValueKeyDartType0_value(Object value) =>
+    (value as api.ValueKey<String>).value;
+Object _create_ValueKeyDartType0(String ctor, Map<String, Object?> values) {
+  switch (ctor) {
+    case "":
+      return api.ValueKey<String>(values["value"] as String);
+    default:
+      throw ArgumentError('Unknown generated constructor');
+  }
+}
+
+bool _is_ValueKeyDartType2(Object value) => value is api.ValueKey<int>;
+Object? __ValueKeyDartType2_value(Object value) =>
+    (value as api.ValueKey<int>).value;
+Object _create_ValueKeyDartType2(String ctor, Map<String, Object?> values) {
+  switch (ctor) {
+    case "":
+      return api.ValueKey<int>(values["value"] as int);
+    default:
+      throw ArgumentError('Unknown generated constructor');
+  }
+}
+
 final class _EventSinkProxy implements api3.EventSink<Object?> {
   final FlaxProxyPeer _flaxPeer;
   _EventSinkProxy(this._flaxPeer);
@@ -19347,6 +19611,40 @@ final class _TextProxy extends api.Text with FlaxWidgetProxy {
 
   api.Key? get _flaxSuperGet_key {
     return super.key;
+  }
+}
+
+final class __ValueListenableDartType1Proxy
+    extends api8.ValueListenable<api.TextEditingValue> {
+  final FlaxProxyPeer _flaxPeer;
+  __ValueListenableDartType1Proxy(this._flaxPeer);
+  @override
+  void addListener(void Function() listener) {
+    final _flaxResult = _flaxPeer.call(0, <Object?>[
+      listener,
+    ], <String, Object?>{});
+    if (!_flaxResult.$1) {
+      throw StateError('Missing proxy method: addListener');
+    }
+    return;
+  }
+
+  @override
+  void removeListener(void Function() listener) {
+    final _flaxResult = _flaxPeer.call(1, <Object?>[
+      listener,
+    ], <String, Object?>{});
+    if (!_flaxResult.$1) {
+      throw StateError('Missing proxy method: removeListener');
+    }
+    return;
+  }
+
+  @override
+  api.TextEditingValue get value {
+    final _flaxResult = _flaxPeer.call(2, const [], const {});
+    final result = _flaxResult.$2 as api.TextEditingValue;
+    return result;
   }
 }
 
@@ -22279,6 +22577,59 @@ Object? _callback158Invoke(
     positional[0] as api.BuildContext,
     positional[1] as void Function(void Function() fn),
   );
+}
+
+Object _callback159(FlaxCallback _flaxBridgeCallback) => (void Function() p0) {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  positional.add(p0);
+  _flaxBridgeCallback.call(positional, named);
+};
+bool _callback159Matches(Object value) =>
+    value is void Function(void Function() listener);
+Object? _callback159Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  (function as void Function(void Function() listener))(
+    positional[0] as void Function(),
+  );
+  return null;
+}
+
+Object _callback160(FlaxCallback _flaxBridgeCallback) => (void Function() p0) {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  positional.add(p0);
+  _flaxBridgeCallback.call(positional, named);
+};
+bool _callback160Matches(Object value) =>
+    value is void Function(void Function() listener);
+Object? _callback160Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  (function as void Function(void Function() listener))(
+    positional[0] as void Function(),
+  );
+  return null;
+}
+
+Object _callback161(FlaxCallback _flaxBridgeCallback) => () {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  return _flaxBridgeCallback.call(positional, named) as api.TextEditingValue;
+};
+bool _callback161Matches(Object value) =>
+    value is api.TextEditingValue Function();
+Object? _callback161Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  return (function as api.TextEditingValue Function())();
 }
 
 Object _collection0Create() => <Object?>[];

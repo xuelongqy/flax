@@ -1,3 +1,7 @@
+import {
+  dartType as selectDartType,
+  dartTypes as nativeTypes,
+} from '@flax/core/bindings';
 import { signal, bind } from '@flax/core';
 import { construct } from '@flax/core/bindings';
 import {
@@ -15,6 +19,9 @@ import {
 import { TextDirection } from '@flax/flutter/services';
 import { ValueKey } from '@flax/flutter/foundation';
 import { TextButton } from '@flax/flutter/material';
+
+const StringKey = selectDartType(ValueKey, nativeTypes.string);
+const IntKey = selectDartType(ValueKey, nativeTypes.int);
 
 const count = signal(0);
 const visible = signal(true);
@@ -51,8 +58,8 @@ function builder(c: BuildContext): Widget {
   if (mode.value === 'duplicate')
     return Column({
       children: [
-        Text('A', { key: ValueKey('same') }),
-        Text('B', { key: ValueKey('same') }),
+        Text('A', { key: StringKey('same') }),
+        Text('B', { key: StringKey('same') }),
       ],
     });
   const direction = Directionality.of(c);
@@ -63,7 +70,7 @@ function builder(c: BuildContext): Widget {
         ? [construct('widget', 'test:Lifecycle', '', [], [], {}) as Widget]
         : []),
       Text(direction === TextDirection.rtl ? 'RTL' : 'LTR'),
-      Text(tracked, { key: ValueKey('count') }),
+      Text(tracked, { key: StringKey('count') }),
       TextButton({
         child: Text('Read context'),
         onPressed: () => {
@@ -72,12 +79,12 @@ function builder(c: BuildContext): Widget {
         },
       }),
       Column({
-        key: ValueKey('items'),
+        key: StringKey('items'),
         mainAxisSize: MainAxisSize.min,
         children: bind(() =>
           items.value.map((id) =>
             TextButton({
-              key: ValueKey(id),
+              key: IntKey(id),
               child: Text(`Item ${id}`),
               onPressed: () => count.value++,
             }),
@@ -97,7 +104,7 @@ const layoutCallback = signal(
     constraints = box;
     if (mode.value === 'layout-throw') throw new Error('layout failed');
     if (mode.value === 'write-during-layout') count.value++;
-    return Text(`Width ${box.maxWidth}`, { key: ValueKey('width') });
+    return Text(`Width ${box.maxWidth}`, { key: StringKey('width') });
   },
 );
 Object.assign(globalThis, {
@@ -148,16 +155,16 @@ runApp(
     : Column({
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text('Static', { key: ValueKey('static') }),
+          Text('Static', { key: StringKey('static') }),
           SizedBox({
-            key: ValueKey('conditional'),
+            key: StringKey('conditional'),
             child: bind(() =>
               visible.value
-                ? Builder({ key: ValueKey('builder'), builder: callback.bind })
+                ? Builder({ key: StringKey('builder'), builder: callback.bind })
                 : null,
             ),
           }),
-          LayoutBuilder({ key: ValueKey('layout'), builder: layoutCallback.bind }),
+          LayoutBuilder({ key: StringKey('layout'), builder: layoutCallback.bind }),
         ],
       }),
 );

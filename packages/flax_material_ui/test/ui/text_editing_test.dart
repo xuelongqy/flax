@@ -190,7 +190,14 @@ void main() {
       await t.pumpAndSettle();
       h.execute("editing.controller.text = 'safe'");
       await t.pump();
+      // Load cached error helpers before measuring temporary handles.
+      expect(
+        () => h.execute("editing.controller.value = 'wrong'"),
+        throwsA(isA<FlaxJsException>()),
+      );
+      await t.pumpAndSettle();
       final baseline = h.runtime.handles;
+      final baselineLabels = h.runtime.handleLabels.toSet();
       final controller = h.created.single as TextEditingController;
       final old = controller.value;
       for (final code in [
@@ -205,7 +212,7 @@ void main() {
         "__flaxInvokeOperation(__flaxResolveOperation(6, '', 'object', 'get', 'empty'), 0)",
       ]) {
         expect(
-          () => h.execute(code),
+          () => h.execute(flaxTestCheckedBinding(code)),
           throwsA(isA<FlaxJsException>()),
           reason: code,
         );
@@ -213,7 +220,12 @@ void main() {
       }
       await t.pumpAndSettle();
       expect(h.created, hasLength(1));
-      expect(h.runtime.handles, baseline);
+      expect(
+        h.runtime.handles,
+        baseline,
+        reason:
+            'New handles: ${h.runtime.handleLabels.toSet().difference(baselineLabels)}',
+      );
       h.execute(
         "editing.failListener = true; editing.controller.text = 'reported'",
       );

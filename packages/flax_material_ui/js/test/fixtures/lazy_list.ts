@@ -1,3 +1,7 @@
+import {
+  dartType as selectDartType,
+  dartTypes as nativeTypes,
+} from '@flax/core/bindings';
 import { bind, computed, signal } from '@flax/core';
 import {
   Builder,
@@ -15,6 +19,9 @@ import { type Key, ValueKey } from '@flax/flutter/foundation';
 import { TextDirection } from '@flax/flutter/services';
 import { RefreshIndicator, TextButton } from '@flax/flutter/material';
 import { RetainedTile } from '../../../.dart_tool/flax/ui/material_repeated_bindings.js';
+
+const IntKey = selectDartType(ValueKey, nativeTypes.int);
+const StringKey = selectDartType(ValueKey, nativeTypes.string);
 
 const hooks = {
   rows: signal<number[]>([]),
@@ -81,7 +88,7 @@ registerPage('lazy', (params, lifecycle) => {
         hooks.states.set(id, count);
       }
       const value = count;
-      const key = hooks.keys ? ValueKey(id) : null;
+      const key = hooks.keys ? IntKey(id) : null;
       if (hooks.typeChanged && id === 0) return Text('Changed type', { key });
       const direction =
         hooks.readDirection && Directionality.of(context) === TextDirection.rtl
@@ -95,10 +102,10 @@ registerPage('lazy', (params, lifecycle) => {
           children: [
             Text(
               bind(() => `Row ${id}: ${value.value} ${direction}`),
-              { key: ValueKey(`label-${id}`) },
+              { key: StringKey(`label-${id}`) },
             ),
             TextButton({
-              key: ValueKey(`inc-${id}`),
+              key: StringKey(`inc-${id}`),
               onPressed: () => value.value++,
               child: Text(`Increment ${id}`),
             }),
@@ -109,22 +116,22 @@ registerPage('lazy', (params, lifecycle) => {
   });
   return Column({
     children: [
-      Text('Static list sibling', { key: ValueKey('static-list') }),
+      Text('Static list sibling', { key: StringKey('static-list') }),
       Text(
         bind(() => `Marker ${hooks.marker.value}`),
-        { key: ValueKey('marker') },
+        { key: StringKey('marker') },
       ),
       Text(
         bind(() => `Refresh ${hooks.refreshCount.value}`),
         {
-          key: ValueKey('refresh-count'),
+          key: StringKey('refresh-count'),
         },
       ),
       SizedBox({
         height: 240,
         width: 400,
         child: RefreshIndicator({
-          key: ValueKey('refresh'),
+          key: StringKey('refresh'),
           onRefresh: bind(() => {
             hooks.refreshRevision.value;
             const variant = hooks.refreshVariant;
@@ -136,7 +143,7 @@ registerPage('lazy', (params, lifecycle) => {
             };
           }),
           child: ListView.builder({
-            key: ValueKey('list'),
+            key: StringKey('list'),
             controller,
             itemExtent: 80,
             itemCount: computed(() => hooks.rows.value.length).bind,

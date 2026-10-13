@@ -1,4 +1,5 @@
 import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Duration extends Readonly<{
     "__flaxBound:dart:core::Duration": readonly [];
 }>, Readonly<{
@@ -23,5 +24,5 @@ declare function _DurationFactory(options?: {
 declare namespace _DurationFactory {
     const zero: Duration;
 }
-export declare const Duration: typeof _DurationFactory & _FlaxInstanceType<Duration>;
+export declare const Duration: typeof _DurationFactory & _FlaxInstanceType<Duration> & _FlaxDartType<Duration, readonly ["class", "flax.core/flutter#type:Duration", readonly [], false]>;
 export {};

@@ -1,4 +1,8 @@
 import {
+  dartType as selectDartType,
+  dartTypes as nativeTypes,
+} from '@flax/core/bindings';
+import {
   Builder,
   Column,
   Text,
@@ -15,6 +19,8 @@ import {
   CallbackStore,
   WidgetListBatch,
 } from '../../../.dart_tool/flax/ui/repeated_bindings.js';
+const StringKey = selectDartType(ValueKey, nativeTypes.string);
+
 const label = signal('Borrowed 0');
 const render = signal<(context: BuildContext) => Widget>((context) =>
   CallbackStore.nativeBuilders.get(0)(context, 9)!,
@@ -26,7 +32,7 @@ const listFailure = (_context: BuildContext): Widget[] => {
 };
 const listRender = signal<(context: BuildContext) => Widget[]>(listSuccess);
 const source = (context: BuildContext, index: number) =>
-  Text(label.bind, { key: ValueKey(`borrowed-${index}`) });
+  Text(label.bind, { key: StringKey(`borrowed-${index}`) });
 const store = CallbackStore([source]);
 const listState = { count: 0, same: false };
 Object.assign(globalThis, {
@@ -89,8 +95,8 @@ registerPage('widget-list-callback', () =>
 registerPage('widget-list-duplicate', () =>
   WidgetListBatch({
     render: () => [
-      Text('First', { key: ValueKey('duplicate') }),
-      Text('Second', { key: ValueKey('duplicate') }),
+      Text('First', { key: StringKey('duplicate') }),
+      Text('Second', { key: StringKey('duplicate') }),
     ],
   }),
 );

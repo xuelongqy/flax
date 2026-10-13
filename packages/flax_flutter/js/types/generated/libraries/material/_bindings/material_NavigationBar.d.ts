@@ -3,6 +3,7 @@ import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/services/_bindings/flutter_Color';
 import type * as upstream2 from '@flax/flutter/material/_bindings/material_NavigationDestinationLabelBehavior';
 import '@flax/flutter/material/_bindings/material_NavigationDestinationLabelBehavior';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface NavigationBar extends WidgetDescription {
     readonly type: "flax.material/material#type:NavigationBar";
 }
@@ -26,5 +27,5 @@ declare function _NavigationBarFactory(options: {
     height?: Bindable<number | null> | undefined;
     labelBehavior?: Bindable<upstream2.NavigationDestinationLabelBehavior | null> | undefined;
 }): NavigationBar;
-export declare const NavigationBar: typeof _NavigationBarFactory & _FlaxInstanceType<NavigationBar>;
+export declare const NavigationBar: typeof _NavigationBarFactory & _FlaxInstanceType<NavigationBar> & _FlaxDartType<NavigationBar, readonly ["class", "flax.material/material#type:NavigationBar", readonly [], false]>;
 export {};

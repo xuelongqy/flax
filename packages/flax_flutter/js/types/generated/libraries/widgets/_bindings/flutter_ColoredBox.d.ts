@@ -1,6 +1,7 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/services/_bindings/flutter_Color';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ColoredBox extends WidgetDescription {
     readonly type: "flax.core/flutter#type:ColoredBox";
 }
@@ -14,5 +15,5 @@ declare function _ColoredBoxFactory(options: {
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
 }): ColoredBox;
-export declare const ColoredBox: typeof _ColoredBoxFactory & _FlaxInstanceType<ColoredBox>;
+export declare const ColoredBox: typeof _ColoredBoxFactory & _FlaxInstanceType<ColoredBox> & _FlaxDartType<ColoredBox, readonly ["class", "flax.core/flutter#type:ColoredBox", readonly [], false]>;
 export {};

@@ -60,7 +60,7 @@ void main() {
         library: library,
       );
       expect(proposed.selection!.typeArguments, isEmpty);
-      expect(proposed.selection!.constructors, isEmpty);
+      expect(proposed.selection!.constructors, isNotEmpty);
       final module = await parser.parse(
         FlaxCodegenBindingConfig(
           library.name,
@@ -118,10 +118,10 @@ void main() {
           library: target,
         );
         expect(proposed.selection, isNotNull, reason: name);
-        expect(proposed.selection!.constructors, isEmpty, reason: name);
+        expect(proposed.selection!.constructors, isNotEmpty, reason: name);
         expect(
           proposed.skips.map((skip) => skip.code),
-          contains('constructor_specialization_missing_use_site'),
+          isNot(contains('constructor_specialization_missing_use_site')),
           reason: name,
         );
         return parser.parse(

@@ -2,6 +2,7 @@ import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget,
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_PreferredSizeWidget';
 import '@flax/flutter/services/_bindings/flutter_Color';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Scaffold extends WidgetDescription {
     readonly type: "flax.material/material#type:Scaffold";
 }
@@ -23,5 +24,5 @@ declare function _ScaffoldFactory(options?: {
     extendBody?: Bindable<boolean> | undefined;
     extendBodyBehindAppBar?: Bindable<boolean> | undefined;
 }): Scaffold;
-export declare const Scaffold: typeof _ScaffoldFactory & _FlaxInstanceType<Scaffold>;
+export declare const Scaffold: typeof _ScaffoldFactory & _FlaxInstanceType<Scaffold> & _FlaxDartType<Scaffold, readonly ["class", "flax.material/material#type:Scaffold", readonly [], false]>;
 export {};

@@ -3,6 +3,7 @@ import '@flax/flutter/foundation/_bindings/flutter_Key';
 import type * as upstream1 from '@flax/flutter/gestures/_bindings/flutter_PointerEvent';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_HitTestBehavior';
 import '@flax/flutter/widgets/_bindings/flutter_HitTestBehavior';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Listener extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Listener";
 }
@@ -19,5 +20,5 @@ declare function _ListenerFactory(options?: {
     behavior?: Bindable<upstream2.HitTestBehavior> | undefined;
     child?: Bindable<Widget | null> | undefined;
 }): Listener;
-export declare const Listener: typeof _ListenerFactory & _FlaxInstanceType<Listener>;
+export declare const Listener: typeof _ListenerFactory & _FlaxInstanceType<Listener> & _FlaxDartType<Listener, readonly ["class", "flax.core/flutter#type:Listener", readonly [], false]>;
 export {};

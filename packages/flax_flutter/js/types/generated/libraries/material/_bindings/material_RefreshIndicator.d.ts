@@ -1,5 +1,6 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface RefreshIndicator extends WidgetDescription {
     readonly type: "flax.material/material#type:RefreshIndicator";
 }
@@ -10,5 +11,5 @@ declare function _RefreshIndicatorFactory(options: {
     onRefresh: Bindable<(() => Promise<void>)>;
     child: Bindable<Widget>;
 }): RefreshIndicator;
-export declare const RefreshIndicator: typeof _RefreshIndicatorFactory & _FlaxInstanceType<RefreshIndicator>;
+export declare const RefreshIndicator: typeof _RefreshIndicatorFactory & _FlaxInstanceType<RefreshIndicator> & _FlaxDartType<RefreshIndicator, readonly ["class", "flax.material/material#type:RefreshIndicator", readonly [], false]>;
 export {};

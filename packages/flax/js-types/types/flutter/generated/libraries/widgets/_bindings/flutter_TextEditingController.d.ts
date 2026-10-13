@@ -7,6 +7,7 @@ import type * as upstream2 from '@flax/flutter/services/_bindings/flutter_TextEd
 import '@flax/flutter/services/_bindings/flutter_TextEditingValue';
 import type * as upstream3 from '@flax/flutter/services/_bindings/flutter_TextSelection';
 import '@flax/flutter/services/_bindings/flutter_TextSelection';
+import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface TextEditingController extends upstream0.Listenable, upstream1.ValueListenable<upstream2.TextEditingValue>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/editable_text.dart::TextEditingController": readonly [];
 }>, Readonly<{
@@ -39,5 +40,5 @@ declare namespace _TextEditingControllerFactory {
         "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [];
     }> | null): TextEditingController;
 }
-export declare const TextEditingController: typeof _TextEditingControllerFactory & _FlaxInstanceType<TextEditingController>;
+export declare const TextEditingController: typeof _TextEditingControllerFactory & _FlaxInstanceType<TextEditingController> & _FlaxDartType<TextEditingController, readonly ["class", "flax.core/flutter#type:TextEditingController", readonly [], false]>;
 export {};
