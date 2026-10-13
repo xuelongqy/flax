@@ -1,6 +1,15 @@
 import * as interop from '../../../.dart_tool/flax/ui/interop_bindings.js';
 import { CoreValuePeer } from '../../../.dart_tool/flax/ui/repeated_bindings.js';
-import { DateTime, Uri, StringBuffer, RegExp as DartRegExp } from '@flax/dart/core';
+import {
+  DateTime,
+  Duration,
+  Uri,
+  Pattern,
+  Match,
+  RegExpMatch,
+  StringBuffer,
+  RegExp as DartRegExp,
+} from '@flax/dart/core';
 import { Text, registerPage } from '@flax/flutter/widgets';
 import type {
   CodegenOnChangedInput,
@@ -213,7 +222,11 @@ Object.assign(globalThis, {
   interop,
   CoreValuePeer,
   DateTime,
+  Duration,
   Uri,
+  Pattern,
+  Match,
+  RegExpMatch,
   StringBuffer,
   aliasRoundtrip,
   genericAliasRoundtrip,

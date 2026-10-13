@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flax/runtime.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../.dart_tool/flax/ui/interop_bindings.dart';
@@ -7,6 +8,191 @@ import '../../.dart_tool/flax/ui/repeated_bindings.dart';
 import '../support/owned_harness.dart';
 
 void main() {
+  testWidgets(
+    'common SDK APIs retain Dart results and native parameter compatibility',
+    (t) async {
+      final h = OwnedHarness(
+        fixture: 'codegen_basics',
+        extra: [interopBindings, repeatedBindings],
+      );
+      try {
+        await t.pumpWidget(h.app('codegen-basics'));
+        h.execute('''
+var sdkDate = DateTime.parse('2000-02-29T12:34:56.123456Z');
+var sdkShift = sdkDate.add(Duration({days: 1, microseconds: 1}));
+var sdkUri = Uri({scheme: 'https', host: 'example.com', pathSegments: ['a b', 'c'], queryParameters: {q: ['one', 'two']}, fragment: 'part'});
+var sdkRegex = DartRegExp('(?<word>a)(b)?');
+var sdkMatch = sdkRegex.firstMatch('😀xa');
+''');
+        expect(
+          h.string('sdkShift.toIso8601String()'),
+          '2000-03-01T12:34:56.123457Z',
+        );
+        expect(
+          h.number('sdkShift.difference(sdkDate).inMicroseconds'),
+          86400000001,
+        );
+        expect(
+          h.boolean(
+            'sdkShift.subtract(Duration({days:1, microseconds:1})).isAtSameMomentAs(sdkDate)',
+          ),
+          isTrue,
+        );
+        expect(
+          h.boolean(
+            'sdkDate.isBefore(new Date(sdkDate.millisecondsSinceEpoch + 1)) && sdkShift.isAfter(new Date(sdkDate.millisecondsSinceEpoch))',
+          ),
+          isTrue,
+        );
+        expect(
+          h.number(
+            'sdkDate.compareTo(new Date(sdkDate.millisecondsSinceEpoch))',
+          ),
+          1,
+        );
+        expect(
+          h.boolean('sdkDate.toLocal().toUtc().isAtSameMomentAs(sdkDate)'),
+          isTrue,
+        );
+        expect(
+          h.string(
+            '[sdkDate.year,sdkDate.month,sdkDate.day,sdkDate.hour,sdkDate.minute,sdkDate.second,sdkDate.millisecond,sdkDate.microsecond,sdkDate.weekday].join(",")',
+          ),
+          '2000,2,29,12,34,56,123,456,2',
+        );
+        expect(
+          h.boolean(
+            'sdkDate instanceof DateTime && !(sdkDate instanceof Date) && sdkDate.timeZoneOffset.inSeconds === 0',
+          ),
+          isTrue,
+        );
+        expect(
+          h.boolean(
+            'DateTime.tryParse("invalid") === null && DateTime.utc(2000).isUtc && !DateTime(2000).isUtc',
+          ),
+          isTrue,
+        );
+        expect(
+          h.number(
+            'DateTime.fromMicrosecondsSinceEpoch(1234,{isUtc:true}).microsecondsSinceEpoch',
+          ),
+          1234,
+        );
+        expect(
+          (h.number('DateTime.now().millisecondsSinceEpoch') -
+                  DateTime.now().millisecondsSinceEpoch)
+              .abs(),
+          lessThan(5000),
+        );
+        expect(
+          h.string('sdkUri.toString()'),
+          'https://example.com/a%20b/c?q=one&q=two#part',
+        );
+        expect(h.string('sdkUri.pathSegments.get(0)'), 'a b');
+        expect(h.string('sdkUri.queryParametersAll.get("q").get(1)'), 'two');
+        expect(
+          h.boolean(
+            'sdkUri.queryParameters.containsKey("q") && sdkUri.hasScheme && sdkUri.hasAuthority && sdkUri.hasQuery && sdkUri.hasFragment && sdkUri.port === 443',
+          ),
+          isTrue,
+        );
+        expect(
+          h.string('sdkUri.resolve("../next").toString()'),
+          'https://example.com/next',
+        );
+        expect(
+          h.string('sdkUri.resolveUri("../next").toString()'),
+          'https://example.com/next',
+        );
+        expect(
+          h.string(
+            'sdkUri.resolveUri(new URL("https://other.example/path")).host',
+          ),
+          'other.example',
+        );
+        expect(
+          h.string(
+            'sdkUri.replace({path: "/next", queryParameters: {x: "1"}, fragment: ""}).toString()',
+          ),
+          'https://example.com/next?x=1#',
+        );
+        expect(
+          h.boolean(
+            'sdkUri.removeFragment().isAbsolute && sdkUri instanceof Uri && !(sdkUri instanceof URL)',
+          ),
+          isTrue,
+        );
+        expect(h.string('Uri.parse("a/../b").normalizePath().toString()'), 'b');
+        expect(h.boolean('Uri.tryParse("https://[invalid") === null'), isTrue);
+        expect(
+          h.string('Uri.https("example.com", "a b", {q:"a b"}).toString()'),
+          'https://example.com/a%20b?q=a+b',
+        );
+        expect(
+          h.string(
+            'Uri.decodeQueryComponent(Uri.encodeQueryComponent("a b+c"))',
+          ),
+          'a b+c',
+        );
+        expect(
+          h.string('Uri.decodeComponent(Uri.encodeComponent("a/b"))'),
+          'a/b',
+        );
+        expect(
+          h.boolean(
+            'sdkMatch instanceof Match && sdkMatch instanceof RegExpMatch',
+          ),
+          isTrue,
+        );
+        expect(h.string('sdkMatch.namedGroup("word")'), 'a');
+        expect(h.string('sdkMatch.groupNames.toArray().join(",")'), 'word');
+        expect(h.number('sdkMatch.start'), 3);
+        expect(h.number('sdkMatch.end'), 4);
+        expect(h.number('sdkMatch.groupCount'), 2);
+        expect(h.string('sdkMatch.input'), '😀xa');
+        expect(
+          h.boolean(
+            'sdkMatch.group(2) === null && sdkMatch.groups([1,2]).get(1) === null && sdkMatch.pattern instanceof DartRegExp',
+          ),
+          isTrue,
+        );
+        expect(
+          h.string(
+            'sdkRegex.allMatches("a a", 2).toArray()[0].namedGroup("word")',
+          ),
+          'a',
+        );
+        expect(h.string('sdkRegex.matchAsPrefix("za", 1).group(0)'), 'a');
+        expect(
+          h.boolean(
+            'sdkRegex.firstMatch("x") === null && sdkRegex.stringMatch("x") === null',
+          ),
+          isTrue,
+        );
+        expect(
+          h.string('DartRegExp(DartRegExp.escape("a.b")).stringMatch("a.b")'),
+          'a.b',
+        );
+        for (final invalid in [
+          'sdkDate.add(1000)',
+          'sdkDate.difference(new Date(NaN))',
+          'sdkUri.replace({path: "x", pathSegments: ["y"]})',
+          'sdkRegex.allMatches("a", -1)',
+          'sdkMatch.group(9)',
+          'sdkMatch.namedGroup("missing")',
+        ]) {
+          expect(
+            () => h.execute(invalid),
+            throwsA(isA<FlaxJsException>()),
+            reason: invalid,
+          );
+        }
+        expect(h.errors, isEmpty);
+      } finally {
+        await h.finish(t);
+      }
+    },
+  );
   testWidgets(
     'native RegExp, BigInt and binary parameters use one recursive conversion',
     (t) async {

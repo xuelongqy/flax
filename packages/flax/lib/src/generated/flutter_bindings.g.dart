@@ -2982,11 +2982,34 @@ const flutterBindings = FlaxBindingModule(
       "flax.core/flutter#type:DateTime",
       [
         FlaxGetter("year", FlaxTypeRef("int"), _DateTime_year),
+        FlaxGetter("month", FlaxTypeRef("int"), _DateTime_month),
+        FlaxGetter("day", FlaxTypeRef("int"), _DateTime_day),
+        FlaxGetter("hour", FlaxTypeRef("int"), _DateTime_hour),
+        FlaxGetter("minute", FlaxTypeRef("int"), _DateTime_minute),
+        FlaxGetter("second", FlaxTypeRef("int"), _DateTime_second),
+        FlaxGetter("millisecond", FlaxTypeRef("int"), _DateTime_millisecond),
+        FlaxGetter("microsecond", FlaxTypeRef("int"), _DateTime_microsecond),
+        FlaxGetter("weekday", FlaxTypeRef("int"), _DateTime_weekday),
         FlaxGetter("isUtc", FlaxTypeRef("bool"), _DateTime_isUtc),
         FlaxGetter(
           "millisecondsSinceEpoch",
           FlaxTypeRef("int"),
           _DateTime_millisecondsSinceEpoch,
+        ),
+        FlaxGetter(
+          "microsecondsSinceEpoch",
+          FlaxTypeRef("int"),
+          _DateTime_microsecondsSinceEpoch,
+        ),
+        FlaxGetter(
+          "timeZoneName",
+          FlaxTypeRef("String"),
+          _DateTime_timeZoneName,
+        ),
+        FlaxGetter(
+          "timeZoneOffset",
+          FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
+          _DateTime_timeZoneOffset,
         ),
       ],
       {
@@ -2996,12 +3019,261 @@ const flutterBindings = FlaxBindingModule(
           _DateTime_toIso8601String,
           startsRoute: false,
         ),
+        "toString": FlaxInstanceMethod(
+          [],
+          FlaxTypeRef("String"),
+          _DateTime_toString,
+          startsRoute: false,
+        ),
+        "toUtc": FlaxInstanceMethod(
+          [],
+          FlaxTypeRef("object", id: "flax.core/flutter#type:DateTime"),
+          _DateTime_toUtc,
+          startsRoute: false,
+        ),
+        "toLocal": FlaxInstanceMethod(
+          [],
+          FlaxTypeRef("object", id: "flax.core/flutter#type:DateTime"),
+          _DateTime_toLocal,
+          startsRoute: false,
+        ),
+        "add": FlaxInstanceMethod(
+          [
+            FlaxParameter(
+              "duration",
+              FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
+              required: true,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+          ],
+          FlaxTypeRef("object", id: "flax.core/flutter#type:DateTime"),
+          _DateTime_add,
+          startsRoute: false,
+        ),
+        "subtract": FlaxInstanceMethod(
+          [
+            FlaxParameter(
+              "duration",
+              FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
+              required: true,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+          ],
+          FlaxTypeRef("object", id: "flax.core/flutter#type:DateTime"),
+          _DateTime_subtract,
+          startsRoute: false,
+        ),
+        "difference": FlaxInstanceMethod(
+          [
+            FlaxParameter(
+              "other",
+              FlaxTypeRef("object", id: "flax.core/flutter#type:DateTime"),
+              required: true,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+          ],
+          FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
+          _DateTime_difference,
+          startsRoute: false,
+        ),
+        "isBefore": FlaxInstanceMethod(
+          [
+            FlaxParameter(
+              "other",
+              FlaxTypeRef("object", id: "flax.core/flutter#type:DateTime"),
+              required: true,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+          ],
+          FlaxTypeRef("bool"),
+          _DateTime_isBefore,
+          startsRoute: false,
+        ),
+        "isAfter": FlaxInstanceMethod(
+          [
+            FlaxParameter(
+              "other",
+              FlaxTypeRef("object", id: "flax.core/flutter#type:DateTime"),
+              required: true,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+          ],
+          FlaxTypeRef("bool"),
+          _DateTime_isAfter,
+          startsRoute: false,
+        ),
+        "isAtSameMomentAs": FlaxInstanceMethod(
+          [
+            FlaxParameter(
+              "other",
+              FlaxTypeRef("object", id: "flax.core/flutter#type:DateTime"),
+              required: true,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+          ],
+          FlaxTypeRef("bool"),
+          _DateTime_isAtSameMomentAs,
+          startsRoute: false,
+        ),
+        "compareTo": FlaxInstanceMethod(
+          [
+            FlaxParameter(
+              "other",
+              FlaxTypeRef("object", id: "flax.core/flutter#type:DateTime"),
+              required: true,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+          ],
+          FlaxTypeRef("int"),
+          _DateTime_compareTo,
+          startsRoute: false,
+        ),
       },
       nativeInput: "DateTime",
       constructors: {
+        "": [
+          FlaxParameter(
+            "year",
+            FlaxTypeRef("int"),
+            required: true,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "month",
+            FlaxTypeRef("int"),
+            required: false,
+            defaultValue: 1,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "day",
+            FlaxTypeRef("int"),
+            required: false,
+            defaultValue: 1,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "hour",
+            FlaxTypeRef("int"),
+            required: false,
+            defaultValue: 0,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "minute",
+            FlaxTypeRef("int"),
+            required: false,
+            defaultValue: 0,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "second",
+            FlaxTypeRef("int"),
+            required: false,
+            defaultValue: 0,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "millisecond",
+            FlaxTypeRef("int"),
+            required: false,
+            defaultValue: 0,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "microsecond",
+            FlaxTypeRef("int"),
+            required: false,
+            defaultValue: 0,
+            omitWhenAbsent: false,
+          ),
+        ],
+        "utc": [
+          FlaxParameter(
+            "year",
+            FlaxTypeRef("int"),
+            required: true,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "month",
+            FlaxTypeRef("int"),
+            required: false,
+            defaultValue: 1,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "day",
+            FlaxTypeRef("int"),
+            required: false,
+            defaultValue: 1,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "hour",
+            FlaxTypeRef("int"),
+            required: false,
+            defaultValue: 0,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "minute",
+            FlaxTypeRef("int"),
+            required: false,
+            defaultValue: 0,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "second",
+            FlaxTypeRef("int"),
+            required: false,
+            defaultValue: 0,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "millisecond",
+            FlaxTypeRef("int"),
+            required: false,
+            defaultValue: 0,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "microsecond",
+            FlaxTypeRef("int"),
+            required: false,
+            defaultValue: 0,
+            omitWhenAbsent: false,
+          ),
+        ],
+        "now": [],
         "fromMillisecondsSinceEpoch": [
           FlaxParameter(
             "millisecondsSinceEpoch",
+            FlaxTypeRef("int"),
+            required: true,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "isUtc",
+            FlaxTypeRef("bool"),
+            required: false,
+            defaultValue: false,
+            omitWhenAbsent: false,
+          ),
+        ],
+        "fromMicrosecondsSinceEpoch": [
+          FlaxParameter(
+            "microsecondsSinceEpoch",
             FlaxTypeRef("int"),
             required: true,
             defaultValue: null,
@@ -3029,6 +3301,85 @@ const flutterBindings = FlaxBindingModule(
       [
         FlaxGetter("scheme", FlaxTypeRef("String"), _Uri_scheme),
         FlaxGetter("host", FlaxTypeRef("String"), _Uri_host),
+        FlaxGetter("port", FlaxTypeRef("int"), _Uri_port),
+        FlaxGetter("userInfo", FlaxTypeRef("String"), _Uri_userInfo),
+        FlaxGetter("authority", FlaxTypeRef("String"), _Uri_authority),
+        FlaxGetter("path", FlaxTypeRef("String"), _Uri_path),
+        FlaxGetter(
+          "pathSegments",
+          FlaxTypeRef(
+            "list",
+            item: FlaxTypeRef("String"),
+            collection: FlaxCollectionBinding(
+              "list:[String:]",
+              _collection4Create,
+              _collection4Matches,
+            ),
+            iterable: FlaxTypeRef(
+              "iterable",
+              item: FlaxTypeRef("String"),
+              collection: FlaxCollectionBinding(
+                "iterable:[String:]",
+                _collection5Create,
+                _collection5Matches,
+              ),
+            ),
+          ),
+          _Uri_pathSegments,
+        ),
+        FlaxGetter("query", FlaxTypeRef("String"), _Uri_query),
+        FlaxGetter(
+          "queryParameters",
+          FlaxTypeRef(
+            "map",
+            item: FlaxTypeRef("String"),
+            key: FlaxTypeRef("String"),
+            collection: FlaxCollectionBinding(
+              "map:[String:][String:]",
+              _collection6Create,
+              _collection6Matches,
+            ),
+          ),
+          _Uri_queryParameters,
+        ),
+        FlaxGetter(
+          "queryParametersAll",
+          FlaxTypeRef(
+            "map",
+            item: FlaxTypeRef(
+              "list",
+              item: FlaxTypeRef("String"),
+              collection: FlaxCollectionBinding(
+                "list:[String:]",
+                _collection4Create,
+                _collection4Matches,
+              ),
+              iterable: FlaxTypeRef(
+                "iterable",
+                item: FlaxTypeRef("String"),
+                collection: FlaxCollectionBinding(
+                  "iterable:[String:]",
+                  _collection5Create,
+                  _collection5Matches,
+                ),
+              ),
+            ),
+            key: FlaxTypeRef("String"),
+            collection: FlaxCollectionBinding(
+              "map:[list:[String:]][String:]",
+              _collection7Create,
+              _collection7Matches,
+            ),
+          ),
+          _Uri_queryParametersAll,
+        ),
+        FlaxGetter("fragment", FlaxTypeRef("String"), _Uri_fragment),
+        FlaxGetter("isAbsolute", FlaxTypeRef("bool"), _Uri_isAbsolute),
+        FlaxGetter("hasScheme", FlaxTypeRef("bool"), _Uri_hasScheme),
+        FlaxGetter("hasAuthority", FlaxTypeRef("bool"), _Uri_hasAuthority),
+        FlaxGetter("hasPort", FlaxTypeRef("bool"), _Uri_hasPort),
+        FlaxGetter("hasQuery", FlaxTypeRef("bool"), _Uri_hasQuery),
+        FlaxGetter("hasFragment", FlaxTypeRef("bool"), _Uri_hasFragment),
       ],
       {
         "toString": FlaxInstanceMethod(
@@ -3037,9 +3388,289 @@ const flutterBindings = FlaxBindingModule(
           _Uri_toString,
           startsRoute: false,
         ),
+        "resolve": FlaxInstanceMethod(
+          [
+            FlaxParameter(
+              "reference",
+              FlaxTypeRef("String"),
+              required: true,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+          ],
+          FlaxTypeRef("object", id: "flax.core/flutter#type:Uri"),
+          _Uri_resolve,
+          startsRoute: false,
+        ),
+        "resolveUri": FlaxInstanceMethod(
+          [
+            FlaxParameter(
+              "reference",
+              FlaxTypeRef("object", id: "flax.core/flutter#type:Uri"),
+              required: true,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+          ],
+          FlaxTypeRef("object", id: "flax.core/flutter#type:Uri"),
+          _Uri_resolveUri,
+          startsRoute: false,
+        ),
+        "replace": FlaxInstanceMethod(
+          [
+            FlaxParameter(
+              "fragment",
+              FlaxTypeRef("String", nullable: true),
+              required: false,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+            FlaxParameter(
+              "host",
+              FlaxTypeRef("String", nullable: true),
+              required: false,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+            FlaxParameter(
+              "path",
+              FlaxTypeRef("String", nullable: true),
+              required: false,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+            FlaxParameter(
+              "pathSegments",
+              FlaxTypeRef(
+                "iterable",
+                nullable: true,
+                item: FlaxTypeRef("String"),
+                collection: FlaxCollectionBinding(
+                  "iterable:[String:]",
+                  _collection5Create,
+                  _collection5Matches,
+                ),
+              ),
+              required: false,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+            FlaxParameter(
+              "port",
+              FlaxTypeRef("int", nullable: true),
+              required: false,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+            FlaxParameter(
+              "query",
+              FlaxTypeRef("String", nullable: true),
+              required: false,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+            FlaxParameter(
+              "queryParameters",
+              FlaxTypeRef(
+                "map",
+                nullable: true,
+                item: FlaxTypeRef("any", nullable: true),
+                key: FlaxTypeRef("String"),
+                collection: FlaxCollectionBinding(
+                  "map:[any?:][String:]",
+                  _collection8Create,
+                  _collection8Matches,
+                ),
+              ),
+              required: false,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+            FlaxParameter(
+              "scheme",
+              FlaxTypeRef("String", nullable: true),
+              required: false,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+            FlaxParameter(
+              "userInfo",
+              FlaxTypeRef("String", nullable: true),
+              required: false,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+          ],
+          FlaxTypeRef("object", id: "flax.core/flutter#type:Uri"),
+          _Uri_replace,
+          startsRoute: false,
+        ),
+        "removeFragment": FlaxInstanceMethod(
+          [],
+          FlaxTypeRef("object", id: "flax.core/flutter#type:Uri"),
+          _Uri_removeFragment,
+          startsRoute: false,
+        ),
+        "normalizePath": FlaxInstanceMethod(
+          [],
+          FlaxTypeRef("object", id: "flax.core/flutter#type:Uri"),
+          _Uri_normalizePath,
+          startsRoute: false,
+        ),
       },
       nativeInput: "Uri",
-      constructors: {},
+      constructors: {
+        "": [
+          FlaxParameter(
+            "scheme",
+            FlaxTypeRef("String", nullable: true),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "userInfo",
+            FlaxTypeRef("String", nullable: true),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "host",
+            FlaxTypeRef("String", nullable: true),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "port",
+            FlaxTypeRef("int", nullable: true),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "path",
+            FlaxTypeRef("String", nullable: true),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "pathSegments",
+            FlaxTypeRef(
+              "iterable",
+              nullable: true,
+              item: FlaxTypeRef("String"),
+              collection: FlaxCollectionBinding(
+                "iterable:[String:]",
+                _collection5Create,
+                _collection5Matches,
+              ),
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "query",
+            FlaxTypeRef("String", nullable: true),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "queryParameters",
+            FlaxTypeRef(
+              "map",
+              nullable: true,
+              item: FlaxTypeRef("any", nullable: true),
+              key: FlaxTypeRef("String"),
+              collection: FlaxCollectionBinding(
+                "map:[any?:][String:]",
+                _collection8Create,
+                _collection8Matches,
+              ),
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "fragment",
+            FlaxTypeRef("String", nullable: true),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+        ],
+        "http": [
+          FlaxParameter(
+            "authority",
+            FlaxTypeRef("String"),
+            required: true,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "unencodedPath",
+            FlaxTypeRef("String"),
+            required: false,
+            defaultValue: '',
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "queryParameters",
+            FlaxTypeRef(
+              "map",
+              nullable: true,
+              item: FlaxTypeRef("any", nullable: true),
+              key: FlaxTypeRef("String"),
+              collection: FlaxCollectionBinding(
+                "map:[any?:][String:]",
+                _collection8Create,
+                _collection8Matches,
+              ),
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+        ],
+        "https": [
+          FlaxParameter(
+            "authority",
+            FlaxTypeRef("String"),
+            required: true,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "unencodedPath",
+            FlaxTypeRef("String"),
+            required: false,
+            defaultValue: '',
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "queryParameters",
+            FlaxTypeRef(
+              "map",
+              nullable: true,
+              item: FlaxTypeRef("any", nullable: true),
+              key: FlaxTypeRef("String"),
+              collection: FlaxCollectionBinding(
+                "map:[any?:][String:]",
+                _collection8Create,
+                _collection8Matches,
+              ),
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+        ],
+      },
       create: _createUri,
       disposeMethod: null,
       listenerPairs: {},
@@ -5458,8 +6089,8 @@ const flutterBindings = FlaxBindingModule(
                 ),
                 collection: FlaxCollectionBinding(
                   "set:[enum:flax.core/flutter#type:WidgetState]",
-                  _collection4Create,
-                  _collection4Matches,
+                  _collection9Create,
+                  _collection9Matches,
                 ),
                 iterable: FlaxTypeRef(
                   "iterable",
@@ -5469,8 +6100,8 @@ const flutterBindings = FlaxBindingModule(
                   ),
                   collection: FlaxCollectionBinding(
                     "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                    _collection5Create,
-                    _collection5Matches,
+                    _collection10Create,
+                    _collection10Matches,
                   ),
                 ),
               ),
@@ -7612,17 +8243,17 @@ const flutterBindings = FlaxBindingModule(
               item: FlaxTypeRef("widget"),
               collection: FlaxCollectionBinding(
                 "list:[widget:]",
-                _collection6Create,
-                _collection6Matches,
-                snapshot: _collection6Snapshot,
+                _collection11Create,
+                _collection11Matches,
+                snapshot: _collection11Snapshot,
               ),
               iterable: FlaxTypeRef(
                 "iterable",
                 item: FlaxTypeRef("widget"),
                 collection: FlaxCollectionBinding(
                   "iterable:[widget:]",
-                  _collection7Create,
-                  _collection7Matches,
+                  _collection12Create,
+                  _collection12Matches,
                 ),
               ),
             ),
@@ -8625,16 +9256,16 @@ const flutterBindings = FlaxBindingModule(
               item: FlaxTypeRef("page", id: "flax.core/flutter#type:Page"),
               collection: FlaxCollectionBinding(
                 "list:[page:flax.core/flutter#type:Page<Object?><any?:>]",
-                _collection8Create,
-                _collection8Matches,
+                _collection13Create,
+                _collection13Matches,
               ),
               iterable: FlaxTypeRef(
                 "iterable",
                 item: FlaxTypeRef("page", id: "flax.core/flutter#type:Page"),
                 collection: FlaxCollectionBinding(
                   "iterable:[page:flax.core/flutter#type:Page<Object?><any?:>]",
-                  _collection9Create,
-                  _collection9Matches,
+                  _collection14Create,
+                  _collection14Matches,
                 ),
               ),
             ),
@@ -8723,8 +9354,8 @@ const flutterBindings = FlaxBindingModule(
               ),
               collection: FlaxCollectionBinding(
                 "list:[object:flax.core/flutter#type:NavigatorObserver]",
-                _collection10Create,
-                _collection10Matches,
+                _collection15Create,
+                _collection15Matches,
               ),
               iterable: FlaxTypeRef(
                 "iterable",
@@ -8734,8 +9365,8 @@ const flutterBindings = FlaxBindingModule(
                 ),
                 collection: FlaxCollectionBinding(
                   "iterable:[object:flax.core/flutter#type:NavigatorObserver]",
-                  _collection11Create,
-                  _collection11Matches,
+                  _collection16Create,
+                  _collection16Matches,
                 ),
               ),
             ),
@@ -9805,17 +10436,17 @@ const flutterBindings = FlaxBindingModule(
               item: FlaxTypeRef("widget"),
               collection: FlaxCollectionBinding(
                 "list:[widget:]",
-                _collection6Create,
-                _collection6Matches,
-                snapshot: _collection6Snapshot,
+                _collection11Create,
+                _collection11Matches,
+                snapshot: _collection11Snapshot,
               ),
               iterable: FlaxTypeRef(
                 "iterable",
                 item: FlaxTypeRef("widget"),
                 collection: FlaxCollectionBinding(
                   "iterable:[widget:]",
-                  _collection7Create,
-                  _collection7Matches,
+                  _collection12Create,
+                  _collection12Matches,
                 ),
               ),
             ),
@@ -9912,17 +10543,17 @@ const flutterBindings = FlaxBindingModule(
               item: FlaxTypeRef("widget"),
               collection: FlaxCollectionBinding(
                 "list:[widget:]",
-                _collection6Create,
-                _collection6Matches,
-                snapshot: _collection6Snapshot,
+                _collection11Create,
+                _collection11Matches,
+                snapshot: _collection11Snapshot,
               ),
               iterable: FlaxTypeRef(
                 "iterable",
                 item: FlaxTypeRef("widget"),
                 collection: FlaxCollectionBinding(
                   "iterable:[widget:]",
-                  _collection7Create,
-                  _collection7Matches,
+                  _collection12Create,
+                  _collection12Matches,
                 ),
               ),
             ),
@@ -11139,7 +11770,62 @@ const flutterBindings = FlaxBindingModule(
     FlaxObjectBinding(
       "flax.core/flutter#type:Pattern",
       [],
-      {},
+      {
+        "allMatches": FlaxInstanceMethod(
+          [
+            FlaxParameter(
+              "string",
+              FlaxTypeRef("String"),
+              required: true,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+            FlaxParameter(
+              "start",
+              FlaxTypeRef("int"),
+              required: false,
+              defaultValue: 0,
+              omitWhenAbsent: false,
+            ),
+          ],
+          FlaxTypeRef(
+            "iterable",
+            item: FlaxTypeRef("object", id: "flax.core/flutter#type:Match"),
+            collection: FlaxCollectionBinding(
+              "iterable:[object:flax.core/flutter#type:Match]",
+              _collection17Create,
+              _collection17Matches,
+            ),
+          ),
+          _Pattern_allMatches,
+          startsRoute: false,
+        ),
+        "matchAsPrefix": FlaxInstanceMethod(
+          [
+            FlaxParameter(
+              "string",
+              FlaxTypeRef("String"),
+              required: true,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+            FlaxParameter(
+              "start",
+              FlaxTypeRef("int"),
+              required: false,
+              defaultValue: 0,
+              omitWhenAbsent: false,
+            ),
+          ],
+          FlaxTypeRef(
+            "object",
+            id: "flax.core/flutter#type:Match",
+            nullable: true,
+          ),
+          _Pattern_matchAsPrefix,
+          startsRoute: false,
+        ),
+      },
       nativeInput: "Pattern",
       constructors: {},
       create: _createPattern,
@@ -11148,6 +11834,205 @@ const flutterBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [],
       matches: _isPattern,
+      methods: const {},
+    ),
+    FlaxObjectBinding(
+      "flax.core/flutter#type:Match",
+      [
+        FlaxGetter("start", FlaxTypeRef("int"), _Match_start),
+        FlaxGetter("end", FlaxTypeRef("int"), _Match_end),
+        FlaxGetter("groupCount", FlaxTypeRef("int"), _Match_groupCount),
+        FlaxGetter("input", FlaxTypeRef("String"), _Match_input),
+        FlaxGetter(
+          "pattern",
+          FlaxTypeRef("object", id: "flax.core/flutter#type:Pattern"),
+          _Match_pattern,
+        ),
+      ],
+      {
+        "group": FlaxInstanceMethod(
+          [
+            FlaxParameter(
+              "group",
+              FlaxTypeRef("int"),
+              required: true,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+          ],
+          FlaxTypeRef("String", nullable: true),
+          _Match_group,
+          startsRoute: false,
+        ),
+        "groups": FlaxInstanceMethod(
+          [
+            FlaxParameter(
+              "groupIndices",
+              FlaxTypeRef(
+                "list",
+                item: FlaxTypeRef("int"),
+                collection: FlaxCollectionBinding(
+                  "list:[int:]",
+                  _collection18Create,
+                  _collection18Matches,
+                ),
+                iterable: FlaxTypeRef(
+                  "iterable",
+                  item: FlaxTypeRef("int"),
+                  collection: FlaxCollectionBinding(
+                    "iterable:[int:]",
+                    _collection19Create,
+                    _collection19Matches,
+                  ),
+                ),
+              ),
+              required: true,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+          ],
+          FlaxTypeRef(
+            "list",
+            item: FlaxTypeRef("String", nullable: true),
+            collection: FlaxCollectionBinding(
+              "list:[String?:]",
+              _collection20Create,
+              _collection20Matches,
+            ),
+            iterable: FlaxTypeRef(
+              "iterable",
+              item: FlaxTypeRef("String", nullable: true),
+              collection: FlaxCollectionBinding(
+                "iterable:[String?:]",
+                _collection21Create,
+                _collection21Matches,
+              ),
+            ),
+          ),
+          _Match_groups,
+          startsRoute: false,
+        ),
+      },
+      constructors: {},
+      create: _createMatch,
+      disposeMethod: null,
+      listenerPairs: {},
+      supertypes: ["dart:core::Object"],
+      setters: [],
+      matches: _isMatch,
+      methods: const {},
+    ),
+    FlaxObjectBinding(
+      "flax.core/flutter#type:RegExpMatch",
+      [
+        FlaxGetter("start", FlaxTypeRef("int"), _RegExpMatch_start),
+        FlaxGetter("end", FlaxTypeRef("int"), _RegExpMatch_end),
+        FlaxGetter("groupCount", FlaxTypeRef("int"), _RegExpMatch_groupCount),
+        FlaxGetter("input", FlaxTypeRef("String"), _RegExpMatch_input),
+        FlaxGetter(
+          "pattern",
+          FlaxTypeRef("object", id: "flax.core/flutter#type:RegExp"),
+          _RegExpMatch_pattern,
+        ),
+        FlaxGetter(
+          "groupNames",
+          FlaxTypeRef(
+            "iterable",
+            item: FlaxTypeRef("String"),
+            collection: FlaxCollectionBinding(
+              "iterable:[String:]",
+              _collection5Create,
+              _collection5Matches,
+            ),
+          ),
+          _RegExpMatch_groupNames,
+        ),
+      ],
+      {
+        "group": FlaxInstanceMethod(
+          [
+            FlaxParameter(
+              "group",
+              FlaxTypeRef("int"),
+              required: true,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+          ],
+          FlaxTypeRef("String", nullable: true),
+          _RegExpMatch_group,
+          startsRoute: false,
+        ),
+        "groups": FlaxInstanceMethod(
+          [
+            FlaxParameter(
+              "groupIndices",
+              FlaxTypeRef(
+                "list",
+                item: FlaxTypeRef("int"),
+                collection: FlaxCollectionBinding(
+                  "list:[int:]",
+                  _collection18Create,
+                  _collection18Matches,
+                ),
+                iterable: FlaxTypeRef(
+                  "iterable",
+                  item: FlaxTypeRef("int"),
+                  collection: FlaxCollectionBinding(
+                    "iterable:[int:]",
+                    _collection19Create,
+                    _collection19Matches,
+                  ),
+                ),
+              ),
+              required: true,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+          ],
+          FlaxTypeRef(
+            "list",
+            item: FlaxTypeRef("String", nullable: true),
+            collection: FlaxCollectionBinding(
+              "list:[String?:]",
+              _collection20Create,
+              _collection20Matches,
+            ),
+            iterable: FlaxTypeRef(
+              "iterable",
+              item: FlaxTypeRef("String", nullable: true),
+              collection: FlaxCollectionBinding(
+                "iterable:[String?:]",
+                _collection21Create,
+                _collection21Matches,
+              ),
+            ),
+          ),
+          _RegExpMatch_groups,
+          startsRoute: false,
+        ),
+        "namedGroup": FlaxInstanceMethod(
+          [
+            FlaxParameter(
+              "name",
+              FlaxTypeRef("String"),
+              required: true,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+          ],
+          FlaxTypeRef("String", nullable: true),
+          _RegExpMatch_namedGroup,
+          startsRoute: false,
+        ),
+      },
+      constructors: {},
+      create: _createRegExpMatch,
+      disposeMethod: null,
+      listenerPairs: {},
+      supertypes: ["dart:core::Object", "flax.core/flutter#type:Match"],
+      setters: [],
+      matches: _isRegExpMatch,
       methods: const {},
     ),
     FlaxObjectBinding(
@@ -11164,6 +12049,63 @@ const flutterBindings = FlaxBindingModule(
         FlaxGetter("isDotAll", FlaxTypeRef("bool"), _RegExp_isDotAll),
       ],
       {
+        "allMatches": FlaxInstanceMethod(
+          [
+            FlaxParameter(
+              "input",
+              FlaxTypeRef("String"),
+              required: true,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+            FlaxParameter(
+              "start",
+              FlaxTypeRef("int"),
+              required: false,
+              defaultValue: 0,
+              omitWhenAbsent: false,
+            ),
+          ],
+          FlaxTypeRef(
+            "iterable",
+            item: FlaxTypeRef(
+              "object",
+              id: "flax.core/flutter#type:RegExpMatch",
+            ),
+            collection: FlaxCollectionBinding(
+              "iterable:[object:flax.core/flutter#type:RegExpMatch]",
+              _collection22Create,
+              _collection22Matches,
+            ),
+          ),
+          _RegExp_allMatches,
+          startsRoute: false,
+        ),
+        "matchAsPrefix": FlaxInstanceMethod(
+          [
+            FlaxParameter(
+              "string",
+              FlaxTypeRef("String"),
+              required: true,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+            FlaxParameter(
+              "start",
+              FlaxTypeRef("int"),
+              required: false,
+              defaultValue: 0,
+              omitWhenAbsent: false,
+            ),
+          ],
+          FlaxTypeRef(
+            "object",
+            id: "flax.core/flutter#type:Match",
+            nullable: true,
+          ),
+          _RegExp_matchAsPrefix,
+          startsRoute: false,
+        ),
         "hasMatch": FlaxInstanceMethod(
           [
             FlaxParameter(
@@ -11176,6 +12118,38 @@ const flutterBindings = FlaxBindingModule(
           ],
           FlaxTypeRef("bool"),
           _RegExp_hasMatch,
+          startsRoute: false,
+        ),
+        "firstMatch": FlaxInstanceMethod(
+          [
+            FlaxParameter(
+              "input",
+              FlaxTypeRef("String"),
+              required: true,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+          ],
+          FlaxTypeRef(
+            "object",
+            id: "flax.core/flutter#type:RegExpMatch",
+            nullable: true,
+          ),
+          _RegExp_firstMatch,
+          startsRoute: false,
+        ),
+        "stringMatch": FlaxInstanceMethod(
+          [
+            FlaxParameter(
+              "input",
+              FlaxTypeRef("String"),
+              required: true,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+          ],
+          FlaxTypeRef("String", nullable: true),
+          _RegExp_stringMatch,
           startsRoute: false,
         ),
       },
@@ -11813,17 +12787,17 @@ const flutterBindings = FlaxBindingModule(
               item: FlaxTypeRef("widget"),
               collection: FlaxCollectionBinding(
                 "list:[widget:]",
-                _collection6Create,
-                _collection6Matches,
-                snapshot: _collection6Snapshot,
+                _collection11Create,
+                _collection11Matches,
+                snapshot: _collection11Snapshot,
               ),
               iterable: FlaxTypeRef(
                 "iterable",
                 item: FlaxTypeRef("widget"),
                 collection: FlaxCollectionBinding(
                   "iterable:[widget:]",
-                  _collection7Create,
-                  _collection7Matches,
+                  _collection12Create,
+                  _collection12Matches,
                 ),
               ),
             ),
@@ -12300,17 +13274,17 @@ const flutterBindings = FlaxBindingModule(
               item: FlaxTypeRef("widget"),
               collection: FlaxCollectionBinding(
                 "list:[widget:]",
-                _collection6Create,
-                _collection6Matches,
-                snapshot: _collection6Snapshot,
+                _collection11Create,
+                _collection11Matches,
+                snapshot: _collection11Snapshot,
               ),
               iterable: FlaxTypeRef(
                 "iterable",
                 item: FlaxTypeRef("widget"),
                 collection: FlaxCollectionBinding(
                   "iterable:[widget:]",
-                  _collection7Create,
-                  _collection7Matches,
+                  _collection12Create,
+                  _collection12Matches,
                 ),
               ),
             ),
@@ -12897,6 +13871,38 @@ const flutterBindings = FlaxBindingModule(
       _Duration_static_get_zero,
     ),
     FlaxFunctionBinding(
+      "flax.core/flutter#function:DateTime.parse",
+      [
+        FlaxParameter(
+          "formattedString",
+          FlaxTypeRef("String"),
+          required: true,
+          defaultValue: null,
+          omitWhenAbsent: false,
+        ),
+      ],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:DateTime"),
+      _DateTime_parse,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#function:DateTime.tryParse",
+      [
+        FlaxParameter(
+          "formattedString",
+          FlaxTypeRef("String"),
+          required: true,
+          defaultValue: null,
+          omitWhenAbsent: false,
+        ),
+      ],
+      FlaxTypeRef(
+        "object",
+        id: "flax.core/flutter#type:DateTime",
+        nullable: true,
+      ),
+      _DateTime_tryParse,
+    ),
+    FlaxFunctionBinding(
       "flax.core/flutter#function:Uri.parse",
       [
         FlaxParameter(
@@ -12923,6 +13929,90 @@ const flutterBindings = FlaxBindingModule(
       ],
       FlaxTypeRef("object", id: "flax.core/flutter#type:Uri"),
       _Uri_parse,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#function:Uri.tryParse",
+      [
+        FlaxParameter(
+          "uri",
+          FlaxTypeRef("String"),
+          required: true,
+          defaultValue: null,
+          omitWhenAbsent: false,
+        ),
+        FlaxParameter(
+          "start",
+          FlaxTypeRef("int"),
+          required: false,
+          defaultValue: 0,
+          omitWhenAbsent: false,
+        ),
+        FlaxParameter(
+          "end",
+          FlaxTypeRef("int", nullable: true),
+          required: false,
+          defaultValue: null,
+          omitWhenAbsent: false,
+        ),
+      ],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:Uri", nullable: true),
+      _Uri_tryParse,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#function:Uri.encodeComponent",
+      [
+        FlaxParameter(
+          "component",
+          FlaxTypeRef("String"),
+          required: true,
+          defaultValue: null,
+          omitWhenAbsent: false,
+        ),
+      ],
+      FlaxTypeRef("String"),
+      _Uri_encodeComponent,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#function:Uri.decodeComponent",
+      [
+        FlaxParameter(
+          "encodedComponent",
+          FlaxTypeRef("String"),
+          required: true,
+          defaultValue: null,
+          omitWhenAbsent: false,
+        ),
+      ],
+      FlaxTypeRef("String"),
+      _Uri_decodeComponent,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#function:Uri.encodeQueryComponent",
+      [
+        FlaxParameter(
+          "component",
+          FlaxTypeRef("String"),
+          required: true,
+          defaultValue: null,
+          omitWhenAbsent: false,
+        ),
+      ],
+      FlaxTypeRef("String"),
+      _Uri_encodeQueryComponent,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#function:Uri.decodeQueryComponent",
+      [
+        FlaxParameter(
+          "encodedComponent",
+          FlaxTypeRef("String"),
+          required: true,
+          defaultValue: null,
+          omitWhenAbsent: false,
+        ),
+      ],
+      FlaxTypeRef("String"),
+      _Uri_decodeQueryComponent,
     ),
     FlaxFunctionBinding(
       "flax.core/flutter#read:StackTrace.current",
@@ -13311,6 +14401,20 @@ const flutterBindings = FlaxBindingModule(
       [],
       FlaxTypeRef("object", id: "flax.core/flutter#type:TextInputFormatter"),
       _FilteringTextInputFormatter_static_get_singleLineFormatter,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#function:RegExp.escape",
+      [
+        FlaxParameter(
+          "text",
+          FlaxTypeRef("String"),
+          required: true,
+          defaultValue: null,
+          omitWhenAbsent: false,
+        ),
+      ],
+      FlaxTypeRef("String"),
+      _RegExp_escape,
     ),
   ],
   moduleId: "flax.core/flutter",
@@ -13987,9 +15091,33 @@ Object _createDuration(String ctor, Map<String, Object?> values) {
 
 bool _isDateTime(Object value) => value is api1.DateTime;
 Object? _DateTime_year(Object value) => (value as api1.DateTime).year;
+Object? _DateTime_month(Object value) => (value as api1.DateTime).month;
+Object? _DateTime_day(Object value) => (value as api1.DateTime).day;
+Object? _DateTime_hour(Object value) => (value as api1.DateTime).hour;
+Object? _DateTime_minute(Object value) => (value as api1.DateTime).minute;
+Object? _DateTime_second(Object value) => (value as api1.DateTime).second;
+Object? _DateTime_millisecond(Object value) =>
+    (value as api1.DateTime).millisecond;
+Object? _DateTime_microsecond(Object value) =>
+    (value as api1.DateTime).microsecond;
+Object? _DateTime_weekday(Object value) => (value as api1.DateTime).weekday;
 Object? _DateTime_isUtc(Object value) => (value as api1.DateTime).isUtc;
 Object? _DateTime_millisecondsSinceEpoch(Object value) =>
     (value as api1.DateTime).millisecondsSinceEpoch;
+Object? _DateTime_microsecondsSinceEpoch(Object value) =>
+    (value as api1.DateTime).microsecondsSinceEpoch;
+Object? _DateTime_timeZoneName(Object value) =>
+    (value as api1.DateTime).timeZoneName;
+Object? _DateTime_timeZoneOffset(Object value) =>
+    (value as api1.DateTime).timeZoneOffset;
+Object? _DateTime_parse(Map<String, Object?> values) {
+  return api1.DateTime.parse(values["formattedString"] as String);
+}
+
+Object? _DateTime_tryParse(Map<String, Object?> values) {
+  return api1.DateTime.tryParse(values["formattedString"] as String);
+}
+
 Object? _DateTime_toIso8601String(
   Object receiver,
   Map<String, Object?> values,
@@ -13997,11 +15125,91 @@ Object? _DateTime_toIso8601String(
   return (receiver as api1.DateTime).toIso8601String();
 }
 
+Object? _DateTime_toString(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.DateTime).toString();
+}
+
+Object? _DateTime_toUtc(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.DateTime).toUtc();
+}
+
+Object? _DateTime_toLocal(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.DateTime).toLocal();
+}
+
+Object? _DateTime_add(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.DateTime).add(values["duration"] as api1.Duration);
+}
+
+Object? _DateTime_subtract(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.DateTime).subtract(
+    values["duration"] as api1.Duration,
+  );
+}
+
+Object? _DateTime_difference(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.DateTime).difference(
+    values["other"] as api1.DateTime,
+  );
+}
+
+Object? _DateTime_isBefore(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.DateTime).isBefore(values["other"] as api1.DateTime);
+}
+
+Object? _DateTime_isAfter(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.DateTime).isAfter(values["other"] as api1.DateTime);
+}
+
+Object? _DateTime_isAtSameMomentAs(
+  Object receiver,
+  Map<String, Object?> values,
+) {
+  return (receiver as api1.DateTime).isAtSameMomentAs(
+    values["other"] as api1.DateTime,
+  );
+}
+
+Object? _DateTime_compareTo(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.DateTime).compareTo(
+    values["other"] as api1.DateTime,
+  );
+}
+
 Object _createDateTime(String ctor, Map<String, Object?> values) {
   switch (ctor) {
+    case "":
+      return api1.DateTime(
+        values["year"] as int,
+        values["month"] as int,
+        values["day"] as int,
+        values["hour"] as int,
+        values["minute"] as int,
+        values["second"] as int,
+        values["millisecond"] as int,
+        values["microsecond"] as int,
+      );
+    case "utc":
+      return api1.DateTime.utc(
+        values["year"] as int,
+        values["month"] as int,
+        values["day"] as int,
+        values["hour"] as int,
+        values["minute"] as int,
+        values["second"] as int,
+        values["millisecond"] as int,
+        values["microsecond"] as int,
+      );
+    case "now":
+      return api1.DateTime.now();
     case "fromMillisecondsSinceEpoch":
       return api1.DateTime.fromMillisecondsSinceEpoch(
         values["millisecondsSinceEpoch"] as int,
+        isUtc: values["isUtc"] as bool,
+      );
+    case "fromMicrosecondsSinceEpoch":
+      return api1.DateTime.fromMicrosecondsSinceEpoch(
+        values["microsecondsSinceEpoch"] as int,
         isUtc: values["isUtc"] as bool,
       );
     default:
@@ -14012,6 +15220,23 @@ Object _createDateTime(String ctor, Map<String, Object?> values) {
 bool _isUri(Object value) => value is api1.Uri;
 Object? _Uri_scheme(Object value) => (value as api1.Uri).scheme;
 Object? _Uri_host(Object value) => (value as api1.Uri).host;
+Object? _Uri_port(Object value) => (value as api1.Uri).port;
+Object? _Uri_userInfo(Object value) => (value as api1.Uri).userInfo;
+Object? _Uri_authority(Object value) => (value as api1.Uri).authority;
+Object? _Uri_path(Object value) => (value as api1.Uri).path;
+Object? _Uri_pathSegments(Object value) => (value as api1.Uri).pathSegments;
+Object? _Uri_query(Object value) => (value as api1.Uri).query;
+Object? _Uri_queryParameters(Object value) =>
+    (value as api1.Uri).queryParameters;
+Object? _Uri_queryParametersAll(Object value) =>
+    (value as api1.Uri).queryParametersAll;
+Object? _Uri_fragment(Object value) => (value as api1.Uri).fragment;
+Object? _Uri_isAbsolute(Object value) => (value as api1.Uri).isAbsolute;
+Object? _Uri_hasScheme(Object value) => (value as api1.Uri).hasScheme;
+Object? _Uri_hasAuthority(Object value) => (value as api1.Uri).hasAuthority;
+Object? _Uri_hasPort(Object value) => (value as api1.Uri).hasPort;
+Object? _Uri_hasQuery(Object value) => (value as api1.Uri).hasQuery;
+Object? _Uri_hasFragment(Object value) => (value as api1.Uri).hasFragment;
 Object? _Uri_parse(Map<String, Object?> values) {
   return api1.Uri.parse(
     values["uri"] as String,
@@ -14020,12 +15245,95 @@ Object? _Uri_parse(Map<String, Object?> values) {
   );
 }
 
+Object? _Uri_tryParse(Map<String, Object?> values) {
+  return api1.Uri.tryParse(
+    values["uri"] as String,
+    values["start"] as int,
+    values["end"] as int?,
+  );
+}
+
+Object? _Uri_encodeComponent(Map<String, Object?> values) {
+  return api1.Uri.encodeComponent(values["component"] as String);
+}
+
+Object? _Uri_decodeComponent(Map<String, Object?> values) {
+  return api1.Uri.decodeComponent(values["encodedComponent"] as String);
+}
+
+Object? _Uri_encodeQueryComponent(Map<String, Object?> values) {
+  return api1.Uri.encodeQueryComponent(values["component"] as String);
+}
+
+Object? _Uri_decodeQueryComponent(Map<String, Object?> values) {
+  return api1.Uri.decodeQueryComponent(values["encodedComponent"] as String);
+}
+
 Object? _Uri_toString(Object receiver, Map<String, Object?> values) {
   return (receiver as api1.Uri).toString();
 }
 
-Object _createUri(String ctor, Map<String, Object?> values) =>
-    throw ArgumentError('Abstract object has no constructor');
+Object? _Uri_resolve(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.Uri).resolve(values["reference"] as String);
+}
+
+Object? _Uri_resolveUri(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.Uri).resolveUri(values["reference"] as api1.Uri);
+}
+
+Object? _Uri_replace(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.Uri).replace(
+    fragment: values["fragment"] as String?,
+    host: values["host"] as String?,
+    path: values["path"] as String?,
+    pathSegments: values["pathSegments"] as Iterable<String>?,
+    port: values["port"] as int?,
+    query: values["query"] as String?,
+    queryParameters: values["queryParameters"] as Map<String, Object?>?,
+    scheme: values["scheme"] as String?,
+    userInfo: values["userInfo"] as String?,
+  );
+}
+
+Object? _Uri_removeFragment(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.Uri).removeFragment();
+}
+
+Object? _Uri_normalizePath(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.Uri).normalizePath();
+}
+
+Object _createUri(String ctor, Map<String, Object?> values) {
+  switch (ctor) {
+    case "":
+      return api1.Uri(
+        scheme: values["scheme"] as String?,
+        userInfo: values["userInfo"] as String?,
+        host: values["host"] as String?,
+        port: values["port"] as int?,
+        path: values["path"] as String?,
+        pathSegments: values["pathSegments"] as Iterable<String>?,
+        query: values["query"] as String?,
+        queryParameters: values["queryParameters"] as Map<String, Object?>?,
+        fragment: values["fragment"] as String?,
+      );
+    case "http":
+      return api1.Uri.http(
+        values["authority"] as String,
+        values["unencodedPath"] as String,
+        values["queryParameters"] as Map<String, Object?>?,
+      );
+    case "https":
+      return api1.Uri.https(
+        values["authority"] as String,
+        values["unencodedPath"] as String,
+        values["queryParameters"] as Map<String, Object?>?,
+      );
+    default:
+      throw ArgumentError('Unknown generated constructor');
+  }
+}
+
 bool _isStringBuffer(Object value) => value is api1.StringBuffer;
 Object? _StringBuffer_length(Object value) =>
     (value as api1.StringBuffer).length;
@@ -17109,7 +18417,63 @@ Object _createLengthLimitingTextInputFormatter(
 }
 
 bool _isPattern(Object value) => value is api1.Pattern;
+Object? _Pattern_allMatches(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.Pattern).allMatches(
+    values["string"] as String,
+    values["start"] as int,
+  );
+}
+
+Object? _Pattern_matchAsPrefix(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.Pattern).matchAsPrefix(
+    values["string"] as String,
+    values["start"] as int,
+  );
+}
+
 Object _createPattern(String ctor, Map<String, Object?> values) =>
+    throw ArgumentError('Abstract object has no constructor');
+bool _isMatch(Object value) => value is api1.Match;
+Object? _Match_start(Object value) => (value as api1.Match).start;
+Object? _Match_end(Object value) => (value as api1.Match).end;
+Object? _Match_groupCount(Object value) => (value as api1.Match).groupCount;
+Object? _Match_input(Object value) => (value as api1.Match).input;
+Object? _Match_pattern(Object value) => (value as api1.Match).pattern;
+Object? _Match_group(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.Match).group(values["group"] as int);
+}
+
+Object? _Match_groups(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.Match).groups(values["groupIndices"] as List<int>);
+}
+
+Object _createMatch(String ctor, Map<String, Object?> values) =>
+    throw ArgumentError('Abstract object has no constructor');
+bool _isRegExpMatch(Object value) => value is api1.RegExpMatch;
+Object? _RegExpMatch_start(Object value) => (value as api1.RegExpMatch).start;
+Object? _RegExpMatch_end(Object value) => (value as api1.RegExpMatch).end;
+Object? _RegExpMatch_groupCount(Object value) =>
+    (value as api1.RegExpMatch).groupCount;
+Object? _RegExpMatch_input(Object value) => (value as api1.RegExpMatch).input;
+Object? _RegExpMatch_pattern(Object value) =>
+    (value as api1.RegExpMatch).pattern;
+Object? _RegExpMatch_groupNames(Object value) =>
+    (value as api1.RegExpMatch).groupNames;
+Object? _RegExpMatch_group(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.RegExpMatch).group(values["group"] as int);
+}
+
+Object? _RegExpMatch_groups(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.RegExpMatch).groups(
+    values["groupIndices"] as List<int>,
+  );
+}
+
+Object? _RegExpMatch_namedGroup(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.RegExpMatch).namedGroup(values["name"] as String);
+}
+
+Object _createRegExpMatch(String ctor, Map<String, Object?> values) =>
     throw ArgumentError('Abstract object has no constructor');
 bool _isRegExp(Object value) => value is api1.RegExp;
 Object? _RegExp_pattern(Object value) => (value as api1.RegExp).pattern;
@@ -17118,8 +18482,34 @@ Object? _RegExp_isCaseSensitive(Object value) =>
     (value as api1.RegExp).isCaseSensitive;
 Object? _RegExp_isUnicode(Object value) => (value as api1.RegExp).isUnicode;
 Object? _RegExp_isDotAll(Object value) => (value as api1.RegExp).isDotAll;
+Object? _RegExp_escape(Map<String, Object?> values) {
+  return api1.RegExp.escape(values["text"] as String);
+}
+
+Object? _RegExp_allMatches(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.RegExp).allMatches(
+    values["input"] as String,
+    values["start"] as int,
+  );
+}
+
+Object? _RegExp_matchAsPrefix(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.RegExp).matchAsPrefix(
+    values["string"] as String,
+    values["start"] as int,
+  );
+}
+
 Object? _RegExp_hasMatch(Object receiver, Map<String, Object?> values) {
   return (receiver as api1.RegExp).hasMatch(values["input"] as String);
+}
+
+Object? _RegExp_firstMatch(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.RegExp).firstMatch(values["input"] as String);
+}
+
+Object? _RegExp_stringMatch(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.RegExp).stringMatch(values["input"] as String);
 }
 
 Object _createRegExp(String ctor, Map<String, Object?> values) {
@@ -20863,25 +22253,47 @@ Object _collection2Create() => <Object?>{};
 bool _collection2Matches(Object value) => value is Set<Object?>;
 Object _collection3Create() => <Future<Object?>>[];
 bool _collection3Matches(Object value) => value is Iterable<Future<Object?>>;
-Object _collection4Create() => <api.WidgetState>{};
-bool _collection4Matches(Object value) => value is Set<api.WidgetState>;
-Object _collection5Create() => <api.WidgetState>[];
-bool _collection5Matches(Object value) => value is Iterable<api.WidgetState>;
-Object _collection6Create() => <api.Widget>[];
-bool _collection6Matches(Object value) => value is List<api.Widget>;
-List<api.Widget> _collection6Snapshot(Iterable<Object?> items) =>
+Object _collection4Create() => <String>[];
+bool _collection4Matches(Object value) => value is List<String>;
+Object _collection5Create() => <String>[];
+bool _collection5Matches(Object value) => value is Iterable<String>;
+Object _collection6Create() => <String, String>{};
+bool _collection6Matches(Object value) => value is Map<String, String>;
+Object _collection7Create() => <String, List<String>>{};
+bool _collection7Matches(Object value) => value is Map<String, List<String>>;
+Object _collection8Create() => <String, Object?>{};
+bool _collection8Matches(Object value) => value is Map<String, Object?>;
+Object _collection9Create() => <api.WidgetState>{};
+bool _collection9Matches(Object value) => value is Set<api.WidgetState>;
+Object _collection10Create() => <api.WidgetState>[];
+bool _collection10Matches(Object value) => value is Iterable<api.WidgetState>;
+Object _collection11Create() => <api.Widget>[];
+bool _collection11Matches(Object value) => value is List<api.Widget>;
+List<api.Widget> _collection11Snapshot(Iterable<Object?> items) =>
     List<api.Widget>.unmodifiable(items.cast<api.Widget>());
-Object _collection7Create() => <api.Widget>[];
-bool _collection7Matches(Object value) => value is Iterable<api.Widget>;
-Object _collection8Create() => <api.Page<Object?>>[];
-bool _collection8Matches(Object value) => value is List<api.Page<Object?>>;
-Object _collection9Create() => <api.Page<Object?>>[];
-bool _collection9Matches(Object value) => value is Iterable<api.Page<Object?>>;
-Object _collection10Create() => <api.NavigatorObserver>[];
-bool _collection10Matches(Object value) => value is List<api.NavigatorObserver>;
-Object _collection11Create() => <api.NavigatorObserver>[];
-bool _collection11Matches(Object value) =>
+Object _collection12Create() => <api.Widget>[];
+bool _collection12Matches(Object value) => value is Iterable<api.Widget>;
+Object _collection13Create() => <api.Page<Object?>>[];
+bool _collection13Matches(Object value) => value is List<api.Page<Object?>>;
+Object _collection14Create() => <api.Page<Object?>>[];
+bool _collection14Matches(Object value) => value is Iterable<api.Page<Object?>>;
+Object _collection15Create() => <api.NavigatorObserver>[];
+bool _collection15Matches(Object value) => value is List<api.NavigatorObserver>;
+Object _collection16Create() => <api.NavigatorObserver>[];
+bool _collection16Matches(Object value) =>
     value is Iterable<api.NavigatorObserver>;
+Object _collection17Create() => <api1.Match>[];
+bool _collection17Matches(Object value) => value is Iterable<api1.Match>;
+Object _collection18Create() => <int>[];
+bool _collection18Matches(Object value) => value is List<int>;
+Object _collection19Create() => <int>[];
+bool _collection19Matches(Object value) => value is Iterable<int>;
+Object _collection20Create() => <String?>[];
+bool _collection20Matches(Object value) => value is List<String?>;
+Object _collection21Create() => <String?>[];
+bool _collection21Matches(Object value) => value is Iterable<String?>;
+Object _collection22Create() => <api1.RegExpMatch>[];
+bool _collection22Matches(Object value) => value is Iterable<api1.RegExpMatch>;
 Future<Object?> _future0Adapt(Future<Object?> value) =>
     value.then<int>((value) => value as int);
 Future<Object?> _future1Adapt(Future<Object?> value) =>

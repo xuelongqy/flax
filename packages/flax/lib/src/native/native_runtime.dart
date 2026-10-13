@@ -66,6 +66,7 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
         binding.ref.register_members == nullptr ||
         binding.ref.invoke_member == nullptr ||
         binding.ref.call == nullptr ||
+        binding.ref.copy_buffer == nullptr ||
         binding.ref.share_buffer == nullptr ||
         binding.ref.read_buffer == nullptr) {
       throw UnsupportedError('Incompatible Flax binding engine extension');
@@ -141,6 +142,15 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
           Pointer<NativeFunction<FlaxHostCallbackFunction>>,
           Pointer<Void>,
           Object,
+          Pointer<FlaxError>,
+        )
+      >();
+  late final _copyBuffer = _binding.copy_buffer
+      .asFunction<
+        int Function(
+          Pointer<FlaxRuntime>,
+          Object,
+          Pointer<Uint64>,
           Pointer<FlaxError>,
         )
       >();
@@ -359,13 +369,8 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
 
   @override
   FlaxJsObject createArrayBuffer(Uint8List bytes) => _entry((arena) {
-    final input = arena<Uint8>(bytes.length + 1);
-    input.asTypedList(bytes.length).setAll(0, bytes);
     final result = arena<Uint64>();
-    _checked(
-      arena,
-      (error) => _calls.makeBytes(_handle, input, bytes.length, result, error),
-    );
+    _checked(arena, (error) => _copyBuffer(_handle, bytes, result, error));
     return _read(arena, result.value) as FlaxJsObject;
   });
 
@@ -382,7 +387,14 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
         arena,
         (error) => _calls.readBytes(_handle, value._id, output, length, error),
       );
-      return Uint8List.fromList(output.value.asTypedList(length.value));
+      if (length.value == 0) return Uint8List(0);
+      // The native snapshot owns these bytes independently of the JS runtime.
+      final bytes = output.value.asTypedList(
+        length.value,
+        finalizer: _calls.bufferFreePointer,
+      );
+      output.value = nullptr;
+      return bytes;
     } finally {
       _calls.bufferFree(output.value.cast());
     }

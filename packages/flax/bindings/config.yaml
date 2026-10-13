@@ -251,17 +251,105 @@ classes:
   DateTime:
     kind: object
     constructors:
+      '': [year, month, day, hour, minute, second, millisecond, microsecond]
+      utc: [year, month, day, hour, minute, second, millisecond, microsecond]
+      now: []
       fromMillisecondsSinceEpoch: [millisecondsSinceEpoch, isUtc]
-    getters: [year, isUtc, millisecondsSinceEpoch]
+      fromMicrosecondsSinceEpoch: [microsecondsSinceEpoch, isUtc]
+    methods:
+      parse: [formattedString]
+      tryParse: [formattedString]
+    getters:
+      [
+        year,
+        month,
+        day,
+        hour,
+        minute,
+        second,
+        millisecond,
+        microsecond,
+        weekday,
+        isUtc,
+        millisecondsSinceEpoch,
+        microsecondsSinceEpoch,
+        timeZoneName,
+        timeZoneOffset,
+      ]
     instanceMethods:
       toIso8601String: []
+      toString: []
+      toUtc: []
+      toLocal: []
+      add: [duration]
+      subtract: [duration]
+      difference: [other]
+      isBefore: [other]
+      isAfter: [other]
+      isAtSameMomentAs: [other]
+      compareTo: [other]
   Uri:
     kind: object
+    constructors:
+      '':
+        [
+          scheme,
+          userInfo,
+          host,
+          port,
+          path,
+          pathSegments,
+          query,
+          queryParameters,
+          fragment,
+        ]
+      http: [authority, unencodedPath, queryParameters]
+      https: [authority, unencodedPath, queryParameters]
     methods:
       parse: [uri, start, end]
-    getters: [scheme, host]
+      tryParse: [uri, start, end]
+      encodeComponent: [component]
+      decodeComponent: [encodedComponent]
+      encodeQueryComponent: [component]
+      decodeQueryComponent: [encodedComponent]
+    getters:
+      [
+        scheme,
+        host,
+        port,
+        userInfo,
+        authority,
+        path,
+        pathSegments,
+        query,
+        queryParameters,
+        queryParametersAll,
+        fragment,
+        isAbsolute,
+        hasScheme,
+        hasAuthority,
+        hasPort,
+        hasQuery,
+        hasFragment,
+      ]
     instanceMethods:
       toString: []
+      resolve: [reference]
+      resolveUri: [reference]
+      replace:
+        [
+          scheme,
+          userInfo,
+          host,
+          port,
+          path,
+          pathSegments,
+          query,
+          queryParameters,
+          fragment,
+        ]
+      removeFragment: []
+      normalizePath: []
   StringBuffer:
     kind: object
     constructors:
@@ -954,13 +1042,35 @@ classes:
       '': [maxLength, maxLengthEnforcement]
   Pattern:
     kind: object
+    instanceMethods:
+      allMatches: [string, start]
+      matchAsPrefix: [string, start]
+  Match:
+    kind: object
+    getters: [start, end, groupCount, input, pattern]
+    instanceMethods:
+      group: [group]
+      groups: [groupIndices]
+  RegExpMatch:
+    kind: object
+    getters: [start, end, groupCount, input, pattern, groupNames]
+    instanceMethods:
+      group: [group]
+      groups: [groupIndices]
+      namedGroup: [name]
   RegExp:
     kind: object
     constructors:
       '': [source, multiLine, caseSensitive, unicode, dotAll]
     getters: [pattern, isMultiLine, isCaseSensitive, isUnicode, isDotAll]
+    methods:
+      escape: [text]
     instanceMethods:
       hasMatch: [input]
+      firstMatch: [input]
+      allMatches: [input, start]
+      stringMatch: [input]
+      matchAsPrefix: [string, start]
   Listener:
     constructors:
       '':

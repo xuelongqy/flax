@@ -84,7 +84,7 @@ const int FLAX_ABI_VERSION = 2;
 
 const int FLAX_CALLBACK_FAILURE = 4;
 
-const int FLAX_ENGINE_BINDING_VERSION = 3;
+const int FLAX_ENGINE_BINDING_VERSION = 4;
 
 const int FLAX_ENGINE_GC_VERSION = 1;
 
@@ -701,6 +701,18 @@ final class FlaxEngineBindingApi extends ffi.Struct {
   >
   read_buffer;
 
+  external ffi.Pointer<
+    ffi.NativeFunction<
+      ffi.Int32 Function(
+        ffi.Pointer<FlaxRuntime>,
+        ffi.Handle,
+        ffi.Pointer<FlaxValueId>,
+        ffi.Pointer<FlaxError>,
+      )
+    >
+  >
+  copy_buffer;
+
   static ffi.Pointer<FlaxEngineBindingApi> $allocate(
     ffi.Allocator $allocator, {
     required int version,
@@ -768,6 +780,17 @@ final class FlaxEngineBindingApi extends ffi.Struct {
       >
     >
     read_buffer,
+    required ffi.Pointer<
+      ffi.NativeFunction<
+        ffi.Int32 Function(
+          ffi.Pointer<FlaxRuntime>,
+          ffi.Handle,
+          ffi.Pointer<FlaxValueId>,
+          ffi.Pointer<FlaxError>,
+        )
+      >
+    >
+    copy_buffer,
   }) => $allocator<FlaxEngineBindingApi>()
     ..ref.version = version
     ..ref.struct_size = struct_size
@@ -775,7 +798,8 @@ final class FlaxEngineBindingApi extends ffi.Struct {
     ..ref.invoke_member = invoke_member
     ..ref.call = call
     ..ref.share_buffer = share_buffer
-    ..ref.read_buffer = read_buffer;
+    ..ref.read_buffer = read_buffer
+    ..ref.copy_buffer = copy_buffer;
 }
 
 final class FlaxEngineGcApi extends ffi.Struct {

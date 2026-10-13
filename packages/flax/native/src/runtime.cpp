@@ -148,17 +148,17 @@ jsi::Object object(FlaxRuntime *runtime, FlaxValueId id) {
   return v.getObject(*runtime->js);
 }
 
-std::u16string utf16(const uint16_t *data, size_t length) {
+const char16_t *utf16(const uint16_t *data, size_t length) {
   if (!length)
-    return {};
+    return u"";
   if (!data)
     throw BridgeError(FLAX_ARGUMENT_ERROR, "Null UTF-16 buffer");
-  return {data, data + length};
+  return reinterpret_cast<const char16_t *>(data);
 }
 
 jsi::PropNameID propertyName(FlaxRuntime *runtime, const uint16_t *name,
                              size_t length) {
-  return jsi::PropNameID::forUtf16(*runtime->js, utf16(name, length));
+  return jsi::PropNameID::forUtf16(*runtime->js, utf16(name, length), length);
 }
 
 int32_t create(FlaxRuntime **output, FlaxError *error) {
@@ -255,15 +255,15 @@ int32_t makeValue(FlaxRuntime *runtime, int32_t kind, double number,
       *output = keep(runtime, jsi::Value(number));
       break;
     case FLAX_STRING:
-      *output =
-          keep(runtime,
-               jsi::String::createFromUtf16(*runtime->js, utf16(data, length)));
+      *output = keep(runtime, jsi::String::createFromUtf16(
+                                  *runtime->js, utf16(data, length), length));
       break;
     case FLAX_BIGINT:
-      *output = keep(runtime,
-                     runtime->bigIntConstructor->call(
-                         *runtime->js, jsi::String::createFromUtf16(
-                                           *runtime->js, utf16(data, length))));
+      *output =
+          keep(runtime, runtime->bigIntConstructor->call(
+                            *runtime->js,
+                            jsi::String::createFromUtf16(
+                                *runtime->js, utf16(data, length), length)));
       break;
     default:
       throw BridgeError(FLAX_ARGUMENT_ERROR, "Unsupported primitive kind");

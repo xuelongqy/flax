@@ -12,6 +12,13 @@ Nullable Object and dynamic appear as TS unknown; non-null Object uses {}. Unsup
 objects, functions and unsafe integral numbers fail conversion. Non-finite doubles
 remain valid outside the explicit navigation-data boundary.
 
+Object input classification runs in one synchronous JS helper call, preserving the
+existing order for native brands, Dart references, State, thenables, errors and
+collection shapes. Ordinary decisions use scalar results instead of allocating an extra
+metadata object per collection. The decoder still performs its collection checks and
+iteration: iterator and Proxy getters can have observable effects. Classification does
+not cache mutable input results or add another ownership path.
+
 Navigation arguments, results and return notifications use the generator's explicit
 `data` selection. They copy plain data and reject cycles, host references, enums and
 unsupported values. Named-page parameters use the same existing explicit copy entry. A
@@ -68,7 +75,17 @@ bridge captures intrinsic source and flag getters. Only `i`, `m`, `s` and `u` ar
 accepted; `g`, `y`, `d` and `v` are rejected instead of dropping behavior. lastIndex is
 not transferred. Pattern still accepts literal strings and existing Dart references.
 RegExp results remain Dart references; `pattern`, the four flag getters and `hasMatch`
-provide explicit inspection and matching.
+provide explicit inspection and matching. `firstMatch`, `allMatches`, `matchAsPrefix`
+and `stringMatch` use Dart matching semantics. Match and RegExpMatch are real Dart
+references with group access, UTF-16 start/end indices and named groups. Match iterables
+remain lazy Dart references; `toArray()` explicitly materializes their results.
+
+DateTime exposes parsing, local/UTC constructors and conversion, component getters,
+Duration arithmetic and comparisons. Comparison parameters accept JS Date snapshots
+under the same rule; Duration parameters still require explicit units. Uri exposes
+path/query components, construction, resolution, replacement and encoding helpers. Lists
+and maps returned by Uri remain Dart collection references. Native JS inputs are
+accepted only in the already-supported DateTime, Uri, RegExp and Pattern positions.
 
 These rules use the shared decoder for constructors, methods, setters, nested collection
 and Record elements, Future inputs and callback returns. Results and callback arguments
@@ -90,6 +107,11 @@ snapshots for `Iterable<T>` inputs, while JS ReadonlySet values become real `Set
 instances. Elements, keys and values are converted using the same generated types and
 checked before the target method runs. Existing compatible Dart collection wrappers pass
 the original collection back.
+
+One temporary JS WeakMap assigns identity indices during a raw collection conversion.
+The Dart memo uses these indices to preserve repeated references and cycles without
+scanning every earlier input. It retains the same scoped input handles and releases the
+map closure and handles when conversion succeeds or throws.
 
 Collection wrappers are typed views, indexed by Dart identity and conversion type. The
 same type view reuses its live JS wrapper; different views of one collection do not
@@ -206,10 +228,12 @@ and same-size transfer, then removes it on detach or collection.
 
 `FlaxJsRuntime.createUint8Array` and `readUint8Array` expose the same sharing contract.
 The existing `createArrayBuffer` / `readBytes` operations retain their explicit copying
-semantics for Blob/Fetch and other snapshot APIs. The internal binding engine table is
-version 3; native ABI 2, UI protocol 24 and Manifest 18 remain independent. Modules
-using Uint8List require the additive `shared-uint8` capability. Other supported binary
-types require `shared-buffers` and use this same storage lease:
+semantics for Blob/Fetch and other snapshot APIs, with one payload copy in each
+direction. Native snapshots are released by Dart's external-data finalizer independently
+of session disposal. The internal binding engine table is version 4; native ABI 2, UI
+protocol 24 and Manifest 18 remain independent. Modules using Uint8List require the
+additive `shared-uint8` capability. Other supported binary types require
+`shared-buffers` and use this same storage lease:
 
 | Dart                        | JS                             |
 | --------------------------- | ------------------------------ |

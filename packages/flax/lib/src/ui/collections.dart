@@ -10,19 +10,28 @@ final _anyStream = flutterBindings.types
     .view;
 
 class _CollectionConversion {
-  final inputs = <(FlaxJsObject, Object)>[];
+  final inputs = <FlaxJsObject>[];
+  final outputs = <int, Object>{};
+  FlaxJsFunction? identity;
   void close() {
-    for (final (input, _) in inputs) {
+    for (final input in inputs) {
       input.release();
     }
     inputs.clear();
+    outputs.clear();
+    identity?.release();
   }
 
-  Object? find(FlaxJsObject value) {
-    for (final (input, output) in inputs) {
-      if (input.strictEquals(value)) return output;
-    }
-    return null;
+  (int, Object?) find(_Session session, FlaxJsObject value) {
+    identity ??=
+        session.helper('collectionIdentity').call([]) as FlaxJsFunction;
+    final id = (identity!.call([value]) as FlaxJsNumber).value.toInt();
+    return (id, outputs[id]);
+  }
+
+  void add(int id, FlaxJsObject input, Object output) {
+    inputs.add(input.retain());
+    outputs[id] = output;
   }
 }
 
@@ -112,7 +121,7 @@ extension _Collections on _Session {
         );
       }
     }
-    final existing = memo.find(input);
+    final (index, existing) = memo.find(this, input);
     if (existing != null) {
       if (!type.collection!.matches(existing)) {
         throw ArgumentError('Incompatible shared collection input');
@@ -137,7 +146,7 @@ extension _Collections on _Session {
       throw ArgumentError('Expected a compatible JS ${type.kind}');
     }
     final output = type.collection!.create();
-    memo.inputs.add((input.retain(), output));
+    memo.add(index, input, output);
     final resources = <_Value>[];
     try {
       final entries = helper('collectionEntries').call([
@@ -211,15 +220,9 @@ extension _Collections on _Session {
     if (input is! FlaxJsObject || input is FlaxJsFunction) {
       throw ArgumentError('Unsupported Dart value');
     }
-    final valueType = helper('valueType').call([input]);
-    if (valueType is FlaxJsString) {
-      if (FlaxBufferType.byDartName[valueType.value] case final bufferType?) {
-        return _Value(runtime.readSharedBuffer(input, bufferType));
-      }
-      return decode(input, FlaxTypeRef('enum', id: valueType.value));
-    }
-    final id = helper('tryObjectHandle').call([input]);
-    if (id is FlaxJsNumber) {
+    final classification = helper('classifyAny').call([input]);
+    if (classification is FlaxJsNumber) {
+      final id = classification;
       final context = _contexts[id.value.toInt()];
       if (context != null) {
         final handle = helper('contextHandle')
@@ -243,62 +246,88 @@ extension _Collections on _Session {
       }
       return _Value(record.value, [_ObjectBorrow(record, input.retain())]);
     }
-    final stateId = helper('stateHandle').call([input, const FlaxJsNull()]);
-    if (stateId is FlaxJsNumber) {
-      final reference = _states[stateId.value.toInt()];
-      if (reference == null) throw ArgumentError('Invalid or foreign State');
-      final state = reference.mounted;
-      if (state == null) throw StateError('Unmounted State');
-      return _Value(state);
-    }
-    final component = decodeComponentStateReference(input, _anyState);
-    if (component != null) return component;
-    // References take precedence over thenable detection: a bound Dart object
-    // may expose an ordinary method named then. Erased JS Stream events still
-    // preserve real Promise events for concrete-use-site adaptation.
-    if (_property(input, 'then', (then) => then is FlaxJsFunction)) {
-      return _Value(
-        promiseResult(
-          input,
-          const FlaxTypeRef('future', item: FlaxTypeRef('any', nullable: true)),
-        )!,
-      );
-    }
-    final details = helper('errorDetails').call([input]);
-    if (details is FlaxJsObject) {
-      try {
-        final message = _textProperty(details, 'message');
-        final stack = _property(details, 'stack', (value) {
-          if (value is FlaxJsNull) return '';
-          return (value as FlaxJsString).value;
-        });
-        return _Value(FlaxJsException(message, jsStack: stack));
-      } finally {
-        details.release();
+    if (classification is FlaxJsString) {
+      if (FlaxBufferType.byDartName[classification.value]
+          case final bufferType?) {
+        return _Value(runtime.readSharedBuffer(input, bufferType));
       }
-    }
-    final shape = helper('collectionShape').call([input]);
-    if (shape is FlaxJsString &&
-        {'list', 'map', 'record', 'set', 'iterable'}.contains(shape.value)) {
-      if (shape.value == 'record') {
-        // A copied native Record keeps its generated shape through erased callbacks.
-        final signature = helper('recordType').call([input]);
-        if (signature is FlaxJsString) {
-          final record = registry._records
-              .where((entry) => entry.$1.record!.signature == signature.value)
-              .firstOrNull;
-          if (record == null) {
-            throw ArgumentError('Unregistered Record projection');
-          }
-          return decode(input, record.$1, conversion: memo);
+      if (classification.value.startsWith('type:')) {
+        final valueType = classification.value.substring(5);
+        if (FlaxBufferType.byDartName[valueType] case final bufferType?) {
+          return _Value(runtime.readSharedBuffer(input, bufferType));
         }
+        return decode(input, FlaxTypeRef('enum', id: valueType));
       }
-      return decodeCollection(input, switch (shape.value) {
-        'list' => _anyList,
-        'map' || 'record' => _anyMap,
-        'set' => _anySet,
-        _ => _anyIterable,
-      }, memo);
+      if (classification.value == 'promise') {
+        return _Value(
+          promiseResult(
+            input,
+            const FlaxTypeRef(
+              'future',
+              item: FlaxTypeRef('any', nullable: true),
+            ),
+          )!,
+        );
+      }
+      final shape = classification;
+      if ({'list', 'map', 'record', 'set', 'iterable'}.contains(shape.value)) {
+        if (shape.value == 'record') {
+          // A copied native Record keeps its generated shape through erased callbacks.
+          final signature = helper('recordType').call([input]);
+          if (signature is FlaxJsString) {
+            final record = registry._records
+                .where((entry) => entry.$1.record!.signature == signature.value)
+                .firstOrNull;
+            if (record == null) {
+              throw ArgumentError('Unregistered Record projection');
+            }
+            return decode(input, record.$1, conversion: memo);
+          }
+        }
+        return decodeCollection(input, switch (shape.value) {
+          'list' => _anyList,
+          'map' || 'record' => _anyMap,
+          'set' => _anySet,
+          _ => _anyIterable,
+        }, memo);
+      }
+    }
+    if (classification is FlaxJsObject) {
+      try {
+        final kind = _textProperty(classification, '0');
+        if (kind == 'state') {
+          final stateId = _property(
+            classification,
+            '1',
+            (value) => value as FlaxJsNumber,
+          );
+          final reference = _states[stateId.value.toInt()];
+          if (reference == null) {
+            throw ArgumentError('Invalid or foreign State');
+          }
+          final state = reference.mounted;
+          if (state == null) throw StateError('Unmounted State');
+          return _Value(state);
+        }
+        if (kind == 'componentState') {
+          return decodeComponentStateReference(
+            input,
+            _anyState,
+            knownId: _property(classification, '1', (value) => value),
+          )!;
+        }
+        if (kind == 'error') {
+          final message = _textProperty(classification, '1');
+          final stack = _property(
+            classification,
+            '2',
+            (value) => value is FlaxJsNull ? '' : (value as FlaxJsString).value,
+          );
+          return _Value(FlaxJsException(message, jsStack: stack));
+        }
+      } finally {
+        classification.release();
+      }
     }
     throw ArgumentError('Expected a supported value or Dart reference');
   }

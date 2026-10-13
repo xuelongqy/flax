@@ -51,6 +51,81 @@ Object _view(
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
+  test(
+    'binary snapshots isolate mutations and survive GC, transfer and disposal',
+    () async {
+      final runtime = FlaxEngine.createRuntime();
+      Uint8List keepOnlySnapshotSubview() {
+        final source = Uint8List.fromList([0, 11, 22, 0]);
+        final buffer = runtime.createArrayBuffer(
+          Uint8List.sublistView(source, 1, 3).asUnmodifiableView(),
+        );
+        final global = runtime.evaluate('globalThis') as FlaxJsObject;
+        try {
+          global.setProperty('snapshotBuffer', buffer);
+          source[1] = 99;
+          expect(runtime.readBytes(buffer), [11, 22]);
+          final snapshot = runtime.readBytes(buffer);
+          snapshot[0] = 77;
+          expect(runtime.readBytes(buffer), [11, 22]);
+          final exported = runtime.createUint8Array(snapshot);
+          try {
+            global.setProperty('snapshotExport', exported);
+            runtime.evaluate('snapshotExport[1] = 44;');
+            expect(snapshot, [77, 44]);
+            expect(runtime.readBytes(buffer), [11, 22]);
+          } finally {
+            exported.release();
+          }
+          runtime.evaluate(
+            'new Uint8Array(snapshotBuffer)[1] = 33; snapshotBuffer = snapshotBuffer.transfer();',
+          );
+          expect(snapshot, [77, 44]);
+          expect(() => runtime.readBytes(buffer), throwsArgumentError);
+          final empty = runtime.createArrayBuffer(Uint8List(0));
+          try {
+            expect(runtime.readBytes(empty), isEmpty);
+          } finally {
+            empty.release();
+          }
+          final resizable = runtime.evaluate(
+            'new ArrayBuffer(2, {maxByteLength: 4})',
+          ) as FlaxJsObject;
+          try {
+            global.setProperty('snapshotResizable', resizable);
+            final beforeResize = runtime.readBytes(resizable);
+            expect(beforeResize, [0, 0]);
+            // Hermes ignores the options; resize is exercised only when supported.
+            if ((runtime.evaluate(
+              'snapshotResizable.resizable === true',
+            ) as FlaxJsBoolean).value) {
+              runtime.evaluate('snapshotResizable.resize(4);');
+              expect(runtime.readBytes(resizable), [0, 0, 0, 0]);
+              expect(beforeResize, [0, 0]);
+            }
+          } finally {
+            resizable.release();
+          }
+          // Keep only a derived view so GC can collect the original snapshot wrapper.
+          return Uint8List.sublistView(snapshot, 1, 2);
+        } finally {
+          global.release();
+          buffer.release();
+        }
+      }
+
+      late Uint8List survivingView;
+      try {
+        survivingView = keepOnlySnapshotSubview();
+      } finally {
+        runtime.dispose();
+      }
+      await flaxTestCollectDartGarbage();
+      survivingView[0] = 88;
+      expect(survivingView, [88]);
+    },
+  );
+
   test('BigInt crosses evaluation, properties, host callbacks and fast calls exactly', () {
     final runtime = FlaxEngine.createRuntime();
     final huge = BigInt.parse(

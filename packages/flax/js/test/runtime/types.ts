@@ -27,7 +27,44 @@ import type {
   DartOutput,
   DartRecord,
 } from '../../src/runtime/bindings.js';
-import type { DateTime, Uri } from '../../src/dart/generated/libraries/core/index.js';
+import {
+  DateTime,
+  Duration,
+  Uri,
+  RegExp as DartRegExp,
+} from '../../src/dart/generated/libraries/core/index.js';
+import type {
+  Match,
+  Pattern,
+  RegExpMatch,
+} from '../../src/dart/generated/libraries/core/index.js';
+import type { DartIterable } from '../../src/runtime/bindings.js';
+const parsed: DateTime | null = DateTime.tryParse('2000-01-01Z');
+const shifted: DateTime = DateTime.utc(2000).add(Duration({ days: 1 }));
+shifted.difference(new Date(0));
+// @ts-expect-error Durations still require an explicit unit.
+shifted.add(1000);
+const resolved: Uri = Uri.parse('../relative').resolveUri(
+  new URL('https://example.com'),
+);
+const parts: DartList<string> = resolved.pathSegments;
+const queries: DartMap<string, DartList<string>> = resolved.queryParametersAll;
+const regex: Pattern = DartRegExp('(?<name>a)');
+const matches: DartIterable<Match> = regex.allMatches('a');
+const exactMatches: DartIterable<RegExpMatch> = DartRegExp('a').allMatches('a');
+const covariantMatches: DartIterable<Match> = exactMatches;
+exactMatches.contains(DartRegExp('a').firstMatch('a')!);
+// @ts-expect-error Concrete RegExpMatch inputs retain their type check.
+exactMatches.contains('a');
+// @ts-expect-error The native collection method remains readonly.
+exactMatches.contains = () => false;
+// @ts-expect-error Nullable matches must be checked before use.
+DartRegExp('a').firstMatch('b').group(0);
+void parsed;
+void parts;
+void queries;
+void matches;
+void covariantMatches;
 const dateInput: DartInput<DateTime> = new Date(123);
 const uriInput: DartInput<Uri> = new URL('https://example.com');
 const relativeInput: DartInput<Uri> = '../relative';

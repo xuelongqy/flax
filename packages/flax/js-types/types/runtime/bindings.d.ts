@@ -86,13 +86,14 @@ export type DartInput<T> = T extends Widget ? never : T extends NativeBuffer ? T
     readonly [dartCollectionItem]: infer V;
 } ? DartIterableInput<V> : DartCoreInput<T>;
 /** References to real Dart collections. Explicit copying never installs observers. */
-export interface DartIterable<T> extends Iterable<DartCopy<T>> {
+export interface DartIterable<T> extends Iterable<DartCopy<T>>, Readonly<{
+    contains(value: DartElementInput<T>): boolean;
+}> {
     readonly __dartIterable: unique symbol;
     readonly [dartCollectionKind]: 'iterable' | 'list' | 'set';
     readonly [dartCollectionItem]: T;
     readonly length: number;
     readonly isEmpty: boolean;
-    readonly contains: (value: DartElementInput<T>) => boolean;
     toArray(): Array<DartCopy<T>>;
 }
 export interface DartList<T> extends DartIterable<T> {

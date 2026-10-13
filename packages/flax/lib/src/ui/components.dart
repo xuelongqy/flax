@@ -809,10 +809,14 @@ class _ComponentMount with _ContextOwner {
 }
 
 extension _ComponentCalls on _Session {
-  _Value? decodeComponentStateReference(FlaxJsObject input, FlaxTypeRef type) {
+  _Value? decodeComponentStateReference(
+    FlaxJsObject input,
+    FlaxTypeRef type, {
+    FlaxJsValue? knownId,
+  }) {
     final target = type.id;
     if (target == null) return null;
-    final rawId = helper('tryComponentStateId').call([input]);
+    final rawId = knownId ?? helper('tryComponentStateId').call([input]);
     try {
       if (rawId is FlaxJsNull) return null;
       if (rawId is! FlaxJsNumber ||

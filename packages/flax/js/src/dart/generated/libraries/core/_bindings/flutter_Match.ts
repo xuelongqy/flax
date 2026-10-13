@@ -1,0 +1,19 @@
+// GENERATED CODE. Selected public API subset; do not edit.
+// Regenerate with dart run melos run bindings:generate.
+import { bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, bindingVersion, construct as _flaxHostConstruct, constructProxy as _flaxHostConstructProxy, constructObject as _flaxHostConstructObject, constructDeferredObject as _flaxHostConstructDeferredObject, constructStream as _flaxHostConstructStream, constructAsyncIterableStream as _flaxHostConstructAsyncIterableStream, defineObject as _flaxHostDefineObject, defineStream as _flaxHostDefineStream, invokeObject as _flaxHostInvokeObject, invokeObjectStatic as _flaxHostInvokeObjectStatic, invokeStream as _flaxHostInvokeStream, enumValue as _flaxHostEnumValue, defineEnum as _flaxHostDefineEnum, invokeEnum as _flaxHostInvokeEnum, defineContext as _flaxHostDefineContext, defineState as _flaxHostDefineState, contextHandle as _flaxHostContextHandle, invokeStatic as _flaxHostInvokeStatic, invokeInstance as _flaxHostInvokeInstance, invokeTopLevel as _flaxHostInvokeTopLevel, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+const _flaxMemberParameters0 = [{"name":"group","required":true,"positional":true}] as const;
+const _flaxMemberParameters1 = [{"name":"groupIndices","required":true,"positional":true}] as const;
+import type * as upstream0 from '@flax/dart/core/_bindings/flutter_Pattern';
+import '@flax/dart/core/_bindings/flutter_Pattern';
+import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
+export interface Match extends Readonly<{ "__flaxBound:dart:core::Match": readonly [] }> { readonly __Match: unique symbol;
+readonly start: number;
+readonly end: number;
+readonly groupCount: number;
+readonly input: string;
+readonly pattern: upstream0.Pattern | string;
+group(group: number): string | null;
+groups(groupIndices: DartListInput<number, number>): DartList<string | null>;
+}
+defineObject("flax.core/flutter#type:Match", ["start","end","groupCount","input","pattern"], [], _flaxBindingMethods("flax.core/flutter#type:Match", "object", {"group":_flaxMemberParameters0,"groups":_flaxMemberParameters1}), []);
+export const Match: object & _FlaxInstanceType<Match> = _flaxBindInstanceType<Match, object>({}, "flax.core/flutter#type:Match", ["dart:core::Object"]);

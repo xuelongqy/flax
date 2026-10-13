@@ -2,6 +2,9 @@ import { computed, signal, type Binding, type ReadonlySignal } from './index.js'
 import { ReferenceCache } from './references.js';
 
 const nativeApply = Reflect.apply;
+const nativeWeakMap = WeakMap;
+const nativeIsArray = Array.isArray;
+const nativeIsView = ArrayBuffer.isView;
 
 /** Experimental generated-binding extension. Independent of the native C ABI. */
 export const bindingVersion = 24;
@@ -187,13 +190,15 @@ export type DartInput<T> = T extends Widget
                   : DartCoreInput<T>;
 
 /** References to real Dart collections. Explicit copying never installs observers. */
-export interface DartIterable<T> extends Iterable<DartCopy<T>> {
+export interface DartIterable<T>
+  extends
+    Iterable<DartCopy<T>>,
+    Readonly<{ contains(value: DartElementInput<T>): boolean }> {
   readonly __dartIterable: unique symbol;
   readonly [dartCollectionKind]: 'iterable' | 'list' | 'set';
   readonly [dartCollectionItem]: T;
   readonly length: number;
   readonly isEmpty: boolean;
-  readonly contains: (value: DartElementInput<T>) => boolean;
   toArray(): Array<DartCopy<T>>;
 }
 export interface DartList<T> extends DartIterable<T> {
@@ -2022,6 +2027,63 @@ const dataViewBuffer = Object.getOwnPropertyDescriptor(
 const nativeURL = (globalThis as { URL?: { prototype: object } }).URL;
 const urlHref =
   nativeURL && Object.getOwnPropertyDescriptor(nativeURL.prototype, 'href')?.get;
+function tryComponentStateId(value: object): number | null {
+  const state = componentStates.get(value);
+  if (state?.retired) throw new Error('Disposed component State');
+  return state?.claimed ? state.id : null;
+}
+
+function stateHandle(value: object, type: string | null): number | null {
+  const state = stateHandles.get(value);
+  if (state && type !== null && state.type !== type)
+    throw new TypeError('Incompatible State');
+  return state?.id ?? null;
+}
+
+function collectionShape(value: object, finiteWidgetIterable = false): string | null {
+  if (Array.isArray(value)) return 'list';
+  if (value instanceof Map) return 'map';
+  if (value instanceof Set) return 'set';
+  if (finiteWidgetIterable) return null;
+  if (typeof (value as { [Symbol.iterator]?: unknown })[Symbol.iterator] === 'function')
+    return 'iterable';
+  const prototype = Object.getPrototypeOf(value);
+  if (prototype === null || prototype === Object.prototype) return 'record';
+  return null;
+}
+
+function tryObjectHandle(value: object): number | null {
+  const ref = objectHandles.get(value);
+  if (ref && !ref.alive) throw new Error('Released Dart object');
+  return ref?.id ?? null;
+}
+
+function valueType(value: object): string | null {
+  const enumeration = enumIdentities.get(value)?.type;
+  if (enumeration) return enumeration;
+  try {
+    if (nativeIsArray(value)) return null;
+  } catch {
+    /* Revoked proxies still follow the reference and failure checks below. */
+  }
+  const tag = nativeApply(typedArrayTag, value, []) as string | undefined;
+  if (tag && Object.hasOwn(bufferDartTypes, tag)) return bufferDartTypes[tag]!;
+  if (nativeIsView(value)) {
+    try {
+      nativeApply(dataViewBuffer, value, []);
+      return 'ByteData';
+    } catch {
+      /* An unsupported TypedArray is not a DataView. */
+    }
+  }
+  try {
+    nativeApply(arrayBufferLength, value, []);
+    return 'ByteBuffer';
+  } catch {
+    return null;
+  }
+}
+
 // One synchronous helper boundary per realm; no browser, Node, or module loader.
 Object.assign(globalThis, {
   __flaxBindings: Object.freeze({
@@ -2120,17 +2182,8 @@ Object.assign(globalThis, {
     },
     finishComponentState,
 
-    tryComponentStateId(value: object): number | null {
-      const state = componentStates.get(value);
-      if (state?.retired) throw new Error('Disposed component State');
-      return state?.claimed ? state.id : null;
-    },
-    stateHandle(value: object, type: string | null): number | null {
-      const state = stateHandles.get(value);
-      if (state && type !== null && state.type !== type)
-        throw new TypeError('Incompatible State');
-      return state?.id ?? null;
-    },
+    tryComponentStateId,
+    stateHandle,
     updateComponentState(value: object, widget: object): void {
       const state = componentStates.get(value);
       if (!state || state.retired) throw new Error('Disposed component State');
@@ -2222,20 +2275,38 @@ Object.assign(globalThis, {
         initializing = false;
       }
     },
-    collectionShape(value: object, finiteWidgetIterable = false): string | null {
-      if (Array.isArray(value)) return 'list';
-      if (value instanceof Map) return 'map';
-      if (value instanceof Set) return 'set';
-      if (finiteWidgetIterable) return null;
-      if (
-        typeof (value as { [Symbol.iterator]?: unknown })[Symbol.iterator] ===
-        'function'
-      )
-        return 'iterable';
-      const prototype = Object.getPrototypeOf(value);
-      if (prototype === null || prototype === Object.prototype) return 'record';
-      return null;
+    classifyAny(
+      value: object,
+    ): string | number | symbol | readonly [string, ...unknown[]] | null {
+      // Keep classification in JS; Dart receives one decision in the existing order.
+      const type = valueType(value);
+      // Prefix type IDs so enum IDs cannot collide with collection decisions.
+      if (type !== null) return enumIdentities.has(value) ? 'type:' + type : type;
+      const object = tryObjectHandle(value);
+      if (object !== null) return object;
+      const state = stateHandle(value, null);
+      if (state !== null) return ['state', state];
+      const component = tryComponentStateId(value);
+      if (component !== null) return ['componentState', component];
+      const then = (value as { then?: unknown }).then;
+      // Returning an unsupported Symbol preserves the native bridge's rejection.
+      if (typeof then === 'symbol') return then;
+      if (typeof then === 'function') return 'promise';
+      const error = errorDetails(value);
+      if (error) return ['error', error.message, error.stack];
+      return collectionShape(value);
     },
+    collectionIdentity(): (value: object) => number {
+      // IDs live for one conversion, preserving aliases and cycles without a scan.
+      const ids = new nativeWeakMap<object, number>();
+      let next = 0;
+      return (value) => {
+        let id = ids.get(value);
+        if (id === undefined) ids.set(value, (id = next++));
+        return id;
+      };
+    },
+    collectionShape,
     collectionEntries(
       value: Iterable<unknown> | Map<unknown, unknown> | Record<string, unknown>,
       finiteWidgetIterable = false,
@@ -2268,11 +2339,7 @@ Object.assign(globalThis, {
     setAdd(set: Set<unknown>, value: unknown): void {
       set.add(value);
     },
-    tryObjectHandle(value: object): number | null {
-      const ref = objectHandles.get(value);
-      if (ref && !ref.alive) throw new Error('Released Dart object');
-      return ref?.id ?? null;
-    },
+    tryObjectHandle,
     deferredObject(value: object): DeferredObject | null {
       const record = deferredObjects.get(value);
       return record ? Object.freeze({ ...record }) : null;
@@ -2430,24 +2497,7 @@ Object.assign(globalThis, {
       references.release(id);
     },
     enumValue,
-    valueType(value: object): string | null {
-      const enumeration = enumIdentities.get(value)?.type;
-      if (enumeration) return enumeration;
-      const tag = nativeApply(typedArrayTag, value, []) as string | undefined;
-      if (tag && Object.hasOwn(bufferDartTypes, tag)) return bufferDartTypes[tag]!;
-      try {
-        nativeApply(dataViewBuffer, value, []);
-        return 'ByteData';
-      } catch {
-        /* Not a DataView. */
-      }
-      try {
-        nativeApply(arrayBufferLength, value, []);
-        return 'ByteBuffer';
-      } catch {
-        return null;
-      }
-    },
+    valueType,
     enumType(value: object): string | null {
       return enumIdentities.get(value)?.type ?? null;
     },

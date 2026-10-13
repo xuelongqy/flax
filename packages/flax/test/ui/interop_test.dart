@@ -1113,7 +1113,70 @@ void main() {
       'var cyclicSet = new Set(); cyclicSet.add(cyclicSet); c.graph = [cyclicSet]; var setCopy = c.graph.toArray()[0]',
     );
     expect(h.boolean('setCopy instanceof Set && setCopy.has(setCopy)'), isTrue);
+    // Equal contents are distinct inputs; only repeated object identity aliases.
+    h.execute(
+      'var same = []; c.graph = [same, same, [], []]; var distinct = c.graph.toArray();',
+    );
+    expect(
+      h.boolean(
+        'distinct[0] === distinct[1] && distinct[2] !== distinct[3] && distinct[0] !== distinct[2]',
+      ),
+      isTrue,
+    );
+    expect(
+      () => h.execute('c.graph = [[], Symbol("invalid")]'),
+      throwsA(isA<FlaxJsException>()),
+    );
+    expect(h.number('c.graph.length'), 4);
+    h.execute('var afterFailure = c.graph.toArray();');
+    expect(
+      h.boolean(
+        'afterFailure[0] === afterFailure[1] && afterFailure[2] !== afterFailure[3]',
+      ),
+      isTrue,
+    );
+    h.execute(
+      'var originalWeakMap = WeakMap; globalThis.WeakMap = function() { throw Error("Application WeakMap called"); };',
+    );
+    try {
+      h.execute('c.graph = [[], []];');
+    } finally {
+      h.execute('globalThis.WeakMap = originalWeakMap;');
+    }
+    expect(h.number('c.graph.length'), 2);
+    h.execute('''
+var thenReads = 0;
+var getterArray = [7];
+Object.defineProperty(getterArray, 'then', {get(){thenReads++;return undefined}});
+c.graph = [getterArray];
+''');
+    expect(h.number('thenReads'), 1);
+    // The second shape check is observable for user-defined iterator getters.
+    h.execute('''
+var iteratorReads = 0;
+var changingIterable = {get [Symbol.iterator](){
+  const value = ++iteratorReads;
+  return function*(){yield value};
+}};
+c.graph = [changingIterable];
+''');
+    expect(h.number('iteratorReads'), 3);
+    expect(h.number('c.graph.get(0).toArray()[0]'), 3);
+    h.execute('''
+var nativeBrandBuffer = new ArrayBuffer(4);
+var nativeBrandView = new DataView(nativeBrandBuffer);
+Object.setPrototypeOf(nativeBrandBuffer, Array.prototype);
+Object.setPrototypeOf(nativeBrandView, Array.prototype);
+c.graph = [nativeBrandBuffer, nativeBrandView];
+''');
+    expect(
+      h.boolean(
+        'c.graph.get(0) instanceof ArrayBuffer && c.graph.get(1) instanceof DataView',
+      ),
+      isTrue,
+    );
     for (final code in [
+      'c.graph = [{then: Symbol("invalid")}]',
       'numbers.add("x")',
       'c.accept([undefined])',
       'c.frozen.add(1)',

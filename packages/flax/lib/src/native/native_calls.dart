@@ -23,9 +23,11 @@ final class NativeCalls {
       makeBytes = api.make_bytes.asFunction(),
       readBytes = api.read_bytes.asFunction(),
       bufferFree = api.buffer_free.asFunction(),
+      bufferFreePointer = api.buffer_free,
       errorClear = api.error_clear.asFunction(),
       errorSet = api.error_set.asFunction();
 
+  final Pointer<NativeFinalizerFunction> bufferFreePointer;
   final int Function(Pointer<Pointer<FlaxRuntime>>, Pointer<FlaxError>) create;
   final int Function(Pointer<FlaxRuntime>, Pointer<FlaxError>) destroy;
   final int Function(
