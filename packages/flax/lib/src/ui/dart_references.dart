@@ -87,8 +87,15 @@ extension _DartReferences on _Session {
       }
       final object = _objectView(target);
       if (object != null && object.matches?.call(value) == true) {
+        final selected = _objectBinding(value, type);
+        if (source != null &&
+            (helper('hasObjectView').call([
+              input,
+              FlaxJsString(selected.id),
+            ]) as FlaxJsBoolean).value) {
+          return holdHostResult(input.retain());
+        }
         if (source?.scoped == true) {
-          final selected = _objectBinding(value, type);
           // New views share the callback lease instead of creating a lasting ID.
           return holdHostResult(
             _peerResult(

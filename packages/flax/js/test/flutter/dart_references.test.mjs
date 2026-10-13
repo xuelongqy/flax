@@ -5,11 +5,66 @@ import {
   asDart,
   getDartType,
   bindInstanceType,
+  bindingMethods,
   defineObject,
   defineContext,
   defineState,
   defineEnum,
 } from '../../dist/runtime/bindings.js';
+
+test('generic views cache by signature, share prototypes and dispatch their own metadata', () => {
+  const api = globalThis.__flaxBindings;
+  const type = 'test.reference/generic';
+  defineObject(
+    type,
+    ['value'],
+    ['value'],
+    bindingMethods(type, 'object', {
+      echo: [{ name: 'value', required: true, positional: true }],
+    }),
+    [],
+  );
+  const Target = bindInstanceType({}, type, []);
+  const first = api.objectView('test.reference/generic:num', 81010, type);
+  const second = api.objectView('test.reference/generic:int', 81010, type);
+  assert.notEqual(first, second);
+  assert.equal(api.objectView('test.reference/generic:int', 81010, type), second);
+  assert.equal(Object.getPrototypeOf(first), Object.getPrototypeOf(second));
+  assert.ok(first instanceof Target);
+  assert.ok(second instanceof Target);
+  assert.equal(api.hasObjectView(first, type), true);
+  assert.equal(api.hasObjectView(second, type), true);
+  assert.equal(api.hasObjectView(second, 'another-provider'), false);
+  const calls = [];
+  operationHost('object', (version, owner, id, operation, member, ...args) => {
+    calls.push({ owner, id, operation, member, args });
+    return owner;
+  });
+  assert.equal(first.value, 'test.reference/generic:num');
+  assert.equal(second.value, 'test.reference/generic:int');
+  second.value = 2;
+  second.echo(3);
+  assert.deepEqual(
+    calls.map((call) => call.owner),
+    [
+      'test.reference/generic:num',
+      'test.reference/generic:int',
+      'test.reference/generic:int',
+      'test.reference/generic:int',
+    ],
+  );
+  assert.throws(
+    () => api.objectView('test.reference/generic:int', 81010, 'missing'),
+    /Conflicting/,
+  );
+  const scoped = api.scopedObject('test.reference/generic:int', 81011, type);
+  api.releaseObject(81011);
+  assert.throws(() => scoped.value, /Disposed/);
+  api.releaseObject(81010);
+  assert.equal(api.hasObjectView(second, type), false);
+  assert.throws(() => first.value, /Disposed/);
+  assert.throws(() => second.value, /Disposed/);
+});
 
 test('checked views use one shared operation and authenticated target tokens', () => {
   const api = globalThis.__flaxBindings;

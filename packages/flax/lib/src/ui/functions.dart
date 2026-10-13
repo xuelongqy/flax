@@ -309,7 +309,7 @@ extension _WidgetReferences on _Session {
       FlaxObjectBinding(matches: final matches?) => matches(widget),
       _ => false,
     };
-    if (!accepts) {
+    if (!accepts || type.objectView?.matches(widget) == false) {
       throw ArgumentError('Widget does not implement ${type.id}');
     }
   }

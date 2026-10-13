@@ -791,6 +791,7 @@ const materialBindings = FlaxBindingModule(
           FlaxTypeRef(
             "object",
             id: "flax.core/flutter#type:WidgetStateProperty",
+            objectView: _objectView0,
             nullable: true,
             deferredFactories: {
               "resolveWith": FlaxDeferredFactoryBinding(
@@ -859,6 +860,7 @@ const materialBindings = FlaxBindingModule(
           FlaxTypeRef(
             "object",
             id: "flax.core/flutter#type:WidgetStateProperty",
+            objectView: _objectView0,
             nullable: true,
             deferredFactories: {
               "resolveWith": FlaxDeferredFactoryBinding(
@@ -927,6 +929,7 @@ const materialBindings = FlaxBindingModule(
           FlaxTypeRef(
             "object",
             id: "flax.core/flutter#type:WidgetStateProperty",
+            objectView: _objectView0,
             nullable: true,
             deferredFactories: {
               "resolveWith": FlaxDeferredFactoryBinding(
@@ -995,6 +998,7 @@ const materialBindings = FlaxBindingModule(
           FlaxTypeRef(
             "object",
             id: "flax.core/flutter#type:WidgetStateProperty",
+            objectView: _objectView1,
             nullable: true,
             deferredFactories: {
               "resolveWith": FlaxDeferredFactoryBinding(
@@ -1059,6 +1063,7 @@ const materialBindings = FlaxBindingModule(
           FlaxTypeRef(
             "object",
             id: "flax.core/flutter#type:WidgetStateProperty",
+            objectView: _objectView2,
             nullable: true,
             deferredFactories: {
               "resolveWith": FlaxDeferredFactoryBinding(
@@ -1127,6 +1132,7 @@ const materialBindings = FlaxBindingModule(
           FlaxTypeRef(
             "object",
             id: "flax.core/flutter#type:WidgetStateProperty",
+            objectView: _objectView3,
             nullable: true,
             deferredFactories: {
               "resolveWith": FlaxDeferredFactoryBinding(
@@ -1208,6 +1214,7 @@ const materialBindings = FlaxBindingModule(
               FlaxTypeRef(
                 "object",
                 id: "flax.core/flutter#type:WidgetStateProperty",
+                objectView: _objectView0,
                 nullable: true,
                 deferredFactories: {
                   "resolveWith": FlaxDeferredFactoryBinding(
@@ -1278,6 +1285,7 @@ const materialBindings = FlaxBindingModule(
               FlaxTypeRef(
                 "object",
                 id: "flax.core/flutter#type:WidgetStateProperty",
+                objectView: _objectView1,
                 nullable: true,
                 deferredFactories: {
                   "resolveWith": FlaxDeferredFactoryBinding(
@@ -1344,6 +1352,7 @@ const materialBindings = FlaxBindingModule(
               FlaxTypeRef(
                 "object",
                 id: "flax.core/flutter#type:WidgetStateProperty",
+                objectView: _objectView0,
                 nullable: true,
                 deferredFactories: {
                   "resolveWith": FlaxDeferredFactoryBinding(
@@ -1414,6 +1423,7 @@ const materialBindings = FlaxBindingModule(
               FlaxTypeRef(
                 "object",
                 id: "flax.core/flutter#type:WidgetStateProperty",
+                objectView: _objectView3,
                 nullable: true,
                 deferredFactories: {
                   "resolveWith": FlaxDeferredFactoryBinding(
@@ -1484,6 +1494,7 @@ const materialBindings = FlaxBindingModule(
               FlaxTypeRef(
                 "object",
                 id: "flax.core/flutter#type:WidgetStateProperty",
+                objectView: _objectView0,
                 nullable: true,
                 deferredFactories: {
                   "resolveWith": FlaxDeferredFactoryBinding(
@@ -1554,6 +1565,7 @@ const materialBindings = FlaxBindingModule(
               FlaxTypeRef(
                 "object",
                 id: "flax.core/flutter#type:WidgetStateProperty",
+                objectView: _objectView2,
                 nullable: true,
                 deferredFactories: {
                   "resolveWith": FlaxDeferredFactoryBinding(
@@ -1643,6 +1655,7 @@ const materialBindings = FlaxBindingModule(
             FlaxTypeRef(
               "object",
               id: "flax.core/flutter#type:WidgetStateProperty",
+              objectView: _objectView0,
               nullable: true,
               deferredFactories: {
                 "resolveWith": FlaxDeferredFactoryBinding(
@@ -1713,6 +1726,7 @@ const materialBindings = FlaxBindingModule(
             FlaxTypeRef(
               "object",
               id: "flax.core/flutter#type:WidgetStateProperty",
+              objectView: _objectView0,
               nullable: true,
               deferredFactories: {
                 "resolveWith": FlaxDeferredFactoryBinding(
@@ -1783,6 +1797,7 @@ const materialBindings = FlaxBindingModule(
             FlaxTypeRef(
               "object",
               id: "flax.core/flutter#type:WidgetStateProperty",
+              objectView: _objectView0,
               nullable: true,
               deferredFactories: {
                 "resolveWith": FlaxDeferredFactoryBinding(
@@ -1853,6 +1868,7 @@ const materialBindings = FlaxBindingModule(
             FlaxTypeRef(
               "object",
               id: "flax.core/flutter#type:WidgetStateProperty",
+              objectView: _objectView1,
               nullable: true,
               deferredFactories: {
                 "resolveWith": FlaxDeferredFactoryBinding(
@@ -1919,6 +1935,7 @@ const materialBindings = FlaxBindingModule(
             FlaxTypeRef(
               "object",
               id: "flax.core/flutter#type:WidgetStateProperty",
+              objectView: _objectView2,
               nullable: true,
               deferredFactories: {
                 "resolveWith": FlaxDeferredFactoryBinding(
@@ -1989,6 +2006,7 @@ const materialBindings = FlaxBindingModule(
             FlaxTypeRef(
               "object",
               id: "flax.core/flutter#type:WidgetStateProperty",
+              objectView: _objectView3,
               nullable: true,
               deferredFactories: {
                 "resolveWith": FlaxDeferredFactoryBinding(
@@ -5516,6 +5534,7 @@ const materialBindings = FlaxBindingModule(
             FlaxTypeRef(
               "object",
               id: "flax.core/flutter#type:WidgetStateProperty",
+              objectView: _objectView0,
               nullable: true,
               deferredFactories: {
                 "resolveWith": FlaxDeferredFactoryBinding(
@@ -5597,6 +5616,7 @@ const materialBindings = FlaxBindingModule(
             FlaxTypeRef(
               "object",
               id: "flax.core/flutter#type:WidgetStateProperty",
+              objectView: _objectView0,
               nullable: true,
               deferredFactories: {
                 "resolveWith": FlaxDeferredFactoryBinding(
@@ -6230,6 +6250,7 @@ const materialBindings = FlaxBindingModule(
   dependencyModules: ["flax.core/flutter"],
   uiProtocol: 24,
   requiredCapabilities: const <String>[
+    "generic-member-views",
     "instance-checks",
     "native-widget-proxies",
   ],
@@ -7536,27 +7557,247 @@ class _MaterialPage extends api.MaterialPage<Object?>
 
 Object _deferred0(Map<String, Object?> values) {
   return api1.WidgetStateProperty.resolveWith<api1.Color?>(
-    values["callback"] as api1.Color? Function(Set<api.WidgetState> states),
+    values["callback"] as api1.Color? Function(Set<api1.WidgetState> states),
   );
 }
 
 Object _deferred1(Map<String, Object?> values) {
   return api1.WidgetStateProperty.resolveWith<double?>(
-    values["callback"] as double? Function(Set<api.WidgetState> states),
+    values["callback"] as double? Function(Set<api1.WidgetState> states),
   );
 }
 
 Object _deferred2(Map<String, Object?> values) {
   return api1.WidgetStateProperty.resolveWith<api1.OutlinedBorder?>(
     values["callback"]
-        as api1.OutlinedBorder? Function(Set<api.WidgetState> states),
+        as api1.OutlinedBorder? Function(Set<api1.WidgetState> states),
   );
 }
 
 Object _deferred3(Map<String, Object?> values) {
   return api1.WidgetStateProperty.resolveWith<api1.MouseCursor?>(
     values["callback"]
-        as api1.MouseCursor? Function(Set<api.WidgetState> states),
+        as api1.MouseCursor? Function(Set<api1.WidgetState> states),
+  );
+}
+
+const _objectView0 = FlaxObjectViewBinding(
+  "flax.core/flutter#type:WidgetStateProperty<object?:flax.core/flutter#type:Color>",
+  _objectView0Matches,
+  _objectView0Members,
+);
+bool _objectView0Matches(Object value) =>
+    value is api1.WidgetStateProperty<api1.Color?>;
+FlaxObjectMemberView _objectView0Members() => const FlaxObjectMemberView(
+  getters: {},
+  setters: {},
+  instanceMethods: {
+    "resolve": FlaxInstanceMethod(
+      [
+        FlaxParameter(
+          "states",
+          FlaxTypeRef(
+            "set",
+            item: FlaxTypeRef("enum", id: "flax.core/flutter#type:WidgetState"),
+            collection: FlaxCollectionBinding(
+              "set:[enum:flax.core/flutter#type:WidgetState]",
+              _collection4Create,
+              _collection4Matches,
+            ),
+            iterable: FlaxTypeRef(
+              "iterable",
+              item: FlaxTypeRef(
+                "enum",
+                id: "flax.core/flutter#type:WidgetState",
+              ),
+              collection: FlaxCollectionBinding(
+                "iterable:[enum:flax.core/flutter#type:WidgetState]",
+                _collection5Create,
+                _collection5Matches,
+              ),
+            ),
+          ),
+          required: true,
+          defaultValue: null,
+          omitWhenAbsent: false,
+        ),
+      ],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:Color", nullable: true),
+      _objectView0_resolve,
+      startsRoute: false,
+    ),
+  },
+);
+Object? _objectView0_resolve(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.WidgetStateProperty<api1.Color?>).resolve(
+    values["states"] as Set<api1.WidgetState>,
+  );
+}
+
+const _objectView1 = FlaxObjectViewBinding(
+  "flax.core/flutter#type:WidgetStateProperty<double?:>",
+  _objectView1Matches,
+  _objectView1Members,
+);
+bool _objectView1Matches(Object value) =>
+    value is api1.WidgetStateProperty<double?>;
+FlaxObjectMemberView _objectView1Members() => const FlaxObjectMemberView(
+  getters: {},
+  setters: {},
+  instanceMethods: {
+    "resolve": FlaxInstanceMethod(
+      [
+        FlaxParameter(
+          "states",
+          FlaxTypeRef(
+            "set",
+            item: FlaxTypeRef("enum", id: "flax.core/flutter#type:WidgetState"),
+            collection: FlaxCollectionBinding(
+              "set:[enum:flax.core/flutter#type:WidgetState]",
+              _collection4Create,
+              _collection4Matches,
+            ),
+            iterable: FlaxTypeRef(
+              "iterable",
+              item: FlaxTypeRef(
+                "enum",
+                id: "flax.core/flutter#type:WidgetState",
+              ),
+              collection: FlaxCollectionBinding(
+                "iterable:[enum:flax.core/flutter#type:WidgetState]",
+                _collection5Create,
+                _collection5Matches,
+              ),
+            ),
+          ),
+          required: true,
+          defaultValue: null,
+          omitWhenAbsent: false,
+        ),
+      ],
+      FlaxTypeRef("double", nullable: true),
+      _objectView1_resolve,
+      startsRoute: false,
+    ),
+  },
+);
+Object? _objectView1_resolve(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.WidgetStateProperty<double?>).resolve(
+    values["states"] as Set<api1.WidgetState>,
+  );
+}
+
+const _objectView2 = FlaxObjectViewBinding(
+  "flax.core/flutter#type:WidgetStateProperty<object?:flax.core/flutter#type:OutlinedBorder>",
+  _objectView2Matches,
+  _objectView2Members,
+);
+bool _objectView2Matches(Object value) =>
+    value is api1.WidgetStateProperty<api1.OutlinedBorder?>;
+FlaxObjectMemberView _objectView2Members() => const FlaxObjectMemberView(
+  getters: {},
+  setters: {},
+  instanceMethods: {
+    "resolve": FlaxInstanceMethod(
+      [
+        FlaxParameter(
+          "states",
+          FlaxTypeRef(
+            "set",
+            item: FlaxTypeRef("enum", id: "flax.core/flutter#type:WidgetState"),
+            collection: FlaxCollectionBinding(
+              "set:[enum:flax.core/flutter#type:WidgetState]",
+              _collection4Create,
+              _collection4Matches,
+            ),
+            iterable: FlaxTypeRef(
+              "iterable",
+              item: FlaxTypeRef(
+                "enum",
+                id: "flax.core/flutter#type:WidgetState",
+              ),
+              collection: FlaxCollectionBinding(
+                "iterable:[enum:flax.core/flutter#type:WidgetState]",
+                _collection5Create,
+                _collection5Matches,
+              ),
+            ),
+          ),
+          required: true,
+          defaultValue: null,
+          omitWhenAbsent: false,
+        ),
+      ],
+      FlaxTypeRef(
+        "object",
+        id: "flax.core/flutter#type:OutlinedBorder",
+        nullable: true,
+      ),
+      _objectView2_resolve,
+      startsRoute: false,
+    ),
+  },
+);
+Object? _objectView2_resolve(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.WidgetStateProperty<api1.OutlinedBorder?>).resolve(
+    values["states"] as Set<api1.WidgetState>,
+  );
+}
+
+const _objectView3 = FlaxObjectViewBinding(
+  "flax.core/flutter#type:WidgetStateProperty<object?:flax.core/flutter#type:MouseCursor>",
+  _objectView3Matches,
+  _objectView3Members,
+);
+bool _objectView3Matches(Object value) =>
+    value is api1.WidgetStateProperty<api1.MouseCursor?>;
+FlaxObjectMemberView _objectView3Members() => const FlaxObjectMemberView(
+  getters: {},
+  setters: {},
+  instanceMethods: {
+    "resolve": FlaxInstanceMethod(
+      [
+        FlaxParameter(
+          "states",
+          FlaxTypeRef(
+            "set",
+            item: FlaxTypeRef("enum", id: "flax.core/flutter#type:WidgetState"),
+            collection: FlaxCollectionBinding(
+              "set:[enum:flax.core/flutter#type:WidgetState]",
+              _collection4Create,
+              _collection4Matches,
+            ),
+            iterable: FlaxTypeRef(
+              "iterable",
+              item: FlaxTypeRef(
+                "enum",
+                id: "flax.core/flutter#type:WidgetState",
+              ),
+              collection: FlaxCollectionBinding(
+                "iterable:[enum:flax.core/flutter#type:WidgetState]",
+                _collection5Create,
+                _collection5Matches,
+              ),
+            ),
+          ),
+          required: true,
+          defaultValue: null,
+          omitWhenAbsent: false,
+        ),
+      ],
+      FlaxTypeRef(
+        "object",
+        id: "flax.core/flutter#type:MouseCursor",
+        nullable: true,
+      ),
+      _objectView3_resolve,
+      startsRoute: false,
+    ),
+  },
+);
+Object? _objectView3_resolve(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.WidgetStateProperty<api1.MouseCursor?>).resolve(
+    values["states"] as Set<api1.WidgetState>,
   );
 }
 
@@ -7638,83 +7879,83 @@ Object? _callback4Invoke(
 }
 
 Object _callback5(FlaxCallback _flaxBridgeCallback) =>
-    (Set<api.WidgetState> p0) {
+    (Set<api1.WidgetState> p0) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
       positional.add(p0);
       return _flaxBridgeCallback.call(positional, named) as api1.Color?;
     };
 bool _callback5Matches(Object value) =>
-    value is api1.Color? Function(Set<api.WidgetState> states);
+    value is api1.Color? Function(Set<api1.WidgetState> states);
 Object? _callback5Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  return (function as api1.Color? Function(Set<api.WidgetState> states))(
-    positional[0] as Set<api.WidgetState>,
+  return (function as api1.Color? Function(Set<api1.WidgetState> states))(
+    positional[0] as Set<api1.WidgetState>,
   );
 }
 
 Object _callback6(FlaxCallback _flaxBridgeCallback) =>
-    (Set<api.WidgetState> p0) {
+    (Set<api1.WidgetState> p0) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
       positional.add(p0);
       return _flaxBridgeCallback.call(positional, named) as api1.Color?;
     };
 bool _callback6Matches(Object value) =>
-    value is api1.Color? Function(Set<api.WidgetState> states);
+    value is api1.Color? Function(Set<api1.WidgetState> states);
 Object? _callback6Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  return (function as api1.Color? Function(Set<api.WidgetState> states))(
-    positional[0] as Set<api.WidgetState>,
+  return (function as api1.Color? Function(Set<api1.WidgetState> states))(
+    positional[0] as Set<api1.WidgetState>,
   );
 }
 
 Object _callback7(FlaxCallback _flaxBridgeCallback) =>
-    (Set<api.WidgetState> p0) {
+    (Set<api1.WidgetState> p0) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
       positional.add(p0);
       return _flaxBridgeCallback.call(positional, named) as api1.Color?;
     };
 bool _callback7Matches(Object value) =>
-    value is api1.Color? Function(Set<api.WidgetState> states);
+    value is api1.Color? Function(Set<api1.WidgetState> states);
 Object? _callback7Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  return (function as api1.Color? Function(Set<api.WidgetState> states))(
-    positional[0] as Set<api.WidgetState>,
+  return (function as api1.Color? Function(Set<api1.WidgetState> states))(
+    positional[0] as Set<api1.WidgetState>,
   );
 }
 
 Object _callback8(FlaxCallback _flaxBridgeCallback) =>
-    (Set<api.WidgetState> p0) {
+    (Set<api1.WidgetState> p0) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
       positional.add(p0);
       return _flaxBridgeCallback.call(positional, named) as double?;
     };
 bool _callback8Matches(Object value) =>
-    value is double? Function(Set<api.WidgetState> states);
+    value is double? Function(Set<api1.WidgetState> states);
 Object? _callback8Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  return (function as double? Function(Set<api.WidgetState> states))(
-    positional[0] as Set<api.WidgetState>,
+  return (function as double? Function(Set<api1.WidgetState> states))(
+    positional[0] as Set<api1.WidgetState>,
   );
 }
 
 Object _callback9(FlaxCallback _flaxBridgeCallback) =>
-    (Set<api.WidgetState> p0) {
+    (Set<api1.WidgetState> p0) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
       positional.add(p0);
@@ -7722,134 +7963,134 @@ Object _callback9(FlaxCallback _flaxBridgeCallback) =>
           as api1.OutlinedBorder?;
     };
 bool _callback9Matches(Object value) =>
-    value is api1.OutlinedBorder? Function(Set<api.WidgetState> states);
+    value is api1.OutlinedBorder? Function(Set<api1.WidgetState> states);
 Object? _callback9Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
   return (function
-      as api1.OutlinedBorder? Function(Set<api.WidgetState> states))(
-    positional[0] as Set<api.WidgetState>,
+      as api1.OutlinedBorder? Function(Set<api1.WidgetState> states))(
+    positional[0] as Set<api1.WidgetState>,
   );
 }
 
 Object _callback10(FlaxCallback _flaxBridgeCallback) =>
-    (Set<api.WidgetState> p0) {
+    (Set<api1.WidgetState> p0) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
       positional.add(p0);
       return _flaxBridgeCallback.call(positional, named) as api1.MouseCursor?;
     };
 bool _callback10Matches(Object value) =>
-    value is api1.MouseCursor? Function(Set<api.WidgetState> states);
+    value is api1.MouseCursor? Function(Set<api1.WidgetState> states);
 Object? _callback10Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  return (function as api1.MouseCursor? Function(Set<api.WidgetState> states))(
-    positional[0] as Set<api.WidgetState>,
+  return (function as api1.MouseCursor? Function(Set<api1.WidgetState> states))(
+    positional[0] as Set<api1.WidgetState>,
   );
 }
 
 Object _callback11(FlaxCallback _flaxBridgeCallback) =>
-    (Set<api.WidgetState> p0) {
+    (Set<api1.WidgetState> p0) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
       positional.add(p0);
       return _flaxBridgeCallback.call(positional, named) as api1.Color?;
     };
 bool _callback11Matches(Object value) =>
-    value is api1.Color? Function(Set<api.WidgetState> states);
+    value is api1.Color? Function(Set<api1.WidgetState> states);
 Object? _callback11Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  return (function as api1.Color? Function(Set<api.WidgetState> states))(
-    positional[0] as Set<api.WidgetState>,
+  return (function as api1.Color? Function(Set<api1.WidgetState> states))(
+    positional[0] as Set<api1.WidgetState>,
   );
 }
 
 Object _callback12(FlaxCallback _flaxBridgeCallback) =>
-    (Set<api.WidgetState> p0) {
+    (Set<api1.WidgetState> p0) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
       positional.add(p0);
       return _flaxBridgeCallback.call(positional, named) as double?;
     };
 bool _callback12Matches(Object value) =>
-    value is double? Function(Set<api.WidgetState> states);
+    value is double? Function(Set<api1.WidgetState> states);
 Object? _callback12Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  return (function as double? Function(Set<api.WidgetState> states))(
-    positional[0] as Set<api.WidgetState>,
+  return (function as double? Function(Set<api1.WidgetState> states))(
+    positional[0] as Set<api1.WidgetState>,
   );
 }
 
 Object _callback13(FlaxCallback _flaxBridgeCallback) =>
-    (Set<api.WidgetState> p0) {
+    (Set<api1.WidgetState> p0) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
       positional.add(p0);
       return _flaxBridgeCallback.call(positional, named) as api1.Color?;
     };
 bool _callback13Matches(Object value) =>
-    value is api1.Color? Function(Set<api.WidgetState> states);
+    value is api1.Color? Function(Set<api1.WidgetState> states);
 Object? _callback13Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  return (function as api1.Color? Function(Set<api.WidgetState> states))(
-    positional[0] as Set<api.WidgetState>,
+  return (function as api1.Color? Function(Set<api1.WidgetState> states))(
+    positional[0] as Set<api1.WidgetState>,
   );
 }
 
 Object _callback14(FlaxCallback _flaxBridgeCallback) =>
-    (Set<api.WidgetState> p0) {
+    (Set<api1.WidgetState> p0) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
       positional.add(p0);
       return _flaxBridgeCallback.call(positional, named) as api1.MouseCursor?;
     };
 bool _callback14Matches(Object value) =>
-    value is api1.MouseCursor? Function(Set<api.WidgetState> states);
+    value is api1.MouseCursor? Function(Set<api1.WidgetState> states);
 Object? _callback14Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  return (function as api1.MouseCursor? Function(Set<api.WidgetState> states))(
-    positional[0] as Set<api.WidgetState>,
+  return (function as api1.MouseCursor? Function(Set<api1.WidgetState> states))(
+    positional[0] as Set<api1.WidgetState>,
   );
 }
 
 Object _callback15(FlaxCallback _flaxBridgeCallback) =>
-    (Set<api.WidgetState> p0) {
+    (Set<api1.WidgetState> p0) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
       positional.add(p0);
       return _flaxBridgeCallback.call(positional, named) as api1.Color?;
     };
 bool _callback15Matches(Object value) =>
-    value is api1.Color? Function(Set<api.WidgetState> states);
+    value is api1.Color? Function(Set<api1.WidgetState> states);
 Object? _callback15Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  return (function as api1.Color? Function(Set<api.WidgetState> states))(
-    positional[0] as Set<api.WidgetState>,
+  return (function as api1.Color? Function(Set<api1.WidgetState> states))(
+    positional[0] as Set<api1.WidgetState>,
   );
 }
 
 Object _callback16(FlaxCallback _flaxBridgeCallback) =>
-    (Set<api.WidgetState> p0) {
+    (Set<api1.WidgetState> p0) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
       positional.add(p0);
@@ -7857,96 +8098,96 @@ Object _callback16(FlaxCallback _flaxBridgeCallback) =>
           as api1.OutlinedBorder?;
     };
 bool _callback16Matches(Object value) =>
-    value is api1.OutlinedBorder? Function(Set<api.WidgetState> states);
+    value is api1.OutlinedBorder? Function(Set<api1.WidgetState> states);
 Object? _callback16Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
   return (function
-      as api1.OutlinedBorder? Function(Set<api.WidgetState> states))(
-    positional[0] as Set<api.WidgetState>,
+      as api1.OutlinedBorder? Function(Set<api1.WidgetState> states))(
+    positional[0] as Set<api1.WidgetState>,
   );
 }
 
 Object _callback17(FlaxCallback _flaxBridgeCallback) =>
-    (Set<api.WidgetState> p0) {
+    (Set<api1.WidgetState> p0) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
       positional.add(p0);
       return _flaxBridgeCallback.call(positional, named) as api1.Color?;
     };
 bool _callback17Matches(Object value) =>
-    value is api1.Color? Function(Set<api.WidgetState> states);
+    value is api1.Color? Function(Set<api1.WidgetState> states);
 Object? _callback17Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  return (function as api1.Color? Function(Set<api.WidgetState> states))(
-    positional[0] as Set<api.WidgetState>,
+  return (function as api1.Color? Function(Set<api1.WidgetState> states))(
+    positional[0] as Set<api1.WidgetState>,
   );
 }
 
 Object _callback18(FlaxCallback _flaxBridgeCallback) =>
-    (Set<api.WidgetState> p0) {
+    (Set<api1.WidgetState> p0) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
       positional.add(p0);
       return _flaxBridgeCallback.call(positional, named) as api1.Color?;
     };
 bool _callback18Matches(Object value) =>
-    value is api1.Color? Function(Set<api.WidgetState> states);
+    value is api1.Color? Function(Set<api1.WidgetState> states);
 Object? _callback18Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  return (function as api1.Color? Function(Set<api.WidgetState> states))(
-    positional[0] as Set<api.WidgetState>,
+  return (function as api1.Color? Function(Set<api1.WidgetState> states))(
+    positional[0] as Set<api1.WidgetState>,
   );
 }
 
 Object _callback19(FlaxCallback _flaxBridgeCallback) =>
-    (Set<api.WidgetState> p0) {
+    (Set<api1.WidgetState> p0) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
       positional.add(p0);
       return _flaxBridgeCallback.call(positional, named) as api1.Color?;
     };
 bool _callback19Matches(Object value) =>
-    value is api1.Color? Function(Set<api.WidgetState> states);
+    value is api1.Color? Function(Set<api1.WidgetState> states);
 Object? _callback19Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  return (function as api1.Color? Function(Set<api.WidgetState> states))(
-    positional[0] as Set<api.WidgetState>,
+  return (function as api1.Color? Function(Set<api1.WidgetState> states))(
+    positional[0] as Set<api1.WidgetState>,
   );
 }
 
 Object _callback20(FlaxCallback _flaxBridgeCallback) =>
-    (Set<api.WidgetState> p0) {
+    (Set<api1.WidgetState> p0) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
       positional.add(p0);
       return _flaxBridgeCallback.call(positional, named) as double?;
     };
 bool _callback20Matches(Object value) =>
-    value is double? Function(Set<api.WidgetState> states);
+    value is double? Function(Set<api1.WidgetState> states);
 Object? _callback20Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  return (function as double? Function(Set<api.WidgetState> states))(
-    positional[0] as Set<api.WidgetState>,
+  return (function as double? Function(Set<api1.WidgetState> states))(
+    positional[0] as Set<api1.WidgetState>,
   );
 }
 
 Object _callback21(FlaxCallback _flaxBridgeCallback) =>
-    (Set<api.WidgetState> p0) {
+    (Set<api1.WidgetState> p0) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
       positional.add(p0);
@@ -7954,34 +8195,34 @@ Object _callback21(FlaxCallback _flaxBridgeCallback) =>
           as api1.OutlinedBorder?;
     };
 bool _callback21Matches(Object value) =>
-    value is api1.OutlinedBorder? Function(Set<api.WidgetState> states);
+    value is api1.OutlinedBorder? Function(Set<api1.WidgetState> states);
 Object? _callback21Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
   return (function
-      as api1.OutlinedBorder? Function(Set<api.WidgetState> states))(
-    positional[0] as Set<api.WidgetState>,
+      as api1.OutlinedBorder? Function(Set<api1.WidgetState> states))(
+    positional[0] as Set<api1.WidgetState>,
   );
 }
 
 Object _callback22(FlaxCallback _flaxBridgeCallback) =>
-    (Set<api.WidgetState> p0) {
+    (Set<api1.WidgetState> p0) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
       positional.add(p0);
       return _flaxBridgeCallback.call(positional, named) as api1.MouseCursor?;
     };
 bool _callback22Matches(Object value) =>
-    value is api1.MouseCursor? Function(Set<api.WidgetState> states);
+    value is api1.MouseCursor? Function(Set<api1.WidgetState> states);
 Object? _callback22Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  return (function as api1.MouseCursor? Function(Set<api.WidgetState> states))(
-    positional[0] as Set<api.WidgetState>,
+  return (function as api1.MouseCursor? Function(Set<api1.WidgetState> states))(
+    positional[0] as Set<api1.WidgetState>,
   );
 }
 
@@ -8313,40 +8554,40 @@ Object? _callback43Invoke(
 }
 
 Object _callback44(FlaxCallback _flaxBridgeCallback) =>
-    (Set<api.WidgetState> p0) {
+    (Set<api1.WidgetState> p0) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
       positional.add(p0);
       return _flaxBridgeCallback.call(positional, named) as api1.Color?;
     };
 bool _callback44Matches(Object value) =>
-    value is api1.Color? Function(Set<api.WidgetState> states);
+    value is api1.Color? Function(Set<api1.WidgetState> states);
 Object? _callback44Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  return (function as api1.Color? Function(Set<api.WidgetState> states))(
-    positional[0] as Set<api.WidgetState>,
+  return (function as api1.Color? Function(Set<api1.WidgetState> states))(
+    positional[0] as Set<api1.WidgetState>,
   );
 }
 
 Object _callback45(FlaxCallback _flaxBridgeCallback) =>
-    (Set<api.WidgetState> p0) {
+    (Set<api1.WidgetState> p0) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
       positional.add(p0);
       return _flaxBridgeCallback.call(positional, named) as api1.Color?;
     };
 bool _callback45Matches(Object value) =>
-    value is api1.Color? Function(Set<api.WidgetState> states);
+    value is api1.Color? Function(Set<api1.WidgetState> states);
 Object? _callback45Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  return (function as api1.Color? Function(Set<api.WidgetState> states))(
-    positional[0] as Set<api.WidgetState>,
+  return (function as api1.Color? Function(Set<api1.WidgetState> states))(
+    positional[0] as Set<api1.WidgetState>,
   );
 }
 
@@ -8411,10 +8652,10 @@ bool _collection2Matches(Object value) => value is List<api1.NavigatorObserver>;
 Object _collection3Create() => <api1.NavigatorObserver>[];
 bool _collection3Matches(Object value) =>
     value is Iterable<api1.NavigatorObserver>;
-Object _collection4Create() => <api.WidgetState>{};
-bool _collection4Matches(Object value) => value is Set<api.WidgetState>;
-Object _collection5Create() => <api.WidgetState>[];
-bool _collection5Matches(Object value) => value is Iterable<api.WidgetState>;
+Object _collection4Create() => <api1.WidgetState>{};
+bool _collection4Matches(Object value) => value is Set<api1.WidgetState>;
+Object _collection5Create() => <api1.WidgetState>[];
+bool _collection5Matches(Object value) => value is Iterable<api1.WidgetState>;
 Object _collection6Create() => <api3.TextInputFormatter>[];
 bool _collection6Matches(Object value) =>
     value is List<api3.TextInputFormatter>;

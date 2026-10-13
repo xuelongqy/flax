@@ -438,6 +438,7 @@ extension _Collections on _Session {
           stream: item.stream,
           callback: item.callback,
           record: item.record,
+          objectView: item.objectView,
           deferredFactories: item.deferredFactories,
         );
         methods.addAll({

@@ -9,6 +9,7 @@
       "moduleId": "flax.core/components",
       "uiProtocol": 24,
       "requiredCapabilities": [
+        "generic-member-views",
         "instance-checks",
         "native-widget-proxies"
       ],
@@ -382,6 +383,7 @@
       "moduleId": "flax.core/flutter",
       "uiProtocol": 24,
       "requiredCapabilities": [
+        "generic-member-views",
         "instance-checks",
         "native-widget-proxies"
       ],
@@ -420,6 +422,7 @@
             "exports": [
               "DateTime",
               "Duration",
+              "Iterator",
               "Match",
               "Pattern",
               "RegExp",
@@ -710,6 +713,7 @@
           "IgnorePointer": "package:flutter/widgets.dart",
           "ImageFilter": "package:flax/dart_ui.dart",
           "IndexedStack": "package:flutter/widgets.dart",
+          "Iterator": "dart:core",
           "Key": "package:flutter/widgets.dart",
           "KeyEvent": "package:flutter/widgets.dart",
           "KeyboardListener": "package:flutter/widgets.dart",
@@ -26263,6 +26267,193 @@
                 "primitiveKinds": [],
                 "declaration": null,
                 "tsArguments": [],
+                "slot": null
+              }
+            ],
+            "proxy": null,
+            "pageAdapter": null,
+            "disposeMethod": null,
+            "listenerPairs": {}
+          },
+          {
+            "name": "Iterator",
+            "id": "flax.core/flutter#type:Iterator",
+            "kind": "object",
+            "jsName": null,
+            "asyncIterableFactory": null,
+            "typeArguments": [
+              "Object?"
+            ],
+            "typeParameters": [
+              {
+                "name": "E",
+                "bound": {
+                  "kind": "any",
+                  "id": null,
+                  "name": null,
+                  "nullable": true,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": null,
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "defaultType": {
+                  "kind": "any",
+                  "id": null,
+                  "name": null,
+                  "nullable": true,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": null,
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "slot": "g0"
+              }
+            ],
+            "constructors": [],
+            "getters": [
+              {
+                "name": "current",
+                "type": {
+                  "kind": "any",
+                  "id": null,
+                  "name": null,
+                  "nullable": true,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "parameter",
+                    "id": null,
+                    "name": "E",
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": "g0"
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "encodeKind": null,
+                "cache": false
+              }
+            ],
+            "setters": [],
+            "staticGetters": [],
+            "staticSetters": [],
+            "methods": [
+              {
+                "name": "moveNext",
+                "parameters": [],
+                "result": {
+                  "kind": "bool",
+                  "id": null,
+                  "name": null,
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "bool",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "instance": true,
+                "typeArguments": [],
+                "startsRoute": false,
+                "typeParameters": [],
+                "mustCallSuper": false,
+                "deferredFactory": false,
+                "operator": null
+              }
+            ],
+            "widgetInterfaces": [],
+            "supertypes": [
+              "dart:core::Object"
+            ],
+            "superTypes": [
+              {
+                "originatingUri": "dart:core",
+                "originatingName": "Iterator",
+                "kind": "typeOnly",
+                "id": null,
+                "name": "Iterator",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [
+                  {
+                    "kind": "parameter",
+                    "id": null,
+                    "name": "E",
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": "g0"
+                  }
+                ],
                 "slot": null
               }
             ],
@@ -91006,6 +91197,15 @@
               "name": "Duration"
             },
             "wireId": "flax.core/flutter#type:Duration",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "type",
+              "originatingUri": "dart:core",
+              "name": "Iterator"
+            },
+            "wireId": "flax.core/flutter#type:Iterator",
             "owner": true
           },
           {

@@ -11,6 +11,7 @@
       "moduleId": "flax.material/material",
       "uiProtocol": 24,
       "requiredCapabilities": [
+        "generic-member-views",
         "instance-checks",
         "native-widget-proxies"
       ],

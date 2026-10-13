@@ -1280,6 +1280,7 @@ class FlaxCodegenModuleModel {
     this.publicLibraries = const [],
     this.moduleId,
     List<String> requiredCapabilities = const <String>[
+      'generic-member-views',
       'instance-checks',
       'native-widget-proxies',
     ],

@@ -20,6 +20,246 @@ void main() {
     const {},
   );
 
+  test('nested provider member views import every reached declaration', () async {
+    final directory = await Directory(p.join(root, '.dart_tool'))
+        .createTemp('nested-views-');
+    addTearDown(() => directory.delete(recursive: true));
+    for (final entry in const {
+      'outer.dart': "import 'inner.dart'; class Outer<T> { Outer(this.inner); final Inner<T> inner; }",
+      'inner.dart': "import 'third.dart'; class Inner<T> { Inner(this.third); final Third<T> third; }",
+      'third.dart': 'class Third<T> { Third(this.value); final T value; }',
+      'consumer.dart':
+          "import 'outer.dart'; import 'inner.dart'; import 'third.dart'; "
+          "Outer<String Function()> make() => Outer(Inner(Third(() => 'ok')));",
+    }.entries) {
+      await File(p.join(directory.path, entry.key)).writeAsString(entry.value);
+    }
+    final providers = [
+      for (final entry in const {
+        'Outer': 'inner',
+        'Inner': 'third',
+        'Third': 'value',
+      }.entries)
+        FlaxCodegenBindingConfig(
+          entry.key.toLowerCase(),
+          File(p.join(directory.path, '${entry.key.toLowerCase()}.dart')).uri
+              .toString(),
+          '@test/${entry.key.toLowerCase()}',
+          'unused.dart',
+          'unused.ts',
+          {
+            entry.key: FlaxCodegenClassSelection(
+              {},
+              kind: 'object',
+              getters: [entry.value],
+            ),
+          },
+        ),
+    ];
+    final parser = FlaxCodegenBindingParser(root);
+    addTearDown(parser.dispose);
+    await parser.prepare(providers);
+    final modules = [
+      for (final config in providers) await parser.parse(config),
+    ];
+    final consumerParser = FlaxCodegenBindingParser(root)
+      ..prepareModules(modules);
+    addTearDown(consumerParser.dispose);
+    final consumer = await consumerParser.parse(
+      FlaxCodegenBindingConfig(
+        'consumer',
+        File(p.join(directory.path, 'consumer.dart')).uri.toString(),
+        '@test/consumer',
+        'unused.dart',
+        'unused.ts',
+        {},
+        functions: const {'make': FlaxCodegenFunctionSelection([])},
+      ),
+    );
+    await compileFixture(
+      root,
+      FlaxCodegenBindingEmitter([...modules, consumer]),
+      consumer,
+      consumerSource: "import {make} from './plugin.js'; const value: string = make().inner.third.value();",
+    );
+  });
+
+  test(
+    'finite generic member shifts keep their declared conversions',
+    () async {
+      final directory = await Directory(p.join(root, '.dart_tool'))
+          .createTemp('finite-views-');
+      addTearDown(() => directory.delete(recursive: true));
+      final source = File(p.join(directory.path, 'finite.dart'));
+      await source.writeAsString('''
+class Flip<A, B> {
+  Flip(this.value);
+  final A value;
+  Flip<List<int>, A> get next => Flip([1]);
+}
+Flip<int, String> make() => Flip(1);
+''');
+      final parser = FlaxCodegenBindingParser(root);
+      addTearDown(parser.dispose);
+      final module = await parser.parse(
+        FlaxCodegenBindingConfig(
+          'finite',
+          source.uri.toString(),
+          '@test/finite',
+          'unused.dart',
+          'unused.ts',
+          const {
+            'Flip': FlaxCodegenClassSelection(
+              {},
+              kind: 'object',
+              getters: ['value', 'next'],
+            ),
+          },
+          functions: const {'make': FlaxCodegenFunctionSelection([])},
+        ),
+      );
+      await compileFixture(
+        root,
+        FlaxCodegenBindingEmitter([module]),
+        module,
+        consumerSource: "import {make} from './plugin.js'; const value: number = make().next.next.value.get(0);",
+      );
+    },
+  );
+
+  test(
+    'expanding generic member recursion fails before unbounded emission',
+    () async {
+      final directory = await Directory(p.join(root, '.dart_tool'))
+          .createTemp('growing-');
+      addTearDown(() => directory.delete(recursive: true));
+      final source = File(p.join(directory.path, 'growing.dart'));
+      await source.writeAsString('''
+class Growing<T> {
+  Growing<List<T>> get next => Growing<List<T>>();
+}
+''');
+      final parser = FlaxCodegenBindingParser(root);
+      addTearDown(parser.dispose);
+      final module = await parser.parse(
+        FlaxCodegenBindingConfig(
+          'growing',
+          source.uri.toString(),
+          '@test/growing',
+          'unused.dart',
+          'unused.ts',
+          const {
+            'Growing': FlaxCodegenClassSelection(
+              {},
+              kind: 'object',
+              getters: ['next'],
+              typeArguments: ['int'],
+            ),
+          },
+        ),
+      );
+      expect(
+        () => FlaxCodegenBindingEmitter([module]).dart(module),
+        throwsA(
+          isA<StateError>().having(
+            (error) => error.message,
+            'message',
+            contains('Generic member view expansion exceeds 64 signatures'),
+          ),
+        ),
+      );
+    },
+  );
+
+  test(
+    'Iterator APIs reuse the ordinary Core provider and element conversion',
+    () async {
+      final parser = FlaxCodegenBindingParser(root);
+      addTearDown(parser.dispose);
+      final baseline = await parser.proposeLibrary(config);
+      expect(
+        baseline.skips.where((skip) => skip.target == 'Words.iterator'),
+        isNotEmpty,
+      );
+      final selection = FlaxCodegenBindingConfig.read(
+        p.join(root, 'packages/flax/bindings/config.yaml'),
+      ).classes['Iterator']!;
+      final core = await parser.parse(
+        FlaxCodegenBindingConfig(
+          'iterator_core',
+          'dart:core',
+          '@test/iterator-core',
+          'core.dart',
+          'core.ts',
+          {'Iterator': selection},
+        ),
+      );
+      expect(core.classes.single.kind, 'object');
+      expect(core.classes.single.constructors, isEmpty);
+      final diagnostics = FlaxCodegenManifestDiagnostics('iterator_core');
+      final decoded = FlaxCodegenManifestCodec.decodeModule(
+        FlaxCodegenManifestCodec.encodeModule(core),
+        diagnostics,
+        '',
+        core.name,
+      );
+      expect(diagnostics.items, isEmpty);
+      expect(decoded!.classes.single.getters.single.name, 'current');
+      parser.prepareModules([decoded]);
+      final proposal = await parser.proposeLibrary(config);
+      expect(proposal.config.classes['Words']!.getters, contains('iterator'));
+      expect(proposal.config.classes, isNot(contains('Iterator')));
+      expect(
+        proposal.skips.where((skip) => skip.reason.contains('Iterator<')),
+        isEmpty,
+      );
+      final module = await parser.parse(proposal.config);
+      final emitter = FlaxCodegenBindingEmitter([decoded, module]);
+      final dart = emitter.dart(module);
+      expect(dart, contains('FlaxObjectViewBinding('));
+      expect(dart, contains('String Function()'));
+      expect(dart, contains('({String label, List<int> values})'));
+      expect(dart, isNot(contains('api.label')));
+      await compileFixture(
+        root,
+        emitter,
+        module,
+        consumerSource: '''
+import {createWords, createShoppingList, integerIterator, nullableIterator,
+  nestedIterator, objectIterator, echoIterator, readIteratorCurrent,
+  callbackIterator, callbackElementIterator, callbackListIterator,
+  narrowNumberIterator, numberElementIterator, futureCallbackIterator,
+  recordElementIterator} from './plugin.js';
+import {Iterator} from '@test/iterator-core';
+import type {DartList} from '@flax/core/bindings';
+const iterator: Iterator<string> = createWords().iterator;
+const moved: boolean = iterator.moveNext();
+const current: string = iterator.current;
+const returned: Iterator<string> = callbackIterator(value => value, iterator);
+const echoed: Iterator<string> = echoIterator(iterator);
+const optional: string | null = nullableIterator().current;
+const row: DartList<number> = nestedIterator().current;
+const callbackResult: string = callbackElementIterator().current();
+const nestedCallbackResult: string = callbackListIterator().current.get(0)();
+const narrowed: number = narrowNumberIterator(numberElementIterator()).current(2);
+const futureCallbackResult: Promise<string> = futureCallbackIterator().current.then(fn => fn());
+const recordLabel: string = recordElementIterator().current.label;
+const summary: string = objectIterator(createShoppingList()).current.summary;
+// @ts-expect-error Iterator preserves the actual generic argument.
+readIteratorCurrent(integerIterator());
+// @ts-expect-error A raw JS iterator is not a Dart reference.
+readIteratorCurrent(['raw'][Symbol.iterator]());
+// @ts-expect-error The Dart current getter is read-only.
+iterator.current = 'bad';
+// @ts-expect-error Dart Iterator does not provide the JS next protocol.
+iterator.next();
+// @ts-expect-error Core Iterator is an interface token, not a constructor.
+new Iterator();
+''',
+      );
+    },
+  );
+
   test('collection subclasses retain inherited operations and custom members', () async {
     final parser = FlaxCodegenBindingParser(root);
     addTearDown(parser.dispose);

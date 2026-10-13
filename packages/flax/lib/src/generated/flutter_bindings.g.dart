@@ -3744,6 +3744,32 @@ const flutterBindings = FlaxBindingModule(
       methods: const {},
     ),
     FlaxObjectBinding(
+      "flax.core/flutter#type:Iterator",
+      [
+        FlaxGetter(
+          "current",
+          FlaxTypeRef("any", nullable: true),
+          _Iterator_current,
+        ),
+      ],
+      {
+        "moveNext": FlaxInstanceMethod(
+          [],
+          FlaxTypeRef("bool"),
+          _Iterator_moveNext,
+          startsRoute: false,
+        ),
+      },
+      constructors: {},
+      create: _createIterator,
+      disposeMethod: null,
+      listenerPairs: {},
+      supertypes: ["dart:core::Object"],
+      setters: [],
+      matches: _isIterator,
+      methods: const {},
+    ),
+    FlaxObjectBinding(
       "flax.core/flutter#type:Sink",
       [],
       {},
@@ -14421,6 +14447,7 @@ const flutterBindings = FlaxBindingModule(
   dependencyModules: [],
   uiProtocol: 24,
   requiredCapabilities: const <String>[
+    "generic-member-views",
     "instance-checks",
     "native-core-inputs",
     "native-widget-proxies",
@@ -15368,6 +15395,15 @@ Object? _StackTrace_toString(Object receiver, Map<String, Object?> values) {
 }
 
 Object _createStackTrace(String ctor, Map<String, Object?> values) =>
+    throw ArgumentError('Abstract object has no constructor');
+bool _isIterator(Object value) => value is api1.Iterator<Object?>;
+Object? _Iterator_current(Object value) =>
+    (value as api1.Iterator<Object?>).current;
+Object? _Iterator_moveNext(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.Iterator<Object?>).moveNext();
+}
+
+Object _createIterator(String ctor, Map<String, Object?> values) =>
     throw ArgumentError('Abstract object has no constructor');
 bool _isSink(Object value) => value is api1.Sink<Object?>;
 Object _createSink(String ctor, Map<String, Object?> values) =>

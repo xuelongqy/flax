@@ -1,7 +1,6 @@
 # Task: Native value conversion performance and common SDK APIs
 
-Status: implementation reviewed and validated, awaiting checkout-owner completion and
-integration
+Status: completed on the maintained Flax and Flutter branches
 
 ## Goal and scope
 
@@ -167,28 +166,28 @@ Object/dynamic conversion rather than promising a speedup for every List call.
 
 ## Handoff
 
-The selected implementation is ready for integration from
-`feat/interop-conversion-performance` in both isolated worktrees. A final source review
-checked the ordered classifier, component-State validation, collection cleanup, copied
-buffer ownership, intrinsic binary brands and generated SDK parameter/result types.
-Implementation and matching engine/tester hashes agree with the selected prototype
-receipt; no additional implementation defect was found. The Flax base is
-`feat/dynamic-engine-sdk` at `7ca99c3d`, and the Flutter base is `flax/main` at
-`daab8a81feb`. Recoverable source/index snapshots live in
-`.local/interop-performance/landing/`; the earlier synchronization receipt remains in
-`.local/interop-performance/sync-dynamic-engine-sdk/`.
+The reviewed implementation commit is `01ae780`; the matching engine commit is
+`90ebeaa975e`. Integration retains `feat/dynamic-engine-sdk` commit `c060832`, including
+Iterator, generic member views, provider identity/import fixes and checked conversions.
+The only runtime source conflict combined the shared `tryObjectHandle` helper with
+`hasObjectView`; generated conflicts were resolved by regeneration. All unrelated
+non-overlapping source and test files remain byte-identical to that commit. Existing IDs
+in the four package Manifests are retained.
 
-The selected scalar classifier now also passed the complete Core suite: V8 299/299 and
-Hermes 299/299. Scoped Dart analysis found no issues, and binding/FFI regeneration
-checks passed. These landing checks cover the final implementation rather than the
-earlier pre-scalar prototype. The matching engine change is committed as `90ebeaa975e`
-on the isolated branch. Logs and the source review receipt are in the landing directory
-above.
+Both target checkouts were clean before integration. Recoverable HEAD/index/source
+snapshots, source and binary hashes, logs and the final receipt live in
+`.local/interop-performance/integration/`. Earlier implementation and synchronization
+receipts remain in the landing and synchronization directories.
 
-The main Flax checkout owner is still reviewing Iterator and generic object-member
-views. Leave both target checkouts untouched until that work is complete. Refresh the
-final target HEADs, retain its runtime/generator/configuration changes, regenerate
-declarations and validate the combined sources on V8 and Hermes before merging. Rebuild
-matching production engine binaries for binding extension 4 before application
-validation. Preserve any remaining unrelated tracked, staged and untracked work with
-recoverable snapshots and hashes. Do not push or publish.
+The maintained Flutter `flax/main` branch now includes `90ebeaa975e`. Its matching macOS
+debug framework and tester were rebuilt with binding extension 4. The final combined
+Core/Canvas/Fetch/WebSocket suite passed V8 335/335 on this production tester and Hermes
+335/335 on the matching experimental macOS tester. Plugin test factories were restored
+and verified by SHA-256. Workspace JavaScript passed 159/159; workspace TypeScript,
+scoped Dart analysis, binding/FFI and public-type/module-delivery reproducibility checks
+passed. Generator execution passed 595/595 through the maintained Dart SDK and the
+repository's Dart unit-test entry. The combined Flax changes are integrated into
+`feat/dynamic-engine-sdk` while retaining both original commit histories.
+
+This acceptance covers macOS arm64 debug/JIT. Mobile, release/AOT and production Hermes
+framework execution were not run. No push or publication is authorized.

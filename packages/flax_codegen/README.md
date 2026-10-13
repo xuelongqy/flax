@@ -127,6 +127,16 @@ as `toArray()` are supplied by the shared collection table; iteration uses one s
 call even when a business member has that name. Compatible subclasses can be passed
 directly to collection parameters, without copying or another provider. See
 [collection subclass semantics](../../docs/architecture/interop.md#collection-subclasses).
+
+Core also binds `Iterator<E>` as an ordinary, non-constructible object with a read-only
+`current` getter and `moveNext()` method. Automatic APIs reuse that provider, including
+nullable elements, nested collection views and callbacks carrying Iterator references.
+Closed member signatures also preserve callback elements, Future/Stream values and
+Records, including `Iterator<String Function()>` and
+`Iterator<List<String Function()>>`. Use the Dart cursor API rather than JS `next()`;
+each advance/read uses normal cached member dispatch. See
+[native iterators](../../docs/architecture/interop.md#native-iterators).
+
 Shared method-local collection bounds return standard collection views rather than
 promising the concrete subtype's business API. Core exports `asDart(value, Target)` for
 a checked view and `getDartType(value)` for explicit Dart runtime-type diagnostics. Both
@@ -277,14 +287,34 @@ native view, select explicit class `typeArguments` to apply data conversion to t
 concrete member's Object/dynamic leaves. Invalid combinations fail during parsing.
 
 Only selected members whose conversion changes get private Dart metadata and call
-delegates. Unaffected members and existing conversion adapters stay shared, as does the
-single JS class. The first affected operation selects and caches metadata per native
-object and binding owner; subsequent calls add no bridge round trip. These views are
-derived from existing constructor evidence, with no Manifest, protocol or ABI change.
-Native objects matching no known target and the erased owner of an automatic JS proxy
-retain the shared view; use explicit type arguments when that contract must be concrete.
-Matching uses Dart type checks; collection elements are never scanned to infer generic
-arguments.
+delegates. Known constructor targets retain their existing on-demand conversion. Closed
+API signatures additionally supply conversion views for dependency-owned and
+constructorless generic objects. Getters, setters and methods reuse the same callback,
+collection, async and Record converters; self-referential signatures use lazy metadata.
+The provider Manifest supplies the declaration model, without reading its private
+source. Nested views discover their Dart imports as they are emitted. Their operation
+metadata retains the signature's binding context for erased nested results and checked
+casts.
+
+All views share one JS prototype and the real Dart object. Weak wrapper caches are keyed
+by signature: repeated conversion through the same signature reuses its wrapper, while
+different signatures may produce wrappers that are not `===`. A `num` callback view
+accepts `1.5`; an `int` callback view of that same Dart object rejects it. Registering
+or reading another view never replaces this contract. Erased round-trips may reuse an
+already known view; they cannot infer a previously unknown callback signature. Generic
+type arguments remain erased in `instanceof` and `asDart` type tokens.
+
+Ordinary member access still uses one cached operation invocation. No JS class or
+additional heap scanner is generated per signature, and no new GC ownership is added.
+The additive `generic-member-views` capability rejects older runtimes. Manifest 18, UI
+protocol 24 and native ABI 2 stay unchanged; conversion metadata is derived from the
+existing model. Dart type checks validate values without scanning collection elements.
+
+Each root signature may discover at most 64 new member views. Larger finite closures and
+unbounded declarations such as `Growing<T>.next: Growing<List<T>>` fail with an explicit
+expansion-limit error. Ordinary self references such as `Cell<T>.self: Cell<T>` and
+finite shifts such as `Flip<A, B>.next: Flip<List<int>, A>` keep their declared
+conversion.
 
 UI protocol 24 expands selected inherited instance surfaces before emission and
 separates ordinary Object interop from explicitly selected `data` positions. Enum

@@ -42,6 +42,7 @@ const componentsBindings = FlaxBindingModule(
   dependencyModules: ["flax.core/flutter"],
   uiProtocol: 24,
   requiredCapabilities: const <String>[
+    "generic-member-views",
     "instance-checks",
     "native-widget-proxies",
   ],
