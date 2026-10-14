@@ -1181,7 +1181,9 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     }
     return FlaxCodegenFunctionSelection(
       selected,
-      typeArguments: sharedArguments?.sources ?? const [],
+      typeArguments: sharedArguments?.requiresTypeArguments == true
+          ? const []
+          : sharedArguments?.sources ?? const [],
     );
   }
 

@@ -690,6 +690,8 @@ class FlaxCodegenMethodModel {
   final List<String> typeArguments;
   final bool startsRoute;
   final bool deferredFactory;
+  bool get requiresTypeArguments =>
+      typeParameters.any((parameter) => parameter.defaultType == null);
   final String name;
   final List<FlaxCodegenParameterModel> parameters;
   final FlaxCodegenTypeRef result;
@@ -761,6 +763,8 @@ class FlaxCodegenClassModel {
   final String name;
   final String id;
   final String kind;
+  bool get requiresTypeArguments =>
+      typeParameters.any((parameter) => parameter.defaultType == null);
   final List<FlaxCodegenGenericParameter> typeParameters;
   final FlaxCodegenProxyModel? proxy;
   final List<FlaxCodegenTypeRef> widgetInterfaces;
@@ -1375,6 +1379,53 @@ class FlaxCodegenModuleModel {
   /// Sorted unique capability literals. Protocol 21 is empty.
   final List<String> _requiredCapabilities;
   List<String> get requiredCapabilities {
+    bool callback(FlaxCodegenTypeRef type) =>
+        type.kind == 'callback' && type.typeParameters.isNotEmpty ||
+        [
+          type.item,
+          type.key,
+          type.result,
+          type.declaration,
+          ...type.parameters.map((p) => p.type),
+          ...type.recordFields.map((f) => f.type),
+          ...type.dartArguments,
+          ...type.tsArguments,
+        ].whereType<FlaxCodegenTypeRef>().any(callback);
+    final explicitTypes =
+        classes.any(
+          (c) =>
+              c.requiresTypeArguments ||
+              c.methods.any((m) => m.requiresTypeArguments),
+        ) ||
+        ownedFunctions.any((f) => f.call.requiresTypeArguments) ||
+        <FlaxCodegenTypeRef>[
+          for (final c in classes) ...[
+            for (final ctor in c.constructors)
+              ...ctor.parameters.map((p) => p.type),
+            for (final g in [
+              ...c.getters,
+              ...c.setters,
+              ...c.staticGetters,
+              ...c.staticSetters,
+            ])
+              g.type,
+            for (final m in c.methods) ...[
+              m.result,
+              ...m.parameters.map((p) => p.type),
+            ],
+          ],
+          for (final f in ownedFunctions) ...[
+            f.call.result,
+            ...f.call.parameters.map((p) => p.type),
+          ],
+          for (final g
+              in topLevel?.getters ?? <FlaxCodegenTopLevelGetterModel>[])
+            g.type,
+          for (final s
+              in topLevel?.setters ?? <FlaxCodegenTopLevelSetterModel>[])
+            s.type,
+          for (final a in typedefs) a.target,
+        ].any(callback);
     final genericCalls =
         classes.any((t) => t.methods.any((m) => m.typeParameters.isNotEmpty)) ||
         ownedFunctions.any((f) => f.call.typeParameters.isNotEmpty);
@@ -1390,7 +1441,8 @@ class FlaxCodegenModuleModel {
       'RegExp',
       'Pattern',
     ].any((name) => typeLibraries[name] == 'dart:core');
-    if (!genericCalls &&
+    if (!explicitTypes &&
+        !genericCalls &&
         !dartTypes &&
         !sharedBytes &&
         !sharedBuffers &&
@@ -1400,9 +1452,10 @@ class FlaxCodegenModuleModel {
     }
     return ({
       ..._requiredCapabilities,
+      if (explicitTypes) 'explicit-generic-types',
       if (dartTypes) 'dart-type-tokens',
       if (genericCalls) 'generic-call-types',
-      if (genericCalls || dartTypes) 'engine-type-handles',
+      if (genericCalls || dartTypes || explicitTypes) 'engine-type-handles',
       if (sharedBytes) 'shared-uint8',
       if (sharedBuffers) 'shared-buffers',
       if (nativeBigInt) 'native-bigint',

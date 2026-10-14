@@ -2939,17 +2939,26 @@ PropertyParent.implement<Token>([current], { get value(): number { return 1; } }
         'HiddenGenericBound',
       );
 
-      await expectLater(
-        parser.parse(
-          fixture('interop.dart', {
-            'RecursiveGenericContract': const FlaxCodegenClassSelection(
-              {},
-              kind: 'object',
-              proxy: 'implements',
-            ),
-          }),
-        ),
-        throwsStateError,
+      final recursive = await parser.parse(
+        fixture('interop.dart', {
+          'RecursiveGenericContract': const FlaxCodegenClassSelection(
+            {},
+            kind: 'object',
+            proxy: 'implements',
+          ),
+        }),
+      );
+      expect(
+        recursive
+            .classes
+            .single
+            .proxy!
+            .methods
+            .single
+            .typeParameters
+            .single
+            .defaultType,
+        isNull,
       );
     }
   });

@@ -1,7 +1,7 @@
 # Native ABI headers
 
 This directory retains the canonical ABI 2 header, internal GC extension 1 and binding
-extension 2 headers. The binding table registers shared member layouts, invokes current
+extension 7 headers. The binding table registers shared member layouts, invokes current
 JS members with their actual receiver, and passes flat typed arguments for synchronous
 calls, and shares Uint8List/Uint8Array storage without a payload copy. FFI generation
 reads these declarations. The maintained Flutter fork owns the executable bridge,

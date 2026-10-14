@@ -29,6 +29,18 @@ part 'widget_interface.dart';
 String identity(InterfaceElement element) =>
     '${element.library.uri}::${element.name}';
 
+bool _hasOpenTypeParameter(DartType type) => switch (type) {
+  TypeParameterType() => true,
+  InterfaceType() => type.typeArguments.any(_hasOpenTypeParameter),
+  RecordType() =>
+    type.positionalFields.any((f) => _hasOpenTypeParameter(f.type)) ||
+        type.namedFields.any((f) => _hasOpenTypeParameter(f.type)),
+  FunctionType() =>
+    _hasOpenTypeParameter(type.returnType) ||
+        type.formalParameters.any((p) => _hasOpenTypeParameter(p.type)),
+  _ => false,
+};
+
 String? _nativeJsValueType(InterfaceElement element) {
   if (element.library.isDartCore && element.name == 'BigInt') return 'bigint';
   return element.library.uri.toString() == 'dart:typed_data'
@@ -232,6 +244,15 @@ bool _isInferredDeferredFactory(
     _collectInferableDeferredTypeParameters(argument, parameters, inferred);
   }
   if (inferred.length != parameters.length) return false;
+
+  // Bounds without an erased conversion use the checked generic call path.
+  for (final parameter in parameters) {
+    final bound = parameter.bound;
+    if (bound != null &&
+        scope.tryTypeRef(bound, allowRecursiveErasure: true).type == null) {
+      return false;
+    }
+  }
 
   final names = {for (final parameter in parameters) parameter.name!};
   for (final parameter in method.formalParameters) {
@@ -1883,7 +1904,8 @@ class FlaxCodegenBindingParser {
         element.library,
         false,
       );
-      final actualType = runtimeArguments.isEmpty
+      final actualType =
+          runtimeArguments.isEmpty || sharedOwner?.requiresTypeArguments == true
           ? element.thisType
           : element.instantiate(
               typeArguments: runtimeArguments,
@@ -1910,12 +1932,14 @@ class FlaxCodegenBindingParser {
               forTypescript: true,
               typeOnlyPosition: true,
             ),
-            defaultType: typeRef(
-              runtimeArguments.length > i
-                  ? runtimeArguments[i]
-                  : element.library.typeProvider.objectQuestionType,
-              erasing: {element.typeParameters[i]},
-            ),
+            defaultType: sharedOwner?.requiresTypeArguments == true
+                ? null
+                : typeRef(
+                    runtimeArguments.length > i
+                        ? runtimeArguments[i]
+                        : element.library.typeProvider.objectQuestionType,
+                    erasing: {element.typeParameters[i]},
+                  ),
             genericIdentity: element.typeParameters[i],
           ),
       ];
@@ -2227,9 +2251,7 @@ class FlaxCodegenBindingParser {
             ? _sharedTypeArguments(
                 this,
                 scope,
-                selection.typeArguments.isEmpty
-                    ? originalMethod.typeParameters
-                    : method.typeParameters,
+                method.typeParameters,
                 element.library,
                 '${entry.key}.${chosen.key}',
               )
@@ -2251,10 +2273,12 @@ class FlaxCodegenBindingParser {
             'Deferred factories require a synchronous generic static method: ${entry.key}.${chosen.key}',
           );
         }
-        final runtimeMethodArguments = [
-          for (final name in typeArgs)
-            _runtimeType(name, exports, element.library),
-        ];
+        final runtimeMethodArguments =
+            sharedArguments?.arguments ??
+            [
+              for (final name in typeArgs)
+                _runtimeType(name, exports, element.library),
+            ];
         if (!deferredFactory) {
           _checkBounds(
             method.typeParameters,
@@ -2263,7 +2287,8 @@ class FlaxCodegenBindingParser {
             false,
           );
         }
-        final signature = deferredFactory
+        final signature =
+            deferredFactory || sharedArguments?.requiresTypeArguments == true
             ? method.type
             : typeArgs.isEmpty
             ? method.type
@@ -2381,16 +2406,25 @@ class FlaxCodegenBindingParser {
                     forTypescript: true,
                     typeOnlyPosition: true,
                   ),
-                  defaultType: typeRef(
-                    deferredFactory
-                        ? originalMethod.typeParameters[i].bound ??
-                              element.library.typeProvider.objectQuestionType
-                        : _runtimeType(typeArgs[i], exports, element.library),
-                    erasing: deferredFactory
-                        ? {originalMethod.typeParameters[i]}
-                        : null,
-                    allowRecursiveErasure: deferredFactory,
-                  ),
+                  defaultType: sharedArguments?.requiresTypeArguments == true
+                      ? null
+                      : typeRef(
+                          deferredFactory
+                              ? originalMethod.typeParameters[i].bound ??
+                                    element
+                                        .library
+                                        .typeProvider
+                                        .objectQuestionType
+                              : _runtimeType(
+                                  typeArgs[i],
+                                  exports,
+                                  element.library,
+                                ),
+                          erasing: deferredFactory
+                              ? {originalMethod.typeParameters[i]}
+                              : null,
+                          allowRecursiveErasure: deferredFactory,
+                        ),
                   genericIdentity: originalMethod.typeParameters[i],
                 ),
             ],
@@ -2624,7 +2658,11 @@ class FlaxCodegenBindingParser {
           for (final target in plan.targets) {
             // Fixed method arguments must satisfy every selected native owner.
             for (final method in methods.where(
-              (method) => method.instance && method.typeArguments.isNotEmpty,
+              (method) =>
+                  method.instance &&
+                  selection.methodTypeArguments.containsKey(
+                    method.operatorName ?? method.name,
+                  ),
             )) {
               final concreteMethod = target.type.lookUpMethod(
                 method.name,
@@ -3137,24 +3175,33 @@ class FlaxCodegenBindingParser {
           typeRef(type).declaredAs(typeRef(type, forTypescript: true));
       List<FlaxCodegenGenericParameter> generics(
         List<TypeParameterElement> parameters,
-      ) => [
-        for (final parameter in parameters)
-          FlaxCodegenGenericParameter(
-            parameter.name!,
-            typeRef(
-              parameter.bound ??
-                  element.library.typeProvider.objectQuestionType,
-              forTypescript: true,
-              typeOnlyPosition: true,
+      ) {
+        final defaults = _sharedTypeArguments(
+          this,
+          scope,
+          parameters,
+          element.library,
+          name,
+        );
+        if (!defaults.supported) throw StateError(defaults.reason!);
+        return [
+          for (final (index, parameter) in parameters.indexed)
+            FlaxCodegenGenericParameter(
+              parameter.name!,
+              typeRef(
+                parameter.bound ??
+                    element.library.typeProvider.objectQuestionType,
+                forTypescript: true,
+                typeOnlyPosition: true,
+              ),
+              defaultType: defaults.requiresTypeArguments
+                  ? null
+                  : typeRef(defaults.arguments[index]),
+              genericIdentity: parameter,
             ),
-            defaultType: typeRef(
-              parameter.bound ??
-                  element.library.typeProvider.objectQuestionType,
-              erasing: {parameter},
-            ),
-            genericIdentity: parameter,
-          ),
-      ];
+        ];
+      }
+
       final extensionIdentity = '${element.library.uri}::$name';
       if (_privateDependencyExtensions.contains(extensionIdentity) &&
           _coreDependencyExtensions.contains(extensionIdentity)) {
@@ -3371,7 +3418,9 @@ class FlaxCodegenBindingParser {
         function.library,
         false,
       );
-      final signature = typeArguments.isEmpty
+      final signature =
+          typeArguments.isEmpty ||
+              sharedArguments?.requiresTypeArguments == true
           ? function.type
           : function.type.instantiate(typeArguments);
       var result = typeRef(signature.returnType)
@@ -3455,7 +3504,9 @@ class FlaxCodegenBindingParser {
               forTypescript: true,
               typeOnlyPosition: true,
             ),
-            defaultType: typeRef(typeArguments[i]),
+            defaultType: sharedArguments?.requiresTypeArguments == true
+                ? null
+                : typeRef(typeArguments[i]),
             genericIdentity: function.typeParameters[i],
           ),
       ];

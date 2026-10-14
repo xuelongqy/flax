@@ -894,6 +894,7 @@ const selectedProxyTypes = new WeakMap<object, ProxyDefinition>();
 type DartCallTarget = {
   readonly id: string;
   readonly parameters: readonly MemberParameter[];
+  readonly callback?: number;
 };
 const genericCalls = new WeakMap<
   Function,
@@ -965,11 +966,23 @@ function selectDartClass(
 }
 
 function selectDart(
+  operation: 'callback',
+  id: string,
+  descriptions: readonly FlaxDartTypeDescription[],
+  reference: number,
+): Function;
+function selectDart(
   operation: string,
   id: string,
   descriptions: readonly FlaxDartTypeDescription[],
   ...extra: unknown[]
-): string {
+): string;
+function selectDart(
+  operation: string,
+  id: string,
+  descriptions: readonly FlaxDartTypeDescription[],
+  ...extra: unknown[]
+): string | Function {
   const host = globalThis as typeof globalThis & {
     __flaxDartType?: (...args: unknown[]) => unknown;
   };
@@ -983,8 +996,12 @@ function selectDart(
       ...extra,
     ),
   );
-  if (typeof result !== 'string') throw new TypeError('Invalid Dart type selection');
-  return result;
+  if (operation === 'callback') {
+    if (typeof result !== 'function')
+      throw new TypeError('Invalid Dart callback selection');
+  } else if (typeof result !== 'string')
+    throw new TypeError('Invalid Dart type selection');
+  return result as string | Function;
 }
 
 /** Instantiates a compiled generic declaration; business arguments stay unchanged. */
@@ -1093,6 +1110,16 @@ export function dartType(
     const target = call.target;
     const cached = call.selected.get(key);
     if (cached) return cached;
+    if (target.callback !== undefined) {
+      const selected = selectDart(
+        'callback',
+        target.id,
+        args.map(dartTypeDescription),
+        target.callback,
+      );
+      call.selected.set(key, selected);
+      return selected;
+    }
     const argumentsFor = memberArguments(target.parameters);
     const targetId = selectDart('function', target.id, args.map(dartTypeDescription));
     const selected = (...inputs: unknown[]) =>
@@ -2836,7 +2863,7 @@ Object.assign(globalThis, {
       trackObject(value, 'flax:dart-widget', id);
       return value;
     },
-    function(type: string, id: number, shape: string): object {
+    function(type: string, id: number, shape: string, generic = false): object {
       const cached = cachedObject(type, id);
       if (cached) return cached;
       const parameters = JSON.parse(shape) as CallbackParameter[];
@@ -2919,6 +2946,7 @@ Object.assign(globalThis, {
         );
       };
       Object.defineProperty(value, 'kind', { value: 'dart-function' });
+      if (generic) defineDartCallTypes(value, { id: type, parameters, callback: id });
       const frozen = Object.freeze(value);
       trackObject(frozen, type, id);
       return frozen;

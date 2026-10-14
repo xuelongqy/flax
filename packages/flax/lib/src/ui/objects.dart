@@ -172,16 +172,31 @@ class _ObjectListener implements FlaxCallback {
   @override
   Object? call(
     List<Object?> positionalArguments,
-    Map<String, Object?> namedArguments,
-  ) {
+    Map<String, Object?> namedArguments, {
+    FlaxCallbackBinding? signature,
+  }) {
     if (retired || object.disposing || registrations == 0) return null;
     running++;
     try {
-      return callback!.call(positionalArguments, namedArguments);
+      return callback!.call(
+        positionalArguments,
+        namedArguments,
+        signature: signature,
+      );
     } finally {
       running--;
       retire();
     }
+  }
+
+  @override
+  FlaxCallbackBinding genericSignature(
+    int member,
+    List<Type> types,
+    FlaxCallbackBinding Function(FlaxDartTypes) create,
+  ) {
+    if (retired || callback == null) throw StateError('Retired JS callback');
+    return callback!.genericSignature(member, types, create);
   }
 
   void retire() {
@@ -972,6 +987,7 @@ extension _ObjectCalls on _Session {
           'Inserting or replacing Widgets through collection views is unsupported',
         );
       }
+      if (method.requiresTypeArguments) FlaxDartTypes.requireArguments();
       final values = objectArguments(args, method.parameters);
       try {
         for (final parameter in method.parameters) {

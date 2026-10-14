@@ -107,6 +107,10 @@ extension _DartReferences on _Session {
       if (operation == 'type') {
         return FlaxJsString(dartTypes.instanceType(value).toString());
       }
+      dartTypes._index();
+      if (dartTypes._classes[type]?.requiresTypeArguments == true) {
+        FlaxDartTypes.requireArguments();
+      }
       final object = _objectView(target);
       if (object != null && object.matches?.call(value) == true) {
         final selected = _objectBinding(value, type);

@@ -405,10 +405,12 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
       );
       return FlaxCodegenProposedBinding(name: name, id: id, skips: skips);
     }
-    runtimeType = element.instantiate(
-      typeArguments: sharedOwner.arguments,
-      nullabilitySuffix: NullabilitySuffix.none,
-    );
+    if (!sharedOwner.requiresTypeArguments) {
+      runtimeType = element.instantiate(
+        typeArguments: sharedOwner.arguments,
+        nullabilitySuffix: NullabilitySuffix.none,
+      );
+    }
   }
 
   final constructors = <String, List<String>>{};
@@ -967,7 +969,6 @@ bool _usableParameterName(FormalParameterElement parameter) =>
       allowReserved: parameter.isNamed,
     );
 
-const _complexGenericBoundCode = 'complex_generic_bound';
 const _constructorSpecializationMissingUseSiteCode =
     'constructor_specialization_missing_use_site';
 const _constructorSpecializationAmbiguousCode =
@@ -981,12 +982,14 @@ final class _SharedTypeArgumentPlan {
     this.arguments = const [],
     this.reason,
     this.code,
+    this.requiresTypeArguments = false,
   }) : assert((reason == null) == (code == null));
 
   final List<String> sources;
   final List<DartType> arguments;
   final String? reason;
   final String? code;
+  final bool requiresTypeArguments;
 
   bool get supported => reason == null;
 }
@@ -1010,6 +1013,11 @@ _SharedTypeArgumentPlan _sharedTypeArguments(
   LibraryElement library,
   String ownerName,
 ) {
+  _SharedTypeArgumentPlan explicit() => _SharedTypeArgumentPlan(
+    sources: [for (final _ in parameters) 'Never'],
+    arguments: [for (final _ in parameters) library.typeProvider.neverType],
+    requiresTypeArguments: true,
+  );
   final resolved = <TypeParameterElement, DartType>{};
   final sources = <TypeParameterElement, String>{};
   final unresolved = parameters.toSet();
@@ -1025,12 +1033,7 @@ _SharedTypeArgumentPlan _sharedTypeArguments(
           : bound;
       final source = _closedTypeArgumentSource(argument);
       if (source == null) {
-        return _SharedTypeArgumentPlan(
-          reason:
-              'Complex generic bound requires explicit runtime type arguments: '
-              '$ownerName.${parameter.name}',
-          code: _complexGenericBoundCode,
-        );
+        return explicit();
       }
       try {
         // Register the complete bound through the normal dependency/type
@@ -1038,6 +1041,12 @@ _SharedTypeArgumentPlan _sharedTypeArguments(
         // diagnostics instead of treating a closed bound as a special import.
         scope.typeRef(argument);
       } on StateError catch (error) {
+        final declaration = scope.tryTypeRef(
+          argument,
+          forTypescript: true,
+          typeOnlyPosition: true,
+        );
+        if (declaration.type?.containsTypeOnly == true) return explicit();
         return _SharedTypeArgumentPlan(
           reason: error.message,
           code: 'unsupported_binding_type',
@@ -1049,24 +1058,14 @@ _SharedTypeArgumentPlan _sharedTypeArguments(
       progressed = true;
     }
     if (!progressed) {
-      return _SharedTypeArgumentPlan(
-        reason:
-            'Complex generic bound requires explicit runtime type arguments: '
-            '$ownerName.${unresolved.first.name}',
-        code: _complexGenericBoundCode,
-      );
+      return explicit();
     }
   }
   final arguments = [for (final parameter in parameters) resolved[parameter]!];
   try {
     parser._checkBounds(parameters, arguments, library, false);
   } on StateError {
-    return _SharedTypeArgumentPlan(
-      reason:
-          'Complex generic bound requires explicit runtime type arguments: '
-          '$ownerName',
-      code: _complexGenericBoundCode,
-    );
+    return explicit();
   }
   return _SharedTypeArgumentPlan(
     sources: [for (final parameter in parameters) sources[parameter]!],

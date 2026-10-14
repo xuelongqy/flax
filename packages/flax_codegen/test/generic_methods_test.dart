@@ -246,44 +246,33 @@ void main() {
 
   test('recursive defaults require explicit arguments while captured owners use templates', () async {
     final proposal = await parser.proposeLibrary(config({}));
-    for (final target in ['EchoMethods.recursive']) {
-      expect(
-        proposal.skips.any(
-          (skip) =>
-              skip.target == target && skip.code == 'complex_generic_bound',
-        ),
-        isTrue,
-        reason: target,
-      );
-    }
+    expect(
+      proposal.config.classes['EchoMethods']!.instanceMethods,
+      contains('recursive'),
+    );
     expect(proposal.config.classes['MethodFactory']!.methods, contains('from'));
     expect(
-      proposal.skips.any(
-        (s) =>
-            s.target == 'MethodBag.narrowed' &&
-            s.code == 'complex_generic_bound',
-      ),
+      proposal.config.classes['MethodBag']!.instanceMethods,
+      contains('narrowed'),
+    );
+    final recursive = await parser.parse(
+      config({
+        'EchoMethods': const FlaxCodegenClassSelection(
+          {'': []},
+          kind: 'object',
+          instanceMethods: {
+            'recursive': ['value'],
+          },
+        ),
+      }),
+    );
+    expect(
+      recursive.classes.single.methods.single.requiresTypeArguments,
       isTrue,
     );
-    await expectLater(
-      parser.parse(
-        config({
-          'EchoMethods': const FlaxCodegenClassSelection(
-            {'': []},
-            kind: 'object',
-            instanceMethods: {
-              'recursive': ['value'],
-            },
-          ),
-        }),
-      ),
-      throwsA(
-        isA<StateError>().having(
-          (e) => e.message,
-          'message',
-          contains('explicit runtime type arguments'),
-        ),
-      ),
+    expect(
+      FlaxCodegenBindingEmitter([recursive]).dart(recursive),
+      contains('FlaxDartTypes.requireArguments()'),
     );
     final module = await parser.parse(
       config({

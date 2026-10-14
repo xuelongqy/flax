@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"18fa7bacc0f7ffc2ad0f910a1eac68045edf4f4e9feaffd8b7965bc1d3533217","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"6ecd001afff8c976975c736a79f33436d4584980c9a788ea83be31694b389321","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -669,7 +669,10 @@ function selectDart(operation, id, descriptions2, ...extra) {
   if (!host.__flaxDartType)
     throw new Error("Dart types require the Flax engine");
   const result = unwrapCall(host.__flaxDartType(bindingVersion, operation, id, JSON.stringify(descriptions2), ...extra));
-  if (typeof result !== "string")
+  if (operation === "callback") {
+    if (typeof result !== "function")
+      throw new TypeError("Invalid Dart callback selection");
+  } else if (typeof result !== "string")
     throw new TypeError("Invalid Dart type selection");
   return result;
 }
@@ -744,6 +747,11 @@ function dartType(value, ...args) {
     const cached2 = call.selected.get(key2);
     if (cached2)
       return cached2;
+    if (target2.callback !== void 0) {
+      const selected3 = selectDart("callback", target2.id, args.map(dartTypeDescription), target2.callback);
+      call.selected.set(key2, selected3);
+      return selected3;
+    }
     const argumentsFor = memberArguments(target2.parameters);
     const targetId2 = selectDart("function", target2.id, args.map(dartTypeDescription));
     const selected2 = (...inputs) => invokeTopLevel(targetId2, argumentsFor(inputs));
@@ -2031,7 +2039,7 @@ Object.assign(globalThis, {
       trackObject(value, "flax:dart-widget", id);
       return value;
     },
-    function(type, id, shape) {
+    function(type, id, shape, generic = false) {
       const cached = cachedObject(type, id);
       if (cached)
         return cached;
@@ -2087,6 +2095,8 @@ Object.assign(globalThis, {
         return unwrapCall(call(bindingVersion, type, id, positionalValues.length, ...positionalValues, namedValues.length / 2, ...namedValues));
       };
       Object.defineProperty(value, "kind", { value: "dart-function" });
+      if (generic)
+        defineDartCallTypes(value, { id: type, parameters, callback: id });
       const frozen = Object.freeze(value);
       trackObject(frozen, type, id);
       return frozen;

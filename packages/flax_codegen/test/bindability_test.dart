@@ -153,13 +153,10 @@ void main() {
       config.extensions['AutoNumbersExtension']!.methods['transformFirst'],
       ['transform'],
     );
-    expect(config.extensions, isNot(contains('AutoRecursiveExtension')));
+    expect(config.extensions, contains('AutoRecursiveExtension'));
     expect(
-      proposal.skips
-          .where((skip) => skip.target == 'AutoRecursiveExtension')
-          .single
-          .code,
-      'generic_receiver_specialization_required',
+      proposal.skips.where((s) => s.target == 'AutoRecursiveExtension'),
+      isEmpty,
     );
     expect(config.types, contains('AutoMeters'));
     expect(

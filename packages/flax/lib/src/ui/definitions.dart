@@ -9,6 +9,7 @@ const _supportedCapabilities = <String>{
   'dart-type-tokens',
   'generic-call-types',
   'engine-type-handles',
+  'explicit-generic-types',
   'instance-checks',
   'native-core-inputs',
   'native-bigint',
@@ -131,7 +132,13 @@ class FlaxCollectionBinding {
 abstract interface class FlaxCallback {
   Object? call(
     List<Object?> positionalArguments,
-    Map<String, Object?> namedArguments,
+    Map<String, Object?> namedArguments, {
+    FlaxCallbackBinding? signature,
+  });
+  FlaxCallbackBinding genericSignature(
+    int member,
+    List<Type> types,
+    FlaxCallbackBinding Function(FlaxDartTypes) create,
   );
 }
 
@@ -161,8 +168,12 @@ class FlaxCallbackBinding {
     required this.invoke,
     required this.matches,
     this.independentWidgetResult = false,
+    this.requiresTypeArguments = false,
+    this.genericFactory,
   });
   final String id;
+  final bool requiresTypeArguments;
+  final Function? genericFactory;
   final Object? Function(Object, List<Object?>, Map<String, Object?>) invoke;
   final bool Function(Object) matches;
   // Retained for generated module compatibility. Shared result conversion owns
@@ -338,8 +349,10 @@ class FlaxFunctionBinding extends FlaxStaticMethod {
     super.invoke, {
     this.route,
     this.genericFactory,
+    this.requiresTypeArguments = false,
   });
   final Function? genericFactory;
+  final bool requiresTypeArguments;
   final String id;
   final FlaxRouteCallBinding? route;
 }
@@ -360,8 +373,10 @@ class FlaxInstanceMethod {
     this.startsRoute = false,
     this.genericFactory,
     this.ownerTypes = const [],
+    this.requiresTypeArguments = false,
   });
   final Function? genericFactory;
+  final bool requiresTypeArguments;
   final List<Type> ownerTypes;
   final List<FlaxParameter> parameters;
   final FlaxTypeRef result;

@@ -689,7 +689,6 @@ StringA.version = '2';
     for (final selection in [
       "  SetterCollisionX: {setters: [firstValue], methods: {setFirstValue: [value]}}",
       "  StringA: {}",
-      "  RecursiveX: {getters: [value]}",
       "  RawFunctionX: {getters: [value]}",
       "  StringA: {operators: {'==': [other]}}",
       "  StringA: {methods: {repeat: []}}",

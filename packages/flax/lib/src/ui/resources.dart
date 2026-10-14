@@ -233,6 +233,7 @@ class _Callback extends _Resource with _JsInvocation implements FlaxCallback {
   final _Session session;
   @override
   final _CallbackHandle _handle;
+  @override
   final _BindingContext? context;
   FlaxJsFunction get function => _handle.function;
   bool escaped = false;
@@ -274,10 +275,15 @@ class _Callback extends _Resource with _JsInvocation implements FlaxCallback {
   }
 
   @override
-  Object? call(List<Object?> positional, Map<String, Object?> named) =>
-      context == null
-      ? invoke(signature, positional, named).$2
-      : context!.run(() => invoke(signature, positional, named).$2);
+  Object? call(
+    List<Object?> positional,
+    Map<String, Object?> named, {
+    FlaxCallbackBinding? signature,
+  }) => context == null
+      ? invoke(signature ?? this.signature, positional, named).$2
+      : context!.run(
+          () => invoke(signature ?? this.signature, positional, named).$2,
+        );
 
   @override
   FlaxJsObject get receiver => function;
@@ -296,6 +302,24 @@ mixin _JsInvocation {
   _CallbackScope get scope;
   _NodeState? get owner;
   bool get active;
+  _BindingContext? get context;
+  final _genericSignatures = <String, FlaxCallbackBinding>{};
+
+  FlaxCallbackBinding genericSignature(
+    int member,
+    List<Type> types,
+    FlaxCallbackBinding Function(FlaxDartTypes) create,
+  ) {
+    if (!active) throw StateError('Retired JS callback');
+    final key = '$member:${types.map(session.dartTypes.typeKey).join(',')}';
+    return _genericSignatures.putIfAbsent(
+      key,
+      () => context == null
+          ? create(session.dartTypes)
+          : context!.run(() => create(session.dartTypes)),
+    );
+  }
+
   (bool, Object?) invoke(
     FlaxCallbackBinding signature,
     List<Object?> positionalArguments,
@@ -505,23 +529,6 @@ class _ProxyHandle extends _BridgeReference {
 }
 
 class _ProxyPeer with _JsInvocation implements FlaxProxyPeer {
-  final _genericSignatures = <String, FlaxCallbackBinding>{};
-  @override
-  FlaxCallbackBinding genericSignature(
-    int member,
-    List<Type> types,
-    FlaxCallbackBinding Function(FlaxDartTypes) create,
-  ) {
-    if (!active) throw StateError('Retired proxy');
-    final key = '$member:${types.map(session.dartTypes.typeKey).join(',')}';
-    return _genericSignatures.putIfAbsent(
-      key,
-      () => context == null
-          ? create(session.dartTypes)
-          : context!.run(() => create(session.dartTypes)),
-    );
-  }
-
   _ProxyPeer(this.session, FlaxJsObject receiver, this.binding, this.first)
     : _handle = _ProxyHandle(session, receiver),
       context = _bindingContext {
@@ -533,6 +540,7 @@ class _ProxyPeer with _JsInvocation implements FlaxProxyPeer {
   final int first;
   @override
   final _ProxyHandle _handle;
+  @override
   final _BindingContext? context;
   @override
   FlaxJsObject get receiver => _handle.receiver;

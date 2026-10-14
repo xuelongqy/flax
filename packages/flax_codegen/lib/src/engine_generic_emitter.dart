@@ -54,12 +54,22 @@ extension _EngineGenericEmission on FlaxCodegenBindingEmitter {
     final bound = parameter.bound.declaration ?? parameter.bound;
     return (_containsParameter(bound, _genericDartParameters)
             ? bound
-            : parameter.defaultType!)
+            : parameter.defaultType ?? bound)
         .declaredAs(null);
+  }
+
+  bool _vmRequiresTypeArguments(List<FlaxCodegenGenericParameter> parameters) {
+    final local = parameters.map((p) => p.name).toSet();
+    return parameters.any(
+      (p) =>
+          p.defaultType == null &&
+          (!_vmFactory || _containsParameter(p.bound, local)),
+    );
   }
 
   FlaxCodegenMethodModel _vmDefaultMethod(FlaxCodegenMethodModel source) {
     if (source.typeParameters.isEmpty) return source;
+    if (_vmRequiresTypeArguments(source.typeParameters)) return source;
     final defaults = {
       for (final p in source.typeParameters)
         p.genericIdentity: _vmDefaultArgument(p),
@@ -123,7 +133,7 @@ extension _EngineGenericEmission on FlaxCodegenBindingEmitter {
 
   List<String> _vmTypeTemplates(FlaxCodegenModuleModel module) => [
     for (final type in module.classes.where((t) => t.kind != 'members'))
-      'FlaxDartClassTemplate(${_quote(type.id)}, ${_dartName(type.name)}${_typeArgs(type.typeArguments)}, ${_quote(type.kind == 'widgetInterface' || module.library == 'package:flutter/widgets.dart' && module.name == 'components' && type.name == 'StatefulWidget' ? 'widget' : type.kind)}${type.typeParameters.isEmpty ? '' : ', typeFactory: _flaxType_${type.name}, factory: _flaxClass_${type.name}'})',
+      'FlaxDartClassTemplate(${_quote(type.id)}, ${_dartName(type.name)}${_typeArgs(type.typeArguments)}, ${_quote(type.kind == 'widgetInterface' || module.library == 'package:flutter/widgets.dart' && module.name == 'components' && type.name == 'StatefulWidget' ? 'widget' : type.kind)}${type.typeParameters.isEmpty ? '' : ', typeFactory: _flaxType_${type.name}, factory: _flaxClass_${type.name}'}${type.requiresTypeArguments ? ', requiresTypeArguments: true' : ''})',
     for (final type in module.types.where(
       (t) =>
           t.isEnum &&
@@ -374,7 +384,7 @@ extension _EngineGenericEmission on FlaxCodegenBindingEmitter {
     if (target.isNotEmpty) {
       _emitCallableCall(
         out,
-        method,
+        FlaxCodegenMethodModel(method.name, method.parameters, method.result),
         (args) => '$target($args)',
         tearOff: target,
       );

@@ -142,7 +142,7 @@ function _flaxInstallBindingModule(
       throw new TypeError('requiredCapabilities must be sorted unique strings');
     }
     previous = capability;
-    if (capability !== 'engine-type-handles' && capability !== 'generic-call-types' && capability !== 'dart-type-tokens' && capability !== 'generic-member-views' && capability !== 'instance-checks' && capability !== 'native-core-inputs' && capability !== 'native-bigint' && capability !== 'native-widget-proxies' && capability !== 'shared-buffers' && capability !== 'shared-uint8') {
+    if (capability !== 'explicit-generic-types' && capability !== 'engine-type-handles' && capability !== 'generic-call-types' && capability !== 'dart-type-tokens' && capability !== 'generic-member-views' && capability !== 'instance-checks' && capability !== 'native-core-inputs' && capability !== 'native-bigint' && capability !== 'native-widget-proxies' && capability !== 'shared-buffers' && capability !== 'shared-uint8') {
       throw new TypeError(`Unsupported binding capability ${capability}`);
     }
   }
@@ -916,9 +916,7 @@ class FlaxCodegenBindingEmitter {
       : _dartType(type);
 
   String _dartGenerics(List<FlaxCodegenGenericParameter> parameters) =>
-      parameters.isEmpty
-      ? ''
-      : '<${parameters.map((p) => '${p.name} extends ${_dartType(p.bound)}').join(', ')}>';
+      _dartStaticGenerics(parameters);
 
   String _dartFunctionParameters(
     List<FlaxCodegenParameterModel> parameters, {
@@ -1387,14 +1385,18 @@ class FlaxCodegenBindingEmitter {
     final declared = type.declaration?.kind == 'callback'
         ? type.declaration!
         : type;
-    final encoded = _vmFactory && declared.typeParameters.isNotEmpty
+    final required = _vmRequiresTypeArguments(declared.typeParameters);
+    final encoded =
+        (required || _vmFactory) && declared.typeParameters.isNotEmpty
         ? FlaxCodegenTypeRef(
             'callback',
             parameters: declared.parameters,
             result: declared.result,
           ).specialize({
             for (final p in declared.typeParameters)
-              p.genericIdentity: _vmDefaultArgument(p),
+              p.genericIdentity: required
+                  ? const FlaxCodegenTypeRef('any', nullable: true)
+                  : _vmDefaultArgument(p),
           })
         : type;
     final parameters = encoded.parameters
@@ -1409,26 +1411,26 @@ class FlaxCodegenBindingEmitter {
         .join(', ');
     final result = _ref(encoded.result!, withinCallback: true);
     final adapter = _callbacks.putIfAbsent(
-      type,
+      _vmFactory ? declared : type,
       () => '_callback${_callbacks.length}',
     );
-    return 'FlaxCallbackBinding([$parameters], $result, $adapter, id: ${_vmFactory ? 'types.key<${_dartStaticType(type)}>()' : _quote(_typeId(type, omitNullable: true))}, invoke: ${adapter}Invoke, matches: ${adapter}Matches${independentWidgetResult ? ', independentWidgetResult: true' : ''})';
+    return 'FlaxCallbackBinding([$parameters], $result, $adapter, id: ${_vmFactory ? 'types.key<${_dartStaticType(type)}>()' : _quote(_typeId(type, omitNullable: true))}, invoke: ${adapter}Invoke, matches: ${adapter}Matches${independentWidgetResult ? ', independentWidgetResult: true' : ''}${required ? ', requiresTypeArguments: true' : ''}${declared.typeParameters.isNotEmpty ? ', genericFactory: ${adapter}Types' : ''})';
   }
 
   String _proxyBinding(FlaxCodegenClassModel type) {
     final proxy = type.proxy;
-    if (proxy == null) return '';
+    if (proxy == null || !_vmFactory && type.requiresTypeArguments) return '';
     final members = <String>[];
     final ownerArguments = {
       for (final (index, parameter) in type.typeParameters.indexed)
-        if (parameter.defaultType case final argument?)
+        if (_vmFactory || parameter.defaultType != null)
           parameter.genericIdentity: _vmFactory
               ? FlaxCodegenTypeRef(
                   'parameter',
                   name: type.typeArguments[index],
                   genericIdentity: parameter.genericIdentity,
                 )
-              : argument.declaredAs(null),
+              : parameter.defaultType!.declaredAs(null),
     };
     for (final (name, callback) in proxy.callbacks) {
       final kind = name.startsWith('call:')
@@ -1463,7 +1465,7 @@ class FlaxCodegenBindingEmitter {
     if (type.key != null) out.write('[${_typeId(type.key!)}]');
     if (type.result != null) {
       out.write(
-        '<${type.typeParameters.map((p) => '${p.name}:${_typeId(p.bound)}=${_typeId(p.defaultType!)}').join(',')}>(${type.parameters.map((p) => '${p.positional ? 'p' : 'n'}:${p.required ? 'r' : 'o'}:${p.name}:${_typeId(p.type)}${p.encodeKind == null ? '' : ':e=${p.encodeKind}'}${p.scoped ? ':scoped' : ''}').join(',')})->${_typeId(type.result!)}',
+        '<${type.typeParameters.map((p) => '${p.name}:${_typeId(p.bound)}=${p.defaultType == null ? 'explicit' : _typeId(p.defaultType!)}').join(',')}>(${type.parameters.map((p) => '${p.positional ? 'p' : 'n'}:${p.required ? 'r' : 'o'}:${p.name}:${_typeId(p.type)}${p.encodeKind == null ? '' : ':e=${p.encodeKind}'}${p.scoped ? ':scoped' : ''}').join(',')})->${_typeId(type.result!)}',
       );
     }
     if (type.recordFields.isNotEmpty) {
@@ -1798,6 +1800,10 @@ class FlaxCodegenBindingEmitter {
     FlaxCodegenConstructorModel ctor, {
     bool proxyImplementation = false,
   }) {
+    if (!_vmFactory && type.requiresTypeArguments) {
+      out.writeln('return FlaxDartTypes.requireArguments();');
+      return;
+    }
     ctor = _runtimeConstructor(ctor);
     final optional = ctor.parameters.where((p) => p.omitWhenAbsent).toList();
     _guardPositionalOmission(out, ctor.parameters);
@@ -1918,6 +1924,10 @@ class FlaxCodegenBindingEmitter {
     String Function(String) target, {
     String? tearOff,
   }) {
+    if (method.requiresTypeArguments) {
+      out.writeln('return FlaxDartTypes.requireArguments();');
+      return;
+    }
     _guardPositionalOmission(out, method.parameters);
     final optional = method.parameters.where((p) => p.omitWhenAbsent).toList();
     if (optional.length >= _applyOmissionThreshold) {
@@ -2217,6 +2227,12 @@ class FlaxCodegenBindingEmitter {
         );
         continue;
       }
+      if (call.requiresTypeArguments) {
+        out.writeln(
+          'FlaxFunctionBinding(${_quote(function.id)}, const [], const FlaxTypeRef("any"), ${functionNames[function.id] ?? '_function_${call.name}'}, genericFactory: ${_vmFunctionName(function.id)}, requiresTypeArguments: true),',
+        );
+        continue;
+      }
       final surface = call;
       out.writeln('FlaxFunctionBinding(${_quote(function.id)}, [');
       for (final p in surface.parameters) {
@@ -2258,6 +2274,10 @@ class FlaxCodegenBindingEmitter {
         out.writeln(
           'Object? ${functionNames[member.id]}(Map<String, Object?> values) {',
         );
+        if (call.requiresTypeArguments) {
+          out.writeln('return FlaxDartTypes.requireArguments(); }');
+          continue;
+        }
         String genericArguments(List<FlaxCodegenGenericParameter> parameters) =>
             parameters.isEmpty
             ? ''
@@ -2452,7 +2472,7 @@ class FlaxCodegenBindingEmitter {
           type.kind == 'stream' ||
           type.kind == 'widget') {
         out.writeln(
-          'bool _is${type.name}(Object value) => value is ${_dartName(type.name)}${_typeArgs(type.typeArguments)};',
+          'bool _is${type.name}(Object value) => value is ${_dartName(type.name)}${type.requiresTypeArguments ? '' : _typeArgs(type.typeArguments)};',
         );
       }
       for (final getter in type.getters.where(
@@ -2464,7 +2484,11 @@ class FlaxCodegenBindingEmitter {
             '(value as ${_dartName(type.name)}${_typeArgs(type.typeArguments)}).${getter.name}';
         out.writeln(
           'Object? _${type.name}_${getter.name}(Object value) '
-          '${getter.type.kind == 'void' ? '{ $read; return null; }' : '=> $read;'}',
+          '${type.requiresTypeArguments
+              ? '=> FlaxDartTypes.requireArguments();'
+              : getter.type.kind == 'void'
+              ? '{ $read; return null; }'
+              : '=> $read;'}',
         );
       }
       for (final getter in type.staticGetters) {
@@ -2496,7 +2520,7 @@ class FlaxCodegenBindingEmitter {
         final value = _cast('value', setter.type);
         final call = '($receiver).${setter.name} = $value';
         out.writeln(
-          'void _${type.name}_set_${setter.name}(Object receiver, Object? value) { $call; }',
+          'void _${type.name}_set_${setter.name}(Object receiver, Object? value) { ${type.requiresTypeArguments ? 'FlaxDartTypes.requireArguments()' : call}; }',
         );
       }
       for (final method in type.methods.where(
@@ -3356,7 +3380,7 @@ import 'package:flax/bindings.dart';
     Iterable<MapEntry<FlaxCodegenTypeRef, String>> entries,
   ) {
     var usesGenericCallbackResult = false;
-    for (final entry in entries) {
+    for (final entry in entries.toList()) {
       final type = entry.key;
       final generic = type.typeParameters.isNotEmpty;
       final parameterNames = [
@@ -3388,9 +3412,65 @@ import 'package:flax/bindings.dart';
       if (namedParameters.isNotEmpty) {
         requiredParameters.add('{${namedParameters.join(', ')}}');
       }
+      if (generic) {
+        var prefix = '_Callback';
+        while (type.typeParameters.indexed.any(
+          (entry) => _genericDartParameters.contains('$prefix${entry.$1}'),
+        )) {
+          prefix = '${prefix}_';
+        }
+        final substitutions = _vmParameters(type.typeParameters, prefix);
+        final parameters = [
+          for (final p in type.typeParameters)
+            FlaxCodegenGenericParameter(
+              substitutions[p.genericIdentity]!.name!,
+              p.bound.specialize(substitutions),
+              genericIdentity: p.genericIdentity,
+            ),
+        ];
+        final closed = FlaxCodegenTypeRef(
+          'callback',
+          parameters: type.parameters,
+          result: type.result,
+        ).specialize(substitutions);
+        final previousCallbacks = Map<FlaxCodegenTypeRef, String>.of(
+          _callbacks,
+        );
+        final previousFactory = _vmFactory;
+        final previousNames = Set<String>.of(_genericDartParameters);
+        _callbacks.clear();
+        _vmFactory = true;
+        _genericDartParameters.addAll(parameters.map((p) => p.name));
+        out.writeln(
+          'FlaxCallbackBinding ${entry.value}Types${_dartStaticGenerics(parameters)}(FlaxDartTypes types) {',
+        );
+        final signature = _callbackBinding(closed);
+        usesGenericCallbackResult |= _writeCallbackAdapters(
+          out,
+          _callbacks.entries.toList(),
+        );
+        out.writeln('return $signature; }');
+        _callbacks
+          ..clear()
+          ..addAll(previousCallbacks);
+        _vmFactory = previousFactory;
+        _genericDartParameters
+          ..clear()
+          ..addAll(previousNames);
+      }
       out.writeln(
         'Object ${entry.value}(FlaxCallback _flaxBridgeCallback) => ${_dartGenerics(type.typeParameters)}(${requiredParameters.join(', ')}) {',
       );
+      final typedInvocation = type.typeParameters.any(
+        (p) => p.defaultType == null,
+      );
+      if (typedInvocation) {
+        out.writeln(
+          'final signature = _flaxBridgeCallback.genericSignature(0, [${type.typeParameters.map((p) => 'FlaxDartTypes.typeOf<${p.name}>()').join(',')}], (types) => ${entry.value}Types<${type.typeParameters.map((p) => p.name).join(',')}>(types));',
+        );
+      }
+      final callbackCall =
+          '_flaxBridgeCallback.call(positional, named${typedInvocation ? ', signature: signature' : ''})';
       out.writeln('final positional = <Object?>[];');
       out.writeln('final named = <String, Object?>{};');
       for (final (index, parameter) in type.parameters.indexed) {
@@ -3421,24 +3501,22 @@ import 'package:flax/bindings.dart';
           !(result.kind == 'list' && result.item!.kind == 'widget') &&
           (result.kind != 'future' || result.item!.kind != 'void');
       if (result.kind == 'void') {
-        out.writeln('_flaxBridgeCallback.call(positional, named);');
+        out.writeln('$callbackCall;');
       } else if (result.kind == 'future') {
         if (result.nullable) {
-          out.writeln(
-            'final result = _flaxBridgeCallback.call(positional, named);',
-          );
+          out.writeln('final result = $callbackCall;');
           out.writeln('if (result == null) return null;');
           out.writeln(
             'return ${_futureCallbackValue('result', result.item!, generic: generic)};',
           );
         } else {
           out.writeln(
-            'return ${_futureCallbackValue('_flaxBridgeCallback.call(positional, named)', result.item!, generic: generic)};',
+            'return ${_futureCallbackValue(callbackCall, result.item!, generic: generic)};',
           );
         }
       } else {
         out.writeln(
-          'return ${_callbackResultCast('_flaxBridgeCallback.call(positional, named)', result, generic: generic)};',
+          'return ${_callbackResultCast(callbackCall, result, generic: generic)};',
         );
       }
       out.writeln('};');
@@ -3449,9 +3527,13 @@ import 'package:flax/bindings.dart';
       out.writeln(
         'Object? ${entry.value}Invoke(Object function, List<Object?> positional, Map<String, Object?> named) {',
       );
+      if (_vmRequiresTypeArguments(type.typeParameters)) {
+        out.writeln('return FlaxDartTypes.requireArguments(); }');
+        continue;
+      }
       final target =
           '(function as $functionType)${type.typeParameters.isEmpty ? '' : '<${type.typeParameters.map((p) => _dartDeclaredType(_vmFactory ? _vmDefaultArgument(p) : p.defaultType!)).join(', ')}>'}';
-      final invocation = _vmFactory && generic
+      final invocation = generic
           ? FlaxCodegenTypeRef(
               'callback',
               parameters: type.parameters,
@@ -4043,6 +4125,10 @@ import 'package:flax/bindings.dart';
     out.writeln(
       'Object? ${helperName ?? '${prefix ?? '_${type.name}'}_${method.name}'}(${method.instance ? 'Object receiver, ' : ''}Map<String, Object?> values) {',
     );
+    if (!_vmFactory && type.requiresTypeArguments && method.instance) {
+      out.writeln('return FlaxDartTypes.requireArguments(); }');
+      return;
+    }
     if (method.operatorName != null) {
       final call = _operatorExpression(
         '(receiver as ${receiverType ?? '${_dartName(type.name)}${_typeArgs(receiverTypeArguments ?? type.typeArguments)}'})',
@@ -4132,6 +4218,12 @@ import 'package:flax/bindings.dart';
       (method) => method.instance && !method.deferredFactory,
     )) {
       final defaultMethod = _vmFactory ? _vmDefaultMethod(method) : method;
+      if (defaultMethod.requiresTypeArguments) {
+        out.write(
+          '${_quote(method.name)}: FlaxInstanceMethod(const [], const FlaxTypeRef("any"), ${prefix ?? '_${type.name}'}_${method.name}, genericFactory: ${_vmMethodName(type, method)}, ownerTypes: [${type.typeArguments.indexed.map((e) => _vmFactory ? 'FlaxDartTypes.typeOf<${_dartTypeArgument(e.$2)}>()' : '_flaxDefault_${type.name}_${e.$1}').join(',')}], requiresTypeArguments: true),',
+        );
+        continue;
+      }
       out.write('${_quote(method.name)}: FlaxInstanceMethod([');
       for (final parameter in defaultMethod.parameters) {
         out.write(
@@ -4152,6 +4244,12 @@ import 'package:flax/bindings.dart';
           (candidate) => candidate.instance && candidate.name == method.name,
         );
         final surface = _vmFactory ? _vmDefaultMethod(source) : source;
+        if (surface.requiresTypeArguments) {
+          out.write(
+            '${_quote('@super:${method.name}')}: FlaxInstanceMethod(const [], const FlaxTypeRef("any"), _${type.name}_super_${method.name}, genericFactory: ${_vmMethodName(type, source, superCall: true)}, ownerTypes: [${type.typeArguments.indexed.map((e) => _vmFactory ? 'FlaxDartTypes.typeOf<${_dartTypeArgument(e.$2)}>()' : '_flaxDefault_${type.name}_${e.$1}').join(',')}], requiresTypeArguments: true),',
+          );
+          continue;
+        }
         out.write('${_quote('@super:${method.name}')}: FlaxInstanceMethod([');
         for (final parameter in surface.parameters) {
           out.write(
@@ -4239,6 +4337,8 @@ import 'package:flax/bindings.dart';
     var genericInputConversions = false;
     var genericConversions = <String, String?>{};
     var selectedSignature = false;
+    final genericDeclarations = <Object?, FlaxCodegenGenericParameter>{};
+    late String Function(FlaxCodegenTypeRef) callbackCases;
     final conversionImports = <String>{};
     Map<String, String?> parameterConversions(
       Iterable<FlaxCodegenGenericParameter> parameters, {
@@ -4248,6 +4348,7 @@ import 'package:flax/bindings.dart';
           ? {...genericConversions}
           : <String, String?>{};
       for (final parameter in parameters) {
+        genericDeclarations[parameter.genericIdentity] = parameter;
         final bound = parameter.bound;
         final name = genericNames[parameter.genericIdentity] ?? parameter.name;
         // A shared collection bound returns its standard view, not a nominal T.
@@ -4318,6 +4419,9 @@ import 'package:flax/bindings.dart';
       String callback(FlaxCodegenTypeRef callback) {
         final previousNames = genericNames;
         final previousParameters = genericConversions;
+        for (final p in callback.typeParameters) {
+          genericDeclarations[p.genericIdentity] = p;
+        }
         genericNames = {
           ...genericNames,
           for (final parameter in callback.typeParameters)
@@ -4356,7 +4460,9 @@ import 'package:flax/bindings.dart';
             '($generic(${arguments.join(', ')}) => ${callbackValue(callback.result!, asInput: input)})';
         genericNames = previousNames;
         genericConversions = previousParameters;
-        return result;
+        return !input && callback.typeParameters.isNotEmpty
+            ? '_FlaxDartCallable<$result, ${callbackCases(callback)}>'
+            : result;
       }
 
       String parameter() {
@@ -4506,6 +4612,12 @@ import 'package:flax/bindings.dart';
       List<FlaxCodegenGenericParameter> parameters, {
       bool defaults = true,
     }) {
+      for (final parameter in parameters) {
+        genericDeclarations[parameter.genericIdentity] = parameter;
+      }
+      if (parameters.any((parameter) => parameter.defaultType == null)) {
+        defaults = false;
+      }
       // Erasing F-bounds can produce a Dart default that does not satisfy the
       // recursive TS relationship. Require inference or explicit TS arguments.
       if (parameters.any(
@@ -4655,55 +4767,6 @@ $_typescriptHostImport
         '${jsonEncode(moduleInstallImport)};',
       );
     }
-    final snapshotIds = {for (final snapshot in module.snapshots) snapshot.id};
-    _writeSnapshotTypes(out, module);
-    for (final type in module.types.where(
-      (type) =>
-          _owners[type.id] == module &&
-          !snapshotIds.contains(type.id) &&
-          !module.classes.any((value) => value.id == type.id),
-    )) {
-      final exportPrefix = module.internalTypeNames.contains(type.name)
-          ? ''
-          : 'export ';
-      if (type.isEnum) {
-        out.writeln(
-          '${exportPrefix}interface ${type.name}${generics(type.typeParameters)} extends DartEnum { readonly __${type.name}: unique symbol; readonly name: string; readonly index: number; }',
-        );
-        out.writeln(
-          'defineEnum(${jsonEncode(type.id)}, ${jsonEncode(type.enumNames)});',
-        );
-        final enumApi = '_flaxEnum_${type.name}_api';
-        out.writeln('const $enumApi = {');
-        for (final name in type.enumNames) {
-          final constantType = type.enumValueTypes[name];
-          out.writeln(
-            '$name: enumValue<${constantType == null ? type.name : tsType(constantType, declarations: true)}>(${jsonEncode(type.id)}, ${jsonEncode(name)}),',
-          );
-        }
-        out.writeln(
-          'values: Object.freeze([${type.enumNames.map((name) => 'enumValue<${type.name}${type.typeParameters.isEmpty ? '' : '<${type.typeParameters.map((p) => tsType(p.defaultType!)).join(', ')}>'}>(${jsonEncode(type.id)}, ${jsonEncode(name)})').join(', ')}]),',
-        );
-        out.writeln('};');
-        final enumType =
-            type.name +
-            (type.typeParameters.isEmpty
-                ? ''
-                : '<${type.typeParameters.map((_) => 'any').join(', ')}>');
-        out.writeln(
-          '${exportPrefix}const ${type.name} = Object.freeze(_flaxBindInstanceType<$enumType, typeof $enumApi>($enumApi, ${jsonEncode(type.id)}, []) as typeof $enumApi & _FlaxInstanceType<$enumType> & _FlaxDartType<$enumType, ${_dartTypeNominalKey(type.id, type.typeParameters.map((p) => p.defaultType!).toList())}>);',
-        );
-      } else if (_intrinsicStreamTypeIds.contains(type.id)) {
-        final parameter = type.typeParameters.single;
-        out.writeln(
-          '${exportPrefix}interface ${type.name}${generics(type.typeParameters, defaults: type.typeParameters.any((p) => p.defaultType != null))} extends FlaxStreamReference<${parameter.name}> { readonly __${type.name}: unique symbol; }',
-        );
-      } else {
-        out.writeln(
-          '${exportPrefix}interface ${type.name}${generics(type.typeParameters, defaults: type.typeParameters.any((p) => p.defaultType != null))} { readonly __${type.name}: unique symbol; }',
-        );
-      }
-    }
     String methodSignature(FlaxCodegenMethodModel method) {
       // TS uses lexical names even when Analyzer specializes an inherited method.
       final previousGenericConversions = genericConversions;
@@ -4785,6 +4848,102 @@ $_typescriptHostImport
       return '(${arguments.join(',')}) => ${tsType(method.result)}';
     }, owners: owners);
 
+    callbackCases = (callback) {
+      final captures = <Object, FlaxCodegenGenericParameter>{};
+      final local = callback.typeParameters
+          .map((p) => p.genericIdentity)
+          .toSet();
+      void visit(FlaxCodegenTypeRef type, Set<Object?> bound) {
+        if (type.kind == 'parameter' && !bound.contains(type.genericIdentity)) {
+          final parameter = genericDeclarations[type.genericIdentity];
+          if (parameter == null) {
+            throw StateError('Unknown enclosing generic callback parameter');
+          }
+          captures.putIfAbsent(parameter.genericIdentity!, () => parameter);
+          return;
+        }
+        final nested = {
+          ...bound,
+          ...type.typeParameters.map((p) => p.genericIdentity),
+        };
+        for (final child in <FlaxCodegenTypeRef?>[
+          type.item,
+          type.key,
+          type.result,
+          type.declaration,
+          ...type.parameters.map((p) => p.type),
+          ...type.recordFields.map((f) => f.type),
+          ...type.dartArguments,
+          ...type.tsArguments,
+          ...type.typeParameters.map((p) => p.bound),
+        ].whereType<FlaxCodegenTypeRef>()) {
+          visit(child, nested);
+        }
+      }
+
+      visit(callback, local);
+      for (var count = 0; count < captures.length; count++) {
+        visit(captures.values.elementAt(count).bound, local);
+      }
+      return callSignature(
+        FlaxCodegenMethodModel(
+          'callback',
+          callback.parameters,
+          callback.result!,
+          typeParameters: callback.typeParameters,
+        ),
+        owners: captures.values.toList(),
+      );
+    };
+    final snapshotIds = {for (final snapshot in module.snapshots) snapshot.id};
+    _writeSnapshotTypes(out, module);
+    for (final type in module.types.where(
+      (type) =>
+          _owners[type.id] == module &&
+          !snapshotIds.contains(type.id) &&
+          !module.classes.any((value) => value.id == type.id),
+    )) {
+      final exportPrefix = module.internalTypeNames.contains(type.name)
+          ? ''
+          : 'export ';
+      if (type.isEnum) {
+        out.writeln(
+          '${exportPrefix}interface ${type.name}${generics(type.typeParameters)} extends DartEnum { readonly __${type.name}: unique symbol; readonly name: string; readonly index: number; }',
+        );
+        out.writeln(
+          'defineEnum(${jsonEncode(type.id)}, ${jsonEncode(type.enumNames)});',
+        );
+        final enumApi = '_flaxEnum_${type.name}_api';
+        out.writeln('const $enumApi = {');
+        for (final name in type.enumNames) {
+          final constantType = type.enumValueTypes[name];
+          out.writeln(
+            '$name: enumValue<${constantType == null ? type.name : tsType(constantType, declarations: true)}>(${jsonEncode(type.id)}, ${jsonEncode(name)}),',
+          );
+        }
+        out.writeln(
+          'values: Object.freeze([${type.enumNames.map((name) => 'enumValue<${type.name}${type.typeParameters.isEmpty ? '' : '<${type.typeParameters.map((p) => tsType(p.defaultType!)).join(', ')}>'}>(${jsonEncode(type.id)}, ${jsonEncode(name)})').join(', ')}]),',
+        );
+        out.writeln('};');
+        final enumType =
+            type.name +
+            (type.typeParameters.isEmpty
+                ? ''
+                : '<${type.typeParameters.map((_) => 'any').join(', ')}>');
+        out.writeln(
+          '${exportPrefix}const ${type.name} = Object.freeze(_flaxBindInstanceType<$enumType, typeof $enumApi>($enumApi, ${jsonEncode(type.id)}, []) as typeof $enumApi & _FlaxInstanceType<$enumType> & _FlaxDartType<$enumType, ${_dartTypeNominalKey(type.id, type.typeParameters.map((p) => p.defaultType!).toList())}>);',
+        );
+      } else if (_intrinsicStreamTypeIds.contains(type.id)) {
+        final parameter = type.typeParameters.single;
+        out.writeln(
+          '${exportPrefix}interface ${type.name}${generics(type.typeParameters, defaults: type.typeParameters.any((p) => p.defaultType != null))} extends FlaxStreamReference<${parameter.name}> { readonly __${type.name}: unique symbol; }',
+        );
+      } else {
+        out.writeln(
+          '${exportPrefix}interface ${type.name}${generics(type.typeParameters, defaults: type.typeParameters.any((p) => p.defaultType != null))} { readonly __${type.name}: unique symbol; }',
+        );
+      }
+    }
     String classSignature(
       FlaxCodegenClassModel owner,
     ) => vmSignature(owner.typeParameters, () {
@@ -4862,7 +5021,9 @@ $_typescriptHostImport
           extensionView!.typeParameters.length,
         )) {
           if (parameter.genericIdentity case final identity?) {
-            genericNames[identity] = tsType(parameter.defaultType!);
+            genericNames[identity] = parameter.defaultType == null
+                ? 'never'
+                : tsType(parameter.defaultType!);
           }
         }
       }
@@ -5072,7 +5233,7 @@ $_typescriptHostImport
         type.name +
         (type.typeParameters.isEmpty
             ? ''
-            : '<${type.typeParameters.map((p) => tsType(p.defaultType ?? p.bound)).join(", ")}>');
+            : '<${type.typeParameters.map((p) => p.defaultType == null ? 'never' : tsType(p.defaultType!)).join(", ")}>');
     String proxyArguments(FlaxCodegenClassModel type) {
       final ctor = _proxyConstructor(type);
       final args = ctor.parameters
@@ -5853,7 +6014,7 @@ $_typescriptHostImport
               : _constructorTypeArguments(type, ctor, target);
           return '<${type.typeParameters.map((parameter) {
             if (target == null) {
-              return tsType(parameter.defaultType ?? parameter.bound);
+              return parameter.defaultType == null ? 'never' : tsType(parameter.defaultType!);
             }
             final input = arguments![parameter.genericIdentity]!;
             return tsType(input, declarations: false);
@@ -6078,7 +6239,7 @@ $_typescriptHostImport
           : '<${extension.typeParameters.map((p) => p.name).join(', ')}>';
       out.writeln('export interface $name$typeParameters {');
       final selectedMembers = instanceMembers.where(
-        (m) => m.kind == 'method' && m.call.typeParameters.isNotEmpty,
+        (m) => m.call.typeParameters.isNotEmpty,
       );
       if (selectedMembers.isNotEmpty) {
         out.writeln(
@@ -6171,7 +6332,7 @@ $_typescriptHostImport
       );
       out.writeln(
         '_flaxBindDartExtension(view, ${jsonEncode(extension.members.first.id)}, receiver, ${jsonEncode({
-          for (final m in instanceMembers.where((m) => m.call.typeParameters.isNotEmpty && m.kind == 'method')) m.exportName: {'id': m.id, 'parameters': _memberParameters(m.call.parameters)},
+          for (final m in instanceMembers.where((m) => m.call.typeParameters.isNotEmpty)) m.exportName: {'id': m.id, 'parameters': _memberParameters(m.call.parameters)},
         })});',
       );
       out.writeln('return view;');

@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/canvas","owner":"@flax/canvas-runtime:dist/index.js","version":"0.0.0","artifact":"ed817493e4cd570235845e716acd5609c114ac479d0274ca7c97c6d701dc5932","asset":"assets/flax_modules/_flax_canvas-b471e7fea32c.js","package":"@flax/canvas-runtime","source":"dist/index.js","dependencies":{"@flax/core/bindings":"0.0.0","@flax/flutter/foundation":"0.0.0"},"bindings":[{"moduleId":"flax.canvas/canvas","uiProtocol":24,"requiredCapabilities":["generic-member-views","instance-checks","native-widget-proxies"],"types":["flax.canvas/canvas#type:FlaxCanvasSurface","flax.canvas/canvas#type:FlaxCanvasView"],"functions":[]}],"subpaths":[]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/canvas","owner":"@flax/canvas-runtime:dist/index.js","version":"0.0.0","artifact":"5ac619ce618290a9315c6c03098db4ed3ad3561c86fb9d1f585163e9705532e6","asset":"assets/flax_modules/_flax_canvas-b471e7fea32c.js","package":"@flax/canvas-runtime","source":"dist/index.js","dependencies":{"@flax/core/bindings":"0.0.0","@flax/flutter/foundation":"0.0.0"},"bindings":[{"moduleId":"flax.canvas/canvas","uiProtocol":24,"requiredCapabilities":["generic-member-views","instance-checks","native-widget-proxies"],"types":["flax.canvas/canvas#type:FlaxCanvasSurface","flax.canvas/canvas#type:FlaxCanvasView"],"functions":[]}],"subpaths":[]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -46,7 +46,7 @@ function _flaxInstallBindingModule(moduleId, uiProtocol, requiredCapabilities) {
       throw new TypeError("requiredCapabilities must be sorted unique strings");
     }
     previous = capability;
-    if (capability !== "engine-type-handles" && capability !== "generic-call-types" && capability !== "dart-type-tokens" && capability !== "generic-member-views" && capability !== "instance-checks" && capability !== "native-core-inputs" && capability !== "native-bigint" && capability !== "native-widget-proxies" && capability !== "shared-buffers" && capability !== "shared-uint8") {
+    if (capability !== "explicit-generic-types" && capability !== "engine-type-handles" && capability !== "generic-call-types" && capability !== "dart-type-tokens" && capability !== "generic-member-views" && capability !== "instance-checks" && capability !== "native-core-inputs" && capability !== "native-bigint" && capability !== "native-widget-proxies" && capability !== "shared-buffers" && capability !== "shared-uint8") {
       throw new TypeError(`Unsupported binding capability ${capability}`);
     }
   }

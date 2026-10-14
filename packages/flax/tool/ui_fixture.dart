@@ -32,6 +32,15 @@ Future<void> main() async {
   await _generate(
     package,
     output,
+    'complex_bounds',
+    const {},
+    core,
+    rawToWire,
+    automatic: true,
+  );
+  await _generate(
+    package,
+    output,
     'collection_members',
     const {},
     core,

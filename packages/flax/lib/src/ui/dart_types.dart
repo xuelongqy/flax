@@ -8,6 +8,7 @@ class FlaxDartClassTemplate {
     this.kind, {
     this.typeFactory,
     this.factory,
+    this.requiresTypeArguments = false,
   });
   final String id;
   final Type type;
@@ -15,6 +16,7 @@ class FlaxDartClassTemplate {
   // <T...>() => (FlaxDartTypes types, String id) => FlaxDartClass.
   final Function? typeFactory;
   final Function? factory;
+  final bool requiresTypeArguments;
 }
 
 class FlaxDartClass {
@@ -146,6 +148,11 @@ class FlaxDartTypes {
   }
 
   static Type typeOf<T>() => T;
+
+  static Never requireArguments([Object? receiver, Object? values]) =>
+      throw ArgumentError(
+        'Explicit Dart type arguments required; use dartType',
+      );
 
   String key<T>() => _id('shape', T);
   String typeKey(Type type) =>
@@ -577,7 +584,10 @@ class FlaxDartTypes {
     _index();
     final template =
         _classes[id] ?? (throw ArgumentError('Unregistered Dart type: $id'));
-    if (arguments.isEmpty) return template.type;
+    if (arguments.isEmpty) {
+      if (template.requiresTypeArguments) requireArguments();
+      return template.type;
+    }
     final factory = template.typeFactory;
     if (factory == null) {
       throw ArgumentError('Dart type has no type parameters');
@@ -917,6 +927,41 @@ extension _DartTypeOperations on _Session {
           for (final item in input)
             dartTypes.description(item, providers: providers),
         ];
+        if (operation == 'callback') {
+          if (args.length != 5 || args[4] is! FlaxJsNumber) {
+            throw ArgumentError('Invalid Dart callback selection');
+          }
+          final referenceId = (args[4] as FlaxJsNumber).value;
+          if (!referenceId.isFinite ||
+              referenceId < 0 ||
+              referenceId != referenceId.truncateToDouble()) {
+            throw ArgumentError('Invalid Dart callback reference');
+          }
+          final reference = _objects[referenceId.toInt()];
+          if (reference is! _FunctionReference ||
+              reference.signature.id != id) {
+            throw StateError('Foreign or released Dart function');
+          }
+          final factory = reference.signature.genericFactory;
+          if (factory == null) {
+            throw ArgumentError('Not a generic Dart callback');
+          }
+          final function = reference.value as Function;
+          final source = _callbackSources[function];
+          if (source != null && !source.active) {
+            throw StateError('Retired JS callback');
+          }
+          FlaxJsValue select() => dartTypes.selection(providers, () {
+            final signature = dartTypes.instantiate(factory, types, [
+              dartTypes,
+            ]) as FlaxCallbackBinding;
+            final selected = runtime.instantiateDartClosure(function, types);
+            return holdHostResult(functionResult(selected, signature));
+          });
+          return reference.context == null
+              ? select()
+              : reference.context!.run(select);
+        }
         return _inBindingContext(id, () {
           return dartTypes.selection(providers, () {
             if (operation == 'class' && args.length == 4) {

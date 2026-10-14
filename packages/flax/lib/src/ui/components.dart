@@ -525,6 +525,7 @@ abstract class FlaxComponentStateBase<T extends StatefulWidget>
       }
     }
     final method = variant.methods[member];
+    if (method?.requiresTypeArguments == true) FlaxDartTypes.requireArguments();
     if (method == null || arguments.length > method.parameters.length) {
       throw ArgumentError('Unknown State variant method: $member');
     }

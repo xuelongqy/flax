@@ -232,14 +232,15 @@ void main() {
     });
   });
 
-  test('the flat shape list covers five mechanisms with unique labels', () {
-    expect(stage2MechanismShapes, hasLength(47));
+  test('the flat shape list covers six mechanisms with unique labels', () {
+    expect(stage2MechanismShapes, hasLength(48));
     expect(stage2MechanismShapes.map((shape) => shape.group).toSet(), <String>{
       'callback',
       'record',
       'extensionType',
       'widgetCallback',
       'classModifier',
+      'genericBounds',
     });
     expect(
       stage2MechanismShapes.map((shape) => shape.label).toSet(),
@@ -532,6 +533,20 @@ const Map<String, Object?> _syntheticInventory = {
 };
 
 const List<_ShapeExpectation> _recordedShapes = <_ShapeExpectation>[
+  _ShapeExpectation(
+    label: 'genericBounds/recursive-class',
+    fixture: 'generic_cases.dart',
+    type: 'RecursiveBox',
+    member: 'echo',
+    verdict: CapabilityVerdict.supported,
+    route: 'classWide',
+    bindable: true,
+    memberStatus: 'selected',
+    classWideOk: true,
+    classWideClasses: <String>['RecursiveBox'],
+    classWideMemberSelected: true,
+    memberInModule: true,
+  ),
   _ShapeExpectation(
     label: 'callback/sync-callback-param',
     fixture: 'callback_shapes.dart',

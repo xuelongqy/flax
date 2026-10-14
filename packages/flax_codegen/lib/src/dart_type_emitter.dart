@@ -22,7 +22,10 @@ extension _DartTypeEmission on FlaxCodegenBindingEmitter {
     List<FlaxCodegenTypeRef>? arguments,
   ]) => _dartTypeNominalKey(
     type.id,
-    arguments ?? type.typeParameters.map((p) => p.defaultType!).toList(),
+    arguments ??
+        (type.requiresTypeArguments
+            ? []
+            : type.typeParameters.map((p) => p.defaultType!).toList()),
   );
 
   String _dartTypeRegistration(FlaxCodegenClassModel owner) {

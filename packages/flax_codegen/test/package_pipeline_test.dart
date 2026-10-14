@@ -1561,7 +1561,9 @@ classes:
       expect(
         ts,
         contains(
-          RegExp(r'export type SelectedMapper = \(<T extends \w+\.Item'),
+          RegExp(
+            r'export type SelectedMapper = _FlaxDartCallable<\(<T extends \w+\.Item',
+          ),
         ),
       );
       expect(ts, contains('export type SelectedConverterInput<T extends '));

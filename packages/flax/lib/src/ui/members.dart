@@ -141,6 +141,7 @@ extension _MemberCalls on _Session {
     }
     return (id, args) {
       if (id != 0) throw ArgumentError('Top-level functions have no receiver');
+      if (definition.requiresTypeArguments) FlaxDartTypes.requireArguments();
       final route = definition.route;
       if (route != null) requireOpen();
       final values = _callArguments(
@@ -464,6 +465,7 @@ extension _MemberCalls on _Session {
       final actual = _typeBinding(ref.type) as FlaxStateBinding;
       final selected =
           _genericMethod(type, name) ?? actual.instanceMethods[name]!;
+      if (selected.requiresTypeArguments) FlaxDartTypes.requireArguments();
       if (args.length > selected.parameters.length) {
         throw ArgumentError('Too many State arguments');
       }

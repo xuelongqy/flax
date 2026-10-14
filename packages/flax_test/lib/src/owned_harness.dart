@@ -129,6 +129,7 @@ class FlaxOwnedTestHarness {
         startsRoute: entry.value.startsRoute,
         genericFactory: entry.value.genericFactory,
         ownerTypes: entry.value.ownerTypes,
+        requiresTypeArguments: entry.value.requiresTypeArguments,
       ),
   };
   final constructions = <String, int>{};

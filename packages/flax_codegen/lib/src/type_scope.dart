@@ -141,6 +141,13 @@ final class _FlaxCodegenTypeScope {
       }
       try {
         final bound = type.element.bound ?? objectQuestionType;
+        // Unresolved defaults describe a callable template, never a guessed T.
+        if (_hasOpenTypeParameter(bound)) {
+          return const FlaxCodegenTypeRef(
+            'any',
+            nullable: true,
+          ).declaredAs(typeRef(type, forTypescript: true));
+        }
         final erased = typeRef(
           bound,
           scalar: scalar,
@@ -170,8 +177,15 @@ final class _FlaxCodegenTypeScope {
         _callbackIdentities[parameter] = Object();
       }
       try {
+        final defaults = _sharedTypeArguments(
+          parser,
+          this,
+          type.typeParameters,
+          objectQuestionType.element.library,
+          'callback',
+        );
         final typeParameters = [
-          for (final parameter in type.typeParameters)
+          for (final (index, parameter) in type.typeParameters.indexed)
             FlaxCodegenGenericParameter(
               parameter.name!,
               typeRef(
@@ -179,12 +193,13 @@ final class _FlaxCodegenTypeScope {
                 forTypescript: true,
                 typeOnlyPosition: true,
               ),
-              defaultType: typeRef(
-                parameter.bound ?? objectQuestionType,
-                forTypescript: forTypescript,
-                typeOnlyPosition: forTypescript,
-                erasing: forTypescript ? null : {parameter},
-              ),
+              defaultType: defaults.requiresTypeArguments
+                  ? null
+                  : typeRef(
+                      defaults.arguments[index],
+                      forTypescript: forTypescript,
+                      typeOnlyPosition: forTypescript,
+                    ),
               genericIdentity: _callbackIdentities[parameter] ?? parameter,
             ),
         ];

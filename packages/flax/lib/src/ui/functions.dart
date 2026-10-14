@@ -87,6 +87,7 @@ extension _FunctionCalls on _Session {
                 },
             ]),
           ),
+          FlaxJsBoolean(signature.genericFactory != null),
         ]),
         value,
         origin: value,
@@ -114,6 +115,7 @@ extension _FunctionCalls on _Session {
         throw StateError('Retired JS callback');
       }
       final signature = reference.signature;
+      if (signature.requiresTypeArguments) FlaxDartTypes.requireArguments();
       _checkCall(args, 5);
       if (args[3] is! FlaxJsNumber) {
         throw ArgumentError('Invalid Dart function');

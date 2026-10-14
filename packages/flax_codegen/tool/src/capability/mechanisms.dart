@@ -78,6 +78,14 @@ final class Stage2MechanismShape {
 
 /// The measured matrix. Order is the order of the report.
 const List<Stage2MechanismShape> stage2MechanismShapes = [
+  Stage2MechanismShape(
+    label: 'genericBounds/recursive-class',
+    group: 'genericBounds',
+    fixture: 'generic_cases.dart',
+    type: 'RecursiveBox',
+    member: 'echo',
+    note: 'One checked template; runtime arguments are required without a legal default',
+  ),
   // Callback shapes (plain Dart, no Flutter types).
   Stage2MechanismShape(
     label: 'callback/sync-callback-param',
@@ -451,28 +459,12 @@ const List<Map<String, Object?>> stage2MechanismBoundaries = [
     'example': 'Applying a runtime-selected mixin to an ordinary class proxy',
   },
   {
-    'id': 'recursive_generic_bound',
-    'verdict': 'unsupported',
-    'reasonKind': 'intentionalBoundary',
-    'code': 'complex_generic_bound',
-    'fixture': 'test/fixtures/capability/generic_cases.dart',
-    'example': 'T extends Comparable<T> without concrete evidence',
-  },
-  {
     'id': 'unnamed_extension',
     'verdict': 'excluded',
     'reasonKind': 'visibility',
     'code': 'unnamed_extension',
     'fixture': 'test/fixtures/capability/extension_shapes.dart',
     'example': 'extension on String { ... }',
-  },
-  {
-    'id': 'concrete_generic_extension_receiver',
-    'verdict': 'unsupported',
-    'reasonKind': 'intentionalBoundary',
-    'code': 'generic_receiver_specialization_required',
-    'fixture': 'test/fixtures/capability/extension_shapes.dart',
-    'example': 'extension RecursiveX<T extends Comparable<T>> on List<T>',
   },
 ];
 

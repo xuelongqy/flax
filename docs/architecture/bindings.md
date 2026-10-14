@@ -156,7 +156,7 @@ inherited/final/constructorless Widgets, getter side effects, typed methods, cal
 Future/Stream results, identity, invalid arguments and mount/unmount cleanup.
 
 Generated Dart subclasses retain one peer for the actual JS receiver. Shared member
-metadata goes through internal engine binding extension 6. The engine looks up the
+metadata goes through internal engine binding extension 7. The engine looks up the
 current property and invokes it with real `this`; it does not snapshot callbacks or wrap
 the business instance in a JS Proxy. Unchanged generated delegates report an unhandled
 result and the typed Dart override calls `super` directly. Explicit JS super uses the
@@ -674,10 +674,11 @@ slots preserve parameter identity across dependency projections. Bounds and defa
 well as targets, participate in dependency imports and nominal ownership checks.
 Dependency consumers use the manifest and public libraries, without reading owner YAML.
 Re-exports deduplicate by originating declaration; conflicting public names, generated
-`NameInput` collisions and unsupported targets fail generation. Generic callback erasure
-still rejects recursive, unbound or nonconvertible bounds. Callback shapes that would
-require concrete runtime specialization are intentionally deferred; ordinary higher-rank
-callbacks with erasable bounds remain supported.
+`NameInput` collisions and unsupported targets fail generation. Generic callbacks retain
+their original bounds. Recursive or owner-dependent callbacks use actual invocation
+types through the same engine-backed conversion as generic methods. Returned generic
+callbacks can select types with `dartType(callback, ...types)`; nonconvertible actual
+types remain rejected.
 
 Record types are emitted as readonly structural TypeScript objects. Positional fields
 use `$1`, `$2`, and so on in source order; named fields are canonicalized by name for
@@ -828,7 +829,7 @@ caching business objects. The JS class and conversion paths stay shared. Closed 
 signatures also provide explicit conversion views, including constructorless provider
 objects; see [generic member conversion views](#generic-member-conversion-views). The
 cache contains metadata only, so it adds no business root. Real Type handles and VM
-closure instantiation use internal engine extension 6; UI protocol 24 and ABI 2 remain
+closure instantiation use internal engine extension 7; UI protocol 24 and ABI 2 remain
 unchanged. Bound class projections preserve actual arguments even when the concrete
 implementation is private. Unknown function/record layouts still require a compiled
 adapter. Explicit type arguments select the contract before construction or invocation.
@@ -899,8 +900,10 @@ argument. Use `dartType(object, 'wrap', dartTypes.string)` or the fixed
 `List<String>` contract is required. Passing an existing typed Dart reference through
 `echo` retains its identity and concrete type. Acyclic method-local bounds, such as
 `T extends num, U extends T`, resolve in dependency order. Recursive bounds and method
-bounds capturing an open owner still require fixed checked arguments. A bound inherited
-from an already closed owner, such as `U extends String`, can use that resolved bound.
+bounds capturing an open owner are also selected automatically. A bound inherited from
+an already closed owner, such as `U extends String`, uses that resolved default. A
+recursive bound without a legal default requires runtime type selection instead of a
+fixed YAML argument.
 
 ### Generic call selectors and JS super
 
@@ -927,14 +930,46 @@ Every selected method/function uses one compiled generic factory. Actual Type ar
 are supplied at first use, checked by the VM, and retained with conversion metadata in
 the owning Session. Owner, method and callback parameters have independent lexical
 scopes. More arguments and nested types do not multiply generated call adapters.
-Recursive bounds still need a legal configured default when automatic erasure cannot
-supply one; runtime selection checks each actual argument against the original bound.
+Recursive bounds need no pre-generated concrete combinations. For example:
+
+```ts
+// Dart: class Bag<T extends Comparable<T>> { Bag(this.value); final T value; }
+const StringBag = Bag.$type(dartTypes.string);
+const bag = new StringBag('value');
+// Dart: List<T> ordered<T extends Comparable<T>>(T value) => [value];
+dartType(object, 'ordered', dartTypes.string)('value');
+// Dart: T Function<T extends Comparable<T>>(T) identity();
+dartType(identity(), dartTypes.string)('value');
+```
+
+The VM checks the original bounds, including mutual dependencies and captured owner
+types. If no legal default exists, a bare call is rejected instead of guessing a type;
+TS inference alone does not choose a Dart type. Manifest 20 stores `defaultType: null`
+and the `explicit-generic-types` capability for these entries. The internal `Never`
+declaration witness supplies no business-call default. Engine extension 7 includes the
+Dart VM fix that terminates recursive function-bound substitution inside an enclosing
+generic declaration. Older engines are rejected before runtime creation. Neither
+registration nor a callback signature factory retains a business receiver or argument.
+Generic callback selections follow the existing callback reference ownership and Session
+cleanup.
+
+Static factories with bounds that deferred inference cannot convert use the same checked
+generic call path. Factories with supported deferred inference keep that behavior.
+
+Use `asDart(value, Class.$type(...types))` for a class without a legal default; an
+unselected cast is rejected. `instanceof Class` still checks the declaration, while
+`instanceof Class.$type(...types)` checks its actual generic arguments.
 
 Named extension views use the same function factory. For a generic extension, select all
 extension-owner arguments followed by method arguments, for example
 `dartType(ListX(list), 'convert', dartTypes.string, dartTypes.int)`. Generic static
 extension methods use `dartType(ListX.method, ...methodTypes)`. Enhanced enum methods
 retain the constant's owner type and select only their method arguments.
+
+Extension getters and setters with open owner bounds use the same selector, for example
+`dartType(RecursiveValues(list), 'firstValue', dartTypes.string)()`. Supply
+extension-owner types before method types. This calls the existing getter operation; a
+bare property read without a legal default still fails explicitly.
 
 A generic JS override can receive an optional `FlaxGenericCall<F>` as its last argument.
 Its frozen `super` function captures this invocation's native receiver and actual Dart
@@ -1382,5 +1417,5 @@ Repeated conversion through one signature reuses its wrapper. Different signatur
 can be unequal under JS `===` while representing the same Dart object. An erased return
 can reuse a known view, but cannot invent a callback signature for an unknown function.
 The additive `generic-member-views` capability requires the updated Core runtime;
-Manifest 20 and internal binding extension 6 carry this migration; UI protocol 24 and
+Manifest 20 and internal binding extension 7 carry this migration; UI protocol 24 and
 native ABI 2 remain unchanged.

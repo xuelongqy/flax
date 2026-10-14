@@ -217,6 +217,7 @@ type DartTypeTarget = {
 type DartCallTarget = {
     readonly id: string;
     readonly parameters: readonly MemberParameter[];
+    readonly callback?: number;
 };
 /** A view owns its receiver; the weak registration is never a business root. */
 export declare function bindDartExtension(view: object, owner: string, receiver: unknown, methods: Readonly<Record<string, DartCallTarget>>): void;

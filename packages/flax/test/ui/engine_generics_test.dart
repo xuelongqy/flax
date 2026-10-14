@@ -2,6 +2,9 @@ import 'package:flax/flax.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 Type typeOf<T>() => T;
+Type recursiveFunctionType<X>() =>
+    typeOf<T Function<T extends Comparable<T>>(T)>();
+Type capturedFunctionType<X>() => typeOf<T Function<T extends X>(T)>();
 late FlaxJsRuntime runtime;
 Function bind(Function factory, List<Type> types) =>
     runtime.instantiateDartClosure(factory, types);
@@ -281,6 +284,22 @@ Future<Map<String, Object?>> runChecks() async {
 void main() {
   setUp(() => runtime = FlaxEngine.createRuntime());
   tearDown(() => runtime.dispose());
+  testWidgets('nested generic function bounds terminate and preserve Never', (
+    _,
+  ) async {
+    expect(
+      recursiveFunctionType<String>(),
+      typeOf<T Function<T extends Comparable<T>>(T)>(),
+    );
+    expect(
+      capturedFunctionType<String>(),
+      typeOf<T Function<T extends String>(T)>(),
+    );
+    expect(
+      capturedFunctionType<Never>(),
+      typeOf<Never Function<T extends Never>(Never)>(),
+    );
+  });
   testWidgets('every Core type template has a valid VM argument layout', (
     _,
   ) async {

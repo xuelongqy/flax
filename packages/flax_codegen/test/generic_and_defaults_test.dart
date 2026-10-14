@@ -166,7 +166,7 @@ void main() {
     },
   );
 
-  test('resolves dependent bounds and skips recursive bounds', () async {
+  test('resolves dependent bounds and keeps recursive templates', () async {
     final parser = FlaxCodegenBindingParser(repoRoot);
     addTearDown(parser.dispose);
     final library = config('generic_cases.dart');
@@ -181,11 +181,8 @@ void main() {
       await load('generic_cases.dart', 'RecursiveBox'),
       library: library,
     );
-    expect(recursive.bindable, isFalse);
-    expect(
-      recursive.skips.map((skip) => skip.code),
-      contains('complex_generic_bound'),
-    );
+    expect(recursive.bindable, isTrue);
+    expect(recursive.skips, isEmpty);
   });
 
   test(

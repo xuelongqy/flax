@@ -165,18 +165,23 @@ classes:
     );
   });
 
-  test('unresolved recursive extension receiver remains fail-closed', () async {
-    await expectLater(
-      parse('extensions: {RecursiveValues: {getters: [firstValue]}}'),
-      throwsA(
-        isA<StateError>().having(
-          (e) => e.message,
-          'message',
-          contains('Concrete runtime specialization required'),
-        ),
-      ),
-    );
-  });
+  test(
+    'recursive extension receiver uses an explicitly selected template',
+    () async {
+      final module = await parse(
+        'extensions: {RecursiveValues: {getters: [firstValue]}}',
+      );
+      expect(
+        module.extensions.single.typeParameters.single.defaultType,
+        isNull,
+      );
+      await compileFixture(
+        root.path,
+        FlaxCodegenBindingEmitter([module]),
+        module,
+      );
+    },
+  );
 
   test(
     'a legal primitive specialization compiles without phantom JS fields',

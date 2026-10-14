@@ -36,6 +36,8 @@ import '../../../packages/flax/test/ui/package_bindings_test.dart' as providers;
 import '../../../packages/flax/test/ui/default_omission_test.dart' as defaults;
 import '../../../packages/flax/test/ui/extensions_test.dart' as extensions;
 import '../../../packages/flax/test/ui/engine_generics_test.dart' as generics;
+import '../../../packages/flax/test/ui/complex_generic_bounds_test.dart'
+    as complex_bounds;
 import '../../../packages/flax/test/ui/future_ownership_test.dart' as ownership;
 import '../../../packages/flax/test/ui/dart_types_test.dart' as dart_types;
 import '../../../packages/flax/test/ui/deferred_generics_test.dart'
@@ -204,6 +206,7 @@ void _registerTests() {
   group('default omission', defaults.main);
   group('extension receiver views', extensions.main);
   group('VM generic types', generics.main);
+  group('complex generic bounds', complex_bounds.main);
   group('SDK Future ownership', ownership.main);
   group('Dart type selection', dart_types.main);
   group('deferred generic aliases', deferred_generics.main);

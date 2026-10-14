@@ -396,11 +396,11 @@ exports the real Flutter `ValueChanged<T>` and `ValueGetter<T>` aliases.
 
 Aliases reuse existing callback and collection conversions and create no runtime
 constructor or additional wire identity. Explicit TS type arguments are supported;
-matching all Dart inference is not required. Generic callbacks retain bound erasure and
-concrete-use-site result validation. Unsupported targets, recursive or unbound callback
-bounds, and export-name collisions fail explicitly. Manifest 20 preserves alias origins,
-parameters and targets across packages. See
-[ADR 0035](../../docs/decisions/0035-generic-state-variants-and-protocol-21.md).
+matching all Dart inference is not required. Generic callbacks reuse bound defaults
+where legal and actual invocation types otherwise. Returned generic callbacks support
+`dartType(callback, ...types)`. Unsupported conversions and export-name collisions fail
+explicitly. Manifest 20 preserves alias origins, parameters and targets across packages.
+See [ADR 0035](../../docs/decisions/0035-generic-state-variants-and-protocol-21.md).
 Complete Dart type-system coverage remains separate work.
 
 Records are structural values with no wire ID or session identity. Generated TypeScript
@@ -642,8 +642,10 @@ sites. TS retains generic bounds; runtime calls erase them to analyzer-resolved
 supported bounds and check incoming generic results against Dart's current type
 parameter. Public fully closed bounds retain nested generic arguments and nullability.
 Acyclic bounds within one declaration resolve in dependency order, including forward
-references, nested collections and nullability. Recursive bounds and open captured owner
-bounds still require an explicit legal specialization.
+references, nested collections and nullability. Recursive bounds also generate one
+checked template. When no legal default exists, calls require explicit runtime types;
+the generator never substitutes `dynamic` for an invalid default. Captured owner bounds
+resolve against the selected owner's real type.
 
 Ordinary instance and static generic methods automatically use the same bound resolution
 as top-level functions and callbacks. `T echo<T>(T value)` uses one Dart `Object?` call
@@ -658,11 +660,13 @@ values. Bare calls use bound erasure, not Dart runtime inference:
 `dartType(object, 'wrap', dartTypes.string)` or `methodTypeArguments` selects a concrete
 Dart argument. Calls that depend on `T` itself, such as a runtime type test or typed
 allocation, use that selected Dart argument. Acyclic bounds such as
-`T extends num, U extends T` resolve automatically; recursive or captured owner bounds
-that remain open still require explicit legal arguments. Static generic factories
-returning nominal generic objects retain the existing concrete materialization contract
-or require explicit method arguments; ordinary method erasure does not replace it. See
-the [generic method contract](../../docs/architecture/bindings.md#generic-methods).
+`T extends num, U extends T` resolve automatically. Recursive and mutually dependent
+bounds need no fixed YAML specialization: use `Class.$type(...types)` or
+`dartType(target, ...types)` when a default cannot satisfy the bound. Static generic
+factories returning nominal generic objects retain the existing concrete materialization
+contract or require explicit method arguments; ordinary method erasure does not replace
+it. See the
+[generic method contract](../../docs/architecture/bindings.md#generic-methods).
 
 Generic call selection uses `dartType(instance, 'method', ...types)` for a cached bound
 call, `dartType(Class, 'method', ...types).call(instance, ...args)` for a shared class
@@ -673,7 +677,9 @@ typed adapter. Call targets reuse member views without pre-generating type tuple
 engine checks actual type arguments and instantiates one compiled factory, including
 owner-dependent methods and nested types. Named extension receiver selection supplies
 owner types followed by method types; enum instance selection supplies method types
-only.
+only. A returned generic Dart callback uses `dartType(callback, ...types)` and the same
+checked input/result conversion. Type-only bounds need no runtime provider of their own;
+the actual selected value types must have a supported conversion.
 
 JS generic overrides can accept a final optional `FlaxGenericCall<F>` context. Its
 `super` function captures this invocation's actual Dart type arguments and receiver; use
@@ -739,11 +745,13 @@ previous receiver-first API. See the
 [extension binding contract](../../docs/architecture/bindings.md#extension-declarations).
 
 Generic bounds can refer to unbound interfaces through Manifest 20 type-only references.
-Explicit recursive/dependent class and method specializations keep Dart subtype checks;
-TS retains nominal source identity and generic arguments without exposing bound members.
-Generic aliases need no runtime erasure when their bounds are type-only. Ordinary values
-still require conversion, and unresolved recursive extension/callback specializations
-fail explicitly. See [bound tests](test/bound_type_only_test.dart).
+Recursive/dependent class and method templates keep Dart subtype checks; TS retains
+nominal source identity and generic arguments without exposing bound members. Generic
+aliases need no runtime erasure when their bounds are type-only. Ordinary values still
+require conversion. Recursive extension and callback declarations share checked runtime
+selection instead of requiring a fixed generated specialization. See
+[bound tests](test/bound_type_only_test.dart) and
+[complex bound regressions](test/complex_generic_bounds_test.dart).
 
 Class operators use the class `operators` selection and fixed explicit JS aliases, for
 example `'+': [other]` becomes `operatorAdd(other)`. Ordinary bindings call real Dart

@@ -84,7 +84,7 @@ const int FLAX_ABI_VERSION = 2;
 
 const int FLAX_CALLBACK_FAILURE = 4;
 
-const int FLAX_ENGINE_BINDING_VERSION = 6;
+const int FLAX_ENGINE_BINDING_VERSION = 7;
 
 const int FLAX_ENGINE_GC_VERSION = 1;
 

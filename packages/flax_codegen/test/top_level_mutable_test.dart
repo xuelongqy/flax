@@ -716,15 +716,21 @@ FlaxTypeRef input(String name) => mutableBindings.functions
 
 class DoubleCallback implements FlaxCallback {
   @override
-  Object? call(List<Object?> positional, Map<String, Object?> named) =>
+  Object? call(List<Object?> positional, Map<String, Object?> named, {FlaxCallbackBinding? signature}) =>
       (positional.single as int) * 2;
+  @override
+  FlaxCallbackBinding genericSignature(int member, List<Type> types,
+      FlaxCallbackBinding Function(FlaxDartTypes) create) => throw UnsupportedError('Requires an engine');
 }
 
 class IdentityCallback implements FlaxCallback {
   bool returnWrongType = false;
   @override
-  Object? call(List<Object?> positional, Map<String, Object?> named) =>
+  Object? call(List<Object?> positional, Map<String, Object?> named, {FlaxCallbackBinding? signature}) =>
       returnWrongType ? 'wrong' : positional.single;
+  @override
+  FlaxCallbackBinding genericSignature(int member, List<Type> types,
+      FlaxCallbackBinding Function(FlaxDartTypes) create) => throw UnsupportedError('Requires an engine');
 }
 
 void main() {

@@ -4463,6 +4463,7 @@ const flutterBindings = FlaxBindingModule(
             id: "callback:<RS:any?:=any?:,RT:any?:=any?:>()->object:flax.core/flutter#type:StreamTransformer<Object?,Object?><any?:,any?:>",
             invoke: _callback74Invoke,
             matches: _callback74Matches,
+            genericFactory: _callback74Types,
           ),
           hasSuper: false,
         ),
@@ -4589,6 +4590,7 @@ const flutterBindings = FlaxBindingModule(
             id: "callback:<RS:any?:=any?:,RT:any?:=any?:>()->object:flax.core/flutter#type:StreamTransformer<Object?,Object?><any?:,any?:>",
             invoke: _callback76Invoke,
             matches: _callback76Matches,
+            genericFactory: _callback76Types,
           ),
           hasSuper: true,
           hasCallContext: true,
@@ -26115,6 +26117,40 @@ Function _flaxClass_StreamTransformer<
     );
   }
 
+  FlaxCallbackBinding _callback6Types<
+    _Callback0 extends Object?,
+    _Callback1 extends Object?
+  >(FlaxDartTypes types) {
+    Object _callback0(FlaxCallback _flaxBridgeCallback) => () {
+      final positional = <Object?>[];
+      final named = <String, Object?>{};
+      return _flaxBridgeCallback.call(positional, named)
+          as api3.StreamTransformer<_Callback0, _Callback1>;
+    };
+    bool _callback0Matches(Object value) =>
+        value is api3.StreamTransformer<_Callback0, _Callback1> Function();
+    Object? _callback0Invoke(
+      Object function,
+      List<Object?> positional,
+      Map<String, Object?> named,
+    ) {
+      return (function
+          as api3.StreamTransformer<_Callback0, _Callback1> Function())();
+    }
+
+    return FlaxCallbackBinding(
+      [],
+      types.ref<api3.StreamTransformer<_Callback0, _Callback1>>(
+        withinCallback: true,
+      ),
+      _callback0,
+      id: types
+          .key<api3.StreamTransformer<_Callback0, _Callback1> Function()>(),
+      invoke: _callback0Invoke,
+      matches: _callback0Matches,
+    );
+  }
+
   Object _callback6(FlaxCallback _flaxBridgeCallback) =>
       <RS extends Object?, RT extends Object?>() {
         final positional = <Object?>[];
@@ -26440,6 +26476,7 @@ Function _flaxClass_StreamTransformer<
                 >(),
             invoke: _callback6Invoke,
             matches: _callback6Matches,
+            genericFactory: _callback6Types,
           ),
           hasSuper: false,
         ),
@@ -26550,6 +26587,40 @@ Function _flaxClass_StreamTransformerBase<
     return (function
         as api3.Stream<_Owner1> Function(api3.Stream<_Owner0> stream))(
       positional[0] as api3.Stream<_Owner0>,
+    );
+  }
+
+  FlaxCallbackBinding _callback1Types<
+    _Callback0 extends Object?,
+    _Callback1 extends Object?
+  >(FlaxDartTypes types) {
+    Object _callback0(FlaxCallback _flaxBridgeCallback) => () {
+      final positional = <Object?>[];
+      final named = <String, Object?>{};
+      return _flaxBridgeCallback.call(positional, named)
+          as api3.StreamTransformer<_Callback0, _Callback1>;
+    };
+    bool _callback0Matches(Object value) =>
+        value is api3.StreamTransformer<_Callback0, _Callback1> Function();
+    Object? _callback0Invoke(
+      Object function,
+      List<Object?> positional,
+      Map<String, Object?> named,
+    ) {
+      return (function
+          as api3.StreamTransformer<_Callback0, _Callback1> Function())();
+    }
+
+    return FlaxCallbackBinding(
+      [],
+      types.ref<api3.StreamTransformer<_Callback0, _Callback1>>(
+        withinCallback: true,
+      ),
+      _callback0,
+      id: types
+          .key<api3.StreamTransformer<_Callback0, _Callback1> Function()>(),
+      invoke: _callback0Invoke,
+      matches: _callback0Matches,
     );
   }
 
@@ -26680,6 +26751,7 @@ Function _flaxClass_StreamTransformerBase<
                 >(),
             invoke: _callback1Invoke,
             matches: _callback1Matches,
+            genericFactory: _callback1Types,
           ),
           hasSuper: true,
           hasCallContext: true,
@@ -32135,6 +32207,39 @@ Object? _callback73Invoke(
   );
 }
 
+FlaxCallbackBinding _callback74Types<
+  _Callback0 extends Object?,
+  _Callback1 extends Object?
+>(FlaxDartTypes types) {
+  Object _callback0(FlaxCallback _flaxBridgeCallback) => () {
+    final positional = <Object?>[];
+    final named = <String, Object?>{};
+    return _flaxBridgeCallback.call(positional, named)
+        as api3.StreamTransformer<_Callback0, _Callback1>;
+  };
+  bool _callback0Matches(Object value) =>
+      value is api3.StreamTransformer<_Callback0, _Callback1> Function();
+  Object? _callback0Invoke(
+    Object function,
+    List<Object?> positional,
+    Map<String, Object?> named,
+  ) {
+    return (function
+        as api3.StreamTransformer<_Callback0, _Callback1> Function())();
+  }
+
+  return FlaxCallbackBinding(
+    [],
+    types.ref<api3.StreamTransformer<_Callback0, _Callback1>>(
+      withinCallback: true,
+    ),
+    _callback0,
+    id: types.key<api3.StreamTransformer<_Callback0, _Callback1> Function()>(),
+    invoke: _callback0Invoke,
+    matches: _callback0Matches,
+  );
+}
+
 Object _callback74(FlaxCallback _flaxBridgeCallback) =>
     <RS extends Object?, RT extends Object?>() {
       final positional = <Object?>[];
@@ -32175,6 +32280,39 @@ Object? _callback75Invoke(
   return (function
       as api3.Stream<Object?> Function(api3.Stream<Object?> stream))(
     positional[0] as api3.Stream<Object?>,
+  );
+}
+
+FlaxCallbackBinding _callback76Types<
+  _Callback0 extends Object?,
+  _Callback1 extends Object?
+>(FlaxDartTypes types) {
+  Object _callback0(FlaxCallback _flaxBridgeCallback) => () {
+    final positional = <Object?>[];
+    final named = <String, Object?>{};
+    return _flaxBridgeCallback.call(positional, named)
+        as api3.StreamTransformer<_Callback0, _Callback1>;
+  };
+  bool _callback0Matches(Object value) =>
+      value is api3.StreamTransformer<_Callback0, _Callback1> Function();
+  Object? _callback0Invoke(
+    Object function,
+    List<Object?> positional,
+    Map<String, Object?> named,
+  ) {
+    return (function
+        as api3.StreamTransformer<_Callback0, _Callback1> Function())();
+  }
+
+  return FlaxCallbackBinding(
+    [],
+    types.ref<api3.StreamTransformer<_Callback0, _Callback1>>(
+      withinCallback: true,
+    ),
+    _callback0,
+    id: types.key<api3.StreamTransformer<_Callback0, _Callback1> Function()>(),
+    invoke: _callback0Invoke,
+    matches: _callback0Matches,
   );
 }
 
