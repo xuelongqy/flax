@@ -68,7 +68,11 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
         binding.ref.call == nullptr ||
         binding.ref.copy_buffer == nullptr ||
         binding.ref.share_buffer == nullptr ||
-        binding.ref.read_buffer == nullptr) {
+        binding.ref.read_buffer == nullptr ||
+        binding.ref.instance_type == nullptr ||
+        binding.ref.type_parts == nullptr ||
+        binding.ref.nullable_type == nullptr ||
+        binding.ref.instantiate == nullptr) {
       throw UnsupportedError('Incompatible Flax binding engine extension');
     }
     return FlaxNativeJsRuntime._(NativeCalls(table.ref), gc.ref, binding.ref);
@@ -168,6 +172,76 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
       .asFunction<
         Object Function(Pointer<FlaxRuntime>, int, int, Pointer<FlaxError>)
       >();
+  late final _instanceType = _binding.instance_type
+      .asFunction<
+        Object? Function(Pointer<FlaxRuntime>, Object, Pointer<FlaxError>)
+      >();
+  late final _typeParts = _binding.type_parts
+      .asFunction<
+        Object? Function(Pointer<FlaxRuntime>, Object, Pointer<FlaxError>)
+      >();
+  late final _nullableType = _binding.nullable_type
+      .asFunction<
+        Object? Function(Pointer<FlaxRuntime>, Object, Pointer<FlaxError>)
+      >();
+  late final _instantiate = _binding.instantiate
+      .asFunction<
+        Object? Function(
+          Pointer<FlaxRuntime>,
+          Object,
+          Object,
+          Pointer<FlaxError>,
+        )
+      >();
+
+  /// Reads the VM type without invoking an Object.runtimeType override.
+  @override
+  Type dartInstanceType(Object value) => _entry((arena) {
+    Object? result;
+    _checked(arena, (error) {
+      result = _instanceType(_handle, value, error);
+      return error.ref.code;
+    });
+    return result as Type;
+  });
+
+  /// Reads real VM Type components. Display names never drive type selection.
+  @override
+  List<Object?> dartTypeParts(Type type) => _entry((arena) {
+    Object? result;
+    _checked(arena, (error) {
+      result = _typeParts(_handle, type, error);
+      return error.ref.code;
+    });
+    return (result as List).cast<Object?>();
+  });
+
+  @override
+  Type nullableDartType(Type type) => _entry((arena) {
+    Object? result;
+    _checked(arena, (error) {
+      result = _nullableType(_handle, type, error);
+      return error.ref.code;
+    });
+    return result as Type;
+  });
+
+  /// Instantiates once; the resulting closure retains its Dart receiver/context.
+  @override
+  Function instantiateDartClosure(
+    Function factory,
+    List<Type> types,
+  ) => _entry((arena) {
+    Object? result;
+    // CastList is not a VM array. Normalize before passing the checked Handle.
+    final arguments = List<Type>.of(types, growable: false);
+    _checked(arena, (error) {
+      result = _instantiate(_handle, factory, arguments, error);
+      return error.ref.code;
+    });
+    return result as Function;
+  });
+
   final SendPort _owner = Isolate.current.controlPort;
   late final Pointer<FlaxRuntime> _handle;
   final _callbacks = <_HostCallback>{};

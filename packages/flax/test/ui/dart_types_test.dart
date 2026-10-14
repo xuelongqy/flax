@@ -14,6 +14,7 @@ void main() {
       try {
         await tester.pumpWidget(h.app('dart-types'));
         await tester.pumpAndSettle();
+        expect(h.errors, isEmpty);
         expect(find.text('mounted!'), findsOneWidget);
         h.execute(
           "if (dartTypeHooks.exercise() !== 'dart types verified') throw Error('type result');",

@@ -5,7 +5,7 @@
 Flax uses its maintained Flutter 3.47.6 engine: V8 15.4.80.15 JIT on macOS and Android
 arm64, and Hermes 260318099.0.4 without JIT on iOS arm64. `FlaxEngine.createRuntime()`
 is the common entry in `package:flax/runtime.dart`. It checks native ABI 2, internal GC
-extension 1, internal binding extension 4 and the exact Flutter/Dart revisions before
+extension 1, internal binding extension 6 and the exact Flutter/Dart revisions before
 allocation. Ordinary Flutter and incompatible engines fail explicitly. UI protocol 24
 rejects earlier generated packages.
 
@@ -29,6 +29,10 @@ simulator profile/release are unsupported; Hermes performance and distribution
 acceptance remain pending. Engine package factories delegate to the common entry and
 reject a wrong platform; they no longer build native assets. Earlier SDK platform
 validation remains historical evidence, not acceptance of this implementation.
+
+The Type-handle migration to binding extension 6 is currently validated on macOS arm64
+V8. Android and iOS acceptance above predates this extension; their matching engines
+must be rebuilt and retested before using newly generated bindings.
 
 ## Source compilation
 
@@ -130,7 +134,7 @@ bare runtime. ABI 2 adds copied ArrayBuffer creation and byte-range reads for ac
 TypedArray/DataView views; callers never retain native byte pointers. Detached state
 comes from the engine, not an object's mutable `detached` property. A detached buffer is
 rejected even when its length is zero; an ordinary empty buffer remains valid. Binding
-extension 4 copies Dart bytes directly into an engine-owned ArrayBuffer during a short
+extension 6 copies Dart bytes directly into an engine-owned ArrayBuffer during a short
 acquire/release window. JS reads return the existing independent native snapshot as
 external Dart data with the native allocator's finalizer. Each direction copies the
 payload once; neither snapshot retains its original source or runtime.

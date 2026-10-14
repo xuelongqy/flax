@@ -128,7 +128,12 @@ async function json(path) {
 
 function bindings(value, label, current) {
   return array(value, label).map((binding) => {
-    object(binding, ['moduleId', 'uiProtocol', 'types', 'functions'], label);
+    object(
+      binding,
+      ['moduleId', 'uiProtocol', 'types', 'functions', 'requiredCapabilities'],
+      label,
+      ['moduleId', 'uiProtocol', 'types', 'functions'],
+    );
     text(binding.moduleId, `${label}.moduleId`);
     if (
       !Number.isSafeInteger(binding.uiProtocol) ||
@@ -140,6 +145,14 @@ function bindings(value, label, current) {
       unique(
         array(binding[kind], `${label}.${kind}`).map((id) => text(id, kind)),
         `${label}.${kind}`,
+      );
+    }
+    if (binding.requiredCapabilities !== undefined) {
+      unique(
+        array(binding.requiredCapabilities, `${label}.requiredCapabilities`).map(
+          (value) => text(value, 'requiredCapabilities'),
+        ),
+        `${label}.requiredCapabilities`,
       );
     }
     return binding;

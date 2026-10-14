@@ -94,7 +94,7 @@ Missing super rejects a successful Future; an existing rejection is preserved. A
 nullable Future getter returning null still requires super. An inherited Dart accessor
 with no JS override remains a direct native fallback.
 
-Manifest 18 records `mustCallSuperAccessors` using separate `get:name` and `set:name`
+Manifest 20 records `mustCallSuperAccessors` using separate `get:name` and `set:name`
 operations. Regenerate providers and consumers together; previous Manifest formats are
 rejected. Selection format 2, UI protocol 24 and native ABI 2 are unchanged.
 

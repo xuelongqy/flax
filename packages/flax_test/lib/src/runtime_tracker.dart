@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:flax/runtime.dart';
+import 'package:flax/bindings.dart';
 import 'package:flutter/scheduler.dart';
 
 /// Counts owned handles around the real engine, without changing runtime behavior.
@@ -8,6 +9,33 @@ class FlaxTestRuntimeTracker implements FlaxJsRuntime {
   FlaxTestRuntimeTracker(this.inner);
 
   final FlaxJsRuntime inner;
+  @override
+  Type dartInstanceType(Object value) => inner.dartInstanceType(value);
+  @override
+  List<Object?> dartTypeParts(Type type) => inner.dartTypeParts(type);
+  @override
+  Type nullableDartType(Type type) => inner.nullableDartType(type);
+  @override
+  Function instantiateDartClosure(Function factory, List<Type> types) {
+    final bound = inner.instantiateDartClosure(factory, types);
+    if (mapDartBinding == null || bound is! Function Function()) return bound;
+    return () {
+      final adapter = bound();
+      if (adapter is! FlaxDartClass Function(FlaxDartTypes, String)) {
+        return adapter;
+      }
+      return (FlaxDartTypes types, String id) {
+        final value = adapter(types, id);
+        return FlaxDartClass(
+          value.type,
+          mapDartBinding!(value.binding),
+          deferredFactories: value.deferredFactories,
+        );
+      };
+    };
+  }
+
+  FlaxTypeBinding Function(FlaxTypeBinding)? mapDartBinding;
   // Diagnostics must not turn every facade into a business GC root.
   final _owned = <WeakReference<_TrackedObject>>[];
   final hostCalls = <String, int>{};

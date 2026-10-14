@@ -50,13 +50,32 @@ Promise.
 An unresolved Dart Future owns its registered completion listener, including JS
 continuations without a retained Promise alias. Once it settles, it does not retain
 discarded Promise views. Completion listeners hold the session weakly, and rootless
-Future/Promise cycles remain collectible. In the other direction, the private Promise
-adapter retains the original JS Promise through its live typed and chained Dart Futures.
-It adds no completion observer that could consume uncaught Dart errors. Its Stream
-adapter retains that origin while the Stream or its subscription is live, and releases
-it on completion or cancellation. Both observer identity tables are weak. Opaque Stream
-errors use a conditional metadata peer to preserve the original error and stack trace,
-including values that Dart cannot target with a weak reference.
+Future/Promise cycles remain collectible. JS Promises become real SDK Futures with
+conditional producer metadata, released on settlement or session cancellation. SDK
+Future aliases may still retain a completed source Future as part of ordinary chaining;
+that does not retain its detached Promise producer metadata. Engine binding extension 6
+requires the maintained SDK's pending dependency edges: SDK continuations, awaits, joins
+and Stream consumers retain their unresolved inputs. Single-subscription and broadcast
+controller completion Futures retain their controller. Settlement or cancellation clears
+the pending edges. Rootless cycles remain collectible. GC-only fields are retained
+explicitly for AOT; write-only Dart fields can otherwise be removed by optimization. No
+custom Future facade or permanent strong Promise registry is used. Both observer
+identity tables remain weak. Native type metadata uses weak business keys and real VM
+instance types; it never calls a user `runtimeType` override. Opaque Stream errors use a
+conditional metadata peer to preserve the original error and stack trace, including
+values that Dart cannot target with a weak reference.
+
+`Future.wait` and `Stream.fromFutures` preallocate dependency slots for List inputs and
+consume other Iterables once. They retain the same continuation Futures and release
+their producer edges on completion. List length failures stay inside `Future.wait`'s
+existing asynchronous error handling. Ignored continuations preserve their original
+Null/void result types independently of dependency-list inference.
+
+Ownership regressions cover live roots, rootless cycles and completed or switched
+sources in debug and real release/AOT. Aggregation checks use direct weak references to
+source Futures while their completed consumers remain rooted. Promise checks cover
+Dart-held and JS-only roots for both List and single-pass Iterable inputs. These checks
+do not certify Android or iOS/Hermes, or a general GC pause-time target.
 
 Context borrowing never keeps an Element mounted or alive. The bridge rejects forged,
 foreign-session, inactive and unmounted inputs. `mounted` reports the native state;

@@ -217,52 +217,57 @@ $source
     },
   );
 
-  for (final missingModule in [true, false]) {
-    testWidgets(
-      'module requirements reject ${missingModule ? 'missing' : 'incomplete'} Dart bindings',
-      (tester) async {
-        final fixture = _Fixture();
-        fixture.module('@fixture/a')['bindings'] = [
-          {
-            'moduleId': missingModule
-                ? 'fixture.missing'
-                : flutterBindings.moduleId,
-            'uiProtocol': flaxBindingVersion,
-            'types': <String>[],
-            'functions': ['fixture.missing.read'],
-          },
-        ];
-        Flax.moduleAssets = await fixture.load();
-        final runtime = RuntimeTracker();
-        final errors = <Object>[];
-        await tester.pumpWidget(
-          MaterialApp(
-            home: FlaxView(
-              createRuntime: () => runtime,
-              source: 'throw Error("Business must not run")',
-              bindings: registry,
-              plugins: const [
-                _ModulePlugin('fixture.a', {'@fixture/a'}),
-              ],
-              onError: (error, _) => errors.add(error),
-            ),
+  for (final missing in ['module', 'function', 'capability']) {
+    final missingModule = missing == 'module';
+    testWidgets('module requirements reject missing Dart $missing', (
+      tester,
+    ) async {
+      final fixture = _Fixture();
+      fixture.module('@fixture/a')['bindings'] = [
+        {
+          'moduleId': missingModule
+              ? 'fixture.missing'
+              : flutterBindings.moduleId,
+          'uiProtocol': flaxBindingVersion,
+          'types': <String>[],
+          'functions': missing == 'function'
+              ? ['fixture.missing.read']
+              : <String>[],
+          'requiredCapabilities': missing == 'capability'
+              ? ['fixture.missing.capability']
+              : <String>[],
+        },
+      ];
+      Flax.moduleAssets = await fixture.load();
+      final runtime = RuntimeTracker();
+      final errors = <Object>[];
+      await tester.pumpWidget(
+        MaterialApp(
+          home: FlaxView(
+            createRuntime: () => runtime,
+            source: 'throw Error("Business must not run")',
+            bindings: registry,
+            plugins: const [
+              _ModulePlugin('fixture.a', {'@fixture/a'}),
+            ],
+            onError: (error, _) => errors.add(error),
           ),
-        );
-        expect(errors, hasLength(1));
-        expect(
-          errors.single.toString(),
-          contains(
-            missingModule
-                ? 'Missing or incompatible Dart bindings'
-                : 'Incomplete Dart bindings',
-          ),
-        );
-        expect(runtime.isDisposed, isTrue);
-        expect(runtime.handlesAtDispose, 0);
-        await flaxTestUnmount(tester);
-        await flaxTestWaitForRuntimeDisposal(tester, runtime);
-      },
-    );
+        ),
+      );
+      expect(errors, hasLength(1));
+      expect(
+        errors.single.toString(),
+        contains(
+          missingModule
+              ? 'Missing or incompatible Dart bindings'
+              : 'Incomplete Dart bindings',
+        ),
+      );
+      expect(runtime.isDisposed, isTrue);
+      expect(runtime.handlesAtDispose, 0);
+      await flaxTestUnmount(tester);
+      await flaxTestWaitForRuntimeDisposal(tester, runtime);
+    });
   }
 
   testWidgets('missing host request fails before business source executes', (

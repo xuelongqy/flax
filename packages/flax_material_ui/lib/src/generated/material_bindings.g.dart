@@ -791,7 +791,8 @@ const materialBindings = FlaxBindingModule(
           FlaxTypeRef(
             "object",
             id: "flax.core/flutter#type:WidgetStateProperty",
-            objectView: _objectView0,
+            dartType:
+                FlaxDartTypes.typeOf<api1.WidgetStateProperty<api1.Color?>?>,
             nullable: true,
             deferredFactories: {
               "resolveWith": FlaxDeferredFactoryBinding(
@@ -860,7 +861,8 @@ const materialBindings = FlaxBindingModule(
           FlaxTypeRef(
             "object",
             id: "flax.core/flutter#type:WidgetStateProperty",
-            objectView: _objectView0,
+            dartType:
+                FlaxDartTypes.typeOf<api1.WidgetStateProperty<api1.Color?>?>,
             nullable: true,
             deferredFactories: {
               "resolveWith": FlaxDeferredFactoryBinding(
@@ -929,7 +931,8 @@ const materialBindings = FlaxBindingModule(
           FlaxTypeRef(
             "object",
             id: "flax.core/flutter#type:WidgetStateProperty",
-            objectView: _objectView0,
+            dartType:
+                FlaxDartTypes.typeOf<api1.WidgetStateProperty<api1.Color?>?>,
             nullable: true,
             deferredFactories: {
               "resolveWith": FlaxDeferredFactoryBinding(
@@ -998,7 +1001,7 @@ const materialBindings = FlaxBindingModule(
           FlaxTypeRef(
             "object",
             id: "flax.core/flutter#type:WidgetStateProperty",
-            objectView: _objectView1,
+            dartType: FlaxDartTypes.typeOf<api1.WidgetStateProperty<double?>?>,
             nullable: true,
             deferredFactories: {
               "resolveWith": FlaxDeferredFactoryBinding(
@@ -1063,7 +1066,8 @@ const materialBindings = FlaxBindingModule(
           FlaxTypeRef(
             "object",
             id: "flax.core/flutter#type:WidgetStateProperty",
-            objectView: _objectView2,
+            dartType: FlaxDartTypes
+                .typeOf<api1.WidgetStateProperty<api1.OutlinedBorder?>?>,
             nullable: true,
             deferredFactories: {
               "resolveWith": FlaxDeferredFactoryBinding(
@@ -1132,7 +1136,8 @@ const materialBindings = FlaxBindingModule(
           FlaxTypeRef(
             "object",
             id: "flax.core/flutter#type:WidgetStateProperty",
-            objectView: _objectView3,
+            dartType: FlaxDartTypes
+                .typeOf<api1.WidgetStateProperty<api1.MouseCursor?>?>,
             nullable: true,
             deferredFactories: {
               "resolveWith": FlaxDeferredFactoryBinding(
@@ -1214,7 +1219,8 @@ const materialBindings = FlaxBindingModule(
               FlaxTypeRef(
                 "object",
                 id: "flax.core/flutter#type:WidgetStateProperty",
-                objectView: _objectView0,
+                dartType: FlaxDartTypes
+                    .typeOf<api1.WidgetStateProperty<api1.Color?>?>,
                 nullable: true,
                 deferredFactories: {
                   "resolveWith": FlaxDeferredFactoryBinding(
@@ -1285,7 +1291,8 @@ const materialBindings = FlaxBindingModule(
               FlaxTypeRef(
                 "object",
                 id: "flax.core/flutter#type:WidgetStateProperty",
-                objectView: _objectView1,
+                dartType:
+                    FlaxDartTypes.typeOf<api1.WidgetStateProperty<double?>?>,
                 nullable: true,
                 deferredFactories: {
                   "resolveWith": FlaxDeferredFactoryBinding(
@@ -1352,7 +1359,8 @@ const materialBindings = FlaxBindingModule(
               FlaxTypeRef(
                 "object",
                 id: "flax.core/flutter#type:WidgetStateProperty",
-                objectView: _objectView0,
+                dartType: FlaxDartTypes
+                    .typeOf<api1.WidgetStateProperty<api1.Color?>?>,
                 nullable: true,
                 deferredFactories: {
                   "resolveWith": FlaxDeferredFactoryBinding(
@@ -1423,7 +1431,8 @@ const materialBindings = FlaxBindingModule(
               FlaxTypeRef(
                 "object",
                 id: "flax.core/flutter#type:WidgetStateProperty",
-                objectView: _objectView3,
+                dartType: FlaxDartTypes
+                    .typeOf<api1.WidgetStateProperty<api1.MouseCursor?>?>,
                 nullable: true,
                 deferredFactories: {
                   "resolveWith": FlaxDeferredFactoryBinding(
@@ -1494,7 +1503,8 @@ const materialBindings = FlaxBindingModule(
               FlaxTypeRef(
                 "object",
                 id: "flax.core/flutter#type:WidgetStateProperty",
-                objectView: _objectView0,
+                dartType: FlaxDartTypes
+                    .typeOf<api1.WidgetStateProperty<api1.Color?>?>,
                 nullable: true,
                 deferredFactories: {
                   "resolveWith": FlaxDeferredFactoryBinding(
@@ -1565,7 +1575,8 @@ const materialBindings = FlaxBindingModule(
               FlaxTypeRef(
                 "object",
                 id: "flax.core/flutter#type:WidgetStateProperty",
-                objectView: _objectView2,
+                dartType: FlaxDartTypes
+                    .typeOf<api1.WidgetStateProperty<api1.OutlinedBorder?>?>,
                 nullable: true,
                 deferredFactories: {
                   "resolveWith": FlaxDeferredFactoryBinding(
@@ -1655,7 +1666,8 @@ const materialBindings = FlaxBindingModule(
             FlaxTypeRef(
               "object",
               id: "flax.core/flutter#type:WidgetStateProperty",
-              objectView: _objectView0,
+              dartType:
+                  FlaxDartTypes.typeOf<api1.WidgetStateProperty<api1.Color?>?>,
               nullable: true,
               deferredFactories: {
                 "resolveWith": FlaxDeferredFactoryBinding(
@@ -1726,7 +1738,8 @@ const materialBindings = FlaxBindingModule(
             FlaxTypeRef(
               "object",
               id: "flax.core/flutter#type:WidgetStateProperty",
-              objectView: _objectView0,
+              dartType:
+                  FlaxDartTypes.typeOf<api1.WidgetStateProperty<api1.Color?>?>,
               nullable: true,
               deferredFactories: {
                 "resolveWith": FlaxDeferredFactoryBinding(
@@ -1797,7 +1810,8 @@ const materialBindings = FlaxBindingModule(
             FlaxTypeRef(
               "object",
               id: "flax.core/flutter#type:WidgetStateProperty",
-              objectView: _objectView0,
+              dartType:
+                  FlaxDartTypes.typeOf<api1.WidgetStateProperty<api1.Color?>?>,
               nullable: true,
               deferredFactories: {
                 "resolveWith": FlaxDeferredFactoryBinding(
@@ -1868,7 +1882,8 @@ const materialBindings = FlaxBindingModule(
             FlaxTypeRef(
               "object",
               id: "flax.core/flutter#type:WidgetStateProperty",
-              objectView: _objectView1,
+              dartType:
+                  FlaxDartTypes.typeOf<api1.WidgetStateProperty<double?>?>,
               nullable: true,
               deferredFactories: {
                 "resolveWith": FlaxDeferredFactoryBinding(
@@ -1935,7 +1950,8 @@ const materialBindings = FlaxBindingModule(
             FlaxTypeRef(
               "object",
               id: "flax.core/flutter#type:WidgetStateProperty",
-              objectView: _objectView2,
+              dartType: FlaxDartTypes
+                  .typeOf<api1.WidgetStateProperty<api1.OutlinedBorder?>?>,
               nullable: true,
               deferredFactories: {
                 "resolveWith": FlaxDeferredFactoryBinding(
@@ -2006,7 +2022,8 @@ const materialBindings = FlaxBindingModule(
             FlaxTypeRef(
               "object",
               id: "flax.core/flutter#type:WidgetStateProperty",
-              objectView: _objectView3,
+              dartType: FlaxDartTypes
+                  .typeOf<api1.WidgetStateProperty<api1.MouseCursor?>?>,
               nullable: true,
               deferredFactories: {
                 "resolveWith": FlaxDeferredFactoryBinding(
@@ -5534,7 +5551,8 @@ const materialBindings = FlaxBindingModule(
             FlaxTypeRef(
               "object",
               id: "flax.core/flutter#type:WidgetStateProperty",
-              objectView: _objectView0,
+              dartType:
+                  FlaxDartTypes.typeOf<api1.WidgetStateProperty<api1.Color?>?>,
               nullable: true,
               deferredFactories: {
                 "resolveWith": FlaxDeferredFactoryBinding(
@@ -5616,7 +5634,8 @@ const materialBindings = FlaxBindingModule(
             FlaxTypeRef(
               "object",
               id: "flax.core/flutter#type:WidgetStateProperty",
-              objectView: _objectView0,
+              dartType:
+                  FlaxDartTypes.typeOf<api1.WidgetStateProperty<api1.Color?>?>,
               nullable: true,
               deferredFactories: {
                 "resolveWith": FlaxDeferredFactoryBinding(
@@ -6212,6 +6231,7 @@ const materialBindings = FlaxBindingModule(
       ),
       _function_showDialog,
       route: FlaxRouteCallBinding("context", "useRootNavigator", ["builder"]),
+      genericFactory: _flaxGenericFunction0,
     ),
     FlaxFunctionBinding(
       "flax.material/material#read:VisualDensity.standard",
@@ -6250,12 +6270,222 @@ const materialBindings = FlaxBindingModule(
   dependencyModules: ["flax.core/flutter"],
   uiProtocol: 24,
   requiredCapabilities: const <String>[
+    "dart-type-tokens",
+    "engine-type-handles",
+    "generic-call-types",
     "generic-member-views",
     "instance-checks",
     "native-widget-proxies",
   ],
   stateVariants: [],
   records: _recordTypes,
+  dartTypes: [
+    FlaxDartClassTemplate(
+      "flax.material/material#type:Material",
+      api.Material,
+      "widget",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:InkWell",
+      api.InkWell,
+      "widget",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:LinearProgressIndicator",
+      api.LinearProgressIndicator,
+      "widget",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:AlertDialog",
+      api.AlertDialog,
+      "widget",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:MaterialApp",
+      api.MaterialApp,
+      "widget",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:Scaffold",
+      api.Scaffold,
+      "widget",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:RefreshIndicator",
+      api.RefreshIndicator,
+      "widget",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:ButtonStyle",
+      api.ButtonStyle,
+      "object",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:VisualDensity",
+      api.VisualDensity,
+      "object",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:AppBar",
+      api.AppBar,
+      "widget",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:Theme",
+      api.Theme,
+      "widget",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:ThemeData",
+      api.ThemeData,
+      "object",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:TextTheme",
+      api.TextTheme,
+      "object",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:ColorScheme",
+      api.ColorScheme,
+      "object",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:InputDecoration",
+      api.InputDecoration,
+      "object",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:TextField",
+      api.TextField,
+      "widget",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:MaterialPageRoute",
+      api.MaterialPageRoute<Object?>,
+      "route",
+      typeFactory: _flaxType_MaterialPageRoute,
+      factory: _flaxClass_MaterialPageRoute,
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:MaterialPage",
+      api.MaterialPage<Object?>,
+      "page",
+      typeFactory: _flaxType_MaterialPage,
+      factory: _flaxClass_MaterialPage,
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:TextButton",
+      api.TextButton,
+      "widget",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:ElevatedButton",
+      api.ElevatedButton,
+      "widget",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:OutlinedButton",
+      api.OutlinedButton,
+      "widget",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:FilledButton",
+      api.FilledButton,
+      "widget",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:IconButton",
+      api.IconButton,
+      "widget",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:FloatingActionButton",
+      api.FloatingActionButton,
+      "widget",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:Drawer",
+      api.Drawer,
+      "widget",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:Divider",
+      api.Divider,
+      "widget",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:VerticalDivider",
+      api.VerticalDivider,
+      "widget",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:Card",
+      api.Card,
+      "widget",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:ListTile",
+      api.ListTile,
+      "widget",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:Checkbox",
+      api.Checkbox,
+      "widget",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:Switch",
+      api.Switch,
+      "widget",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:CircularProgressIndicator",
+      api.CircularProgressIndicator,
+      "widget",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:NavigationDestination",
+      api.NavigationDestination,
+      "widget",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:NavigationBar",
+      api.NavigationBar,
+      "widget",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:Brightness",
+      api.Brightness,
+      "enum",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:ListTileStyle",
+      api.ListTileStyle,
+      "enum",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:MaterialType",
+      api.MaterialType,
+      "enum",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:NavigationDestinationLabelBehavior",
+      api.NavigationDestinationLabelBehavior,
+      "enum",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:TextInputAction",
+      api.TextInputAction,
+      "enum",
+    ),
+    FlaxDartClassTemplate(
+      "flax.material/material#type:ThemeMode",
+      api.ThemeMode,
+      "enum",
+    ),
+  ],
+  dartShapes: _flaxDartShapes,
 );
 Object? _function_showDialog(Map<String, Object?> values) {
   return api.showDialog<Object?>(
@@ -6280,7 +6510,6 @@ bool _isMaterial(Object value) => value is api.Material;
 
 class _MaterialHost extends FlaxWidgetHost {
   _MaterialHost(super.node);
-
   @override
   api1.Widget buildNative(Map<String, Object?> values) =>
       _createMaterial(node.ctor, values);
@@ -6311,7 +6540,6 @@ bool _isInkWell(Object value) => value is api.InkWell;
 
 class _InkWellHost extends FlaxWidgetHost {
   _InkWellHost(super.node);
-
   @override
   api1.Widget buildNative(Map<String, Object?> values) =>
       _createInkWell(node.ctor, values);
@@ -6346,7 +6574,6 @@ bool _isLinearProgressIndicator(Object value) =>
 
 class _LinearProgressIndicatorHost extends FlaxWidgetHost {
   _LinearProgressIndicatorHost(super.node);
-
   @override
   api1.Widget buildNative(Map<String, Object?> values) =>
       _createLinearProgressIndicator(node.ctor, values);
@@ -6377,7 +6604,6 @@ bool _isAlertDialog(Object value) => value is api.AlertDialog;
 
 class _AlertDialogHost extends FlaxWidgetHost {
   _AlertDialogHost(super.node);
-
   @override
   api1.Widget buildNative(Map<String, Object?> values) =>
       _createAlertDialog(node.ctor, values);
@@ -6402,7 +6628,6 @@ bool _isMaterialApp(Object value) => value is api.MaterialApp;
 
 class _MaterialAppHost extends FlaxWidgetHost {
   _MaterialAppHost(super.node);
-
   @override
   api1.Widget buildNative(Map<String, Object?> values) =>
       _createMaterialApp(node.ctor, values);
@@ -6444,7 +6669,6 @@ bool _isScaffold(Object value) => value is api.Scaffold;
 
 class _ScaffoldHost extends FlaxWidgetHost {
   _ScaffoldHost(super.node);
-
   @override
   api1.Widget buildNative(Map<String, Object?> values) =>
       _createScaffold(node.ctor, values);
@@ -6476,7 +6700,6 @@ bool _isRefreshIndicator(Object value) => value is api.RefreshIndicator;
 
 class _RefreshIndicatorHost extends FlaxWidgetHost {
   _RefreshIndicatorHost(super.node);
-
   @override
   api1.Widget buildNative(Map<String, Object?> values) =>
       _createRefreshIndicator(node.ctor, values);
@@ -6619,7 +6842,6 @@ Object? _Theme_of(Map<String, Object?> values) {
 
 class _ThemeHost extends FlaxWidgetHost {
   _ThemeHost(super.node);
-
   @override
   api1.Widget buildNative(Map<String, Object?> values) =>
       _createTheme(node.ctor, values);
@@ -6812,7 +7034,6 @@ bool _isTextField(Object value) => value is api.TextField;
 
 class _TextFieldHost extends FlaxWidgetHost {
   _TextFieldHost(super.node);
-
   @override
   api1.Widget buildNative(Map<String, Object?> values) =>
       _createTextField(node.ctor, values);
@@ -6876,7 +7097,7 @@ api1.Route<Object?> _createMaterialPageRoute(
 ) {
   switch (ctor) {
     case "":
-      return _MaterialPageRoute(
+      return _MaterialPageRoute<Object?>(
         lease,
         builder: lease.builder<api1.Widget Function(api1.BuildContext context)>(
           "builder",
@@ -6898,7 +7119,7 @@ api1.Page<Object?> _createMaterialPage(
   switch (ctor) {
     case "":
       if (!values.containsKey("onPopInvoked")) {
-        return _MaterialPage(
+        return _MaterialPage<Object?>(
           lease,
           child: values["child"] as api1.Widget,
           maintainState: values["maintainState"] as bool,
@@ -6909,7 +7130,7 @@ api1.Page<Object?> _createMaterialPage(
           arguments: values["arguments"],
         );
       }
-      return _MaterialPage(
+      return _MaterialPage<Object?>(
         lease,
         child: values["child"] as api1.Widget,
         maintainState: values["maintainState"] as bool,
@@ -6931,7 +7152,6 @@ bool _isTextButton(Object value) => value is api.TextButton;
 
 class _TextButtonHost extends FlaxWidgetHost {
   _TextButtonHost(super.node);
-
   @override
   api1.Widget buildNative(Map<String, Object?> values) =>
       _createTextButton(node.ctor, values);
@@ -6955,7 +7175,6 @@ bool _isElevatedButton(Object value) => value is api.ElevatedButton;
 
 class _ElevatedButtonHost extends FlaxWidgetHost {
   _ElevatedButtonHost(super.node);
-
   @override
   api1.Widget buildNative(Map<String, Object?> values) =>
       _createElevatedButton(node.ctor, values);
@@ -6979,7 +7198,6 @@ bool _isOutlinedButton(Object value) => value is api.OutlinedButton;
 
 class _OutlinedButtonHost extends FlaxWidgetHost {
   _OutlinedButtonHost(super.node);
-
   @override
   api1.Widget buildNative(Map<String, Object?> values) =>
       _createOutlinedButton(node.ctor, values);
@@ -7003,7 +7221,6 @@ bool _isFilledButton(Object value) => value is api.FilledButton;
 
 class _FilledButtonHost extends FlaxWidgetHost {
   _FilledButtonHost(super.node);
-
   @override
   api1.Widget buildNative(Map<String, Object?> values) =>
       _createFilledButton(node.ctor, values);
@@ -7034,7 +7251,6 @@ bool _isIconButton(Object value) => value is api.IconButton;
 
 class _IconButtonHost extends FlaxWidgetHost {
   _IconButtonHost(super.node);
-
   @override
   api1.Widget buildNative(Map<String, Object?> values) =>
       _createIconButton(node.ctor, values);
@@ -7119,7 +7335,6 @@ bool _isFloatingActionButton(Object value) => value is api.FloatingActionButton;
 
 class _FloatingActionButtonHost extends FlaxWidgetHost {
   _FloatingActionButtonHost(super.node);
-
   @override
   api1.Widget buildNative(Map<String, Object?> values) =>
       _createFloatingActionButton(node.ctor, values);
@@ -7189,7 +7404,6 @@ bool _isDrawer(Object value) => value is api.Drawer;
 
 class _DrawerHost extends FlaxWidgetHost {
   _DrawerHost(super.node);
-
   @override
   api1.Widget buildNative(Map<String, Object?> values) =>
       _createDrawer(node.ctor, values);
@@ -7217,7 +7431,6 @@ bool _isDivider(Object value) => value is api.Divider;
 
 class _DividerHost extends FlaxWidgetHost {
   _DividerHost(super.node);
-
   @override
   api1.Widget buildNative(Map<String, Object?> values) =>
       _createDivider(node.ctor, values);
@@ -7244,7 +7457,6 @@ bool _isVerticalDivider(Object value) => value is api.VerticalDivider;
 
 class _VerticalDividerHost extends FlaxWidgetHost {
   _VerticalDividerHost(super.node);
-
   @override
   api1.Widget buildNative(Map<String, Object?> values) =>
       _createVerticalDivider(node.ctor, values);
@@ -7271,7 +7483,6 @@ bool _isCard(Object value) => value is api.Card;
 
 class _CardHost extends FlaxWidgetHost {
   _CardHost(super.node);
-
   @override
   api1.Widget buildNative(Map<String, Object?> values) =>
       _createCard(node.ctor, values);
@@ -7324,7 +7535,6 @@ bool _isListTile(Object value) => value is api.ListTile;
 
 class _ListTileHost extends FlaxWidgetHost {
   _ListTileHost(super.node);
-
   @override
   api1.Widget buildNative(Map<String, Object?> values) =>
       _createListTile(node.ctor, values);
@@ -7364,7 +7574,6 @@ bool _isCheckbox(Object value) => value is api.Checkbox;
 
 class _CheckboxHost extends FlaxWidgetHost {
   _CheckboxHost(super.node);
-
   @override
   api1.Widget buildNative(Map<String, Object?> values) =>
       _createCheckbox(node.ctor, values);
@@ -7397,7 +7606,6 @@ bool _isSwitch(Object value) => value is api.Switch;
 
 class _SwitchHost extends FlaxWidgetHost {
   _SwitchHost(super.node);
-
   @override
   api1.Widget buildNative(Map<String, Object?> values) =>
       _createSwitch(node.ctor, values);
@@ -7427,7 +7635,6 @@ bool _isCircularProgressIndicator(Object value) =>
 
 class _CircularProgressIndicatorHost extends FlaxWidgetHost {
   _CircularProgressIndicatorHost(super.node);
-
   @override
   api1.Widget buildNative(Map<String, Object?> values) =>
       _createCircularProgressIndicator(node.ctor, values);
@@ -7457,7 +7664,6 @@ bool _isNavigationDestination(Object value) =>
 
 class _NavigationDestinationHost extends FlaxWidgetHost {
   _NavigationDestinationHost(super.node);
-
   @override
   api1.Widget buildNative(Map<String, Object?> values) =>
       _createNavigationDestination(node.ctor, values);
@@ -7486,7 +7692,6 @@ bool _isNavigationBar(Object value) => value is api.NavigationBar;
 
 class _NavigationBarHost extends FlaxWidgetHost {
   _NavigationBarHost(super.node);
-
   @override
   api1.Widget buildNative(Map<String, Object?> values) =>
       _createNavigationBar(node.ctor, values);
@@ -7514,7 +7719,8 @@ api1.Widget _createNavigationBar(String ctor, Map<String, Object?> values) {
   }
 }
 
-class _MaterialPageRoute extends api.MaterialPageRoute<Object?> {
+class _MaterialPageRoute<_Owner0 extends Object?>
+    extends api.MaterialPageRoute<_Owner0> {
   final FlaxRouteLease _lease;
   _MaterialPageRoute(
     this._lease, {
@@ -7535,7 +7741,7 @@ class _MaterialPageRoute extends api.MaterialPageRoute<Object?> {
   }
 }
 
-class _MaterialPage extends api.MaterialPage<Object?>
+class _MaterialPage<_Owner0 extends Object?> extends api.MaterialPage<_Owner0>
     implements FlaxPageConfiguration {
   @override
   final FlaxPageLease flaxPageLease;
@@ -7551,8 +7757,8 @@ class _MaterialPage extends api.MaterialPage<Object?>
     Object? super.arguments,
   });
   @override
-  FlaxPageRoute createRoute(api1.BuildContext context) =>
-      adapterMaterialPage.createMaterialPageRoute(this);
+  FlaxPageRoute<_Owner0> createRoute(api1.BuildContext context) =>
+      adapterMaterialPage.createMaterialPageRoute<_Owner0>(this);
 }
 
 Object _deferred0(Map<String, Object?> values) {
@@ -7581,226 +7787,583 @@ Object _deferred3(Map<String, Object?> values) {
   );
 }
 
-const _objectView0 = FlaxObjectViewBinding(
-  "flax.core/flutter#type:WidgetStateProperty<object?:flax.core/flutter#type:Color>",
-  _objectView0Matches,
-  _objectView0Members,
-);
-bool _objectView0Matches(Object value) =>
-    value is api1.WidgetStateProperty<api1.Color?>;
-FlaxObjectMemberView _objectView0Members() => const FlaxObjectMemberView(
-  getters: {},
-  setters: {},
-  instanceMethods: {
-    "resolve": FlaxInstanceMethod(
-      [
-        FlaxParameter(
-          "states",
-          FlaxTypeRef(
-            "set",
-            item: FlaxTypeRef("enum", id: "flax.core/flutter#type:WidgetState"),
-            collection: FlaxCollectionBinding(
-              "set:[enum:flax.core/flutter#type:WidgetState]",
-              _collection4Create,
-              _collection4Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "enum",
-                id: "flax.core/flutter#type:WidgetState",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                _collection5Create,
-                _collection5Matches,
-              ),
-            ),
-          ),
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      FlaxTypeRef("object", id: "flax.core/flutter#type:Color", nullable: true),
-      _objectView0_resolve,
-      startsRoute: false,
-    ),
-  },
-);
-Object? _objectView0_resolve(Object receiver, Map<String, Object?> values) {
-  return (receiver as api1.WidgetStateProperty<api1.Color?>).resolve(
-    values["states"] as Set<api1.WidgetState>,
-  );
-}
+Function _flaxGenericFunction0<_Method0 extends Object?>() =>
+    (FlaxDartTypes types) {
+      Object? invoke(Map<String, Object?> values) {
+        return api.showDialog<_Method0>(
+          barrierColor: values["barrierColor"] as api1.Color?,
+          barrierDismissible: values["barrierDismissible"] as bool,
+          barrierLabel: values["barrierLabel"] as String?,
+          builder:
+              values["builder"]
+                  as api1.Widget Function(api1.BuildContext context),
+          context: values["context"] as api1.BuildContext,
+          fullscreenDialog: values["fullscreenDialog"] as bool,
+          requestFocus: values["requestFocus"] as bool?,
+          routeSettings: values["routeSettings"] as api1.RouteSettings?,
+          useRootNavigator: values["useRootNavigator"] as bool,
+          useSafeArea: values["useSafeArea"] as bool,
+        );
+      }
 
-const _objectView1 = FlaxObjectViewBinding(
-  "flax.core/flutter#type:WidgetStateProperty<double?:>",
-  _objectView1Matches,
-  _objectView1Members,
-);
-bool _objectView1Matches(Object value) =>
-    value is api1.WidgetStateProperty<double?>;
-FlaxObjectMemberView _objectView1Members() => const FlaxObjectMemberView(
-  getters: {},
-  setters: {},
-  instanceMethods: {
-    "resolve": FlaxInstanceMethod(
-      [
-        FlaxParameter(
-          "states",
-          FlaxTypeRef(
-            "set",
-            item: FlaxTypeRef("enum", id: "flax.core/flutter#type:WidgetState"),
-            collection: FlaxCollectionBinding(
-              "set:[enum:flax.core/flutter#type:WidgetState]",
-              _collection4Create,
-              _collection4Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "enum",
-                id: "flax.core/flutter#type:WidgetState",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                _collection5Create,
-                _collection5Matches,
-              ),
-            ),
-          ),
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      FlaxTypeRef("double", nullable: true),
-      _objectView1_resolve,
-      startsRoute: false,
-    ),
-  },
-);
-Object? _objectView1_resolve(Object receiver, Map<String, Object?> values) {
-  return (receiver as api1.WidgetStateProperty<double?>).resolve(
-    values["states"] as Set<api1.WidgetState>,
-  );
-}
+      Object _callback0(FlaxCallback _flaxBridgeCallback) =>
+          (api1.BuildContext p0) {
+            final positional = <Object?>[];
+            final named = <String, Object?>{};
+            positional.add(p0);
+            return _flaxBridgeCallback.call(positional, named) as api1.Widget;
+          };
+      bool _callback0Matches(Object value) =>
+          value is api1.Widget Function(api1.BuildContext context);
+      Object? _callback0Invoke(
+        Object function,
+        List<Object?> positional,
+        Map<String, Object?> named,
+      ) {
+        return (function as api1.Widget Function(api1.BuildContext context))(
+          positional[0] as api1.BuildContext,
+        );
+      }
 
-const _objectView2 = FlaxObjectViewBinding(
-  "flax.core/flutter#type:WidgetStateProperty<object?:flax.core/flutter#type:OutlinedBorder>",
-  _objectView2Matches,
-  _objectView2Members,
-);
-bool _objectView2Matches(Object value) =>
-    value is api1.WidgetStateProperty<api1.OutlinedBorder?>;
-FlaxObjectMemberView _objectView2Members() => const FlaxObjectMemberView(
-  getters: {},
-  setters: {},
-  instanceMethods: {
-    "resolve": FlaxInstanceMethod(
-      [
-        FlaxParameter(
-          "states",
-          FlaxTypeRef(
-            "set",
-            item: FlaxTypeRef("enum", id: "flax.core/flutter#type:WidgetState"),
-            collection: FlaxCollectionBinding(
-              "set:[enum:flax.core/flutter#type:WidgetState]",
-              _collection4Create,
-              _collection4Matches,
+      return FlaxFunctionBinding(
+        "flax.material/material#function:showDialog",
+        [
+          FlaxParameter(
+            "barrierColor",
+            FlaxTypeRef(
+              "object",
+              id: "flax.core/flutter#type:Color",
+              nullable: true,
             ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "enum",
-                id: "flax.core/flutter#type:WidgetState",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                _collection5Create,
-                _collection5Matches,
-              ),
-            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
           ),
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
+          FlaxParameter(
+            "barrierDismissible",
+            FlaxTypeRef("bool"),
+            required: false,
+            defaultValue: true,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "barrierLabel",
+            FlaxTypeRef("String", nullable: true),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "builder",
+            FlaxTypeRef(
+              "callback",
+              callback: FlaxCallbackBinding(
+                [
+                  FlaxCallbackParameter(
+                    "context",
+                    FlaxTypeRef(
+                      "context",
+                      id: "flax.core/flutter#type:BuildContext",
+                    ),
+                    required: true,
+                    positional: true,
+                  ),
+                ],
+                FlaxTypeRef("widget"),
+                _callback0,
+                id: types
+                    .key<api1.Widget Function(api1.BuildContext context)>(),
+                invoke: _callback0Invoke,
+                matches: _callback0Matches,
+              ),
+            ),
+            required: true,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "context",
+            FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
+            required: true,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "fullscreenDialog",
+            FlaxTypeRef("bool"),
+            required: false,
+            defaultValue: false,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "requestFocus",
+            FlaxTypeRef("bool", nullable: true),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "routeSettings",
+            FlaxTypeRef(
+              "object",
+              id: "flax.core/flutter#type:RouteSettings",
+              nullable: true,
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "useRootNavigator",
+            FlaxTypeRef("bool"),
+            required: false,
+            defaultValue: true,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "useSafeArea",
+            FlaxTypeRef("bool"),
+            required: false,
+            defaultValue: true,
+            omitWhenAbsent: false,
+          ),
+        ],
+        types.ref<Future<_Method0?>>(),
+        invoke,
+        route: FlaxRouteCallBinding("context", "useRootNavigator", ["builder"]),
+      );
+    };
+Type _flaxType_MaterialPageRoute<_Owner0 extends Object?>() =>
+    api.MaterialPageRoute<_Owner0>;
+Function _flaxClass_MaterialPageRoute<_Owner0 extends Object?>() =>
+    (FlaxDartTypes types, String id) {
+      // ignore: unused_element
+      bool _isMaterialPageRoute(Object value) =>
+          value is api.MaterialPageRoute<_Owner0>;
+      // ignore: unused_element
+      api1.Route<Object?> _createMaterialPageRoute(
+        String ctor,
+        Map<String, Object?> values,
+        FlaxRouteLease lease,
+      ) {
+        switch (ctor) {
+          case "":
+            return _MaterialPageRoute<_Owner0>(
+              lease,
+              builder: lease
+                  .builder<api1.Widget Function(api1.BuildContext context)>(
+                    "builder",
+                  ),
+              settings: values["settings"] as api1.RouteSettings?,
+              maintainState: values["maintainState"] as bool,
+              fullscreenDialog: values["fullscreenDialog"] as bool,
+            );
+          default:
+            throw ArgumentError("Unknown constructor");
+        }
+      }
+
+      Object _callback0(FlaxCallback _flaxBridgeCallback) =>
+          (api1.BuildContext p0) {
+            final positional = <Object?>[];
+            final named = <String, Object?>{};
+            positional.add(p0);
+            return _flaxBridgeCallback.call(positional, named) as api1.Widget;
+          };
+      bool _callback0Matches(Object value) =>
+          value is api1.Widget Function(api1.BuildContext context);
+      Object? _callback0Invoke(
+        Object function,
+        List<Object?> positional,
+        Map<String, Object?> named,
+      ) {
+        return (function as api1.Widget Function(api1.BuildContext context))(
+          positional[0] as api1.BuildContext,
+        );
+      }
+
+      return FlaxDartClass(
+        api.MaterialPageRoute<_Owner0>,
+        FlaxRouteBinding(
+          id,
+          {
+            "": [
+              FlaxParameter(
+                "builder",
+                FlaxTypeRef(
+                  "callback",
+                  callback: FlaxCallbackBinding(
+                    [
+                      FlaxCallbackParameter(
+                        "context",
+                        FlaxTypeRef(
+                          "context",
+                          id: "flax.core/flutter#type:BuildContext",
+                        ),
+                        required: true,
+                        positional: true,
+                      ),
+                    ],
+                    FlaxTypeRef("widget"),
+                    _callback0,
+                    id: types
+                        .key<api1.Widget Function(api1.BuildContext context)>(),
+                    invoke: _callback0Invoke,
+                    matches: _callback0Matches,
+                  ),
+                ),
+                required: true,
+                defaultValue: null,
+                omitWhenAbsent: false,
+              ),
+              FlaxParameter(
+                "settings",
+                FlaxTypeRef(
+                  "object",
+                  id: "flax.core/flutter#type:RouteSettings",
+                  nullable: true,
+                ),
+                required: false,
+                defaultValue: null,
+                omitWhenAbsent: false,
+              ),
+              FlaxParameter(
+                "maintainState",
+                FlaxTypeRef("bool"),
+                required: false,
+                defaultValue: true,
+                omitWhenAbsent: false,
+              ),
+              FlaxParameter(
+                "fullscreenDialog",
+                FlaxTypeRef("bool"),
+                required: false,
+                defaultValue: false,
+                omitWhenAbsent: false,
+              ),
+            ],
+          },
+          _createMaterialPageRoute,
+          [
+            "package:flutter/src/widgets/pages.dart::PageRoute",
+            "package:flutter/src/widgets/routes.dart::ModalRoute",
+            "package:flutter/src/widgets/routes.dart::TransitionRoute",
+            "package:flutter/src/widgets/routes.dart::OverlayRoute",
+            "flax.core/flutter#type:Route",
+            "package:flutter/src/widgets/navigator.dart::_RoutePlaceholder",
+            "package:flutter/src/widgets/routes.dart::PredictiveBackRoute",
+            "package:flutter/src/widgets/routes.dart::LocalHistoryRoute",
+            "package:material_ui/src/page.dart::MaterialRouteTransitionMixin",
+          ],
         ),
-      ],
-      FlaxTypeRef(
-        "object",
-        id: "flax.core/flutter#type:OutlinedBorder",
-        nullable: true,
+      );
+    };
+Type _flaxType_MaterialPage<_Owner0 extends Object?>() =>
+    api.MaterialPage<_Owner0>;
+Function _flaxClass_MaterialPage<_Owner0 extends Object?>() =>
+    (FlaxDartTypes types, String id) {
+      // ignore: unused_element
+      bool _isMaterialPage(Object value) => value is api.MaterialPage<_Owner0>;
+      // ignore: unused_element
+      Object? _MaterialPage_key(Object value) =>
+          (value as api.MaterialPage<_Owner0>).key;
+      // ignore: unused_element
+      Object? _MaterialPage_name(Object value) =>
+          (value as api.MaterialPage<_Owner0>).name;
+      // ignore: unused_element
+      Object? _MaterialPage_arguments(Object value) =>
+          (value as api.MaterialPage<_Owner0>).arguments;
+      // ignore: unused_element
+      api1.Page<Object?> _createMaterialPage(
+        String ctor,
+        Map<String, Object?> values,
+        FlaxPageLease lease,
+      ) {
+        switch (ctor) {
+          case "":
+            if (!values.containsKey("onPopInvoked")) {
+              return _MaterialPage<_Owner0>(
+                lease,
+                child: values["child"] as api1.Widget,
+                maintainState: values["maintainState"] as bool,
+                fullscreenDialog: values["fullscreenDialog"] as bool,
+                key: values["key"] as api1.LocalKey?,
+                canPop: values["canPop"] as bool,
+                name: values["name"] as String?,
+                arguments: values["arguments"],
+              );
+            }
+            return _MaterialPage<_Owner0>(
+              lease,
+              child: values["child"] as api1.Widget,
+              maintainState: values["maintainState"] as bool,
+              fullscreenDialog: values["fullscreenDialog"] as bool,
+              key: values["key"] as api1.LocalKey?,
+              canPop: values["canPop"] as bool,
+              onPopInvoked:
+                  values["onPopInvoked"]
+                      as void Function(bool didPop, Object? result),
+              name: values["name"] as String?,
+              arguments: values["arguments"],
+            );
+          default:
+            throw ArgumentError("Unknown constructor");
+        }
+      }
+
+      Object _callback0(FlaxCallback _flaxBridgeCallback) =>
+          (bool p0, Object? p1) {
+            final positional = <Object?>[];
+            final named = <String, Object?>{};
+            positional.add(p0);
+            positional.add(p1);
+            _flaxBridgeCallback.call(positional, named);
+          };
+      bool _callback0Matches(Object value) =>
+          value is void Function(bool didPop, Object? result);
+      Object? _callback0Invoke(
+        Object function,
+        List<Object?> positional,
+        Map<String, Object?> named,
+      ) {
+        (function as void Function(bool didPop, Object? result))(
+          positional[0] as bool,
+          positional[1],
+        );
+        return null;
+      }
+
+      return FlaxDartClass(
+        api.MaterialPage<_Owner0>,
+        FlaxPageBinding(
+          id,
+          {
+            "": [
+              FlaxParameter(
+                "child",
+                FlaxTypeRef("widget"),
+                required: true,
+                defaultValue: null,
+                omitWhenAbsent: false,
+              ),
+              FlaxParameter(
+                "maintainState",
+                FlaxTypeRef("bool"),
+                required: false,
+                defaultValue: true,
+                omitWhenAbsent: false,
+              ),
+              FlaxParameter(
+                "fullscreenDialog",
+                FlaxTypeRef("bool"),
+                required: false,
+                defaultValue: false,
+                omitWhenAbsent: false,
+              ),
+              FlaxParameter(
+                "key",
+                FlaxTypeRef(
+                  "object",
+                  id: "flax.core/flutter#type:LocalKey",
+                  nullable: true,
+                ),
+                required: false,
+                defaultValue: null,
+                omitWhenAbsent: false,
+              ),
+              FlaxParameter(
+                "canPop",
+                FlaxTypeRef("bool"),
+                required: false,
+                defaultValue: true,
+                omitWhenAbsent: false,
+              ),
+              FlaxParameter(
+                "onPopInvoked",
+                FlaxTypeRef(
+                  "callback",
+                  callback: FlaxCallbackBinding(
+                    [
+                      FlaxCallbackParameter(
+                        "didPop",
+                        FlaxTypeRef("bool"),
+                        required: true,
+                        positional: true,
+                      ),
+                      FlaxCallbackParameter(
+                        "result",
+                        FlaxTypeRef("data", nullable: true),
+                        required: true,
+                        positional: true,
+                      ),
+                    ],
+                    FlaxTypeRef("void"),
+                    _callback0,
+                    id: types.key<void Function(bool didPop, Object? result)>(),
+                    invoke: _callback0Invoke,
+                    matches: _callback0Matches,
+                  ),
+                ),
+                required: false,
+                defaultValue: null,
+                omitWhenAbsent: true,
+              ),
+              FlaxParameter(
+                "name",
+                FlaxTypeRef("String", nullable: true),
+                required: false,
+                defaultValue: null,
+                omitWhenAbsent: false,
+              ),
+              FlaxParameter(
+                "arguments",
+                FlaxTypeRef("data", nullable: true),
+                required: false,
+                defaultValue: null,
+                omitWhenAbsent: false,
+              ),
+            ],
+          },
+          _createMaterialPage,
+          [
+            "flax.core/flutter#type:Page",
+            "flax.core/flutter#type:RouteSettings",
+            "dart:core::Object",
+          ],
+        ),
+      );
+    };
+const _flaxDartShapes = <FlaxDartShapeTemplate>[
+  FlaxDartShapeTemplate("[\"callback\",[0,0,[],[]]]", _flaxShape0),
+  FlaxDartShapeTemplate("[\"callback\",[1,1,[],[]]]", _flaxShape1),
+  FlaxDartShapeTemplate("[\"callback\",[2,2,[],[]]]", _flaxShape2),
+];
+Function _flaxShape0<_Shape0>() => (FlaxDartTypes types, bool withinCallback) {
+  Object _callback0(FlaxCallback _flaxBridgeCallback) => () {
+    final positional = <Object?>[];
+    final named = <String, Object?>{};
+    return _flaxBridgeCallback.call(positional, named) as _Shape0;
+  };
+  bool _callback0Matches(Object value) => value is _Shape0 Function();
+  Object? _callback0Invoke(
+    Object function,
+    List<Object?> positional,
+    Map<String, Object?> named,
+  ) {
+    return (function as _Shape0 Function())();
+  }
+
+  return types.define<_Shape0 Function()>(
+    FlaxTypeRef(
+      "callback",
+      nullable: false,
+      callback: FlaxCallbackBinding(
+        [],
+        types.ref<_Shape0>(withinCallback: true),
+        _callback0,
+        id: types.key<_Shape0 Function()>(),
+        invoke: _callback0Invoke,
+        matches: _callback0Matches,
       ),
-      _objectView2_resolve,
-      startsRoute: false,
     ),
-  },
-);
-Object? _objectView2_resolve(Object receiver, Map<String, Object?> values) {
-  return (receiver as api1.WidgetStateProperty<api1.OutlinedBorder?>).resolve(
-    values["states"] as Set<api1.WidgetState>,
+    withinCallback: withinCallback,
   );
-}
+};
+Function _flaxShape1<_Shape0, _Shape1>() =>
+    (FlaxDartTypes types, bool withinCallback) {
+      Object _callback0(FlaxCallback _flaxBridgeCallback) => (_Shape0 p0) {
+        final positional = <Object?>[];
+        final named = <String, Object?>{};
+        positional.add(p0);
+        return _flaxBridgeCallback.call(positional, named) as _Shape1;
+      };
+      bool _callback0Matches(Object value) =>
+          value is _Shape1 Function(_Shape0 value);
+      Object? _callback0Invoke(
+        Object function,
+        List<Object?> positional,
+        Map<String, Object?> named,
+      ) {
+        return (function as _Shape1 Function(_Shape0 value))(
+          positional[0] as _Shape0,
+        );
+      }
 
-const _objectView3 = FlaxObjectViewBinding(
-  "flax.core/flutter#type:WidgetStateProperty<object?:flax.core/flutter#type:MouseCursor>",
-  _objectView3Matches,
-  _objectView3Members,
-);
-bool _objectView3Matches(Object value) =>
-    value is api1.WidgetStateProperty<api1.MouseCursor?>;
-FlaxObjectMemberView _objectView3Members() => const FlaxObjectMemberView(
-  getters: {},
-  setters: {},
-  instanceMethods: {
-    "resolve": FlaxInstanceMethod(
-      [
-        FlaxParameter(
-          "states",
-          FlaxTypeRef(
-            "set",
-            item: FlaxTypeRef("enum", id: "flax.core/flutter#type:WidgetState"),
-            collection: FlaxCollectionBinding(
-              "set:[enum:flax.core/flutter#type:WidgetState]",
-              _collection4Create,
-              _collection4Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "enum",
-                id: "flax.core/flutter#type:WidgetState",
+      return types.define<_Shape1 Function(_Shape0 value)>(
+        FlaxTypeRef(
+          "callback",
+          nullable: false,
+          callback: FlaxCallbackBinding(
+            [
+              FlaxCallbackParameter(
+                "value",
+                types.ref<_Shape0>(withinCallback: true),
+                required: true,
+                positional: true,
               ),
-              collection: FlaxCollectionBinding(
-                "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                _collection5Create,
-                _collection5Matches,
-              ),
-            ),
+            ],
+            types.ref<_Shape1>(withinCallback: true),
+            _callback0,
+            id: types.key<_Shape1 Function(_Shape0 value)>(),
+            invoke: _callback0Invoke,
+            matches: _callback0Matches,
           ),
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
         ),
-      ],
-      FlaxTypeRef(
-        "object",
-        id: "flax.core/flutter#type:MouseCursor",
-        nullable: true,
-      ),
-      _objectView3_resolve,
-      startsRoute: false,
-    ),
-  },
-);
-Object? _objectView3_resolve(Object receiver, Map<String, Object?> values) {
-  return (receiver as api1.WidgetStateProperty<api1.MouseCursor?>).resolve(
-    values["states"] as Set<api1.WidgetState>,
-  );
-}
+        withinCallback: withinCallback,
+      );
+    };
+Function _flaxShape2<_Shape0, _Shape1, _Shape2>() =>
+    (FlaxDartTypes types, bool withinCallback) {
+      Object _callback0(FlaxCallback _flaxBridgeCallback) =>
+          (_Shape0 p0, _Shape1 p1) {
+            final positional = <Object?>[];
+            final named = <String, Object?>{};
+            positional.add(p0);
+            positional.add(p1);
+            return _flaxBridgeCallback.call(positional, named) as _Shape2;
+          };
+      bool _callback0Matches(Object value) =>
+          value is _Shape2 Function(_Shape0 didPop, _Shape1 result);
+      Object? _callback0Invoke(
+        Object function,
+        List<Object?> positional,
+        Map<String, Object?> named,
+      ) {
+        return (function as _Shape2 Function(_Shape0 didPop, _Shape1 result))(
+          positional[0] as _Shape0,
+          positional[1] as _Shape1,
+        );
+      }
 
+      return types.define<_Shape2 Function(_Shape0 didPop, _Shape1 result)>(
+        FlaxTypeRef(
+          "callback",
+          nullable: false,
+          callback: FlaxCallbackBinding(
+            [
+              FlaxCallbackParameter(
+                "didPop",
+                types.ref<_Shape0>(withinCallback: true),
+                required: true,
+                positional: true,
+              ),
+              FlaxCallbackParameter(
+                "result",
+                types.ref<_Shape1>(withinCallback: true),
+                required: true,
+                positional: true,
+              ),
+            ],
+            types.ref<_Shape2>(withinCallback: true),
+            _callback0,
+            id: types.key<_Shape2 Function(_Shape0 didPop, _Shape1 result)>(),
+            invoke: _callback0Invoke,
+            matches: _callback0Matches,
+          ),
+        ),
+        withinCallback: withinCallback,
+      );
+    };
 Object _callback0(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};

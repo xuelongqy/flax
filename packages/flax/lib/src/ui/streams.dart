@@ -489,30 +489,32 @@ extension _StreamCalls on _Session {
   }
 
   FlaxJsValue streamResult(Object source, FlaxTypeRef type) {
+    type = dartTypes._resolveRef(type);
     final adapter = type.stream;
-    final binding = registry._types[type.id];
+    var binding = _typeBinding(type.id);
     if (adapter == null || binding is! FlaxStreamTypeBinding) {
       throw ArgumentError('Unknown Dart Stream type');
     }
+    final adapted = adapter.adapt(source);
+    binding =
+        dartTypes.bindingFor(
+          _specializedOwners[binding.id] ?? binding.id,
+          adapted,
+        ) as FlaxStreamTypeBinding? ??
+        binding;
     final views = _streamViews.putIfAbsent(source, () => {});
     final viewKey = _bindingViewKey(adapter.id, _usesBindingContext(type));
     final existing = views[viewKey];
     if (existing != null && existing.value != null) {
       return _peerResult(
         helper('streamObject').call([
+          FlaxJsString(_specializedOwners[binding.id] ?? binding.id),
           FlaxJsString(binding.id),
-          FlaxJsString(adapter.id),
           FlaxJsNumber(existing.id.toDouble()),
         ]),
         existing.value!,
         origin: source,
       );
-    }
-    late final Stream<Object?> adapted;
-    try {
-      adapted = adapter.adapt(source);
-    } on TypeError {
-      throw ArgumentError('Incompatible Dart Stream result');
     }
     final reference = _StreamReference(
       this,
@@ -526,8 +528,8 @@ extension _StreamCalls on _Session {
     _streamReferences[reference.id] = reference;
     return _peerResult(
       helper('streamObject').call([
+        FlaxJsString(_specializedOwners[binding.id] ?? binding.id),
         FlaxJsString(binding.id),
-        FlaxJsString(adapter.id),
         FlaxJsNumber(reference.id.toDouble()),
       ]),
       adapted,
@@ -561,30 +563,41 @@ extension _StreamCalls on _Session {
     String operation,
     String name,
   ) {
-    final binding = registry._types[type];
+    final binding = _typeBinding(type);
     if (binding is! FlaxStreamTypeBinding) {
       throw ArgumentError('Unknown Stream type');
     }
-    final getter = binding.getters.where((g) => g.name == name).firstOrNull;
-    final method = binding.instanceMethods[name];
-    if (!(operation == 'get' && getter != null ||
-        operation == 'call' && method != null)) {
+    if (!(operation == 'get' && binding.getters.any((g) => g.name == name) ||
+        operation == 'call' &&
+            (_genericMethod(type, name) != null ||
+                binding.instanceMethods.containsKey(name)))) {
       throw ArgumentError('Unknown Stream operation');
     }
     return (id, args) {
       final reference = _streamReferences[id];
       if (reference == null ||
-          reference.binding.id != type ||
+          reference.binding.id != type &&
+              (_specializedOwners[reference.binding.id] ??
+                      reference.binding.id) !=
+                  type ||
           reference.value == null) {
         throw ArgumentError('Foreign or released Dart Stream');
       }
+      final actual =
+          dartTypes.bindingFor(
+            _specializedOwners[type] ?? type,
+            reference.value!,
+          ) as FlaxStreamTypeBinding? ??
+          binding;
       if (operation == 'get') {
         if (args.isNotEmpty) throw ArgumentError('Invalid Stream getter');
+        final getter = actual.getters.singleWhere((g) => g.name == name);
         return holdHostResult(
-          memberResult(getter!.read(reference.value!), getter.type),
+          memberResult(getter.read(reference.value!), getter.type),
         );
       }
-      final selected = method!;
+      final selected =
+          _genericMethod(type, name) ?? actual.instanceMethods[name]!;
       final values = objectArguments(args, selected.parameters);
       try {
         for (final parameter in selected.parameters) {
@@ -598,15 +611,31 @@ extension _StreamCalls on _Session {
           values.map((name, value) => MapEntry(name, value.data)),
         );
         if (result is StreamSubscription<Object?>) {
-          final tracked = _TrackedStreamSubscription<Object?>(
-            this,
-            result,
-            onData: values['onData']?.data as void Function(Object?)?,
-            onError:
-                values['onError']?.data as void Function(Object, StackTrace)?,
-            onDone: values['onDone']?.data as void Function()?,
-            cancelOnError: values['cancelOnError']?.data == true,
-          );
+          final template = dartTypes._template(
+            dartTypes.parts(Stream<Object?>),
+            Stream<Object?>,
+          )!;
+          final eventType = dartTypes
+              .arguments(
+                dartTypes._projection(
+                  template.id,
+                  dartTypes.instanceType(reference.value!),
+                )!,
+              )
+              .single;
+          final tracked = dartTypes.instantiate(
+            <E>() => _TrackedStreamSubscription<E>(
+              this,
+              result as StreamSubscription<E>,
+              onData: values['onData']?.data as void Function(E)?,
+              onError:
+                  values['onError']?.data as void Function(Object, StackTrace)?,
+              onDone: values['onDone']?.data as void Function()?,
+              cancelOnError: values['cancelOnError']?.data == true,
+            ),
+            [eventType],
+            const [],
+          ) as _TrackedStreamSubscription<Object?>;
           _streamSubscriptions.add(tracked);
           result = tracked;
         }
@@ -626,7 +655,7 @@ extension _StreamCalls on _Session {
       if (args.length != 3 || args[2] is! FlaxJsObject) {
         throw ArgumentError('Invalid Stream constructor');
       }
-      final binding = registry._types[(args[1] as FlaxJsString).value];
+      final binding = _typeBinding((args[1] as FlaxJsString).value);
       if (binding is! FlaxStreamTypeBinding) {
         throw ArgumentError('Unknown Stream type');
       }
@@ -659,7 +688,7 @@ extension _StreamCalls on _Session {
       if (args[1] is! FlaxJsString || args[2] is! FlaxJsNumber) {
         throw ArgumentError('Invalid AsyncIterable Stream');
       }
-      final binding = registry._types[(args[1] as FlaxJsString).value];
+      final binding = _typeBinding((args[1] as FlaxJsString).value);
       if (binding is! FlaxStreamTypeBinding) {
         throw ArgumentError('Unknown Stream type');
       }

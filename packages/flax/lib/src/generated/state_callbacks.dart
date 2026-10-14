@@ -42,6 +42,8 @@ const componentsBindings = FlaxBindingModule(
   dependencyModules: ["flax.core/flutter"],
   uiProtocol: 24,
   requiredCapabilities: const <String>[
+    "dart-type-tokens",
+    "engine-type-handles",
     "generic-member-views",
     "instance-checks",
     "native-widget-proxies",
@@ -52,6 +54,21 @@ const componentsBindings = FlaxBindingModule(
     _stateVariant_KeepAliveTickerState,
   ],
   records: _recordTypes,
+  dartTypes: [
+    FlaxDartClassTemplate(
+      "flax.core/components#type:StatefulWidget",
+      api.StatefulWidget,
+      "widget",
+    ),
+    FlaxDartClassTemplate(
+      "flax.core/components#type:State",
+      api.State<api.StatefulWidget>,
+      "state",
+      typeFactory: _flaxType_State,
+      factory: _flaxClass_State,
+    ),
+  ],
+  dartShapes: _flaxDartShapes,
 );
 const _stateVariant_SingleTickerProviderState = FlaxStateVariantBinding(
   "flax.core/components#stateVariant:SingleTickerProviderState",
@@ -149,4 +166,24 @@ bool _isStatefulWidget(Object value) => value is api.StatefulWidget;
 Object _createStatefulWidget(String ctor, Map<String, Object?> values) =>
     throw ArgumentError('Abstract object has no constructor');
 bool _isState(Object value) => value is api.State<api.StatefulWidget>;
+Type _flaxType_State<_Owner0 extends api.StatefulWidget>() =>
+    api.State<_Owner0>;
+Function _flaxClass_State<_Owner0 extends api.StatefulWidget>() =>
+    (FlaxDartTypes types, String id) {
+      // ignore: unused_element
+      bool _isState(Object value) => value is api.State<_Owner0>;
+      // ignore: unused_element
+      Object _createState(String ctor, Map<String, Object?> values) {
+        switch (ctor) {
+          default:
+            throw ArgumentError("Unknown constructor");
+        }
+      }
+
+      return FlaxDartClass(
+        api.State<_Owner0>,
+        FlaxStateBinding(id, [], {}, matches: _isState),
+      );
+    };
+const _flaxDartShapes = <FlaxDartShapeTemplate>[];
 const _recordTypes = <FlaxTypeRef>[];

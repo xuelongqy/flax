@@ -24,8 +24,9 @@ test('deferred factories wait for a concrete Dart position and then keep identit
       contains: (value) => states.has(value),
     });
   });
-  api.materializeDeferred(property, pending.type, 901, 'elevation');
-  assert.equal(api.object(pending.type, 901), property);
+  const selected = 'fixture:deferred:double';
+  api.materializeDeferred(property, selected, 901, 'elevation', pending.type);
+  assert.equal(api.object(selected, 901), property);
   assert.equal(property.resolve(new Set([WidgetState.pressed])), 8);
   assert.equal(calls.length, 1);
   assert.equal(calls[0].version, 24);

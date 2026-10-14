@@ -170,6 +170,8 @@ ready.format();
           consumerSource:
               '''
 import { EnumFactory, EnhancedStatus } from './plugin.js';
+import { dartTypes } from '@flax/core/bindings';
+const selected: string = EnumFactory.\$type(dartTypes.string).from('four').sample;
 const number: number = EnumFactory.from(4).sample;
 const from = EnumFactory.from;
 const detached: number = from(4).sample;

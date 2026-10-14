@@ -244,6 +244,22 @@ void main() {
       ),
       ('whenComplete', (future) => future.whenComplete(() {})),
       ('timeout', (future) => future.timeout(const Duration(minutes: 1))),
+      (
+        'wait',
+        (future) => Future.wait([future]).then((values) => values.single),
+      ),
+      (
+        'waitIterable',
+        (future) =>
+            Future.wait([future].map((value) => value))
+                .then((values) => values.single),
+      ),
+      ('fromFutures', (future) => Stream<int>.fromFutures([future]).first),
+      (
+        'fromFuturesIterable',
+        (future) =>
+            Stream<int>.fromFutures([future].map((value) => value)).first,
+      ),
       ('asStream', (future) => future),
     ]) {
       final values = _Values();
@@ -279,6 +295,25 @@ void main() {
           harness.boolean('weakInput.deref() !== undefined'),
           isTrue,
           reason: name,
+        );
+        values.futureFactory = () => values.receivedFuture!;
+        harness.execute('''
+          var retainedConsumer = __flaxInvokeOperation(
+            __flaxResolveOperation(24, 'test/bridge-gc#function:values', 'top', 'call', ''),
+            0
+          ).present;
+          retainedConsumer.catch(() => {});
+        ''');
+        values.futureFactory = null;
+        values.receivedFuture = null;
+        values.receivedStream = null;
+        await tester.runAsync(
+          () => Future<void>.delayed(const Duration(seconds: 1)),
+        );
+        expect(
+          harness.boolean('weakInput.deref() !== undefined'),
+          isTrue,
+          reason: '$name with only the JS consumer rooted',
         );
         await harness.finish(tester);
         expect(cancelled, isTrue, reason: name);

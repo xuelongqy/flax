@@ -26,16 +26,16 @@ class ScreenSpec<T> extends BaseScreen<T> {
   Route<T> createRoute(BuildContext context) => throw UnimplementedError();
 }
 
-FlaxPageRoute adaptScreen(ScreenSpec<Object?> page) => _ScreenRoute(page);
+FlaxPageRoute<T> adaptScreen<T>(ScreenSpec<T> page) => _ScreenRoute<T>(page);
 
-class _ScreenRoute extends FlaxPageRoute {
-  _ScreenRoute(ScreenSpec<Object?> page) : super(page: page);
+class _ScreenRoute<T> extends FlaxPageRoute<T> {
+  _ScreenRoute(ScreenSpec<T> page) : super(page: page);
   @override
   Widget buildPage(
     BuildContext context,
     Animation<double> animation,
     Animation<double> secondaryAnimation,
-  ) => (settings as ScreenSpec<Object?>).content;
+  ) => (settings as ScreenSpec<T>).content;
   @override
   Duration get transitionDuration => Duration.zero;
   @override

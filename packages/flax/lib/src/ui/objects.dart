@@ -23,9 +23,9 @@ class _ObjectReference {
   final FlaxObjectBinding binding;
   final bool scoped;
   final _ContextReference? _borrowedContext;
-  late final FlaxObjectMemberView? _nativeMemberView = binding.memberView?.call(
-    value,
-  );
+  late final FlaxObjectMemberView? _nativeMemberView =
+      binding.memberView?.call(value) ??
+      session.dartTypes.membersFor(binding.id, value);
   Map<FlaxObjectBinding, FlaxObjectMemberView?>? _memberViews;
   FlaxObjectBinding? _signatureBinding;
 
@@ -33,7 +33,9 @@ class _ObjectReference {
     if (identical(requested, binding)) return _nativeMemberView;
     return (_memberViews ??= {}).putIfAbsent(
       requested,
-      () => requested.memberView?.call(value),
+      () =>
+          requested.memberView?.call(value) ??
+          session.dartTypes.membersFor(requested.id, value),
     );
   }
 
@@ -57,7 +59,7 @@ class _ObjectReference {
 
   bool accepts(String type) {
     final expected =
-        _objectView(session.registry._types[type]) ??
+        _objectView(session._typeBinding(type)) ??
         session._genericObjectBindings[type]?.binding;
     // Each binding view shares the actual session-owned Dart value.
     // Generated matches preserves concrete Dart type and generic checks.
@@ -199,6 +201,13 @@ FlaxObjectBinding? _objectView(FlaxTypeBinding? binding) => switch (binding) {
 };
 
 extension _ObjectCalls on _Session {
+  Map<String, FlaxDeferredFactoryBinding> _deferredFactories(FlaxTypeRef type) {
+    if (type.deferredFactories.isNotEmpty) return type.deferredFactories;
+    if (type.id == null) return const {};
+    dartTypes.materialize(type.id!);
+    return dartTypes._deferred[type.id] ?? const {};
+  }
+
   FlaxJsValue _peerResult(FlaxJsValue result, Object value, {Object? origin}) {
     if (result is! FlaxJsObject) {
       throw StateError('Expected a JS binding object');
@@ -215,20 +224,24 @@ extension _ObjectCalls on _Session {
   }
 
   FlaxObjectBinding _objectBinding(Object value, String type) {
-    final expected = _objectView(registry._types[type]);
+    final expected = _objectView(_typeBinding(type));
     if (expected is! FlaxObjectBinding ||
         expected.matches?.call(value) == false) {
       throw ArgumentError('Unsupported returned Dart object');
+    }
+    final actual = dartTypes.bindingFor(type, value);
+    if (actual != null && _objectView(actual) != null) {
+      return _objectView(actual)!;
     }
     var selected = expected;
     if (expected.aliasOf != null) return expected;
     // Preserve concrete identity within the signature's provider, without
     // exposing a subtype view registered by another provider.
-    final owner = registry._bindingOwners[type];
-    for (final binding in registry._types.values) {
+    final owner = _bindingOwner(type);
+    for (final binding in _typeBindings.values) {
       if (binding is FlaxObjectBinding &&
           binding.aliasOf == null &&
-          registry._bindingOwners[binding.id] == owner &&
+          _bindingOwner(binding.id) == owner &&
           binding.id != type &&
           binding.supertypes.contains(type) &&
           binding.matches?.call(value) == true &&
@@ -279,7 +292,7 @@ extension _ObjectCalls on _Session {
     List<FlaxJsObject> temporary,
   ) {
     if (type.id == null) throw ArgumentError('Missing scoped object type');
-    final base = _objectBinding(value, type.id!);
+    final base = _objectBinding(value, dartTypes._resolveRef(type).id!);
     final binding = type.objectView == null
         ? base
         : _signatureObjectBinding(base, type.objectView!);
@@ -294,10 +307,13 @@ extension _ObjectCalls on _Session {
     final lease = _ScopedObjectLease(this, reference);
     leases.add(lease);
     try {
+      final sharedPrototype =
+          _specializedOwners[binding.id] ??
+          (type.objectView != null ? base.id : null);
       final wrapper = helper('scopedObject').call([
         FlaxJsString(binding.id),
         FlaxJsNumber(reference.id.toDouble()),
-        if (type.objectView != null) FlaxJsString(base.id),
+        if (sharedPrototype != null) FlaxJsString(sharedPrototype),
       ]);
       _peerResult(wrapper, value);
       if (wrapper is FlaxJsObject) temporary.add(wrapper);
@@ -310,7 +326,7 @@ extension _ObjectCalls on _Session {
   }
 
   void validateDeferredObject(FlaxJsObject input, FlaxTypeRef type) {
-    if (type.deferredFactories.isEmpty) return;
+    if (_deferredFactories(type).isEmpty) return;
     final info = helper('deferredObject').call([input]);
     if (info is FlaxJsNull) return;
     if (info is! FlaxJsObject) {
@@ -321,9 +337,8 @@ extension _ObjectCalls on _Session {
       final materializer = info.getProperty('materializer');
       try {
         if (materializer is! FlaxJsString ||
-            !type.deferredFactories.values.any(
-              (binding) => binding.id == materializer.value,
-            )) {
+            !_deferredFactories(type).values
+                .any((binding) => binding.id == materializer.value)) {
           throw ArgumentError('Deferred Dart object type mismatch');
         }
       } finally {
@@ -362,7 +377,7 @@ extension _ObjectCalls on _Session {
     FlaxJsObject input,
     FlaxTypeRef type,
   ) {
-    final binding = registry._types[type.id];
+    final binding = _typeBinding(type.id);
     if (binding is! FlaxObjectBinding) {
       throw ArgumentError('Unknown deferred Dart object type');
     }
@@ -377,10 +392,11 @@ extension _ObjectCalls on _Session {
     try {
       final deferredType = _textProperty(info, 'type');
       final factory = _textProperty(info, 'factory');
-      if (deferredType != type.id) {
+      final owner = _specializedOwners[type.id] ?? type.id;
+      if (deferredType != type.id && deferredType != owner) {
         throw ArgumentError('Incompatible deferred Dart object');
       }
-      final materializer = type.deferredFactories[factory];
+      final materializer = _deferredFactories(type)[factory];
       if (materializer == null) {
         throw ArgumentError(
           'No concrete type is available for deferred factory',
@@ -440,6 +456,7 @@ extension _ObjectCalls on _Session {
                 FlaxJsString(binding.id),
                 FlaxJsNumber(object.id.toDouble()),
                 FlaxJsString(materializer.id),
+                FlaxJsString(owner!),
               ]),
             );
             // A deferred descriptor is an alias, not the canonical Dart peer.
@@ -464,7 +481,7 @@ extension _ObjectCalls on _Session {
 
   FlaxJsValue objectResult(Object value, FlaxTypeRef type) {
     if (value is String || value is bool || value is num) {
-      final binding = registry._types[type.id];
+      final binding = _typeBinding(type.id);
       if (binding is! FlaxObjectBinding ||
           binding.matches?.call(value) != true) {
         throw ArgumentError('Incompatible primitive result');
@@ -475,7 +492,7 @@ extension _ObjectCalls on _Session {
         (_contextIds[value] == null || _contextIds[value]!.retired)) {
       contextResult(value, registry._contextType.id).release();
     }
-    final selected = _objectBinding(value, type.id!);
+    final selected = _objectBinding(value, dartTypes._resolveRef(type).id!);
     final view = type.objectView;
     if (view != null && !view.matches(value)) {
       throw ArgumentError('Incompatible generic Dart object');
@@ -511,9 +528,9 @@ extension _ObjectCalls on _Session {
         ? remembered!
         : selected;
     if (view != null) object._signatureBinding ??= binding;
-    final sharedPrototype = _genericObjectBindings.containsKey(binding.id)
-        ? selected.id
-        : null;
+    final sharedPrototype =
+        _specializedOwners[binding.id] ??
+        (_genericObjectBindings.containsKey(binding.id) ? selected.id : null);
     return _peerResult(
       helper(sharedPrototype == null ? 'object' : 'objectView').call([
         FlaxJsString(binding.id),
@@ -617,7 +634,7 @@ extension _ObjectCalls on _Session {
         throw ArgumentError('Invalid proxy layout');
       }
       final binding = _objectView(
-        registry._types[(args[1] as FlaxJsString).value],
+        _typeBinding((args[1] as FlaxJsString).value),
       );
       if (binding is! FlaxObjectBinding || binding.proxy == null) {
         throw ArgumentError('Unknown proxy type');
@@ -642,7 +659,8 @@ extension _ObjectCalls on _Session {
               .length;
           final maximum =
               parameters.where((p) => p.positional).length +
-              (parameters.any((p) => !p.positional) ? 1 : 0);
+              (parameters.any((p) => !p.positional) ? 1 : 0) +
+              (member.hasCallContext ? 1 : 0);
           if (values[0] is! FlaxJsString ||
               (values[0] as FlaxJsString).value != member.name ||
               values[1] is! FlaxJsNumber ||
@@ -675,7 +693,7 @@ extension _ObjectCalls on _Session {
         throw ArgumentError('Invalid object constructor');
       }
       final binding = _objectView(
-        registry._types[(args[1] as FlaxJsString).value],
+        _typeBinding((args[1] as FlaxJsString).value),
       );
       if (binding is! FlaxObjectBinding) {
         throw ArgumentError('Unknown object type');
@@ -779,7 +797,7 @@ extension _ObjectCalls on _Session {
     String name,
   ) {
     final binding =
-        _objectView(registry._types[type]) ??
+        _objectView(_typeBinding(type)) ??
         _genericObjectBindings[type]?.binding ??
         _collectionBindings[type];
     if (binding == null) throw ArgumentError('Unknown object type');
@@ -798,6 +816,7 @@ extension _ObjectCalls on _Session {
         .where((g) => g.name == name)
         .firstOrNull;
     final nativeMethod =
+        _genericMethod(type, name) ??
         binding.instanceMethods[_collectionBindings.containsKey(type)
             ? collectionName
             : name];
@@ -820,9 +839,9 @@ extension _ObjectCalls on _Session {
         operation == 'call' && baseMethod != null)) {
       throw ArgumentError('Unknown object operation');
     }
-    final specialize = binding.memberViewOperations.contains(
-      '$operation:$name',
-    );
+    final specialize =
+        binding.memberViewOperations.contains('$operation:$name') ||
+        dartTypes.hasGenericClass(binding.id);
     return (id, args) {
       final object = _objects[id];
       if (object == null || !object.accepts(type)) {

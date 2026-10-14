@@ -2,12 +2,12 @@
 
 Current accepted contracts include explicit selection, public-provider manifests, stable
 wire identity, package-atomic generation and trusted compile-time dependencies. Binding
-selection format 2, package metadata format 2, current-only Manifest 18, UI protocol 24
-and native ABI 2 remain separate domains. Generic declarations use shared Dart owners
-while TypeScript preserves relationships; safe constructor specializations come from
-Analyzer-observed closed uses and supported concrete signatures. Ordinary objects and
-native Widgets select compiled targets through `dartType`; omitted arguments keep the
-shared bound default. See [Binding Generation](../architecture/bindings.md) and
+selection format 2, package metadata format 2, current-only Manifest 20, UI protocol 24
+and native ABI 2 remain separate domains. Generic declarations use one compiled adapter
+factory while TypeScript preserves relationships. The maintained engine instantiates
+those factories from real Dart Type handles on first use, without finite type-tuple
+catalogs. Omitted types retain the legal analyzer-resolved default. See
+[Binding Generation](../architecture/bindings.md) and fixed Flutter State variants under
 [ADR 0035](0035-generic-state-variants-and-protocol-21.md). Explicit top-level readonly
 selections use library-level exports with uncached `getX()` reads under
 [ADR 0027](0027-public-library-module-delivery.md). Mutable top-level reads and setters
@@ -25,10 +25,10 @@ composition and specialization. Package-scoped provider selection is defined by
 the five/six-parameter hybrid described in
 [Binding Generation](../architecture/bindings.md).
 
-| Decision                                          | Evidence required before choosing                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| ------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| General mixin composition beyond State variants   | Revisit only with concrete demand for applying arbitrary mixins to non-State owners; fixed analyzer-validated State variants are implemented                                                                                                                                                                                                                                                                                                                                                 |
-| Broader generic runtime specialization (deferred) | Revisit only with concrete SDK/API demand. Current scope excludes arbitrary uncompiled type combinations, callback/Record type-token composition, whole-graph inference, generalized deferred-factory inference and generic Widget-interface declarations. Equal-shape ordinary object/native Widget constructors use explicit compiled type selection. Ordinary higher-rank callbacks with erasable bounds remain supported; concrete generic Extension specialization remains unsupported. |
+| Decision                                          | Evidence required before choosing                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| General mixin composition beyond State variants   | Revisit only with concrete demand for applying arbitrary mixins to non-State owners; fixed analyzer-validated State variants are implemented                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Broader generic runtime specialization (deferred) | Revisit only with concrete SDK/API demand. Real Type handles remove finite type-tuple limits for bound declarations. Current scope excludes unknown callback/Record layouts, public higher-rank type-token composition, whole-graph inference, generalized deferred-factory inference and generic Widget-interface declarations. Equal-shape ordinary object/native Widget constructors use explicit checked type selection. Ordinary higher-rank callbacks with erasable bounds remain supported; concrete generic Extension specialization remains unsupported. |
 
 A proposed Core, Material, Cupertino or third-party slice is not implemented until its
 selection, generation and actual behavior are verified. Record a durable task only when

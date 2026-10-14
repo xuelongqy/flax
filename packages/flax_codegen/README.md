@@ -40,7 +40,7 @@ dart run flax_codegen generate --library package:foo/foo.dart
 
 `<direct-yaml>` must be an explicit direct child of the package `bindings/` directory.
 The CLI discovers sibling binding configs in that directory, resolves current-only
-Manifest 18 dependency projections through the package config, and (for `generate`)
+Manifest 20 dependency projections through the package config, and (for `generate`)
 writes `lib/...`, `js/...`, and `bindings/manifest.json` below the owning package. The
 old `dart run flax_codegen [--check] <config>` form is not supported.
 
@@ -147,9 +147,10 @@ Context/State metadata includes actual Dart type checks. See
 Declarations depending on a skipped runtime type are also skipped. Generic construction
 uses the shared `dartType` selector for ordinary objects and native Widget objects. The
 bare export constructs the legal shared default owner; `dartType(Export, ...)` selects
-an already compiled concrete owner. Equal JS shapes, empty collections, optional inputs
-and unused type parameters need no input guessing. Cross-barrel arbitration and concrete
-generic Extension receivers remain deferred. See the
+an actual Dart owner through the maintained engine. Equal JS shapes, empty collections,
+optional inputs and unused type parameters need no input guessing. Cross-barrel
+arbitration remains deferred. Named extension views reuse the same generic call factory
+and ordinary receiver conversion. See the
 [Dart type selection contract](../../docs/architecture/bindings.md#dart-type-selection).
 
 Most packages need no binding YAML in automatic mode. If analyzer types cannot express a
@@ -221,37 +222,51 @@ of allowing a TypeScript type argument to select an uncompiled Dart target. Comp
 Dart-equivalent inference is not required. Callback rejection diagnostics name the
 unsupported parameter or result position, including nested callback signatures.
 
-Existing analyzer-evidenced direct scalar inputs retain their bounded String/safe-int
-compiled pair. Choosing a target still requires `dartType`; input values do not select
-it.
-
-Constructor targets come from Analyzer-observed closed uses and configured signatures,
-with bounds validated before generation. Selection is separate from business arguments:
+Bare constructors retain their existing analyzer-evidenced default dispatch. Explicit
+selection uses real Dart Type handles and one compiled generic factory per declaration,
+without emitting combinations of type arguments. Selection is separate from business
+arguments:
 
 ```ts
 import { dartType, dartTypes, asDart } from '@flax/core/bindings';
 
-const StringBag = dartType(Bag, dartTypes.string);
+const StringBag = Bag.$type(dartTypes.string);
 const strings = StringBag([]); // Bag<String>
 StringBag.named({ items: [] }); // named Dart constructor/arguments
 StringBag.labeled([], { capacity: 20 }); // mixed positional/named arguments
-const NestedBag = dartType(Bag, dartTypes.list(dartTypes.string));
+const NestedBag = Bag.$type(dartTypes.list(dartTypes.string));
 NestedBag([['a'], []]); // Bag<List<String>>
-const ObjectBag = dartType(Bag, StringBag);
+const ObjectBag = Bag.$type(StringBag);
 ObjectBag([strings]); // Bag<Bag<String>>
 asDart(strings, StringBag); // checked view of the same Dart object
 Bag(['a', 1, null]); // shared default, normally Bag<Object?>
+Bag.$type() === Bag;
+dartType(Bag, dartTypes.string) === StringBag; // same cached handle
 ```
 
-These calls require the corresponding Dart class signatures and compiled targets. Type
-descriptors compose List, Map, Set, Iterable and nullability; generated class tokens
-represent their actual compiled owner. `dartTypes.int`, `.double` and `.num` preserve
-Dart identity even though all three expose TypeScript `number`. Unsupported/uncompiled
-combinations fail before construction. Passing no type selects the analyzer-validated
-bound default; it does not infer a type from array contents or from a TypeScript type
-argument. Explicit class `typeArguments` still fixes a single owner at generation time.
-When a legal bound default has no composable type description, its default construction
-and checked casts still work, and supported concrete targets remain selectable.
+Generic class exports share one non-enumerable `$type` function installed during
+registration. Generated factories reuse the common type signature; proxy classes only
+declare the static member, without emitting its implementation. This preserves their
+existing prototypes, inheritance, overrides and `super`. Select from the original
+generated export before subclassing. JS-only subclasses are not additional Dart generic
+templates. `$type` is reserved on generic exports: explicit conflicting static members
+or named constructors fail, while automatic selection reports and skips the conflict.
+Non-generic Dart members with that name remain ordinary bindings. Generic enums register
+the selector before their exports are frozen. Method/function selection still uses
+`dartType`; TS build-time generic conversion is not implemented.
+
+These calls require a bound Dart declaration and the maintained engine, not a catalog of
+closed types. Descriptors compose List, Map, Set, Iterable and nullability. Class tokens
+and `dartTypes.of(nativeValue)` carry actual Dart type identities; display names are
+only diagnostics. String, bool, int, double, num and Object tokens keep their Dart
+identity. TypeScript still represents Dart numeric values as `number`; exact numeric
+bounds are checked by the engine. Instance tokens read the real VM type without invoking
+`runtimeType`. Their TypeScript view preserves native binding members; it does not claim
+extra members of a JS subclass sharing that Dart proxy class. JS identity, overrides and
+`super` remain unchanged. First use validates arity and Dart bounds and caches the typed
+adapter. Passing no types keeps the declaration's configured/default owner. TS type
+arguments do not select Dart types. Explicit class `typeArguments` sets the default and
+does not restrict subsequent `dartType` selection.
 
 Select explicitly when Dart behavior depends on the runtime type argument. For example,
 `const StringKey = dartType(ValueKey, dartTypes.string); StringKey('row')` preserves
@@ -261,16 +276,17 @@ shared `ValueKey<Object?>` owner and does not infer String from its value.
 The selected handle shares the original prototype and static members. Ordinary object
 factories remain callable without `new`. Configured `proxy: extends` handles support JS
 subclasses, private fields, overrides and `super`, with the selected concrete Dart
-constructor and callback conversion. Intrinsic Stream, enum, Route/Page adapter and
-State-variant construction retain their existing APIs; `dartType` does not introduce new
-constructor roles for those exports. Higher-rank callback and data-conversion boundaries
-remain checked by the ordinary converter.
+constructor and callback conversion. Intrinsic Stream, enum named factory and Route/Page
+selections reuse their existing construction roles. Context/State reference tokens
+remain reference-only; JS State variants retain their component lifecycle API.
+Higher-rank callback and data-conversion boundaries remain checked by the ordinary
+converter.
 
-Type arguments use existing `DartInput<T>` conversion, so JS arrays/Maps/Sets and
-compatible native collection references retain the established behavior. An incompatible
-Dart reference cannot be narrowed by copying. Missing, extra or invalid business
-arguments, and unavailable type tokens, still fail. No engine changes or new YAML/CLI
-configuration are required. See the
+Generic inputs accept the selected native value or its existing `DartInput<T>` form,
+including native Widgets, JS arrays/Maps/Sets and compatible native collection
+references. An incompatible Dart reference cannot be narrowed by copying. Missing, extra
+or invalid business arguments, and unavailable type tokens, still fail. Internal engine
+binding extension 6 is required. No new YAML/CLI configuration is required. See the
 [Dart/TypeScript regression](test/dart_types_test.dart),
 [nested target regression](test/nested_generic_constructors_test.dart) and
 [nested input regression](test/nested_constructor_inputs_test.dart).
@@ -310,20 +326,18 @@ by signature: repeated conversion through the same signature reuses its wrapper,
 different signatures may produce wrappers that are not `===`. A `num` callback view
 accepts `1.5`; an `int` callback view of that same Dart object rejects it. Registering
 or reading another view never replaces this contract. Erased round-trips may reuse an
-already known view; they cannot infer a previously unknown callback signature. Generic
-type arguments remain erased in `instanceof` and `asDart` type tokens.
+already known view; they cannot infer a previously unknown callback signature. Selected
+generic arguments are checked by Dart for both `instanceof` and `asDart`.
 
 Ordinary member access still uses one cached operation invocation. No JS class or
 additional heap scanner is generated per signature, and no new GC ownership is added.
-The additive `generic-member-views` capability rejects older runtimes. Manifest 18, UI
+The additive `generic-member-views` capability rejects older runtimes. Manifest 20, UI
 protocol 24 and native ABI 2 stay unchanged; conversion metadata is derived from the
 existing model. Dart type checks validate values without scanning collection elements.
 
-Each root signature may discover at most 64 new member views. Larger finite closures and
-unbounded declarations such as `Growing<T>.next: Growing<List<T>>` fail with an explicit
-expansion-limit error. Ordinary self references such as `Cell<T>.self: Cell<T>` and
-finite shifts such as `Flip<A, B>.next: Flip<List<int>, A>` keep their declared
-conversion.
+Metadata is generated lazily from the real Type. Recursive member chains materialize
+only the views accessed; neither finite closures nor growing type arguments require
+pre-generated view catalogs.
 
 UI protocol 24 expands selected inherited instance surfaces before emission and
 separates ordinary Object interop from explicitly selected `data` positions. Enum
@@ -337,7 +351,7 @@ frozen value objects: `Status.ready.label`, `Status.ready.format('hello')` and
 `Status.fromCode(200)`. There is no `new Status`, subclass or proxy. One shared
 prototype serves all values; final primitive fields cache their first real Dart read.
 Other members retain normal typed dispatch and GC. Generic constants preserve their
-concrete arguments, including across Manifest 18 and dependency providers. Generic named
+concrete arguments, including across Manifest 20 and dependency providers. Generic named
 factories use the existing constructor specialization rules; `values` preserves each
 constant's type independently of factory configuration. `types: [Status]` remains a
 constants-only selection. See
@@ -384,7 +398,7 @@ Aliases reuse existing callback and collection conversions and create no runtime
 constructor or additional wire identity. Explicit TS type arguments are supported;
 matching all Dart inference is not required. Generic callbacks retain bound erasure and
 concrete-use-site result validation. Unsupported targets, recursive or unbound callback
-bounds, and export-name collisions fail explicitly. Manifest 18 preserves alias origins,
+bounds, and export-name collisions fail explicitly. Manifest 20 preserves alias origins,
 parameters and targets across packages. See
 [ADR 0035](../../docs/decisions/0035-generic-state-variants-and-protocol-21.md).
 Complete Dart type-system coverage remains separate work.
@@ -393,7 +407,7 @@ Records are structural values with no wire ID or session identity. Generated Typ
 uses readonly object fields (`$1`, `$2`, ... for positional fields plus named fields),
 while Dart conversion reconstructs real Records and recursively reuses the existing
 conversion rules for nested callbacks, collections, Futures and provider-owned objects.
-Manifest 18 encodes Record fields and all current recursive type metadata.
+Manifest 20 encodes Record fields and all current recursive type metadata.
 
 Style and Theme selections reuse object, static-member and Widget generation. Optional
 named TS inputs explicitly include undefined for exactOptionalPropertyTypes. An
@@ -490,7 +504,7 @@ See
 Widget interfaces use `kind: widgetInterface` and `widgetInterfaces` selections. Hosts
 generate real implements clauses and native getter/setter/method forwarding, including
 generic methods and BuildContext signatures. Native members stay outside JS conversion
-and are recorded in Manifest 18. Generic interface declarations remain deferred.
+and are recorded in Manifest 20. Generic interface declarations remain deferred.
 Interface Widgets reject direct bindings but accept ordinary constructor callbacks.
 Their fixed native configurations keep original closures; nested child Widgets retain
 normal bindings and mounted subscriptions. Cross-module fixtures compile both Dart and
@@ -534,7 +548,7 @@ Reads are lazy, invalid writes fail before invoking Dart, and nullable setters a
 `null` but reject `undefined`. Static/global values belong to the Dart application;
 closing a session does not reset them or keep a stored Context/State mounted.
 Provider-owned declarations reuse the provider's public module without registering
-twice. Manifest 18 records source identity, read/write operations and public-library
+twice. Manifest 20 records source identity, read/write operations and public-library
 routing. See
 [readonly generation](../../docs/architecture/bindings.md#public-libraries-and-top-level-readonly-declarations)
 and [ADR 0027](../../docs/decisions/0027-public-library-module-delivery.md).
@@ -547,7 +561,7 @@ writes use the same function channel as top-level declarations; module import do
 read state. Const/final/late-final writes, inherited statics, unsupported conversions
 and generated `setX` export collisions are rejected. Automatic selection skips
 conflicting writes and reports the reason. Static state belongs to the application;
-closing a session does not reset it. Manifest 18 records class-qualified read/write
+closing a session does not reset it. Manifest 20 records class-qualified read/write
 operation IDs and provider capabilities. See
 [static properties](../../docs/architecture/bindings.md#class-static-properties).
 
@@ -566,7 +580,7 @@ Widget results, native fallback and explicit super calls; Dart can retain and mo
 result later without an additional host or lease. Selected concrete extends
 getters/setters enforce inherited `@mustCallSuper`, with separate read/write and nested
 invocation checks. Async getters require super before returning their Promise; nullable
-results and existing rejections retain the same rules. Manifest 18 preserves
+results and existing rejections retain the same rules. Manifest 20 preserves
 `proxy.mustCallSuperAccessors` through providers. Regenerate all providers and consumers
 together; previous formats are rejected. See
 [proxy properties](../../docs/architecture/proxy-properties.md).
@@ -627,8 +641,9 @@ sentinel and direct call branches so Dart and JS defaults execute at their real 
 sites. TS retains generic bounds; runtime calls erase them to analyzer-resolved
 supported bounds and check incoming generic results against Dart's current type
 parameter. Public fully closed bounds retain nested generic arguments and nullability.
-Dependent or recursive bounds that still contain unresolved type parameters fail
-generation unless an explicit legal specialization is selected.
+Acyclic bounds within one declaration resolve in dependency order, including forward
+references, nested collections and nullability. Recursive bounds and open captured owner
+bounds still require an explicit legal specialization.
 
 Ordinary instance and static generic methods automatically use the same bound resolution
 as top-level functions and callbacks. `T echo<T>(T value)` uses one Dart `Object?` call
@@ -636,15 +651,39 @@ target while TypeScript preserves the input/result relationship through `DartOut
 closed bounds such as `num` or `List<String>` use their existing typed conversion. Known
 concrete owner member views specialize the class parameters without capturing an
 independent method parameter with the same name. Inherited methods, enums and JS proxy
-overrides retain those scopes. No per-JS-type generated branches or runtime type tokens
-are added. This is bound erasure, not Dart runtime inference:
-`wrap<T>(T value) => <T>[value]` creates a `List<Object?>` unless `methodTypeArguments`
-selects a concrete Dart argument. Calls that depend on `T` itself, such as a runtime
-type test or typed allocation, use that selected Dart argument. Recursive/dependent
-bounds that remain open still require explicit legal arguments. Static generic factories
+overrides retain those scopes. Bare calls retain one bound target. The shared `dartType`
+selector instantiates the declaration with actual Dart Types without inspecting JS
+values. Bare calls use bound erasure, not Dart runtime inference:
+`wrap<T>(T value) => <T>[value]` creates a `List<Object?>` unless
+`dartType(object, 'wrap', dartTypes.string)` or `methodTypeArguments` selects a concrete
+Dart argument. Calls that depend on `T` itself, such as a runtime type test or typed
+allocation, use that selected Dart argument. Acyclic bounds such as
+`T extends num, U extends T` resolve automatically; recursive or captured owner bounds
+that remain open still require explicit legal arguments. Static generic factories
 returning nominal generic objects retain the existing concrete materialization contract
 or require explicit method arguments; ordinary method erasure does not replace it. See
 the [generic method contract](../../docs/architecture/bindings.md#generic-methods).
+
+Generic call selection uses `dartType(instance, 'method', ...types)` for a cached bound
+call, `dartType(Class, 'method', ...types).call(instance, ...args)` for a shared class
+entry, and `dartType(function, ...types)` for static/top-level functions. Omitted tokens
+keep the ordinary bound default. Targets reuse checked conversion and the real Dart
+virtual method. The engine checks actual type arguments at first use and caches the
+typed adapter. Call targets reuse member views without pre-generating type tuples. The
+engine checks actual type arguments and instantiates one compiled factory, including
+owner-dependent methods and nested types. Named extension receiver selection supplies
+owner types followed by method types; enum instance selection supplies method types
+only.
+
+JS generic overrides can accept a final optional `FlaxGenericCall<F>` context. Its
+`super` function captures this invocation's actual Dart type arguments and receiver; use
+`call ? call.super(value) : super.method(value)`. Keeping that context across `await` is
+supported, including concurrent invocations with different types. Direct JS calls retain
+ordinary `super` behavior. Omitting the context in a reified override does not preserve
+typed allocation automatically, and `mustCallSuper` checks remain active. See the
+[generic call contract](../../docs/architecture/bindings.md#generic-call-selectors-and-js-super).
+Manifest 20 records call targets and `generic-call-types` gates older frameworks; the UI
+protocol, native ABI and selection formats remain unchanged.
 
 Generic outputs describe the existing bridge conversion: `echo(['a'])` returns a
 `DartList<string>`, so use `.get(0)` or explicitly copy with `.toArray().map(...)`.
@@ -694,12 +733,12 @@ static methods/getters. Creating a view does not call Dart or allocate a Dart ob
 views share their methods. Context, Widget and other supported receiver, argument and
 result types reuse ordinary binding conversion and lifetime checks. Generic
 declarations/members and legal Dart operators use the same function call channel. Dart
-always invokes the explicit named extension override. Manifest 18 and operation IDs are
+always invokes the explicit named extension override. Manifest 20 and operation IDs are
 unchanged; regenerate provider and consumer packages together when replacing the
 previous receiver-first API. See the
 [extension binding contract](../../docs/architecture/bindings.md#extension-declarations).
 
-Generic bounds can refer to unbound interfaces through Manifest 18 type-only references.
+Generic bounds can refer to unbound interfaces through Manifest 20 type-only references.
 Explicit recursive/dependent class and method specializations keep Dart subtype checks;
 TS retains nominal source identity and generic arguments without exposing bound members.
 Generic aliases need no runtime erasure when their bounds are type-only. Ordinary values
@@ -746,7 +785,7 @@ each mount must return a fresh JS State. Unoverridden factories preserve native 
 State variants still require a compatible Dart State type; a variant composed for
 `State<StatefulWidget>` cannot impersonate `State<ConcreteWidget>`.
 
-Manifest 18 requires `native-widget-proxies`; selection format 2 and native ABI 2 remain
+Manifest 20 requires `native-widget-proxies`; selection format 2 and native ABI 2 remain
 unchanged. UI protocol 24 requires regeneration of older generated modules. Generated
 proxies share member metadata and retain one actual JS receiver peer per Dart instance.
 Current lookup preserves private/arrow fields, inheritance and later member replacement.

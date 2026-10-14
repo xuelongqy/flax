@@ -315,12 +315,44 @@ const cupertinoBindings = FlaxBindingModule(
   ],
   stateVariants: [],
   records: _recordTypes,
+  dartTypes: [
+    FlaxDartClassTemplate(
+      "flax.cupertino/cupertino#type:CupertinoApp",
+      api.CupertinoApp,
+      "widget",
+    ),
+    FlaxDartClassTemplate(
+      "flax.cupertino/cupertino#type:CupertinoPageScaffold",
+      api.CupertinoPageScaffold,
+      "widget",
+    ),
+    FlaxDartClassTemplate(
+      "flax.cupertino/cupertino#type:CupertinoButton",
+      api.CupertinoButton,
+      "widget",
+    ),
+    FlaxDartClassTemplate(
+      "flax.cupertino/cupertino#type:CupertinoThemeData",
+      api.CupertinoThemeData,
+      "object",
+    ),
+    FlaxDartClassTemplate(
+      "flax.cupertino/cupertino#type:ObstructingPreferredSizeWidget",
+      api.ObstructingPreferredSizeWidget,
+      "widget",
+    ),
+    FlaxDartClassTemplate(
+      "flax.cupertino/cupertino#type:CupertinoNavigationBar",
+      api.CupertinoNavigationBar,
+      "widget",
+    ),
+  ],
+  dartShapes: _flaxDartShapes,
 );
 bool _isCupertinoApp(Object value) => value is api.CupertinoApp;
 
 class _CupertinoAppHost extends FlaxWidgetHost {
   _CupertinoAppHost(super.node);
-
   @override
   api1.Widget buildNative(Map<String, Object?> values) =>
       _createCupertinoApp(node.ctor, values);
@@ -346,7 +378,6 @@ bool _isCupertinoPageScaffold(Object value) =>
 
 class _CupertinoPageScaffoldHost extends FlaxWidgetHost {
   _CupertinoPageScaffoldHost(super.node);
-
   @override
   api1.Widget buildNative(Map<String, Object?> values) =>
       _createCupertinoPageScaffold(node.ctor, values);
@@ -375,7 +406,6 @@ bool _isCupertinoButton(Object value) => value is api.CupertinoButton;
 
 class _CupertinoButtonHost extends FlaxWidgetHost {
   _CupertinoButtonHost(super.node);
-
   @override
   api1.Widget buildNative(Map<String, Object?> values) =>
       _createCupertinoButton(node.ctor, values);
@@ -466,6 +496,40 @@ api1.Widget _createCupertinoNavigationBar(
   }
 }
 
+const _flaxDartShapes = <FlaxDartShapeTemplate>[
+  FlaxDartShapeTemplate("[\"callback\",[0,0,[],[]]]", _flaxShape0),
+];
+Function _flaxShape0<_Shape0>() => (FlaxDartTypes types, bool withinCallback) {
+  Object _callback0(FlaxCallback _flaxBridgeCallback) => () {
+    final positional = <Object?>[];
+    final named = <String, Object?>{};
+    return _flaxBridgeCallback.call(positional, named) as _Shape0;
+  };
+  bool _callback0Matches(Object value) => value is _Shape0 Function();
+  Object? _callback0Invoke(
+    Object function,
+    List<Object?> positional,
+    Map<String, Object?> named,
+  ) {
+    return (function as _Shape0 Function())();
+  }
+
+  return types.define<_Shape0 Function()>(
+    FlaxTypeRef(
+      "callback",
+      nullable: false,
+      callback: FlaxCallbackBinding(
+        [],
+        types.ref<_Shape0>(withinCallback: true),
+        _callback0,
+        id: types.key<_Shape0 Function()>(),
+        invoke: _callback0Invoke,
+        matches: _callback0Matches,
+      ),
+    ),
+    withinCallback: withinCallback,
+  );
+};
 Object _callback0(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};

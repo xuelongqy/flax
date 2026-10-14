@@ -27,6 +27,11 @@
         {
           "moduleId": "flax.core/flutter",
           "uiProtocol": 24,
+          "requiredCapabilities": [
+            "generic-member-views",
+            "instance-checks",
+            "native-widget-proxies"
+          ],
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -262,6 +267,11 @@
         {
           "moduleId": "flax.core/flutter",
           "uiProtocol": 24,
+          "requiredCapabilities": [
+            "generic-member-views",
+            "instance-checks",
+            "native-widget-proxies"
+          ],
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -497,6 +507,11 @@
         {
           "moduleId": "flax.core/flutter",
           "uiProtocol": 24,
+          "requiredCapabilities": [
+            "generic-member-views",
+            "instance-checks",
+            "native-widget-proxies"
+          ],
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -732,6 +747,11 @@
         {
           "moduleId": "flax.core/flutter",
           "uiProtocol": 24,
+          "requiredCapabilities": [
+            "generic-member-views",
+            "instance-checks",
+            "native-widget-proxies"
+          ],
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -967,6 +987,11 @@
         {
           "moduleId": "flax.core/flutter",
           "uiProtocol": 24,
+          "requiredCapabilities": [
+            "generic-member-views",
+            "instance-checks",
+            "native-widget-proxies"
+          ],
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -1202,6 +1227,11 @@
         {
           "moduleId": "flax.core/flutter",
           "uiProtocol": 24,
+          "requiredCapabilities": [
+            "generic-member-views",
+            "instance-checks",
+            "native-widget-proxies"
+          ],
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -1437,6 +1467,11 @@
         {
           "moduleId": "flax.core/flutter",
           "uiProtocol": 24,
+          "requiredCapabilities": [
+            "generic-member-views",
+            "instance-checks",
+            "native-widget-proxies"
+          ],
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -1672,6 +1707,11 @@
         {
           "moduleId": "flax.core/flutter",
           "uiProtocol": 24,
+          "requiredCapabilities": [
+            "generic-member-views",
+            "instance-checks",
+            "native-widget-proxies"
+          ],
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -1908,6 +1948,11 @@
         {
           "moduleId": "flax.core/components",
           "uiProtocol": 24,
+          "requiredCapabilities": [
+            "generic-member-views",
+            "instance-checks",
+            "native-widget-proxies"
+          ],
           "types": [
             "flax.core/components#type:State",
             "flax.core/components#type:StatefulWidget"
@@ -1917,6 +1962,11 @@
         {
           "moduleId": "flax.core/flutter",
           "uiProtocol": 24,
+          "requiredCapabilities": [
+            "generic-member-views",
+            "instance-checks",
+            "native-widget-proxies"
+          ],
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",

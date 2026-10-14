@@ -100,6 +100,12 @@ typedef FlaxJsHostFunction = FlaxJsValue Function(
 );
 
 abstract class FlaxJsRuntime {
+  /// Internal maintained-engine Type operations. All handles stay in Dart.
+  Type dartInstanceType(Object value);
+  List<Object?> dartTypeParts(Type type);
+  Type nullableDartType(Type type);
+  Function instantiateDartClosure(Function factory, List<Type> types);
+
   FlaxJsValue evaluate(String source, {String sourceUrl = 'flax:eval'});
   FlaxJsValue getGlobal(String name);
 

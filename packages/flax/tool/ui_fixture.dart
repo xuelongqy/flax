@@ -83,7 +83,10 @@ Future<void> main() async {
     interopSelection,
     core,
     rawToWire,
-    functions: enumFunctions,
+    functions: {
+      ...enumFunctions,
+      'codegenWrapTop': const FlaxCodegenFunctionSelection(['value']),
+    },
     typedefs: [
       'CodegenOnChanged',
       'CodegenNames',

@@ -63,7 +63,22 @@ class CodegenGenericMethods {
   }
 
   T? optional<T>([T? value]) => value;
+  T? named<T>({T? value}) => value;
+  @mustCallSuper
+  Future<T> guarded<T>(T value) async => value;
+  U dependent<T extends num, U extends T>(U value) => value;
   static T numeric<T extends num>(T value) => value;
+  static List<T> wrapStatic<T>(T value) => [value];
+}
+
+List<T> codegenWrapTop<T>(T value) => [value];
+
+class CodegenDependentBox<T extends num, U extends T> {
+  CodegenDependentBox(this.first, this.second);
+  final T first;
+  final U second;
+  String get typeName => '$T/$U';
+  num add(num value) => second + value;
 }
 
 final class CodegenExplicitNestedBox<T> {

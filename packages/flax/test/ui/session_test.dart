@@ -7,9 +7,9 @@ import '../support/harness.dart' show registry;
 import '../support/runtime_tracker.dart';
 
 void main() {
-  test(
+  testWidgets(
     'closing an unloaded session is idempotent and never creates an engine',
-    () async {
+    (_) async {
       var created = false;
       final session = FlaxSession(
         createRuntime: () {

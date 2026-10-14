@@ -135,7 +135,7 @@ extension _MemberCalls on _Session {
     String operation,
     String name,
   ) {
-    final definition = registry._functions[type];
+    final definition = _functionBindings[type];
     if (definition == null || operation != 'call' || name.isNotEmpty) {
       throw ArgumentError('Unknown top-level function');
     }
@@ -217,7 +217,7 @@ extension _MemberCalls on _Session {
     String operation,
     String name,
   ) {
-    final method = registry._types[type]?.methods[name];
+    final method = _typeBinding(type)?.methods[name];
     if (method == null || operation != 'call') {
       throw ArgumentError('Unknown static method');
     }
@@ -296,6 +296,7 @@ extension _MemberCalls on _Session {
   }
 
   FlaxJsValue memberResult(Object? value, FlaxTypeRef type) {
+    type = dartTypes._resolveRef(type);
     if (type.kind == 'void') return const FlaxJsUndefined();
     if (type.kind == 'error') {
       return errorResult(value!, StackTrace.current);
@@ -339,7 +340,7 @@ extension _MemberCalls on _Session {
     }
     if (type.kind == 'widget') {
       checkWidgetType(value as Widget, type);
-      if (_objectView(registry._types[type.id]) != null) {
+      if (_objectView(_typeBinding(type.id)) != null) {
         return objectResult(
           value,
           FlaxTypeRef('object', id: type.id, objectView: type.objectView),
@@ -356,7 +357,7 @@ extension _MemberCalls on _Session {
     if (type.kind == 'state') return stateResult(value as State, type);
     if (type.kind == 'object') {
       if (value is Enum) {
-        final binding = registry._types[type.id];
+        final binding = _typeBinding(type.id);
         if (binding is! FlaxObjectBinding ||
             binding.matches?.call(value) != true) {
           throw ArgumentError('Incompatible Dart enum interface');
@@ -371,10 +372,15 @@ extension _MemberCalls on _Session {
   FlaxJsObject recordResult(Object value, FlaxTypeRef type) {
     final binding = type.record;
     if (binding == null) throw ArgumentError('Missing Record binding');
+    dartTypes._records[binding.signature] = type;
     final output = helper(
       'emptyRecord',
     ).call([FlaxJsString(binding.signature)]) as FlaxJsObject;
     try {
+      _releaseJs(
+        helper('recordDartType')
+            .call([output, dartTypes.handle(dartTypes.instanceType(value))]),
+      );
       for (final field in binding.fields) {
         FlaxJsValue? encoded;
         try {
@@ -398,7 +404,7 @@ extension _MemberCalls on _Session {
     String operation,
     String name,
   ) {
-    final binding = registry._types[type];
+    final binding = _typeBinding(type);
     if (binding is! FlaxContextBinding || operation != 'get') {
       throw ArgumentError('Unknown context operation');
     }
@@ -421,7 +427,7 @@ extension _MemberCalls on _Session {
     String operation,
     String name,
   ) {
-    final binding = registry._types[type];
+    final binding = _typeBinding(type);
     if (binding is! FlaxStateBinding) throw ArgumentError('Unknown State type');
     if (operation == 'get') {
       final getter = binding.getters.where((g) => g.name == name).firstOrNull;
@@ -429,33 +435,43 @@ extension _MemberCalls on _Session {
       return (id, args) {
         if (args.isNotEmpty) throw ArgumentError('Invalid State getter');
         final ref = _states[id];
-        if (ref != null && ref.type != type) {
+        if (ref != null &&
+            ref.type != type &&
+            _specializedOwners[ref.type] != type) {
           throw ArgumentError('Foreign State');
         }
         final state = ref?.mounted;
         if (name == 'mounted') return FlaxJsBoolean(state != null);
         if (state == null) throw StateError('Unmounted State');
-        return holdHostResult(memberResult(getter.read(state), getter.type));
+        final actual = _typeBinding(ref!.type) as FlaxStateBinding;
+        final selected = actual.getters.singleWhere((g) => g.name == name);
+        return holdHostResult(
+          memberResult(selected.read(state), selected.type),
+        );
       };
     }
-    final method = binding.instanceMethods[name];
+    final method = _genericMethod(type, name) ?? binding.instanceMethods[name];
     if (operation != 'call' || method == null) {
       throw ArgumentError('Unknown State method');
     }
     return (id, args) {
       final ref = _states[id];
       final state = ref?.mounted;
-      if (state == null || ref!.type != type) {
+      if (state == null ||
+          ref!.type != type && _specializedOwners[ref.type] != type) {
         throw StateError('Foreign or unmounted State');
       }
-      if (args.length > method.parameters.length) {
+      final actual = _typeBinding(ref.type) as FlaxStateBinding;
+      final selected =
+          _genericMethod(type, name) ?? actual.instanceMethods[name]!;
+      if (args.length > selected.parameters.length) {
         throw ArgumentError('Too many State arguments');
       }
-      if (method.startsRoute) requireOpen();
+      if (selected.startsRoute) requireOpen();
       final values = <String, _Value>{};
       try {
-        for (var i = 0; i < method.parameters.length; i++) {
-          final p = method.parameters[i];
+        for (var i = 0; i < selected.parameters.length; i++) {
+          final p = selected.parameters[i];
           final input = i < args.length ? args[i] : const FlaxJsUndefined();
           if (input is FlaxJsUndefined) {
             if (p.required) {
@@ -468,13 +484,13 @@ extension _MemberCalls on _Session {
                 : decode(input, p.type);
           }
         }
-        for (final parameter in method.parameters) {
+        for (final parameter in selected.parameters) {
           final value = values[parameter.name];
           if (value == null) continue;
           value.escapeCallbacks();
           escapeWidget(value.data, parameter.type);
         }
-        final result = method.invoke(
+        final result = selected.invoke(
           state,
           values.map((k, v) => MapEntry(k, v.data)),
         );
@@ -483,7 +499,7 @@ extension _MemberCalls on _Session {
             lease._transfer();
           }
         }
-        return holdHostResult(memberResult(result, method.result));
+        return holdHostResult(memberResult(result, selected.result));
       } finally {
         for (final value in values.values.toList().reversed) {
           value.release();
@@ -494,7 +510,7 @@ extension _MemberCalls on _Session {
   }
 
   String enumName(Object value, FlaxTypeRef type) {
-    final definition = registry._types[type.id];
+    final definition = _typeBinding(type.id);
     if (definition is! FlaxEnumBinding) {
       throw ArgumentError('Unregistered enum: ${type.id}');
     }
@@ -503,10 +519,11 @@ extension _MemberCalls on _Session {
 
   FlaxJsObject enumResult(Object value, FlaxTypeRef type) {
     final name = enumName(value, type);
+    final id = _specializedOwners[type.id] ?? type.id!;
     final cached = _enums.putIfAbsent(
-      '${type.id}\n$name',
+      '$id\n$name',
       () =>
-          helper('enumValue').call([FlaxJsString(type.id!), FlaxJsString(name)])
+          helper('enumValue').call([FlaxJsString(id), FlaxJsString(name)])
               as FlaxJsObject,
     );
     // Return an independent handle; callers release results, not the cache.

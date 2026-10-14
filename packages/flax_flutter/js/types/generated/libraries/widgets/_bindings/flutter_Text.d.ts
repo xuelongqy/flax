@@ -17,6 +17,7 @@ export type TextDescription = WidgetDescription & {
     readonly type: "flax.core/flutter#type:Text";
 };
 export interface _TextNative extends _FlaxDartWidget {
+    readonly [_flaxDartTypeValue]: _TextNative;
     build(context: upstream5.BuildContext): Widget;
     get data(): string | null;
     get key(): upstream0.Key | null;

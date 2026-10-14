@@ -80,25 +80,25 @@ void main() {
 void main() {
   test('nested values keep concrete types and identity', () {
     final strings = <String>[];
-    final list = createTypedFixture(nested_constructorsBindings, 'ListBox', [['list', null, [['String', null, <Object?>[], false]], false]], '', {'value': strings}) as api.ListBox<List<String>>;
+    final list = createTypedFixture(_flaxClass_ListBox<List<String>>(), '', {'value': strings}) as api.ListBox<List<String>>;
     expect(list, isA<api.ListBox<List<String>>>());
     expect(identical(list.value, strings), isTrue);
-    final map = createTypedFixture(nested_constructorsBindings, 'MapBox', [['map', null, [['String', null, <Object?>[], false], ['list', null, [['int', null, <Object?>[], true]], false]], false]], '', {'value': <String, List<int?>>{'a': [1, null]}});
+    final map = createTypedFixture(_flaxClass_MapBox<Map<String, List<int?>>>(), '', {'value': <String, List<int?>>{'a': [1, null]}});
     expect(map, isA<api.MapBox<Map<String, List<int?>>>>());
-    final nullable = createTypedFixture(nested_constructorsBindings, 'NullableBox', [['list', null, [['String', null, <Object?>[], true]], true]], '', {'value': null});
+    final nullable = createTypedFixture(_flaxClass_NullableBox<List<String?>?>(), '', {'value': null});
     expect(nullable, isA<api.NullableBox<List<String?>?>>());
-    expect((createTypedFixture(nested_constructorsBindings, 'NullableBox', [['list', null, [['String', null, <Object?>[], true]], true]], '', {'value': <String?>[null]}) as api.NullableBox<List<String?>?>).value, [null]);
-    final optional = createTypedFixture(nested_constructorsBindings, 'OptionalBox', [['list', null, [['String', null, <Object?>[], false]], false]], '', {'value': null}) as api.OptionalBox<List<String>>;
-    final optionalView = __OptionalBoxMemberView(optional)!;
+    expect((createTypedFixture(_flaxClass_NullableBox<List<String?>?>(), '', {'value': <String?>[null]}) as api.NullableBox<List<String?>?>).value, [null]);
+    final optional = createTypedFixture(_flaxClass_OptionalBox<List<String>>(), '', {'value': null}) as api.OptionalBox<List<String>>;
+    final optionalView = typedFixtureMembers(_flaxClass_OptionalBox<List<String>>());
     expect(optionalView.getters['value']!.type.nullable, isTrue);
     expect(optionalView.getters['requiredValue']!.type.nullable, isFalse);
     expect(optionalView.setters['requiredValue']!.type.nullable, isFalse);
     optionalView.setters['requiredValue']!.write(optional, strings);
     expect(identical(optional.requiredValue, strings), isTrue);
     expect(() => optionalView.setters['requiredValue']!.write(optional, null), throwsA(isA<TypeError>()));
-    expect(__NullableBoxMemberView(nullable)!.getters['value']!.type.nullable, isTrue);
-    expect(() => createTypedFixture(nested_constructorsBindings, 'ListBox', [['list', null, [['String', null, <Object?>[], false]], false]], '', {'value': <int>[]}), throwsA(isA<TypeError>()));
-    expect(() => createTypedFixture(nested_constructorsBindings, 'MapBox', [['map', null, [['String', null, <Object?>[], false], ['list', null, [['int', null, <Object?>[], true]], false]], false]], '', {'value': <String, List<String>>{'a': ['bad']}}), throwsA(isA<TypeError>()));
+    expect(typedFixtureMembers(_flaxClass_NullableBox<List<String?>?>()).getters['value']!.type.nullable, isTrue);
+    expect(() => createTypedFixture(_flaxClass_ListBox<List<String>>(), '', {'value': <int>[]}), throwsA(isA<TypeError>()));
+    expect(() => createTypedFixture(_flaxClass_MapBox<Map<String, List<int?>>>(), '', {'value': <String, List<String>>{'a': ['bad']}}), throwsA(isA<TypeError>()));
   });
 }
 ''',
@@ -236,18 +236,18 @@ void main() {
 void main() {
   test('mixed targets preserve native identity and reject narrowing', () {
     final strings = <String>[];
-    final list = createTypedFixture(nested_constructorsBindings, 'MixedBox', [['list', null, [['String', null, <Object?>[], false]], false]], '', {'value': strings}) as api.MixedBox<List<String>>;
+    final list = createTypedFixture(_flaxClass_MixedBox<List<String>>(), '', {'value': strings}) as api.MixedBox<List<String>>;
     expect(identical(list.value, strings), isTrue);
-    expect(createTypedFixture(nested_constructorsBindings, 'MixedBox', [['String', null, <Object?>[], false]], '', {'value': 'a'}), isA<api.MixedBox<String>>());
-    expect(createTypedFixture(nested_constructorsBindings, 'MixedBox', [['int', null, <Object?>[], false]], '', {'value': 2}), isA<api.MixedBox<int>>());
-    expect(createTypedFixture(nested_constructorsBindings, 'MixedBox', [['set', null, [['int', null, <Object?>[], false]], false]], '', {'value': <int>{2}}), isA<api.MixedBox<Set<int>>>());
-    expect(createTypedFixture(nested_constructorsBindings, 'MixedBox', [['map', null, [['String', null, <Object?>[], false], ['list', null, [['int', null, <Object?>[], true]], false]], false]], '', {'value': <String, List<int?>>{'a': [null]}}), isA<api.MixedBox<Map<String, List<int?>>>>());
-    expect(() => createTypedFixture(nested_constructorsBindings, 'MixedBox', [['list', null, [['String', null, <Object?>[], false]], false]], '', {'value': <int>[]}), throwsA(isA<TypeError>()));
-    expect(() => createTypedFixture(nested_constructorsBindings, 'MixedBox', [['int', null, <Object?>[], false]], '', {'value': 1.5}), throwsA(isA<TypeError>()));
+    expect(createTypedFixture(_flaxClass_MixedBox<String>(), '', {'value': 'a'}), isA<api.MixedBox<String>>());
+    expect(createTypedFixture(_flaxClass_MixedBox<int>(), '', {'value': 2}), isA<api.MixedBox<int>>());
+    expect(createTypedFixture(_flaxClass_MixedBox<Set<int>>(), '', {'value': <int>{2}}), isA<api.MixedBox<Set<int>>>());
+    expect(createTypedFixture(_flaxClass_MixedBox<Map<String, List<int?>>>(), '', {'value': <String, List<int?>>{'a': [null]}}), isA<api.MixedBox<Map<String, List<int?>>>>());
+    expect(() => createTypedFixture(_flaxClass_MixedBox<List<String>>(), '', {'value': <int>[]}), throwsA(isA<TypeError>()));
+    expect(() => createTypedFixture(_flaxClass_MixedBox<int>(), '', {'value': 1.5}), throwsA(isA<TypeError>()));
     final record = (<List<String>>[strings],);
-    final recorded = createTypedFixture(nested_constructorsBindings, 'MixedBox', [['list', null, [['String', null, <Object?>[], false]], false]], '', {'value': strings, 'record': record}) as api.MixedBox<List<String>>;
+    final recorded = createTypedFixture(_flaxClass_MixedBox<List<String>>(), '', {'value': strings, 'record': record}) as api.MixedBox<List<String>>;
     expect(identical(recorded.record!.$1.single, strings), isTrue);
-    expect(() => createTypedFixture(nested_constructorsBindings, 'MixedBox', [['list', null, [['String', null, <Object?>[], false]], false]], '', {'value': strings, 'record': (<Object?>[strings],)}), throwsA(isA<TypeError>()));
+    expect(() => createTypedFixture(_flaxClass_MixedBox<List<String>>(), '', {'value': strings, 'record': (<Object?>[strings],)}), throwsA(isA<TypeError>()));
   });
 }
 ''',
@@ -266,7 +266,7 @@ ListBox(['a'], {record: {$1: [['a']]}});
 ListBox([2]);
 // @ts-expect-error Record fields retain the same concrete target
 ListBox(['a'], {record: {$1: [[2]]}});
-// @ts-expect-error the constructor has no boolean target
+// A new real Dart argument no longer needs a pre-generated target.
 dartType(MixedBox, dartTypes.bool)(true);
 ''',
       );
@@ -303,7 +303,7 @@ dartType(MixedBox, dartTypes.bool)(true);
       );
       expect(
         FlaxCodegenBindingEmitter([module]).dart(module),
-        contains('memberView:'),
+        contains('FlaxDartClassTemplate('),
       );
       await compileFixture(
         root.path,
@@ -314,11 +314,10 @@ void main() {
   test('native member views keep concrete conversions and shared methods', () async {
     final list = <String>['a'];
     final set = <String>{'a'};
-    final listBox = createTypedFixture(nested_constructorsBindings, 'BoundedIterableBox', [['list', null, [['String', null, <Object?>[], false]], false]], '', {'value': list}) as api.BoundedIterableBox<List<String>>;
-    final setBox = createTypedFixture(nested_constructorsBindings, 'BoundedIterableBox', [['set', null, [['String', null, <Object?>[], false]], false]], '', {'value': set}) as api.BoundedIterableBox<Set<String>>;
-    final binding = nested_constructorsBindings.types.whereType<FlaxObjectBinding>().singleWhere((binding) => binding.aliasOf == null);
-    final listView = binding.memberView!(listBox)!;
-    final setView = binding.memberView!(setBox)!;
+    final listBox = createTypedFixture(_flaxClass_BoundedIterableBox<List<String>>(), '', {'value': list}) as api.BoundedIterableBox<List<String>>;
+    final setBox = createTypedFixture(_flaxClass_BoundedIterableBox<Set<String>>(), '', {'value': set}) as api.BoundedIterableBox<Set<String>>;
+    final listView = typedFixtureMembers(_flaxClass_BoundedIterableBox<List<String>>());
+    final setView = typedFixtureMembers(_flaxClass_BoundedIterableBox<Set<String>>());
     expect(listView.getters['value']!.type.kind, 'list');
     expect(setView.getters['value']!.type.kind, 'set');
     expect(listView.getters['optional']!.type.nullable, isTrue);
@@ -340,11 +339,10 @@ void main() {
     setView.setters['value']!.write(setBox, set);
     expect(() => listView.setters['value']!.write(listBox, set), throwsA(isA<TypeError>()));
     expect(() => setView.instanceMethods['echo']!.invoke(setBox, {'value': list}), throwsA(isA<TypeError>()));
-    expect(listView.instanceMethods.containsKey('size'), isFalse);
-    expect(listView.instanceMethods.containsKey('shadow'), isFalse);
-    expect(binding.instanceMethods['size']!.invoke(listBox, {}), 1);
-    expect(binding.instanceMethods['shadow']!.invoke(setBox, {'value': 'a'}), 'a');
-    expect(binding.memberView!(api.BoundedIterableBox<Iterable<String>>(list)), isNull);
+    expect(listView.instanceMethods.containsKey('size'), isTrue);
+    expect(listView.instanceMethods.containsKey('shadow'), isTrue);
+    expect(listView.instanceMethods['size']!.invoke(listBox, {}), 1);
+    expect(setView.instanceMethods['shadow']!.invoke(setBox, {'value': 'a'}), 'a');
   });
 }
 ''',
@@ -658,10 +656,10 @@ void main() {
     final values = <String>['a'];
     Object? visited;
     void visit(Object? value) { visited = value; }
-    final list = createTypedFixture(nested_constructorsBindings, 'CallbackBox', [['list', null, [['String', null, <Object?>[], false]], false]], '', {'value': values, 'visit': visit}) as api.CallbackBox<List<String>>;
+    final list = createTypedFixture(_flaxClass_CallbackBox<List<String>>(), '', {'value': values, 'visit': visit}) as api.CallbackBox<List<String>>;
     list.visit!(values);
     expect(identical(visited, values), isTrue);
-    final text = createTypedFixture(nested_constructorsBindings, 'CallbackBox', [['String', null, <Object?>[], false]], '', {'value': 'a', 'visit': visit}) as api.CallbackBox<String>;
+    final text = createTypedFixture(_flaxClass_CallbackBox<String>(), '', {'value': 'a', 'visit': visit}) as api.CallbackBox<String>;
     text.visit!('a');
     expect(visited, 'a');
   });

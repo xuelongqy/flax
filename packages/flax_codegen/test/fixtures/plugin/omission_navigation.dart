@@ -58,9 +58,10 @@ class OmissionPage extends _OmissionPageBase {
       throw UnimplementedError();
 }
 
-FlaxPageRoute adaptOmissionPage(OmissionPage page) => _OmissionPageRoute(page);
+FlaxPageRoute<Object?> adaptOmissionPage(OmissionPage page) =>
+    _OmissionPageRoute(page);
 
-class _OmissionPageRoute extends FlaxPageRoute {
+class _OmissionPageRoute extends FlaxPageRoute<Object?> {
   _OmissionPageRoute(OmissionPage page) : super(page: page);
   @override
   Widget buildPage(

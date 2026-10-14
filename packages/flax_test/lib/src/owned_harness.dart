@@ -15,6 +15,9 @@ class FlaxOwnedTestHarness {
     void Function(FlaxObjectBinding binding, Object value)? onCreate,
   }) : runtime = FlaxTestRuntimeTracker(createRuntime()) {
     final memberViews = <FlaxObjectMemberView, FlaxObjectMemberView>{};
+    runtime.mapDartBinding = (binding) => binding is FlaxObjectBinding
+        ? _trackBinding(binding, memberViews, onCreate)
+        : binding;
     final modules = [...bindings.modules, ...extra]
         .map(
           (module) => FlaxBindingModule(
@@ -22,59 +25,7 @@ class FlaxOwnedTestHarness {
             [
               for (final type in module.types)
                 if (type is FlaxObjectBinding)
-                  FlaxObjectBinding(
-                    type.id,
-                    type.getters,
-                    _trackMethods(type, type.instanceMethods),
-                    constructors: type.constructors,
-                    create: (constructor, arguments) {
-                      final value = type.create(constructor, arguments);
-                      constructions.update(
-                        type.id,
-                        (count) => count + 1,
-                        ifAbsent: () => 1,
-                      );
-                      if (type.disposeMethod != null) created.add(value);
-                      onCreate?.call(type, value);
-                      return value;
-                    },
-                    disposeMethod: type.disposeMethod,
-                    aliasOf: type.aliasOf,
-                    matches: type.matches,
-                    nativeInput: type.nativeInput,
-                    methods: type.methods,
-                    staticGetters: type.staticGetters,
-                    listenerPairs: type.listenerPairs,
-                    setters: type.setters,
-                    supertypes: type.supertypes,
-                    proxy: type.proxy,
-                    memberViewOperations: type.memberViewOperations,
-                    collectionView: type.collectionView,
-                    memberView: type.memberView == null
-                        ? null
-                        : (value) {
-                            calls.update(
-                              '@memberView:${type.id}',
-                              (count) => count + 1,
-                              ifAbsent: () => 1,
-                            );
-                            final view = type.memberView!(value);
-                            return view == null
-                                ? null
-                                : memberViews.putIfAbsent(
-                                    view,
-                                    () => FlaxObjectMemberView(
-                                      getters: view.getters,
-                                      setters: view.setters,
-                                      collectionView: view.collectionView,
-                                      instanceMethods: _trackMethods(
-                                        type,
-                                        view.instanceMethods,
-                                      ),
-                                    ),
-                                  );
-                          },
-                  )
+                  _trackBinding(type, memberViews, onCreate)
                 else
                   type,
             ],
@@ -83,6 +34,8 @@ class FlaxOwnedTestHarness {
             uiProtocol: module.uiProtocol,
             requiredCapabilities: module.requiredCapabilities,
             functions: module.functions,
+            dartTypes: module.dartTypes,
+            dartShapes: module.dartShapes,
             records: module.records,
           ),
         )
@@ -100,6 +53,60 @@ class FlaxOwnedTestHarness {
       onError: (error, _) => errors.add(error),
     );
   }
+
+  FlaxObjectBinding _trackBinding(
+    FlaxObjectBinding type,
+    Map<FlaxObjectMemberView, FlaxObjectMemberView> memberViews,
+    void Function(FlaxObjectBinding, Object)? onCreate,
+  ) => FlaxObjectBinding(
+    type.id,
+    type.getters,
+    _trackMethods(type, type.instanceMethods),
+    constructors: type.constructors,
+    create: (constructor, arguments) {
+      final value = type.create(constructor, arguments);
+      constructions.update(type.id, (count) => count + 1, ifAbsent: () => 1);
+      if (type.disposeMethod != null) created.add(value);
+      onCreate?.call(type, value);
+      return value;
+    },
+    disposeMethod: type.disposeMethod,
+    aliasOf: type.aliasOf,
+    matches: type.matches,
+    nativeInput: type.nativeInput,
+    methods: type.methods,
+    staticGetters: type.staticGetters,
+    listenerPairs: type.listenerPairs,
+    setters: type.setters,
+    supertypes: type.supertypes,
+    proxy: type.proxy,
+    memberViewOperations: type.memberViewOperations,
+    collectionView: type.collectionView,
+    memberView: type.memberView == null
+        ? null
+        : (value) {
+            calls.update(
+              '@memberView:${type.id}',
+              (count) => count + 1,
+              ifAbsent: () => 1,
+            );
+            final view = type.memberView!(value);
+            return view == null
+                ? null
+                : memberViews.putIfAbsent(
+                    view,
+                    () => FlaxObjectMemberView(
+                      getters: view.getters,
+                      setters: view.setters,
+                      collectionView: view.collectionView,
+                      instanceMethods: _trackMethods(
+                        type,
+                        view.instanceMethods,
+                      ),
+                    ),
+                  );
+          },
+  );
 
   final FlaxTestRuntimeTracker runtime;
   final errors = <Object>[];
@@ -120,6 +127,8 @@ class FlaxOwnedTestHarness {
           return entry.value.invoke(receiver, args);
         },
         startsRoute: entry.value.startsRoute,
+        genericFactory: entry.value.genericFactory,
+        ownerTypes: entry.value.ownerTypes,
       ),
   };
   final constructions = <String, int>{};

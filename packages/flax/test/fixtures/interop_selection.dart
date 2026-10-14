@@ -124,9 +124,24 @@ const interopSelection = {
       'later': ['value'],
       'events': ['value'],
       'optional': ['value'],
+      'named': ['value'],
+      'guarded': ['value'],
+      'dependent': ['value'],
     },
     methods: {
       'numeric': ['value'],
+      'wrapStatic': ['value'],
+    },
+  ),
+  'CodegenDependentBox': FlaxCodegenClassSelection(
+    {
+      '': ['first', 'second'],
+    },
+    kind: 'object',
+    proxy: 'extends',
+    getters: ['first', 'second', 'typeName'],
+    instanceMethods: {
+      'add': ['value'],
     },
   ),
   'CodegenExplicitNestedBox': FlaxCodegenClassSelection(

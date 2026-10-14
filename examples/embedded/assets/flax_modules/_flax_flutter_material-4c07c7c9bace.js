@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/flutter/material","owner":"@flax/material-ui:dist/generated/libraries/material/index.js","version":"0.0.0","artifact":"41201856e9477f377c3781008b19e190427059d37ab93761ab08a3b069b5b92a","asset":"assets/flax_modules/_flax_flutter_material-4c07c7c9bace.js","package":"@flax/material-ui","source":"dist/generated/libraries/material/index.js","dependencies":{"@flax/core/bindings":"0.0.0","@flax/dart/core":"0.0.0","@flax/flutter/foundation":"0.0.0","@flax/flutter/services":"0.0.0","@flax/flutter/widgets":"0.0.0"},"bindings":[{"moduleId":"flax.material/material","uiProtocol":24,"types":["flax.material/material#type:AlertDialog","flax.material/material#type:AppBar","flax.material/material#type:Brightness","flax.material/material#type:ButtonStyle","flax.material/material#type:Card","flax.material/material#type:Checkbox","flax.material/material#type:CircularProgressIndicator","flax.material/material#type:ColorScheme","flax.material/material#type:Divider","flax.material/material#type:Drawer","flax.material/material#type:ElevatedButton","flax.material/material#type:FilledButton","flax.material/material#type:FloatingActionButton","flax.material/material#type:IconButton","flax.material/material#type:InkWell","flax.material/material#type:InputDecoration","flax.material/material#type:LinearProgressIndicator","flax.material/material#type:ListTile","flax.material/material#type:ListTileStyle","flax.material/material#type:Material","flax.material/material#type:MaterialApp","flax.material/material#type:MaterialPage","flax.material/material#type:MaterialPageRoute","flax.material/material#type:MaterialType","flax.material/material#type:NavigationBar","flax.material/material#type:NavigationDestination","flax.material/material#type:NavigationDestinationLabelBehavior","flax.material/material#type:OutlinedButton","flax.material/material#type:RefreshIndicator","flax.material/material#type:Scaffold","flax.material/material#type:Switch","flax.material/material#type:TextButton","flax.material/material#type:TextField","flax.material/material#type:TextInputAction","flax.material/material#type:TextTheme","flax.material/material#type:Theme","flax.material/material#type:ThemeData","flax.material/material#type:ThemeMode","flax.material/material#type:VerticalDivider","flax.material/material#type:VisualDensity"],"functions":["flax.material/material#function:showDialog","flax.material/material#read:VisualDensity.comfortable","flax.material/material#read:VisualDensity.compact","flax.material/material#read:VisualDensity.standard","flax.material/material#read:kTabScrollDuration"]}],"subpaths":["@flax/flutter/material/index"]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/flutter/material","owner":"@flax/material-ui:dist/generated/libraries/material/index.js","version":"0.0.0","artifact":"7e2a8f369e894528b4c50d7c1633c4c65655cbccfa9408640721a3a244ef8345","asset":"assets/flax_modules/_flax_flutter_material-4c07c7c9bace.js","package":"@flax/material-ui","source":"dist/generated/libraries/material/index.js","dependencies":{"@flax/core/bindings":"0.0.0","@flax/dart/core":"0.0.0","@flax/flutter/foundation":"0.0.0","@flax/flutter/services":"0.0.0","@flax/flutter/widgets":"0.0.0"},"bindings":[{"moduleId":"flax.material/material","uiProtocol":24,"requiredCapabilities":["generic-member-views","instance-checks","native-widget-proxies"],"types":["flax.material/material#type:AlertDialog","flax.material/material#type:AppBar","flax.material/material#type:Brightness","flax.material/material#type:ButtonStyle","flax.material/material#type:Card","flax.material/material#type:Checkbox","flax.material/material#type:CircularProgressIndicator","flax.material/material#type:ColorScheme","flax.material/material#type:Divider","flax.material/material#type:Drawer","flax.material/material#type:ElevatedButton","flax.material/material#type:FilledButton","flax.material/material#type:FloatingActionButton","flax.material/material#type:IconButton","flax.material/material#type:InkWell","flax.material/material#type:InputDecoration","flax.material/material#type:LinearProgressIndicator","flax.material/material#type:ListTile","flax.material/material#type:ListTileStyle","flax.material/material#type:Material","flax.material/material#type:MaterialApp","flax.material/material#type:MaterialPage","flax.material/material#type:MaterialPageRoute","flax.material/material#type:MaterialType","flax.material/material#type:NavigationBar","flax.material/material#type:NavigationDestination","flax.material/material#type:NavigationDestinationLabelBehavior","flax.material/material#type:OutlinedButton","flax.material/material#type:RefreshIndicator","flax.material/material#type:Scaffold","flax.material/material#type:Switch","flax.material/material#type:TextButton","flax.material/material#type:TextField","flax.material/material#type:TextInputAction","flax.material/material#type:TextTheme","flax.material/material#type:Theme","flax.material/material#type:ThemeData","flax.material/material#type:ThemeMode","flax.material/material#type:VerticalDivider","flax.material/material#type:VisualDensity"],"functions":["flax.material/material#function:showDialog","flax.material/material#read:VisualDensity.comfortable","flax.material/material#read:VisualDensity.compact","flax.material/material#read:VisualDensity.standard","flax.material/material#read:kTabScrollDuration"]}],"subpaths":["@flax/flutter/material/index"]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -63,7 +63,7 @@ __export(index_exports, {
   VisualDensity: () => VisualDensity,
   getKTabScrollDuration: () => getKTabScrollDuration,
   kToolbarHeight: () => kToolbarHeight,
-  showDialog: () => _flaxTopLevel_showDialog
+  showDialog: () => _flaxGeneric_showDialog
 });
 module.exports = __toCommonJS(index_exports);
 
@@ -92,7 +92,7 @@ function _flaxInstallBindingModule(moduleId, uiProtocol, requiredCapabilities) {
       throw new TypeError("requiredCapabilities must be sorted unique strings");
     }
     previous = capability;
-    if (capability !== "dart-type-tokens" && capability !== "generic-member-views" && capability !== "instance-checks" && capability !== "native-core-inputs" && capability !== "native-bigint" && capability !== "native-widget-proxies" && capability !== "shared-buffers" && capability !== "shared-uint8") {
+    if (capability !== "engine-type-handles" && capability !== "generic-call-types" && capability !== "dart-type-tokens" && capability !== "generic-member-views" && capability !== "instance-checks" && capability !== "native-core-inputs" && capability !== "native-bigint" && capability !== "native-widget-proxies" && capability !== "shared-buffers" && capability !== "shared-uint8") {
       throw new TypeError(`Unsupported binding capability ${capability}`);
     }
   }
@@ -124,13 +124,13 @@ function _flaxInstallBindingModule(moduleId, uiProtocol, requiredCapabilities) {
     invokeTopLevel: import_bindings.invokeTopLevel
   });
 }
-var materialBindingModule = _flaxInstallBindingModule("flax.material/material", 24, Object.freeze(["generic-member-views", "instance-checks", "native-widget-proxies"]));
+var materialBindingModule = _flaxInstallBindingModule("flax.material/material", 24, Object.freeze(["dart-type-tokens", "engine-type-handles", "generic-call-types", "generic-member-views", "instance-checks", "native-widget-proxies"]));
 var { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineDartTypes: _flaxDefineDartTypes, bindInstanceType: _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } = materialBindingModule;
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_VisualDensity.js
 var import_bindings3 = require("@flax/core/bindings");
 var _flaxMemberParameters0 = [{ "name": "horizontal", "required": false, "positional": false }, { "name": "vertical", "required": false, "positional": false }];
-defineObject("flax.material/material#type:VisualDensity", ["horizontal", "vertical"], [], (0, import_bindings2.bindingMethods)("flax.material/material#type:VisualDensity", "object", { "copyWith": _flaxMemberParameters0 }), []);
+defineObject("flax.material/material#type:VisualDensity", ["horizontal", "vertical"], [], (0, import_bindings2.bindingMethods)("flax.material/material#type:VisualDensity", "object", { "copyWith": _flaxMemberParameters0 }, {}), []);
 function _VisualDensityFactory(options = {}) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -147,12 +147,12 @@ Object.defineProperty(_VisualDensityFactory, "comfortable", { get: () => invokeT
 /* @__PURE__ */ (function(_VisualDensityFactory2) {
 })(_VisualDensityFactory || (_VisualDensityFactory = {}));
 Object.defineProperty(_VisualDensityFactory, "compact", { get: () => invokeTopLevel("flax.material/material#read:VisualDensity.compact", []) });
-var VisualDensity = _flaxBindInstanceType(_VisualDensityFactory, "flax.material/material#type:VisualDensity", ["dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"], []);
+var VisualDensity = _flaxBindInstanceType(_VisualDensityFactory, "flax.material/material#type:VisualDensity", ["dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_ButtonStyle.js
 var import_bindings5 = require("@flax/core/bindings");
 var _flaxMemberParameters02 = [{ "name": "backgroundColor", "required": false, "positional": false }, { "name": "elevation", "required": false, "positional": false }, { "name": "foregroundColor", "required": false, "positional": false }, { "name": "mouseCursor", "required": false, "positional": false }, { "name": "overlayColor", "required": false, "positional": false }, { "name": "shape", "required": false, "positional": false }, { "name": "visualDensity", "required": false, "positional": false }];
-defineObject("flax.material/material#type:ButtonStyle", ["backgroundColor", "foregroundColor", "overlayColor", "elevation", "shape", "mouseCursor", "visualDensity"], [], (0, import_bindings4.bindingMethods)("flax.material/material#type:ButtonStyle", "object", { "copyWith": _flaxMemberParameters02 }), []);
+defineObject("flax.material/material#type:ButtonStyle", ["backgroundColor", "foregroundColor", "overlayColor", "elevation", "shape", "mouseCursor", "visualDensity"], [], (0, import_bindings4.bindingMethods)("flax.material/material#type:ButtonStyle", "object", { "copyWith": _flaxMemberParameters02 }, {}), []);
 function _ButtonStyleFactory(options = {}) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -160,7 +160,7 @@ function _ButtonStyleFactory(options = {}) {
     throw new TypeError("Too many constructor arguments");
   return constructObject("object", "flax.material/material#type:ButtonStyle", "", [{ "name": "backgroundColor", "required": false, "positional": false }, { "name": "foregroundColor", "required": false, "positional": false }, { "name": "overlayColor", "required": false, "positional": false }, { "name": "elevation", "required": false, "positional": false }, { "name": "shape", "required": false, "positional": false }, { "name": "mouseCursor", "required": false, "positional": false }, { "name": "visualDensity", "required": false, "positional": false }], [], options);
 }
-var ButtonStyle = _flaxBindInstanceType(_ButtonStyleFactory, "flax.material/material#type:ButtonStyle", ["dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"], []);
+var ButtonStyle = _flaxBindInstanceType(_ButtonStyleFactory, "flax.material/material#type:ButtonStyle", ["dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_ColorScheme.js
 var import_bindings8 = require("@flax/core/bindings");
@@ -175,12 +175,12 @@ var _flaxEnum_Brightness_api = {
   light: enumValue("flax.material/material#type:Brightness", "light"),
   values: Object.freeze([enumValue("flax.material/material#type:Brightness", "dark"), enumValue("flax.material/material#type:Brightness", "light")])
 };
-var Brightness = Object.freeze(_flaxBindInstanceType(_flaxEnum_Brightness_api, "flax.material/material#type:Brightness", [], []));
+var Brightness = Object.freeze(_flaxBindInstanceType(_flaxEnum_Brightness_api, "flax.material/material#type:Brightness", []));
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_ColorScheme.js
 var import_bindings9 = require("@flax/core/bindings");
 var _flaxMemberParameters03 = [{ "name": "brightness", "required": false, "positional": false }, { "name": "error", "required": false, "positional": false }, { "name": "onError", "required": false, "positional": false }, { "name": "onPrimary", "required": false, "positional": false }, { "name": "onSurface", "required": false, "positional": false }, { "name": "primary", "required": false, "positional": false }, { "name": "surface", "required": false, "positional": false }];
-defineObject("flax.material/material#type:ColorScheme", ["brightness", "primary", "onPrimary", "surface", "onSurface", "error", "onError"], [], (0, import_bindings8.bindingMethods)("flax.material/material#type:ColorScheme", "object", { "copyWith": _flaxMemberParameters03 }), []);
+defineObject("flax.material/material#type:ColorScheme", ["brightness", "primary", "onPrimary", "surface", "onSurface", "error", "onError"], [], (0, import_bindings8.bindingMethods)("flax.material/material#type:ColorScheme", "object", { "copyWith": _flaxMemberParameters03 }, {}), []);
 var _ColorSchemeFactory;
 (function(_ColorSchemeFactory2) {
   function fromSeed(options) {
@@ -192,7 +192,7 @@ var _ColorSchemeFactory;
   }
   _ColorSchemeFactory2.fromSeed = fromSeed;
 })(_ColorSchemeFactory || (_ColorSchemeFactory = {}));
-var ColorScheme = _flaxBindInstanceType(_ColorSchemeFactory, "flax.material/material#type:ColorScheme", ["dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"], []);
+var ColorScheme = _flaxBindInstanceType(_ColorSchemeFactory, "flax.material/material#type:ColorScheme", ["dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_InputDecoration.js
 var import_bindings10 = require("@flax/core/bindings");
@@ -201,7 +201,7 @@ var import_flutter_EdgeInsetsGeometry = require("@flax/flutter/widgets");
 var import_flutter_Color3 = require("@flax/flutter/services");
 var import_bindings11 = require("@flax/core/bindings");
 var _flaxMemberParameters04 = [{ "name": "contentPadding", "required": false, "positional": false }, { "name": "errorStyle", "required": false, "positional": false }, { "name": "errorText", "required": false, "positional": false }, { "name": "fillColor", "required": false, "positional": false }, { "name": "filled", "required": false, "positional": false }, { "name": "helperStyle", "required": false, "positional": false }, { "name": "helperText", "required": false, "positional": false }, { "name": "hintStyle", "required": false, "positional": false }, { "name": "hintText", "required": false, "positional": false }, { "name": "isDense", "required": false, "positional": false }, { "name": "labelStyle", "required": false, "positional": false }, { "name": "labelText", "required": false, "positional": false }];
-defineObject("flax.material/material#type:InputDecoration", ["labelText", "hintText", "helperText", "errorText", "labelStyle", "hintStyle", "helperStyle", "errorStyle", "isDense", "contentPadding", "filled", "fillColor"], [], (0, import_bindings10.bindingMethods)("flax.material/material#type:InputDecoration", "object", { "copyWith": _flaxMemberParameters04 }), []);
+defineObject("flax.material/material#type:InputDecoration", ["labelText", "hintText", "helperText", "errorText", "labelStyle", "hintStyle", "helperStyle", "errorStyle", "isDense", "contentPadding", "filled", "fillColor"], [], (0, import_bindings10.bindingMethods)("flax.material/material#type:InputDecoration", "object", { "copyWith": _flaxMemberParameters04 }, {}), []);
 function _InputDecorationFactory(options = {}) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -209,14 +209,14 @@ function _InputDecorationFactory(options = {}) {
     throw new TypeError("Too many constructor arguments");
   return constructObject("object", "flax.material/material#type:InputDecoration", "", [{ "name": "labelText", "required": false, "positional": false }, { "name": "labelStyle", "required": false, "positional": false }, { "name": "helperText", "required": false, "positional": false }, { "name": "helperStyle", "required": false, "positional": false }, { "name": "hintText", "required": false, "positional": false }, { "name": "hintStyle", "required": false, "positional": false }, { "name": "errorText", "required": false, "positional": false }, { "name": "errorStyle", "required": false, "positional": false }, { "name": "isDense", "required": false, "positional": false }, { "name": "contentPadding", "required": false, "positional": false }, { "name": "filled", "required": false, "positional": false }, { "name": "fillColor", "required": false, "positional": false }], [], options);
 }
-var InputDecoration = _flaxBindInstanceType(_InputDecorationFactory, "flax.material/material#type:InputDecoration", ["dart:core::Object"], []);
+var InputDecoration = _flaxBindInstanceType(_InputDecorationFactory, "flax.material/material#type:InputDecoration", ["dart:core::Object"]);
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_TextTheme.js
 var import_bindings12 = require("@flax/core/bindings");
 var import_flutter_TextStyle2 = require("@flax/flutter/widgets");
 var import_bindings13 = require("@flax/core/bindings");
 var _flaxMemberParameters05 = [{ "name": "bodyLarge", "required": false, "positional": false }, { "name": "bodyMedium", "required": false, "positional": false }, { "name": "labelLarge", "required": false, "positional": false }, { "name": "titleLarge", "required": false, "positional": false }, { "name": "titleMedium", "required": false, "positional": false }];
-defineObject("flax.material/material#type:TextTheme", ["titleLarge", "titleMedium", "bodyLarge", "bodyMedium", "labelLarge"], [], (0, import_bindings12.bindingMethods)("flax.material/material#type:TextTheme", "object", { "copyWith": _flaxMemberParameters05 }), []);
+defineObject("flax.material/material#type:TextTheme", ["titleLarge", "titleMedium", "bodyLarge", "bodyMedium", "labelLarge"], [], (0, import_bindings12.bindingMethods)("flax.material/material#type:TextTheme", "object", { "copyWith": _flaxMemberParameters05 }, {}), []);
 function _TextThemeFactory(options = {}) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -224,14 +224,14 @@ function _TextThemeFactory(options = {}) {
     throw new TypeError("Too many constructor arguments");
   return constructObject("object", "flax.material/material#type:TextTheme", "", [{ "name": "titleLarge", "required": false, "positional": false }, { "name": "titleMedium", "required": false, "positional": false }, { "name": "bodyLarge", "required": false, "positional": false }, { "name": "bodyMedium", "required": false, "positional": false }, { "name": "labelLarge", "required": false, "positional": false }], [], options);
 }
-var TextTheme = _flaxBindInstanceType(_TextThemeFactory, "flax.material/material#type:TextTheme", ["dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"], []);
+var TextTheme = _flaxBindInstanceType(_TextThemeFactory, "flax.material/material#type:TextTheme", ["dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_ThemeData.js
 var import_bindings14 = require("@flax/core/bindings");
 var import_flutter_Color4 = require("@flax/flutter/services");
 var import_bindings15 = require("@flax/core/bindings");
 var _flaxMemberParameters06 = [{ "name": "brightness", "required": false, "positional": false }, { "name": "colorScheme", "required": false, "positional": false }, { "name": "textTheme", "required": false, "positional": false }];
-defineObject("flax.material/material#type:ThemeData", ["brightness", "colorScheme", "textTheme"], [], (0, import_bindings14.bindingMethods)("flax.material/material#type:ThemeData", "object", { "copyWith": _flaxMemberParameters06 }), []);
+defineObject("flax.material/material#type:ThemeData", ["brightness", "colorScheme", "textTheme"], [], (0, import_bindings14.bindingMethods)("flax.material/material#type:ThemeData", "object", { "copyWith": _flaxMemberParameters06 }, {}), []);
 function _ThemeDataFactory(options = {}) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -239,7 +239,7 @@ function _ThemeDataFactory(options = {}) {
     throw new TypeError("Too many constructor arguments");
   return constructObject("object", "flax.material/material#type:ThemeData", "", [{ "name": "colorScheme", "required": false, "positional": false }, { "name": "brightness", "required": false, "positional": false }, { "name": "colorSchemeSeed", "required": false, "positional": false }, { "name": "textTheme", "required": false, "positional": false }], [], options);
 }
-var ThemeData = _flaxBindInstanceType(_ThemeDataFactory, "flax.material/material#type:ThemeData", ["dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"], []);
+var ThemeData = _flaxBindInstanceType(_ThemeDataFactory, "flax.material/material#type:ThemeData", ["dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_AlertDialog.js
 var import_bindings16 = require("@flax/core/bindings");
@@ -252,7 +252,7 @@ function _AlertDialogFactory(options = {}) {
     throw new TypeError("Too many constructor arguments");
   return construct("widget", "flax.material/material#type:AlertDialog", "", [{ "name": "key", "required": false, "positional": false }, { "name": "title", "required": false, "positional": false }, { "name": "content", "required": false, "positional": false }, { "name": "actions", "required": false, "positional": false }, { "name": "scrollable", "required": false, "positional": false }], [], options);
 }
-var AlertDialog = _flaxBindInstanceType(_AlertDialogFactory, "flax.material/material#type:AlertDialog", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"], []);
+var AlertDialog = _flaxBindInstanceType(_AlertDialogFactory, "flax.material/material#type:AlertDialog", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_AppBar.js
 var import_bindings18 = require("@flax/core/bindings");
@@ -266,7 +266,7 @@ function _AppBarFactory(options = {}) {
     throw new TypeError("Too many constructor arguments");
   return construct("widget", "flax.material/material#type:AppBar", "", [{ "name": "key", "fixed": true, "required": false, "positional": false }, { "name": "leading", "fixed": true, "required": false, "positional": false }, { "name": "automaticallyImplyLeading", "fixed": true, "required": false, "positional": false }, { "name": "title", "fixed": true, "required": false, "positional": false }, { "name": "actions", "fixed": true, "required": false, "positional": false }, { "name": "bottom", "fixed": true, "required": false, "positional": false }, { "name": "elevation", "fixed": true, "required": false, "positional": false }, { "name": "backgroundColor", "fixed": true, "required": false, "positional": false }, { "name": "foregroundColor", "fixed": true, "required": false, "positional": false }, { "name": "primary", "fixed": true, "required": false, "positional": false }, { "name": "centerTitle", "fixed": true, "required": false, "positional": false }, { "name": "toolbarHeight", "fixed": true, "required": false, "positional": false }], [], options);
 }
-var AppBar = _flaxBindInstanceType(_AppBarFactory, "flax.material/material#type:AppBar", ["flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable", "flax.core/flutter#type:PreferredSizeWidget"], []);
+var AppBar = _flaxBindInstanceType(_AppBarFactory, "flax.material/material#type:AppBar", ["flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable", "flax.core/flutter#type:PreferredSizeWidget"]);
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_Card.js
 var import_bindings20 = require("@flax/core/bindings");
@@ -302,7 +302,7 @@ function _CardFactory(options = {}) {
   }
   _CardFactory2.outlined = outlined;
 })(_CardFactory || (_CardFactory = {}));
-var Card = _flaxBindInstanceType(_CardFactory, "flax.material/material#type:Card", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"], []);
+var Card = _flaxBindInstanceType(_CardFactory, "flax.material/material#type:Card", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_Checkbox.js
 var import_bindings22 = require("@flax/core/bindings");
@@ -318,7 +318,7 @@ function _CheckboxFactory(options) {
     throw new TypeError("Too many constructor arguments");
   return construct("widget", "flax.material/material#type:Checkbox", "", [{ "name": "key", "required": false, "positional": false }, { "name": "value", "required": true, "positional": false }, { "name": "tristate", "required": false, "positional": false }, { "name": "onChanged", "required": true, "positional": false }, { "name": "activeColor", "required": false, "positional": false }, { "name": "fillColor", "required": false, "positional": false }, { "name": "checkColor", "required": false, "positional": false }, { "name": "overlayColor", "required": false, "positional": false }, { "name": "focusNode", "required": false, "positional": false }, { "name": "autofocus", "required": false, "positional": false }, { "name": "isError", "required": false, "positional": false }], [], options);
 }
-var Checkbox = _flaxBindInstanceType(_CheckboxFactory, "flax.material/material#type:Checkbox", ["flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"], []);
+var Checkbox = _flaxBindInstanceType(_CheckboxFactory, "flax.material/material#type:Checkbox", ["flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_CircularProgressIndicator.js
 var import_bindings24 = require("@flax/core/bindings");
@@ -332,7 +332,7 @@ function _CircularProgressIndicatorFactory(options = {}) {
     throw new TypeError("Too many constructor arguments");
   return construct("widget", "flax.material/material#type:CircularProgressIndicator", "", [{ "name": "key", "required": false, "positional": false }, { "name": "value", "required": false, "positional": false }, { "name": "backgroundColor", "required": false, "positional": false }, { "name": "color", "required": false, "positional": false }, { "name": "strokeWidth", "required": false, "positional": false }, { "name": "semanticsLabel", "required": false, "positional": false }], [], options);
 }
-var CircularProgressIndicator = _flaxBindInstanceType(_CircularProgressIndicatorFactory, "flax.material/material#type:CircularProgressIndicator", ["package:material_ui/src/progress_indicator.dart::ProgressIndicator", "flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"], []);
+var CircularProgressIndicator = _flaxBindInstanceType(_CircularProgressIndicatorFactory, "flax.material/material#type:CircularProgressIndicator", ["package:material_ui/src/progress_indicator.dart::ProgressIndicator", "flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_Divider.js
 var import_bindings26 = require("@flax/core/bindings");
@@ -347,7 +347,7 @@ function _DividerFactory(options = {}) {
     throw new TypeError("Too many constructor arguments");
   return construct("widget", "flax.material/material#type:Divider", "", [{ "name": "key", "required": false, "positional": false }, { "name": "height", "required": false, "positional": false }, { "name": "thickness", "required": false, "positional": false }, { "name": "indent", "required": false, "positional": false }, { "name": "endIndent", "required": false, "positional": false }, { "name": "color", "required": false, "positional": false }, { "name": "radius", "required": false, "positional": false }], [], options);
 }
-var Divider = _flaxBindInstanceType(_DividerFactory, "flax.material/material#type:Divider", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"], []);
+var Divider = _flaxBindInstanceType(_DividerFactory, "flax.material/material#type:Divider", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_Drawer.js
 var import_bindings28 = require("@flax/core/bindings");
@@ -362,7 +362,7 @@ function _DrawerFactory(options = {}) {
     throw new TypeError("Too many constructor arguments");
   return construct("widget", "flax.material/material#type:Drawer", "", [{ "name": "key", "required": false, "positional": false }, { "name": "backgroundColor", "required": false, "positional": false }, { "name": "elevation", "required": false, "positional": false }, { "name": "shadowColor", "required": false, "positional": false }, { "name": "width", "required": false, "positional": false }, { "name": "child", "required": false, "positional": false }, { "name": "semanticLabel", "required": false, "positional": false }, { "name": "clipBehavior", "required": false, "positional": false }], [], options);
 }
-var Drawer = _flaxBindInstanceType(_DrawerFactory, "flax.material/material#type:Drawer", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"], []);
+var Drawer = _flaxBindInstanceType(_DrawerFactory, "flax.material/material#type:Drawer", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_ElevatedButton.js
 var import_bindings30 = require("@flax/core/bindings");
@@ -375,7 +375,7 @@ function _ElevatedButtonFactory(options) {
     throw new TypeError("Too many constructor arguments");
   return construct("widget", "flax.material/material#type:ElevatedButton", "", [{ "name": "key", "required": false, "positional": false }, { "name": "onPressed", "required": true, "positional": false }, { "name": "style", "required": false, "positional": false }, { "name": "child", "required": true, "positional": false }], [], options);
 }
-var ElevatedButton = _flaxBindInstanceType(_ElevatedButtonFactory, "flax.material/material#type:ElevatedButton", ["package:material_ui/src/button_style_button.dart::ButtonStyleButton", "flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"], []);
+var ElevatedButton = _flaxBindInstanceType(_ElevatedButtonFactory, "flax.material/material#type:ElevatedButton", ["package:material_ui/src/button_style_button.dart::ButtonStyleButton", "flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_FilledButton.js
 var import_bindings32 = require("@flax/core/bindings");
@@ -398,7 +398,7 @@ function _FilledButtonFactory(options) {
   }
   _FilledButtonFactory2.tonal = tonal;
 })(_FilledButtonFactory || (_FilledButtonFactory = {}));
-var FilledButton = _flaxBindInstanceType(_FilledButtonFactory, "flax.material/material#type:FilledButton", ["package:material_ui/src/button_style_button.dart::ButtonStyleButton", "flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"], []);
+var FilledButton = _flaxBindInstanceType(_FilledButtonFactory, "flax.material/material#type:FilledButton", ["package:material_ui/src/button_style_button.dart::ButtonStyleButton", "flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_FloatingActionButton.js
 var import_bindings34 = require("@flax/core/bindings");
@@ -443,7 +443,7 @@ function _FloatingActionButtonFactory(options) {
   }
   _FloatingActionButtonFactory2.extended = extended;
 })(_FloatingActionButtonFactory || (_FloatingActionButtonFactory = {}));
-var FloatingActionButton = _flaxBindInstanceType(_FloatingActionButtonFactory, "flax.material/material#type:FloatingActionButton", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"], []);
+var FloatingActionButton = _flaxBindInstanceType(_FloatingActionButtonFactory, "flax.material/material#type:FloatingActionButton", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_IconButton.js
 var import_bindings36 = require("@flax/core/bindings");
@@ -490,7 +490,7 @@ function _IconButtonFactory(options) {
   }
   _IconButtonFactory2.outlined = outlined;
 })(_IconButtonFactory || (_IconButtonFactory = {}));
-var IconButton = _flaxBindInstanceType(_IconButtonFactory, "flax.material/material#type:IconButton", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"], []);
+var IconButton = _flaxBindInstanceType(_IconButtonFactory, "flax.material/material#type:IconButton", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_InkWell.js
 var import_bindings38 = require("@flax/core/bindings");
@@ -507,7 +507,7 @@ function _InkWellFactory(options = {}) {
     throw new TypeError("Too many constructor arguments");
   return construct("widget", "flax.material/material#type:InkWell", "", [{ "name": "key", "required": false, "positional": false }, { "name": "child", "required": false, "positional": false }, { "name": "onTap", "required": false, "positional": false }, { "name": "onLongPress", "required": false, "positional": false }, { "name": "onHighlightChanged", "required": false, "positional": false }, { "name": "onHover", "required": false, "positional": false }, { "name": "mouseCursor", "required": false, "positional": false }, { "name": "hoverColor", "required": false, "positional": false }, { "name": "highlightColor", "required": false, "positional": false }, { "name": "splashColor", "required": false, "positional": false }, { "name": "borderRadius", "required": false, "positional": false }, { "name": "customBorder", "required": false, "positional": false }, { "name": "enableFeedback", "required": false, "positional": false }], [], options);
 }
-var InkWell = _flaxBindInstanceType(_InkWellFactory, "flax.material/material#type:InkWell", ["package:material_ui/src/ink_well.dart::InkResponse", "package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"], []);
+var InkWell = _flaxBindInstanceType(_InkWellFactory, "flax.material/material#type:InkWell", ["package:material_ui/src/ink_well.dart::InkResponse", "package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_LinearProgressIndicator.js
 var import_bindings40 = require("@flax/core/bindings");
@@ -522,7 +522,7 @@ function _LinearProgressIndicatorFactory(options = {}) {
     throw new TypeError("Too many constructor arguments");
   return construct("widget", "flax.material/material#type:LinearProgressIndicator", "", [{ "name": "key", "required": false, "positional": false }, { "name": "value", "required": false, "positional": false }, { "name": "backgroundColor", "required": false, "positional": false }, { "name": "color", "required": false, "positional": false }, { "name": "minHeight", "required": false, "positional": false }, { "name": "semanticsLabel", "required": false, "positional": false }, { "name": "semanticsValue", "required": false, "positional": false }, { "name": "borderRadius", "required": false, "positional": false }], [], options);
 }
-var LinearProgressIndicator = _flaxBindInstanceType(_LinearProgressIndicatorFactory, "flax.material/material#type:LinearProgressIndicator", ["package:material_ui/src/progress_indicator.dart::ProgressIndicator", "flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"], []);
+var LinearProgressIndicator = _flaxBindInstanceType(_LinearProgressIndicatorFactory, "flax.material/material#type:LinearProgressIndicator", ["package:material_ui/src/progress_indicator.dart::ProgressIndicator", "flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_ListTile.js
 var import_bindings44 = require("@flax/core/bindings");
@@ -537,7 +537,7 @@ var _flaxEnum_ListTileStyle_api = {
   drawer: enumValue("flax.material/material#type:ListTileStyle", "drawer"),
   values: Object.freeze([enumValue("flax.material/material#type:ListTileStyle", "list"), enumValue("flax.material/material#type:ListTileStyle", "drawer")])
 };
-var ListTileStyle = Object.freeze(_flaxBindInstanceType(_flaxEnum_ListTileStyle_api, "flax.material/material#type:ListTileStyle", [], []));
+var ListTileStyle = Object.freeze(_flaxBindInstanceType(_flaxEnum_ListTileStyle_api, "flax.material/material#type:ListTileStyle", []));
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_ListTile.js
 var import_flutter_Color15 = require("@flax/flutter/services");
@@ -552,7 +552,7 @@ function _ListTileFactory(options = {}) {
     throw new TypeError("Too many constructor arguments");
   return construct("widget", "flax.material/material#type:ListTile", "", [{ "name": "key", "required": false, "positional": false }, { "name": "leading", "required": false, "positional": false }, { "name": "title", "required": false, "positional": false }, { "name": "subtitle", "required": false, "positional": false }, { "name": "trailing", "required": false, "positional": false }, { "name": "isThreeLine", "required": false, "positional": false }, { "name": "dense", "required": false, "positional": false }, { "name": "style", "required": false, "positional": false }, { "name": "selectedColor", "required": false, "positional": false }, { "name": "iconColor", "required": false, "positional": false }, { "name": "textColor", "required": false, "positional": false }, { "name": "titleTextStyle", "required": false, "positional": false }, { "name": "contentPadding", "required": false, "positional": false }, { "name": "enabled", "required": false, "positional": false }, { "name": "onTap", "required": false, "positional": false }, { "name": "onLongPress", "required": false, "positional": false }, { "name": "selected", "required": false, "positional": false }, { "name": "focusNode", "required": false, "positional": false }, { "name": "tileColor", "required": false, "positional": false }, { "name": "selectedTileColor", "required": false, "positional": false }], [], options);
 }
-var ListTile = _flaxBindInstanceType(_ListTileFactory, "flax.material/material#type:ListTile", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"], []);
+var ListTile = _flaxBindInstanceType(_ListTileFactory, "flax.material/material#type:ListTile", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_Material.js
 var import_bindings48 = require("@flax/core/bindings");
@@ -570,7 +570,7 @@ var _flaxEnum_MaterialType_api = {
   transparency: enumValue("flax.material/material#type:MaterialType", "transparency"),
   values: Object.freeze([enumValue("flax.material/material#type:MaterialType", "canvas"), enumValue("flax.material/material#type:MaterialType", "card"), enumValue("flax.material/material#type:MaterialType", "circle"), enumValue("flax.material/material#type:MaterialType", "button"), enumValue("flax.material/material#type:MaterialType", "transparency")])
 };
-var MaterialType = Object.freeze(_flaxBindInstanceType(_flaxEnum_MaterialType_api, "flax.material/material#type:MaterialType", [], []));
+var MaterialType = Object.freeze(_flaxBindInstanceType(_flaxEnum_MaterialType_api, "flax.material/material#type:MaterialType", []));
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_Material.js
 var import_flutter_Color16 = require("@flax/flutter/services");
@@ -586,7 +586,7 @@ function _MaterialFactory(options = {}) {
     throw new TypeError("Too many constructor arguments");
   return construct("widget", "flax.material/material#type:Material", "", [{ "name": "key", "required": false, "positional": false }, { "name": "type", "required": false, "positional": false }, { "name": "elevation", "required": false, "positional": false }, { "name": "color", "required": false, "positional": false }, { "name": "shadowColor", "required": false, "positional": false }, { "name": "surfaceTintColor", "required": false, "positional": false }, { "name": "textStyle", "required": false, "positional": false }, { "name": "borderRadius", "required": false, "positional": false }, { "name": "shape", "required": false, "positional": false }, { "name": "clipBehavior", "required": false, "positional": false }, { "name": "child", "required": false, "positional": false }], [], options);
 }
-var Material = _flaxBindInstanceType(_MaterialFactory, "flax.material/material#type:Material", ["flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"], []);
+var Material = _flaxBindInstanceType(_MaterialFactory, "flax.material/material#type:Material", ["flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_MaterialApp.js
 var import_bindings52 = require("@flax/core/bindings");
@@ -603,7 +603,7 @@ var _flaxEnum_ThemeMode_api = {
   dark: enumValue("flax.material/material#type:ThemeMode", "dark"),
   values: Object.freeze([enumValue("flax.material/material#type:ThemeMode", "system"), enumValue("flax.material/material#type:ThemeMode", "light"), enumValue("flax.material/material#type:ThemeMode", "dark")])
 };
-var ThemeMode = Object.freeze(_flaxBindInstanceType(_flaxEnum_ThemeMode_api, "flax.material/material#type:ThemeMode", [], []));
+var ThemeMode = Object.freeze(_flaxBindInstanceType(_flaxEnum_ThemeMode_api, "flax.material/material#type:ThemeMode", []));
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_MaterialApp.js
 var import_bindings53 = require("@flax/core/bindings");
@@ -614,7 +614,7 @@ function _MaterialAppFactory(options = {}) {
     throw new TypeError("Too many constructor arguments");
   return construct("widget", "flax.material/material#type:MaterialApp", "", [{ "name": "key", "required": false, "positional": false }, { "name": "home", "required": false, "positional": false }, { "name": "navigatorObservers", "required": false, "positional": false }, { "name": "title", "required": false, "positional": false }, { "name": "theme", "required": false, "positional": false }, { "name": "darkTheme", "required": false, "positional": false }, { "name": "themeMode", "required": false, "positional": false }, { "name": "debugShowCheckedModeBanner", "required": false, "positional": false }], [], options);
 }
-var MaterialApp = _flaxBindInstanceType(_MaterialAppFactory, "flax.material/material#type:MaterialApp", ["flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"], []);
+var MaterialApp = _flaxBindInstanceType(_MaterialAppFactory, "flax.material/material#type:MaterialApp", ["flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_MaterialPage.js
 var import_bindings54 = require("@flax/core/bindings");
@@ -627,7 +627,8 @@ function _MaterialPageFactory(options) {
     throw new TypeError("Too many constructor arguments");
   return construct("page", "flax.material/material#type:MaterialPage", "", [{ "name": "child", "required": true, "positional": false }, { "name": "maintainState", "required": false, "positional": false }, { "name": "fullscreenDialog", "required": false, "positional": false }, { "name": "key", "required": false, "positional": false, "readonly": true, "defaultValue": null }, { "name": "canPop", "required": false, "positional": false }, { "name": "onPopInvoked", "required": false, "positional": false }, { "name": "name", "required": false, "positional": false, "readonly": true, "defaultValue": null }, { "name": "arguments", "required": false, "positional": false, "readonly": true, "defaultValue": null }], [], options);
 }
-var MaterialPage = _flaxBindInstanceType(_MaterialPageFactory, "flax.material/material#type:MaterialPage", ["flax.core/flutter#type:Page", "flax.core/flutter#type:RouteSettings", "dart:core::Object"], [["any", null, [], true]]);
+var MaterialPage = _flaxBindInstanceType(_MaterialPageFactory, "flax.material/material#type:MaterialPage", ["flax.core/flutter#type:Page", "flax.core/flutter#type:RouteSettings", "dart:core::Object"]);
+_flaxDefineDartTypes(MaterialPage, "flax.material/material#type:MaterialPage", { "category": "page", "constructors": { "": [{ "name": "child", "required": true, "positional": false }, { "name": "maintainState", "required": false, "positional": false }, { "name": "fullscreenDialog", "required": false, "positional": false }, { "name": "key", "required": false, "positional": false }, { "name": "canPop", "required": false, "positional": false }, { "name": "onPopInvoked", "required": false, "positional": false }, { "name": "name", "required": false, "positional": false }, { "name": "arguments", "required": false, "positional": false }] } });
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_MaterialPageRoute.js
 var import_bindings56 = require("@flax/core/bindings");
@@ -641,7 +642,8 @@ function _MaterialPageRouteFactory(options) {
     throw new TypeError("Too many constructor arguments");
   return construct("route", "flax.material/material#type:MaterialPageRoute", "", [{ "name": "builder", "required": true, "positional": false }, { "name": "settings", "required": false, "positional": false }, { "name": "maintainState", "required": false, "positional": false }, { "name": "fullscreenDialog", "required": false, "positional": false }], [], options);
 }
-var MaterialPageRoute = _flaxBindInstanceType(_MaterialPageRouteFactory, "flax.material/material#type:MaterialPageRoute", ["package:flutter/src/widgets/pages.dart::PageRoute", "package:flutter/src/widgets/routes.dart::ModalRoute", "package:flutter/src/widgets/routes.dart::TransitionRoute", "package:flutter/src/widgets/routes.dart::OverlayRoute", "flax.core/flutter#type:Route", "package:flutter/src/widgets/navigator.dart::_RoutePlaceholder", "package:flutter/src/widgets/routes.dart::PredictiveBackRoute", "package:flutter/src/widgets/routes.dart::LocalHistoryRoute", "package:material_ui/src/page.dart::MaterialRouteTransitionMixin"], [["any", null, [], true]]);
+var MaterialPageRoute = _flaxBindInstanceType(_MaterialPageRouteFactory, "flax.material/material#type:MaterialPageRoute", ["package:flutter/src/widgets/pages.dart::PageRoute", "package:flutter/src/widgets/routes.dart::ModalRoute", "package:flutter/src/widgets/routes.dart::TransitionRoute", "package:flutter/src/widgets/routes.dart::OverlayRoute", "flax.core/flutter#type:Route", "package:flutter/src/widgets/navigator.dart::_RoutePlaceholder", "package:flutter/src/widgets/routes.dart::PredictiveBackRoute", "package:flutter/src/widgets/routes.dart::LocalHistoryRoute", "package:material_ui/src/page.dart::MaterialRouteTransitionMixin"]);
+_flaxDefineDartTypes(MaterialPageRoute, "flax.material/material#type:MaterialPageRoute", { "category": "route", "constructors": { "": [{ "name": "builder", "required": true, "positional": false }, { "name": "settings", "required": false, "positional": false }, { "name": "maintainState", "required": false, "positional": false }, { "name": "fullscreenDialog", "required": false, "positional": false }] } });
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_NavigationBar.js
 var import_bindings60 = require("@flax/core/bindings");
@@ -658,7 +660,7 @@ var _flaxEnum_NavigationDestinationLabelBehavior_api = {
   onlyShowSelected: enumValue("flax.material/material#type:NavigationDestinationLabelBehavior", "onlyShowSelected"),
   values: Object.freeze([enumValue("flax.material/material#type:NavigationDestinationLabelBehavior", "alwaysShow"), enumValue("flax.material/material#type:NavigationDestinationLabelBehavior", "alwaysHide"), enumValue("flax.material/material#type:NavigationDestinationLabelBehavior", "onlyShowSelected")])
 };
-var NavigationDestinationLabelBehavior = Object.freeze(_flaxBindInstanceType(_flaxEnum_NavigationDestinationLabelBehavior_api, "flax.material/material#type:NavigationDestinationLabelBehavior", [], []));
+var NavigationDestinationLabelBehavior = Object.freeze(_flaxBindInstanceType(_flaxEnum_NavigationDestinationLabelBehavior_api, "flax.material/material#type:NavigationDestinationLabelBehavior", []));
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_NavigationBar.js
 var import_bindings61 = require("@flax/core/bindings");
@@ -669,7 +671,7 @@ function _NavigationBarFactory(options) {
     throw new TypeError("Too many constructor arguments");
   return construct("widget", "flax.material/material#type:NavigationBar", "", [{ "name": "key", "required": false, "positional": false }, { "name": "selectedIndex", "required": false, "positional": false }, { "name": "destinations", "required": true, "positional": false }, { "name": "onDestinationSelected", "required": false, "positional": false }, { "name": "backgroundColor", "required": false, "positional": false }, { "name": "elevation", "required": false, "positional": false }, { "name": "shadowColor", "required": false, "positional": false }, { "name": "indicatorColor", "required": false, "positional": false }, { "name": "height", "required": false, "positional": false }, { "name": "labelBehavior", "required": false, "positional": false }], [], options);
 }
-var NavigationBar = _flaxBindInstanceType(_NavigationBarFactory, "flax.material/material#type:NavigationBar", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"], []);
+var NavigationBar = _flaxBindInstanceType(_NavigationBarFactory, "flax.material/material#type:NavigationBar", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_NavigationDestination.js
 var import_bindings62 = require("@flax/core/bindings");
@@ -682,7 +684,7 @@ function _NavigationDestinationFactory(options) {
     throw new TypeError("Too many constructor arguments");
   return construct("widget", "flax.material/material#type:NavigationDestination", "", [{ "name": "key", "required": false, "positional": false }, { "name": "icon", "required": true, "positional": false }, { "name": "selectedIcon", "required": false, "positional": false }, { "name": "label", "required": true, "positional": false }, { "name": "tooltip", "required": false, "positional": false }, { "name": "enabled", "required": false, "positional": false }], [], options);
 }
-var NavigationDestination = _flaxBindInstanceType(_NavigationDestinationFactory, "flax.material/material#type:NavigationDestination", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"], []);
+var NavigationDestination = _flaxBindInstanceType(_NavigationDestinationFactory, "flax.material/material#type:NavigationDestination", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_OutlinedButton.js
 var import_bindings64 = require("@flax/core/bindings");
@@ -695,7 +697,7 @@ function _OutlinedButtonFactory(options) {
     throw new TypeError("Too many constructor arguments");
   return construct("widget", "flax.material/material#type:OutlinedButton", "", [{ "name": "key", "required": false, "positional": false }, { "name": "onPressed", "required": true, "positional": false }, { "name": "style", "required": false, "positional": false }, { "name": "child", "required": true, "positional": false }], [], options);
 }
-var OutlinedButton = _flaxBindInstanceType(_OutlinedButtonFactory, "flax.material/material#type:OutlinedButton", ["package:material_ui/src/button_style_button.dart::ButtonStyleButton", "flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"], []);
+var OutlinedButton = _flaxBindInstanceType(_OutlinedButtonFactory, "flax.material/material#type:OutlinedButton", ["package:material_ui/src/button_style_button.dart::ButtonStyleButton", "flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_RefreshIndicator.js
 var import_bindings66 = require("@flax/core/bindings");
@@ -708,7 +710,7 @@ function _RefreshIndicatorFactory(options) {
     throw new TypeError("Too many constructor arguments");
   return construct("widget", "flax.material/material#type:RefreshIndicator", "", [{ "name": "key", "required": false, "positional": false }, { "name": "onRefresh", "required": true, "positional": false }, { "name": "child", "required": true, "positional": false }], [], options);
 }
-var RefreshIndicator = _flaxBindInstanceType(_RefreshIndicatorFactory, "flax.material/material#type:RefreshIndicator", ["flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"], []);
+var RefreshIndicator = _flaxBindInstanceType(_RefreshIndicatorFactory, "flax.material/material#type:RefreshIndicator", ["flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_Scaffold.js
 var import_bindings68 = require("@flax/core/bindings");
@@ -722,7 +724,7 @@ function _ScaffoldFactory(options = {}) {
     throw new TypeError("Too many constructor arguments");
   return construct("widget", "flax.material/material#type:Scaffold", "", [{ "name": "key", "required": false, "positional": false }, { "name": "appBar", "required": false, "positional": false }, { "name": "body", "required": false, "positional": false }, { "name": "floatingActionButton", "required": false, "positional": false }, { "name": "drawer", "required": false, "positional": false }, { "name": "endDrawer", "required": false, "positional": false }, { "name": "bottomNavigationBar", "required": false, "positional": false }, { "name": "backgroundColor", "required": false, "positional": false }, { "name": "resizeToAvoidBottomInset", "required": false, "positional": false }, { "name": "primary", "required": false, "positional": false }, { "name": "extendBody", "required": false, "positional": false }, { "name": "extendBodyBehindAppBar", "required": false, "positional": false }], [], options);
 }
-var Scaffold = _flaxBindInstanceType(_ScaffoldFactory, "flax.material/material#type:Scaffold", ["flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"], []);
+var Scaffold = _flaxBindInstanceType(_ScaffoldFactory, "flax.material/material#type:Scaffold", ["flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_Switch.js
 var import_bindings70 = require("@flax/core/bindings");
@@ -738,7 +740,7 @@ function _SwitchFactory(options) {
     throw new TypeError("Too many constructor arguments");
   return construct("widget", "flax.material/material#type:Switch", "", [{ "name": "key", "required": false, "positional": false }, { "name": "value", "required": true, "positional": false }, { "name": "onChanged", "required": true, "positional": false }, { "name": "activeThumbColor", "required": false, "positional": false }, { "name": "activeTrackColor", "required": false, "positional": false }, { "name": "inactiveThumbColor", "required": false, "positional": false }, { "name": "focusNode", "required": false, "positional": false }, { "name": "autofocus", "required": false, "positional": false }, { "name": "padding", "required": false, "positional": false }], [], options);
 }
-var Switch = _flaxBindInstanceType(_SwitchFactory, "flax.material/material#type:Switch", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"], []);
+var Switch = _flaxBindInstanceType(_SwitchFactory, "flax.material/material#type:Switch", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_TextButton.js
 var import_bindings72 = require("@flax/core/bindings");
@@ -751,7 +753,7 @@ function _TextButtonFactory(options) {
     throw new TypeError("Too many constructor arguments");
   return construct("widget", "flax.material/material#type:TextButton", "", [{ "name": "key", "required": false, "positional": false }, { "name": "onPressed", "required": true, "positional": false }, { "name": "style", "required": false, "positional": false }, { "name": "child", "required": true, "positional": false }], [], options);
 }
-var TextButton = _flaxBindInstanceType(_TextButtonFactory, "flax.material/material#type:TextButton", ["package:material_ui/src/button_style_button.dart::ButtonStyleButton", "flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"], []);
+var TextButton = _flaxBindInstanceType(_TextButtonFactory, "flax.material/material#type:TextButton", ["package:material_ui/src/button_style_button.dart::ButtonStyleButton", "flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_TextField.js
 var import_bindings76 = require("@flax/core/bindings");
@@ -779,7 +781,7 @@ var _flaxEnum_TextInputAction_api = {
   newline: enumValue("flax.material/material#type:TextInputAction", "newline"),
   values: Object.freeze([enumValue("flax.material/material#type:TextInputAction", "none"), enumValue("flax.material/material#type:TextInputAction", "unspecified"), enumValue("flax.material/material#type:TextInputAction", "done"), enumValue("flax.material/material#type:TextInputAction", "go"), enumValue("flax.material/material#type:TextInputAction", "search"), enumValue("flax.material/material#type:TextInputAction", "send"), enumValue("flax.material/material#type:TextInputAction", "next"), enumValue("flax.material/material#type:TextInputAction", "previous"), enumValue("flax.material/material#type:TextInputAction", "continueAction"), enumValue("flax.material/material#type:TextInputAction", "join"), enumValue("flax.material/material#type:TextInputAction", "route"), enumValue("flax.material/material#type:TextInputAction", "emergencyCall"), enumValue("flax.material/material#type:TextInputAction", "newline")])
 };
-var TextInputAction = Object.freeze(_flaxBindInstanceType(_flaxEnum_TextInputAction_api, "flax.material/material#type:TextInputAction", [], []));
+var TextInputAction = Object.freeze(_flaxBindInstanceType(_flaxEnum_TextInputAction_api, "flax.material/material#type:TextInputAction", []));
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_TextField.js
 var import_flutter_TextStyle5 = require("@flax/flutter/widgets");
@@ -792,7 +794,7 @@ function _TextFieldFactory(options = {}) {
     throw new TypeError("Too many constructor arguments");
   return construct("widget", "flax.material/material#type:TextField", "", [{ "name": "key", "required": false, "positional": false }, { "name": "controller", "required": false, "positional": false }, { "name": "focusNode", "required": false, "positional": false }, { "name": "decoration", "required": false, "positional": false }, { "name": "textInputAction", "required": false, "positional": false }, { "name": "style", "required": false, "positional": false }, { "name": "readOnly", "required": false, "positional": false }, { "name": "autofocus", "required": false, "positional": false }, { "name": "obscureText", "required": false, "positional": false }, { "name": "autocorrect", "required": false, "positional": false }, { "name": "enableSuggestions", "required": false, "positional": false }, { "name": "maxLines", "required": false, "positional": false }, { "name": "minLines", "required": false, "positional": false }, { "name": "onChanged", "required": false, "positional": false }, { "name": "onEditingComplete", "required": false, "positional": false }, { "name": "onSubmitted", "required": false, "positional": false }, { "name": "inputFormatters", "required": false, "positional": false }, { "name": "enabled", "required": false, "positional": false }], [], options);
 }
-var TextField = _flaxBindInstanceType(_TextFieldFactory, "flax.material/material#type:TextField", ["flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"], []);
+var TextField = _flaxBindInstanceType(_TextFieldFactory, "flax.material/material#type:TextField", ["flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_Theme.js
 var import_bindings78 = require("@flax/core/bindings");
@@ -815,7 +817,7 @@ function _ThemeFactory(options) {
   }
   _ThemeFactory2.of = of;
 })(_ThemeFactory || (_ThemeFactory = {}));
-var Theme = _flaxBindInstanceType(_ThemeFactory, "flax.material/material#type:Theme", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"], []);
+var Theme = _flaxBindInstanceType(_ThemeFactory, "flax.material/material#type:Theme", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_VerticalDivider.js
 var import_bindings80 = require("@flax/core/bindings");
@@ -830,7 +832,7 @@ function _VerticalDividerFactory(options = {}) {
     throw new TypeError("Too many constructor arguments");
   return construct("widget", "flax.material/material#type:VerticalDivider", "", [{ "name": "key", "required": false, "positional": false }, { "name": "width", "required": false, "positional": false }, { "name": "thickness", "required": false, "positional": false }, { "name": "indent", "required": false, "positional": false }, { "name": "endIndent", "required": false, "positional": false }, { "name": "color", "required": false, "positional": false }, { "name": "radius", "required": false, "positional": false }], [], options);
 }
-var VerticalDivider = _flaxBindInstanceType(_VerticalDividerFactory, "flax.material/material#type:VerticalDivider", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"], []);
+var VerticalDivider = _flaxBindInstanceType(_VerticalDividerFactory, "flax.material/material#type:VerticalDivider", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../../packages/flax_material_ui/js/dist/generated/libraries/material/_bindings/material_kTabScrollDuration.js
 var import_bindings82 = require("@flax/core/bindings");
@@ -859,5 +861,6 @@ function _flaxTopLevel_showDialog(options) {
   const _flaxResult = invokeTopLevel("flax.material/material#function:showDialog", [options.barrierColor, options.barrierDismissible, options.barrierLabel, options.builder, contextHandle(options.context, "flax.core/flutter#type:BuildContext"), options.fullscreenDialog, options.requestFocus, options.routeSettings, options.useRootNavigator, options.useSafeArea]);
   return _flaxResult;
 }
+var _flaxGeneric_showDialog = (0, import_bindings86.defineDartCallTypes)(_flaxTopLevel_showDialog, { "id": "flax.material/material#function:showDialog", "parameters": [{ "name": "barrierColor", "required": false, "positional": false }, { "name": "barrierDismissible", "required": false, "positional": false }, { "name": "barrierLabel", "required": false, "positional": false }, { "name": "builder", "required": true, "positional": false }, { "name": "context", "required": true, "positional": false, "context": "flax.core/flutter#type:BuildContext" }, { "name": "fullscreenDialog", "required": false, "positional": false }, { "name": "requestFocus", "required": false, "positional": false }, { "name": "routeSettings", "required": false, "positional": false }, { "name": "useRootNavigator", "required": false, "positional": false }, { "name": "useSafeArea", "required": false, "positional": false }] });
 
 });

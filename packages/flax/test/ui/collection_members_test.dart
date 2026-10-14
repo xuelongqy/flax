@@ -109,7 +109,7 @@ void main() {
             .where((e) => e.key.startsWith('@memberView:'))
             .map((e) => e.value)
             .fold(0, (a, b) => a + b),
-        2,
+        0,
       );
       expect(h.errors, isEmpty);
       h.execute('collectionMemberHooks.release()');

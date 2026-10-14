@@ -104,6 +104,9 @@ void main() {
             uiProtocol: module.uiProtocol,
             requiredCapabilities: module.requiredCapabilities,
             functions: module.functions,
+            dartTypes: module.dartTypes,
+            dartShapes: module.dartShapes,
+            records: module.records,
           ),
       ]);
       final session = FlaxSession(

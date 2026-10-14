@@ -693,7 +693,6 @@ class FlaxCodegenMethodModel {
   final String name;
   final List<FlaxCodegenParameterModel> parameters;
   final FlaxCodegenTypeRef result;
-
   FlaxCodegenMethodModel specialize(
     Map<Object?, FlaxCodegenTypeRef> substitutions,
   ) => FlaxCodegenMethodModel(
@@ -810,9 +809,7 @@ class FlaxCodegenClassModel {
 
   Iterable<FlaxCodegenFunctionModel> get staticFunctions sync* {
     if (kind != 'enum') {
-      for (final method in methods.where(
-        (method) => !method.instance && !method.deferredFactory,
-      )) {
+      for (final method in methods.where((method) => !method.instance)) {
         yield FlaxCodegenFunctionModel(staticMethodId(method), method);
       }
     }
@@ -889,6 +886,19 @@ class FlaxCodegenClassModel {
       tsArguments: [
         for (final parameter in typeParameters) parameter.defaultType!,
       ],
+      declaration: FlaxCodegenTypeRef(
+        'enum',
+        id: id,
+        name: name,
+        dartArguments: [
+          for (final p in typeParameters)
+            FlaxCodegenTypeRef(
+              'parameter',
+              name: p.name,
+              genericIdentity: p.genericIdentity,
+            ),
+        ],
+      ),
     );
     FlaxCodegenFunctionModel operation(
       String member,
@@ -983,6 +993,7 @@ class FlaxCodegenClassModel {
         'factory',
         constructor.parameters,
         broadType,
+        typeParameters,
       );
     }
   }
@@ -1364,15 +1375,10 @@ class FlaxCodegenModuleModel {
   /// Sorted unique capability literals. Protocol 21 is empty.
   final List<String> _requiredCapabilities;
   List<String> get requiredCapabilities {
-    final dartTypes = classes.any(
-      (type) =>
-          type.typeParameters.isNotEmpty &&
-          (type.kind == 'object' ||
-              type.kind == 'widget' &&
-                  (type.proxy != null ||
-                      type.getters.isNotEmpty ||
-                      type.methods.any((m) => m.instance))),
-    );
+    final genericCalls =
+        classes.any((t) => t.methods.any((m) => m.typeParameters.isNotEmpty)) ||
+        ownedFunctions.any((f) => f.call.typeParameters.isNotEmpty);
+    final dartTypes = classes.any((t) => t.typeParameters.isNotEmpty);
     final sharedBytes = typeLibraries['Uint8List'] == 'dart:typed_data';
     final sharedBuffers = flaxCodegenBufferTypes.keys.any(
       (name) => name != 'Uint8List' && typeLibraries[name] == 'dart:typed_data',
@@ -1384,7 +1390,8 @@ class FlaxCodegenModuleModel {
       'RegExp',
       'Pattern',
     ].any((name) => typeLibraries[name] == 'dart:core');
-    if (!dartTypes &&
+    if (!genericCalls &&
+        !dartTypes &&
         !sharedBytes &&
         !sharedBuffers &&
         !nativeBigInt &&
@@ -1394,6 +1401,8 @@ class FlaxCodegenModuleModel {
     return ({
       ..._requiredCapabilities,
       if (dartTypes) 'dart-type-tokens',
+      if (genericCalls) 'generic-call-types',
+      if (genericCalls || dartTypes) 'engine-type-handles',
       if (sharedBytes) 'shared-uint8',
       if (sharedBuffers) 'shared-buffers',
       if (nativeBigInt) 'native-bigint',
@@ -1473,6 +1482,7 @@ class FlaxCodegenModuleModel {
     }
     for (final function in functions) {
       final call = function.call;
+
       if (!names.add(call.name)) {
         throw StateError('Conflicting function export: ${call.name}');
       }
@@ -1862,6 +1872,7 @@ class FlaxCodegenModuleModel {
         }
 
         method.result.validate('${type.name}.${method.name} result');
+
         method.result.validateResult('${type.name}.${method.name} result');
         for (final parameter in method.parameters) {
           parameter.type.validate(
@@ -2405,6 +2416,7 @@ class FlaxCodegenExtensionModel {
         throw StateError('Invalid extension operation: $name.${member.name}');
       }
       call.result.validate('$name.${call.name}');
+
       call.result.validateResult('$name.${call.name}');
       for (final p in call.parameters) {
         p.type.validate('$name.${call.name}.${p.name}');

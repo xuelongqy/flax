@@ -178,6 +178,18 @@ Future<Map<String, Object?>> measureOmitEmission({
       'ok': true,
       'estimated': false,
       'dartBytes': utf8.encode(dart).length,
+      'genericClassFactories': RegExp(
+        r'^Function _flaxClass_',
+        multiLine: true,
+      ).allMatches(dart).length,
+      'genericCallFactories': RegExp(
+        r'^Function _flaxGeneric',
+        multiLine: true,
+      ).allMatches(dart).length,
+      'typeShapeFactories': RegExp(
+        r'^Function _flaxShape',
+        multiLine: true,
+      ).allMatches(dart).length,
       'tsBytes': utf8.encode(typescript).length,
       'dartBranches': branches,
       'applyCalls': applyCalls,

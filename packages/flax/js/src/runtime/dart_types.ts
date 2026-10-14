@@ -10,6 +10,7 @@ import type {
 export const flaxDartTypeValue: unique symbol = Symbol('Flax Dart type value');
 export const flaxDartTypeKey: unique symbol = Symbol('Flax Dart type key');
 export const flaxDartTypeCases: unique symbol = Symbol('Flax Dart type cases');
+export const flaxDartMethodCases: unique symbol = Symbol('Flax Dart method cases');
 
 export type FlaxDartTypeDescription = readonly [
   kind: string,
@@ -18,7 +19,7 @@ export type FlaxDartTypeDescription = readonly [
   nullable: boolean,
 ];
 
-/** A type description, not a Dart object or a constructor. */
+/** Authenticated Type token; its real Dart handle is resolved and cached on first use. */
 export interface FlaxDartType<
   T,
   K extends FlaxDartTypeDescription = FlaxDartTypeDescription,
@@ -32,14 +33,64 @@ export type FlaxDartTypeValue<T> =
 type Key<T> = T extends FlaxDartType<unknown, infer K> ? K : FlaxDartTypeDescription;
 export interface FlaxDartTypeCases<Cases> {
   readonly [flaxDartTypeCases]: Cases;
+  /** Selects real Dart type arguments without changing constructor arguments. */
+  $type<
+    C extends FlaxInstanceType<unknown> | Function,
+    const A extends readonly FlaxDartTypeInput[],
+  >(
+    this: C,
+    ...types: A & (FlaxDartTypeSelection<C, A> extends never ? never : unknown)
+  ): FlaxDartTypeSelection<C, A>;
 }
-type Arguments<A extends readonly FlaxDartTypeInput[]> = { [K in keyof A]: Key<A[K]> };
-type Select<Case, A> = Case extends { arguments: infer P; value: infer V }
-  ? [P] extends [A]
-    ? [A] extends [P]
-      ? V
+/** Optional metadata lets ordinary JS overrides remain structurally compatible. */
+export type FlaxDartCallable<F extends Function, Cases> = F & {
+  readonly [flaxDartTypeCases]?: Cases;
+};
+/** Created for one native generic override invocation; safe to retain across await. */
+export interface FlaxGenericCall<F extends Function> {
+  readonly super: F;
+}
+export interface FlaxDartMethodCases<Methods> {
+  readonly [flaxDartMethodCases]?: Methods;
+}
+type MethodCases<C> =
+  C extends FlaxInstanceType<unknown>
+    ? FlaxDartInstance<C> extends FlaxDartMethodCases<infer M>
+      ? M
       : never
-    : never
+    : C extends FlaxDartMethodCases<infer M>
+      ? M
+      : never;
+type Receiver<F, C> = F extends (...args: infer P) => infer R
+  ? (this: FlaxDartInstance<C>, ...args: P) => R
+  : never;
+export type FlaxDartMethodSelection<
+  C,
+  M,
+  A extends readonly FlaxDartTypeInput[],
+> = M extends keyof MethodCases<C>
+  ? A extends readonly []
+    ? C extends FlaxInstanceType<unknown>
+      ? M extends keyof FlaxDartInstance<C>
+        ? Receiver<FlaxDartInstance<C>[M], C>
+        : never
+      : M extends keyof C
+        ? C[M]
+        : never
+    : C extends FlaxInstanceType<unknown>
+      ? Receiver<Select<MethodCases<C>[M], Arguments<A>>, C>
+      : Select<MethodCases<C>[M], Arguments<A>>
+  : never;
+type Arguments<A extends readonly FlaxDartTypeInput[]> = {
+  readonly [K in keyof A]: FlaxDartTypeValue<A[K]>;
+};
+/** One signature template, applied to the selected values instead of a tuple catalog. */
+export interface FlaxDartSignature {
+  readonly arguments: readonly unknown[];
+  readonly call: unknown;
+}
+type Select<S, A extends readonly unknown[]> = S extends FlaxDartSignature
+  ? (S & { readonly arguments: A })['call']
   : never;
 type WithStatics<C, V> = V extends unknown
   ? V & Omit<C, keyof V | typeof flaxDartTypeCases>
@@ -49,9 +100,14 @@ export type FlaxDartTypeSelection<
   A extends readonly FlaxDartTypeInput[],
 > = A extends readonly []
   ? C
-  : C extends FlaxDartTypeCases<infer Cases>
-    ? WithStatics<C, Select<Cases, Arguments<A>>>
+  : C extends { readonly [flaxDartTypeCases]?: infer S }
+    ? WithStatics<C, Select<S, Arguments<A>>>
     : never;
+
+let unwrapTypeResult: (value: unknown) => unknown = (value) => value;
+export function installDartTypeUnwrap(unwrap: (value: unknown) => unknown): void {
+  unwrapTypeResult = unwrap;
+}
 
 // The WeakMap authenticates descriptions; user properties cannot forge them.
 const descriptions = new WeakMap<object, FlaxDartTypeDescription>();
@@ -94,8 +150,22 @@ function primitive<const K extends keyof Primitive, const N extends boolean>(
   return token([kind, null, [], nullable]);
 }
 
-/** Composes finite Dart type descriptions without creating bridge resources. */
+// A JS subclass shares its Dart proxy class; JS-only members are not Dart types.
+type DartOrigin<T> = T extends { readonly [flaxDartTypeValue]: infer Native }
+  ? Native
+  : T;
+
+/** Composes Dart types; the engine checks their actual bounds when selected. */
 export const dartTypes = Object.freeze({
+  of<T extends object>(value: T): FlaxDartType<DartOrigin<T>> {
+    const host = globalThis as typeof globalThis & {
+      __flaxDartType?: (version: number, operation: string, value: object) => unknown;
+    };
+    if (!host.__flaxDartType) throw new Error('Dart types require the Flax engine');
+    const result = host.__flaxDartType(24, 'of', value);
+    // Shared binding entry unwraps Dart exceptions without changing their identity.
+    return unwrapTypeResult(result) as FlaxDartType<DartOrigin<T>>;
+  },
   string: primitive('String', false),
   bool: primitive('bool', false),
   int: primitive('int', false),

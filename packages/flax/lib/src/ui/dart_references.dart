@@ -8,7 +8,7 @@ extension _DartReferences on _Session {
     final enumType = helper('enumType').call([input]);
     if (enumType is FlaxJsString) {
       final name = helper('enumName').call([input]);
-      final binding = registry._types[enumType.value];
+      final binding = _typeBinding(enumType.value);
       if (binding is! FlaxEnumBinding || name is! FlaxJsString) {
         throw ArgumentError('Unregistered Dart enum');
       }
@@ -61,10 +61,10 @@ extension _DartReferences on _Session {
     String operation,
     String name,
   ) {
-    final target = registry._types[type];
+    final target = _typeBinding(type);
     if (name.isNotEmpty ||
         !(operation == 'type' && type.isEmpty ||
-            operation == 'cast' && target != null)) {
+            (operation == 'cast' || operation == 'is') && target != null)) {
       throw ArgumentError('Unknown Dart reference operation');
     }
     return (id, args) {
@@ -72,6 +72,28 @@ extension _DartReferences on _Session {
         throw ArgumentError('Invalid Dart reference arguments');
       }
       final input = args.single as FlaxJsObject;
+      if (operation == 'is') {
+        try {
+          final (value, _) = _dartReferenceValue(input);
+          final matches =
+              _objectView(target)?.matches?.call(value) == true ||
+              target is FlaxContextBinding &&
+                  target.matches?.call(value) == true ||
+              target is FlaxStateBinding &&
+                  target.matches?.call(value) == true ||
+              target is FlaxStreamTypeBinding && target.matches(value) ||
+              target is FlaxWidgetBinding &&
+                  target.matches?.call(value) == true ||
+              target is FlaxWidgetInterfaceBinding && target.matches(value) ||
+              target is FlaxEnumBinding &&
+                  target.values.values.any((v) => identical(v, value));
+          return FlaxJsBoolean(matches);
+        } on ArgumentError {
+          return const FlaxJsBoolean(false);
+        } on StateError {
+          return const FlaxJsBoolean(false);
+        }
+      }
       final (value, source) = _dartReferenceValue(input);
       if (value is State && !value.mounted) throw StateError('Unmounted State');
       if (value is BuildContext) {
@@ -83,7 +105,7 @@ extension _DartReferences on _Session {
         }
       }
       if (operation == 'type') {
-        return FlaxJsString(value.runtimeType.toString());
+        return FlaxJsString(dartTypes.instanceType(value).toString());
       }
       final object = _objectView(target);
       if (object != null && object.matches?.call(value) == true) {

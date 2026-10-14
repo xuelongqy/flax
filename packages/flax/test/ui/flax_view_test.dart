@@ -378,7 +378,9 @@ hooks.callback.value = () => hooks.count.value += 2;
     await flaxTestWaitForRuntimeDisposal(t, h.runtime);
   });
 
-  test('duplicate registrations and incompatible modules are rejected', () {
+  testWidgets('duplicate registrations and incompatible modules are rejected', (
+    _,
+  ) async {
     expect(
       () => FlaxBindingRegistry([flutterBindings, flutterBindings]),
       throwsArgumentError,

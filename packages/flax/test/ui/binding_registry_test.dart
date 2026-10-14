@@ -29,6 +29,8 @@ void main() {
     expect(flutterBindings.uiProtocol, 24);
     expect(flutterBindings.requiredCapabilities, [
       'dart-type-tokens',
+      'engine-type-handles',
+      'generic-call-types',
       'generic-member-views',
       'instance-checks',
       'native-core-inputs',

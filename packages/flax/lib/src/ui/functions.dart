@@ -302,7 +302,7 @@ extension _WidgetReferences on _Session {
 
   void checkWidgetType(Widget widget, FlaxTypeRef type) {
     if (type.id == null) return;
-    final contract = registry._types[type.id];
+    final contract = _typeBinding(type.id);
     final accepts = switch (contract) {
       FlaxWidgetInterfaceBinding() => contract.matches(widget),
       FlaxWidgetBinding(matches: final matches?) => matches(widget),

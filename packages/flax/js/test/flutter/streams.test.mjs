@@ -33,7 +33,7 @@ test('Stream wrappers are lazy, typed and preserve their view identity', () => {
   assert.equal(calls.length, 0);
   assert.equal(stream(1), first);
   assert.equal(first.isBroadcast, true);
-  assert.deepEqual(calls, [[bindingVersion, type, 1, 'get', 'isBroadcast']]);
+  assert.deepEqual(calls, [[bindingVersion, view, 1, 'get', 'isBroadcast']]);
 
   operationHost('stream', null);
 });
@@ -49,7 +49,7 @@ test('listen delegates once and leaves event semantics to Dart', () => {
   operationHost('stream', (version, actualType, id, operation, member, ...args) => {
     assert.deepEqual(
       [version, actualType, id, operation, member],
-      [bindingVersion, type, 2, 'call', 'listen'],
+      [bindingVersion, view, 2, 'call', 'listen'],
     );
     callbacks = args;
     return subscription;

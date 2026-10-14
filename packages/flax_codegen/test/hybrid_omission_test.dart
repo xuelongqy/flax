@@ -76,9 +76,11 @@ class _TestPeer implements FlaxProxyPeer {
   _TestPeer(this.handled);
   final bool handled;
   @override
-  bool get active => true;
+  bool get active => false;
   @override
-  (bool, Object?) call(int member, List<Object?> positional, Map<String, Object?> named) => (handled, handled ? Future<int>.value(99) : null);
+  FlaxCallbackBinding genericSignature(int member, List<Type> types, FlaxCallbackBinding Function(FlaxDartTypes) build) => throw StateError('inactive test peer');
+  @override
+  (bool, Object?) call(int member, List<Object?> positional, Map<String, Object?> named, {FlaxCallbackBinding? signature, Function? superCall}) => (handled, handled ? Future<int>.value(99) : null);
 }
 void main() {
   test('every mixed default and null subset executes through all call shapes', () async {

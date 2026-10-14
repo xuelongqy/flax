@@ -48,7 +48,7 @@ void main() {
     }
     _writeJson(
       p.join(temporary.path, 'packages/flax_canvas/bindings/manifest.json'),
-      {'formatVersion': 18, 'modules': <Map<String, Object?>>[]},
+      {'formatVersion': 20, 'modules': <Map<String, Object?>>[]},
     );
     for (final target in _targets) {
       final directory = p.join(temporary.path, 'packages', target.directory);
@@ -58,12 +58,13 @@ void main() {
         'version': '0.0.0',
       });
       _writeJson(p.join(directory, 'bindings/manifest.json'), {
-        'formatVersion': 18,
+        'formatVersion': 20,
         'modules': [
           {
             'name': target.directory,
             'moduleId': moduleId,
             'uiProtocol': 24,
+            'requiredCapabilities': ['generic-call-types'],
             'model': {
               'publicLibraries': [
                 {'jsPackage': target.specifier},
@@ -90,7 +91,7 @@ void main() {
   ], workingDirectory: temporary.path);
 
   test(
-    'Manifest 18 delivery includes owned setters and excludes references',
+    'Manifest 20 delivery includes owned setters and excludes references',
     () async {
       final result = await run();
       expect(result.exitCode, 0, reason: '${result.stdout}\n${result.stderr}');
@@ -114,6 +115,7 @@ void main() {
           {
             'moduleId': moduleId,
             'uiProtocol': 24,
+            'requiredCapabilities': ['generic-call-types'],
             'types': <String>[],
             'functions': ['$moduleId#function:a%3D', '$moduleId#function:z%3D'],
           },
@@ -197,6 +199,9 @@ void main() {
         '$owner#function:Status.count%3D',
       ]),
     );
+    expect(module['bindings'][0]['requiredCapabilities'], [
+      'generic-call-types',
+    ]);
   });
 
   test('delivery rejects an unknown manifest version', () async {

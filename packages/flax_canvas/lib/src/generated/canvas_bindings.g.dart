@@ -142,6 +142,19 @@ const canvasBindings = FlaxBindingModule(
   ],
   stateVariants: [],
   records: _recordTypes,
+  dartTypes: [
+    FlaxDartClassTemplate(
+      "flax.canvas/canvas#type:FlaxCanvasSurface",
+      api.FlaxCanvasSurface,
+      "object",
+    ),
+    FlaxDartClassTemplate(
+      "flax.canvas/canvas#type:FlaxCanvasView",
+      api.FlaxCanvasView,
+      "widget",
+    ),
+  ],
+  dartShapes: _flaxDartShapes,
 );
 bool _isFlaxCanvasSurface(Object value) => value is api.FlaxCanvasSurface;
 Object? _FlaxCanvasSurface_width(Object value) =>
@@ -182,7 +195,6 @@ bool _isFlaxCanvasView(Object value) => value is api.FlaxCanvasView;
 
 class _FlaxCanvasViewHost extends FlaxWidgetHost {
   _FlaxCanvasViewHost(super.node);
-
   @override
   api1.Widget buildNative(Map<String, Object?> values) =>
       _createFlaxCanvasView(node.ctor, values);
@@ -202,6 +214,40 @@ api1.Widget _createFlaxCanvasView(String ctor, Map<String, Object?> values) {
   }
 }
 
+const _flaxDartShapes = <FlaxDartShapeTemplate>[
+  FlaxDartShapeTemplate("[\"callback\",[0,0,[],[]]]", _flaxShape0),
+];
+Function _flaxShape0<_Shape0>() => (FlaxDartTypes types, bool withinCallback) {
+  Object _callback0(FlaxCallback _flaxBridgeCallback) => () {
+    final positional = <Object?>[];
+    final named = <String, Object?>{};
+    return _flaxBridgeCallback.call(positional, named) as _Shape0;
+  };
+  bool _callback0Matches(Object value) => value is _Shape0 Function();
+  Object? _callback0Invoke(
+    Object function,
+    List<Object?> positional,
+    Map<String, Object?> named,
+  ) {
+    return (function as _Shape0 Function())();
+  }
+
+  return types.define<_Shape0 Function()>(
+    FlaxTypeRef(
+      "callback",
+      nullable: false,
+      callback: FlaxCallbackBinding(
+        [],
+        types.ref<_Shape0>(withinCallback: true),
+        _callback0,
+        id: types.key<_Shape0 Function()>(),
+        invoke: _callback0Invoke,
+        matches: _callback0Matches,
+      ),
+    ),
+    withinCallback: withinCallback,
+  );
+};
 Object _callback0(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};

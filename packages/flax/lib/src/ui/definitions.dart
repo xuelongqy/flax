@@ -7,6 +7,8 @@ const flaxBindingVersion = 24;
 const _supportedCapabilities = <String>{
   'generic-member-views',
   'dart-type-tokens',
+  'generic-call-types',
+  'engine-type-handles',
   'instance-checks',
   'native-core-inputs',
   'native-bigint',
@@ -31,8 +33,10 @@ class FlaxTypeRef {
     this.record,
     this.objectView,
     this.deferredFactories = const {},
+    this.dartType,
   });
   final String kind;
+  final Type Function()? dartType;
   final String? id;
   final bool nullable;
   // Callback Widget Iterables must be inspectable without running an iterator.
@@ -112,10 +116,13 @@ class FlaxCollectionBinding {
     this.create,
     this.matches, {
     this.snapshot,
+    this.restore,
   });
   final String id;
   final Object Function() create;
   final bool Function(Object) matches;
+  // Runtime Type factories restore erased JS copies with the actual element types.
+  final Object Function(Object)? restore;
   // Widget snapshots preserve the declared subtype inside other typed containers.
   final List<Widget?> Function(Iterable<Object?>)? snapshot;
 }
@@ -260,6 +267,7 @@ class FlaxProxyMember {
     this.kind,
     this.signature, {
     this.hasSuper = false,
+    this.hasCallContext = false,
   });
   final String name;
 
@@ -267,6 +275,7 @@ class FlaxProxyMember {
   final int kind;
   final FlaxCallbackBinding signature;
   final bool hasSuper;
+  final bool hasCallContext;
 }
 
 class FlaxProxyBinding {
@@ -278,11 +287,18 @@ class FlaxProxyBinding {
 abstract interface class FlaxProxyPeer {
   /// False once the JS implementation has been retired.
   bool get active;
+  FlaxCallbackBinding genericSignature(
+    int member,
+    List<Type> types,
+    FlaxCallbackBinding Function(FlaxDartTypes) create,
+  );
   (bool handled, Object? value) call(
     int member,
     List<Object?> positional,
-    Map<String, Object?> named,
-  );
+    Map<String, Object?> named, {
+    FlaxCallbackBinding? signature,
+    Function? superCall,
+  });
 }
 
 /// Generated direct calls for the Dart Stream class at its erased runtime type.
@@ -321,7 +337,9 @@ class FlaxFunctionBinding extends FlaxStaticMethod {
     super.result,
     super.invoke, {
     this.route,
+    this.genericFactory,
   });
+  final Function? genericFactory;
   final String id;
   final FlaxRouteCallBinding? route;
 }
@@ -340,7 +358,11 @@ class FlaxInstanceMethod {
     this.result,
     this.invoke, {
     this.startsRoute = false,
+    this.genericFactory,
+    this.ownerTypes = const [],
   });
+  final Function? genericFactory;
+  final List<Type> ownerTypes;
   final List<FlaxParameter> parameters;
   final FlaxTypeRef result;
   final Object? Function(Object, Map<String, Object?>) invoke;
@@ -485,6 +507,8 @@ class FlaxBindingModule {
     this.stateVariants = const [],
     this.dependencyModules = const [],
     this.records = const [],
+    this.dartTypes = const [],
+    this.dartShapes = const [],
   });
   final String name;
   final List<FlaxTypeBinding> types;
@@ -495,22 +519,20 @@ class FlaxBindingModule {
   final List<FlaxStateVariantBinding> stateVariants;
   final List<String> dependencyModules;
   final List<FlaxTypeRef> records;
+  final List<FlaxDartClassTemplate> dartTypes;
+  final List<FlaxDartShapeTemplate> dartShapes;
 }
 
 /// Register generated modules explicitly. A registry never chooses an engine.
 class FlaxBindingRegistry {
   FlaxBindingRegistry(List<FlaxBindingModule> modules)
     : modules = List.unmodifiable(modules) {
-    final moduleIds = <String>{componentsBindings.moduleId};
+    final moduleIds = <String>{};
     final types = <String, FlaxTypeBinding>{};
     final functions = <String, FlaxFunctionBinding>{};
     final stateVariants = <String, FlaxStateVariantBinding>{};
     final componentStateTypes = <String>{};
-    for (final variant in componentsBindings.stateVariants) {
-      stateVariants[variant.id] = variant;
-      componentStateTypes.add(variant.stateType);
-    }
-    for (final module in this.modules) {
+    for (final module in [componentsBindings, ...this.modules]) {
       if (module.uiProtocol != flaxBindingVersion) {
         throw ArgumentError('Incompatible binding module ${module.name}');
       }

@@ -245,8 +245,8 @@ class FlaxPageLease extends _Resource {
 /// Engine-independent lifecycle base for a library's standard Page Route adapter.
 /// Flutter updates settings before changedInternalState, so a Route always owns
 /// the callbacks for its current configuration, including during exit transitions.
-abstract class FlaxPageRoute extends PageRoute<Object?> {
-  FlaxPageRoute({required Page<Object?> page}) : super(settings: page);
+abstract class FlaxPageRoute<T> extends PageRoute<T> {
+  FlaxPageRoute({required Page<T> page}) : super(settings: page);
   FlaxPageLease? _lease;
 
   void _adoptPage() {

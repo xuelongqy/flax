@@ -128,7 +128,7 @@ Flip<int, String> make() => Flip(1);
   );
 
   test(
-    'expanding generic member recursion fails before unbounded emission',
+    'expanding generic members emit one template without pre-expansion',
     () async {
       final directory = await Directory(p.join(root, '.dart_tool'))
           .createTemp('growing-');
@@ -158,16 +158,8 @@ class Growing<T> {
           },
         ),
       );
-      expect(
-        () => FlaxCodegenBindingEmitter([module]).dart(module),
-        throwsA(
-          isA<StateError>().having(
-            (error) => error.message,
-            'message',
-            contains('Generic member view expansion exceeds 64 signatures'),
-          ),
-        ),
-      );
+      final emitter = FlaxCodegenBindingEmitter([module]);
+      await compileFixture(root, emitter, module);
     },
   );
 
@@ -216,7 +208,7 @@ class Growing<T> {
       final module = await parser.parse(proposal.config);
       final emitter = FlaxCodegenBindingEmitter([decoded, module]);
       final dart = emitter.dart(module);
-      expect(dart, contains('FlaxObjectViewBinding('));
+      expect(dart, contains('FlaxDartClassTemplate('));
       expect(dart, contains('String Function()'));
       expect(dart, contains('({String label, List<int> values})'));
       expect(dart, isNot(contains('api.label')));
@@ -301,10 +293,10 @@ new Iterator();
       FlaxCodegenBindingEmitter([module]),
       module,
       consumerSource: '''
-import {createShoppingList, createInventory, createTags, listView, setView, createNamedList,
+import {createShoppingList, createInventory, createTags, listView, setView, createNamedList, createGroceryList,
   createNestedItems, createSetItems, nestedLists, nestedItems, echoCollection,
   ShoppingList, NamedList, Tags, echoList, nestedBound, keyedBound, echoMap, echoIterable, callBound} from './plugin.js';
-import {asDart, getDartType, type DartList, type DartMap, type DartSet, type DartIterableInput} from '@flax/core/bindings';
+import {asDart, getDartType, dartTypes, type FlaxDartInstance, type DartList, type DartMap, type DartSet, type DartIterableInput} from '@flax/core/bindings';
 const list = createShoppingList();
 list.add('apple');
 const first: string = list.get(0);
@@ -325,6 +317,14 @@ const setBase: DartSet<string> = setView(set);
 const input: DartIterableInput<string> = set;
 const named = createNamedList();
 const native: string = named.toArray;
+const namedType = dartTypes.of(named);
+declare const nativeNamed: FlaxDartInstance<typeof namedType>;
+const nativeTypeProperty: string = nativeNamed.toArray;
+// @ts-expect-error Native type views preserve the Dart getter over the collection helper.
+nativeNamed.toArray();
+const groceryType = dartTypes.of(createGroceryList());
+declare const nativeGrocery: FlaxDartInstance<typeof groceryType>;
+const nativeLabel: string = nativeGrocery.label;
 const nativeGet: string = named.get(0);
 listView(named).get(0);
 const sameList: typeof list = echoCollection(list);

@@ -24,6 +24,178 @@ Future<void> _waitFor(
 }
 
 void main() {
+  testWidgets('generic call contexts preserve types across async JS super', (
+    tester,
+  ) async {
+    final methods = <fixture.CodegenGenericMethods>[];
+    final h = OwnedHarness(
+      fixture: 'interop',
+      extra: [interopBindings],
+      onCreate: (_, value) {
+        if (value is fixture.CodegenGenericMethods) methods.add(value);
+      },
+    );
+    try {
+      await tester.pumpWidget(h.app('interop'));
+      expect(h.errors, isEmpty);
+      h.execute('''
+        var typedStreamResult;
+        var streamOwner = interop.DeferredValues();
+        dartType(streamOwner.labels, 'map', dartTypes.int)(value => value.length)
+          .toList().then(value => {typedStreamResult = value.get(0);});
+        var genericReleases = new Map();
+        class TypedMethods extends interop.CodegenGenericMethods {
+          #suffix = '!';
+          wrap(value, call) { return call ? call.super(value) : super.wrap(value); }
+          optional(value, call) { return call ? call.super(value) : super.optional(value); }
+          named(options, call) { return call ? call.super(options) : super.named(options); }
+          async later(value, call) {
+            await new Promise(resolve => genericReleases.set(typeof value, resolve));
+            const result = await call.super(value);
+            return typeof result === 'string' ? result + this.#suffix : result;
+          }
+          async guarded(value, call) {
+            if (value === 'skip') return value;
+            await Promise.resolve();
+            return call ? call.super(value) : super.guarded(value);
+          }
+        }
+        var typedMethods = new TypedMethods();
+        var typedWrap = dartType(typedMethods, 'wrap', dartTypes.string);
+        var typedWrapped = typedWrap('a');
+        var typedStatic = dartType(interop.CodegenGenericMethods.wrapStatic, dartTypes.string)('a');
+        var typedTop = dartType(interop.codegenWrapTop, dartTypes.string)('a');
+        var typedClass = dartType(interop.CodegenGenericMethods, 'wrap', dartTypes.string).call(typedMethods, 'class');
+        var typedNested = dartType(typedMethods, 'wrap', dartTypes.list(dartTypes.string))(['a']);
+        var typedMap = dartType(typedMethods, 'wrap', dartTypes.map(dartTypes.string, dartTypes.list(dartTypes.int)))(new Map([['a', [2]]]));
+        var typedLaterString;
+        var typedLaterInt;
+        dartType(typedMethods, 'later', dartTypes.string)('a').then(value => {typedLaterString = value;});
+        dartType(typedMethods, 'later', dartTypes.int)(2).then(value => {typedLaterInt = value;});
+        var typedMissingSuper = false;
+        var typedGuarded;
+        dartType(typedMethods, 'guarded', dartTypes.string)('a').then(value => {typedGuarded = value;});
+        dartType(typedMethods, 'guarded', dartTypes.string)('skip').catch(error => {
+          typedMissingSuper = String(error).includes('must call super');
+        });
+      ''');
+      expect(
+        h.boolean("getDartType(typedWrapped).endsWith('<String>')"),
+        isTrue,
+      );
+      expect(
+        h.boolean(
+          "getDartType(typedStatic).endsWith('<String>') && getDartType(typedTop).endsWith('<String>')",
+        ),
+        isTrue,
+      );
+      expect(
+        h.boolean("getDartType(typedNested).endsWith('<List<String>>')"),
+        isTrue,
+      );
+      expect(h.number("typedMap.get(0).get('a').get(0)"), 2);
+      expect(
+        h.boolean("getDartType(typedMap).includes('<Map<String, List<int>>>')"),
+        isTrue,
+      );
+      expect(
+        h.boolean(
+          "typedWrap === dartType(typedMethods, 'wrap', dartTypes.string)",
+        ),
+        isTrue,
+      );
+      expect(methods.single.wrap<String>('native'), isA<List<String>>());
+      expect(h.string('typedClass.get(0)'), 'class');
+      expect(
+        h.boolean(
+          "dartType(typedMethods, 'optional', dartTypes.string)() === null && dartType(typedMethods, 'named', dartTypes.string)({}) === null",
+        ),
+        isTrue,
+      );
+      expect(
+        h.boolean(
+          "dartType(typedMethods, 'wrap', dartTypes.nullable(dartTypes.string))(null).get(0) === null",
+        ),
+        isTrue,
+      );
+      h.execute("genericReleases.get('number')();");
+      await _waitFor(tester, h, 'typedLaterInt !== undefined');
+      expect(h.number('typedLaterInt'), 2);
+      expect(h.boolean('typedLaterString === undefined'), isTrue);
+      h.execute("genericReleases.get('string')();");
+      await _waitFor(
+        tester,
+        h,
+        'typedLaterString !== undefined && typedMissingSuper && typedGuarded !== undefined && typedStreamResult !== undefined',
+      );
+      expect(h.string('typedLaterString'), 'a!');
+      expect(h.boolean('typedMissingSuper'), isTrue);
+      expect(h.string('typedGuarded'), 'a');
+      expect(h.number('typedStreamResult'), 1);
+      for (final source in [
+        'typedWrap(2)',
+        'typedWrap(null)',
+        'typedWrap(undefined)',
+        'typedWrap()',
+        'typedWrap("a", "b")',
+      ]) {
+        expect(
+          () => h.execute(source),
+          throwsA(isA<FlaxJsException>()),
+          reason: source,
+        );
+      }
+      expect(h.errors, isEmpty);
+    } finally {
+      await h.finish(tester);
+    }
+  });
+  testWidgets('dependent bounds preserve owners and JS proxy dispatch', (
+    tester,
+  ) async {
+    final boxes = <fixture.CodegenDependentBox<num, num>>[];
+    final methods = <fixture.CodegenGenericMethods>[];
+    final h = OwnedHarness(
+      fixture: 'interop',
+      extra: [interopBindings],
+      onCreate: (_, value) {
+        if (value is fixture.CodegenDependentBox<num, num>) boxes.add(value);
+        if (value is fixture.CodegenGenericMethods) methods.add(value);
+      },
+    );
+    try {
+      await tester.pumpWidget(h.app('interop'));
+      expect(h.errors, isEmpty);
+      h.execute('''
+        class DependentBox extends interop.CodegenDependentBox {
+          #offset = 1;
+          add(value) { return super.add(value) + this.#offset; }
+        }
+        class DependentMethods extends interop.CodegenGenericMethods {
+          #offset = 1;
+          dependent(value) { return super.dependent(value) + this.#offset; }
+        }
+        var dependentBox = new DependentBox(1.5, 2);
+        var dependentMethods = new DependentMethods();
+      ''');
+      expect(h.string('dependentBox.typeName'), 'num/num');
+      expect(h.number('dependentBox.add(3)'), 6);
+      expect(boxes.single.add(3), 6);
+      expect(h.number('dependentMethods.dependent(2.5)'), 3.5);
+      expect(methods.single.dependent<int, int>(2), 3);
+      for (final source in [
+        "new DependentBox(1, 'bad')",
+        "dependentMethods.dependent('bad')",
+        'dependentMethods.dependent(null)',
+        'dependentMethods.dependent()',
+      ]) {
+        expect(() => h.execute(source), throwsA(isA<FlaxJsException>()));
+      }
+      expect(h.errors, isEmpty);
+    } finally {
+      await h.finish(tester);
+    }
+  });
   testWidgets('generated Uint8List bindings share bytes in both directions', (
     tester,
   ) async {
@@ -162,7 +334,13 @@ void main() {
         expect(created.last.echo<int>(2), 1);
         expect(
           () => created.last.echo<String>('native'),
-          throwsA(isA<TypeError>()),
+          throwsA(
+            isA<ArgumentError>().having(
+              (e) => e.message,
+              'message',
+              contains('Expected String'),
+            ),
+          ),
         );
         await _waitFor(
           tester,
@@ -293,7 +471,7 @@ void main() {
             .singleWhere(
               (type) => type.id.endsWith('::CodegenBoundedNestedBox'),
             );
-        expect(h.calls['@memberView:${boundedBinding.id}'], 1);
+        expect(h.calls['@memberView:${boundedBinding.id}'], isNull);
         expect(h.calls['@super:size'], 1);
         expect(h.calls['map'], 4);
         expect(h.calls['generic'], 4);
@@ -464,6 +642,12 @@ void main() {
         interop.MetadataNames.value.type === 42 &&
         interop.MetadataNames.value.name === 'business-name' &&
         interop.GenericKind.number.echo(4) === 4 &&
+        interop.GenericKind.number instanceof interop.GenericKind.\$type(dartTypes.int) &&
+        !(interop.GenericKind.text instanceof dartType(interop.GenericKind, dartTypes.int)) &&
+        dartType(interop.GenericKind.number, 'project', dartTypes.list(dartTypes.string))(['typed']).get(0) === 'typed' &&
+        dartType(interop.GenericKind.staticProject, dartTypes.string)('typed') === 'typed' &&
+        interop.EnumFactory.\$type(dartTypes.string).from('four') === interop.EnumFactory.text &&
+        Object.isFrozen(interop.GenericKind) && Object.isFrozen(interop.EnumFactory) &&
         interop.GenericKind.text.echo('four') === 'four' &&
         interop.GenericKind.decimal.echo(4.5) === 4.5 &&
         interop.GenericKind.numbers.echo([2, 3]).get(1) === 3 &&

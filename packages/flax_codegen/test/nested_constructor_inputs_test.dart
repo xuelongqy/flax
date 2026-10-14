@@ -88,42 +88,43 @@ void main() {
 void main() {
   test('nested inputs retain closed Dart types, identity and member views', () async {
     final items = <String>[];
-    final bag = createTypedFixture(nested_inputsBindings, 'Bag', [['String', null, <Object?>[], false]], '', {'items': items}) as api.Bag<String>;
+    final bag = createTypedFixture(_flaxClass_Bag<String>(), '', {'items': items}) as api.Bag<String>;
     expect(identical(bag.items, items), isTrue);
-    final view = __BagMemberView(bag)!;
+    final view = typedFixtureMembers(_flaxClass_Bag<String>());
     expect(view.getters['items']!.type.item!.kind, 'String');
     expect(view.setters['items']!.type.item!.kind, 'String');
     view.setters['items']!.write(bag, <String>['a']);
     expect(view.instanceMethods['first']!.invoke(bag, {}), 'a');
     expect(view.instanceMethods['map']!.invoke(bag, {'callback': (String value) => value.toUpperCase()}), ['A']);
     expect(() => view.setters['items']!.write(bag, <int>[1]), throwsA(isA<TypeError>()));
-    expect(() => createTypedFixture(nested_inputsBindings, 'Bag', [['String', null, <Object?>[], false]], '', {'items': <int>[]}), throwsA(isA<TypeError>()));
-    expect((createTypedFixture(nested_inputsBindings, 'Bag', [['String', null, <Object?>[], false]], 'fromSet', {'items': <String>{'set'}}) as api.Bag<String>).first(), 'set');
-    expect((createTypedFixture(nested_inputsBindings, 'Bag', [['String', null, <Object?>[], false]], 'fromRecord', {'input': (<String>['record'], value: null)}) as api.Bag<String>).first(), 'record');
-    expect((createTypedFixture(nested_inputsBindings, 'Bag', [['String', null, <Object?>[], false]], 'fromCallback', {'build': () => <String>['callback']}) as api.Bag<String>).first(), 'callback');
+    expect(() => createTypedFixture(_flaxClass_Bag<String>(), '', {'items': <int>[]}), throwsA(isA<TypeError>()));
+    expect((createTypedFixture(_flaxClass_Bag<String>(), 'fromSet', {'items': <String>{'set'}}) as api.Bag<String>).first(), 'set');
+    expect((createTypedFixture(_flaxClass_Bag<String>(), 'fromRecord', {'input': (<String>['record'], value: null)}) as api.Bag<String>).first(), 'record');
+    expect((createTypedFixture(_flaxClass_Bag<String>(), 'fromCallback', {'build': () => <String>['callback']}) as api.Bag<String>).first(), 'callback');
     final envelope = api.Envelope<List<String>>(items);
-    expect(identical((createTypedFixture(nested_inputsBindings, 'Bag', [['String', null, <Object?>[], false]], 'fromEnvelope', {'input': envelope}) as api.Bag<String>).items, items), isTrue);
+    expect(identical((createTypedFixture(_flaxClass_Bag<String>(), 'fromEnvelope', {'input': envelope}) as api.Bag<String>).items, items), isTrue);
     final future = Future<List<String>>.value(['future']);
-    final later = createTypedFixture(nested_inputsBindings, 'Bag', [['String', null, <Object?>[], false]], 'fromFuture', {'pending': future}) as api.Bag<String>;
+    final later = createTypedFixture(_flaxClass_Bag<String>(), 'fromFuture', {'pending': future}) as api.Bag<String>;
     expect(identical(later.pending, future), isTrue);
     expect(await later.pending, ['future']);
     void visit<R extends String>(R value) {}
-    expect(createTypedFixture(nested_inputsBindings, 'Bag', [['String', null, <Object?>[], false]], 'fromGeneric', {'visit': visit}), isA<api.Bag<String>>());
-    final nullable = createTypedFixture(nested_inputsBindings, 'NullableBag', [['String', null, <Object?>[], false]], '', {'items': <String?>[null, 'value']}) as api.NullableBag<String>;
-    final nullableView = __NullableBagMemberView(nullable)!;
+    expect(createTypedFixture(_flaxClass_Bag<String>(), 'fromGeneric', {'visit': visit}), isA<api.Bag<String>>());
+    final nullable = createTypedFixture(_flaxClass_NullableBag<String>(), '', {'items': <String?>[null, 'value']}) as api.NullableBag<String>;
+    expect(nullable.items, [null, 'value']);
+    final nullableView = typedFixtureMembers(_flaxClass_NullableBag<String>());
     expect(nullableView.getters['items']!.type.nullable, isTrue);
     expect(nullableView.getters['items']!.type.item!.nullable, isTrue);
     expect(nullableView.instanceMethods['first']!.result.nullable, isFalse);
-    expect(createTypedFixture(nested_inputsBindings, 'NullableBag', [['String', null, <Object?>[], false]], '', {'items': null}), isA<api.NullableBag<String>>());
+    expect(createTypedFixture(_flaxClass_NullableBag<String>(), '', {'items': null}), isA<api.NullableBag<String>>());
     final values = <String, List<int?>>{'one': [null, 1]};
-    final pair = createTypedFixture(nested_inputsBindings, 'PairBag', [['String', null, <Object?>[], false], ['int', null, <Object?>[], false]], '', {'items': values}) as api.PairBag<String, int>;
+    final pair = createTypedFixture(_flaxClass_PairBag<String, int>(), '', {'items': values}) as api.PairBag<String, int>;
     expect(identical(pair.items, values), isTrue);
     expect(pair.first('one'), 1);
-    expect(() => createTypedFixture(nested_inputsBindings, 'PairBag', [['String', null, <Object?>[], false], ['int', null, <Object?>[], false]], '', {'items': <int, List<int?>>{1: [2]}}), throwsA(isA<TypeError>()));
-    expect(createTypedFixture(nested_inputsBindings, 'CorrelatedBag', [['String', null, <Object?>[], false]], '', {'tag': 'a', 'items': <String>['b']}), isA<api.CorrelatedBag<String>>());
-    expect(createTypedFixture(nested_inputsBindings, 'CorrelatedBag', [['int', null, <Object?>[], false]], '', {'tag': 1, 'items': <int>[2]}), isA<api.CorrelatedBag<int>>());
-    expect(() => createTypedFixture(nested_inputsBindings, 'CorrelatedBag', [['int', null, <Object?>[], false]], '', {'tag': 1, 'items': <String>['bad']}), throwsA(isA<TypeError>()));
-    expect((createTypedFixture(nested_inputsBindings, 'TokenBag', [['String', null, <Object?>[], false]], '', {'items': <String>['token']}) as api.TokenBag<String>).items, ['token']);
+    expect(() => createTypedFixture(_flaxClass_PairBag<String, int>(), '', {'items': <int, List<int?>>{1: [2]}}), throwsA(isA<TypeError>()));
+    expect(createTypedFixture(_flaxClass_CorrelatedBag<String>(), '', {'tag': 'a', 'items': <String>['b']}), isA<api.CorrelatedBag<String>>());
+    expect(createTypedFixture(_flaxClass_CorrelatedBag<int>(), '', {'tag': 1, 'items': <int>[2]}), isA<api.CorrelatedBag<int>>());
+    expect(() => createTypedFixture(_flaxClass_CorrelatedBag<int>(), '', {'tag': 1, 'items': <String>['bad']}), throwsA(isA<TypeError>()));
+    expect((createTypedFixture(_flaxClass_TokenBag<String>(), '', {'items': <String>['token']}) as api.TokenBag<String>).items, ['token']);
   });
 }
 ''',

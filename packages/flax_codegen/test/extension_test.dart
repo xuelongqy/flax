@@ -526,6 +526,7 @@ list.delayed();
         '''
 import assert from 'node:assert/strict';
 import { transformSync } from 'esbuild';
+import * as sharedBindings from './packages/flax/js/dist/runtime/bindings.js';
 const source = ${jsonEncode(ts)};
 const imports = source.split('\\n').find(line => line.startsWith('import '));
 const helpers = [...imports.matchAll(/as (_flaxHost\\w+)/g)].map(match => match[1]);
@@ -543,7 +544,7 @@ const hosts = Object.fromEntries(helpers.map(name => [name, (...args) => {
 }]));
 const output = transformSync(source.replace(imports, ''), {loader: 'ts', format: 'cjs'}).code;
 const exported = {exports: {}};
-new Function('module', 'exports', 'bindingVersion', ...helpers, output)(exported, exported.exports, 24, ...helpers.map(name => hosts[name]));
+new Function('module', 'exports', 'bindingVersion', 'require', ...helpers, output)(exported, exported.exports, 24, id => { assert.equal(id, '@flax/core/bindings'); return sharedBindings; }, ...helpers.map(name => hosts[name]));
 const {StringA, StringB, ListX, ShadowX, CollisionX, WeakMap} = exported.exports;
 assert.equal(calls.length, 0);
 const text = StringA('abc');

@@ -1,6 +1,13 @@
 import 'package:flax_codegen/flax_codegen.dart';
 
 const dartTypesSelection = {
+  'CodegenGrowing': FlaxCodegenClassSelection(
+    {
+      '': ['value'],
+    },
+    kind: 'object',
+    getters: ['value', 'next'],
+  ),
   'CodegenTypeBound': FlaxCodegenClassSelection(
     {'': []},
     kind: 'object',

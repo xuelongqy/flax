@@ -11,9 +11,15 @@ test('bundled loop callbacks retain independent signals and subscriptions', () =
   const notifications = [];
   let root;
   const context = createContext({
+    __flaxDartType(version, operation, id, descriptions) {
+      assert.equal(version, 24);
+      assert.equal(operation, 'class');
+      assert.deepEqual(JSON.parse(descriptions), [['String', null, [], false]]);
+      return `${id}@test:String`;
+    },
     __flaxCreateObject(version, type, descriptor) {
       assert.equal(version, 24);
-      assert.match(type, /#type:ValueKey:\[\["String",null,\[\],false\]\]$/);
+      assert.match(type, /#type:ValueKey@test:String$/);
       return Object.freeze({ value: descriptor.args.value });
     },
     __flaxMount(widget, version) {

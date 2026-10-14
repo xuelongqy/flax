@@ -2,13 +2,13 @@ import 'package:flax/bindings.dart';
 import 'package:material_ui/material_ui.dart';
 
 /// Uses Flutter's current Page settings and the library's standard transitions.
-FlaxPageRoute createMaterialPageRoute(MaterialPage<Object?> page) =>
-    _MaterialPageRoute(page);
+FlaxPageRoute<T> createMaterialPageRoute<T>(MaterialPage<T> page) =>
+    _MaterialPageRoute<T>(page);
 
-class _MaterialPageRoute extends FlaxPageRoute
-    with MaterialRouteTransitionMixin<Object?> {
-  _MaterialPageRoute(MaterialPage<Object?> page) : super(page: page);
-  MaterialPage<Object?> get _page => settings as MaterialPage<Object?>;
+class _MaterialPageRoute<T> extends FlaxPageRoute<T>
+    with MaterialRouteTransitionMixin<T> {
+  _MaterialPageRoute(MaterialPage<T> page) : super(page: page);
+  MaterialPage<T> get _page => settings as MaterialPage<T>;
   @override
   Widget buildContent(BuildContext context) => _page.child;
   @override

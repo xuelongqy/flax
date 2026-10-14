@@ -69,6 +69,8 @@ enum GenericKind<T> {
   maybe<int?>(null);
 
   const GenericKind(this.sample);
+  U project<U>(U value) => value;
+  static U staticProject<U>(U value) => value;
   final T sample;
   T echo(T value) => value;
   T Function(T) get repeat => echo;

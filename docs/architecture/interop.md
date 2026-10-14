@@ -271,8 +271,8 @@ and same-size transfer, then removes it on detach or collection.
 The existing `createArrayBuffer` / `readBytes` operations retain their explicit copying
 semantics for Blob/Fetch and other snapshot APIs, with one payload copy in each
 direction. Native snapshots are released by Dart's external-data finalizer independently
-of session disposal. The internal binding engine table is version 4; native ABI 2, UI
-protocol 24 and Manifest 18 remain independent. Modules using Uint8List require the
+of session disposal. The internal binding engine table is version 5; native ABI 2, UI
+protocol 24 and Manifest 20 remain independent. Modules using Uint8List require the
 additive `shared-uint8` capability. Other supported binary types require
 `shared-buffers` and use this same storage lease:
 
@@ -657,20 +657,21 @@ notifications and State.setState; Flax adds no notification policy.
 
 TS declarations preserve generic parameters, bounds, nullability, inherited substitution
 and relationships among fields, arguments and results. Automatic selection fixes shared
-Dart classes and ordinary generic methods to Object? or an Analyzer-proven fully closed
-bound. Explicit configuration can select valid concrete arguments. TypeScript type
-arguments do not change that Dart choice; see the
+Dart defaults to Object? or an Analyzer-proven bound. `dartType` selects actual class or
+method arguments through the maintained engine without generating a catalog of type
+combinations. TypeScript type arguments alone do not change that Dart choice; see the
 [generic method contract](bindings.md#generic-methods).
 
-Generic callback and proxy methods are different: generated incoming closures are real
-generic Dart functions. Dart chooses the current type argument, Flax converts through
-the analyzer-resolved bound, and the returned value is checked against the current type
-parameter. Returned Dart generic functions are invoked with the erased bound because JS
-does not supply runtime type arguments. An unconstrained parameter erases to Object?;
-dependent bounds such as `U extends T` erase transitively. The TS call-site type remains
-useful for development, but it does not change the Dart erasure used by the bridge.
-Generic callback erasure still rejects recursive bounds, unbound interfaces and bounds
-without an existing conversion.
+Native proxy methods receive Dart's actual generic arguments. A JS override can retain
+its per-invocation `call` context and use `call.super(...)`, including after an `await`,
+without losing those arguments. Generated incoming callbacks remain real generic Dart
+functions; their existing bound conversion and current-type result checks are preserved.
+Returned Dart generic functions are invoked with the erased bound because that callback
+API does not select runtime type arguments. An unconstrained parameter erases to
+Object?; dependent bounds such as `U extends T` erase transitively. The TS call-site
+type remains useful for development, but it does not change the Dart erasure used by the
+bridge. Generic callback erasure still rejects recursive bounds, unbound interfaces and
+bounds without an existing conversion.
 
 Object-erased function-local generic results use `DartOutput<T>` in TypeScript. Scalars
 remain scalars; raw JS collections return real Dart collection references, rather than
@@ -686,7 +687,8 @@ collection view. This also applies to nested result/callback positions. A shared
 `T extends List<String>` call actually invokes Dart with `List<String>`; it cannot
 promise that a new collection returned by the function has T's business members.
 `asDart(result, ShoppingList)` restores those members only when the original Dart object
-satisfies that class. This introduces no runtime generic type arguments.
+satisfies that class. Explicit method selection can instead use the subclass as T; the
+ordinary shared call retains its bound default.
 
 Generic numeric results use the representation required by the current Dart type
 argument, including nullable `int` and `double`. Integer conversion rejects fractional,
@@ -703,10 +705,10 @@ collection, exception and reference-lifetime behavior; no alias wrapper is alloc
 runtime. Core's `ValueChanged<T>` and `ValueGetter<T>` exports come from the real
 Flutter SDK declarations. See [standalone typedefs](bindings.md#standalone-typedefs).
 
-No runtime type tokens or TS compiler transformation are used. A generic function whose
-implementation depends on the exact runtime identity of the TS call-site type is outside
-this contract. Unsupported signatures fail generation. ValueKey retains separate String
-and int Dart instantiations so Flutter key matching is unchanged.
+TS call-site types are not runtime tokens and there is no TS compiler transformation.
+Use `dartType` when a class or method depends on exact Dart type arguments. Returned
+generic callbacks keep the bound-only limitation above. Unsupported signatures fail
+generation. Explicit String/int ValueKey selections preserve Flutter key matching.
 
 Selected deferred generic factories are materialized from concrete Dart use sites rather
 than a list of configured type arguments. The JS wrapper keeps its factory parameters

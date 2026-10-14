@@ -218,7 +218,7 @@ const enumeration: string = MethodKind.value.echo('a');
 declare const shared: SharedMethods<DartList<string>>;
 declare const nativeList: DartList<string>;
 const chosen: number = shared.choose(nativeList, 2);
-// @ts-expect-error method U must not widen an unspecialized owner T
+// Raw collection inputs reuse the existing converter.
 shared.choose(['a'], 2);
 // @ts-expect-error a concrete owner keeps the inherited method bound
 new Closed().narrowed(2);
@@ -231,7 +231,7 @@ void main() {
    final inherited = api.InheritedMethods();
    expect(_InheritedMethods_echo(inherited, {'value': 'a'}), 'a');
    final bag = api.MethodBag<String>(['a']);
-   final view = __MethodBagMemberView(bag)!;
+   final view = typedFixtureMembers(_flaxClass_MethodBag<String>());
    expect(view.instanceMethods['mapFirst']!.invoke(bag, {'callback': (String value) => value.length}), 1);
    expect(_MethodBag_echo(bag, {'value': 2}), 2);
    final closed = api.ClosedMethods();
@@ -244,87 +244,82 @@ void main() {
     },
   );
 
-  test(
-    'recursive and dependent bounds require explicit checked arguments',
-    () async {
-      final proposal = await parser.proposeLibrary(config({}));
-      for (final target in [
-        'EchoMethods.recursive',
-        'EchoMethods.dependent',
-        'MethodBag.narrowed',
-      ]) {
-        expect(
-          proposal.skips.any(
-            (skip) =>
-                skip.target == target && skip.code == 'complex_generic_bound',
-          ),
-          isTrue,
-          reason: target,
-        );
-      }
+  test('recursive defaults require explicit arguments while captured owners use templates', () async {
+    final proposal = await parser.proposeLibrary(config({}));
+    for (final target in ['EchoMethods.recursive']) {
       expect(
         proposal.skips.any(
           (skip) =>
-              skip.target == 'MethodFactory.from' &&
-              skip.code == 'explicit_runtime_type_arguments',
+              skip.target == target && skip.code == 'complex_generic_bound',
         ),
         isTrue,
+        reason: target,
       );
-      await expectLater(
-        parser.parse(
-          config({
-            'EchoMethods': const FlaxCodegenClassSelection(
-              {'': []},
-              kind: 'object',
-              instanceMethods: {
-                'recursive': ['value'],
-              },
-            ),
-          }),
-        ),
-        throwsA(
-          isA<StateError>().having(
-            (e) => e.message,
-            'message',
-            contains('explicit runtime type arguments'),
-          ),
-        ),
-      );
-      final module = await parser.parse(
+    }
+    expect(proposal.config.classes['MethodFactory']!.methods, contains('from'));
+    expect(
+      proposal.skips.any(
+        (s) =>
+            s.target == 'MethodBag.narrowed' &&
+            s.code == 'complex_generic_bound',
+      ),
+      isTrue,
+    );
+    await expectLater(
+      parser.parse(
         config({
           'EchoMethods': const FlaxCodegenClassSelection(
             {'': []},
             kind: 'object',
             instanceMethods: {
               'recursive': ['value'],
-              'dependent': ['value'],
-              'wrap': ['value'],
-              'runtimeTypeName': [],
-            },
-            methodTypeArguments: {
-              'recursive': ['String'],
-              'dependent': ['num', 'int'],
-              'wrap': ['String'],
-              'runtimeTypeName': ['String'],
-            },
-          ),
-          'MethodBag': const FlaxCodegenClassSelection(
-            {
-              '': ['items'],
-            },
-            kind: 'object',
-            typeArguments: ['String'],
-            instanceMethods: {
-              'narrowed': ['value'],
             },
           ),
         }),
-      );
-      await compileFixture(
-        root.path,
-        FlaxCodegenBindingEmitter([module]),
-        module,
-        dartTestSource: '''
+      ),
+      throwsA(
+        isA<StateError>().having(
+          (e) => e.message,
+          'message',
+          contains('explicit runtime type arguments'),
+        ),
+      ),
+    );
+    final module = await parser.parse(
+      config({
+        'EchoMethods': const FlaxCodegenClassSelection(
+          {'': []},
+          kind: 'object',
+          instanceMethods: {
+            'recursive': ['value'],
+            'dependent': ['value'],
+            'wrap': ['value'],
+            'runtimeTypeName': [],
+          },
+          methodTypeArguments: {
+            'recursive': ['String'],
+            'dependent': ['num', 'int'],
+            'wrap': ['String'],
+            'runtimeTypeName': ['String'],
+          },
+        ),
+        'MethodBag': const FlaxCodegenClassSelection(
+          {
+            '': ['items'],
+          },
+          kind: 'object',
+          typeArguments: ['String'],
+          instanceMethods: {
+            'narrowed': ['value'],
+          },
+        ),
+      }),
+    );
+    await compileFixture(
+      root.path,
+      FlaxCodegenBindingEmitter([module]),
+      module,
+      dartTestSource: '''
 void main() {
  test('explicit targets retain actual Dart generics and bound checks', () {
    final echo = _createEchoMethods('', {});
@@ -338,24 +333,23 @@ void main() {
  });
 }
 ''',
-      );
-      await expectLater(
-        parser.parse(
-          config({
-            'EchoMethods': const FlaxCodegenClassSelection(
-              {'': []},
-              kind: 'object',
-              instanceMethods: {
-                'dependent': ['value'],
-              },
-              methodTypeArguments: {
-                'dependent': ['num', 'String'],
-              },
-            ),
-          }),
-        ),
-        throwsA(isA<StateError>()),
-      );
-    },
-  );
+    );
+    await expectLater(
+      parser.parse(
+        config({
+          'EchoMethods': const FlaxCodegenClassSelection(
+            {'': []},
+            kind: 'object',
+            instanceMethods: {
+              'dependent': ['value'],
+            },
+            methodTypeArguments: {
+              'dependent': ['num', 'String'],
+            },
+          ),
+        }),
+      ),
+      throwsA(isA<StateError>()),
+    );
+  });
 }

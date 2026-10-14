@@ -563,7 +563,7 @@ List<CapabilityDiagnostic> _proposalDiagnostics(
     diagnostics.add(
       const CapabilityDiagnostic(
         code: 'constructor_specialization_resolved',
-        message: 'A shared bound default and analyzer-validated closed targets support construction; ordinary object/native Widget handles select types before argument conversion',
+        message: 'Analyzer-evidenced defaults support bare construction; engine-backed Type handles select actual class arguments before conversion without a closed target catalog',
       ),
     );
   }

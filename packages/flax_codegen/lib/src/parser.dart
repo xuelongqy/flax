@@ -199,23 +199,6 @@ bool _validInferredDeferredCallbackType(
   return valid(type);
 }
 
-bool _hasGenericFactoryResult(MethodElement method) {
-  if (!method.isStatic || method.typeParameters.isEmpty) return false;
-  final result = method.library.typeSystem.flatten(method.returnType);
-  if (result is! InterfaceType || result.element is ExtensionTypeElement) {
-    return false;
-  }
-  final owner = result.element;
-  if ((owner.library.uri.toString() == 'dart:core' &&
-          {'Iterable', 'List', 'Map', 'Set'}.contains(owner.name)) ||
-      (owner.library.uri.toString() == 'dart:async' &&
-          owner.name == 'Stream')) {
-    return false;
-  }
-  // Nominal factories need a concrete materializer, not a shared erased owner.
-  return _containsDeferredTypeParameter(result, method.typeParameters.toSet());
-}
-
 Set<String> _coreCollectionKinds(InterfaceElement element) {
   final kinds = {
     for (final parent in element.allSupertypes)
@@ -2017,17 +2000,24 @@ class FlaxCodegenBindingParser {
           final function = library is LibraryElementResult
               ? library.element.exportNamespace.get2(adapter.function)
               : null;
+          final adapterType =
+              function is TopLevelFunctionElement &&
+                  function.typeParameters.length ==
+                      element.typeParameters.length
+              ? function.type.instantiate(actualType.typeArguments)
+              : null;
           if (function is! TopLevelFunctionElement ||
               function.isPrivate ||
-              function.typeParameters.isNotEmpty ||
+              function.typeParameters.length != element.typeParameters.length ||
               function.formalParameters.length != 1 ||
               !function.formalParameters.single.isRequiredPositional ||
-              function.formalParameters.single.type is! InterfaceType ||
-              (function.formalParameters.single.type as InterfaceType)
+              adapterType == null ||
+              adapterType.formalParameters.single.type is! InterfaceType ||
+              (adapterType.formalParameters.single.type as InterfaceType)
                       .element !=
                   element ||
-              function.returnType is! InterfaceType ||
-              identity((function.returnType as InterfaceType).element) !=
+              adapterType.returnType is! InterfaceType ||
+              identity((adapterType.returnType as InterfaceType).element) !=
                   'package:flax/bindings.dart::FlaxPageRoute') {
             throw StateError(
               'Page adapter must accept the selected Page and return FlaxPageRoute: ${adapter.function}',
@@ -2230,14 +2220,6 @@ class FlaxCodegenBindingParser {
         final deferredFactory = effectiveDeferredFactories.contains(chosen.key);
         final explicitTypeArgs =
             selection.methodTypeArguments[chosen.key] ?? const <String>[];
-        if (!deferredFactory &&
-            explicitTypeArgs.isEmpty &&
-            _hasGenericFactoryResult(method)) {
-          throw StateError(
-            'Unsupported generic factory requires explicit runtime type arguments: '
-            '${entry.key}.${chosen.key}',
-          );
-        }
         final sharedArguments =
             !deferredFactory &&
                 method.typeParameters.isNotEmpty &&
@@ -2501,6 +2483,17 @@ class FlaxCodegenBindingParser {
         staticGetters.add(FlaxCodegenGetterModel(name, type));
       }
       final staticSetters = <FlaxCodegenGetterModel>[];
+      if (genericParameters.isNotEmpty &&
+          (selection.constructors.containsKey(r'$type') ||
+              staticGetters.any((getter) => getter.name == r'$type') ||
+              methods.any(
+                (method) => !method.instance && method.name == r'$type',
+              ) ||
+              selection.asyncIterableFactory == r'$type')) {
+        throw StateError(
+          'Conflicting generic selector export: ${entry.key}.\$type',
+        );
+      }
       final staticNames = <String>{
         ...selection.staticGetters,
         ...selectedMethods.keys,

@@ -1,5 +1,5 @@
 {
-  "formatVersion": 18,
+  "formatVersion": 20,
   "package": "flax_cupertino_ui",
   "bindingNamespace": "flax.cupertino",
   "imports": [

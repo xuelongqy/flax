@@ -1,4 +1,4 @@
-import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartInput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/async/_bindings/flutter_StreamController';
 import '@flax/dart/async/_bindings/flutter_StreamController';
 import type * as upstream1 from '@flax/dart/async/_bindings/flutter_StreamSink';
@@ -11,7 +11,7 @@ import type * as upstream4 from '@flax/dart/async/_bindings/flutter_StreamConsum
 import '@flax/dart/async/_bindings/flutter_StreamConsumer';
 import type * as upstream5 from '@flax/dart/async/_bindings/flutter_Stream';
 import '@flax/dart/core/_bindings/flutter_StackTrace';
-import { type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
+import { type FlaxDartSignature as _FlaxDartSignature, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface SynchronousStreamController<T extends unknown | null = unknown | null> extends upstream0.StreamController<T>, upstream1.StreamSink<T>, upstream2.EventSink<T>, upstream3.Sink<T>, upstream4.StreamConsumer<T>, Readonly<{
     "__flaxBound:dart:async::SynchronousStreamController": readonly [T];
 }> {
@@ -26,12 +26,12 @@ export interface SynchronousStreamController<T extends unknown | null = unknown 
     readonly isPaused: boolean;
     readonly hasListener: boolean;
     readonly done: Promise<unknown | null>;
-    add(data: T): void;
+    add(data: (T | DartInput<T>)): void;
     addError(error: {}, stackTrace?: Readonly<{
         "__flaxBound:dart:core::StackTrace": readonly [];
     }> | null): void;
     close(): Promise<unknown | null>;
-    addStream(source: upstream5.Stream<T>, options?: {
+    addStream(source: (upstream5.Stream<T> | upstream5.Stream<(T | DartInput<T>)>), options?: {
         cancelOnError?: boolean | null | undefined;
     }): Promise<unknown | null>;
     set onListen(value: (() => void) | null);
@@ -39,9 +39,10 @@ export interface SynchronousStreamController<T extends unknown | null = unknown 
     set onResume(value: (() => void) | null);
     set onCancel(value: (() => void | Promise<void>) | null);
 }
-export declare const SynchronousStreamController: object & _FlaxInstanceType<SynchronousStreamController<unknown | null>> & _FlaxDartType<SynchronousStreamController<unknown | null>, readonly ["class", "flax.core/flutter#type:SynchronousStreamController", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<{
-    arguments: readonly [readonly ["any", null, readonly [], true]];
-    value: {
-        readonly prototype: SynchronousStreamController<unknown | null>;
-    } & _FlaxInstanceType<SynchronousStreamController<unknown | null>> & _FlaxDartType<SynchronousStreamController<unknown | null>, readonly ["class", "flax.core/flutter#type:SynchronousStreamController", readonly [readonly ["any", null, readonly [], true]], false]>;
-}>;
+export declare const SynchronousStreamController: object & _FlaxInstanceType<SynchronousStreamController<unknown | null>> & _FlaxDartType<SynchronousStreamController<unknown | null>, readonly ["class", "flax.core/flutter#type:SynchronousStreamController", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
+interface _FlaxSignature0 extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? {
+        readonly prototype: SynchronousStreamController<_Selected0>;
+    } & _FlaxInstanceType<SynchronousStreamController<_Selected0>> & _FlaxDartType<SynchronousStreamController<_Selected0>> : never : never;
+}
+export {};

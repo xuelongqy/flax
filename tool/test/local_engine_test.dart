@@ -88,9 +88,12 @@ void main() {
       final script = File('${temporary.path}/check.dart')
         ..writeAsStringSync('''
 import 'dart:io';
+import '${File('tool/src/local_engine.dart').absolute.uri}';
 void main() {
   final env = Platform.environment;
   final retained = env['FLUTTER_ENGINE'] == env['FLAX_TEST_ENGINE_SOURCE'];
+  if (env['FLAX_TEST_USE_ENGINE'] == 'true' &&
+      flutterEngineSource() != env['FLAX_TEST_ENGINE_SOURCE']) exit(74);
   if (env['FLAX_TEST_MARKER'] != 'preserved' ||
       (env['FLAX_TEST_USE_ENGINE'] == 'true'
           ? !retained
@@ -102,7 +105,10 @@ void main() {
       for (final useLocalEngine in [true, false]) {
         await run(
           Platform.resolvedExecutable,
-          [script.path],
+          [
+            '--packages=${Directory.current.path}/.dart_tool/package_config.json',
+            script.path,
+          ],
           useLocalEngine: useLocalEngine,
           environment: {
             'FLUTTER_ENGINE': '${temporary.path}/missing',

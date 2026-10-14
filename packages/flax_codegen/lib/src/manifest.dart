@@ -64,7 +64,7 @@ final class FlaxCodegenManifest {
   }) : imports = List.unmodifiable(imports),
        modules = List.unmodifiable(modules);
 
-  static const formatVersion = 18;
+  static const formatVersion = 20;
   static const uiProtocol = 24;
 
   final String package;
@@ -345,6 +345,8 @@ FlaxCodegenManifestModule? _decodeModuleEntry(
       'native-core-inputs',
       'generic-member-views',
       'dart-type-tokens',
+      'generic-call-types',
+      'engine-type-handles',
       'native-bigint',
       'native-widget-proxies',
       'shared-uint8',

@@ -12,6 +12,11 @@
         {
           "moduleId": "flax.material/material",
           "uiProtocol": 24,
+          "requiredCapabilities": [
+            "generic-member-views",
+            "instance-checks",
+            "native-widget-proxies"
+          ],
           "types": [
             "flax.material/material#type:AlertDialog",
             "flax.material/material#type:AppBar",

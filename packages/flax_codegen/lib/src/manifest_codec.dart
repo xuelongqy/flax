@@ -1827,7 +1827,7 @@ FlaxCodegenMethodModel? _decodeMethod(
       parameters.length != pendingParameters.length) {
     return null;
   }
-  return FlaxCodegenMethodModel(
+  final method = FlaxCodegenMethodModel(
     name,
     parameters,
     result,
@@ -1839,6 +1839,7 @@ FlaxCodegenMethodModel? _decodeMethod(
     deferredFactory: deferredFactory,
     operatorName: operatorName,
   );
+  return method;
 }
 
 Map<String, Object?> _encodeProxy(

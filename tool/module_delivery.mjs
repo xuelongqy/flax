@@ -56,6 +56,7 @@ function bindingRequirement(module) {
   return {
     moduleId: module.moduleId,
     uiProtocol: module.uiProtocol,
+    requiredCapabilities: module.requiredCapabilities ?? [],
     types: hostProxyModule
       ? []
       : uniqueSorted([
@@ -197,9 +198,9 @@ async function delivery({
   const npm = await json(join(root, packageDirectory, 'package.json'));
   const manifest = manifestPath
     ? await json(join(root, manifestPath))
-    : { formatVersion: 18, modules: [] };
-  if (manifest.formatVersion !== 18) {
-    throw new Error(`Expected Binding Manifest 18: ${manifestPath}`);
+    : { formatVersion: 20, modules: [] };
+  if (manifest.formatVersion !== 20) {
+    throw new Error(`Expected Binding Manifest 20: ${manifestPath}`);
   }
   const requirements = publicRequirements(manifest);
   const modules = [

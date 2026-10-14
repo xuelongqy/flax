@@ -166,33 +166,27 @@ void main() {
     },
   );
 
-  test(
-    'skips dependent and recursive generic bounds instead of inventing them',
-    () async {
-      final parser = FlaxCodegenBindingParser(repoRoot);
-      addTearDown(parser.dispose);
-      final library = config('generic_cases.dart');
-      final dependent = await parser.proposeSelection(
-        await load('generic_cases.dart', 'DependentBox'),
-        library: library,
-      );
-      expect(dependent.bindable, isFalse);
-      expect(
-        dependent.skips.map((skip) => skip.code),
-        contains('complex_generic_bound'),
-      );
+  test('resolves dependent bounds and skips recursive bounds', () async {
+    final parser = FlaxCodegenBindingParser(repoRoot);
+    addTearDown(parser.dispose);
+    final library = config('generic_cases.dart');
+    final dependent = await parser.proposeSelection(
+      await load('generic_cases.dart', 'DependentBox'),
+      library: library,
+    );
+    expect(dependent.bindable, isTrue);
+    expect(dependent.skips, isEmpty);
 
-      final recursive = await parser.proposeSelection(
-        await load('generic_cases.dart', 'RecursiveBox'),
-        library: library,
-      );
-      expect(recursive.bindable, isFalse);
-      expect(
-        recursive.skips.map((skip) => skip.code),
-        contains('complex_generic_bound'),
-      );
-    },
-  );
+    final recursive = await parser.proposeSelection(
+      await load('generic_cases.dart', 'RecursiveBox'),
+      library: library,
+    );
+    expect(recursive.bindable, isFalse);
+    expect(
+      recursive.skips.map((skip) => skip.code),
+      contains('complex_generic_bound'),
+    );
+  });
 
   test(
     'automatically binds generic methods through their closed bounds',

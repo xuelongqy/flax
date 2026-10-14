@@ -1,5 +1,5 @@
 {
-  "formatVersion": 18,
+  "formatVersion": 20,
   "package": "flax",
   "bindingNamespace": "flax.core",
   "imports": [],

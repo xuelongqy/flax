@@ -5,11 +5,15 @@ enum _SessionStatus { open, closing, closed }
 final _bindingContextKey = Object();
 
 class _BindingContext {
-  _BindingContext(this.moduleId, Iterable<String> dependencies)
-    : dependencies = Set<String>.unmodifiable(dependencies);
+  _BindingContext(
+    this.moduleId,
+    Iterable<String> dependencies, {
+    this.dartProviders = const {},
+  }) : dependencies = Set<String>.unmodifiable(dependencies);
   final String moduleId;
   String get namespace => moduleId.split('/').first;
   final Set<String> dependencies;
+  final Map<Type, String> dartProviders;
   T run<T>(T Function() action) => identical(_bindingContext, this)
       ? action()
       : runZoned(action, zoneValues: {_bindingContextKey: this});
@@ -41,14 +45,16 @@ class _Session {
   _Session(this.runtime, this.registry, this.onError, {this.namespace});
   final String? namespace;
   _BindingContext? _contextForBinding(String id) {
-    final module = registry._bindingOwners[id];
+    final selected = _specializedContexts[id];
+    if (selected != null) return selected;
+    final module = _bindingOwner(id);
     if (module != null) {
       return _bindingContexts.putIfAbsent(
         module.moduleId,
         () => _BindingContext(module.moduleId, module.dependencyModules),
       );
     }
-    return _genericObjectBindings[id]?.context;
+    return _specializedContexts[id] ?? _genericObjectBindings[id]?.context;
   }
 
   final _bindingContexts = <String, _BindingContext>{};
@@ -94,6 +100,7 @@ class _Session {
   }
 
   void registerOperations() {
+    registerDartTypes();
     _registerBindingHostFunction('__flaxResolveOperation', (_, args) {
       _checkCall(args, 5);
       if (args.length != 5 ||
@@ -117,7 +124,11 @@ class _Session {
           _ => throw ArgumentError('Unknown binding category'),
         };
         final id = _operations.length;
-        _operations.add((category, _bindingContext, invoke));
+        _operations.add((
+          category,
+          _specializedContexts[name] ?? _bindingContext,
+          invoke,
+        ));
         return id;
       });
       return FlaxJsNumber(id.toDouble());
@@ -143,7 +154,9 @@ class _Session {
       }
       final (category, context, invoke) = _operations[id];
       final receiver = (args[1] as FlaxJsNumber).value.toInt();
-      final origin = category == 'stream'
+      final origin = context?.dartProviders.isNotEmpty == true
+          ? context
+          : category == 'stream'
           ? _streamReferences[receiver]?.context ?? context
           : context ??
                 (category == 'object' ? _objects[receiver]?.context : null);
@@ -215,6 +228,22 @@ class _Session {
   bool _hostClosing = false;
   final FlaxJsRuntime runtime;
   final FlaxBindingRegistry registry;
+  late final _typeBindings = <String, FlaxTypeBinding>{...registry._types};
+  late final _functionBindings = <String, FlaxFunctionBinding>{
+    ...registry._functions,
+  };
+  late final dartTypes = FlaxDartTypes._(this);
+  FlaxTypeBinding? _typeBinding(String? id) =>
+      id == null ? null : _typeBindings[id] ?? dartTypes.materialize(id);
+  final _specializedContexts = <String, _BindingContext?>{};
+  final _specializedOwners = <String, String>{};
+  FlaxInstanceMethod? _genericMethod(String type, String name) =>
+      _genericMethods[(type, name)] ??
+      _genericMethods[(_specializedOwners[type] ?? type, name)];
+  final _genericMethods = <(String, String), FlaxInstanceMethod>{};
+  FlaxBindingModule? _bindingOwner(String id) =>
+      registry._bindingOwners[id] ??
+      registry._bindingOwners[_specializedOwners[id]];
   final void Function(Object, StackTrace)? onError;
   _SessionStatus _status = _SessionStatus.open;
   bool get active => _status != _SessionStatus.closed;
@@ -485,6 +514,7 @@ class _Session {
     _CallbackScope callbackScope = _CallbackScope.member,
     _CollectionConversion? conversion,
   }) {
+    type = dartTypes._resolveRef(type);
     if (type.kind == 'data') {
       if (value is FlaxJsNull && !type.nullable) {
         throw ArgumentError('Unexpected null for data');
@@ -616,11 +646,15 @@ class _Session {
       if (type.kind == 'state') {
         final id = helper('stateHandle').call([value, FlaxJsString(type.id!)]);
         final reference = id is FlaxJsNumber ? _states[id.value.toInt()] : null;
-        if (reference == null || reference.type != type.id) {
+        final expected = _typeBinding(type.id);
+        if (reference == null || expected is! FlaxStateBinding) {
           throw ArgumentError('Invalid or foreign State');
         }
         final state = reference.mounted;
         if (state == null) throw StateError('Unmounted State');
+        if (expected.matches?.call(state) == false) {
+          throw ArgumentError('Incompatible State');
+        }
         return _Value(state);
       }
     }
@@ -628,7 +662,7 @@ class _Session {
         value is FlaxJsObject) {
       final enumType = helper('enumType').call([value]);
       if (enumType is FlaxJsString) {
-        final definition = registry._types[enumType.value];
+        final definition = _typeBinding(enumType.value);
         final name = helper('enumName').call([value]);
         if (definition is! FlaxEnumBinding ||
             name is! FlaxJsString ||
@@ -636,7 +670,7 @@ class _Session {
           throw ArgumentError('Unregistered Dart enum');
         }
         final entry = definition.values[name.value]!;
-        final expected = registry._types[type.id];
+        final expected = _typeBinding(type.id);
         final compatible = type.kind == 'enum'
             ? expected is FlaxEnumBinding &&
                   expected.values.values.any((value) => identical(value, entry))
@@ -650,7 +684,7 @@ class _Session {
       }
     }
     if (type.kind == 'object') {
-      final binding = registry._types[type.id];
+      final binding = _typeBinding(type.id);
       if (binding is FlaxObjectBinding &&
           binding.nativeInput == 'Uri' &&
           value is FlaxJsString) {
@@ -728,7 +762,7 @@ class _Session {
             }
           }
         }
-        if (type.deferredFactories.isEmpty) {
+        if (_deferredFactories(type).isEmpty) {
           throw ArgumentError('Expected a Dart object reference');
         }
         object = materializeDeferredObject(value, type);
@@ -882,7 +916,7 @@ class _Session {
     final id = _textProperty(value, 'type');
     final definition = id == _pageContentBinding.id
         ? _pageContentBinding
-        : registry._types[id];
+        : _typeBinding(id);
     if (type.kind == 'widget' &&
         kind == 'widget' &&
         definition is FlaxWidgetBinding) {
@@ -914,7 +948,7 @@ class _Session {
         final validated = host.buildNative(
           sources.map((name, source) => MapEntry(name, source.initial.data)),
         );
-        if (registry._types[type.id] is FlaxWidgetBinding) {
+        if (_typeBinding(type.id) is FlaxWidgetBinding) {
           checkWidgetType(validated, type);
           // A concrete signature receives the immutable native configuration.
           // Its weak lease keeps constructor callbacks and children alive.
@@ -940,13 +974,19 @@ class _Session {
     if (type.kind == 'page' &&
         kind == 'value' &&
         definition is FlaxPageBinding &&
-        (id == type.id || definition.supertypes.contains(type.id))) {
+        (id == type.id ||
+            definition.supertypes.contains(
+              _specializedOwners[type.id] ?? type.id,
+            ))) {
       return decodePage(value, definition, _textProperty(value, 'ctor'));
     }
     if (type.kind == 'route' &&
         kind == 'value' &&
         definition is FlaxRouteBinding &&
-        (id == type.id || definition.supertypes.contains(type.id))) {
+        (id == type.id ||
+            definition.supertypes.contains(
+              _specializedOwners[type.id] ?? type.id,
+            ))) {
       return decodeRoute(value, definition, _textProperty(value, 'ctor'));
     }
     throw ArgumentError(
@@ -1128,6 +1168,12 @@ class _Session {
     _proxyLayouts.clear();
     _collectionBindings.clear();
     _genericObjectBindings.clear();
+    dartTypes.close();
+    _typeBindings.clear();
+    _functionBindings.clear();
+    _specializedContexts.clear();
+    _specializedOwners.clear();
+    _genericMethods.clear();
     _objectKeys?.release();
     _arrayCheck?.release();
     for (final result in _hostResults) {

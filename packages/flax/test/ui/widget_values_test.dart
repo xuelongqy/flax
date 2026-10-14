@@ -267,6 +267,29 @@ void main() {
           isTrue,
         );
         expect(values.lazyIterations, 1);
+        values.nativeIterableRecord = (
+          values.nativeLazy,
+          groups: [],
+          keyed: {},
+          nested: [],
+          pending: [],
+          later: Future.value(<Widget>[]),
+        );
+        h.execute(
+          'widgetValues.store.nativeIterableRecords.first.then(value => { widgetValues.ordinaryRecord = value; }).catch(error => { widgetValues.ordinaryRecordError = String(error); });',
+        );
+        await _pump(t);
+        expect(
+          h.boolean('widgetValues.ordinaryRecord !== undefined'),
+          isTrue,
+          reason: h.string('String(widgetValues.ordinaryRecordError)'),
+        );
+        expect(values.lazyIterations, 1);
+        expect(
+          h.boolean('widgetValues.ordinaryRecord.\$1.toArray().length === 1'),
+          isTrue,
+        );
+        expect(values.lazyIterations, 2);
         expect(h.errors, isEmpty);
       } finally {
         await h.finish(t);

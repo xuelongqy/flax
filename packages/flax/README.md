@@ -50,8 +50,9 @@ features do not change the pure-Dart runtime entry or native ABI.
 
 `FlaxCallbackParameter` records callback names, positional/named form and requiredness.
 Generated adapters preserve optional omission in both directions. Generic callback and
-proxy methods retain their TypeScript relationships while the Dart bridge converts
-through analyzer-resolved bounds; no runtime TypeScript token is transported.
+proxy methods retain their TypeScript relationships. Real Dart Type handles select
+checked conversion and call adapters on first use; TypeScript syntax alone does not
+select a Dart instantiation.
 
 ## Entries
 

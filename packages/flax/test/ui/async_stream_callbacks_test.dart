@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flax/flax.dart';
+import 'package:flax_test/flax_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../.dart_tool/flax/ui/interop_bindings.dart';
@@ -31,7 +32,9 @@ Future<T> _settle<T>(WidgetTester tester, Future<T> pending) async {
       done = true;
     },
   );
-  await _pump(tester, 80);
+  for (var turn = 0; turn < 80 && !done; turn++) {
+    await _pump(tester, 1);
+  }
   expect(
     done,
     isTrue,
@@ -240,9 +243,9 @@ void main() {
     }
   });
 
-  test(
+  testWidgets(
     'erased collection adapters reject wrong kinds and broad Dart references',
-    () async {
+    (_) async {
       for (final (method, value) in <(String, Object)>[
         ('echoStreamFutureList', <double>{1, 2}),
         ('echoStreamFutureList', <Object?>[1, 2]),
@@ -256,9 +259,9 @@ void main() {
     },
   );
 
-  test(
+  testWidgets(
     'erased collection adapters preserve compatible Dart references',
-    () async {
+    (_) async {
       final list = <int>[1, 2];
       final map = <String, int>{'count': 1};
       final set = <int>{1, 2};
@@ -496,8 +499,9 @@ void main() {
           ),
         );
         await _pump(tester);
+        await tester.runAsync(flaxTestCollectDartGarbage);
         await h.finish(tester);
-        await closed;
+        await _settle(tester, closed);
         // The tracker counts observed promises cumulatively; cancellation does
         // not emit a settlement. Real teardown is checked by zero owned handles.
         expect(h.runtime.handlesAtDispose, 0);

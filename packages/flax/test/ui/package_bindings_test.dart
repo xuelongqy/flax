@@ -207,6 +207,9 @@ FlaxBindingModule _module(String namespace) {
     moduleId: '$namespace/money',
     uiProtocol: flaxBindingVersion,
     requiredCapabilities: const [],
+    dartTypes: [
+      if (namespace != 'flax.core') FlaxDartClassTemplate(id, _Money, 'object'),
+    ],
   );
 }
 
@@ -267,6 +270,19 @@ void main() {
                 const FlaxTypeRef('any', nullable: true),
                 (_) => value,
               ),
+              FlaxFunctionBinding(
+                'test.c/functions#function:generic',
+                const [],
+                const FlaxTypeRef('any', nullable: true),
+                (_) => value,
+                genericFactory: <T>() =>
+                    (FlaxDartTypes types) => FlaxFunctionBinding(
+                      'test.c/functions#function:generic',
+                      const [],
+                      types.ref<T>(),
+                      (_) => value,
+                    ),
+              ),
             ],
           ),
         ];
@@ -281,6 +297,11 @@ void main() {
           expect(h.string('typed.provider'), 'test.b');
           h.execute('var erased=moneyHooks.erased();');
           expect(h.string('erased.provider'), 'flax.core');
+          h.execute(
+            "var genericA = moneyHooks.generic('a'); var genericB = moneyHooks.generic('b');",
+          );
+          expect(h.string('genericA.provider'), 'test.a');
+          expect(h.string('genericB.provider'), 'test.b');
           expect(h.errors, isEmpty);
         } finally {
           await h.finish(tester);

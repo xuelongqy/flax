@@ -829,14 +829,18 @@ extension _ComponentCalls on _Session {
       if (state == null) {
         throw ArgumentError('Foreign or disposed component State');
       }
-      if (registry._componentStateTypes.contains(target)) {
+      final binding = _typeBinding(target);
+      if (registry._componentStateTypes.contains(
+            _specializedOwners[target] ?? target,
+          ) &&
+          (binding is! FlaxStateBinding ||
+              binding.matches?.call(state) != false)) {
         return _Value(state);
       }
       final variantId = state.variantId;
       final variant = variantId == null
           ? null
           : registry._stateVariants[variantId];
-      final binding = registry._types[target];
       if (variant == null ||
           !variant.interfaces.contains(target) ||
           binding is! FlaxObjectBinding ||
@@ -919,7 +923,7 @@ extension _ComponentCalls on _Session {
 
   FlaxJsObject componentContext(BuildContext context, _ContextOwner owner) {
     // State.context remains available during dispose, even after unmount.
-    final type = registry._types.values.whereType<FlaxContextBinding>().single;
+    final type = _typeBindings.values.whereType<FlaxContextBinding>().single;
     return contextResult(context, type.id, owner: owner, allowUnmounted: true);
   }
 

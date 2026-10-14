@@ -49,6 +49,10 @@ const enumSelection = {
       'echo': ['value'],
       'transform': ['callback'],
       'group': ['value'],
+      'project': ['value'],
+    },
+    methods: {
+      'staticProject': ['value'],
     },
   ),
   'EnumBuildFlag': FlaxCodegenClassSelection(

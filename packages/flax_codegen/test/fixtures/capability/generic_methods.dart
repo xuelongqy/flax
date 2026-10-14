@@ -1,4 +1,7 @@
+import 'package:flutter/foundation.dart' show mustCallSuper;
+
 T echoTop<T>(T value) => value;
+List<T> wrapTop<T>(T value) => [value];
 
 class EchoMethods {
   EchoMethods();
@@ -9,6 +12,7 @@ class EchoMethods {
       <T>(T value) => value;
   Object? invokeGeneric(Object? value, T Function<T>(T) callback) =>
       callback<Object?>(value);
+  @mustCallSuper
   Future<T> later<T>(T value) async => value;
   Stream<T> events<T>(T value) async* {
     yield value;
@@ -18,6 +22,7 @@ class EchoMethods {
   T? named<T>({T? value}) => value;
   String runtimeTypeName<T>() => '$T';
   static T numeric<T extends num>(T value) => value;
+  static List<T> wrapStatic<T>(T value) => [value];
   T closed<T extends List<String>>(T value) => value;
   T recursive<T extends Comparable<T>>(T value) => value;
   U dependent<T extends num, U extends T>(U value) => value;

@@ -1,62 +1,12 @@
 part of '../../bindings.dart';
 
-final _futureOwners = Expando<Object>();
-
-// Native Dart Future children do not retain their producer. Promise-derived
-// casts and continuations must keep that bridge origin while they remain live.
-class _PromiseFuture<T> implements Future<T> {
-  _PromiseFuture(this._inner, [this._owner]);
-
-  final Future<T> _inner;
-  // Flatten ownership to the original adapter. A cleanup listener would consume
-  // uncaught Dart errors; the owner instead follows this Future's actual lifetime.
-  final Object? _owner;
-
-  @override
-  Future<R> then<R>(FutureOr<R> Function(T) onValue, {Function? onError}) =>
-      _PromiseFuture(_inner.then<R>(onValue, onError: onError), _owner ?? this);
-
-  @override
-  Future<T> catchError(Function onError, {bool Function(Object)? test}) =>
-      _PromiseFuture(_inner.catchError(onError, test: test), _owner ?? this);
-
-  @override
-  Future<T> whenComplete(FutureOr<void> Function() action) =>
-      _PromiseFuture(_inner.whenComplete(action), _owner ?? this);
-
-  @override
-  Future<T> timeout(Duration timeLimit, {FutureOr<T> Function()? onTimeout}) =>
-      _PromiseFuture(
-        _inner.timeout(timeLimit, onTimeout: onTimeout),
-        _owner ?? this,
-      );
-
-  @override
-  Stream<T> asStream() {
-    // A subscription owns the controller, but not its Stream facade. Keep the
-    // Promise origin in onListen so both an unused Stream and a listener retain
-    // it; completion or cancellation removes that conditional ownership.
-    late final StreamController<T> controller;
-    controller = StreamController<T>(
-      sync: true,
-      onListen: () {
-        _inner
-            .then<void>(controller.add, onError: controller.addError)
-            .whenComplete(() {
-              controller.onListen = null;
-              unawaited(controller.close());
-            });
-      },
-      onCancel: () => controller.onListen = null,
-    );
-    return controller.stream;
-  }
-}
+final _futureOwners = Expando<_PendingPromise>();
 
 class _PendingFuture {
   _PendingFuture(this.result, this.future);
   final FlaxTypeRef result;
-  // A ready delivery retains its source until JS receives the resolution.
+  // This GC edge must survive AOT even though Dart never reads the source.
+  @pragma('vm:entry-point')
   final Future<Object?> future;
   final _BindingContext? context = _bindingContext;
   bool ready = false;
@@ -147,6 +97,7 @@ extension _AsyncCalls on _Session {
       final id = rawId.toInt();
       final pending = _promises.remove(id);
       if (pending == null) return const FlaxJsUndefined();
+      _futureOwners[pending.completer.future] = null;
       if (!(args[2] as FlaxJsBoolean).value) {
         final original = originalDartError(args[3]);
         if (original != null) {
@@ -186,17 +137,18 @@ extension _AsyncCalls on _Session {
     // this bridge-owned Future observed without changing its rejection result.
     pending.completer.future.ignore();
     _promises[id] = pending;
-    final future = _PromiseFuture(pending.completer.future);
+    final future = pending.completer.future;
     _futureOwners[future] = pending;
     try {
       if (value is FlaxJsObject) {
-        runtime.bindDartPeer(value, future, origin: future);
+        runtime.bindDartPeer(value, future, origin: pending);
       }
       _releaseJs(
         helper('observePromise').call([FlaxJsNumber(id.toDouble()), value]),
       );
     } catch (_) {
       _promises.remove(id);
+      _futureOwners[future] = null;
       rethrow;
     }
     return future;
@@ -242,6 +194,7 @@ extension _AsyncCalls on _Session {
     }
     final error = StateError('FlaxSessionClosed');
     for (final pending in _promises.values) {
+      _futureOwners[pending.completer.future] = null;
       if (!pending.completer.isCompleted) {
         pending.completer.completeError(error, StackTrace.current);
       }

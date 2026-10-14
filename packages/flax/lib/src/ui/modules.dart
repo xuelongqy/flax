@@ -163,6 +163,17 @@ void _validateModuleBindings(
           '${required.moduleId}',
         );
       }
+      final missingCapabilities = required.capabilities
+          .where(
+            (capability) => !binding.requiredCapabilities.contains(capability),
+          )
+          .toList();
+      if (missingCapabilities.isNotEmpty) {
+        throw StateError(
+          'Incomplete Dart bindings for ${module.specifier}: '
+          'missing capabilities $missingCapabilities',
+        );
+      }
       final types = binding.types.map((value) => value.id).toSet();
       final functions = binding.functions.map((value) => value.id).toSet();
       final missingTypes = [
@@ -274,19 +285,27 @@ class _RequiredModuleBindings {
     this.protocol,
     this.types,
     this.functions,
+    this.capabilities,
   );
   final String moduleId;
   final int protocol;
   final List<String> types;
   final List<String> functions;
+  final List<String> capabilities;
 
   factory _RequiredModuleBindings.parse(Object? value) {
-    final data = _moduleObject(value, const {
-      'moduleId',
-      'uiProtocol',
-      'types',
-      'functions',
-    }, 'required Dart bindings');
+    final data = _moduleObject(
+      value,
+      const {
+        'moduleId',
+        'uiProtocol',
+        'types',
+        'functions',
+        'requiredCapabilities',
+      },
+      'required Dart bindings',
+      optional: const {'requiredCapabilities'},
+    );
     if (data['uiProtocol'] != flaxBindingVersion) {
       throw FormatException('Unsupported Flax module binding protocol');
     }
@@ -295,6 +314,9 @@ class _RequiredModuleBindings {
       flaxBindingVersion,
       _moduleStrings(data['types'], 'types'),
       _moduleStrings(data['functions'], 'functions'),
+      data.containsKey('requiredCapabilities')
+          ? _moduleStrings(data['requiredCapabilities'], 'requiredCapabilities')
+          : const [],
     );
   }
 }

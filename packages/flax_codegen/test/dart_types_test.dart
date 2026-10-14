@@ -8,6 +8,79 @@ import '../../flax/test/fixtures/dart_types_selection.dart';
 import 'generator_test.dart' show compileFixture;
 
 void main() {
+  test('generic selectors reserve static exports in explicit and automatic binding', () async {
+    final root = p.normalize(p.join(Directory.current.path, '../..'));
+    final parser = FlaxCodegenBindingParser(root);
+    addTearDown(parser.dispose);
+    final uri = Uri.file(
+      p.join(
+        root,
+        'packages/flax_codegen/test/fixtures/capability/generic_selector.dart',
+      ),
+    ).toString();
+    FlaxCodegenBindingConfig config(
+      Map<String, FlaxCodegenClassSelection> classes,
+    ) => FlaxCodegenBindingConfig(
+      'generic_selector',
+      uri,
+      '@example/generic-selector',
+      'unused.dart',
+      'unused.ts',
+      classes,
+    );
+    for (final entry in {
+      'SelectorMethod': const FlaxCodegenClassSelection(
+        {'': []},
+        kind: 'object',
+        methods: {r'$type': []},
+      ),
+      'SelectorGetter': const FlaxCodegenClassSelection(
+        {'': []},
+        kind: 'object',
+        staticGetters: [r'$type'],
+      ),
+      'SelectorConstructor': const FlaxCodegenClassSelection({
+        '': [],
+        r'$type': [],
+      }, kind: 'object'),
+    }.entries) {
+      await expectLater(
+        parser.parse(config({entry.key: entry.value})),
+        throwsA(
+          isA<StateError>().having(
+            (e) => e.message,
+            'message',
+            contains('Conflicting generic selector export'),
+          ),
+        ),
+      );
+    }
+    final automaticParser = FlaxCodegenBindingParser(root);
+    addTearDown(automaticParser.dispose);
+    final proposal = await automaticParser.proposeLibrary(config({}));
+    expect(
+      proposal.skips.where(
+        (skip) => skip.code == 'generic_selector_export_collision',
+      ),
+      hasLength(3),
+    );
+    final automatic = proposal.config;
+    expect(
+      automatic.classes['SelectorMethod']!.methods,
+      isNot(contains(r'$type')),
+    );
+    expect(
+      automatic.classes['SelectorGetter']!.staticGetters,
+      isNot(contains(r'$type')),
+    );
+    expect(
+      automatic.classes['SelectorConstructor']!.constructors,
+      isNot(contains(r'$type')),
+    );
+    expect(automatic.classes['OrdinarySelector']!.methods, contains(r'$type'));
+    await automaticParser.parse(automatic);
+  });
+
   test('opaque defaults retain independently selectable nominal targets', () async {
     final root = p.normalize(p.join(Directory.current.path, '../..'));
     final parser = FlaxCodegenBindingParser(root);
@@ -52,8 +125,8 @@ void main() {
     final entries = opaque_boundsBindings.types.whereType<FlaxObjectBinding>();
     final base = entries.singleWhere((entry) => entry.aliasOf == null && entry.id.endsWith('::Bound'));
     expect(base.create('', {}), isA<api.Bound<Iterable<BigInt>>>());
-    final selected = entries.singleWhere((entry) => entry.aliasOf == base.id);
-    expect(selected.create('', {}), isA<api.Bound<api.BigValues>>());
+    expect(_flaxType_Bound<api.BigValues>(), api.Bound<api.BigValues>);
+    expect(opaque_boundsBindings.dartTypes.singleWhere((t) => t.id == base.id).factory, isNotNull);
   });
 }
 ''',
@@ -116,6 +189,7 @@ const Widgets = dartType(CodegenTypeBag, Text);
 Contexts([]);
 States([]);
 Widgets([]);
+Widgets([Text('generic child')]);
 declare const context: import('@flax/flutter/widgets').BuildContext;
 declare const state: import('@example/type-components').State;
 Contexts([context]);
@@ -129,9 +203,18 @@ WidgetType('factory');
 class TypedWidget extends WidgetType { override label(value: string) { return super.label(value) + '!'; } }
 const widget = new TypedWidget('native');
 const widgetLabel: string = widget.nativeLabel('typed');
-const Strings = dartType(CodegenTypeBag, dartTypes.string);
+const Strings = CodegenTypeBag.\$type(dartTypes.string);
+const same: typeof Strings = dartType(CodegenTypeBag, dartTypes.string);
 const a = Strings([]);
 const text: string = a.items.get(0);
+// @ts-expect-error selected constructor inputs retain String
+Strings([1]);
+// @ts-expect-error selected named constructor inputs retain String
+Strings.named({items: [1]});
+// @ts-expect-error selected results retain String
+const wrongString: number = Strings(['a']).items.get(0);
+// @ts-expect-error runtime types must be authenticated
+CodegenTypeBag.\$type({});
 Strings([], 20);
 Strings.named({items: [], capacity: 5});
 Strings.labeled([], {capacity: undefined});
@@ -154,9 +237,8 @@ const broad = CodegenTypeBag(['a', 1, null]);
 const guessed: string = broad.items.get(0);
 // @ts-expect-error the selected type rejects numeric elements
 Strings([1]);
-// @ts-expect-error numeric type keys must stay distinct
-dartType(CodegenTypeBag, dartTypes.double);
-const Processor = dartType(CodegenTypeProcessor, dartTypes.string);
+dartType(CodegenTypeBag, dartTypes.double)([1.5]);
+const Processor = CodegenTypeProcessor.\$type(dartTypes.string);
 const processorLabel: string = Processor.source();
 const implementation = Processor.implement(['seed'], {});
 const concrete: string = implementation.seed;
@@ -167,6 +249,11 @@ class Derived extends Processor {
   override describe() { return super.describe() + this.#suffix; }
 }
 const derived = new Derived('start', {label: 'named'});
+const RealProxies = dartType(CodegenTypeBag, dartTypes.of(derived));
+const nativeView = RealProxies([derived]).items.get(0);
+const originalSeed: string = nativeView.seed;
+// @ts-expect-error A VM type handle does not select a JS-only subclass member.
+nativeView.ownMethod();
 const represented: FlaxDartInstance<typeof Derived> = derived;
 const own: string = represented.ownMethod();
 const seed: string = derived.seed;
@@ -181,14 +268,9 @@ void main() {
     expect(bound.create('', {}), isA<api.CodegenTypeBound<List<BigInt>>>());
     final base = entries.singleWhere((value) => value.aliasOf == null && value.id.contains('CodegenTypeBag'));
     expect(base.create('', {'items': <Object?>['a', 1, null], 'capacity': 10}), isA<api.CodegenTypeBag<Object?>>());
-    final strings = entries.singleWhere((value) => value.aliasOf == base.id && value.matches!(api.CodegenTypeBag<String>([])));
-    expect(strings.create('', {'items': <String>[], 'capacity': 10}), isA<api.CodegenTypeBag<String>>());
-    expect((strings.create('named', {'items': <String>[], 'capacity': 10}) as api.CodegenTypeBag<String>).capacity, 10);
-    expect((strings.create('labeled', {'items': <String>[], 'capacity': 20}) as api.CodegenTypeBag<String>).capacity, 20);
-    expect(strings.create('empty', {}), isA<api.CodegenTypeBag<String>>());
-    expect(() => strings.create('', {'items': <int>[1]}), throwsA(isA<TypeError>()));
-    final lists = entries.singleWhere((value) => value.aliasOf == base.id && value.getters.firstWhere((getter) => getter.name == 'items').type.item?.kind == 'list' && !value.getters.firstWhere((getter) => getter.name == 'items').type.item!.nullable && !value.getters.firstWhere((getter) => getter.name == 'items').type.item!.item!.nullable);
-    expect(lists.create('', {'items': <List<String>>[[]], 'capacity': 10}), isA<api.CodegenTypeBag<List<String>>>());
+    expect(_flaxType_CodegenTypeBag<String>(), api.CodegenTypeBag<String>);
+    expect(_flaxType_CodegenTypeBag<List<String>>(), api.CodegenTypeBag<List<String>>);
+    expect(dart_typesBindings.dartTypes.singleWhere((t) => t.id == base.id).factory, isNotNull);
   });
 }
 ''',

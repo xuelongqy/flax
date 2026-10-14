@@ -15,13 +15,27 @@ test('shared prototype forwarding preserves receiver, direct super and omission'
   const originalCreate = globalThis.__flaxCreateObject;
   const originalCall = operationHost('object', null);
   const originalBind = globalThis.__flaxBindPeer;
+  const originalPrepare = globalThis.__flaxPrepareProxy;
   t.after(() => {
     globalThis.__flaxCreateObject = originalCreate;
     operationHost('object', originalCall);
     globalThis.__flaxBindPeer = originalBind;
+    globalThis.__flaxPrepareProxy = originalPrepare;
   });
   defineObject(type, [], [], {}, []);
-  globalThis.__flaxPrepareProxy = () => 0;
+  globalThis.__flaxPrepareProxy = (_, owner, rows) => {
+    assert.equal(owner, type);
+    assert.deepEqual(
+      rows.map((row) => row.slice(0, 4)),
+      [
+        ['add', 0, 1, 2],
+        ['named', 0, 0, 1],
+        ['value', 1, 0, 0],
+        ['value', 2, 1, 1],
+      ],
+    );
+    return 0;
+  };
   globalThis.__flaxCreateObject = () => globalThis.__flaxBindings.object(type, 4001);
   globalThis.__flaxBindPeer = (version, source, target) => {
     assert.equal(version, 24);
@@ -42,6 +56,7 @@ test('shared prototype forwarding preserves receiver, direct super and omission'
     getters: ['value'],
     setters: ['value'],
     superMembers: ['add', 'named', 'get:value', 'set:value'],
+    contextMembers: ['add'],
   };
   class Base extends FlaxProxyBase {
     constructor() {
@@ -50,6 +65,7 @@ test('shared prototype forwarding preserves receiver, direct super and omission'
   }
   defineProxyBase(Base.prototype, definition);
   assert.ok(Object.isFrozen(definition));
+  assert.ok(Object.isFrozen(definition.contextMembers));
   assert.ok(Object.isFrozen(definition.methods.add));
   assert.ok(Object.isFrozen(definition.methods.add[0]));
   class Custom extends Base {

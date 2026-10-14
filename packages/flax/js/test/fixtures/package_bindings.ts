@@ -3,6 +3,10 @@ import {
   bindInstanceType,
   constructObject,
   defineObject,
+  defineDartCallTypes,
+  dartType,
+  type FlaxDartSignature,
+  type FlaxDartCallable,
   invokeObject,
   invokeTopLevel,
 } from '@flax/core/bindings';
@@ -62,12 +66,21 @@ for (const [id, fields] of [
 }
 const typeA = bindInstanceType<object, object>({}, a, []);
 const typeB = bindInstanceType<object, object>({}, b, []);
+interface MoneySignature extends FlaxDartSignature {
+  readonly call: this['arguments'] extends readonly [unknown] ? () => unknown : never;
+}
+const genericMoney = defineDartCallTypes(
+  () => invokeTopLevel('test.c/functions#function:generic', []),
+  { id: 'test.c/functions#function:generic', parameters: [] },
+) as FlaxDartCallable<() => unknown, MoneySignature>;
 Object.assign(globalThis, {
   moneyHooks: {
     castA: (value: unknown) => asDart(value, typeA),
     castB: (value: unknown) => asDart(value, typeB),
     erased: () => invokeTopLevel('test.c/functions#function:erased', []),
     typed: () => invokeTopLevel('test.c/functions#function:typed', []),
+    generic: (provider: 'a' | 'b') =>
+      dartType(genericMoney, provider === 'a' ? typeA : typeB)(),
     createA: () => constructObject('object', a, '', [], [], {}),
     createB: () => constructObject('object', b, '', [], [], {}),
     createWrong: () => constructObject('object', wrong, '', [], [], {}),

@@ -8,6 +8,11 @@
         {
           "moduleId": "flax.canvas/canvas",
           "uiProtocol": 24,
+          "requiredCapabilities": [
+            "generic-member-views",
+            "instance-checks",
+            "native-widget-proxies"
+          ],
           "types": [
             "flax.canvas/canvas#type:FlaxCanvasSurface",
             "flax.canvas/canvas#type:FlaxCanvasView"

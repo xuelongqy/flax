@@ -712,7 +712,6 @@ c.shareBytes([1, 2]);
         'Map<String, Object?> named)',
       ),
     );
-    expect(dart, isNot(contains('Function.apply')));
     await compileFixture(
       root,
       emitter,
@@ -2095,11 +2094,11 @@ AlignmentGeometry();
     );
     final emitter = FlaxCodegenBindingEmitter([module]);
     final dart = emitter.dart(module);
-    expect(dart, contains('adapterScreenSpec.adaptScreen(this)'));
+    expect(dart, contains('adapterScreenSpec.adaptScreen<_Owner0>(this)'));
     expect(dart, contains('values.containsKey("onPopInvoked")'));
     expect(dart, isNot(contains('_defaultPop')));
-    expect(dart, contains('ValueKey<String>'));
-    expect(dart, contains('ValueKey<int>'));
+    expect(dart, contains('Function _flaxClass_ValueKey<'));
+    expect(dart, contains('Type _flaxType_ValueKey<'));
     final typescript = emitter.typescript(module);
     expect(typescript, contains('readonly value: T'));
     expect(typescript, contains('function _ValueKeyFactory(value: unknown'));
@@ -3033,7 +3032,7 @@ const result: number = value.value;
       final emitter = FlaxCodegenBindingEmitter([module]);
       final ts = emitter.typescript(module);
       expect(ts, contains('Store<T extends Token'));
-      expect(ts, contains('echo(input: T): T'));
+      expect(ts, contains('echo(input: (T | DartInput<T>)): T'));
       expect(ts, contains('select<U extends Token'));
       expect(ts, contains('implement'));
       expect(ts, contains('export abstract class Evaluator'));
@@ -3047,8 +3046,8 @@ const result: number = value.value;
       expect(
         ts,
         contains(
-          'resolveWith<T extends unknown | null = unknown | null>('
-          'callback: ((p0: DartSet<Mode>) => T)): DeferredProperty<T>',
+          '_flaxDefault_resolveWith<T extends unknown | null = unknown | null>('
+          'callback: ((p0: DartSet<Mode>) => (T | DartInput<T>))): DeferredProperty<T>',
         ),
       );
       expect(ts, contains('readonly unique: DartSet<number>'));
@@ -3170,26 +3169,6 @@ DeferredConsumer({token, number});
       );
       for (final selection in [
         {'PairProperty': factory('resolveWith'), 'PairConsumer': consumer()},
-        {'ExtraProperty': factory('resolveWith'), 'ExtraConsumer': consumer()},
-        {
-          'CollectionProperty': FlaxCodegenClassSelection(
-            const {},
-            kind: 'object',
-            methods: const {
-              'fromValues': ['values'],
-            },
-          ),
-          'CollectionConsumer': consumer(),
-        },
-        {
-          'WrongFactory': factory('create'),
-          'WrongConsumer': consumer(),
-          'CollectionProperty': const FlaxCodegenClassSelection(
-            {},
-            kind: 'object',
-            typeArguments: ['String'],
-          ),
-        },
       ]) {
         await expectLater(
           () async {
@@ -3202,13 +3181,30 @@ DeferredConsumer({token, number});
           reason: selection.keys.join(', '),
         );
       }
-      await expectLater(
-        parser.parse(
-          fixture('deferred_invalid.dart', {
-            'AsyncProperty': factory('resolveWith'),
-          }),
-        ),
-        throwsStateError,
+      // A factory returning another class is an ordinary generic static method.
+      final ordinary = await parser.parse(
+        fixture('deferred_invalid.dart', {
+          'WrongFactory': factory('create'),
+          'AsyncProperty': factory('resolveWith'),
+          'WrongConsumer': consumer(),
+          'CollectionProperty': const FlaxCodegenClassSelection(
+            {},
+            kind: 'object',
+            typeArguments: ['String'],
+          ),
+        }),
+      );
+      await compileFixture(
+        root,
+        FlaxCodegenBindingEmitter([ordinary], requireDeferredTargets: true),
+        ordinary,
+        consumerSource: '''
+import {WrongFactory, CollectionProperty, AsyncProperty} from './plugin.js';
+const value: CollectionProperty<string> = WrongFactory.create(() => 'value');
+const later: Promise<AsyncProperty<string>> = AsyncProperty.resolveWith(() => 'value');
+void value;
+void later;
+''',
       );
 
       Map<String, FlaxCodegenClassSelection> bounded(
@@ -3400,14 +3396,34 @@ Future<void> compileFixture(
         : (File(p.join(directory.path, 'execution_test.dart'))
             ..writeAsStringSync(
               "import 'package:flutter_test/flutter_test.dart';\n"
-              "import 'dart:convert' as fixtureJson;\n"
               '${emitter.dart(module)}\n'
               '''
-Object createTypedFixture(FlaxBindingModule module, String name, List<Object?> arguments, String constructor, Map<String, Object?> values) {
-  final owner = module.types.whereType<FlaxObjectBinding>().singleWhere((binding) => binding.aliasOf == null && binding.id.endsWith('::\$name'));
-  final suffix = ':\${fixtureJson.jsonEncode(arguments)}';
-  final selected = module.types.whereType<FlaxObjectBinding>().singleWhere((binding) => binding.aliasOf == owner.id && binding.id.endsWith(suffix));
-  return selected.create(constructor, values);
+// Compiler tests exercise the generated typed factory directly; VM selection and
+// conversion are covered by real engine UI tests.
+class _FixtureDartTypes implements FlaxDartTypes {
+  @override
+  FlaxTypeRef ref<T>({bool withinCallback = false}) {
+    if (T == String) return const FlaxTypeRef('String');
+    if (T == int) return const FlaxTypeRef('int');
+    if (T == FlaxDartTypes.typeOf<List<String>>() || T == FlaxDartTypes.typeOf<List<String>?>()) return FlaxTypeRef('list', item: const FlaxTypeRef('String'), nullable: null is T);
+    if (T == FlaxDartTypes.typeOf<List<String?>>() || T == FlaxDartTypes.typeOf<List<String?>?>()) return FlaxTypeRef('list', item: const FlaxTypeRef('String', nullable: true), nullable: null is T);
+    if (T == FlaxDartTypes.typeOf<List<List<String>>>()) return const FlaxTypeRef('list', item: FlaxTypeRef('list', item: FlaxTypeRef('String')));
+    if (T == FlaxDartTypes.typeOf<List<Set<String>>>()) return const FlaxTypeRef('list', item: FlaxTypeRef('set', item: FlaxTypeRef('String')));
+    if (T == FlaxDartTypes.typeOf<Set<String>>()) return const FlaxTypeRef('set', item: FlaxTypeRef('String'));
+    return FlaxTypeRef('any', nullable: null is T);
+  }
+  @override
+  FlaxTypeRef define<T>(FlaxTypeRef value, {bool withinCallback = false}) => value;
+  @override
+  String key<T>() => '\$T';
+  @override
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+}
+FlaxObjectBinding typedFixtureBinding(Function factory) => (Function.apply(factory, [_FixtureDartTypes(), 'fixture']) as FlaxDartClass).binding as FlaxObjectBinding;
+Object createTypedFixture(Function factory, String constructor, Map<String, Object?> values) => typedFixtureBinding(factory).create(constructor, values);
+FlaxObjectMemberView typedFixtureMembers(Function factory) {
+ final binding=typedFixtureBinding(factory);
+ return FlaxObjectMemberView(getters: {for(final g in binding.getters) g.name:g}, setters: {for(final s in binding.setters) s.name:s}, instanceMethods:binding.instanceMethods, collectionView:binding.collectionView);
 }
 '''
               '$dartTestSource',

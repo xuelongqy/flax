@@ -210,10 +210,10 @@ class InterfacePage extends Page<Object?> {
       throw UnimplementedError();
 }
 
-FlaxPageRoute adaptInterfacePage(InterfacePage page) =>
+FlaxPageRoute<Object?> adaptInterfacePage(InterfacePage page) =>
     _InterfacePageRoute(page);
 
-class _InterfacePageRoute extends FlaxPageRoute {
+class _InterfacePageRoute extends FlaxPageRoute<Object?> {
   _InterfacePageRoute(InterfacePage page) : super(page: page);
   @override
   Widget buildPage(

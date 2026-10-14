@@ -14,6 +14,10 @@ String flutterSdkRoot() {
   return Directory.fromUri(library.resolve('../../../')).path;
 }
 
+String flutterEngineSource() =>
+    Platform.environment['FLUTTER_ENGINE'] ??
+    p.join(flutterSdkRoot(), 'engine', 'src');
+
 /// Use Flutter's official local-engine flags for commands that load an engine.
 List<String> localEngineArguments(
   List<String> arguments, {
@@ -27,9 +31,7 @@ List<String> localEngineArguments(
   if (arguments.any((arg) => arg.startsWith('--local-engine'))) {
     throw ArgumentError('The workspace selects its matching local engine');
   }
-  source ??=
-      Platform.environment['FLUTTER_ENGINE'] ??
-      p.join(flutterSdkRoot(), 'engine', 'src');
+  source ??= flutterEngineSource();
   final mode = arguments.contains('--profile')
       ? 'profile'
       : arguments.contains('--release') ||

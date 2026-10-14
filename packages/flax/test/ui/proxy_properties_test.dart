@@ -836,33 +836,37 @@ void main() {
     },
   );
 
-  testWidgets(
-    'proxy properties retain Widget overrides while Dart keeps them',
-    (t) async {
-      late plugin.FlutterPropertyPort port;
-      final h = _harness(
-        onCreate: (_, value) {
-          if (value is plugin.FlutterPropertyPort) port = value;
-        },
-      );
-      Future<void> collect() => t.runAsync(() async {
-        for (var i = 0; i < 3; i++) {
-          h.execute(flaxTestJsGarbagePressure);
-          await flaxTestCollectDartGarbage();
-        }
-      });
-      try {
-        await t.pumpWidget(h.app('properties'));
-        h.execute('''
+  testWidgets('proxy properties retain Widget overrides while Dart keeps them', (
+    t,
+  ) async {
+    late plugin.FlutterPropertyPort port;
+    final h = _harness(
+      onCreate: (_, value) {
+        if (value is plugin.FlutterPropertyPort) port = value;
+      },
+    );
+    Future<void> collect() => t.runAsync(() async {
+      for (var i = 0; i < 3; i++) {
+        h.execute(flaxTestJsGarbagePressure);
+        await flaxTestCollectDartGarbage();
+      }
+    });
+    try {
+      await t.pumpWidget(h.app('properties'));
+      h.execute('''
         var implementation = properties.flutterImplementation();
         var port = properties.plugin.FlutterPropertyInterface.implement([], implementation);
         port.child = properties.makeWidget();
         port.children = [properties.makeWidget(), null];
       ''');
-        var child = port.child;
-        var children = port.children;
-        final weak = WeakReference(child!);
-        final weakListChild = WeakReference(children.first!);
+      late WeakReference<Widget> weak;
+      late WeakReference<Widget> weakListChild;
+      // AOT suspend slots can retain mount arguments until their frame returns.
+      await () async {
+        final child = port.child;
+        final children = port.children;
+        weak = WeakReference(child!);
+        weakListChild = WeakReference(children.first!);
         port.child = null;
         port.children = [];
         await collect();
@@ -874,18 +878,16 @@ void main() {
         expect(find.text('Proxy widget'), findsNWidgets(2));
         await t.pumpWidget(const SizedBox.shrink());
         await t.pumpAndSettle();
-        child = null;
-        children = [];
-        await collect();
-        expect(weak.target, isNull);
-        expect(weakListChild.target, isNull);
-        expect(h.errors, isEmpty);
-      } finally {
-        await h.finish(t);
-      }
-      expect(h.runtime.handlesAtDispose, 0);
-    },
-  );
+      }();
+      await collect();
+      expect(weak.target, isNull);
+      expect(weakListChild.target, isNull);
+      expect(h.errors, isEmpty);
+    } finally {
+      await h.finish(t);
+    }
+    expect(h.runtime.handlesAtDispose, 0);
+  });
 
   testWidgets('Flutter proxy properties reject foreign-session references', (
     t,

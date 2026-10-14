@@ -179,10 +179,10 @@ class ExtensionPage extends Page<Object?> {
   );
 }
 
-FlaxPageRoute adaptExtensionPage(ExtensionPage page) =>
+FlaxPageRoute<Object?> adaptExtensionPage(ExtensionPage page) =>
     _ExtensionPageRoute(page);
 
-class _ExtensionPageRoute extends FlaxPageRoute {
+class _ExtensionPageRoute extends FlaxPageRoute<Object?> {
   _ExtensionPageRoute(ExtensionPage page) : super(page: page);
 
   @override

@@ -28,6 +28,12 @@ class CodegenTypeBound<T extends List<BigInt>> {
   String get typeName => '$T';
 }
 
+class CodegenGrowing<T> {
+  CodegenGrowing(this.value);
+  final T value;
+  CodegenGrowing<List<T>> get next => CodegenGrowing([value]);
+}
+
 class CodegenTypeWidget<T> extends StatelessWidget {
   const CodegenTypeWidget(this.value, {super.key});
   final T value;

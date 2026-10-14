@@ -18,7 +18,7 @@ Future<Map<String, Object?>> verifyEngineApplication(
   FlaxNativeTarget? target,
 }) async {
   target ??= FlaxNativeTarget('macos-arm64');
-  final source = '${flutterSdkRoot()}/engine/src';
+  final source = flutterEngineSource();
   final lock = jsonDecode(
     File('$source/flutter/flax/source.lock.json').readAsStringSync(),
   ) as Map;

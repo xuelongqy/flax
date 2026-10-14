@@ -801,6 +801,18 @@ Future<Map<String, Object?>> emitModuleSet({
       'ok': true,
       'mode': mode,
       'dartBytes': utf8.encode(dart).length,
+      'genericClassFactories': RegExp(
+        r'^Function _flaxClass_',
+        multiLine: true,
+      ).allMatches(dart).length,
+      'genericCallFactories': RegExp(
+        r'^Function _flaxGeneric',
+        multiLine: true,
+      ).allMatches(dart).length,
+      'typeShapeFactories': RegExp(
+        r'^Function _flaxShape',
+        multiLine: true,
+      ).allMatches(dart).length,
       'tsBytes': targetTypescript.values.fold<int>(
         0,
         (sum, source) => sum + utf8.encode(source).length,

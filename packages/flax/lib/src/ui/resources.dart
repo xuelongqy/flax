@@ -302,6 +302,7 @@ mixin _JsInvocation {
     Map<String, Object?> namedArguments, {
     int? member,
     bool getter = false,
+    Function? superCall,
   }) {
     if (!active) {
       if (signature.result.kind == 'void') return (true, null);
@@ -379,6 +380,11 @@ mixin _JsInvocation {
             ...namedArgs,
           ]);
         } else {
+          if (superCall != null) {
+            while (args.length < positional.length) {
+              args.add(const FlaxJsUndefined());
+            }
+          }
           if (signature.parameters.any((p) => !p.positional)) {
             final options = session.helper('callbackOptions').call(namedArgs);
             if (options is! FlaxJsObject) {
@@ -386,6 +392,19 @@ mixin _JsInvocation {
             }
             temporary.add(options);
             args.add(options);
+          }
+          if (superCall != null) {
+            final function = session.functionResult(superCall, signature);
+            if (function is! FlaxJsObject) {
+              throw StateError('Invalid generic super function');
+            }
+            temporary.add(function);
+            final call = session.helper('genericCallContext').call([function]);
+            if (call is! FlaxJsObject) {
+              throw StateError('Invalid generic call context');
+            }
+            temporary.add(call);
+            args.add(call);
           }
           value = session.runtime.invokeProxyMember(receiver, member, args);
         }
@@ -486,6 +505,23 @@ class _ProxyHandle extends _BridgeReference {
 }
 
 class _ProxyPeer with _JsInvocation implements FlaxProxyPeer {
+  final _genericSignatures = <String, FlaxCallbackBinding>{};
+  @override
+  FlaxCallbackBinding genericSignature(
+    int member,
+    List<Type> types,
+    FlaxCallbackBinding Function(FlaxDartTypes) create,
+  ) {
+    if (!active) throw StateError('Retired proxy');
+    final key = '$member:${types.map(session.dartTypes.typeKey).join(',')}';
+    return _genericSignatures.putIfAbsent(
+      key,
+      () => context == null
+          ? create(session.dartTypes)
+          : context!.run(() => create(session.dartTypes)),
+    );
+  }
+
   _ProxyPeer(this.session, FlaxJsObject receiver, this.binding, this.first)
     : _handle = _ProxyHandle(session, receiver),
       context = _bindingContext {
@@ -511,27 +547,31 @@ class _ProxyPeer with _JsInvocation implements FlaxProxyPeer {
   (bool, Object?) call(
     int member,
     List<Object?> positional,
-    Map<String, Object?> named,
-  ) {
+    Map<String, Object?> named, {
+    FlaxCallbackBinding? signature,
+    Function? superCall,
+  }) {
     if (member < 0 || member >= binding.members.length) {
       throw ArgumentError('Unknown proxy member');
     }
     final selected = binding.members[member];
     return context == null
         ? invoke(
-            selected.signature,
+            signature ?? selected.signature,
             positional,
             named,
             member: first + member,
             getter: selected.kind == 1,
+            superCall: superCall,
           )
         : context!.run(
             () => invoke(
-              selected.signature,
+              signature ?? selected.signature,
               positional,
               named,
               member: first + member,
               getter: selected.kind == 1,
+              superCall: superCall,
             ),
           );
   }

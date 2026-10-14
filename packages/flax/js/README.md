@@ -23,6 +23,13 @@ package for host preparation and bundler resolution.
 
 This package is private while Flax is under development.
 
+Generic Dart class exports provide `Bag.$type(dartTypes.string)` to select a real
+`Bag<String>` owner. The returned handle keeps its default/named constructors and is
+also usable with `asDart` and nested type tokens. All exports share one registered
+selector function; generated proxy classes declare its type without duplicating its JS
+implementation. It reuses `dartType` and its caches. See
+[Dart type selection](../../../docs/architecture/bindings.md#dart-type-selection).
+
 `@flax/core/bindings` exports shared `asDart(value, Target)` and `getDartType(value)`.
 The former checks the real Dart instance before returning a selected class view; the
 latter returns diagnostic Dart `runtimeType` text on demand. They do not construct or

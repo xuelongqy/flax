@@ -323,7 +323,7 @@ String capabilityMarkdown({
       'capability, language, or target limits, not missing pool types.',
     )
     ..writeln(
-      '3. Dependent or recursive generic bounds without concrete evidence remain '
+      '3. Acyclic dependent generic bounds resolve in dependency order; recursive bounds remain '
       'fail-closed (${[for (final result in dependent) '${result['name']}=${result['bindable']}'].join(', ')}). '
       'Omission dispatch uses direct calls through five independent parameters '
       'and Function.apply from six, retaining all bindable parameters.',

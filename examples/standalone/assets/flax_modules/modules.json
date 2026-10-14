@@ -11,7 +11,7 @@
       "specifier": "@flax/canvas",
       "owner": "@flax/canvas-runtime:dist/index.js",
       "version": "0.0.0",
-      "artifact": "8fba0aa5283f6e0d5bca1d623881593dd0fcbda84027856f1d9f53358df39483",
+      "artifact": "d711921c3ddc508c85b24708bebd8fa1846bc71623ac3fcb9ff40268a235b920",
       "asset": "assets/flax_modules/_flax_canvas-b471e7fea32c.js",
       "package": "@flax/canvas-runtime",
       "source": "dist/index.js",
@@ -23,6 +23,11 @@
         {
           "moduleId": "flax.canvas/canvas",
           "uiProtocol": 24,
+          "requiredCapabilities": [
+            "generic-member-views",
+            "instance-checks",
+            "native-widget-proxies"
+          ],
           "types": [
             "flax.canvas/canvas#type:FlaxCanvasSurface",
             "flax.canvas/canvas#type:FlaxCanvasView"
@@ -48,7 +53,7 @@
       "specifier": "@flax/core/bindings",
       "owner": "@flax/core-runtime:dist/runtime/bindings.js",
       "version": "0.0.0",
-      "artifact": "1575654c632e1cff8938a0f73fb79119be418d8489a7928b580b3bff52a07ebd",
+      "artifact": "41d6cf9e5d84fb735bad18b31c2fa0b661f3ea2d528ee13e98c6a87fe9abf932",
       "asset": "assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js",
       "package": "@flax/core-runtime",
       "source": "dist/runtime/bindings.js",
@@ -74,7 +79,7 @@
       "specifier": "@flax/core/navigation",
       "owner": "@flax/core-runtime:dist/flutter/generated/libraries/navigation/index.js",
       "version": "0.0.0",
-      "artifact": "79187ec87a3b34af60cd7f2cbc7e4032359b6687f92ec82cd9e803fec3c76b1e",
+      "artifact": "a07e22379d6aceb37b04937987e94590433c3f8f5ad8cd498f20eebcee14e6d2",
       "asset": "assets/flax_modules/_flax_core_navigation-33b2cfc211d0.js",
       "package": "@flax/core-runtime",
       "source": "dist/flutter/generated/libraries/navigation/index.js",
@@ -86,6 +91,11 @@
         {
           "moduleId": "flax.core/flutter",
           "uiProtocol": 24,
+          "requiredCapabilities": [
+            "generic-member-views",
+            "instance-checks",
+            "native-widget-proxies"
+          ],
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -320,7 +330,7 @@
       "specifier": "@flax/dart/async",
       "owner": "@flax/core-runtime:dist/dart/generated/libraries/async/index.js",
       "version": "0.0.0",
-      "artifact": "958e1197da2ff94567f8d7a74a7a55e1b73ebb74c9044f2b3e09436dac617ba8",
+      "artifact": "2e8c7bb2e4efc405ab0ef37dd9c074996290ad656601c1c725ed307d93101448",
       "asset": "assets/flax_modules/_flax_dart_async-f3c6fbf57a76.js",
       "package": "@flax/core-runtime",
       "source": "dist/dart/generated/libraries/async/index.js",
@@ -332,6 +342,11 @@
         {
           "moduleId": "flax.core/flutter",
           "uiProtocol": 24,
+          "requiredCapabilities": [
+            "generic-member-views",
+            "instance-checks",
+            "native-widget-proxies"
+          ],
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -566,7 +581,7 @@
       "specifier": "@flax/dart/core",
       "owner": "@flax/core-runtime:dist/dart/generated/libraries/core/index.js",
       "version": "0.0.0",
-      "artifact": "7c1556e2e76ca965bb8c1cfd52c75f7b137d584dc64e2f328746ff3b07bfa4f3",
+      "artifact": "db0b22b80da29e187c5ccb3c6aef0f45aa7f4d1634686ac2a9504dd3f218acf5",
       "asset": "assets/flax_modules/_flax_dart_core-5ad127bf5c9b.js",
       "package": "@flax/core-runtime",
       "source": "dist/dart/generated/libraries/core/index.js",
@@ -578,6 +593,11 @@
         {
           "moduleId": "flax.core/flutter",
           "uiProtocol": 24,
+          "requiredCapabilities": [
+            "generic-member-views",
+            "instance-checks",
+            "native-widget-proxies"
+          ],
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -824,7 +844,7 @@
       "specifier": "@flax/flutter/foundation",
       "owner": "@flax/core-runtime:dist/flutter/generated/libraries/foundation/index.js",
       "version": "0.0.0",
-      "artifact": "335a683e863bb633af4ffed3b6a94620e5fa5d0cecbadaa1cc9a1c7cc07bc13e",
+      "artifact": "1844aabfc00f8358520cd0ec3b0caf45318faf719e7b972bee90c808ad1911a8",
       "asset": "assets/flax_modules/_flax_flutter_foundation-9748414906bc.js",
       "package": "@flax/core-runtime",
       "source": "dist/flutter/generated/libraries/foundation/index.js",
@@ -835,6 +855,11 @@
         {
           "moduleId": "flax.core/flutter",
           "uiProtocol": 24,
+          "requiredCapabilities": [
+            "generic-member-views",
+            "instance-checks",
+            "native-widget-proxies"
+          ],
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -1069,7 +1094,7 @@
       "specifier": "@flax/flutter/gestures",
       "owner": "@flax/core-runtime:dist/flutter/generated/libraries/gestures/index.js",
       "version": "0.0.0",
-      "artifact": "bc389cac82b840ff2b26b7322c9ca26ac69b408e0f1cdf80f1b8bb8d0ef63bc1",
+      "artifact": "0d402e62fc35aa5d25f10e5514b52dc40dc6b2b8e1d9e4303cd9a90f5585f1e0",
       "asset": "assets/flax_modules/_flax_flutter_gestures-9d8f5a03c3fd.js",
       "package": "@flax/core-runtime",
       "source": "dist/flutter/generated/libraries/gestures/index.js",
@@ -1080,6 +1105,11 @@
         {
           "moduleId": "flax.core/flutter",
           "uiProtocol": 24,
+          "requiredCapabilities": [
+            "generic-member-views",
+            "instance-checks",
+            "native-widget-proxies"
+          ],
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -1314,7 +1344,7 @@
       "specifier": "@flax/flutter/material",
       "owner": "@flax/material-ui:dist/generated/libraries/material/index.js",
       "version": "0.0.0",
-      "artifact": "41201856e9477f377c3781008b19e190427059d37ab93761ab08a3b069b5b92a",
+      "artifact": "7e2a8f369e894528b4c50d7c1633c4c65655cbccfa9408640721a3a244ef8345",
       "asset": "assets/flax_modules/_flax_flutter_material-4c07c7c9bace.js",
       "package": "@flax/material-ui",
       "source": "dist/generated/libraries/material/index.js",
@@ -1329,6 +1359,11 @@
         {
           "moduleId": "flax.material/material",
           "uiProtocol": 24,
+          "requiredCapabilities": [
+            "generic-member-views",
+            "instance-checks",
+            "native-widget-proxies"
+          ],
           "types": [
             "flax.material/material#type:AlertDialog",
             "flax.material/material#type:AppBar",
@@ -1388,7 +1423,7 @@
       "specifier": "@flax/flutter/scheduler",
       "owner": "@flax/core-runtime:dist/flutter/generated/libraries/scheduler/index.js",
       "version": "0.0.0",
-      "artifact": "9fbbb8bfd1c1290656631436cb3111c206415fd79f4749ee1635e4ff9fe07423",
+      "artifact": "003591df418e7b7fe84bbe7459b864c4947803031b4b011fe3116e219eb9fd80",
       "asset": "assets/flax_modules/_flax_flutter_scheduler-6129bf1d9d8b.js",
       "package": "@flax/core-runtime",
       "source": "dist/flutter/generated/libraries/scheduler/index.js",
@@ -1399,6 +1434,11 @@
         {
           "moduleId": "flax.core/flutter",
           "uiProtocol": 24,
+          "requiredCapabilities": [
+            "generic-member-views",
+            "instance-checks",
+            "native-widget-proxies"
+          ],
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -1633,7 +1673,7 @@
       "specifier": "@flax/flutter/services",
       "owner": "@flax/core-runtime:dist/flutter/generated/libraries/services/index.js",
       "version": "0.0.0",
-      "artifact": "a71fe7b7e6b1c52846e871b3950107e9bb9e8908a2e14d8b1aef7ad3ec561aaa",
+      "artifact": "9e86c0eba01babbbb2b1d3e93a7c13911bb2bdbca2e32ee7f588f1f609ba3625",
       "asset": "assets/flax_modules/_flax_flutter_services-e820dad87955.js",
       "package": "@flax/core-runtime",
       "source": "dist/flutter/generated/libraries/services/index.js",
@@ -1646,6 +1686,11 @@
         {
           "moduleId": "flax.core/flutter",
           "uiProtocol": 24,
+          "requiredCapabilities": [
+            "generic-member-views",
+            "instance-checks",
+            "native-widget-proxies"
+          ],
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",
@@ -1880,7 +1925,7 @@
       "specifier": "@flax/flutter/widgets",
       "owner": "@flax/core-runtime:dist/flutter/widgets.js",
       "version": "0.0.0",
-      "artifact": "3393b5b736c1a8b1848ecc23d709946d2075d9e93e7ca883e2d93ea56c419171",
+      "artifact": "6ded3e48726cd2fc0b86b89d8732449b9531aa64028f53b5f20d6b074c30f14f",
       "asset": "assets/flax_modules/_flax_flutter_widgets-4c2442a10500.js",
       "package": "@flax/core-runtime",
       "source": "dist/flutter/widgets.js",
@@ -1896,6 +1941,11 @@
         {
           "moduleId": "flax.core/components",
           "uiProtocol": 24,
+          "requiredCapabilities": [
+            "generic-member-views",
+            "instance-checks",
+            "native-widget-proxies"
+          ],
           "types": [
             "flax.core/components#type:State",
             "flax.core/components#type:StatefulWidget"
@@ -1905,6 +1955,11 @@
         {
           "moduleId": "flax.core/flutter",
           "uiProtocol": 24,
+          "requiredCapabilities": [
+            "generic-member-views",
+            "instance-checks",
+            "native-widget-proxies"
+          ],
           "types": [
             "flax.core/flutter#type:Align",
             "flax.core/flutter#type:Alignment",

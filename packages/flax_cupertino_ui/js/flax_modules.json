@@ -12,6 +12,11 @@
         {
           "moduleId": "flax.cupertino/cupertino",
           "uiProtocol": 24,
+          "requiredCapabilities": [
+            "generic-member-views",
+            "instance-checks",
+            "native-widget-proxies"
+          ],
           "types": [
             "flax.cupertino/cupertino#type:CupertinoApp",
             "flax.cupertino/cupertino#type:CupertinoButton",

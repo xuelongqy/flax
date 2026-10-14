@@ -275,13 +275,18 @@ extension _Collections on _Session {
           // A copied native Record keeps its generated shape through erased callbacks.
           final signature = helper('recordType').call([input]);
           if (signature is FlaxJsString) {
-            final record = registry._records
-                .where((entry) => entry.$1.record!.signature == signature.value)
-                .firstOrNull;
+            final record =
+                dartTypes._records[signature.value] ??
+                registry._records
+                    .where(
+                      (entry) => entry.$1.record!.signature == signature.value,
+                    )
+                    .firstOrNull
+                    ?.$1;
             if (record == null) {
               throw ArgumentError('Unregistered Record projection');
             }
-            return decode(input, record.$1, conversion: memo);
+            return decode(input, record, conversion: memo);
           }
         }
         return decodeCollection(input, switch (shape.value) {
@@ -612,7 +617,7 @@ extension _Collections on _Session {
       }
     }
     final candidates = <FlaxTypeBinding>[
-      for (final binding in registry._types.values)
+      for (final binding in _typeBindings.values)
         if (binding is FlaxEnumBinding &&
                 binding.values.values.any((entry) => identical(entry, value)) ||
             binding is FlaxObjectBinding &&
@@ -622,13 +627,10 @@ extension _Collections on _Session {
     ];
     if (candidates.isNotEmpty) {
       final best = candidates
-          .map((candidate) => priority(registry._bindingOwners[candidate.id]!))
+          .map((candidate) => priority(_bindingOwner(candidate.id)!))
           .reduce((a, b) => a < b ? a : b);
       final selected = candidates
-          .where(
-            (candidate) =>
-                priority(registry._bindingOwners[candidate.id]!) == best,
-          )
+          .where((candidate) => priority(_bindingOwner(candidate.id)!) == best)
           .toList();
       // Prefer specific interfaces within the selected provider priority.
       final lessSpecific = selected
@@ -663,7 +665,7 @@ extension _Collections on _Session {
       if (declared.kind == 'object' &&
           input != null &&
           (input is Iterable || input is Map)) {
-        final binding = _objectView(registry._types[declared.id]);
+        final binding = _objectView(_typeBinding(declared.id));
         if (binding?.collectionView case final collection?) {
           if (binding!.matches?.call(input) == false) {
             throw ArgumentError('Incompatible collection subclass copy');

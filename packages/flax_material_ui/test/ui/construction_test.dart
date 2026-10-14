@@ -61,6 +61,9 @@ void main() {
             uiProtocol: module.uiProtocol,
             requiredCapabilities: module.requiredCapabilities,
             functions: module.functions,
+            dartTypes: module.dartTypes,
+            dartShapes: module.dartShapes,
+            records: module.records,
           ),
         testBindingModule('test', [
           FlaxWidgetBinding('test:Duplicate', {
@@ -168,11 +171,13 @@ void main() {
       expect(calls['__flaxBaseCall'], 1); // Install the base clock origin once.
       expect(calls['__flaxMount'], 1);
       expect(calls['__flaxInvalidate'], 9);
+      expect(calls['__flaxDartType'], 1); // Cache ValueKey<String> once.
       expect(calls.keys.toSet(), {
         '__flaxMount',
         '__flaxInvalidate',
         '__flaxCreateObject',
         '__flaxBaseCall',
+        '__flaxDartType',
       });
       await flaxTestUnmount(tester);
       await tester.pumpAndSettle();

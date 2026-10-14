@@ -718,6 +718,18 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     }
   }
 
+  if (element.typeParameters.isNotEmpty) {
+    final constructor = constructors.remove(r'$type') != null;
+    final method = methods.remove(r'$type') != null;
+    final getter = staticGetters.remove(r'$type');
+    if (constructor || method || getter) {
+      skip(
+        '$name.\$type',
+        'Conflicting generic selector export: \$type',
+        code: 'generic_selector_export_collision',
+      );
+    }
+  }
   final recommendation = await _proxyRecommendation(
     parser: parser,
     element: element,
@@ -998,28 +1010,21 @@ _SharedTypeArgumentPlan _sharedTypeArguments(
   LibraryElement library,
   String ownerName,
 ) {
-  final arguments = <DartType>[];
-  final names = <String>[];
+  final resolved = <TypeParameterElement, DartType>{};
+  final sources = <TypeParameterElement, String>{};
   final unresolved = parameters.toSet();
-  for (final parameter in parameters) {
-    final objectQuestion = library.typeProvider.objectQuestionType;
-    try {
-      parser._checkBounds([parameter], [objectQuestion], library, false);
-      arguments.add(objectQuestion);
-      names.add('Object?');
-      continue;
-    } on StateError {
-      final bound = parameter.bound;
-      if (bound == null || _containsDeferredTypeParameter(bound, unresolved)) {
-        return _SharedTypeArgumentPlan(
-          reason:
-              'Complex generic bound requires explicit runtime type arguments: '
-              '$ownerName.${parameter.name}',
-          code: _complexGenericBoundCode,
-        );
-      }
-      final name = _closedTypeArgumentSource(bound);
-      if (name == null) {
+  final objectQuestion = library.typeProvider.objectQuestionType;
+  while (unresolved.isNotEmpty) {
+    var progressed = false;
+    for (final parameter in unresolved.toList()) {
+      final bound = Substitution.fromMap(resolved)
+          .substituteType(parameter.bound ?? objectQuestion);
+      if (_containsDeferredTypeParameter(bound, unresolved)) continue;
+      final argument = library.typeSystem.isSubtypeOf(objectQuestion, bound)
+          ? objectQuestion
+          : bound;
+      final source = _closedTypeArgumentSource(argument);
+      if (source == null) {
         return _SharedTypeArgumentPlan(
           reason:
               'Complex generic bound requires explicit runtime type arguments: '
@@ -1031,27 +1036,28 @@ _SharedTypeArgumentPlan _sharedTypeArguments(
         // Register the complete bound through the normal dependency/type
         // routing path. This preserves provider reuse and public-carrier
         // diagnostics instead of treating a closed bound as a special import.
-        scope.typeRef(bound);
+        scope.typeRef(argument);
       } on StateError catch (error) {
         return _SharedTypeArgumentPlan(
           reason: error.message,
           code: 'unsupported_binding_type',
         );
       }
-      try {
-        parser._checkBounds([parameter], [bound], library, false);
-      } on StateError {
-        return _SharedTypeArgumentPlan(
-          reason:
-              'Complex generic bound requires explicit runtime type arguments: '
-              '$ownerName.${parameter.name}',
-          code: _complexGenericBoundCode,
-        );
-      }
-      arguments.add(bound);
-      names.add(name);
+      resolved[parameter] = argument;
+      sources[parameter] = source;
+      unresolved.remove(parameter);
+      progressed = true;
+    }
+    if (!progressed) {
+      return _SharedTypeArgumentPlan(
+        reason:
+            'Complex generic bound requires explicit runtime type arguments: '
+            '$ownerName.${unresolved.first.name}',
+        code: _complexGenericBoundCode,
+      );
     }
   }
+  final arguments = [for (final parameter in parameters) resolved[parameter]!];
   try {
     parser._checkBounds(parameters, arguments, library, false);
   } on StateError {
@@ -1062,7 +1068,10 @@ _SharedTypeArgumentPlan _sharedTypeArguments(
       code: _complexGenericBoundCode,
     );
   }
-  return _SharedTypeArgumentPlan(sources: names, arguments: arguments);
+  return _SharedTypeArgumentPlan(
+    sources: [for (final parameter in parameters) sources[parameter]!],
+    arguments: arguments,
+  );
 }
 
 String? _closedTypeArgumentSource(DartType type) {
@@ -1833,18 +1842,6 @@ List<String>? _bindMethod({
   bool deferredFactory = false,
 }) {
   if (method.typeParameters.isNotEmpty && !deferredFactory) {
-    if (_hasGenericFactoryResult(method)) {
-      skips.add(
-        FlaxCodegenSkip(
-          target: location,
-          reason:
-              'Unsupported generic factory requires explicit runtime type arguments: '
-              '$location',
-          code: 'explicit_runtime_type_arguments',
-        ),
-      );
-      return null;
-    }
     final sharedArguments = _sharedTypeArguments(
       parser,
       scope,

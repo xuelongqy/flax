@@ -35,6 +35,11 @@ import '../../../packages/flax/test/ui/proxy_properties_test.dart'
 import '../../../packages/flax/test/ui/package_bindings_test.dart' as providers;
 import '../../../packages/flax/test/ui/default_omission_test.dart' as defaults;
 import '../../../packages/flax/test/ui/extensions_test.dart' as extensions;
+import '../../../packages/flax/test/ui/engine_generics_test.dart' as generics;
+import '../../../packages/flax/test/ui/future_ownership_test.dart' as ownership;
+import '../../../packages/flax/test/ui/dart_types_test.dart' as dart_types;
+import '../../../packages/flax/test/ui/deferred_generics_test.dart'
+    as deferred_generics;
 
 void main() {
   if (Platform.isIOS &&
@@ -198,6 +203,10 @@ void _registerTests() {
   group('independent binding providers', providers.main);
   group('default omission', defaults.main);
   group('extension receiver views', extensions.main);
+  group('VM generic types', generics.main);
+  group('SDK Future ownership', ownership.main);
+  group('Dart type selection', dart_types.main);
+  group('deferred generic aliases', deferred_generics.main);
   if (const bool.fromEnvironment('FLAX_ENGINE_BENCHMARK')) {
     testWidgets('profile GC, frame and memory measurements', (tester) async {
       final previousPolicy = binding.framePolicy;

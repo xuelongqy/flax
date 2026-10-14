@@ -1,12 +1,14 @@
 import {
   componentStateCall,
   componentStateWidget,
+  flaxDartTypeValue,
   registerComponent,
   registerComponentBase,
   registerComponentState,
   type ComponentWidget,
   type Widget,
 } from '@flax/core/bindings';
+import type { State as NativeState } from './generated/libraries/widgets/_bindings/components_State.js';
 import type { ValueKey } from './generated/libraries/foundation/_bindings/flutter_ValueKey.js';
 import type { BuildContext } from './generated/libraries/widgets/_bindings/flutter_BuildContext.js';
 
@@ -37,6 +39,7 @@ export abstract class StatefulWidget implements ComponentWidget {
 
 /** Paired with a Flutter-owned State only when createState returns. */
 export abstract class State<T extends Widget = StatefulWidget> {
+  declare readonly [flaxDartTypeValue]: NativeState;
   constructor() {
     registerComponentState(this);
   }

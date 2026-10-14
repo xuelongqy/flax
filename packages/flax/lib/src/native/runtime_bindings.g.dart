@@ -84,7 +84,7 @@ const int FLAX_ABI_VERSION = 2;
 
 const int FLAX_CALLBACK_FAILURE = 4;
 
-const int FLAX_ENGINE_BINDING_VERSION = 4;
+const int FLAX_ENGINE_BINDING_VERSION = 6;
 
 const int FLAX_ENGINE_GC_VERSION = 1;
 
@@ -713,6 +713,51 @@ final class FlaxEngineBindingApi extends ffi.Struct {
   >
   copy_buffer;
 
+  external ffi.Pointer<
+    ffi.NativeFunction<
+      ffi.Handle Function(
+        ffi.Pointer<FlaxRuntime>,
+        ffi.Handle,
+        ffi.Pointer<FlaxError>,
+      )
+    >
+  >
+  instance_type;
+
+  external ffi.Pointer<
+    ffi.NativeFunction<
+      ffi.Handle Function(
+        ffi.Pointer<FlaxRuntime>,
+        ffi.Handle,
+        ffi.Pointer<FlaxError>,
+      )
+    >
+  >
+  type_parts;
+
+  external ffi.Pointer<
+    ffi.NativeFunction<
+      ffi.Handle Function(
+        ffi.Pointer<FlaxRuntime>,
+        ffi.Handle,
+        ffi.Pointer<FlaxError>,
+      )
+    >
+  >
+  nullable_type;
+
+  external ffi.Pointer<
+    ffi.NativeFunction<
+      ffi.Handle Function(
+        ffi.Pointer<FlaxRuntime>,
+        ffi.Handle,
+        ffi.Handle,
+        ffi.Pointer<FlaxError>,
+      )
+    >
+  >
+  instantiate;
+
   static ffi.Pointer<FlaxEngineBindingApi> $allocate(
     ffi.Allocator $allocator, {
     required int version,
@@ -791,6 +836,47 @@ final class FlaxEngineBindingApi extends ffi.Struct {
       >
     >
     copy_buffer,
+    required ffi.Pointer<
+      ffi.NativeFunction<
+        ffi.Handle Function(
+          ffi.Pointer<FlaxRuntime>,
+          ffi.Handle,
+          ffi.Pointer<FlaxError>,
+        )
+      >
+    >
+    instance_type,
+    required ffi.Pointer<
+      ffi.NativeFunction<
+        ffi.Handle Function(
+          ffi.Pointer<FlaxRuntime>,
+          ffi.Handle,
+          ffi.Pointer<FlaxError>,
+        )
+      >
+    >
+    type_parts,
+    required ffi.Pointer<
+      ffi.NativeFunction<
+        ffi.Handle Function(
+          ffi.Pointer<FlaxRuntime>,
+          ffi.Handle,
+          ffi.Pointer<FlaxError>,
+        )
+      >
+    >
+    nullable_type,
+    required ffi.Pointer<
+      ffi.NativeFunction<
+        ffi.Handle Function(
+          ffi.Pointer<FlaxRuntime>,
+          ffi.Handle,
+          ffi.Handle,
+          ffi.Pointer<FlaxError>,
+        )
+      >
+    >
+    instantiate,
   }) => $allocator<FlaxEngineBindingApi>()
     ..ref.version = version
     ..ref.struct_size = struct_size
@@ -799,7 +885,11 @@ final class FlaxEngineBindingApi extends ffi.Struct {
     ..ref.call = call
     ..ref.share_buffer = share_buffer
     ..ref.read_buffer = read_buffer
-    ..ref.copy_buffer = copy_buffer;
+    ..ref.copy_buffer = copy_buffer
+    ..ref.instance_type = instance_type
+    ..ref.type_parts = type_parts
+    ..ref.nullable_type = nullable_type
+    ..ref.instantiate = instantiate;
 }
 
 final class FlaxEngineGcApi extends ffi.Struct {
