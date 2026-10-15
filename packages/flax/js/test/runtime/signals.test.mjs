@@ -1,6 +1,151 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { signal, computed, bind, batch } from '../../dist/runtime/index.js';
+import {
+  signal,
+  computed,
+  bind,
+  batch,
+  withBindingSnapshots,
+  readBindingSnapshot,
+} from '../../dist/runtime/index.js';
+
+test('binding snapshots do not subscribe an evaluating parent to child signals', () => {
+  const notifications = [];
+  globalThis.__flaxInvalidate = (token) => notifications.push(token);
+  const child = signal(1);
+  const owner = signal(2);
+  const parent = bind(() => {
+    withBindingSnapshots(() => readBindingSnapshot(child.bind.read));
+    return withBindingSnapshots(() => owner.bind.read());
+  });
+  const stopParent = parent.observe(1);
+  const stopChild = child.bind.observe(2);
+  try {
+    child.value = 3;
+    assert.deepEqual(notifications, [2]);
+    notifications.length = 0;
+    owner.value = 4;
+    assert.deepEqual(notifications, [1]);
+    assert.equal(parent.read(), 4);
+  } finally {
+    stopParent();
+    stopChild();
+  }
+});
+
+test('failed native previews recover and restore ordinary binding composition', () => {
+  const notifications = [];
+  globalThis.__flaxInvalidate = (token) => notifications.push(token);
+  const child = signal(-1);
+  const parent = bind(() =>
+    withBindingSnapshots(() => {
+      const value = withBindingSnapshots(() => readBindingSnapshot(child.bind.read));
+      if (value < 0) throw new Error('invalid native input');
+      return value;
+    }),
+  );
+  const stop = parent.observe(1);
+  try {
+    assert.throws(() => parent.read(), /invalid native input/);
+    child.value = 2;
+    assert.deepEqual(notifications, [1]);
+    assert.equal(parent.read(), 2);
+    const composed = bind(() => child.bind.read());
+    const stopComposed = composed.observe(2);
+    try {
+      notifications.length = 0;
+      child.value = 3;
+      assert.deepEqual(notifications, [2]);
+      assert.equal(composed.read(), 3);
+    } finally {
+      stopComposed();
+    }
+  } finally {
+    stop();
+  }
+});
+
+test('custom binding readers retain their tracking and recover without rereading', () => {
+  const notifications = [];
+  globalThis.__flaxInvalidate = (token) => notifications.push(token);
+  const source = signal(-1);
+  let reads = 0;
+  const custom = {
+    kind: 'binding',
+    read: () => {
+      reads++;
+      return source.value;
+    },
+    observe: source.bind.observe,
+  };
+  const parent = bind(() =>
+    withBindingSnapshots(() => {
+      const value = readBindingSnapshot(custom.read);
+      if (value < 0) throw new Error('invalid native input');
+      return value;
+    }),
+  );
+  const stop = parent.observe(1);
+  try {
+    assert.throws(() => parent.read(), /invalid native input/);
+    assert.equal(reads, 1);
+    source.value = 2;
+    assert.deepEqual(notifications, [1]);
+    assert.equal(parent.read(), 2);
+    assert.equal(reads, 2);
+    source.value = 3;
+    assert.deepEqual(notifications, [1, 1]);
+    assert.equal(parent.read(), 3);
+    assert.equal(reads, 3);
+  } finally {
+    stop();
+  }
+});
+
+test('native snapshots preserve dependencies inside composed child bindings', () => {
+  const notifications = [];
+  globalThis.__flaxInvalidate = (token) => notifications.push(token);
+  const source = signal(1);
+  const child = bind(() => source.bind.read());
+  const parent = bind(() =>
+    withBindingSnapshots(() => readBindingSnapshot(child.read)),
+  );
+  const stopParent = parent.observe(1);
+  const stopChild = child.observe(2);
+  try {
+    source.value = 3;
+    assert.deepEqual(notifications, [2]);
+    assert.equal(child.read(), 3);
+  } finally {
+    stopParent();
+    stopChild();
+  }
+});
+
+test('nested native failures retain dependencies in the failing child', () => {
+  const notifications = [];
+  globalThis.__flaxInvalidate = (token) => notifications.push(token);
+  const source = signal(-1);
+  const child = bind(() =>
+    withBindingSnapshots(() => {
+      const value = readBindingSnapshot(source.bind.read);
+      if (value < 0) throw new Error('invalid child input');
+      return value;
+    }),
+  );
+  const parent = bind(() =>
+    withBindingSnapshots(() => readBindingSnapshot(child.read)),
+  );
+  const stop = parent.observe(1);
+  try {
+    assert.throws(() => parent.read(), /invalid child input/);
+    source.value = 2;
+    assert.deepEqual(notifications, [1]);
+    assert.equal(parent.read(), 2);
+  } finally {
+    stop();
+  }
+});
 
 test('bindings are lazy and each mounted property owns its subscription', () => {
   const notifications = [];

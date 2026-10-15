@@ -6,9 +6,6 @@ import 'dart:core';
 import 'package:cupertino_ui/cupertino_ui.dart' as api;
 import 'package:flax/bindings.dart';
 import 'package:flutter/widgets.dart' as api1;
-import 'package:cupertino_ui/cupertino_ui.dart' as _flaxNative2;
-
-import 'dart:core' as _flaxNative1;
 
 // ignore: unused_element
 const _flaxOmitted = Object();
@@ -59,7 +56,6 @@ const cupertinoBindings = FlaxBindingModule(
       },
       _CupertinoAppHost.new,
       matches: _isCupertinoApp,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -117,7 +113,6 @@ const cupertinoBindings = FlaxBindingModule(
       },
       _CupertinoPageScaffoldHost.new,
       matches: _isCupertinoPageScaffold,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -164,7 +159,6 @@ const cupertinoBindings = FlaxBindingModule(
       },
       _CupertinoButtonHost.new,
       matches: _isCupertinoButton,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxObjectBinding(
@@ -224,9 +218,11 @@ const cupertinoBindings = FlaxBindingModule(
       "flax.cupertino/cupertino#type:ObstructingPreferredSizeWidget",
       _isObstructingPreferredSizeWidget,
     ),
-    FlaxWidgetBinding(
+    FlaxObjectBinding(
       "flax.cupertino/cupertino#type:CupertinoNavigationBar",
-      {
+      [],
+      {},
+      constructors: {
         "": [
           FlaxParameter(
             "key",
@@ -298,10 +294,18 @@ const cupertinoBindings = FlaxBindingModule(
           ),
         ],
       },
-      _CupertinoNavigationBarHost.new,
+      setters: [],
+      create: _createCupertinoNavigationBar,
       matches: _isCupertinoNavigationBar,
-      fixedArguments: true,
-      methods: {},
+      supertypes: [
+        "flax.core/components#type:StatefulWidget",
+        "package:flutter/src/widgets/framework.dart::Widget",
+        "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree",
+        "dart:core::Object",
+        "package:flutter/src/foundation/diagnostics.dart::Diagnosticable",
+        "flax.cupertino/cupertino#type:ObstructingPreferredSizeWidget",
+        "flax.core/flutter#type:PreferredSizeWidget",
+      ],
     ),
   ],
   functions: [],
@@ -445,23 +449,6 @@ bool _isObstructingPreferredSizeWidget(Object value) =>
     value is api.ObstructingPreferredSizeWidget;
 bool _isCupertinoNavigationBar(Object value) =>
     value is api.CupertinoNavigationBar;
-
-class _CupertinoNavigationBarHost extends FlaxWidgetHost
-    implements api.ObstructingPreferredSizeWidget {
-  _CupertinoNavigationBarHost(super.node);
-  @override
-  _flaxNative2.Size get preferredSize =>
-      (configuration as _flaxNative2.ObstructingPreferredSizeWidget)
-          .preferredSize;
-  @override
-  _flaxNative1.bool shouldFullyObstruct(_flaxNative2.BuildContext context) =>
-      (configuration as _flaxNative2.ObstructingPreferredSizeWidget)
-          .shouldFullyObstruct(context);
-  @override
-  api1.Widget buildNative(Map<String, Object?> values) =>
-      _createCupertinoNavigationBar(node.ctor, values);
-}
-
 api1.Widget _createCupertinoNavigationBar(
   String ctor,
   Map<String, Object?> values,

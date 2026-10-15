@@ -1,5 +1,5 @@
 {
-  "formatVersion": 20,
+  "formatVersion": 21,
   "package": "flax_cupertino_ui",
   "bindingNamespace": "flax.cupertino",
   "imports": [
@@ -1002,23 +1002,14 @@
               {
                 "name": "preferredSize",
                 "kind": "getter",
-                "parameters": [],
-                "source": "@override\n_flaxNative2.Size get preferredSize => (configuration as _flaxNative2.ObstructingPreferredSizeWidget).preferredSize;",
-                "imports": {
-                  "package:cupertino_ui/cupertino_ui.dart": "_flaxNative2"
-                }
+                "parameters": []
               },
               {
                 "name": "shouldFullyObstruct",
                 "kind": "method",
                 "parameters": [
                   "context"
-                ],
-                "source": "@override\n_flaxNative1.bool shouldFullyObstruct(_flaxNative2.BuildContext context) => (configuration as _flaxNative2.ObstructingPreferredSizeWidget).shouldFullyObstruct(context);",
-                "imports": {
-                  "dart:core": "_flaxNative1",
-                  "package:cupertino_ui/cupertino_ui.dart": "_flaxNative2"
-                }
+                ]
               }
             ],
             "supertypes": [
@@ -1455,32 +1446,25 @@
                 "typeArguments": [],
                 "dartArguments": [],
                 "primitiveKinds": [],
-                "declaration": null,
+                "declaration": {
+                  "kind": "widget",
+                  "id": "flax.cupertino/cupertino#type:ObstructingPreferredSizeWidget",
+                  "name": "ObstructingPreferredSizeWidget",
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": null,
+                  "tsArguments": [],
+                  "slot": null
+                },
                 "tsArguments": [],
                 "slot": null
-              }
-            ],
-            "widgetMembers": [
-              {
-                "name": "preferredSize",
-                "kind": "getter",
-                "parameters": [],
-                "source": "@override\n_flaxNative2.Size get preferredSize => (configuration as _flaxNative2.ObstructingPreferredSizeWidget).preferredSize;",
-                "imports": {
-                  "package:cupertino_ui/cupertino_ui.dart": "_flaxNative2"
-                }
-              },
-              {
-                "name": "shouldFullyObstruct",
-                "kind": "method",
-                "parameters": [
-                  "context"
-                ],
-                "source": "@override\n_flaxNative1.bool shouldFullyObstruct(_flaxNative2.BuildContext context) => (configuration as _flaxNative2.ObstructingPreferredSizeWidget).shouldFullyObstruct(context);",
-                "imports": {
-                  "dart:core": "_flaxNative1",
-                  "package:cupertino_ui/cupertino_ui.dart": "_flaxNative2"
-                }
               }
             ],
             "supertypes": [

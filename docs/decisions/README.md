@@ -57,7 +57,7 @@ current language support is in the
   is accepted.
 - [0028: Structural Record bindings](0028-record-bindings.md) is accepted.
 - [0029: Native Widget interface members](0029-native-widget-interface-members.md) is
-  accepted and amends ADR 0011.
+  superseded by [0044](0044-native-widget-interface-values.md).
 - [0030: Extension binding adapters](0030-extension-binding-adapters.md) is accepted.
 - [0031: Mutable top-level bindings](0031-mutable-top-level-bindings.md) is accepted.
 - [0032: Generic bound-only type references](0032-bound-type-only-references.md) is
@@ -71,8 +71,8 @@ current language support is in the
 - [0036: Shared engine SDK and locally compiled ABI](0036-shared-engine-sdk.md) is
   accepted and supersedes the native distribution details of ADR 0002 and ADR 0012.
 - [0037: Package-scoped binding providers and plugin delivery](0037-package-scoped-binding-providers.md)
-  is accepted. Metadata 2 and UI protocol 22 remain current-only; ADR 0038 updates
-  Manifest 13 to 14. Native ABI 2 is unchanged.
+  is accepted. Current package, Manifest and protocol formats are listed in the Binding
+  Coverage Map above.
 
 - [0038: Class static properties](0038-class-static-properties.md) is accepted. It uses
   independent read/write operations in Manifest 14.
@@ -93,6 +93,9 @@ current language support is in the
 
 - [0043: Record value conversion](0043-record-value-conversion.md) is accepted. All
   Records use plain field objects and shared native construction.
+
+- [0044: Native Widget interface values](0044-native-widget-interface-values.md) is
+  accepted. Real Widget factories and proxies replace native interface forwarding hosts.
 
 [Open Questions](open-questions.md) records decisions that have not been made. Use the
 [decision template](TEMPLATE.md) for a new significant decision. Record the decision,

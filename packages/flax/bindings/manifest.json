@@ -1,5 +1,5 @@
 {
-  "formatVersion": 20,
+  "formatVersion": 21,
   "package": "flax",
   "bindingNamespace": "flax.core",
   "imports": [],
@@ -51932,11 +51932,7 @@
               {
                 "name": "preferredSize",
                 "kind": "getter",
-                "parameters": [],
-                "source": "@override\n_flaxNative8.Size get preferredSize => (configuration as _flaxNative8.PreferredSizeWidget).preferredSize;",
-                "imports": {
-                  "package:flutter/widgets.dart": "_flaxNative8"
-                }
+                "parameters": []
               }
             ],
             "supertypes": [
@@ -52118,20 +52114,25 @@
                 "typeArguments": [],
                 "dartArguments": [],
                 "primitiveKinds": [],
-                "declaration": null,
+                "declaration": {
+                  "kind": "widget",
+                  "id": "flax.core/flutter#type:PreferredSizeWidget",
+                  "name": "PreferredSizeWidget",
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": null,
+                  "tsArguments": [],
+                  "slot": null
+                },
                 "tsArguments": [],
                 "slot": null
-              }
-            ],
-            "widgetMembers": [
-              {
-                "name": "preferredSize",
-                "kind": "getter",
-                "parameters": [],
-                "source": "@override\n_flaxNative8.Size get preferredSize => (configuration as _flaxNative8.PreferredSizeWidget).preferredSize;",
-                "imports": {
-                  "package:flutter/widgets.dart": "_flaxNative8"
-                }
               }
             ],
             "supertypes": [

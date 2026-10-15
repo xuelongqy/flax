@@ -2198,13 +2198,7 @@ Map<String, Object?> _encodeClass(FlaxCodegenClassModel type) {
       if (type.widgetMembers.isNotEmpty)
         'widgetMembers': [
           for (final m in type.widgetMembers)
-            {
-              'name': m.name,
-              'kind': m.kind,
-              'parameters': m.parameters,
-              'source': m.source,
-              'imports': _encodeStringMap(m.imports),
-            },
+            {'name': m.name, 'kind': m.kind, 'parameters': m.parameters},
         ],
       'supertypes': List<String>.of(type.supertypes),
       'superTypes': superTypeJsons,
@@ -2337,44 +2331,25 @@ FlaxCodegenClassModel? _decodeClass(
             diagnostics,
             value,
             pointer,
-            {'name', 'kind', 'parameters', 'source', 'imports'},
+            {'name', 'kind', 'parameters'},
           );
           if (member == null) return null;
           final name = member.requiredString('name');
           final kind = member.requiredString('kind');
           final parameters = member.requiredStringList('parameters');
-          final source = member.requiredString('source');
-          final imports = member.requiredStringMap('imports');
           if (kind != null && !{'getter', 'setter', 'method'}.contains(kind)) {
             diagnostics.add(
               pointer: member.child('kind'),
               message: 'Invalid native Widget member kind.',
             );
           }
-          if (imports != null &&
-              imports.entries.any(
-                (e) =>
-                    !_isPublicTypeLibraryUri(e.key) ||
-                    !RegExp(r'^_flaxNative[0-9]+$').hasMatch(e.value),
-              )) {
-            diagnostics.add(
-              pointer: member.child('imports'),
-              message: 'Invalid native Widget imports.',
-            );
-          }
-          if (name == null ||
-              kind == null ||
-              parameters == null ||
-              source == null ||
-              imports == null) {
+          if (name == null || kind == null || parameters == null) {
             return null;
           }
           return FlaxCodegenWidgetMember(
             name: name,
             kind: kind,
             parameters: parameters,
-            source: source,
-            imports: imports,
           );
         })
       : <FlaxCodegenWidgetMember>[];

@@ -1,5 +1,5 @@
 {
-  "formatVersion": 16,
+  "formatVersion": 21,
   "package": "your_package",
   "bindingNamespace": "vendor.example",
   "imports": [
@@ -9,8 +9,10 @@
     {
       "name": "example",
       "moduleId": "vendor.example/example",
-      "uiProtocol": 23,
+      "uiProtocol": 24,
       "requiredCapabilities": [
+        "generic-member-views",
+        "instance-checks",
         "native-widget-proxies"
       ],
       "model": {
@@ -125,7 +127,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "setters": [
@@ -164,7 +167,8 @@
                   "tsArguments": [],
                   "slot": null
                 },
-                "encodeKind": null
+                "encodeKind": null,
+                "cache": false
               }
             ],
             "staticGetters": [],

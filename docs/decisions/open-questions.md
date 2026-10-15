@@ -2,7 +2,7 @@
 
 Current accepted contracts include explicit selection, public-provider manifests, stable
 wire identity, package-atomic generation and trusted compile-time dependencies. Binding
-selection format 2, package metadata format 2, current-only Manifest 20, UI protocol 24
+selection format 2, package metadata format 2, current-only Manifest 21, UI protocol 24
 and native ABI 2 remain separate domains. Generic declarations use one compiled adapter
 factory while TypeScript preserves relationships. The maintained engine instantiates
 those factories from real Dart Type handles on first use, without finite type-tuple
@@ -31,7 +31,6 @@ the five/six-parameter hybrid described in
 | Arbitrary JS-selected mixin composition             | Future research with a concrete composition use case and an AOT-compatible class model. Current additions use configured common variants or ordinary Dart classes composed with mixins.                                                                    |
 | Public structural type-token builders (deferred)    | Revisit only for concrete application demand beyond existing declarations, authentic value types and explicit checked type selection. Record results and typed API inputs already meet current needs; shared JIT/AOT value construction remains supported. |
 | TS generic call syntax                              | A future build-transform design preserving current checked runtime type selection, JS inheritance, overrides and `super`. Current `$type` / `dartType` calls meet capability needs; whole-graph inference is not required for this convenience work.       |
-| Generic structural Widget hosts                     | A concrete generic Widget interface requiring a generated configuration host. Existing generic Dart Widgets already use ordinary native object views with real type arguments.                                                                             |
 
 See [demand-driven scope](../architecture/binding-coverage-map.md#demand-driven-scope)
 for the closure deferral and current priorities. Extension calls retain their explicit

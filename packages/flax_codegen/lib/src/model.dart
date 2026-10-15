@@ -730,20 +730,16 @@ class FlaxCodegenMethodModel {
   );
 }
 
-/// A Dart-only interface override. No bridge types or wire operations are added.
+/// Selected native interface metadata; the actual Widget implements the members.
 class FlaxCodegenWidgetMember {
   const FlaxCodegenWidgetMember({
     required this.name,
     required this.kind,
     required this.parameters,
-    required this.source,
-    required this.imports,
   });
   final String name;
   final String kind;
   final List<String> parameters;
-  final String source;
-  final Map<String, String> imports;
 }
 
 class FlaxCodegenClassModel {

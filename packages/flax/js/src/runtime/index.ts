@@ -3,7 +3,40 @@ import {
   computed as coreComputed,
   effect,
   batch as coreBatch,
+  untracked,
 } from '@preact/signals-core';
+
+const reads: { readonly value: unknown }[] = [];
+const bindingReaders = new WeakSet<() => unknown>();
+let nativeCallDepth = 0;
+
+/** @internal Native child previews must not subscribe an evaluating parent. */
+export function readBindingSnapshot<T>(read: () => T): T {
+  // Custom readers own their tracking; only built-in readers record recovery inputs.
+  return bindingReaders.has(read) ? untracked(read) : read();
+}
+
+/** @internal Failed conversion inputs must remain able to recover before mounting. */
+export function withBindingSnapshots<T>(action: () => T): T {
+  const start = reads.length;
+  nativeCallDepth++;
+  try {
+    return action();
+  } catch (error) {
+    const retry = reads.slice(start);
+    for (const source of retry) {
+      try {
+        void source.value;
+      } catch {
+        // Preserve the original native failure.
+      }
+    }
+    throw error;
+  } finally {
+    // An outer conversion may still need successful nested previews for recovery.
+    if (--nativeCallDepth === 0) reads.length = 0;
+  }
+}
 
 export interface Binding<T> {
   readonly kind: 'binding';
@@ -40,9 +73,10 @@ export function bind<T>(read: () => T): Binding<T> {
       return { ok: false, error };
     }
   });
-  return Object.freeze({
+  const binding = Object.freeze({
     kind: 'binding' as const,
     read(): T {
+      if (nativeCallDepth > 0) reads.push(result);
       const current = result.value;
       if (!current.ok) throw current.error;
       return current.value;
@@ -59,6 +93,8 @@ export function bind<T>(read: () => T): Binding<T> {
       });
     },
   });
+  bindingReaders.add(binding.read);
+  return binding;
 }
 
 export function signal<T>(value: T): Signal<T> {

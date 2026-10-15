@@ -43,10 +43,15 @@ String _quote(String value) => jsonEncode(value).replaceAll(r'$', r'\$');
 // descriptions and their reactive constructor arguments.
 bool _hasWidgetObjectView(FlaxCodegenClassModel type) =>
     type.kind == 'widget' &&
-    (type.proxy != null ||
+    (type.widgetInterfaces.isNotEmpty ||
+        type.proxy != null ||
         type.getters.isNotEmpty ||
         type.setters.isNotEmpty ||
         type.methods.any((method) => method.instance));
+
+bool _nativeWidgetFactory(FlaxCodegenClassModel type) =>
+    _hasWidgetObjectView(type) &&
+    (type.proxy == null || type.widgetInterfaces.isNotEmpty);
 
 /// Stable key order so reversed [Map] insertion cannot change emission.
 Map<String, String> _sortedStringMap(Map<String, String> map) {
@@ -2123,7 +2128,7 @@ class FlaxCodegenBindingEmitter {
         );
         continue;
       }
-      if (_hasWidgetObjectView(type) && type.proxy == null) {
+      if (_nativeWidgetFactory(type)) {
         out.writeln('${_widgetObjectBinding(type)},');
         continue;
       }
@@ -2197,7 +2202,7 @@ class FlaxCodegenBindingEmitter {
         out.writeln('],');
       }
       out.writeln(
-        '}, _${type.name}Host${_typeArgs(type.typeArguments)}.new, matches: _is${type.name}, fixedArguments: ${type.widgetInterfaces.isNotEmpty}, methods: {}, ${_hasWidgetObjectView(type) ? 'objectView: ${_widgetObjectBinding(type)},' : ''}),',
+        '}, _${type.name}Host${_typeArgs(type.typeArguments)}.new, matches: _is${type.name}, methods: {}, ${_hasWidgetObjectView(type) ? 'objectView: ${_widgetObjectBinding(type)},' : ''}),',
       );
     }
     out.writeln('], functions: [');
@@ -2601,8 +2606,7 @@ class FlaxCodegenBindingEmitter {
         }
         continue;
       }
-      if (type.kind == 'widget' &&
-          (type.proxy != null || !_hasWidgetObjectView(type))) {
+      if (type.kind == 'widget' && !_nativeWidgetFactory(type)) {
         _writeVmWidgetHost(out, type);
       }
       if (type.kind == 'widget' &&
@@ -3378,15 +3382,6 @@ import 'package:flax/bindings.dart';
     for (final entry in _dartImports.entries.where(
       (e) => e.key != module.library,
     )) {
-      imports.writeln("import '${entry.key}' as ${entry.value};");
-    }
-    final nativeImports = <String, String>{};
-    for (final type in nativeClasses) {
-      for (final member in type.widgetMembers) {
-        nativeImports.addAll(member.imports);
-      }
-    }
-    for (final entry in nativeImports.entries) {
       imports.writeln("import '${entry.key}' as ${entry.value};");
     }
     // Adapter imports stay explicit in the binding selection.
@@ -5903,11 +5898,13 @@ $_typescriptHostImport
           .toSet();
       if (type.kind == 'widget' && type.proxy != null) {
         out.writeln(
-          '${exportPrefix}type ${type.name}${generics(type.typeParameters)} = ${type.name}Description${genericUse(type)} | _${type.name}Native${genericUse(type)};',
+          '${exportPrefix}type ${type.name}${generics(type.typeParameters)} = ${_nativeWidgetFactory(type) ? '' : '${type.name}Description${genericUse(type)} | '}_${type.name}Native${genericUse(type)};',
         );
-        out.writeln(
-          '${exportPrefix}type ${type.name}Description${generics(type.typeParameters)} = WidgetDescription & { readonly type: ${jsonEncode(type.id)}; }${type.widgetInterfaces.map((i) => ' & ${tsType(i)}').join()};',
-        );
+        if (!_nativeWidgetFactory(type)) {
+          out.writeln(
+            '${exportPrefix}type ${type.name}Description${generics(type.typeParameters)} = WidgetDescription & { readonly type: ${jsonEncode(type.id)}; };',
+          );
+        }
         emitProxy(out, type, type.proxy!);
       } else if (type.widgetInterfaces.isNotEmpty && !nativeWidget) {
         out.writeln(
@@ -6086,7 +6083,9 @@ $_typescriptHostImport
             .where((param) => param.positional)
             .map(_parameterLocalName)
             .join(', ');
-        final constructionKind = nativeWidget ? 'object' : type.kind;
+        final constructionKind = _nativeWidgetFactory(type)
+            ? 'object'
+            : type.kind;
         final construct = switch (constructionKind) {
           'object' => 'constructObject',
           'stream' => 'constructStream',

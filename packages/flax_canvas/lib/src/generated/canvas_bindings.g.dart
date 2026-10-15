@@ -127,7 +127,6 @@ const canvasBindings = FlaxBindingModule(
       },
       _FlaxCanvasViewHost.new,
       matches: _isFlaxCanvasView,
-      fixedArguments: false,
       methods: {},
     ),
   ],

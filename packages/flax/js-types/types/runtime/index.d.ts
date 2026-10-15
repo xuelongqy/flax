@@ -1,3 +1,7 @@
+/** @internal Native child previews must not subscribe an evaluating parent. */
+export declare function readBindingSnapshot<T>(read: () => T): T;
+/** @internal Failed conversion inputs must remain able to recover before mounting. */
+export declare function withBindingSnapshots<T>(action: () => T): T;
 export interface Binding<T> {
     readonly kind: 'binding';
     read(): T;

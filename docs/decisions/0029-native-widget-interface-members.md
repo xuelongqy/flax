@@ -1,6 +1,7 @@
 # ADR 0029: Native Widget Interface Members
 
-Status: accepted.
+Status: superseded by [ADR 0044](0044-native-widget-interface-values.md). The original
+forwarding-host decision below is retained for context.
 
 ## Decision
 

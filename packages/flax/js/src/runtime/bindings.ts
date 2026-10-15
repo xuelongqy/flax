@@ -1,4 +1,11 @@
-import { computed, signal, type Binding, type ReadonlySignal } from './index.js';
+import {
+  computed,
+  signal,
+  withBindingSnapshots,
+  readBindingSnapshot,
+  type Binding,
+  type ReadonlySignal,
+} from './index.js';
 import { ReferenceCache } from './references.js';
 import {
   dartTypeDescription,
@@ -1386,7 +1393,9 @@ function invokeOperation(
     );
     operationIds.set(key, slot);
   }
-  return unwrapCall(host.__flaxInvokeOperation(slot, id, ...args));
+  return withBindingSnapshots(() =>
+    unwrapCall(host.__flaxInvokeOperation!(slot, id, ...args)),
+  );
 }
 
 type ObjectHost = typeof globalThis & {
@@ -1645,7 +1654,9 @@ export function constructStream(
   ) as DartValue;
   const create = (globalThis as StreamHost).__flaxCreateStream;
   if (!create) throw new Error('Dart Streams require a Flax host');
-  return unwrapCall(create(bindingVersion, type, descriptor));
+  return withBindingSnapshots(() =>
+    unwrapCall(create(bindingVersion, type, descriptor)),
+  );
 }
 
 function callStream(
@@ -1774,7 +1785,9 @@ export function constructObject(
   ) as DartValue;
   const create = (globalThis as ObjectHost).__flaxCreateObject;
   if (!create) throw new Error('Dart objects require a Flax host');
-  return unwrapCall(create(bindingVersion, type, descriptor));
+  return withBindingSnapshots(() =>
+    unwrapCall(create(bindingVersion, type, descriptor)),
+  );
 }
 
 /** Records a generic factory call until a concrete Dart parameter supplies T. */
@@ -1945,12 +1958,14 @@ export function constructProxy(
   const descriptor = proxyDescriptor(definition, args);
   const create = (globalThis as ObjectHost).__flaxCreateObject;
   if (!create) throw new Error('Dart proxies require a Flax host');
-  return unwrapCall(
-    create(bindingVersion, definition.type, {
-      ...descriptor,
-      receiver: implementation,
-      layout: proxyLayout(definition),
-    }),
+  return withBindingSnapshots(() =>
+    unwrapCall(
+      create(bindingVersion, definition.type, {
+        ...descriptor,
+        receiver: implementation,
+        layout: proxyLayout(definition),
+      }),
+    ),
   );
 }
 
@@ -2327,13 +2342,15 @@ export function constructExtendedProxy(
   if (!create) throw new Error('Dart proxies require a Flax host');
   constructingExtendedProxies.add(receiver);
   try {
-    const created = unwrapCall(
-      create(bindingVersion, definition.type, {
-        ...descriptor,
-        receiver,
-        layout: proxyLayout(definition),
-        ...(widgetType === undefined ? {} : { widgetType }),
-      }),
+    const created = withBindingSnapshots(() =>
+      unwrapCall(
+        create(bindingVersion, definition.type, {
+          ...descriptor,
+          receiver,
+          layout: proxyLayout(definition),
+          ...(widgetType === undefined ? {} : { widgetType }),
+        }),
+      ),
     );
     const ref = objectHandles.get(created);
     if (
@@ -2668,6 +2685,7 @@ Object.assign(globalThis, {
       recordDartTypes.set(value, type);
     },
     version: bindingVersion,
+    readBindingSnapshot,
     nativeDateMilliseconds(value: object): number {
       let milliseconds: number;
       try {
@@ -3097,15 +3115,17 @@ Object.assign(globalThis, {
             }
           }
         }
-        return unwrapCall(
-          call(
-            bindingVersion,
-            type,
-            id,
-            positionalValues.length,
-            ...positionalValues,
-            namedValues.length / 2,
-            ...namedValues,
+        return withBindingSnapshots(() =>
+          unwrapCall(
+            call(
+              bindingVersion,
+              type,
+              id,
+              positionalValues.length,
+              ...positionalValues,
+              namedValues.length / 2,
+              ...namedValues,
+            ),
           ),
         );
       };

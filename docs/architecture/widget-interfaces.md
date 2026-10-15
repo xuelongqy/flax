@@ -36,7 +36,12 @@ This rule applies to every direct argument of the two interface-bearing Widgets,
 including title, actions, bottom and child. Binding those arguments is rejected in TS,
 JS construction and Dart acceptance. Bind the containing property instead. Optional
 undefined remains omission; null follows the native signature. Child descriptors can
-still contain bindings and custom JS components.
+still contain bindings and custom JS components. Native argument conversion reads child
+bindings outside the parent signal computation. Composed child bindings retain their own
+dependencies. If conversion fails before mounting, the parent retains the failed inputs
+as recovery dependencies until it accepts a valid configuration. This dependency
+isolation applies to `bind()` and built-in signal bindings; custom Binding readers
+retain their own tracking behavior.
 
 ## Selected API
 
@@ -56,49 +61,50 @@ narrower interface without a typed declaration.
 
 ## Generation and ownership
 
-Select native configuration contracts with `kind: widgetInterface`. Use the existing
-`getters`, `setters` and `methods` selections, listing every additional public instance
-member and every method parameter in declaration order. Select the contracts on an
-implementing Widget with `widgetInterfaces`. Analyzer resolves inheritance and generic
-substitution; compatible shared members are emitted once. Widget and diagnostic members
-remain supplied by FlaxWidgetHost. Conflicts with its configuration and lifecycle
-members are rejected. Generic interface declarations normalize to an ordinary native
-object view instead: actual type arguments, members and Widget identity use existing
-engine conversion. A `CellView<String>` can therefore be read and passed as a real
-Widget, without creating a new generic FlaxWidgetHost adapter. This does not synthesize
-an arbitrary JS implementation of a Flutter Widget interface. Generic methods and bounds
-use the same checked type factories as other bindings.
+Select native configuration contracts with `kind: widgetInterface` and select a Widget's
+contracts with `widgetInterfaces`. Analyzer checks the actual implemented interface and
+substitutes the Widget owner's generic arguments. Generic contracts use the existing
+native object view and checked engine type handles, including nested arguments.
+Nongeneric contracts retain opaque Widget tokens and native member selections, without
+exposing every native member as a JS API. Dependency providers retain the same generic
+Widget contracts after Manifest projection; automatic and explicit consumers reuse their
+object views without rebinding the interface. Selected members of generic contracts also
+populate the implementing Widget's native view; they do not need to be selected again on
+that Widget.
 
-Generated hosts implement the Dart interface and directly forward to the cached real
-configuration. Signatures may contain BuildContext, Widgets, callbacks, collections,
-Records, Future/FutureOr, Stream, nullable types and generic methods without requiring
-JS converters or binding owners for those native-only types. Required/optional
-positional and named parameters, accessible constant defaults, setters and operators are
-preserved. Optional defaults follow the concrete Dart implementation even when it
-changes an inherited default or renames positional parameters. Inaccessible
-types/defaults fail generation. Interface methods and properties are not exposed as JS
-descriptor members. Ordinary bridge validation is unchanged.
+Interface-bearing factories construct the actual Dart Widget through the shared object
+factory. Flutter reads its original fields and invokes its original methods directly. No
+generated forwarding host, extra Element, copied method default or additional bridge
+call is needed. Members named `configuration`, `node` or `buildNative` therefore have no
+special conflict. Private constant defaults and private types in native-only signatures
+remain in their declaring Dart library; they do not need a JS converter or public
+import. Members explicitly exposed to JS still follow ordinary public conversion rules.
 
-Constructor validation happens before acceptance and does not mount children. The same
-configuration is reused on mounting; forwarding adds no JS bridge call, constructor or
-Element. Arguments, return values, exceptions and asynchronous identities stay native.
-For example, CupertinoNavigationBar forwards both `preferredSize` and
-`shouldFullyObstruct(BuildContext)` to its native configuration. CupertinoPageScaffold
-therefore uses its real obstruction and layout behavior. AppBar's original preferredSize
-object, including its private theme-height sentinel subtype, is preserved.
+For JS inheritance, select `proxy: extends` on the real Dart Widget class and select the
+members to override. The existing generated Dart subclass preserves the actual
+interface, JS receiver, private fields, method overrides and direct `super` calls.
+Generic classes use `Class.$type` with the same checked type factories as other
+bindings. A raw JS object is not a Flutter Widget and does not become one by supplying
+an interface Type token; a compiled Dart class must implement that interface.
 
-Manifest 20 records native member selections, Dart override source and explicit public
-imports separately from bridge TypeRefs. Native members add no wire operations or owner
-rows; existing declaration IDs, UI protocol 24 and native ABI 2 remain unchanged. See
-[ADR 0029](../decisions/0029-native-widget-interface-members.md).
+CupertinoNavigationBar and AppBar are actual native configurations. Their preferred
+sizes, obstruction behavior, callback/Future/Stream identities and private sentinel
+subtypes are preserved. Their native members add no JS calls when Flutter reads them. A
+native setter follows Dart behavior and does not schedule a rebuild.
+
+Manifest 21 records only native member kind, name and parameter names. It removes the
+obsolete forwarding source and import fields and rejects previous formats. Regenerate
+providers and consumers together. Declaration IDs, selection format 2, UI protocol 24,
+internal engine binding extension 8 and native ABI 2 stay unchanged. See
+[the native-value decision](../decisions/0044-native-widget-interface-values.md), which
+supersedes the forwarding implementation in ADR 0029.
 
 Interface Widgets require fixed constructor arguments and accept ordinary typed
-callbacks, including callbacks inside supported collections. The cached native
-configuration uses the original closures during validation, mounting and later Dart
-reuse; it does not clone callbacks per mount. Widgets inside child/children keep their
-own mounted subscriptions. A native setter mutates the target configuration according to
-its Dart implementation; it does not create a reactive subscription or schedule a
-rebuild.
+callbacks, including callbacks inside supported collections. The native configuration
+uses the original closures during validation, mounting and later Dart reuse; it does not
+clone callbacks per mount. Widgets inside child/children keep their own mounted
+subscriptions. A native setter mutates the target configuration according to its Dart
+implementation; it does not create a reactive subscription or schedule a rebuild.
 
 Interface types work in Widget parameters, typed Widget lists and native Widget results.
 Ordinary and mounted callbacks share conversion for interface-typed arguments and
@@ -109,20 +115,20 @@ while a plain Text fails the interface check. Configured Route/Page builders for
 original typed closure and preserve its actual result without an extra content host.
 Route-producing functions retain their existing observed-navigation contract.
 
-Callback results preserve native Widget identity and generated hosts' selected
+Callback results preserve native Widget identity and native configurations' selected
 interfaces. Narrow interface failures propagate the original error; an ErrorWidget
 cannot satisfy an arbitrary interface. Only base `Widget` and `List<Widget>` UI
 callbacks can use the existing error placeholder. Synchronous callbacks still reject
 Promises. Finite List/Set/Map/Record aggregates, including nullable elements and async
 compositions, retain each Widget configuration before temporary conversion holds are
-released. Lazy Widget Iterable callbacks remain outside the conversion contract.
-Concrete native class signatures such as `Text Function()` materialize the real native
-configuration and validate its Dart type. Selected `proxy: extends` classes can also
-return a JS subclass backed by a native Dart subclass. Base Widget and interface
-signatures retain their existing host and reactive configuration semantics.
+released. Widget Iterable callbacks use the shared lazy typed adapter. Concrete native
+class signatures such as `Text Function()` materialize the real native configuration and
+validate its Dart type. Selected `proxy: extends` classes can also return a JS subclass
+backed by a native Dart subclass. Base Widget and interface signatures retain their
+existing host and reactive configuration semantics.
 
 A previous interface configuration may still be read by native didUpdateWidget even if
-its Widget was never mounted. Its cached Dart value follows Dart references. Escaped
+its Widget was never mounted. The actual Dart value follows Dart references. Escaped
 callbacks and generated child configurations use the shared weak cleanup mechanism, so a
 saved native configuration remains usable after its original host unmounts. Unmount
 releases mounted subscriptions immediately; discarded configurations release bridge
@@ -132,13 +138,13 @@ for GC or disposing application values.
 Configuration replacement uses the existing prepare, validate, commit and release
 sequence. Mounted children hold their own resources; new configurations do not reset
 State when native type/key matching retains it. No application object disposal, upward
-notification graph, extra Element, ComponentBoundary is added for interface forwarding.
-Selected native JS subclasses use a weak runtimeType token to preserve Flutter type
-matching between JS classes.
+notification graph, extra Element or ComponentBoundary is added for interfaces. Selected
+native JS subclasses use a weak runtimeType token to preserve Flutter type matching
+between JS classes.
 
 The
 [widget-interface owner tests](../../packages/flax_material_ui/test/ui/widget_interfaces_test.dart)
 verify the selected Scaffold/AppBar/PreferredSize surface inside the Material UI
-package. Drawer, SnackBar, ScaffoldState operations and arbitrary JS interface
-implementation remain unselected. See
+package. SnackBar, ScaffoldState operations and arbitrary JS interface implementation
+remain unselected. See
 [the decision](../decisions/0011-widget-interface-configuration.md).

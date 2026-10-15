@@ -13,6 +13,52 @@ abstract class LabelledContract implements ExtentContract {
   String get label;
 }
 
+abstract class GenericView<T> implements Widget {
+  T get value;
+}
+
+const _privateDefault = 4;
+const _privateNumbers = {6, 7};
+
+abstract class ConfigurationContract implements Widget {
+  Widget get configuration;
+  int read([int value = _privateDefault]);
+  Set<int> defaults([Set<int> value = _privateNumbers]);
+}
+
+class GenericTile<T> extends StatelessWidget
+    implements GenericView<T>, ConfigurationContract {
+  const GenericTile(this.value, {required this.child, this.onTap, super.key});
+  @override
+  final T value;
+  final Widget child;
+  final VoidCallback? onTap;
+  @override
+  Widget get configuration => child;
+  @override
+  int read([int value = _privateDefault + 2]) => value;
+  @override
+  Set<int> defaults([Set<int> value = _privateNumbers]) => value;
+  String describe() => '$value:${read()}';
+  @override
+  Widget build(BuildContext context) => GestureDetector(
+    onTap: onTap,
+    child: Column(children: [Text(describe()), child]),
+  );
+}
+
+class GenericViewCalls {
+  static GenericView<String>? saved;
+  static void keep(GenericView<String> value) => saved = value;
+  static void clear() => saved = null;
+  static String stringValue(GenericView<String> value) => value.value;
+  static String describe(GenericTile<String> value) => value.describe();
+  static List<String> nestedValue(GenericView<List<String>> value) =>
+      value.value;
+  static bool defaultsStable(ConfigurationContract value) =>
+      identical(value.defaults(), _privateNumbers);
+}
+
 class ExtentTile extends StatelessWidget implements LabelledContract {
   ExtentTile({
     super.key,

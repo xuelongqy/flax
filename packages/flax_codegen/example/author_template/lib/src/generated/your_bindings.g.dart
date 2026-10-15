@@ -1,6 +1,6 @@
 // GENERATED CODE. Selected public API subset; do not edit.
 // Regenerate with dart run melos run bindings:generate.
-// ignore_for_file: type=lint, unused_import
+// ignore_for_file: type=lint, unused_import, unnecessary_cast
 import 'dart:core';
 
 import 'package:your_package/api.dart' as api;
@@ -47,15 +47,27 @@ const exampleBindings = FlaxBindingModule(
       supertypes: ["dart:core::Object"],
       setters: [FlaxSetter("value", FlaxTypeRef("int"), _Gauge_set_value)],
       matches: _isGauge,
-      methods: {},
+      methods: const {},
     ),
   ],
   functions: [],
   moduleId: "vendor.example/example",
   dependencyModules: [],
-  uiProtocol: 23,
-  requiredCapabilities: const <String>["native-widget-proxies"],
+  uiProtocol: 24,
+  requiredCapabilities: const <String>[
+    "generic-member-views",
+    "instance-checks",
+    "native-widget-proxies",
+  ],
   stateVariants: [],
+  dartTypes: [
+    FlaxDartClassTemplate(
+      "vendor.example/example#type:Gauge",
+      api.Gauge,
+      "object",
+    ),
+  ],
+  dartShapes: _flaxDartShapes,
 );
 bool _isGauge(Object value) => value is api.Gauge;
 Object? _Gauge_value(Object value) => (value as api.Gauge).value;
@@ -76,3 +88,5 @@ Object _createGauge(String ctor, Map<String, Object?> values) {
       throw ArgumentError('Unknown generated constructor');
   }
 }
+
+const _flaxDartShapes = <FlaxDartShapeTemplate>[];

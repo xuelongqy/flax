@@ -50,6 +50,70 @@ Widget comparison(
 
 void main() {
   testWidgets(
+    'failed native child previews recover without tracking valid children',
+    (t) async {
+      final h = harness();
+      try {
+        await t.pumpWidget(h.app('scaffold-test'));
+        await t.pumpAndSettle();
+        h.execute(
+          'interfaces.title.value = null; interfaces.height.value = 88',
+        );
+        await t.pumpAndSettle();
+        expect(h.errors, isNotEmpty);
+        h.errors.clear();
+        h.execute('interfaces.title.value = "Recovered title"');
+        await t.pumpAndSettle();
+        expect(find.text('Recovered title'), findsOneWidget);
+        expect(t.widget<AppBar>(find.byType(AppBar)).toolbarHeight, 88);
+        expect(h.errors, isEmpty);
+      } finally {
+        await h.finish(t);
+      }
+    },
+  );
+  testWidgets(
+    'generic Widget interfaces preserve overrides, super and joint GC',
+    (t) async {
+      final h = harness();
+      GenericViewCalls.clear();
+      try {
+        await t.pumpWidget(h.app('generic-interface'));
+        await t.pumpAndSettle();
+        expect(find.text('JS:value:7'), findsOneWidget);
+        expect(find.text('Generic child'), findsOneWidget);
+        expect(find.text('Nested child'), findsOneWidget);
+        expect(find.text('Observed JS:value:7'), findsOneWidget);
+        h.execute("genericWidgets.suffix.value = '!'");
+        await t.pump();
+        expect(find.text('Observed JS:value:7!'), findsOneWidget);
+        expect(h.number('genericWidgets.value() === "value" ? 1 : 0'), 1);
+        expect(h.number('genericWidgets.defaultsStable() ? 1 : 0'), 1);
+        expect(h.number('genericWidgets.rejectWrongType() ? 1 : 0'), 1);
+        await t.tap(find.text('JS:value:7'));
+        expect(h.number('genericWidgets.taps()'), 1);
+        h.execute('genericWidgets.keep(); genericWidgets.drop()');
+        await flaxTestUnmount(t);
+        await t.pumpAndSettle();
+        await collectWidgetConfigurations(t);
+        expect(h.number('genericWidgets.alive() ? 1 : 0'), 1);
+        final weak = WeakReference(GenericViewCalls.saved!);
+        expect(
+          (GenericViewCalls.saved! as GenericTile<String>).describe(),
+          'JS:value:7!',
+        );
+        GenericViewCalls.clear();
+        await collectWidgetConfigurations(t);
+        expect(weak.target, isNull);
+        expect(h.number('genericWidgets.alive() ? 1 : 0'), 0);
+        expect(h.errors, isEmpty);
+      } finally {
+        GenericViewCalls.clear();
+        await h.finish(t);
+      }
+    },
+  );
+  testWidgets(
     'native didUpdateWidget can read an old unmounted interface configuration',
     (t) async {
       final h = harness();
@@ -73,7 +137,7 @@ void main() {
     },
   );
   testWidgets(
-    'generated interface getters read the cached real configuration without bridge work',
+    'interface getters read the original native Widget without bridge work',
     (t) async {
       final h = harness();
       try {
@@ -83,11 +147,7 @@ void main() {
         await t.pumpAndSettle();
         expect(h.errors, isEmpty);
         final widgets = t
-            .widgetList(
-              find.byWidgetPredicate(
-                (w) => w is FlaxWidgetHost && w is LabelledContract,
-              ),
-            )
+            .widgetList(find.byWidgetPredicate((w) => w is ExtentTile))
             .toList();
         expect(widgets, hasLength(3));
         final constructions = ExtentTile.constructions;
@@ -209,6 +269,7 @@ void main() {
         h.execute("interfaces.title.value = 'Updated title'");
         await t.pump();
         expect(rebuilt, [const ValueKey('bar-title')]);
+        expect(find.text('Updated title'), findsOneWidget);
         rebuilt.clear();
         h.execute('interfaces.height.value = 64; interfaces.height.value = 90');
         await t.pump();
@@ -307,7 +368,16 @@ void main() {
         await t.pumpWidget(h.app('scaffold-test'));
         await t.pumpAndSettle();
         await collectWidgetConfigurations(t);
-        var baseline = h.runtime.handles;
+        int handlesWithoutContextHelper() {
+          // Context retirement can lazily cache this singleton after the first GC.
+          final helpers = h.runtime.handleLabels
+              .where((label) => label == '__flaxBindings.releaseContext')
+              .length;
+          expect(helpers, lessThanOrEqualTo(1));
+          return h.runtime.handles - helpers;
+        }
+
+        var baseline = handlesWithoutContextHelper();
         final initialLabels = h.runtime.handleLabels.toSet();
         final subscriptions = h.runtime.activeSubscriptions;
         for (var i = 0; i < 30; i++) {
@@ -327,10 +397,10 @@ void main() {
             print(
               'First custom toolbar helpers: ${h.runtime.handleLabels.toSet().difference(initialLabels)}',
             );
-            baseline = h.runtime.handles;
+            baseline = handlesWithoutContextHelper();
           }
           expect(
-            h.runtime.handles,
+            handlesWithoutContextHelper(),
             lessThanOrEqualTo(baseline),
             reason: 'Replacement ${i + 1}: ${h.runtime.handleLabels}',
           );
@@ -350,7 +420,7 @@ void main() {
         expect(h.errors, isEmpty);
         // ignore: avoid_print
         print(
-          'Interface replacements: 30 round trips; $baseline handle baseline, $subscriptions subscriptions; zero at close.',
+          'Interface replacements: 30 round trips; $baseline handles excluding the Context helper, $subscriptions subscriptions; zero at close.',
         );
       } finally {
         await h.finish(t);
@@ -578,9 +648,7 @@ void main() {
       try {
         await t.pumpWidget(h.app('callback-fixture'));
         await t.pumpAndSettle();
-        final saved =
-            (InterfaceBuilder.last as FlaxWidgetHost).configuration
-                as ExtentTile;
+        final saved = InterfaceBuilder.last as ExtentTile;
         InterfaceBuilder.last = null;
         await flaxTestUnmount(t);
         await t.pumpAndSettle();
@@ -608,9 +676,7 @@ void main() {
         await t.pumpAndSettle();
         h.execute('widgetCallbacks.mode.value="callback"');
         await t.pumpAndSettle();
-        final saved =
-            (InterfaceBuilder.last as FlaxWidgetHost).configuration
-                as CallbackTile;
+        final saved = InterfaceBuilder.last as CallbackTile;
         await t.tap(find.text('Callback tile'));
         expect(h.number('widgetCallbacks.taps'), 2);
         InterfaceBuilder.last = null;

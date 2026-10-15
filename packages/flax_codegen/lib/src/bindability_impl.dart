@@ -209,6 +209,18 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     return FlaxCodegenProposedBinding(name: name, id: id, skips: skips);
   }
 
+  FlaxCodegenClassSelection providerSelection(
+    FlaxCodegenClassSelection selection,
+  ) {
+    // Compare normalized views without changing an independent fallback selection.
+    if (selection.kind == 'widgetInterface' &&
+        element.typeParameters.isNotEmpty &&
+        parser._adaptations[id] == 'object') {
+      return parser._effectiveSelection(element, selection);
+    }
+    return selection;
+  }
+
   if (!ignoreProvider && parser._dependencyOwners[id] != null) {
     final owner = parser._dependencyOwners[id]!;
     final available = _selectionFromModel(
@@ -222,7 +234,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
           _providerSurfaceSkips(
             typeName: name,
             provider: owner.jsPackage,
-            requested: requested,
+            requested: providerSelection(requested),
             available: available,
           ),
         );
@@ -249,7 +261,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
         _providerSurfaceSkips(
           typeName: name,
           provider: owner.jsPackage,
-          requested: requested.selection!,
+          requested: providerSelection(requested.selection!),
           available: available,
         ).isEmpty) {
       return FlaxCodegenProposedBinding(
@@ -285,7 +297,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
           : _providerSurfaceSkips(
               typeName: name,
               provider: owner.jsPackage,
-              requested: requested.selection!,
+              requested: providerSelection(requested.selection!),
               available: FlaxCodegenClassSelection(
                 const {},
                 kind: element is EnumElement ? 'enum' : null,

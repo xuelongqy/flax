@@ -159,6 +159,10 @@ void main() {
           .where((label) => label == '__flaxBindings.tryComponentStateId')
           .length;
       expect(componentStateHelpers, 1);
+      final bindingReadHelpers = runtime.handleLabels
+          .where((label) => label == '__flaxBindings.readBindingSnapshot')
+          .length;
+      expect(bindingReadHelpers, 1);
       final moduleHandles = runtime.handleLabels
           .where((label) => label == 'modules/registry.js')
           .length;
@@ -175,6 +179,7 @@ void main() {
         handles -
             baseHandles -
             componentStateHelpers -
+            bindingReadHelpers -
             moduleHandles -
             callbackMemoHelpers,
         lessThanOrEqualTo(32),

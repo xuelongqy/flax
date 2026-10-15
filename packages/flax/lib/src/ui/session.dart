@@ -977,23 +977,12 @@ class _Session {
       }
       final sources = _inBindingContext(
         definition.id,
-        () => _arguments(
-          value,
-          parameters,
-          allowBindings: !definition.fixedArguments,
-        ),
+        () => _arguments(value, parameters, allowBindings: true),
       );
       final node = FlaxNode._(this, definition, ctor, sources);
       try {
         final host = definition.createHost(node);
 
-        if (definition.fixedArguments) {
-          // A native constructor may store an input even if it then throws.
-          for (final source in sources.values) {
-            source.initial.escapeCallbacks();
-            escapeWidget(source.initial.data, source.type);
-          }
-        }
         // Validate constructor invariants before accepting the structural snapshot.
         final validated = host.buildNative(
           sources.map((name, source) => MapEntry(name, source.initial.data)),
@@ -1008,11 +997,8 @@ class _Session {
           return _Value(validated, [node]);
         }
         checkWidgetType(host, type);
-        if (definition.fixedArguments ||
-            (parameters.every(
-                  (parameter) => !parameter.type.containsCallback,
-                ) &&
-                sources.values.every((source) => source.binding == null))) {
+        if (parameters.every((parameter) => !parameter.type.containsCallback) &&
+            sources.values.every((source) => source.binding == null)) {
           node._validatedWidget = validated;
         }
         return _Value(host, [node]);
@@ -1105,7 +1091,7 @@ class _Session {
               if (reader is! FlaxJsFunction) {
                 throw ArgumentError('Invalid binding reader');
               }
-              final result = reader.call(const []);
+              final result = helper('readBindingSnapshot').call([reader]);
               try {
                 return decode(result, parameter.type, callbackScope: scope);
               } finally {

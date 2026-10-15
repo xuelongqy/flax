@@ -11,27 +11,19 @@ class FlaxNode extends _Resource {
   Key? get key => _sources['key']?.initial.data as Key?;
   @override
   void close() {
-    // Flutter may still read oldWidget's interface configuration after the bridge
-    // lease ends, even when that Widget was never mounted. Only its native value
-    // follows Dart references; escaped callbacks and children retain their own
-    // cleanup until collected or the session closes.
-    if (!definition.fixedArguments) _validatedWidget = null;
+    _validatedWidget = null;
     for (final source in _sources.values) {
       source.release();
     }
   }
 }
 
-/// Each generated Widget type subclasses this host, preserving Flutter's type/key
+/// Reactive Widget descriptions subclass this host, preserving Flutter's type/key
 /// matching while sharing the state, scheduling, and reference implementation.
 abstract class FlaxWidgetHost extends StatefulWidget {
   FlaxWidgetHost(this.node) : super(key: node.key);
   final FlaxNode node;
 
-  /// Fixed native configuration, available before Flutter reads interface getters.
-  Widget get configuration =>
-      node._validatedWidget ??
-      (throw StateError('Widget configuration has not been accepted'));
   Widget buildNative(Map<String, Object?> values);
   @override
   State<FlaxWidgetHost> createState() => _NodeState();
@@ -94,11 +86,7 @@ class _MountedProperty {
         remaining.removeAt(index);
       }
     }
-    // Fixed native configurations use the same typed closures during validation,
-    // mounting and later Dart reuse. They need no per-mount callback copies.
-    if (owner.widget.node.definition.fixedArguments ||
-        next.data == null ||
-        !source.type.containsCallback) {
+    if (next.data == null || !source.type.containsCallback) {
       return next;
     }
     if (source.type.kind != 'callback') return _prepareNestedCallbacks(next);

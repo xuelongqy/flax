@@ -10,7 +10,6 @@ import 'package:flutter/widgets.dart' as api1;
 import 'dart:core' as api2;
 
 import 'package:flutter/services.dart' as api3;
-import 'package:material_ui/material_ui.dart' as _flaxNative8;
 import 'package:flax_material_ui/src/material_page_route.dart'
     as adapterMaterialPage;
 
@@ -177,7 +176,6 @@ const materialBindings = FlaxBindingModule(
       },
       _MaterialHost.new,
       matches: _isMaterial,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -365,7 +363,6 @@ const materialBindings = FlaxBindingModule(
       },
       _InkWellHost.new,
       matches: _isInkWell,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -448,7 +445,6 @@ const materialBindings = FlaxBindingModule(
       },
       _LinearProgressIndicatorHost.new,
       matches: _isLinearProgressIndicator,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -518,7 +514,6 @@ const materialBindings = FlaxBindingModule(
       },
       _AlertDialogHost.new,
       matches: _isAlertDialog,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -625,7 +620,6 @@ const materialBindings = FlaxBindingModule(
       },
       _MaterialAppHost.new,
       matches: _isMaterialApp,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -732,7 +726,6 @@ const materialBindings = FlaxBindingModule(
       },
       _ScaffoldHost.new,
       matches: _isScaffold,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -782,7 +775,6 @@ const materialBindings = FlaxBindingModule(
       },
       _RefreshIndicatorHost.new,
       matches: _isRefreshIndicator,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxObjectBinding(
@@ -2198,9 +2190,11 @@ const materialBindings = FlaxBindingModule(
       matches: _isVisualDensity,
       methods: const {},
     ),
-    FlaxWidgetBinding(
+    FlaxObjectBinding(
       "flax.material/material#type:AppBar",
-      {
+      [],
+      {},
+      constructors: {
         "": [
           FlaxParameter(
             "key",
@@ -2324,10 +2318,17 @@ const materialBindings = FlaxBindingModule(
           ),
         ],
       },
-      _AppBarHost.new,
+      setters: [],
+      create: _createAppBar,
       matches: _isAppBar,
-      fixedArguments: true,
-      methods: {},
+      supertypes: [
+        "flax.core/components#type:StatefulWidget",
+        "package:flutter/src/widgets/framework.dart::Widget",
+        "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree",
+        "dart:core::Object",
+        "package:flutter/src/foundation/diagnostics.dart::Diagnosticable",
+        "flax.core/flutter#type:PreferredSizeWidget",
+      ],
     ),
     FlaxWidgetBinding(
       "flax.material/material#type:Theme",
@@ -2362,7 +2363,6 @@ const materialBindings = FlaxBindingModule(
       },
       _ThemeHost.new,
       matches: _isTheme,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxObjectBinding(
@@ -3380,7 +3380,6 @@ const materialBindings = FlaxBindingModule(
       },
       _TextFieldHost.new,
       matches: _isTextField,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxRouteBinding(
@@ -3605,7 +3604,6 @@ const materialBindings = FlaxBindingModule(
       },
       _TextButtonHost.new,
       matches: _isTextButton,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -3663,7 +3661,6 @@ const materialBindings = FlaxBindingModule(
       },
       _ElevatedButtonHost.new,
       matches: _isElevatedButton,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -3721,7 +3718,6 @@ const materialBindings = FlaxBindingModule(
       },
       _OutlinedButtonHost.new,
       matches: _isOutlinedButton,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -3828,7 +3824,6 @@ const materialBindings = FlaxBindingModule(
       },
       _FilledButtonHost.new,
       matches: _isFilledButton,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -4393,7 +4388,6 @@ const materialBindings = FlaxBindingModule(
       },
       _IconButtonHost.new,
       matches: _isIconButton,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -4784,7 +4778,6 @@ const materialBindings = FlaxBindingModule(
       },
       _FloatingActionButtonHost.new,
       matches: _isFloatingActionButton,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -4867,7 +4860,6 @@ const materialBindings = FlaxBindingModule(
       },
       _DrawerHost.new,
       matches: _isDrawer,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -4939,7 +4931,6 @@ const materialBindings = FlaxBindingModule(
       },
       _DividerHost.new,
       matches: _isDivider,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -5011,7 +5002,6 @@ const materialBindings = FlaxBindingModule(
       },
       _VerticalDividerHost.new,
       matches: _isVerticalDivider,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -5287,7 +5277,6 @@ const materialBindings = FlaxBindingModule(
       },
       _CardHost.new,
       matches: _isCard,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -5500,7 +5489,6 @@ const materialBindings = FlaxBindingModule(
       },
       _ListTileHost.new,
       matches: _isListTile,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -5754,7 +5742,6 @@ const materialBindings = FlaxBindingModule(
       },
       _CheckboxHost.new,
       matches: _isCheckbox,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -5870,7 +5857,6 @@ const materialBindings = FlaxBindingModule(
       },
       _SwitchHost.new,
       matches: _isSwitch,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -5935,7 +5921,6 @@ const materialBindings = FlaxBindingModule(
       },
       _CircularProgressIndicatorHost.new,
       matches: _isCircularProgressIndicator,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -5992,7 +5977,6 @@ const materialBindings = FlaxBindingModule(
       },
       _NavigationDestinationHost.new,
       matches: _isNavigationDestination,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -6130,7 +6114,6 @@ const materialBindings = FlaxBindingModule(
       },
       _NavigationBarHost.new,
       matches: _isNavigationBar,
-      fixedArguments: false,
       methods: {},
     ),
   ],
@@ -6826,17 +6809,6 @@ Object _createVisualDensity(String ctor, Map<String, Object?> values) {
 }
 
 bool _isAppBar(Object value) => value is api.AppBar;
-
-class _AppBarHost extends FlaxWidgetHost implements api1.PreferredSizeWidget {
-  _AppBarHost(super.node);
-  @override
-  _flaxNative8.Size get preferredSize =>
-      (configuration as _flaxNative8.PreferredSizeWidget).preferredSize;
-  @override
-  api1.Widget buildNative(Map<String, Object?> values) =>
-      _createAppBar(node.ctor, values);
-}
-
 api1.Widget _createAppBar(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":

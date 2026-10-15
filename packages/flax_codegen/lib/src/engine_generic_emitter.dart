@@ -576,20 +576,8 @@ extension _EngineGenericEmission on FlaxCodegenBindingEmitter {
         'default: throw ArgumentError("Unknown Widget constructor"); } }',
       );
     }
-    out.writeln(
-      'class _${type.name}Host$generics extends FlaxWidgetHost${type.widgetInterfaces.isEmpty ? '' : ' implements ${type.widgetInterfaces.map(_dartType).join(', ')}'} {',
-    );
+    out.writeln('class _${type.name}Host$generics extends FlaxWidgetHost {');
     out.writeln('_${type.name}Host(super.node);');
-    for (final member in type.widgetMembers) {
-      var code = member.source;
-      for (final (i, parameter) in source.typeParameters.indexed) {
-        code = code.replaceAll(
-          RegExp('\\b${RegExp.escape(parameter.name)}\\b'),
-          type.typeArguments[i],
-        );
-      }
-      out.writeln(code);
-    }
     out.writeln(
       '@override ${_dartName('Widget')} buildNative(Map<String, Object?> values) => ${source.typeParameters.isEmpty ? '_create${type.name}' : '$helper$args'}(node.ctor, values); }',
     );
@@ -716,9 +704,9 @@ extension _EngineGenericEmission on FlaxCodegenBindingEmitter {
       'stream' =>
         'FlaxStreamTypeBinding(id, $getters, $methods, constructors: ${_constructors(type)}, create: _create${type.name}, matches: _is${type.name}, view: types.ref<${_dartName(type.name)}$args>())',
       'widgetInterface' => 'FlaxWidgetInterfaceBinding(id, _is${type.name})',
-      'widget' when type.proxy == null && _hasWidgetObjectView(type) => object,
+      'widget' when _nativeWidgetFactory(type) => object,
       'widget' =>
-        'FlaxWidgetBinding(id, ${_constructors(type)}, _${type.name}Host$args.new, matches: _is${type.name}, fixedArguments: ${type.widgetInterfaces.isNotEmpty}${_hasWidgetObjectView(type) ? ', objectView: $object' : ''})',
+        'FlaxWidgetBinding(id, ${_constructors(type)}, _${type.name}Host$args.new, matches: _is${type.name}${_hasWidgetObjectView(type) ? ', objectView: $object' : ''})',
       'route' =>
         'FlaxRouteBinding(id, ${_constructors(type)}, _create${type.name}, ${jsonEncode(type.supertypes)})',
       'page' =>

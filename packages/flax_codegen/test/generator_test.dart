@@ -463,9 +463,9 @@ copyData(token);
       );
       final emitter = FlaxCodegenBindingEmitter([module]);
       final dart = emitter.dart(module);
-      expect(dart, contains('implements api.LabelledContract'));
-      expect(dart, contains('LabelledContract).extent'));
-      expect(dart, contains('fixedArguments: true'));
+      expect(dart, isNot(contains('implements api.LabelledContract')));
+      expect(dart, isNot(contains('configuration as api.')));
+      expect(dart, contains('FlaxObjectBinding('));
       await compileFixture(
         root,
         emitter,

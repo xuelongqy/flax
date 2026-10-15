@@ -17,7 +17,6 @@ import 'package:flax/bindings.dart' as api5;
 import 'package:flax/dart_ui.dart' as api6;
 import 'package:flutter/scheduler.dart' as api7;
 import 'package:flutter/foundation.dart' as api8;
-import 'package:flutter/widgets.dart' as _flaxNative8;
 
 // ignore: unused_element
 const _flaxOmitted = Object();
@@ -566,7 +565,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _SpacerHost.new,
       matches: _isSpacer,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxStreamTypeBinding(
@@ -6572,7 +6570,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _StreamBuilderHost<Object?>.new,
       matches: _isStreamBuilder,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxObjectBinding(
@@ -6871,7 +6868,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _ValueListenableBuilderHost<Object?>.new,
       matches: _isValueListenableBuilder,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -6941,7 +6937,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _ListenableBuilderHost.new,
       matches: _isListenableBuilder,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxObjectBinding(
@@ -7206,9 +7201,11 @@ const flutterBindings = FlaxBindingModule(
       "flax.core/flutter#type:PreferredSizeWidget",
       _isPreferredSizeWidget,
     ),
-    FlaxWidgetBinding(
+    FlaxObjectBinding(
       "flax.core/flutter#type:PreferredSize",
-      {
+      [],
+      {},
+      constructors: {
         "": [
           FlaxParameter(
             "key",
@@ -7237,10 +7234,17 @@ const flutterBindings = FlaxBindingModule(
           ),
         ],
       },
-      _PreferredSizeHost.new,
+      setters: [],
+      create: _createPreferredSize,
       matches: _isPreferredSize,
-      fixedArguments: true,
-      methods: {},
+      supertypes: [
+        "package:flutter/src/widgets/framework.dart::StatelessWidget",
+        "package:flutter/src/widgets/framework.dart::Widget",
+        "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree",
+        "dart:core::Object",
+        "package:flutter/src/foundation/diagnostics.dart::Diagnosticable",
+        "flax.core/flutter#type:PreferredSizeWidget",
+      ],
     ),
     FlaxWidgetBinding(
       "flax.core/flutter#type:Container",
@@ -7373,7 +7377,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _ContainerHost.new,
       matches: _isContainer,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -7419,7 +7422,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _DecoratedBoxHost.new,
       matches: _isDecoratedBox,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxObjectBinding(
@@ -8643,7 +8645,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _ExpandedHost.new,
       matches: _isExpanded,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -8686,7 +8687,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _FlexibleHost.new,
       matches: _isFlexible,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -8769,7 +8769,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _StackHost.new,
       matches: _isStack,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -8840,7 +8839,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _PositionedHost.new,
       matches: _isPositioned,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -8893,7 +8891,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _AlignHost.new,
       matches: _isAlign,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxObjectBinding(
@@ -9923,7 +9920,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _NavigatorHost.new,
       matches: _isNavigator,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxStateBinding(
@@ -10156,7 +10152,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _NavigatorPopHandlerHost<Object?>.new,
       matches: _isNavigatorPopHandler,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -10223,7 +10218,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _PopScopeHost<Object?>.new,
       matches: _isPopScope,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -10273,7 +10267,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _BuilderHost.new,
       matches: _isBuilder,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -10332,7 +10325,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _LayoutBuilderHost.new,
       matches: _isLayoutBuilder,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxContextBinding("flax.core/flutter#type:BuildContext", [
@@ -10595,7 +10587,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _TextHost.new,
       matches: _isText,
-      fixedArguments: false,
       methods: {},
       objectView: FlaxObjectBinding(
         "flax.core/flutter#type:Text",
@@ -10990,7 +10981,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _RowHost.new,
       matches: _isRow,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -11098,7 +11088,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _ColumnHost.new,
       matches: _isColumn,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -11141,7 +11130,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _CenterHost.new,
       matches: _isCenter,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -11180,7 +11168,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _PaddingHost.new,
       matches: _isPadding,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -11223,7 +11210,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _SizedBoxHost.new,
       matches: _isSizedBox,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxObjectBinding(
@@ -11874,7 +11860,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _ListViewHost.new,
       matches: _isListView,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -11957,7 +11942,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _SingleChildScrollViewHost.new,
       matches: _isSingleChildScrollView,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxObjectBinding(
@@ -12946,7 +12930,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _ListenerHost.new,
       matches: _isListener,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -13080,7 +13063,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _MouseRegionHost.new,
       matches: _isMouseRegion,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -13159,7 +13141,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _KeyboardListenerHost.new,
       matches: _isKeyboardListener,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -13230,7 +13211,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _SafeAreaHost.new,
       matches: _isSafeArea,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -13348,7 +13328,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _WrapHost.new,
       matches: _isWrap,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -13401,7 +13380,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _FittedBoxHost.new,
       matches: _isFittedBox,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -13437,7 +13415,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _AspectRatioHost.new,
       matches: _isAspectRatio,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -13473,7 +13450,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _ConstrainedBoxHost.new,
       matches: _isConstrainedBox,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -13516,7 +13492,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _OpacityHost.new,
       matches: _isOpacity,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -13621,7 +13596,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _VisibilityHost.new,
       matches: _isVisibility,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -13664,7 +13638,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _ColoredBoxHost.new,
       matches: _isColoredBox,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -13710,7 +13683,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _ClipRRectHost.new,
       matches: _isClipRRect,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -13746,7 +13718,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _IgnorePointerHost.new,
       matches: _isIgnorePointer,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -13836,7 +13807,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _IndexedStackHost.new,
       matches: _isIndexedStack,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -14034,7 +14004,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _GestureDetectorHost.new,
       matches: _isGestureDetector,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -14148,7 +14117,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _FocusHost.new,
       matches: _isFocus,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -14244,7 +14212,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _FormHost.new,
       matches: _isForm,
-      fixedArguments: false,
       methods: {},
     ),
     FlaxWidgetBinding(
@@ -14327,7 +14294,6 @@ const flutterBindings = FlaxBindingModule(
       },
       _StatefulBuilderHost.new,
       matches: _isStatefulBuilder,
-      fixedArguments: false,
       methods: {},
     ),
   ],
@@ -17718,18 +17684,6 @@ Object _createFlaxNavigatorObserver(String ctor, Map<String, Object?> values) {
 
 bool _isPreferredSizeWidget(Object value) => value is api.PreferredSizeWidget;
 bool _isPreferredSize(Object value) => value is api.PreferredSize;
-
-class _PreferredSizeHost extends FlaxWidgetHost
-    implements api.PreferredSizeWidget {
-  _PreferredSizeHost(super.node);
-  @override
-  _flaxNative8.Size get preferredSize =>
-      (configuration as _flaxNative8.PreferredSizeWidget).preferredSize;
-  @override
-  api.Widget buildNative(Map<String, Object?> values) =>
-      _createPreferredSize(node.ctor, values);
-}
-
 api.Widget _createPreferredSize(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
@@ -30643,7 +30597,6 @@ Function _flaxClass_StreamBuilder<_Owner0 extends Object?>() =>
           },
           _StreamBuilderHost<_Owner0>.new,
           matches: _isStreamBuilder,
-          fixedArguments: false,
         ),
       );
     };
@@ -30983,7 +30936,6 @@ Function _flaxClass_ValueListenableBuilder<_Owner0 extends Object?>() =>
           },
           _ValueListenableBuilderHost<_Owner0>.new,
           matches: _isValueListenableBuilder,
-          fixedArguments: false,
         ),
       );
     };
@@ -31585,7 +31537,6 @@ Function _flaxClass_NavigatorPopHandler<_Owner0 extends Object?>() =>
           },
           _NavigatorPopHandlerHost<_Owner0>.new,
           matches: _isNavigatorPopHandler,
-          fixedArguments: false,
         ),
       );
     };
@@ -31701,7 +31652,6 @@ Function _flaxClass_PopScope<
       },
       _PopScopeHost<_Owner0>.new,
       matches: _isPopScope,
-      fixedArguments: false,
     ),
   );
 };

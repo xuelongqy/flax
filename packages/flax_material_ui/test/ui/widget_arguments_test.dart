@@ -291,13 +291,11 @@ void main() {
         try {
           await t.pumpWidget(h.app('widget-arguments'));
           await t.pumpAndSettle();
-          // Warm up the cached component helper before measuring reclaimed handles.
-          if (component) {
-            h.execute('saveComponent()');
-            cache.clear();
-            await t.runAsync(flaxTestCollectDartGarbage);
-            await t.pump();
-          }
+          // Warm shared conversion helpers before measuring reclaimed handles.
+          h.execute(component ? 'saveComponent()' : 'saveWidget()');
+          cache.clear();
+          await t.runAsync(flaxTestCollectDartGarbage);
+          await t.pump();
           final before = h.runtime.handles;
           h.execute(component ? 'saveComponent()' : 'saveWidget()');
           final weak = WeakReference((cache.child! as Padding).child!);

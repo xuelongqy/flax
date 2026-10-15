@@ -6,7 +6,7 @@ be supported by the generator while a particular SDK library still needs its own
 selection and runtime verification.
 
 The current version domains are binding selection format **2**, package metadata format
-**2**, Manifest **20**, UI protocol **24**, native ABI **2**, and internal engine
+**2**, Manifest **21**, UI protocol **24**, native ABI **2**, and internal engine
 binding extension **8**. Only the current formats are read and written.
 
 ## Engine-backed audit and consolidated backlog
@@ -53,7 +53,7 @@ Verification for this completion is recorded in
 | A1/A12      | Automatic and explicit conversion/name selection parity from the preceding batch.                                                                                        | Dart visibility and genuine exported-name conflicts still apply.                                                        |
 | A2          | Public BigInt/void/Never/Null and Future/FutureOr/Stream tokens reuse actual engine Types.                                                                               | No arbitrary structural Record/function token composition. Use an authentic native value's type.                        |
 | A3/A5       | Native Function layouts use shared invocation metadata; all Records use plain field objects and shared native construction. Callback Map keys use weak closure identity. | JS closure creation requires a compiled typed signature. Raw unbound generic Function layouts fail explicitly.          |
-| A4          | Generic Widget interface selections use ordinary real-object conversion with actual type arguments.                                                                      | This is a native view, not a generic structural Widget host or runtime class synthesis.                                 |
+| A4          | Generic Widget interfaces and their implementing factories use real native Widgets and checked type arguments. JS overrides use the existing native subclass proxy.      | No forwarding host or copied defaults. Raw JS objects cannot implement a Dart interface without a compiled class.       |
 | A6          | Nine additional Core classes and EnumName/EnumByName views are provided by the default Core package.                                                                     | A provider selection is not automatic exposure of every Dart library.                                                   |
 | A7          | Extension types expose selected members through `Type.view(representation)` using named-extension conversion.                                                            | Runtime representation erasure prevents independent nominal identity; extract the representation for Dart input.        |
 | A8          | Several selected generative super constructors share `dartSuper`; mixed abstract/concrete accessor halves use the shared proxy installer.                                | Bind an actual Dart mixin-composed class. General runtime mixin composition is not generated.                           |
@@ -64,8 +64,8 @@ Verification for this completion is recorded in
 
 The additive `native-functions`, `callback-map-keys`, `lazy-js-iterables` and
 `proxy-super-constructors` capability requirements reject hosts missing these shared
-paths. Record value conversion additionally requires engine binding extension 8.
-Manifest 20, UI protocol 24 and native ABI 2 remain unchanged.
+paths. Record value conversion additionally requires engine binding extension 8. Current
+manifests use format 21; UI protocol 24 and native ABI 2 remain unchanged.
 
 ### Remaining mechanism gaps
 
@@ -75,7 +75,6 @@ patches. The supported behavior and the missing part must be distinguished:
 | Area                                   | Supported now                                                                                                                              | Still limited                                                                                                                                                                                          |
 | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Structural type tokens and JS closures | Plain Record fields from real Type metadata, shared Record construction in JIT/AOT, authentic native Function invocation and type handles. | No public arbitrary function/Record type-token builders. Creating a new typed JS closure layout needs a compiled Dart adapter; unbound generic raw Function layouts are rejected.                      |
-| Generic Widget interface hosts         | Existing generic Dart Widgets use ordinary native views, checked arguments and callbacks.                                                  | A generic interface cannot yet synthesize a structural Widget host from a JS configuration. Nongeneric selected host adapters remain available.                                                        |
 | Mixin composition                      | Bind actual Dart classes that already compose mixins; their JS overrides and super calls use the shared proxy path.                        | No general selection-time mixin-combination generator or runtime Dart class synthesis.                                                                                                                 |
 | Automatic generic inference            | Real checked type handles, legal defaults, supported deferred factories and explicit `Class.$type` / `dartType` selection.                 | No whole-graph or generalized deferred-factory inference. TypeScript generic syntax is erased; a build transform that supplies runtime types has not been implemented.                                 |
 | Library coverage                       | Selected compatible APIs reuse the same mechanisms, default Core provider, public carriers and direct dependencies.                        | Dart/Flutter libraries are not all selected automatically. Whole-graph selection/publication is not provided. Additional APIs need selection and verification, rather than a new conversion mechanism. |
@@ -121,12 +120,14 @@ only for a concrete API requiring JS to compose a type without a declaration or 
 | Whole-graph and generalized deferred-factory inference | Explicit `Bag.$type(dartTypes.string)` or method `dartType` selects real checked types without guessing from empty or ambiguous inputs.                                        | The current capability meets application needs. Investigate a TS build transform later for friendlier syntax; do not expand whole-graph inference solely to shorten calls. The transform is not implemented.                              |
 | Implicit extension resolution across libraries         | `StringX('a').repeat(3)` names the extension and avoids conflicts with another extension on String.                                                                            | Keep the existing [explicit extension contract](../decisions/0030-extension-binding-adapters.md); it meets current needs. No implicit extension selection or prototype mutation is planned.                                               |
 
-Generic structural Widget hosts and wider SDK selection are not classified as low-value
-syntax coverage: their priority depends on an actual Widget contract or application API.
-Existing generic Dart Widgets already have native object bindings. Likewise, a TS build
-transform could improve generic call syntax; it is a separate convenience project, not a
-prerequisite for correct Dart generics. Do not treat either as completed or permanently
-excluded on the basis of this prioritization.
+Widget interface generation now uses the shared native-value/proxy path, including
+generic contracts, private native defaults and names formerly reserved by the forwarding
+host. Native-only member metadata contains no copied source or imports. A new runtime
+Dart class is not synthesized from an arbitrary JS object. See
+[native Widget interfaces](widget-interfaces.md#generation-and-ownership).
+
+Wider SDK selection still depends on actual application APIs. A future TS build
+transform is separate convenience work, not a prerequisite for correct Dart generics.
 
 ### Original audit observations, grouped by shared cause
 
@@ -236,11 +237,13 @@ audit probes originally identified A1/A4/A5/A6/A12 separately. A1/A6/A12 now hav
 and [real UI regressions](../../packages/flax/test/ui/binding_parity_test.dart). The
 reused Widgets inventory is historical and is not a fresh SDK census.
 
-The latest reviewed implementation has macOS arm64 V8 debug/release-AOT evidence.
-Earlier Android/iOS acceptance is not evidence for all extension-7 generic paths.
-Profile, Android and iOS/Hermes need matching rebuilt artifacts and focused revalidation
-before making those claims. The feasibility audit above used existing engine binaries
-and targeted macOS UI scenarios; it did not rebuild an engine or run a whole platform
+The preceding binding completion has macOS arm64 V8 debug/release-AOT evidence. The
+native Widget-interface update in ADR 0044 is separately validated with macOS arm64 V8
+debug tests; those earlier AOT and device results do not certify this update. Earlier
+Android/iOS acceptance is not evidence for all extension-7 generic paths. Profile,
+Android and iOS/Hermes need matching rebuilt artifacts and focused revalidation before
+making those claims. The feasibility audit above used existing engine binaries and
+targeted macOS UI scenarios; it did not rebuild an engine or run a whole platform
 matrix. Joint-GC tail latency and general Future overhead remain separate performance
 work; functional binding support does not establish a frame-time guarantee.
 
@@ -276,7 +279,7 @@ Dart value permits them. See
 
 Class static reads and writes are independent capabilities on every supported class
 category. Reads use `Class.property`; writes use `Class.setProperty(value)`. They retain
-their own types and operation identities in Manifest 20. Static declarations are not
+their own types and operation identities in Manifest 21. Static declarations are not
 inherited; a read-only provider cannot supply a write. A generated setter name collision
 fails explicit selection or produces `static_setter_export_collision` in automatic
 selection. See [static property rules](bindings.md#class-static-properties) and the
@@ -284,7 +287,7 @@ selection. See [static property rules](bindings.md#class-static-properties) and 
 
 Ordinary static methods are also selected on Widgets and use the same function transport
 as static accessors. This includes static-only classes and Widget interface namespaces;
-native interface instance methods retain their separate Flutter forwarding contract.
+native interface instance requirements are implemented by the original Dart Widget.
 
 | Field        | Values                                                                                                                      | Meaning                                        |
 | ------------ | --------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |

@@ -139,6 +139,21 @@ abstract class HostCollision implements Widget {
   Widget get configuration;
 }
 
+class GenericTile<T> extends StatelessWidget
+    implements GenericContract<T>, HostCollision, PrivateDefaultContract {
+  const GenericTile(this.value, {this.child = const SizedBox(), super.key});
+  @override
+  final T value;
+  final Widget child;
+  @override
+  Widget get configuration => child;
+  @override
+  int read([int value = _default + 2]) => value;
+  String describe() => '$value:${read()}';
+  @override
+  Widget build(BuildContext context) => child;
+}
+
 class JsConsumer {
   static void invoke(BuildContext Function() callback) {}
 }

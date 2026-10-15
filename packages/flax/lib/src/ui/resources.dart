@@ -640,7 +640,7 @@ class _Source extends _Resource {
       if (read is! FlaxJsFunction) {
         throw ArgumentError('Invalid binding reader');
       }
-      final value = read.call(const []);
+      final value = session.helper('readBindingSnapshot').call([read]);
       try {
         return session.decode(value, type);
       } finally {

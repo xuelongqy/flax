@@ -257,22 +257,6 @@ void main() {
               ? 'package:example/statics.dart'
               : module.typeLibraries[key],
       };
-    for (final type in encoded['classes'] as List) {
-      for (final member in type['widgetMembers'] as List? ?? const []) {
-        final imports = member['imports'] as Map<String, dynamic>;
-        final publicImports = {
-          for (final entry in imports.entries)
-            entry.key.startsWith('file:')
-                    ? 'package:example/statics.dart'
-                    : entry.key:
-                entry.value,
-        };
-        member['imports'] = {
-          for (final key in publicImports.keys.toList()..sort())
-            key: publicImports[key],
-        };
-      }
-    }
     final diagnostics = FlaxCodegenManifestDiagnostics('static-methods');
     final restored = FlaxCodegenManifestCodec.decodeModule(
       encoded,

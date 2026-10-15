@@ -3,9 +3,7 @@ import 'dart:io';
 
 import 'package:analyzer/dart/analysis/analysis_context_collection.dart';
 import 'package:analyzer/dart/analysis/results.dart';
-import 'package:analyzer/dart/analysis/session.dart';
 import 'package:analyzer/dart/analysis/utilities.dart' show parseString;
-import 'package:analyzer/dart/ast/visitor.dart';
 import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/constant/value.dart';
 import 'package:analyzer/dart/element/element.dart';
@@ -1068,12 +1066,22 @@ class FlaxCodegenBindingParser {
     if (realWidgetInterface && !_isFlutterWidget(element)) {
       throw StateError('Expected a generic Widget interface: ${element.name}');
     }
-    if (kind != 'object' && kind != 'stream') return own;
+    final widgetContracts = own.widgetInterfaces.toSet();
+    final widgetObjectView =
+        own.kind == null &&
+        widgetContracts.isNotEmpty &&
+        _isFlutterWidget(element);
+    if (kind != 'object' && kind != 'stream' && !widgetObjectView) return own;
     final parents = [
       for (final parent in element.allSupertypes)
         if (_selections[identity(parent.element)] case final selected?
-            when _adaptations[identity(parent.element)] == kind)
-          selected,
+            when _adaptations[identity(parent.element)] ==
+                    (widgetObjectView ? 'object' : kind) &&
+                (!widgetObjectView ||
+                    widgetContracts.contains(parent.element.name)))
+          widgetObjectView
+              ? _effectiveSelection(parent.element, selected)
+              : selected,
     ];
     Map<String, List<String>> mergeParameters(
       Iterable<Map<String, List<String>>> maps,
@@ -1841,11 +1849,7 @@ class FlaxCodegenBindingParser {
       return result;
     }
 
-    final nativeWidgetMembers = _WidgetInterfaceParser(
-      session,
-      exports,
-      scope.publicLibraries,
-    );
+    final nativeWidgetMembers = _WidgetInterfaceParser();
     for (final entry in config.classes.entries) {
       final element = exports[entry.key];
       if (element is! InterfaceElement ||
@@ -1988,9 +1992,7 @@ class FlaxCodegenBindingParser {
       final widgetInterfaces = <FlaxCodegenTypeRef>[];
       final widgetMembers = <FlaxCodegenWidgetMember>[];
       if (selection.kind == 'widgetInterface') {
-        widgetMembers.addAll(
-          await nativeWidgetMembers.parse(actualType, selection),
-        );
+        widgetMembers.addAll(nativeWidgetMembers.parse(actualType, selection));
       }
       final contracts = <(InterfaceType, FlaxCodegenClassSelection)>[];
       for (final name in selection.widgetInterfaces) {
@@ -1998,22 +2000,32 @@ class FlaxCodegenBindingParser {
         if (!isWidget ||
             selection.kind != null ||
             contract is! ClassElement ||
-            _adaptations[identity(contract)] != 'widgetInterface' ||
-            !element.library.typeSystem.isSubtypeOf(
-              actualType,
-              contract.thisType,
-            )) {
+            !(_selections[identity(contract)]?.kind == 'widgetInterface' ||
+                contract.typeParameters.isNotEmpty &&
+                    _selections[identity(contract)]?.kind == 'object' &&
+                    _isFlutterWidget(contract))) {
           throw StateError(
             'Incompatible selected Widget interface: ${entry.key}.$name',
           );
         }
-        widgetInterfaces.add(typeRef(contract.thisType));
-        contracts.add((contract.thisType, _selections[identity(contract)]!));
+        final inherited = actualType.allSupertypes
+            .where((type) => identity(type.element) == identity(contract))
+            .firstOrNull;
+        if (inherited == null) {
+          throw StateError(
+            'Incompatible selected Widget interface: ${entry.key}.$name',
+          );
+        }
+        final declared = element.thisType.allSupertypes.firstWhere(
+          (type) => identity(type.element) == identity(contract),
+        );
+        widgetInterfaces.add(
+          typeRef(inherited).declaredAs(typeRef(declared, forTypescript: true)),
+        );
+        contracts.add((inherited, _selections[identity(contract)]!));
       }
       if (contracts.isNotEmpty) {
-        widgetMembers.addAll(
-          await nativeWidgetMembers.implement(actualType, contracts),
-        );
+        nativeWidgetMembers.validateImplementation(actualType, contracts);
       }
       final constructors = <FlaxCodegenConstructorModel>[];
       if (selection.kind != null &&
@@ -2573,8 +2585,10 @@ class FlaxCodegenBindingParser {
           selection.kind == 'object' ||
           selection.kind == null && !isWidget ||
           isWidget &&
-              (selection.proxy != null ||
+              (widgetInterfaces.isNotEmpty ||
+                  selection.proxy != null ||
                   getters.isNotEmpty ||
+                  setters.isNotEmpty ||
                   methods.any((m) => m.instance));
       for (final chosen in entry.value.constructors.entries) {
         final constructor = actualType.constructors

@@ -593,12 +593,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     List<FlaxCodegenNotice> notices,
   ) async {
     try {
-      final (exports, libraries) = await _resolutionExports(seed);
-      final native = _WidgetInterfaceParser(
-        _contexts.contexts.first.currentSession,
-        exports,
-        libraries,
-      );
+      final native = _WidgetInterfaceParser();
       final members = native._members(element.thisType);
       final getters = <String>[];
       final setters = <String>[];
@@ -644,7 +639,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
         methods: {...methods, ...?statics.selection?.methods},
       );
       if (element.typeParameters.isEmpty) {
-        await native.parse(element.thisType, selection);
+        native.parse(element.thisType, selection);
       }
       return selection;
     } on StateError catch (error) {
@@ -1285,8 +1280,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     final interfaces = <String, InterfaceElement>{
       for (final entry in classes.entries)
         if (entry.value.kind == 'widgetInterface' &&
-            exports[entry.key] is InterfaceElement &&
-            (exports[entry.key] as InterfaceElement).typeParameters.isEmpty)
+            exports[entry.key] is InterfaceElement)
           entry.key: exports[entry.key]! as InterfaceElement,
     };
     for (final entry in classes.entries.toList()) {
@@ -1297,15 +1291,17 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       if (element is! ClassElement || !_isFlutterWidget(element)) continue;
       final matches = <String>[];
       for (final contract in interfaces.entries) {
-        if (element.library.typeSystem.isSubtypeOf(
-          element.thisType,
-          contract.value.thisType,
+        if (element.allSupertypes.any(
+          (type) => identity(type.element) == identity(contract.value),
         )) {
           matches.add(contract.key);
         }
       }
       for (final parent in element.allSupertypes) {
-        if (_adaptations[identity(parent.element)] == 'widgetInterface') {
+        if (_selections[identity(parent.element)]?.kind == 'widgetInterface' ||
+            parent.element.typeParameters.isNotEmpty &&
+                _selections[identity(parent.element)]?.kind == 'object' &&
+                _isAutoWidgetInterface(parent.element)) {
           matches.add(parent.element.name!);
         }
       }

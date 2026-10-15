@@ -37,11 +37,85 @@ import {
   InterfacePage,
   openInterfacePanel,
   interfaceStream,
+  GenericTile,
+  GenericViewCalls,
 } from '../../../.dart_tool/flax/ui/widget_interfaces_bindings.js';
 import type { ExtentContract } from '../../../.dart_tool/flax/ui/widget_interfaces_bindings.js';
 import type { PreferredSizeWidget, Widget, Page } from '@flax/flutter/widgets';
 
 const StringKey = selectDartType(ValueKey, nativeTypes.string);
+
+const genericSuffix = signal('');
+const StringTile = GenericTile.$type(nativeTypes.string);
+class InterfaceTile extends StringTile {
+  #prefix = 'JS';
+  override read(value?: number): number {
+    return super.read(value) + 1;
+  }
+  override defaults(
+    value?: Parameters<InstanceType<typeof StringTile>['defaults']>[0],
+  ) {
+    return super.defaults(value);
+  }
+  override describe(): string {
+    return `${this.#prefix}:${super.describe()}${genericSuffix.value}`;
+  }
+  override build(context: import('@flax/flutter/widgets').BuildContext) {
+    return super.build(context);
+  }
+}
+class NestedInterfaceTile extends GenericTile.$type(
+  nativeTypes.list(nativeTypes.string),
+) {}
+let genericCurrent: InterfaceTile | undefined;
+let genericWeak: WeakRef<InterfaceTile> | undefined;
+let genericTaps = 0;
+registerPage('generic-interface', () => {
+  const tile = new InterfaceTile('value', {
+    child: Text('Generic child'),
+    onTap: () => genericTaps++,
+  });
+  genericCurrent = tile;
+  genericWeak = new WeakRef(tile);
+  const nested = new NestedInterfaceTile(['nested'], { child: Text('Nested child') });
+  if (tile.value !== 'value' || nested.value.get(0) !== 'nested')
+    throw new Error('Generic Widget contract members were not bound');
+  if (GenericViewCalls.nestedValue(nested).get(0) !== 'nested')
+    throw new Error('Nested Widget interface lost its type');
+  return Column({
+    children: [
+      tile,
+      nested,
+      Text(bind(() => `Observed ${GenericViewCalls.describe(tile)}`)),
+    ],
+  });
+});
+Object.assign(globalThis, {
+  genericWidgets: {
+    suffix: genericSuffix,
+    keep: () => GenericViewCalls.keep(genericCurrent!),
+    clear: () => GenericViewCalls.clear(),
+    drop: () => {
+      genericCurrent = undefined;
+    },
+    value: () => GenericViewCalls.stringValue(genericCurrent!),
+    defaultsStable: () => GenericViewCalls.defaultsStable(genericCurrent!),
+    taps: () => genericTaps,
+    alive: () => genericWeak?.deref() !== undefined,
+    rejectWrongType: () => {
+      try {
+        GenericViewCalls.stringValue(
+          new NestedInterfaceTile(['wrong'], {
+            child: Text('Wrong'),
+          }) as unknown as InterfaceTile,
+        );
+        return false;
+      } catch {
+        return true;
+      }
+    },
+  },
+});
 
 export const height = signal<number | null>(null);
 export const bottomHeight = signal<number | null>(null);
@@ -85,7 +159,7 @@ function appBar(): PreferredSizeWidget | null {
     // Bypass only the JS constructor to exercise Dart's acceptance boundary.
     return {
       kind: 'widget',
-      type: AppBar().type,
+      type: 'flax.material/material#type:AppBar',
       ctor: '',
       args: { toolbarHeight: height.bind },
     } as unknown as PreferredSizeWidget;
@@ -99,7 +173,10 @@ function appBar(): PreferredSizeWidget | null {
   return AppBar({
     key: widgetKey,
     toolbarHeight: height.value,
-    title: Text(title.bind, { key: StringKey('bar-title') }),
+    title: Text(
+      bind(() => title.bind.read()),
+      { key: StringKey('bar-title') },
+    ),
     bottom:
       bottomHeight.value === null
         ? null

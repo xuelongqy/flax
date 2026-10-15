@@ -14,6 +14,46 @@ final widgetInterfacesSelection = {
     kind: 'widgetInterface',
     getters: ['extent', 'label'],
   ),
+  'GenericView': FlaxCodegenClassSelection(
+    {},
+    kind: 'widgetInterface',
+    getters: ['value'],
+  ),
+  'ConfigurationContract': FlaxCodegenClassSelection(
+    {},
+    kind: 'widgetInterface',
+    getters: ['configuration'],
+    methods: {
+      'read': ['value'],
+      'defaults': ['value'],
+    },
+  ),
+  'GenericTile': FlaxCodegenClassSelection(
+    {
+      '': ['value', 'child', 'onTap', 'key'],
+    },
+    proxy: 'extends',
+    widgetInterfaces: ['GenericView', 'ConfigurationContract'],
+    getters: ['configuration'],
+    instanceMethods: {
+      'read': ['value'],
+      'defaults': ['value'],
+      'describe': [],
+      'build': ['context'],
+    },
+  ),
+  'GenericViewCalls': FlaxCodegenClassSelection(
+    {},
+    kind: 'object',
+    methods: {
+      'keep': ['value'],
+      'clear': [],
+      'stringValue': ['value'],
+      'describe': ['value'],
+      'nestedValue': ['value'],
+      'defaultsStable': ['value'],
+    },
+  ),
   'ExtentTile': FlaxCodegenClassSelection(
     {
       '': ['key', 'extent', 'label', 'child'],

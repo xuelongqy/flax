@@ -213,12 +213,6 @@ FlaxCodegenModuleModel _rewriteModuleIds(
   // emitter-only paths outside the manifest's public-library validation.
   final encoded = FlaxCodegenManifestCodec.encodeModule(module)
     ..['typeLibraries'] = <String, Object?>{};
-  // Native override imports have the same local-only file URI boundary.
-  for (final type in encoded['classes']! as List) {
-    for (final member in (type as Map)['widgetMembers'] as List? ?? const []) {
-      (member as Map)['imports'] = <String, Object?>{};
-    }
-  }
   final decoded = FlaxCodegenManifestCodec.decodeModule(
     walk(encoded),
     diagnostics,
@@ -227,12 +221,6 @@ FlaxCodegenModuleModel _rewriteModuleIds(
   );
   diagnostics.throwIfAny();
   final rewritten = decoded!;
-  for (var i = 0; i < rewritten.classes.length; i++) {
-    final members = rewritten.classes[i].widgetMembers;
-    for (var j = 0; j < members.length; j++) {
-      members[j].imports.addAll(module.classes[i].widgetMembers[j].imports);
-    }
-  }
   return FlaxCodegenModuleModel(
     name: rewritten.name,
     library: rewritten.library,

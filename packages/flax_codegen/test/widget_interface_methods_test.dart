@@ -47,13 +47,274 @@ void main() {
   FlaxCodegenBindingConfig config(
     Map<String, FlaxCodegenClassSelection> classes, {
     String name = 'plugin',
+    String? source,
   }) => FlaxCodegenBindingConfig(
     name,
-    library,
+    source ?? library,
     '@example/$name',
     'unused.dart',
     'unused.ts',
     classes,
+  );
+  test(
+    'generic Widget contracts reuse native objects and proxy members',
+    () async {
+      final automatic = FlaxCodegenBindingParser(root);
+      addTearDown(automatic.dispose);
+      final core = await automatic.parse(
+        FlaxCodegenBindingConfig.read(
+          '$root/packages/flax/bindings/config.yaml',
+        ),
+      );
+      automatic.prepareModules([core]);
+      final proposal = await automatic.proposeLibrary(
+        config(
+          {},
+          source: Uri.file(
+            p.join(
+              Directory.current.path,
+              'test/fixtures/plugin/widget_generic_interfaces.dart',
+            ),
+          ).toString(),
+        ),
+      );
+      expect(
+        proposal.config.classes['GenericContract']!.kind,
+        'widgetInterface',
+      );
+      expect(
+        proposal.config.classes.keys,
+        contains('GenericTile'),
+        reason: proposal.skips
+            .map((skip) => '${skip.target}: ${skip.reason}')
+            .join('\n'),
+      );
+      expect(
+        proposal.config.classes['GenericTile']!.widgetInterfaces,
+        containsAll([
+          'GenericContract',
+          'HostCollision',
+          'PrivateDefaultContract',
+        ]),
+      );
+      final inferred = await automatic.parse(proposal.config);
+      expect(
+        inferred.classes
+            .singleWhere((type) => type.name == 'GenericTile')
+            .widgetInterfaces,
+        hasLength(3),
+      );
+      await compileFixture(
+        root,
+        FlaxCodegenBindingEmitter([core, inferred]),
+        inferred,
+        consumerSource: '''
+import {dartTypes} from '@flax/core/bindings';
+import {GenericTile, type GenericContract, type HostCollision} from './plugin.js';
+const tile = GenericTile.\$type(dartTypes.string)('value');
+const contract: GenericContract<string> = tile;
+const host: HostCollision = tile;
+''',
+      );
+      final parser = FlaxCodegenBindingParser(root);
+      addTearDown(parser.dispose);
+      final module = await parser.parse(
+        config({
+          'Key': const FlaxCodegenClassSelection({}, kind: 'object'),
+          'BuildContext': const FlaxCodegenClassSelection({}, kind: 'context'),
+          'GenericContract': const FlaxCodegenClassSelection(
+            {},
+            kind: 'widgetInterface',
+            getters: ['value'],
+          ),
+          'HostCollision': const FlaxCodegenClassSelection(
+            {},
+            kind: 'widgetInterface',
+            getters: ['configuration'],
+          ),
+          'PrivateDefaultContract': const FlaxCodegenClassSelection(
+            {},
+            kind: 'widgetInterface',
+            methods: {
+              'read': ['value'],
+            },
+          ),
+          'GenericTile': const FlaxCodegenClassSelection(
+            {
+              '': ['value', 'child', 'key'],
+            },
+            widgetInterfaces: [
+              'GenericContract',
+              'HostCollision',
+              'PrivateDefaultContract',
+            ],
+            proxy: 'extends',
+            getters: ['value', 'configuration'],
+            instanceMethods: {
+              'read': ['value'],
+              'describe': [],
+              'build': ['context'],
+            },
+          ),
+        }),
+      );
+      final tile = module.classes.last;
+      expect(tile.widgetMembers, isEmpty);
+      expect(
+        tile.widgetInterfaces.first.declaration!.tsArguments.single.kind,
+        'parameter',
+      );
+      final emitter = FlaxCodegenBindingEmitter([module]);
+      expect(emitter.dart(module), isNot(contains('configuration as api.')));
+      await compileFixture(
+        root,
+        emitter,
+        module,
+        consumerSource: '''
+import {dartTypes} from '@flax/core/bindings';
+import {GenericTile, type GenericContract, type HostCollision, type BuildContext} from './plugin.js';
+const StringTile = GenericTile.\$type(dartTypes.string);
+class Child extends StringTile {
+  #prefix = 'JS';
+  override read(value?: number): number { return super.read(value) + 1; }
+  override describe(): string { return this.#prefix + ':' + super.describe(); }
+  override build(context: BuildContext) { return super.build(context); }
+}
+const child: GenericContract<string> = new Child('value');
+const host: HostCollision = new Child('configuration');
+class Nested extends GenericTile.\$type(dartTypes.list(dartTypes.string)) {}
+const nested: GenericContract<import('@flax/core/bindings').DartList<string>> = new Nested(['value']);
+''',
+      );
+    },
+  );
+  test(
+    'generic Widget contracts retain provider reuse after Manifest projection',
+    () async {
+      final providerParser = FlaxCodegenBindingParser(root);
+      addTearDown(providerParser.dispose);
+      final core = await providerParser.parse(
+        FlaxCodegenBindingConfig.read(
+          '$root/packages/flax/bindings/config.yaml',
+        ),
+      );
+      providerParser.prepareModules([core]);
+      final provider = await providerParser.parse(
+        config({
+          'GenericContract': const FlaxCodegenClassSelection(
+            {},
+            kind: 'widgetInterface',
+            getters: ['value'],
+          ),
+          'NativeParent': const FlaxCodegenClassSelection(
+            {},
+            kind: 'widgetInterface',
+            methods: {
+              'identity': ['value'],
+            },
+          ),
+        }, name: 'contracts'),
+      );
+      final diagnostics = FlaxCodegenManifestDiagnostics('generic-provider');
+      // Local fixtures resolve through the module library, not public carriers.
+      final encoded = FlaxCodegenManifestCodec.encodeModule(provider)
+        ..['typeLibraries'] = <String, Object?>{};
+      final decoded = FlaxCodegenManifestCodec.decodeModule(
+        encoded,
+        diagnostics,
+        '',
+        'contracts',
+      )!;
+      diagnostics.throwIfAny();
+      expect(decoded.classes.map((type) => type.kind), everyElement('object'));
+
+      final parser = FlaxCodegenBindingParser(root);
+      addTearDown(parser.dispose);
+      parser.prepareModules([core, decoded]);
+      final consumer = await parser.parse(
+        config({
+          'GenericTile': const FlaxCodegenClassSelection(
+            {
+              '': ['value'],
+            },
+            widgetInterfaces: ['GenericContract'],
+          ),
+          'NativeTile': const FlaxCodegenClassSelection(
+            {'': []},
+            widgetInterfaces: ['NativeParent'],
+          ),
+        }),
+      );
+      expect(consumer.classes, hasLength(2));
+      for (final type in consumer.classes) {
+        expect(type.widgetInterfaces, hasLength(1));
+        expect(type.widgetInterfaces.single.kind, 'object');
+      }
+      expect(consumer.classes.first.getters.single.name, 'value');
+      expect(consumer.classes.last.methods.single.name, 'identity');
+      await compileFixture(
+        root,
+        FlaxCodegenBindingEmitter([core, decoded, consumer]),
+        consumer,
+        consumerSource: '''
+import {dartTypes, type Widget} from '@flax/core/bindings';
+import type {GenericContract, NativeParent} from '@example/contracts';
+import {GenericTile, NativeTile} from './plugin.js';
+const value: GenericContract<string> = GenericTile.\$type(dartTypes.string)('value');
+const native: NativeParent<Widget> = NativeTile();
+''',
+      );
+
+      final automatic = FlaxCodegenBindingParser(root);
+      addTearDown(automatic.dispose);
+      automatic.prepareModules([core, decoded]);
+      final automaticConfig = config(
+        {},
+        source: Uri.file(
+          p.join(
+            Directory.current.path,
+            'test/fixtures/plugin/widget_generic_interfaces.dart',
+          ),
+        ).toString(),
+      );
+      final proposal = await automatic.proposeLibrary(automaticConfig);
+      expect(proposal.config.classes, isNot(contains('GenericContract')));
+      expect(
+        proposal.config.classes['GenericTile']!.widgetInterfaces,
+        contains('GenericContract'),
+      );
+      final inferred = await automatic.parse(proposal.config);
+      expect(
+        inferred.classes
+            .singleWhere((type) => type.name == 'GenericTile')
+            .widgetInterfaces
+            .any((type) => type.id == decoded.classes.first.id),
+        isTrue,
+      );
+
+      final incompleteJson = FlaxCodegenManifestCodec.encodeModule(decoded);
+      (incompleteJson['classes'] as List).first['getters'] = <Object?>[];
+      final incomplete = FlaxCodegenManifestCodec.decodeModule(
+        incompleteJson,
+        diagnostics,
+        '',
+        'contracts',
+      )!;
+      diagnostics.throwIfAny();
+      final fallback = FlaxCodegenBindingParser(root);
+      addTearDown(fallback.dispose);
+      fallback.prepareModules([core, incomplete]);
+      final fallbackProposal = await fallback.proposeLibrary(automaticConfig);
+      expect(
+        fallbackProposal.config.classes['GenericContract']!.kind,
+        'widgetInterface',
+      );
+      expect(
+        fallbackProposal.config.classes['GenericTile']!.widgetInterfaces,
+        contains('GenericContract'),
+      );
+      await fallback.parse(fallbackProposal.config);
+    },
   );
   test('file imports ignore private-looking checkout ancestors', () async {
     final temporary = Directory(p.join(Directory.current.path, 'test/fixtures'))
@@ -87,30 +348,25 @@ abstract class PrivateLibraryContract implements Widget {
       ),
     );
     await compileFixture(root, FlaxCodegenBindingEmitter([module]), module);
-    await expectLater(
-      parser.parse(
-        FlaxCodegenBindingConfig(
-          'private',
-          privateLibrary.uri.toString(),
-          '@example/private',
-          'unused.dart',
-          'unused.ts',
-          const {
-            'PrivateLibraryContract': FlaxCodegenClassSelection(
-              {},
-              kind: 'widgetInterface',
-              getters: ['child'],
-            ),
-          },
-        ),
+    final privateNative = await parser.parse(
+      FlaxCodegenBindingConfig(
+        'private',
+        privateLibrary.uri.toString(),
+        '@example/private',
+        'unused.dart',
+        'unused.ts',
+        const {
+          'PrivateLibraryContract': FlaxCodegenClassSelection(
+            {},
+            kind: 'widgetInterface',
+            getters: ['child'],
+          ),
+        },
       ),
-      throwsA(
-        isA<StateError>().having(
-          (error) => error.toString(),
-          'message',
-          contains('No public export'),
-        ),
-      ),
+    );
+    expect(
+      FlaxCodegenBindingEmitter([privateNative]).dart(privateNative),
+      isNot(contains('package:flutter/src/')),
     );
   });
   test(
@@ -129,8 +385,10 @@ abstract class PrivateLibraryContract implements Widget {
         }),
       );
       final emitter = FlaxCodegenBindingEmitter([module]);
-      final members = module.classes.last.widgetMembers;
+      final members = module.classes.first.widgetMembers;
       expect(members, hasLength(25));
+      expect(module.classes.last.widgetMembers, isEmpty);
+      expect(emitter.dart(module), isNot(contains('configuration as api.')));
       expect(
         module.types.map((t) => t.name),
         isNot(contains('NativeMode')),
@@ -148,19 +406,11 @@ tile.mounted(null);
 // @ts-expect-error Interface setters are Dart-only.
 tile.count = 1;
 ''',
-        dartTestSource:
-            '''
-class Probe extends api.SizedBox implements api.NativeContract {
-  Probe(this.configuration);
-  final api.Widget configuration;
-  ${members.map((m) => m.source).join('\n')}
-  @override
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+        dartTestSource: '''
 void main() {
   testWidgets('native arguments and results preserve identity', (tester) async {
     final native = api.NativeTile();
-    final probe = Probe(native);
+    final api.NativeContract probe = native;
     probe.count = 4;
     probe.update(3);
     expect(native.count, 7);
@@ -338,7 +588,7 @@ void main() {
   });
 
   test(
-    'Context callbacks select while inaccessible native signatures fail closed',
+    'native signatures keep private defaults and avoid host name collisions',
     () async {
       for (final selected in <String, FlaxCodegenClassSelection>{
         'NativeContract': const FlaxCodegenClassSelection(
@@ -370,12 +620,15 @@ void main() {
       }.entries) {
         final parser = FlaxCodegenBindingParser(root);
         addTearDown(parser.dispose);
-        if (selected.key == 'GenericContract') {
+        if (selected.key != 'NativeContract') {
           final module = await parser.parse(
             config({selected.key: selected.value}),
           );
-          expect(module.classes.single.kind, 'object');
-          expect(module.classes.single.typeParameters, hasLength(1));
+          expect(
+            module.classes.single.kind,
+            selected.key == 'GenericContract' ? 'object' : 'widgetInterface',
+          );
+          FlaxCodegenBindingEmitter([module]).dart(module);
           continue;
         }
         await expectLater(

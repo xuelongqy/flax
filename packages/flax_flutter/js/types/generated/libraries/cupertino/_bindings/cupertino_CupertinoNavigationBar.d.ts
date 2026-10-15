@@ -1,12 +1,13 @@
-import { type FlaxInstanceType as _FlaxInstanceType, type Widget, type WidgetDescription } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type Widget } from '@flax/core/bindings';
+import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/cupertino/_bindings/cupertino_ObstructingPreferredSizeWidget';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/widgets/_bindings/flutter_Border';
 import '@flax/flutter/services/_bindings/flutter_Color';
 import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
-export type CupertinoNavigationBar = WidgetDescription & {
-    readonly type: "flax.cupertino/cupertino#type:CupertinoNavigationBar";
-} & upstream0.ObstructingPreferredSizeWidget;
+export interface CupertinoNavigationBar extends _FlaxDartWidget, Omit<upstream0.ObstructingPreferredSizeWidget, 'kind'> {
+    readonly __CupertinoNavigationBar: unique symbol;
+}
 declare function _CupertinoNavigationBarFactory(options?: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];

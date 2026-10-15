@@ -474,14 +474,12 @@ class FlaxWidgetBinding extends FlaxTypeBinding {
     this.constructors,
     this.createHost, {
     super.methods,
-    this.fixedArguments = false,
     this.matches,
     this.objectView,
   });
   final Map<String, List<FlaxParameter>> constructors;
   final FlaxWidgetHost Function(FlaxNode) createHost;
   final FlaxObjectBinding? objectView;
-  final bool fixedArguments;
   final bool Function(Object)? matches;
 }
 
