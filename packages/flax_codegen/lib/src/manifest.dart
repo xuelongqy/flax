@@ -341,6 +341,12 @@ FlaxCodegenManifestModule? _decodeModuleEntry(
   );
   if (requiredCapabilities.any(
     (capability) => !{
+      'native-functions',
+      'lazy-js-iterables',
+      'callback-map-keys',
+      'proxy-super-constructors',
+      'bottom-types',
+      'explicit-generic-types',
       'instance-checks',
       'native-core-inputs',
       'generic-member-views',

@@ -83,6 +83,7 @@ void main() {
       'FutureWidget',
       'WidgetStream',
       'WidgetCallback',
+      'ReflectiveBox',
       'RouteBox',
       'PageBox',
     ];
@@ -91,9 +92,9 @@ void main() {
       proposal.skips
           .where((skip) => names.contains(skip.target))
           .map((skip) => skip.code),
-      everyElement('extension_type_representation_only'),
+      everyElement('no_members'),
     );
-    for (final name in ['ReflectiveBox', 'PageFutureCallback']) {
+    for (final name in ['PageFutureCallback']) {
       expect(proposal.config.types, isNot(contains(name)));
       expect(
         proposal.skips.singleWhere((skip) => skip.target == name).code,

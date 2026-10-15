@@ -1,11 +1,11 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type DartInput } from '@flax/core/bindings';
-import type * as upstream0 from '@flax/dart/core/_bindings/flutter_Duration';
+import type * as upstream0 from '@flax/dart/core/_bindings/flutter_Comparable';
+import '@flax/dart/core/_bindings/flutter_Comparable';
+import type * as upstream1 from '@flax/dart/core/_bindings/flutter_Duration';
 import '@flax/dart/core/_bindings/flutter_Duration';
 import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
-export interface DateTime extends Readonly<{
+export interface DateTime extends upstream0.Comparable<DateTime>, Readonly<{
     "__flaxBound:dart:core::DateTime": readonly [];
-}>, Readonly<{
-    "__flaxBound:dart:core::Comparable": readonly [DateTime];
 }> {
     readonly __DateTime: unique symbol;
     readonly year: number;
@@ -21,7 +21,10 @@ export interface DateTime extends Readonly<{
     readonly millisecondsSinceEpoch: number;
     readonly microsecondsSinceEpoch: number;
     readonly timeZoneName: string;
-    readonly timeZoneOffset: upstream0.Duration;
+    readonly timeZoneOffset: upstream1.Duration;
+    compareTo(other: DartInput<Readonly<{
+        "__flaxBound:dart:core::DateTime": readonly [];
+    }>>): number;
     toIso8601String(): string;
     toString(): string;
     toUtc(): DateTime;
@@ -34,7 +37,7 @@ export interface DateTime extends Readonly<{
     }>): DateTime;
     difference(other: DartInput<Readonly<{
         "__flaxBound:dart:core::DateTime": readonly [];
-    }>>): upstream0.Duration;
+    }>>): upstream1.Duration;
     isBefore(other: DartInput<Readonly<{
         "__flaxBound:dart:core::DateTime": readonly [];
     }>>): boolean;
@@ -44,9 +47,6 @@ export interface DateTime extends Readonly<{
     isAtSameMomentAs(other: DartInput<Readonly<{
         "__flaxBound:dart:core::DateTime": readonly [];
     }>>): boolean;
-    compareTo(other: DartInput<Readonly<{
-        "__flaxBound:dart:core::DateTime": readonly [];
-    }>>): number;
 }
 declare function _DateTimeFactory(year: number, month?: number, day?: number, hour?: number, minute?: number, second?: number, millisecond?: number, microsecond?: number): DateTime;
 declare namespace _DateTimeFactory {

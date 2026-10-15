@@ -370,6 +370,14 @@ void main() {
       }.entries) {
         final parser = FlaxCodegenBindingParser(root);
         addTearDown(parser.dispose);
+        if (selected.key == 'GenericContract') {
+          final module = await parser.parse(
+            config({selected.key: selected.value}),
+          );
+          expect(module.classes.single.kind, 'object');
+          expect(module.classes.single.typeParameters, hasLength(1));
+          continue;
+        }
         await expectLater(
           parser.parse(config({selected.key: selected.value})),
           throwsStateError,

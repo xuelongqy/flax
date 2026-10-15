@@ -433,6 +433,7 @@ final _primitiveKinds = {
   'num',
   'scalar',
   'void',
+  'never',
   'any',
   'data',
   'widget',

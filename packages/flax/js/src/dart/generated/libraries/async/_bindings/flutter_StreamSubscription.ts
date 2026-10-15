@@ -19,7 +19,7 @@ cancel(): Promise<void>;
 onData(handleData: ((data: T) => void) | null): void;
 onError(handleError: ((p0: {}, p1?: upstream0.StackTrace) => void) | null): void;
 onDone(handleDone: (() => void) | null): void;
-pause(resumeSignal?: Promise<void> | null): void;
+pause(resumeSignal?: Promise<unknown> | null): void;
 resume(): void;
 asFuture<E extends unknown | null = unknown | null>(futureValue?: (E | _FlaxDartOutput<E>) | null): Promise<_FlaxDartOutput<E>>;
 }

@@ -36,8 +36,9 @@ Object _noFunctionConstructor(String name, Map<String, Object?> arguments) =>
 extension _FunctionCalls on _Session {
   _FunctionReference? returnedFunction(
     FlaxJsFunction input,
-    FlaxCallbackBinding type,
-  ) {
+    FlaxCallbackBinding? type, {
+    bool ignoreRetired = false,
+  }) {
     final returned = _property(
       input,
       'kind',
@@ -47,14 +48,30 @@ extension _FunctionCalls on _Session {
     final id = helper('tryObjectHandle').call([input]);
     if (id is! FlaxJsNumber) throw ArgumentError('Invalid Dart function');
     final reference = _objects[id.value.toInt()];
-    if (reference is! _FunctionReference || !type.matches(reference.value)) {
+    if (reference is! _FunctionReference ||
+        (type != null && !type.matches(reference.value))) {
       throw ArgumentError('Foreign or incompatible Dart function');
     }
     final source = _callbackSources[reference.value];
     if (source != null && !source.active) {
+      if (ignoreRetired) return null;
       throw StateError('Retired JS callback');
     }
     return reference;
+  }
+
+  _Value borrowFunction(_FunctionReference reference, FlaxJsFunction wrapper) {
+    final source = _callbackSources[reference.value];
+    final borrow =
+        source != null &&
+        source.scope == _CallbackScope.member &&
+        !source.released;
+    // Shared adapters must retain their call-scoped owner until each borrow ends.
+    if (borrow) source.retain();
+    return _Value(reference.value, [
+      _ObjectBorrow(reference, wrapper.retain()),
+      if (borrow) source,
+    ]);
   }
 
   FlaxJsValue functionResult(Object value, FlaxCallbackBinding signature) {
@@ -268,8 +285,7 @@ extension _WidgetReferences on _Session {
                 visit(item, ref.item!);
               }
             case 'iterable':
-              _checkFiniteWidgetIterable(current, ref);
-              // JS inputs are materialized; native lazy Iterables stay lazy.
+              // Iterable elements are checked and retained when Dart asks for them.
               if (current is List || current is Set) {
                 for (final item in current as Iterable) {
                   visit(item, ref.item!);

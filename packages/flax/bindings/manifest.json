@@ -388,6 +388,755 @@
         "native-widget-proxies"
       ],
       "model": {
+        "extensions": [
+          {
+            "name": "EnumByName",
+            "originatingUri": "dart:core",
+            "typeParameters": [
+              {
+                "name": "T",
+                "bound": {
+                  "kind": "object",
+                  "id": "flax.core/flutter#type:Enum",
+                  "name": "Enum",
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": null,
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "defaultType": {
+                  "kind": "object",
+                  "id": "flax.core/flutter#type:Enum",
+                  "name": "Enum",
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": null,
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "slot": "g0"
+              }
+            ],
+            "onType": {
+              "kind": "iterable",
+              "id": null,
+              "name": null,
+              "nullable": false,
+              "item": {
+                "kind": "object",
+                "id": "flax.core/flutter#type:Enum",
+                "name": "Enum",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": {
+                  "kind": "parameter",
+                  "id": null,
+                  "name": "T",
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": null,
+                  "tsArguments": [],
+                  "slot": "g0"
+                },
+                "tsArguments": [],
+                "slot": null
+              },
+              "key": null,
+              "parameters": [],
+              "typeParameters": [],
+              "result": null,
+              "typeArguments": [],
+              "dartArguments": [],
+              "primitiveKinds": [],
+              "declaration": {
+                "kind": "iterable",
+                "id": null,
+                "name": null,
+                "nullable": false,
+                "item": {
+                  "kind": "parameter",
+                  "id": null,
+                  "name": "T",
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": null,
+                  "tsArguments": [],
+                  "slot": "g0"
+                },
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "tsArguments": [],
+              "slot": null
+            },
+            "members": [
+              {
+                "id": "flax.core/flutter#function:EnumByName.method.asNameMap",
+                "name": "asNameMap",
+                "kind": "method",
+                "call": {
+                  "name": "asNameMap",
+                  "parameters": [
+                    {
+                      "name": "receiver",
+                      "type": {
+                        "kind": "iterable",
+                        "id": null,
+                        "name": null,
+                        "nullable": false,
+                        "item": {
+                          "kind": "object",
+                          "id": "flax.core/flutter#type:Enum",
+                          "name": "Enum",
+                          "nullable": false,
+                          "item": null,
+                          "key": null,
+                          "parameters": [],
+                          "typeParameters": [],
+                          "result": null,
+                          "typeArguments": [],
+                          "dartArguments": [],
+                          "primitiveKinds": [],
+                          "declaration": {
+                            "kind": "parameter",
+                            "id": null,
+                            "name": "T",
+                            "nullable": false,
+                            "item": null,
+                            "key": null,
+                            "parameters": [],
+                            "typeParameters": [],
+                            "result": null,
+                            "typeArguments": [],
+                            "dartArguments": [],
+                            "primitiveKinds": [],
+                            "declaration": null,
+                            "tsArguments": [],
+                            "slot": "g0"
+                          },
+                          "tsArguments": [],
+                          "slot": null
+                        },
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": {
+                          "kind": "iterable",
+                          "id": null,
+                          "name": null,
+                          "nullable": false,
+                          "item": {
+                            "kind": "parameter",
+                            "id": null,
+                            "name": "T",
+                            "nullable": false,
+                            "item": null,
+                            "key": null,
+                            "parameters": [],
+                            "typeParameters": [],
+                            "result": null,
+                            "typeArguments": [],
+                            "dartArguments": [],
+                            "primitiveKinds": [],
+                            "declaration": null,
+                            "tsArguments": [],
+                            "slot": "g0"
+                          },
+                          "key": null,
+                          "parameters": [],
+                          "typeParameters": [],
+                          "result": null,
+                          "typeArguments": [],
+                          "dartArguments": [],
+                          "primitiveKinds": [],
+                          "declaration": null,
+                          "tsArguments": [],
+                          "slot": null
+                        },
+                        "tsArguments": [],
+                        "slot": null
+                      },
+                      "required": true,
+                      "positional": true,
+                      "defaultCode": "null",
+                      "omitWhenAbsent": false,
+                      "independentWidgetResult": false,
+                      "snapshot": null,
+                      "encodeKind": null,
+                      "scoped": false
+                    }
+                  ],
+                  "result": {
+                    "kind": "map",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": {
+                      "kind": "object",
+                      "id": "flax.core/flutter#type:Enum",
+                      "name": "Enum",
+                      "nullable": false,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": {
+                        "kind": "parameter",
+                        "id": null,
+                        "name": "T",
+                        "nullable": false,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": null,
+                        "tsArguments": [],
+                        "slot": "g0"
+                      },
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "key": {
+                      "kind": "String",
+                      "id": null,
+                      "name": null,
+                      "nullable": false,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": null,
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": {
+                      "kind": "map",
+                      "id": null,
+                      "name": null,
+                      "nullable": false,
+                      "item": {
+                        "kind": "parameter",
+                        "id": null,
+                        "name": "T",
+                        "nullable": false,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": null,
+                        "tsArguments": [],
+                        "slot": "g0"
+                      },
+                      "key": {
+                        "kind": "String",
+                        "id": null,
+                        "name": null,
+                        "nullable": false,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": null,
+                        "tsArguments": [],
+                        "slot": null
+                      },
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": null,
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "instance": false,
+                  "typeArguments": [],
+                  "startsRoute": false,
+                  "typeParameters": [
+                    {
+                      "name": "T",
+                      "bound": {
+                        "kind": "object",
+                        "id": "flax.core/flutter#type:Enum",
+                        "name": "Enum",
+                        "nullable": false,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": null,
+                        "tsArguments": [],
+                        "slot": null
+                      },
+                      "defaultType": {
+                        "kind": "object",
+                        "id": "flax.core/flutter#type:Enum",
+                        "name": "Enum",
+                        "nullable": false,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": null,
+                        "tsArguments": [],
+                        "slot": null
+                      },
+                      "slot": "g0"
+                    }
+                  ],
+                  "mustCallSuper": false,
+                  "deferredFactory": false,
+                  "operator": null
+                }
+              },
+              {
+                "id": "flax.core/flutter#function:EnumByName.method.byName",
+                "name": "byName",
+                "kind": "method",
+                "call": {
+                  "name": "byName",
+                  "parameters": [
+                    {
+                      "name": "receiver",
+                      "type": {
+                        "kind": "iterable",
+                        "id": null,
+                        "name": null,
+                        "nullable": false,
+                        "item": {
+                          "kind": "object",
+                          "id": "flax.core/flutter#type:Enum",
+                          "name": "Enum",
+                          "nullable": false,
+                          "item": null,
+                          "key": null,
+                          "parameters": [],
+                          "typeParameters": [],
+                          "result": null,
+                          "typeArguments": [],
+                          "dartArguments": [],
+                          "primitiveKinds": [],
+                          "declaration": {
+                            "kind": "parameter",
+                            "id": null,
+                            "name": "T",
+                            "nullable": false,
+                            "item": null,
+                            "key": null,
+                            "parameters": [],
+                            "typeParameters": [],
+                            "result": null,
+                            "typeArguments": [],
+                            "dartArguments": [],
+                            "primitiveKinds": [],
+                            "declaration": null,
+                            "tsArguments": [],
+                            "slot": "g0"
+                          },
+                          "tsArguments": [],
+                          "slot": null
+                        },
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": {
+                          "kind": "iterable",
+                          "id": null,
+                          "name": null,
+                          "nullable": false,
+                          "item": {
+                            "kind": "parameter",
+                            "id": null,
+                            "name": "T",
+                            "nullable": false,
+                            "item": null,
+                            "key": null,
+                            "parameters": [],
+                            "typeParameters": [],
+                            "result": null,
+                            "typeArguments": [],
+                            "dartArguments": [],
+                            "primitiveKinds": [],
+                            "declaration": null,
+                            "tsArguments": [],
+                            "slot": "g0"
+                          },
+                          "key": null,
+                          "parameters": [],
+                          "typeParameters": [],
+                          "result": null,
+                          "typeArguments": [],
+                          "dartArguments": [],
+                          "primitiveKinds": [],
+                          "declaration": null,
+                          "tsArguments": [],
+                          "slot": null
+                        },
+                        "tsArguments": [],
+                        "slot": null
+                      },
+                      "required": true,
+                      "positional": true,
+                      "defaultCode": "null",
+                      "omitWhenAbsent": false,
+                      "independentWidgetResult": false,
+                      "snapshot": null,
+                      "encodeKind": null,
+                      "scoped": false
+                    },
+                    {
+                      "name": "name",
+                      "type": {
+                        "kind": "String",
+                        "id": null,
+                        "name": null,
+                        "nullable": false,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": {
+                          "kind": "String",
+                          "id": null,
+                          "name": null,
+                          "nullable": false,
+                          "item": null,
+                          "key": null,
+                          "parameters": [],
+                          "typeParameters": [],
+                          "result": null,
+                          "typeArguments": [],
+                          "dartArguments": [],
+                          "primitiveKinds": [],
+                          "declaration": null,
+                          "tsArguments": [],
+                          "slot": null
+                        },
+                        "tsArguments": [],
+                        "slot": null
+                      },
+                      "required": true,
+                      "positional": true,
+                      "defaultCode": "null",
+                      "omitWhenAbsent": false,
+                      "independentWidgetResult": false,
+                      "snapshot": null,
+                      "encodeKind": null,
+                      "scoped": false
+                    }
+                  ],
+                  "result": {
+                    "kind": "object",
+                    "id": "flax.core/flutter#type:Enum",
+                    "name": "Enum",
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": {
+                      "kind": "parameter",
+                      "id": null,
+                      "name": "T",
+                      "nullable": false,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": null,
+                      "tsArguments": [],
+                      "slot": "g0"
+                    },
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "instance": false,
+                  "typeArguments": [],
+                  "startsRoute": false,
+                  "typeParameters": [
+                    {
+                      "name": "T",
+                      "bound": {
+                        "kind": "object",
+                        "id": "flax.core/flutter#type:Enum",
+                        "name": "Enum",
+                        "nullable": false,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": null,
+                        "tsArguments": [],
+                        "slot": null
+                      },
+                      "defaultType": {
+                        "kind": "object",
+                        "id": "flax.core/flutter#type:Enum",
+                        "name": "Enum",
+                        "nullable": false,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": null,
+                        "tsArguments": [],
+                        "slot": null
+                      },
+                      "slot": "g0"
+                    }
+                  ],
+                  "mustCallSuper": false,
+                  "deferredFactory": false,
+                  "operator": null
+                }
+              }
+            ]
+          },
+          {
+            "name": "EnumName",
+            "originatingUri": "dart:core",
+            "typeParameters": [],
+            "onType": {
+              "kind": "object",
+              "id": "flax.core/flutter#type:Enum",
+              "name": "Enum",
+              "nullable": false,
+              "item": null,
+              "key": null,
+              "parameters": [],
+              "typeParameters": [],
+              "result": null,
+              "typeArguments": [],
+              "dartArguments": [],
+              "primitiveKinds": [],
+              "declaration": {
+                "kind": "object",
+                "id": "flax.core/flutter#type:Enum",
+                "name": "Enum",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              "tsArguments": [],
+              "slot": null
+            },
+            "members": [
+              {
+                "id": "flax.core/flutter#function:EnumName.getter.name",
+                "name": "name",
+                "kind": "getter",
+                "call": {
+                  "name": "getName",
+                  "parameters": [
+                    {
+                      "name": "receiver",
+                      "type": {
+                        "kind": "object",
+                        "id": "flax.core/flutter#type:Enum",
+                        "name": "Enum",
+                        "nullable": false,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": {
+                          "kind": "object",
+                          "id": "flax.core/flutter#type:Enum",
+                          "name": "Enum",
+                          "nullable": false,
+                          "item": null,
+                          "key": null,
+                          "parameters": [],
+                          "typeParameters": [],
+                          "result": null,
+                          "typeArguments": [],
+                          "dartArguments": [],
+                          "primitiveKinds": [],
+                          "declaration": null,
+                          "tsArguments": [],
+                          "slot": null
+                        },
+                        "tsArguments": [],
+                        "slot": null
+                      },
+                      "required": true,
+                      "positional": true,
+                      "defaultCode": "null",
+                      "omitWhenAbsent": false,
+                      "independentWidgetResult": false,
+                      "snapshot": null,
+                      "encodeKind": null,
+                      "scoped": false
+                    }
+                  ],
+                  "result": {
+                    "kind": "String",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": {
+                      "kind": "String",
+                      "id": null,
+                      "name": null,
+                      "nullable": false,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": null,
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "instance": false,
+                  "typeArguments": [],
+                  "startsRoute": false,
+                  "typeParameters": [],
+                  "mustCallSuper": false,
+                  "deferredFactory": false,
+                  "operator": null
+                }
+              }
+            ]
+          }
+        ],
         "library": "package:flutter/widgets.dart",
         "jsPackage": "@flax/core/navigation",
         "publicLibraries": [
@@ -420,18 +1169,32 @@
             "library": "dart:core",
             "jsPackage": "@flax/dart/core",
             "exports": [
+              "Comparable",
               "DateTime",
+              "Deprecated",
               "Duration",
+              "Enum",
+              "EnumByName",
+              "EnumName",
+              "Error",
+              "Invocation",
               "Iterator",
+              "MapEntry",
               "Match",
               "Pattern",
+              "Record",
               "RegExp",
               "RegExpMatch",
+              "RuneIterator",
+              "Runes",
               "Sink",
               "StackTrace",
               "Stream",
               "StringBuffer",
-              "Uri"
+              "Symbol",
+              "Type",
+              "Uri",
+              "UriData"
             ]
           },
           {
@@ -677,6 +1440,7 @@
           "Color": "package:flutter/widgets.dart",
           "ColoredBox": "package:flutter/widgets.dart",
           "Column": "package:flutter/widgets.dart",
+          "Comparable": "dart:core",
           "ConnectionState": "package:flutter/widgets.dart",
           "ConstrainedBox": "package:flutter/widgets.dart",
           "Container": "package:flutter/widgets.dart",
@@ -688,12 +1452,17 @@
           "DecoratedBox": "package:flutter/widgets.dart",
           "Decoration": "package:flutter/widgets.dart",
           "DecorationPosition": "package:flutter/widgets.dart",
+          "Deprecated": "dart:core",
           "Directionality": "package:flutter/widgets.dart",
           "DragStartBehavior": "package:flutter/gestures.dart",
           "Duration": "dart:core",
           "EdgeInsets": "package:flutter/widgets.dart",
           "EdgeInsetsDirectional": "package:flutter/widgets.dart",
           "EdgeInsetsGeometry": "package:flutter/widgets.dart",
+          "Enum": "dart:core",
+          "EnumByName": "dart:core",
+          "EnumName": "dart:core",
+          "Error": "dart:core",
           "EventSink": "dart:async",
           "Expanded": "package:flutter/widgets.dart",
           "FilteringTextInputFormatter": "package:flutter/services.dart",
@@ -713,6 +1482,7 @@
           "IgnorePointer": "package:flutter/widgets.dart",
           "ImageFilter": "package:flax/dart_ui.dart",
           "IndexedStack": "package:flutter/widgets.dart",
+          "Invocation": "dart:core",
           "Iterator": "dart:core",
           "Key": "package:flutter/widgets.dart",
           "KeyEvent": "package:flutter/widgets.dart",
@@ -727,6 +1497,7 @@
           "LogicalKeyboardKey": "package:flutter/services.dart",
           "MainAxisAlignment": "package:flutter/widgets.dart",
           "MainAxisSize": "package:flutter/widgets.dart",
+          "MapEntry": "dart:core",
           "Match": "dart:core",
           "MaxLengthEnforcement": "package:flutter/services.dart",
           "MouseCursor": "package:flutter/widgets.dart",
@@ -751,12 +1522,15 @@
           "PreferredSize": "package:flutter/widgets.dart",
           "PreferredSizeWidget": "package:flutter/widgets.dart",
           "Radius": "package:flutter/widgets.dart",
+          "Record": "dart:core",
           "RegExp": "dart:core",
           "RegExpMatch": "dart:core",
           "RoundedRectangleBorder": "package:flutter/widgets.dart",
           "Route": "package:flutter/widgets.dart",
           "RouteSettings": "package:flutter/widgets.dart",
           "Row": "package:flutter/widgets.dart",
+          "RuneIterator": "dart:core",
+          "Runes": "dart:core",
           "SafeArea": "package:flutter/widgets.dart",
           "SchedulerBinding": "package:flutter/scheduler.dart",
           "ScrollController": "package:flutter/widgets.dart",
@@ -783,6 +1557,7 @@
           "StreamTransformerBase": "dart:async",
           "StreamView": "dart:async",
           "StringBuffer": "dart:core",
+          "Symbol": "dart:core",
           "SynchronousStreamController": "dart:async",
           "SystemMouseCursor": "package:flutter/services.dart",
           "SystemMouseCursors": "package:flutter/widgets.dart",
@@ -800,8 +1575,10 @@
           "TextSelection": "package:flutter/widgets.dart",
           "TextStyle": "package:flutter/widgets.dart",
           "TickerProvider": "package:flutter/widgets.dart",
+          "Type": "dart:core",
           "UnfocusDisposition": "package:flutter/widgets.dart",
           "Uri": "dart:core",
+          "UriData": "dart:core",
           "ValueKey": "package:flutter/widgets.dart",
           "ValueListenable": "package:flutter/foundation.dart",
           "ValueListenableBuilder": "package:flutter/widgets.dart",
@@ -818,6 +1595,2384 @@
           "kIsWeb": "package:flutter/foundation.dart"
         },
         "classes": [
+          {
+            "name": "MapEntry",
+            "id": "flax.core/flutter#type:MapEntry",
+            "kind": "object",
+            "jsName": null,
+            "asyncIterableFactory": null,
+            "typeArguments": [
+              "Object?",
+              "Object?"
+            ],
+            "typeParameters": [
+              {
+                "name": "K",
+                "bound": {
+                  "kind": "any",
+                  "id": null,
+                  "name": null,
+                  "nullable": true,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": null,
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "defaultType": {
+                  "kind": "any",
+                  "id": null,
+                  "name": null,
+                  "nullable": true,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": null,
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "slot": "g0"
+              },
+              {
+                "name": "V",
+                "bound": {
+                  "kind": "any",
+                  "id": null,
+                  "name": null,
+                  "nullable": true,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": null,
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "defaultType": {
+                  "kind": "any",
+                  "id": null,
+                  "name": null,
+                  "nullable": true,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": null,
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "slot": "g1"
+              }
+            ],
+            "constructors": [
+              {
+                "name": "",
+                "parameters": [
+                  {
+                    "name": "key",
+                    "type": {
+                      "kind": "any",
+                      "id": null,
+                      "name": null,
+                      "nullable": true,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": {
+                        "kind": "parameter",
+                        "id": null,
+                        "name": "K",
+                        "nullable": false,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": null,
+                        "tsArguments": [],
+                        "slot": "g0"
+                      },
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "required": true,
+                    "positional": true,
+                    "defaultCode": "null",
+                    "omitWhenAbsent": false,
+                    "independentWidgetResult": false,
+                    "snapshot": null,
+                    "encodeKind": null,
+                    "scoped": false
+                  },
+                  {
+                    "name": "value",
+                    "type": {
+                      "kind": "any",
+                      "id": null,
+                      "name": null,
+                      "nullable": true,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": {
+                        "kind": "parameter",
+                        "id": null,
+                        "name": "V",
+                        "nullable": false,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": null,
+                        "tsArguments": [],
+                        "slot": "g1"
+                      },
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "required": true,
+                    "positional": true,
+                    "defaultCode": "null",
+                    "omitWhenAbsent": false,
+                    "independentWidgetResult": false,
+                    "snapshot": null,
+                    "encodeKind": null,
+                    "scoped": false
+                  }
+                ],
+                "runtimeParameterTypes": [
+                  {
+                    "kind": "any",
+                    "id": null,
+                    "name": null,
+                    "nullable": true,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  {
+                    "kind": "any",
+                    "id": null,
+                    "name": null,
+                    "nullable": true,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  }
+                ],
+                "specializations": []
+              }
+            ],
+            "getters": [
+              {
+                "name": "key",
+                "type": {
+                  "kind": "any",
+                  "id": null,
+                  "name": null,
+                  "nullable": true,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "parameter",
+                    "id": null,
+                    "name": "K",
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": "g0"
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "encodeKind": null,
+                "cache": false
+              },
+              {
+                "name": "value",
+                "type": {
+                  "kind": "any",
+                  "id": null,
+                  "name": null,
+                  "nullable": true,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "parameter",
+                    "id": null,
+                    "name": "V",
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": "g1"
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "encodeKind": null,
+                "cache": false
+              }
+            ],
+            "setters": [],
+            "staticGetters": [],
+            "staticSetters": [],
+            "methods": [],
+            "widgetInterfaces": [],
+            "supertypes": [
+              "dart:core::Object"
+            ],
+            "superTypes": [
+              {
+                "originatingUri": "dart:core",
+                "originatingName": "MapEntry",
+                "kind": "typeOnly",
+                "id": null,
+                "name": "MapEntry",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [
+                  {
+                    "kind": "parameter",
+                    "id": null,
+                    "name": "K",
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": "g0"
+                  },
+                  {
+                    "kind": "parameter",
+                    "id": null,
+                    "name": "V",
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": "g1"
+                  }
+                ],
+                "slot": null
+              }
+            ],
+            "proxy": null,
+            "pageAdapter": null,
+            "disposeMethod": null,
+            "listenerPairs": {}
+          },
+          {
+            "name": "Runes",
+            "id": "flax.core/flutter#type:Runes",
+            "kind": "object",
+            "jsName": null,
+            "asyncIterableFactory": null,
+            "typeArguments": [],
+            "typeParameters": [],
+            "constructors": [
+              {
+                "name": "",
+                "parameters": [
+                  {
+                    "name": "string",
+                    "type": {
+                      "kind": "String",
+                      "id": null,
+                      "name": null,
+                      "nullable": false,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": {
+                        "kind": "String",
+                        "id": null,
+                        "name": null,
+                        "nullable": false,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": null,
+                        "tsArguments": [],
+                        "slot": null
+                      },
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "required": true,
+                    "positional": true,
+                    "defaultCode": "null",
+                    "omitWhenAbsent": false,
+                    "independentWidgetResult": false,
+                    "snapshot": null,
+                    "encodeKind": null,
+                    "scoped": false
+                  }
+                ],
+                "specializations": []
+              }
+            ],
+            "getters": [
+              {
+                "name": "string",
+                "type": {
+                  "kind": "String",
+                  "id": null,
+                  "name": null,
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "String",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "encodeKind": null,
+                "cache": false
+              },
+              {
+                "name": "length",
+                "type": {
+                  "kind": "int",
+                  "id": null,
+                  "name": null,
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "int",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "encodeKind": null,
+                "cache": false
+              },
+              {
+                "name": "iterator",
+                "type": {
+                  "kind": "object",
+                  "id": "flax.core/flutter#type:RuneIterator",
+                  "name": "RuneIterator",
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "object",
+                    "id": "flax.core/flutter#type:RuneIterator",
+                    "name": "RuneIterator",
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "encodeKind": null,
+                "cache": false
+              }
+            ],
+            "setters": [],
+            "staticGetters": [],
+            "staticSetters": [],
+            "methods": [],
+            "widgetInterfaces": [],
+            "supertypes": [
+              "dart:core::Iterable",
+              "dart:core::Object"
+            ],
+            "superTypes": [
+              {
+                "originatingUri": "dart:core",
+                "originatingName": "Runes",
+                "kind": "typeOnly",
+                "id": null,
+                "name": "Runes",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              },
+              {
+                "kind": "iterable",
+                "id": null,
+                "name": null,
+                "nullable": false,
+                "item": {
+                  "kind": "int",
+                  "id": null,
+                  "name": null,
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": null,
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            ],
+            "proxy": null,
+            "pageAdapter": null,
+            "disposeMethod": null,
+            "listenerPairs": {}
+          },
+          {
+            "name": "RuneIterator",
+            "id": "flax.core/flutter#type:RuneIterator",
+            "kind": "object",
+            "jsName": null,
+            "asyncIterableFactory": null,
+            "typeArguments": [],
+            "typeParameters": [],
+            "constructors": [],
+            "getters": [
+              {
+                "name": "current",
+                "type": {
+                  "kind": "int",
+                  "id": null,
+                  "name": null,
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "int",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "encodeKind": null,
+                "cache": false
+              }
+            ],
+            "setters": [],
+            "staticGetters": [],
+            "staticSetters": [],
+            "methods": [
+              {
+                "name": "moveNext",
+                "parameters": [],
+                "result": {
+                  "kind": "bool",
+                  "id": null,
+                  "name": null,
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "bool",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "instance": true,
+                "typeArguments": [],
+                "startsRoute": false,
+                "typeParameters": [],
+                "mustCallSuper": false,
+                "deferredFactory": false,
+                "operator": null
+              }
+            ],
+            "widgetInterfaces": [],
+            "supertypes": [
+              "dart:core::Object",
+              "flax.core/flutter#type:Iterator"
+            ],
+            "superTypes": [
+              {
+                "kind": "object",
+                "id": "flax.core/flutter#type:Iterator",
+                "name": "Iterator",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [
+                  {
+                    "kind": "int",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  }
+                ],
+                "primitiveKinds": [],
+                "declaration": {
+                  "kind": "object",
+                  "id": "flax.core/flutter#type:Iterator",
+                  "name": "Iterator",
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": null,
+                  "tsArguments": [
+                    {
+                      "kind": "int",
+                      "id": null,
+                      "name": null,
+                      "nullable": false,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": null,
+                      "tsArguments": [],
+                      "slot": null
+                    }
+                  ],
+                  "slot": null
+                },
+                "tsArguments": [],
+                "slot": null
+              },
+              {
+                "originatingUri": "dart:core",
+                "originatingName": "RuneIterator",
+                "kind": "typeOnly",
+                "id": null,
+                "name": "RuneIterator",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            ],
+            "proxy": null,
+            "pageAdapter": null,
+            "disposeMethod": null,
+            "listenerPairs": {}
+          },
+          {
+            "name": "Error",
+            "id": "flax.core/flutter#type:Error",
+            "kind": "object",
+            "jsName": null,
+            "asyncIterableFactory": null,
+            "typeArguments": [],
+            "typeParameters": [],
+            "constructors": [
+              {
+                "name": "",
+                "parameters": [],
+                "specializations": []
+              }
+            ],
+            "getters": [
+              {
+                "name": "stackTrace",
+                "type": {
+                  "kind": "object",
+                  "id": "flax.core/flutter#type:StackTrace",
+                  "name": "StackTrace",
+                  "nullable": true,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "object",
+                    "id": "flax.core/flutter#type:StackTrace",
+                    "name": "StackTrace",
+                    "nullable": true,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "encodeKind": null,
+                "cache": false
+              }
+            ],
+            "setters": [],
+            "staticGetters": [],
+            "staticSetters": [],
+            "methods": [
+              {
+                "name": "toString",
+                "parameters": [],
+                "result": {
+                  "kind": "String",
+                  "id": null,
+                  "name": null,
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "String",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "instance": true,
+                "typeArguments": [],
+                "startsRoute": false,
+                "typeParameters": [],
+                "mustCallSuper": false,
+                "deferredFactory": false,
+                "operator": null
+              }
+            ],
+            "widgetInterfaces": [],
+            "supertypes": [
+              "dart:core::Object"
+            ],
+            "superTypes": [
+              {
+                "originatingUri": "dart:core",
+                "originatingName": "Error",
+                "kind": "typeOnly",
+                "id": null,
+                "name": "Error",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            ],
+            "proxy": null,
+            "pageAdapter": null,
+            "disposeMethod": null,
+            "listenerPairs": {}
+          },
+          {
+            "name": "Enum",
+            "id": "flax.core/flutter#type:Enum",
+            "kind": "object",
+            "jsName": null,
+            "asyncIterableFactory": null,
+            "typeArguments": [],
+            "typeParameters": [],
+            "constructors": [],
+            "getters": [
+              {
+                "name": "index",
+                "type": {
+                  "kind": "int",
+                  "id": null,
+                  "name": null,
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "int",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "encodeKind": null,
+                "cache": false
+              }
+            ],
+            "setters": [],
+            "staticGetters": [],
+            "staticSetters": [],
+            "methods": [],
+            "widgetInterfaces": [],
+            "supertypes": [
+              "dart:core::Object"
+            ],
+            "superTypes": [
+              {
+                "originatingUri": "dart:core",
+                "originatingName": "Enum",
+                "kind": "typeOnly",
+                "id": null,
+                "name": "Enum",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            ],
+            "proxy": null,
+            "pageAdapter": null,
+            "disposeMethod": null,
+            "listenerPairs": {}
+          },
+          {
+            "name": "Comparable",
+            "id": "flax.core/flutter#type:Comparable",
+            "kind": "object",
+            "jsName": null,
+            "asyncIterableFactory": null,
+            "typeArguments": [
+              "Object?"
+            ],
+            "typeParameters": [
+              {
+                "name": "T",
+                "bound": {
+                  "kind": "any",
+                  "id": null,
+                  "name": null,
+                  "nullable": true,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": null,
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "defaultType": {
+                  "kind": "any",
+                  "id": null,
+                  "name": null,
+                  "nullable": true,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": null,
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "slot": "g0"
+              }
+            ],
+            "constructors": [],
+            "getters": [],
+            "setters": [],
+            "staticGetters": [],
+            "staticSetters": [],
+            "methods": [
+              {
+                "name": "compareTo",
+                "parameters": [
+                  {
+                    "name": "other",
+                    "type": {
+                      "kind": "any",
+                      "id": null,
+                      "name": null,
+                      "nullable": true,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": {
+                        "kind": "parameter",
+                        "id": null,
+                        "name": "T",
+                        "nullable": false,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": null,
+                        "tsArguments": [],
+                        "slot": "g0"
+                      },
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "required": true,
+                    "positional": true,
+                    "defaultCode": "null",
+                    "omitWhenAbsent": false,
+                    "independentWidgetResult": false,
+                    "snapshot": null,
+                    "encodeKind": null,
+                    "scoped": false
+                  }
+                ],
+                "result": {
+                  "kind": "int",
+                  "id": null,
+                  "name": null,
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "int",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "instance": true,
+                "typeArguments": [],
+                "startsRoute": false,
+                "typeParameters": [],
+                "mustCallSuper": false,
+                "deferredFactory": false,
+                "operator": null
+              }
+            ],
+            "widgetInterfaces": [],
+            "supertypes": [
+              "dart:core::Object"
+            ],
+            "superTypes": [
+              {
+                "originatingUri": "dart:core",
+                "originatingName": "Comparable",
+                "kind": "typeOnly",
+                "id": null,
+                "name": "Comparable",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [
+                  "String",
+                  "int",
+                  "double",
+                  "num"
+                ],
+                "declaration": null,
+                "tsArguments": [
+                  {
+                    "kind": "parameter",
+                    "id": null,
+                    "name": "T",
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": "g0"
+                  }
+                ],
+                "slot": null
+              }
+            ],
+            "proxy": null,
+            "pageAdapter": null,
+            "disposeMethod": null,
+            "listenerPairs": {}
+          },
+          {
+            "name": "Invocation",
+            "id": "flax.core/flutter#type:Invocation",
+            "kind": "object",
+            "jsName": null,
+            "asyncIterableFactory": null,
+            "typeArguments": [],
+            "typeParameters": [],
+            "constructors": [],
+            "getters": [
+              {
+                "name": "memberName",
+                "type": {
+                  "kind": "object",
+                  "id": "flax.core/flutter#type:Symbol",
+                  "name": "Symbol",
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "object",
+                    "id": "flax.core/flutter#type:Symbol",
+                    "name": "Symbol",
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "encodeKind": null,
+                "cache": false
+              },
+              {
+                "name": "positionalArguments",
+                "type": {
+                  "kind": "list",
+                  "id": null,
+                  "name": null,
+                  "nullable": false,
+                  "item": {
+                    "kind": "any",
+                    "id": null,
+                    "name": null,
+                    "nullable": true,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "list",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": {
+                      "kind": "any",
+                      "id": null,
+                      "name": null,
+                      "nullable": true,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": null,
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "encodeKind": null,
+                "cache": false
+              },
+              {
+                "name": "namedArguments",
+                "type": {
+                  "kind": "map",
+                  "id": null,
+                  "name": null,
+                  "nullable": false,
+                  "item": {
+                    "kind": "any",
+                    "id": null,
+                    "name": null,
+                    "nullable": true,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "key": {
+                    "kind": "object",
+                    "id": "flax.core/flutter#type:Symbol",
+                    "name": "Symbol",
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "map",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": {
+                      "kind": "any",
+                      "id": null,
+                      "name": null,
+                      "nullable": true,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": null,
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "key": {
+                      "kind": "object",
+                      "id": "flax.core/flutter#type:Symbol",
+                      "name": "Symbol",
+                      "nullable": false,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": null,
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "encodeKind": null,
+                "cache": false
+              },
+              {
+                "name": "isGetter",
+                "type": {
+                  "kind": "bool",
+                  "id": null,
+                  "name": null,
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "bool",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "encodeKind": null,
+                "cache": false
+              },
+              {
+                "name": "isSetter",
+                "type": {
+                  "kind": "bool",
+                  "id": null,
+                  "name": null,
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "bool",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "encodeKind": null,
+                "cache": false
+              },
+              {
+                "name": "isMethod",
+                "type": {
+                  "kind": "bool",
+                  "id": null,
+                  "name": null,
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "bool",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "encodeKind": null,
+                "cache": false
+              },
+              {
+                "name": "isAccessor",
+                "type": {
+                  "kind": "bool",
+                  "id": null,
+                  "name": null,
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "bool",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "encodeKind": null,
+                "cache": false
+              }
+            ],
+            "setters": [],
+            "staticGetters": [],
+            "staticSetters": [],
+            "methods": [],
+            "widgetInterfaces": [],
+            "supertypes": [
+              "dart:core::Object"
+            ],
+            "superTypes": [
+              {
+                "originatingUri": "dart:core",
+                "originatingName": "Invocation",
+                "kind": "typeOnly",
+                "id": null,
+                "name": "Invocation",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            ],
+            "proxy": null,
+            "pageAdapter": null,
+            "disposeMethod": null,
+            "listenerPairs": {}
+          },
+          {
+            "name": "UriData",
+            "id": "flax.core/flutter#type:UriData",
+            "kind": "object",
+            "jsName": null,
+            "asyncIterableFactory": null,
+            "typeArguments": [],
+            "typeParameters": [],
+            "constructors": [
+              {
+                "name": "fromUri",
+                "parameters": [
+                  {
+                    "name": "uri",
+                    "type": {
+                      "kind": "object",
+                      "id": "flax.core/flutter#type:Uri",
+                      "name": "Uri",
+                      "nullable": false,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": {
+                        "kind": "object",
+                        "id": "flax.core/flutter#type:Uri",
+                        "name": "Uri",
+                        "nullable": false,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": null,
+                        "tsArguments": [],
+                        "slot": null
+                      },
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "required": true,
+                    "positional": true,
+                    "defaultCode": "null",
+                    "omitWhenAbsent": false,
+                    "independentWidgetResult": false,
+                    "snapshot": null,
+                    "encodeKind": null,
+                    "scoped": false
+                  }
+                ],
+                "specializations": []
+              }
+            ],
+            "getters": [
+              {
+                "name": "uri",
+                "type": {
+                  "kind": "object",
+                  "id": "flax.core/flutter#type:Uri",
+                  "name": "Uri",
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "object",
+                    "id": "flax.core/flutter#type:Uri",
+                    "name": "Uri",
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "encodeKind": null,
+                "cache": false
+              },
+              {
+                "name": "mimeType",
+                "type": {
+                  "kind": "String",
+                  "id": null,
+                  "name": null,
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "String",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "encodeKind": null,
+                "cache": false
+              },
+              {
+                "name": "contentText",
+                "type": {
+                  "kind": "String",
+                  "id": null,
+                  "name": null,
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "String",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "encodeKind": null,
+                "cache": false
+              },
+              {
+                "name": "isBase64",
+                "type": {
+                  "kind": "bool",
+                  "id": null,
+                  "name": null,
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "bool",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "encodeKind": null,
+                "cache": false
+              }
+            ],
+            "setters": [],
+            "staticGetters": [],
+            "staticSetters": [],
+            "methods": [],
+            "widgetInterfaces": [],
+            "supertypes": [
+              "dart:core::Object"
+            ],
+            "superTypes": [
+              {
+                "originatingUri": "dart:core",
+                "originatingName": "UriData",
+                "kind": "typeOnly",
+                "id": null,
+                "name": "UriData",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            ],
+            "proxy": null,
+            "pageAdapter": null,
+            "disposeMethod": null,
+            "listenerPairs": {}
+          },
+          {
+            "name": "Deprecated",
+            "id": "flax.core/flutter#type:Deprecated",
+            "kind": "object",
+            "jsName": null,
+            "asyncIterableFactory": null,
+            "typeArguments": [],
+            "typeParameters": [],
+            "constructors": [
+              {
+                "name": "",
+                "parameters": [
+                  {
+                    "name": "message",
+                    "type": {
+                      "kind": "String",
+                      "id": null,
+                      "name": null,
+                      "nullable": true,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": {
+                        "kind": "String",
+                        "id": null,
+                        "name": null,
+                        "nullable": true,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": null,
+                        "tsArguments": [],
+                        "slot": null
+                      },
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "required": true,
+                    "positional": true,
+                    "defaultCode": "null",
+                    "omitWhenAbsent": false,
+                    "independentWidgetResult": false,
+                    "snapshot": null,
+                    "encodeKind": null,
+                    "scoped": false
+                  }
+                ],
+                "specializations": []
+              }
+            ],
+            "getters": [
+              {
+                "name": "message",
+                "type": {
+                  "kind": "String",
+                  "id": null,
+                  "name": null,
+                  "nullable": true,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "String",
+                    "id": null,
+                    "name": null,
+                    "nullable": true,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "encodeKind": null,
+                "cache": false
+              }
+            ],
+            "setters": [],
+            "staticGetters": [],
+            "staticSetters": [],
+            "methods": [],
+            "widgetInterfaces": [],
+            "supertypes": [
+              "dart:core::Object"
+            ],
+            "superTypes": [
+              {
+                "originatingUri": "dart:core",
+                "originatingName": "Deprecated",
+                "kind": "typeOnly",
+                "id": null,
+                "name": "Deprecated",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            ],
+            "proxy": null,
+            "pageAdapter": null,
+            "disposeMethod": null,
+            "listenerPairs": {}
+          },
+          {
+            "name": "Type",
+            "id": "flax.core/flutter#type:Type",
+            "kind": "object",
+            "jsName": null,
+            "asyncIterableFactory": null,
+            "typeArguments": [],
+            "typeParameters": [],
+            "constructors": [],
+            "getters": [],
+            "setters": [],
+            "staticGetters": [],
+            "staticSetters": [],
+            "methods": [
+              {
+                "name": "toString",
+                "parameters": [],
+                "result": {
+                  "kind": "String",
+                  "id": null,
+                  "name": null,
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "String",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "instance": true,
+                "typeArguments": [],
+                "startsRoute": false,
+                "typeParameters": [],
+                "mustCallSuper": false,
+                "deferredFactory": false,
+                "operator": null
+              }
+            ],
+            "widgetInterfaces": [],
+            "supertypes": [
+              "dart:core::Object"
+            ],
+            "superTypes": [
+              {
+                "originatingUri": "dart:core",
+                "originatingName": "Type",
+                "kind": "typeOnly",
+                "id": null,
+                "name": "Type",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            ],
+            "proxy": null,
+            "pageAdapter": null,
+            "disposeMethod": null,
+            "listenerPairs": {}
+          },
+          {
+            "name": "Symbol",
+            "id": "flax.core/flutter#type:Symbol",
+            "kind": "object",
+            "jsName": null,
+            "asyncIterableFactory": null,
+            "typeArguments": [],
+            "typeParameters": [],
+            "constructors": [
+              {
+                "name": "",
+                "parameters": [
+                  {
+                    "name": "name",
+                    "type": {
+                      "kind": "String",
+                      "id": null,
+                      "name": null,
+                      "nullable": false,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": {
+                        "kind": "String",
+                        "id": null,
+                        "name": null,
+                        "nullable": false,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": null,
+                        "tsArguments": [],
+                        "slot": null
+                      },
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "required": true,
+                    "positional": true,
+                    "defaultCode": "null",
+                    "omitWhenAbsent": false,
+                    "independentWidgetResult": false,
+                    "snapshot": null,
+                    "encodeKind": null,
+                    "scoped": false
+                  }
+                ],
+                "specializations": []
+              }
+            ],
+            "getters": [],
+            "setters": [],
+            "staticGetters": [
+              {
+                "name": "empty",
+                "type": {
+                  "kind": "object",
+                  "id": "flax.core/flutter#type:Symbol",
+                  "name": "Symbol",
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": null,
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "encodeKind": null,
+                "cache": false,
+                "id": "flax.core/flutter#read:Symbol.empty"
+              },
+              {
+                "name": "unaryMinus",
+                "type": {
+                  "kind": "object",
+                  "id": "flax.core/flutter#type:Symbol",
+                  "name": "Symbol",
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": null,
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "encodeKind": null,
+                "cache": false,
+                "id": "flax.core/flutter#read:Symbol.unaryMinus"
+              }
+            ],
+            "staticSetters": [],
+            "methods": [
+              {
+                "name": "toString",
+                "parameters": [],
+                "result": {
+                  "kind": "String",
+                  "id": null,
+                  "name": null,
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "String",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "instance": true,
+                "typeArguments": [],
+                "startsRoute": false,
+                "typeParameters": [],
+                "mustCallSuper": false,
+                "deferredFactory": false,
+                "operator": null
+              }
+            ],
+            "widgetInterfaces": [],
+            "supertypes": [
+              "dart:core::Object"
+            ],
+            "superTypes": [
+              {
+                "originatingUri": "dart:core",
+                "originatingName": "Symbol",
+                "kind": "typeOnly",
+                "id": null,
+                "name": "Symbol",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            ],
+            "proxy": null,
+            "pageAdapter": null,
+            "disposeMethod": null,
+            "listenerPairs": {}
+          },
+          {
+            "name": "Record",
+            "id": "flax.core/flutter#type:Record",
+            "kind": "object",
+            "jsName": null,
+            "asyncIterableFactory": null,
+            "typeArguments": [],
+            "typeParameters": [],
+            "constructors": [],
+            "getters": [],
+            "setters": [],
+            "staticGetters": [],
+            "staticSetters": [],
+            "methods": [
+              {
+                "name": "toString",
+                "parameters": [],
+                "result": {
+                  "kind": "String",
+                  "id": null,
+                  "name": null,
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "String",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "instance": true,
+                "typeArguments": [],
+                "startsRoute": false,
+                "typeParameters": [],
+                "mustCallSuper": false,
+                "deferredFactory": false,
+                "operator": null
+              }
+            ],
+            "widgetInterfaces": [],
+            "supertypes": [
+              "dart:core::Object"
+            ],
+            "superTypes": [
+              {
+                "originatingUri": "dart:core",
+                "originatingName": "Record",
+                "kind": "typeOnly",
+                "id": null,
+                "name": "Record",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
+                "slot": null
+              }
+            ],
+            "proxy": null,
+            "pageAdapter": null,
+            "disposeMethod": null,
+            "listenerPairs": {}
+          },
           {
             "name": "Spacer",
             "id": "flax.core/flutter#type:Spacer",
@@ -20299,37 +23454,106 @@
               }
             ],
             "staticSetters": [],
-            "methods": [],
+            "methods": [
+              {
+                "name": "compareTo",
+                "parameters": [
+                  {
+                    "name": "other",
+                    "type": {
+                      "kind": "object",
+                      "id": "flax.core/flutter#type:Duration",
+                      "name": "Duration",
+                      "nullable": false,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": {
+                        "kind": "object",
+                        "id": "flax.core/flutter#type:Duration",
+                        "name": "Duration",
+                        "nullable": false,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": null,
+                        "tsArguments": [],
+                        "slot": null
+                      },
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "required": true,
+                    "positional": true,
+                    "defaultCode": "null",
+                    "omitWhenAbsent": false,
+                    "independentWidgetResult": false,
+                    "snapshot": null,
+                    "encodeKind": null,
+                    "scoped": false
+                  }
+                ],
+                "result": {
+                  "kind": "int",
+                  "id": null,
+                  "name": null,
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "int",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "instance": true,
+                "typeArguments": [],
+                "startsRoute": false,
+                "typeParameters": [],
+                "mustCallSuper": false,
+                "deferredFactory": false,
+                "operator": null
+              }
+            ],
             "widgetInterfaces": [],
             "supertypes": [
               "dart:core::Object",
-              "dart:core::Comparable"
+              "flax.core/flutter#type:Comparable"
             ],
             "superTypes": [
               {
-                "originatingUri": "dart:core",
-                "originatingName": "Duration",
-                "kind": "typeOnly",
-                "id": null,
-                "name": "Duration",
-                "nullable": false,
-                "item": null,
-                "key": null,
-                "parameters": [],
-                "typeParameters": [],
-                "result": null,
-                "typeArguments": [],
-                "dartArguments": [],
-                "primitiveKinds": [],
-                "declaration": null,
-                "tsArguments": [],
-                "slot": null
-              },
-              {
-                "originatingUri": "dart:core",
-                "originatingName": "Comparable",
-                "kind": "typeOnly",
-                "id": null,
+                "kind": "object",
+                "id": "flax.core/flutter#type:Comparable",
                 "name": "Comparable",
                 "nullable": false,
                 "item": null,
@@ -20338,10 +23562,7 @@
                 "typeParameters": [],
                 "result": null,
                 "typeArguments": [],
-                "dartArguments": [],
-                "primitiveKinds": [],
-                "declaration": null,
-                "tsArguments": [
+                "dartArguments": [
                   {
                     "kind": "object",
                     "id": "flax.core/flutter#type:Duration",
@@ -20360,6 +23581,62 @@
                     "slot": null
                   }
                 ],
+                "primitiveKinds": [],
+                "declaration": {
+                  "kind": "object",
+                  "id": "flax.core/flutter#type:Comparable",
+                  "name": "Comparable",
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": null,
+                  "tsArguments": [
+                    {
+                      "kind": "object",
+                      "id": "flax.core/flutter#type:Duration",
+                      "name": "Duration",
+                      "nullable": false,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": null,
+                      "tsArguments": [],
+                      "slot": null
+                    }
+                  ],
+                  "slot": null
+                },
+                "tsArguments": [],
+                "slot": null
+              },
+              {
+                "originatingUri": "dart:core",
+                "originatingName": "Duration",
+                "kind": "typeOnly",
+                "id": null,
+                "name": "Duration",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
                 "slot": null
               }
             ],
@@ -22004,6 +25281,95 @@
                 "operator": null
               },
               {
+                "name": "compareTo",
+                "parameters": [
+                  {
+                    "name": "other",
+                    "type": {
+                      "kind": "object",
+                      "id": "flax.core/flutter#type:DateTime",
+                      "name": "DateTime",
+                      "nullable": false,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": {
+                        "kind": "object",
+                        "id": "flax.core/flutter#type:DateTime",
+                        "name": "DateTime",
+                        "nullable": false,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": null,
+                        "tsArguments": [],
+                        "slot": null
+                      },
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "required": true,
+                    "positional": true,
+                    "defaultCode": "null",
+                    "omitWhenAbsent": false,
+                    "independentWidgetResult": false,
+                    "snapshot": null,
+                    "encodeKind": null,
+                    "scoped": false
+                  }
+                ],
+                "result": {
+                  "kind": "int",
+                  "id": null,
+                  "name": null,
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "int",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "instance": true,
+                "typeArguments": [],
+                "startsRoute": false,
+                "typeParameters": [],
+                "mustCallSuper": false,
+                "deferredFactory": false,
+                "operator": null
+              },
+              {
                 "name": "toIso8601String",
                 "parameters": [],
                 "result": {
@@ -22712,127 +26078,17 @@
                 "mustCallSuper": false,
                 "deferredFactory": false,
                 "operator": null
-              },
-              {
-                "name": "compareTo",
-                "parameters": [
-                  {
-                    "name": "other",
-                    "type": {
-                      "kind": "object",
-                      "id": "flax.core/flutter#type:DateTime",
-                      "name": "DateTime",
-                      "nullable": false,
-                      "item": null,
-                      "key": null,
-                      "parameters": [],
-                      "typeParameters": [],
-                      "result": null,
-                      "typeArguments": [],
-                      "dartArguments": [],
-                      "primitiveKinds": [],
-                      "declaration": {
-                        "kind": "object",
-                        "id": "flax.core/flutter#type:DateTime",
-                        "name": "DateTime",
-                        "nullable": false,
-                        "item": null,
-                        "key": null,
-                        "parameters": [],
-                        "typeParameters": [],
-                        "result": null,
-                        "typeArguments": [],
-                        "dartArguments": [],
-                        "primitiveKinds": [],
-                        "declaration": null,
-                        "tsArguments": [],
-                        "slot": null
-                      },
-                      "tsArguments": [],
-                      "slot": null
-                    },
-                    "required": true,
-                    "positional": true,
-                    "defaultCode": "null",
-                    "omitWhenAbsent": false,
-                    "independentWidgetResult": false,
-                    "snapshot": null,
-                    "encodeKind": null,
-                    "scoped": false
-                  }
-                ],
-                "result": {
-                  "kind": "int",
-                  "id": null,
-                  "name": null,
-                  "nullable": false,
-                  "item": null,
-                  "key": null,
-                  "parameters": [],
-                  "typeParameters": [],
-                  "result": null,
-                  "typeArguments": [],
-                  "dartArguments": [],
-                  "primitiveKinds": [],
-                  "declaration": {
-                    "kind": "int",
-                    "id": null,
-                    "name": null,
-                    "nullable": false,
-                    "item": null,
-                    "key": null,
-                    "parameters": [],
-                    "typeParameters": [],
-                    "result": null,
-                    "typeArguments": [],
-                    "dartArguments": [],
-                    "primitiveKinds": [],
-                    "declaration": null,
-                    "tsArguments": [],
-                    "slot": null
-                  },
-                  "tsArguments": [],
-                  "slot": null
-                },
-                "instance": true,
-                "typeArguments": [],
-                "startsRoute": false,
-                "typeParameters": [],
-                "mustCallSuper": false,
-                "deferredFactory": false,
-                "operator": null
               }
             ],
             "widgetInterfaces": [],
             "supertypes": [
               "dart:core::Object",
-              "dart:core::Comparable"
+              "flax.core/flutter#type:Comparable"
             ],
             "superTypes": [
               {
-                "originatingUri": "dart:core",
-                "originatingName": "DateTime",
-                "kind": "typeOnly",
-                "id": null,
-                "name": "DateTime",
-                "nullable": false,
-                "item": null,
-                "key": null,
-                "parameters": [],
-                "typeParameters": [],
-                "result": null,
-                "typeArguments": [],
-                "dartArguments": [],
-                "primitiveKinds": [],
-                "declaration": null,
-                "tsArguments": [],
-                "slot": null
-              },
-              {
-                "originatingUri": "dart:core",
-                "originatingName": "Comparable",
-                "kind": "typeOnly",
-                "id": null,
+                "kind": "object",
+                "id": "flax.core/flutter#type:Comparable",
                 "name": "Comparable",
                 "nullable": false,
                 "item": null,
@@ -22841,10 +26097,7 @@
                 "typeParameters": [],
                 "result": null,
                 "typeArguments": [],
-                "dartArguments": [],
-                "primitiveKinds": [],
-                "declaration": null,
-                "tsArguments": [
+                "dartArguments": [
                   {
                     "kind": "object",
                     "id": "flax.core/flutter#type:DateTime",
@@ -22863,6 +26116,62 @@
                     "slot": null
                   }
                 ],
+                "primitiveKinds": [],
+                "declaration": {
+                  "kind": "object",
+                  "id": "flax.core/flutter#type:Comparable",
+                  "name": "Comparable",
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": null,
+                  "tsArguments": [
+                    {
+                      "kind": "object",
+                      "id": "flax.core/flutter#type:DateTime",
+                      "name": "DateTime",
+                      "nullable": false,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": null,
+                      "tsArguments": [],
+                      "slot": null
+                    }
+                  ],
+                  "slot": null
+                },
+                "tsArguments": [],
+                "slot": null
+              },
+              {
+                "originatingUri": "dart:core",
+                "originatingName": "DateTime",
+                "kind": "typeOnly",
+                "id": null,
+                "name": "DateTime",
+                "nullable": false,
+                "item": null,
+                "key": null,
+                "parameters": [],
+                "typeParameters": [],
+                "result": null,
+                "typeArguments": [],
+                "dartArguments": [],
+                "primitiveKinds": [],
+                "declaration": null,
+                "tsArguments": [],
                 "slot": null
               }
             ],
@@ -90411,6 +93720,64 @@
             "typeParameters": []
           },
           {
+            "name": "RuneIterator",
+            "id": "flax.core/flutter#type:RuneIterator",
+            "enumNames": [],
+            "enumValueTypes": {},
+            "typeParameters": []
+          },
+          {
+            "name": "Iterator",
+            "id": "flax.core/flutter#type:Iterator",
+            "enumNames": [],
+            "enumValueTypes": {},
+            "typeParameters": [
+              {
+                "name": "E",
+                "bound": {
+                  "kind": "any",
+                  "id": null,
+                  "name": null,
+                  "nullable": true,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": null,
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "defaultType": null,
+                "slot": "g0"
+              }
+            ]
+          },
+          {
+            "name": "StackTrace",
+            "id": "flax.core/flutter#type:StackTrace",
+            "enumNames": [],
+            "enumValueTypes": {},
+            "typeParameters": []
+          },
+          {
+            "name": "Symbol",
+            "id": "flax.core/flutter#type:Symbol",
+            "enumNames": [],
+            "enumValueTypes": {},
+            "typeParameters": []
+          },
+          {
+            "name": "Uri",
+            "id": "flax.core/flutter#type:Uri",
+            "enumNames": [],
+            "enumValueTypes": {},
+            "typeParameters": []
+          },
+          {
             "name": "Key",
             "id": "flax.core/flutter#type:Key",
             "enumNames": [],
@@ -90476,13 +93843,6 @@
                 "slot": "g0"
               }
             ]
-          },
-          {
-            "name": "StackTrace",
-            "id": "flax.core/flutter#type:StackTrace",
-            "enumNames": [],
-            "enumValueTypes": {},
-            "typeParameters": []
           },
           {
             "name": "StreamConsumer",
@@ -90724,15 +94084,38 @@
             ]
           },
           {
-            "name": "DateTime",
-            "id": "flax.core/flutter#type:DateTime",
+            "name": "Comparable",
+            "id": "flax.core/flutter#type:Comparable",
             "enumNames": [],
             "enumValueTypes": {},
-            "typeParameters": []
+            "typeParameters": [
+              {
+                "name": "T",
+                "bound": {
+                  "kind": "any",
+                  "id": null,
+                  "name": null,
+                  "nullable": true,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": null,
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "defaultType": null,
+                "slot": "g0"
+              }
+            ]
           },
           {
-            "name": "Uri",
-            "id": "flax.core/flutter#type:Uri",
+            "name": "DateTime",
+            "id": "flax.core/flutter#type:DateTime",
             "enumNames": [],
             "enumValueTypes": {},
             "typeParameters": []
@@ -91219,6 +94602,13 @@
           {
             "name": "RegExpMatch",
             "id": "flax.core/flutter#type:RegExpMatch",
+            "enumNames": [],
+            "enumValueTypes": {},
+            "typeParameters": []
+          },
+          {
+            "name": "Enum",
+            "id": "flax.core/flutter#type:Enum",
             "enumNames": [],
             "enumValueTypes": {},
             "typeParameters": []
@@ -91987,6 +95377,33 @@
           {
             "sourceIdentity": {
               "kind": "function",
+              "originatingUri": "dart:core",
+              "name": "EnumByName.method.asNameMap"
+            },
+            "wireId": "flax.core/flutter#function:EnumByName.method.asNameMap",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "function",
+              "originatingUri": "dart:core",
+              "name": "EnumByName.method.byName"
+            },
+            "wireId": "flax.core/flutter#function:EnumByName.method.byName",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "function",
+              "originatingUri": "dart:core",
+              "name": "EnumName.getter.name"
+            },
+            "wireId": "flax.core/flutter#function:EnumName.getter.name",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "function",
               "originatingUri": "package:flutter/src/painting/box_fit.dart",
               "name": "applyBoxFit"
             },
@@ -92018,6 +95435,24 @@
               "name": "StackTrace.empty"
             },
             "wireId": "flax.core/flutter#read:StackTrace.empty",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "dart:core",
+              "name": "Symbol.empty"
+            },
+            "wireId": "flax.core/flutter#read:Symbol.empty",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "readonly",
+              "originatingUri": "dart:core",
+              "name": "Symbol.unaryMinus"
+            },
+            "wireId": "flax.core/flutter#read:Symbol.unaryMinus",
             "owner": true
           },
           {
@@ -92636,9 +96071,27 @@
             "sourceIdentity": {
               "kind": "type",
               "originatingUri": "dart:core",
+              "name": "Comparable"
+            },
+            "wireId": "flax.core/flutter#type:Comparable",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "type",
+              "originatingUri": "dart:core",
               "name": "DateTime"
             },
             "wireId": "flax.core/flutter#type:DateTime",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "type",
+              "originatingUri": "dart:core",
+              "name": "Deprecated"
+            },
+            "wireId": "flax.core/flutter#type:Deprecated",
             "owner": true
           },
           {
@@ -92654,9 +96107,45 @@
             "sourceIdentity": {
               "kind": "type",
               "originatingUri": "dart:core",
+              "name": "Enum"
+            },
+            "wireId": "flax.core/flutter#type:Enum",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "type",
+              "originatingUri": "dart:core",
+              "name": "Error"
+            },
+            "wireId": "flax.core/flutter#type:Error",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "type",
+              "originatingUri": "dart:core",
+              "name": "Invocation"
+            },
+            "wireId": "flax.core/flutter#type:Invocation",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "type",
+              "originatingUri": "dart:core",
               "name": "Iterator"
             },
             "wireId": "flax.core/flutter#type:Iterator",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "type",
+              "originatingUri": "dart:core",
+              "name": "MapEntry"
+            },
+            "wireId": "flax.core/flutter#type:MapEntry",
             "owner": true
           },
           {
@@ -92681,6 +96170,15 @@
             "sourceIdentity": {
               "kind": "type",
               "originatingUri": "dart:core",
+              "name": "Record"
+            },
+            "wireId": "flax.core/flutter#type:Record",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "type",
+              "originatingUri": "dart:core",
               "name": "RegExp"
             },
             "wireId": "flax.core/flutter#type:RegExp",
@@ -92693,6 +96191,24 @@
               "name": "RegExpMatch"
             },
             "wireId": "flax.core/flutter#type:RegExpMatch",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "type",
+              "originatingUri": "dart:core",
+              "name": "RuneIterator"
+            },
+            "wireId": "flax.core/flutter#type:RuneIterator",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "type",
+              "originatingUri": "dart:core",
+              "name": "Runes"
+            },
+            "wireId": "flax.core/flutter#type:Runes",
             "owner": true
           },
           {
@@ -92726,9 +96242,36 @@
             "sourceIdentity": {
               "kind": "type",
               "originatingUri": "dart:core",
+              "name": "Symbol"
+            },
+            "wireId": "flax.core/flutter#type:Symbol",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "type",
+              "originatingUri": "dart:core",
+              "name": "Type"
+            },
+            "wireId": "flax.core/flutter#type:Type",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "type",
+              "originatingUri": "dart:core",
               "name": "Uri"
             },
             "wireId": "flax.core/flutter#type:Uri",
+            "owner": true
+          },
+          {
+            "sourceIdentity": {
+              "kind": "type",
+              "originatingUri": "dart:core",
+              "name": "UriData"
+            },
+            "wireId": "flax.core/flutter#type:UriData",
             "owner": true
           },
           {

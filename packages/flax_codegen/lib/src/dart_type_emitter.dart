@@ -53,29 +53,9 @@ extension _DartTypeEmission on FlaxCodegenBindingEmitter {
           for (final ctor in owner.constructors)
             ctor.name: owner.enumOperationId(ctor.name, 'factory'),
         },
-      if (proxy != null)
-        'proxy': {
-          if (owner.kind == 'widget') 'nativeWidget': true,
-          'type': owner.id,
-          'parameters': [
-            for (final p in _proxyConstructor(owner).parameters)
-              {
-                'name': p.name,
-                'required': p.required,
-                'positional': p.positional,
-              },
-          ],
-          'methods': {
-            for (final m in proxy.methods)
-              m.name: _memberParameters(m.parameters),
-          },
-          'getters': proxy.getters.map((g) => g.name).toList(),
-          'setters': proxy.setters.map((g) => g.name).toList(),
-          'contextMembers': _genericContextMembers(proxy),
-          'superMembers': proxy.superMethods,
-        },
     };
-    return '_flaxDefineDartTypes(${owner.name}, ${jsonEncode(owner.id)}, ${jsonEncode(metadata)});';
+    final encoded = jsonEncode(metadata);
+    return '_flaxDefineDartTypes(${owner.name}, ${jsonEncode(owner.id)}, ${proxy == null ? encoded : '{...$encoded, proxy: _${owner.name}Proxy}'});';
   }
 
   Object? _dartTypeDescription(FlaxCodegenTypeRef input) {

@@ -63,7 +63,14 @@ custom Future facade or permanent strong Promise registry is used. Both observer
 identity tables remain weak. Native type metadata uses weak business keys and real VM
 instance types; it never calls a user `runtimeType` override. Opaque Stream errors use a
 conditional metadata peer to preserve the original error and stack trace, including
-values that Dart cannot target with a weak reference.
+values that Dart cannot target with a weak reference. Opaque Core Record references
+similarly retain a weakly indexed value holder through the existing JS handle metadata.
+The public wrapper still peers with the original Dart Record for native calls. Neither
+the numeric ID table nor a global value cache roots the Record; rootless Record/callback
+cycles use the same joint collector. Record views have value semantics and no JS
+subclass state. A live Dart Record does not retain discarded JS views from earlier
+reads. A Dart-held callback that captures a view still retains it through that real
+callback edge.
 
 `Future.wait` and `Stream.fromFutures` preallocate dependency slots for List inputs and
 consume other Iterables once. They retain the same continuation Futures and release
@@ -88,23 +95,45 @@ Element as an ordinary business reference; it does not keep that Element mounted
 ## Shared implementation
 
 The private Dart `_BridgeReference` in `src/ui/references.dart` is used by callback
-handles, escaped Widget configurations and Context references. A finalization token owns
-only detached bridge cleanup, never its Dart referent or a JS facade. Session shutdown
-also indexes this metadata so a collected Widget does not hide a pending cleanup lease.
-Explicit release, finalization and session shutdown enter the same idempotent path. A
-release during a running callback retires the handle immediately and frees it after the
-invocation returns. Session shutdown does not wait for either GC. Released records drop
-their owner association and configuration resources even when business code continues to
-hold the native Widget or Element.
+handles, lazy JS Iterable/Iterator handles, escaped Widget configurations and Context
+references. A finalization token owns only detached bridge cleanup, never its Dart
+referent or a JS facade. Session shutdown also indexes this metadata so a collected
+Widget does not hide a pending cleanup lease. Explicit release, finalization and session
+shutdown enter the same idempotent path. A release during a running callback retires the
+handle immediately and frees it after the invocation returns. Session shutdown does not
+wait for either GC. Released records drop their owner association and configuration
+resources even when business code continues to hold the native Widget or Element.
 
 The internal JS `ReferenceCache` in `runtime/references.ts` is shared by Contexts,
 ordinary objects, Widgets, functions, collections, Streams and errors. A WeakMap records
 typed wrapper handles; weak aliases share one Dart identity. Each checkpoint sweeps at
 most 64 identities and releases the Dart table entry only after the last alias expires.
-Pruning an alias during lookup still leaves its release pending. No strong JS wrapper
-cache, timer or FinalizationRegistry is needed. The cache prunes protocol identities; it
-does not root business values. Conditional engine tracing owns cross-heap reachability,
-including idle and allocation-pressure GC.
+Pruning an alias during lookup still leaves its release pending. The wrapper index adds
+no permanent business root, timer or FinalizationRegistry. The cache prunes protocol
+identities; it does not root business values. Conditional engine tracing owns cross-heap
+reachability, including idle and allocation-pressure GC.
+
+Escaped member callbacks additionally keep a native counterpart per JS function,
+session, signature and module context in a weak-key memo. Its value stays strong while
+the JS key is business-rooted, so a Dart weak reference does not incorrectly lose a
+still-live JS callback. A Dart Map key keeps the JS source alive in the opposite
+direction. With both business roots gone, joint tracing collects the entire cycle.
+UI-owned and call-scoped callbacks keep their distinct ownership and deterministic
+retirement; entering the memo does not by itself make a callback escape. Failed callback
+conversion releases its newly retained source handle immediately. Borrowing an authentic
+Dart Function through an untyped value reuses the same closure and ownership rules; it
+does not grant an arbitrary JS function a Dart signature.
+
+Generic callback and Record view keys include conversion metadata as well as the actual
+Dart Type. Ordinary and call-scoped object arguments must not reuse one another's
+adapters or cached callback. View keys are prepared with the compiled factory, without
+adding a per-class lifetime mechanism.
+
+The lazy Iterable adapter checks each element only when Dart calls `moveNext`. Repeated
+inputs in one conversion reuse the typed adapter through the collection memo.
+Exhaustion, failure, finalization and session close use the same bridge release path.
+Early stop and GC do not invoke generator cleanup or other business code; Dart Iterator
+has no `return`/close contract.
 
 The lifetime mechanism is internal, with no separate package or public lifetime
 configuration. Binding transport uses UI protocol 24 and the unchanged native ABI 2.

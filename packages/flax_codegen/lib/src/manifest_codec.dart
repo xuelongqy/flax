@@ -3686,6 +3686,7 @@ Map<String, Object?> _encodeExtension(FlaxCodegenExtensionModel extension) {
     'typeParameters': declaration['typeParameters'],
     'onType': declaration['target'],
     if (extension.isReference) 'isReference': true,
+    if (extension.isExtensionType) 'isExtensionType': true,
     'members': [
       for (final member in extension.members)
         {
@@ -3710,6 +3711,7 @@ FlaxCodegenExtensionModel? _decodeExtension(
     'onType',
     'members',
     'isReference',
+    'isExtensionType',
   });
   if (object == null || value is! Map) return null;
   final declaration = _decodeTypedef(
@@ -3749,6 +3751,9 @@ FlaxCodegenExtensionModel? _decodeExtension(
   if (declaration == null || members == null) return null;
   return FlaxCodegenExtensionModel(
     name: declaration.name,
+    isExtensionType: value.containsKey('isExtensionType')
+        ? object.requiredBool('isExtensionType') ?? false
+        : false,
     originatingUri: declaration.originatingUri,
     onType: declaration.target,
     isReference: value.containsKey('isReference')

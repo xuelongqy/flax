@@ -152,7 +152,7 @@ values.keepNestedIterableRecords(() => values.nativeNestedIterableRecords);
 values.firstFromIterable(children => children.toArray()[0]!);
 // @ts-expect-error Widget Iterable callback elements retain their type.
 values.keepIterable(() => [42]);
-// @ts-expect-error Finite Widget callbacks do not accept custom JS iterators.
+// Widget Iterables retain a synchronous generator until Dart requests an element.
 values.keepIterable(function* () { yield values.nativeList.get(0); });
 const context = values.current;
 values.echo(context);

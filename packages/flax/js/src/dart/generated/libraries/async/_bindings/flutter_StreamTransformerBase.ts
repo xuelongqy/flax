@@ -4,7 +4,7 @@ import { defineDartCallTypes as _flaxDefineDartCallTypes, defineDartTypes as _fl
 import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
 const _flaxMemberParameters0 = [{"name":"stream","required":true,"positional":true}] as const;
 const _flaxMemberParameters1 = [] as const;
-import { FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/async/_bindings/flutter_StreamTransformer';
 import '@flax/dart/async/_bindings/flutter_StreamTransformer';
 import type * as upstream1 from '@flax/dart/async/_bindings/flutter_Stream';
@@ -14,7 +14,7 @@ export interface StreamTransformerBase<S extends unknown | null = unknown | null
 readonly [_flaxDartMethodCases]?: {cast: _FlaxSignature1<S, T>;};
 }
 defineObject("flax.core/flutter#type:StreamTransformerBase", [], [], _flaxBindingMethods("flax.core/flutter#type:StreamTransformerBase", "object", {"bind":_flaxMemberParameters0,"cast":_flaxMemberParameters1}, {"cast":{"id":"cast","parameters":[]}}), []);
-const _StreamTransformerBaseProxy = {type: "flax.core/flutter#type:StreamTransformerBase", parameters: [], methods: {"bind":_flaxMemberParameters0,"cast":_flaxMemberParameters1}, getters: [], setters: [], contextMembers: ["cast"], superMembers: ["cast"]} as const;
+const _StreamTransformerBaseProxy = {type: "flax.core/flutter#type:StreamTransformerBase", parameters: [], constructors: {"":[]}, methods: {"bind":_flaxMemberParameters0,"cast":_flaxMemberParameters1}, getters: [], setters: [], contextMembers: ["cast"], superMembers: ["cast"]} as const;
 export interface StreamTransformerBase<S extends unknown | null = unknown | null, T extends unknown | null = unknown | null> {
 readonly [_flaxDartTypeValue]: StreamTransformerBase<S, T>;
 readonly [_flaxDartMethodCases]?: {cast: _FlaxSignature2<S, T>;};
@@ -33,7 +33,7 @@ _flaxDefineProxyBase(StreamTransformerBase.prototype, _StreamTransformerBaseProx
 export namespace StreamTransformerBase { export function implement<S extends unknown | null = unknown | null, T extends unknown | null = unknown | null>(args: [], implementation: {bind: ((stream: upstream1.Stream<S>) => (upstream1.Stream<T> | upstream1.Stream<(T | DartInput<T>)>))}): StreamTransformerBase<S, T> {
 return constructProxy(_StreamTransformerBaseProxy, args, implementation) as StreamTransformerBase<S, T>; } }
 _flaxBindInstanceType<StreamTransformerBase<unknown | null, unknown | null>, typeof StreamTransformerBase>(StreamTransformerBase, "flax.core/flutter#type:StreamTransformerBase", ["dart:core::Object","flax.core/flutter#type:StreamTransformer"]);
-_flaxDefineDartTypes(StreamTransformerBase, "flax.core/flutter#type:StreamTransformerBase", {"category":"object","constructors":{},"proxy":{"type":"flax.core/flutter#type:StreamTransformerBase","parameters":[],"methods":{"bind":[{"name":"stream","required":true,"positional":true}],"cast":[]},"getters":[],"setters":[],"contextMembers":["cast"],"superMembers":["cast"]}});
+_flaxDefineDartTypes(StreamTransformerBase, "flax.core/flutter#type:StreamTransformerBase", {...{"category":"object","constructors":{}}, proxy: _StreamTransformerBaseProxy});
 interface _FlaxSignature0 extends _FlaxDartSignature { readonly call: this["arguments"] extends readonly [infer _Selected0, infer _Selected1] ? [_Selected0] extends [unknown | null] ? [_Selected1] extends [unknown | null] ? (abstract new () => StreamTransformerBase<_Selected0, _Selected1>) & {readonly prototype: StreamTransformerBase<_Selected0, _Selected1>;implement(args: readonly [], implementation: Partial<StreamTransformerBase<_Selected0, _Selected1>>): StreamTransformerBase<_Selected0, _Selected1>;} & _FlaxInstanceType<StreamTransformerBase<_Selected0, _Selected1>> & _FlaxDartType<StreamTransformerBase<_Selected0, _Selected1>> : never : never : never; }
 interface _FlaxSignature1<_OwnerType0 extends unknown | null, _OwnerType1 extends unknown | null> extends _FlaxDartSignature { readonly call: this["arguments"] extends readonly [infer _Selected0, infer _Selected1] ? [_Selected0] extends [unknown | null] ? [_Selected1] extends [unknown | null] ? () => upstream0.StreamTransformer<_Selected0, _Selected1> : never : never : never; }
 interface _FlaxSignature2<_OwnerType0 extends unknown | null, _OwnerType1 extends unknown | null> extends _FlaxDartSignature { readonly call: this["arguments"] extends readonly [infer _Selected0, infer _Selected1] ? [_Selected0] extends [unknown | null] ? [_Selected1] extends [unknown | null] ? () => upstream0.StreamTransformer<_Selected0, _Selected1> : never : never : never; }

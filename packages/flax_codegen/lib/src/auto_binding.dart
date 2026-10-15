@@ -89,13 +89,16 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       if (element is ExtensionTypeElement) {
         if (_autoExtensionTypeSupported(scope, element, name, skips)) {
           types.add(name);
-          skips.add(
-            FlaxCodegenSkip(
-              target: name,
-              reason: 'Extension types use their representation and do not expose an independent runtime identity',
-              code: 'extension_type_representation_only',
-            ),
-          );
+          if (!extensions.containsKey(name)) {
+            final view = _autoExtensionSelection(
+              scope: scope,
+              extension: element,
+              name: name,
+              skips: skips,
+              notices: notices,
+            );
+            if (view != null) extensions[name] = view;
+          }
         }
         continue;
       }
@@ -317,12 +320,9 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     }
 
     await _attachAutoWidgetInterfaces(
-      seed: seed,
-      scope: scope,
       classes: classes,
       elements: elements,
       exports: exports,
-      skips: skips,
     );
 
     for (final entry in overrides.classes.entries) {
@@ -560,14 +560,30 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
   bool _isAutoWidgetInterface(InterfaceElement element) {
     if (element is! ClassElement ||
         !element.isAbstract ||
-        element.typeParameters.isNotEmpty ||
         !_isFlutterWidget(element) ||
         element.isBase ||
         element.isFinal ||
         element.isSealed) {
       return false;
     }
-    return element.supertype?.isDartCoreObject ?? false;
+    // Interface inheritance must not turn Flutter lifecycle bases into contracts.
+    for (InterfaceElement current = element; ;) {
+      if (identity(current) ==
+          'package:flutter/src/widgets/framework.dart::Widget') {
+        return false;
+      }
+      final parent = current.supertype;
+      if (parent == null || parent.isDartCoreObject) return true;
+      final declared = parent.element;
+      if (declared is! ClassElement ||
+          !declared.isAbstract ||
+          declared.isBase ||
+          declared.isFinal ||
+          declared.isSealed) {
+        return false;
+      }
+      current = declared;
+    }
   }
 
   Future<FlaxCodegenClassSelection?> _autoWidgetInterfaceSelection(
@@ -627,7 +643,9 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
         setters: setters,
         methods: {...methods, ...?statics.selection?.methods},
       );
-      await native.parse(element.thisType, selection);
+      if (element.typeParameters.isEmpty) {
+        await native.parse(element.thisType, selection);
+      }
       return selection;
     } on StateError catch (error) {
       skips.add(
@@ -830,13 +848,17 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
 
   FlaxCodegenExtensionSelection? _autoExtensionSelection({
     required _FlaxCodegenTypeScope scope,
-    required ExtensionElement extension,
+    required InstanceElement extension,
     required String name,
     required List<FlaxCodegenSkip> skips,
     required List<FlaxCodegenNotice> notices,
   }) {
     try {
-      final receiver = scope.typeRef(extension.extendedType);
+      final receiver = scope.typeRef(
+        extension is ExtensionTypeElement
+            ? extension.representation.type
+            : (extension as ExtensionElement).extendedType,
+      );
       receiver.validate('$name receiver');
     } on StateError catch (error) {
       skips.add(
@@ -859,7 +881,9 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     final staticSetterCandidates = <String>[];
     final staticMethods = <String, List<String>>{};
     final operators = <String, List<String>>{};
-    final generatedNames = <String>{};
+    final generatedNames = <String>{
+      if (extension is ExtensionTypeElement) 'true:view',
+    };
 
     bool visible(ExecutableElement member, String target) {
       if (_autoHidden(member)) {
@@ -1254,17 +1278,15 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
   }
 
   Future<void> _attachAutoWidgetInterfaces({
-    required FlaxCodegenBindingConfig seed,
-    required _FlaxCodegenTypeScope scope,
     required Map<String, FlaxCodegenClassSelection> classes,
     required Map<String, InterfaceElement> elements,
     required Map<String, Element> exports,
-    required List<FlaxCodegenSkip> skips,
   }) async {
     final interfaces = <String, InterfaceElement>{
       for (final entry in classes.entries)
         if (entry.value.kind == 'widgetInterface' &&
-            exports[entry.key] is InterfaceElement)
+            exports[entry.key] is InterfaceElement &&
+            (exports[entry.key] as InterfaceElement).typeParameters.isEmpty)
           entry.key: exports[entry.key]! as InterfaceElement,
     };
     for (final entry in classes.entries.toList()) {
@@ -1291,57 +1313,10 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       final uniqueMatches = matches.toSet().toList()..sort();
       if (uniqueMatches.isEmpty) continue;
 
-      var selection = entry.value;
-      var blocked = false;
-      final constructors = <String, List<String>>{};
-      for (final constructorEntry in selection.constructors.entries) {
-        final constructor = element.constructors.firstWhere(
-          (candidate) =>
-              (candidate.name == 'new' ? '' : candidate.name) ==
-              constructorEntry.key,
-        );
-        final kept = <String>[];
-        for (final name in constructorEntry.value) {
-          final parameter = constructor.formalParameters.firstWhere(
-            (candidate) => candidate.name == name,
-          );
-          final type = scope.tryTypeRef(parameter.type).type;
-          if (type?.containsCallback != true) {
-            kept.add(name);
-            continue;
-          }
-          if (parameter.isRequired || parameter.isPositional) {
-            blocked = true;
-            break;
-          }
-          skips.add(
-            FlaxCodegenSkip(
-              target: '${entry.key}.${constructorEntry.key}.$name',
-              reason: 'Fixed Widget interface inputs exclude callbacks',
-              code: 'widget_interface_callback_input',
-            ),
-          );
-        }
-        if (blocked) break;
-        constructors[constructorEntry.key] = kept;
-      }
-      if (blocked) {
-        skips.add(
-          FlaxCodegenSkip(
-            target: entry.key,
-            reason:
-                'Widget interface requires a fixed-input constructor surface',
-            code: 'widget_interface_constructor_shape',
-          ),
-        );
-        continue;
-      }
-      selection = _copyClassSelection(
-        selection,
-        constructors: constructors,
+      classes[entry.key] = _copyClassSelection(
+        entry.value,
         widgetInterfaces: uniqueMatches,
       );
-      classes[entry.key] = selection;
     }
   }
 

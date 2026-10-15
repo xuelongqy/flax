@@ -320,6 +320,16 @@ extension _MemberCalls on _Session {
         value != null) {
       return collectionResult(value, type);
     }
+    if (type.kind == 'function') {
+      if (value is! Function) throw ArgumentError('Expected a Dart function');
+      final signature = dartTypes
+          .resolve(dartTypes.instanceType(value))
+          .callback;
+      if (signature == null) {
+        throw UnsupportedError('No concrete Dart function signature');
+      }
+      return functionResult(value, signature);
+    }
     if (type.kind == 'callback') return functionResult(value!, type.callback!);
     if (type.kind == 'future') {
       return futureResult(value as Future<Object?>, type.item!);
@@ -533,6 +543,9 @@ extension _MemberCalls on _Session {
   }
 
   FlaxJsValue scalarResult(Object? value, FlaxTypeRef type) {
+    if (type.kind == 'never' && !(value == null && type.nullable)) {
+      throw ArgumentError('Never has no values');
+    }
     if (type.kind == 'void') return const FlaxJsUndefined();
     if (value == null && type.nullable) return const FlaxJsNull();
     if ((type.kind == 'String' || type.kind == 'scalar') && value is String) {

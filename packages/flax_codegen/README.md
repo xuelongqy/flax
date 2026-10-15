@@ -56,18 +56,41 @@ Automatic discovery covers classes and mixins, enums, typedefs, named extensions
 extension types, top-level functions, and top-level values/getters/setters. Extension
 types use their representation without a separate runtime identity. Generic declarations
 use one analyzer-validated shared Dart owner while TypeScript preserves the generic
-relationship. The owner is `Object?` or a publicly routable, fully closed analyzer bound
-such as `Route<dynamic>`. Constructors are selected separately and only when observed
-concrete targets can be distinguished from their direct runtime inputs. Widget
-constructor callbacks with supported Widget and selected interface results reuse
-ordinary result conversion; `BuildContext` is an ordinary callback parameter. Public,
-non-generic, implementable Widget interfaces reuse the existing native interface
-forwarding path. Private, `@internal`, `@visibleForTesting`, and `@protected` API is
-excluded from automatic exposure.
+relationship. A legal default uses `Object?` or an analyzer-resolved bound; declarations
+without a legal default require explicit runtime type arguments. Ordinary object/native
+Widget constructors use checked engine Type handles, including equal-shape and nested
+inputs, without needing distinguishable runtime input domains. Widget constructor
+callbacks with supported Widget and selected interface results reuse ordinary result
+conversion; `BuildContext` is an ordinary callback parameter. Public, non-generic,
+implementable Widget interfaces reuse the existing native interface forwarding path.
+This includes inherited abstract interface contracts and preserves supported required or
+optional constructor callbacks. Public Widget setters use the native member view; writes
+call Dart once and do not imply a Flutter rebuild. Ordinary object business members
+named `kind`, `type`, `ctor` or `args` are available, including through proxies and
+super; transport-field conflicts apply only to actual descriptor representations.
+Private, `@internal`, `@visibleForTesting`, and `@protected` API is excluded from
+automatic exposure.
 
-Ordinary Widget instance getters and methods, including inherited members, use the same
-automatic conversion rules as object members. Selecting an instance API gives the Widget
-a real object view: `ComputedWidget('hello').uppercase` and
+Core supplies ordinary `Type`, `Symbol` and opaque `Record` references. Symbol values
+use Dart's constructor/constants, not JavaScript Symbols; Type and Record are
+non-constructible. Typed Record signatures keep their field projections. Broad Record
+inputs require an existing Dart reference and do not guess a raw JS object's layout.
+`Never` signatures map to TS `never`, preserve throws and reject any returned value;
+`Never?`/`Null` accepts only null. They compose through existing callbacks, Futures,
+Streams and collections and declare the additive `bottom-types` capability. See
+[Core conversion boundaries](../../docs/architecture/bindings.md#bottom-types-and-opaque-core-values).
+
+The
+[consolidated capability audit](../../docs/architecture/binding-coverage-map.md#engine-backed-audit-and-consolidated-backlog)
+separates automatic-selection gaps, missing adapters, current semantic limits and
+Dart/JS language boundaries. The first batch closes automatic Widget setter, interface
+callback/inheritance, opaque Core value and ordinary-object descriptor-name gaps through
+shared conversion paths. Type-token composition and unknown structural adapters remain
+separate engine-facing work.
+
+Ordinary Widget instance getters, setters and methods, including inherited members, use
+the same automatic conversion rules as object members. Selecting an instance API gives
+the Widget a real object view: `ComputedWidget('hello').uppercase` and
 `ComputedWidget('hello').textLength()` call the actual Dart instance. Constructor
 arguments are fixed and typed; these factories do not accept signals or support JS
 `new`/inheritance. Final Widgets and Widgets returned from Dart without a public
@@ -82,24 +105,25 @@ Automatic and explicit naming checks share the same JavaScript identifier rules.
 such as `total_count`, `dollar$value` and `$value` keep their Dart spelling. Reserved
 names are checked at their actual position: `object.eval()` and named arguments such as
 `{arguments: 5}` are valid properties, while a positional parameter named `arguments`
-cannot become a strict-mode JS local. Positional parameter names starting with `_` are
-locals, not private Dart declarations. The single `_` Dart wildcard remains excluded
-from automatic parameters because it creates no readable local for proxy forwarding.
-Public exports and members still exclude private names; generated class namespace
-declarations still require legal binding names. Generated-name conflict checks remain in
-force. The capability inventory uses the same distinctions.
+uses a legal generated JS local and keeps its Dart wire name. Positional parameter names
+starting with `_` are locals, not private Dart declarations. The single `_` Dart
+wildcard remains excluded from automatic parameters because it creates no readable local
+for proxy forwarding. Public exports and members still exclude private names; generated
+class namespace declarations still require legal binding names. Generated-name conflict
+checks remain in force. The capability inventory uses the same distinctions.
 
 Extension types reuse the same conversion in automatic and explicit mode, including
 Widget, selected Widget interfaces, Context, State and supported nested collections,
 Records, callbacks, Futures and Streams. For example,
 `extension type Panel(Widget value) {}` lets `Panel echo(Panel value)` accept and return
-the existing JS Widget reference. There is no JS `Panel` constructor, wrapper, member
-surface or independent `instanceof` token. The underlying type's argument, result and
-lifecycle checks still apply: stale Contexts/States and foreign-session references fail,
-and a Page/Route representation does not add an otherwise unsupported result or callback
-position. Representation-only declarations retain the
-`extension_type_representation_only` boundary diagnostic; unsupported representations
-are skipped with their actual conversion reason.
+the existing JS Widget reference. Selected public members additionally expose
+`Panel.view(widget).value`, using the shared named-extension implementation. This view
+does not create a Dart object or independent `instanceof` token; use its representation
+getter for a Dart input. The underlying type's argument, result and lifecycle checks
+still apply: stale Contexts/States and foreign-session references fail, and a Page/Route
+representation does not add an otherwise unsupported result or callback position.
+Declarations without selected members remain representation-only; unsupported
+representations are skipped with their actual conversion reason.
 
 Run automatic mode from the owning binding package (the package receiving generated
 files). Its `pubspec.yaml` resolves the target Dart package and any Flax providers.
@@ -286,7 +310,7 @@ Generic inputs accept the selected native value or its existing `DartInput<T>` f
 including native Widgets, JS arrays/Maps/Sets and compatible native collection
 references. An incompatible Dart reference cannot be narrowed by copying. Missing, extra
 or invalid business arguments, and unavailable type tokens, still fail. Internal engine
-binding extension 6 is required. No new YAML/CLI configuration is required. See the
+binding extension 7 is required. No new YAML/CLI configuration is required. See the
 [Dart/TypeScript regression](test/dart_types_test.dart),
 [nested target regression](test/nested_generic_constructors_test.dart) and
 [nested input regression](test/nested_constructor_inputs_test.dart).
@@ -387,6 +411,23 @@ Instance getters returning `void`, including inherited generic getters instantia
 `void`, evaluate once in Dart and return JavaScript `undefined`. Exceptions and ordinary
 non-void getter behavior are preserved.
 
+Input `void` uses an ordinary `Object?` Dart local and TypeScript `unknown`; it never
+emits an invalid `as void` cast. Callback arguments declared `void` are delivered as JS
+`undefined`. Required direct inputs still require an argument: `null` is a value and
+`undefined` is omission. Opaque Widget and Set defaults use the same omission dispatch
+as object defaults, retaining upstream private constants and identity. Reserved JS
+parameter spellings use legal generated local names; wire names and named keys stay
+unchanged. Proxy super formals reuse that policy for positional parameters, keeping
+internal peer names distinct while forwarding native defaults by position.
+
+Raw Dart `Function` values are exposed as authenticated callable `DartFunction` views.
+Concrete native layouts use engine Type metadata and existing argument/result
+converters; Dart optional defaults remain Dart's responsibility. A plain JS function
+still needs a selected typed callback signature, and an unbound generic raw Function
+layout fails explicitly. Unknown Record layouts remain opaque native references and can
+roundtrip through a checked generic type; this does not add arbitrary Record field
+construction or public function/Record type-description builders.
+
 Configuration format 2 accepts an optional `typedefs` selection. Public aliases export
 TypeScript `Name<T>` and directional `NameInput<T>` types, preserving alias parameters,
 bounds, defaults, nullability and function-local generic scopes. Supported examples
@@ -416,20 +457,20 @@ Required inputs remain required. The SDK test reports constructor call counts an
 generated sizes.
 
 Widget constructor callbacks share ordinary typed result conversion, including selected
-Widget interfaces, nullable results, supported Futures/Streams and finite
-List/Set/Map/Record aggregates and finite `Iterable<Widget>` values. `BuildContext` is
-an ordinary callback argument. No callback name or public YAML lifecycle marker is
-required. The actual Widget is preserved without an extra result host; configuration
-references and GC own its bridge dependencies. A separately named plugin fixture
-verifies generation, repeated mounting and native configuration reuse. Nullable
-containers and nullable Widget elements share this conversion. An `Iterable<Widget>`
-callback accepts ordinary JS arrays/Sets and compatible Dart List/Set references,
-including concrete Widget types and supported Future/FutureOr/Stream compositions. Its
-signature can be selected automatically; actual lazy/custom iterators are rejected at
-conversion before iteration. Generated TS callback inputs expose arrays, Sets and Dart
-references instead of arbitrary JS iterators. Normal Dart method Iterable views retain
-their existing lazy behavior. See
-[lazy list ownership](../../docs/architecture/lists.md).
+Widget interfaces, nullable results, supported Futures/Streams, List/Set/Map/Record
+aggregates and lazy `Iterable<Widget>` values. `BuildContext` is an ordinary callback
+argument. No callback name or public YAML lifecycle marker is required. The actual
+Widget is preserved without an extra result host; configuration references and GC own
+its bridge dependencies. A separately named plugin fixture verifies generation, repeated
+mounting and native configuration reuse. Nullable containers and nullable Widget
+elements share this conversion. An `Iterable<Widget>` callback accepts ordinary JS
+arrays/Sets and compatible Dart List/Set references, including concrete Widget types and
+supported Future/FutureOr/Stream compositions. Its signature can be selected
+automatically. Custom JS Iterables use one shared typed adapter: Dart requests each next
+value, which is checked on consumption. Native lazy Iterables keep their identity. Early
+termination and GC do not run a JS generator's `return()` or `finally`, because Dart
+Iterator has no close operation. Session close retires bridge handles; application
+cleanup remains explicit. See [lazy list ownership](../../docs/architecture/lists.md).
 
 Direct `BuildContext` inputs are ordinary borrowed references in automatic and explicit
 selection. Functions, constructors, instance/static methods, setters, returned Dart
@@ -463,10 +504,14 @@ Synchronous Flutter builders still reject Promises. Configured Route-producing f
 keep their explicit leases and FlaxNavigatorObserver. See
 [bridge references and GC](../../docs/architecture/references.md).
 
-Nested callbacks in typed List elements and Map values receive per-mount adapters.
-Nested Widget results use independent ownership; Map callback keys are rejected.
-Collection view identifiers include complete signatures and conversion semantics, so
-different declared views of one Dart collection retain their own conversion rules.
+Nested callbacks in typed List elements and Map values receive typed adapters. Nested
+Widget results use independent ownership. Ordinary member callback conversion memoizes a
+native counterpart per JS function, session, signature and binding context, so repeated
+Map key insertion replaces the same key. UI-owned callbacks retain their separate scope.
+Joint tracing preserves either business root and collects an unreachable cross-heap
+cycle; the memo does not become a permanent root. Collection view identifiers include
+complete signatures and conversion semantics, so different declared views of one Dart
+collection retain their own conversion rules.
 
 Expanded/Flexible, Stack/Positioned and alignment selections use the existing generator
 without component-specific adaptation. SDK tests compile inherited parameters,
@@ -602,8 +647,8 @@ current session and mounted state. Compiled Record projections preserve register
 conversions through erased Stream operators and derived collection reads; they add no
 Record identity or per-value ownership. Copied JS Records retain their generated shape
 through a weak association; erased callback returns revalidate each field. Fresh JS
-objects require a concrete Record position. Unknown or ambiguous erased Dart Record
-shapes fail closed instead of guessing a conversion.
+objects require a concrete Record position. Unknown erased Dart Records use the opaque
+Core Record view; ambiguous registered field projections still fail closed.
 
 Protocol 24 supports Future-returning generated callbacks. Incoming JavaScript must
 return a Promise or thenable; generated Dart adapters expose the exact `Future<T>` shape

@@ -30,8 +30,10 @@ enum FlaxCodegenTypeCategory {
   scalar('scalar'),
   data('data'),
   voidType('void'),
+  neverType('never'),
   widget('widget'),
   callback('callback'),
+  nativeFunction('function'),
   iterable('iterable'),
   list('list'),
   map('map'),
@@ -230,6 +232,19 @@ class FlaxCodegenTypeRef {
           item?.kind == 'widget' &&
           item?.id == null &&
           item?.nullable == false);
+  bool get containsNever =>
+      kind == 'never' ||
+      [
+        ?item,
+        ?key,
+        ?result,
+        ?declaration,
+        ...tsArguments,
+        ...dartArguments,
+        ...parameters.map((p) => p.type),
+        ...recordFields.map((f) => f.type),
+        ...typeParameters.expand((p) => [p.bound, ?p.defaultType]),
+      ].any((type) => type.containsNever);
   bool get containsCallback =>
       category == FlaxCodegenTypeCategory.callback ||
       (item?.containsCallback ?? false) ||
@@ -237,9 +252,6 @@ class FlaxCodegenTypeRef {
       recordFields.any((field) => field.type.containsCallback);
 
   void validate(String location) {
-    if (key?.containsCallback ?? false) {
-      throw StateError('Callbacks cannot be Map keys at $location');
-    }
     final named =
         (category == FlaxCodegenTypeCategory.widget && id != null) ||
         (category == FlaxCodegenTypeCategory.stream && id != null) ||
@@ -440,7 +452,6 @@ class FlaxCodegenTypeRef {
         }
         if (type.kind == 'page') return argument && !toDart ? null : position;
         if (type.kind == 'route') return toDart && !argument ? null : position;
-        if (type.kind == 'void' && argument) return position;
         // Lexical type-parameter refs require a bound genericIdentity token.
         if (type.kind == 'parameter') {
           return type.genericIdentity != null ? null : position;
@@ -1391,6 +1402,32 @@ class FlaxCodegenModuleModel {
           ...type.dartArguments,
           ...type.tsArguments,
         ].whereType<FlaxCodegenTypeRef>().any(callback);
+    final valueTypes = <FlaxCodegenTypeRef>[
+      for (final c in classes) ...[
+        for (final ctor in c.constructors)
+          ...ctor.parameters.map((p) => p.type),
+        for (final g in [
+          ...c.getters,
+          ...c.setters,
+          ...c.staticGetters,
+          ...c.staticSetters,
+        ])
+          g.type,
+        for (final m in c.methods) ...[
+          m.result,
+          ...m.parameters.map((p) => p.type),
+        ],
+      ],
+      for (final f in ownedFunctions) ...[
+        f.call.result,
+        ...f.call.parameters.map((p) => p.type),
+      ],
+      for (final g in topLevel?.getters ?? <FlaxCodegenTopLevelGetterModel>[])
+        g.type,
+      for (final s in topLevel?.setters ?? <FlaxCodegenTopLevelSetterModel>[])
+        s.type,
+      for (final a in typedefs) a.target,
+    ];
     final explicitTypes =
         classes.any(
           (c) =>
@@ -1398,34 +1435,34 @@ class FlaxCodegenModuleModel {
               c.methods.any((m) => m.requiresTypeArguments),
         ) ||
         ownedFunctions.any((f) => f.call.requiresTypeArguments) ||
-        <FlaxCodegenTypeRef>[
-          for (final c in classes) ...[
-            for (final ctor in c.constructors)
-              ...ctor.parameters.map((p) => p.type),
-            for (final g in [
-              ...c.getters,
-              ...c.setters,
-              ...c.staticGetters,
-              ...c.staticSetters,
-            ])
-              g.type,
-            for (final m in c.methods) ...[
-              m.result,
-              ...m.parameters.map((p) => p.type),
-            ],
-          ],
-          for (final f in ownedFunctions) ...[
-            f.call.result,
-            ...f.call.parameters.map((p) => p.type),
-          ],
-          for (final g
-              in topLevel?.getters ?? <FlaxCodegenTopLevelGetterModel>[])
-            g.type,
-          for (final s
-              in topLevel?.setters ?? <FlaxCodegenTopLevelSetterModel>[])
-            s.type,
-          for (final a in typedefs) a.target,
-        ].any(callback);
+        valueTypes.any(callback);
+    bool contains(
+      FlaxCodegenTypeRef type,
+      bool Function(FlaxCodegenTypeRef) test,
+    ) =>
+        test(type) ||
+        [
+          ?type.item,
+          ?type.key,
+          ?type.result,
+          ?type.declaration,
+          ...type.parameters.map((p) => p.type),
+          ...type.recordFields.map((f) => f.type),
+          ...type.dartArguments,
+          ...type.tsArguments,
+          ...type.typeParameters.expand((p) => [p.bound, ?p.defaultType]),
+        ].any((child) => contains(child, test));
+    bool uses(bool Function(FlaxCodegenTypeRef) test) =>
+        valueTypes.any((type) => contains(type, test));
+    final nativeFunctions = uses((type) => type.kind == 'function');
+    final lazyIterables = uses((type) => type.kind == 'iterable');
+    final callbackKeys = uses(
+      (type) => type.kind == 'map' && type.key!.containsCallback,
+    );
+    final namedProxyConstructors = classes.any(
+      (c) => c.proxy?.kind == 'extends' && c.constructors.length > 1,
+    );
+    final bottomTypes = valueTypes.any((type) => type.containsNever);
     final genericCalls =
         classes.any((t) => t.methods.any((m) => m.typeParameters.isNotEmpty)) ||
         ownedFunctions.any((f) => f.call.typeParameters.isNotEmpty);
@@ -1441,7 +1478,12 @@ class FlaxCodegenModuleModel {
       'RegExp',
       'Pattern',
     ].any((name) => typeLibraries[name] == 'dart:core');
-    if (!explicitTypes &&
+    if (!nativeFunctions &&
+        !lazyIterables &&
+        !callbackKeys &&
+        !namedProxyConstructors &&
+        !bottomTypes &&
+        !explicitTypes &&
         !genericCalls &&
         !dartTypes &&
         !sharedBytes &&
@@ -1452,6 +1494,11 @@ class FlaxCodegenModuleModel {
     }
     return ({
       ..._requiredCapabilities,
+      if (nativeFunctions) 'native-functions',
+      if (lazyIterables) 'lazy-js-iterables',
+      if (callbackKeys) 'callback-map-keys',
+      if (namedProxyConstructors) 'proxy-super-constructors',
+      if (bottomTypes) 'bottom-types',
       if (explicitTypes) 'explicit-generic-types',
       if (dartTypes) 'dart-type-tokens',
       if (genericCalls) 'generic-call-types',
@@ -1727,6 +1774,8 @@ class FlaxCodegenModuleModel {
           (category != FlaxCodegenClassCategory.object &&
               category != FlaxCodegenClassCategory.enumeration &&
               category != FlaxCodegenClassCategory.stream &&
+              !(category == FlaxCodegenClassCategory.widget &&
+                  type.listenerPairs.isEmpty) &&
               (type.setters.isNotEmpty || type.listenerPairs.isNotEmpty))) {
         throw StateError('Invalid object binding model: ${type.name}');
       }
@@ -1867,17 +1916,6 @@ class FlaxCodegenModuleModel {
                   !proxy.superMethods.contains(member),
             )) {
           throw StateError('Invalid required super accessor: ${type.name}');
-        }
-        if (proxy.kind == 'extends') {
-          for (final getter in proxy.getters) {
-            if (proxy.setters.any((setter) => setter.name == getter.name) &&
-                proxy.hasSuperGetter(getter.name) !=
-                    proxy.hasSuperSetter(getter.name)) {
-              throw StateError(
-                'Mixed abstract/concrete proxy accessors cannot be emitted in TypeScript: ${type.name}.${getter.name}',
-              );
-            }
-          }
         }
         for (final method in proxy.methods) {
           if (!names.add(method.name) ||
@@ -2376,6 +2414,7 @@ class FlaxCodegenExtensionModel {
     required this.originatingUri,
     required this.onType,
     this.isReference = false,
+    this.isExtensionType = false,
     this.typeParameters = const [],
     required this.members,
   });
@@ -2383,6 +2422,7 @@ class FlaxCodegenExtensionModel {
   final String originatingUri;
   final FlaxCodegenTypeRef onType;
   final bool isReference;
+  final bool isExtensionType;
   final List<FlaxCodegenGenericParameter> typeParameters;
   final List<FlaxCodegenExtensionMemberModel> members;
 
@@ -2397,6 +2437,9 @@ class FlaxCodegenExtensionModel {
     final names = <String>{};
     final ids = <String>{};
     for (final member in members) {
+      if (isExtensionType && member.isStatic && member.exportName == 'view') {
+        throw StateError('Conflicting extension-type view entry: $name.view');
+      }
       if (!names.add('${member.isStatic}:${member.exportName}') ||
           !ids.add(member.id) ||
           !flaxCodegenIsMemberName(member.exportName)) {

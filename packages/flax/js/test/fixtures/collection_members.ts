@@ -50,8 +50,8 @@ import {
   sharedNumberElementIterator,
   callbackMemberCell,
 } from '../../../.dart_tool/flax/ui/collection_members_bindings.js';
-import { asDart, getDartType } from '@flax/core/bindings';
-import { Iterator } from '@flax/dart/core';
+import { asDart, getDartType, dartType, dartTypes } from '@flax/core/bindings';
+import { Iterator, MapEntry } from '@flax/dart/core';
 import { SizedBox, registerPage } from '@flax/flutter/widgets';
 
 registerPage('collectionMembers', () => SizedBox());
@@ -248,6 +248,15 @@ Object.assign(globalThis, {
       const map = createInventory();
       map.set('apple', 3);
       mapView(map).set('pear', 4);
+      const Entry = MapEntry.$type(dartTypes.string, dartTypes.int);
+      const mapped = dartType(
+        map,
+        'map',
+        dartTypes.string,
+        dartTypes.int,
+      )((key, value) => Entry(key, value + 1));
+      if (mapped.get('apple') !== 4 || mapped.get('pear') !== 5)
+        throw new Error('Generic MapEntry callback');
       if (
         map.summary !== 'apple:3,pear:4' ||
         map.get('apple') !== 3 ||

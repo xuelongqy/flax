@@ -164,8 +164,20 @@ void main() {
           .where((label) => label == 'modules/registry.js')
           .length;
       expect(moduleHandles, 1);
+      final callbackMemoHelpers = runtime.handleLabels
+          .where(
+            (label) =>
+                label == '__flaxBindings.callbackMemo' ||
+                label == '__flaxBindings.function',
+          )
+          .length;
+      expect(callbackMemoHelpers, 2);
       expect(
-        handles - baseHandles - componentStateHelpers - moduleHandles,
+        handles -
+            baseHandles -
+            componentStateHelpers -
+            moduleHandles -
+            callbackMemoHelpers,
         lessThanOrEqualTo(32),
       );
       expect(calls['__flaxBaseCall'], 1); // Install the base clock origin once.

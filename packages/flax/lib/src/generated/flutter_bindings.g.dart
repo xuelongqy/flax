@@ -180,6 +180,366 @@ const flutterBindings = FlaxBindingModule(
       "end": api.WrapCrossAlignment.end,
       "center": api.WrapCrossAlignment.center,
     }, supertypes: []),
+    FlaxObjectBinding(
+      "flax.core/flutter#type:MapEntry",
+      [
+        FlaxGetter("key", FlaxTypeRef("any", nullable: true), _MapEntry_key),
+        FlaxGetter(
+          "value",
+          FlaxTypeRef("any", nullable: true),
+          _MapEntry_value,
+        ),
+      ],
+      {},
+      constructors: {
+        "": [
+          FlaxParameter(
+            "key",
+            FlaxTypeRef("any", nullable: true),
+            required: true,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "value",
+            FlaxTypeRef("any", nullable: true),
+            required: true,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+        ],
+      },
+      create: _createMapEntry,
+      disposeMethod: null,
+      listenerPairs: {},
+      supertypes: ["dart:core::Object"],
+      setters: [],
+      matches: _isMapEntry,
+      methods: const {},
+    ),
+    FlaxObjectBinding(
+      "flax.core/flutter#type:Runes",
+      [
+        FlaxGetter("string", FlaxTypeRef("String"), _Runes_string),
+        FlaxGetter("length", FlaxTypeRef("int"), _Runes_length),
+        FlaxGetter(
+          "iterator",
+          FlaxTypeRef("object", id: "flax.core/flutter#type:RuneIterator"),
+          _Runes_iterator,
+        ),
+      ],
+      {},
+      constructors: {
+        "": [
+          FlaxParameter(
+            "string",
+            FlaxTypeRef("String"),
+            required: true,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+        ],
+      },
+      create: _createRunes,
+      disposeMethod: null,
+      listenerPairs: {},
+      supertypes: ["dart:core::Iterable", "dart:core::Object"],
+      setters: [],
+      matches: _isRunes,
+      methods: const {},
+      collectionView: FlaxTypeRef(
+        "iterable",
+        item: FlaxTypeRef("int"),
+        collection: FlaxCollectionBinding(
+          "iterable:[int:]",
+          _collection0Create,
+          _collection0Matches,
+          restore: _collection0Restore,
+        ),
+      ),
+    ),
+    FlaxObjectBinding(
+      "flax.core/flutter#type:RuneIterator",
+      [FlaxGetter("current", FlaxTypeRef("int"), _RuneIterator_current)],
+      {
+        "moveNext": FlaxInstanceMethod(
+          [],
+          FlaxTypeRef("bool"),
+          _RuneIterator_moveNext,
+          startsRoute: false,
+        ),
+      },
+      constructors: {},
+      create: _createRuneIterator,
+      disposeMethod: null,
+      listenerPairs: {},
+      supertypes: ["dart:core::Object", "flax.core/flutter#type:Iterator"],
+      setters: [],
+      matches: _isRuneIterator,
+      methods: const {},
+    ),
+    FlaxObjectBinding(
+      "flax.core/flutter#type:Error",
+      [
+        FlaxGetter(
+          "stackTrace",
+          FlaxTypeRef(
+            "object",
+            id: "flax.core/flutter#type:StackTrace",
+            nullable: true,
+          ),
+          _Error_stackTrace,
+        ),
+      ],
+      {
+        "toString": FlaxInstanceMethod(
+          [],
+          FlaxTypeRef("String"),
+          _Error_toString,
+          startsRoute: false,
+        ),
+      },
+      constructors: {"": []},
+      create: _createError,
+      disposeMethod: null,
+      listenerPairs: {},
+      supertypes: ["dart:core::Object"],
+      setters: [],
+      matches: _isError,
+      methods: const {},
+    ),
+    FlaxObjectBinding(
+      "flax.core/flutter#type:Enum",
+      [FlaxGetter("index", FlaxTypeRef("int"), _Enum_index)],
+      {},
+      constructors: {},
+      create: _createEnum,
+      disposeMethod: null,
+      listenerPairs: {},
+      supertypes: ["dart:core::Object"],
+      setters: [],
+      matches: _isEnum,
+      methods: const {},
+    ),
+    FlaxObjectBinding(
+      "flax.core/flutter#type:Comparable",
+      [],
+      {
+        "compareTo": FlaxInstanceMethod(
+          [
+            FlaxParameter(
+              "other",
+              FlaxTypeRef("any", nullable: true),
+              required: true,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+          ],
+          FlaxTypeRef("int"),
+          _Comparable_compareTo,
+          startsRoute: false,
+        ),
+      },
+      constructors: {},
+      create: _createComparable,
+      disposeMethod: null,
+      listenerPairs: {},
+      supertypes: ["dart:core::Object"],
+      setters: [],
+      matches: _isComparable,
+      methods: const {},
+    ),
+    FlaxObjectBinding(
+      "flax.core/flutter#type:Invocation",
+      [
+        FlaxGetter(
+          "memberName",
+          FlaxTypeRef("object", id: "flax.core/flutter#type:Symbol"),
+          _Invocation_memberName,
+        ),
+        FlaxGetter(
+          "positionalArguments",
+          FlaxTypeRef(
+            "list",
+            item: FlaxTypeRef("any", nullable: true),
+            collection: FlaxCollectionBinding(
+              "list:[any?:]",
+              _collection1Create,
+              _collection1Matches,
+            ),
+            iterable: FlaxTypeRef(
+              "iterable",
+              item: FlaxTypeRef("any", nullable: true),
+              collection: FlaxCollectionBinding(
+                "iterable:[any?:]",
+                _collection2Create,
+                _collection2Matches,
+                restore: _collection2Restore,
+              ),
+            ),
+          ),
+          _Invocation_positionalArguments,
+        ),
+        FlaxGetter(
+          "namedArguments",
+          FlaxTypeRef(
+            "map",
+            item: FlaxTypeRef("any", nullable: true),
+            key: FlaxTypeRef("object", id: "flax.core/flutter#type:Symbol"),
+            collection: FlaxCollectionBinding(
+              "map:[any?:][object:flax.core/flutter#type:Symbol]",
+              _collection3Create,
+              _collection3Matches,
+            ),
+          ),
+          _Invocation_namedArguments,
+        ),
+        FlaxGetter("isGetter", FlaxTypeRef("bool"), _Invocation_isGetter),
+        FlaxGetter("isSetter", FlaxTypeRef("bool"), _Invocation_isSetter),
+        FlaxGetter("isMethod", FlaxTypeRef("bool"), _Invocation_isMethod),
+        FlaxGetter("isAccessor", FlaxTypeRef("bool"), _Invocation_isAccessor),
+      ],
+      {},
+      constructors: {},
+      create: _createInvocation,
+      disposeMethod: null,
+      listenerPairs: {},
+      supertypes: ["dart:core::Object"],
+      setters: [],
+      matches: _isInvocation,
+      methods: const {},
+    ),
+    FlaxObjectBinding(
+      "flax.core/flutter#type:UriData",
+      [
+        FlaxGetter(
+          "uri",
+          FlaxTypeRef("object", id: "flax.core/flutter#type:Uri"),
+          _UriData_uri,
+        ),
+        FlaxGetter("mimeType", FlaxTypeRef("String"), _UriData_mimeType),
+        FlaxGetter("contentText", FlaxTypeRef("String"), _UriData_contentText),
+        FlaxGetter("isBase64", FlaxTypeRef("bool"), _UriData_isBase64),
+      ],
+      {},
+      constructors: {
+        "fromUri": [
+          FlaxParameter(
+            "uri",
+            FlaxTypeRef("object", id: "flax.core/flutter#type:Uri"),
+            required: true,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+        ],
+      },
+      create: _createUriData,
+      disposeMethod: null,
+      listenerPairs: {},
+      supertypes: ["dart:core::Object"],
+      setters: [],
+      matches: _isUriData,
+      methods: const {},
+    ),
+    FlaxObjectBinding(
+      "flax.core/flutter#type:Deprecated",
+      [
+        FlaxGetter(
+          "message",
+          FlaxTypeRef("String", nullable: true),
+          _Deprecated_message,
+        ),
+      ],
+      {},
+      constructors: {
+        "": [
+          FlaxParameter(
+            "message",
+            FlaxTypeRef("String", nullable: true),
+            required: true,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+        ],
+      },
+      create: _createDeprecated,
+      disposeMethod: null,
+      listenerPairs: {},
+      supertypes: ["dart:core::Object"],
+      setters: [],
+      matches: _isDeprecated,
+      methods: const {},
+    ),
+    FlaxObjectBinding(
+      "flax.core/flutter#type:Type",
+      [],
+      {
+        "toString": FlaxInstanceMethod(
+          [],
+          FlaxTypeRef("String"),
+          _Type_toString,
+          startsRoute: false,
+        ),
+      },
+      constructors: {},
+      create: _createType,
+      disposeMethod: null,
+      listenerPairs: {},
+      supertypes: ["dart:core::Object"],
+      setters: [],
+      matches: _isType,
+      methods: const {},
+    ),
+    FlaxObjectBinding(
+      "flax.core/flutter#type:Symbol",
+      [],
+      {
+        "toString": FlaxInstanceMethod(
+          [],
+          FlaxTypeRef("String"),
+          _Symbol_toString,
+          startsRoute: false,
+        ),
+      },
+      constructors: {
+        "": [
+          FlaxParameter(
+            "name",
+            FlaxTypeRef("String"),
+            required: true,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+        ],
+      },
+      create: _createSymbol,
+      disposeMethod: null,
+      listenerPairs: {},
+      supertypes: ["dart:core::Object"],
+      setters: [],
+      matches: _isSymbol,
+      methods: const {},
+    ),
+    FlaxObjectBinding(
+      "flax.core/flutter#type:Record",
+      [],
+      {
+        "toString": FlaxInstanceMethod(
+          [],
+          FlaxTypeRef("String"),
+          _Record_toString,
+          startsRoute: false,
+        ),
+      },
+      constructors: {},
+      create: _createRecord,
+      disposeMethod: null,
+      listenerPairs: {},
+      supertypes: ["dart:core::Object"],
+      setters: [],
+      matches: _isRecord,
+      methods: const {},
+    ),
     FlaxWidgetBinding(
       "flax.core/flutter#type:Spacer",
       {
@@ -707,8 +1067,9 @@ const flutterBindings = FlaxBindingModule(
                     item: FlaxTypeRef("any", nullable: true),
                     collection: FlaxCollectionBinding(
                       "iterable:[any?:]",
-                      _collection0Create,
-                      _collection0Matches,
+                      _collection2Create,
+                      _collection2Matches,
+                      restore: _collection2Restore,
                     ),
                   ),
                   _callback11,
@@ -1052,8 +1413,9 @@ const flutterBindings = FlaxBindingModule(
                 item: FlaxTypeRef("any", nullable: true),
                 collection: FlaxCollectionBinding(
                   "iterable:[any?:]",
-                  _collection0Create,
-                  _collection0Matches,
+                  _collection2Create,
+                  _collection2Matches,
+                  restore: _collection2Restore,
                 ),
               ),
             ),
@@ -1071,16 +1433,17 @@ const flutterBindings = FlaxBindingModule(
               item: FlaxTypeRef("any", nullable: true),
               collection: FlaxCollectionBinding(
                 "set:[any?:]",
-                _collection2Create,
-                _collection2Matches,
+                _collection4Create,
+                _collection4Matches,
               ),
               iterable: FlaxTypeRef(
                 "iterable",
                 item: FlaxTypeRef("any", nullable: true),
                 collection: FlaxCollectionBinding(
                   "iterable:[any?:]",
-                  _collection0Create,
-                  _collection0Matches,
+                  _collection2Create,
+                  _collection2Matches,
+                  restore: _collection2Restore,
                 ),
               ),
             ),
@@ -1577,8 +1940,9 @@ const flutterBindings = FlaxBindingModule(
               ),
               collection: FlaxCollectionBinding(
                 "iterable:[future:[any?:]]",
-                _collection3Create,
-                _collection3Matches,
+                _collection5Create,
+                _collection5Matches,
+                restore: _collection5Restore,
               ),
             ),
             required: true,
@@ -1594,8 +1958,9 @@ const flutterBindings = FlaxBindingModule(
               item: FlaxTypeRef("any", nullable: true),
               collection: FlaxCollectionBinding(
                 "iterable:[any?:]",
-                _collection0Create,
-                _collection0Matches,
+                _collection2Create,
+                _collection2Matches,
+                restore: _collection2Restore,
               ),
             ),
             required: true,
@@ -2956,7 +3321,22 @@ const flutterBindings = FlaxBindingModule(
           _Duration_inMicroseconds,
         ),
       ],
-      {},
+      {
+        "compareTo": FlaxInstanceMethod(
+          [
+            FlaxParameter(
+              "other",
+              FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
+              required: true,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+          ],
+          FlaxTypeRef("int"),
+          _Duration_compareTo,
+          startsRoute: false,
+        ),
+      },
       constructors: {
         "": [
           FlaxParameter(
@@ -3006,7 +3386,7 @@ const flutterBindings = FlaxBindingModule(
       create: _createDuration,
       disposeMethod: null,
       listenerPairs: {},
-      supertypes: ["dart:core::Object", "dart:core::Comparable"],
+      supertypes: ["dart:core::Object", "flax.core/flutter#type:Comparable"],
       setters: [],
       matches: _isDuration,
       methods: const {},
@@ -3046,6 +3426,20 @@ const flutterBindings = FlaxBindingModule(
         ),
       ],
       {
+        "compareTo": FlaxInstanceMethod(
+          [
+            FlaxParameter(
+              "other",
+              FlaxTypeRef("object", id: "flax.core/flutter#type:DateTime"),
+              required: true,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+          ],
+          FlaxTypeRef("int"),
+          _DateTime_compareTo,
+          startsRoute: false,
+        ),
         "toIso8601String": FlaxInstanceMethod(
           [],
           FlaxTypeRef("String"),
@@ -3152,20 +3546,6 @@ const flutterBindings = FlaxBindingModule(
           ],
           FlaxTypeRef("bool"),
           _DateTime_isAtSameMomentAs,
-          startsRoute: false,
-        ),
-        "compareTo": FlaxInstanceMethod(
-          [
-            FlaxParameter(
-              "other",
-              FlaxTypeRef("object", id: "flax.core/flutter#type:DateTime"),
-              required: true,
-              defaultValue: null,
-              omitWhenAbsent: false,
-            ),
-          ],
-          FlaxTypeRef("int"),
-          _DateTime_compareTo,
           startsRoute: false,
         ),
       },
@@ -3324,7 +3704,7 @@ const flutterBindings = FlaxBindingModule(
       create: _createDateTime,
       disposeMethod: null,
       listenerPairs: {},
-      supertypes: ["dart:core::Object", "dart:core::Comparable"],
+      supertypes: ["dart:core::Object", "flax.core/flutter#type:Comparable"],
       setters: [],
       matches: _isDateTime,
       methods: const {},
@@ -3345,16 +3725,17 @@ const flutterBindings = FlaxBindingModule(
             item: FlaxTypeRef("String"),
             collection: FlaxCollectionBinding(
               "list:[String:]",
-              _collection4Create,
-              _collection4Matches,
+              _collection6Create,
+              _collection6Matches,
             ),
             iterable: FlaxTypeRef(
               "iterable",
               item: FlaxTypeRef("String"),
               collection: FlaxCollectionBinding(
                 "iterable:[String:]",
-                _collection5Create,
-                _collection5Matches,
+                _collection7Create,
+                _collection7Matches,
+                restore: _collection7Restore,
               ),
             ),
           ),
@@ -3369,8 +3750,8 @@ const flutterBindings = FlaxBindingModule(
             key: FlaxTypeRef("String"),
             collection: FlaxCollectionBinding(
               "map:[String:][String:]",
-              _collection6Create,
-              _collection6Matches,
+              _collection8Create,
+              _collection8Matches,
             ),
           ),
           _Uri_queryParameters,
@@ -3384,24 +3765,25 @@ const flutterBindings = FlaxBindingModule(
               item: FlaxTypeRef("String"),
               collection: FlaxCollectionBinding(
                 "list:[String:]",
-                _collection4Create,
-                _collection4Matches,
+                _collection6Create,
+                _collection6Matches,
               ),
               iterable: FlaxTypeRef(
                 "iterable",
                 item: FlaxTypeRef("String"),
                 collection: FlaxCollectionBinding(
                   "iterable:[String:]",
-                  _collection5Create,
-                  _collection5Matches,
+                  _collection7Create,
+                  _collection7Matches,
+                  restore: _collection7Restore,
                 ),
               ),
             ),
             key: FlaxTypeRef("String"),
             collection: FlaxCollectionBinding(
               "map:[list:[String:]][String:]",
-              _collection7Create,
-              _collection7Matches,
+              _collection9Create,
+              _collection9Matches,
             ),
           ),
           _Uri_queryParametersAll,
@@ -3480,8 +3862,9 @@ const flutterBindings = FlaxBindingModule(
                 item: FlaxTypeRef("String"),
                 collection: FlaxCollectionBinding(
                   "iterable:[String:]",
-                  _collection5Create,
-                  _collection5Matches,
+                  _collection7Create,
+                  _collection7Matches,
+                  restore: _collection7Restore,
                 ),
               ),
               required: false,
@@ -3511,8 +3894,8 @@ const flutterBindings = FlaxBindingModule(
                 key: FlaxTypeRef("String"),
                 collection: FlaxCollectionBinding(
                   "map:[any?:][String:]",
-                  _collection8Create,
-                  _collection8Matches,
+                  _collection10Create,
+                  _collection10Matches,
                 ),
               ),
               required: false,
@@ -3597,8 +3980,9 @@ const flutterBindings = FlaxBindingModule(
               item: FlaxTypeRef("String"),
               collection: FlaxCollectionBinding(
                 "iterable:[String:]",
-                _collection5Create,
-                _collection5Matches,
+                _collection7Create,
+                _collection7Matches,
+                restore: _collection7Restore,
               ),
             ),
             required: false,
@@ -3621,8 +4005,8 @@ const flutterBindings = FlaxBindingModule(
               key: FlaxTypeRef("String"),
               collection: FlaxCollectionBinding(
                 "map:[any?:][String:]",
-                _collection8Create,
-                _collection8Matches,
+                _collection10Create,
+                _collection10Matches,
               ),
             ),
             required: false,
@@ -3661,8 +4045,8 @@ const flutterBindings = FlaxBindingModule(
               key: FlaxTypeRef("String"),
               collection: FlaxCollectionBinding(
                 "map:[any?:][String:]",
-                _collection8Create,
-                _collection8Matches,
+                _collection10Create,
+                _collection10Matches,
               ),
             ),
             required: false,
@@ -3694,8 +4078,8 @@ const flutterBindings = FlaxBindingModule(
               key: FlaxTypeRef("String"),
               collection: FlaxCollectionBinding(
                 "map:[any?:][String:]",
-                _collection8Create,
-                _collection8Matches,
+                _collection10Create,
+                _collection10Matches,
               ),
             ),
             required: false,
@@ -4458,6 +4842,8 @@ const flutterBindings = FlaxBindingModule(
             FlaxTypeRef(
               "object",
               id: "flax.core/flutter#type:StreamTransformer",
+              dartType: FlaxDartTypes
+                  .typeOf<api3.StreamTransformer<Object?, Object?>>,
             ),
             _callback74,
             id: "callback:<RS:any?:=any?:,RT:any?:=any?:>()->object:flax.core/flutter#type:StreamTransformer<Object?,Object?><any?:,any?:>",
@@ -4585,6 +4971,8 @@ const flutterBindings = FlaxBindingModule(
             FlaxTypeRef(
               "object",
               id: "flax.core/flutter#type:StreamTransformer",
+              dartType: FlaxDartTypes
+                  .typeOf<api3.StreamTransformer<Object?, Object?>>,
             ),
             _callback76,
             id: "callback:<RS:any?:=any?:,RT:any?:=any?:>()->object:flax.core/flutter#type:StreamTransformer<Object?,Object?><any?:,any?:>",
@@ -5095,8 +5483,9 @@ const flutterBindings = FlaxBindingModule(
                     item: FlaxTypeRef("any", nullable: true),
                     collection: FlaxCollectionBinding(
                       "iterable:[any?:]",
-                      _collection0Create,
-                      _collection0Matches,
+                      _collection2Create,
+                      _collection2Matches,
+                      restore: _collection2Restore,
                     ),
                   ),
                   _callback88,
@@ -5440,8 +5829,9 @@ const flutterBindings = FlaxBindingModule(
                 item: FlaxTypeRef("any", nullable: true),
                 collection: FlaxCollectionBinding(
                   "iterable:[any?:]",
-                  _collection0Create,
-                  _collection0Matches,
+                  _collection2Create,
+                  _collection2Matches,
+                  restore: _collection2Restore,
                 ),
               ),
             ),
@@ -5459,16 +5849,17 @@ const flutterBindings = FlaxBindingModule(
               item: FlaxTypeRef("any", nullable: true),
               collection: FlaxCollectionBinding(
                 "set:[any?:]",
-                _collection2Create,
-                _collection2Matches,
+                _collection4Create,
+                _collection4Matches,
               ),
               iterable: FlaxTypeRef(
                 "iterable",
                 item: FlaxTypeRef("any", nullable: true),
                 collection: FlaxCollectionBinding(
                   "iterable:[any?:]",
-                  _collection0Create,
-                  _collection0Matches,
+                  _collection2Create,
+                  _collection2Matches,
+                  restore: _collection2Restore,
                 ),
               ),
             ),
@@ -6200,8 +6591,8 @@ const flutterBindings = FlaxBindingModule(
                 ),
                 collection: FlaxCollectionBinding(
                   "set:[enum:flax.core/flutter#type:WidgetState]",
-                  _collection9Create,
-                  _collection9Matches,
+                  _collection11Create,
+                  _collection11Matches,
                 ),
                 iterable: FlaxTypeRef(
                   "iterable",
@@ -6211,8 +6602,9 @@ const flutterBindings = FlaxBindingModule(
                   ),
                   collection: FlaxCollectionBinding(
                     "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                    _collection10Create,
-                    _collection10Matches,
+                    _collection12Create,
+                    _collection12Matches,
+                    restore: _collection12Restore,
                   ),
                 ),
               ),
@@ -8354,17 +8746,18 @@ const flutterBindings = FlaxBindingModule(
               item: FlaxTypeRef("widget"),
               collection: FlaxCollectionBinding(
                 "list:[widget:]",
-                _collection11Create,
-                _collection11Matches,
-                snapshot: _collection11Snapshot,
+                _collection13Create,
+                _collection13Matches,
+                snapshot: _collection13Snapshot,
               ),
               iterable: FlaxTypeRef(
                 "iterable",
                 item: FlaxTypeRef("widget"),
                 collection: FlaxCollectionBinding(
                   "iterable:[widget:]",
-                  _collection12Create,
-                  _collection12Matches,
+                  _collection14Create,
+                  _collection14Matches,
+                  restore: _collection14Restore,
                 ),
               ),
             ),
@@ -9371,8 +9764,8 @@ const flutterBindings = FlaxBindingModule(
               ),
               collection: FlaxCollectionBinding(
                 "list:[page:flax.core/flutter#type:Page<Object?><any?:>]",
-                _collection13Create,
-                _collection13Matches,
+                _collection15Create,
+                _collection15Matches,
               ),
               iterable: FlaxTypeRef(
                 "iterable",
@@ -9383,8 +9776,9 @@ const flutterBindings = FlaxBindingModule(
                 ),
                 collection: FlaxCollectionBinding(
                   "iterable:[page:flax.core/flutter#type:Page<Object?><any?:>]",
-                  _collection14Create,
-                  _collection14Matches,
+                  _collection16Create,
+                  _collection16Matches,
+                  restore: _collection16Restore,
                 ),
               ),
             ),
@@ -9475,8 +9869,8 @@ const flutterBindings = FlaxBindingModule(
               ),
               collection: FlaxCollectionBinding(
                 "list:[object:flax.core/flutter#type:NavigatorObserver]",
-                _collection15Create,
-                _collection15Matches,
+                _collection17Create,
+                _collection17Matches,
               ),
               iterable: FlaxTypeRef(
                 "iterable",
@@ -9486,8 +9880,9 @@ const flutterBindings = FlaxBindingModule(
                 ),
                 collection: FlaxCollectionBinding(
                   "iterable:[object:flax.core/flutter#type:NavigatorObserver]",
-                  _collection16Create,
-                  _collection16Matches,
+                  _collection18Create,
+                  _collection18Matches,
+                  restore: _collection18Restore,
                 ),
               ),
             ),
@@ -10423,6 +10818,7 @@ const flutterBindings = FlaxBindingModule(
             ),
           ],
         },
+        setters: [],
         create: _createText,
         matches: _isText,
         supertypes: [
@@ -10571,17 +10967,18 @@ const flutterBindings = FlaxBindingModule(
               item: FlaxTypeRef("widget"),
               collection: FlaxCollectionBinding(
                 "list:[widget:]",
-                _collection11Create,
-                _collection11Matches,
-                snapshot: _collection11Snapshot,
+                _collection13Create,
+                _collection13Matches,
+                snapshot: _collection13Snapshot,
               ),
               iterable: FlaxTypeRef(
                 "iterable",
                 item: FlaxTypeRef("widget"),
                 collection: FlaxCollectionBinding(
                   "iterable:[widget:]",
-                  _collection12Create,
-                  _collection12Matches,
+                  _collection14Create,
+                  _collection14Matches,
+                  restore: _collection14Restore,
                 ),
               ),
             ),
@@ -10678,17 +11075,18 @@ const flutterBindings = FlaxBindingModule(
               item: FlaxTypeRef("widget"),
               collection: FlaxCollectionBinding(
                 "list:[widget:]",
-                _collection11Create,
-                _collection11Matches,
-                snapshot: _collection11Snapshot,
+                _collection13Create,
+                _collection13Matches,
+                snapshot: _collection13Snapshot,
               ),
               iterable: FlaxTypeRef(
                 "iterable",
                 item: FlaxTypeRef("widget"),
                 collection: FlaxCollectionBinding(
                   "iterable:[widget:]",
-                  _collection12Create,
-                  _collection12Matches,
+                  _collection14Create,
+                  _collection14Matches,
+                  restore: _collection14Restore,
                 ),
               ),
             ),
@@ -11926,8 +12324,9 @@ const flutterBindings = FlaxBindingModule(
             item: FlaxTypeRef("object", id: "flax.core/flutter#type:Match"),
             collection: FlaxCollectionBinding(
               "iterable:[object:flax.core/flutter#type:Match]",
-              _collection17Create,
-              _collection17Matches,
+              _collection19Create,
+              _collection19Matches,
+              restore: _collection19Restore,
             ),
           ),
           _Pattern_allMatches,
@@ -12006,16 +12405,17 @@ const flutterBindings = FlaxBindingModule(
                 item: FlaxTypeRef("int"),
                 collection: FlaxCollectionBinding(
                   "list:[int:]",
-                  _collection18Create,
-                  _collection18Matches,
+                  _collection20Create,
+                  _collection20Matches,
                 ),
                 iterable: FlaxTypeRef(
                   "iterable",
                   item: FlaxTypeRef("int"),
                   collection: FlaxCollectionBinding(
                     "iterable:[int:]",
-                    _collection19Create,
-                    _collection19Matches,
+                    _collection0Create,
+                    _collection0Matches,
+                    restore: _collection0Restore,
                   ),
                 ),
               ),
@@ -12029,16 +12429,17 @@ const flutterBindings = FlaxBindingModule(
             item: FlaxTypeRef("String", nullable: true),
             collection: FlaxCollectionBinding(
               "list:[String?:]",
-              _collection20Create,
-              _collection20Matches,
+              _collection21Create,
+              _collection21Matches,
             ),
             iterable: FlaxTypeRef(
               "iterable",
               item: FlaxTypeRef("String", nullable: true),
               collection: FlaxCollectionBinding(
                 "iterable:[String?:]",
-                _collection21Create,
-                _collection21Matches,
+                _collection22Create,
+                _collection22Matches,
+                restore: _collection22Restore,
               ),
             ),
           ),
@@ -12074,8 +12475,9 @@ const flutterBindings = FlaxBindingModule(
             item: FlaxTypeRef("String"),
             collection: FlaxCollectionBinding(
               "iterable:[String:]",
-              _collection5Create,
-              _collection5Matches,
+              _collection7Create,
+              _collection7Matches,
+              restore: _collection7Restore,
             ),
           ),
           _RegExpMatch_groupNames,
@@ -12105,16 +12507,17 @@ const flutterBindings = FlaxBindingModule(
                 item: FlaxTypeRef("int"),
                 collection: FlaxCollectionBinding(
                   "list:[int:]",
-                  _collection18Create,
-                  _collection18Matches,
+                  _collection20Create,
+                  _collection20Matches,
                 ),
                 iterable: FlaxTypeRef(
                   "iterable",
                   item: FlaxTypeRef("int"),
                   collection: FlaxCollectionBinding(
                     "iterable:[int:]",
-                    _collection19Create,
-                    _collection19Matches,
+                    _collection0Create,
+                    _collection0Matches,
+                    restore: _collection0Restore,
                   ),
                 ),
               ),
@@ -12128,16 +12531,17 @@ const flutterBindings = FlaxBindingModule(
             item: FlaxTypeRef("String", nullable: true),
             collection: FlaxCollectionBinding(
               "list:[String?:]",
-              _collection20Create,
-              _collection20Matches,
+              _collection21Create,
+              _collection21Matches,
             ),
             iterable: FlaxTypeRef(
               "iterable",
               item: FlaxTypeRef("String", nullable: true),
               collection: FlaxCollectionBinding(
                 "iterable:[String?:]",
-                _collection21Create,
-                _collection21Matches,
+                _collection22Create,
+                _collection22Matches,
+                restore: _collection22Restore,
               ),
             ),
           ),
@@ -12207,8 +12611,9 @@ const flutterBindings = FlaxBindingModule(
             ),
             collection: FlaxCollectionBinding(
               "iterable:[object:flax.core/flutter#type:RegExpMatch]",
-              _collection22Create,
-              _collection22Matches,
+              _collection23Create,
+              _collection23Matches,
+              restore: _collection23Restore,
             ),
           ),
           _RegExp_allMatches,
@@ -12920,17 +13325,18 @@ const flutterBindings = FlaxBindingModule(
               item: FlaxTypeRef("widget"),
               collection: FlaxCollectionBinding(
                 "list:[widget:]",
-                _collection11Create,
-                _collection11Matches,
-                snapshot: _collection11Snapshot,
+                _collection13Create,
+                _collection13Matches,
+                snapshot: _collection13Snapshot,
               ),
               iterable: FlaxTypeRef(
                 "iterable",
                 item: FlaxTypeRef("widget"),
                 collection: FlaxCollectionBinding(
                   "iterable:[widget:]",
-                  _collection12Create,
-                  _collection12Matches,
+                  _collection14Create,
+                  _collection14Matches,
+                  restore: _collection14Restore,
                 ),
               ),
             ),
@@ -13407,17 +13813,18 @@ const flutterBindings = FlaxBindingModule(
               item: FlaxTypeRef("widget"),
               collection: FlaxCollectionBinding(
                 "list:[widget:]",
-                _collection11Create,
-                _collection11Matches,
-                snapshot: _collection11Snapshot,
+                _collection13Create,
+                _collection13Matches,
+                snapshot: _collection13Snapshot,
               ),
               iterable: FlaxTypeRef(
                 "iterable",
                 item: FlaxTypeRef("widget"),
                 collection: FlaxCollectionBinding(
                   "iterable:[widget:]",
-                  _collection12Create,
-                  _collection12Matches,
+                  _collection14Create,
+                  _collection14Matches,
+                  restore: _collection14Restore,
                 ),
               ),
             ),
@@ -13966,6 +14373,18 @@ const flutterBindings = FlaxBindingModule(
       _function_applyBoxFit,
     ),
     FlaxFunctionBinding(
+      "flax.core/flutter#read:Symbol.empty",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:Symbol"),
+      _Symbol_static_get_empty,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#read:Symbol.unaryMinus",
+      [],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:Symbol"),
+      _Symbol_static_get_unaryMinus,
+    ),
+    FlaxFunctionBinding(
       "flax.core/flutter#function:Stream.castFrom",
       [
         FlaxParameter(
@@ -13996,7 +14415,7 @@ const flutterBindings = FlaxBindingModule(
         ),
       ),
       _Stream_castFrom,
-      genericFactory: _flaxGenericFunction1,
+      genericFactory: _flaxGenericFunction3,
     ),
     FlaxFunctionBinding(
       "flax.core/flutter#read:Duration.zero",
@@ -14173,14 +14592,14 @@ const flutterBindings = FlaxBindingModule(
       ],
       FlaxTypeRef("object", id: "flax.core/flutter#type:StreamTransformer"),
       _StreamTransformer_castFrom,
-      genericFactory: _flaxGenericFunction13,
+      genericFactory: _flaxGenericFunction15,
     ),
     FlaxFunctionBinding(
       "flax.core/flutter#function:WidgetStateProperty.resolveWith",
       const [],
       const FlaxTypeRef("any"),
       _flaxDeferredRequiresType,
-      genericFactory: _flaxGenericFunction14,
+      genericFactory: _flaxGenericFunction16,
     ),
     FlaxFunctionBinding(
       "flax.core/flutter#read:Curves.linear",
@@ -14558,6 +14977,84 @@ const flutterBindings = FlaxBindingModule(
       FlaxTypeRef("String"),
       _RegExp_escape,
     ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#function:EnumByName.method.asNameMap",
+      [
+        FlaxParameter(
+          "receiver",
+          FlaxTypeRef(
+            "iterable",
+            item: FlaxTypeRef("object", id: "flax.core/flutter#type:Enum"),
+            collection: FlaxCollectionBinding(
+              "iterable:[object:flax.core/flutter#type:Enum]",
+              _collection24Create,
+              _collection24Matches,
+              restore: _collection24Restore,
+            ),
+          ),
+          required: true,
+          defaultValue: null,
+          omitWhenAbsent: false,
+        ),
+      ],
+      FlaxTypeRef(
+        "map",
+        item: FlaxTypeRef("object", id: "flax.core/flutter#type:Enum"),
+        key: FlaxTypeRef("String"),
+        collection: FlaxCollectionBinding(
+          "map:[object:flax.core/flutter#type:Enum][String:]",
+          _collection25Create,
+          _collection25Matches,
+        ),
+      ),
+      _extension_EnumByName_method_asNameMap,
+      genericFactory: _flaxGenericFunction74,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#function:EnumByName.method.byName",
+      [
+        FlaxParameter(
+          "receiver",
+          FlaxTypeRef(
+            "iterable",
+            item: FlaxTypeRef("object", id: "flax.core/flutter#type:Enum"),
+            collection: FlaxCollectionBinding(
+              "iterable:[object:flax.core/flutter#type:Enum]",
+              _collection24Create,
+              _collection24Matches,
+              restore: _collection24Restore,
+            ),
+          ),
+          required: true,
+          defaultValue: null,
+          omitWhenAbsent: false,
+        ),
+        FlaxParameter(
+          "name",
+          FlaxTypeRef("String"),
+          required: true,
+          defaultValue: null,
+          omitWhenAbsent: false,
+        ),
+      ],
+      FlaxTypeRef("object", id: "flax.core/flutter#type:Enum"),
+      _extension_EnumByName_method_byName,
+      genericFactory: _flaxGenericFunction75,
+    ),
+    FlaxFunctionBinding(
+      "flax.core/flutter#function:EnumName.getter.name",
+      [
+        FlaxParameter(
+          "receiver",
+          FlaxTypeRef("object", id: "flax.core/flutter#type:Enum"),
+          required: true,
+          defaultValue: null,
+          omitWhenAbsent: false,
+        ),
+      ],
+      FlaxTypeRef("String"),
+      _extension_EnumName_getter_name,
+    ),
   ],
   moduleId: "flax.core/flutter",
   dependencyModules: [],
@@ -14568,12 +15065,61 @@ const flutterBindings = FlaxBindingModule(
     "generic-call-types",
     "generic-member-views",
     "instance-checks",
+    "lazy-js-iterables",
     "native-core-inputs",
     "native-widget-proxies",
   ],
   stateVariants: [],
   records: _recordTypes,
   dartTypes: [
+    FlaxDartClassTemplate(
+      "flax.core/flutter#type:MapEntry",
+      api1.MapEntry<Object?, Object?>,
+      "object",
+      typeFactory: _flaxType_MapEntry,
+      factory: _flaxClass_MapEntry,
+    ),
+    FlaxDartClassTemplate("flax.core/flutter#type:Runes", api1.Runes, "object"),
+    FlaxDartClassTemplate(
+      "flax.core/flutter#type:RuneIterator",
+      api1.RuneIterator,
+      "object",
+    ),
+    FlaxDartClassTemplate("flax.core/flutter#type:Error", api1.Error, "object"),
+    FlaxDartClassTemplate("flax.core/flutter#type:Enum", api1.Enum, "object"),
+    FlaxDartClassTemplate(
+      "flax.core/flutter#type:Comparable",
+      api1.Comparable<Object?>,
+      "object",
+      typeFactory: _flaxType_Comparable,
+      factory: _flaxClass_Comparable,
+    ),
+    FlaxDartClassTemplate(
+      "flax.core/flutter#type:Invocation",
+      api1.Invocation,
+      "object",
+    ),
+    FlaxDartClassTemplate(
+      "flax.core/flutter#type:UriData",
+      api1.UriData,
+      "object",
+    ),
+    FlaxDartClassTemplate(
+      "flax.core/flutter#type:Deprecated",
+      api1.Deprecated,
+      "object",
+    ),
+    FlaxDartClassTemplate("flax.core/flutter#type:Type", api1.Type, "object"),
+    FlaxDartClassTemplate(
+      "flax.core/flutter#type:Symbol",
+      api1.Symbol,
+      "object",
+    ),
+    FlaxDartClassTemplate(
+      "flax.core/flutter#type:Record",
+      api1.Record,
+      "object",
+    ),
     FlaxDartClassTemplate(
       "flax.core/flutter#type:Spacer",
       api.Spacer,
@@ -15357,6 +15903,20 @@ const flutterBindings = FlaxBindingModule(
   ],
   dartShapes: _flaxDartShapes,
 );
+Object? _extension_EnumByName_method_asNameMap(Map<String, Object?> values) {
+  return api1.EnumByName<api1.Enum>(values["receiver"] as Iterable<api1.Enum>)
+      .asNameMap();
+}
+
+Object? _extension_EnumByName_method_byName(Map<String, Object?> values) {
+  return api1.EnumByName<api1.Enum>(values["receiver"] as Iterable<api1.Enum>)
+      .byName(values["name"] as String);
+}
+
+Object? _extension_EnumName_getter_name(Map<String, Object?> values) {
+  return api1.EnumName(values["receiver"] as api1.Enum).name;
+}
+
 Object? _function_applyBoxFit(Map<String, Object?> values) {
   return api.applyBoxFit(
     values["fit"] as api.BoxFit,
@@ -15368,6 +15928,143 @@ Object? _function_applyBoxFit(Map<String, Object?> values) {
 Object? _read_defaultTargetPlatform(Map<String, Object?> values) =>
     api8.defaultTargetPlatform;
 Object? _read_kIsWeb(Map<String, Object?> values) => api8.kIsWeb;
+bool _isMapEntry(Object value) => value is api1.MapEntry<Object?, Object?>;
+Object? _MapEntry_key(Object value) =>
+    (value as api1.MapEntry<Object?, Object?>).key;
+Object? _MapEntry_value(Object value) =>
+    (value as api1.MapEntry<Object?, Object?>).value;
+Object _createMapEntry(String ctor, Map<String, Object?> values) {
+  switch (ctor) {
+    case "":
+      return api1.MapEntry<Object?, Object?>(values["key"], values["value"]);
+    default:
+      throw ArgumentError('Unknown generated constructor');
+  }
+}
+
+bool _isRunes(Object value) => value is api1.Runes;
+Object? _Runes_string(Object value) => (value as api1.Runes).string;
+Object? _Runes_length(Object value) => (value as api1.Runes).length;
+Object? _Runes_iterator(Object value) => (value as api1.Runes).iterator;
+Object _createRunes(String ctor, Map<String, Object?> values) {
+  switch (ctor) {
+    case "":
+      return api1.Runes(values["string"] as String);
+    default:
+      throw ArgumentError('Unknown generated constructor');
+  }
+}
+
+bool _isRuneIterator(Object value) => value is api1.RuneIterator;
+Object? _RuneIterator_current(Object value) =>
+    (value as api1.RuneIterator).current;
+Object? _RuneIterator_moveNext(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.RuneIterator).moveNext();
+}
+
+Object _createRuneIterator(String ctor, Map<String, Object?> values) =>
+    throw ArgumentError('Abstract object has no constructor');
+bool _isError(Object value) => value is api1.Error;
+Object? _Error_stackTrace(Object value) => (value as api1.Error).stackTrace;
+Object? _Error_toString(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.Error).toString();
+}
+
+Object _createError(String ctor, Map<String, Object?> values) {
+  switch (ctor) {
+    case "":
+      return api1.Error();
+    default:
+      throw ArgumentError('Unknown generated constructor');
+  }
+}
+
+bool _isEnum(Object value) => value is api1.Enum;
+Object? _Enum_index(Object value) => (value as api1.Enum).index;
+Object _createEnum(String ctor, Map<String, Object?> values) =>
+    throw ArgumentError('Abstract object has no constructor');
+bool _isComparable(Object value) => value is api1.Comparable<Object?>;
+Object? _Comparable_compareTo(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.Comparable<Object?>).compareTo(values["other"]);
+}
+
+Object _createComparable(String ctor, Map<String, Object?> values) =>
+    throw ArgumentError('Abstract object has no constructor');
+bool _isInvocation(Object value) => value is api1.Invocation;
+Object? _Invocation_memberName(Object value) =>
+    (value as api1.Invocation).memberName;
+Object? _Invocation_positionalArguments(Object value) =>
+    (value as api1.Invocation).positionalArguments;
+Object? _Invocation_namedArguments(Object value) =>
+    (value as api1.Invocation).namedArguments;
+Object? _Invocation_isGetter(Object value) =>
+    (value as api1.Invocation).isGetter;
+Object? _Invocation_isSetter(Object value) =>
+    (value as api1.Invocation).isSetter;
+Object? _Invocation_isMethod(Object value) =>
+    (value as api1.Invocation).isMethod;
+Object? _Invocation_isAccessor(Object value) =>
+    (value as api1.Invocation).isAccessor;
+Object _createInvocation(String ctor, Map<String, Object?> values) =>
+    throw ArgumentError('Abstract object has no constructor');
+bool _isUriData(Object value) => value is api1.UriData;
+Object? _UriData_uri(Object value) => (value as api1.UriData).uri;
+Object? _UriData_mimeType(Object value) => (value as api1.UriData).mimeType;
+Object? _UriData_contentText(Object value) =>
+    (value as api1.UriData).contentText;
+Object? _UriData_isBase64(Object value) => (value as api1.UriData).isBase64;
+Object _createUriData(String ctor, Map<String, Object?> values) {
+  switch (ctor) {
+    case "fromUri":
+      return api1.UriData.fromUri(values["uri"] as api1.Uri);
+    default:
+      throw ArgumentError('Unknown generated constructor');
+  }
+}
+
+bool _isDeprecated(Object value) => value is api1.Deprecated;
+Object? _Deprecated_message(Object value) => (value as api1.Deprecated).message;
+Object _createDeprecated(String ctor, Map<String, Object?> values) {
+  switch (ctor) {
+    case "":
+      return api1.Deprecated(values["message"] as String?);
+    default:
+      throw ArgumentError('Unknown generated constructor');
+  }
+}
+
+bool _isType(Object value) => value is api1.Type;
+Object? _Type_toString(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.Type).toString();
+}
+
+Object _createType(String ctor, Map<String, Object?> values) =>
+    throw ArgumentError('Abstract object has no constructor');
+bool _isSymbol(Object value) => value is api1.Symbol;
+Object? _Symbol_static_get_empty(Map<String, Object?> values) =>
+    api1.Symbol.empty;
+Object? _Symbol_static_get_unaryMinus(Map<String, Object?> values) =>
+    api1.Symbol.unaryMinus;
+Object? _Symbol_toString(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.Symbol).toString();
+}
+
+Object _createSymbol(String ctor, Map<String, Object?> values) {
+  switch (ctor) {
+    case "":
+      return api1.Symbol(values["name"] as String);
+    default:
+      throw ArgumentError('Unknown generated constructor');
+  }
+}
+
+bool _isRecord(Object value) => value is api1.Record;
+Object? _Record_toString(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.Record).toString();
+}
+
+Object _createRecord(String ctor, Map<String, Object?> values) =>
+    throw ArgumentError('Abstract object has no constructor');
 bool _isSpacer(Object value) => value is api.Spacer;
 
 class _SpacerHost extends FlaxWidgetHost {
@@ -16001,6 +16698,12 @@ Object? _Duration_inMicroseconds(Object value) =>
     (value as api1.Duration).inMicroseconds;
 Object? _Duration_static_get_zero(Map<String, Object?> values) =>
     api1.Duration.zero;
+Object? _Duration_compareTo(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.Duration).compareTo(
+    values["other"] as api1.Duration,
+  );
+}
+
 Object _createDuration(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
@@ -16044,6 +16747,12 @@ Object? _DateTime_parse(Map<String, Object?> values) {
 
 Object? _DateTime_tryParse(Map<String, Object?> values) {
   return api1.DateTime.tryParse(values["formattedString"] as String);
+}
+
+Object? _DateTime_compareTo(Object receiver, Map<String, Object?> values) {
+  return (receiver as api1.DateTime).compareTo(
+    values["other"] as api1.DateTime,
+  );
 }
 
 Object? _DateTime_toIso8601String(
@@ -16094,12 +16803,6 @@ Object? _DateTime_isAtSameMomentAs(
   Map<String, Object?> values,
 ) {
   return (receiver as api1.DateTime).isAtSameMomentAs(
-    values["other"] as api1.DateTime,
-  );
-}
-
-Object? _DateTime_compareTo(Object receiver, Map<String, Object?> values) {
-  return (receiver as api1.DateTime).compareTo(
     values["other"] as api1.DateTime,
   );
 }
@@ -20073,7 +20776,7 @@ final class _StreamTransformerProxy<
               [],
               types.ref<api3.StreamTransformer<RS, RT>>(withinCallback: true),
               _callback0,
-              id: types.key<api3.StreamTransformer<RS, RT> Function()>(),
+              id: types.key<api3.StreamTransformer<RS, RT> Function()>() + ":callback:<>()->object:flax.core/flutter#type:StreamTransformer<Object?,Object?><parameter:,parameter:>",
               invoke: _callback0Invoke,
               matches: _callback0Matches,
             );
@@ -20139,7 +20842,7 @@ final class _StreamTransformerBaseProxy<
               [],
               types.ref<api3.StreamTransformer<RS, RT>>(withinCallback: true),
               _callback0,
-              id: types.key<api3.StreamTransformer<RS, RT> Function()>(),
+              id: types.key<api3.StreamTransformer<RS, RT> Function()>() + ":callback:<>()->object:flax.core/flutter#type:StreamTransformer<Object?,Object?><parameter:,parameter:>",
               invoke: _callback0Invoke,
               matches: _callback0Matches,
             );
@@ -20346,7 +21049,7 @@ typedef _flaxDefault_StreamTransformerBase_0 = Object?;
 typedef _flaxDefault_StreamTransformerBase_1 = Object?;
 typedef _flaxDefault_StreamView_0 = Object?;
 Function
-_flaxGenericFunction1<_Method0 extends Object?, _Method1 extends Object?>() =>
+_flaxGenericFunction3<_Method0 extends Object?, _Method1 extends Object?>() =>
     (FlaxDartTypes types) {
       Object? invoke(Map<String, Object?> values) {
         return api3.Stream.castFrom<_Method0, _Method1>(
@@ -20369,7 +21072,7 @@ _flaxGenericFunction1<_Method0 extends Object?, _Method1 extends Object?>() =>
         invoke,
       );
     };
-Function _flaxGenericFunction13<
+Function _flaxGenericFunction15<
   _Method0 extends Object?,
   _Method1 extends Object?,
   _Method2 extends Object?,
@@ -20400,7 +21103,7 @@ Function _flaxGenericFunction13<
   );
 };
 Function
-_flaxGenericFunction14<_Method0 extends Object?>() => (FlaxDartTypes types) {
+_flaxGenericFunction16<_Method0 extends Object?>() => (FlaxDartTypes types) {
   Object? invoke(Map<String, Object?> values) {
     return api.WidgetStateProperty.resolveWith<_Method0>(
       values["callback"] as _Method0 Function(Set<api.WidgetState> states),
@@ -20447,8 +21150,8 @@ _flaxGenericFunction14<_Method0 extends Object?>() => (FlaxDartTypes types) {
                     ),
                     collection: FlaxCollectionBinding(
                       "set:[enum:flax.core/flutter#type:WidgetState]",
-                      _collection9Create,
-                      _collection9Matches,
+                      _collection11Create,
+                      _collection11Matches,
                     ),
                     iterable: FlaxTypeRef(
                       "iterable",
@@ -20458,8 +21161,9 @@ _flaxGenericFunction14<_Method0 extends Object?>() => (FlaxDartTypes types) {
                       ),
                       collection: FlaxCollectionBinding(
                         "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                        _collection10Create,
-                        _collection10Matches,
+                        _collection12Create,
+                        _collection12Matches,
+                        restore: _collection12Restore,
                       ),
                     ),
                   ),
@@ -20469,7 +21173,7 @@ _flaxGenericFunction14<_Method0 extends Object?>() => (FlaxDartTypes types) {
               ],
               types.ref<_Method0>(withinCallback: true),
               _callback0,
-              id: types.key<_Method0 Function(Set<api.WidgetState> states)>(),
+              id: types.key<_Method0 Function(Set<api.WidgetState> states)>() + ":callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->parameter:",
               invoke: _callback0Invoke,
               matches: _callback0Matches,
             ),
@@ -20484,6 +21188,182 @@ _flaxGenericFunction14<_Method0 extends Object?>() => (FlaxDartTypes types) {
     invoke,
   );
 };
+Function _flaxGenericFunction74<_Method0 extends api1.Enum>() =>
+    (FlaxDartTypes types) {
+      Object? invoke(Map<String, Object?> values) {
+        return api1.EnumByName<_Method0>(
+          values["receiver"] as Iterable<_Method0>,
+        ).asNameMap();
+      }
+
+      return FlaxFunctionBinding(
+        "flax.core/flutter#function:EnumByName.method.asNameMap",
+        [
+          FlaxParameter(
+            "receiver",
+            types.ref<Iterable<_Method0>>(),
+            required: true,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+        ],
+        types.ref<Map<String, _Method0>>(),
+        invoke,
+      );
+    };
+Function _flaxGenericFunction75<_Method0 extends api1.Enum>() =>
+    (FlaxDartTypes types) {
+      Object? invoke(Map<String, Object?> values) {
+        return api1.EnumByName<_Method0>(
+          values["receiver"] as Iterable<_Method0>,
+        ).byName(values["name"] as String);
+      }
+
+      return FlaxFunctionBinding(
+        "flax.core/flutter#function:EnumByName.method.byName",
+        [
+          FlaxParameter(
+            "receiver",
+            types.ref<Iterable<_Method0>>(),
+            required: true,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "name",
+            FlaxTypeRef("String"),
+            required: true,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+        ],
+        types.ref<_Method0>(),
+        invoke,
+      );
+    };
+Type _flaxType_MapEntry<_Owner0 extends Object?, _Owner1 extends Object?>() =>
+    api1.MapEntry<_Owner0, _Owner1>;
+Function
+_flaxClass_MapEntry<_Owner0 extends Object?, _Owner1 extends Object?>() =>
+    (FlaxDartTypes types, String id) {
+      // ignore: unused_element
+      bool _isMapEntry(Object value) =>
+          value is api1.MapEntry<_Owner0, _Owner1>;
+      // ignore: unused_element
+      Object? _MapEntry_key(Object value) =>
+          (value as api1.MapEntry<_Owner0, _Owner1>).key;
+      // ignore: unused_element
+      Object? _MapEntry_value(Object value) =>
+          (value as api1.MapEntry<_Owner0, _Owner1>).value;
+      // ignore: unused_element
+      Object _createMapEntry(String ctor, Map<String, Object?> values) {
+        switch (ctor) {
+          case "":
+            return api1.MapEntry<_Owner0, _Owner1>(
+              values["key"] as _Owner0,
+              values["value"] as _Owner1,
+            );
+          default:
+            throw ArgumentError("Unknown constructor");
+        }
+      }
+
+      return FlaxDartClass(
+        api1.MapEntry<_Owner0, _Owner1>,
+        FlaxObjectBinding(
+          id,
+          [
+            FlaxGetter("key", types.ref<_Owner0>(), _MapEntry_key),
+            FlaxGetter("value", types.ref<_Owner1>(), _MapEntry_value),
+          ],
+          {},
+          constructors: {
+            "": [
+              FlaxParameter(
+                "key",
+                types.ref<_Owner0>(),
+                required: true,
+                defaultValue: null,
+                omitWhenAbsent: false,
+              ),
+              FlaxParameter(
+                "value",
+                types.ref<_Owner1>(),
+                required: true,
+                defaultValue: null,
+                omitWhenAbsent: false,
+              ),
+            ],
+          },
+          create: _createMapEntry,
+          matches: _isMapEntry,
+          setters: [],
+          supertypes: [
+            "flax.core/flutter#type:MapEntry",
+            ...["dart:core::Object"],
+          ],
+          listenerPairs: {},
+          disposeMethod: null,
+        ),
+      );
+    };
+Type _flaxType_Comparable<_Owner0 extends Object?>() =>
+    api1.Comparable<_Owner0>;
+Function _flaxClass_Comparable<_Owner0 extends Object?>() =>
+    (FlaxDartTypes types, String id) {
+      // ignore: unused_element
+      bool _isComparable(Object value) => value is api1.Comparable<_Owner0>;
+      Object? _Comparable_compareTo(
+        Object receiver,
+        Map<String, Object?> values,
+      ) {
+        return (receiver as api1.Comparable<_Owner0>).compareTo(
+          values["other"] as _Owner0,
+        );
+      }
+
+      // ignore: unused_element
+      Object _createComparable(String ctor, Map<String, Object?> values) {
+        switch (ctor) {
+          default:
+            throw ArgumentError("Unknown constructor");
+        }
+      }
+
+      return FlaxDartClass(
+        api1.Comparable<_Owner0>,
+        FlaxObjectBinding(
+          id,
+          [],
+          {
+            "compareTo": FlaxInstanceMethod(
+              [
+                FlaxParameter(
+                  "other",
+                  types.ref<_Owner0>(),
+                  required: true,
+                  defaultValue: null,
+                  omitWhenAbsent: false,
+                ),
+              ],
+              FlaxTypeRef("int"),
+              _Comparable_compareTo,
+              startsRoute: false,
+            ),
+          },
+          constructors: {},
+          create: _createComparable,
+          matches: _isComparable,
+          setters: [],
+          supertypes: [
+            "flax.core/flutter#type:Comparable",
+            ...["dart:core::Object"],
+          ],
+          listenerPairs: {},
+          disposeMethod: null,
+        ),
+      );
+    };
 Function
 _flaxGeneric_Stream_map<_Owner0 extends Object?, _Method0 extends Object?>() =>
     (FlaxDartTypes types) {
@@ -20530,7 +21410,9 @@ _flaxGeneric_Stream_map<_Owner0 extends Object?, _Method0 extends Object?>() =>
                   ],
                   types.ref<_Method0>(withinCallback: true),
                   _callback0,
-                  id: types.key<_Method0 Function(_Owner0 event)>(),
+                  id:
+                      types.key<_Method0 Function(_Owner0 event)>() +
+                      ":callback:<>(p:r:event:parameter:)->parameter:",
                   invoke: _callback0Invoke,
                   matches: _callback0Matches,
                 ),
@@ -20593,7 +21475,9 @@ Function _flaxGeneric_Stream_asyncMap<
               ],
               types.ref<api3.FutureOr<_Method0>>(withinCallback: true),
               _callback0,
-              id: types.key<api3.FutureOr<_Method0> Function(_Owner0 event)>(),
+              id:
+                  types.key<api3.FutureOr<_Method0> Function(_Owner0 event)>() +
+                  ":callback:<>(p:r:event:parameter:)->futureOr:[parameter:]",
               invoke: _callback0Invoke,
               matches: _callback0Matches,
             ),
@@ -20656,7 +21540,7 @@ Function _flaxGeneric_Stream_asyncExpand<
               ],
               types.ref<api3.Stream<_Method0>?>(withinCallback: true),
               _callback0,
-              id: types.key<api3.Stream<_Method0>? Function(_Owner0 event)>(),
+              id: types.key<api3.Stream<_Method0>? Function(_Owner0 event)>() + ":callback:<>(p:r:event:parameter:)->stream?:flax.core/flutter#type:Stream[parameter:]",
               invoke: _callback0Invoke,
               matches: _callback0Matches,
             ),
@@ -20718,7 +21602,9 @@ Function _flaxGeneric_Stream_expand<
               ],
               types.ref<Iterable<_Method0>>(withinCallback: true),
               _callback0,
-              id: types.key<Iterable<_Method0> Function(_Owner0 element)>(),
+              id:
+                  types.key<Iterable<_Method0> Function(_Owner0 element)>() +
+                  ":callback:<>(p:r:element:parameter:)->iterable:[parameter:]",
               invoke: _callback0Invoke,
               matches: _callback0Matches,
             ),
@@ -20822,8 +21708,12 @@ Function _flaxGeneric_Stream_fold<
               ],
               types.ref<_Method0>(withinCallback: true),
               _callback0,
-              id: types
-                  .key<_Method0 Function(_Method0 previous, _Owner0 element)>(),
+              id:
+                  types
+                      .key<
+                        _Method0 Function(_Method0 previous, _Owner0 element)
+                      >() +
+                  ":callback:<>(p:r:previous:parameter:,p:r:element:parameter:)->parameter:",
               invoke: _callback0Invoke,
               matches: _callback0Matches,
             ),
@@ -21750,12 +22640,14 @@ Function _flaxClass_Stream<
                     ],
                     FlaxTypeRef("void"),
                     _callback0,
-                    id: types
-                        .key<
-                          void Function(
-                            api3.StreamSubscription<_Owner0> subscription,
-                          )?
-                        >(),
+                    id:
+                        types
+                            .key<
+                              void Function(
+                                api3.StreamSubscription<_Owner0> subscription,
+                              )?
+                            >() +
+                        ":callback:<>(p:r:subscription:object:flax.core/flutter#type:StreamSubscription<Object?><parameter:>)->void:",
                     invoke: _callback0Invoke,
                     matches: _callback0Matches,
                   ),
@@ -21786,12 +22678,14 @@ Function _flaxClass_Stream<
                     ],
                     FlaxTypeRef("void"),
                     _callback1,
-                    id: types
-                        .key<
-                          void Function(
-                            api3.StreamSubscription<_Owner0> subscription,
-                          )?
-                        >(),
+                    id:
+                        types
+                            .key<
+                              void Function(
+                                api3.StreamSubscription<_Owner0> subscription,
+                              )?
+                            >() +
+                        ":callback:<>(p:r:subscription:object:flax.core/flutter#type:StreamSubscription<Object?><parameter:>)->void:",
                     invoke: _callback1Invoke,
                     matches: _callback1Matches,
                   ),
@@ -21825,7 +22719,9 @@ Function _flaxClass_Stream<
                     ],
                     FlaxTypeRef("void"),
                     _callback2,
-                    id: types.key<void Function(_Owner0 event)?>(),
+                    id:
+                        types.key<void Function(_Owner0 event)?>() +
+                        ":callback:<>(p:r:event:parameter:)->void:",
                     invoke: _callback2Invoke,
                     matches: _callback2Matches,
                   ),
@@ -21851,7 +22747,7 @@ Function _flaxClass_Stream<
                   [],
                   FlaxTypeRef("void"),
                   _callback3,
-                  id: types.key<void Function()?>(),
+                  id: types.key<void Function()?>() + ":callback:<>()->void:",
                   invoke: _callback3Invoke,
                   matches: _callback3Matches,
                 ),
@@ -21886,8 +22782,12 @@ Function _flaxClass_Stream<
                   ],
                   FlaxTypeRef("void"),
                   _callback4,
-                  id: types
-                      .key<void Function(Object p0, [api1.StackTrace p1])?>(),
+                  id:
+                      types
+                          .key<
+                            void Function(Object p0, [api1.StackTrace p1])?
+                          >() +
+                      ":callback:<>(p:r:p0:any::e=error,p:o:p1:object:flax.core/flutter#type:StackTrace)->void:",
                   invoke: _callback4Invoke,
                   matches: _callback4Matches,
                 ),
@@ -21920,7 +22820,9 @@ Function _flaxClass_Stream<
                     ],
                     FlaxTypeRef("bool"),
                     _callback5,
-                    id: types.key<bool Function(_Owner0 event)>(),
+                    id:
+                        types.key<bool Function(_Owner0 event)>() +
+                        ":callback:<>(p:r:event:parameter:)->bool:",
                     invoke: _callback5Invoke,
                     matches: _callback5Matches,
                   ),
@@ -21954,7 +22856,9 @@ Function _flaxClass_Stream<
                     ],
                     FlaxTypeRef("any", nullable: true),
                     _callback6,
-                    id: types.key<Object? Function(_Owner0 event)>(),
+                    id:
+                        types.key<Object? Function(_Owner0 event)>() +
+                        ":callback:<>(p:r:event:parameter:)->any?:",
                     invoke: _callback6Invoke,
                     matches: _callback6Matches,
                   ),
@@ -22004,8 +22908,12 @@ Function _flaxClass_Stream<
                       future: FlaxFutureBinding("any?:", _future2Adapt),
                     ),
                     _callback7,
-                    id: types
-                        .key<api3.FutureOr<Object?> Function(_Owner0 event)>(),
+                    id:
+                        types
+                            .key<
+                              api3.FutureOr<Object?> Function(_Owner0 event)
+                            >() +
+                        ":callback:<>(p:r:event:parameter:)->futureOr:[any?:]",
                     invoke: _callback7Invoke,
                     matches: _callback7Matches,
                   ),
@@ -22062,8 +22970,12 @@ Function _flaxClass_Stream<
                       ),
                     ),
                     _callback8,
-                    id: types
-                        .key<api3.Stream<Object?>? Function(_Owner0 event)>(),
+                    id:
+                        types
+                            .key<
+                              api3.Stream<Object?>? Function(_Owner0 event)
+                            >() +
+                        ":callback:<>(p:r:event:parameter:)->stream?:flax.core/flutter#type:Stream[any?:]",
                     invoke: _callback8Invoke,
                     matches: _callback8Matches,
                   ),
@@ -22117,8 +23029,12 @@ Function _flaxClass_Stream<
                   ],
                   FlaxTypeRef("void"),
                   _callback9,
-                  id: types
-                      .key<void Function(Object p0, [api1.StackTrace p1])>(),
+                  id:
+                      types
+                          .key<
+                            void Function(Object p0, [api1.StackTrace p1])
+                          >() +
+                      ":callback:<>(p:r:p0:any::e=error,p:o:p1:object:flax.core/flutter#type:StackTrace)->void:",
                   invoke: _callback9Invoke,
                   matches: _callback9Matches,
                 ),
@@ -22143,7 +23059,9 @@ Function _flaxClass_Stream<
                   ],
                   FlaxTypeRef("bool"),
                   _callback10,
-                  id: types.key<bool Function(Object? error)?>(),
+                  id:
+                      types.key<bool Function(Object? error)?>() +
+                      ":callback:<>(p:r:error:any?:)->bool:",
                   invoke: _callback10Invoke,
                   matches: _callback10Matches,
                 ),
@@ -22179,13 +23097,18 @@ Function _flaxClass_Stream<
                       item: FlaxTypeRef("any", nullable: true),
                       collection: FlaxCollectionBinding(
                         "iterable:[any?:]",
-                        _collection0Create,
-                        _collection0Matches,
+                        _collection2Create,
+                        _collection2Matches,
+                        restore: _collection2Restore,
                       ),
                     ),
                     _callback11,
-                    id: types
-                        .key<Iterable<Object?> Function(_Owner0 element)>(),
+                    id:
+                        types
+                            .key<
+                              Iterable<Object?> Function(_Owner0 element)
+                            >() +
+                        ":callback:<>(p:r:element:parameter:)->iterable:[any?:]",
                     invoke: _callback11Invoke,
                     matches: _callback11Matches,
                   ),
@@ -22281,10 +23204,15 @@ Function _flaxClass_Stream<
                     ],
                     types.ref<_Owner0>(withinCallback: true),
                     _callback12,
-                    id: types
-                        .key<
-                          _Owner0 Function(_Owner0 previous, _Owner0 element)
-                        >(),
+                    id:
+                        types
+                            .key<
+                              _Owner0 Function(
+                                _Owner0 previous,
+                                _Owner0 element,
+                              )
+                            >() +
+                        ":callback:<>(p:r:previous:parameter:,p:r:element:parameter:)->parameter:",
                     invoke: _callback12Invoke,
                     matches: _callback12Matches,
                   ),
@@ -22331,10 +23259,15 @@ Function _flaxClass_Stream<
                     ],
                     FlaxTypeRef("any", nullable: true),
                     _callback13,
-                    id: types
-                        .key<
-                          Object? Function(Object? previous, _Owner0 element)
-                        >(),
+                    id:
+                        types
+                            .key<
+                              Object? Function(
+                                Object? previous,
+                                _Owner0 element,
+                              )
+                            >() +
+                        ":callback:<>(p:r:previous:any?:,p:r:element:parameter:)->any?:",
                     invoke: _callback13Invoke,
                     matches: _callback13Matches,
                   ),
@@ -22410,7 +23343,9 @@ Function _flaxClass_Stream<
                     ],
                     FlaxTypeRef("void"),
                     _callback14,
-                    id: types.key<void Function(_Owner0 element)>(),
+                    id:
+                        types.key<void Function(_Owner0 element)>() +
+                        ":callback:<>(p:r:element:parameter:)->void:",
                     invoke: _callback14Invoke,
                     matches: _callback14Matches,
                   ),
@@ -22448,7 +23383,9 @@ Function _flaxClass_Stream<
                     ],
                     FlaxTypeRef("bool"),
                     _callback15,
-                    id: types.key<bool Function(_Owner0 element)>(),
+                    id:
+                        types.key<bool Function(_Owner0 element)>() +
+                        ":callback:<>(p:r:element:parameter:)->bool:",
                     invoke: _callback15Invoke,
                     matches: _callback15Matches,
                   ),
@@ -22486,7 +23423,9 @@ Function _flaxClass_Stream<
                     ],
                     FlaxTypeRef("bool"),
                     _callback16,
-                    id: types.key<bool Function(_Owner0 element)>(),
+                    id:
+                        types.key<bool Function(_Owner0 element)>() +
+                        ":callback:<>(p:r:element:parameter:)->bool:",
                     invoke: _callback16Invoke,
                     matches: _callback16Matches,
                   ),
@@ -22588,7 +23527,9 @@ Function _flaxClass_Stream<
                     ],
                     FlaxTypeRef("bool"),
                     _callback17,
-                    id: types.key<bool Function(_Owner0 element)>(),
+                    id:
+                        types.key<bool Function(_Owner0 element)>() +
+                        ":callback:<>(p:r:element:parameter:)->bool:",
                     invoke: _callback17Invoke,
                     matches: _callback17Matches,
                   ),
@@ -22636,7 +23577,9 @@ Function _flaxClass_Stream<
                     ],
                     FlaxTypeRef("bool"),
                     _callback18,
-                    id: types.key<bool Function(_Owner0 element)>(),
+                    id:
+                        types.key<bool Function(_Owner0 element)>() +
+                        ":callback:<>(p:r:element:parameter:)->bool:",
                     invoke: _callback18Invoke,
                     matches: _callback18Matches,
                   ),
@@ -22676,8 +23619,12 @@ Function _flaxClass_Stream<
                     ],
                     FlaxTypeRef("bool"),
                     _callback19,
-                    id: types
-                        .key<bool Function(_Owner0 previous, _Owner0 next)?>(),
+                    id:
+                        types
+                            .key<
+                              bool Function(_Owner0 previous, _Owner0 next)?
+                            >() +
+                        ":callback:<>(p:r:previous:parameter:,p:r:next:parameter:)->bool:",
                     invoke: _callback19Invoke,
                     matches: _callback19Matches,
                   ),
@@ -22711,7 +23658,9 @@ Function _flaxClass_Stream<
                     ],
                     FlaxTypeRef("bool"),
                     _callback20,
-                    id: types.key<bool Function(_Owner0 element)>(),
+                    id:
+                        types.key<bool Function(_Owner0 element)>() +
+                        ":callback:<>(p:r:element:parameter:)->bool:",
                     invoke: _callback20Invoke,
                     matches: _callback20Matches,
                   ),
@@ -22731,7 +23680,9 @@ Function _flaxClass_Stream<
                     [],
                     types.ref<_Owner0>(withinCallback: true),
                     _callback21,
-                    id: types.key<_Owner0 Function()?>(),
+                    id:
+                        types.key<_Owner0 Function()?>() +
+                        ":callback:<>()->parameter:",
                     invoke: _callback21Invoke,
                     matches: _callback21Matches,
                   ),
@@ -22765,7 +23716,9 @@ Function _flaxClass_Stream<
                     ],
                     FlaxTypeRef("bool"),
                     _callback22,
-                    id: types.key<bool Function(_Owner0 element)>(),
+                    id:
+                        types.key<bool Function(_Owner0 element)>() +
+                        ":callback:<>(p:r:element:parameter:)->bool:",
                     invoke: _callback22Invoke,
                     matches: _callback22Matches,
                   ),
@@ -22785,7 +23738,9 @@ Function _flaxClass_Stream<
                     [],
                     types.ref<_Owner0>(withinCallback: true),
                     _callback23,
-                    id: types.key<_Owner0 Function()?>(),
+                    id:
+                        types.key<_Owner0 Function()?>() +
+                        ":callback:<>()->parameter:",
                     invoke: _callback23Invoke,
                     matches: _callback23Matches,
                   ),
@@ -22819,7 +23774,9 @@ Function _flaxClass_Stream<
                     ],
                     FlaxTypeRef("bool"),
                     _callback24,
-                    id: types.key<bool Function(_Owner0 element)>(),
+                    id:
+                        types.key<bool Function(_Owner0 element)>() +
+                        ":callback:<>(p:r:element:parameter:)->bool:",
                     invoke: _callback24Invoke,
                     matches: _callback24Matches,
                   ),
@@ -22839,7 +23796,9 @@ Function _flaxClass_Stream<
                     [],
                     types.ref<_Owner0>(withinCallback: true),
                     _callback25,
-                    id: types.key<_Owner0 Function()?>(),
+                    id:
+                        types.key<_Owner0 Function()?>() +
+                        ":callback:<>()->parameter:",
                     invoke: _callback25Invoke,
                     matches: _callback25Matches,
                   ),
@@ -22897,8 +23856,12 @@ Function _flaxClass_Stream<
                     ],
                     FlaxTypeRef("void"),
                     _callback26,
-                    id: types
-                        .key<void Function(api3.EventSink<_Owner0> sink)?>(),
+                    id:
+                        types
+                            .key<
+                              void Function(api3.EventSink<_Owner0> sink)?
+                            >() +
+                        ":callback:<>(p:r:sink:object:flax.core/flutter#type:EventSink<Object?><parameter:>:scoped)->void:",
                     invoke: _callback26Invoke,
                     matches: _callback26Matches,
                   ),
@@ -23000,10 +23963,14 @@ Function _flaxClass_Stream<
                   ],
                   FlaxTypeRef("void"),
                   _callback27,
-                  id: types
-                      .key<
-                        void Function(api3.MultiStreamController<_Owner0> p0)
-                      >(),
+                  id:
+                      types
+                          .key<
+                            void Function(
+                              api3.MultiStreamController<_Owner0> p0,
+                            )
+                          >() +
+                      ":callback:<>(p:r:p0:object:flax.core/flutter#type:MultiStreamController<Object?><parameter:>)->void:",
                   invoke: _callback27Invoke,
                   matches: _callback27Matches,
                 ),
@@ -23046,7 +24013,9 @@ Function _flaxClass_Stream<
                   ],
                   types.ref<_Owner0>(withinCallback: true),
                   _callback28,
-                  id: types.key<_Owner0 Function(int computationCount)?>(),
+                  id:
+                      types.key<_Owner0 Function(int computationCount)?>() +
+                      ":callback:<>(p:r:computationCount:int:)->parameter:",
                   invoke: _callback28Invoke,
                   matches: _callback28Matches,
                 ),
@@ -23098,12 +24067,14 @@ Function _flaxClass_Stream<
                     dartType: FlaxDartTypes.typeOf<api3.EventSink<Object?>>,
                   ),
                   _callback29,
-                  id: types
-                      .key<
-                        api3.EventSink<Object?> Function(
-                          api3.EventSink<_Owner0> sink,
-                        )
-                      >(),
+                  id:
+                      types
+                          .key<
+                            api3.EventSink<Object?> Function(
+                              api3.EventSink<_Owner0> sink,
+                            )
+                          >() +
+                      ":callback:<>(p:r:sink:object:flax.core/flutter#type:EventSink<Object?><parameter:>)->object:flax.core/flutter#type:EventSink<Object?><any?:>",
                   invoke: _callback29Invoke,
                   matches: _callback29Matches,
                 ),
@@ -23332,7 +24303,9 @@ Function _flaxClass_StreamSubscription<
                     ],
                     FlaxTypeRef("void"),
                     _callback0,
-                    id: types.key<void Function(_Owner0 data)?>(),
+                    id:
+                        types.key<void Function(_Owner0 data)?>() +
+                        ":callback:<>(p:r:data:parameter:)->void:",
                     invoke: _callback0Invoke,
                     matches: _callback0Matches,
                   ),
@@ -23375,8 +24348,12 @@ Function _flaxClass_StreamSubscription<
                   ],
                   FlaxTypeRef("void"),
                   _callback1,
-                  id: types
-                      .key<void Function(Object p0, [api1.StackTrace p1])?>(),
+                  id:
+                      types
+                          .key<
+                            void Function(Object p0, [api1.StackTrace p1])?
+                          >() +
+                      ":callback:<>(p:r:p0:any::e=error,p:o:p1:object:flax.core/flutter#type:StackTrace)->void:",
                   invoke: _callback1Invoke,
                   matches: _callback1Matches,
                 ),
@@ -23401,7 +24378,7 @@ Function _flaxClass_StreamSubscription<
                   [],
                   FlaxTypeRef("void"),
                   _callback2,
-                  id: types.key<void Function()?>(),
+                  id: types.key<void Function()?>() + ":callback:<>()->void:",
                   invoke: _callback2Invoke,
                   matches: _callback2Matches,
                 ),
@@ -23822,7 +24799,7 @@ Function _flaxClass_StreamController<
               [],
               FlaxTypeRef("void"),
               _callback0,
-              id: types.key<void Function()?>(),
+              id: types.key<void Function()?>() + ":callback:<>()->void:",
               invoke: _callback0Invoke,
               matches: _callback0Matches,
             ),
@@ -23838,7 +24815,7 @@ Function _flaxClass_StreamController<
               [],
               FlaxTypeRef("void"),
               _callback1,
-              id: types.key<void Function()?>(),
+              id: types.key<void Function()?>() + ":callback:<>()->void:",
               invoke: _callback1Invoke,
               matches: _callback1Matches,
             ),
@@ -23854,7 +24831,7 @@ Function _flaxClass_StreamController<
               [],
               FlaxTypeRef("void"),
               _callback2,
-              id: types.key<void Function()?>(),
+              id: types.key<void Function()?>() + ":callback:<>()->void:",
               invoke: _callback2Invoke,
               matches: _callback2Matches,
             ),
@@ -23874,7 +24851,9 @@ Function _flaxClass_StreamController<
                 future: FlaxFutureBinding("void:", _future4Adapt),
               ),
               _callback3,
-              id: types.key<api3.FutureOr<void> Function()?>(),
+              id:
+                  types.key<api3.FutureOr<void> Function()?>() +
+                  ":callback:<>()->futureOr:[void:]",
               invoke: _callback3Invoke,
               matches: _callback3Matches,
             ),
@@ -23986,7 +24965,7 @@ Function _flaxClass_StreamController<
                 [],
                 FlaxTypeRef("void"),
                 _callback8,
-                id: types.key<void Function()?>(),
+                id: types.key<void Function()?>() + ":callback:<>()->void:",
                 invoke: _callback8Invoke,
                 matches: _callback8Matches,
               ),
@@ -24004,7 +24983,7 @@ Function _flaxClass_StreamController<
                 [],
                 FlaxTypeRef("void"),
                 _callback9,
-                id: types.key<void Function()?>(),
+                id: types.key<void Function()?>() + ":callback:<>()->void:",
                 invoke: _callback9Invoke,
                 matches: _callback9Matches,
               ),
@@ -24022,7 +25001,7 @@ Function _flaxClass_StreamController<
                 [],
                 FlaxTypeRef("void"),
                 _callback10,
-                id: types.key<void Function()?>(),
+                id: types.key<void Function()?>() + ":callback:<>()->void:",
                 invoke: _callback10Invoke,
                 matches: _callback10Matches,
               ),
@@ -24044,7 +25023,9 @@ Function _flaxClass_StreamController<
                   future: FlaxFutureBinding("void:", _future4Adapt),
                 ),
                 _callback11,
-                id: types.key<api3.FutureOr<void> Function()?>(),
+                id:
+                    types.key<api3.FutureOr<void> Function()?>() +
+                    ":callback:<>()->futureOr:[void:]",
                 invoke: _callback11Invoke,
                 matches: _callback11Matches,
               ),
@@ -24071,7 +25052,7 @@ Function _flaxClass_StreamController<
                 [],
                 FlaxTypeRef("void"),
                 _callback12,
-                id: types.key<void Function()?>(),
+                id: types.key<void Function()?>() + ":callback:<>()->void:",
                 invoke: _callback12Invoke,
                 matches: _callback12Matches,
               ),
@@ -24089,7 +25070,7 @@ Function _flaxClass_StreamController<
                 [],
                 FlaxTypeRef("void"),
                 _callback13,
-                id: types.key<void Function()?>(),
+                id: types.key<void Function()?>() + ":callback:<>()->void:",
                 invoke: _callback13Invoke,
                 matches: _callback13Matches,
               ),
@@ -24119,7 +25100,7 @@ Function _flaxClass_StreamController<
               [],
               FlaxTypeRef("void"),
               _callback4,
-              id: types.key<void Function()?>(),
+              id: types.key<void Function()?>() + ":callback:<>()->void:",
               invoke: _callback4Invoke,
               matches: _callback4Matches,
             ),
@@ -24135,7 +25116,7 @@ Function _flaxClass_StreamController<
               [],
               FlaxTypeRef("void"),
               _callback5,
-              id: types.key<void Function()?>(),
+              id: types.key<void Function()?>() + ":callback:<>()->void:",
               invoke: _callback5Invoke,
               matches: _callback5Matches,
             ),
@@ -24151,7 +25132,7 @@ Function _flaxClass_StreamController<
               [],
               FlaxTypeRef("void"),
               _callback6,
-              id: types.key<void Function()?>(),
+              id: types.key<void Function()?>() + ":callback:<>()->void:",
               invoke: _callback6Invoke,
               matches: _callback6Matches,
             ),
@@ -24171,7 +25152,9 @@ Function _flaxClass_StreamController<
                 future: FlaxFutureBinding("void:", _future4Adapt),
               ),
               _callback7,
-              id: types.key<api3.FutureOr<void> Function()?>(),
+              id:
+                  types.key<api3.FutureOr<void> Function()?>() +
+                  ":callback:<>()->futureOr:[void:]",
               invoke: _callback7Invoke,
               matches: _callback7Matches,
             ),
@@ -24435,7 +25418,7 @@ Function _flaxClass_SynchronousStreamController<
               [],
               FlaxTypeRef("void"),
               _callback0,
-              id: types.key<void Function()?>(),
+              id: types.key<void Function()?>() + ":callback:<>()->void:",
               invoke: _callback0Invoke,
               matches: _callback0Matches,
             ),
@@ -24451,7 +25434,7 @@ Function _flaxClass_SynchronousStreamController<
               [],
               FlaxTypeRef("void"),
               _callback1,
-              id: types.key<void Function()?>(),
+              id: types.key<void Function()?>() + ":callback:<>()->void:",
               invoke: _callback1Invoke,
               matches: _callback1Matches,
             ),
@@ -24467,7 +25450,7 @@ Function _flaxClass_SynchronousStreamController<
               [],
               FlaxTypeRef("void"),
               _callback2,
-              id: types.key<void Function()?>(),
+              id: types.key<void Function()?>() + ":callback:<>()->void:",
               invoke: _callback2Invoke,
               matches: _callback2Matches,
             ),
@@ -24487,7 +25470,9 @@ Function _flaxClass_SynchronousStreamController<
                 future: FlaxFutureBinding("void:", _future4Adapt),
               ),
               _callback3,
-              id: types.key<api3.FutureOr<void> Function()?>(),
+              id:
+                  types.key<api3.FutureOr<void> Function()?>() +
+                  ":callback:<>()->futureOr:[void:]",
               invoke: _callback3Invoke,
               matches: _callback3Matches,
             ),
@@ -24618,7 +25603,7 @@ Function _flaxClass_SynchronousStreamController<
               [],
               FlaxTypeRef("void"),
               _callback4,
-              id: types.key<void Function()?>(),
+              id: types.key<void Function()?>() + ":callback:<>()->void:",
               invoke: _callback4Invoke,
               matches: _callback4Matches,
             ),
@@ -24634,7 +25619,7 @@ Function _flaxClass_SynchronousStreamController<
               [],
               FlaxTypeRef("void"),
               _callback5,
-              id: types.key<void Function()?>(),
+              id: types.key<void Function()?>() + ":callback:<>()->void:",
               invoke: _callback5Invoke,
               matches: _callback5Matches,
             ),
@@ -24650,7 +25635,7 @@ Function _flaxClass_SynchronousStreamController<
               [],
               FlaxTypeRef("void"),
               _callback6,
-              id: types.key<void Function()?>(),
+              id: types.key<void Function()?>() + ":callback:<>()->void:",
               invoke: _callback6Invoke,
               matches: _callback6Matches,
             ),
@@ -24670,7 +25655,9 @@ Function _flaxClass_SynchronousStreamController<
                 future: FlaxFutureBinding("void:", _future4Adapt),
               ),
               _callback7,
-              id: types.key<api3.FutureOr<void> Function()?>(),
+              id:
+                  types.key<api3.FutureOr<void> Function()?>() +
+                  ":callback:<>()->futureOr:[void:]",
               invoke: _callback7Invoke,
               matches: _callback7Matches,
             ),
@@ -24965,7 +25952,7 @@ Function _flaxClass_MultiStreamController<_Owner0 extends Object?>() =>
                   [],
                   FlaxTypeRef("void"),
                   _callback0,
-                  id: types.key<void Function()?>(),
+                  id: types.key<void Function()?>() + ":callback:<>()->void:",
                   invoke: _callback0Invoke,
                   matches: _callback0Matches,
                 ),
@@ -24981,7 +25968,7 @@ Function _flaxClass_MultiStreamController<_Owner0 extends Object?>() =>
                   [],
                   FlaxTypeRef("void"),
                   _callback1,
-                  id: types.key<void Function()?>(),
+                  id: types.key<void Function()?>() + ":callback:<>()->void:",
                   invoke: _callback1Invoke,
                   matches: _callback1Matches,
                 ),
@@ -24997,7 +25984,7 @@ Function _flaxClass_MultiStreamController<_Owner0 extends Object?>() =>
                   [],
                   FlaxTypeRef("void"),
                   _callback2,
-                  id: types.key<void Function()?>(),
+                  id: types.key<void Function()?>() + ":callback:<>()->void:",
                   invoke: _callback2Invoke,
                   matches: _callback2Matches,
                 ),
@@ -25017,7 +26004,9 @@ Function _flaxClass_MultiStreamController<_Owner0 extends Object?>() =>
                     future: FlaxFutureBinding("void:", _future4Adapt),
                   ),
                   _callback3,
-                  id: types.key<api3.FutureOr<void> Function()?>(),
+                  id:
+                      types.key<api3.FutureOr<void> Function()?>() +
+                      ":callback:<>()->futureOr:[void:]",
                   invoke: _callback3Invoke,
                   matches: _callback3Matches,
                 ),
@@ -25193,7 +26182,7 @@ Function _flaxClass_MultiStreamController<_Owner0 extends Object?>() =>
                   [],
                   FlaxTypeRef("void"),
                   _callback4,
-                  id: types.key<void Function()?>(),
+                  id: types.key<void Function()?>() + ":callback:<>()->void:",
                   invoke: _callback4Invoke,
                   matches: _callback4Matches,
                 ),
@@ -25209,7 +26198,7 @@ Function _flaxClass_MultiStreamController<_Owner0 extends Object?>() =>
                   [],
                   FlaxTypeRef("void"),
                   _callback5,
-                  id: types.key<void Function()?>(),
+                  id: types.key<void Function()?>() + ":callback:<>()->void:",
                   invoke: _callback5Invoke,
                   matches: _callback5Matches,
                 ),
@@ -25225,7 +26214,7 @@ Function _flaxClass_MultiStreamController<_Owner0 extends Object?>() =>
                   [],
                   FlaxTypeRef("void"),
                   _callback6,
-                  id: types.key<void Function()?>(),
+                  id: types.key<void Function()?>() + ":callback:<>()->void:",
                   invoke: _callback6Invoke,
                   matches: _callback6Matches,
                 ),
@@ -25245,7 +26234,9 @@ Function _flaxClass_MultiStreamController<_Owner0 extends Object?>() =>
                     future: FlaxFutureBinding("void:", _future4Adapt),
                   ),
                   _callback7,
-                  id: types.key<api3.FutureOr<void> Function()?>(),
+                  id:
+                      types.key<api3.FutureOr<void> Function()?>() +
+                      ":callback:<>()->futureOr:[void:]",
                   invoke: _callback7Invoke,
                   matches: _callback7Matches,
                 ),
@@ -25526,7 +26517,9 @@ Function _flaxClass_EventSink<_Owner0 extends Object?>() =>
                 ],
                 FlaxTypeRef("void"),
                 _callback0,
-                id: types.key<void Function(_Owner0 event)>(),
+                id:
+                    types.key<void Function(_Owner0 event)>() +
+                    ":callback:<>(p:r:event:parameter:)->void:",
                 invoke: _callback0Invoke,
                 matches: _callback0Matches,
               ),
@@ -25556,10 +26549,15 @@ Function _flaxClass_EventSink<_Owner0 extends Object?>() =>
                 ],
                 FlaxTypeRef("void"),
                 _callback1,
-                id: types
-                    .key<
-                      void Function(Object error, [api1.StackTrace? stackTrace])
-                    >(),
+                id:
+                    types
+                        .key<
+                          void Function(
+                            Object error, [
+                            api1.StackTrace? stackTrace,
+                          ])
+                        >() +
+                    ":callback:<>(p:r:error:any:,p:o:stackTrace:object?:flax.core/flutter#type:StackTrace)->void:",
                 invoke: _callback1Invoke,
                 matches: _callback1Matches,
               ),
@@ -25572,7 +26570,7 @@ Function _flaxClass_EventSink<_Owner0 extends Object?>() =>
                 [],
                 FlaxTypeRef("void"),
                 _callback2,
-                id: types.key<void Function()>(),
+                id: types.key<void Function()>() + ":callback:<>()->void:",
                 invoke: _callback2Invoke,
                 matches: _callback2Matches,
               ),
@@ -25711,8 +26709,12 @@ Function _flaxClass_StreamConsumer<
               future: FlaxFutureBinding("any?:", _future2Adapt),
             ),
             _callback0,
-            id: types
-                .key<Future<Object?> Function(api3.Stream<_Owner0> stream)>(),
+            id:
+                types
+                    .key<
+                      Future<Object?> Function(api3.Stream<_Owner0> stream)
+                    >() +
+                ":callback:<>(p:r:stream:stream:flax.core/flutter#type:Stream[parameter:])->future:[any?:]",
             invoke: _callback0Invoke,
             matches: _callback0Matches,
           ),
@@ -25729,7 +26731,9 @@ Function _flaxClass_StreamConsumer<
               future: FlaxFutureBinding("any?:", _future2Adapt),
             ),
             _callback1,
-            id: types.key<Future<Object?> Function()>(),
+            id:
+                types.key<Future<Object?> Function()>() +
+                ":callback:<>()->future:[any?:]",
             invoke: _callback1Invoke,
             matches: _callback1Matches,
           ),
@@ -26144,8 +27148,12 @@ Function _flaxClass_StreamTransformer<
         withinCallback: true,
       ),
       _callback0,
-      id: types
-          .key<api3.StreamTransformer<_Callback0, _Callback1> Function()>(),
+      id:
+          types
+              .key<
+                api3.StreamTransformer<_Callback0, _Callback1> Function()
+              >() +
+          ":callback:<>()->object:flax.core/flutter#type:StreamTransformer<Object?,Object?><parameter:,parameter:>",
       invoke: _callback0Invoke,
       matches: _callback0Matches,
     );
@@ -26242,13 +27250,15 @@ Function _flaxClass_StreamTransformer<
                     withinCallback: true,
                   ),
                   _callback0,
-                  id: types
-                      .key<
-                        api3.StreamSubscription<_Owner1> Function(
-                          api3.Stream<_Owner0> stream,
-                          bool cancelOnError,
-                        )
-                      >(),
+                  id:
+                      types
+                          .key<
+                            api3.StreamSubscription<_Owner1> Function(
+                              api3.Stream<_Owner0> stream,
+                              bool cancelOnError,
+                            )
+                          >() +
+                      ":callback:<>(p:r:stream:stream:flax.core/flutter#type:Stream[parameter:],p:r:cancelOnError:bool:)->object:flax.core/flutter#type:StreamSubscription<Object?><parameter:>",
                   invoke: _callback0Invoke,
                   matches: _callback0Matches,
                 ),
@@ -26286,13 +27296,15 @@ Function _flaxClass_StreamTransformer<
                   ],
                   FlaxTypeRef("void"),
                   _callback1,
-                  id: types
-                      .key<
-                        void Function(
-                          _Owner0 data,
-                          api3.EventSink<_Owner1> sink,
-                        )?
-                      >(),
+                  id:
+                      types
+                          .key<
+                            void Function(
+                              _Owner0 data,
+                              api3.EventSink<_Owner1> sink,
+                            )?
+                          >() +
+                      ":callback:<>(p:r:data:parameter:,p:r:sink:object:flax.core/flutter#type:EventSink<Object?><parameter:>:scoped)->void:",
                   invoke: _callback1Invoke,
                   matches: _callback1Matches,
                 ),
@@ -26341,14 +27353,16 @@ Function _flaxClass_StreamTransformer<
                   ],
                   FlaxTypeRef("void"),
                   _callback2,
-                  id: types
-                      .key<
-                        void Function(
-                          Object error,
-                          api1.StackTrace stackTrace,
-                          api3.EventSink<_Owner1> sink,
-                        )?
-                      >(),
+                  id:
+                      types
+                          .key<
+                            void Function(
+                              Object error,
+                              api1.StackTrace stackTrace,
+                              api3.EventSink<_Owner1> sink,
+                            )?
+                          >() +
+                      ":callback:<>(p:r:error:any:,p:r:stackTrace:object:flax.core/flutter#type:StackTrace,p:r:sink:object:flax.core/flutter#type:EventSink<Object?><parameter:>:scoped)->void:",
                   invoke: _callback2Invoke,
                   matches: _callback2Matches,
                 ),
@@ -26376,7 +27390,10 @@ Function _flaxClass_StreamTransformer<
                   ],
                   FlaxTypeRef("void"),
                   _callback3,
-                  id: types.key<void Function(api3.EventSink<_Owner1> sink)?>(),
+                  id:
+                      types
+                          .key<void Function(api3.EventSink<_Owner1> sink)?>() +
+                      ":callback:<>(p:r:sink:object:flax.core/flutter#type:EventSink<Object?><parameter:>:scoped)->void:",
                   invoke: _callback3Invoke,
                   matches: _callback3Matches,
                 ),
@@ -26406,12 +27423,14 @@ Function _flaxClass_StreamTransformer<
                       ],
                       types.ref<api3.Stream<_Owner1>>(withinCallback: true),
                       _callback4,
-                      id: types
-                          .key<
-                            api3.Stream<_Owner1> Function(
-                              api3.Stream<_Owner0> p0,
-                            )
-                          >(),
+                      id:
+                          types
+                              .key<
+                                api3.Stream<_Owner1> Function(
+                                  api3.Stream<_Owner0> p0,
+                                )
+                              >() +
+                          ":callback:<>(p:r:p0:stream:flax.core/flutter#type:Stream[parameter:])->stream:flax.core/flutter#type:Stream[parameter:]",
                       invoke: _callback4Invoke,
                       matches: _callback4Matches,
                     ),
@@ -26448,10 +27467,12 @@ Function _flaxClass_StreamTransformer<
             ],
             types.ref<api3.Stream<_Owner1>>(withinCallback: true),
             _callback5,
-            id: types
-                .key<
-                  api3.Stream<_Owner1> Function(api3.Stream<_Owner0> stream)
-                >(),
+            id:
+                types
+                    .key<
+                      api3.Stream<_Owner1> Function(api3.Stream<_Owner0> stream)
+                    >() +
+                ":callback:<>(p:r:stream:stream:flax.core/flutter#type:Stream[parameter:])->stream:flax.core/flutter#type:Stream[parameter:]",
             invoke: _callback5Invoke,
             matches: _callback5Matches,
           ),
@@ -26469,11 +27490,13 @@ Function _flaxClass_StreamTransformer<
                   .typeOf<api3.StreamTransformer<Object?, Object?>>,
             ),
             _callback6,
-            id: types
-                .key<
-                  api3.StreamTransformer<RS, RT>
-                  Function<RS extends Object?, RT extends Object?>()
-                >(),
+            id:
+                types
+                    .key<
+                      api3.StreamTransformer<RS, RT>
+                      Function<RS extends Object?, RT extends Object?>()
+                    >() +
+                ":callback:<RS:any?:=any?:,RT:any?:=any?:>()->object:flax.core/flutter#type:StreamTransformer<Object?,Object?><any?:,any?:>",
             invoke: _callback6Invoke,
             matches: _callback6Matches,
             genericFactory: _callback6Types,
@@ -26617,8 +27640,12 @@ Function _flaxClass_StreamTransformerBase<
         withinCallback: true,
       ),
       _callback0,
-      id: types
-          .key<api3.StreamTransformer<_Callback0, _Callback1> Function()>(),
+      id:
+          types
+              .key<
+                api3.StreamTransformer<_Callback0, _Callback1> Function()
+              >() +
+          ":callback:<>()->object:flax.core/flutter#type:StreamTransformer<Object?,Object?><parameter:,parameter:>",
       invoke: _callback0Invoke,
       matches: _callback0Matches,
     );
@@ -26723,10 +27750,12 @@ Function _flaxClass_StreamTransformerBase<
             ],
             types.ref<api3.Stream<_Owner1>>(withinCallback: true),
             _callback0,
-            id: types
-                .key<
-                  api3.Stream<_Owner1> Function(api3.Stream<_Owner0> stream)
-                >(),
+            id:
+                types
+                    .key<
+                      api3.Stream<_Owner1> Function(api3.Stream<_Owner0> stream)
+                    >() +
+                ":callback:<>(p:r:stream:stream:flax.core/flutter#type:Stream[parameter:])->stream:flax.core/flutter#type:Stream[parameter:]",
             invoke: _callback0Invoke,
             matches: _callback0Matches,
           ),
@@ -26744,11 +27773,13 @@ Function _flaxClass_StreamTransformerBase<
                   .typeOf<api3.StreamTransformer<Object?, Object?>>,
             ),
             _callback1,
-            id: types
-                .key<
-                  api3.StreamTransformer<RS, RT>
-                  Function<RS extends Object?, RT extends Object?>()
-                >(),
+            id:
+                types
+                    .key<
+                      api3.StreamTransformer<RS, RT>
+                      Function<RS extends Object?, RT extends Object?>()
+                    >() +
+                ":callback:<RS:any?:=any?:,RT:any?:=any?:>()->object:flax.core/flutter#type:StreamTransformer<Object?,Object?><any?:,any?:>",
             invoke: _callback1Invoke,
             matches: _callback1Matches,
             genericFactory: _callback1Types,
@@ -26807,7 +27838,9 @@ Function _flaxGeneric_StreamView_map<
               ],
               types.ref<_Method0>(withinCallback: true),
               _callback0,
-              id: types.key<_Method0 Function(_Owner0 event)>(),
+              id:
+                  types.key<_Method0 Function(_Owner0 event)>() +
+                  ":callback:<>(p:r:event:parameter:)->parameter:",
               invoke: _callback0Invoke,
               matches: _callback0Matches,
             ),
@@ -26870,7 +27903,9 @@ Function _flaxGeneric_StreamView_asyncMap<
               ],
               types.ref<api3.FutureOr<_Method0>>(withinCallback: true),
               _callback0,
-              id: types.key<api3.FutureOr<_Method0> Function(_Owner0 event)>(),
+              id:
+                  types.key<api3.FutureOr<_Method0> Function(_Owner0 event)>() +
+                  ":callback:<>(p:r:event:parameter:)->futureOr:[parameter:]",
               invoke: _callback0Invoke,
               matches: _callback0Matches,
             ),
@@ -26933,7 +27968,7 @@ Function _flaxGeneric_StreamView_asyncExpand<
               ],
               types.ref<api3.Stream<_Method0>?>(withinCallback: true),
               _callback0,
-              id: types.key<api3.Stream<_Method0>? Function(_Owner0 event)>(),
+              id: types.key<api3.Stream<_Method0>? Function(_Owner0 event)>() + ":callback:<>(p:r:event:parameter:)->stream?:flax.core/flutter#type:Stream[parameter:]",
               invoke: _callback0Invoke,
               matches: _callback0Matches,
             ),
@@ -26995,7 +28030,9 @@ Function _flaxGeneric_StreamView_expand<
               ],
               types.ref<Iterable<_Method0>>(withinCallback: true),
               _callback0,
-              id: types.key<Iterable<_Method0> Function(_Owner0 element)>(),
+              id:
+                  types.key<Iterable<_Method0> Function(_Owner0 element)>() +
+                  ":callback:<>(p:r:element:parameter:)->iterable:[parameter:]",
               invoke: _callback0Invoke,
               matches: _callback0Matches,
             ),
@@ -27099,8 +28136,12 @@ Function _flaxGeneric_StreamView_fold<
               ],
               types.ref<_Method0>(withinCallback: true),
               _callback0,
-              id: types
-                  .key<_Method0 Function(_Method0 previous, _Owner0 element)>(),
+              id:
+                  types
+                      .key<
+                        _Method0 Function(_Method0 previous, _Owner0 element)
+                      >() +
+                  ":callback:<>(p:r:previous:parameter:,p:r:element:parameter:)->parameter:",
               invoke: _callback0Invoke,
               matches: _callback0Matches,
             ),
@@ -27947,12 +28988,14 @@ Function _flaxClass_StreamView<
                     ],
                     FlaxTypeRef("void"),
                     _callback0,
-                    id: types
-                        .key<
-                          void Function(
-                            api3.StreamSubscription<_Owner0> subscription,
-                          )?
-                        >(),
+                    id:
+                        types
+                            .key<
+                              void Function(
+                                api3.StreamSubscription<_Owner0> subscription,
+                              )?
+                            >() +
+                        ":callback:<>(p:r:subscription:object:flax.core/flutter#type:StreamSubscription<Object?><parameter:>)->void:",
                     invoke: _callback0Invoke,
                     matches: _callback0Matches,
                   ),
@@ -27983,12 +29026,14 @@ Function _flaxClass_StreamView<
                     ],
                     FlaxTypeRef("void"),
                     _callback1,
-                    id: types
-                        .key<
-                          void Function(
-                            api3.StreamSubscription<_Owner0> subscription,
-                          )?
-                        >(),
+                    id:
+                        types
+                            .key<
+                              void Function(
+                                api3.StreamSubscription<_Owner0> subscription,
+                              )?
+                            >() +
+                        ":callback:<>(p:r:subscription:object:flax.core/flutter#type:StreamSubscription<Object?><parameter:>)->void:",
                     invoke: _callback1Invoke,
                     matches: _callback1Matches,
                   ),
@@ -28022,7 +29067,9 @@ Function _flaxClass_StreamView<
                     ],
                     FlaxTypeRef("void"),
                     _callback2,
-                    id: types.key<void Function(_Owner0 value)?>(),
+                    id:
+                        types.key<void Function(_Owner0 value)?>() +
+                        ":callback:<>(p:r:value:parameter:)->void:",
                     invoke: _callback2Invoke,
                     matches: _callback2Matches,
                   ),
@@ -28048,7 +29095,7 @@ Function _flaxClass_StreamView<
                   [],
                   FlaxTypeRef("void"),
                   _callback3,
-                  id: types.key<void Function()?>(),
+                  id: types.key<void Function()?>() + ":callback:<>()->void:",
                   invoke: _callback3Invoke,
                   matches: _callback3Matches,
                 ),
@@ -28083,8 +29130,12 @@ Function _flaxClass_StreamView<
                   ],
                   FlaxTypeRef("void"),
                   _callback4,
-                  id: types
-                      .key<void Function(Object p0, [api1.StackTrace p1])?>(),
+                  id:
+                      types
+                          .key<
+                            void Function(Object p0, [api1.StackTrace p1])?
+                          >() +
+                      ":callback:<>(p:r:p0:any::e=error,p:o:p1:object:flax.core/flutter#type:StackTrace)->void:",
                   invoke: _callback4Invoke,
                   matches: _callback4Matches,
                 ),
@@ -28117,7 +29168,9 @@ Function _flaxClass_StreamView<
                     ],
                     FlaxTypeRef("bool"),
                     _callback5,
-                    id: types.key<bool Function(_Owner0 event)>(),
+                    id:
+                        types.key<bool Function(_Owner0 event)>() +
+                        ":callback:<>(p:r:event:parameter:)->bool:",
                     invoke: _callback5Invoke,
                     matches: _callback5Matches,
                   ),
@@ -28151,7 +29204,9 @@ Function _flaxClass_StreamView<
                     ],
                     FlaxTypeRef("any", nullable: true),
                     _callback6,
-                    id: types.key<Object? Function(_Owner0 event)>(),
+                    id:
+                        types.key<Object? Function(_Owner0 event)>() +
+                        ":callback:<>(p:r:event:parameter:)->any?:",
                     invoke: _callback6Invoke,
                     matches: _callback6Matches,
                   ),
@@ -28201,8 +29256,12 @@ Function _flaxClass_StreamView<
                       future: FlaxFutureBinding("any?:", _future2Adapt),
                     ),
                     _callback7,
-                    id: types
-                        .key<api3.FutureOr<Object?> Function(_Owner0 event)>(),
+                    id:
+                        types
+                            .key<
+                              api3.FutureOr<Object?> Function(_Owner0 event)
+                            >() +
+                        ":callback:<>(p:r:event:parameter:)->futureOr:[any?:]",
                     invoke: _callback7Invoke,
                     matches: _callback7Matches,
                   ),
@@ -28259,8 +29318,12 @@ Function _flaxClass_StreamView<
                       ),
                     ),
                     _callback8,
-                    id: types
-                        .key<api3.Stream<Object?>? Function(_Owner0 event)>(),
+                    id:
+                        types
+                            .key<
+                              api3.Stream<Object?>? Function(_Owner0 event)
+                            >() +
+                        ":callback:<>(p:r:event:parameter:)->stream?:flax.core/flutter#type:Stream[any?:]",
                     invoke: _callback8Invoke,
                     matches: _callback8Matches,
                   ),
@@ -28314,8 +29377,12 @@ Function _flaxClass_StreamView<
                   ],
                   FlaxTypeRef("void"),
                   _callback9,
-                  id: types
-                      .key<void Function(Object p0, [api1.StackTrace p1])>(),
+                  id:
+                      types
+                          .key<
+                            void Function(Object p0, [api1.StackTrace p1])
+                          >() +
+                      ":callback:<>(p:r:p0:any::e=error,p:o:p1:object:flax.core/flutter#type:StackTrace)->void:",
                   invoke: _callback9Invoke,
                   matches: _callback9Matches,
                 ),
@@ -28340,7 +29407,9 @@ Function _flaxClass_StreamView<
                   ],
                   FlaxTypeRef("bool"),
                   _callback10,
-                  id: types.key<bool Function(Object? error)?>(),
+                  id:
+                      types.key<bool Function(Object? error)?>() +
+                      ":callback:<>(p:r:error:any?:)->bool:",
                   invoke: _callback10Invoke,
                   matches: _callback10Matches,
                 ),
@@ -28376,13 +29445,18 @@ Function _flaxClass_StreamView<
                       item: FlaxTypeRef("any", nullable: true),
                       collection: FlaxCollectionBinding(
                         "iterable:[any?:]",
-                        _collection0Create,
-                        _collection0Matches,
+                        _collection2Create,
+                        _collection2Matches,
+                        restore: _collection2Restore,
                       ),
                     ),
                     _callback11,
-                    id: types
-                        .key<Iterable<Object?> Function(_Owner0 element)>(),
+                    id:
+                        types
+                            .key<
+                              Iterable<Object?> Function(_Owner0 element)
+                            >() +
+                        ":callback:<>(p:r:element:parameter:)->iterable:[any?:]",
                     invoke: _callback11Invoke,
                     matches: _callback11Matches,
                   ),
@@ -28478,10 +29552,15 @@ Function _flaxClass_StreamView<
                     ],
                     types.ref<_Owner0>(withinCallback: true),
                     _callback12,
-                    id: types
-                        .key<
-                          _Owner0 Function(_Owner0 previous, _Owner0 element)
-                        >(),
+                    id:
+                        types
+                            .key<
+                              _Owner0 Function(
+                                _Owner0 previous,
+                                _Owner0 element,
+                              )
+                            >() +
+                        ":callback:<>(p:r:previous:parameter:,p:r:element:parameter:)->parameter:",
                     invoke: _callback12Invoke,
                     matches: _callback12Matches,
                   ),
@@ -28528,10 +29607,15 @@ Function _flaxClass_StreamView<
                     ],
                     FlaxTypeRef("any", nullable: true),
                     _callback13,
-                    id: types
-                        .key<
-                          Object? Function(Object? previous, _Owner0 element)
-                        >(),
+                    id:
+                        types
+                            .key<
+                              Object? Function(
+                                Object? previous,
+                                _Owner0 element,
+                              )
+                            >() +
+                        ":callback:<>(p:r:previous:any?:,p:r:element:parameter:)->any?:",
                     invoke: _callback13Invoke,
                     matches: _callback13Matches,
                   ),
@@ -28607,7 +29691,9 @@ Function _flaxClass_StreamView<
                     ],
                     FlaxTypeRef("void"),
                     _callback14,
-                    id: types.key<void Function(_Owner0 element)>(),
+                    id:
+                        types.key<void Function(_Owner0 element)>() +
+                        ":callback:<>(p:r:element:parameter:)->void:",
                     invoke: _callback14Invoke,
                     matches: _callback14Matches,
                   ),
@@ -28645,7 +29731,9 @@ Function _flaxClass_StreamView<
                     ],
                     FlaxTypeRef("bool"),
                     _callback15,
-                    id: types.key<bool Function(_Owner0 element)>(),
+                    id:
+                        types.key<bool Function(_Owner0 element)>() +
+                        ":callback:<>(p:r:element:parameter:)->bool:",
                     invoke: _callback15Invoke,
                     matches: _callback15Matches,
                   ),
@@ -28683,7 +29771,9 @@ Function _flaxClass_StreamView<
                     ],
                     FlaxTypeRef("bool"),
                     _callback16,
-                    id: types.key<bool Function(_Owner0 element)>(),
+                    id:
+                        types.key<bool Function(_Owner0 element)>() +
+                        ":callback:<>(p:r:element:parameter:)->bool:",
                     invoke: _callback16Invoke,
                     matches: _callback16Matches,
                   ),
@@ -28785,7 +29875,9 @@ Function _flaxClass_StreamView<
                     ],
                     FlaxTypeRef("bool"),
                     _callback17,
-                    id: types.key<bool Function(_Owner0 element)>(),
+                    id:
+                        types.key<bool Function(_Owner0 element)>() +
+                        ":callback:<>(p:r:element:parameter:)->bool:",
                     invoke: _callback17Invoke,
                     matches: _callback17Matches,
                   ),
@@ -28833,7 +29925,9 @@ Function _flaxClass_StreamView<
                     ],
                     FlaxTypeRef("bool"),
                     _callback18,
-                    id: types.key<bool Function(_Owner0 element)>(),
+                    id:
+                        types.key<bool Function(_Owner0 element)>() +
+                        ":callback:<>(p:r:element:parameter:)->bool:",
                     invoke: _callback18Invoke,
                     matches: _callback18Matches,
                   ),
@@ -28873,8 +29967,12 @@ Function _flaxClass_StreamView<
                     ],
                     FlaxTypeRef("bool"),
                     _callback19,
-                    id: types
-                        .key<bool Function(_Owner0 previous, _Owner0 next)?>(),
+                    id:
+                        types
+                            .key<
+                              bool Function(_Owner0 previous, _Owner0 next)?
+                            >() +
+                        ":callback:<>(p:r:previous:parameter:,p:r:next:parameter:)->bool:",
                     invoke: _callback19Invoke,
                     matches: _callback19Matches,
                   ),
@@ -28908,7 +30006,9 @@ Function _flaxClass_StreamView<
                     ],
                     FlaxTypeRef("bool"),
                     _callback20,
-                    id: types.key<bool Function(_Owner0 element)>(),
+                    id:
+                        types.key<bool Function(_Owner0 element)>() +
+                        ":callback:<>(p:r:element:parameter:)->bool:",
                     invoke: _callback20Invoke,
                     matches: _callback20Matches,
                   ),
@@ -28928,7 +30028,9 @@ Function _flaxClass_StreamView<
                     [],
                     types.ref<_Owner0>(withinCallback: true),
                     _callback21,
-                    id: types.key<_Owner0 Function()?>(),
+                    id:
+                        types.key<_Owner0 Function()?>() +
+                        ":callback:<>()->parameter:",
                     invoke: _callback21Invoke,
                     matches: _callback21Matches,
                   ),
@@ -28962,7 +30064,9 @@ Function _flaxClass_StreamView<
                     ],
                     FlaxTypeRef("bool"),
                     _callback22,
-                    id: types.key<bool Function(_Owner0 element)>(),
+                    id:
+                        types.key<bool Function(_Owner0 element)>() +
+                        ":callback:<>(p:r:element:parameter:)->bool:",
                     invoke: _callback22Invoke,
                     matches: _callback22Matches,
                   ),
@@ -28982,7 +30086,9 @@ Function _flaxClass_StreamView<
                     [],
                     types.ref<_Owner0>(withinCallback: true),
                     _callback23,
-                    id: types.key<_Owner0 Function()?>(),
+                    id:
+                        types.key<_Owner0 Function()?>() +
+                        ":callback:<>()->parameter:",
                     invoke: _callback23Invoke,
                     matches: _callback23Matches,
                   ),
@@ -29016,7 +30122,9 @@ Function _flaxClass_StreamView<
                     ],
                     FlaxTypeRef("bool"),
                     _callback24,
-                    id: types.key<bool Function(_Owner0 element)>(),
+                    id:
+                        types.key<bool Function(_Owner0 element)>() +
+                        ":callback:<>(p:r:element:parameter:)->bool:",
                     invoke: _callback24Invoke,
                     matches: _callback24Matches,
                   ),
@@ -29036,7 +30144,9 @@ Function _flaxClass_StreamView<
                     [],
                     types.ref<_Owner0>(withinCallback: true),
                     _callback25,
-                    id: types.key<_Owner0 Function()?>(),
+                    id:
+                        types.key<_Owner0 Function()?>() +
+                        ":callback:<>()->parameter:",
                     invoke: _callback25Invoke,
                     matches: _callback25Matches,
                   ),
@@ -29094,8 +30204,12 @@ Function _flaxClass_StreamView<
                     ],
                     FlaxTypeRef("void"),
                     _callback26,
-                    id: types
-                        .key<void Function(api3.EventSink<_Owner0> sink)?>(),
+                    id:
+                        types
+                            .key<
+                              void Function(api3.EventSink<_Owner0> sink)?
+                            >() +
+                        ":callback:<>(p:r:sink:object:flax.core/flutter#type:EventSink<Object?><parameter:>:scoped)->void:",
                     invoke: _callback26Invoke,
                     matches: _callback26Matches,
                   ),
@@ -29508,13 +30622,15 @@ Function _flaxClass_StreamBuilder<_Owner0 extends Object?>() =>
                       ],
                       FlaxTypeRef("widget"),
                       _callback0,
-                      id: types
-                          .key<
-                            api.Widget Function(
-                              api.BuildContext context,
-                              api.AsyncSnapshot<_Owner0> snapshot,
-                            )
-                          >(),
+                      id:
+                          types
+                              .key<
+                                api.Widget Function(
+                                  api.BuildContext context,
+                                  api.AsyncSnapshot<_Owner0> snapshot,
+                                )
+                              >() +
+                          ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:snapshot:object:flax.core/flutter#type:AsyncSnapshot<Object?><parameter:>)->widget:",
                       invoke: _callback0Invoke,
                       matches: _callback0Matches,
                     ),
@@ -29562,7 +30678,7 @@ Function _flaxClass_WidgetStateProperty<_Owner0 extends Object?>() =>
       FlaxFunctionBinding? _deferred0Binding;
       Object _deferred0(Map<String, Object?> values) {
         _deferred0Binding ??= Function.apply(
-          types.instantiate(_flaxGenericFunction14, [
+          types.instantiate(_flaxGenericFunction16, [
             FlaxDartTypes.typeOf<_Owner0>(),
           ], const []) as Function,
           [types],
@@ -29607,8 +30723,8 @@ Function _flaxClass_WidgetStateProperty<_Owner0 extends Object?>() =>
                     ),
                     collection: FlaxCollectionBinding(
                       "set:[enum:flax.core/flutter#type:WidgetState]",
-                      _collection9Create,
-                      _collection9Matches,
+                      _collection11Create,
+                      _collection11Matches,
                     ),
                     iterable: FlaxTypeRef(
                       "iterable",
@@ -29618,8 +30734,9 @@ Function _flaxClass_WidgetStateProperty<_Owner0 extends Object?>() =>
                       ),
                       collection: FlaxCollectionBinding(
                         "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                        _collection10Create,
-                        _collection10Matches,
+                        _collection12Create,
+                        _collection12Matches,
+                        restore: _collection12Restore,
                       ),
                     ),
                   ),
@@ -29666,8 +30783,8 @@ Function _flaxClass_WidgetStateProperty<_Owner0 extends Object?>() =>
                             ),
                             collection: FlaxCollectionBinding(
                               "set:[enum:flax.core/flutter#type:WidgetState]",
-                              _collection9Create,
-                              _collection9Matches,
+                              _collection11Create,
+                              _collection11Matches,
                             ),
                             iterable: FlaxTypeRef(
                               "iterable",
@@ -29677,8 +30794,9 @@ Function _flaxClass_WidgetStateProperty<_Owner0 extends Object?>() =>
                               ),
                               collection: FlaxCollectionBinding(
                                 "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                                _collection10Create,
-                                _collection10Matches,
+                                _collection12Create,
+                                _collection12Matches,
+                                restore: _collection12Restore,
                               ),
                             ),
                           ),
@@ -29688,8 +30806,12 @@ Function _flaxClass_WidgetStateProperty<_Owner0 extends Object?>() =>
                       ],
                       types.ref<_Owner0>(withinCallback: true),
                       _callback0,
-                      id: types
-                          .key<_Owner0 Function(Set<api.WidgetState> states)>(),
+                      id:
+                          types
+                              .key<
+                                _Owner0 Function(Set<api.WidgetState> states)
+                              >() +
+                          ":callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->parameter:",
                       invoke: _callback0Invoke,
                       matches: _callback0Matches,
                     ),
@@ -29832,14 +30954,16 @@ Function _flaxClass_ValueListenableBuilder<_Owner0 extends Object?>() =>
                       ],
                       FlaxTypeRef("widget"),
                       _callback0,
-                      id: types
-                          .key<
-                            api.Widget Function(
-                              api.BuildContext context,
-                              _Owner0 value,
-                              api.Widget? child,
-                            )
-                          >(),
+                      id:
+                          types
+                              .key<
+                                api.Widget Function(
+                                  api.BuildContext context,
+                                  _Owner0 value,
+                                  api.Widget? child,
+                                )
+                              >() +
+                          ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:value:parameter:,p:r:child:widget?:)->widget:",
                       invoke: _callback0Invoke,
                       matches: _callback0Matches,
                     ),
@@ -29866,303 +30990,304 @@ Function _flaxClass_ValueListenableBuilder<_Owner0 extends Object?>() =>
     };
 Type _flaxType_ValueListenable<_Owner0 extends Object?>() =>
     api8.ValueListenable<_Owner0>;
-Function _flaxClass_ValueListenable<_Owner0 extends Object?>() =>
-    (FlaxDartTypes types, String id) {
-      // ignore: unused_element
-      bool _isValueListenable(Object value) =>
-          value is api8.ValueListenable<_Owner0>;
-      // ignore: unused_element
-      Object? _ValueListenable_value(Object value) =>
-          (value as api8.ValueListenable<_Owner0>).value;
-      Object? _ValueListenable_addListener(
-        Object receiver,
-        Map<String, Object?> values,
-      ) {
-        (receiver as api8.ValueListenable<_Owner0>).addListener(
-          values["listener"] as void Function(),
-        );
-        return null;
-      }
+Function _flaxClass_ValueListenable<
+  _Owner0 extends Object?
+>() => (FlaxDartTypes types, String id) {
+  // ignore: unused_element
+  bool _isValueListenable(Object value) =>
+      value is api8.ValueListenable<_Owner0>;
+  // ignore: unused_element
+  Object? _ValueListenable_value(Object value) =>
+      (value as api8.ValueListenable<_Owner0>).value;
+  Object? _ValueListenable_addListener(
+    Object receiver,
+    Map<String, Object?> values,
+  ) {
+    (receiver as api8.ValueListenable<_Owner0>).addListener(
+      values["listener"] as void Function(),
+    );
+    return null;
+  }
 
-      Object? _ValueListenable_removeListener(
-        Object receiver,
-        Map<String, Object?> values,
-      ) {
-        (receiver as api8.ValueListenable<_Owner0>).removeListener(
-          values["listener"] as void Function(),
-        );
-        return null;
-      }
+  Object? _ValueListenable_removeListener(
+    Object receiver,
+    Map<String, Object?> values,
+  ) {
+    (receiver as api8.ValueListenable<_Owner0>).removeListener(
+      values["listener"] as void Function(),
+    );
+    return null;
+  }
 
-      // ignore: unused_element
-      Object _createValueListenable(String ctor, Map<String, Object?> values) {
-        switch (ctor) {
-          case "@implementation":
-            return _ValueListenableProxy<_Owner0>(
-              values['@peer'] as FlaxProxyPeer,
-            );
-          default:
-            throw ArgumentError("Unknown constructor");
-        }
-      }
+  // ignore: unused_element
+  Object _createValueListenable(String ctor, Map<String, Object?> values) {
+    switch (ctor) {
+      case "@implementation":
+        return _ValueListenableProxy<_Owner0>(values['@peer'] as FlaxProxyPeer);
+      default:
+        throw ArgumentError("Unknown constructor");
+    }
+  }
 
-      Object _callback0(FlaxCallback _flaxBridgeCallback) => () {
-        final positional = <Object?>[];
-        final named = <String, Object?>{};
-        _flaxBridgeCallback.call(positional, named);
-      };
-      bool _callback0Matches(Object value) => value is void Function();
-      Object? _callback0Invoke(
-        Object function,
-        List<Object?> positional,
-        Map<String, Object?> named,
-      ) {
-        (function as void Function())();
-        return null;
-      }
+  Object _callback0(FlaxCallback _flaxBridgeCallback) => () {
+    final positional = <Object?>[];
+    final named = <String, Object?>{};
+    _flaxBridgeCallback.call(positional, named);
+  };
+  bool _callback0Matches(Object value) => value is void Function();
+  Object? _callback0Invoke(
+    Object function,
+    List<Object?> positional,
+    Map<String, Object?> named,
+  ) {
+    (function as void Function())();
+    return null;
+  }
 
-      Object _callback1(FlaxCallback _flaxBridgeCallback) => () {
-        final positional = <Object?>[];
-        final named = <String, Object?>{};
-        _flaxBridgeCallback.call(positional, named);
-      };
-      bool _callback1Matches(Object value) => value is void Function();
-      Object? _callback1Invoke(
-        Object function,
-        List<Object?> positional,
-        Map<String, Object?> named,
-      ) {
-        (function as void Function())();
-        return null;
-      }
+  Object _callback1(FlaxCallback _flaxBridgeCallback) => () {
+    final positional = <Object?>[];
+    final named = <String, Object?>{};
+    _flaxBridgeCallback.call(positional, named);
+  };
+  bool _callback1Matches(Object value) => value is void Function();
+  Object? _callback1Invoke(
+    Object function,
+    List<Object?> positional,
+    Map<String, Object?> named,
+  ) {
+    (function as void Function())();
+    return null;
+  }
 
-      Object _callback2(FlaxCallback _flaxBridgeCallback) => () {
-        final positional = <Object?>[];
-        final named = <String, Object?>{};
-        _flaxBridgeCallback.call(positional, named);
-      };
-      bool _callback2Matches(Object value) => value is void Function();
-      Object? _callback2Invoke(
-        Object function,
-        List<Object?> positional,
-        Map<String, Object?> named,
-      ) {
-        (function as void Function())();
-        return null;
-      }
+  Object _callback2(FlaxCallback _flaxBridgeCallback) => () {
+    final positional = <Object?>[];
+    final named = <String, Object?>{};
+    _flaxBridgeCallback.call(positional, named);
+  };
+  bool _callback2Matches(Object value) => value is void Function();
+  Object? _callback2Invoke(
+    Object function,
+    List<Object?> positional,
+    Map<String, Object?> named,
+  ) {
+    (function as void Function())();
+    return null;
+  }
 
-      Object _callback3(FlaxCallback _flaxBridgeCallback) =>
-          (void Function() p0) {
-            final positional = <Object?>[];
-            final named = <String, Object?>{};
-            positional.add(p0);
-            _flaxBridgeCallback.call(positional, named);
-          };
-      bool _callback3Matches(Object value) =>
-          value is void Function(void Function() listener);
-      Object? _callback3Invoke(
-        Object function,
-        List<Object?> positional,
-        Map<String, Object?> named,
-      ) {
-        (function as void Function(void Function() listener))(
-          positional[0] as void Function(),
-        );
-        return null;
-      }
+  Object _callback3(FlaxCallback _flaxBridgeCallback) => (void Function() p0) {
+    final positional = <Object?>[];
+    final named = <String, Object?>{};
+    positional.add(p0);
+    _flaxBridgeCallback.call(positional, named);
+  };
+  bool _callback3Matches(Object value) =>
+      value is void Function(void Function() listener);
+  Object? _callback3Invoke(
+    Object function,
+    List<Object?> positional,
+    Map<String, Object?> named,
+  ) {
+    (function as void Function(void Function() listener))(
+      positional[0] as void Function(),
+    );
+    return null;
+  }
 
-      Object _callback4(FlaxCallback _flaxBridgeCallback) => () {
-        final positional = <Object?>[];
-        final named = <String, Object?>{};
-        _flaxBridgeCallback.call(positional, named);
-      };
-      bool _callback4Matches(Object value) => value is void Function();
-      Object? _callback4Invoke(
-        Object function,
-        List<Object?> positional,
-        Map<String, Object?> named,
-      ) {
-        (function as void Function())();
-        return null;
-      }
+  Object _callback4(FlaxCallback _flaxBridgeCallback) => () {
+    final positional = <Object?>[];
+    final named = <String, Object?>{};
+    _flaxBridgeCallback.call(positional, named);
+  };
+  bool _callback4Matches(Object value) => value is void Function();
+  Object? _callback4Invoke(
+    Object function,
+    List<Object?> positional,
+    Map<String, Object?> named,
+  ) {
+    (function as void Function())();
+    return null;
+  }
 
-      Object _callback5(FlaxCallback _flaxBridgeCallback) =>
-          (void Function() p0) {
-            final positional = <Object?>[];
-            final named = <String, Object?>{};
-            positional.add(p0);
-            _flaxBridgeCallback.call(positional, named);
-          };
-      bool _callback5Matches(Object value) =>
-          value is void Function(void Function() listener);
-      Object? _callback5Invoke(
-        Object function,
-        List<Object?> positional,
-        Map<String, Object?> named,
-      ) {
-        (function as void Function(void Function() listener))(
-          positional[0] as void Function(),
-        );
-        return null;
-      }
+  Object _callback5(FlaxCallback _flaxBridgeCallback) => (void Function() p0) {
+    final positional = <Object?>[];
+    final named = <String, Object?>{};
+    positional.add(p0);
+    _flaxBridgeCallback.call(positional, named);
+  };
+  bool _callback5Matches(Object value) =>
+      value is void Function(void Function() listener);
+  Object? _callback5Invoke(
+    Object function,
+    List<Object?> positional,
+    Map<String, Object?> named,
+  ) {
+    (function as void Function(void Function() listener))(
+      positional[0] as void Function(),
+    );
+    return null;
+  }
 
-      Object _callback6(FlaxCallback _flaxBridgeCallback) => () {
-        final positional = <Object?>[];
-        final named = <String, Object?>{};
-        return _flaxBridgeCallback.call(positional, named) as _Owner0;
-      };
-      bool _callback6Matches(Object value) => value is _Owner0 Function();
-      Object? _callback6Invoke(
-        Object function,
-        List<Object?> positional,
-        Map<String, Object?> named,
-      ) {
-        return (function as _Owner0 Function())();
-      }
+  Object _callback6(FlaxCallback _flaxBridgeCallback) => () {
+    final positional = <Object?>[];
+    final named = <String, Object?>{};
+    return _flaxBridgeCallback.call(positional, named) as _Owner0;
+  };
+  bool _callback6Matches(Object value) => value is _Owner0 Function();
+  Object? _callback6Invoke(
+    Object function,
+    List<Object?> positional,
+    Map<String, Object?> named,
+  ) {
+    return (function as _Owner0 Function())();
+  }
 
-      return FlaxDartClass(
-        api8.ValueListenable<_Owner0>,
-        FlaxObjectBinding(
-          id,
-          [FlaxGetter("value", types.ref<_Owner0>(), _ValueListenable_value)],
-          {
-            "addListener": FlaxInstanceMethod(
-              [
-                FlaxParameter(
-                  "listener",
-                  FlaxTypeRef(
-                    "callback",
-                    callback: FlaxCallbackBinding(
-                      [],
-                      FlaxTypeRef("void"),
-                      _callback0,
-                      id: types.key<void Function()>(),
-                      invoke: _callback0Invoke,
-                      matches: _callback0Matches,
-                    ),
-                  ),
-                  required: true,
-                  defaultValue: null,
-                  omitWhenAbsent: false,
+  return FlaxDartClass(
+    api8.ValueListenable<_Owner0>,
+    FlaxObjectBinding(
+      id,
+      [FlaxGetter("value", types.ref<_Owner0>(), _ValueListenable_value)],
+      {
+        "addListener": FlaxInstanceMethod(
+          [
+            FlaxParameter(
+              "listener",
+              FlaxTypeRef(
+                "callback",
+                callback: FlaxCallbackBinding(
+                  [],
+                  FlaxTypeRef("void"),
+                  _callback0,
+                  id: types.key<void Function()>() + ":callback:<>()->void:",
+                  invoke: _callback0Invoke,
+                  matches: _callback0Matches,
                 ),
-              ],
-              FlaxTypeRef("void"),
-              _ValueListenable_addListener,
-              startsRoute: false,
+              ),
+              required: true,
+              defaultValue: null,
+              omitWhenAbsent: false,
             ),
-            "removeListener": FlaxInstanceMethod(
-              [
-                FlaxParameter(
-                  "listener",
-                  FlaxTypeRef(
-                    "callback",
-                    callback: FlaxCallbackBinding(
-                      [],
-                      FlaxTypeRef("void"),
-                      _callback1,
-                      id: types.key<void Function()>(),
-                      invoke: _callback1Invoke,
-                      matches: _callback1Matches,
-                    ),
-                  ),
-                  required: true,
-                  defaultValue: null,
-                  omitWhenAbsent: false,
-                ),
-              ],
-              FlaxTypeRef("void"),
-              _ValueListenable_removeListener,
-              startsRoute: false,
-            ),
-          },
-          constructors: {"@implementation": []},
-          create: _createValueListenable,
-          matches: _isValueListenable,
-          setters: [],
-          supertypes: [
-            "flax.core/flutter#type:ValueListenable",
-            ...["flax.core/flutter#type:Listenable", "dart:core::Object"],
           ],
-          listenerPairs: {"addListener": "removeListener"},
-          disposeMethod: null,
-          proxy: FlaxProxyBinding([
-            FlaxProxyMember(
-              "addListener",
-              0,
-              FlaxCallbackBinding(
-                [
-                  FlaxCallbackParameter(
-                    "listener",
-                    FlaxTypeRef(
-                      "callback",
-                      callback: FlaxCallbackBinding(
-                        [],
-                        FlaxTypeRef("void"),
-                        _callback2,
-                        id: types.key<void Function()>(),
-                        invoke: _callback2Invoke,
-                        matches: _callback2Matches,
-                      ),
-                    ),
-                    required: true,
-                    positional: true,
-                  ),
-                ],
-                FlaxTypeRef("void"),
-                _callback3,
-                id: types.key<void Function(void Function() listener)>(),
-                invoke: _callback3Invoke,
-                matches: _callback3Matches,
-              ),
-              hasSuper: false,
-            ),
-            FlaxProxyMember(
-              "removeListener",
-              0,
-              FlaxCallbackBinding(
-                [
-                  FlaxCallbackParameter(
-                    "listener",
-                    FlaxTypeRef(
-                      "callback",
-                      callback: FlaxCallbackBinding(
-                        [],
-                        FlaxTypeRef("void"),
-                        _callback4,
-                        id: types.key<void Function()>(),
-                        invoke: _callback4Invoke,
-                        matches: _callback4Matches,
-                      ),
-                    ),
-                    required: true,
-                    positional: true,
-                  ),
-                ],
-                FlaxTypeRef("void"),
-                _callback5,
-                id: types.key<void Function(void Function() listener)>(),
-                invoke: _callback5Invoke,
-                matches: _callback5Matches,
-              ),
-              hasSuper: false,
-            ),
-            FlaxProxyMember(
-              "value",
-              1,
-              FlaxCallbackBinding(
-                [],
-                types.ref<_Owner0>(withinCallback: true),
-                _callback6,
-                id: types.key<_Owner0 Function()>(),
-                invoke: _callback6Invoke,
-                matches: _callback6Matches,
-              ),
-              hasSuper: false,
-            ),
-          ]),
+          FlaxTypeRef("void"),
+          _ValueListenable_addListener,
+          startsRoute: false,
         ),
-      );
-    };
+        "removeListener": FlaxInstanceMethod(
+          [
+            FlaxParameter(
+              "listener",
+              FlaxTypeRef(
+                "callback",
+                callback: FlaxCallbackBinding(
+                  [],
+                  FlaxTypeRef("void"),
+                  _callback1,
+                  id: types.key<void Function()>() + ":callback:<>()->void:",
+                  invoke: _callback1Invoke,
+                  matches: _callback1Matches,
+                ),
+              ),
+              required: true,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+          ],
+          FlaxTypeRef("void"),
+          _ValueListenable_removeListener,
+          startsRoute: false,
+        ),
+      },
+      constructors: {"@implementation": []},
+      create: _createValueListenable,
+      matches: _isValueListenable,
+      setters: [],
+      supertypes: [
+        "flax.core/flutter#type:ValueListenable",
+        ...["flax.core/flutter#type:Listenable", "dart:core::Object"],
+      ],
+      listenerPairs: {"addListener": "removeListener"},
+      disposeMethod: null,
+      proxy: FlaxProxyBinding([
+        FlaxProxyMember(
+          "addListener",
+          0,
+          FlaxCallbackBinding(
+            [
+              FlaxCallbackParameter(
+                "listener",
+                FlaxTypeRef(
+                  "callback",
+                  callback: FlaxCallbackBinding(
+                    [],
+                    FlaxTypeRef("void"),
+                    _callback2,
+                    id: types.key<void Function()>() + ":callback:<>()->void:",
+                    invoke: _callback2Invoke,
+                    matches: _callback2Matches,
+                  ),
+                ),
+                required: true,
+                positional: true,
+              ),
+            ],
+            FlaxTypeRef("void"),
+            _callback3,
+            id:
+                types.key<void Function(void Function() listener)>() +
+                ":callback:<>(p:r:listener:callback:<>()->void:)->void:",
+            invoke: _callback3Invoke,
+            matches: _callback3Matches,
+          ),
+          hasSuper: false,
+        ),
+        FlaxProxyMember(
+          "removeListener",
+          0,
+          FlaxCallbackBinding(
+            [
+              FlaxCallbackParameter(
+                "listener",
+                FlaxTypeRef(
+                  "callback",
+                  callback: FlaxCallbackBinding(
+                    [],
+                    FlaxTypeRef("void"),
+                    _callback4,
+                    id: types.key<void Function()>() + ":callback:<>()->void:",
+                    invoke: _callback4Invoke,
+                    matches: _callback4Matches,
+                  ),
+                ),
+                required: true,
+                positional: true,
+              ),
+            ],
+            FlaxTypeRef("void"),
+            _callback5,
+            id:
+                types.key<void Function(void Function() listener)>() +
+                ":callback:<>(p:r:listener:callback:<>()->void:)->void:",
+            invoke: _callback5Invoke,
+            matches: _callback5Matches,
+          ),
+          hasSuper: false,
+        ),
+        FlaxProxyMember(
+          "value",
+          1,
+          FlaxCallbackBinding(
+            [],
+            types.ref<_Owner0>(withinCallback: true),
+            _callback6,
+            id: types.key<_Owner0 Function()>() + ":callback:<>()->parameter:",
+            invoke: _callback6Invoke,
+            matches: _callback6Matches,
+          ),
+          hasSuper: false,
+        ),
+      ]),
+    ),
+  );
+};
 Function _flaxGeneric_NavigatorState_push<_Method0 extends Object?>() =>
     (FlaxDartTypes types) {
       Object? invoke(Object receiver, Map<String, Object?> values) {
@@ -30432,7 +31557,9 @@ Function _flaxClass_NavigatorPopHandler<_Owner0 extends Object?>() =>
                     ],
                     FlaxTypeRef("void"),
                     _callback0,
-                    id: types.key<void Function(Object? result)?>(),
+                    id:
+                        types.key<void Function(Object? result)?>() +
+                        ":callback:<>(p:r:result:data?:)->void:",
                     invoke: _callback0Invoke,
                     matches: _callback0Matches,
                   ),
@@ -30464,120 +31591,121 @@ Function _flaxClass_NavigatorPopHandler<_Owner0 extends Object?>() =>
       );
     };
 Type _flaxType_PopScope<_Owner0 extends Object?>() => api.PopScope<_Owner0>;
-Function _flaxClass_PopScope<_Owner0 extends Object?>() =>
-    (FlaxDartTypes types, String id) {
-      // ignore: unused_element
-      bool _isPopScope(Object value) => value is api.PopScope<_Owner0>;
-      // ignore: unused_element
-      Object _createPopScope(String ctor, Map<String, Object?> values) {
-        switch (ctor) {
-          case "":
-            return api.PopScope<_Owner0>(
-              key: values["key"] as api.Key?,
-              child: values["child"] as api.Widget,
-              canPop: values["canPop"] as bool,
-              onPopInvokedWithResult:
-                  values["onPopInvokedWithResult"]
-                      as void Function(bool didPop, Object? result)?,
-            );
-          default:
-            throw ArgumentError("Unknown constructor");
-        }
-      }
-
-      Object _callback0(FlaxCallback _flaxBridgeCallback) =>
-          (bool p0, Object? p1) {
-            final positional = <Object?>[];
-            final named = <String, Object?>{};
-            positional.add(p0);
-            positional.add(p1);
-            _flaxBridgeCallback.call(positional, named);
-          };
-      bool _callback0Matches(Object value) =>
-          value is void Function(bool didPop, Object? result);
-      Object? _callback0Invoke(
-        Object function,
-        List<Object?> positional,
-        Map<String, Object?> named,
-      ) {
-        (function as void Function(bool didPop, Object? result))(
-          positional[0] as bool,
-          positional[1],
+Function _flaxClass_PopScope<
+  _Owner0 extends Object?
+>() => (FlaxDartTypes types, String id) {
+  // ignore: unused_element
+  bool _isPopScope(Object value) => value is api.PopScope<_Owner0>;
+  // ignore: unused_element
+  Object _createPopScope(String ctor, Map<String, Object?> values) {
+    switch (ctor) {
+      case "":
+        return api.PopScope<_Owner0>(
+          key: values["key"] as api.Key?,
+          child: values["child"] as api.Widget,
+          canPop: values["canPop"] as bool,
+          onPopInvokedWithResult:
+              values["onPopInvokedWithResult"]
+                  as void Function(bool didPop, Object? result)?,
         );
-        return null;
-      }
+      default:
+        throw ArgumentError("Unknown constructor");
+    }
+  }
 
-      return FlaxDartClass(
-        api.PopScope<_Owner0>,
-        FlaxWidgetBinding(
-          id,
-          {
-            "": [
-              FlaxParameter(
-                "key",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/flutter#type:Key",
-                  nullable: true,
-                ),
-                required: false,
-                defaultValue: null,
-                omitWhenAbsent: false,
-              ),
-              FlaxParameter(
-                "child",
-                FlaxTypeRef("widget"),
-                required: true,
-                defaultValue: null,
-                omitWhenAbsent: false,
-              ),
-              FlaxParameter(
-                "canPop",
-                FlaxTypeRef("bool"),
-                required: false,
-                defaultValue: true,
-                omitWhenAbsent: false,
-              ),
-              FlaxParameter(
-                "onPopInvokedWithResult",
-                FlaxTypeRef(
-                  "callback",
-                  nullable: true,
-                  callback: FlaxCallbackBinding(
-                    [
-                      FlaxCallbackParameter(
-                        "didPop",
-                        FlaxTypeRef("bool"),
-                        required: true,
-                        positional: true,
-                      ),
-                      FlaxCallbackParameter(
-                        "result",
-                        FlaxTypeRef("data", nullable: true),
-                        required: true,
-                        positional: true,
-                      ),
-                    ],
-                    FlaxTypeRef("void"),
-                    _callback0,
-                    id: types
-                        .key<void Function(bool didPop, Object? result)?>(),
-                    invoke: _callback0Invoke,
-                    matches: _callback0Matches,
+  Object _callback0(FlaxCallback _flaxBridgeCallback) => (bool p0, Object? p1) {
+    final positional = <Object?>[];
+    final named = <String, Object?>{};
+    positional.add(p0);
+    positional.add(p1);
+    _flaxBridgeCallback.call(positional, named);
+  };
+  bool _callback0Matches(Object value) =>
+      value is void Function(bool didPop, Object? result);
+  Object? _callback0Invoke(
+    Object function,
+    List<Object?> positional,
+    Map<String, Object?> named,
+  ) {
+    (function as void Function(bool didPop, Object? result))(
+      positional[0] as bool,
+      positional[1],
+    );
+    return null;
+  }
+
+  return FlaxDartClass(
+    api.PopScope<_Owner0>,
+    FlaxWidgetBinding(
+      id,
+      {
+        "": [
+          FlaxParameter(
+            "key",
+            FlaxTypeRef(
+              "object",
+              id: "flax.core/flutter#type:Key",
+              nullable: true,
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "child",
+            FlaxTypeRef("widget"),
+            required: true,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "canPop",
+            FlaxTypeRef("bool"),
+            required: false,
+            defaultValue: true,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "onPopInvokedWithResult",
+            FlaxTypeRef(
+              "callback",
+              nullable: true,
+              callback: FlaxCallbackBinding(
+                [
+                  FlaxCallbackParameter(
+                    "didPop",
+                    FlaxTypeRef("bool"),
+                    required: true,
+                    positional: true,
                   ),
-                ),
-                required: false,
-                defaultValue: null,
-                omitWhenAbsent: false,
+                  FlaxCallbackParameter(
+                    "result",
+                    FlaxTypeRef("data", nullable: true),
+                    required: true,
+                    positional: true,
+                  ),
+                ],
+                FlaxTypeRef("void"),
+                _callback0,
+                id:
+                    types.key<void Function(bool didPop, Object? result)?>() +
+                    ":callback:<>(p:r:didPop:bool:,p:r:result:data?:)->void:",
+                invoke: _callback0Invoke,
+                matches: _callback0Matches,
               ),
-            ],
-          },
-          _PopScopeHost<_Owner0>.new,
-          matches: _isPopScope,
-          fixedArguments: false,
-        ),
-      );
-    };
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+        ],
+      },
+      _PopScopeHost<_Owner0>.new,
+      matches: _isPopScope,
+      fixedArguments: false,
+    ),
+  );
+};
 Type _flaxType_ValueKey<_Owner0 extends Object?>() => api.ValueKey<_Owner0>;
 Function _flaxClass_ValueKey<_Owner0 extends Object?>() =>
     (FlaxDartTypes types, String id) {
@@ -30671,7 +31799,9 @@ Function _flaxShape0<_Shape0, _Shape1>() =>
             ],
             types.ref<_Shape1>(withinCallback: true),
             _callback0,
-            id: types.key<_Shape1 Function(_Shape0 subscription)>(),
+            id:
+                types.key<_Shape1 Function(_Shape0 subscription)>() +
+                ":callback:<>(p:r:subscription:parameter:)->parameter:",
             invoke: _callback0Invoke,
             matches: _callback0Matches,
           ),
@@ -30702,7 +31832,7 @@ Function _flaxShape1<_Shape0>() => (FlaxDartTypes types, bool withinCallback) {
         [],
         types.ref<_Shape0>(withinCallback: true),
         _callback0,
-        id: types.key<_Shape0 Function()>(),
+        id: types.key<_Shape0 Function()>() + ":callback:<>()->parameter:",
         invoke: _callback0Invoke,
         matches: _callback0Matches,
       ),
@@ -30763,7 +31893,9 @@ Function _flaxShape2<_Shape0, _Shape1, _Shape2>() =>
             ],
             types.ref<_Shape2>(withinCallback: true),
             _callback0,
-            id: types.key<_Shape2 Function(_Shape0 p0, [_Shape1 p1])>(),
+            id:
+                types.key<_Shape2 Function(_Shape0 p0, [_Shape1 p1])>() +
+                ":callback:<>(p:r:p0:parameter:,p:o:p1:parameter:)->parameter:",
             invoke: _callback0Invoke,
             matches: _callback0Matches,
           ),
@@ -30771,60 +31903,61 @@ Function _flaxShape2<_Shape0, _Shape1, _Shape2>() =>
         withinCallback: withinCallback,
       );
     };
-Function _flaxShape3<_Shape0, _Shape1, _Shape2>() =>
-    (FlaxDartTypes types, bool withinCallback) {
-      Object _callback0(FlaxCallback _flaxBridgeCallback) =>
-          (_Shape0 p0, _Shape1 p1) {
-            final positional = <Object?>[];
-            final named = <String, Object?>{};
-            positional.add(p0);
-            positional.add(p1);
-            return _flaxBridgeCallback.call(positional, named) as _Shape2;
-          };
-      bool _callback0Matches(Object value) =>
-          value is _Shape2 Function(_Shape0 previous, _Shape1 element);
-      Object? _callback0Invoke(
-        Object function,
-        List<Object?> positional,
-        Map<String, Object?> named,
-      ) {
-        return (function
-            as _Shape2 Function(_Shape0 previous, _Shape1 element))(
-          positional[0] as _Shape0,
-          positional[1] as _Shape1,
-        );
-      }
+Function _flaxShape3<
+  _Shape0,
+  _Shape1,
+  _Shape2
+>() => (FlaxDartTypes types, bool withinCallback) {
+  Object _callback0(FlaxCallback _flaxBridgeCallback) =>
+      (_Shape0 p0, _Shape1 p1) {
+        final positional = <Object?>[];
+        final named = <String, Object?>{};
+        positional.add(p0);
+        positional.add(p1);
+        return _flaxBridgeCallback.call(positional, named) as _Shape2;
+      };
+  bool _callback0Matches(Object value) =>
+      value is _Shape2 Function(_Shape0 previous, _Shape1 element);
+  Object? _callback0Invoke(
+    Object function,
+    List<Object?> positional,
+    Map<String, Object?> named,
+  ) {
+    return (function as _Shape2 Function(_Shape0 previous, _Shape1 element))(
+      positional[0] as _Shape0,
+      positional[1] as _Shape1,
+    );
+  }
 
-      return types.define<_Shape2 Function(_Shape0 previous, _Shape1 element)>(
-        FlaxTypeRef(
-          "callback",
-          nullable: false,
-          callback: FlaxCallbackBinding(
-            [
-              FlaxCallbackParameter(
-                "previous",
-                types.ref<_Shape0>(withinCallback: true),
-                required: true,
-                positional: true,
-              ),
-              FlaxCallbackParameter(
-                "element",
-                types.ref<_Shape1>(withinCallback: true),
-                required: true,
-                positional: true,
-              ),
-            ],
-            types.ref<_Shape2>(withinCallback: true),
-            _callback0,
-            id: types
-                .key<_Shape2 Function(_Shape0 previous, _Shape1 element)>(),
-            invoke: _callback0Invoke,
-            matches: _callback0Matches,
+  return types.define<_Shape2 Function(_Shape0 previous, _Shape1 element)>(
+    FlaxTypeRef(
+      "callback",
+      nullable: false,
+      callback: FlaxCallbackBinding(
+        [
+          FlaxCallbackParameter(
+            "previous",
+            types.ref<_Shape0>(withinCallback: true),
+            required: true,
+            positional: true,
           ),
-        ),
-        withinCallback: withinCallback,
-      );
-    };
+          FlaxCallbackParameter(
+            "element",
+            types.ref<_Shape1>(withinCallback: true),
+            required: true,
+            positional: true,
+          ),
+        ],
+        types.ref<_Shape2>(withinCallback: true),
+        _callback0,
+        id: types.key<_Shape2 Function(_Shape0 previous, _Shape1 element)>() + ":callback:<>(p:r:previous:parameter:,p:r:element:parameter:)->parameter:",
+        invoke: _callback0Invoke,
+        matches: _callback0Matches,
+      ),
+    ),
+    withinCallback: withinCallback,
+  );
+};
 Function _flaxShape4<_Shape0, _Shape1, _Shape2, _Shape3>() =>
     (FlaxDartTypes types, bool withinCallback) {
       Object _callback0(FlaxCallback _flaxBridgeCallback) =>
@@ -30889,14 +32022,16 @@ Function _flaxShape4<_Shape0, _Shape1, _Shape2, _Shape3>() =>
             ],
             types.ref<_Shape3>(withinCallback: true),
             _callback0,
-            id: types
-                .key<
-                  _Shape3 Function(
-                    _Shape0 error,
-                    _Shape1 stackTrace,
-                    _Shape2 sink,
-                  )
-                >(),
+            id:
+                types
+                    .key<
+                      _Shape3 Function(
+                        _Shape0 error,
+                        _Shape1 stackTrace,
+                        _Shape2 sink,
+                      )
+                    >() +
+                ":callback:<>(p:r:error:parameter:,p:r:stackTrace:parameter:,p:r:sink:parameter:)->parameter:",
             invoke: _callback0Invoke,
             matches: _callback0Matches,
           ),
@@ -32234,7 +33369,7 @@ FlaxCallbackBinding _callback74Types<
       withinCallback: true,
     ),
     _callback0,
-    id: types.key<api3.StreamTransformer<_Callback0, _Callback1> Function()>(),
+    id: types.key<api3.StreamTransformer<_Callback0, _Callback1> Function()>() + ":callback:<>()->object:flax.core/flutter#type:StreamTransformer<Object?,Object?><parameter:,parameter:>",
     invoke: _callback0Invoke,
     matches: _callback0Matches,
   );
@@ -32310,7 +33445,7 @@ FlaxCallbackBinding _callback76Types<
       withinCallback: true,
     ),
     _callback0,
-    id: types.key<api3.StreamTransformer<_Callback0, _Callback1> Function()>(),
+    id: types.key<api3.StreamTransformer<_Callback0, _Callback1> Function()>() + ":callback:<>()->object:flax.core/flutter#type:StreamTransformer<Object?,Object?><parameter:,parameter:>",
     invoke: _callback0Invoke,
     matches: _callback0Matches,
   );
@@ -33824,55 +34959,85 @@ Object? _callback158Invoke(
   );
 }
 
-Object _collection0Create() => <Object?>[];
-bool _collection0Matches(Object value) => value is Iterable<Object?>;
+Object _collection0Create() => <int>[];
+Object _collection0Restore(Object value) =>
+    (value as Iterable<Object?>).cast<int>();
+bool _collection0Matches(Object value) => value is Iterable<int>;
 Object _collection1Create() => <Object?>[];
 bool _collection1Matches(Object value) => value is List<Object?>;
-Object _collection2Create() => <Object?>{};
-bool _collection2Matches(Object value) => value is Set<Object?>;
-Object _collection3Create() => <Future<Object?>>[];
-bool _collection3Matches(Object value) => value is Iterable<Future<Object?>>;
-Object _collection4Create() => <String>[];
-bool _collection4Matches(Object value) => value is List<String>;
-Object _collection5Create() => <String>[];
-bool _collection5Matches(Object value) => value is Iterable<String>;
-Object _collection6Create() => <String, String>{};
-bool _collection6Matches(Object value) => value is Map<String, String>;
-Object _collection7Create() => <String, List<String>>{};
-bool _collection7Matches(Object value) => value is Map<String, List<String>>;
-Object _collection8Create() => <String, Object?>{};
-bool _collection8Matches(Object value) => value is Map<String, Object?>;
-Object _collection9Create() => <api.WidgetState>{};
-bool _collection9Matches(Object value) => value is Set<api.WidgetState>;
-Object _collection10Create() => <api.WidgetState>[];
-bool _collection10Matches(Object value) => value is Iterable<api.WidgetState>;
-Object _collection11Create() => <api.Widget>[];
-bool _collection11Matches(Object value) => value is List<api.Widget>;
-List<api.Widget> _collection11Snapshot(Iterable<Object?> items) =>
+Object _collection2Create() => <Object?>[];
+Object _collection2Restore(Object value) =>
+    (value as Iterable<Object?>).cast<Object?>();
+bool _collection2Matches(Object value) => value is Iterable<Object?>;
+Object _collection3Create() => <api1.Symbol, Object?>{};
+bool _collection3Matches(Object value) => value is Map<api1.Symbol, Object?>;
+Object _collection4Create() => <Object?>{};
+bool _collection4Matches(Object value) => value is Set<Object?>;
+Object _collection5Create() => <Future<Object?>>[];
+Object _collection5Restore(Object value) =>
+    (value as Iterable<Object?>).cast<Future<Object?>>();
+bool _collection5Matches(Object value) => value is Iterable<Future<Object?>>;
+Object _collection6Create() => <String>[];
+bool _collection6Matches(Object value) => value is List<String>;
+Object _collection7Create() => <String>[];
+Object _collection7Restore(Object value) =>
+    (value as Iterable<Object?>).cast<String>();
+bool _collection7Matches(Object value) => value is Iterable<String>;
+Object _collection8Create() => <String, String>{};
+bool _collection8Matches(Object value) => value is Map<String, String>;
+Object _collection9Create() => <String, List<String>>{};
+bool _collection9Matches(Object value) => value is Map<String, List<String>>;
+Object _collection10Create() => <String, Object?>{};
+bool _collection10Matches(Object value) => value is Map<String, Object?>;
+Object _collection11Create() => <api.WidgetState>{};
+bool _collection11Matches(Object value) => value is Set<api.WidgetState>;
+Object _collection12Create() => <api.WidgetState>[];
+Object _collection12Restore(Object value) =>
+    (value as Iterable<Object?>).cast<api.WidgetState>();
+bool _collection12Matches(Object value) => value is Iterable<api.WidgetState>;
+Object _collection13Create() => <api.Widget>[];
+bool _collection13Matches(Object value) => value is List<api.Widget>;
+List<api.Widget> _collection13Snapshot(Iterable<Object?> items) =>
     List<api.Widget>.unmodifiable(items.cast<api.Widget>());
-Object _collection12Create() => <api.Widget>[];
-bool _collection12Matches(Object value) => value is Iterable<api.Widget>;
-Object _collection13Create() => <api.Page<Object?>>[];
-bool _collection13Matches(Object value) => value is List<api.Page<Object?>>;
-Object _collection14Create() => <api.Page<Object?>>[];
-bool _collection14Matches(Object value) => value is Iterable<api.Page<Object?>>;
-Object _collection15Create() => <api.NavigatorObserver>[];
-bool _collection15Matches(Object value) => value is List<api.NavigatorObserver>;
-Object _collection16Create() => <api.NavigatorObserver>[];
-bool _collection16Matches(Object value) =>
+Object _collection14Create() => <api.Widget>[];
+Object _collection14Restore(Object value) =>
+    (value as Iterable<Object?>).cast<api.Widget>();
+bool _collection14Matches(Object value) => value is Iterable<api.Widget>;
+Object _collection15Create() => <api.Page<Object?>>[];
+bool _collection15Matches(Object value) => value is List<api.Page<Object?>>;
+Object _collection16Create() => <api.Page<Object?>>[];
+Object _collection16Restore(Object value) =>
+    (value as Iterable<Object?>).cast<api.Page<Object?>>();
+bool _collection16Matches(Object value) => value is Iterable<api.Page<Object?>>;
+Object _collection17Create() => <api.NavigatorObserver>[];
+bool _collection17Matches(Object value) => value is List<api.NavigatorObserver>;
+Object _collection18Create() => <api.NavigatorObserver>[];
+Object _collection18Restore(Object value) =>
+    (value as Iterable<Object?>).cast<api.NavigatorObserver>();
+bool _collection18Matches(Object value) =>
     value is Iterable<api.NavigatorObserver>;
-Object _collection17Create() => <api1.Match>[];
-bool _collection17Matches(Object value) => value is Iterable<api1.Match>;
-Object _collection18Create() => <int>[];
-bool _collection18Matches(Object value) => value is List<int>;
-Object _collection19Create() => <int>[];
-bool _collection19Matches(Object value) => value is Iterable<int>;
-Object _collection20Create() => <String?>[];
-bool _collection20Matches(Object value) => value is List<String?>;
+Object _collection19Create() => <api1.Match>[];
+Object _collection19Restore(Object value) =>
+    (value as Iterable<Object?>).cast<api1.Match>();
+bool _collection19Matches(Object value) => value is Iterable<api1.Match>;
+Object _collection20Create() => <int>[];
+bool _collection20Matches(Object value) => value is List<int>;
 Object _collection21Create() => <String?>[];
-bool _collection21Matches(Object value) => value is Iterable<String?>;
-Object _collection22Create() => <api1.RegExpMatch>[];
-bool _collection22Matches(Object value) => value is Iterable<api1.RegExpMatch>;
+bool _collection21Matches(Object value) => value is List<String?>;
+Object _collection22Create() => <String?>[];
+Object _collection22Restore(Object value) =>
+    (value as Iterable<Object?>).cast<String?>();
+bool _collection22Matches(Object value) => value is Iterable<String?>;
+Object _collection23Create() => <api1.RegExpMatch>[];
+Object _collection23Restore(Object value) =>
+    (value as Iterable<Object?>).cast<api1.RegExpMatch>();
+bool _collection23Matches(Object value) => value is Iterable<api1.RegExpMatch>;
+Object _collection24Create() => <api1.Enum>[];
+Object _collection24Restore(Object value) =>
+    (value as Iterable<Object?>).cast<api1.Enum>();
+bool _collection24Matches(Object value) => value is Iterable<api1.Enum>;
+Object _collection25Create() => <String, api1.Enum>{};
+bool _collection25Matches(Object value) => value is Map<String, api1.Enum>;
 Future<Object?> _future0Adapt(Future<Object?> value) =>
     value.then<int>((value) => value as int);
 Future<Object?> _future1Adapt(Future<Object?> value) =>

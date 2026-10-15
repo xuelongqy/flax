@@ -1,9 +1,9 @@
 import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/dart/core/_bindings/flutter_Comparable';
+import '@flax/dart/core/_bindings/flutter_Comparable';
 import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
-export interface Duration extends Readonly<{
+export interface Duration extends upstream0.Comparable<Duration>, Readonly<{
     "__flaxBound:dart:core::Duration": readonly [];
-}>, Readonly<{
-    "__flaxBound:dart:core::Comparable": readonly [Duration];
 }> {
     readonly __Duration: unique symbol;
     readonly inDays: number;
@@ -12,6 +12,9 @@ export interface Duration extends Readonly<{
     readonly inSeconds: number;
     readonly inMilliseconds: number;
     readonly inMicroseconds: number;
+    compareTo(other: Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }>): number;
 }
 declare function _DurationFactory(options?: {
     days?: number | undefined;

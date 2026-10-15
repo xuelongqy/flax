@@ -5,6 +5,11 @@ const flaxBindingVersion = 24;
 
 /// Additive features supported without changing the UI protocol.
 const _supportedCapabilities = <String>{
+  'native-functions',
+  'lazy-js-iterables',
+  'callback-map-keys',
+  'proxy-super-constructors',
+  'bottom-types',
   'generic-member-views',
   'dart-type-tokens',
   'generic-call-types',
@@ -23,7 +28,6 @@ class FlaxTypeRef {
     this.kind, {
     this.id,
     this.nullable = false,
-    this.finiteWidgetIterable = false,
     this.item,
     this.key,
     this.collection,
@@ -40,8 +44,6 @@ class FlaxTypeRef {
   final Type Function()? dartType;
   final String? id;
   final bool nullable;
-  // Callback Widget Iterables must be inspectable without running an iterator.
-  final bool finiteWidgetIterable;
 
   final FlaxTypeRef? item;
   final FlaxTypeRef? key;

@@ -25,6 +25,12 @@ import '../../../packages/flax/test/ui/async_stream_callbacks_test.dart'
     as async_streams;
 import '../../../packages/flax/test/ui/context_streams_test.dart'
     as context_streams;
+import '../../../packages/flax/test/ui/binding_parity_test.dart'
+    as binding_parity;
+import '../../../packages/flax/test/ui/binding_completion_test.dart'
+    as binding_completion;
+import '../../../packages/flax/test/ui/collection_members_test.dart'
+    as collection_members;
 import '../../../packages/flax/test/ui/bridge_gc_test.dart' as bridge;
 import '../../../packages/flax/test/ui/streams_test.dart' as streams;
 import '../../../packages/flax/test/ui/session_test.dart' as sessions;
@@ -196,6 +202,9 @@ void _registerTests() {
   group('Future callbacks', futures.main);
   group('Future Stream callbacks', async_streams.main);
   group('Context Stream callbacks', context_streams.main);
+  group('Binding selection parity', binding_parity.main);
+  group('Shared binding completion', binding_completion.main);
+  group('Collection member views', collection_members.main);
   group('bridge GC', bridge.main);
   group('Streams', streams.main);
   group('Sessions', sessions.main);

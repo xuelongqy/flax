@@ -489,9 +489,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
       final getterName = getter.name!;
       if (!_usableMemberName(getterName) ||
           (getter.isStatic && !flaxCodegenIsExportName(getterName)) ||
-          {'hashCode', 'runtimeType'}.contains(getterName) ||
-          (element is! EnumElement &&
-              {'kind', 'type', 'ctor', 'args'}.contains(getterName))) {
+          {'hashCode', 'runtimeType'}.contains(getterName)) {
         continue;
       }
       if (getter.isStatic) {
@@ -521,7 +519,6 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     }
     for (final setter in element.setters) {
       if (!setter.isPublic ||
-          (widget && !setter.isStatic) ||
           (setter.isStatic &&
               setter.variable.isOriginDeclaration &&
               (setter.variable.isConst || setter.variable.isFinal))) {
@@ -584,9 +581,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
         final getterName = declared.name!;
         if (getters.contains(getterName) ||
             !_usableMemberName(getterName) ||
-            {'hashCode', 'runtimeType'}.contains(getterName) ||
-            (element is! EnumElement &&
-                {'kind', 'type', 'ctor', 'args'}.contains(getterName))) {
+            {'hashCode', 'runtimeType'}.contains(getterName)) {
           continue;
         }
         final getter = element.thisType.lookUpGetter(
@@ -604,7 +599,6 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
         if (converted != null) getters.add(getterName);
       }
       for (final declared in parent.setters) {
-        if (widget) continue;
         final setterName = declared.name!.replaceFirst(RegExp(r'=$'), '');
         if (setters.contains(setterName) || !_usableMemberName(setterName)) {
           continue;
@@ -900,6 +894,7 @@ bool _isConventionalDisposer(MethodElement? method) =>
 
 final _getterKinds = {
   'void',
+  'never',
   'String',
   'bool',
   'int',
@@ -921,12 +916,15 @@ final _getterKinds = {
   'futureOr',
   'stream',
   'callback',
+  'function',
   'widget',
   'context',
   'state',
 };
 
 final _setterKinds = {
+  'never',
+  'void',
   'String',
   'bool',
   'int',
@@ -950,6 +948,7 @@ final _setterKinds = {
   'futureOr',
   'stream',
   'callback',
+  'function',
 };
 
 bool _hasData(FlaxCodegenDataSelection data) =>
@@ -964,10 +963,7 @@ bool _usableMemberName(String? name) =>
 bool _usableParameterName(FormalParameterElement parameter) =>
     parameter.name != null &&
     parameter.name != '_' &&
-    flaxCodegenIsIdentifierName(
-      parameter.name!,
-      allowReserved: parameter.isNamed,
-    );
+    flaxCodegenIsIdentifierName(parameter.name!, allowReserved: true);
 
 const _constructorSpecializationMissingUseSiteCode =
     'constructor_specialization_missing_use_site';
@@ -1644,18 +1640,6 @@ List<String>? _bindConstructor({
   required List<FlaxCodegenSkip> skips,
   bool allowRecursiveErasure = false,
 }) {
-  if (parameter.type is InterfaceType &&
-      (parameter.type as InterfaceType).element.name == 'Function' &&
-      (parameter.type as InterfaceType).element.library.isDartCore) {
-    skips.add(
-      FlaxCodegenSkip(
-        target: location,
-        reason: 'Missing callback signature: $location',
-        code: 'missing_callback_signature',
-      ),
-    );
-    return null;
-  }
   final converted = scope.tryTypeRef(
     parameter.type,
     allowRecursiveErasure: allowRecursiveErasure,
@@ -1681,16 +1665,6 @@ List<String>? _bindConstructor({
       FlaxCodegenSkip(
         target: location,
         reason: error.message,
-        code: 'unsupported_input_shape',
-      ),
-    );
-    return null;
-  }
-  if (type.kind == 'void') {
-    skips.add(
-      FlaxCodegenSkip(
-        target: location,
-        reason: 'Void inputs are unsupported',
         code: 'unsupported_input_shape',
       ),
     );
@@ -1726,7 +1700,8 @@ List<String>? _bindConstructor({
   }
   final constant = defaults.computeConstantValue();
   final callbackDefault =
-      type.kind == 'callback' && constant?.toFunctionValue() != null;
+      {'callback', 'function'}.contains(type.kind) &&
+      constant?.toFunctionValue() != null;
   final hiddenDefault =
       !parameter.isRequired &&
       parameter.isNamed &&
@@ -1734,27 +1709,12 @@ List<String>? _bindConstructor({
       !defaults.hasDefaultValue;
   final omitWhenAbsent =
       !parameter.isRequired &&
-      (hiddenDefault ||
-          callbackDefault ||
-          constant?.toListValue() != null ||
-          constant?.toMapValue() != null ||
-          ({'object', 'any', 'data'}.contains(type.kind) &&
-              constant != null &&
-              !constant.isNull));
+      (hiddenDefault || callbackDefault || _opaqueDefault(constant, type));
   final usesNullDefault =
       parameter.isRequired ||
       hiddenDefault ||
       callbackDefault ||
-      (omitWhenAbsent &&
-          {
-            'object',
-            'any',
-            'data',
-            'iterable',
-            'list',
-            'map',
-            'set',
-          }.contains(type.kind));
+      (omitWhenAbsent && _opaqueDefaultKinds.contains(type.kind));
   if (!usesNullDefault) {
     try {
       parser._default(constant, type);
@@ -1874,6 +1834,7 @@ List<String>? _bindMethod({
       'BigInt',
       'enum',
       'void',
+      'never',
       'data',
       'any',
       'iterable',

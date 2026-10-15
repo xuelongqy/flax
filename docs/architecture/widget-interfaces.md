@@ -62,9 +62,12 @@ member and every method parameter in declaration order. Select the contracts on 
 implementing Widget with `widgetInterfaces`. Analyzer resolves inheritance and generic
 substitution; compatible shared members are emitted once. Widget and diagnostic members
 remain supplied by FlaxWidgetHost. Conflicts with its configuration and lifecycle
-members are rejected. Generic interface declarations remain unsupported; generic methods
-and bounds are preserved. Supporting generic interface declarations would require a
-separate concrete-specialization contract and is intentionally deferred.
+members are rejected. Generic interface declarations normalize to an ordinary native
+object view instead: actual type arguments, members and Widget identity use existing
+engine conversion. A `CellView<String>` can therefore be read and passed as a real
+Widget, without creating a new generic FlaxWidgetHost adapter. This does not synthesize
+an arbitrary JS implementation of a Flutter Widget interface. Generic methods and bounds
+use the same checked type factories as other bindings.
 
 Generated hosts implement the Dart interface and directly forward to the cached real
 configuration. Signatures may contain BuildContext, Widgets, callbacks, collections,

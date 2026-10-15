@@ -113,6 +113,32 @@ void main() {
     }
   });
 
+  test(
+    'generic and bottom-type capabilities survive strict Manifest reads',
+    () {
+      final json = _envelopeBaseline();
+      final entry = _moduleAt(json, 1);
+      entry['requiredCapabilities'] = [
+        'bottom-types',
+        'engine-type-handles',
+        'explicit-generic-types',
+      ];
+      final diagnostics = FlaxCodegenManifestDiagnostics('capabilities.json');
+      final manifest = FlaxCodegenManifest.parse(jsonEncode(json), diagnostics);
+      diagnostics.throwIfAny();
+      expect(
+        manifest!.modules[1].requiredCapabilities,
+        entry['requiredCapabilities'],
+      );
+      final restored = FlaxCodegenManifest.parse(
+        manifest.encode(),
+        diagnostics,
+      );
+      diagnostics.throwIfAny();
+      expect(restored!.encode(), manifest.encode());
+    },
+  );
+
   test('maximal TypeRef Parameter and Generic round-trip every field', () {
     const intType = FlaxCodegenTypeRef('int');
     const stringType = FlaxCodegenTypeRef('String', nullable: true);

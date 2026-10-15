@@ -159,9 +159,10 @@ void main() {
       isEmpty,
     );
     expect(config.types, contains('AutoMeters'));
+    expect(config.extensions, contains('AutoMeters'));
     expect(
-      proposal.skips.where((skip) => skip.target == 'AutoMeters').single.code,
-      'extension_type_representation_only',
+      proposal.skips.where((skip) => skip.target == 'AutoMeters'),
+      isEmpty,
     );
     expect(config.classes['AutoStore']!.typeArguments, isEmpty);
     expect(config.classes, contains('ConflictedStore'));
@@ -172,12 +173,15 @@ void main() {
     expect(autoProperty.instanceMethods['resolve'], isEmpty);
     expect(autoProperty.methods['resolveWith'], ['callback']);
     expect(config.classes, contains('AutoPropertyConsumer'));
-    expect(config.classes, isNot(contains('AutoInvalidDeferred')));
+    expect(config.classes['AutoInvalidDeferred']!.methods['create'], [
+      'callback',
+      'unsupported',
+    ]);
     expect(
       proposal.skips
           .where((skip) => skip.target == 'AutoInvalidDeferred')
           .map((skip) => skip.reason),
-      contains('No bindable members'),
+      isEmpty,
     );
     expect(config.classes, contains('AutoSet'));
     expect(config.classes['AutoSet']!.instanceMethods, contains('toSet'));
@@ -1297,7 +1301,7 @@ void main() {
       expect(disposable.selection!.disposeMethod, 'dispose');
       expect(disposable.selection!.instanceMethods['dispose'], isEmpty);
       expect(disposable.selection!.getters, contains('inheritedValue'));
-      expect(disposable.selection!.getters, isNot(contains('kind')));
+      expect(disposable.selection!.getters, contains('kind'));
       expect(disposable.selection!.setters, contains('inheritedValue'));
       expect(disposable.selection!.instanceMethods['normalize'], ['value']);
       final parsedDisposable = await parser.parse(

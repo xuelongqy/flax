@@ -33,6 +33,7 @@ void main() {
       'generic-call-types',
       'generic-member-views',
       'instance-checks',
+      'lazy-js-iterables',
       'native-core-inputs',
       'native-widget-proxies',
     ]);

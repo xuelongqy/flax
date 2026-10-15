@@ -60,7 +60,7 @@ type DartCallbackInput<A extends readonly unknown[], R> = (...args: {
     [K in keyof A]: DartOutput<A[K]>;
 }) => DartCallbackResult<R>;
 type DartElementInput<T> = T extends (...args: infer A) => infer R ? DartCallbackInput<A, R> : DartInput<T>;
-type DartNativeInput<T, Brand extends string, Native> = Exclude<Extract<keyof T, `__${string}`>, Brand | `__flaxBound:${string}`> extends never ? T | Native : T;
+type DartNativeInput<T, Brand extends string, Native> = Exclude<Extract<keyof T, `__${string}`>, Brand | '__Comparable' | `__flaxBound:${string}`> extends never ? T | Native : T;
 type DartCoreInput<T> = T extends {
     readonly '__flaxBound:dart:core::DateTime': readonly [];
 } ? DartNativeInput<T, '__DateTime', globalThis.Date> : T extends {
@@ -70,7 +70,7 @@ type DartCoreInput<T> = T extends {
 } ? DartNativeInput<T, '__RegExp' | '__Pattern', globalThis.RegExp> : T extends {
     readonly '__flaxBound:dart:core::Pattern': readonly [];
 } ? DartNativeInput<T, '__Pattern', globalThis.RegExp | string> : T;
-export type DartInput<T> = T extends Widget ? never : T extends NativeBuffer ? T : T extends (...args: infer A) => infer R ? DartCallbackInput<A, R> : T extends Promise<unknown> ? never : T extends {
+export type DartInput<T> = T extends void ? unknown : T extends Widget ? never : T extends NativeBuffer ? T : T extends (...args: infer A) => infer R ? DartCallbackInput<A, R> : T extends Promise<unknown> ? never : T extends {
     readonly [dartRecordKind]: true;
 } ? {
     [K in keyof T as K extends typeof dartRecordKind ? never : K]: T[K] | DartInput<T[K]>;
@@ -137,6 +137,11 @@ export type DartMapInput<K, V, IK = DartInput<K>, IV = DartInput<V>> = Pick<Dart
 export type DartSetInput<T, I = DartInput<T>> = Pick<DartSet<T>, typeof dartCollectionKind | typeof dartCollectionItem> | ReadonlySet<I>;
 export interface DartEnum {
     readonly __dartEnum: unique symbol;
+}
+/** An actual Dart function; arbitrary JS functions need a selected typed signature. */
+export interface DartFunction {
+    (...args: unknown[]): unknown;
+    readonly __dartFunction: unique symbol;
 }
 /** A generated Dart Stream reference. It is unrelated to Web ReadableStream. */
 export interface FlaxStreamReference<T = unknown> extends AsyncIterable<T> {
@@ -252,8 +257,20 @@ export declare function constructObject(_kind: 'object', type: string, ctor: str
 export declare function constructDeferredObject(type: string, factory: string, parameters: readonly Parameter[], positional: readonly unknown[], options: Readonly<Record<string, unknown>>): object;
 export declare function constructProxy(definition: ProxyDefinition, args: readonly unknown[], implementation: object): object;
 /** Generated signatures remain in TypeScript; executable forwarding is shared. */
+export declare const flaxDartConstructors: unique symbol;
+declare const flaxProxySuper: unique symbol;
+export interface FlaxProxySuper<T> {
+    readonly [flaxProxySuper]: T;
+}
+type NativeConstructors<C> = FlaxDartInstance<C> extends {
+    readonly [flaxDartConstructors]?: infer M;
+} ? M : never;
+/** Selects a named Dart super constructor without changing JS inheritance. */
+export declare function dartSuper<C extends FlaxInstanceType<unknown>, N extends keyof NativeConstructors<C>>(owner: C, name: N, ...args: NativeConstructors<C>[N] extends (...args: infer P) => unknown ? P : never): FlaxProxySuper<FlaxDartInstance<C>>;
 export interface ProxyDefinition {
     readonly nativeWidget?: boolean;
+    readonly superConstructor?: string;
+    readonly constructors?: Readonly<Record<string, readonly Parameter[]>>;
     readonly type: string;
     readonly parameters: readonly Parameter[];
     readonly methods: Readonly<Record<string, readonly MemberParameter[]>>;

@@ -5,6 +5,7 @@ import type {
   DartSet,
   FlaxDartInstance,
   FlaxInstanceType,
+  FlaxStreamReference,
 } from './bindings.js';
 
 export const flaxDartTypeValue: unique symbol = Symbol('Flax Dart type value');
@@ -139,12 +140,16 @@ type Primitive = {
   double: number;
   num: number;
   any: unknown;
+  BigInt: bigint;
+  void: void;
+  Never: never;
+  Null: null;
 };
 function primitive<const K extends keyof Primitive, const N extends boolean>(
   kind: K,
   nullable: N,
 ): FlaxDartType<
-  N extends true ? Primitive[K] : NonNullable<Primitive[K]>,
+  N extends true ? Primitive[K] : K extends 'void' ? void : NonNullable<Primitive[K]>,
   readonly [K, null, readonly [], N]
 > {
   return token([kind, null, [], nullable]);
@@ -171,6 +176,10 @@ export const dartTypes = Object.freeze({
   int: primitive('int', false),
   double: primitive('double', false),
   num: primitive('num', false),
+  bigInt: primitive('BigInt', false),
+  void: primitive('void', false),
+  never: primitive('Never', false),
+  null: primitive('Null', true),
   object: primitive('any', false),
   unknown: primitive('any', true),
   list<T extends FlaxDartTypeInput>(
@@ -210,6 +219,30 @@ export const dartTypes = Object.freeze({
     readonly ['set', null, readonly [Key<T>], false]
   > {
     return token(['set', null, [dartTypeDescription(item)], false]);
+  },
+  future<T extends FlaxDartTypeInput>(
+    item: T,
+  ): FlaxDartType<
+    Promise<FlaxDartTypeValue<T>>,
+    readonly ['future', null, readonly [Key<T>], false]
+  > {
+    return token(['future', null, [dartTypeDescription(item)], false]);
+  },
+  futureOr<T extends FlaxDartTypeInput>(
+    item: T,
+  ): FlaxDartType<
+    FlaxDartTypeValue<T> | Promise<FlaxDartTypeValue<T>>,
+    readonly ['futureOr', null, readonly [Key<T>], false]
+  > {
+    return token(['futureOr', null, [dartTypeDescription(item)], false]);
+  },
+  stream<T extends FlaxDartTypeInput>(
+    item: T,
+  ): FlaxDartType<
+    FlaxStreamReference<FlaxDartTypeValue<T>>,
+    readonly ['stream', null, readonly [Key<T>], false]
+  > {
+    return token(['stream', null, [dartTypeDescription(item)], false]);
   },
   nullable<T extends FlaxDartTypeInput>(
     type: T,

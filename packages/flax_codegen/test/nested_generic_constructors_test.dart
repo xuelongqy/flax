@@ -45,7 +45,7 @@ void main() {
       for (final name in ['ListBox', 'MapBox', 'NullableBox']) {
         expect(proposal.config.classes[name]!.constructors[''], [
           'value',
-          if (name == 'ListBox') 'history',
+          if (name == 'ListBox') ...['history', 'observer'],
         ]);
       }
       final module = await parser.parse(proposal.config);

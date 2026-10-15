@@ -1147,19 +1147,21 @@ void main() => test('numeric defaults', () {
     }
   });
 
-  test('nested callback collections have distinct complete type ids and reject callback keys', () async {
-    final module = await parser.parse(
-      fixture('repeated.dart', repeatedSelection),
-    );
-    final emitter = FlaxCodegenBindingEmitter([module]);
-    final output = emitter.dart(module);
-    expect(output, contains('list:[callback:<>('));
-    expect(output, contains(')->void:]'));
-    await compileFixture(
-      root,
-      emitter,
-      module,
-      consumerSource: """
+  test(
+    'nested callback collections and Map keys have distinct complete type ids',
+    () async {
+      final module = await parser.parse(
+        fixture('repeated.dart', repeatedSelection),
+      );
+      final emitter = FlaxCodegenBindingEmitter([module]);
+      final output = emitter.dart(module);
+      expect(output, contains('list:[callback:<>('));
+      expect(output, contains(')->void:]'));
+      await compileFixture(
+        root,
+        emitter,
+        module,
+        consumerSource: """
 import { NestedBatch, CallbackStore } from './plugin.js';
 const stored = CallbackStore([(context, index) => null]);
 NestedBatch({builders: stored.builders, groups: new Map([['a', [(context, index) => null]]])});
@@ -1167,18 +1169,29 @@ NestedBatch({builders: CallbackStore.nativeBuilders, events: [async () => {}]});
 // @ts-expect-error Nested builders are synchronous.
 NestedBatch({builders: [async () => null]});
 """,
-    );
-    await expectLater(
-      parser.parse(
+      );
+      final keys = await parser.parse(
         fixture('repeated.dart', {
           'InvalidCallbackKeys': const FlaxCodegenClassSelection({
             '': ['values'],
           }, kind: 'object'),
         }),
-      ),
-      throwsStateError,
-    );
-  });
+      );
+      expect(
+        keys
+            .classes
+            .single
+            .constructors
+            .single
+            .parameters
+            .single
+            .type
+            .key!
+            .kind,
+        'callback',
+      );
+    },
+  );
 
   test(
     'Widget results generate without independent callback configuration',
@@ -3158,145 +3171,146 @@ DeferredConsumer({token, number});
     },
   );
 
-  test(
-    'deferred factories reject ambiguous and unsupported materialization',
-    () async {
-      FlaxCodegenClassSelection factory(String method) =>
-          FlaxCodegenClassSelection(
-            const {},
-            kind: 'object',
-            methods: {
-              method: const ['callback'],
-            },
-          );
-      FlaxCodegenClassSelection consumer() => const FlaxCodegenClassSelection(
-        {
-          '': ['value'],
-        },
-        kind: 'object',
-        getters: ['value'],
-      );
-      for (final selection in [
-        {'PairProperty': factory('resolveWith'), 'PairConsumer': consumer()},
-      ]) {
-        await expectLater(
-          () async {
-            final module = await parser.parse(
-              fixture('deferred_invalid.dart', selection),
-            );
-            FlaxCodegenBindingEmitter([module], requireDeferredTargets: true);
+  test('deferred factories reject ambiguous and unsupported materialization', () async {
+    FlaxCodegenClassSelection factory(String method) =>
+        FlaxCodegenClassSelection(
+          const {},
+          kind: 'object',
+          methods: {
+            method: const ['callback'],
           },
-          throwsStateError,
-          reason: selection.keys.join(', '),
         );
-      }
-      // A factory returning another class is an ordinary generic static method.
-      final ordinary = await parser.parse(
-        fixture('deferred_invalid.dart', {
-          'WrongFactory': factory('create'),
-          'AsyncProperty': factory('resolveWith'),
-          'WrongConsumer': consumer(),
-          'CollectionProperty': const FlaxCodegenClassSelection(
-            {},
-            kind: 'object',
-            typeArguments: ['String'],
-          ),
-        }),
+    FlaxCodegenClassSelection consumer() => const FlaxCodegenClassSelection(
+      {
+        '': ['value'],
+      },
+      kind: 'object',
+      getters: ['value'],
+    );
+    for (final selection in [
+      {'PairProperty': factory('resolveWith'), 'PairConsumer': consumer()},
+    ]) {
+      await expectLater(
+        () async {
+          final module = await parser.parse(
+            fixture('deferred_invalid.dart', selection),
+          );
+          FlaxCodegenBindingEmitter([module], requireDeferredTargets: true);
+        },
+        throwsStateError,
+        reason: selection.keys.join(', '),
       );
-      await compileFixture(
-        root,
-        FlaxCodegenBindingEmitter([ordinary], requireDeferredTargets: true),
-        ordinary,
-        consumerSource: '''
+    }
+    // A factory returning another class is an ordinary generic static method.
+    final ordinary = await parser.parse(
+      fixture('deferred_invalid.dart', {
+        'WrongFactory': factory('create'),
+        'AsyncProperty': factory('resolveWith'),
+        'WrongConsumer': consumer(),
+        'CollectionProperty': const FlaxCodegenClassSelection(
+          {},
+          kind: 'object',
+          typeArguments: ['String'],
+        ),
+      }),
+    );
+    await compileFixture(
+      root,
+      FlaxCodegenBindingEmitter([ordinary], requireDeferredTargets: true),
+      ordinary,
+      consumerSource: '''
 import {WrongFactory, CollectionProperty, AsyncProperty} from './plugin.js';
 const value: CollectionProperty<string> = WrongFactory.create(() => 'value');
 const later: Promise<AsyncProperty<string>> = AsyncProperty.resolveWith(() => 'value');
 void value;
 void later;
 ''',
-      );
+    );
 
-      Map<String, FlaxCodegenClassSelection> bounded(
-        String value,
-        String consumer,
-      ) => {
-        'BoundContract': FlaxCodegenClassSelection(
-          const {},
-          kind: 'object',
-          typeArguments: [value],
-        ),
-        value: const FlaxCodegenClassSelection({'': []}, kind: 'object'),
-        'BoundedProperty': factory('resolveWith'),
-        consumer: const FlaxCodegenClassSelection(
-          {
-            '': ['value'],
-          },
-          kind: 'object',
-          getters: ['value'],
-        ),
-      };
-      final valid = await parser.parse(
-        fixture(
-          'deferred_invalid.dart',
-          bounded('ValidBound', 'ValidBoundConsumer'),
-        ),
-      );
-      final validEmitter = FlaxCodegenBindingEmitter([
-        valid,
-      ], requireDeferredTargets: true);
-      await compileFixture(
-        root,
-        validEmitter,
-        valid,
-        consumerSource: '''
+    Map<String, FlaxCodegenClassSelection> bounded(
+      String value,
+      String consumer,
+    ) => {
+      'BoundContract': FlaxCodegenClassSelection(
+        const {},
+        kind: 'object',
+        typeArguments: [value],
+      ),
+      value: const FlaxCodegenClassSelection({'': []}, kind: 'object'),
+      'BoundedProperty': factory('resolveWith'),
+      consumer: const FlaxCodegenClassSelection(
+        {
+          '': ['value'],
+        },
+        kind: 'object',
+        getters: ['value'],
+      ),
+    };
+    final valid = await parser.parse(
+      fixture(
+        'deferred_invalid.dart',
+        bounded('ValidBound', 'ValidBoundConsumer'),
+      ),
+    );
+    final validEmitter = FlaxCodegenBindingEmitter([
+      valid,
+    ], requireDeferredTargets: true);
+    await compileFixture(
+      root,
+      validEmitter,
+      valid,
+      consumerSource: '''
 import {BoundedProperty, ValidBound, ValidBoundConsumer} from './plugin.js';
 ValidBoundConsumer(BoundedProperty.resolveWith(() => ValidBound()));
 ''',
-      );
-      final invalid = await parser.parse(
-        fixture(
-          'deferred_invalid.dart',
-          bounded('InvalidBound', 'InvalidBoundConsumer'),
-        ),
+    );
+    final invalid = await parser.parse(
+      fixture(
+        'deferred_invalid.dart',
+        bounded('InvalidBound', 'InvalidBoundConsumer'),
+      ),
+    );
+    // Recursive bounds use checked generic calls instead of deferred inference.
+    await compileFixture(
+      root,
+      FlaxCodegenBindingEmitter([invalid], requireDeferredTargets: true),
+      invalid,
+      consumerSource: '''
+import {BoundedProperty, InvalidBound} from './plugin.js';
+// @ts-expect-error InvalidBound implements BoundContract<String>, not BoundContract<InvalidBound>.
+BoundedProperty.resolveWith<InvalidBound>(() => InvalidBound());
+''',
+    );
+
+    Map<String, FlaxCodegenClassSelection> primitiveBounded(
+      String property,
+      String consumerName,
+    ) => {property: factory('resolveWith'), consumerName: consumer()};
+    for (final selection in [
+      primitiveBounded('NumericProperty', 'NumericConsumer'),
+      primitiveBounded('NullableNumericProperty', 'NullableBoundConsumer'),
+    ]) {
+      final module = await parser.parse(
+        fixture('deferred_invalid.dart', selection),
       );
       expect(
-        () =>
-            FlaxCodegenBindingEmitter([invalid], requireDeferredTargets: true),
+        () => FlaxCodegenBindingEmitter([module], requireDeferredTargets: true),
+        returnsNormally,
+      );
+    }
+    for (final selection in [
+      primitiveBounded('NumericProperty', 'NullableNumericConsumer'),
+      primitiveBounded('NumericProperty', 'StringNumericConsumer'),
+    ]) {
+      final module = await parser.parse(
+        fixture('deferred_invalid.dart', selection),
+      );
+      expect(
+        () => FlaxCodegenBindingEmitter([module], requireDeferredTargets: true),
         throwsStateError,
       );
-
-      Map<String, FlaxCodegenClassSelection> primitiveBounded(
-        String property,
-        String consumerName,
-      ) => {property: factory('resolveWith'), consumerName: consumer()};
-      for (final selection in [
-        primitiveBounded('NumericProperty', 'NumericConsumer'),
-        primitiveBounded('NullableNumericProperty', 'NullableBoundConsumer'),
-      ]) {
-        final module = await parser.parse(
-          fixture('deferred_invalid.dart', selection),
-        );
-        expect(
-          () =>
-              FlaxCodegenBindingEmitter([module], requireDeferredTargets: true),
-          returnsNormally,
-        );
-      }
-      for (final selection in [
-        primitiveBounded('NumericProperty', 'NullableNumericConsumer'),
-        primitiveBounded('NumericProperty', 'StringNumericConsumer'),
-      ]) {
-        final module = await parser.parse(
-          fixture('deferred_invalid.dart', selection),
-        );
-        expect(
-          () =>
-              FlaxCodegenBindingEmitter([module], requireDeferredTargets: true),
-          throwsStateError,
-        );
-      }
-    },
-  );
+    }
+  });
 
   test(
     'jsName CanvasView and callback snapshot inheritance fail loudly',

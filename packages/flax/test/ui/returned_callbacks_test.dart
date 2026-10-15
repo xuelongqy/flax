@@ -50,8 +50,10 @@ void main() {
         );
         expect(h.number('jsfn()'), 1);
         expect(
-          () => h.execute('review.untypedCallbacks.toArray()'),
-          throwsA(isA<FlaxJsException>()),
+          h.boolean(
+            'review.untypedCallbacks.toArray()[0]() === 42 && review.same(review.untypedCallbacks.get(0))',
+          ),
+          isTrue,
         );
         expect(
           () => h.execute('review.direct(undefined)'),
@@ -97,6 +99,8 @@ void main() {
         h.execute(
           'var original = () => 6; var weak; (() => { const transient = anchor.echo([original]).get(0); weak = new WeakRef(transient); })()',
         );
+        // The shared counterpart stays live while its original JS function is rooted.
+        h.execute('original = null');
         for (var i = 0; i < 60; i++) {
           h.runtime.drainMicrotasks();
           h.execute('${flaxTestJsGarbagePressure}anchor.callbacks.length');

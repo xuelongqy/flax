@@ -131,7 +131,7 @@ class FlaxDartTypes {
     throw StateError('Missing or ambiguous Dart type provider: ${info[0]}');
   }
 
-  String _id(String owner, Type type, {bool finite = false}) {
+  String _id(String owner, Type type) {
     final context =
         _bindingContext?.dartProviders.isNotEmpty == true ||
             !_classes.containsKey(owner)
@@ -144,7 +144,7 @@ class FlaxDartTypes {
           context ?? _session._contextForBinding(owner);
       return id;
     });
-    return finite ? '$id:finite-widget-iterable' : id;
+    return id;
   }
 
   static Type typeOf<T>() => T;
@@ -161,20 +161,16 @@ class FlaxDartTypes {
   FlaxTypeRef ref<T>({bool withinCallback = false}) =>
       resolve(T, withinCallback: withinCallback);
 
-  FlaxTypeRef _resolveRef(FlaxTypeRef ref) => ref.dartType == null
-      ? ref
-      : resolve(
-          ref.dartType!(),
-          binding: ref.id,
-          withinCallback: _finiteWidgetValue(ref),
-        );
+  FlaxTypeRef _resolveRef(FlaxTypeRef ref) =>
+      ref.dartType == null ? ref : resolve(ref.dartType!(), binding: ref.id);
 
+  // One Dart Type can have distinct borrowing and data-conversion contracts.
   FlaxTypeRef define<T>(FlaxTypeRef value, {bool withinCallback = false}) =>
       _refs.putIfAbsent((
         _bindingContext,
         T,
         withinCallback,
-        null,
+        value.callback?.id ?? value.record?.signature,
       ), () => value);
 
   FlaxTypeRef resolve(
@@ -205,7 +201,8 @@ class FlaxDartTypes {
         'double' => 'double',
         'num' => 'num',
         'BigInt' => 'BigInt',
-        'Object' || 'dynamic' || 'Null' => 'any',
+        'Object' || 'dynamic' => 'any',
+        'Null' => 'never',
         'void' => 'void',
         'Never' => 'never',
         _ => null,
@@ -227,9 +224,6 @@ class FlaxDartTypes {
       if (name == 'Map') {
         final keyRef = resolve(children[0], withinCallback: withinCallback);
         final item = resolve(children[1], withinCallback: withinCallback);
-        if (keyRef.containsCallback) {
-          throw UnsupportedError('Callbacks cannot be Map keys');
-        }
         return _refs[key] = instantiate(
           <K, V>() => FlaxTypeRef(
             'map',
@@ -237,11 +231,7 @@ class FlaxDartTypes {
             key: keyRef,
             item: item,
             collection: FlaxCollectionBinding(
-              _id(
-                'map',
-                type,
-                finite: _finiteWidgetValue(keyRef) || _finiteWidgetValue(item),
-              ),
+              _id('map', type),
               () => <K, V>{},
               (value) => value is Map<K, V>,
               restore: (value) => (value as Map<Object?, Object?>).map<K, V>(
@@ -265,7 +255,7 @@ class FlaxDartTypes {
           nullable: nullable,
           item: item,
           future: FlaxFutureBinding(_id('future', type), (value) {
-            if (value is Future<E> && !_finiteWidgetValue(item)) return value;
+            if (value is Future<E>) return value;
             final result = value.then<E>((v) => _nativeValue(v, item) as E);
             // A bridge conversion can fail before its Future is delivered.
             result.ignore();
@@ -287,6 +277,9 @@ class FlaxDartTypes {
         withinCallback,
       );
     }
+    if (name == 'Function' && info[5] == null) {
+      return _refs[key] = FlaxTypeRef('function', nullable: nullable);
+    }
     if (info[5] != null && (name == 'Record' || name == 'Function')) {
       _index();
       final layout = name == 'Record'
@@ -294,7 +287,21 @@ class FlaxDartTypes {
           : ['callback', info[5]];
       final shape = _shapes[jsonEncode(layout)];
       if (shape == null) {
-        throw UnsupportedError('No compiled adapter for Dart $name shape');
+        if (name == 'Record') {
+          final record = _sources[('dart:core', 'Record')]?.single;
+          if (record == null) throw StateError('Missing Dart Record provider');
+          return _refs[key] = FlaxTypeRef(
+            'object',
+            id: record.id,
+            nullable: nullable,
+          );
+        }
+        return _refs[key] = _nativeFunction(
+          type,
+          info,
+          nullable,
+          withinCallback,
+        );
       }
       final factory =
           instantiate(shape.factory, children, const []) as Function;
@@ -343,6 +350,56 @@ class FlaxDartTypes {
     return result;
   }
 
+  FlaxTypeRef _nativeFunction(
+    Type type,
+    List<Object?> info,
+    bool nullable,
+    bool withinCallback,
+  ) {
+    final shape = info[5] as List;
+    final positional = shape[0] as int;
+    final fixed = shape[1] as int;
+    final names = (shape[2] as List).cast<String>();
+    final required = (shape[3] as List).cast<bool>();
+    final children = (info[4] as List).cast<Type>();
+    final refs = [
+      for (final child in children)
+        resolve(child, withinCallback: withinCallback),
+    ];
+    final matches = instantiate(
+      <F>() =>
+          (Object value) => value is F,
+      [type],
+      const [],
+    ) as bool Function(Object);
+    return FlaxTypeRef(
+      'callback',
+      nullable: nullable,
+      callback: FlaxCallbackBinding(
+        [
+          for (var i = 0; i < refs.length - 1; i++)
+            FlaxCallbackParameter(
+              i < positional ? 'p$i' : names[i - positional],
+              refs[i],
+              required: i < positional ? i < fixed : required[i - positional],
+              positional: i < positional,
+            ),
+        ],
+        refs.last,
+        (_) => throw UnsupportedError(
+          'A JS function requires a selected typed callback signature',
+        ),
+        id: _id('native-function', type),
+        invoke: (value, positional, named) => Function.apply(
+          value as Function,
+          positional,
+          {for (final entry in named.entries) Symbol(entry.key): entry.value},
+        ),
+        matches: matches,
+      ),
+    );
+  }
+
   FlaxTypeRef _nullableRef(FlaxTypeRef value, bool nullable) =>
       value.nullable == nullable
       ? value
@@ -350,7 +407,6 @@ class FlaxDartTypes {
           value.kind,
           id: value.id,
           nullable: nullable,
-          finiteWidgetIterable: value.finiteWidgetIterable,
           item: value.item,
           key: value.key,
           collection: value.collection,
@@ -381,13 +437,13 @@ class FlaxDartTypes {
         nullable: nullable,
         item: item,
         stream: FlaxStreamBinding(
-          _finiteWidgetValue(item) ? '$id:finite-widget-iterable' : id,
+          id,
           (value) =>
               value is Stream<E> &&
               (_session._typeBinding(id) as FlaxStreamTypeBinding).matches(
                 value,
               ),
-          (value) => value is Stream<E> && !_finiteWidgetValue(item)
+          (value) => value is Stream<E>
               ? value
               : (value as Stream<Object?>).map<E>(
                   (v) => _nativeValue(v, item) as E,
@@ -399,23 +455,13 @@ class FlaxDartTypes {
     ) as FlaxTypeRef;
   }
 
-  bool _finiteWidgetValue(FlaxTypeRef type) =>
-      type.finiteWidgetIterable ||
-      (type.item != null && _finiteWidgetValue(type.item!)) ||
-      (type.key != null && _finiteWidgetValue(type.key!)) ||
-      (type.record?.fields.any((f) => _finiteWidgetValue(f.type)) ?? false);
-
-  bool _asyncWidgetValue(FlaxTypeRef type) =>
-      ({'future', 'futureOr', 'stream'}.contains(type.kind) &&
-          _finiteWidgetValue(type)) ||
-      (type.item != null && _asyncWidgetValue(type.item!)) ||
-      (type.key != null && _asyncWidgetValue(type.key!)) ||
-      (type.record?.fields.any((f) => _asyncWidgetValue(f.type)) ?? false);
-
   // Native async values use the same conversions without crossing JS again.
   Object? _nativeValue(Object? value, FlaxTypeRef type) {
+    if (type.kind == 'never' && !(value == null && type.nullable)) {
+      throw ArgumentError('Never has no values');
+    }
     if (value == null) return null;
-    if (type.kind == 'void') return null;
+    if (type.kind == 'void') return value;
     if (type.kind == 'double' && value is num) return value.toDouble();
     if (type.kind == 'int' &&
         value is num &&
@@ -432,24 +478,8 @@ class FlaxDartTypes {
     if (type.kind == 'stream') {
       return type.stream!.adapt(value as Stream<Object?>);
     }
-    final finite = _finiteWidgetValue(type);
     if (type.collection case final collection?) {
-      final matches = collection.matches(value);
-      if (matches && !finite) return value;
-      if (type.finiteWidgetIterable) _checkFiniteWidgetIterable(value, type);
-      if (matches && !_asyncWidgetValue(type)) {
-        if (value is Map) {
-          for (final entry in value.entries) {
-            _nativeValue(entry.key, type.key!);
-            _nativeValue(entry.value, type.item!);
-          }
-        } else {
-          for (final element in value as Iterable) {
-            _nativeValue(element, type.item!);
-          }
-        }
-        return value;
-      }
+      if (collection.matches(value)) return value;
       Object restore(Object value) {
         if (collection.restore != null) return collection.restore!(value);
         final result = collection.create();
@@ -473,24 +503,15 @@ class FlaxDartTypes {
         return result;
       }
 
-      final result = matches
-          ? restore(value)
-          : flaxRestoreJsCollection(value, type.kind, restore);
-      if ((type.kind == 'list' || type.finiteWidgetIterable) &&
-          collection.snapshot != null) {
+      final result = flaxRestoreJsCollection(value, type.kind, restore);
+      if (type.kind == 'list' && collection.snapshot != null) {
         return collection.snapshot!(result as Iterable<Object?>);
       }
       return result;
     }
     if (type.kind == 'record') {
       final record = type.record!;
-      if (!finite && record.matches(value)) return value;
-      if (record.matches(value) && !_asyncWidgetValue(type)) {
-        for (final field in record.fields) {
-          _nativeValue(field.read(value), field.type);
-        }
-        return value;
-      }
+      if (record.matches(value)) return value;
       if (value is! Record) {
         return flaxRestoreJsCollection(
           value,
@@ -540,14 +561,11 @@ class FlaxDartTypes {
       'iterable',
       nullable: name == 'Iterable' && nullable,
       item: item,
-      finiteWidgetIterable: withinCallback && item.containsWidget,
       collection: FlaxCollectionBinding(
-        _id('iterable', type, finite: withinCallback && item.containsWidget),
+        _id('iterable', type),
         () => <E>[],
         (v) => v is Iterable<E>,
-        restore: withinCallback && item.containsWidget
-            ? (v) => restore(v).toList()
-            : restore,
+        restore: restore,
         snapshot: item.kind == 'widget'
             ? (values) =>
                   List<E>.unmodifiable(values.cast<E>()) as List<Widget?>
@@ -561,7 +579,7 @@ class FlaxDartTypes {
       item: item,
       iterable: iterable,
       collection: FlaxCollectionBinding(
-        _id(name, type, finite: withinCallback && item.containsWidget),
+        _id(name, type),
         name == 'List' ? () => <E>[] : () => <E>{},
         name == 'List' ? (v) => v is List<E> : (v) => v is Set<E>,
         restore: name == 'List'
@@ -678,6 +696,10 @@ class FlaxDartTypes {
           'double',
           'num',
           'any',
+          'BigInt',
+          'void',
+          'Never',
+          'Null',
         }.contains(input[0]) &&
         arguments.isNotEmpty) {
       throw ArgumentError('Scalar Dart types have no type arguments');
@@ -710,6 +732,14 @@ class FlaxDartTypes {
         type = num;
       case 'any':
         type = Object;
+      case 'BigInt':
+        type = BigInt;
+      case 'void':
+        type = typeOf<void>();
+      case 'Never':
+        type = Never;
+      case 'Null':
+        type = Null;
       case 'list':
         type = instantiate(<E>() => List<E>, arguments, const []) as Type;
       case 'set':

@@ -175,7 +175,7 @@ const fallback: number = ambiguous.value;
     timeout: const Timeout(Duration(minutes: 3)),
   );
 
-  test('mixed async accessors use implements instead of invalid extends', () async {
+  test('mixed async accessors preserve shared extends dispatch', () async {
     final root = p.normalize(p.join(Directory.current.path, '../..'));
     final parser = FlaxCodegenBindingParser(root);
     final collection = AnalysisContextCollection(includedPaths: [root]);
@@ -209,26 +209,18 @@ const fallback: number = ambiguous.value;
     final selections = <String, FlaxCodegenClassSelection>{};
     for (final name in ['MixedFutureProperty', 'MixedStreamProperty']) {
       final checkpoint = parser.checkpoint();
-      await expectLater(
-        parser.parse(
-          config({
-            name: const FlaxCodegenClassSelection(
-              {'': []},
-              kind: 'object',
-              proxy: 'extends',
-              getters: ['value'],
-              setters: ['value'],
-            ),
-          }),
-        ),
-        throwsA(
-          isA<StateError>().having(
-            (e) => e.message,
-            'message',
-            'Mixed abstract/concrete proxy accessors cannot be emitted in TypeScript: $name.value',
+      final explicit = await parser.parse(
+        config({
+          name: const FlaxCodegenClassSelection(
+            {'': []},
+            kind: 'object',
+            proxy: 'extends',
+            getters: ['value'],
+            setters: ['value'],
           ),
-        ),
+        }),
       );
+      expect(explicit.classes.single.proxy!.kind, 'extends');
       parser.restore(checkpoint);
       final proposal = await parser.proposeSelection(
         library.exportNamespace.definedNames2[name] as InterfaceElement,
@@ -236,11 +228,11 @@ const fallback: number = ambiguous.value;
       );
       expect(
         proposal.selection?.proxy,
-        'implements',
+        'extends',
         reason:
             '$name: ${proposal.skips.map((skip) => skip.reason).join("; ")}',
       );
-      expect(proposal.proxyCapability, FlaxCodegenProxyCapability.canImplement);
+      expect(proposal.proxyCapability, FlaxCodegenProxyCapability.canExtend);
       expect(proposal.skips, isEmpty);
       selections[name] = proposal.selection!;
     }

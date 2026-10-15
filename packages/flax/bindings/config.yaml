@@ -109,6 +109,60 @@ callbackSnapshots:
   KeyEvent:
     fields: [physicalKey, logicalKey, character, synthesized]
 classes:
+  MapEntry:
+    kind: object
+    constructors: { '': [key, value] }
+    getters: [key, value]
+  Runes:
+    kind: object
+    constructors: { '': [string] }
+    getters: [string, length, iterator]
+  RuneIterator:
+    kind: object
+    getters: [current]
+    instanceMethods: { moveNext: [] }
+  Error:
+    kind: object
+    constructors: { '': [] }
+    getters: [stackTrace]
+    instanceMethods: { toString: [] }
+  Enum:
+    kind: object
+    getters: [index]
+  Comparable:
+    kind: object
+    instanceMethods: { compareTo: [other] }
+  Invocation:
+    kind: object
+    getters:
+      [
+        memberName,
+        positionalArguments,
+        namedArguments,
+        isGetter,
+        isSetter,
+        isMethod,
+        isAccessor,
+      ]
+  UriData:
+    kind: object
+    constructors: { fromUri: [uri] }
+    getters: [uri, mimeType, contentText, isBase64]
+  Deprecated:
+    kind: object
+    constructors: { '': [message] }
+    getters: [message]
+  Type:
+    kind: object
+    instanceMethods: { toString: [] }
+  Symbol:
+    kind: object
+    constructors: { '': [name] }
+    staticGetters: [empty, unaryMinus]
+    instanceMethods: { toString: [] }
+  Record:
+    kind: object
+    instanceMethods: { toString: [] }
   Spacer:
     constructors:
       '': [key, flex]
@@ -1201,3 +1255,9 @@ classes:
     constructors:
       '': [key, builder]
   # --- end flax-core batch1 widget probe ---
+
+extensions:
+  EnumName:
+    getters: [name]
+  EnumByName:
+    methods: { byName: [name], asNameMap: [] }

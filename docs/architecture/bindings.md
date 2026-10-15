@@ -25,8 +25,10 @@ are legal, while a positional `arguments` parameter is rejected as a strict-mode
 A leading `_` hides Dart declarations and members, but positional parameter names are
 local names and can start with `_`. A single `_` is a Dart wildcard rather than a
 readable local and remains excluded from automatic parameters. Class namespace
-declarations retain binding-name rules. Generated API name collisions remain rejected,
-and the capability inventory applies these same distinctions. Automatic discovery of
+declarations retain binding-name rules. Ordinary native object members can use `kind`,
+`type`, `ctor` and `args`; only representations that actually store descriptor fields
+reserve those names. Generated API name collisions remain rejected, and the capability
+inventory applies these same distinctions. Automatic discovery of
 `static int total_count` exposes the same `Counter.total_count` read and
 `Counter.setTotal_count(value)` write as explicit selection.
 
@@ -38,6 +40,44 @@ The `FlaxCodegen*Model` graph produced by parsing is the semantic IR between ana
 resolution and emission. It carries resolved types, generics, inheritance, Widget and
 callback roles, and capabilities such as `Disposable`. Emitters consume that semantic
 model; they do not infer application ownership or lifecycle policy from method names.
+Reified callback and Record caches retain the selected conversion view, including scoped
+arguments and data/error encoding, rather than collapsing every view of one Dart Type.
+
+## Bottom types and opaque Core values
+
+Core provides `Type`, `Symbol` and broad `Record` through the ordinary object binding
+path. `Type` values come from Dart; `Symbol('name')`, `Symbol.empty` and
+`Symbol.unaryMinus` use real Dart Symbols. They are not JavaScript Symbols. Type and
+Record expose no constructor. All three retain native `toString()`, checked casts and
+session validation. A Type reference is not a replacement for the authenticated
+`dartTypes` generic-selection API or an API for reflection.
+
+A declared `Record` accepts an existing Dart Record reference and exposes an opaque
+view. A typed `(String, int)` signature still reads or reconstructs its `$1`/`$2` fields
+through the existing compiled projection. Raw JS field objects need that concrete
+signature; a broad Record parameter does not infer a new layout. Unknown erased Record
+values use the opaque Core view; ambiguous registered structural projections still fail
+closed. Record values do not promise canonical JS `===` identity. Their shared handle
+metadata conditionally retains a weakly indexed value holder because Dart Records cannot
+be weak-reference targets. This adds no permanent business root or per-class GC code.
+
+An unknown concrete native Function layout uses its actual engine Type metadata and
+shared `Function.apply` invocation, including optional/named defaults and existing
+converters. Its JS view is an authenticated callable `DartFunction`. Passing an
+arbitrary JS closure back requires a selected compiled callback signature; raw
+`Function` input does not infer one. Authentic Dart Function views can also roundtrip
+through Object/dynamic and collections without creating a new closure. Unbound generic
+raw layouts fail explicitly. A native Record's unknown shape can roundtrip via
+`dartTypes.of(value)` and a checked generic call while remaining opaque; this does not
+synthesize field adapters in AOT.
+
+`Never` maps to TypeScript `never` and has no valid return value. Calls must throw or
+not complete. `Never?` and `Null` map to `null`; required inputs still reject missing
+values and `undefined`. The same TypeRef conversion applies in properties, callbacks and
+Future/Stream/collection positions. `Future<Never>` may fail; `Stream<Never>` may be
+empty or fail. Never rejects every result value; its nullable form accepts only null.
+Generated modules using these types declare the additive `bottom-types` capability;
+protocol and ABI versions are unchanged.
 
 ## Extension type representations
 
@@ -53,9 +93,13 @@ Panel echoPanel(Panel value) => value;
 
 JS calls `echoPanel(widget)` and receives the underlying Widget reference. Generated
 Dart calls preserve the declared `Panel` signature through a static representation cast.
-No additional runtime object, binding owner, JS constructor, extension-type member
-surface or independent `instanceof` token is created. This differs from ordinary named
-extensions, which expose receiver views such as `StringX('a').repeat(3)`.
+No additional Dart object or independent `instanceof` token is created. Select an
+extension type in `extensions` to expose its members as a shared receiver view:
+`Panel.view(widget).value`. Automatic selection includes supported public members. The
+view uses the same converters as named extensions such as `StringX('a').repeat(3)`; it
+does not call an extension-type constructor or establish a new nominal identity. Extract
+the representation getter when passing the value to a Dart input. `view` is reserved on
+an extension-type namespace and explicit conflicting statics fail selection.
 
 Every use site retains the representation's existing validation. Required and nullable
 arguments, callback results, stale Context/State checks, session ownership and Widget
@@ -64,8 +108,8 @@ retention follow the ordinary binding path. For
 declared Dart type has no `?` suffix; required arguments still reject missing values and
 undefined. A Route/Page representation does not enable unsupported results or callbacks.
 Unsupported representations fail closed; automatic selection reports their conversion
-reason. Representation-only declarations retain the `extension_type_representation_only`
-diagnostic because they do not expose a class.
+reason. Declarations without bindable members remain representation-only; this is not a
+failure of their input/result conversion.
 
 Wrapping a Stream does not recover types lost by ordinary erased generic operations. In
 JS, after `const items = await widgetStream.toList()`, `items.get(0)` no longer carries
@@ -114,7 +158,7 @@ tokens automatically.
 | --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Parent-only or independent provider view            | No downcast or provider conversion. A parent-only view fails a child check; independently bound views have distinct wire identities. Reusing a dependency provider reuses its identity.                                                                                                                                                 |
 | Private or unselected descendants                   | A selected compatible ancestor can match; no exported child token exists. Sealed results are not an exhaustive TypeScript union and keep a fallback branch.                                                                                                                                                                             |
-| Runtime generic arguments or erased representations | Checks identify the bound family, not `Box<String>` versus `Box<int>`. Typedefs, extension types, copied Records/data and enum adapters gain no independent class token. Generic argument validation still occurs at typed Dart calls.                                                                                                  |
+| Runtime generic arguments or erased representations | A raw class token checks the bound family; `Box.$type(dartTypes.string)` additionally checks its actual Dart type arguments. Enhanced enums have authenticated tokens. Typedefs, extension types and copied Records/data do not gain independent nominal class identities. Typed Dart calls still validate arguments.                   |
 | Descriptors and deferred construction               | Widget/Route/Page descriptions and unmaterialized deferred factories have no authenticated object handle and return false. Native Widget proxies, ordinary references, Contexts and Streams can match; a type-only State wrapper has no instance-check handle. JS-authored Widget/State classes retain ordinary JS prototype semantics. |
 | Released references and foreign values              | Generated binding tokens reject released handles, raw objects, prototype forgeries, primitives, null and undefined. JS-authored subclass checks follow native JS prototype semantics, which do not validate bridge handles. Member calls still enforce mounted state, session ownership and argument types.                             |
 
@@ -580,14 +624,16 @@ thenable and produces the typed Dart Future awaited by the caller. Future-return
 members use the reverse conversion and the same UI checkpoint. Future and FutureOr
 values compose recursively through supported collection, Record and callback positions
 under protocol 24; nested completion values retain their own declared async semantics.
-Asynchronous lifecycle/build callbacks and Map callback keys remain unsupported. Finite
+Asynchronous lifecycle/build callbacks remain unsupported. Callback Map keys reuse a
+session/signature/context memo for stable Dart closure identity. Ordinary
 List/Set/Map/Record and Iterable Widget callback parameters and results support nullable
 containers and elements. Iterable callback signatures accept JS arrays/Sets and Dart
-Lists/Sets; actual arbitrary lazy iterators remain fail-closed at conversion. The same
-rule applies to selected Widget subclasses/interfaces and supported asynchronous
-compositions, while ordinary native method Iterable views stay lazy. Dart Stream
-references can appear in parameters, results, callbacks and typed collections, including
-nested ordinary value shapes; they follow
+Lists/Sets, custom JS Iterables and compatible native lazy Iterables. A shared lazy
+adapter validates each requested element; it never drains a generator at conversion. The
+same rule applies to selected Widget subclasses/interfaces and supported asynchronous
+compositions. Early stop and GC cannot promise a JS generator's `finally`: Dart Iterator
+has no close hook. Dart Stream references can appear in parameters, results, callbacks
+and typed collections, including nested ordinary value shapes; they follow
 [ADR 0020](../decisions/0020-complete-dart-stream-interop.md). The JS interop handle is
 `FlaxStreamReference` (not a `Dart*` alias and not Web `ReadableStream`). Generated
 Flutter bindings expose the selected dart:async Stream family and call real Dart
@@ -685,9 +731,10 @@ use `$1`, `$2`, and so on in source order; named fields are canonicalized by nam
 manifest and type identity. Dart-to-JS conversion reads each field and recursively uses
 the existing TypeRef conversion. JS-to-Dart conversion requires every declared field,
 ignores extra properties, validates field nullability independently from whole-Record
-nullability, and reconstructs a real Dart Record. Records themselves have no wire ID,
-owner or session reference identity; provider-owned objects nested inside fields retain
-their normal identity. Manifest 20 carries the complete current Record shape.
+nullability, and reconstructs a real Dart Record. These structural projections have no
+wire ID, owner or session reference identity; provider-owned objects nested inside
+fields retain their normal identity. Manifest 20 carries the complete current Record
+shape.
 
 Generated modules also register compiled Record signatures, native type checks and field
 accessors. An erased `Object?` result, including `Stream<Record>.toList().get()`,
@@ -696,14 +743,16 @@ Core/current-package/dependency provider order. Its fields retain the ordinary t
 conversion. A weak association preserves this generated shape when a copied JS Record
 passes through an erased callback; its fields are checked again before reconstruction.
 Signatures describe compiled shapes, not object identities or business-object roots.
-Unknown or ambiguous erased Dart Records are rejected. Fresh JS objects use their
-declared Record position; spreading or cloning an object does not copy the weak shape
-association. Direct typed Record positions do not require inference.
+Unknown erased Dart Records use the opaque Core Record reference. Ambiguous registered
+projections remain rejected. Fresh JS objects use their declared Record position;
+spreading or cloning an object does not copy the weak shape association. Direct typed
+Record positions do not require inference.
 
-Generic declarations use one shared Dart owner while TypeScript keeps the declared type
-parameters. An unconstrained owner uses `Object?`; a simple upper bound such as `num` is
-used when required. Existing Dart values such as `Box<String>` and `Box<int>` therefore
-share one owner without losing their TypeScript relationships.
+Generic declarations use one compiled Dart owner factory while TypeScript keeps the
+declared type parameters. A bare owner uses its legal default, commonly `Object?` or an
+analyzer-resolved bound; no legal default means explicit type selection is required.
+Existing Dart values such as `Box<String>` and `Box<int>` share declaration metadata,
+with actual Type handles selecting their conversion views.
 
 ### Dart type selection
 
@@ -752,9 +801,11 @@ even without a composable type token. An unavailable default description does no
 disable supported concrete targets; a bound such as `Iterable<BigInt>` can still select
 an already compiled bound collection subclass.
 
-`dartTypes` supplies String, bool, int, double, num, Object and Object? tokens, with
-List, Map, Set, Iterable and nullable composition. Generated class tokens include their
-actual Dart default arguments resolved by the engine, including reference-only
+`dartTypes` supplies String, bool, int, double, num, BigInt, void, Never, Null, Object
+and Object? tokens, with List, Map, Set, Iterable, Future, FutureOr, Stream and nullable
+composition. JS uses `dartTypes.bigInt`, `.void`, `.never`, `.null`, `.future(T)`,
+`.futureOr(T)` and `.stream(T)` for the added forms. Generated class tokens include
+their actual Dart default arguments resolved by the engine, including reference-only
 Context/State and Route/Stream owners. A selected object handle is also a nominal token
 for nesting or `asDart`. Type descriptors are authenticated by a shared WeakMap; a
 user-created object with matching properties is not a type token. Tokens preserve Dart
@@ -783,10 +834,11 @@ contents or TS arguments.
 
 Class tokens also select intrinsic Stream, enum named factory and Route/Page adapters.
 This does not make enums or reference-only Context/State types constructible. Record and
-function values use compiled adapters for their field/parameter layout; unknown layouts
-and unbound generic function types passed indirectly as T are rejected. Union and
-higher-rank type composition is not a public token constructor. Already-generated
-generic callback signatures keep their existing typed adapters.
+function values prefer compiled adapters for their field/parameter layout. Unknown
+Record layouts remain opaque and unknown concrete native functions use engine metadata;
+arbitrary new JS closures and unbound generic raw function layouts remain rejected.
+Union and higher-rank type composition is not a public token constructor.
+Already-generated generic callback signatures keep their existing typed adapters.
 
 The generator retains both open declaration types and analyzer-resolved default input
 types. Closed targets use structured type arguments and the same recursive member,
@@ -1157,10 +1209,17 @@ and [ADR 0035](../decisions/0035-generic-state-variants-and-protocol-21.md).
 
 Select non-constructible native contracts with `kind: widgetInterface` and preserve them
 on generated hosts with `widgetInterfaces`. Explicit getters, setters and methods
-forward directly to the cached real Dart configuration. Arguments remain fixed; native
-signatures do not enter JS conversion or dependency discovery. See
-[Widget interfaces](widget-interfaces.md) for type checks, subset limits and
-parent-property updates.
+forward directly to the cached real Dart configuration. Automatic selection follows
+inherited abstract interface contracts and retains supported constructor callbacks,
+including callback collections. Arguments remain fixed; native signatures do not enter
+JS conversion or dependency discovery. See [Widget interfaces](widget-interfaces.md) for
+type checks, subset limits and parent-property updates.
+
+Generic Widget interfaces use ordinary real-object bindings instead of synthesizing a
+generic Flutter host. `kind: widgetInterface` is normalized to that path for a generic
+declaration. Selected getters/methods retain actual type arguments and native Widget
+identity; this does not add a structural JS implementation of arbitrary Widget
+contracts.
 
 Top-level functions have their own selection, model and registration surface; they are
 not represented as classes. See [function generation](functions.md) for defaults, data
@@ -1322,6 +1381,19 @@ invalid self-referential generic defaults.
 See [ADR 0032](../decisions/0032-bound-type-only-references.md) for runtime boundaries.
 
 ## Shared JS proxy implementations and class operators
+
+All selected generative super constructors share the same proxy class and metadata.
+`super(...args)` uses the preferred entry; select another with the authenticated
+`super(dartSuper(Base, 'named', ...args))` marker. `Base` can be a checked
+`Base.$type(...)`. Factories are not legal super targets, foreign markers fail before
+construction, and arity/types are checked by ordinary argument conversion. No repeated
+per-class JS implementation or type-combination table is generated.
+
+Mixed abstract/concrete accessor halves use the shared prototype installer so a JS
+getter does not accidentally erase a native setter, or vice versa. Non-configurable
+descriptors must forward both halves themselves. Ordinary compiled Dart mixin-composed
+classes already bind through this same path; runtime synthesis of new mixin classes is
+not provided.
 
 Generated object `extends` classes inherit `FlaxProxyBase`. A frozen per-class metadata
 object and `defineProxyBase` install concrete forwarding methods and accessors on the

@@ -686,10 +686,11 @@ StringA.version = '2';
   );
 
   test('invalid signatures and generated name collisions fail early', () async {
+    final functions = await parse('  RawFunctionX: {getters: [value]}');
+    expect(functions.extensions.single.onType.kind, 'function');
     for (final selection in [
       "  SetterCollisionX: {setters: [firstValue], methods: {setFirstValue: [value]}}",
       "  StringA: {}",
-      "  RawFunctionX: {getters: [value]}",
       "  StringA: {operators: {'==': [other]}}",
       "  StringA: {methods: {repeat: []}}",
       "  StringA: {getters: [version]}",

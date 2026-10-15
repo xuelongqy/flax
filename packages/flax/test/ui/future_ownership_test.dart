@@ -144,6 +144,18 @@ Future<void> _collect() async {
   await flaxTestCollectDartGarbage();
 }
 
+Future<void> _expectCollected(
+  WeakReference<Object> weak, {
+  String? reason,
+}) async {
+  // AOT allocation pressure does not promise an old-space cycle in two rounds.
+  for (var attempt = 0; attempt < 8; attempt++) {
+    await _collect();
+    if (!_alive(weak)) break;
+  }
+  expect(_alive(weak), isFalse, reason: reason);
+}
+
 void main() {
   tearDown(() => _root = null);
 
@@ -191,8 +203,7 @@ void main() {
     await tester.runAsync(() async {
       for (final path in _paths) {
         final weak = _create(path, rooted: false);
-        await _collect();
-        expect(_alive(weak), isFalse, reason: path);
+        await _expectCollected(weak, reason: path);
       }
     });
   }, timeout: const Timeout(Duration(minutes: 2)));
@@ -205,9 +216,8 @@ void main() {
         final weak = _create(path, rooted: true);
         _complete(weak);
         await _root;
-        await _collect();
+        await _expectCollected(weak, reason: path);
         expect(_root, isNotNull);
-        expect(_alive(weak), isFalse, reason: path);
         _root = null;
       }
     });
@@ -223,8 +233,7 @@ void main() {
       await _collect();
       expect(_alive(retainedSource), isTrue);
       _root = null;
-      await _collect();
-      expect(_alive(retainedSource), isFalse);
+      await _expectCollected(retainedSource);
 
       for (final path in [
         'wait',
@@ -236,9 +245,8 @@ void main() {
         final source = _sourceOf(weak);
         _complete(weak);
         await _root;
-        await _collect();
+        await _expectCollected(source, reason: path);
         expect(_root, isNotNull);
-        expect(_alive(source), isFalse, reason: path);
         _root = null;
       }
     });
@@ -251,8 +259,7 @@ void main() {
       final (weak, next) = _switchSource();
       try {
         await Future<void>.delayed(Duration.zero);
-        await _collect();
-        expect(weak.target, isNull);
+        await _expectCollected(weak);
         expect(_root, isNotNull);
       } finally {
         next.complete(1);

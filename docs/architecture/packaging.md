@@ -161,10 +161,12 @@ remain local. Core-owned types cannot be republished.
 
 Object inputs are checked against actual Dart types and concrete generic arguments.
 Typed results expose the interface selected by the signature. Erased results retain the
-originating package context through callbacks, Futures and lazy collections/Streams;
-Core has priority, then the originating package and its dependencies. Equal-priority
-ambiguity is rejected instead of depending on registration order. Alias views share one
-Dart object, disposal and listener ownership.
+originating package context through callbacks, Futures and lazy collections/Streams.
+Selected enum constants retain their enum value identity instead of becoming broad
+Object/Enum views. For ordinary object candidates, Core has priority, then the
+originating package and its dependencies. Equal-priority ambiguity is rejected instead
+of depending on registration order. Alias views share one Dart object, disposal and
+listener ownership.
 
 ## Application module inventory and host delivery
 

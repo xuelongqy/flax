@@ -9,8 +9,10 @@ UI protocol 24 shares one conversion and reference mechanism across selected Dar
 Object, Object? and dynamic use ordinary interop: supported scalars, canonical enums,
 bound Dart references and collections. Returned bound objects retain session identity.
 Nullable Object and dynamic appear as TS unknown; non-null Object uses {}. Unsupported
-objects, functions and unsafe integral numbers fail conversion. Non-finite doubles
-remain valid outside the explicit navigation-data boundary.
+objects, untyped JS functions and unsafe integral numbers fail conversion. Authentic
+native Dart Function references roundtrip through Object/dynamic, including nested
+collections, with their original closure identity. Non-finite doubles remain valid
+outside the explicit navigation-data boundary.
 
 Object input classification runs in one synchronous JS helper call, preserving the
 existing order for native brands, Dart references, State, thenables, errors and
@@ -102,16 +104,18 @@ capability. UI protocol 24 and native ABI 2 remain unchanged.
 ## Collections
 
 JS arrays become generated `List<T>` instances. JS Maps become `Map<K,V>`; plain JS
-objects are a convenience input for string-keyed maps. JS iterables become typed List
-snapshots for `Iterable<T>` inputs, while JS ReadonlySet values become real `Set<T>`
-instances. Elements, keys and values are converted using the same generated types and
-checked before the target method runs. Existing compatible Dart collection wrappers pass
-the original collection back.
+objects are a convenience input for string-keyed maps. JS arrays and ReadonlySet values
+use typed collection snapshots. Other JS Iterables use a lazy adapter for `Iterable<T>`
+inputs: each iterator captures its `next` method once, and each element is converted
+when Dart requests it. Snapshots validate their contents before the target method runs;
+lazy iteration validates each requested value. Existing compatible Dart collection
+wrappers pass the original collection back.
 
 One temporary JS WeakMap assigns identity indices during a raw collection conversion.
 The Dart memo uses these indices to preserve repeated references and cycles without
-scanning every earlier input. It retains the same scoped input handles and releases the
-map closure and handles when conversion succeeds or throws.
+scanning every earlier input, including repeated lazy Iterable inputs. It retains the
+same scoped input handles and releases the map closure and handles when conversion
+succeeds or throws.
 
 Collection wrappers are typed views, indexed by Dart identity and conversion type. The
 same type view reuses its live JS wrapper; different views of one collection do not
@@ -228,11 +232,12 @@ view and Dart object unchanged. `getDartType(view)` reports the Dart runtime typ
 independently of the selected view. See
 [checked views](objects.md#checked-views-and-dart-type-diagnostics). Nullable Map reads
 preserve the complete nested conversion metadata, including Records, callbacks and async
-values. Unsupported native signatures, generic specialization and Widget mutation
-boundaries retain the ordinary binding rules. An unusual Dart class implementing
-unrelated collection shapes, such as both List and Set, has no unique copy shape.
-Explicit selection rejects it and automatic selection reports
-`ambiguous_core_collection`; use an ordinary List/Set-returning API for that view.
+values. Unsupported native signatures and generic specialization retain the ordinary
+binding rules. Widget collection writes use the same typed conversion and do not
+schedule Flutter rebuilds. An unusual Dart class implementing unrelated collection
+shapes, such as both List and Set, has no unique copy shape. Explicit selection rejects
+it and automatic selection reports `ambiguous_core_collection`; use an ordinary
+List/Set-returning API for that view.
 
 ## Shared Uint8List bytes
 
@@ -349,37 +354,36 @@ serves all functions. There is no per-function global host registration or refle
 
 Collection copies retain the declared element/key types, including callback signatures.
 Shared containers are validated under every encountered view. Incompatible encodings
-fail rather than silently choosing the first view. Ordinary Object/dynamic functions
-remain unsupported because they carry no conversion signature. Mutation errors do not
-promise rollback; a supported removed callback is returned as a callable value.
+fail rather than silently choosing the first view. Plain JS functions in Object/dynamic
+positions still need a typed signature; authenticated Dart Function views retain their
+native closure. Mutation errors do not promise rollback; a supported removed callback is
+returned as a callable value.
 
 DartWidget is an opaque, readonly reference included in Widget. It cannot be constructed
 or disposed by JS and exposes no arbitrary Widget fields. Returning a real Dart Widget
 passes that same instance back through roots, children, builders, components and page
 content. It adds no Element and preserves the actual runtimeType and key. DartList of
 Widget becomes a structural snapshot when accepted as children. The Widget collection
-boundary supports reading, copying and removal. Inserting or replacing Widgets from JS
-remains unsupported. Finite List/Set/Map/Record and Iterable Widget callback parameters
-and results are supported, including nullable containers/elements and
-Future/FutureOr/Stream compositions. A completed JS value promotes each contained Widget
-configuration before temporary conversion holds are released. Typed Widget lists become
-readonly snapshots that preserve concrete element types, including inside Maps and
-Records. Arbitrary lazy Widget Iterables remain unsupported in callback positions; their
-declared signatures can bind, but actual values must be JS arrays/Sets or compatible
-Dart Lists/Sets. The check precedes iterator access and execution, including overridden
-JS Set iterators. For example, `Iterable<Widget> Function()` can accept
-`() => [Text('One'), Text('Two')]` or a callback returning `new Set([Text('One')])`. A
-JS generator or a Dart `children.map(...)` view must first be materialized by
-application code. Normal native Iterable method results keep their existing lazy
-behavior. Callback collection/Stream views keep this constraint even when an ordinary
-view was created earlier. Checked async completions preserve the actual Widget instances
-and reuse native containers when their children need no adaptation. The native
-SearchAnchor fixture covers synchronous Set and asynchronous array suggestions without
-adding a production SearchAnchor binding. Single Widget arguments support Dart retention
-as described below. Widget references are accepted only at Widget positions, not
-ordinary Object/dynamic inputs. Flax hosts also retain their description resources. The
-application root holds the session until its subtree unmounts, even when it consists
-entirely of native Widgets.
+boundary supports ordinary List add/set/remove, Map set and Set add through the same
+typed conversion. Writes do not schedule a Flutter rebuild. List/Set/Map/Record and
+Iterable Widget callback parameters and results are supported, including nullable
+containers/elements and Future/FutureOr/Stream compositions. A completed JS value
+promotes each contained Widget configuration before temporary conversion holds are
+released. Typed Widget lists become readonly snapshots that preserve concrete element
+types, including inside Maps and Records. Custom JS Iterables use a shared lazy adapter;
+a JS generator and native Dart `children.map(...)` view need not be materialized.
+Conversion checks the iterable shape, and each `moveNext` checks the element with
+ordinary conversion. JS arrays/Sets still use finite copies; Set copying uses its native
+entries rather than an overridden iterator. Early stopping and GC do not call a JS
+generator's `return()` or `finally`: Dart Iterator has no close hook. Session close
+releases bridge handles and rejects later iteration. Checked async completions preserve
+the actual Widget instances and reuse native containers when their children need no
+adaptation. The native SearchAnchor fixture covers synchronous Set and asynchronous
+array suggestions without adding a production SearchAnchor binding. Single Widget
+arguments support Dart retention as described below. Widget references are accepted only
+at Widget positions, not ordinary Object/dynamic inputs. Flax hosts also retain their
+description resources. The application root holds the session until its subtree
+unmounts, even when it consists entirely of native Widgets.
 
 ### Context results
 
@@ -430,13 +434,19 @@ values.get(0) === context; // Same borrowed identity.
 values.get(1) === null;
 ```
 
-Supported Future/Stream combinations and finite aggregate events recurse through this
+Supported Future/Stream combinations and typed aggregate events recurse through this
 conversion. Registered Record field projections also survive generic Stream operators,
 `first`, `toList().get()` and collection copies, including nested Records and callbacks.
 Copied JS Records keep a weak association with their generated shape when returned from
 an erased callback; every field is validated again. Fresh JS objects and structural
-clones require a concrete Record position. Unknown or ambiguous erased Dart Record
-shapes are rejected. No additional Stream retention or GC mechanism is required.
+clones require a concrete Record position. Unknown erased Dart Records use the opaque
+Core Record view; ambiguous registered projections are rejected. A broad Record input
+accepts an existing Dart Record reference, without inferring fields from raw JS objects.
+Opaque Record views do not promise JS identity across reads. Discarded views can collect
+while Dart retains the value; callbacks capturing a view retain it normally. Type and
+Symbol values use the same ordinary native object conversion. Never signatures preserve
+failure/non-completion; nullable Never/Null accepts only null. No additional Stream
+retention or GC mechanism is required.
 
 A returned builder borrows the supplied native Context and its Flutter lifecycle. It
 does not manufacture an Element, extend Context lifetime or execute during conversion.
@@ -666,12 +676,14 @@ Native proxy methods receive Dart's actual generic arguments. A JS override can 
 its per-invocation `call` context and use `call.super(...)`, including after an `await`,
 without losing those arguments. Generated incoming callbacks remain real generic Dart
 functions; their existing bound conversion and current-type result checks are preserved.
-Returned Dart generic functions are invoked with the erased bound because that callback
-API does not select runtime type arguments. An unconstrained parameter erases to
-Object?; dependent bounds such as `U extends T` erase transitively. The TS call-site
-type remains useful for development, but it does not change the Dart erasure used by the
-bridge. Generic callback erasure still rejects recursive bounds, unbound interfaces and
-bounds without an existing conversion.
+Returned Dart generic functions support the shared `dartType(callback, ...types)`
+selector. Bare calls use their legal analyzer-resolved default, commonly Object?;
+dependent bounds such as `U extends T` resolve transitively when a legal default exists.
+Recursive and captured bounds use the same checked factories and require explicit
+runtime arguments when no legal default exists. Incoming generic callbacks use Dart's
+actual invocation types. Type-only bounds need no value provider merely to express the
+constraint; actual selected values still require an available converter. The TS
+call-site type alone never changes the Dart instantiation.
 
 Object-erased function-local generic results use `DartOutput<T>` in TypeScript. Scalars
 remain scalars; raw JS collections return real Dart collection references, rather than
@@ -706,9 +718,12 @@ runtime. Core's `ValueChanged<T>` and `ValueGetter<T>` exports come from the rea
 Flutter SDK declarations. See [standalone typedefs](bindings.md#standalone-typedefs).
 
 TS call-site types are not runtime tokens and there is no TS compiler transformation.
-Use `dartType` when a class or method depends on exact Dart type arguments. Returned
-generic callbacks keep the bound-only limitation above. Unsupported signatures fail
-generation. Explicit String/int ValueKey selections preserve Flutter key matching.
+Use `Class.$type` or `dartType` when a class, method or returned generic callback
+depends on exact Dart type arguments. Unknown structural callback/Record layouts and
+unsupported value conversions remain rejected. Explicit String/int ValueKey selections
+preserve Flutter key matching. The
+[consolidated capability audit](binding-coverage-map.md#engine-backed-audit-and-consolidated-backlog)
+distinguishes those limits from features already enabled by the maintained engine.
 
 Selected deferred generic factories are materialized from concrete Dart use sites rather
 than a list of configured type arguments. The JS wrapper keeps its factory parameters
@@ -740,12 +755,16 @@ contract-style use. An extends proxy also emits a real TypeScript abstract class
 application code can use normal `class Derived extends SomeType` syntax.
 
 An extends proxy initializes one receiver peer before calling its selected generative
-super constructor. Selected concrete virtual methods and accessors may be overridden in
-JS; omitted overrides execute Dart `super`, and JS `super.foo()` uses a generated direct
-parent entry so it cannot recurse through the virtual override. An implements proxy
-supplies the entire effective interface. Generated direct Dart overrides invoke the
-shared typed conversion through that peer; there is no parallel Flax abstract-class
-hierarchy or reflection.
+super constructor. Select several generative constructors on the same binding and use
+`super(dartSuper(Base, 'named', ...args))` to choose an alternative from JS. The shared
+authenticated marker also works with `Base.$type(...)`; ordinary `super(...args)` uses
+the default selected constructor. Factories cannot be a Dart super constructor. No
+per-class JS dispatch implementation is generated. Selected concrete virtual methods and
+accessors may be overridden in JS; omitted overrides execute Dart `super`, and JS
+`super.foo()` uses a generated direct parent entry so it cannot recurse through the
+virtual override. An implements proxy supplies the entire effective interface. Generated
+direct Dart overrides invoke the shared typed conversion through that peer; there is no
+parallel Flax abstract-class hierarchy or reflection.
 
 Required properties use JS accessors or ordinary data fields with synchronous typed
 conversion, including Future/FutureOr/Stream and Widget, Context and State with the same
@@ -756,6 +775,13 @@ The generator resolves effective inherited properties and prepares the peer befo
 parent constructor. Native lookup reads the current member, including arrow fields and
 later prototype or instance replacements, with the actual JS receiver. See
 [proxy properties and ValueListenable](proxy-properties.md).
+
+If only one accessor half is abstract, the shared prototype installer preserves the
+other concrete Dart half when a JS accessor would shadow it. A non-configurable JS
+descriptor must explicitly supply both halves. A getter-only TS subclass is still
+readonly in TypeScript; use its base view or declare a forwarding setter when writing.
+For mixin methods, bind the actual Dart class composed with that mixin. Flax does not
+synthesize a new Dart class or change an existing class's type identity at runtime.
 
 Proxy methods support the same positional, named and generic callback model, including
 supported Future results. `@mustCallSuper` checks capture whether JS called the direct

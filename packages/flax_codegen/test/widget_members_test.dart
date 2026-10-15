@@ -43,7 +43,7 @@ void main() {
           reason: name,
         );
         expect(selection.instanceMethods, contains('textLength'), reason: name);
-        expect(selection.setters, isEmpty, reason: name);
+        expect(selection.setters, contains('requestedValue'), reason: name);
         expect(selection.instanceMethods, isNot(contains('protectedLabel')));
       }
       expect(
@@ -98,8 +98,9 @@ new ComputedWidget('invalid');
 widget.repeatLength('invalid');
 // @ts-expect-error Protected methods stay excluded.
 widget.protectedLabel();
-// @ts-expect-error Widget instance setters are not selected, including inherited ones.
 widget.requestedValue = 1;
+// @ts-expect-error Widget writes retain their Dart input type.
+widget.requestedValue = 'invalid';
 ''',
       );
     },

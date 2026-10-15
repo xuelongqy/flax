@@ -70,30 +70,109 @@ String? flaxJsCollectionShape(Object? value) {
 T flaxRestoreJsCollection<T>(
   Object value,
   String kind,
-  T Function(Object) restore, {
-  bool finiteWidgetIterable = false,
-}) {
-  if (finiteWidgetIterable) {
-    _checkFiniteWidgetIterable(
-      value,
-      const FlaxTypeRef('iterable', finiteWidgetIterable: true),
-    );
-    if (value is T) return value as T;
-  }
+  T Function(Object) restore,
+) {
   final shape = _jsCollectionShapes[value];
   final compatible = switch (kind) {
     'list' => shape == 'list',
     'set' => shape == 'set',
-    'iterable' =>
-      shape == 'list' ||
-          shape == 'set' ||
-          (!finiteWidgetIterable && shape == 'iterable'),
+    'iterable' => shape == 'list' || shape == 'set' || shape == 'iterable',
     'map' => shape == 'map' || shape == 'record',
     'record' => shape == 'record',
     _ => false,
   };
   if (!compatible) throw ArgumentError('Incompatible $kind completion');
   return restore(value);
+}
+
+class _JsIterable extends Iterable<Object?> {
+  _JsIterable(this.session, FlaxJsObject source, this.item)
+    : context = _bindingContext,
+      handle = _IterableHandle(session, source.retain()) {
+    handle.attach(this);
+  }
+  final _Session session;
+  final _BindingContext? context;
+  final FlaxTypeRef item;
+  final _IterableHandle handle;
+  @override
+  Iterator<Object?> get iterator {
+    if (!session.active || handle.retired) {
+      throw StateError('Retired JS Iterable');
+    }
+    handle.enter();
+    try {
+      final iterator = session.helper('iterableIterator').call([
+        handle.value,
+      ]) as FlaxJsObject;
+      return _JsIterator(session, iterator, item, context);
+    } finally {
+      handle.leave();
+    }
+  }
+}
+
+class _IterableHandle extends _BridgeReference {
+  _IterableHandle(super.session, this.value);
+  final FlaxJsObject value;
+  @override
+  void close() {
+    if (!value.isReleased) value.release();
+  }
+}
+
+class _JsIterator implements Iterator<Object?> {
+  _JsIterator(this.session, FlaxJsObject iterator, this.item, this.context)
+    : handle = _IterableHandle(session, iterator) {
+    handle.attach(this);
+  }
+  final _Session session;
+  final _IterableHandle handle;
+  final FlaxTypeRef item;
+  final _BindingContext? context;
+  bool done = false;
+  Object? _current;
+  @override
+  Object? get current => _current;
+  @override
+  bool moveNext() {
+    if (!session.active) throw StateError('Retired JS Iterator');
+    if (done) return false;
+    handle.enter();
+    try {
+      final result =
+          session.helper('iteratorNext').call([handle.value]) as FlaxJsObject;
+      try {
+        done = _property(result, 'done', (v) => (v as FlaxJsBoolean).value);
+        if (done) {
+          _current = null;
+          handle.release();
+          return false;
+        }
+        Object? decode() => _property(result, 'value', (v) {
+          final decoded = session.decode(v, item);
+          try {
+            decoded.escapeCallbacks();
+            session.escapeWidget(decoded.data, item);
+            return decoded.data;
+          } finally {
+            decoded.release();
+          }
+        });
+        _current = context == null ? decode() : context!.run(decode);
+        return true;
+      } finally {
+        result.release();
+      }
+    } catch (_) {
+      done = true;
+      _current = null;
+      handle.release();
+      rethrow;
+    } finally {
+      handle.leave();
+    }
+  }
 }
 
 extension _Collections on _Session {
@@ -108,19 +187,9 @@ extension _Collections on _Session {
       if (record == null || type.collection?.matches(record.value) != true) {
         throw ArgumentError('Incompatible Dart collection');
       }
-      _checkFiniteWidgetIterable(record.value, type);
       return _Value(record.value, [_ObjectBorrow(record, input.retain())]);
     }
     FlaxJsValue? shape;
-    if (type.finiteWidgetIterable) {
-      shape = helper('collectionShape')
-          .call([input, const FlaxJsBoolean(true)]);
-      if (shape is! FlaxJsString || !{'list', 'set'}.contains(shape.value)) {
-        throw ArgumentError(
-          'Widget Iterable callbacks require a finite List or Set',
-        );
-      }
-    }
     final (index, existing) = memo.find(this, input);
     if (existing != null) {
       if (!type.collection!.matches(existing)) {
@@ -145,14 +214,23 @@ extension _Collections on _Session {
             type.key!.kind != 'any')) {
       throw ArgumentError('Expected a compatible JS ${type.kind}');
     }
+    if (type.kind == 'iterable' && shape.value == 'iterable') {
+      final source = _JsIterable(this, input, type.item!);
+      try {
+        final output = type.collection!.restore?.call(source) ?? source;
+        _jsCollectionShapes[output] = 'iterable';
+        memo.add(index, input, output);
+        return _Value(output);
+      } catch (_) {
+        source.handle.release();
+        rethrow;
+      }
+    }
     final output = type.collection!.create();
     memo.add(index, input, output);
     final resources = <_Value>[];
     try {
-      final entries = helper('collectionEntries').call([
-        input,
-        if (type.finiteWidgetIterable) const FlaxJsBoolean(true),
-      ]) as FlaxJsObject;
+      final entries = helper('collectionEntries').call([input]) as FlaxJsObject;
       try {
         final length = _property(
           entries,
@@ -217,7 +295,10 @@ extension _Collections on _Session {
       _checkInteropNumber(input.value);
       return _Value(input.value);
     }
-    if (input is! FlaxJsObject || input is FlaxJsFunction) {
+    if (input is FlaxJsFunction) {
+      return decode(input, const FlaxTypeRef('function'));
+    }
+    if (input is! FlaxJsObject) {
       throw ArgumentError('Unsupported Dart value');
     }
     final classification = helper('classifyAny').call([input]);
@@ -434,7 +515,6 @@ extension _Collections on _Session {
           item.kind,
           id: item.id,
           nullable: true,
-          finiteWidgetIterable: item.finiteWidgetIterable,
           item: item.item,
           key: item.key,
           collection: item.collection,
@@ -501,7 +581,6 @@ extension _Collections on _Session {
   }
 
   FlaxJsValue collectionResult(Object value, FlaxTypeRef type) {
-    _checkFiniteWidgetIterable(value, type);
     final definition = type.collection!;
     if (!definition.matches(value)) {
       throw ArgumentError('Incompatible collection result');
@@ -570,6 +649,9 @@ extension _Collections on _Session {
       _checkInteropNumber(value);
       return FlaxJsNumber(value.toDouble());
     }
+    if (value is Function) {
+      return memberResult(value, const FlaxTypeRef('function'));
+    }
     if (value is Future<Object?>) {
       return futureResult(value, const FlaxTypeRef('any', nullable: true));
     }
@@ -616,14 +698,22 @@ extension _Collections on _Session {
         return recordResult(value, selected.values.single);
       }
     }
+    final enums = <FlaxEnumBinding>[
+      if (value is Enum)
+        for (final binding in _typeBindings.values)
+          if (binding is FlaxEnumBinding &&
+              binding.values.values.any((entry) => identical(entry, value)))
+            binding,
+    ];
+    // A selected enum keeps its value identity instead of a broad Object view.
     final candidates = <FlaxTypeBinding>[
-      for (final binding in _typeBindings.values)
-        if (binding is FlaxEnumBinding &&
-                binding.values.values.any((entry) => identical(entry, value)) ||
-            binding is FlaxObjectBinding &&
-                binding.aliasOf == null &&
-                binding.matches?.call(value) == true)
-          binding,
+      ...enums,
+      if (enums.isEmpty)
+        for (final binding in _typeBindings.values)
+          if (binding is FlaxObjectBinding &&
+              binding.aliasOf == null &&
+              binding.matches?.call(value) == true)
+            binding,
     ];
     if (candidates.isNotEmpty) {
       final best = candidates
@@ -632,7 +722,6 @@ extension _Collections on _Session {
       final selected = candidates
           .where((candidate) => priority(_bindingOwner(candidate.id)!) == best)
           .toList();
-      // Prefer specific interfaces within the selected provider priority.
       final lessSpecific = selected
           .where(
             (candidate) => selected.any(
@@ -697,7 +786,6 @@ extension _Collections on _Session {
       if (input == null || !declared.collection!.matches(input)) {
         throw ArgumentError('Incompatible collection copy');
       }
-      _checkFiniteWidgetIterable(input, declared);
       final shape = declared.kind == 'iterable' ? 'list' : declared.kind;
       var record = copies[input];
       final first = record == null;
@@ -761,14 +849,6 @@ extension _Collections on _Session {
         handle.release();
       }
     }
-  }
-}
-
-void _checkFiniteWidgetIterable(Object value, FlaxTypeRef type) {
-  if (type.finiteWidgetIterable && value is! List && value is! Set) {
-    throw ArgumentError(
-      'Widget Iterable callbacks require a finite List or Set',
-    );
   }
 }
 

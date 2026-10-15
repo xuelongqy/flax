@@ -157,101 +157,106 @@ void main() {
     }
   });
 
-  testWidgets(
-    'Widget Iterable callbacks accept JS and native finite collections',
-    (t) async {
-      final h = harness();
-      try {
-        await t.pumpWidget(h.app('widget-values'));
-        await t.pumpAndSettle();
+  testWidgets('Widget Iterable callbacks accept JS and native collections', (
+    t,
+  ) async {
+    final h = harness();
+    try {
+      await t.pumpWidget(h.app('widget-values'));
+      await t.pumpAndSettle();
+      expect(
+        h.boolean(
+          'widgetValues.iterable().length === 1 && widgetValues.iterableSet().length === 1',
+        ),
+        isTrue,
+      );
+      expect(
+        h.boolean(
+          'widgetValues.nullableIterable().toArray()[0] === null && widgetValues.iterableRecord().children.toArray()[0] === null',
+        ),
+        isTrue,
+      );
+      expect(
+        h.boolean(
+          'widgetValues.concreteIterable().toArray()[0] === null && widgetValues.interfaceIterable().toArray()[0] === null',
+        ),
+        isTrue,
+      );
+      expect(
+        h.boolean(
+          'widgetValues.store.keepNullableIterable(() => null)() === null',
+        ),
+        isTrue,
+      );
+      for (final source in ['nativeList', 'nativeSet']) {
+        h.execute(
+          'widgetValues.store.keepIterable(() => widgetValues.store.$source)',
+        );
+        expect((values.iterable().single as Text).data, 'native iterable');
         expect(
           h.boolean(
-            'widgetValues.iterable().length === 1 && widgetValues.iterableSet().length === 1',
+            'widgetValues.store.firstFromIterable(children => children.toArray()[0], {useSet: ${source == 'nativeSet'}}) !== null',
           ),
           isTrue,
         );
-        expect(
-          h.boolean(
-            'widgetValues.nullableIterable().toArray()[0] === null && widgetValues.iterableRecord().children.toArray()[0] === null',
-          ),
-          isTrue,
-        );
-        expect(
-          h.boolean(
-            'widgetValues.concreteIterable().toArray()[0] === null && widgetValues.interfaceIterable().toArray()[0] === null',
-          ),
-          isTrue,
-        );
-        expect(
-          h.boolean(
-            'widgetValues.store.keepNullableIterable(() => null)() === null',
-          ),
-          isTrue,
-        );
-        for (final source in ['nativeList', 'nativeSet']) {
-          h.execute(
-            'widgetValues.store.keepIterable(() => widgetValues.store.$source)',
-          );
-          expect((values.iterable().single as Text).data, 'native iterable');
-          expect(
-            h.boolean(
-              'widgetValues.store.firstFromIterable(children => children.toArray()[0], {useSet: ${source == 'nativeSet'}}) !== null',
-            ),
-            isTrue,
-          );
-        }
-        expect(h.errors, isEmpty);
-      } finally {
-        await h.finish(t);
       }
-    },
-  );
+      expect(h.errors, isEmpty);
+    } finally {
+      await h.finish(t);
+    }
+  });
 
   testWidgets(
-    'Widget Iterable callbacks reject lazy sources without advancing them',
+    'Widget Iterable callbacks preserve lazy sources and validate consumed values',
     (t) async {
       final h = harness();
       try {
         await t.pumpWidget(h.app('widget-values'));
         await t.pumpAndSettle();
         h.execute(
-          'widgetValues.iterations = 0; widgetValues.lazy = { get [Symbol.iterator]() { widgetValues.iterations++; return function* () { widgetValues.iterations++; yield widgetValues.store.nativeList.get(0); }; } };',
+          'widgetValues.iterations = 0; widgetValues.lazy = { *[Symbol.iterator]() { widgetValues.iterations++; yield widgetValues.store.nativeList.get(0); } }; widgetValues.store.keepIterable(() => widgetValues.lazy)();',
         );
-        for (final result in [
-          'widgetValues.lazy',
-          'widgetValues.store.nativeLazy',
-          '[42]',
-          '[null]',
-          'null',
-          'undefined',
-        ]) {
+        expect(h.number('widgetValues.iterations'), 0);
+        expect((values.iterable().single as Text).data, 'native iterable');
+        expect(h.number('widgetValues.iterations'), 1);
+        h.execute(
+          'widgetValues.store.keepIterable(() => widgetValues.store.nativeLazy)()',
+        );
+        expect(values.lazyIterations, 0);
+        expect((values.iterable().single as Text).data, 'native iterable');
+        expect(values.lazyIterations, 1);
+        for (final result in ['[42]', '[null]', 'null', 'undefined']) {
           expect(
             () => h.execute('widgetValues.store.keepIterable(() => $result)()'),
             throwsA(isA<FlaxJsException>()),
             reason: result,
           );
         }
-        expect(h.boolean('widgetValues.iterations === 0'), isTrue);
-        expect(values.lazyIterations, 0);
         h.execute(
           'widgetValues.store.keepIterableStream(() => widgetValues.store.nativeLazyStream)',
         );
-        final rejectedStream = values.iterableStream().toList();
-        final rejected = expectLater(rejectedStream, throwsArgumentError);
+        final pendingStream = values.iterableStream().toList();
         await _pump(t);
-        await rejected;
-        expect(values.lazyIterations, 0);
+        final streamed = (await pendingStream).single;
+        expect(values.lazyIterations, 1);
+        expect((streamed.single as Text).data, 'native iterable');
+        expect(values.lazyIterations, 2);
         h.execute('widgetValues.callbackCalls = 0');
-        expect(
-          () => h.execute(
-            'widgetValues.store.firstFromIterable(children => { widgetValues.callbackCalls++; return children.toArray()[0]; }, {lazy: true})',
-          ),
-          throwsA(isA<FlaxJsException>()),
+        h.execute(
+          'widgetValues.store.firstFromIterable(children => { widgetValues.callbackCalls++; return children.toArray()[0]; }, {lazy: true})',
         );
-        expect(h.boolean('widgetValues.callbackCalls === 0'), isTrue);
-        expect(values.lazyIterations, 0);
+        expect(h.number('widgetValues.callbackCalls'), 1);
+        expect(values.lazyIterations, 3);
+        h.execute(
+          'widgetValues.lazyRecord = widgetValues.store.keepIterableRecord(() => ({children: widgetValues.lazy}))()',
+        );
+        expect(h.number('widgetValues.iterations'), 1);
+        expect(
+          h.number('widgetValues.lazyRecord.children.toArray().length'),
+          1,
+        );
+        expect(h.number('widgetValues.iterations'), 2);
         for (final expression in [
-          'widgetValues.store.keepIterableRecord(() => ({children: widgetValues.lazy}))()',
           'widgetValues.store.keepConcreteIterable(() => [42])()',
           'widgetValues.store.keepInterfaceIterable(() => widgetValues.store.nativeList)()',
         ]) {
@@ -260,13 +265,13 @@ void main() {
         h.execute(
           'widgetValues.finiteSet = new Set([widgetValues.store.nativeList.get(0)]); widgetValues.finiteSet[Symbol.iterator] = () => { widgetValues.iterations++; throw new Error("Overridden Set iterator"); }; widgetValues.store.keepIterable(() => widgetValues.finiteSet)();',
         );
-        expect(h.boolean('widgetValues.iterations === 0'), isTrue);
+        expect(h.number('widgetValues.iterations'), 2);
         // Ordinary native Iterable views still run only when the caller requests a copy.
         expect(
           h.boolean('widgetValues.store.nativeLazy.toArray().length === 1'),
           isTrue,
         );
-        expect(values.lazyIterations, 1);
+        expect(values.lazyIterations, 4);
         values.nativeIterableRecord = (
           values.nativeLazy,
           groups: [],
@@ -284,12 +289,12 @@ void main() {
           isTrue,
           reason: h.string('String(widgetValues.ordinaryRecordError)'),
         );
-        expect(values.lazyIterations, 1);
+        expect(values.lazyIterations, 4);
         expect(
           h.boolean('widgetValues.ordinaryRecord.\$1.toArray().length === 1'),
           isTrue,
         );
-        expect(values.lazyIterations, 2);
+        expect(values.lazyIterations, 5);
         expect(h.errors, isEmpty);
       } finally {
         await h.finish(t);
@@ -298,7 +303,7 @@ void main() {
   );
 
   testWidgets(
-    'nested Stream callback views keep finite Widget checks in Records and Lists',
+    'nested Stream callback views preserve lazy Widget values in Records and Lists',
     (t) async {
       final h = harness();
       try {
@@ -342,9 +347,14 @@ void main() {
             inner.add(values.nativeLazy);
             inner.add(native);
             await _pump(t);
-            expect(events, [null, same(native), same(native)]);
-            expect(errors, [isA<ArgumentError>()]);
+            expect(events, hasLength(4));
+            expect(events.first, isNull);
+            expect(events[1], same(native));
+            expect(events[3], same(native));
+            expect(errors, isEmpty);
             expect(values.lazyIterations, 0);
+            expect((events[2]!.single as Text).data, 'native iterable');
+            expect(values.lazyIterations, 1);
             expect(h.errors, isEmpty);
           } finally {
             await t.runAsync(subscription.cancel);
@@ -359,7 +369,7 @@ void main() {
     },
   );
 
-  testWidgets('finite Widget Iterables compose with FutureOr and Stream', (
+  testWidgets('lazy Widget Iterables compose with FutureOr and Stream', (
     t,
   ) async {
     final h = harness();
@@ -419,12 +429,15 @@ void main() {
         pending: pendingChildren,
         later: Future.value(native),
       );
-      final nestedFailure = expectLater(
-        values.iterableRecords().toList(),
-        throwsArgumentError,
-      );
+      final lazyRecords = values.iterableRecords().toList();
       await _pump(t);
-      await nestedFailure;
+      final lazyRecord = (await lazyRecords).single;
+      expect(values.lazyIterations, 0);
+      expect(
+        (lazyRecord.nested.single!.single as Text).data,
+        'native iterable',
+      );
+      expect(values.lazyIterations, 1);
       values.nativeIterableRecord = (
         native,
         groups: groups,
@@ -433,18 +446,18 @@ void main() {
         pending: [Future.value(values.nativeLazy)],
         later: Future.value(values.nativeLazy),
       );
-      final failedRecords = values.iterableRecords().toList();
+      final pendingLazyRecords = values.iterableRecords().toList();
       await _pump(t);
-      final failed = (await failedRecords).single;
-      final failure = expectLater(failed.later, throwsArgumentError);
-      final pendingFailure = expectLater(
-        failed.pending.single,
-        throwsArgumentError,
-      );
+      final pendingLazy = (await pendingLazyRecords).single;
+      final later = pendingLazy.later;
+      final pendingLazyChildren = pendingLazy.pending.single;
       await _pump(t);
-      await failure;
-      await pendingFailure;
-      expect(values.lazyIterations, 0);
+      final laterChildren = await later;
+      final awaitedChildren = await pendingLazyChildren;
+      expect(values.lazyIterations, 1);
+      expect((laterChildren.single as Text).data, 'native iterable');
+      expect((awaitedChildren!.single as Text).data, 'native iterable');
+      expect(values.lazyIterations, 3);
       final children = [
         ...synchronous,
         ...asynchronous,

@@ -521,10 +521,15 @@ class _Session {
       }
       return _Value(decodeData(value));
     }
-    if (type.kind == 'any') {
+    if (type.kind == 'any' || type.kind == 'void') {
+      if (type.kind == 'void' && value is FlaxJsUndefined) return _Value(null);
       final memo = conversion ?? _CollectionConversion();
       try {
-        return decodeAny(value, type, memo);
+        return decodeAny(
+          value,
+          type.kind == 'void' ? const FlaxTypeRef('any', nullable: true) : type,
+          memo,
+        );
       } finally {
         if (conversion == null) memo.close();
       }
@@ -557,10 +562,7 @@ class _Session {
           .call([value, FlaxJsString(type.id!)]);
       return _Value(_context(handle, type.id!).requireActive());
     }
-    if (type.kind == 'void') {
-      if (value is FlaxJsUndefined) return _Value(null);
-      throw ArgumentError('Expected void, got ${value.runtimeType}');
-    }
+    if (type.kind == 'never') throw ArgumentError('Never has no values');
     if (type.kind == 'future') {
       final result = promiseResult(value, type)!;
       return _Value(type.future?.adapt(result) ?? result);
@@ -803,14 +805,43 @@ class _Session {
       }
       return _Value(value.value.toInt());
     }
+    if (type.kind == 'function') {
+      if (value is FlaxJsFunction) {
+        final returned = returnedFunction(value, null);
+        if (returned != null) {
+          return borrowFunction(returned, value);
+        }
+      }
+      throw ArgumentError(
+        'Expected an actual Dart function; JS functions need a typed callback signature',
+      );
+    }
     if (type.kind == 'callback' && value is FlaxJsFunction) {
       final signature = type.callback;
       if (signature == null) throw ArgumentError('Missing callback signature');
       final returned = returnedFunction(value, signature);
       if (returned != null) {
-        return _Value(returned.value, [
-          _ObjectBorrow(returned, value.retain()),
-        ]);
+        return borrowFunction(returned, value);
+      }
+      final memoKey =
+          '$_componentSessionId:${_bindingContext?.moduleId}:${signature.id}';
+      if (callbackScope == _CallbackScope.member) {
+        final cached = helper('callbackMemo')
+            .call([value, FlaxJsString(memoKey)]);
+        try {
+          if (cached is FlaxJsFunction) {
+            final reference = returnedFunction(
+              cached,
+              signature,
+              ignoreRetired: true,
+            );
+            if (reference != null) {
+              return borrowFunction(reference, cached);
+            }
+          }
+        } finally {
+          if (cached is FlaxJsObject) cached.release();
+        }
       }
       final callback = _Callback(
         this,
@@ -818,7 +849,22 @@ class _Session {
         signature,
         scope: callbackScope,
       );
-      return _Value(callback.wrap(), [callback]);
+      try {
+        final closure = callback.wrap();
+        if (callbackScope == _CallbackScope.member) {
+          final canonical = functionResult(closure, signature);
+          try {
+            helper('callbackMemo')
+                .call([value, FlaxJsString(memoKey), canonical]);
+          } finally {
+            if (canonical is FlaxJsObject) canonical.release();
+          }
+        }
+        return _Value(closure, [callback]);
+      } catch (_) {
+        callback.release();
+        rethrow;
+      }
     }
     if (value is! FlaxJsObject) {
       throw ArgumentError('Expected ${type.kind}, got ${value.runtimeType}');

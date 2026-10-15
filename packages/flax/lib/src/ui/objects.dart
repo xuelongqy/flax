@@ -4,6 +4,12 @@ final _objectFinalizer = Finalizer<WeakReference<_ObjectReference>>(
   (record) => record.target?.release(),
 );
 
+// Records cannot be weak keys. The JS handle owns this weakly indexed value.
+class _ObjectValue {
+  _ObjectValue(this.value);
+  final Record value;
+}
+
 /// An ID indexes weak metadata. The engine follows actual Dart and JS owners.
 class _ObjectReference {
   _ObjectReference(
@@ -41,7 +47,10 @@ class _ObjectReference {
 
   final _BindingContext? context = _bindingContext;
   WeakReference<Object>? _weakValue;
-  Object? get _value => _weakValue?.target;
+  Object? get _value => switch (_weakValue?.target) {
+    _ObjectValue(:final value) => value,
+    final value => value,
+  };
   final listeners = _WeakReferences<_ObjectListener>();
   bool disposing = false;
 
@@ -102,7 +111,9 @@ class _ObjectReference {
   void release() {
     final receiver = _value;
     forget();
-    if (receiver != null && identical(session._objectIds[receiver], this)) {
+    if (receiver != null &&
+        receiver is! Record &&
+        identical(session._objectIds[receiver], this)) {
       session._objectIds.remove(receiver);
     }
   }
@@ -223,7 +234,12 @@ extension _ObjectCalls on _Session {
     return dartTypes._deferred[type.id] ?? const {};
   }
 
-  FlaxJsValue _peerResult(FlaxJsValue result, Object value, {Object? origin}) {
+  FlaxJsValue _peerResult(
+    FlaxJsValue result,
+    Object value, {
+    Object? origin,
+    _ObjectValue? owner,
+  }) {
     if (result is! FlaxJsObject) {
       throw StateError('Expected a JS binding object');
     }
@@ -231,6 +247,15 @@ extension _ObjectCalls on _Session {
     if (value is BuildContext || value is State) return result;
     try {
       runtime.bindDartPeer(result, value, origin: origin);
+      if (owner != null) {
+        final metadata =
+            helper('objectMetadata').call([result]) as FlaxJsObject;
+        try {
+          runtime.bindDartPeer(metadata, owner, origin: owner);
+        } finally {
+          metadata.release();
+        }
+      }
       return result;
     } catch (_) {
       result.release();
@@ -311,11 +336,12 @@ extension _ObjectCalls on _Session {
     final binding = type.objectView == null
         ? base
         : _signatureObjectBinding(base, type.objectView!);
+    final owner = value is Record ? _ObjectValue(value) : null;
     final reference = _ObjectReference(
       this,
       _nextObject++,
       binding,
-      value,
+      owner ?? value,
       scoped: true,
     );
     _objects[reference.id] = reference;
@@ -330,7 +356,7 @@ extension _ObjectCalls on _Session {
         FlaxJsNumber(reference.id.toDouble()),
         if (sharedPrototype != null) FlaxJsString(sharedPrototype),
       ]);
-      _peerResult(wrapper, value);
+      _peerResult(wrapper, value, owner: owner);
       if (wrapper is FlaxJsObject) temporary.add(wrapper);
       return wrapper;
     } catch (_) {
@@ -512,7 +538,8 @@ extension _ObjectCalls on _Session {
     if (view != null && !view.matches(value)) {
       throw ArgumentError('Incompatible generic Dart object');
     }
-    var object = _objectIds[value];
+    final owner = value is Record ? _ObjectValue(value) : null;
+    var object = owner == null ? _objectIds[value] : null;
     if (object != null &&
         value is BuildContext &&
         !identical(object._borrowedContext, _contextIds[value])) {
@@ -527,10 +554,10 @@ extension _ObjectCalls on _Session {
         this,
         value is BuildContext ? _contextIds[value]!.id : _nextObject++,
         selected,
-        value,
+        owner ?? value,
       );
       _objects[object.id] = object;
-      _objectIds[value] = object;
+      if (owner == null) _objectIds[value] = object;
     }
     if (!object.accepts(type.id!)) {
       throw ArgumentError('Incompatible Dart object');
@@ -553,7 +580,9 @@ extension _ObjectCalls on _Session {
         if (sharedPrototype != null) FlaxJsString(sharedPrototype),
       ]),
       value,
-      origin: value,
+      // Records have value semantics; a Dart root must not retain every read's view.
+      origin: owner == null ? value : null,
+      owner: owner,
     );
   }
 
@@ -721,7 +750,7 @@ extension _ObjectCalls on _Session {
       _ProxyPeer? peer;
       var createdPeer = false;
       try {
-        if (ctor == '@implementation') {
+        if (ctor == '@implementation' || ctor.startsWith('@implementation:')) {
           final receiver = descriptor.getProperty('receiver');
           final layout = descriptor.getProperty('layout');
           try {
@@ -980,12 +1009,6 @@ extension _ObjectCalls on _Session {
           listener.retire();
         }
         return const FlaxJsUndefined();
-      }
-      if ((object is _CollectionReference || collectionMethod) &&
-          method.parameters.any((p) => p.type.containsWidget)) {
-        throw UnsupportedError(
-          'Inserting or replacing Widgets through collection views is unsupported',
-        );
       }
       if (method.requiresTypeArguments) FlaxDartTypes.requireArguments();
       final values = objectArguments(args, method.parameters);

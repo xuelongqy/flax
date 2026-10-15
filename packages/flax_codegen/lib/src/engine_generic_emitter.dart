@@ -126,7 +126,8 @@ extension _EngineGenericEmission on FlaxCodegenBindingEmitter {
         for (final (i, f) in type.recordFields.indexed)
           '${f.positional ? '' : '${f.name}: '}${_cast('values[$i]', f.type)}',
       ];
-      return 'types.define<$dart>(FlaxTypeRef("record", nullable: ${type.nullable}, record: FlaxRecordBinding([${fields.join(',')}], (values) => (${values.join(',')}${values.length == 1 && type.recordFields.single.positional ? ',' : ''}), signature: types.key<$dart>(), matches: (value) => value is $dart))$flag)';
+      final view = _quote(':${_typeId(type, omitNullable: true)}');
+      return 'types.define<$dart>(FlaxTypeRef("record", nullable: ${type.nullable}, record: FlaxRecordBinding([${fields.join(',')}], (values) => (${values.join(',')}${values.length == 1 && type.recordFields.single.positional ? ',' : ''}), signature: types.key<$dart>() + $view, matches: (value) => value is $dart))$flag)';
     }
     return 'types.ref<$dart>(${context == null ? '' : 'withinCallback: $context'})';
   }
@@ -287,6 +288,8 @@ extension _EngineGenericEmission on FlaxCodegenBindingEmitter {
         final methodArgs = method.typeArguments.skip(ownerArgs.length).toList();
         final receiver = member.isStatic
             ? _dartName(extension.name)
+            : extension.isExtensionType
+            ? '(values[${_quote(method.parameters.first.name)}] as ${_dartName(extension.name)}${_typeArgs(ownerArgs)})'
             : '${_dartName(extension.name)}${_typeArgs(ownerArgs)}(${_cast('values[${_quote(method.parameters.first.name)}]', method.parameters.first.type)})';
         target = '$receiver.${member.name}${_typeArgs(methodArgs)}';
         final inputs = member.isStatic
@@ -732,8 +735,17 @@ extension _EngineGenericEmission on FlaxCodegenBindingEmitter {
       _emitConstructorCalls(
         out,
         type,
-        ctor,
-        proxyImplementation: ctor.name == '@implementation',
+        ctor.name == '@implementation'
+            ? _proxyConstructor(type)
+            : ctor.name.startsWith('@implementation:')
+            ? _runtimeConstructor(
+                type.constructors.firstWhere(
+                  (c) =>
+                      c.name == ctor.name.substring('@implementation:'.length),
+                ),
+              )
+            : ctor,
+        proxyImplementation: ctor.name.startsWith('@implementation'),
       );
     }
     out.writeln('default: throw ArgumentError("Unknown constructor"); } }');

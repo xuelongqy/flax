@@ -240,7 +240,7 @@ Function _flaxShape0<_Shape0>() => (FlaxDartTypes types, bool withinCallback) {
         [],
         types.ref<_Shape0>(withinCallback: true),
         _callback0,
-        id: types.key<_Shape0 Function()>(),
+        id: types.key<_Shape0 Function()>() + ":callback:<>()->parameter:",
         invoke: _callback0Invoke,
         matches: _callback0Matches,
       ),

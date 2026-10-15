@@ -164,11 +164,11 @@ type DartCallbackInput<A extends readonly unknown[], R> = (
 type DartElementInput<T> = T extends (...args: infer A) => infer R
   ? DartCallbackInput<A, R>
   : DartInput<T>;
-// A generated subtype has its own symbol brand and must not accept a base SDK value.
+// Comparable is inherited by core DateTime; a business subtype adds its own brand.
 type DartNativeInput<T, Brand extends string, Native> =
   Exclude<
     Extract<keyof T, `__${string}`>,
-    Brand | `__flaxBound:${string}`
+    Brand | '__Comparable' | `__flaxBound:${string}`
   > extends never
     ? T | Native
     : T;
@@ -183,41 +183,43 @@ type DartCoreInput<T> = T extends {
       : T extends { readonly '__flaxBound:dart:core::Pattern': readonly [] }
         ? DartNativeInput<T, '__Pattern', globalThis.RegExp | string>
         : T;
-export type DartInput<T> = T extends Widget
-  ? never
-  : T extends NativeBuffer
-    ? T
-    : T extends (...args: infer A) => infer R
-      ? DartCallbackInput<A, R>
-      : T extends Promise<unknown>
-        ? never
-        : T extends { readonly [dartRecordKind]: true }
-          ? {
-              [K in keyof T as K extends typeof dartRecordKind ? never : K]:
-                T[K] | DartInput<T[K]>;
-            }
-          : T extends {
-                readonly [dartCollectionKind]: 'list';
-                readonly [dartCollectionItem]: infer V;
+export type DartInput<T> = T extends void
+  ? unknown
+  : T extends Widget
+    ? never
+    : T extends NativeBuffer
+      ? T
+      : T extends (...args: infer A) => infer R
+        ? DartCallbackInput<A, R>
+        : T extends Promise<unknown>
+          ? never
+          : T extends { readonly [dartRecordKind]: true }
+            ? {
+                [K in keyof T as K extends typeof dartRecordKind ? never : K]:
+                  T[K] | DartInput<T[K]>;
               }
-            ? DartListInput<V>
             : T extends {
-                  readonly [dartCollectionKind]: 'map';
-                  readonly [dartCollectionKey]: infer K;
+                  readonly [dartCollectionKind]: 'list';
                   readonly [dartCollectionItem]: infer V;
                 }
-              ? DartMapInput<K, V>
+              ? DartListInput<V>
               : T extends {
-                    readonly [dartCollectionKind]: 'set';
+                    readonly [dartCollectionKind]: 'map';
+                    readonly [dartCollectionKey]: infer K;
                     readonly [dartCollectionItem]: infer V;
                   }
-                ? DartSetInput<V>
+                ? DartMapInput<K, V>
                 : T extends {
-                      readonly [dartCollectionKind]: 'iterable';
+                      readonly [dartCollectionKind]: 'set';
                       readonly [dartCollectionItem]: infer V;
                     }
-                  ? DartIterableInput<V>
-                  : DartCoreInput<T>;
+                  ? DartSetInput<V>
+                  : T extends {
+                        readonly [dartCollectionKind]: 'iterable';
+                        readonly [dartCollectionItem]: infer V;
+                      }
+                    ? DartIterableInput<V>
+                    : DartCoreInput<T>;
 
 /** References to real Dart collections. Explicit copying never installs observers. */
 export interface DartIterable<T>
@@ -285,6 +287,12 @@ export type DartSetInput<T, I = DartInput<T>> =
 
 export interface DartEnum {
   readonly __dartEnum: unique symbol;
+}
+
+/** An actual Dart function; arbitrary JS functions need a selected typed signature. */
+export interface DartFunction {
+  (...args: unknown[]): unknown;
+  readonly __dartFunction: unique symbol;
 }
 
 /** A generated Dart Stream reference. It is unrelated to Web ReadableStream. */
@@ -637,6 +645,8 @@ type ContextState = { type: string; id: number; alive: boolean };
 const statePrototypes = new Map<string, object>();
 const contextPrototypes = new Map<string, object>();
 const contextStates = new WeakMap<object, ContextState>();
+// Weak keys keep the counterpart while JS is rooted, without rooting a dead cycle.
+const callbackMemos = new WeakMap<Function, Map<string, Function>>();
 const recordShapes = new WeakMap<object, string>();
 const recordDartTypes = new WeakMap<object, object>();
 export function defineContext(type: string, fields: readonly string[]): void {
@@ -1833,6 +1843,39 @@ function proxyLayout(definition: ProxyDefinition): number {
   return prepared.token;
 }
 
+// A JS accessor shadows both halves; restore only a missing concrete Dart half.
+function completeProxyAccessors(receiver: object, definition: ProxyDefinition): void {
+  const base = proxyLayouts.get(definition)?.prototype;
+  if (!base) return;
+  for (const name of definition.getters) {
+    if (!definition.setters.includes(name)) continue;
+    for (
+      let owner: object | null = receiver;
+      owner && owner !== base;
+      owner = Object.getPrototypeOf(owner)
+    ) {
+      const descriptor = Object.getOwnPropertyDescriptor(owner, name);
+      if (!descriptor) continue;
+      if ('value' in descriptor) break;
+      const native = Object.getOwnPropertyDescriptor(base, name);
+      const get =
+        descriptor.get ??
+        (definition.superMembers.includes(`get:${name}`) ? native?.get : undefined);
+      const set =
+        descriptor.set ??
+        (definition.superMembers.includes(`set:${name}`) ? native?.set : undefined);
+      if (get !== descriptor.get || set !== descriptor.set) {
+        Object.defineProperty(owner, name, {
+          ...descriptor,
+          ...(get ? { get } : {}),
+          ...(set ? { set } : {}),
+        });
+      }
+      break;
+    }
+  }
+}
+
 export function constructProxy(
   definition: ProxyDefinition,
   args: readonly unknown[],
@@ -1850,6 +1893,7 @@ export function constructProxy(
   ) {
     throw new TypeError('Invalid proxy implementation');
   }
+  completeProxyAccessors(implementation, definition);
   // Inspect descriptors without evaluating getters or snapshotting their values.
   const property = (name: string) => {
     for (
@@ -1916,7 +1960,7 @@ function proxyDescriptor(
   return construct(
     'value',
     definition.type,
-    '@implementation',
+    definition.superConstructor ?? '@implementation',
     definition.parameters,
     args.slice(0, positional),
     (args[positional] === undefined ? {} : args[positional]) as Record<string, unknown>,
@@ -1924,8 +1968,78 @@ function proxyDescriptor(
 }
 
 /** Generated signatures remain in TypeScript; executable forwarding is shared. */
+export const flaxDartConstructors: unique symbol = Symbol('Dart constructors');
+const flaxProxySuper: unique symbol = Symbol('Dart super call');
+export interface FlaxProxySuper<T> {
+  readonly [flaxProxySuper]: T;
+}
+type NativeConstructors<C> =
+  FlaxDartInstance<C> extends { readonly [flaxDartConstructors]?: infer M } ? M : never;
+const proxyDefinitions = new WeakMap<object, ProxyDefinition>();
+const superCalls = new WeakMap<
+  object,
+  { type: string; name: string; args: readonly unknown[] }
+>();
+const selectedConstructors = new WeakMap<
+  ProxyDefinition,
+  Map<string, ProxyDefinition>
+>();
+
+/** Selects a named Dart super constructor without changing JS inheritance. */
+export function dartSuper<
+  C extends FlaxInstanceType<unknown>,
+  N extends keyof NativeConstructors<C>,
+>(
+  owner: C,
+  name: N,
+  ...args: NativeConstructors<C>[N] extends (...args: infer P) => unknown ? P : never
+): FlaxProxySuper<FlaxDartInstance<C>> {
+  let definition: ProxyDefinition | undefined;
+  for (
+    let value: object | null = owner as object;
+    value && !definition;
+    value = Object.getPrototypeOf(value)
+  ) {
+    definition = selectedProxyTypes.get(value) ?? proxyDefinitions.get(value);
+  }
+  if (
+    !definition ||
+    typeof name !== 'string' ||
+    !definition.constructors ||
+    !Object.prototype.hasOwnProperty.call(definition.constructors, name)
+  )
+    throw new TypeError('Unknown Dart super constructor');
+  const token = Object.freeze({});
+  superCalls.set(token, { type: definition.type, name, args });
+  return token as FlaxProxySuper<FlaxDartInstance<C>>;
+}
+
+function proxyConstructor(definition: ProxyDefinition, name: string): ProxyDefinition {
+  let constructors = selectedConstructors.get(definition);
+  const existing = constructors?.get(name);
+  if (existing) return existing;
+  const parameters =
+    definition.constructors &&
+    Object.prototype.hasOwnProperty.call(definition.constructors, name)
+      ? definition.constructors[name]
+      : undefined;
+  if (!parameters) throw new TypeError('No selected Dart super constructor');
+  const selected = {
+    ...definition,
+    parameters,
+    superConstructor: name ? `@implementation:${name}` : '@implementation',
+  };
+  const prototype = proxyLayouts.get(definition)?.prototype;
+  if (prototype) proxyLayouts.set(selected, { prototype });
+  if (!constructors) selectedConstructors.set(definition, (constructors = new Map()));
+  constructors.set(name, selected);
+  return selected;
+}
+
 export interface ProxyDefinition {
   readonly nativeWidget?: boolean;
+  readonly superConstructor?: string;
+  readonly constructors?: Readonly<Record<string, readonly Parameter[]>>;
   readonly type: string;
   readonly parameters: readonly Parameter[];
   readonly methods: Readonly<Record<string, readonly MemberParameter[]>>;
@@ -1952,6 +2066,16 @@ export abstract class FlaxProxyBase {
           throw new TypeError('Incompatible proxy type selection');
         definition = selected;
         break;
+      }
+    }
+    if (args.length === 1 && args[0] !== null && typeof args[0] === 'object') {
+      const call = superCalls.get(args[0]);
+      if (call) {
+        const baseType = (type: string) => objectViewTypes.get(type) ?? type;
+        if (baseType(call.type) !== baseType(definition.type))
+          throw new TypeError('Foreign Dart super constructor');
+        definition = proxyConstructor(definition, call.name);
+        args = call.args;
       }
     }
     constructExtendedProxy(
@@ -2147,6 +2271,7 @@ export function defineProxyBase(
       invokeProxySuper(receiver, definition.type, member, args),
   );
   proxyLayouts.set(definition, { prototype });
+  proxyDefinitions.set(prototype.constructor, definition);
   if (objectTypes.get(definition.type)?.collectionKind !== undefined) {
     const selected = new Set([
       ...nativeGetters,
@@ -2191,6 +2316,7 @@ export function constructExtendedProxy(
     throw new TypeError('Expected a proxy class instance');
   if (objectHandles.has(receiver))
     throw new TypeError('Proxy class instance is already initialized');
+  completeProxyAccessors(receiver, definition);
   const descriptor = proxyDescriptor(definition, args);
   const create = (globalThis as ObjectHost).__flaxCreateObject;
   if (!create) throw new Error('Dart proxies require a Flax host');
@@ -2479,11 +2605,10 @@ function stateHandle(value: object): number | null {
   return state?.id ?? null;
 }
 
-function collectionShape(value: object, finiteWidgetIterable = false): string | null {
+function collectionShape(value: object): string | null {
   if (Array.isArray(value)) return 'list';
   if (value instanceof Map) return 'map';
   if (value instanceof Set) return 'set';
-  if (finiteWidgetIterable) return null;
   if (typeof (value as { [Symbol.iterator]?: unknown })[Symbol.iterator] === 'function')
     return 'iterable';
   const prototype = Object.getPrototypeOf(value);
@@ -2749,6 +2874,19 @@ Object.assign(globalThis, {
       if (error) return ['error', error.message, error.stack];
       return collectionShape(value);
     },
+    callbackMemo(
+      input: Function,
+      key: string,
+      canonical?: Function,
+    ): Function | undefined {
+      let signatures = callbackMemos.get(input);
+      if (canonical !== undefined) {
+        if (!signatures) callbackMemos.set(input, (signatures = new Map()));
+        signatures.set(key, canonical);
+        return undefined;
+      }
+      return signatures?.get(key);
+    },
     collectionIdentity(): (value: object) => number {
       // IDs live for one conversion, preserving aliases and cycles without a scan.
       const ids = new nativeWeakMap<object, number>();
@@ -2760,20 +2898,41 @@ Object.assign(globalThis, {
       };
     },
     collectionShape,
+    iterableIterator(value: Iterable<unknown>): Iterator<unknown> {
+      const iterator = value[Symbol.iterator]();
+      if (
+        iterator === null ||
+        (typeof iterator !== 'object' && typeof iterator !== 'function')
+      )
+        throw new TypeError('Expected a synchronous JS Iterator');
+      const next = iterator.next;
+      if (typeof next !== 'function')
+        throw new TypeError('Expected a synchronous JS Iterator');
+      return { next: () => nativeApply(next, iterator, []) };
+    },
+    iteratorNext(iterator: Iterator<unknown>): IteratorResult<unknown> {
+      const result = iterator.next();
+      if (
+        result === null ||
+        (typeof result !== 'object' && typeof result !== 'function')
+      )
+        throw new TypeError('Invalid JS Iterator result');
+      return result.done
+        ? { done: true, value: undefined }
+        : { done: false, value: result.value };
+    },
     collectionEntries(
       value: Iterable<unknown> | Map<unknown, unknown> | Record<string, unknown>,
-      finiteWidgetIterable = false,
     ): unknown[] {
-      if (finiteWidgetIterable && value instanceof Set) {
-        return [...Set.prototype.values.call(value)];
-      }
       return Array.isArray(value)
         ? value
         : value instanceof Map
-          ? [...value.entries()]
-          : value instanceof Set || Symbol.iterator in Object(value)
-            ? [...(value as Iterable<unknown>)]
-            : Object.entries(value);
+          ? [...Map.prototype.entries.call(value)]
+          : value instanceof Set
+            ? [...Set.prototype.values.call(value)]
+            : Symbol.iterator in Object(value)
+              ? [...(value as Iterable<unknown>)]
+              : Object.entries(value);
     },
     emptyRecord(signature: string): object {
       const value = {};
@@ -2793,6 +2952,11 @@ Object.assign(globalThis, {
       set.add(value);
     },
     tryObjectHandle,
+    objectMetadata(value: object): object {
+      const ref = objectHandles.get(value);
+      if (!ref?.alive) throw new TypeError('Released Dart object');
+      return ref;
+    },
     hasObjectView(value: object, type: string): boolean {
       const ref = objectHandles.get(value);
       return Boolean(

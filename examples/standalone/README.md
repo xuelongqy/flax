@@ -20,7 +20,11 @@ messages. State.dispose explicitly closes its page connection.
 
 `integration_test/engine_gc_test.dart` reuses shared runtime/GC and original Widget,
 State, callback, Future, Stream, FlaxView and extension receiver-view assertions. Run
-`dart run tool/check_engine_application.dart debug|profile|release` from the root.
+`dart run tool/check_engine_application.dart debug|profile|release` from the root. The
+fixed suite also includes the binding selection-parity fixture: Widget setters and
+interface callback ownership, ordinary business member names, Never failures, and opaque
+Core values with Record/callback cycle collection. Fixture bundling alone does not
+register a test in this application; new acceptance cases must join this entry point.
 Profile adds measured GC/frame/RSS workloads; release launches the signed AOT artifact
 after removing its source consumer and checks actual V8 JIT. Normal application builds
 keep the `lib/main.dart` entry and do not contain these tests.

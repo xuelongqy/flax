@@ -40,7 +40,7 @@ classes:
     constructors: {'': [initial_value, $bonus, arguments], from_value: [initial_value]}
     getters: [total_count, $value, arguments, inherited_value]
     setters: [total_count, $value, arguments]
-    instanceMethods: {add_value: [step_value, $bonus], eval: [arguments], privateParameter: [_value]}
+    instanceMethods: {add_value: [step_value, $bonus], eval: [arguments], privateParameter: [_value], invalidParameter: [arguments]}
     staticGetters: [shared_count]
     staticSetters: [shared_count]
     methods: {add$value: [step_value]}
@@ -135,7 +135,7 @@ extensions:
             s.target == 'Counter_names.invalidParameter.arguments' &&
             s.code == 'required_parameter_name',
       ),
-      isTrue,
+      isFalse,
     );
     expect(
       proposal.skips.any(

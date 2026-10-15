@@ -28,9 +28,9 @@ extension type RouteBox(Route<Object?> value) {}
 
 extension type PageBox(Page<Object?> value) {}
 
-// These representations retain the ordinary unsupported type/callback boundary.
 extension type ReflectiveBox(Type value) {}
 
+// Route/Page callbacks retain their explicit ownership boundary.
 extension type PageFutureCallback(Future<PageBox> Function() value) {}
 
 WidgetBox echoWidgetBox(WidgetBox value) => value;

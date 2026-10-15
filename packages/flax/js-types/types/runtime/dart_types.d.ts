@@ -1,4 +1,4 @@
-import type { DartList, DartIterable, DartMap, DartSet, FlaxDartInstance, FlaxInstanceType } from './bindings.js';
+import type { DartList, DartIterable, DartMap, DartSet, FlaxDartInstance, FlaxInstanceType, FlaxStreamReference } from './bindings.js';
 export declare const flaxDartTypeValue: unique symbol;
 export declare const flaxDartTypeKey: unique symbol;
 export declare const flaxDartTypeCases: unique symbol;
@@ -65,12 +65,19 @@ export declare const dartTypes: Readonly<{
     int: FlaxDartType<number, readonly ["int", null, readonly [], false]>;
     double: FlaxDartType<number, readonly ["double", null, readonly [], false]>;
     num: FlaxDartType<number, readonly ["num", null, readonly [], false]>;
+    bigInt: FlaxDartType<bigint, readonly ["BigInt", null, readonly [], false]>;
+    void: FlaxDartType<void, readonly ["void", null, readonly [], false]>;
+    never: FlaxDartType<never, readonly ["Never", null, readonly [], false]>;
+    null: FlaxDartType<null, readonly ["Null", null, readonly [], true]>;
     object: FlaxDartType<{}, readonly ["any", null, readonly [], false]>;
     unknown: FlaxDartType<unknown, readonly ["any", null, readonly [], true]>;
     list<T extends FlaxDartTypeInput>(item: T): FlaxDartType<DartList<FlaxDartTypeValue<T>>, readonly ['list', null, readonly [Key<T>], false]>;
     iterable<T extends FlaxDartTypeInput>(item: T): FlaxDartType<DartIterable<FlaxDartTypeValue<T>>, readonly ['iterable', null, readonly [Key<T>], false]>;
     map<K extends FlaxDartTypeInput, V extends FlaxDartTypeInput>(key: K, value: V): FlaxDartType<DartMap<FlaxDartTypeValue<K>, FlaxDartTypeValue<V>>, readonly ['map', null, readonly [Key<K>, Key<V>], false]>;
     set<T extends FlaxDartTypeInput>(item: T): FlaxDartType<DartSet<FlaxDartTypeValue<T>>, readonly ['set', null, readonly [Key<T>], false]>;
+    future<T extends FlaxDartTypeInput>(item: T): FlaxDartType<Promise<FlaxDartTypeValue<T>>, readonly ['future', null, readonly [Key<T>], false]>;
+    futureOr<T extends FlaxDartTypeInput>(item: T): FlaxDartType<FlaxDartTypeValue<T> | Promise<FlaxDartTypeValue<T>>, readonly ['futureOr', null, readonly [Key<T>], false]>;
+    stream<T extends FlaxDartTypeInput>(item: T): FlaxDartType<FlaxStreamReference<FlaxDartTypeValue<T>>, readonly ['stream', null, readonly [Key<T>], false]>;
     nullable<T extends FlaxDartTypeInput>(type: T): FlaxDartType<FlaxDartTypeValue<T> | null, readonly [Key<T>[0], Key<T>[1], Key<T>[2], true]>;
 }>;
 export {};

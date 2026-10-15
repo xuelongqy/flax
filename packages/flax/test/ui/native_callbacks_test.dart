@@ -25,25 +25,17 @@ void main() {
       for (final write in [
         'widgets.add(widgets.get(0))',
         'widgets.set(0, widgets.get(0))',
-        'widgets.addAll(widgets)',
+        'widgets.addAll([widgets.get(0)])',
       ]) {
-        expect(
-          () => h.execute(
-            '(() => { const widgets = nativeCallbacks.CallbackStore.widgets; $write; })()',
-          ),
-          throwsA(
-            isA<FlaxJsException>().having(
-              (error) => error.message,
-              'Widget collection write diagnostic',
-              contains(
-                'Inserting or replacing Widgets through collection views is unsupported',
-              ),
-            ),
-          ),
-          reason: write,
+        h.execute(
+          '(() => { const widgets = nativeCallbacks.CallbackStore.widgets; $write; })()',
         );
-        expect(CallbackStore.widgets, hasLength(1));
-        expect(CallbackStore.widgets.single, same(original));
+        expect(
+          CallbackStore.widgets,
+          hasLength(write.contains('.set(') ? 1 : 2),
+        );
+        expect(CallbackStore.widgets, everyElement(same(original)));
+        CallbackStore.widgets.length = 1;
       }
       expect(
         h.boolean(

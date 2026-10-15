@@ -1337,7 +1337,7 @@ Object.defineProperty(getterArray, 'then', {get(){thenReads++;return undefined}}
 c.graph = [getterArray];
 ''');
     expect(h.number('thenReads'), 1);
-    // The second shape check is observable for user-defined iterator getters.
+    // Shape validation does not advance a custom iterator.
     h.execute('''
 var iteratorReads = 0;
 var changingIterable = {get [Symbol.iterator](){
@@ -1346,7 +1346,7 @@ var changingIterable = {get [Symbol.iterator](){
 }};
 c.graph = [changingIterable];
 ''');
-    expect(h.number('iteratorReads'), 3);
+    expect(h.number('iteratorReads'), 2);
     expect(h.number('c.graph.get(0).toArray()[0]'), 3);
     h.execute('''
 var nativeBrandBuffer = new ArrayBuffer(4);
@@ -1609,12 +1609,15 @@ void asyncRequiredSuperConsumer.normalize(rejectingAsyncRequiredSuper, 3)
     final h = OwnedHarness(fixture: 'interop', extra: [interopBindings]);
     await t.pumpWidget(h.app('interop'));
     await t.pumpAndSettle();
-    h.execute('var anchor = interop.Collections(); anchor.numbers.length');
+    h.execute('''
+var anchor = interop.Collections(); anchor.numbers.length;
+var callbackAnchor = interop.Functions(value => value);
+''');
     await t.pumpAndSettle();
     final baseline = h.runtime.handles;
     final labels = h.runtime.handleLabels;
     h.execute(
-      'var identityCallback = value => value; var weak; (() => { const temporary = interop.Functions(identityCallback); weak = new WeakRef(temporary); })()',
+      'var weak; (() => { const temporary = interop.Functions(value => value); weak = new WeakRef(temporary); })()',
     );
     expect(h.runtime.handles, greaterThan(baseline));
     var collected = false;
@@ -1646,7 +1649,10 @@ void asyncRequiredSuperConsumer.normalize(rejectingAsyncRequiredSuper, 3)
       final h = OwnedHarness(fixture: 'interop', extra: [interopBindings]);
       await t.pumpWidget(h.app('interop'));
       await t.pumpAndSettle();
-      h.execute('var anchor = interop.Collections(); anchor.numbers.length');
+      h.execute('''
+var anchor = interop.Collections(); anchor.numbers.length;
+var callbackAnchor = interop.Functions(value => value);
+''');
       await t.pumpAndSettle();
       final baseline = h.runtime.handles;
       h.execute(

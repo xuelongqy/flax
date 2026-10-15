@@ -107,6 +107,35 @@ class ForeignType {}
   );
 
   test(
+    'rejects ambiguous Dart barrels before choosing public carriers',
+    () async {
+      File(
+        p.join(root.path, 'lib', 'ambiguous.dart'),
+      ).writeAsStringSync("export 'dependency.dart';\nexport 'other.dart';\n");
+      final parser = FlaxCodegenBindingParser(root.path);
+      addTearDown(parser.dispose);
+      final config = FlaxCodegenBindingConfig(
+        'ambiguous',
+        'package:carrier_pkg/ambiguous.dart',
+        '@example/ambiguous',
+        'unused.dart',
+        'unused.ts',
+        const {},
+      );
+      await expectLater(
+        parser.proposeLibrary(config),
+        throwsA(
+          isA<StateError>().having(
+            (error) => error.message,
+            'message',
+            contains('Ambiguous public exports'),
+          ),
+        ),
+      );
+    },
+  );
+
+  test(
     'automatic library mode routes exact identities through public carriers',
     () async {
       final parser = FlaxCodegenBindingParser(root.path);

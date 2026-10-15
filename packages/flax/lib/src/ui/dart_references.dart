@@ -130,6 +130,9 @@ extension _DartReferences on _Session {
                 FlaxJsNumber(source!.id.toDouble()),
               ]),
               value,
+              owner: source._weakValue?.target is _ObjectValue
+                  ? source._weakValue!.target as _ObjectValue
+                  : null,
             ),
           );
         }

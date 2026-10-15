@@ -165,6 +165,9 @@ final class _FlaxCodegenTypeScope {
       return const FlaxCodegenTypeRef('any', nullable: true);
     }
     if (type is VoidType) return const FlaxCodegenTypeRef('void');
+    if (type is NeverType) {
+      return FlaxCodegenTypeRef('never', nullable: nullable);
+    }
     if (type is FunctionType) {
       // The declaration view introduces a separate callback scope. Runtime
       // binders retain analyzer identity for parameters shared with proxy methods.
@@ -377,6 +380,9 @@ final class _FlaxCodegenTypeScope {
           ? declaration
           : represented.declaredAs(declaration);
     }
+    if (element.library.isDartCore && name == 'Function') {
+      return FlaxCodegenTypeRef('function', nullable: nullable);
+    }
     if (_nativeJsValueType(element) != null) {
       nativeTypes[name] = element.library.uri.toString();
       parser._elementsByIdentity.putIfAbsent(identity(element), () => element);
@@ -475,6 +481,9 @@ final class _FlaxCodegenTypeScope {
       );
     }
     if (element.library.isDartCore) {
+      if (name == 'Null') {
+        return const FlaxCodegenTypeRef('never', nullable: true);
+      }
       if (name == 'Object') {
         return FlaxCodegenTypeRef('any', nullable: nullable);
       }

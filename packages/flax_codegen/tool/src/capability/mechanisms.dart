@@ -296,14 +296,14 @@ const List<Stage2MechanismShape> stage2MechanismShapes = [
     note: 'Concrete Widget configurations preserve the actual native subtype',
   ),
 
-  // Finite Widget aggregates and borrowed Context results.
+  // Widget aggregates and borrowed Context results.
   Stage2MechanismShape(
     label: 'widgetCallback/finite-widget-iterable',
     group: 'widgetCallback',
     fixture: 'widget_callback_shapes.dart',
     type: 'WidgetAggregateBox',
     member: 'finiteIterable',
-    note: 'Iterable Widget callbacks require finite JS arrays/Sets or Dart Lists/Sets',
+    note: 'Widget Iterables share typed conversion; custom JS and native sources stay lazy',
   ),
   Stage2MechanismShape(
     label: 'widgetCallback/future-widget-list',
@@ -442,14 +442,6 @@ const Set<String> stage2MechanismFlutterFixtures = {
 /// Intentional boundaries that use existing regression fixtures and stable
 /// diagnostic or runtime boundary labels. These are assessed, not unmeasured.
 const List<Map<String, Object?>> stage2MechanismBoundaries = [
-  {
-    'id': 'lazy_widget_iterable_callback',
-    'verdict': 'unsupported',
-    'reasonKind': 'intentionalBoundary',
-    'code': 'runtime_finite_widget_iterable_required',
-    'fixture': '../flax/test/ui/widget_values_test.dart',
-    'example': 'An arbitrary lazy Iterable<Widget> fails conversion before iteration; its declared callback signature can bind',
-  },
   {
     'id': 'arbitrary_mixin_composition',
     'verdict': 'unsupported',
@@ -1052,6 +1044,9 @@ Future<Map<String, Object?>> _proposeShape({
       return {
         'bindable': selected,
         'selectionState': selected ? 'representation' : 'unsupported',
+        'memberView': proposal.config.extensions.containsKey(
+          shape.proposeTarget,
+        ),
         'skips': [for (final skip in skips) '${skip.target}: ${skip.reason}'],
         'skipCodes': [for (final skip in skips) skip.code],
       };

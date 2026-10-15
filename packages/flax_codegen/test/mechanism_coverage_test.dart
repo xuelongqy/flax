@@ -44,7 +44,7 @@ void main() {
   }
 
   test(
-    'Context and finite Widget Iterable mechanisms emit with the Core provider',
+    'Context and Widget Iterable mechanisms emit with the Core provider',
     () async {
       final officialParse = await parseOfficialBindings(
         workspaceRoot: repoRoot,
@@ -132,9 +132,10 @@ void main() {
     expect(result.reasonKind, CapabilityReasonKind.intentionalBoundary);
     expect(result.propose['bindable'], isTrue);
     expect(result.propose['selectionState'], 'representation');
+    expect(result.propose['memberView'], isTrue);
     expect(
       result.propose['skipCodes'],
-      contains('extension_type_representation_only'),
+      isNot(contains('extension_type_representation_only')),
     );
     expect(result.classWide['ok'], isTrue);
     expect(result.classWide['classes'], <String>['MetersBox']);
@@ -369,7 +370,7 @@ void main() {
     expect(markdown, contains('## Closure gates'));
     expect(markdown, contains('- automationGap: 0'));
     expect(markdown, contains('## Explicit boundaries'));
-    expect(markdown, contains('`lazy_widget_iterable_callback`'));
+    expect(markdown, isNot(contains('`lazy_widget_iterable_callback`')));
   });
 }
 
@@ -398,7 +399,7 @@ void _assertShape(Stage2MechanismProbe probe, _ShapeExpectation expected) {
   if (expected.classWideClasses != null) {
     expect(
       probe.classWide['classes'],
-      expected.classWideClasses,
+      containsAll(expected.classWideClasses!),
       reason: label,
     );
   }

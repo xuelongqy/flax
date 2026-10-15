@@ -54,74 +54,80 @@ void main() {
     expect(h.boolean('contextStreamHooks.result === true'), isTrue);
   }
 
-  testWidgets('erased Record reads reject unknown and ambiguous shapes', (
-    t,
-  ) async {
-    final h = OwnedHarness(
-      fixture: 'context_streams',
-      extra: [
-        context_streamsBindings,
-        FlaxBindingModule(
-          'record-validation',
-          const [],
-          moduleId: 'test/record-validation',
-          uiProtocol: flaxBindingVersion,
-          requiredCapabilities: const [],
-          records: [
-            for (final kind in ['int', 'num'])
-              FlaxTypeRef(
-                'record',
-                record: FlaxRecordBinding(
-                  [
-                    FlaxRecordFieldBinding(
-                      r'$1',
-                      FlaxTypeRef(kind),
-                      (value) => (value as (num,)).$1,
-                    ),
-                  ],
-                  (values) => (values.single as num,),
-                  signature: '($kind,)',
-                  matches: (value) =>
-                      kind == 'int' ? value is (int,) : value is (num,),
+  testWidgets(
+    'erased Records use opaque fallback and reject ambiguous projections',
+    (t) async {
+      final h = OwnedHarness(
+        fixture: 'context_streams',
+        extra: [
+          context_streamsBindings,
+          FlaxBindingModule(
+            'record-validation',
+            const [],
+            moduleId: 'test/record-validation',
+            uiProtocol: flaxBindingVersion,
+            requiredCapabilities: const [],
+            records: [
+              for (final kind in ['int', 'num'])
+                FlaxTypeRef(
+                  'record',
+                  record: FlaxRecordBinding(
+                    [
+                      FlaxRecordFieldBinding(
+                        r'$1',
+                        FlaxTypeRef(kind),
+                        (value) => (value as (num,)).$1,
+                      ),
+                    ],
+                    (values) => (values.single as num,),
+                    signature: '($kind,)',
+                    matches: (value) =>
+                        kind == 'int' ? value is (int,) : value is (num,),
+                  ),
                 ),
-              ),
-          ],
-          functions: [
-            for (final name in ['unknown', 'ambiguous'])
-              FlaxFunctionBinding(
-                'test/record-validation#function:$name',
-                const [],
-                const FlaxTypeRef('any'),
-                (_) => name == 'unknown' ? (unknown: true) : (1,),
-              ),
-          ],
-        ),
-      ],
-    );
-    try {
-      await mount(t, h);
-      for (final (name, message) in [
-        ('unknown', 'Unbound Dart value'),
-        ('ambiguous', 'Ambiguous Dart Record projection'),
-      ]) {
+            ],
+            functions: [
+              for (final name in ['unknown', 'ambiguous'])
+                FlaxFunctionBinding(
+                  'test/record-validation#function:$name',
+                  const [],
+                  const FlaxTypeRef('any'),
+                  (_) => name == 'unknown' ? (unknown: true) : (1,),
+                ),
+            ],
+          ),
+        ],
+      );
+      try {
+        await mount(t, h);
         expect(
-          () => h.execute(
-            'invokeTopLevel("test/record-validation#function:$name", [])',
+          h.string(
+            'invokeTopLevel("test/record-validation#function:unknown", []).toString()',
           ),
-          throwsA(
-            isA<FlaxJsException>().having(
-              (error) => error.toString(),
-              'message',
-              contains(message),
-            ),
-          ),
+          '(unknown: true)',
         );
+        for (final (name, message) in [
+          ('ambiguous', 'Ambiguous Dart Record projection'),
+        ]) {
+          expect(
+            () => h.execute(
+              'invokeTopLevel("test/record-validation#function:$name", [])',
+            ),
+            throwsA(
+              isA<FlaxJsException>().having(
+                (error) => error.toString(),
+                'message',
+                contains(message),
+              ),
+            ),
+          );
+        }
+        expect(h.errors, isEmpty);
+      } finally {
+        await h.finish(t);
       }
-      expect(h.errors, isEmpty);
-    } finally {
-      await h.finish(t);
-    }
-  });
+    },
+  );
 
   for (final method in [
     'generic',
