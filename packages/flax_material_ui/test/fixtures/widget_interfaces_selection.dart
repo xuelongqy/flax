@@ -4,6 +4,17 @@ import 'package:flax_codegen/flax_codegen.dart';
 
 final widgetInterfacesSelection = {
   'Key': FlaxCodegenClassSelection({}, kind: 'object'),
+  'InterfaceProxyProbe': FlaxCodegenClassSelection(
+    {},
+    kind: 'object',
+    staticGetters: ['words'],
+    methods: {
+      'keep': ['value'],
+      'clear': [],
+      'height': [],
+      'nested': ['value'],
+    },
+  ),
   'ExtentContract': FlaxCodegenClassSelection(
     {},
     kind: 'widgetInterface',
@@ -12,11 +23,13 @@ final widgetInterfacesSelection = {
   'LabelledContract': FlaxCodegenClassSelection(
     {},
     kind: 'widgetInterface',
+    proxy: 'implements',
     getters: ['extent', 'label'],
   ),
   'GenericView': FlaxCodegenClassSelection(
     {},
     kind: 'widgetInterface',
+    proxy: 'implements',
     getters: ['value'],
   ),
   'ConfigurationContract': FlaxCodegenClassSelection(

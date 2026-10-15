@@ -1458,6 +1458,9 @@ class FlaxCodegenModuleModel {
     final namedProxyConstructors = classes.any(
       (c) => c.proxy?.kind == 'extends' && c.constructors.length > 1,
     );
+    final widgetInterfaceProxies = classes.any(
+      (c) => c.proxy?.widgetInterface == true,
+    );
     final bottomTypes = valueTypes.any((type) => type.containsNever);
     final genericCalls =
         classes.any((t) => t.methods.any((m) => m.typeParameters.isNotEmpty)) ||
@@ -1478,6 +1481,7 @@ class FlaxCodegenModuleModel {
         !lazyIterables &&
         !callbackKeys &&
         !namedProxyConstructors &&
+        !widgetInterfaceProxies &&
         !bottomTypes &&
         !explicitTypes &&
         !genericCalls &&
@@ -1494,6 +1498,7 @@ class FlaxCodegenModuleModel {
       if (lazyIterables) 'lazy-js-iterables',
       if (callbackKeys) 'callback-map-keys',
       if (namedProxyConstructors) 'proxy-super-constructors',
+      if (widgetInterfaceProxies) 'widget-interface-proxies',
       if (bottomTypes) 'bottom-types',
       if (explicitTypes) 'explicit-generic-types',
       if (dartTypes) 'dart-type-tokens',
@@ -1727,6 +1732,16 @@ class FlaxCodegenModuleModel {
         throw StateError(
           'Invalid proxy kind: ${type.name}.${type.proxy!.kind}',
         );
+      }
+      if (type.proxy?.widgetInterface == true &&
+          (category != FlaxCodegenClassCategory.object ||
+              type.proxy!.kind != 'implements' ||
+              !type.supertypes.contains(
+                'package:flutter/src/widgets/framework.dart::Widget',
+              ) ||
+              type.constructors.length != 1 ||
+              type.constructors.single.name.isNotEmpty)) {
+        throw StateError('Invalid native Widget interface proxy: ${type.name}');
       }
       if (type.widgetMembers.isNotEmpty) {
         if (!{
@@ -2300,7 +2315,11 @@ class FlaxCodegenProxyModel {
     this.mustCallSuperAccessors = const [],
     this.getters = const [],
     this.setters = const [],
+    this.widgetInterface = false,
   });
+
+  /// Implements a Widget contract on a native StatelessWidget base.
+  final bool widgetInterface;
   final List<String> superMethods;
   final List<String> mustCallSuperAccessors;
   final String kind;

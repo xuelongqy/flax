@@ -44,5 +44,5 @@ test('interface Widget configuration is fixed while its children and parent can 
   assert.equal(Scaffold({ appBar }).args.appBar, appBar);
   assert.equal(Scaffold({ appBar: null }).args.appBar, null);
   assert.equal(Object.isFrozen(bar), true);
-  assert.equal('preferredSize' in bar, false);
+  assert.equal('preferredSize' in bar, true);
 });

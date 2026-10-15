@@ -214,7 +214,6 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
   ) {
     // Compare normalized views without changing an independent fallback selection.
     if (selection.kind == 'widgetInterface' &&
-        element.typeParameters.isNotEmpty &&
         parser._adaptations[id] == 'object') {
       return parser._effectiveSelection(element, selection);
     }

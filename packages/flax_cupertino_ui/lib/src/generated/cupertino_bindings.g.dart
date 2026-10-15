@@ -76,7 +76,7 @@ const cupertinoBindings = FlaxBindingModule(
           FlaxParameter(
             "navigationBar",
             FlaxTypeRef(
-              "widget",
+              "object",
               id: "flax.cupertino/cupertino#type:ObstructingPreferredSizeWidget",
               nullable: true,
             ),
@@ -214,14 +214,146 @@ const cupertinoBindings = FlaxBindingModule(
       matches: _isCupertinoThemeData,
       methods: const {},
     ),
-    FlaxWidgetInterfaceBinding(
+    FlaxObjectBinding(
       "flax.cupertino/cupertino#type:ObstructingPreferredSizeWidget",
-      _isObstructingPreferredSizeWidget,
+      [
+        FlaxGetter(
+          "preferredSize",
+          FlaxTypeRef("object", id: "flax.core/flutter#type:Size"),
+          _ObstructingPreferredSizeWidget_preferredSize,
+        ),
+      ],
+      {
+        "shouldFullyObstruct": FlaxInstanceMethod(
+          [
+            FlaxParameter(
+              "context",
+              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
+              required: true,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+          ],
+          FlaxTypeRef("bool"),
+          _ObstructingPreferredSizeWidget_shouldFullyObstruct,
+          startsRoute: false,
+        ),
+      },
+      constructors: {
+        "@implementation": [
+          FlaxParameter(
+            "key",
+            FlaxTypeRef(
+              "object",
+              id: "flax.core/flutter#type:Key",
+              nullable: true,
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+        ],
+      },
+      create: _createObstructingPreferredSizeWidget,
+      disposeMethod: null,
+      listenerPairs: {},
+      supertypes: [
+        "dart:core::Object",
+        "flax.core/flutter#type:PreferredSizeWidget",
+        "package:flutter/src/widgets/framework.dart::Widget",
+        "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree",
+        "package:flutter/src/foundation/diagnostics.dart::Diagnosticable",
+      ],
+      setters: [],
+      matches: _isObstructingPreferredSizeWidget,
+      methods: const {},
+      proxy: FlaxProxyBinding([
+        FlaxProxyMember(
+          "shouldFullyObstruct",
+          0,
+          FlaxCallbackBinding(
+            [
+              FlaxCallbackParameter(
+                "context",
+                FlaxTypeRef(
+                  "context",
+                  id: "flax.core/flutter#type:BuildContext",
+                ),
+                required: true,
+                positional: true,
+              ),
+            ],
+            FlaxTypeRef("bool"),
+            _callback1,
+            id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->bool:",
+            invoke: _callback1Invoke,
+            matches: _callback1Matches,
+          ),
+          hasSuper: false,
+        ),
+        FlaxProxyMember(
+          "build",
+          0,
+          FlaxCallbackBinding(
+            [
+              FlaxCallbackParameter(
+                "context",
+                FlaxTypeRef(
+                  "context",
+                  id: "flax.core/flutter#type:BuildContext",
+                ),
+                required: true,
+                positional: true,
+              ),
+            ],
+            FlaxTypeRef("widget"),
+            _callback2,
+            id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
+            invoke: _callback2Invoke,
+            matches: _callback2Matches,
+          ),
+          hasSuper: false,
+        ),
+        FlaxProxyMember(
+          "preferredSize",
+          1,
+          FlaxCallbackBinding(
+            [],
+            FlaxTypeRef("object", id: "flax.core/flutter#type:Size"),
+            _callback3,
+            id: "callback:<>()->object:flax.core/flutter#type:Size",
+            invoke: _callback3Invoke,
+            matches: _callback3Matches,
+          ),
+          hasSuper: false,
+        ),
+      ]),
     ),
     FlaxObjectBinding(
       "flax.cupertino/cupertino#type:CupertinoNavigationBar",
-      [],
-      {},
+      [
+        FlaxGetter(
+          "preferredSize",
+          FlaxTypeRef("object", id: "flax.core/flutter#type:Size"),
+          _CupertinoNavigationBar_preferredSize,
+        ),
+      ],
+      {
+        "shouldFullyObstruct": FlaxInstanceMethod(
+          [
+            FlaxParameter(
+              "context",
+              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
+              required: true,
+              defaultValue: null,
+              omitWhenAbsent: false,
+            ),
+          ],
+          FlaxTypeRef("bool"),
+          _CupertinoNavigationBar_shouldFullyObstruct,
+          startsRoute: false,
+        ),
+      },
       constructors: {
         "": [
           FlaxParameter(
@@ -316,6 +448,7 @@ const cupertinoBindings = FlaxBindingModule(
     "generic-member-views",
     "instance-checks",
     "native-widget-proxies",
+    "widget-interface-proxies",
   ],
   stateVariants: [],
   dartTypes: [
@@ -342,7 +475,7 @@ const cupertinoBindings = FlaxBindingModule(
     FlaxDartClassTemplate(
       "flax.cupertino/cupertino#type:ObstructingPreferredSizeWidget",
       api.ObstructingPreferredSizeWidget,
-      "widget",
+      "object",
     ),
     FlaxDartClassTemplate(
       "flax.cupertino/cupertino#type:CupertinoNavigationBar",
@@ -447,8 +580,45 @@ Object _createCupertinoThemeData(String ctor, Map<String, Object?> values) {
 
 bool _isObstructingPreferredSizeWidget(Object value) =>
     value is api.ObstructingPreferredSizeWidget;
+Object? _ObstructingPreferredSizeWidget_preferredSize(Object value) =>
+    (value as api.ObstructingPreferredSizeWidget).preferredSize;
+Object? _ObstructingPreferredSizeWidget_shouldFullyObstruct(
+  Object receiver,
+  Map<String, Object?> values,
+) {
+  return (receiver as api.ObstructingPreferredSizeWidget).shouldFullyObstruct(
+    values["context"] as api1.BuildContext,
+  );
+}
+
+Object _createObstructingPreferredSizeWidget(
+  String ctor,
+  Map<String, Object?> values,
+) {
+  switch (ctor) {
+    case '@implementation':
+      return _ObstructingPreferredSizeWidgetProxy(
+        values['@peer'] as FlaxProxyPeer,
+        key: values["key"] as api1.Key?,
+      );
+    default:
+      throw ArgumentError('Unknown generated constructor');
+  }
+}
+
 bool _isCupertinoNavigationBar(Object value) =>
     value is api.CupertinoNavigationBar;
+Object? _CupertinoNavigationBar_preferredSize(Object value) =>
+    (value as api.CupertinoNavigationBar).preferredSize;
+Object? _CupertinoNavigationBar_shouldFullyObstruct(
+  Object receiver,
+  Map<String, Object?> values,
+) {
+  return (receiver as api.CupertinoNavigationBar).shouldFullyObstruct(
+    values["context"] as api1.BuildContext,
+  );
+}
+
 api1.Widget _createCupertinoNavigationBar(
   String ctor,
   Map<String, Object?> values,
@@ -479,6 +649,43 @@ api1.Widget _createCupertinoNavigationBar(
       );
     default:
       throw ArgumentError('Unknown generated constructor');
+  }
+}
+
+final class _ObstructingPreferredSizeWidgetProxy extends api1.StatelessWidget
+    with FlaxWidgetProxy
+    implements api.ObstructingPreferredSizeWidget {
+  final FlaxProxyPeer _flaxPeer;
+  _ObstructingPreferredSizeWidgetProxy(this._flaxPeer, {api1.Key? super.key});
+  @override
+  bool shouldFullyObstruct(api1.BuildContext context) {
+    final _flaxResult = _flaxPeer.call(0, <Object?>[
+      context,
+    ], <String, Object?>{});
+    if (!_flaxResult.$1) {
+      throw StateError('Missing proxy method: shouldFullyObstruct');
+    }
+    final result = _flaxResult.$2 as bool;
+    return result;
+  }
+
+  @override
+  api1.Widget build(api1.BuildContext context) {
+    final _flaxResult = _flaxPeer.call(1, <Object?>[
+      context,
+    ], <String, Object?>{});
+    if (!_flaxResult.$1) {
+      throw StateError('Missing proxy method: build');
+    }
+    final result = _flaxResult.$2 as api1.Widget;
+    return result;
+  }
+
+  @override
+  api1.Size get preferredSize {
+    final _flaxResult = _flaxPeer.call(2, const [], const {});
+    final result = _flaxResult.$2 as api1.Size;
+    return result;
   }
 }
 
@@ -529,4 +736,54 @@ Object? _callback0Invoke(
 ) {
   (function as void Function())();
   return null;
+}
+
+Object _callback1(FlaxCallback _flaxBridgeCallback) => (api1.BuildContext p0) {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  positional.add(p0);
+  return _flaxBridgeCallback.call(positional, named) as bool;
+};
+bool _callback1Matches(Object value) =>
+    value is bool Function(api1.BuildContext context);
+Object? _callback1Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  return (function as bool Function(api1.BuildContext context))(
+    positional[0] as api1.BuildContext,
+  );
+}
+
+Object _callback2(FlaxCallback _flaxBridgeCallback) => (api1.BuildContext p0) {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  positional.add(p0);
+  return _flaxBridgeCallback.call(positional, named) as api1.Widget;
+};
+bool _callback2Matches(Object value) =>
+    value is api1.Widget Function(api1.BuildContext context);
+Object? _callback2Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  return (function as api1.Widget Function(api1.BuildContext context))(
+    positional[0] as api1.BuildContext,
+  );
+}
+
+Object _callback3(FlaxCallback _flaxBridgeCallback) => () {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  return _flaxBridgeCallback.call(positional, named) as api1.Size;
+};
+bool _callback3Matches(Object value) => value is api1.Size Function();
+Object? _callback3Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  return (function as api1.Size Function())();
 }

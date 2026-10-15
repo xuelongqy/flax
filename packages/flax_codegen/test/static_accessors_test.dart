@@ -268,11 +268,13 @@ void main() {
     final restoredInterface = restored!.classes.singleWhere(
       (type) => type.name == 'StaticInterface',
     );
-    expect(restoredInterface.methods.single.name, 'twice');
     expect(
-      restoredInterface.widgetMembers.any(
-        (member) => member.name == 'decorate',
-      ),
+      restoredInterface.methods.where((m) => !m.instance).single.name,
+      'twice',
+    );
+    expect(restoredInterface.proxy!.widgetInterface, isTrue);
+    expect(
+      restoredInterface.methods.any((member) => member.name == 'decorate'),
       isTrue,
     );
     final contract = module.classes.singleWhere(
@@ -281,11 +283,18 @@ void main() {
     final nativeOnly = FlaxCodegenClassModel(
       name: contract.name,
       id: contract.id,
-      kind: contract.kind,
-      constructors: contract.constructors,
+      kind: 'widgetInterface',
+      constructors: const [],
       supertypes: contract.supertypes,
       superTypes: contract.superTypes,
-      widgetMembers: contract.widgetMembers,
+      widgetMembers: const [
+        FlaxCodegenWidgetMember(kind: 'getter', name: 'label', parameters: []),
+        FlaxCodegenWidgetMember(
+          kind: 'method',
+          name: 'decorate',
+          parameters: ['value'],
+        ),
+      ],
     );
     final reexportDirectory = Directory(p.join(root.path, '.dart_tool', 'flax'))
       ..createSync(recursive: true);

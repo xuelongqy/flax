@@ -19,6 +19,7 @@ const _supportedCapabilities = <String>{
   'native-core-inputs',
   'native-bigint',
   'native-widget-proxies',
+  'widget-interface-proxies',
   'shared-uint8',
   'shared-buffers',
 };

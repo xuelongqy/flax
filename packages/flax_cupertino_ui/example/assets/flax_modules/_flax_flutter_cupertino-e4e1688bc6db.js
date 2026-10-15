@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/flutter/cupertino","owner":"@flax/cupertino-ui:dist/generated/libraries/cupertino/index.js","version":"0.0.0","artifact":"1b27d2777a8fb550e2c9c19cd6e1144c95be4485ada0b5c7cd0ccfbdcbafaa25","asset":"assets/flax_modules/_flax_flutter_cupertino-e4e1688bc6db.js","package":"@flax/cupertino-ui","source":"dist/generated/libraries/cupertino/index.js","dependencies":{"@flax/core/bindings":"0.0.0","@flax/flutter/foundation":"0.0.0","@flax/flutter/services":"0.0.0","@flax/flutter/widgets":"0.0.0"},"bindings":[{"moduleId":"flax.cupertino/cupertino","uiProtocol":24,"requiredCapabilities":["generic-member-views","instance-checks","native-widget-proxies"],"types":["flax.cupertino/cupertino#type:CupertinoApp","flax.cupertino/cupertino#type:CupertinoButton","flax.cupertino/cupertino#type:CupertinoNavigationBar","flax.cupertino/cupertino#type:CupertinoPageScaffold","flax.cupertino/cupertino#type:CupertinoThemeData","flax.cupertino/cupertino#type:ObstructingPreferredSizeWidget"],"functions":[]}],"subpaths":["@flax/flutter/cupertino/index"]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/flutter/cupertino","owner":"@flax/cupertino-ui:dist/generated/libraries/cupertino/index.js","version":"0.0.0","artifact":"2f2d7876fd31abe8c6318e231c6301981c1ffdb5035bcd2abe07076ca3981767","asset":"assets/flax_modules/_flax_flutter_cupertino-e4e1688bc6db.js","package":"@flax/cupertino-ui","source":"dist/generated/libraries/cupertino/index.js","dependencies":{"@flax/core/bindings":"0.0.0","@flax/flutter/foundation":"0.0.0","@flax/flutter/services":"0.0.0","@flax/flutter/widgets":"0.0.0"},"bindings":[{"moduleId":"flax.cupertino/cupertino","uiProtocol":24,"requiredCapabilities":["generic-member-views","instance-checks","native-widget-proxies"],"types":["flax.cupertino/cupertino#type:CupertinoApp","flax.cupertino/cupertino#type:CupertinoButton","flax.cupertino/cupertino#type:CupertinoNavigationBar","flax.cupertino/cupertino#type:CupertinoPageScaffold","flax.cupertino/cupertino#type:CupertinoThemeData","flax.cupertino/cupertino#type:ObstructingPreferredSizeWidget"],"functions":[]}],"subpaths":["@flax/flutter/cupertino/index"]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -49,7 +49,7 @@ function _flaxInstallBindingModule(moduleId, uiProtocol, requiredCapabilities) {
       throw new TypeError("requiredCapabilities must be sorted unique strings");
     }
     previous = capability;
-    if (capability !== "native-functions" && capability !== "lazy-js-iterables" && capability !== "callback-map-keys" && capability !== "proxy-super-constructors" && capability !== "bottom-types" && capability !== "explicit-generic-types" && capability !== "engine-type-handles" && capability !== "generic-call-types" && capability !== "dart-type-tokens" && capability !== "generic-member-views" && capability !== "instance-checks" && capability !== "native-core-inputs" && capability !== "native-bigint" && capability !== "native-widget-proxies" && capability !== "shared-buffers" && capability !== "shared-uint8") {
+    if (capability !== "native-functions" && capability !== "lazy-js-iterables" && capability !== "callback-map-keys" && capability !== "proxy-super-constructors" && capability !== "bottom-types" && capability !== "explicit-generic-types" && capability !== "engine-type-handles" && capability !== "generic-call-types" && capability !== "dart-type-tokens" && capability !== "generic-member-views" && capability !== "instance-checks" && capability !== "native-core-inputs" && capability !== "native-bigint" && capability !== "native-widget-proxies" && capability !== "widget-interface-proxies" && capability !== "shared-buffers" && capability !== "shared-uint8") {
       throw new TypeError(`Unsupported binding capability ${capability}`);
     }
   }
@@ -81,7 +81,7 @@ function _flaxInstallBindingModule(moduleId, uiProtocol, requiredCapabilities) {
     invokeTopLevel: import_bindings.invokeTopLevel
   });
 }
-var cupertinoBindingModule = _flaxInstallBindingModule("flax.cupertino/cupertino", 24, Object.freeze(["generic-member-views", "instance-checks", "native-widget-proxies"]));
+var cupertinoBindingModule = _flaxInstallBindingModule("flax.cupertino/cupertino", 24, Object.freeze(["generic-member-views", "instance-checks", "native-widget-proxies", "widget-interface-proxies"]));
 var { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineDartTypes: _flaxDefineDartTypes, bindInstanceType: _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } = cupertinoBindingModule;
 
 // ../../js/dist/generated/libraries/cupertino/_bindings/cupertino_CupertinoThemeData.js
@@ -96,10 +96,29 @@ function _CupertinoThemeDataFactory(options = {}) {
 }
 var CupertinoThemeData = _flaxBindInstanceType(_CupertinoThemeDataFactory, "flax.cupertino/cupertino#type:CupertinoThemeData", ["package:cupertino_ui/src/theme.dart::NoDefaultCupertinoThemeData", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
-// ../../js/dist/generated/libraries/cupertino/_bindings/cupertino_CupertinoApp.js
+// ../../js/dist/generated/libraries/cupertino/_bindings/cupertino_ObstructingPreferredSizeWidget.js
 var import_bindings4 = require("@flax/core/bindings");
-var import_flutter_Key = require("@flax/flutter/foundation");
 var import_bindings5 = require("@flax/core/bindings");
+var import_flutter_PreferredSizeWidget = require("@flax/flutter/widgets");
+var import_flutter_Key = require("@flax/flutter/foundation");
+var import_flutter_Size = require("@flax/flutter/services");
+var import_flutter_BuildContext = require("@flax/flutter/widgets");
+var import_bindings6 = require("@flax/core/bindings");
+var _flaxMemberParameters0 = [{ "name": "context", "required": true, "positional": true, "context": "flax.core/flutter#type:BuildContext" }];
+defineObject("flax.cupertino/cupertino#type:ObstructingPreferredSizeWidget", ["preferredSize"], [], (0, import_bindings4.bindingMethods)("flax.cupertino/cupertino#type:ObstructingPreferredSizeWidget", "object", { "shouldFullyObstruct": _flaxMemberParameters0 }, {}), []);
+var _ObstructingPreferredSizeWidgetProxy = { nativeWidget: true, type: "flax.cupertino/cupertino#type:ObstructingPreferredSizeWidget", parameters: [{ "name": "key", "required": false, "positional": false }], constructors: { "": [{ "name": "key", "required": false, "positional": false }] }, methods: { "shouldFullyObstruct": _flaxMemberParameters0, "build": _flaxMemberParameters0 }, getters: ["preferredSize"], setters: [], contextMembers: [], superMembers: [] };
+var _ObstructingPreferredSizeWidgetImplementation = class extends import_bindings5.FlaxProxyBase {
+  constructor(options) {
+    super(_ObstructingPreferredSizeWidgetProxy, Array.from(arguments));
+  }
+};
+(0, import_bindings5.defineProxyBase)(_ObstructingPreferredSizeWidgetImplementation.prototype, _ObstructingPreferredSizeWidgetProxy);
+var ObstructingPreferredSizeWidget = _flaxBindInstanceType(_ObstructingPreferredSizeWidgetImplementation, "flax.cupertino/cupertino#type:ObstructingPreferredSizeWidget", ["dart:core::Object", "flax.core/flutter#type:PreferredSizeWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
+
+// ../../js/dist/generated/libraries/cupertino/_bindings/cupertino_CupertinoApp.js
+var import_bindings7 = require("@flax/core/bindings");
+var import_flutter_Key2 = require("@flax/flutter/foundation");
+var import_bindings8 = require("@flax/core/bindings");
 function _CupertinoAppFactory(options = {}) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -110,9 +129,9 @@ function _CupertinoAppFactory(options = {}) {
 var CupertinoApp = _flaxBindInstanceType(_CupertinoAppFactory, "flax.cupertino/cupertino#type:CupertinoApp", ["flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../js/dist/generated/libraries/cupertino/_bindings/cupertino_CupertinoButton.js
-var import_bindings6 = require("@flax/core/bindings");
-var import_flutter_Key2 = require("@flax/flutter/foundation");
-var import_bindings7 = require("@flax/core/bindings");
+var import_bindings9 = require("@flax/core/bindings");
+var import_flutter_Key3 = require("@flax/flutter/foundation");
+var import_bindings10 = require("@flax/core/bindings");
 function _CupertinoButtonFactory(options) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -123,25 +142,30 @@ function _CupertinoButtonFactory(options) {
 var CupertinoButton = _flaxBindInstanceType(_CupertinoButtonFactory, "flax.cupertino/cupertino#type:CupertinoButton", ["flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../js/dist/generated/libraries/cupertino/_bindings/cupertino_CupertinoNavigationBar.js
-var import_bindings8 = require("@flax/core/bindings");
-var import_flutter_Key3 = require("@flax/flutter/foundation");
+var import_bindings11 = require("@flax/core/bindings");
+var import_bindings12 = require("@flax/core/bindings");
+var import_flutter_Key4 = require("@flax/flutter/foundation");
 var import_flutter_Border = require("@flax/flutter/widgets");
 var import_flutter_Color2 = require("@flax/flutter/services");
-var import_bindings9 = require("@flax/core/bindings");
+var import_flutter_Size2 = require("@flax/flutter/services");
+var import_flutter_BuildContext2 = require("@flax/flutter/widgets");
+var import_bindings13 = require("@flax/core/bindings");
+var _flaxMemberParameters02 = [{ "name": "context", "required": true, "positional": true, "context": "flax.core/flutter#type:BuildContext" }];
+defineObject("flax.cupertino/cupertino#type:CupertinoNavigationBar", ["preferredSize"], [], (0, import_bindings11.bindingMethods)("flax.cupertino/cupertino#type:CupertinoNavigationBar", "object", { "shouldFullyObstruct": _flaxMemberParameters02 }, {}), []);
 function _CupertinoNavigationBarFactory(options = {}) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
   if (arguments.length > 1)
     throw new TypeError("Too many constructor arguments");
-  return construct("widget", "flax.cupertino/cupertino#type:CupertinoNavigationBar", "", [{ "name": "key", "fixed": true, "required": false, "positional": false }, { "name": "leading", "fixed": true, "required": false, "positional": false }, { "name": "automaticallyImplyLeading", "fixed": true, "required": false, "positional": false }, { "name": "middle", "fixed": true, "required": false, "positional": false }, { "name": "trailing", "fixed": true, "required": false, "positional": false }, { "name": "border", "fixed": true, "required": false, "positional": false }, { "name": "backgroundColor", "fixed": true, "required": false, "positional": false }, { "name": "transitionBetweenRoutes", "fixed": true, "required": false, "positional": false }], [], options);
+  return constructObject("object", "flax.cupertino/cupertino#type:CupertinoNavigationBar", "", [{ "name": "key", "fixed": true, "required": false, "positional": false }, { "name": "leading", "fixed": true, "required": false, "positional": false }, { "name": "automaticallyImplyLeading", "fixed": true, "required": false, "positional": false }, { "name": "middle", "fixed": true, "required": false, "positional": false }, { "name": "trailing", "fixed": true, "required": false, "positional": false }, { "name": "border", "fixed": true, "required": false, "positional": false }, { "name": "backgroundColor", "fixed": true, "required": false, "positional": false }, { "name": "transitionBetweenRoutes", "fixed": true, "required": false, "positional": false }], [], options);
 }
 var CupertinoNavigationBar = _flaxBindInstanceType(_CupertinoNavigationBarFactory, "flax.cupertino/cupertino#type:CupertinoNavigationBar", ["flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable", "flax.cupertino/cupertino#type:ObstructingPreferredSizeWidget", "flax.core/flutter#type:PreferredSizeWidget"]);
 
 // ../../js/dist/generated/libraries/cupertino/_bindings/cupertino_CupertinoPageScaffold.js
-var import_bindings10 = require("@flax/core/bindings");
-var import_flutter_Key4 = require("@flax/flutter/foundation");
+var import_bindings14 = require("@flax/core/bindings");
+var import_flutter_Key5 = require("@flax/flutter/foundation");
 var import_flutter_Color3 = require("@flax/flutter/services");
-var import_bindings11 = require("@flax/core/bindings");
+var import_bindings15 = require("@flax/core/bindings");
 function _CupertinoPageScaffoldFactory(options) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -150,10 +174,5 @@ function _CupertinoPageScaffoldFactory(options) {
   return construct("widget", "flax.cupertino/cupertino#type:CupertinoPageScaffold", "", [{ "name": "key", "required": false, "positional": false }, { "name": "navigationBar", "required": false, "positional": false }, { "name": "backgroundColor", "required": false, "positional": false }, { "name": "resizeToAvoidBottomInset", "required": false, "positional": false }, { "name": "child", "required": true, "positional": false }], [], options);
 }
 var CupertinoPageScaffold = _flaxBindInstanceType(_CupertinoPageScaffoldFactory, "flax.cupertino/cupertino#type:CupertinoPageScaffold", ["flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
-
-// ../../js/dist/generated/libraries/cupertino/_bindings/cupertino_ObstructingPreferredSizeWidget.js
-var import_bindings12 = require("@flax/core/bindings");
-var import_bindings13 = require("@flax/core/bindings");
-var ObstructingPreferredSizeWidget = _flaxBindInstanceType({}, "flax.cupertino/cupertino#type:ObstructingPreferredSizeWidget", ["dart:core::Object", "flax.core/flutter#type:PreferredSizeWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 });

@@ -1,6 +1,7 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import type * as upstream1 from '@flax/flutter/cupertino/_bindings/cupertino_ObstructingPreferredSizeWidget';
+import '@flax/flutter/cupertino/_bindings/cupertino_ObstructingPreferredSizeWidget';
 import '@flax/flutter/services/_bindings/flutter_Color';
 import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface CupertinoPageScaffold extends WidgetDescription {

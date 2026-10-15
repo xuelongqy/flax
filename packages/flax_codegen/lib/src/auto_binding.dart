@@ -641,6 +641,21 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       if (element.typeParameters.isEmpty) {
         native.parse(element.thisType, selection);
       }
+      if (!_dependencyOwners.containsKey(identity(element))) {
+        final proxy = FlaxCodegenClassSelection(
+          const {},
+          kind: 'widgetInterface',
+          proxy: 'implements',
+          getters: getters,
+          setters: setters,
+          methods: selection.methods,
+          staticGetters: selection.staticGetters,
+          staticSetters: selection.staticSetters,
+        );
+        if (await _proxySelectionParses(this, seed, element.name!, proxy)) {
+          return proxy;
+        }
+      }
       return selection;
     } on StateError catch (error) {
       skips.add(
@@ -1299,8 +1314,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       }
       for (final parent in element.allSupertypes) {
         if (_selections[identity(parent.element)]?.kind == 'widgetInterface' ||
-            parent.element.typeParameters.isNotEmpty &&
-                _selections[identity(parent.element)]?.kind == 'object' &&
+            _selections[identity(parent.element)]?.kind == 'object' &&
                 _isAutoWidgetInterface(parent.element)) {
           matches.add(parent.element.name!);
         }

@@ -1,11 +1,15 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type DartListInput, type Widget } from '@flax/core/bindings';
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_PreferredSizeWidget';
+import '@flax/flutter/widgets/_bindings/flutter_PreferredSizeWidget';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/services/_bindings/flutter_Color';
+import type * as upstream3 from '@flax/flutter/services/_bindings/flutter_Size';
+import '@flax/flutter/services/_bindings/flutter_Size';
 import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface AppBar extends _FlaxDartWidget, Omit<upstream0.PreferredSizeWidget, 'kind'> {
     readonly __AppBar: unique symbol;
+    readonly preferredSize: upstream3.Size;
 }
 declare function _AppBarFactory(options?: {
     key?: Readonly<{

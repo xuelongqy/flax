@@ -31,6 +31,7 @@ import "@flax/flutter/widgets/_bindings/flutter_NavigatorObserver";
 import "@flax/flutter/widgets/_bindings/flutter_NavigatorState";
 import "@flax/flutter/widgets/_bindings/flutter_NeverScrollableScrollPhysics";
 import "@flax/flutter/widgets/_bindings/flutter_OutlinedBorder";
+import "@flax/flutter/widgets/_bindings/flutter_PreferredSizeWidget";
 import "@flax/flutter/widgets/_bindings/flutter_Radius";
 import "@flax/flutter/widgets/_bindings/flutter_RoundedRectangleBorder";
 import "@flax/flutter/widgets/_bindings/flutter_RouteSettings";

@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/flutter/material","owner":"@flax/material-ui:dist/generated/libraries/material/index.js","version":"0.0.0","artifact":"d8439b151d21e5ba892ac79d50b0fbbaf1c110ea9b64f206a5e548134d89ac71","asset":"assets/flax_modules/_flax_flutter_material-4c07c7c9bace.js","package":"@flax/material-ui","source":"dist/generated/libraries/material/index.js","dependencies":{"@flax/core/bindings":"0.0.0","@flax/dart/core":"0.0.0","@flax/flutter/foundation":"0.0.0","@flax/flutter/services":"0.0.0","@flax/flutter/widgets":"0.0.0"},"bindings":[{"moduleId":"flax.material/material","uiProtocol":24,"requiredCapabilities":["generic-member-views","instance-checks","native-widget-proxies"],"types":["flax.material/material#type:AlertDialog","flax.material/material#type:AppBar","flax.material/material#type:Brightness","flax.material/material#type:ButtonStyle","flax.material/material#type:Card","flax.material/material#type:Checkbox","flax.material/material#type:CircularProgressIndicator","flax.material/material#type:ColorScheme","flax.material/material#type:Divider","flax.material/material#type:Drawer","flax.material/material#type:ElevatedButton","flax.material/material#type:FilledButton","flax.material/material#type:FloatingActionButton","flax.material/material#type:IconButton","flax.material/material#type:InkWell","flax.material/material#type:InputDecoration","flax.material/material#type:LinearProgressIndicator","flax.material/material#type:ListTile","flax.material/material#type:ListTileStyle","flax.material/material#type:Material","flax.material/material#type:MaterialApp","flax.material/material#type:MaterialPage","flax.material/material#type:MaterialPageRoute","flax.material/material#type:MaterialType","flax.material/material#type:NavigationBar","flax.material/material#type:NavigationDestination","flax.material/material#type:NavigationDestinationLabelBehavior","flax.material/material#type:OutlinedButton","flax.material/material#type:RefreshIndicator","flax.material/material#type:Scaffold","flax.material/material#type:Switch","flax.material/material#type:TextButton","flax.material/material#type:TextField","flax.material/material#type:TextInputAction","flax.material/material#type:TextTheme","flax.material/material#type:Theme","flax.material/material#type:ThemeData","flax.material/material#type:ThemeMode","flax.material/material#type:VerticalDivider","flax.material/material#type:VisualDensity"],"functions":["flax.material/material#function:showDialog","flax.material/material#read:VisualDensity.comfortable","flax.material/material#read:VisualDensity.compact","flax.material/material#read:VisualDensity.standard","flax.material/material#read:kTabScrollDuration"]}],"subpaths":["@flax/flutter/material/index"]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/flutter/material","owner":"@flax/material-ui:dist/generated/libraries/material/index.js","version":"0.0.0","artifact":"a4cbb7b2b0e264d3b8fd29b28bcf70020af2d32964dd248f1b145e54d78c73df","asset":"assets/flax_modules/_flax_flutter_material-4c07c7c9bace.js","package":"@flax/material-ui","source":"dist/generated/libraries/material/index.js","dependencies":{"@flax/core/bindings":"0.0.0","@flax/dart/core":"0.0.0","@flax/flutter/foundation":"0.0.0","@flax/flutter/services":"0.0.0","@flax/flutter/widgets":"0.0.0"},"bindings":[{"moduleId":"flax.material/material","uiProtocol":24,"requiredCapabilities":["generic-member-views","instance-checks","native-widget-proxies"],"types":["flax.material/material#type:AlertDialog","flax.material/material#type:AppBar","flax.material/material#type:Brightness","flax.material/material#type:ButtonStyle","flax.material/material#type:Card","flax.material/material#type:Checkbox","flax.material/material#type:CircularProgressIndicator","flax.material/material#type:ColorScheme","flax.material/material#type:Divider","flax.material/material#type:Drawer","flax.material/material#type:ElevatedButton","flax.material/material#type:FilledButton","flax.material/material#type:FloatingActionButton","flax.material/material#type:IconButton","flax.material/material#type:InkWell","flax.material/material#type:InputDecoration","flax.material/material#type:LinearProgressIndicator","flax.material/material#type:ListTile","flax.material/material#type:ListTileStyle","flax.material/material#type:Material","flax.material/material#type:MaterialApp","flax.material/material#type:MaterialPage","flax.material/material#type:MaterialPageRoute","flax.material/material#type:MaterialType","flax.material/material#type:NavigationBar","flax.material/material#type:NavigationDestination","flax.material/material#type:NavigationDestinationLabelBehavior","flax.material/material#type:OutlinedButton","flax.material/material#type:RefreshIndicator","flax.material/material#type:Scaffold","flax.material/material#type:Switch","flax.material/material#type:TextButton","flax.material/material#type:TextField","flax.material/material#type:TextInputAction","flax.material/material#type:TextTheme","flax.material/material#type:Theme","flax.material/material#type:ThemeData","flax.material/material#type:ThemeMode","flax.material/material#type:VerticalDivider","flax.material/material#type:VisualDensity"],"functions":["flax.material/material#function:showDialog","flax.material/material#read:VisualDensity.comfortable","flax.material/material#read:VisualDensity.compact","flax.material/material#read:VisualDensity.standard","flax.material/material#read:kTabScrollDuration"]}],"subpaths":["@flax/flutter/material/index"]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -92,7 +92,7 @@ function _flaxInstallBindingModule(moduleId, uiProtocol, requiredCapabilities) {
       throw new TypeError("requiredCapabilities must be sorted unique strings");
     }
     previous = capability;
-    if (capability !== "native-functions" && capability !== "lazy-js-iterables" && capability !== "callback-map-keys" && capability !== "proxy-super-constructors" && capability !== "bottom-types" && capability !== "explicit-generic-types" && capability !== "engine-type-handles" && capability !== "generic-call-types" && capability !== "dart-type-tokens" && capability !== "generic-member-views" && capability !== "instance-checks" && capability !== "native-core-inputs" && capability !== "native-bigint" && capability !== "native-widget-proxies" && capability !== "shared-buffers" && capability !== "shared-uint8") {
+    if (capability !== "native-functions" && capability !== "lazy-js-iterables" && capability !== "callback-map-keys" && capability !== "proxy-super-constructors" && capability !== "bottom-types" && capability !== "explicit-generic-types" && capability !== "engine-type-handles" && capability !== "generic-call-types" && capability !== "dart-type-tokens" && capability !== "generic-member-views" && capability !== "instance-checks" && capability !== "native-core-inputs" && capability !== "native-bigint" && capability !== "native-widget-proxies" && capability !== "widget-interface-proxies" && capability !== "shared-buffers" && capability !== "shared-uint8") {
       throw new TypeError(`Unsupported binding capability ${capability}`);
     }
   }
@@ -256,25 +256,29 @@ var AlertDialog = _flaxBindInstanceType(_AlertDialogFactory, "flax.material/mate
 
 // ../../js/dist/generated/libraries/material/_bindings/material_AppBar.js
 var import_bindings18 = require("@flax/core/bindings");
+var import_bindings19 = require("@flax/core/bindings");
+var import_flutter_PreferredSizeWidget = require("@flax/flutter/widgets");
 var import_flutter_Key2 = require("@flax/flutter/foundation");
 var import_flutter_Color5 = require("@flax/flutter/services");
-var import_bindings19 = require("@flax/core/bindings");
+var import_flutter_Size = require("@flax/flutter/services");
+var import_bindings20 = require("@flax/core/bindings");
+defineObject("flax.material/material#type:AppBar", ["preferredSize"], [], (0, import_bindings18.bindingMethods)("flax.material/material#type:AppBar", "object", {}, {}), []);
 function _AppBarFactory(options = {}) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
   if (arguments.length > 1)
     throw new TypeError("Too many constructor arguments");
-  return construct("widget", "flax.material/material#type:AppBar", "", [{ "name": "key", "fixed": true, "required": false, "positional": false }, { "name": "leading", "fixed": true, "required": false, "positional": false }, { "name": "automaticallyImplyLeading", "fixed": true, "required": false, "positional": false }, { "name": "title", "fixed": true, "required": false, "positional": false }, { "name": "actions", "fixed": true, "required": false, "positional": false }, { "name": "bottom", "fixed": true, "required": false, "positional": false }, { "name": "elevation", "fixed": true, "required": false, "positional": false }, { "name": "backgroundColor", "fixed": true, "required": false, "positional": false }, { "name": "foregroundColor", "fixed": true, "required": false, "positional": false }, { "name": "primary", "fixed": true, "required": false, "positional": false }, { "name": "centerTitle", "fixed": true, "required": false, "positional": false }, { "name": "toolbarHeight", "fixed": true, "required": false, "positional": false }], [], options);
+  return constructObject("object", "flax.material/material#type:AppBar", "", [{ "name": "key", "fixed": true, "required": false, "positional": false }, { "name": "leading", "fixed": true, "required": false, "positional": false }, { "name": "automaticallyImplyLeading", "fixed": true, "required": false, "positional": false }, { "name": "title", "fixed": true, "required": false, "positional": false }, { "name": "actions", "fixed": true, "required": false, "positional": false }, { "name": "bottom", "fixed": true, "required": false, "positional": false }, { "name": "elevation", "fixed": true, "required": false, "positional": false }, { "name": "backgroundColor", "fixed": true, "required": false, "positional": false }, { "name": "foregroundColor", "fixed": true, "required": false, "positional": false }, { "name": "primary", "fixed": true, "required": false, "positional": false }, { "name": "centerTitle", "fixed": true, "required": false, "positional": false }, { "name": "toolbarHeight", "fixed": true, "required": false, "positional": false }], [], options);
 }
 var AppBar = _flaxBindInstanceType(_AppBarFactory, "flax.material/material#type:AppBar", ["flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable", "flax.core/flutter#type:PreferredSizeWidget"]);
 
 // ../../js/dist/generated/libraries/material/_bindings/material_Card.js
-var import_bindings20 = require("@flax/core/bindings");
+var import_bindings21 = require("@flax/core/bindings");
 var import_flutter_Key3 = require("@flax/flutter/foundation");
 var import_flutter_Color6 = require("@flax/flutter/services");
 var import_flutter_EdgeInsetsGeometry2 = require("@flax/flutter/widgets");
 var import_flutter_Clip = require("@flax/flutter/widgets");
-var import_bindings21 = require("@flax/core/bindings");
+var import_bindings22 = require("@flax/core/bindings");
 function _CardFactory(options = {}) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -305,12 +309,12 @@ function _CardFactory(options = {}) {
 var Card = _flaxBindInstanceType(_CardFactory, "flax.material/material#type:Card", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../js/dist/generated/libraries/material/_bindings/material_Checkbox.js
-var import_bindings22 = require("@flax/core/bindings");
+var import_bindings23 = require("@flax/core/bindings");
 var import_flutter_Key4 = require("@flax/flutter/foundation");
 var import_flutter_Color7 = require("@flax/flutter/services");
 var import_flutter_WidgetStateProperty2 = require("@flax/flutter/widgets");
 var import_flutter_FocusNode = require("@flax/flutter/widgets");
-var import_bindings23 = require("@flax/core/bindings");
+var import_bindings24 = require("@flax/core/bindings");
 function _CheckboxFactory(options) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -321,10 +325,10 @@ function _CheckboxFactory(options) {
 var Checkbox = _flaxBindInstanceType(_CheckboxFactory, "flax.material/material#type:Checkbox", ["flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../js/dist/generated/libraries/material/_bindings/material_CircularProgressIndicator.js
-var import_bindings24 = require("@flax/core/bindings");
+var import_bindings25 = require("@flax/core/bindings");
 var import_flutter_Key5 = require("@flax/flutter/foundation");
 var import_flutter_Color8 = require("@flax/flutter/services");
-var import_bindings25 = require("@flax/core/bindings");
+var import_bindings26 = require("@flax/core/bindings");
 function _CircularProgressIndicatorFactory(options = {}) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -335,11 +339,11 @@ function _CircularProgressIndicatorFactory(options = {}) {
 var CircularProgressIndicator = _flaxBindInstanceType(_CircularProgressIndicatorFactory, "flax.material/material#type:CircularProgressIndicator", ["package:material_ui/src/progress_indicator.dart::ProgressIndicator", "flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../js/dist/generated/libraries/material/_bindings/material_Divider.js
-var import_bindings26 = require("@flax/core/bindings");
+var import_bindings27 = require("@flax/core/bindings");
 var import_flutter_Key6 = require("@flax/flutter/foundation");
 var import_flutter_Color9 = require("@flax/flutter/services");
 var import_flutter_BorderRadiusGeometry = require("@flax/flutter/widgets");
-var import_bindings27 = require("@flax/core/bindings");
+var import_bindings28 = require("@flax/core/bindings");
 function _DividerFactory(options = {}) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -350,11 +354,11 @@ function _DividerFactory(options = {}) {
 var Divider = _flaxBindInstanceType(_DividerFactory, "flax.material/material#type:Divider", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../js/dist/generated/libraries/material/_bindings/material_Drawer.js
-var import_bindings28 = require("@flax/core/bindings");
+var import_bindings29 = require("@flax/core/bindings");
 var import_flutter_Key7 = require("@flax/flutter/foundation");
 var import_flutter_Color10 = require("@flax/flutter/services");
 var import_flutter_Clip2 = require("@flax/flutter/widgets");
-var import_bindings29 = require("@flax/core/bindings");
+var import_bindings30 = require("@flax/core/bindings");
 function _DrawerFactory(options = {}) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -365,9 +369,9 @@ function _DrawerFactory(options = {}) {
 var Drawer = _flaxBindInstanceType(_DrawerFactory, "flax.material/material#type:Drawer", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../js/dist/generated/libraries/material/_bindings/material_ElevatedButton.js
-var import_bindings30 = require("@flax/core/bindings");
-var import_flutter_Key8 = require("@flax/flutter/foundation");
 var import_bindings31 = require("@flax/core/bindings");
+var import_flutter_Key8 = require("@flax/flutter/foundation");
+var import_bindings32 = require("@flax/core/bindings");
 function _ElevatedButtonFactory(options) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -378,9 +382,9 @@ function _ElevatedButtonFactory(options) {
 var ElevatedButton = _flaxBindInstanceType(_ElevatedButtonFactory, "flax.material/material#type:ElevatedButton", ["package:material_ui/src/button_style_button.dart::ButtonStyleButton", "flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../js/dist/generated/libraries/material/_bindings/material_FilledButton.js
-var import_bindings32 = require("@flax/core/bindings");
-var import_flutter_Key9 = require("@flax/flutter/foundation");
 var import_bindings33 = require("@flax/core/bindings");
+var import_flutter_Key9 = require("@flax/flutter/foundation");
+var import_bindings34 = require("@flax/core/bindings");
 function _FilledButtonFactory(options) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -401,11 +405,11 @@ function _FilledButtonFactory(options) {
 var FilledButton = _flaxBindInstanceType(_FilledButtonFactory, "flax.material/material#type:FilledButton", ["package:material_ui/src/button_style_button.dart::ButtonStyleButton", "flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../js/dist/generated/libraries/material/_bindings/material_FloatingActionButton.js
-var import_bindings34 = require("@flax/core/bindings");
+var import_bindings35 = require("@flax/core/bindings");
 var import_flutter_Key10 = require("@flax/flutter/foundation");
 var import_flutter_Color11 = require("@flax/flutter/services");
 var import_flutter_FocusNode2 = require("@flax/flutter/widgets");
-var import_bindings35 = require("@flax/core/bindings");
+var import_bindings36 = require("@flax/core/bindings");
 function _FloatingActionButtonFactory(options) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -446,13 +450,13 @@ function _FloatingActionButtonFactory(options) {
 var FloatingActionButton = _flaxBindInstanceType(_FloatingActionButtonFactory, "flax.material/material#type:FloatingActionButton", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../js/dist/generated/libraries/material/_bindings/material_IconButton.js
-var import_bindings36 = require("@flax/core/bindings");
+var import_bindings37 = require("@flax/core/bindings");
 var import_flutter_Key11 = require("@flax/flutter/foundation");
 var import_flutter_EdgeInsetsGeometry3 = require("@flax/flutter/widgets");
 var import_flutter_AlignmentGeometry = require("@flax/flutter/widgets");
 var import_flutter_Color12 = require("@flax/flutter/services");
 var import_flutter_FocusNode3 = require("@flax/flutter/widgets");
-var import_bindings37 = require("@flax/core/bindings");
+var import_bindings38 = require("@flax/core/bindings");
 function _IconButtonFactory(options) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -493,13 +497,13 @@ function _IconButtonFactory(options) {
 var IconButton = _flaxBindInstanceType(_IconButtonFactory, "flax.material/material#type:IconButton", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../js/dist/generated/libraries/material/_bindings/material_InkWell.js
-var import_bindings38 = require("@flax/core/bindings");
+var import_bindings39 = require("@flax/core/bindings");
 var import_flutter_Key12 = require("@flax/flutter/foundation");
 var import_flutter_MouseCursor2 = require("@flax/flutter/services");
 var import_flutter_Color13 = require("@flax/flutter/services");
 var import_flutter_BorderRadius = require("@flax/flutter/widgets");
 var import_flutter_ShapeBorder = require("@flax/flutter/widgets");
-var import_bindings39 = require("@flax/core/bindings");
+var import_bindings40 = require("@flax/core/bindings");
 function _InkWellFactory(options = {}) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -510,11 +514,11 @@ function _InkWellFactory(options = {}) {
 var InkWell = _flaxBindInstanceType(_InkWellFactory, "flax.material/material#type:InkWell", ["package:material_ui/src/ink_well.dart::InkResponse", "package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../js/dist/generated/libraries/material/_bindings/material_LinearProgressIndicator.js
-var import_bindings40 = require("@flax/core/bindings");
+var import_bindings41 = require("@flax/core/bindings");
 var import_flutter_Key13 = require("@flax/flutter/foundation");
 var import_flutter_Color14 = require("@flax/flutter/services");
 var import_flutter_BorderRadiusGeometry2 = require("@flax/flutter/widgets");
-var import_bindings41 = require("@flax/core/bindings");
+var import_bindings42 = require("@flax/core/bindings");
 function _LinearProgressIndicatorFactory(options = {}) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -525,12 +529,12 @@ function _LinearProgressIndicatorFactory(options = {}) {
 var LinearProgressIndicator = _flaxBindInstanceType(_LinearProgressIndicatorFactory, "flax.material/material#type:LinearProgressIndicator", ["package:material_ui/src/progress_indicator.dart::ProgressIndicator", "flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../js/dist/generated/libraries/material/_bindings/material_ListTile.js
-var import_bindings44 = require("@flax/core/bindings");
+var import_bindings45 = require("@flax/core/bindings");
 var import_flutter_Key14 = require("@flax/flutter/foundation");
 
 // ../../js/dist/generated/libraries/material/_bindings/material_ListTileStyle.js
-var import_bindings42 = require("@flax/core/bindings");
 var import_bindings43 = require("@flax/core/bindings");
+var import_bindings44 = require("@flax/core/bindings");
 defineEnum("flax.material/material#type:ListTileStyle", ["list", "drawer"]);
 var _flaxEnum_ListTileStyle_api = {
   list: enumValue("flax.material/material#type:ListTileStyle", "list"),
@@ -544,7 +548,7 @@ var import_flutter_Color15 = require("@flax/flutter/services");
 var import_flutter_TextStyle3 = require("@flax/flutter/widgets");
 var import_flutter_EdgeInsetsGeometry4 = require("@flax/flutter/widgets");
 var import_flutter_FocusNode4 = require("@flax/flutter/widgets");
-var import_bindings45 = require("@flax/core/bindings");
+var import_bindings46 = require("@flax/core/bindings");
 function _ListTileFactory(options = {}) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -555,12 +559,12 @@ function _ListTileFactory(options = {}) {
 var ListTile = _flaxBindInstanceType(_ListTileFactory, "flax.material/material#type:ListTile", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../js/dist/generated/libraries/material/_bindings/material_Material.js
-var import_bindings48 = require("@flax/core/bindings");
+var import_bindings49 = require("@flax/core/bindings");
 var import_flutter_Key15 = require("@flax/flutter/foundation");
 
 // ../../js/dist/generated/libraries/material/_bindings/material_MaterialType.js
-var import_bindings46 = require("@flax/core/bindings");
 var import_bindings47 = require("@flax/core/bindings");
+var import_bindings48 = require("@flax/core/bindings");
 defineEnum("flax.material/material#type:MaterialType", ["canvas", "card", "circle", "button", "transparency"]);
 var _flaxEnum_MaterialType_api = {
   canvas: enumValue("flax.material/material#type:MaterialType", "canvas"),
@@ -578,7 +582,7 @@ var import_flutter_TextStyle4 = require("@flax/flutter/widgets");
 var import_flutter_BorderRadiusGeometry3 = require("@flax/flutter/widgets");
 var import_flutter_ShapeBorder2 = require("@flax/flutter/widgets");
 var import_flutter_Clip3 = require("@flax/flutter/widgets");
-var import_bindings49 = require("@flax/core/bindings");
+var import_bindings50 = require("@flax/core/bindings");
 function _MaterialFactory(options = {}) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -589,13 +593,13 @@ function _MaterialFactory(options = {}) {
 var Material = _flaxBindInstanceType(_MaterialFactory, "flax.material/material#type:Material", ["flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../js/dist/generated/libraries/material/_bindings/material_MaterialApp.js
-var import_bindings52 = require("@flax/core/bindings");
+var import_bindings53 = require("@flax/core/bindings");
 var import_flutter_Key16 = require("@flax/flutter/foundation");
 var import_flutter_NavigatorObserver = require("@flax/flutter/widgets");
 
 // ../../js/dist/generated/libraries/material/_bindings/material_ThemeMode.js
-var import_bindings50 = require("@flax/core/bindings");
 var import_bindings51 = require("@flax/core/bindings");
+var import_bindings52 = require("@flax/core/bindings");
 defineEnum("flax.material/material#type:ThemeMode", ["system", "light", "dark"]);
 var _flaxEnum_ThemeMode_api = {
   system: enumValue("flax.material/material#type:ThemeMode", "system"),
@@ -606,7 +610,7 @@ var _flaxEnum_ThemeMode_api = {
 var ThemeMode = Object.freeze(_flaxBindInstanceType(_flaxEnum_ThemeMode_api, "flax.material/material#type:ThemeMode", []));
 
 // ../../js/dist/generated/libraries/material/_bindings/material_MaterialApp.js
-var import_bindings53 = require("@flax/core/bindings");
+var import_bindings54 = require("@flax/core/bindings");
 function _MaterialAppFactory(options = {}) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -617,9 +621,9 @@ function _MaterialAppFactory(options = {}) {
 var MaterialApp = _flaxBindInstanceType(_MaterialAppFactory, "flax.material/material#type:MaterialApp", ["flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../js/dist/generated/libraries/material/_bindings/material_MaterialPage.js
-var import_bindings54 = require("@flax/core/bindings");
-var import_flutter_LocalKey = require("@flax/flutter/foundation");
 var import_bindings55 = require("@flax/core/bindings");
+var import_flutter_LocalKey = require("@flax/flutter/foundation");
+var import_bindings56 = require("@flax/core/bindings");
 function _MaterialPageFactory(options) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -631,10 +635,10 @@ var MaterialPage = _flaxBindInstanceType(_MaterialPageFactory, "flax.material/ma
 _flaxDefineDartTypes(MaterialPage, "flax.material/material#type:MaterialPage", { "category": "page", "constructors": { "": [{ "name": "child", "required": true, "positional": false }, { "name": "maintainState", "required": false, "positional": false }, { "name": "fullscreenDialog", "required": false, "positional": false }, { "name": "key", "required": false, "positional": false }, { "name": "canPop", "required": false, "positional": false }, { "name": "onPopInvoked", "required": false, "positional": false }, { "name": "name", "required": false, "positional": false }, { "name": "arguments", "required": false, "positional": false }] } });
 
 // ../../js/dist/generated/libraries/material/_bindings/material_MaterialPageRoute.js
-var import_bindings56 = require("@flax/core/bindings");
+var import_bindings57 = require("@flax/core/bindings");
 var import_flutter_BuildContext = require("@flax/flutter/widgets");
 var import_flutter_RouteSettings = require("@flax/flutter/widgets");
-var import_bindings57 = require("@flax/core/bindings");
+var import_bindings58 = require("@flax/core/bindings");
 function _MaterialPageRouteFactory(options) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -646,13 +650,13 @@ var MaterialPageRoute = _flaxBindInstanceType(_MaterialPageRouteFactory, "flax.m
 _flaxDefineDartTypes(MaterialPageRoute, "flax.material/material#type:MaterialPageRoute", { "category": "route", "constructors": { "": [{ "name": "builder", "required": true, "positional": false }, { "name": "settings", "required": false, "positional": false }, { "name": "maintainState", "required": false, "positional": false }, { "name": "fullscreenDialog", "required": false, "positional": false }] } });
 
 // ../../js/dist/generated/libraries/material/_bindings/material_NavigationBar.js
-var import_bindings60 = require("@flax/core/bindings");
+var import_bindings61 = require("@flax/core/bindings");
 var import_flutter_Key17 = require("@flax/flutter/foundation");
 var import_flutter_Color17 = require("@flax/flutter/services");
 
 // ../../js/dist/generated/libraries/material/_bindings/material_NavigationDestinationLabelBehavior.js
-var import_bindings58 = require("@flax/core/bindings");
 var import_bindings59 = require("@flax/core/bindings");
+var import_bindings60 = require("@flax/core/bindings");
 defineEnum("flax.material/material#type:NavigationDestinationLabelBehavior", ["alwaysShow", "alwaysHide", "onlyShowSelected"]);
 var _flaxEnum_NavigationDestinationLabelBehavior_api = {
   alwaysShow: enumValue("flax.material/material#type:NavigationDestinationLabelBehavior", "alwaysShow"),
@@ -663,7 +667,7 @@ var _flaxEnum_NavigationDestinationLabelBehavior_api = {
 var NavigationDestinationLabelBehavior = Object.freeze(_flaxBindInstanceType(_flaxEnum_NavigationDestinationLabelBehavior_api, "flax.material/material#type:NavigationDestinationLabelBehavior", []));
 
 // ../../js/dist/generated/libraries/material/_bindings/material_NavigationBar.js
-var import_bindings61 = require("@flax/core/bindings");
+var import_bindings62 = require("@flax/core/bindings");
 function _NavigationBarFactory(options) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -674,9 +678,9 @@ function _NavigationBarFactory(options) {
 var NavigationBar = _flaxBindInstanceType(_NavigationBarFactory, "flax.material/material#type:NavigationBar", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../js/dist/generated/libraries/material/_bindings/material_NavigationDestination.js
-var import_bindings62 = require("@flax/core/bindings");
-var import_flutter_Key18 = require("@flax/flutter/foundation");
 var import_bindings63 = require("@flax/core/bindings");
+var import_flutter_Key18 = require("@flax/flutter/foundation");
+var import_bindings64 = require("@flax/core/bindings");
 function _NavigationDestinationFactory(options) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -687,9 +691,9 @@ function _NavigationDestinationFactory(options) {
 var NavigationDestination = _flaxBindInstanceType(_NavigationDestinationFactory, "flax.material/material#type:NavigationDestination", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../js/dist/generated/libraries/material/_bindings/material_OutlinedButton.js
-var import_bindings64 = require("@flax/core/bindings");
-var import_flutter_Key19 = require("@flax/flutter/foundation");
 var import_bindings65 = require("@flax/core/bindings");
+var import_flutter_Key19 = require("@flax/flutter/foundation");
+var import_bindings66 = require("@flax/core/bindings");
 function _OutlinedButtonFactory(options) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -700,9 +704,9 @@ function _OutlinedButtonFactory(options) {
 var OutlinedButton = _flaxBindInstanceType(_OutlinedButtonFactory, "flax.material/material#type:OutlinedButton", ["package:material_ui/src/button_style_button.dart::ButtonStyleButton", "flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../js/dist/generated/libraries/material/_bindings/material_RefreshIndicator.js
-var import_bindings66 = require("@flax/core/bindings");
-var import_flutter_Key20 = require("@flax/flutter/foundation");
 var import_bindings67 = require("@flax/core/bindings");
+var import_flutter_Key20 = require("@flax/flutter/foundation");
+var import_bindings68 = require("@flax/core/bindings");
 function _RefreshIndicatorFactory(options) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -713,10 +717,11 @@ function _RefreshIndicatorFactory(options) {
 var RefreshIndicator = _flaxBindInstanceType(_RefreshIndicatorFactory, "flax.material/material#type:RefreshIndicator", ["flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../js/dist/generated/libraries/material/_bindings/material_Scaffold.js
-var import_bindings68 = require("@flax/core/bindings");
-var import_flutter_Key21 = require("@flax/flutter/foundation");
-var import_flutter_Color18 = require("@flax/flutter/services");
 var import_bindings69 = require("@flax/core/bindings");
+var import_flutter_Key21 = require("@flax/flutter/foundation");
+var import_flutter_PreferredSizeWidget2 = require("@flax/flutter/widgets");
+var import_flutter_Color18 = require("@flax/flutter/services");
+var import_bindings70 = require("@flax/core/bindings");
 function _ScaffoldFactory(options = {}) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -727,12 +732,12 @@ function _ScaffoldFactory(options = {}) {
 var Scaffold = _flaxBindInstanceType(_ScaffoldFactory, "flax.material/material#type:Scaffold", ["flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../js/dist/generated/libraries/material/_bindings/material_Switch.js
-var import_bindings70 = require("@flax/core/bindings");
+var import_bindings71 = require("@flax/core/bindings");
 var import_flutter_Key22 = require("@flax/flutter/foundation");
 var import_flutter_Color19 = require("@flax/flutter/services");
 var import_flutter_FocusNode5 = require("@flax/flutter/widgets");
 var import_flutter_EdgeInsetsGeometry5 = require("@flax/flutter/widgets");
-var import_bindings71 = require("@flax/core/bindings");
+var import_bindings72 = require("@flax/core/bindings");
 function _SwitchFactory(options) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -743,9 +748,9 @@ function _SwitchFactory(options) {
 var Switch = _flaxBindInstanceType(_SwitchFactory, "flax.material/material#type:Switch", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../js/dist/generated/libraries/material/_bindings/material_TextButton.js
-var import_bindings72 = require("@flax/core/bindings");
-var import_flutter_Key23 = require("@flax/flutter/foundation");
 var import_bindings73 = require("@flax/core/bindings");
+var import_flutter_Key23 = require("@flax/flutter/foundation");
+var import_bindings74 = require("@flax/core/bindings");
 function _TextButtonFactory(options) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -756,14 +761,14 @@ function _TextButtonFactory(options) {
 var TextButton = _flaxBindInstanceType(_TextButtonFactory, "flax.material/material#type:TextButton", ["package:material_ui/src/button_style_button.dart::ButtonStyleButton", "flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../js/dist/generated/libraries/material/_bindings/material_TextField.js
-var import_bindings76 = require("@flax/core/bindings");
+var import_bindings77 = require("@flax/core/bindings");
 var import_flutter_Key24 = require("@flax/flutter/foundation");
 var import_flutter_TextEditingController = require("@flax/flutter/widgets");
 var import_flutter_FocusNode6 = require("@flax/flutter/widgets");
 
 // ../../js/dist/generated/libraries/material/_bindings/material_TextInputAction.js
-var import_bindings74 = require("@flax/core/bindings");
 var import_bindings75 = require("@flax/core/bindings");
+var import_bindings76 = require("@flax/core/bindings");
 defineEnum("flax.material/material#type:TextInputAction", ["none", "unspecified", "done", "go", "search", "send", "next", "previous", "continueAction", "join", "route", "emergencyCall", "newline"]);
 var _flaxEnum_TextInputAction_api = {
   none: enumValue("flax.material/material#type:TextInputAction", "none"),
@@ -786,7 +791,7 @@ var TextInputAction = Object.freeze(_flaxBindInstanceType(_flaxEnum_TextInputAct
 // ../../js/dist/generated/libraries/material/_bindings/material_TextField.js
 var import_flutter_TextStyle5 = require("@flax/flutter/widgets");
 var import_flutter_TextInputFormatter = require("@flax/flutter/services");
-var import_bindings77 = require("@flax/core/bindings");
+var import_bindings78 = require("@flax/core/bindings");
 function _TextFieldFactory(options = {}) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -797,10 +802,10 @@ function _TextFieldFactory(options = {}) {
 var TextField = _flaxBindInstanceType(_TextFieldFactory, "flax.material/material#type:TextField", ["flax.core/components#type:StatefulWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../js/dist/generated/libraries/material/_bindings/material_Theme.js
-var import_bindings78 = require("@flax/core/bindings");
+var import_bindings79 = require("@flax/core/bindings");
 var import_flutter_Key25 = require("@flax/flutter/foundation");
 var import_flutter_BuildContext2 = require("@flax/flutter/widgets");
-var import_bindings79 = require("@flax/core/bindings");
+var import_bindings80 = require("@flax/core/bindings");
 function _ThemeFactory(options) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -820,11 +825,11 @@ function _ThemeFactory(options) {
 var Theme = _flaxBindInstanceType(_ThemeFactory, "flax.material/material#type:Theme", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../js/dist/generated/libraries/material/_bindings/material_VerticalDivider.js
-var import_bindings80 = require("@flax/core/bindings");
+var import_bindings81 = require("@flax/core/bindings");
 var import_flutter_Key26 = require("@flax/flutter/foundation");
 var import_flutter_Color20 = require("@flax/flutter/services");
 var import_flutter_BorderRadiusGeometry4 = require("@flax/flutter/widgets");
-var import_bindings81 = require("@flax/core/bindings");
+var import_bindings82 = require("@flax/core/bindings");
 function _VerticalDividerFactory(options = {}) {
   if (new.target)
     throw new TypeError("Use the Dart factory call; this binding is not a JS subclass constructor");
@@ -835,24 +840,24 @@ function _VerticalDividerFactory(options = {}) {
 var VerticalDivider = _flaxBindInstanceType(_VerticalDividerFactory, "flax.material/material#type:VerticalDivider", ["package:flutter/src/widgets/framework.dart::StatelessWidget", "package:flutter/src/widgets/framework.dart::Widget", "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree", "dart:core::Object", "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"]);
 
 // ../../js/dist/generated/libraries/material/_bindings/material_kTabScrollDuration.js
-var import_bindings82 = require("@flax/core/bindings");
-var import_flutter_Duration = require("@flax/dart/core");
 var import_bindings83 = require("@flax/core/bindings");
+var import_flutter_Duration = require("@flax/dart/core");
+var import_bindings84 = require("@flax/core/bindings");
 function getKTabScrollDuration() {
   return invokeTopLevel("flax.material/material#read:kTabScrollDuration", []);
 }
 
 // ../../js/dist/generated/libraries/material/_bindings/material_kToolbarHeight.js
-var import_bindings84 = require("@flax/core/bindings");
 var import_bindings85 = require("@flax/core/bindings");
+var import_bindings86 = require("@flax/core/bindings");
 var kToolbarHeight = 56;
 
 // ../../js/dist/generated/libraries/material/_bindings/material_showDialog.js
-var import_bindings86 = require("@flax/core/bindings");
+var import_bindings87 = require("@flax/core/bindings");
 var import_flutter_Color21 = require("@flax/flutter/services");
 var import_flutter_BuildContext3 = require("@flax/flutter/widgets");
 var import_flutter_RouteSettings2 = require("@flax/flutter/widgets");
-var import_bindings87 = require("@flax/core/bindings");
+var import_bindings88 = require("@flax/core/bindings");
 function _flaxTopLevel_showDialog(options) {
   if (arguments.length > 1)
     throw new TypeError("Too many method arguments");
@@ -861,6 +866,6 @@ function _flaxTopLevel_showDialog(options) {
   const _flaxResult = invokeTopLevel("flax.material/material#function:showDialog", [options.barrierColor, options.barrierDismissible, options.barrierLabel, options.builder, contextHandle(options.context, "flax.core/flutter#type:BuildContext"), options.fullscreenDialog, options.requestFocus, options.routeSettings, options.useRootNavigator, options.useSafeArea]);
   return _flaxResult;
 }
-var _flaxGeneric_showDialog = (0, import_bindings86.defineDartCallTypes)(_flaxTopLevel_showDialog, { "id": "flax.material/material#function:showDialog", "parameters": [{ "name": "barrierColor", "required": false, "positional": false }, { "name": "barrierDismissible", "required": false, "positional": false }, { "name": "barrierLabel", "required": false, "positional": false }, { "name": "builder", "required": true, "positional": false }, { "name": "context", "required": true, "positional": false, "context": "flax.core/flutter#type:BuildContext" }, { "name": "fullscreenDialog", "required": false, "positional": false }, { "name": "requestFocus", "required": false, "positional": false }, { "name": "routeSettings", "required": false, "positional": false }, { "name": "useRootNavigator", "required": false, "positional": false }, { "name": "useSafeArea", "required": false, "positional": false }] });
+var _flaxGeneric_showDialog = (0, import_bindings87.defineDartCallTypes)(_flaxTopLevel_showDialog, { "id": "flax.material/material#function:showDialog", "parameters": [{ "name": "barrierColor", "required": false, "positional": false }, { "name": "barrierDismissible", "required": false, "positional": false }, { "name": "barrierLabel", "required": false, "positional": false }, { "name": "builder", "required": true, "positional": false }, { "name": "context", "required": true, "positional": false, "context": "flax.core/flutter#type:BuildContext" }, { "name": "fullscreenDialog", "required": false, "positional": false }, { "name": "requestFocus", "required": false, "positional": false }, { "name": "routeSettings", "required": false, "positional": false }, { "name": "useRootNavigator", "required": false, "positional": false }, { "name": "useSafeArea", "required": false, "positional": false }] });
 
 });

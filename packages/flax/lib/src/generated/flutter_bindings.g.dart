@@ -7197,13 +7197,91 @@ const flutterBindings = FlaxBindingModule(
       matches: _isFlaxNavigatorObserver,
       methods: const {},
     ),
-    FlaxWidgetInterfaceBinding(
+    FlaxObjectBinding(
       "flax.core/flutter#type:PreferredSizeWidget",
-      _isPreferredSizeWidget,
+      [
+        FlaxGetter(
+          "preferredSize",
+          FlaxTypeRef("object", id: "flax.core/flutter#type:Size"),
+          _PreferredSizeWidget_preferredSize,
+        ),
+      ],
+      {},
+      constructors: {
+        "@implementation": [
+          FlaxParameter(
+            "key",
+            FlaxTypeRef(
+              "object",
+              id: "flax.core/flutter#type:Key",
+              nullable: true,
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+        ],
+      },
+      create: _createPreferredSizeWidget,
+      disposeMethod: null,
+      listenerPairs: {},
+      supertypes: [
+        "dart:core::Object",
+        "package:flutter/src/widgets/framework.dart::Widget",
+        "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree",
+        "package:flutter/src/foundation/diagnostics.dart::Diagnosticable",
+      ],
+      setters: [],
+      matches: _isPreferredSizeWidget,
+      methods: const {},
+      proxy: FlaxProxyBinding([
+        FlaxProxyMember(
+          "build",
+          0,
+          FlaxCallbackBinding(
+            [
+              FlaxCallbackParameter(
+                "context",
+                FlaxTypeRef(
+                  "context",
+                  id: "flax.core/flutter#type:BuildContext",
+                ),
+                required: true,
+                positional: true,
+              ),
+            ],
+            FlaxTypeRef("widget"),
+            _callback116,
+            id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
+            invoke: _callback116Invoke,
+            matches: _callback116Matches,
+          ),
+          hasSuper: false,
+        ),
+        FlaxProxyMember(
+          "preferredSize",
+          1,
+          FlaxCallbackBinding(
+            [],
+            FlaxTypeRef("object", id: "flax.core/flutter#type:Size"),
+            _callback117,
+            id: "callback:<>()->object:flax.core/flutter#type:Size",
+            invoke: _callback117Invoke,
+            matches: _callback117Matches,
+          ),
+          hasSuper: false,
+        ),
+      ]),
     ),
     FlaxObjectBinding(
       "flax.core/flutter#type:PreferredSize",
-      [],
+      [
+        FlaxGetter(
+          "preferredSize",
+          FlaxTypeRef("object", id: "flax.core/flutter#type:Size"),
+          _PreferredSize_preferredSize,
+        ),
+      ],
       {},
       constructors: {
         "": [
@@ -9353,10 +9431,10 @@ const flutterBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [],
                   FlaxTypeRef("void"),
-                  _callback116,
+                  _callback118,
                   id: "callback:<>()->void:",
-                  invoke: _callback116Invoke,
-                  matches: _callback116Matches,
+                  invoke: _callback118Invoke,
+                  matches: _callback118Matches,
                 ),
               ),
               required: true,
@@ -9377,10 +9455,10 @@ const flutterBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [],
                   FlaxTypeRef("void"),
-                  _callback117,
+                  _callback119,
                   id: "callback:<>()->void:",
-                  invoke: _callback117Invoke,
-                  matches: _callback117Matches,
+                  invoke: _callback119Invoke,
+                  matches: _callback119Matches,
                 ),
               ),
               required: true,
@@ -9813,10 +9891,10 @@ const flutterBindings = FlaxBindingModule(
                   dartType: FlaxDartTypes.typeOf<api.Route<Object?>?>,
                   nullable: true,
                 ),
-                _callback118,
+                _callback120,
                 id: "callback:<>(p:r:settings:object:flax.core/flutter#type:RouteSettings)->route?:flax.core/flutter#type:Route<Object?><any?:>",
-                invoke: _callback118Invoke,
-                matches: _callback118Matches,
+                invoke: _callback120Invoke,
+                matches: _callback120Matches,
               ),
             ),
             required: false,
@@ -9846,10 +9924,10 @@ const flutterBindings = FlaxBindingModule(
                   dartType: FlaxDartTypes.typeOf<api.Route<Object?>?>,
                   nullable: true,
                 ),
-                _callback119,
+                _callback121,
                 id: "callback:<>(p:r:settings:object:flax.core/flutter#type:RouteSettings)->route?:flax.core/flutter#type:Route<Object?><any?:>",
-                invoke: _callback119Invoke,
-                matches: _callback119Matches,
+                invoke: _callback121Invoke,
+                matches: _callback121Matches,
               ),
             ),
             required: false,
@@ -9906,10 +9984,10 @@ const flutterBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef("void"),
-                _callback120,
+                _callback122,
                 id: "callback:<>(p:r:page:page:flax.core/flutter#type:Page<Object?><any?:>)->void:",
-                invoke: _callback120Invoke,
-                matches: _callback120Matches,
+                invoke: _callback122Invoke,
+                matches: _callback122Matches,
               ),
             ),
             required: false,
@@ -10124,10 +10202,10 @@ const flutterBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef("void"),
-                _callback121,
+                _callback123,
                 id: "callback:<>(p:r:result:data?:)->void:",
-                invoke: _callback121Invoke,
-                matches: _callback121Matches,
+                invoke: _callback123Invoke,
+                matches: _callback123Matches,
               ),
             ),
             required: false,
@@ -10204,10 +10282,10 @@ const flutterBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef("void"),
-                _callback122,
+                _callback124,
                 id: "callback:<>(p:r:didPop:bool:,p:r:result:data?:)->void:",
-                invoke: _callback122Invoke,
-                matches: _callback122Matches,
+                invoke: _callback124Invoke,
+                matches: _callback124Matches,
               ),
             ),
             required: false,
@@ -10252,10 +10330,10 @@ const flutterBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef("widget"),
-                _callback123,
+                _callback125,
                 id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
-                invoke: _callback123Invoke,
-                matches: _callback123Matches,
+                invoke: _callback125Invoke,
+                matches: _callback125Matches,
                 independentWidgetResult: true,
               ),
             ),
@@ -10310,10 +10388,10 @@ const flutterBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef("widget"),
-                _callback124,
+                _callback126,
                 id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:constraints:object:flax.core/flutter#type:BoxConstraints)->widget:",
-                invoke: _callback124Invoke,
-                matches: _callback124Matches,
+                invoke: _callback126Invoke,
+                matches: _callback126Matches,
                 independentWidgetResult: true,
               ),
             ),
@@ -10836,10 +10914,10 @@ const flutterBindings = FlaxBindingModule(
                 ),
               ],
               FlaxTypeRef("widget"),
-              _callback125,
+              _callback127,
               id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
-              invoke: _callback125Invoke,
-              matches: _callback125Matches,
+              invoke: _callback127Invoke,
+              matches: _callback127Matches,
             ),
             hasSuper: true,
           ),
@@ -10849,10 +10927,10 @@ const flutterBindings = FlaxBindingModule(
             FlaxCallbackBinding(
               [],
               FlaxTypeRef("String", nullable: true),
-              _callback126,
+              _callback128,
               id: "callback:<>()->String?:",
-              invoke: _callback126Invoke,
-              matches: _callback126Matches,
+              invoke: _callback128Invoke,
+              matches: _callback128Matches,
             ),
             hasSuper: true,
           ),
@@ -10866,10 +10944,10 @@ const flutterBindings = FlaxBindingModule(
                 id: "flax.core/flutter#type:Key",
                 nullable: true,
               ),
-              _callback127,
+              _callback129,
               id: "callback:<>()->object?:flax.core/flutter#type:Key",
-              invoke: _callback127Invoke,
-              matches: _callback127Matches,
+              invoke: _callback129Invoke,
+              matches: _callback129Matches,
             ),
             hasSuper: true,
           ),
@@ -11372,10 +11450,10 @@ const flutterBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [],
                   FlaxTypeRef("void"),
-                  _callback128,
+                  _callback130,
                   id: "callback:<>()->void:",
-                  invoke: _callback128Invoke,
-                  matches: _callback128Matches,
+                  invoke: _callback130Invoke,
+                  matches: _callback130Matches,
                 ),
               ),
               required: true,
@@ -11396,10 +11474,10 @@ const flutterBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [],
                   FlaxTypeRef("void"),
-                  _callback129,
+                  _callback131,
                   id: "callback:<>()->void:",
-                  invoke: _callback129Invoke,
-                  matches: _callback129Matches,
+                  invoke: _callback131Invoke,
+                  matches: _callback131Matches,
                 ),
               ),
               required: true,
@@ -11792,10 +11870,10 @@ const flutterBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef("widget", nullable: true),
-                _callback130,
+                _callback132,
                 id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:index:int:)->widget?:",
-                invoke: _callback130Invoke,
-                matches: _callback130Matches,
+                invoke: _callback132Invoke,
+                matches: _callback132Matches,
                 independentWidgetResult: true,
               ),
             ),
@@ -11818,10 +11896,10 @@ const flutterBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef("int", nullable: true),
-                _callback131,
+                _callback133,
                 id: "callback:<>(p:r:key:object:flax.core/flutter#type:Key)->int?:",
-                invoke: _callback131Invoke,
-                matches: _callback131Matches,
+                invoke: _callback133Invoke,
+                matches: _callback133Matches,
               ),
             ),
             required: false,
@@ -11974,10 +12052,10 @@ const flutterBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [],
                   FlaxTypeRef("void"),
-                  _callback132,
+                  _callback134,
                   id: "callback:<>()->void:",
-                  invoke: _callback132Invoke,
-                  matches: _callback132Matches,
+                  invoke: _callback134Invoke,
+                  matches: _callback134Matches,
                 ),
               ),
               required: true,
@@ -11998,10 +12076,10 @@ const flutterBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [],
                   FlaxTypeRef("void"),
-                  _callback133,
+                  _callback135,
                   id: "callback:<>()->void:",
-                  invoke: _callback133Invoke,
-                  matches: _callback133Matches,
+                  invoke: _callback135Invoke,
+                  matches: _callback135Matches,
                 ),
               ),
               required: true,
@@ -12153,10 +12231,10 @@ const flutterBindings = FlaxBindingModule(
                   "object",
                   id: "flax.core/flutter#type:TextEditingValue",
                 ),
-                _callback134,
+                _callback136,
                 id: "callback:<>(p:r:oldValue:object:flax.core/flutter#type:TextEditingValue,p:r:newValue:object:flax.core/flutter#type:TextEditingValue)->object:flax.core/flutter#type:TextEditingValue",
-                invoke: _callback134Invoke,
-                matches: _callback134Matches,
+                invoke: _callback136Invoke,
+                matches: _callback136Matches,
               ),
             ),
             required: true,
@@ -12757,64 +12835,6 @@ const flutterBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef("void"),
-                _callback135,
-                id: "callback:<>(p:r:event:object:flax.core/flutter#type:PointerEvent)->void:",
-                invoke: _callback135Invoke,
-                matches: _callback135Matches,
-              ),
-            ),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onPointerMove",
-            FlaxTypeRef(
-              "callback",
-              nullable: true,
-              callback: FlaxCallbackBinding(
-                [
-                  FlaxCallbackParameter(
-                    "event",
-                    FlaxTypeRef(
-                      "object",
-                      id: "flax.core/flutter#type:PointerEvent",
-                    ),
-                    required: true,
-                    positional: true,
-                    encode: const FlaxTypeRef('data'),
-                  ),
-                ],
-                FlaxTypeRef("void"),
-                _callback136,
-                id: "callback:<>(p:r:event:object:flax.core/flutter#type:PointerEvent)->void:",
-                invoke: _callback136Invoke,
-                matches: _callback136Matches,
-              ),
-            ),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onPointerUp",
-            FlaxTypeRef(
-              "callback",
-              nullable: true,
-              callback: FlaxCallbackBinding(
-                [
-                  FlaxCallbackParameter(
-                    "event",
-                    FlaxTypeRef(
-                      "object",
-                      id: "flax.core/flutter#type:PointerEvent",
-                    ),
-                    required: true,
-                    positional: true,
-                    encode: const FlaxTypeRef('data'),
-                  ),
-                ],
-                FlaxTypeRef("void"),
                 _callback137,
                 id: "callback:<>(p:r:event:object:flax.core/flutter#type:PointerEvent)->void:",
                 invoke: _callback137Invoke,
@@ -12826,7 +12846,7 @@ const flutterBindings = FlaxBindingModule(
             omitWhenAbsent: false,
           ),
           FlaxParameter(
-            "onPointerHover",
+            "onPointerMove",
             FlaxTypeRef(
               "callback",
               nullable: true,
@@ -12855,7 +12875,7 @@ const flutterBindings = FlaxBindingModule(
             omitWhenAbsent: false,
           ),
           FlaxParameter(
-            "onPointerCancel",
+            "onPointerUp",
             FlaxTypeRef(
               "callback",
               nullable: true,
@@ -12884,7 +12904,7 @@ const flutterBindings = FlaxBindingModule(
             omitWhenAbsent: false,
           ),
           FlaxParameter(
-            "onPointerSignal",
+            "onPointerHover",
             FlaxTypeRef(
               "callback",
               nullable: true,
@@ -12906,6 +12926,64 @@ const flutterBindings = FlaxBindingModule(
                 id: "callback:<>(p:r:event:object:flax.core/flutter#type:PointerEvent)->void:",
                 invoke: _callback140Invoke,
                 matches: _callback140Matches,
+              ),
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "onPointerCancel",
+            FlaxTypeRef(
+              "callback",
+              nullable: true,
+              callback: FlaxCallbackBinding(
+                [
+                  FlaxCallbackParameter(
+                    "event",
+                    FlaxTypeRef(
+                      "object",
+                      id: "flax.core/flutter#type:PointerEvent",
+                    ),
+                    required: true,
+                    positional: true,
+                    encode: const FlaxTypeRef('data'),
+                  ),
+                ],
+                FlaxTypeRef("void"),
+                _callback141,
+                id: "callback:<>(p:r:event:object:flax.core/flutter#type:PointerEvent)->void:",
+                invoke: _callback141Invoke,
+                matches: _callback141Matches,
+              ),
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "onPointerSignal",
+            FlaxTypeRef(
+              "callback",
+              nullable: true,
+              callback: FlaxCallbackBinding(
+                [
+                  FlaxCallbackParameter(
+                    "event",
+                    FlaxTypeRef(
+                      "object",
+                      id: "flax.core/flutter#type:PointerEvent",
+                    ),
+                    required: true,
+                    positional: true,
+                    encode: const FlaxTypeRef('data'),
+                  ),
+                ],
+                FlaxTypeRef("void"),
+                _callback142,
+                id: "callback:<>(p:r:event:object:flax.core/flutter#type:PointerEvent)->void:",
+                invoke: _callback142Invoke,
+                matches: _callback142Matches,
               ),
             ),
             required: false,
@@ -12966,10 +13044,10 @@ const flutterBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef("void"),
-                _callback141,
+                _callback143,
                 id: "callback:<>(p:r:event:object:flax.core/flutter#type:PointerEvent)->void:",
-                invoke: _callback141Invoke,
-                matches: _callback141Matches,
+                invoke: _callback143Invoke,
+                matches: _callback143Matches,
               ),
             ),
             required: false,
@@ -12995,10 +13073,10 @@ const flutterBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef("void"),
-                _callback142,
+                _callback144,
                 id: "callback:<>(p:r:event:object:flax.core/flutter#type:PointerEvent)->void:",
-                invoke: _callback142Invoke,
-                matches: _callback142Matches,
+                invoke: _callback144Invoke,
+                matches: _callback144Matches,
               ),
             ),
             required: false,
@@ -13024,10 +13102,10 @@ const flutterBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef("void"),
-                _callback143,
+                _callback145,
                 id: "callback:<>(p:r:event:object:flax.core/flutter#type:PointerEvent)->void:",
-                invoke: _callback143Invoke,
-                matches: _callback143Matches,
+                invoke: _callback145Invoke,
+                matches: _callback145Matches,
               ),
             ),
             required: false,
@@ -13120,10 +13198,10 @@ const flutterBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef("void"),
-                _callback144,
+                _callback146,
                 id: "callback:<>(p:r:value:object:flax.core/flutter#type:KeyEvent)->void:",
-                invoke: _callback144Invoke,
-                matches: _callback144Matches,
+                invoke: _callback146Invoke,
+                matches: _callback146Matches,
               ),
             ),
             required: false,
@@ -13839,42 +13917,6 @@ const flutterBindings = FlaxBindingModule(
               callback: FlaxCallbackBinding(
                 [],
                 FlaxTypeRef("void"),
-                _callback145,
-                id: "callback:<>()->void:",
-                invoke: _callback145Invoke,
-                matches: _callback145Matches,
-              ),
-            ),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onTapCancel",
-            FlaxTypeRef(
-              "callback",
-              nullable: true,
-              callback: FlaxCallbackBinding(
-                [],
-                FlaxTypeRef("void"),
-                _callback146,
-                id: "callback:<>()->void:",
-                invoke: _callback146Invoke,
-                matches: _callback146Matches,
-              ),
-            ),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onSecondaryTap",
-            FlaxTypeRef(
-              "callback",
-              nullable: true,
-              callback: FlaxCallbackBinding(
-                [],
-                FlaxTypeRef("void"),
                 _callback147,
                 id: "callback:<>()->void:",
                 invoke: _callback147Invoke,
@@ -13886,7 +13928,7 @@ const flutterBindings = FlaxBindingModule(
             omitWhenAbsent: false,
           ),
           FlaxParameter(
-            "onSecondaryTapCancel",
+            "onTapCancel",
             FlaxTypeRef(
               "callback",
               nullable: true,
@@ -13904,7 +13946,7 @@ const flutterBindings = FlaxBindingModule(
             omitWhenAbsent: false,
           ),
           FlaxParameter(
-            "onDoubleTap",
+            "onSecondaryTap",
             FlaxTypeRef(
               "callback",
               nullable: true,
@@ -13922,7 +13964,7 @@ const flutterBindings = FlaxBindingModule(
             omitWhenAbsent: false,
           ),
           FlaxParameter(
-            "onDoubleTapCancel",
+            "onSecondaryTapCancel",
             FlaxTypeRef(
               "callback",
               nullable: true,
@@ -13940,7 +13982,7 @@ const flutterBindings = FlaxBindingModule(
             omitWhenAbsent: false,
           ),
           FlaxParameter(
-            "onLongPressCancel",
+            "onDoubleTap",
             FlaxTypeRef(
               "callback",
               nullable: true,
@@ -13958,7 +14000,7 @@ const flutterBindings = FlaxBindingModule(
             omitWhenAbsent: false,
           ),
           FlaxParameter(
-            "onLongPress",
+            "onDoubleTapCancel",
             FlaxTypeRef(
               "callback",
               nullable: true,
@@ -13969,6 +14011,42 @@ const flutterBindings = FlaxBindingModule(
                 id: "callback:<>()->void:",
                 invoke: _callback152Invoke,
                 matches: _callback152Matches,
+              ),
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "onLongPressCancel",
+            FlaxTypeRef(
+              "callback",
+              nullable: true,
+              callback: FlaxCallbackBinding(
+                [],
+                FlaxTypeRef("void"),
+                _callback153,
+                id: "callback:<>()->void:",
+                invoke: _callback153Invoke,
+                matches: _callback153Matches,
+              ),
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
+          FlaxParameter(
+            "onLongPress",
+            FlaxTypeRef(
+              "callback",
+              nullable: true,
+              callback: FlaxCallbackBinding(
+                [],
+                FlaxTypeRef("void"),
+                _callback154,
+                id: "callback:<>()->void:",
+                invoke: _callback154Invoke,
+                matches: _callback154Matches,
               ),
             ),
             required: false,
@@ -14061,10 +14139,10 @@ const flutterBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef("void"),
-                _callback153,
+                _callback155,
                 id: "callback:<>(p:r:value:bool:)->void:",
-                invoke: _callback153Invoke,
-                matches: _callback153Matches,
+                invoke: _callback155Invoke,
+                matches: _callback155Matches,
               ),
             ),
             required: false,
@@ -14169,10 +14247,10 @@ const flutterBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef("void"),
-                _callback154,
+                _callback156,
                 id: "callback:<>(p:r:didPop:bool:,p:r:result:data?:)->void:",
-                invoke: _callback154Invoke,
-                matches: _callback154Matches,
+                invoke: _callback156Invoke,
+                matches: _callback156Matches,
               ),
             ),
             required: false,
@@ -14187,10 +14265,10 @@ const flutterBindings = FlaxBindingModule(
               callback: FlaxCallbackBinding(
                 [],
                 FlaxTypeRef("void"),
-                _callback155,
+                _callback157,
                 id: "callback:<>()->void:",
-                invoke: _callback155Invoke,
-                matches: _callback155Matches,
+                invoke: _callback157Invoke,
+                matches: _callback157Matches,
               ),
             ),
             required: false,
@@ -14257,10 +14335,10 @@ const flutterBindings = FlaxBindingModule(
                               callback: FlaxCallbackBinding(
                                 [],
                                 FlaxTypeRef("void"),
-                                _callback156,
+                                _callback158,
                                 id: "callback:<>()->void:",
-                                invoke: _callback156Invoke,
-                                matches: _callback156Matches,
+                                invoke: _callback158Invoke,
+                                matches: _callback158Matches,
                               ),
                             ),
                             required: true,
@@ -14268,10 +14346,10 @@ const flutterBindings = FlaxBindingModule(
                           ),
                         ],
                         FlaxTypeRef("void"),
-                        _callback157,
+                        _callback159,
                         id: "callback:<>(p:r:fn:callback:<>()->void:)->void:",
-                        invoke: _callback157Invoke,
-                        matches: _callback157Matches,
+                        invoke: _callback159Invoke,
+                        matches: _callback159Matches,
                       ),
                     ),
                     required: true,
@@ -14279,10 +14357,10 @@ const flutterBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef("widget"),
-                _callback158,
+                _callback160,
                 id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:setState:callback:<>(p:r:fn:callback:<>()->void:)->void:)->widget:",
-                invoke: _callback158Invoke,
-                matches: _callback158Matches,
+                invoke: _callback160Invoke,
+                matches: _callback160Matches,
                 independentWidgetResult: true,
               ),
             ),
@@ -15034,6 +15112,7 @@ const flutterBindings = FlaxBindingModule(
     "lazy-js-iterables",
     "native-core-inputs",
     "native-widget-proxies",
+    "widget-interface-proxies",
   ],
   stateVariants: [],
   dartTypes: [
@@ -15299,7 +15378,7 @@ const flutterBindings = FlaxBindingModule(
     FlaxDartClassTemplate(
       "flax.core/flutter#type:PreferredSizeWidget",
       api.PreferredSizeWidget,
-      "widget",
+      "object",
     ),
     FlaxDartClassTemplate(
       "flax.core/flutter#type:PreferredSize",
@@ -17683,7 +17762,23 @@ Object _createFlaxNavigatorObserver(String ctor, Map<String, Object?> values) {
 }
 
 bool _isPreferredSizeWidget(Object value) => value is api.PreferredSizeWidget;
+Object? _PreferredSizeWidget_preferredSize(Object value) =>
+    (value as api.PreferredSizeWidget).preferredSize;
+Object _createPreferredSizeWidget(String ctor, Map<String, Object?> values) {
+  switch (ctor) {
+    case '@implementation':
+      return _PreferredSizeWidgetProxy(
+        values['@peer'] as FlaxProxyPeer,
+        key: values["key"] as api.Key?,
+      );
+    default:
+      throw ArgumentError('Unknown generated constructor');
+  }
+}
+
 bool _isPreferredSize(Object value) => value is api.PreferredSize;
+Object? _PreferredSize_preferredSize(Object value) =>
+    (value as api.PreferredSize).preferredSize;
 api.Widget _createPreferredSize(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
@@ -20857,6 +20952,31 @@ final class _ValueListenableProxy<_Owner0 extends Object?>
   _Owner0 get value {
     final _flaxResult = _flaxPeer.call(2, const [], const {});
     final result = _flaxResult.$2 as _Owner0;
+    return result;
+  }
+}
+
+final class _PreferredSizeWidgetProxy extends api.StatelessWidget
+    with FlaxWidgetProxy
+    implements api.PreferredSizeWidget {
+  final FlaxProxyPeer _flaxPeer;
+  _PreferredSizeWidgetProxy(this._flaxPeer, {api.Key? super.key});
+  @override
+  api.Widget build(api.BuildContext context) {
+    final _flaxResult = _flaxPeer.call(0, <Object?>[
+      context,
+    ], <String, Object?>{});
+    if (!_flaxResult.$1) {
+      throw StateError('Missing proxy method: build');
+    }
+    final result = _flaxResult.$2 as api.Widget;
+    return result;
+  }
+
+  @override
+  api.Size get preferredSize {
+    final _flaxResult = _flaxPeer.call(1, const [], const {});
+    final result = _flaxResult.$2 as api.Size;
     return result;
   }
 }
@@ -34137,28 +34257,45 @@ Object? _callback115Invoke(
   return (function as Object? Function())();
 }
 
-Object _callback116(FlaxCallback _flaxBridgeCallback) => () {
+Object _callback116(FlaxCallback _flaxBridgeCallback) => (api.BuildContext p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  _flaxBridgeCallback.call(positional, named);
+  positional.add(p0);
+  return _flaxBridgeCallback.call(positional, named) as api.Widget;
 };
-bool _callback116Matches(Object value) => value is void Function();
+bool _callback116Matches(Object value) =>
+    value is api.Widget Function(api.BuildContext context);
 Object? _callback116Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  (function as void Function())();
-  return null;
+  return (function as api.Widget Function(api.BuildContext context))(
+    positional[0] as api.BuildContext,
+  );
 }
 
 Object _callback117(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
+  return _flaxBridgeCallback.call(positional, named) as api.Size;
+};
+bool _callback117Matches(Object value) => value is api.Size Function();
+Object? _callback117Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  return (function as api.Size Function())();
+}
+
+Object _callback118(FlaxCallback _flaxBridgeCallback) => () {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
   _flaxBridgeCallback.call(positional, named);
 };
-bool _callback117Matches(Object value) => value is void Function();
-Object? _callback117Invoke(
+bool _callback118Matches(Object value) => value is void Function();
+Object? _callback118Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -34167,54 +34304,69 @@ Object? _callback117Invoke(
   return null;
 }
 
-Object _callback118(FlaxCallback _flaxBridgeCallback) =>
-    (api.RouteSettings p0) {
-      final positional = <Object?>[];
-      final named = <String, Object?>{};
-      positional.add(p0);
-      return _flaxBridgeCallback.call(positional, named) as api.Route<Object?>?;
-    };
-bool _callback118Matches(Object value) =>
-    value is api.Route<Object?>? Function(api.RouteSettings settings);
-Object? _callback118Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as api.Route<Object?>? Function(api.RouteSettings settings))(
-    positional[0] as api.RouteSettings,
-  );
-}
-
-Object _callback119(FlaxCallback _flaxBridgeCallback) =>
-    (api.RouteSettings p0) {
-      final positional = <Object?>[];
-      final named = <String, Object?>{};
-      positional.add(p0);
-      return _flaxBridgeCallback.call(positional, named) as api.Route<Object?>?;
-    };
-bool _callback119Matches(Object value) =>
-    value is api.Route<Object?>? Function(api.RouteSettings settings);
+Object _callback119(FlaxCallback _flaxBridgeCallback) => () {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  _flaxBridgeCallback.call(positional, named);
+};
+bool _callback119Matches(Object value) => value is void Function();
 Object? _callback119Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
+  (function as void Function())();
+  return null;
+}
+
+Object _callback120(FlaxCallback _flaxBridgeCallback) =>
+    (api.RouteSettings p0) {
+      final positional = <Object?>[];
+      final named = <String, Object?>{};
+      positional.add(p0);
+      return _flaxBridgeCallback.call(positional, named) as api.Route<Object?>?;
+    };
+bool _callback120Matches(Object value) =>
+    value is api.Route<Object?>? Function(api.RouteSettings settings);
+Object? _callback120Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
   return (function as api.Route<Object?>? Function(api.RouteSettings settings))(
     positional[0] as api.RouteSettings,
   );
 }
 
-Object _callback120(FlaxCallback _flaxBridgeCallback) =>
+Object _callback121(FlaxCallback _flaxBridgeCallback) =>
+    (api.RouteSettings p0) {
+      final positional = <Object?>[];
+      final named = <String, Object?>{};
+      positional.add(p0);
+      return _flaxBridgeCallback.call(positional, named) as api.Route<Object?>?;
+    };
+bool _callback121Matches(Object value) =>
+    value is api.Route<Object?>? Function(api.RouteSettings settings);
+Object? _callback121Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  return (function as api.Route<Object?>? Function(api.RouteSettings settings))(
+    positional[0] as api.RouteSettings,
+  );
+}
+
+Object _callback122(FlaxCallback _flaxBridgeCallback) =>
     (api.Page<Object?> p0) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
       positional.add(p0);
       _flaxBridgeCallback.call(positional, named);
     };
-bool _callback120Matches(Object value) =>
+bool _callback122Matches(Object value) =>
     value is void Function(api.Page<Object?> page);
-Object? _callback120Invoke(
+Object? _callback122Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -34225,15 +34377,15 @@ Object? _callback120Invoke(
   return null;
 }
 
-Object _callback121(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
+Object _callback123(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
   _flaxBridgeCallback.call(positional, named);
 };
-bool _callback121Matches(Object value) =>
+bool _callback123Matches(Object value) =>
     value is void Function(Object? result);
-Object? _callback121Invoke(
+Object? _callback123Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -34242,16 +34394,16 @@ Object? _callback121Invoke(
   return null;
 }
 
-Object _callback122(FlaxCallback _flaxBridgeCallback) => (bool p0, Object? p1) {
+Object _callback124(FlaxCallback _flaxBridgeCallback) => (bool p0, Object? p1) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
   positional.add(p1);
   _flaxBridgeCallback.call(positional, named);
 };
-bool _callback122Matches(Object value) =>
+bool _callback124Matches(Object value) =>
     value is void Function(bool didPop, Object? result);
-Object? _callback122Invoke(
+Object? _callback124Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -34261,53 +34413,6 @@ Object? _callback122Invoke(
     positional[1],
   );
   return null;
-}
-
-Object _callback123(FlaxCallback _flaxBridgeCallback) => (api.BuildContext p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as api.Widget;
-};
-bool _callback123Matches(Object value) =>
-    value is api.Widget Function(api.BuildContext context);
-Object? _callback123Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as api.Widget Function(api.BuildContext context))(
-    positional[0] as api.BuildContext,
-  );
-}
-
-Object _callback124(FlaxCallback _flaxBridgeCallback) =>
-    (api.BuildContext p0, api.BoxConstraints p1) {
-      final positional = <Object?>[];
-      final named = <String, Object?>{};
-      positional.add(p0);
-      positional.add(p1);
-      return _flaxBridgeCallback.call(positional, named) as api.Widget;
-    };
-bool _callback124Matches(Object value) =>
-    value
-        is api.Widget Function(
-          api.BuildContext context,
-          api.BoxConstraints constraints,
-        );
-Object? _callback124Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function
-      as api.Widget Function(
-        api.BuildContext context,
-        api.BoxConstraints constraints,
-      ))(
-    positional[0] as api.BuildContext,
-    positional[1] as api.BoxConstraints,
-  );
 }
 
 Object _callback125(FlaxCallback _flaxBridgeCallback) => (api.BuildContext p0) {
@@ -34328,13 +34433,60 @@ Object? _callback125Invoke(
   );
 }
 
-Object _callback126(FlaxCallback _flaxBridgeCallback) => () {
+Object _callback126(FlaxCallback _flaxBridgeCallback) =>
+    (api.BuildContext p0, api.BoxConstraints p1) {
+      final positional = <Object?>[];
+      final named = <String, Object?>{};
+      positional.add(p0);
+      positional.add(p1);
+      return _flaxBridgeCallback.call(positional, named) as api.Widget;
+    };
+bool _callback126Matches(Object value) =>
+    value
+        is api.Widget Function(
+          api.BuildContext context,
+          api.BoxConstraints constraints,
+        );
+Object? _callback126Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  return (function
+      as api.Widget Function(
+        api.BuildContext context,
+        api.BoxConstraints constraints,
+      ))(
+    positional[0] as api.BuildContext,
+    positional[1] as api.BoxConstraints,
+  );
+}
+
+Object _callback127(FlaxCallback _flaxBridgeCallback) => (api.BuildContext p0) {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  positional.add(p0);
+  return _flaxBridgeCallback.call(positional, named) as api.Widget;
+};
+bool _callback127Matches(Object value) =>
+    value is api.Widget Function(api.BuildContext context);
+Object? _callback127Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  return (function as api.Widget Function(api.BuildContext context))(
+    positional[0] as api.BuildContext,
+  );
+}
+
+Object _callback128(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   return _flaxBridgeCallback.call(positional, named) as String?;
 };
-bool _callback126Matches(Object value) => value is String? Function();
-Object? _callback126Invoke(
+bool _callback128Matches(Object value) => value is String? Function();
+Object? _callback128Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -34342,13 +34494,13 @@ Object? _callback126Invoke(
   return (function as String? Function())();
 }
 
-Object _callback127(FlaxCallback _flaxBridgeCallback) => () {
+Object _callback129(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   return _flaxBridgeCallback.call(positional, named) as api.Key?;
 };
-bool _callback127Matches(Object value) => value is api.Key? Function();
-Object? _callback127Invoke(
+bool _callback129Matches(Object value) => value is api.Key? Function();
+Object? _callback129Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -34356,13 +34508,13 @@ Object? _callback127Invoke(
   return (function as api.Key? Function())();
 }
 
-Object _callback128(FlaxCallback _flaxBridgeCallback) => () {
+Object _callback130(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   _flaxBridgeCallback.call(positional, named);
 };
-bool _callback128Matches(Object value) => value is void Function();
-Object? _callback128Invoke(
+bool _callback130Matches(Object value) => value is void Function();
+Object? _callback130Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -34371,13 +34523,13 @@ Object? _callback128Invoke(
   return null;
 }
 
-Object _callback129(FlaxCallback _flaxBridgeCallback) => () {
+Object _callback131(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   _flaxBridgeCallback.call(positional, named);
 };
-bool _callback129Matches(Object value) => value is void Function();
-Object? _callback129Invoke(
+bool _callback131Matches(Object value) => value is void Function();
+Object? _callback131Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -34386,7 +34538,7 @@ Object? _callback129Invoke(
   return null;
 }
 
-Object _callback130(FlaxCallback _flaxBridgeCallback) =>
+Object _callback132(FlaxCallback _flaxBridgeCallback) =>
     (api.BuildContext p0, int p1) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
@@ -34394,9 +34546,9 @@ Object _callback130(FlaxCallback _flaxBridgeCallback) =>
       positional.add(p1);
       return _flaxBridgeCallback.call(positional, named) as api.Widget?;
     };
-bool _callback130Matches(Object value) =>
+bool _callback132Matches(Object value) =>
     value is api.Widget? Function(api.BuildContext context, int index);
-Object? _callback130Invoke(
+Object? _callback132Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -34408,14 +34560,14 @@ Object? _callback130Invoke(
   );
 }
 
-Object _callback131(FlaxCallback _flaxBridgeCallback) => (api.Key p0) {
+Object _callback133(FlaxCallback _flaxBridgeCallback) => (api.Key p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
   return _flaxBridgeCallback.call(positional, named) as int?;
 };
-bool _callback131Matches(Object value) => value is int? Function(api.Key key);
-Object? _callback131Invoke(
+bool _callback133Matches(Object value) => value is int? Function(api.Key key);
+Object? _callback133Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -34423,13 +34575,13 @@ Object? _callback131Invoke(
   return (function as int? Function(api.Key key))(positional[0] as api.Key);
 }
 
-Object _callback132(FlaxCallback _flaxBridgeCallback) => () {
+Object _callback134(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   _flaxBridgeCallback.call(positional, named);
 };
-bool _callback132Matches(Object value) => value is void Function();
-Object? _callback132Invoke(
+bool _callback134Matches(Object value) => value is void Function();
+Object? _callback134Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -34438,13 +34590,13 @@ Object? _callback132Invoke(
   return null;
 }
 
-Object _callback133(FlaxCallback _flaxBridgeCallback) => () {
+Object _callback135(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   _flaxBridgeCallback.call(positional, named);
 };
-bool _callback133Matches(Object value) => value is void Function();
-Object? _callback133Invoke(
+bool _callback135Matches(Object value) => value is void Function();
+Object? _callback135Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -34453,7 +34605,7 @@ Object? _callback133Invoke(
   return null;
 }
 
-Object _callback134(FlaxCallback _flaxBridgeCallback) =>
+Object _callback136(FlaxCallback _flaxBridgeCallback) =>
     (api.TextEditingValue p0, api.TextEditingValue p1) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
@@ -34462,13 +34614,13 @@ Object _callback134(FlaxCallback _flaxBridgeCallback) =>
       return _flaxBridgeCallback.call(positional, named)
           as api.TextEditingValue;
     };
-bool _callback134Matches(Object value) =>
+bool _callback136Matches(Object value) =>
     value
         is api.TextEditingValue Function(
           api.TextEditingValue oldValue,
           api.TextEditingValue newValue,
         );
-Object? _callback134Invoke(
+Object? _callback136Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -34481,44 +34633,6 @@ Object? _callback134Invoke(
     positional[0] as api.TextEditingValue,
     positional[1] as api.TextEditingValue,
   );
-}
-
-Object _callback135(FlaxCallback _flaxBridgeCallback) => (api.PointerEvent p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(_snapshotPointerEvent(p0));
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback135Matches(Object value) =>
-    value is void Function(api.PointerEvent event);
-Object? _callback135Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.PointerEvent event))(
-    positional[0] as api.PointerEvent,
-  );
-  return null;
-}
-
-Object _callback136(FlaxCallback _flaxBridgeCallback) => (api.PointerEvent p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(_snapshotPointerEvent(p0));
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback136Matches(Object value) =>
-    value is void Function(api.PointerEvent event);
-Object? _callback136Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.PointerEvent event))(
-    positional[0] as api.PointerEvent,
-  );
-  return null;
 }
 
 Object _callback137(FlaxCallback _flaxBridgeCallback) => (api.PointerEvent p0) {
@@ -34654,15 +34768,53 @@ Object? _callback143Invoke(
   return null;
 }
 
-Object _callback144(FlaxCallback _flaxBridgeCallback) => (api.KeyEvent p0) {
+Object _callback144(FlaxCallback _flaxBridgeCallback) => (api.PointerEvent p0) {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  positional.add(_snapshotPointerEvent(p0));
+  _flaxBridgeCallback.call(positional, named);
+};
+bool _callback144Matches(Object value) =>
+    value is void Function(api.PointerEvent event);
+Object? _callback144Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  (function as void Function(api.PointerEvent event))(
+    positional[0] as api.PointerEvent,
+  );
+  return null;
+}
+
+Object _callback145(FlaxCallback _flaxBridgeCallback) => (api.PointerEvent p0) {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  positional.add(_snapshotPointerEvent(p0));
+  _flaxBridgeCallback.call(positional, named);
+};
+bool _callback145Matches(Object value) =>
+    value is void Function(api.PointerEvent event);
+Object? _callback145Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  (function as void Function(api.PointerEvent event))(
+    positional[0] as api.PointerEvent,
+  );
+  return null;
+}
+
+Object _callback146(FlaxCallback _flaxBridgeCallback) => (api.KeyEvent p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(_snapshotKeyEvent(p0));
   _flaxBridgeCallback.call(positional, named);
 };
-bool _callback144Matches(Object value) =>
+bool _callback146Matches(Object value) =>
     value is void Function(api.KeyEvent value);
-Object? _callback144Invoke(
+Object? _callback146Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -34670,36 +34822,6 @@ Object? _callback144Invoke(
   (function as void Function(api.KeyEvent value))(
     positional[0] as api.KeyEvent,
   );
-  return null;
-}
-
-Object _callback145(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback145Matches(Object value) => value is void Function();
-Object? _callback145Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function())();
-  return null;
-}
-
-Object _callback146(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback146Matches(Object value) => value is void Function();
-Object? _callback146Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function())();
   return null;
 }
 
@@ -34793,14 +34915,44 @@ Object? _callback152Invoke(
   return null;
 }
 
-Object _callback153(FlaxCallback _flaxBridgeCallback) => (bool p0) {
+Object _callback153(FlaxCallback _flaxBridgeCallback) => () {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  _flaxBridgeCallback.call(positional, named);
+};
+bool _callback153Matches(Object value) => value is void Function();
+Object? _callback153Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  (function as void Function())();
+  return null;
+}
+
+Object _callback154(FlaxCallback _flaxBridgeCallback) => () {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  _flaxBridgeCallback.call(positional, named);
+};
+bool _callback154Matches(Object value) => value is void Function();
+Object? _callback154Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  (function as void Function())();
+  return null;
+}
+
+Object _callback155(FlaxCallback _flaxBridgeCallback) => (bool p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
   _flaxBridgeCallback.call(positional, named);
 };
-bool _callback153Matches(Object value) => value is void Function(bool value);
-Object? _callback153Invoke(
+bool _callback155Matches(Object value) => value is void Function(bool value);
+Object? _callback155Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -34809,16 +34961,16 @@ Object? _callback153Invoke(
   return null;
 }
 
-Object _callback154(FlaxCallback _flaxBridgeCallback) => (bool p0, Object? p1) {
+Object _callback156(FlaxCallback _flaxBridgeCallback) => (bool p0, Object? p1) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
   positional.add(p1);
   _flaxBridgeCallback.call(positional, named);
 };
-bool _callback154Matches(Object value) =>
+bool _callback156Matches(Object value) =>
     value is void Function(bool didPop, Object? result);
-Object? _callback154Invoke(
+Object? _callback156Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -34830,13 +34982,13 @@ Object? _callback154Invoke(
   return null;
 }
 
-Object _callback155(FlaxCallback _flaxBridgeCallback) => () {
+Object _callback157(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   _flaxBridgeCallback.call(positional, named);
 };
-bool _callback155Matches(Object value) => value is void Function();
-Object? _callback155Invoke(
+bool _callback157Matches(Object value) => value is void Function();
+Object? _callback157Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -34845,13 +34997,13 @@ Object? _callback155Invoke(
   return null;
 }
 
-Object _callback156(FlaxCallback _flaxBridgeCallback) => () {
+Object _callback158(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   _flaxBridgeCallback.call(positional, named);
 };
-bool _callback156Matches(Object value) => value is void Function();
-Object? _callback156Invoke(
+bool _callback158Matches(Object value) => value is void Function();
+Object? _callback158Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -34860,15 +35012,15 @@ Object? _callback156Invoke(
   return null;
 }
 
-Object _callback157(FlaxCallback _flaxBridgeCallback) => (void Function() p0) {
+Object _callback159(FlaxCallback _flaxBridgeCallback) => (void Function() p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
   _flaxBridgeCallback.call(positional, named);
 };
-bool _callback157Matches(Object value) =>
+bool _callback159Matches(Object value) =>
     value is void Function(void Function() fn);
-Object? _callback157Invoke(
+Object? _callback159Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -34879,7 +35031,7 @@ Object? _callback157Invoke(
   return null;
 }
 
-Object _callback158(FlaxCallback _flaxBridgeCallback) =>
+Object _callback160(FlaxCallback _flaxBridgeCallback) =>
     (api.BuildContext p0, void Function(void Function() fn) p1) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
@@ -34887,13 +35039,13 @@ Object _callback158(FlaxCallback _flaxBridgeCallback) =>
       positional.add(p1);
       return _flaxBridgeCallback.call(positional, named) as api.Widget;
     };
-bool _callback158Matches(Object value) =>
+bool _callback160Matches(Object value) =>
     value
         is api.Widget Function(
           api.BuildContext context,
           void Function(void Function() fn) setState,
         );
-Object? _callback158Invoke(
+Object? _callback160Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,

@@ -609,6 +609,7 @@ void main() {
       _record('/setters/0/type', 'Missing field.'),
       _record('/setters/0/~0x', 'Unknown field.'),
       _record('/superMethods/0', 'Expected a string.'),
+      _record('/widgetInterface', 'Missing field.'),
     ]);
     _expectDecodeError(
       FlaxCodegenManifestCodec.decodePageAdapter,
@@ -959,6 +960,7 @@ void main() {
       _record('/proxy/mustCallSuperAccessors', 'Missing field.'),
       _record('/proxy/setters', 'Missing field.'),
       _record('/proxy/superMethods', 'Missing field.'),
+      _record('/proxy/widgetInterface', 'Missing field.'),
       _record('/setters/0/encodeKind', 'Expected a string or null.'),
       _record('/setters/0/name', 'Missing field.'),
       _record('/setters/0/type', 'Missing field.'),
@@ -1447,7 +1449,7 @@ void main() {
     }
   });
 
-  group('Manifest 21 typeLibraries URI semantics', () {
+  group('Manifest 22 typeLibraries URI semantics', () {
     test('accepts public package URIs, cross-package names, and dart:core', () {
       final module = _typeLibrariesModule({
         'Core': 'dart:core',
@@ -1694,7 +1696,7 @@ void main() {
     );
   });
 
-  group('Manifest 21 envelope positives', () {
+  group('Manifest 22 envelope positives', () {
     test('fromResolved round-trips rich and zero-entry modules', () {
       final fixture = _envelopeFixture();
       final manifest = FlaxCodegenManifest.fromResolved(
@@ -1855,16 +1857,16 @@ void main() {
     });
   });
 
-  group('Manifest 21 envelope negatives', () {
+  group('Manifest 22 envelope negatives', () {
     test('invalid JSON and duplicate keys fail closed', () {
       _expectEnvelopeFailure('{', [_record('', 'Invalid JSON.')]);
       _expectEnvelopeFailure(
-        '{\n  "formatVersion": 21,\n  "package": "a",\n  "package": "b"\n}\n',
+        '{\n  "formatVersion": 22,\n  "package": "a",\n  "package": "b"\n}\n',
         [_record('', 'Duplicate mapping key.')],
       );
       final withModuleDup =
           '{\n'
-          '  "formatVersion": 21,\n'
+          '  "formatVersion": 22,\n'
           '  "package": "acme_widgets",\n'
           '  "bindingNamespace": "com.acme.widgets",\n'
           '  "imports": [],\n'
@@ -1884,7 +1886,7 @@ void main() {
       ]);
       final withModelDup =
           '{\n'
-          '  "formatVersion": 21,\n'
+          '  "formatVersion": 22,\n'
           '  "package": "acme_widgets",\n'
           '  "bindingNamespace": "com.acme.widgets",\n'
           '  "imports": [],\n'
@@ -2115,7 +2117,7 @@ void main() {
     });
   });
 
-  group('Manifest 21 ownership model and fromResolved negatives', () {
+  group('Manifest 22 ownership model and fromResolved negatives', () {
     test('declaration owner rows are required at id pointers', () {
       const gauge = 'com.acme.widgets/widgets#type:Gauge';
       const axis = 'com.acme.widgets/widgets#type:Axis';
@@ -2592,7 +2594,7 @@ void main() {
     });
   });
 
-  group('Manifest 21 generic lexical slot positives', () {
+  group('Manifest 22 generic lexical slot positives', () {
     test(
       'fresh decoded tokens preserve declaration/reference identity sharing',
       () {
@@ -2890,7 +2892,7 @@ void main() {
     });
   });
 
-  group('Manifest 21 generic lexical slot negatives', () {
+  group('Manifest 22 generic lexical slot negatives', () {
     test('missing declaration slot fails closed', () {
       final json = _cloneJsonMap(
         _slotCallbackJson(_slotSharingCallback(Object())),
@@ -3101,7 +3103,7 @@ void main() {
     });
   });
 
-  group('Manifest 21 Quality P1 maximal projection', () {
+  group('Manifest 22 Quality P1 maximal projection', () {
     test('independently constructed maximal module survives fromResolved encode parse projection and input mutation', () {
       final inIntType = FlaxCodegenTypeRef('int');
       final inStringType = FlaxCodegenTypeRef('String', nullable: true);
@@ -4718,7 +4720,7 @@ void main() {
     });
   });
 
-  group('Manifest 21 direct dependency projection positives', () {
+  group('Manifest 22 direct dependency projection positives', () {
     test('A→B→C flattens packages owners modules and importedPackages', () {
       final chain = _projectionChain();
       final a = chain.aProjection;
@@ -5042,7 +5044,7 @@ bindingNamespace: com.example.local
     );
   });
 
-  group('Manifest 21 direct dependency projection negatives', () {
+  group('Manifest 22 direct dependency projection negatives', () {
     test('missing direct import fails closed', () {
       final b = _packageB(_packageC());
       final a = _packageA(b);
@@ -5899,6 +5901,7 @@ const _methodKeys = {
 
 const _proxyKeys = {
   'kind',
+  'widgetInterface',
   'methods',
   'superMethods',
   'mustCallSuperAccessors',
@@ -6695,6 +6698,7 @@ void _expectProxy(
 ]) {
   expect(actual.kind, expected.kind);
   expect(actual.methods, hasLength(expected.methods.length));
+  expect(actual.widgetInterface, expected.widgetInterface);
   for (var index = 0; index < expected.methods.length; index++) {
     _expectMethod(
       actual.methods[index],
@@ -6769,6 +6773,7 @@ void _expectMethodJson(Object? json) {
 
 void _expectProxyJson(Object? json) {
   final object = _expectObject(json);
+  expect(object['widgetInterface'], isA<bool>());
   _expectExactKeys(object, _proxyKeys);
   _expectJsonList(object['methods'], _expectMethodJson);
   _expectJsonList(object['getters'], _expectGetterJson);
@@ -7547,11 +7552,11 @@ void _expectEnvelopeShape(
   expect(manifest.package, 'acme_widgets');
   expect(manifest.bindingNamespace.value, 'com.acme.widgets');
   expect(manifest.imports, ['flax', 'flax_material']);
-  expect(FlaxCodegenManifest.formatVersion, 21);
+  expect(FlaxCodegenManifest.formatVersion, 22);
   expect(FlaxCodegenManifest.uiProtocol, 24);
   final encoded = manifest.toJson();
   _expectExactKeys(encoded, _envelopeKeys);
-  expect(encoded['formatVersion'], 21);
+  expect(encoded['formatVersion'], 22);
   expect(encoded['modules'], isA<List<Object?>>());
   final modules = encoded['modules']! as List<Object?>;
   expect(modules, hasLength(2));

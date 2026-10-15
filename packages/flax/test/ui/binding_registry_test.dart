@@ -34,6 +34,7 @@ void main() {
       'lazy-js-iterables',
       'native-core-inputs',
       'native-widget-proxies',
+      'widget-interface-proxies',
     ]);
     expect(FlaxBindingRegistry([flutterBindings]).modules, [flutterBindings]);
   });

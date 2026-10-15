@@ -2263,6 +2263,7 @@ export function defineProxyBase(
   definition: ProxyDefinition,
   nativeGetters: readonly string[] = [],
 ): void {
+  if (definition.nativeWidget) componentBases.set(prototype, false);
   installMembers(prototype, {}, nativeGetters, [], (receiver, member, args) =>
     callObject(receiver, definition.type, 'get', member.slice(4), args),
   );

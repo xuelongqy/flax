@@ -1006,7 +1006,7 @@ extensions:
       expect(module.extensions.single.name, 'ItemX');
       expect(module.classes, isEmpty);
       expect(module.extensions.single.onType.id, 'example.base/base#type:Item');
-      expect(validated.manifest.toJson()['formatVersion'], 21);
+      expect(validated.manifest.toJson()['formatVersion'], 22);
       expect(
         validated.manifest.modules.single.model.identities.where(
           (row) => row.owner,

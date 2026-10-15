@@ -70,6 +70,7 @@ const _methodKeys = {
 
 const _proxyKeys = {
   'kind',
+  'widgetInterface',
   'methods',
   'superMethods',
   'mustCallSuperAccessors',
@@ -1847,6 +1848,7 @@ Map<String, Object?> _encodeProxy(
   _SlotEncodeScope? scope,
 ]) => {
   'kind': proxy.kind,
+  'widgetInterface': proxy.widgetInterface,
   'methods': [for (final method in proxy.methods) _encodeMethod(method, scope)],
   'superMethods': List<String>.of(proxy.superMethods),
   'mustCallSuperAccessors': List<String>.of(proxy.mustCallSuperAccessors),
@@ -1869,6 +1871,7 @@ FlaxCodegenProxyModel? _decodeProxy(
   );
   if (object == null) return null;
   final kind = object.requiredString('kind');
+  final widgetInterface = object.requiredBool('widgetInterface');
   final methods = object.requiredList(
     'methods',
     _decodeMethodFn(diagnostics, scope),
@@ -1887,6 +1890,7 @@ FlaxCodegenProxyModel? _decodeProxy(
   );
   if (diagnostics.items.length != start ||
       kind == null ||
+      widgetInterface == null ||
       methods == null ||
       superMethods == null ||
       mustCallSuperAccessors == null ||
@@ -1897,6 +1901,7 @@ FlaxCodegenProxyModel? _decodeProxy(
   return FlaxCodegenProxyModel(
     kind,
     methods,
+    widgetInterface: widgetInterface,
     superMethods: superMethods,
     mustCallSuperAccessors: mustCallSuperAccessors,
     getters: getters,

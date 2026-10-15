@@ -29,3 +29,9 @@ A Type token does not turn a plain JS object into a Dart Widget. A real compiled
 class must implement the selected interface; legal JS overrides use its generated proxy.
 Incompatible interfaces, Dart class modifiers, foreign sessions and invalid callback
 arguments retain their normal checks.
+
+Manifest 22 adds `proxy.widgetInterface` for selected abstract Widget contracts. The
+existing proxy emitter supplies a StatelessWidget base implementing that contract; JS
+subclasses provide its selected members and build method. It uses ordinary typed member
+conversion, checked generic factories and joint-GC ownership. Native-only interfaces do
+not require JS conversion or expose a subclass constructor.

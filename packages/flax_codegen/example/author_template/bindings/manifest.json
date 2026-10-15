@@ -1,5 +1,5 @@
 {
-  "formatVersion": 21,
+  "formatVersion": 22,
   "package": "your_package",
   "bindingNamespace": "vendor.example",
   "imports": [

@@ -450,6 +450,7 @@ extension _EngineGenericEmission on FlaxCodegenBindingEmitter {
           : FlaxCodegenProxyModel(
               proxy.kind,
               [for (final m in proxy.methods) m.specialize(substitutions)],
+              widgetInterface: proxy.widgetInterface,
               getters: accessors(proxy.getters),
               setters: accessors(proxy.setters),
               superMethods: proxy.superMethods,

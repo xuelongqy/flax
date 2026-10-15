@@ -26,6 +26,7 @@ classes:
     getters: [primaryColor, scaffoldBackgroundColor]
   ObstructingPreferredSizeWidget:
     kind: widgetInterface
+    proxy: implements
     getters: [preferredSize]
     methods:
       shouldFullyObstruct: [context]

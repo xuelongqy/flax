@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"cd12408e0db199876b79f617cf9f39a387593cfdff18cbebd5cd72837de4aca9","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"6a33435c83a014a90055d72013aa8e88565709155dc2ea0a63560a5fb5af7df6","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -930,7 +930,7 @@ function invokeOperation(category, type, id, operation, member, args) {
     slot = host.__flaxResolveOperation(bindingVersion, type, category, operation, member);
     operationIds.set(key, slot);
   }
-  return unwrapCall(host.__flaxInvokeOperation(slot, id, ...args));
+  return (0, import_index.withBindingSnapshots)(() => unwrapCall(host.__flaxInvokeOperation(slot, id, ...args)));
 }
 function cachedObject(type, id) {
   return references.get(type, id);
@@ -1101,7 +1101,7 @@ function constructStream(_kind, type, ctor, parameters, positional, options) {
   const create = globalThis.__flaxCreateStream;
   if (!create)
     throw new Error("Dart Streams require a Flax host");
-  return unwrapCall(create(bindingVersion, type, descriptor));
+  return (0, import_index.withBindingSnapshots)(() => unwrapCall(create(bindingVersion, type, descriptor)));
 }
 function callStream(receiver, type, operation, member, args) {
   var _a2;
@@ -1211,7 +1211,7 @@ function constructObject(_kind, type, ctor, parameters, positional, options) {
   const create = globalThis.__flaxCreateObject;
   if (!create)
     throw new Error("Dart objects require a Flax host");
-  return unwrapCall(create(bindingVersion, type, descriptor));
+  return (0, import_index.withBindingSnapshots)(() => unwrapCall(create(bindingVersion, type, descriptor)));
 }
 function constructDeferredObject(type, factory, parameters, positional, options) {
   const descriptor = construct("value", type, factory, parameters, positional, options);
@@ -1329,11 +1329,11 @@ function constructProxy(definition, args, implementation) {
   const create = globalThis.__flaxCreateObject;
   if (!create)
     throw new Error("Dart proxies require a Flax host");
-  return unwrapCall(create(bindingVersion, definition.type, {
+  return (0, import_index.withBindingSnapshots)(() => unwrapCall(create(bindingVersion, definition.type, {
     ...descriptor,
     receiver: implementation,
     layout: proxyLayout(definition)
-  }));
+  })));
 }
 function proxyDescriptor(definition, args) {
   var _a2;
@@ -1511,6 +1511,8 @@ function installMembers(prototype, methods, getters, setters, invoke) {
 }
 function defineProxyBase(prototype, definition, nativeGetters = []) {
   var _a2;
+  if (definition.nativeWidget)
+    componentBases.set(prototype, false);
   installMembers(prototype, {}, nativeGetters, [], (receiver, member, args) => callObject(receiver, definition.type, "get", member.slice(4), args));
   for (const parameters of Object.values(definition.methods)) {
     for (const parameter of parameters)
@@ -1559,12 +1561,12 @@ function constructExtendedProxy(receiver, definition, args, widgetType) {
     throw new Error("Dart proxies require a Flax host");
   constructingExtendedProxies.add(receiver);
   try {
-    const created = unwrapCall(create(bindingVersion, definition.type, {
+    const created = (0, import_index.withBindingSnapshots)(() => unwrapCall(create(bindingVersion, definition.type, {
       ...descriptor,
       receiver,
       layout: proxyLayout(definition),
       ...widgetType === void 0 ? {} : { widgetType }
-    }));
+    })));
     const ref = objectHandles.get(created);
     if (!ref || !ref.alive || ref.type !== definition.type && objectViewTypes.get(ref.type) !== definition.type)
       throw new TypeError("Invalid Dart proxy result");
@@ -1831,6 +1833,7 @@ Object.assign(globalThis, {
       recordDartTypes.set(value, type);
     },
     version: bindingVersion,
+    readBindingSnapshot: import_index.readBindingSnapshot,
     nativeDateMilliseconds(value) {
       let milliseconds;
       try {
@@ -2214,7 +2217,7 @@ Object.assign(globalThis, {
             }
           }
         }
-        return unwrapCall(call(bindingVersion, type, id, positionalValues.length, ...positionalValues, namedValues.length / 2, ...namedValues));
+        return (0, import_index.withBindingSnapshots)(() => unwrapCall(call(bindingVersion, type, id, positionalValues.length, ...positionalValues, namedValues.length / 2, ...namedValues)));
       };
       Object.defineProperty(value, "kind", { value: "dart-function" });
       if (generic)

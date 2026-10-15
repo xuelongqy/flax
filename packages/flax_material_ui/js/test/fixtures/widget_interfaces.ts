@@ -8,6 +8,7 @@ import {
   Navigator,
   Column,
   PreferredSize,
+  PreferredSizeWidget,
   SizedBox,
   Text,
   TextEditingController,
@@ -39,11 +40,75 @@ import {
   interfaceStream,
   GenericTile,
   GenericViewCalls,
+  InterfaceProxyProbe,
+  LabelledContract,
+  GenericView,
 } from '../../../.dart_tool/flax/ui/widget_interfaces_bindings.js';
 import type { ExtentContract } from '../../../.dart_tool/flax/ui/widget_interfaces_bindings.js';
-import type { PreferredSizeWidget, Widget, Page } from '@flax/flutter/widgets';
+import type { Widget, Page, BuildContext } from '@flax/flutter/widgets';
 
 const StringKey = selectDartType(ValueKey, nativeTypes.string);
+
+class InterfaceToolbarBase extends PreferredSizeWidget {
+  #title = 'JS interface toolbar';
+  constructor() {
+    super({ key: StringKey('interface-proxy') });
+  }
+  get preferredSize() {
+    return Size.fromHeight(64);
+  }
+  build(_context: BuildContext) {
+    return Text(this.#title);
+  }
+}
+class InterfaceToolbar extends InterfaceToolbarBase {
+  override get preferredSize() {
+    return Size.fromHeight(super.preferredSize.height + 2);
+  }
+  override build(context: BuildContext) {
+    return super.build(context);
+  }
+}
+class Labelled extends LabelledContract {
+  get extent() {
+    return 24;
+  }
+  get label() {
+    return 'JS inherited interface';
+  }
+  build(_context: BuildContext) {
+    return Text(this.label);
+  }
+}
+class NestedView extends GenericView.$type(nativeTypes.list(nativeTypes.string)) {
+  get value() {
+    return InterfaceProxyProbe.words;
+  }
+  build(_context: BuildContext) {
+    return Text(InterfaceProxyProbe.nested(this));
+  }
+}
+let interfaceProxy: InterfaceToolbar | undefined;
+let interfaceProxyWeak: WeakRef<InterfaceToolbar> | undefined;
+registerPage('interface-proxy', () => {
+  interfaceProxy = new InterfaceToolbar();
+  interfaceProxyWeak = new WeakRef(interfaceProxy);
+  return Scaffold({
+    appBar: interfaceProxy,
+    body: Column({
+      children: [ExtentFrame({ item: new Labelled() }), new NestedView()],
+    }),
+  });
+});
+Object.assign(globalThis, {
+  interfaceProxies: {
+    keep: () => InterfaceProxyProbe.keep(interfaceProxy!),
+    drop: () => {
+      interfaceProxy = undefined;
+    },
+    alive: () => interfaceProxyWeak?.deref() !== undefined,
+  },
+});
 
 const genericSuffix = signal('');
 const StringTile = GenericTile.$type(nativeTypes.string);

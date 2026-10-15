@@ -52,12 +52,13 @@ retain their own tracking behavior.
 | PreferredSize | key, preferredSize, child                                                                                                                         |
 | Size          | unnamed width/height and fromHeight(height); existing readonly width/height                                                                       |
 
-PreferredSizeWidget is a non-constructible Widget interface identity. Its preferredSize
-getter is implemented for Dart consumers, not exposed as a JS descriptor field. A custom
-JS toolbar can be passed as PreferredSize.child. A Builder or custom component returning
-AppBar does not itself implement PreferredSizeWidget. Native DartWidget inputs are
-checked against their actual Dart interface; an opaque Widget TS type does not claim a
-narrower interface without a typed declaration.
+PreferredSizeWidget exposes an abstract JS subclass constructor backed by a generated
+StatelessWidget implementing the real Dart interface. Its public preferredSize getter
+uses ordinary object conversion. Existing native values retain their original identity.
+A custom JS toolbar can also be passed as PreferredSize.child. A Builder or custom
+component returning AppBar does not itself implement PreferredSizeWidget. Native
+DartWidget inputs are checked against their actual Dart interface; an opaque Widget TS
+type does not claim a narrower interface without a typed declaration.
 
 ## Generation and ownership
 
@@ -87,17 +88,54 @@ Generic classes use `Class.$type` with the same checked type factories as other
 bindings. A raw JS object is not a Flutter Widget and does not become one by supplying
 an interface Type token; a compiled Dart class must implement that interface.
 
+Select `proxy: implements` on a `kind: widgetInterface` declaration to generate that
+compiled class through the shared proxy emitter. The JS subclass supplies the selected
+interface members and a synchronous `build`. The native base supplies Flutter's Element
+and diagnostics behavior; `super({key})` forwards the optional key. Generic and
+inherited interfaces use the same checked type factories and member conversions. Only
+convertible public members can be overridden; native-only interfaces with private
+signatures keep their value-only selection. Automatic selection adds the proxy when its
+complete conversion is available and continues to reuse dependency providers.
+
+The generated TypeScript view preserves selected parent interfaces and their generic
+arguments, so a child interface can be passed to an API expecting its parent without a
+cast. A native-only parent contributes its nominal interface identity without exposing
+unconvertible members.
+
+```typescript
+class Toolbar extends PreferredSizeWidget {
+  get preferredSize() {
+    return Size.fromHeight(56);
+  }
+  build(context: BuildContext) {
+    return Text('Orders');
+  }
+}
+Scaffold({ appBar: new Toolbar() });
+```
+
+This adds no wrapper Widget or separate lifecycle/GC implementation. Ordinary JS
+subclasses can override their JS parent's methods and use `super`; the abstract
+interface itself has no Dart build or member implementation to call. Native
+configurations read by Flutter remain direct Dart calls; a JS override uses the existing
+synchronous proxy call.
+
 CupertinoNavigationBar and AppBar are actual native configurations. Their preferred
 sizes, obstruction behavior, callback/Future/Stream identities and private sentinel
 subtypes are preserved. Their native members add no JS calls when Flutter reads them. A
 native setter follows Dart behavior and does not schedule a rebuild.
 
-Manifest 21 records only native member kind, name and parameter names. It removes the
-obsolete forwarding source and import fields and rejects previous formats. Regenerate
-providers and consumers together. Declaration IDs, selection format 2, UI protocol 24,
-internal engine binding extension 8 and native ABI 2 stay unchanged. See
+Manifest 22 additionally records `proxy.widgetInterface`, preserving the native base
+choice through generic specialization and dependency projections. Native-only members
+record only kind, name and parameter names, without forwarding source or import fields.
+Previous formats are rejected. Regenerate providers and consumers together. Declaration
+IDs, selection format 2, UI protocol 24, internal engine binding extension 8 and native
+ABI 2 stay unchanged. See
 [the native-value decision](../decisions/0044-native-widget-interface-values.md), which
 supersedes the forwarding implementation in ADR 0029.
+
+Modules exposing interface subclass constructors require `widget-interface-proxies`, so
+an older host rejects their registration before construction.
 
 Interface Widgets require fixed constructor arguments and accept ordinary typed
 callbacks, including callbacks inside supported collections. The native configuration

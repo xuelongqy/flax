@@ -63,7 +63,7 @@ final class _WidgetInterfaceParser {
     };
     if (selection.constructors.isNotEmpty ||
         selection.instanceMethods.isNotEmpty ||
-        selection.proxy != null) {
+        selection.proxy != null && selection.proxy != 'implements') {
       throw StateError(
         'Widget interface ${type.element.name}: Only native getters, setters and methods may be selected',
       );
@@ -98,6 +98,57 @@ final class _WidgetInterfaceParser {
       name: _memberName(member),
       parameters: parameters,
     );
+  }
+
+  void validateProxyBase(InterfaceType contract, InterfaceType base) {
+    ExecutableElement? resolve(InterfaceType type, ExecutableElement member) =>
+        switch (member) {
+          GetterElement() => type.lookUpGetter(member.name!, member.library),
+          SetterElement() => type.lookUpSetter(member.name!, member.library),
+          _ => type.lookUpMethod(member.name!, member.library),
+        };
+    for (final type in [contract, ...contract.allSupertypes]) {
+      for (final member in <ExecutableElement>[
+        ...type.element.getters,
+        ...type.element.setters,
+        ...type.element.methods,
+      ]) {
+        if (!member.isStatic &&
+            member.isPrivate &&
+            resolve(base, member) == null) {
+          throw StateError(
+            'Widget interface ${contract.element.name}: Cannot implement private member ${member.name}',
+          );
+        }
+      }
+    }
+    final checked = <String>{};
+    for (final type in [base, ...base.allSupertypes]) {
+      for (final member in <ExecutableElement>[
+        ...type.element.getters,
+        ...type.element.setters,
+        ...type.element.methods,
+      ]) {
+        if (member.isStatic ||
+            member.isPrivate ||
+            !checked.add('${member.runtimeType}:${member.name}')) {
+          continue;
+        }
+        final required = resolve(contract, member);
+        final supplied = resolve(base, member);
+        if (required == null || supplied == null) continue;
+        final build = member is MethodElement && member.name == 'build';
+        final valid = contract.element.library.typeSystem.isSubtypeOf(
+          build ? required.type : supplied.type,
+          build ? supplied.type : required.type,
+        );
+        if (!valid) {
+          throw StateError(
+            'Widget interface ${contract.element.name}: Incompatible native Widget member ${member.name}',
+          );
+        }
+      }
+    }
   }
 
   void validateImplementation(

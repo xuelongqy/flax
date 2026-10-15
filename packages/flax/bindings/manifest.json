@@ -1,5 +1,5 @@
 {
-  "formatVersion": 21,
+  "formatVersion": 22,
   "package": "flax",
   "bindingNamespace": "flax.core",
   "imports": [],
@@ -1662,6 +1662,7 @@
           "StackTrace": "dart:core",
           "StadiumBorder": "package:flutter/widgets.dart",
           "StatefulBuilder": "package:flutter/widgets.dart",
+          "StatelessWidget": "package:flutter/widgets.dart",
           "Stream": "dart:async",
           "StreamBuilder": "package:flutter/widgets.dart",
           "StreamConsumer": "dart:async",
@@ -30811,6 +30812,7 @@
             ],
             "proxy": {
               "kind": "implements",
+              "widgetInterface": false,
               "methods": [
                 {
                   "name": "add",
@@ -31418,6 +31420,7 @@
             ],
             "proxy": {
               "kind": "implements",
+              "widgetInterface": false,
               "methods": [
                 {
                   "name": "addStream",
@@ -35892,6 +35895,7 @@
             ],
             "proxy": {
               "kind": "implements",
+              "widgetInterface": false,
               "methods": [
                 {
                   "name": "bind",
@@ -36943,6 +36947,7 @@
             ],
             "proxy": {
               "kind": "extends",
+              "widgetInterface": false,
               "methods": [
                 {
                   "name": "bind",
@@ -51338,6 +51343,7 @@
             ],
             "proxy": {
               "kind": "extends",
+              "widgetInterface": false,
               "methods": [
                 {
                   "name": "addListener",
@@ -51916,25 +51922,92 @@
           {
             "name": "PreferredSizeWidget",
             "id": "flax.core/flutter#type:PreferredSizeWidget",
-            "kind": "widgetInterface",
+            "kind": "object",
             "jsName": null,
             "asyncIterableFactory": null,
             "typeArguments": [],
             "typeParameters": [],
-            "constructors": [],
-            "getters": [],
+            "constructors": [
+              {
+                "name": "",
+                "parameters": [
+                  {
+                    "name": "key",
+                    "type": {
+                      "kind": "object",
+                      "id": "flax.core/flutter#type:Key",
+                      "name": "Key",
+                      "nullable": true,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": null,
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "required": false,
+                    "positional": false,
+                    "defaultCode": "null",
+                    "omitWhenAbsent": false,
+                    "independentWidgetResult": false,
+                    "snapshot": null,
+                    "encodeKind": null,
+                    "scoped": false
+                  }
+                ],
+                "specializations": []
+              }
+            ],
+            "getters": [
+              {
+                "name": "preferredSize",
+                "type": {
+                  "kind": "object",
+                  "id": "flax.core/flutter#type:Size",
+                  "name": "Size",
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "object",
+                    "id": "flax.core/flutter#type:Size",
+                    "name": "Size",
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "encodeKind": null,
+                "cache": false
+              }
+            ],
             "setters": [],
             "staticGetters": [],
             "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [],
-            "widgetMembers": [
-              {
-                "name": "preferredSize",
-                "kind": "getter",
-                "parameters": []
-              }
-            ],
             "supertypes": [
               "dart:core::Object",
               "package:flutter/src/widgets/framework.dart::Widget",
@@ -51942,7 +52015,112 @@
               "package:flutter/src/foundation/diagnostics.dart::Diagnosticable"
             ],
             "superTypes": [],
-            "proxy": null,
+            "proxy": {
+              "kind": "implements",
+              "widgetInterface": true,
+              "methods": [
+                {
+                  "name": "build",
+                  "parameters": [
+                    {
+                      "name": "context",
+                      "type": {
+                        "kind": "context",
+                        "id": "flax.core/flutter#type:BuildContext",
+                        "name": "BuildContext",
+                        "nullable": false,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": null,
+                        "tsArguments": [],
+                        "slot": null
+                      },
+                      "required": true,
+                      "positional": true,
+                      "defaultCode": "null",
+                      "omitWhenAbsent": false,
+                      "independentWidgetResult": false,
+                      "snapshot": null,
+                      "encodeKind": null,
+                      "scoped": false
+                    }
+                  ],
+                  "result": {
+                    "kind": "widget",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "instance": true,
+                  "typeArguments": [],
+                  "startsRoute": false,
+                  "typeParameters": [],
+                  "mustCallSuper": false,
+                  "deferredFactory": false,
+                  "operator": null
+                }
+              ],
+              "superMethods": [],
+              "mustCallSuperAccessors": [],
+              "getters": [
+                {
+                  "name": "preferredSize",
+                  "type": {
+                    "kind": "object",
+                    "id": "flax.core/flutter#type:Size",
+                    "name": "Size",
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": {
+                      "kind": "object",
+                      "id": "flax.core/flutter#type:Size",
+                      "name": "Size",
+                      "nullable": false,
+                      "item": null,
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": null,
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "encodeKind": null,
+                  "cache": false
+                }
+              ],
+              "setters": []
+            },
             "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
@@ -52095,14 +52273,53 @@
                 "specializations": []
               }
             ],
-            "getters": [],
+            "getters": [
+              {
+                "name": "preferredSize",
+                "type": {
+                  "kind": "object",
+                  "id": "flax.core/flutter#type:Size",
+                  "name": "Size",
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "object",
+                    "id": "flax.core/flutter#type:Size",
+                    "name": "Size",
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "encodeKind": null,
+                "cache": false
+              }
+            ],
             "setters": [],
             "staticGetters": [],
             "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [
               {
-                "kind": "widget",
+                "kind": "object",
                 "id": "flax.core/flutter#type:PreferredSizeWidget",
                 "name": "PreferredSizeWidget",
                 "nullable": false,
@@ -52115,7 +52332,7 @@
                 "dartArguments": [],
                 "primitiveKinds": [],
                 "declaration": {
-                  "kind": "widget",
+                  "kind": "object",
                   "id": "flax.core/flutter#type:PreferredSizeWidget",
                   "name": "PreferredSizeWidget",
                   "nullable": false,
@@ -72849,6 +73066,7 @@
             "superTypes": [],
             "proxy": {
               "kind": "extends",
+              "widgetInterface": false,
               "methods": [
                 {
                   "name": "build",

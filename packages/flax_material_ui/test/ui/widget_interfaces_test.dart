@@ -49,6 +49,36 @@ Widget comparison(
 );
 
 void main() {
+  testWidgets('JS Widget interface subclasses mount and follow joint GC', (
+    t,
+  ) async {
+    final h = harness();
+    InterfaceProxyProbe.clear();
+    try {
+      await t.pumpWidget(h.app('interface-proxy'));
+      await t.pumpAndSettle();
+      expect(h.errors, isEmpty);
+      expect(find.text('JS interface toolbar'), findsOneWidget);
+      expect(find.text('JS inherited interface'), findsOneWidget);
+      expect(find.text('nested interface'), findsOneWidget);
+      expect(find.byKey(const ValueKey('interface-proxy')), findsOneWidget);
+      h.execute('interfaceProxies.keep(); interfaceProxies.drop()');
+      await flaxTestUnmount(t);
+      await t.pumpAndSettle();
+      await collectWidgetConfigurations(t);
+      expect(InterfaceProxyProbe.height(), 66);
+      expect(h.number('interfaceProxies.alive() ? 1 : 0'), 1);
+      final weak = WeakReference(InterfaceProxyProbe.saved!);
+      InterfaceProxyProbe.clear();
+      await collectWidgetConfigurations(t);
+      expect(weak.target, isNull);
+      expect(h.number('interfaceProxies.alive() ? 1 : 0'), 0);
+      expect(h.errors, isEmpty);
+    } finally {
+      InterfaceProxyProbe.clear();
+      await h.finish(t);
+    }
+  });
   testWidgets(
     'failed native child previews recover without tracking valid children',
     (t) async {

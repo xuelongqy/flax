@@ -640,7 +640,7 @@ const materialBindings = FlaxBindingModule(
           FlaxParameter(
             "appBar",
             FlaxTypeRef(
-              "widget",
+              "object",
               id: "flax.core/flutter#type:PreferredSizeWidget",
               nullable: true,
             ),
@@ -2192,7 +2192,13 @@ const materialBindings = FlaxBindingModule(
     ),
     FlaxObjectBinding(
       "flax.material/material#type:AppBar",
-      [],
+      [
+        FlaxGetter(
+          "preferredSize",
+          FlaxTypeRef("object", id: "flax.core/flutter#type:Size"),
+          _AppBar_preferredSize,
+        ),
+      ],
       {},
       constructors: {
         "": [
@@ -2258,7 +2264,7 @@ const materialBindings = FlaxBindingModule(
           FlaxParameter(
             "bottom",
             FlaxTypeRef(
-              "widget",
+              "object",
               id: "flax.core/flutter#type:PreferredSizeWidget",
               nullable: true,
             ),
@@ -6809,6 +6815,8 @@ Object _createVisualDensity(String ctor, Map<String, Object?> values) {
 }
 
 bool _isAppBar(Object value) => value is api.AppBar;
+Object? _AppBar_preferredSize(Object value) =>
+    (value as api.AppBar).preferredSize;
 api1.Widget _createAppBar(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":

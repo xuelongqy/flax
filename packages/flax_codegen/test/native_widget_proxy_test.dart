@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flax_codegen/flax_codegen.dart';
+import 'package:flax_codegen/src/manifest_codec.dart';
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
@@ -8,6 +9,162 @@ import 'generator_test.dart' show compileFixture;
 
 void main() {
   final root = p.normalize(p.join(Directory.current.path, '../..'));
+  test('Widget interface proxies reject incompatible native bases', () async {
+    final parser = FlaxCodegenBindingParser(root);
+    addTearDown(parser.dispose);
+    for (final name in ['InvalidBuildContract', 'PrivateWidgetContract']) {
+      await expectLater(
+        parser.parse(
+          FlaxCodegenBindingConfig(
+            'invalid_interface',
+            Uri.file(
+              p.join(
+                Directory.current.path,
+                'test/fixtures/plugin/native_widget_proxies.dart',
+              ),
+            ).toString(),
+            '@example/invalid-interface',
+            '',
+            '',
+            {
+              'Key': const FlaxCodegenClassSelection({}, kind: 'object'),
+              'BuildContext': const FlaxCodegenClassSelection(
+                {},
+                kind: 'context',
+              ),
+              name: FlaxCodegenClassSelection(
+                {},
+                kind: 'widgetInterface',
+                proxy: 'implements',
+                methods: {
+                  if (name == 'InvalidBuildContract') 'build': ['context'],
+                },
+              ),
+            },
+          ),
+        ),
+        throwsA(
+          isA<StateError>().having(
+            (error) => error.message,
+            'reason',
+            contains('Widget interface $name:'),
+          ),
+        ),
+      );
+    }
+  });
+  test('Widget interfaces reuse constructible native proxies', () async {
+    final parser = FlaxCodegenBindingParser(root);
+    addTearDown(parser.dispose);
+    final module = await parser.parse(
+      FlaxCodegenBindingConfig(
+        'interface_proxy',
+        Uri.file(
+          p.join(
+            Directory.current.path,
+            'test/fixtures/plugin/native_widget_proxies.dart',
+          ),
+        ).toString(),
+        '@example/interface-proxy',
+        'unused.dart',
+        'unused.ts',
+        const {
+          'Key': FlaxCodegenClassSelection({}, kind: 'object'),
+          'BuildContext': FlaxCodegenClassSelection({}, kind: 'context'),
+          'Size': FlaxCodegenClassSelection({}, kind: 'object'),
+          'Text': FlaxCodegenClassSelection({
+            '': ['data'],
+          }),
+          'PreferredSizeWidget': FlaxCodegenClassSelection(
+            {},
+            kind: 'widgetInterface',
+            proxy: 'implements',
+            getters: ['preferredSize'],
+          ),
+          'ToolbarContract': FlaxCodegenClassSelection(
+            {},
+            kind: 'widgetInterface',
+            proxy: 'implements',
+            getters: ['preferredSize', 'value'],
+            setters: ['value'],
+            methods: {
+              'describe': ['prefix'],
+            },
+          ),
+          'NestedToolbarContract': FlaxCodegenClassSelection(
+            {},
+            kind: 'widgetInterface',
+            proxy: 'implements',
+            getters: ['preferredSize', 'value'],
+            setters: ['value'],
+            methods: {
+              'describe': ['prefix'],
+            },
+          ),
+        },
+      ),
+    );
+    final emitter = FlaxCodegenBindingEmitter([module]);
+    expect(module.requiredCapabilities, contains('widget-interface-proxies'));
+    final diagnostics = FlaxCodegenManifestDiagnostics('interface-proxy');
+    final restored = FlaxCodegenManifestCodec.decodeModule(
+      FlaxCodegenManifestCodec.encodeModule(module)
+        ..['typeLibraries'] = <String, Object?>{},
+      diagnostics,
+      '',
+      module.name,
+    );
+    expect(diagnostics.items, isEmpty);
+    expect(
+      restored!.classes
+          .where((type) => type.proxy != null)
+          .every((type) => type.proxy!.widgetInterface),
+      isTrue,
+    );
+    final dart = emitter.dart(module);
+    expect(
+      dart,
+      contains('with FlaxWidgetProxy implements api.PreferredSizeWidget'),
+    );
+    expect(dart, isNot(contains('implements api.Widget')));
+    await compileFixture(
+      root,
+      emitter,
+      module,
+      consumerSource: r'''
+import {PreferredSizeWidget, ToolbarContract, type NestedToolbarContract, Text, type Size, type BuildContext} from './plugin.js';
+import {dartTypes, type DartList} from '@flax/core/bindings';
+class Toolbar extends PreferredSizeWidget {
+  constructor(readonly size: Size) { super({key: null}); }
+  get preferredSize() { return this.size; }
+  build(context: BuildContext) { return Text('Toolbar'); }
+}
+class Caption extends ToolbarContract<string> {
+  constructor(readonly size: Size) { super(); }
+  get preferredSize() { return this.size; }
+  #value = 'caption';
+  get value() { return this.#value; }
+  set value(value: string) { this.#value = value; }
+  describe(options: {prefix?: string | undefined} = {}) { return (options.prefix ?? '') + this.value; }
+  build(context: BuildContext) { return Text(this.value); }
+}
+const selected = ToolbarContract.$type(dartTypes.string);
+class Selected extends selected {
+  get preferredSize(): Size { throw new Error('size'); }
+  get value() { return 'selected'; }
+  set value(value: string) {}
+  describe() { return this.value; }
+  build(context: BuildContext) { return Text(this.value); }
+}
+const accepted: PreferredSizeWidget = new Toolbar(null as never);
+const inherited: PreferredSizeWidget = new Caption(null as never);
+declare const nested: NestedToolbarContract<string>;
+const genericParent: ToolbarContract<DartList<string>> = nested;
+// @ts-expect-error Missing interface getter and Widget build.
+class Missing extends PreferredSizeWidget {}
+''',
+    );
+  });
   test(
     'native Text subclass emits a callable and constructible proxy',
     () async {

@@ -48,7 +48,7 @@ void main() {
     }
     _writeJson(
       p.join(temporary.path, 'packages/flax_canvas/bindings/manifest.json'),
-      {'formatVersion': 21, 'modules': <Map<String, Object?>>[]},
+      {'formatVersion': 22, 'modules': <Map<String, Object?>>[]},
     );
     for (final target in _targets) {
       final directory = p.join(temporary.path, 'packages', target.directory);
@@ -58,7 +58,7 @@ void main() {
         'version': '0.0.0',
       });
       _writeJson(p.join(directory, 'bindings/manifest.json'), {
-        'formatVersion': 21,
+        'formatVersion': 22,
         'modules': [
           {
             'name': target.directory,
@@ -91,7 +91,7 @@ void main() {
   ], workingDirectory: temporary.path);
 
   test(
-    'Manifest 21 delivery includes owned setters and excludes references',
+    'Manifest 22 delivery includes owned setters and excludes references',
     () async {
       final result = await run();
       expect(result.exitCode, 0, reason: '${result.stdout}\n${result.stderr}');

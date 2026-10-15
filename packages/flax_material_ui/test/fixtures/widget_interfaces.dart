@@ -17,6 +17,15 @@ abstract class GenericView<T> implements Widget {
   T get value;
 }
 
+class InterfaceProxyProbe {
+  static PreferredSizeWidget? saved;
+  static final words = <String>['nested interface'];
+  static void keep(PreferredSizeWidget value) => saved = value;
+  static void clear() => saved = null;
+  static double height() => saved!.preferredSize.height;
+  static String nested(GenericView<List<String>> value) => value.value.single;
+}
+
 const _privateDefault = 4;
 const _privateNumbers = {6, 7};
 

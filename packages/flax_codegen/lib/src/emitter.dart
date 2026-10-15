@@ -154,7 +154,7 @@ function _flaxInstallBindingModule(
       throw new TypeError('requiredCapabilities must be sorted unique strings');
     }
     previous = capability;
-    if (capability !== 'native-functions' && capability !== 'lazy-js-iterables' && capability !== 'callback-map-keys' && capability !== 'proxy-super-constructors' && capability !== 'bottom-types' && capability !== 'explicit-generic-types' && capability !== 'engine-type-handles' && capability !== 'generic-call-types' && capability !== 'dart-type-tokens' && capability !== 'generic-member-views' && capability !== 'instance-checks' && capability !== 'native-core-inputs' && capability !== 'native-bigint' && capability !== 'native-widget-proxies' && capability !== 'shared-buffers' && capability !== 'shared-uint8') {
+    if (capability !== 'native-functions' && capability !== 'lazy-js-iterables' && capability !== 'callback-map-keys' && capability !== 'proxy-super-constructors' && capability !== 'bottom-types' && capability !== 'explicit-generic-types' && capability !== 'engine-type-handles' && capability !== 'generic-call-types' && capability !== 'dart-type-tokens' && capability !== 'generic-member-views' && capability !== 'instance-checks' && capability !== 'native-core-inputs' && capability !== 'native-bigint' && capability !== 'native-widget-proxies' && capability !== 'widget-interface-proxies' && capability !== 'shared-buffers' && capability !== 'shared-uint8') {
       throw new TypeError(`Unsupported binding capability ${capability}`);
     }
   }
@@ -1622,7 +1622,9 @@ class FlaxCodegenBindingEmitter {
       if (_isWidgetObject(type)) '_FlaxDartWidget',
       for (final parent in type.superTypes)
         if (parent.kind != 'iterable' || collection?.kind == 'iterable')
-          if (collection != null &&
+          if (_isWidgetObject(type) && parent.kind == 'widget')
+            "Omit<${parentName(parent)}, 'kind'>"
+          else if (collection != null &&
               members.isNotEmpty &&
               parent.kind != 'typeOnly')
             // The marker would otherwise reintroduce omitted collection APIs.
@@ -2630,7 +2632,7 @@ class FlaxCodegenBindingEmitter {
         'Map<String, Object?> values$leaseParameter) {',
       );
       out.writeln('switch (ctor) {');
-      if (type.proxy?.kind == 'implements') {
+      if (type.proxy?.kind == 'implements' && !type.proxy!.widgetInterface) {
         for (final ctor in type.constructors) {
           out.writeln('case ${_quote(ctor.name)}:');
           _emitConstructorCalls(out, type, ctor);
@@ -2717,7 +2719,10 @@ class FlaxCodegenBindingEmitter {
       final proxy = type.proxy!;
       final ctor = _proxyConstructor(type);
       out.writeln(
-        'final class _${type.name}Proxy${_dartStaticGenerics(type.typeParameters)} ${proxy.kind} ${_dartName(type.name)}${_typeArgs(type.typeArguments)}${type.kind == 'widget' ? ' with FlaxWidgetProxy' : ''} {',
+        'final class _${type.name}Proxy${_dartStaticGenerics(type.typeParameters)} '
+        '${proxy.widgetInterface ? 'extends ${_dartName('StatelessWidget')} with FlaxWidgetProxy implements' : proxy.kind} '
+        '${_dartName(type.name)}${_typeArgs(type.typeArguments)}'
+        '${!proxy.widgetInterface && (type.kind == 'widget' || _isWidgetObject(type)) ? ' with FlaxWidgetProxy' : ''} {',
       );
       if (proxy.callbacks.isEmpty) {
         out.writeln(
@@ -4051,7 +4056,8 @@ import 'package:flax/bindings.dart';
       return type.constructors.map(_runtimeConstructor).toList();
     }
     return [
-      if (type.proxy!.kind == 'implements' || type.kind == 'widget')
+      if (!type.proxy!.widgetInterface &&
+          (type.proxy!.kind == 'implements' || type.kind == 'widget'))
         ...type.constructors.map(_runtimeConstructor),
       FlaxCodegenConstructorModel(
         '@implementation',
@@ -4067,7 +4073,7 @@ import 'package:flax/bindings.dart';
   }
 
   FlaxCodegenConstructorModel _proxyConstructor(FlaxCodegenClassModel type) =>
-      type.proxy!.kind == 'implements'
+      type.proxy!.kind == 'implements' && !type.proxy!.widgetInterface
       ? const FlaxCodegenConstructorModel('', [])
       : _runtimeConstructor(
           type.constructors.where((c) => c.name.isEmpty).firstOrNull ??
@@ -4630,7 +4636,9 @@ $_typescriptHostImport
         "import { State as _FlaxComponentState, StatefulWidget as _FlaxComponentStatefulWidget } from '$componentImport';",
       );
     }
-    if (module.classes.any((c) => c.proxy?.kind == 'extends')) {
+    if (module.classes.any(
+      (c) => c.proxy?.kind == 'extends' || c.proxy?.widgetInterface == true,
+    )) {
       out.writeln(
         "import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';",
       );
@@ -4860,7 +4868,11 @@ $_typescriptHostImport
       final use =
           '<${owner.typeParameters.map((p) => genericNames[p.genericIdentity]).join(', ')}>';
       final result =
-          '${owner.kind == 'widget' && owner.proxy != null ? '_${owner.name}Native' : owner.name}$use';
+          '${owner.proxy?.widgetInterface == true
+              ? '_${owner.name}Implementation'
+              : owner.kind == 'widget' && owner.proxy != null
+              ? '_${owner.name}Native'
+              : owner.name}$use';
       String arguments(FlaxCodegenConstructorModel ctor) {
         final values = [
           for (final p in ctor.parameters.where((p) => p.positional))
@@ -4876,14 +4888,16 @@ $_typescriptHostImport
       }
 
       final constructors = [
-        if (owner.proxy?.kind != 'extends' || owner.kind == 'widget')
+        if (owner.proxy?.widgetInterface != true &&
+            (owner.proxy?.kind != 'extends' || owner.kind == 'widget'))
           for (final ctor in owner.constructors)
             '${ctor.name.isEmpty ? '' : '${ctor.name}: '}(${arguments(ctor)})${ctor.name.isEmpty ? ':' : '=>'} $result;',
         'readonly prototype: $result;',
-        if (owner.proxy != null)
+        if (owner.proxy != null && !owner.proxy!.widgetInterface)
           'implement(args: readonly [${_proxyConstructor(owner).parameters.where((p) => p.positional).map((p) => tsType(p.type, input: true)).join(', ')}${_proxyConstructor(owner).parameters.any((p) => !p.positional) ? '${_proxyConstructor(owner).parameters.any((p) => p.positional) ? ', ' : ''}options${_proxyConstructor(owner).parameters.where((p) => !p.positional).every((p) => !p.required) ? '?' : ''}: {${_proxyConstructor(owner).parameters.where((p) => !p.positional).map((p) => namedParameter(p, tsType(p.type, input: true))).join('; ')}}' : ''}], implementation: Partial<$result>): $result;',
       ];
-      final construct = owner.proxy?.kind == 'extends'
+      final construct =
+          owner.proxy?.kind == 'extends' || owner.proxy?.widgetInterface == true
           ? '(abstract new (${arguments(_proxyConstructor(owner))}) => $result) & ${owner.constructors.length > 1 ? '(abstract new (call: _FlaxProxySuper<$result>) => $result) & ' : ''}'
           : '';
       return '$construct{${constructors.join()}} & _FlaxInstanceType<$result> & _FlaxDartType<$result>';
@@ -5138,7 +5152,9 @@ $_typescriptHostImport
     }
 
     String valueName(FlaxCodegenClassModel type) =>
-        type.proxy?.kind == 'extends' && type.kind != 'widget'
+        type.proxy?.widgetInterface == true
+        ? '_${type.name}Implementation'
+        : type.proxy?.kind == 'extends' && type.kind != 'widget'
         ? type.name
         : '_${type.name}Factory';
     String instanceType(FlaxCodegenClassModel type) =>
@@ -5172,7 +5188,9 @@ $_typescriptHostImport
       FlaxCodegenClassModel type,
       FlaxCodegenProxyModel proxy,
     ) {
-      final className = type.kind == 'widget'
+      final className = proxy.widgetInterface
+          ? '_${type.name}Implementation'
+          : type.kind == 'widget'
           ? '_${type.name}Native'
           : type.name;
       final ctor = _proxyConstructor(type);
@@ -5182,7 +5200,7 @@ $_typescriptHostImport
       ];
       target.writeln(
         'const _${type.name}Proxy = {'
-        '${type.kind == 'widget' ? 'nativeWidget: true, ' : ''}type: ${jsonEncode(type.id)}, parameters: ${jsonEncode(params)}, '
+        '${type.kind == 'widget' || _isWidgetObject(type) ? 'nativeWidget: true, ' : ''}type: ${jsonEncode(type.id)}, parameters: ${jsonEncode(params)}, '
         'constructors: ${jsonEncode({
           for (final c in type.constructors) c.name: [
               for (final p in c.parameters) {'name': p.name, 'required': p.required, 'positional': p.positional},
@@ -5194,9 +5212,13 @@ $_typescriptHostImport
         'contextMembers: ${jsonEncode(_genericContextMembers(proxy))}, '
         'superMembers: ${jsonEncode(proxy.superMethods)}} as const;',
       );
-      if (proxy.kind == 'extends') {
+      if (proxy.kind == 'extends' || proxy.widgetInterface) {
         target.writeln(
-          'export interface $className${generics(type.typeParameters)}${type.kind == 'widget' ? ' extends _FlaxDartWidget${type.widgetInterfaces.map((i) => ", Omit<${tsType(i)}, 'kind'>").join()}' : ''} {',
+          'export interface $className${generics(type.typeParameters)}${proxy.widgetInterface
+              ? ' extends ${type.name}${genericUse(type)}'
+              : type.kind == 'widget'
+              ? ' extends _FlaxDartWidget${type.widgetInterfaces.map((i) => ", Omit<${tsType(i)}, 'kind'>").join()}'
+              : ''} {',
         );
         target.writeln(
           'readonly [_flaxDartTypeValue]: $className${type.typeParameters.isEmpty ? '' : '<${type.typeParameters.map((p) => p.name).join(', ')}>'};',
@@ -5292,7 +5314,7 @@ $_typescriptHostImport
           '_flaxDefineProxyBase($className.prototype, _${type.name}Proxy${type.kind == 'widget' ? ', ${jsonEncode(type.getters.map((g) => g.name).toList())}' : ''});',
         );
       }
-      if (type.kind == 'widget') return;
+      if (type.kind == 'widget' || proxy.widgetInterface) return;
       final requiredMethods = proxy.methods
           .where((m) => !proxy.hasSuperMethod(m.name))
           .toList();
@@ -5311,7 +5333,7 @@ $_typescriptHostImport
           'set ${s.name}(value: ${tsType(s.type)})',
       ].join('; ');
       target.writeln(
-        '${valueName(type) == type.name ? "export " : ""}namespace ${valueName(type)} { export function implement${generics(type.typeParameters)}(args: [${proxyArguments(type)}], implementation: {$implementation}): ${type.name}${genericUse(type)} {',
+        '${(valueName(type) == type.name || type.proxy?.widgetInterface == true) ? "export " : ""}namespace ${valueName(type)} { export function implement${generics(type.typeParameters)}(args: [${proxyArguments(type)}], implementation: {$implementation}): ${type.name}${genericUse(type)} {',
       );
       target.writeln(
         'return constructProxy(_${type.name}Proxy, args, implementation) as ${type.name}${genericUse(type)}; } }',
@@ -5668,6 +5690,7 @@ $_typescriptHostImport
       }
       final hasJsConstructor =
           type.proxy?.kind == 'extends' ||
+          type.proxy?.widgetInterface == true ||
           (type.kind == 'widget' && type.proxy != null);
       final api = type.kind == 'widget' && type.proxy != null
           ? '_${type.name}Binding'
@@ -5752,14 +5775,16 @@ $_typescriptHostImport
             ),
             id: operation.id,
             namespace: valueName(type),
-            exportNamespace: valueName(type) == type.name,
+            exportNamespace:
+                (valueName(type) == type.name ||
+                type.proxy?.widgetInterface == true),
             functionTransport: true,
           );
         }
         for (final getter in type.staticGetters) {
           if (!staticObject) {
             staticMethods.writeln(
-              '${valueName(type) == type.name ? "export " : ""}namespace ${valueName(type)} { export declare const ${getter.name}: ${tsType(getter.type)}; }',
+              '${(valueName(type) == type.name || type.proxy?.widgetInterface == true) ? "export " : ""}namespace ${valueName(type)} { export declare const ${getter.name}: ${tsType(getter.type)}; }',
             );
           }
           staticMethods.writeln(
@@ -5773,7 +5798,9 @@ $_typescriptHostImport
           method,
           id: method.deferredFactory ? type.id : type.staticMethodId(method),
           namespace: valueName(type),
-          exportNamespace: valueName(type) == type.name,
+          exportNamespace:
+              (valueName(type) == type.name ||
+              type.proxy?.widgetInterface == true),
           category: type.category,
           functionTransport: !method.deferredFactory,
         );
@@ -5864,7 +5891,7 @@ $_typescriptHostImport
         if (type.asyncIterableFactory case final factory?) {
           final parameter = type.typeParameters.single;
           out.writeln(
-            '${valueName(type) == type.name ? "export " : ""}namespace ${valueName(type)} {',
+            '${(valueName(type) == type.name || type.proxy?.widgetInterface == true) ? "export " : ""}namespace ${valueName(type)} {',
           );
           out.writeln(
             'export function $factory${generics([parameter], defaults: false)}(source: AsyncIterable<${parameter.name}>): ${type.name}<${parameter.name}> {',
@@ -5918,7 +5945,9 @@ $_typescriptHostImport
         );
       }
       final delayedProxy =
-          type.proxy?.kind == 'implements' && type.constructors.isNotEmpty;
+          type.proxy?.kind == 'implements' &&
+          type.proxy?.widgetInterface != true &&
+          type.constructors.isNotEmpty;
       if (type.proxy case final proxy?
           when !delayedProxy && type.kind != 'widget') {
         emitProxy(out, type, proxy);
@@ -5988,7 +6017,7 @@ $_typescriptHostImport
             : ctor.name;
         if (ctor.name.isNotEmpty) {
           out.writeln(
-            '${valueName(type) == type.name ? "export " : ""}namespace ${valueName(type)} {',
+            '${(valueName(type) == type.name || type.proxy?.widgetInterface == true) ? "export " : ""}namespace ${valueName(type)} {',
           );
         }
         final named = ctor.parameters

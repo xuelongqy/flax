@@ -36,7 +36,10 @@ test('shared prototype forwarding preserves receiver, direct super and omission'
     );
     return 0;
   };
-  globalThis.__flaxCreateObject = () => globalThis.__flaxBindings.object(type, 4001);
+  globalThis.__flaxCreateObject = (_version, _type, descriptor) => {
+    assert.equal(typeof descriptor.widgetType, 'number');
+    return globalThis.__flaxBindings.object(type, 4001);
+  };
   globalThis.__flaxBindPeer = (version, source, target) => {
     assert.equal(version, 24);
     assert.equal(globalThis.__flaxBindings.objectHandle(source), 4001);
@@ -47,6 +50,7 @@ test('shared prototype forwarding preserves receiver, direct super and omission'
     return args.at(-1);
   });
   const definition = {
+    nativeWidget: true,
     type,
     parameters: [],
     methods: {

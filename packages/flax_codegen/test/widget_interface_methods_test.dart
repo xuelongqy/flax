@@ -82,6 +82,7 @@ void main() {
         proposal.config.classes['GenericContract']!.kind,
         'widgetInterface',
       );
+      expect(proposal.config.classes['GenericContract']!.proxy, 'implements');
       expect(
         proposal.config.classes.keys,
         contains('GenericTile'),

@@ -6,7 +6,7 @@ be supported by the generator while a particular SDK library still needs its own
 selection and runtime verification.
 
 The current version domains are binding selection format **2**, package metadata format
-**2**, Manifest **21**, UI protocol **24**, native ABI **2**, and internal engine
+**2**, Manifest **22**, UI protocol **24**, native ABI **2**, and internal engine
 binding extension **8**. Only the current formats are read and written.
 
 ## Engine-backed audit and consolidated backlog
@@ -65,7 +65,7 @@ Verification for this completion is recorded in
 The additive `native-functions`, `callback-map-keys`, `lazy-js-iterables` and
 `proxy-super-constructors` capability requirements reject hosts missing these shared
 paths. Record value conversion additionally requires engine binding extension 8. Current
-manifests use format 21; UI protocol 24 and native ABI 2 remain unchanged.
+manifests use format 22; UI protocol 24 and native ABI 2 remain unchanged.
 
 ### Remaining mechanism gaps
 
@@ -122,8 +122,11 @@ only for a concrete API requiring JS to compose a type without a declaration or 
 
 Widget interface generation now uses the shared native-value/proxy path, including
 generic contracts, private native defaults and names formerly reserved by the forwarding
-host. Native-only member metadata contains no copied source or imports. A new runtime
-Dart class is not synthesized from an arbitrary JS object. See
+host. Native-only member metadata contains no copied source or imports. Selected
+convertible interfaces also expose JS subclass constructors through `proxy: implements`,
+using a native StatelessWidget base and the ordinary object/proxy path. Generic and
+non-generic provider views follow the same inheritance and conversion rules. A new
+runtime Dart class is not synthesized from an arbitrary JS object. See
 [native Widget interfaces](widget-interfaces.md#generation-and-ownership).
 
 Wider SDK selection still depends on actual application APIs. A future TS build
@@ -279,7 +282,7 @@ Dart value permits them. See
 
 Class static reads and writes are independent capabilities on every supported class
 category. Reads use `Class.property`; writes use `Class.setProperty(value)`. They retain
-their own types and operation identities in Manifest 21. Static declarations are not
+their own types and operation identities in Manifest 22. Static declarations are not
 inherited; a read-only provider cannot supply a write. A generated setter name collision
 fails explicit selection or produces `static_setter_export_collision` in automatic
 selection. See [static property rules](bindings.md#class-static-properties) and the

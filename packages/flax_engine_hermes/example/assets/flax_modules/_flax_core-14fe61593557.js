@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/core","owner":"@flax/core-runtime:dist/runtime/index.js","version":"0.0.0","artifact":"e1be7ef3915295461922b1d64f89a141583a9d2fff311baaf641085d2a5f998e","asset":"assets/flax_modules/_flax_core-14fe61593557.js","package":"@flax/core-runtime","source":"dist/runtime/index.js","dependencies":{},"bindings":[],"subpaths":[]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/core","owner":"@flax/core-runtime:dist/runtime/index.js","version":"0.0.0","artifact":"710d3b1a0d3357dabe1f89a58398e2bcddad4490cefc7e95453071ef8289038a","asset":"assets/flax_modules/_flax_core-14fe61593557.js","package":"@flax/core-runtime","source":"dist/runtime/index.js","dependencies":{},"bindings":[],"subpaths":[]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -24,7 +24,9 @@ __export(index_exports, {
   batch: () => batch,
   bind: () => bind,
   computed: () => computed,
-  signal: () => signal
+  readBindingSnapshot: () => readBindingSnapshot,
+  signal: () => signal,
+  withBindingSnapshots: () => withBindingSnapshots
 });
 module.exports = __toCommonJS(index_exports);
 
@@ -413,6 +415,31 @@ function j(i2, t2) {
 }
 
 // ../../../flax/js/dist/runtime/index.js
+var reads = [];
+var bindingReaders = /* @__PURE__ */ new WeakSet();
+var nativeCallDepth = 0;
+function readBindingSnapshot(read) {
+  return bindingReaders.has(read) ? r(read) : read();
+}
+function withBindingSnapshots(action) {
+  const start = reads.length;
+  nativeCallDepth++;
+  try {
+    return action();
+  } catch (error) {
+    const retry = reads.slice(start);
+    for (const source of retry) {
+      try {
+        void source.value;
+      } catch {
+      }
+    }
+    throw error;
+  } finally {
+    if (--nativeCallDepth === 0)
+      reads.length = 0;
+  }
+}
 function notify(token) {
   const host = globalThis;
   if (!host.__flaxInvalidate)
@@ -427,9 +454,11 @@ function bind(read) {
       return { ok: false, error };
     }
   });
-  return Object.freeze({
+  const binding = Object.freeze({
     kind: "binding",
     read() {
+      if (nativeCallDepth > 0)
+        reads.push(result);
       const current = result.value;
       if (!current.ok)
         throw current.error;
@@ -446,6 +475,8 @@ function bind(read) {
       });
     }
   });
+  bindingReaders.add(binding.read);
+  return binding;
 }
 function signal(value) {
   const source = y(value);

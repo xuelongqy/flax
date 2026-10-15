@@ -1,4 +1,5 @@
 import "@flax/flutter/cupertino/_bindings/cupertino_CupertinoThemeData";
+import "@flax/flutter/cupertino/_bindings/cupertino_ObstructingPreferredSizeWidget";
 export { CupertinoApp } from "@flax/flutter/cupertino/_bindings/cupertino_CupertinoApp";
 export { CupertinoButton } from "@flax/flutter/cupertino/_bindings/cupertino_CupertinoButton";
 export { CupertinoNavigationBar } from "@flax/flutter/cupertino/_bindings/cupertino_CupertinoNavigationBar";

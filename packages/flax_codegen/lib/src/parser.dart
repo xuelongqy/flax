@@ -793,7 +793,8 @@ class FlaxCodegenBindingParser {
         final kind =
             (selected.kind == 'widgetInterface' &&
                     declaration is InterfaceElement &&
-                    declaration.typeParameters.isNotEmpty
+                    (declaration.typeParameters.isNotEmpty ||
+                        selected.proxy != null)
                 ? 'object'
                 : selected.kind) ??
             (declaration is ClassElement &&
@@ -1062,9 +1063,9 @@ class FlaxCodegenBindingParser {
   ) {
     final kind = _adaptations[identity(element)];
     final realWidgetInterface =
-        own.kind == 'widgetInterface' && element.typeParameters.isNotEmpty;
+        own.kind == 'widgetInterface' && kind == 'object';
     if (realWidgetInterface && !_isFlutterWidget(element)) {
-      throw StateError('Expected a generic Widget interface: ${element.name}');
+      throw StateError('Expected a Widget interface: ${element.name}');
     }
     final widgetContracts = own.widgetInterfaces.toSet();
     final widgetObjectView =
@@ -1866,6 +1867,22 @@ class FlaxCodegenBindingParser {
           'as a Dart object binding; select APIs that use this value instead',
         );
       }
+      final widgetInterfaceProxy =
+          entry.value.kind == 'widgetInterface' && entry.value.proxy != null;
+      if (widgetInterfaceProxy) {
+        if (entry.value.proxy != 'implements' ||
+            element is! ClassElement ||
+            !element.isAbstract ||
+            !_isFlutterWidget(element) ||
+            element.isBase ||
+            element.isFinal ||
+            element.isSealed) {
+          throw StateError(
+            'Widget interface proxies require an implementable abstract Widget: ${entry.key}',
+          );
+        }
+        nativeWidgetMembers.parse(element.thisType, entry.value);
+      }
       final selection = _effectiveSelection(element, entry.value);
       if ((element is EnumElement) != (selection.kind == 'enum') ||
           (element is EnumElement &&
@@ -2001,8 +2018,7 @@ class FlaxCodegenBindingParser {
             selection.kind != null ||
             contract is! ClassElement ||
             !(_selections[identity(contract)]?.kind == 'widgetInterface' ||
-                contract.typeParameters.isNotEmpty &&
-                    _selections[identity(contract)]?.kind == 'object' &&
+                _selections[identity(contract)]?.kind == 'object' &&
                     _isFlutterWidget(contract))) {
           throw StateError(
             'Incompatible selected Widget interface: ${entry.key}.$name',
@@ -2805,7 +2821,8 @@ class FlaxCodegenBindingParser {
         if (selection.proxy == 'extends' && constructors.isEmpty) {
           throw StateError('An extends proxy needs a generative constructor');
         }
-        if (selection.proxy == 'implements' &&
+        if (!widgetInterfaceProxy &&
+            selection.proxy == 'implements' &&
             constructors.any((constructor) {
               final name = constructor.name.isEmpty ? 'new' : constructor.name;
               return !actualType.constructors
@@ -2832,6 +2849,9 @@ class FlaxCodegenBindingParser {
                   !(t.element.library.isDartCore && t.element.name == 'Object'),
             )
             .toList();
+        final interfaceMembers = widgetInterfaceProxy
+            ? nativeWidgetMembers._members(actualType).keys.toSet()
+            : null;
         final proxySuperMembers = <String>[];
         final mustCallSuperAccessors = <String>[];
         final proxyGetters = <FlaxCodegenGetterModel>[];
@@ -2841,6 +2861,10 @@ class FlaxCodegenBindingParser {
             for (final t in hierarchy)
               for (final accessor in setter ? t.setters : t.getters)
                 if (!accessor.isStatic &&
+                    (interfaceMembers == null ||
+                        interfaceMembers.contains(
+                          '${setter ? 'setter' : 'getter'}:${accessor.name!.replaceFirst(RegExp(r'=$'), '')}',
+                        )) &&
                     (!accessor.isPrivate ||
                         accessor.isAbstract ||
                         selection.proxy == 'implements'))
@@ -2911,6 +2935,8 @@ class FlaxCodegenBindingParser {
           for (final t in hierarchy)
             for (final method in t.methods)
               if (!method.isStatic &&
+                  (interfaceMembers == null ||
+                      interfaceMembers.contains('method:${method.name}')) &&
                   (!method.isPrivate ||
                       method.isAbstract ||
                       selection.proxy == 'implements'))
@@ -3056,9 +3082,49 @@ class FlaxCodegenBindingParser {
             'Proxy equality requires a selected hashCode getter',
           );
         }
+        if (widgetInterfaceProxy) {
+          final framework = await session.getLibraryByUri(
+            'package:flutter/widgets.dart',
+          );
+          final stateless =
+              (framework as LibraryElementResult).element.exportNamespace.get2(
+                'StatelessWidget',
+              ) as ClassElement;
+          scope.nativeTypes['StatelessWidget'] = 'package:flutter/widgets.dart';
+          nativeWidgetMembers.validateProxyBase(
+            element.thisType,
+            stateless.thisType,
+          );
+          constructors.add(
+            FlaxCodegenConstructorModel(
+              '',
+              parameters(
+                stateless.constructors
+                    .singleWhere((c) => c.name == 'new')
+                    .formalParameters,
+                ['key'],
+                '${entry.key}.proxy',
+              ),
+            ),
+          );
+          if (!proxyMethods.any((method) => method.name == 'build')) {
+            final build = stateless.getMethod('build')!;
+            proxyMethods.add(
+              FlaxCodegenMethodModel(
+                'build',
+                parameters(build.formalParameters, [
+                  'context',
+                ], '${entry.key}.build'),
+                typeRef(build.returnType),
+                instance: true,
+              ),
+            );
+          }
+        }
         proxy = FlaxCodegenProxyModel(
           selection.proxy!,
           proxyMethods,
+          widgetInterface: widgetInterfaceProxy,
           superMethods: proxySuperMembers,
           mustCallSuperAccessors: mustCallSuperAccessors,
           getters: proxyGetters,
@@ -3136,9 +3202,13 @@ class FlaxCodegenBindingParser {
                             selected.instanceMethods.isNotEmpty))
                   typeRef(parent)
                       .declaredAs(typeRef(parent, forTypescript: true)),
-            if (selection.kind == 'widgetInterface')
-              for (final parent in element.allSupertypes)
-                if (_adaptations[identity(parent.element)] == 'widgetInterface')
+            if (selection.kind == 'widgetInterface' ||
+                isWidget && selection.kind == 'object')
+              for (final parent in element.thisType.allSupertypes)
+                if (_adaptations[identity(parent.element)] ==
+                        'widgetInterface' ||
+                    _adaptations[identity(parent.element)] == 'object' &&
+                        _isFlutterWidget(parent.element))
                   typeRef(parent)
                       .declaredAs(typeRef(parent, forTypescript: true)),
             if (!isWidget &&
@@ -3498,10 +3568,18 @@ class FlaxCodegenBindingParser {
         }
         for (final name in route.builders) {
           final type = args.where((p) => p.name == name).firstOrNull?.type;
+          final parameter = function.formalParameters
+              .where((parameter) => parameter.name == name)
+              .firstOrNull
+              ?.type;
+          final widgetResult =
+              parameter is FunctionType &&
+              parameter.returnType is InterfaceType &&
+              _isFlutterWidget((parameter.returnType as InterfaceType).element);
           if (type == null ||
               type.kind != 'callback' ||
               type.nullable ||
-              type.result!.kind != 'widget' ||
+              type.result!.kind != 'widget' && !widgetResult ||
               type.result!.nullable ||
               type.parameters.length != 1 ||
               type.parameters.single.type.kind != 'context' ||

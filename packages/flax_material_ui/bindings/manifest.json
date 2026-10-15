@@ -1,5 +1,5 @@
 {
-  "formatVersion": 21,
+  "formatVersion": 22,
   "package": "flax_material_ui",
   "bindingNamespace": "flax.material",
   "imports": [
@@ -119,6 +119,7 @@
           "RouteSettings": "package:flutter/widgets.dart",
           "Scaffold": "package:material_ui/material_ui.dart",
           "ShapeBorder": "package:flutter/widgets.dart",
+          "Size": "package:flutter/widgets.dart",
           "Switch": "package:material_ui/material_ui.dart",
           "TextButton": "package:material_ui/material_ui.dart",
           "TextEditingController": "package:flutter/widgets.dart",
@@ -2759,7 +2760,7 @@
                   {
                     "name": "appBar",
                     "type": {
-                      "kind": "widget",
+                      "kind": "object",
                       "id": "flax.core/flutter#type:PreferredSizeWidget",
                       "name": "PreferredSizeWidget",
                       "nullable": true,
@@ -2772,7 +2773,7 @@
                       "dartArguments": [],
                       "primitiveKinds": [],
                       "declaration": {
-                        "kind": "widget",
+                        "kind": "object",
                         "id": "flax.core/flutter#type:PreferredSizeWidget",
                         "name": "PreferredSizeWidget",
                         "nullable": true,
@@ -5953,7 +5954,7 @@
                   {
                     "name": "bottom",
                     "type": {
-                      "kind": "widget",
+                      "kind": "object",
                       "id": "flax.core/flutter#type:PreferredSizeWidget",
                       "name": "PreferredSizeWidget",
                       "nullable": true,
@@ -5966,7 +5967,7 @@
                       "dartArguments": [],
                       "primitiveKinds": [],
                       "declaration": {
-                        "kind": "widget",
+                        "kind": "object",
                         "id": "flax.core/flutter#type:PreferredSizeWidget",
                         "name": "PreferredSizeWidget",
                         "nullable": true,
@@ -6262,14 +6263,53 @@
                 "specializations": []
               }
             ],
-            "getters": [],
+            "getters": [
+              {
+                "name": "preferredSize",
+                "type": {
+                  "kind": "object",
+                  "id": "flax.core/flutter#type:Size",
+                  "name": "Size",
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "object",
+                    "id": "flax.core/flutter#type:Size",
+                    "name": "Size",
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "encodeKind": null,
+                "cache": false
+              }
+            ],
             "setters": [],
             "staticGetters": [],
             "staticSetters": [],
             "methods": [],
             "widgetInterfaces": [
               {
-                "kind": "widget",
+                "kind": "object",
                 "id": "flax.core/flutter#type:PreferredSizeWidget",
                 "name": "PreferredSizeWidget",
                 "nullable": false,
@@ -6282,7 +6322,7 @@
                 "dartArguments": [],
                 "primitiveKinds": [],
                 "declaration": {
-                  "kind": "widget",
+                  "kind": "object",
                   "id": "flax.core/flutter#type:PreferredSizeWidget",
                   "name": "PreferredSizeWidget",
                   "nullable": false,
@@ -26066,6 +26106,15 @@
               "name": "Color"
             },
             "wireId": "flax.core/flutter#type:Color",
+            "owner": false
+          },
+          {
+            "sourceIdentity": {
+              "kind": "type",
+              "originatingUri": "dart:ui",
+              "name": "Size"
+            },
+            "wireId": "flax.core/flutter#type:Size",
             "owner": false
           },
           {
