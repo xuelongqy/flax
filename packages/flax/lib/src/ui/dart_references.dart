@@ -72,6 +72,21 @@ extension _DartReferences on _Session {
         throw ArgumentError('Invalid Dart reference arguments');
       }
       final input = args.single as FlaxJsObject;
+      final signature = helper('recordType').call([input]);
+      if (signature is FlaxJsString) {
+        final projection = dartTypes._records[signature.value];
+        if (projection == null) {
+          throw ArgumentError('Foreign Record projection');
+        }
+        if (operation == 'type') {
+          return FlaxJsString(projection.record!.dartType().toString());
+        }
+        dartTypes._index();
+        final matches = dartTypes._classes[type]?.type == Record;
+        if (operation == 'is') return FlaxJsBoolean(matches);
+        if (!matches) throw ArgumentError('Incompatible Dart type: $type');
+        return holdHostResult(input.retain());
+      }
       if (operation == 'is') {
         try {
           final (value, _) = _dartReferenceValue(input);
@@ -130,9 +145,6 @@ extension _DartReferences on _Session {
                 FlaxJsNumber(source!.id.toDouble()),
               ]),
               value,
-              owner: source._weakValue?.target is _ObjectValue
-                  ? source._weakValue!.target as _ObjectValue
-                  : null,
             ),
           );
         }

@@ -63,7 +63,6 @@ void main() {
             functions: module.functions,
             dartTypes: module.dartTypes,
             dartShapes: module.dartShapes,
-            records: module.records,
           ),
         testBindingModule('test', [
           FlaxWidgetBinding('test:Duplicate', {

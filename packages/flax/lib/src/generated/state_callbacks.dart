@@ -53,7 +53,6 @@ const componentsBindings = FlaxBindingModule(
     _stateVariant_TickerProviderState,
     _stateVariant_KeepAliveTickerState,
   ],
-  records: _recordTypes,
   dartTypes: [
     FlaxDartClassTemplate(
       "flax.core/components#type:StatefulWidget",
@@ -186,4 +185,3 @@ Function _flaxClass_State<_Owner0 extends api.StatefulWidget>() =>
       );
     };
 const _flaxDartShapes = <FlaxDartShapeTemplate>[];
-const _recordTypes = <FlaxTypeRef>[];

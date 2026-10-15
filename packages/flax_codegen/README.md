@@ -71,13 +71,20 @@ super; transport-field conflicts apply only to actual descriptor representations
 Private, `@internal`, `@visibleForTesting`, and `@protected` API is excluded from
 automatic exposure.
 
-Core supplies ordinary `Type`, `Symbol` and opaque `Record` references. Symbol values
-use Dart's constructor/constants, not JavaScript Symbols; Type and Record are
-non-constructible. Typed Record signatures keep their field projections. Broad Record
-inputs require an existing Dart reference and do not guess a raw JS object's layout.
-`Never` signatures map to TS `never`, preserve throws and reject any returned value;
-`Never?`/`Null` accepts only null. They compose through existing callbacks, Futures,
-Streams and collections and declare the additive `bottom-types` capability. See
+Core supplies native `Type` and `Symbol` references. Symbols use Dart's
+constructor/constants, not JavaScript Symbols. Every Record result, including bare
+`Record` and erased `Object?`, is a plain JS field object. Concrete inputs reuse the
+shared native constructor and existing field converters; no per-layout constructor or
+reader is generated. A bare `Record` input can infer a layout from an object: `$1`,
+`$2`, ... must be contiguous, and named keys must be public Dart identifiers other than
+Object member names. Without declared numeric field types, safe integral JS Numbers
+become Dart ints; other Numbers remain doubles. Prefer concrete signatures for typed
+nested values. Copies retain only weak type/view metadata, never the original Record.
+Type metadata lets `dartTypes.of`, `getDartType` and the Core Record token recognize an
+unaltered projection; spreading/cloning does not copy it. `Never` signatures map to TS
+`never`, preserve throws and reject any returned value; `Never?`/`Null` accepts only
+null. They compose through existing callbacks, Futures, Streams and collections and
+declare the additive `bottom-types` capability. See
 [Core conversion boundaries](../../docs/architecture/bindings.md#bottom-types-and-opaque-core-values).
 
 The
@@ -85,8 +92,9 @@ The
 separates automatic-selection gaps, missing adapters, current semantic limits and
 Dart/JS language boundaries. The first batch closes automatic Widget setter, interface
 callback/inheritance, opaque Core value and ordinary-object descriptor-name gaps through
-shared conversion paths. Type-token composition and unknown structural adapters remain
-separate engine-facing work.
+shared conversion paths. Public structural type-token composition and synthesis of
+arbitrary typed JS callback layouts remain separate engine-facing work. Record values
+already use the shared constructor without a compiled layout catalog.
 
 Ordinary Widget instance getters, setters and methods, including inherited members, use
 the same automatic conversion rules as object members. Selecting an instance API gives
@@ -310,7 +318,7 @@ Generic inputs accept the selected native value or its existing `DartInput<T>` f
 including native Widgets, JS arrays/Maps/Sets and compatible native collection
 references. An incompatible Dart reference cannot be narrowed by copying. Missing, extra
 or invalid business arguments, and unavailable type tokens, still fail. Internal engine
-binding extension 7 is required. No new YAML/CLI configuration is required. See the
+binding extension 8 is required. No new YAML/CLI configuration is required. See the
 [Dart/TypeScript regression](test/dart_types_test.dart),
 [nested target regression](test/nested_generic_constructors_test.dart) and
 [nested input regression](test/nested_constructor_inputs_test.dart).
@@ -424,9 +432,10 @@ Raw Dart `Function` values are exposed as authenticated callable `DartFunction` 
 Concrete native layouts use engine Type metadata and existing argument/result
 converters; Dart optional defaults remain Dart's responsibility. A plain JS function
 still needs a selected typed callback signature, and an unbound generic raw Function
-layout fails explicitly. Unknown Record layouts remain opaque native references and can
-roundtrip through a checked generic type; this does not add arbitrary Record field
-construction or public function/Record type-description builders.
+layout fails explicitly. Record layouts come from real VM Type metadata, including
+shapes with no source literal. AOT retains referenced Record shapes and their synthetic
+fields for native construction. This does not add public function/Record
+type-description builders.
 
 Configuration format 2 accepts an optional `typedefs` selection. Public aliases export
 TypeScript `Name<T>` and directional `NameInput<T>` types, preserving alias parameters,
@@ -643,12 +652,11 @@ subscription control, controllers, sinks, transformers and iterators call the re
 dart:async APIs. `Stream.fromAsyncIterable` and the generated async iterator form the
 two explicit JS iterable boundaries. They are unrelated to Fetch `ReadableStream`.
 Context events retain their real Dart references while each JS conversion checks the
-current session and mounted state. Compiled Record projections preserve registered field
-conversions through erased Stream operators and derived collection reads; they add no
-Record identity or per-value ownership. Copied JS Records retain their generated shape
-through a weak association; erased callback returns revalidate each field. Fresh JS
-objects require a concrete Record position. Unknown erased Dart Records use the opaque
-Core Record view; ambiguous registered field projections still fail closed.
+current session and mounted state. Record fields use the same converters through
+operators and derived collection reads. Erased and unknown Records are plain field
+objects reconstructed through the shared native constructor, without an original Record
+reference or compiled layout catalog. Weak Type/conversion metadata survives erased
+callbacks; fresh objects follow the declared signature or bare-Record inference.
 
 Protocol 24 supports Future-returning generated callbacks. Incoming JavaScript must
 return a Promise or thenable; generated Dart adapters expose the exact `Future<T>` shape

@@ -45,21 +45,29 @@ arguments and data/error encoding, rather than collapsing every view of one Dart
 
 ## Bottom types and opaque Core values
 
-Core provides `Type`, `Symbol` and broad `Record` through the ordinary object binding
-path. `Type` values come from Dart; `Symbol('name')`, `Symbol.empty` and
-`Symbol.unaryMinus` use real Dart Symbols. They are not JavaScript Symbols. Type and
-Record expose no constructor. All three retain native `toString()`, checked casts and
-session validation. A Type reference is not a replacement for the authenticated
-`dartTypes` generic-selection API or an API for reflection.
+Core provides `Type` and `Symbol` through ordinary object bindings. Symbols use real
+Dart constructors/constants and are not JS Symbols. Type has no public constructor;
+neither value is a reflection API or a generic-selection token.
 
-A declared `Record` accepts an existing Dart Record reference and exposes an opaque
-view. A typed `(String, int)` signature still reads or reconstructs its `$1`/`$2` fields
-through the existing compiled projection. Raw JS field objects need that concrete
-signature; a broad Record parameter does not infer a new layout. Unknown erased Record
-values use the opaque Core view; ambiguous registered structural projections still fail
-closed. Record values do not promise canonical JS `===` identity. Their shared handle
-metadata conditionally retains a weakly indexed value holder because Dart Records cannot
-be weak-reference targets. This adds no permanent business root or per-class GC code.
+Every Record uses a plain JS field object, including declared `Record` and erased
+`Object?` values. Typed signatures preserve readonly structural TypeScript fields;
+`Record` uses a readonly string-keyed object. VM Type metadata supplies unknown layouts,
+so there is no generated shape catalog or ambiguous projection selection. The bridge
+copies fields with one native read and reconstructs inputs with one checked native
+constructor. Field values reuse normal conversion and ownership; an unbound field type
+is rejected with its field name rather than hidden in an opaque Record. No original
+Record, value holder, native object ID, or per-layout executable adapter is retained.
+
+Concrete Record inputs require every declared field and ignore extras. Bare `Record`
+inputs infer contiguous `$1`, `$2`, ... positions and sorted named fields. Named fields
+must be public Dart identifiers and cannot shadow Object members. Safe integral Numbers
+infer int, other Numbers double; untyped nested objects retain ordinary Map semantics. A
+concrete signature is required to request particular nested collection or Record types.
+A weak association stores only the shared Type/conversion metadata of a returned value.
+It supports generic roundtrip and diagnostic/checked Core Record queries without a
+business-object edge. Object spread and cloning do not copy that metadata. Repeated
+reads need not have the same JS identity, and no native Record methods are installed on
+the field object. `value.toString()` therefore has normal JS object semantics.
 
 An unknown concrete native Function layout uses its actual engine Type metadata and
 shared `Function.apply` invocation, including optional/named defaults and existing
@@ -67,9 +75,10 @@ converters. Its JS view is an authenticated callable `DartFunction`. Passing an
 arbitrary JS closure back requires a selected compiled callback signature; raw
 `Function` input does not infer one. Authentic Dart Function views can also roundtrip
 through Object/dynamic and collections without creating a new closure. Unbound generic
-raw layouts fail explicitly. A native Record's unknown shape can roundtrip via
-`dartTypes.of(value)` and a checked generic call while remaining opaque; this does not
-synthesize field adapters in AOT.
+raw layouts fail explicitly. Record shapes with no Dart literal use the same native
+constructor in JIT and AOT. The maintained compiler treats referenced shapes as
+potentially native allocated and keeps synthetic field values conservative. Other
+classes keep ordinary type-flow rules.
 
 `Never` maps to TypeScript `never` and has no valid return value. Calls must throw or
 not complete. `Never?` and `Null` map to `null`; required inputs still reject missing
@@ -200,7 +209,7 @@ inherited/final/constructorless Widgets, getter side effects, typed methods, cal
 Future/Stream results, identity, invalid arguments and mount/unmount cleanup.
 
 Generated Dart subclasses retain one peer for the actual JS receiver. Shared member
-metadata goes through internal engine binding extension 7. The engine looks up the
+metadata goes through internal engine binding extension 8. The engine looks up the
 current property and invokes it with real `this`; it does not snapshot callbacks or wrap
 the business instance in a JS Proxy. Unchanged generated delegates report an unhandled
 result and the typed Dart override calls `super` directly. Explicit JS super uses the
@@ -736,17 +745,25 @@ wire ID, owner or session reference identity; provider-owned objects nested insi
 fields retain their normal identity. Manifest 20 carries the complete current Record
 shape.
 
-Generated modules also register compiled Record signatures, native type checks and field
-accessors. An erased `Object?` result, including `Stream<Record>.toList().get()`,
-selects an unambiguous registered projection using the existing
-Core/current-package/dependency provider order. Its fields retain the ordinary typed
-conversion. A weak association preserves this generated shape when a copied JS Record
-passes through an erased callback; its fields are checked again before reconstruction.
-Signatures describe compiled shapes, not object identities or business-object roots.
-Unknown erased Dart Records use the opaque Core Record reference. Ambiguous registered
-projections remain rejected. Fresh JS objects use their declared Record position;
-spreading or cloning an object does not copy the weak shape association. Direct typed
-Record positions do not require inference.
+For example, `({String name, int age}) echoUser(({String name, int age}) user)` uses
+ordinary field objects in both directions:
+
+```ts
+const user = echoUser({ name: 'Alex', age: 18 });
+console.log(user.name, user.age);
+```
+
+A List, Widget or callback field keeps its normal binding representation; Record
+conversion does not deep-serialize reference fields into JSON.
+
+Runtime Type metadata supplies Record field names and types, including erased results,
+`Stream<Record>.toList().get()` and layouts absent from generated signatures. Generated
+metadata retains explicit field conversion views, including callback borrowing and
+encoding. It contains no layout-specific reads, matching functions, constructors or
+module-level registration table. AOT treats referenced shapes as externally allocatable
+and synthetic fields as externally populated, so fields remain usable when a Record is
+created solely by the native API. Internal engine binding extension 8 gates this
+contract; native ABI 2, UI protocol 24 and Manifest 20 are unchanged.
 
 Generic declarations use one compiled Dart owner factory while TypeScript keeps the
 declared type parameters. A bare owner uses its legal default, commonly `Object?` or an
@@ -833,12 +850,12 @@ owner rather than limiting explicit runtime selection. No type is inferred from 
 contents or TS arguments.
 
 Class tokens also select intrinsic Stream, enum named factory and Route/Page adapters.
-This does not make enums or reference-only Context/State types constructible. Record and
-function values prefer compiled adapters for their field/parameter layout. Unknown
-Record layouts remain opaque and unknown concrete native functions use engine metadata;
-arbitrary new JS closures and unbound generic raw function layouts remain rejected.
-Union and higher-rank type composition is not a public token constructor.
-Already-generated generic callback signatures keep their existing typed adapters.
+This does not make enums or reference-only Context/State types constructible. Records
+use shared native field metadata and construction; concrete native functions use engine
+metadata and shared invocation. Creating a JS callback still requires a compiled typed
+adapter, and unbound generic raw function layouts remain rejected. Union and higher-rank
+type composition is not a public token constructor. Already-generated generic callback
+signatures keep their existing typed adapters.
 
 The generator retains both open declaration types and analyzer-resolved default input
 types. Closed targets use structured type arguments and the same recursive member,
@@ -1489,5 +1506,5 @@ Repeated conversion through one signature reuses its wrapper. Different signatur
 can be unequal under JS `===` while representing the same Dart object. An erased return
 can reuse a known view, but cannot invent a callback signature for an unknown function.
 The additive `generic-member-views` capability requires the updated Core runtime;
-Manifest 20 and internal binding extension 7 carry this migration; UI protocol 24 and
+Manifest 20 and internal binding extension 8 carry this migration; UI protocol 24 and
 native ABI 2 remain unchanged.

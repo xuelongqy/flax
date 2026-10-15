@@ -591,41 +591,45 @@ class _Session {
         throw ArgumentError('Expected a Record object');
       }
       final shape = helper('collectionShape').call([value]);
-      try {
-        if (shape is! FlaxJsString || shape.value != 'record') {
-          throw ArgumentError('Expected a Record object');
-        }
-      } finally {
-        _releaseJs(shape);
+      if (shape is! FlaxJsString || shape.value != 'record') {
+        throw ArgumentError('Expected a Record object');
       }
-      final binding = type.record;
-      if (binding == null) throw ArgumentError('Missing Record binding');
+      var binding = type.record;
+      if (binding == null) {
+        final signature = helper('recordType').call([value]);
+        if (signature is FlaxJsString) {
+          binding = dartTypes._records[signature.value]?.record;
+        }
+      }
       final ownKeys = keys(value).toSet();
+      final layout =
+          binding?.fields ?? dartTypes.recordFields(ownKeys.toList());
       final fields = <_Value>[];
       try {
-        for (final field in binding.fields) {
+        for (final field in layout) {
           if (!ownKeys.contains(field.name)) {
             throw ArgumentError('Missing Record field ${field.name}');
           }
           try {
-            fields.add(
-              _property(
-                value,
-                field.name,
-                (input) => decode(
-                  input,
-                  field.type,
-                  callbackScope: callbackScope,
-                  conversion: conversion,
-                ),
+            final decoded = _property(
+              value,
+              field.name,
+              (input) => decode(
+                input,
+                field.type,
+                callbackScope: callbackScope,
+                conversion: conversion,
               ),
             );
+            fields.add(decoded);
           } catch (error) {
             throw ArgumentError('Record field ${field.name}: $error');
           }
         }
         return _Value(
-          binding.create(
+          dartTypes.newRecord(
+            binding,
+            layout,
             fields.map((field) => field.data).toList(growable: false),
           ),
           fields,

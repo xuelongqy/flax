@@ -15070,7 +15070,6 @@ const flutterBindings = FlaxBindingModule(
     "native-widget-proxies",
   ],
   stateVariants: [],
-  records: _recordTypes,
   dartTypes: [
     FlaxDartClassTemplate(
       "flax.core/flutter#type:MapEntry",
@@ -35075,5 +35074,3 @@ T _genericCallbackResult<T>(Object? value) {
   }
   return value as T;
 }
-
-const _recordTypes = <FlaxTypeRef>[];

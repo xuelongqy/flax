@@ -55,7 +55,7 @@ void main() {
   }
 
   testWidgets(
-    'erased Records use opaque fallback and reject ambiguous projections',
+    'erased Records use plain objects without a generated layout catalog',
     (t) async {
       final h = OwnedHarness(
         fixture: 'context_streams',
@@ -67,27 +67,8 @@ void main() {
             moduleId: 'test/record-validation',
             uiProtocol: flaxBindingVersion,
             requiredCapabilities: const [],
-            records: [
-              for (final kind in ['int', 'num'])
-                FlaxTypeRef(
-                  'record',
-                  record: FlaxRecordBinding(
-                    [
-                      FlaxRecordFieldBinding(
-                        r'$1',
-                        FlaxTypeRef(kind),
-                        (value) => (value as (num,)).$1,
-                      ),
-                    ],
-                    (values) => (values.single as num,),
-                    signature: '($kind,)',
-                    matches: (value) =>
-                        kind == 'int' ? value is (int,) : value is (num,),
-                  ),
-                ),
-            ],
             functions: [
-              for (final name in ['unknown', 'ambiguous'])
+              for (final name in ['unknown', 'positional'])
                 FlaxFunctionBinding(
                   'test/record-validation#function:$name',
                   const [],
@@ -101,27 +82,17 @@ void main() {
       try {
         await mount(t, h);
         expect(
-          h.string(
-            'invokeTopLevel("test/record-validation#function:unknown", []).toString()',
+          h.boolean(
+            'invokeTopLevel("test/record-validation#function:unknown", []).unknown',
           ),
-          '(unknown: true)',
+          isTrue,
         );
-        for (final (name, message) in [
-          ('ambiguous', 'Ambiguous Dart Record projection'),
-        ]) {
-          expect(
-            () => h.execute(
-              'invokeTopLevel("test/record-validation#function:$name", [])',
-            ),
-            throwsA(
-              isA<FlaxJsException>().having(
-                (error) => error.toString(),
-                'message',
-                contains(message),
-              ),
-            ),
-          );
-        }
+        expect(
+          h.number(
+            'invokeTopLevel("test/record-validation#function:positional", []).\$1',
+          ),
+          1,
+        );
         expect(h.errors, isEmpty);
       } finally {
         await h.finish(t);

@@ -89,17 +89,44 @@ class CoreValues {
   Symbol get symbol => const Symbol('bindingParity');
   Record get record => ('record', 7);
   Object? unknownRecord() => (17, label: true);
+  ({num value}) numericRecord() => (value: 7);
+  Record unboundRecord() => (Object(),);
   Type echoType(Type value) => value;
   Symbol echoSymbol(Symbol value) => value;
   Record echoRecord(Record value) => value;
   (String, int) typedRecord(Record value) => value as (String, int);
   Record callbackRecord(void Function() callback) {
-    final payload = Object();
+    final payload = DescriptorValue('record-payload');
     _payload = WeakReference(payload);
     return (payload, callback);
   }
 
   void callRecord(Record value) => (value as (Object, void Function())).$2();
+  ({String cargo, int quantity}) createRow(
+    ({String cargo, int quantity}) value,
+  ) => value;
+  ({
+    ({String cargo, int quantity}) row,
+    (int, bool) pair,
+    List<String> tags,
+    int? optional,
+  })
+  nestedRow(
+    ({
+      ({String cargo, int quantity}) row,
+      (int, bool) pair,
+      List<String> tags,
+      int? optional,
+    })
+    value,
+  ) => value;
+  Record emptyRecord() => ();
+  Future<({String cargo, int quantity})> futureRow(
+    Future<({String cargo, int quantity})> value,
+  ) => value;
+  Stream<({String cargo, int quantity})> streamRows(
+    Stream<({String cargo, int quantity})> value,
+  ) => value;
   Type visitType(Type Function(Type) callback) => callback(String);
   Symbol visitSymbol(Symbol Function(Symbol) callback) => callback(symbol);
   Record visitRecord(Record Function(Record) callback) => callback(record);
@@ -118,3 +145,8 @@ class CoreValues {
 }
 
 CoreValues createCoreValues() => CoreValues();
+
+({String cargo, int quantity}) invokeRow(
+  CoreValues target,
+  ({String cargo, int quantity}) value,
+) => target.createRow(value);

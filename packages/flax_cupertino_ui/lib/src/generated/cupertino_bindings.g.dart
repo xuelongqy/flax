@@ -314,7 +314,6 @@ const cupertinoBindings = FlaxBindingModule(
     "native-widget-proxies",
   ],
   stateVariants: [],
-  records: _recordTypes,
   dartTypes: [
     FlaxDartClassTemplate(
       "flax.cupertino/cupertino#type:CupertinoApp",
@@ -544,5 +543,3 @@ Object? _callback0Invoke(
   (function as void Function())();
   return null;
 }
-
-const _recordTypes = <FlaxTypeRef>[];

@@ -13,6 +13,13 @@ class FlaxTestRuntimeTracker implements FlaxJsRuntime {
   Type dartInstanceType(Object value) => inner.dartInstanceType(value);
   @override
   List<Object?> dartTypeParts(Type type) => inner.dartTypeParts(type);
+
+  @override
+  List<Object?> dartRecordFields(Record value) => inner.dartRecordFields(value);
+
+  @override
+  Record newDartRecord(Type? type, List<String> names, List<Object?> fields) =>
+      inner.newDartRecord(type, names, fields);
   @override
   Type nullableDartType(Type type) => inner.nullableDartType(type);
   @override

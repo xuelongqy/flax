@@ -6303,7 +6303,6 @@ const materialBindings = FlaxBindingModule(
     "native-widget-proxies",
   ],
   stateVariants: [],
-  records: _recordTypes,
   dartTypes: [
     FlaxDartClassTemplate(
       "flax.material/material#type:Material",
@@ -9267,4 +9266,3 @@ bool _collection7Matches(Object value) =>
 Future<Object?> _future0Adapt(Future<Object?> value) =>
     value.then<void>((_) {});
 Future<Object?> _future1Adapt(Future<Object?> value) => value;
-const _recordTypes = <FlaxTypeRef>[];

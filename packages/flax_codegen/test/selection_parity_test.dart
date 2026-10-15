@@ -140,62 +140,64 @@ class Custom extends BusinessFields {
     );
   });
 
-  test('Never and opaque Core values share typed conversion and Manifest roundtrips', () async {
-    final (parser, core) = await prepared();
-    final proposal = await parser.proposeLibrary(config());
-    final selection = proposal.config.classes['CoreValues']!;
-    expect(
-      selection.instanceMethods.keys,
-      containsAll([
-        'fail',
-        'failLater',
-        'invokeNever',
-        'invokeFutureNever',
-        'nullOnly',
-        'echoType',
-        'echoSymbol',
-        'echoRecord',
-      ]),
-    );
-    final module = await parser.parse(proposal.config);
-    expect(module.requiredCapabilities, contains('bottom-types'));
-    final diagnostics = FlaxCodegenManifestDiagnostics('binding-parity.json');
-    final encoded = FlaxCodegenManifestCodec.encodeModule(module)
-      ..['typeLibraries'] = {
-        for (final key in module.typeLibraries.keys.toList()..sort())
-          key: module.typeLibraries[key]!.startsWith('file:')
-              ? 'package:example/binding_parity.dart'
-              : module.typeLibraries[key],
-      };
-    for (final type in encoded['classes'] as List) {
-      for (final member in type['widgetMembers'] as List? ?? const []) {
-        final imports = member['imports'] as Map<String, dynamic>;
-        final publicImports = {
-          for (final entry in imports.entries)
-            entry.key.startsWith('file:')
-                    ? 'package:example/binding_parity.dart'
-                    : entry.key:
-                entry.value,
+  test(
+    'Never and Core values share typed conversion and Manifest roundtrips',
+    () async {
+      final (parser, core) = await prepared();
+      final proposal = await parser.proposeLibrary(config());
+      final selection = proposal.config.classes['CoreValues']!;
+      expect(
+        selection.instanceMethods.keys,
+        containsAll([
+          'fail',
+          'failLater',
+          'invokeNever',
+          'invokeFutureNever',
+          'nullOnly',
+          'echoType',
+          'echoSymbol',
+          'echoRecord',
+        ]),
+      );
+      final module = await parser.parse(proposal.config);
+      expect(module.requiredCapabilities, contains('bottom-types'));
+      final diagnostics = FlaxCodegenManifestDiagnostics('binding-parity.json');
+      final encoded = FlaxCodegenManifestCodec.encodeModule(module)
+        ..['typeLibraries'] = {
+          for (final key in module.typeLibraries.keys.toList()..sort())
+            key: module.typeLibraries[key]!.startsWith('file:')
+                ? 'package:example/binding_parity.dart'
+                : module.typeLibraries[key],
         };
-        member['imports'] = {
-          for (final key in publicImports.keys.toList()..sort())
-            key: publicImports[key],
-        };
+      for (final type in encoded['classes'] as List) {
+        for (final member in type['widgetMembers'] as List? ?? const []) {
+          final imports = member['imports'] as Map<String, dynamic>;
+          final publicImports = {
+            for (final entry in imports.entries)
+              entry.key.startsWith('file:')
+                      ? 'package:example/binding_parity.dart'
+                      : entry.key:
+                  entry.value,
+          };
+          member['imports'] = {
+            for (final key in publicImports.keys.toList()..sort())
+              key: publicImports[key],
+          };
+        }
       }
-    }
-    final restored = FlaxCodegenManifestCodec.decodeModule(
-      encoded,
-      diagnostics,
-      '',
-      module.name,
-    );
-    diagnostics.throwIfAny();
-    expect(restored!.classes.map((c) => c.name), contains('CoreValues'));
-    await compileFixture(
-      root,
-      FlaxCodegenBindingEmitter([core, module]),
-      module,
-      consumerSource: '''
+      final restored = FlaxCodegenManifestCodec.decodeModule(
+        encoded,
+        diagnostics,
+        '',
+        module.name,
+      );
+      diagnostics.throwIfAny();
+      expect(restored!.classes.map((c) => c.name), contains('CoreValues'));
+      await compileFixture(
+        root,
+        FlaxCodegenBindingEmitter([core, module]),
+        module,
+        consumerSource: '''
 import {createCoreValues} from './plugin.js';
 import {Type, Symbol, Record} from '@flax/dart/core';
 const value = createCoreValues();
@@ -214,6 +216,7 @@ value.nullOnly('bad');
 // @ts-expect-error Symbols are Dart references, not JS symbols.
 value.echoSymbol(globalThis.Symbol('bad'));
 ''',
-    );
-  });
+      );
+    },
+  );
 }

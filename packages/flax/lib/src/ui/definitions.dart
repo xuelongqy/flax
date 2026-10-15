@@ -67,26 +67,25 @@ class FlaxTypeRef {
       (record?.fields.any((field) => field.type.containsCallback) ?? false);
 }
 
-/// Generated structural access for one Dart Record field.
+/// Field conversion metadata; native Record access is shared across all layouts.
 class FlaxRecordFieldBinding {
-  const FlaxRecordFieldBinding(this.name, this.type, this.read);
+  const FlaxRecordFieldBinding(this.name, this.type);
   final String name;
   final FlaxTypeRef type;
-  final Object? Function(Object) read;
 }
 
-/// Generated reconstruction for one concrete Dart Record shape.
+/// A concrete Record signature. No business value is retained by this metadata.
 class FlaxRecordBinding {
   const FlaxRecordBinding(
     this.fields,
-    this.create, {
+    this.dartType, {
     required this.signature,
-    required this.matches,
   });
+
+  /// Positional fields first, then named fields in VM name order.
   final List<FlaxRecordFieldBinding> fields;
-  final Object Function(List<Object?>) create;
+  final Type Function() dartType;
   final String signature;
-  final bool Function(Object) matches;
 }
 
 /// Generated type adaptation for a JavaScript Promise entering Dart.
@@ -523,7 +522,6 @@ class FlaxBindingModule {
     this.functions = const [],
     this.stateVariants = const [],
     this.dependencyModules = const [],
-    this.records = const [],
     this.dartTypes = const [],
     this.dartShapes = const [],
   });
@@ -535,7 +533,6 @@ class FlaxBindingModule {
   final List<FlaxFunctionBinding> functions;
   final List<FlaxStateVariantBinding> stateVariants;
   final List<String> dependencyModules;
-  final List<FlaxTypeRef> records;
   final List<FlaxDartClassTemplate> dartTypes;
   final List<FlaxDartShapeTemplate> dartShapes;
 }
@@ -577,13 +574,6 @@ class FlaxBindingRegistry {
         functions[function.id] = function;
         _bindingOwners[function.id] = module;
       }
-      for (final type in module.records) {
-        final record = type.record;
-        if (type.kind != 'record' || record == null) {
-          throw ArgumentError('Invalid Record projection in ${module.name}');
-        }
-        _records.add((type, module));
-      }
       for (final variant in module.stateVariants) {
         if (stateVariants.containsKey(variant.id)) {
           throw ArgumentError('Duplicate State variant: ${variant.id}');
@@ -600,7 +590,6 @@ class FlaxBindingRegistry {
   final List<FlaxBindingModule> modules;
   final _bindingOwners = <String, FlaxBindingModule>{};
   final _types = <String, FlaxTypeBinding>{};
-  final _records = <(FlaxTypeRef, FlaxBindingModule)>[];
   late final _contextType = _types.values
       .whereType<FlaxContextBinding>()
       .singleWhere(

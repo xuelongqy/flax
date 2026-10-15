@@ -91,6 +91,9 @@ current language support is in the
   input conveniences, exact BigInt, shared binary views and Dart error references use
   the common conversion and ownership paths.
 
+- [0043: Record value conversion](0043-record-value-conversion.md) is accepted. All
+  Records use plain field objects and shared native construction.
+
 [Open Questions](open-questions.md) records decisions that have not been made. Use the
 [decision template](TEMPLATE.md) for a new significant decision. Record the decision,
 its reason and practical consequences, and update this index.

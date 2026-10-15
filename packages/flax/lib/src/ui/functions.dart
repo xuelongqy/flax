@@ -251,6 +251,10 @@ extension _WidgetReferences on _Session {
   // Native wrappers need no inspection; each escaped Flax child owns its resources.
   void escapeWidget(Object? value, [FlaxTypeRef? type]) {
     if (type != null) {
+      type = dartTypes._resolveRef(type);
+      if (value is Record && type.kind == 'record' && type.record == null) {
+        type = dartTypes.resolve(dartTypes.instanceType(value));
+      }
       if (value == null || !type.containsWidget) return;
       if (type.kind != 'widget') {
         final visited = HashMap<Object, Set<FlaxTypeRef>>.identity();
@@ -272,8 +276,9 @@ extension _WidgetReferences on _Session {
           }
           switch (ref.kind) {
             case 'record':
-              for (final field in ref.record!.fields) {
-                visit(field.read(current), field.type);
+              final fields = runtime.dartRecordFields(current as Record);
+              for (final (index, field) in ref.record!.fields.indexed) {
+                visit(fields[index], field.type);
               }
             case 'map':
               for (final entry in (current as Map).entries) {

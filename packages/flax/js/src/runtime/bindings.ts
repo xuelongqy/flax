@@ -73,7 +73,7 @@ type NativeBuffer =
   | globalThis.Float32Array
   | globalThis.Float64Array;
 
-/** A Dart Record projection retains its identity when passed through Object?. */
+/** A plain field object carrying type-only Record metadata through Object?. */
 export type DartRecord<T extends object> = T & { readonly [dartRecordKind]: true };
 
 /** Collection copies preserve graphs; ordinary Dart objects stay references. */
@@ -1245,12 +1245,13 @@ function requireDartReference(value: unknown): object {
     return value;
   }
   if (stateHandles.has(value) || enumIdentities.has(value)) return value;
+  if (recordDartTypes.has(value)) return value;
   const state = componentStates.get(value);
   if (state && !state.retired && state.id !== null) return value;
   throw new TypeError('Expected a live Dart reference from this session');
 }
 
-/** Checks the original Dart object and returns a view; never copies or constructs. */
+/** Checks a Dart reference or a copied Record projection against the target. */
 export function asDart<C extends FlaxInstanceType<unknown>>(
   value: unknown,
   target: C,
@@ -1313,7 +1314,11 @@ export function bindInstanceType<T, V extends object>(
         stateHandles.get(candidate)?.type ??
         context?.type ??
         enumIdentities.get(candidate)?.type;
-      if (!source) return false;
+      if (!source) {
+        return recordDartTypes.has(candidate)
+          ? Boolean(invokeOperation('reference', type, 0, 'is', '', [candidate]))
+          : false;
+      }
       const root = objectViewTypes.get(type) ?? type;
       if (
         source !== type &&
@@ -2952,11 +2957,6 @@ Object.assign(globalThis, {
       set.add(value);
     },
     tryObjectHandle,
-    objectMetadata(value: object): object {
-      const ref = objectHandles.get(value);
-      if (!ref?.alive) throw new TypeError('Released Dart object');
-      return ref;
-    },
     hasObjectView(value: object, type: string): boolean {
       const ref = objectHandles.get(value);
       return Boolean(

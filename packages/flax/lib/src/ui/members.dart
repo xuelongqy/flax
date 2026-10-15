@@ -381,21 +381,29 @@ extension _MemberCalls on _Session {
   }
 
   FlaxJsObject recordResult(Object value, FlaxTypeRef type) {
-    final binding = type.record;
-    if (binding == null) throw ArgumentError('Missing Record binding');
-    dartTypes._records[binding.signature] = type;
-    final output = helper(
-      'emptyRecord',
-    ).call([FlaxJsString(binding.signature)]) as FlaxJsObject;
+    if (value is! Record) throw ArgumentError('Expected a Dart Record result');
+    final actualType = dartTypes.instanceType(value);
+    if (type.record == null) {
+      type = dartTypes.resolve(actualType);
+    }
+    final binding = type.record!;
+    final fields = runtime.dartRecordFields(value);
+    if (fields.length != binding.fields.length) {
+      throw ArgumentError('Invalid Record layout');
+    }
+    final input = dartTypes.recordInputView(type, actualType);
+    final signature = input.record!.signature;
+    dartTypes._records[signature] = input;
+    final output =
+        helper('emptyRecord').call([FlaxJsString(signature)]) as FlaxJsObject;
     try {
       _releaseJs(
-        helper('recordDartType')
-            .call([output, dartTypes.handle(dartTypes.instanceType(value))]),
+        helper('recordDartType').call([output, dartTypes.handle(actualType)]),
       );
-      for (final field in binding.fields) {
+      for (final (index, field) in binding.fields.indexed) {
         FlaxJsValue? encoded;
         try {
-          encoded = memberResult(field.read(value), field.type);
+          encoded = memberResult(fields[index], field.type);
           output.setProperty(field.name, encoded);
         } catch (error) {
           throw ArgumentError('Record field ${field.name}: $error');

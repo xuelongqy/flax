@@ -141,7 +141,6 @@ const canvasBindings = FlaxBindingModule(
     "native-widget-proxies",
   ],
   stateVariants: [],
-  records: _recordTypes,
   dartTypes: [
     FlaxDartClassTemplate(
       "flax.canvas/canvas#type:FlaxCanvasSurface",
@@ -277,5 +276,3 @@ Object? _callback1Invoke(
   (function as void Function())();
   return null;
 }
-
-const _recordTypes = <FlaxTypeRef>[];

@@ -1,6 +1,7 @@
 import { Column, registerPage } from '@flax/flutter/widgets';
 import { Type, Symbol as DartSymbol, Record as DartRecord } from '@flax/dart/core';
 import { asDart, getDartType } from '@flax/core/bindings';
+import { Stream } from '@flax/dart/async';
 import * as bindings from '../../../.dart_tool/flax/ui/binding_parity_bindings.js';
 
 let calls = 0;
@@ -24,6 +25,7 @@ Object.assign(globalThis, {
     DartRecord,
     asDart,
     getDartType,
+    Stream,
     calls: () => calls,
     tapAlive: () => weakTap.deref() !== undefined,
     tileAlive: () => weakTile.deref() !== undefined,

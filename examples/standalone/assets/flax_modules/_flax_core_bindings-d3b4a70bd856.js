@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"0621339c79eb660530190bedfd00cdb3d58ec0aec763b94bce78909cbfa5ced7","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"7125c8416cb5c16a6276380ce368b1884e79e2cc5694fb37bc75ae1e23eefaec","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -867,6 +867,8 @@ function requireDartReference(value) {
   }
   if (stateHandles.has(value) || enumIdentities.has(value))
     return value;
+  if (recordDartTypes.has(value))
+    return value;
   const state = componentStates.get(value);
   if (state && !state.retired && state.id !== null)
     return value;
@@ -901,8 +903,9 @@ function bindInstanceType(value, type, parents) {
       if ((object == null ? void 0 : object.alive) === false || (context == null ? void 0 : context.alive) === false)
         return false;
       const source = (_e = (_c = (_b = object == null ? void 0 : object.type) != null ? _b : (_a2 = stateHandles.get(candidate)) == null ? void 0 : _a2.type) != null ? _c : context == null ? void 0 : context.type) != null ? _e : (_d = enumIdentities.get(candidate)) == null ? void 0 : _d.type;
-      if (!source)
-        return false;
+      if (!source) {
+        return recordDartTypes.has(candidate) ? Boolean(invokeOperation("reference", type, 0, "is", "", [candidate])) : false;
+      }
       const root = (_f = objectViewTypes.get(type)) != null ? _f : type;
       if (source !== type && source !== root && !((_g = instanceParents.get(source)) == null ? void 0 : _g.includes(root)))
         return false;
@@ -2094,12 +2097,6 @@ Object.assign(globalThis, {
       set.add(value);
     },
     tryObjectHandle,
-    objectMetadata(value) {
-      const ref = objectHandles.get(value);
-      if (!(ref == null ? void 0 : ref.alive))
-        throw new TypeError("Released Dart object");
-      return ref;
-    },
     hasObjectView(value, type) {
       const ref = objectHandles.get(value);
       return Boolean((ref == null ? void 0 : ref.alive) && (ref.type === type || objectViewTypes.get(ref.type) === type));

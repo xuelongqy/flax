@@ -435,18 +435,17 @@ values.get(1) === null;
 ```
 
 Supported Future/Stream combinations and typed aggregate events recurse through this
-conversion. Registered Record field projections also survive generic Stream operators,
-`first`, `toList().get()` and collection copies, including nested Records and callbacks.
-Copied JS Records keep a weak association with their generated shape when returned from
-an erased callback; every field is validated again. Fresh JS objects and structural
-clones require a concrete Record position. Unknown erased Dart Records use the opaque
-Core Record view; ambiguous registered projections are rejected. A broad Record input
-accepts an existing Dart Record reference, without inferring fields from raw JS objects.
-Opaque Record views do not promise JS identity across reads. Discarded views can collect
-while Dart retains the value; callbacks capturing a view retain it normally. Type and
-Symbol values use the same ordinary native object conversion. Never signatures preserve
-failure/non-completion; nullable Never/Null accepts only null. No additional Stream
-retention or GC mechanism is required.
+conversion. Record fields also survive generic Stream operators, `first`,
+`toList().get()` and collection copies, including nested Records and callbacks. Every
+Record result is a plain field object; real VM Type metadata supplies unknown layouts. A
+weak association preserves only its Type/conversion view through erased callbacks.
+Reconstructed inputs are checked field by field and use the shared native constructor.
+Fresh objects and clones work in concrete Record positions; a bare Record can infer a
+new layout under the
+[naming and numeric rules](bindings.md#bottom-types-and-opaque-core-values). No original
+Record is retained. A Dart-held callback can still retain a field object through a real
+callback edge. Type/Symbol values remain native references. Never preserves failure or
+non-completion; nullable Never/Null accepts only null. No extra GC mechanism is added.
 
 A returned builder borrows the supplied native Context and its Flutter lifecycle. It
 does not manufacture an Element, extend Context lifetime or execute during conversion.
@@ -719,7 +718,7 @@ Flutter SDK declarations. See [standalone typedefs](bindings.md#standalone-typed
 
 TS call-site types are not runtime tokens and there is no TS compiler transformation.
 Use `Class.$type` or `dartType` when a class, method or returned generic callback
-depends on exact Dart type arguments. Unknown structural callback/Record layouts and
+depends on exact Dart type arguments. Unknown structural callback layouts and
 unsupported value conversions remain rejected. Explicit String/int ValueKey selections
 preserve Flutter key matching. The
 [consolidated capability audit](binding-coverage-map.md#engine-backed-audit-and-consolidated-backlog)

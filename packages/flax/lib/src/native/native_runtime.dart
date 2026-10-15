@@ -72,7 +72,9 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
         binding.ref.instance_type == nullptr ||
         binding.ref.type_parts == nullptr ||
         binding.ref.nullable_type == nullptr ||
-        binding.ref.instantiate == nullptr) {
+        binding.ref.instantiate == nullptr ||
+        binding.ref.record_fields == nullptr ||
+        binding.ref.new_record == nullptr) {
       throw UnsupportedError('Incompatible Flax binding engine extension');
     }
     return FlaxNativeJsRuntime._(NativeCalls(table.ref), gc.ref, binding.ref);
@@ -193,6 +195,43 @@ final class FlaxNativeJsRuntime implements FlaxJsRuntime, Finalizable {
           Pointer<FlaxError>,
         )
       >();
+  late final _recordFields = _binding.record_fields
+      .asFunction<
+        Object? Function(Pointer<FlaxRuntime>, Object, Pointer<FlaxError>)
+      >();
+  late final _newRecord = _binding.new_record
+      .asFunction<
+        Object? Function(
+          Pointer<FlaxRuntime>,
+          Object?,
+          Object,
+          Object,
+          Pointer<FlaxError>,
+        )
+      >();
+
+  @override
+  List<Object?> dartRecordFields(Record value) => _entry((arena) {
+    Object? result;
+    _checked(arena, (error) {
+      result = _recordFields(_handle, value, error);
+      return error.ref.code;
+    });
+    return (result as List).cast<Object?>();
+  });
+
+  @override
+  Record newDartRecord(Type? type, List<String> names, List<Object?> fields) =>
+      _entry((arena) {
+        Object? result;
+        final fieldNames = List<String>.of(names, growable: false);
+        final values = List<Object?>.of(fields, growable: false);
+        _checked(arena, (error) {
+          result = _newRecord(_handle, type, fieldNames, values, error);
+          return error.ref.code;
+        });
+        return result as Record;
+      });
 
   /// Reads the VM type without invoking an Object.runtimeType override.
   @override

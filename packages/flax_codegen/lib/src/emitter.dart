@@ -273,6 +273,14 @@ class FlaxCodegenBindingEmitter {
   final _types = <String, FlaxCodegenNamedTypeModel>{};
   final _dartTypeSources = <String, FlaxCodegenClassModel>{};
 
+  bool _isCoreRecord(FlaxCodegenClassModel? type) =>
+      type?.superTypes.any(
+        (parent) =>
+            parent.originatingUri == 'dart:core' &&
+            parent.originatingName == 'Record',
+      ) ==
+      true;
+
   String? _nativeObjectInput(FlaxCodegenClassModel? type) {
     if (type == null ||
         _owners[type.id]?.typeLibraries[type.name] != 'dart:core') {
@@ -288,7 +296,6 @@ class FlaxCodegenBindingEmitter {
   final _collections = <String, (FlaxCodegenTypeRef, String)>{};
   final _futures = <String, (FlaxCodegenTypeRef, String)>{};
   final _streams = <String, (FlaxCodegenTypeRef, String)>{};
-  final _records = <String, (FlaxCodegenTypeRef, String)>{};
   final _erasedFutureItems = <String>{};
   bool _usesErasedValueCast = false;
   final _deferred =
@@ -904,6 +911,7 @@ class FlaxCodegenBindingEmitter {
   }
 
   String _dartRecordType(FlaxCodegenTypeRef type) {
+    if (type.recordFields.isEmpty) return '()';
     final positional = type.recordFields
         .where((field) => field.positional)
         .toList();
@@ -922,6 +930,12 @@ class FlaxCodegenBindingEmitter {
     }
     return '($positionalTypes, {$namedTypes})';
   }
+
+  List<FlaxCodegenRecordFieldModel> _recordFields(FlaxCodegenTypeRef type) => [
+    ...type.recordFields.where((field) => field.positional),
+    ...(type.recordFields.where((field) => !field.positional).toList()
+      ..sort((a, b) => a.name.compareTo(b.name))),
+  ];
 
   String _dartDeclaredType(FlaxCodegenTypeRef type, {bool generic = false}) =>
       generic || _containsExtensionTypeRepresentation(type)
@@ -1324,20 +1338,14 @@ class FlaxCodegenBindingEmitter {
       );
     }
     if (type.kind == 'record') {
-      final entry = _records.putIfAbsent(
-        _typeId(type, omitNullable: true),
-        () => (type, '_record${_records.length}'),
-      );
       out.write(', record: FlaxRecordBinding([');
-      for (final (index, field) in type.recordFields.indexed) {
+      for (final field in _recordFields(type)) {
         out.write(
-          'FlaxRecordFieldBinding(${_quote(field.name)}, ${_ref(field.type, withinCallback: withinCallback)}, '
-          '${entry.$2}Read$index),',
+          'FlaxRecordFieldBinding(${_quote(field.name)}, ${_ref(field.type, withinCallback: withinCallback)}),',
         );
       }
       out.write(
-        '], ${entry.$2}Create, signature: ${_quote(_typeId(type, omitNullable: true))}, '
-        'matches: ${entry.$2}Matches)',
+        '], FlaxDartTypes.typeOf<${_dartRecordType(type.withNullability(false))}>, signature: ${_quote(viewId)})',
       );
     }
     if (type.category == FlaxCodegenTypeCategory.callback) {
@@ -2066,7 +2074,6 @@ class FlaxCodegenBindingEmitter {
     _collections.clear();
     _futures.clear();
     _streams.clear();
-    _records.clear();
     _erasedFutureItems.clear();
     _usesErasedValueCast = false;
     _deferred.clear();
@@ -2274,7 +2281,7 @@ class FlaxCodegenBindingEmitter {
       'uiProtocol: $_generatedUiProtocol, '
       'requiredCapabilities: ${_capabilitiesDartLiteral(module.requiredCapabilities)}, '
       'stateVariants: [${module.stateVariants.map((variant) => '_stateVariant_${variant.name}').join(', ')}]'
-      ', records: _recordTypes, dartTypes: [${_vmTypeTemplates(module).join(',')}], dartShapes: _flaxDartShapes);',
+      ', dartTypes: [${_vmTypeTemplates(module).join(',')}], dartShapes: _flaxDartShapes);',
     );
     _writeStateVariantsDart(out, module);
     for (final extension in module.extensions.where((e) => !e.isReference)) {
@@ -3228,27 +3235,6 @@ class FlaxCodegenBindingEmitter {
       out,
       _callbacks.entries,
     );
-    // Record projections register ordinary views before their helpers are emitted.
-    final recordTypes = _records.values.map((entry) => entry.$1).toList();
-    final recordRefs = recordTypes.map((type) => _ref(type)).join(', ');
-    for (final entry in _records.values) {
-      final (type, name) = entry;
-      final dartType = _dartRecordType(type);
-      out.writeln('bool ${name}Matches(Object value) => value is $dartType;');
-      final values = <String>[];
-      for (final (index, field) in type.recordFields.indexed) {
-        out.writeln(
-          'Object? ${name}Read$index(Object value) => '
-          '(value as ${_dartRecordType(type.withNullability(false))}).${field.name};',
-        );
-        final value = _cast('values[$index]', field.type);
-        values.add(field.positional ? value : '${field.name}: $value');
-      }
-      out.writeln(
-        'Object ${name}Create(List<Object?> values) => '
-        '(${values.join(', ')}${type.recordFields.length == 1 && type.recordFields.single.positional ? ',' : ''});',
-      );
-    }
     for (final entry in _collections.values) {
       final (type, name) = entry;
       final contents = switch (type.kind) {
@@ -3379,7 +3365,6 @@ T _genericCallbackResult<T>(Object? value) {
 }
 ''');
     }
-    out.writeln('const _recordTypes = <FlaxTypeRef>[$recordRefs];');
     // Nested provider views can discover imports while their members are emitted.
     final imports = StringBuffer(
       '''// GENERATED CODE. Selected public API subset; do not edit.
@@ -3762,33 +3747,8 @@ import 'package:flax/bindings.dart';
       converted =
           '($value is $nonNullable ? $checked : flaxRestoreJsCollection<$declared>($value as Object, "map", (value) => (value as Map<Object?, Object?>).map<${_dartType(type.key!)}, ${_dartType(type.item!)}>((key, item) => MapEntry($key, $item))))';
     } else if (type.kind == 'record') {
-      final fields = type.recordFields
-          .map((field) => child('fields[${_quote(field.name)}]', field.type))
-          .join(', ');
-      final shape = _dartRecordType(
-        FlaxCodegenTypeRef(
-          'record',
-          recordFields: [
-            for (final field in type.recordFields)
-              FlaxCodegenRecordFieldModel(
-                name: field.name,
-                type: const FlaxCodegenTypeRef('any', nullable: true),
-                positional: field.positional,
-              ),
-          ],
-        ),
-      );
-      final nativeFields = type.recordFields
-          .map((field) => child('($value as $shape).${field.name}', field.type))
-          .join(', ');
-      final record = _records
-          .putIfAbsent(
-            _typeId(type, omitNullable: true),
-            () => (type, '_record${_records.length}'),
-          )
-          .$2;
-      converted =
-          '($value is $nonNullable ? $checked : $value is Record ? ${record}Create([$nativeFields]) as $declared : flaxRestoreJsCollection<$declared>($value as Object, "record", (value) => ((Map<Object?, Object?> fields) => ${record}Create([$fields]) as $declared)(value as Map<Object?, Object?>)))';
+      // Record fields have already crossed the shared typed constructor.
+      converted = '$value as $declared';
     } else {
       _usesErasedValueCast |= declared != 'Object?';
       converted = declared == 'Object?'
@@ -4458,6 +4418,13 @@ import 'package:flax/bindings.dart';
         return arguments.isEmpty
             ? name
             : '$name<${arguments.map((argument) => child(argument)).join(', ')}>';
+      }
+
+      if (type.kind == 'object' && _isCoreRecord(_classes[type.id])) {
+        const fields = 'Readonly<globalThis.Record<string, unknown>>';
+        if (input) return '$fields${type.nullable ? ' | null' : ''}';
+        conversionImports.add('DartRecord');
+        return '_FlaxDartRecord<$fields>${type.nullable ? ' | null' : ''}';
       }
 
       if (input && !nominal && type.kind == 'object') {
@@ -5747,6 +5714,13 @@ $_typescriptHostImport
         out.writeln(
           '${exportPrefix}interface ${type.name}${generics(type.typeParameters)} { readonly __${type.name}: unique symbol; }',
         );
+      }
+      if (_isCoreRecord(type)) {
+        conversionImports.add('DartRecord');
+        out.writeln(
+          '${exportPrefix}type ${type.name} = _FlaxDartRecord<Readonly<globalThis.Record<string, unknown>>>;',
+        );
+        continue;
       }
       if (type.staticGetters.isNotEmpty || type.staticSetters.isNotEmpty) {
         final staticObject =

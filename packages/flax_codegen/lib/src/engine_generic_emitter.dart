@@ -105,29 +105,12 @@ extension _EngineGenericEmission on FlaxCodegenBindingEmitter {
       return 'types.define<$dart>(FlaxTypeRef("callback", nullable: ${type.nullable}, callback: ${_callbackBinding(type)})$flag)';
     }
     if (type.kind == 'record') {
-      final receiver = _dartRecordType(
-        FlaxCodegenTypeRef(
-          'record',
-          recordFields: [
-            for (final field in type.recordFields)
-              FlaxCodegenRecordFieldModel(
-                name: field.name,
-                positional: field.positional,
-                type: const FlaxCodegenTypeRef('any', nullable: true),
-              ),
-          ],
-        ),
-      );
       final fields = [
-        for (final f in type.recordFields)
-          'FlaxRecordFieldBinding(${_quote(f.name)}, ${withinCallbackExpression == null ? _ref(f.type, withinCallback: withinCallback) : _vmRef(f.type, withinCallbackExpression: withinCallbackExpression)}, (value) => (value as $receiver).${f.name})',
-      ];
-      final values = [
-        for (final (i, f) in type.recordFields.indexed)
-          '${f.positional ? '' : '${f.name}: '}${_cast('values[$i]', f.type)}',
+        for (final f in _recordFields(type))
+          'FlaxRecordFieldBinding(${_quote(f.name)}, ${withinCallbackExpression == null ? _ref(f.type, withinCallback: withinCallback) : _vmRef(f.type, withinCallbackExpression: withinCallbackExpression)})',
       ];
       final view = _quote(':${_typeId(type, omitNullable: true)}');
-      return 'types.define<$dart>(FlaxTypeRef("record", nullable: ${type.nullable}, record: FlaxRecordBinding([${fields.join(',')}], (values) => (${values.join(',')}${values.length == 1 && type.recordFields.single.positional ? ',' : ''}), signature: types.key<$dart>() + $view, matches: (value) => value is $dart))$flag)';
+      return 'types.define<$dart>(FlaxTypeRef("record", nullable: ${type.nullable}, record: FlaxRecordBinding([${fields.join(',')}], FlaxDartTypes.typeOf<$dart>, signature: types.key<$dart>() + $view))$flag)';
     }
     return 'types.ref<$dart>(${context == null ? '' : 'withinCallback: $context'})';
   }
@@ -486,17 +469,6 @@ extension _EngineGenericEmission on FlaxCodegenBindingEmitter {
   }
 
   String? _vmShapeKey(FlaxCodegenTypeRef type) {
-    if (type.kind == 'record') {
-      return jsonEncode([
-        'record',
-        type.recordFields.length,
-        type.recordFields
-            .where((f) => !f.positional)
-            .map((f) => f.name)
-            .toList()
-          ..sort(),
-      ]);
-    }
     if (type.kind != 'callback' || type.typeParameters.isNotEmpty) return null;
     final positional = type.parameters.where((p) => p.positional).toList();
     final named = type.parameters.where((p) => !p.positional).toList()
@@ -543,47 +515,27 @@ extension _EngineGenericEmission on FlaxCodegenBindingEmitter {
         );
       }
 
-      late final FlaxCodegenTypeRef type;
-      if (source.kind == 'record') {
-        final fields = [
-          ...source.recordFields.where((f) => f.positional),
-          ...(source.recordFields.where((f) => !f.positional).toList()
-            ..sort((a, b) => a.name.compareTo(b.name))),
-        ];
-        type = FlaxCodegenTypeRef(
-          'record',
-          recordFields: [
-            for (final f in fields)
-              FlaxCodegenRecordFieldModel(
-                name: f.name,
-                type: field(),
-                positional: f.positional,
-              ),
-          ],
-        );
-      } else {
-        final parameters = [
-          ...source.parameters.where((p) => p.positional),
-          ...(source.parameters.where((p) => !p.positional).toList()
-            ..sort((a, b) => a.name.compareTo(b.name))),
-        ];
-        final inputs = [
-          for (final p in parameters)
-            FlaxCodegenParameterModel(
-              name: p.name,
-              type: field(),
-              required: p.required,
-              positional: p.positional,
-              defaultCode: 'null',
-              omitWhenAbsent: !p.required,
-            ),
-        ];
-        type = FlaxCodegenTypeRef(
-          'callback',
-          parameters: inputs,
-          result: field(),
-        );
-      }
+      final parameters = [
+        ...source.parameters.where((p) => p.positional),
+        ...(source.parameters.where((p) => !p.positional).toList()
+          ..sort((a, b) => a.name.compareTo(b.name))),
+      ];
+      final inputs = [
+        for (final p in parameters)
+          FlaxCodegenParameterModel(
+            name: p.name,
+            type: field(),
+            required: p.required,
+            positional: p.positional,
+            defaultCode: 'null',
+            omitWhenAbsent: !p.required,
+          ),
+      ];
+      final type = FlaxCodegenTypeRef(
+        'callback',
+        parameters: inputs,
+        result: field(),
+      );
       out.writeln(
         'Function _flaxShape$i<${names.join(',')}>() => (FlaxDartTypes types, bool withinCallback) {',
       );

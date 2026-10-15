@@ -788,7 +788,8 @@ void main() {
     groups['tokens'] = tokens;
     write('groups', groups);
     expect(identical(api.groups['tokens']!.single, token), isTrue);
-    write('record', input('record').record!.create([14, 'converted']));
+    expect(input('record').record!.dartType(), FlaxDartTypes.typeOf<(int, {String label})>());
+    write('record', (14, label: 'converted'));
     expect(api.record, (14, label: 'converted'));
     write('transform', input('transform').callback!.wrap(DoubleCallback()));
     expect(api.transform(7), 14);

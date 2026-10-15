@@ -36,7 +36,6 @@ class FlaxOwnedTestHarness {
             functions: module.functions,
             dartTypes: module.dartTypes,
             dartShapes: module.dartShapes,
-            records: module.records,
           ),
         )
         .toList();

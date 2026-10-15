@@ -11,6 +11,70 @@ void main() {
   OwnedHarness harness() =>
       OwnedHarness(fixture: 'binding_parity', extra: [binding_parityBindings]);
 
+  testWidgets('scoped Record copies release their temporary JS handle', (
+    tester,
+  ) async {
+    final callback = FlaxTypeRef(
+      'callback',
+      callback: FlaxCallbackBinding(
+        [
+          FlaxCallbackParameter(
+            'value',
+            const FlaxTypeRef('object', id: 'flax.core/flutter#type:Record'),
+            required: true,
+            positional: true,
+            scoped: true,
+          ),
+        ],
+        const FlaxTypeRef('void'),
+        (callback) =>
+            (Record value) => callback.call([value], const {}),
+        id: 'test/scoped-record#callback:visit',
+        invoke: (value, positional, named) {
+          (value as void Function(Record))(positional.single as Record);
+          return null;
+        },
+        matches: (value) => value is void Function(Record),
+      ),
+    );
+    final h = OwnedHarness(
+      fixture: 'binding_parity',
+      extra: [
+        binding_parityBindings,
+        FlaxBindingModule(
+          'scoped-record',
+          const [],
+          moduleId: 'test/scoped-record',
+          uiProtocol: flaxBindingVersion,
+          requiredCapabilities: const [],
+          functions: [
+            FlaxFunctionBinding(
+              'test/scoped-record#function:visit',
+              [FlaxParameter('callback', callback, required: true)],
+              const FlaxTypeRef('void'),
+              (values) {
+                (values['callback'] as void Function(Record))((value: 7));
+                return null;
+              },
+            ),
+          ],
+        ),
+      ],
+    );
+    try {
+      await tester.pumpWidget(h.app('bindingParity'));
+      h.execute('''__flaxInvokeOperation(__flaxResolveOperation(24,
+        'test/scoped-record#function:visit', 'top', 'call', ''), 0, value => {
+          if (value.value !== 7 || Object.getPrototypeOf(value) !== Object.prototype) {
+            throw new Error('Record callback value');
+          }
+        });''');
+      expect(h.errors, isEmpty);
+    } finally {
+      await h.finish(tester);
+    }
+  });
+
   testWidgets(
     'automatic Widget writes and interface callbacks retain native owners',
     (tester) async {
@@ -128,8 +192,14 @@ void main() {
         h.boolean('parity.asDart(record, parity.DartRecord) === record'),
         isTrue,
       );
-      expect(h.string('core.echoRecord(record).toString()'), '(record, 7)');
-      expect(h.string('core.unknownRecord().toString()'), '(17, label: true)');
+      expect(
+        h.string('JSON.stringify(core.echoRecord(record))'),
+        '{"\$1":"record","\$2":7}',
+      );
+      expect(
+        h.string('JSON.stringify(core.unknownRecord())'),
+        '{"\$1":17,"label":true}',
+      );
       expect(h.string('typed.\$1'), 'record');
       expect(h.number('typed.\$2'), 7);
       expect(h.boolean('core.visitType(value => value) === type'), isTrue);
@@ -138,8 +208,8 @@ void main() {
         isTrue,
       );
       expect(
-        h.string('core.visitRecord(value => value).toString()'),
-        '(record, 7)',
+        h.string('JSON.stringify(core.visitRecord(value => value))'),
+        '{"\$1":"record","\$2":7}',
       );
       expect(h.boolean('core.nullOnly(null) === null'), isTrue);
       expect(h.boolean('core.echoNullValue(null) === null'), isTrue);
@@ -149,7 +219,6 @@ void main() {
       for (final source in [
         'core.echoType({})',
         'core.echoSymbol(Symbol("bad"))',
-        'core.echoRecord({\$1: "bad", \$2: 7})',
         'core.nullOnly(1)',
         'core.nullOnly(undefined)',
         'core.echoNullValue(1)',
@@ -181,7 +250,7 @@ void main() {
   });
 
   testWidgets(
-    'opaque Record callback cycles follow either business root and collect',
+    'copied Record callback cycles follow either business root and collect',
     (tester) async {
       final h = harness();
       try {
@@ -245,12 +314,103 @@ void main() {
           reason: 'A live Dart Record must not retain discarded JS views',
         );
         expect(
-          h.string('parity.CoreValues.retainedRecord.toString()'),
-          '(retained, 1)',
+          h.string('JSON.stringify(parity.CoreValues.retainedRecord)'),
+          '{"\$1":"retained","\$2":1}',
         );
         expect(h.errors, isEmpty);
       } finally {
         CoreValues.retainedRecord = null;
+        await h.finish(tester);
+      }
+    },
+  );
+
+  testWidgets(
+    'Record objects use shared construction and existing field converters',
+    (tester) async {
+      final h = harness();
+      try {
+        await tester.pumpWidget(h.app('bindingParity'));
+        h.execute('var core = parity.createCoreValues()');
+        expect(
+          h.string('JSON.stringify(core.createRow({quantity:3,cargo:"box"}))'),
+          '{"cargo":"box","quantity":3}',
+        );
+        expect(
+          h.boolean('Object.getPrototypeOf(core.record) === Object.prototype'),
+          isTrue,
+        );
+        expect(
+          h.string(
+            'JSON.stringify(core.echoRecord({\$1:"raw",\$2:7,note:true}))',
+          ),
+          '{"\$1":"raw","\$2":7,"note":true}',
+        );
+        expect(h.string('JSON.stringify(core.emptyRecord())'), '{}');
+        expect(h.string('JSON.stringify(core.echoRecord({}))'), '{}');
+        expect(
+          h.string('parity.getDartType(core.numericRecord())'),
+          contains('int'),
+        );
+        expect(
+          h.string('parity.getDartType(core.echoRecord(core.numericRecord()))'),
+          contains('int'),
+        );
+        expect(
+          h.string(
+            'JSON.stringify(core.nestedRow({row:{cargo:"nested",quantity:4},pair:{\$1:5,\$2:true},tags:["a"],optional:null}).row)',
+          ),
+          '{"cargo":"nested","quantity":4}',
+        );
+        for (final expression in [
+          'core.createRow({cargo:"missing"})',
+          'core.createRow({cargo:null,quantity:1})',
+          'core.createRow({cargo:"bad",quantity:1.5})',
+          'core.createRow({cargo:"bad",quantity:"1"})',
+          'core.echoRecord({\$2:1})',
+          'core.echoRecord({"bad-name":1})',
+          'core.echoRecord({hashCode:1})',
+          'core.echoRecord({"if":1})',
+          'core.unboundRecord()',
+        ]) {
+          expect(
+            () => h.execute(expression),
+            throwsA(isA<FlaxJsException>()),
+            reason: expression,
+          );
+        }
+        h.execute('''
+        class CustomRows extends parity.CoreValues {
+          #increment = 1;
+          createRow(value) {
+            const row = super.createRow(value);
+            return {...row, quantity: row.quantity + this.#increment};
+          }
+        }
+        var overriddenRow = parity.invokeRow(new CustomRows(), {cargo:'proxy',quantity:7});
+        var futureRowDone = false;
+        var streamRowsDone = false;
+        core.futureRow(Promise.resolve({cargo:'future',quantity:6})).then(row => {
+          if (row.cargo !== 'future' || row.quantity !== 6) throw new Error('Record Future');
+          futureRowDone = true;
+        });
+        core.streamRows(parity.Stream.fromIterable([{cargo:'stream',quantity:8}])).toList().then(rows => {
+          if (rows.get(0).cargo !== 'stream' || rows.get(0).quantity !== 8) throw new Error('Record Stream');
+          streamRowsDone = true;
+        });
+      ''');
+        expect(h.number('overriddenRow.quantity'), 8);
+        for (
+          var i = 0;
+          i < 20 && !h.boolean('futureRowDone && streamRowsDone');
+          i++
+        ) {
+          await tester.pump();
+          h.runtime.drainMicrotasks();
+        }
+        expect(h.boolean('futureRowDone && streamRowsDone'), isTrue);
+        expect(h.errors, isEmpty);
+      } finally {
         await h.finish(tester);
       }
     },

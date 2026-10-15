@@ -105,6 +105,11 @@ abstract class FlaxJsRuntime {
   List<Object?> dartTypeParts(Type type);
   Type nullableDartType(Type type);
   Function instantiateDartClosure(Function factory, List<Type> types);
+  List<Object?> dartRecordFields(Record value);
+
+  /// Constructs a value from converted fields. Null selects a runtime layout;
+  /// [names] contains its sorted named fields, after any positional fields.
+  Record newDartRecord(Type? type, List<String> names, List<Object?> fields);
 
   FlaxJsValue evaluate(String source, {String sourceUrl = 'flax:eval'});
   FlaxJsValue getGlobal(String name);

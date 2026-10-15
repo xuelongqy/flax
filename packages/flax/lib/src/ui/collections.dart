@@ -353,17 +353,10 @@ extension _Collections on _Session {
       final shape = classification;
       if ({'list', 'map', 'record', 'set', 'iterable'}.contains(shape.value)) {
         if (shape.value == 'record') {
-          // A copied native Record keeps its generated shape through erased callbacks.
+          // A Record copy keeps its typed conversion through erased callbacks.
           final signature = helper('recordType').call([input]);
           if (signature is FlaxJsString) {
-            final record =
-                dartTypes._records[signature.value] ??
-                registry._records
-                    .where(
-                      (entry) => entry.$1.record!.signature == signature.value,
-                    )
-                    .firstOrNull
-                    ?.$1;
+            final record = dartTypes._records[signature.value];
             if (record == null) {
               throw ArgumentError('Unregistered Record projection');
             }
@@ -678,25 +671,10 @@ extension _Collections on _Session {
     }
 
     if (value is Record) {
-      var best = 4;
-      final selected = <String, FlaxTypeRef>{};
-      for (final (type, module) in registry._records) {
-        final record = type.record!;
-        if (!record.matches(value)) continue;
-        final rank = priority(module);
-        if (rank > best) continue;
-        if (rank < best) {
-          best = rank;
-          selected.clear();
-        }
-        selected[record.signature] = type;
-      }
-      if (selected.isNotEmpty) {
-        if (selected.length != 1) {
-          throw ArgumentError('Ambiguous Dart Record projection');
-        }
-        return recordResult(value, selected.values.single);
-      }
+      return recordResult(
+        value,
+        dartTypes.resolve(dartTypes.instanceType(value)),
+      );
     }
     final enums = <FlaxEnumBinding>[
       if (value is Enum)

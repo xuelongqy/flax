@@ -120,59 +120,131 @@ void main() {
       );
     });
 
-    test(
-      'record bindings use top-level readers in the const binding table',
-      () {
-        const record = FlaxCodegenTypeRef(
-          'record',
-          recordFields: [
-            FlaxCodegenRecordFieldModel(
-              name: '\$1',
-              type: FlaxCodegenTypeRef('int'),
-              positional: true,
-            ),
-            FlaxCodegenRecordFieldModel(
-              name: 'label',
-              type: FlaxCodegenTypeRef('String'),
-              positional: false,
-            ),
-          ],
-        );
-        final module = FlaxCodegenModuleModel(
-          name: 'records',
-          library: 'package:example/records.dart',
-          jsPackage: '@example/records',
-          dartOutput: 'records.dart',
-          tsOutput: 'records.ts',
-          classes: const [],
-          types: const [],
-          functions: [
-            FlaxCodegenFunctionModel(
-              'example.records/records#function:echo',
-              FlaxCodegenMethodModel('echo', const [
-                FlaxCodegenParameterModel(
-                  name: 'value',
-                  type: record,
-                  required: true,
-                  positional: true,
-                  defaultCode: 'null',
-                ),
-              ], record),
-            ),
-          ],
-        );
+    test('record bindings contain metadata without layout-specific executable code', () {
+      const record = FlaxCodegenTypeRef(
+        'record',
+        recordFields: [
+          FlaxCodegenRecordFieldModel(
+            name: '\$1',
+            type: FlaxCodegenTypeRef('int'),
+            positional: true,
+          ),
+          FlaxCodegenRecordFieldModel(
+            name: 'label',
+            type: FlaxCodegenTypeRef('String'),
+            positional: false,
+          ),
+          FlaxCodegenRecordFieldModel(
+            name: 'alpha',
+            type: FlaxCodegenTypeRef('String'),
+            positional: false,
+          ),
+        ],
+      );
+      final module = FlaxCodegenModuleModel(
+        name: 'records',
+        library: 'package:example/records.dart',
+        jsPackage: '@example/records',
+        dartOutput: 'records.dart',
+        tsOutput: 'records.ts',
+        classes: const [],
+        types: const [],
+        functions: [
+          FlaxCodegenFunctionModel(
+            'example.records/records#function:empty',
+            FlaxCodegenMethodModel('empty', [], FlaxCodegenTypeRef('record')),
+          ),
+          FlaxCodegenFunctionModel(
+            'example.records/records#function:echo',
+            FlaxCodegenMethodModel('echo', const [
+              FlaxCodegenParameterModel(
+                name: 'value',
+                type: record,
+                required: true,
+                positional: true,
+                defaultCode: 'null',
+              ),
+            ], record),
+          ),
+        ],
+      );
 
-        final dart = FlaxCodegenBindingEmitter([module]).dart(module);
-        expect(dart, contains('_record0Read0),'));
-        expect(dart, contains('_record0Read1),'));
-        expect(dart, contains('Object? _record0Read0(Object value) =>'));
-        expect(dart, contains('Object? _record0Read1(Object value) =>'));
-        expect(
-          dart,
-          contains('Object _record0Create(List<Object?> values) =>'),
-        );
-      },
-    );
+      final dart = FlaxCodegenBindingEmitter([module]).dart(module);
+      expect(dart, contains('FlaxRecordFieldBinding('));
+      expect(
+        dart,
+        contains('FlaxDartTypes.typeOf<(int, {String label, String alpha})>'),
+      );
+      expect(dart, contains('FlaxDartTypes.typeOf<()>'));
+      expect(
+        dart.indexOf('FlaxRecordFieldBinding("alpha"'),
+        lessThan(dart.indexOf('FlaxRecordFieldBinding("label"')),
+      );
+      expect(dart, isNot(contains('_record0Read')));
+      expect(dart, isNot(contains('_record0Create')));
+      expect(dart, isNot(contains('_record0Matches')));
+      expect(dart, isNot(contains('FlaxDartShapeTemplate("[\\"record\\"')));
+    });
+
+    test('bare Core Record remains structural through a public carrier', () {
+      const record = FlaxCodegenTypeRef(
+        'object',
+        name: 'Record',
+        id: 'example.records/core#Record',
+      );
+      const module = FlaxCodegenModuleModel(
+        name: 'records',
+        library: 'package:example/public.dart',
+        jsPackage: '@example/records',
+        dartOutput: 'records.dart',
+        tsOutput: 'records.ts',
+        classes: [
+          FlaxCodegenClassModel(
+            name: 'Record',
+            id: 'example.records/core#Record',
+            kind: 'object',
+            constructors: [],
+            supertypes: [],
+            superTypes: [
+              FlaxCodegenTypeRef(
+                'typeOnly',
+                name: 'Record',
+                originatingUri: 'dart:core',
+                originatingName: 'Record',
+              ),
+            ],
+          ),
+        ],
+        types: [],
+        functions: [
+          FlaxCodegenFunctionModel(
+            'example.records/core#echo',
+            FlaxCodegenMethodModel('echo', [
+              FlaxCodegenParameterModel(
+                name: 'value',
+                type: record,
+                required: true,
+                positional: true,
+                defaultCode: 'null',
+              ),
+            ], record),
+          ),
+        ],
+      );
+      final ts = FlaxCodegenBindingEmitter([module]).typescript(module);
+      expect(
+        ts,
+        contains('value: Readonly<globalThis.Record<string, unknown>>'),
+      );
+      expect(
+        ts,
+        contains(
+          '_FlaxDartRecord<Readonly<globalThis.Record<string, unknown>>>',
+        ),
+      );
+      expect(ts, contains('export type Record = _FlaxDartRecord'));
+      expect(ts, isNot(contains('readonly __Record:')));
+    });
   });
 
   group('intrinsic Stream emission', () {

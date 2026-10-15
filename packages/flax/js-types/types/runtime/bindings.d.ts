@@ -16,7 +16,7 @@ declare const dartCollectionItem: unique symbol;
 declare const dartCollectionKey: unique symbol;
 declare const dartRecordKind: unique symbol;
 type NativeBuffer = globalThis.ArrayBuffer | globalThis.DataView | globalThis.Int8Array | globalThis.Uint8Array | globalThis.Uint8ClampedArray | globalThis.Int16Array | globalThis.Uint16Array | globalThis.Int32Array | globalThis.Uint32Array | globalThis.BigInt64Array | globalThis.BigUint64Array | globalThis.Float32Array | globalThis.Float64Array;
-/** A Dart Record projection retains its identity when passed through Object?. */
+/** A plain field object carrying type-only Record metadata through Object?. */
 export type DartRecord<T extends object> = T & {
     readonly [dartRecordKind]: true;
 };
@@ -236,7 +236,7 @@ export declare function dartType<C extends object, M extends string, const A ext
 export type FlaxDartInstance<C> = C extends abstract new (...args: any[]) => infer I ? I : C extends FlaxDartType<infer I> ? I : C extends {
     readonly prototype: infer I;
 } ? unknown extends I ? C extends FlaxInstanceType<infer T> ? T : never : I : C extends FlaxInstanceType<infer T> ? T : never;
-/** Checks the original Dart object and returns a view; never copies or constructs. */
+/** Checks a Dart reference or a copied Record projection against the target. */
 export declare function asDart<C extends FlaxInstanceType<unknown>>(value: unknown, target: C): FlaxDartInstance<C>;
 /** Diagnostic Dart runtimeType text. It is not a stable type ID or cast token. */
 export declare function getDartType(value: unknown): string;

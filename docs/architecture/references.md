@@ -63,14 +63,12 @@ custom Future facade or permanent strong Promise registry is used. Both observer
 identity tables remain weak. Native type metadata uses weak business keys and real VM
 instance types; it never calls a user `runtimeType` override. Opaque Stream errors use a
 conditional metadata peer to preserve the original error and stack trace, including
-values that Dart cannot target with a weak reference. Opaque Core Record references
-similarly retain a weakly indexed value holder through the existing JS handle metadata.
-The public wrapper still peers with the original Dart Record for native calls. Neither
-the numeric ID table nor a global value cache roots the Record; rootless Record/callback
-cycles use the same joint collector. Record views have value semantics and no JS
-subclass state. A live Dart Record does not retain discarded JS views from earlier
-reads. A Dart-held callback that captures a view still retains it through that real
-callback edge.
+values that Dart cannot target with a weak reference. Records instead copy their fields
+into plain JS objects. The bridge never peers the Record or stores it in a holder; only
+reference-bearing fields participate in existing joint tracing. A weak JS association
+retains shared Type/conversion metadata, not a business value. Discarded copies collect
+independently of a Dart-held Record. A real Dart callback that captures a field object
+still retains it normally.
 
 `Future.wait` and `Stream.fromFutures` preallocate dependency slots for List inputs and
 consume other Iterables once. They retain the same continuation Futures and release

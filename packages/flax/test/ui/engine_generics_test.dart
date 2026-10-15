@@ -355,4 +355,55 @@ void main() {
         .singleWhere((t) => parts(t as Type)[3] == 'GenericParent');
     expect(typeArguments(parent as Type), [String]);
   });
+
+  testWidgets('shared Record construction validates layouts and field types', (
+    _,
+  ) async {
+    final target = typeOf<({String cargo, int quantity})>();
+    final value = runtime.newDartRecord(target, const [], [
+      'box',
+      3,
+    ]) as ({String cargo, int quantity});
+    expect(value.cargo, 'box');
+    expect(value.quantity, 3);
+    expect(runtime.dartRecordFields(value), ['box', 3]);
+    expect(runtime.newDartRecord(typeOf<()>(), const [], const []), ());
+    final nullable =
+        runtime.newDartRecord(typeOf<(int?,)>(), const [], [null]) as (int?,);
+    expect(nullable.$1, isNull);
+    for (final fields in [
+      <Object?>['box'],
+      ['box', 3.5],
+      [null, 3],
+    ]) {
+      expect(
+        () => runtime.newDartRecord(target, const [], fields),
+        throwsArgumentError,
+      );
+    }
+    for (final names in [
+      <String>['b', 'a'],
+      ['a', 'a'],
+      ['_private'],
+      ['bad-name'],
+      ['hashCode'],
+      ['if'],
+    ]) {
+      expect(
+        () => runtime.newDartRecord(null, names, [for (final _ in names) 1]),
+        throwsArgumentError,
+      );
+    }
+    for (var count = 1; count <= 20; count++) {
+      final names = [for (var i = 0; i < count; i++) 'field$i']..sort();
+      final fields = [for (var i = 0; i < count; i++) i];
+      final value = runtime.newDartRecord(null, names, fields);
+      expect(runtime.dartRecordFields(value), fields);
+      expect(parts(runtime.dartInstanceType(value))[5], names);
+      expect(
+        value.hashCode,
+        runtime.newDartRecord(null, names, fields).hashCode,
+      );
+    }
+  });
 }

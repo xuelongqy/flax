@@ -44,7 +44,7 @@ class FlaxDartTypes {
   FlaxJsRuntime get _runtime => _session.runtime;
   var _instanceTypes = Expando<Type>();
   final _parts = <Type, List<Object?>>{};
-  final _refs = <(_BindingContext?, Type, bool, String?), FlaxTypeRef>{};
+  final _refs = <(_BindingContext?, Type, bool, Object?), FlaxTypeRef>{};
   final _classes = <String, FlaxDartClassTemplate>{};
   final _shapes = <String, FlaxDartShapeTemplate>{};
   final _sources = <(String, String), List<FlaxDartClassTemplate>>{};
@@ -161,8 +161,16 @@ class FlaxDartTypes {
   FlaxTypeRef ref<T>({bool withinCallback = false}) =>
       resolve(T, withinCallback: withinCallback);
 
-  FlaxTypeRef _resolveRef(FlaxTypeRef ref) =>
-      ref.dartType == null ? ref : resolve(ref.dartType!(), binding: ref.id);
+  FlaxTypeRef _resolveRef(FlaxTypeRef ref) {
+    if (ref.dartType != null) return resolve(ref.dartType!(), binding: ref.id);
+    if (ref.kind == 'object') {
+      _index();
+      if (_classes[ref.id]?.type == Record) {
+        return FlaxTypeRef('record', nullable: ref.nullable);
+      }
+    }
+    return ref;
+  }
 
   // One Dart Type can have distinct borrowing and data-conversion contracts.
   FlaxTypeRef define<T>(FlaxTypeRef value, {bool withinCallback = false}) =>
@@ -280,22 +288,32 @@ class FlaxDartTypes {
     if (name == 'Function' && info[5] == null) {
       return _refs[key] = FlaxTypeRef('function', nullable: nullable);
     }
-    if (info[5] != null && (name == 'Record' || name == 'Function')) {
+    if (info[2] == 'dart:core' && name == 'Record') {
+      if (info[5] == null) {
+        return _refs[key] = FlaxTypeRef('record', nullable: nullable);
+      }
+      final names = (info[5] as List).cast<String>();
+      final positional = children.length - names.length;
+      return _refs[key] = FlaxTypeRef(
+        'record',
+        nullable: nullable,
+        record: FlaxRecordBinding(
+          [
+            for (var i = 0; i < children.length; i++)
+              FlaxRecordFieldBinding(
+                i < positional ? '\$${i + 1}' : names[i - positional],
+                resolve(children[i], withinCallback: withinCallback),
+              ),
+          ],
+          () => type,
+          signature: '${_id('record', type)}:$withinCallback',
+        ),
+      );
+    }
+    if (info[5] != null && name == 'Function') {
       _index();
-      final layout = name == 'Record'
-          ? ['record', info[4] is List ? (info[4] as List).length : 0, info[5]]
-          : ['callback', info[5]];
-      final shape = _shapes[jsonEncode(layout)];
+      final shape = _shapes[jsonEncode(['callback', info[5]])];
       if (shape == null) {
-        if (name == 'Record') {
-          final record = _sources[('dart:core', 'Record')]?.single;
-          if (record == null) throw StateError('Missing Dart Record provider');
-          return _refs[key] = FlaxTypeRef(
-            'object',
-            id: record.id,
-            nullable: nullable,
-          );
-        }
         return _refs[key] = _nativeFunction(
           type,
           info,
@@ -510,23 +528,124 @@ class FlaxDartTypes {
       return result;
     }
     if (type.kind == 'record') {
-      final record = type.record!;
-      if (record.matches(value)) return value;
-      if (value is! Record) {
-        return flaxRestoreJsCollection(
-          value,
-          'record',
-          (value) => record.create([
-            for (final f in record.fields)
-              _nativeValue((value as Map)[f.name], f.type),
-          ]),
-        );
+      final record = type.record;
+      if (value is Record &&
+          (record == null || instanceType(value) == record.dartType())) {
+        return value;
       }
-      return record.create([
-        for (final f in record.fields) _nativeValue(f.read(value), f.type),
-      ]);
+      Record restore(Object value) {
+        final fields =
+            record?.fields ??
+            recordFields((value as Map).keys.cast<String>().toList());
+        final values = value is Record
+            ? _runtime.dartRecordFields(value)
+            : null;
+        if (value is Record) {
+          final actual = parts(instanceType(value))[5] as List;
+          final expected = parts(record!.dartType())[5] as List;
+          if (values!.length != fields.length ||
+              actual.length != expected.length ||
+              Iterable<int>.generate(actual.length)
+                  .any((i) => actual[i] != expected[i])) {
+            throw ArgumentError('Incompatible Record layout');
+          }
+        }
+        return newRecord(record, fields, [
+          for (final (i, field) in fields.indexed)
+            _nativeValue(
+              values == null ? (value as Map)[field.name] : values[i],
+              field.type,
+            ),
+        ]);
+      }
+
+      return value is Record
+          ? restore(value)
+          : flaxRestoreJsCollection(value, 'record', restore);
     }
+
     return value;
+  }
+
+  Record newRecord(
+    FlaxRecordBinding? binding,
+    List<FlaxRecordFieldBinding> fields,
+    List<Object?> values,
+  ) {
+    return _runtime.newDartRecord(
+      binding?.dartType(),
+      [
+        for (final field in fields)
+          if (!RegExp(r'^\$[1-9][0-9]*$').hasMatch(field.name)) field.name,
+      ],
+      [
+        for (final value in values)
+          // A fresh bare Record has no declared numeric field type.
+          if (binding == null &&
+              value is double &&
+              value.isFinite &&
+              value.abs() <= 9007199254740991 &&
+              value == value.truncateToDouble())
+            value.toInt()
+          else
+            value,
+      ],
+    );
+  }
+
+  FlaxTypeRef recordInputView(FlaxTypeRef view, Type actual) {
+    final binding = view.record!;
+    return _refs.putIfAbsent((_bindingContext, actual, false, binding), () {
+      final fields = (parts(actual)[4] as List).cast<Type>();
+      return FlaxTypeRef(
+        'record',
+        record: FlaxRecordBinding(
+          [
+            for (final (i, field) in binding.fields.indexed)
+              FlaxRecordFieldBinding(
+                field.name,
+                // Preserve callback/data views; JS Number otherwise loses int/double.
+                {'any', 'num', 'int', 'double'}.contains(field.type.kind) &&
+                        {
+                          'int',
+                          'double',
+                          'num',
+                        }.contains(resolve(fields[i]).kind)
+                    ? resolve(fields[i])
+                    : field.type,
+              ),
+          ],
+          () => actual,
+          signature: 'record:${_session._componentSessionId}:${_serial++}',
+        ),
+      );
+    });
+  }
+
+  // A bare Record supplies no field types. Positions are contiguous; names are
+  // validated by the native constructor before a shape enters the VM registry.
+  List<FlaxRecordFieldBinding> recordFields(List<String> keys) {
+    final positions = <int>[];
+    final names = <String>[];
+    for (final name in keys) {
+      final match = RegExp(r'^\$([1-9][0-9]*)$').firstMatch(name);
+      if (match == null) {
+        names.add(name);
+      } else {
+        positions.add(int.parse(match[1]!));
+      }
+    }
+    positions.sort();
+    names.sort();
+    for (var i = 0; i < positions.length; i++) {
+      if (positions[i] != i + 1) {
+        throw ArgumentError('Record positional fields must be contiguous');
+      }
+    }
+    return [
+      for (final name in [for (final i in positions) '\$$i', ...names])
+        FlaxRecordFieldBinding(name, const FlaxTypeRef('any', nullable: true)),
+    ];
   }
 
   FlaxTypeBinding? materialize(String id) {

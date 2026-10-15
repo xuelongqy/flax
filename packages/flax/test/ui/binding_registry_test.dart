@@ -8,7 +8,6 @@ FlaxBindingModule _module(
   List<String> requiredCapabilities = const <String>[],
   List<FlaxTypeBinding> types = const [],
   List<FlaxFunctionBinding> functions = const [],
-  List<FlaxTypeRef> records = const [],
 }) => FlaxBindingModule(
   name,
   types,
@@ -16,7 +15,6 @@ FlaxBindingModule _module(
   uiProtocol: uiProtocol,
   requiredCapabilities: requiredCapabilities,
   functions: functions,
-  records: records,
 );
 
 Object? _invoke(Map<String, Object?> values) => null;
@@ -54,17 +52,6 @@ void main() {
       ]),
       throwsArgumentError,
     );
-  });
-
-  test('registry rejects incomplete Record projections', () {
-    for (final type in const [FlaxTypeRef('record'), FlaxTypeRef('object')]) {
-      expect(
-        () => FlaxBindingRegistry([
-          _module('records', records: [type]),
-        ]),
-        throwsArgumentError,
-      );
-    }
   });
 
   test(
