@@ -241,6 +241,154 @@ try {
     },
   );
 
+  for (final variant in ['KeepAliveState', 'KeepAliveTickerState']) {
+    testWidgets('$variant retains and releases list children on demand', (
+      t,
+    ) async {
+      final h = Harness();
+      await t.pumpWidget(
+        h.app(
+          code: script('''
+var keptCreated = 0;
+var keptDisposed = 0;
+var keptState;
+class KeptState extends componentApi.$variant {
+  keep = true;
+  initState() { super.initState(); keptCreated++; keptState = this; }
+  get wantKeepAlive() { return this.keep; }
+  build(context) {
+    super.build(context);
+    return componentApi.Text('kept child');
+  }
+  dispose() { keptDisposed++; super.dispose(); }
+}
+class Kept extends componentApi.StatefulWidget {
+  createState() { return new KeptState(); }
+}
+var keptRoot = componentApi.signal(componentApi.ListView.builder({
+  itemCount: 40,
+  itemExtent: 100,
+  itemBuilder: (context, index) => index === 0
+    ? new Kept()
+    : componentApi.Text('row ' + index),
+}));
+componentApi.runApp(componentApi.Center({child: keptRoot.bind}));
+'''),
+        ),
+      );
+      expect(h.errors, isEmpty);
+      expect(find.text('kept child'), findsOneWidget);
+      await t.drag(find.byType(ListView), const Offset(0, -1200));
+      await t.pumpAndSettle();
+      expect(
+        t.state<ScrollableState>(find.byType(Scrollable)).position.pixels,
+        greaterThan(800),
+      );
+      expect(h.number('keptCreated'), 1);
+      expect(h.number('keptDisposed'), 0);
+      await t.drag(find.byType(ListView), const Offset(0, 1200));
+      await t.pumpAndSettle();
+      expect(find.text('kept child'), findsOneWidget);
+      expect(h.number('keptCreated'), 1);
+      h.execute('keptState.keep = false; keptState.updateKeepAlive();');
+      await t.pump();
+      await t.drag(find.byType(ListView), const Offset(0, -1200));
+      await t.pumpAndSettle();
+      expect(h.number('keptDisposed'), 1);
+      await t.drag(find.byType(ListView), const Offset(0, 1200));
+      await t.pumpAndSettle();
+      expect(find.text('kept child'), findsOneWidget);
+      expect(h.number('keptCreated'), 2);
+      h.execute("keptRoot.value = componentApi.Text('removed');");
+      await t.pump();
+      expect(find.text('removed'), findsOneWidget);
+      expect(h.number('keptDisposed'), 2);
+      expect(h.errors, isEmpty);
+      await flaxTestUnmount(t);
+      expect(h.runtime.isDisposed, isTrue);
+    });
+
+    testWidgets('$variant diagnoses missing super.build and closes normally', (
+      t,
+    ) async {
+      final h = Harness();
+      await t.pumpWidget(
+        h.app(
+          code: script('''
+class MissingState extends componentApi.$variant {
+  get wantKeepAlive() { return false; }
+  build() { return componentApi.Text('missing super'); }
+}
+class Missing extends componentApi.StatefulWidget {
+  createState() { return new MissingState(); }
+}
+componentApi.runApp(new Missing());
+'''),
+        ),
+      );
+      expect(h.errors, hasLength(1));
+      expect(
+        h.errors.single.toString(),
+        contains('build must call super.build'),
+      );
+      expect(find.byType(ErrorWidget), findsOneWidget);
+      await flaxTestUnmount(t);
+      expect(h.errors, hasLength(1));
+      expect(h.runtime.isDisposed, isTrue);
+    });
+  }
+
+  testWidgets('State super.build validates Context and the active callback', (
+    t,
+  ) async {
+    final h = Harness();
+    await t.pumpWidget(
+      h.app(
+        code: script('''
+var keptProbe;
+var rejectedSuperContexts;
+class ProbeState extends componentApi.KeepAliveState {
+  get wantKeepAlive() { return false; }
+  build(context) {
+    keptProbe = this;
+    rejectedSuperContexts = [];
+    for (var badContext of [null, {}]) {
+      try { super.build(badContext); rejectedSuperContexts.push(false); }
+      catch (_) { rejectedSuperContexts.push(true); }
+    }
+    super.build(context);
+    return componentApi.Text('checked super');
+  }
+}
+class Probe extends componentApi.StatefulWidget {
+  createState() { return new ProbeState(); }
+}
+componentApi.runApp(new Probe());
+'''),
+      ),
+    );
+    expect(find.text('checked super'), findsOneWidget);
+    expect(
+      h.number(
+        'Number(rejectedSuperContexts.length === 2 && rejectedSuperContexts.every(value => value === true))',
+      ),
+      1,
+    );
+    expect(
+      () => h.execute("keptProbe.invokeSuper('build', [keptProbe.context]);"),
+      throwsA(
+        isA<FlaxJsException>().having(
+          (error) => error.toString(),
+          'message',
+          contains('requires the active lifecycle callback'),
+        ),
+      ),
+    );
+    expect(h.errors, isEmpty);
+    await flaxTestUnmount(t);
+    expect(h.runtime.isDisposed, isTrue);
+  });
+
   testWidgets(
     'configuration updates, type keys and multiple mounts keep the right State',
     (t) async {

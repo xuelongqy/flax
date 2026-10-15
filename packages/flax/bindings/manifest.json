@@ -140,6 +140,122 @@
         "typedefs": [],
         "stateVariants": [
           {
+            "name": "KeepAliveState",
+            "variantId": "flax.core/components#stateVariant:KeepAliveState",
+            "stateId": "package:flutter/src/widgets/framework.dart::State",
+            "stateWireId": "flax.core/components#type:State",
+            "mixins": [
+              {
+                "name": "AutomaticKeepAliveClientMixin",
+                "sourceId": "package:flutter/src/widgets/automatic_keep_alive.dart::AutomaticKeepAliveClientMixin",
+                "library": "package:flutter/cupertino.dart",
+                "typeArguments": [
+                  "StatefulWidget"
+                ]
+              }
+            ],
+            "interfaces": [],
+            "getters": [
+              {
+                "name": "wantKeepAlive",
+                "type": {
+                  "kind": "bool",
+                  "id": null,
+                  "name": null,
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "bool",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "encodeKind": null,
+                "cache": false
+              }
+            ],
+            "setters": [],
+            "methods": [
+              {
+                "name": "updateKeepAlive",
+                "parameters": [],
+                "result": {
+                  "kind": "void",
+                  "id": null,
+                  "name": null,
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "void",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "instance": true,
+                "typeArguments": [],
+                "startsRoute": false,
+                "typeParameters": [],
+                "mustCallSuper": false,
+                "deferredFactory": false,
+                "operator": null
+              }
+            ],
+            "superMethods": [
+              "call:build",
+              "call:deactivate",
+              "call:initState",
+              "call:updateKeepAlive"
+            ],
+            "mustCallSuperMethods": [
+              "call:build",
+              "call:deactivate",
+              "call:initState"
+            ],
+            "providerModule": "flax.core/components"
+          },
+          {
             "name": "SingleTickerProviderState",
             "variantId": "flax.core/components#stateVariant:SingleTickerProviderState",
             "stateId": "package:flutter/src/widgets/framework.dart::State",

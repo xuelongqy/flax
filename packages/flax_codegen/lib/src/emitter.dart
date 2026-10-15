@@ -3925,6 +3925,9 @@ import 'package:flax/bindings.dart';
         out.writeln('}');
       }
       if (variant.superMethods.contains('call:build')) {
+        if (variant.mustCallSuperMethods.contains('call:build')) {
+          out.writeln('@override bool get flaxRequiresBuildSuper => true;');
+        }
         out.writeln(
           '@override ${_dartName('Widget')} flaxBuildSuper('
           '${_dartName('BuildContext')} context) => super.build(context);',

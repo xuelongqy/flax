@@ -12,4 +12,4 @@ export declare function PageContent(name: string, options?: {
     arguments?: Bindable<NavigationData>;
 }): Widget;
 export { StatelessWidget, StatefulWidget, State, DartState, type WidgetOptions, } from './components.js';
-export { SingleTickerProviderState, TickerProviderState, KeepAliveTickerState, } from './generated/libraries/widgets/components.js';
+export { KeepAliveState, SingleTickerProviderState, TickerProviderState, KeepAliveTickerState, } from './generated/libraries/widgets/components.js';

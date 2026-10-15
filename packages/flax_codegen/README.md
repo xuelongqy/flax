@@ -92,9 +92,15 @@ The
 separates automatic-selection gaps, missing adapters, current semantic limits and
 Dart/JS language boundaries. The first batch closes automatic Widget setter, interface
 callback/inheritance, opaque Core value and ordinary-object descriptor-name gaps through
-shared conversion paths. Public structural type-token composition and synthesis of
-arbitrary typed JS callback layouts remain separate engine-facing work. Record values
-already use the shared constructor without a compiled layout catalog.
+shared conversion paths. Creating a new Dart-typed JS closure from an arbitrary
+runtime-only signature is deferred until a concrete public API cannot use the existing
+typed callback or signature-selection paths. Ordinary callbacks and calling returned
+Dart functions remain supported. Common mixins use configured variants, generic syntax
+improvements are reserved for future TS build-tool work, and extensions keep the
+explicit receiver-view API. Public function/Record type-token builders are also deferred
+until a concrete application needs runtime type composition; see the
+[scope priorities](../../docs/architecture/binding-coverage-map.md#demand-driven-scope).
+Record values already use the shared constructor without a compiled layout catalog.
 
 Ordinary Widget instance getters, setters and methods, including inherited members, use
 the same automatic conversion rules as object members. Selecting an instance API gives

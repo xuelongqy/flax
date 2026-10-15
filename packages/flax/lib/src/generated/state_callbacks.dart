@@ -49,6 +49,7 @@ const componentsBindings = FlaxBindingModule(
     "native-widget-proxies",
   ],
   stateVariants: [
+    _stateVariant_KeepAliveState,
     _stateVariant_SingleTickerProviderState,
     _stateVariant_TickerProviderState,
     _stateVariant_KeepAliveTickerState,
@@ -69,6 +70,57 @@ const componentsBindings = FlaxBindingModule(
   ],
   dartShapes: _flaxDartShapes,
 );
+const _stateVariant_KeepAliveState = FlaxStateVariantBinding(
+  "flax.core/components#stateVariant:KeepAliveState",
+  _KeepAliveStateStateHost.new,
+  stateType: "flax.core/components#type:State",
+  interfaces: [],
+  getters: [],
+  setters: [],
+  methods: {
+    "updateKeepAlive": FlaxInstanceMethod(
+      [],
+      FlaxTypeRef("void"),
+      _KeepAliveState_call_updateKeepAlive,
+    ),
+  },
+);
+
+abstract class _KeepAliveStateStateHostBase extends FlaxComponentStateBase
+    with api1.AutomaticKeepAliveClientMixin<api.StatefulWidget> {
+  _KeepAliveStateStateHostBase(Object seed) : super(seed);
+  @override
+  bool get wantKeepAlive => flaxInvokeMember(
+    "get:wantKeepAlive",
+    const [],
+    const [],
+    FlaxTypeRef("bool"),
+  ) as bool;
+  Object? _flaxCall_updateKeepAlive(Map<String, Object?> values) {
+    updateKeepAlive();
+    return null;
+  }
+
+  @override
+  bool get flaxRequiresBuildSuper => true;
+  @override
+  api.Widget flaxBuildSuper(api.BuildContext context) => super.build(context);
+}
+
+class _KeepAliveStateStateHost extends _KeepAliveStateStateHostBase
+    with FlaxStateProxy {
+  _KeepAliveStateStateHost(Object seed) : super(seed);
+}
+
+Object? _KeepAliveState_call_updateKeepAlive(
+  Object receiver,
+  Map<String, Object?> values,
+) {
+  return (receiver as _KeepAliveStateStateHostBase)._flaxCall_updateKeepAlive(
+    values,
+  );
+}
+
 const _stateVariant_SingleTickerProviderState = FlaxStateVariantBinding(
   "flax.core/components#stateVariant:SingleTickerProviderState",
   _SingleTickerProviderStateStateHost.new,
@@ -144,6 +196,8 @@ abstract class _KeepAliveTickerStateStateHostBase extends FlaxComponentStateBase
     return null;
   }
 
+  @override
+  bool get flaxRequiresBuildSuper => true;
   @override
   api.Widget flaxBuildSuper(api.BuildContext context) => super.build(context);
 }

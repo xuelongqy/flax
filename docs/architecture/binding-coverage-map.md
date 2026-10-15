@@ -91,6 +91,43 @@ and application disposal/navigation policy remain intentional boundaries. The ma
 engine does not remove those contracts. See
 [boundaries to preserve](#boundaries-to-preserve).
 
+### Demand-driven scope
+
+Creating a new Dart-typed JS closure from an arbitrary runtime-only function signature
+is **deferred**. A Type handle describes the signature; it does not supply the compiled
+Dart adapter that creates a matching closure in AOT. Revisit this only for a concrete
+public API that cannot use the existing typed callback or signature-selection paths. Do
+not add a general closure compiler solely to eliminate this diagnostic.
+
+This does not defer ordinary callbacks, selected generic callbacks, known SDK callback
+conventions or calling returned Dart functions. For example, a declared
+`void Function(int completed, int total)` callback already supplies its adapter. The
+Core Stream selections describe the bounded `onError` signatures through existing
+[callback metadata](../../packages/flax/bindings/config.yaml). Applications that own a
+dynamic handler registry can also choose one typed contract, such as
+`Object? Function(List<Object?> arguments)`, rather than arbitrary Dart call layouts.
+
+The following priorities keep the underlying Dart features usable through existing
+paths. Common mixins use fixed configuration; generic syntax improvements are reserved
+for future TS build-tool work; extension calls keep their explicit receiver-view API.
+Public function/Record Type-token builders are deferred. Current use primarily needs
+Record results and typed API inputs, which already supply the actual Dart type. Revisit
+only for a concrete API requiring JS to compose a type without a declaration or value.
+
+| Candidate                                              | Existing practical path                                                                                                                                                        | Cost and reason to revisit                                                                                                                                                                                                                |
+| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Public function/Record Type-token builders (deferred)  | Concrete Dart signatures, ordinary Record field objects and `dartTypes.of` on authentic mapped values already cover value exchange.                                            | No current application demand justifies a new public builder. Revisit for a concrete runtime-composed type requirement; ordinary Record input/output is already supported.                                                                |
+| General mixin combinations outside State               | Bind a real Dart class such as `class TrackedCounter = Counter with Tracking;`. State `proxyVariants` supply common fixed combinations, including standalone `KeepAliveState`. | Extend the current configuration for concrete common uses. Arbitrary JS-selected combinations remain future research because `on` constraints, member conflicts, `super` order and AOT class availability still need a coherent contract. |
+| Whole-graph and generalized deferred-factory inference | Explicit `Bag.$type(dartTypes.string)` or method `dartType` selects real checked types without guessing from empty or ambiguous inputs.                                        | The current capability meets application needs. Investigate a TS build transform later for friendlier syntax; do not expand whole-graph inference solely to shorten calls. The transform is not implemented.                              |
+| Implicit extension resolution across libraries         | `StringX('a').repeat(3)` names the extension and avoids conflicts with another extension on String.                                                                            | Keep the existing [explicit extension contract](../decisions/0030-extension-binding-adapters.md); it meets current needs. No implicit extension selection or prototype mutation is planned.                                               |
+
+Generic structural Widget hosts and wider SDK selection are not classified as low-value
+syntax coverage: their priority depends on an actual Widget contract or application API.
+Existing generic Dart Widgets already have native object bindings. Likewise, a TS build
+transform could improve generic call syntax; it is a separate convenience project, not a
+prerequisite for correct Dart generics. Do not treat either as completed or permanently
+excluded on the basis of this prioritization.
+
 ### Original audit observations, grouped by shared cause
 
 The audit IDs below are documentation work items, not new runtime diagnostic codes. This

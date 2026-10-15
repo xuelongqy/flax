@@ -131,6 +131,16 @@ Flutter mixins in configuration order and applies `FlaxStateProxy` last. Therefo
 `TickerProvider` interface; `KeepAliveTickerState` also exposes `wantKeepAlive`,
 `updateKeepAlive()` and the required direct-super build path.
 
+`KeepAliveState` applies only `AutomaticKeepAliveClientMixin`, for list children that
+need retention without ticker support. Override `wantKeepAlive`, call
+`super.build(context)` before returning the child, and call `updateKeepAlive()` when the
+retention condition changes. KeepAlive preserves State while Flutter's automatic
+keep-alive parent retains the child; removing the page still disposes it normally.
+Missing `super.build(context)` calls are diagnosed from the selected mixin's analyzer
+metadata. Invalid Context arguments and calls outside the active build callback remain
+rejected. Common additions use these configured, compiled variants. General JS-selected
+mixin combinations remain future research.
+
 Passing `this` to a Dart interface parameter resolves the live component-State ID back
 to that real host and validates the requested interface. Plain State, arbitrary JS
 objects, foreign-session States and disposed States fail before the Dart call. The

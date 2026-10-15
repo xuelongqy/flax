@@ -55,6 +55,7 @@ export {
   type WidgetOptions,
 } from './components.js';
 export {
+  KeepAliveState,
   SingleTickerProviderState,
   TickerProviderState,
   KeepAliveTickerState,

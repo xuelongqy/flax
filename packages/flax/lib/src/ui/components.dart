@@ -397,7 +397,7 @@ abstract class FlaxComponentStateBase<T extends StatefulWidget>
       if (method == 'build') {
         return failure != null
             ? _errorWidget(failure!)
-            : _scope.build(arguments.single as BuildContext);
+            : _scope.build(arguments.single as BuildContext, host: this);
       }
       if (_scope.state == null) {
         return flaxSuper(method, arguments);
@@ -462,6 +462,16 @@ abstract class FlaxComponentStateBase<T extends StatefulWidget>
       final decoded = <_Value>[];
       try {
         for (final argument in arguments) {
+          if (method == 'build') {
+            final contextType = _scope.session.registry._contextType;
+            decoded.add(
+              _scope.session.decode(
+                argument,
+                FlaxTypeRef('context', id: contextType.id),
+              ),
+            );
+            continue;
+          }
           decoded.add(
             argument is FlaxJsObject
                 ? (_scope.session.decodeDartWidget(argument) ??
@@ -591,6 +601,9 @@ abstract class FlaxComponentStateBase<T extends StatefulWidget>
       }
     });
   }
+
+  /// Analyzer-derived contract for a selected mixin's build implementation.
+  bool get flaxRequiresBuildSuper => false;
 
   /// Generated hosts override this when a Dart mixin has concrete build.
   Widget flaxBuildSuper(BuildContext context) =>
@@ -750,13 +763,17 @@ class _ComponentMount with _ContextOwner {
     }
   }
 
-  Widget build(BuildContext context) => run(() => _build(context));
+  Widget build(BuildContext context, {FlaxComponentStateBase? host}) =>
+      run(() => _build(context, host));
 
-  Widget _build(BuildContext context) {
+  Widget _build(BuildContext context, FlaxComponentStateBase? host) {
     try {
       final value = invoke('build', [context]);
       late _Value next;
       try {
+        if (host != null && host.flaxRequiresBuildSuper && !host._calledSuper) {
+          throw StateError('build must call super.build()');
+        }
         next = session.decode(value, const FlaxTypeRef('widget'));
       } finally {
         _releaseJs(value);
@@ -924,7 +941,7 @@ extension _ComponentCalls on _Session {
 
   FlaxJsObject componentContext(BuildContext context, _ContextOwner owner) {
     // State.context remains available during dispose, even after unmount.
-    final type = _typeBindings.values.whereType<FlaxContextBinding>().single;
+    final type = registry._contextType;
     return contextResult(context, type.id, owner: owner, allowUnmounted: true);
   }
 
