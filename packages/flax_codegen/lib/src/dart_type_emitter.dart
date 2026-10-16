@@ -1,11 +1,6 @@
 part of 'emitter.dart';
 
 extension _DartTypeEmission on FlaxCodegenBindingEmitter {
-  String _dartAliasBinding(FlaxCodegenClassModel type) {
-    final owner = _dartTypeSources[type.name];
-    return owner == null ? '' : ', aliasOf: ${_quote(owner.id)}';
-  }
-
   String _dartTypeKey(FlaxCodegenTypeRef type) {
     String render(Object? value) => value is List
         ? 'readonly [${value.map(render).join(', ')}]'

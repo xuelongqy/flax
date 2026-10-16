@@ -528,23 +528,25 @@ import assert from 'node:assert/strict';
 import { transformSync } from 'esbuild';
 import * as sharedBindings from './packages/flax/js/dist/runtime/bindings.js';
 const source = ${jsonEncode(ts)};
-const imports = source.split('\\n').find(line => line.startsWith('import '));
-const helpers = [...imports.matchAll(/as (_flaxHost\\w+)/g)].map(match => match[1]);
 const calls = [];
 const values = [];
-const hosts = Object.fromEntries(helpers.map(name => [name, (...args) => {
-  if (name === '_flaxHostEnumValue') return {enum: args[1]};
-  if (name === '_flaxHostDefineEnum') return;
-  if (name === '_flaxHostBindInstanceType') return args[0];
-  assert.equal(name, '_flaxHostInvokeTopLevel');
-  calls.push(args);
-  const result = values.shift();
-  if (result instanceof Error) throw result;
-  return result;
-}]));
-const output = transformSync(source.replace(imports, ''), {loader: 'ts', format: 'cjs'}).code;
+const sharedModule = {
+  ...sharedBindings,
+  installBindingModule(...tuple) {
+    return Object.freeze({
+      ...sharedBindings.installBindingModule(...tuple),
+      invokeTopLevel(...args) {
+        calls.push(args);
+        const result = values.shift();
+        if (result instanceof Error) throw result;
+        return result;
+      },
+    });
+  },
+};
+const output = transformSync(source, {loader: 'ts', format: 'cjs'}).code;
 const exported = {exports: {}};
-new Function('module', 'exports', 'bindingVersion', 'require', ...helpers, output)(exported, exported.exports, 24, id => { assert.equal(id, '@flax/core/bindings'); return sharedBindings; }, ...helpers.map(name => hosts[name]));
+new Function('module', 'exports', 'require', output)(exported, exported.exports, id => { assert.equal(id, '@flax/core/bindings'); return sharedModule; });
 const {StringA, StringB, ListX, ShadowX, CollisionX, WeakMap} = exported.exports;
 assert.equal(calls.length, 0);
 const text = StringA('abc');

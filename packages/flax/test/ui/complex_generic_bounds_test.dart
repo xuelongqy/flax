@@ -104,7 +104,8 @@ void main() {
         await tester.pumpWidget(h.app('complexBounds'));
         expect(h.errors, isEmpty);
         h.execute('''
-        class ComplexChild extends complex.ComplexMethods.\$type(dartTypes.string) {
+        // Later evaluations read these constructors through global bindings.
+        var ComplexChild = class ComplexChild extends complex.ComplexMethods.\$type(dartTypes.string) {
           #suffix = '!';
           recursive(value, call) {
             const result = call.super(value);
@@ -120,7 +121,7 @@ void main() {
           }
         }
         var child = new ComplexChild();
-        class RecursiveChild extends complex.RecursiveBox.\$type(dartTypes.string) {
+        var RecursiveChild = class RecursiveChild extends complex.RecursiveBox.\$type(dartTypes.string) {
           #suffix = '!';
           values() {
             const values = super.values();

@@ -598,38 +598,6 @@ extension _ObjectCalls on _Session {
     }
   }
 
-  Map<String, _Value> objectArguments(
-    List<FlaxJsValue> args,
-    List<FlaxParameter> parameters,
-  ) {
-    if (args.length > parameters.length) {
-      throw ArgumentError('Too many object arguments');
-    }
-    final values = <String, _Value>{};
-    try {
-      for (var i = 0; i < parameters.length; i++) {
-        final p = parameters[i];
-        final input = i < args.length ? args[i] : const FlaxJsUndefined();
-        if (input is FlaxJsUndefined) {
-          if (p.required) {
-            throw ArgumentError('Missing object argument: ${p.name}');
-          }
-          if (!p.omitWhenAbsent) values[p.name] = _Value(p.defaultValue);
-        } else {
-          values[p.name] = p.type.kind == 'context' && input is FlaxJsNumber
-              ? _Value(_context(input, p.type.id!).requireActive())
-              : decode(input, p.type);
-        }
-      }
-      return values;
-    } catch (_) {
-      for (final value in values.values) {
-        value.release();
-      }
-      rethrow;
-    }
-  }
-
   void registerObjects() {
     registerOperations();
     runtime.registerHostFunction('__flaxBindPeer', (_, args) {
@@ -1003,7 +971,12 @@ extension _ObjectCalls on _Session {
         return const FlaxJsUndefined();
       }
       if (method.requiresTypeArguments) FlaxDartTypes.requireArguments();
-      final values = objectArguments(args, method.parameters);
+      final values = _callArguments(
+        args,
+        method.parameters,
+        0,
+        argumentKind: 'object',
+      );
       try {
         for (final parameter in method.parameters) {
           final value = values[parameter.name];

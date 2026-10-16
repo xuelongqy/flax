@@ -5,7 +5,7 @@ import 'dart:isolate';
 import 'dart:typed_data';
 
 /// Use the VM service or allocation pressure; never invoke framework cleanup.
-Future<void> flaxTestCollectDartGarbage() async {
+Future<void> flaxTestCollectDartGarbage({bool compact = false}) async {
   final info = await developer.Service.getInfo();
   final uri = info.serverUri;
   if (uri == null) {
@@ -28,10 +28,10 @@ Future<void> flaxTestCollectDartGarbage() async {
       jsonEncode({
         'jsonrpc': '2.0',
         'id': 'gc',
-        'method': 'getAllocationProfile',
+        'method': compact ? '_getHeapMap' : 'getAllocationProfile',
         'params': {
           'isolateId': developer.Service.getIsolateId(Isolate.current),
-          'gc': true,
+          'gc': compact ? 'mark-compact' : true,
         },
       }),
     );

@@ -134,59 +134,7 @@ String? _inferModuleIdFromMembers(FlaxCodegenModuleModel module) {
 }
 
 const _typescriptHostImport =
-    "import { defineDartCallTypes as _flaxDefineDartCallTypes, defineDartTypes as _flaxHostDefineDartTypes, bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, bindingVersion, construct as _flaxHostConstruct, constructProxy as _flaxHostConstructProxy, constructObject as _flaxHostConstructObject, constructDeferredObject as _flaxHostConstructDeferredObject, constructStream as _flaxHostConstructStream, constructAsyncIterableStream as _flaxHostConstructAsyncIterableStream, defineObject as _flaxHostDefineObject, defineStream as _flaxHostDefineStream, invokeObject as _flaxHostInvokeObject, invokeObjectStatic as _flaxHostInvokeObjectStatic, invokeStream as _flaxHostInvokeStream, enumValue as _flaxHostEnumValue, defineEnum as _flaxHostDefineEnum, invokeEnum as _flaxHostInvokeEnum, defineContext as _flaxHostDefineContext, defineState as _flaxHostDefineState, contextHandle as _flaxHostContextHandle, invokeStatic as _flaxHostInvokeStatic, invokeInstance as _flaxHostInvokeInstance, invokeTopLevel as _flaxHostInvokeTopLevel, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';";
-
-const _typescriptInstallHelper = r'''
-function _flaxInstallBindingModule(
-  moduleId: string,
-  uiProtocol: number,
-  requiredCapabilities: readonly string[],
-) {
-  if (typeof moduleId !== 'string' || moduleId.length === 0 || moduleId.indexOf('/') < 1 || moduleId.indexOf('/') !== moduleId.lastIndexOf('/') || moduleId.startsWith('/') || moduleId.endsWith('/')) {
-    throw new TypeError('Invalid binding moduleId');
-  }
-  if (uiProtocol !== bindingVersion) {
-    throw new TypeError(`Incompatible binding uiProtocol: ${uiProtocol}`);
-  }
-  let previous: string | undefined;
-  for (const capability of requiredCapabilities) {
-    if (typeof capability !== 'string' || (previous !== undefined && capability <= previous)) {
-      throw new TypeError('requiredCapabilities must be sorted unique strings');
-    }
-    previous = capability;
-    if (capability !== 'native-functions' && capability !== 'lazy-js-iterables' && capability !== 'callback-map-keys' && capability !== 'proxy-super-constructors' && capability !== 'bottom-types' && capability !== 'explicit-generic-types' && capability !== 'engine-type-handles' && capability !== 'generic-call-types' && capability !== 'dart-type-tokens' && capability !== 'generic-member-views' && capability !== 'instance-checks' && capability !== 'native-core-inputs' && capability !== 'native-bigint' && capability !== 'native-widget-proxies' && capability !== 'widget-interface-proxies' && capability !== 'native-navigation-objects' && capability !== 'shared-buffers' && capability !== 'shared-uint8') {
-      throw new TypeError(`Unsupported binding capability ${capability}`);
-    }
-  }
-  return Object.freeze({
-    moduleId,
-    uiProtocol,
-    requiredCapabilities: Object.freeze([...requiredCapabilities]),
-    construct: _flaxHostConstruct,
-    constructProxy: _flaxHostConstructProxy,
-    constructObject: _flaxHostConstructObject,
-    constructDeferredObject: _flaxHostConstructDeferredObject,
-    constructStream: _flaxHostConstructStream,
-    constructAsyncIterableStream: _flaxHostConstructAsyncIterableStream,
-    bindInstanceType: _flaxHostBindInstanceType,
-    defineDartTypes: _flaxHostDefineDartTypes,
-    defineObject: _flaxHostDefineObject,
-    defineStream: _flaxHostDefineStream,
-    invokeObject: _flaxHostInvokeObject,
-    invokeObjectStatic: _flaxHostInvokeObjectStatic,
-    invokeStream: _flaxHostInvokeStream,
-    enumValue: _flaxHostEnumValue,
-    defineEnum: _flaxHostDefineEnum,
-    invokeEnum: _flaxHostInvokeEnum,
-    defineContext: _flaxHostDefineContext,
-    defineState: _flaxHostDefineState,
-    contextHandle: _flaxHostContextHandle,
-    invokeStatic: _flaxHostInvokeStatic,
-    invokeInstance: _flaxHostInvokeInstance,
-    invokeTopLevel: _flaxHostInvokeTopLevel,
-  });
-}
-''';
+    "import { defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';";
 
 class FlaxCodegenBindingEmitter {
   FlaxCodegenBindingEmitter(
@@ -218,7 +166,7 @@ class FlaxCodegenBindingEmitter {
         _owners[getter.id] = module;
       }
       for (final type in module.classes) {
-        if ({'route', 'page'}.contains(type.kind) || type.pageAdapter != null) {
+        if ({'route', 'page'}.contains(type.kind)) {
           throw StateError(
             'Route and Page use ordinary object bindings: ${type.name}',
           );
@@ -281,7 +229,6 @@ class FlaxCodegenBindingEmitter {
   final _owners = <String, FlaxCodegenModuleModel>{};
   final _classes = <String, FlaxCodegenClassModel>{};
   final _types = <String, FlaxCodegenNamedTypeModel>{};
-  final _dartTypeSources = <String, FlaxCodegenClassModel>{};
 
   bool _isCoreRecord(FlaxCodegenClassModel? type) =>
       type?.superTypes.any(
@@ -694,15 +641,32 @@ class FlaxCodegenBindingEmitter {
   }
 
   final _vmShapes = <String, FlaxCodegenTypeRef>{};
+  T _withVmFactory<T>(Iterable<String> parameters, T Function() emit) {
+    final previousCallbacks = Map<FlaxCodegenTypeRef, String>.of(_callbacks);
+    final previousFactory = _vmFactory;
+    final previousParameters = Set<String>.of(_genericDartParameters);
+    try {
+      _callbacks.clear();
+      _vmFactory = true;
+      _genericDartParameters.addAll(parameters);
+      return emit();
+    } finally {
+      _callbacks
+        ..clear()
+        ..addAll(previousCallbacks);
+      _vmFactory = previousFactory;
+      _genericDartParameters
+        ..clear()
+        ..addAll(previousParameters);
+    }
+  }
+
   bool _vmFactory = false;
   bool _usesVmCallbackResult = false;
   final _genericDartParameters = <String>{};
   late FlaxCodegenModuleModel _dartModule;
   final _dartImports = <String, String>{};
   String _dartName(String name) {
-    if (_dartTypeSources[name] case final source?) {
-      return _dartName(source.name);
-    }
     final library =
         _dartModule.typeLibraries[name] ??
         modules
@@ -749,9 +713,7 @@ class FlaxCodegenBindingEmitter {
       FlaxCodegenTypeCategory.enumeration ||
       FlaxCodegenTypeCategory.context ||
       FlaxCodegenTypeCategory.state ||
-      FlaxCodegenTypeCategory.route ||
-      FlaxCodegenTypeCategory.object ||
-      FlaxCodegenTypeCategory.page =>
+      FlaxCodegenTypeCategory.object =>
         '${_dartName(type.name!)}${_referenceTypeArgs(type)}',
       FlaxCodegenTypeCategory.scalar => scalar,
       FlaxCodegenTypeCategory.string ||
@@ -853,9 +815,7 @@ class FlaxCodegenBindingEmitter {
       FlaxCodegenTypeCategory.enumeration ||
       FlaxCodegenTypeCategory.context ||
       FlaxCodegenTypeCategory.state ||
-      FlaxCodegenTypeCategory.route ||
-      FlaxCodegenTypeCategory.object ||
-      FlaxCodegenTypeCategory.page =>
+      FlaxCodegenTypeCategory.object =>
         '${_dartName(type.name!)}${_referenceTypeArgs(type)}',
       FlaxCodegenTypeCategory.scalar => scalar,
       FlaxCodegenTypeCategory.string ||
@@ -2156,7 +2116,7 @@ class FlaxCodegenBindingEmitter {
             );
           }
           out.write(
-            '], matches: _is${type.name}, methods: const {}${_dartAliasBinding(type)}${_proxyBinding(type)}${_collectionViewBinding(type)}',
+            '], matches: _is${type.name}, methods: const {}${_proxyBinding(type)}${_collectionViewBinding(type)}',
           );
         }
         out.writeln('),');
@@ -2894,36 +2854,29 @@ class FlaxCodegenBindingEmitter {
 
         void emitPeerCall({bool checkRequiredSuper = false}) {
           if (generic) {
-            final previousFactory = _vmFactory;
-            final previousCallbacks = Map<FlaxCodegenTypeRef, String>.of(
-              _callbacks,
-            );
-            _callbacks.clear();
-            _vmFactory = true;
-            final actual = method.specialize({
-              for (final p in method.typeParameters)
-                p.genericIdentity: FlaxCodegenTypeRef(
-                  'parameter',
-                  name: p.name,
-                  genericIdentity: p.genericIdentity,
+            final (signature, callbackHelpers) = _withVmFactory(const [], () {
+              final actual = method.specialize({
+                for (final p in method.typeParameters)
+                  p.genericIdentity: FlaxCodegenTypeRef(
+                    'parameter',
+                    name: p.name,
+                    genericIdentity: p.genericIdentity,
+                  ),
+              });
+              final signature = _callbackBinding(
+                FlaxCodegenTypeRef(
+                  'callback',
+                  parameters: actual.parameters,
+                  result: actual.result,
                 ),
+              );
+              final callbackHelpers = StringBuffer();
+              _usesVmCallbackResult |= _writeCallbackAdapters(
+                callbackHelpers,
+                _callbacks.entries.toList(),
+              );
+              return (signature, callbackHelpers);
             });
-            final signature = _callbackBinding(
-              FlaxCodegenTypeRef(
-                'callback',
-                parameters: actual.parameters,
-                result: actual.result,
-              ),
-            );
-            final callbackHelpers = StringBuffer();
-            _usesVmCallbackResult |= _writeCallbackAdapters(
-              callbackHelpers,
-              _callbacks.entries.toList(),
-            );
-            _callbacks
-              ..clear()
-              ..addAll(previousCallbacks);
-            _vmFactory = previousFactory;
             out.writeln(
               'final _flaxSignature = _flaxPeer.active ? _flaxPeer.genericSignature($memberIndex, [${method.typeParameters.map((p) => p.name).join(',')}], (types) {',
             );
@@ -3364,30 +3317,17 @@ import 'package:flax/bindings.dart';
           parameters: type.parameters,
           result: type.result,
         ).specialize(substitutions);
-        final previousCallbacks = Map<FlaxCodegenTypeRef, String>.of(
-          _callbacks,
-        );
-        final previousFactory = _vmFactory;
-        final previousNames = Set<String>.of(_genericDartParameters);
-        _callbacks.clear();
-        _vmFactory = true;
-        _genericDartParameters.addAll(parameters.map((p) => p.name));
-        out.writeln(
-          'FlaxCallbackBinding ${entry.value}Types${_dartStaticGenerics(parameters)}(FlaxDartTypes types) {',
-        );
-        final signature = _callbackBinding(closed);
-        usesGenericCallbackResult |= _writeCallbackAdapters(
-          out,
-          _callbacks.entries.toList(),
-        );
-        out.writeln('return $signature; }');
-        _callbacks
-          ..clear()
-          ..addAll(previousCallbacks);
-        _vmFactory = previousFactory;
-        _genericDartParameters
-          ..clear()
-          ..addAll(previousNames);
+        _withVmFactory(parameters.map((p) => p.name), () {
+          out.writeln(
+            'FlaxCallbackBinding ${entry.value}Types${_dartStaticGenerics(parameters)}(FlaxDartTypes types) {',
+          );
+          final signature = _callbackBinding(closed);
+          usesGenericCallbackResult |= _writeCallbackAdapters(
+            out,
+            _callbacks.entries.toList(),
+          );
+          out.writeln('return $signature; }');
+        });
       }
       out.writeln(
         'Object ${entry.value}(FlaxCallback _flaxBridgeCallback) => ${_dartGenerics(type.typeParameters)}(${requiredParameters.join(', ')}) {',
@@ -3993,7 +3933,7 @@ import 'package:flax/bindings.dart';
       '${_instanceMethods(type)}, constructors: ${_constructors(type)}, '
       'setters: [${type.setters.map((setter) => 'FlaxSetter(${_quote(setter.name)}, ${_ref(setter.type)}, _${type.name}_set_${setter.name}),').join()}], '
       'create: _create${type.name}, matches: _is${type.name}, '
-      'supertypes: ${jsonEncode(type.supertypes)}${_dartAliasBinding(type)}${_proxyBinding(type)})';
+      'supertypes: ${jsonEncode(type.supertypes)}${_proxyBinding(type)})';
 
   String _constructors(FlaxCodegenClassModel type) {
     final out = StringBuffer('{');
@@ -4410,9 +4350,7 @@ import 'package:flax/bindings.dart';
         FlaxCodegenTypeCategory.enumeration ||
         FlaxCodegenTypeCategory.context ||
         FlaxCodegenTypeCategory.state ||
-        FlaxCodegenTypeCategory.route ||
-        FlaxCodegenTypeCategory.object ||
-        FlaxCodegenTypeCategory.page => reference(),
+        FlaxCodegenTypeCategory.object => reference(),
         FlaxCodegenTypeCategory.voidType =>
           input && !voidResult ? 'unknown' : 'void',
         FlaxCodegenTypeCategory.neverType => 'never',
@@ -6245,7 +6183,6 @@ $_typescriptHostImport
     final capabilityLiteral = capabilities.isEmpty
         ? 'Object.freeze([]) as readonly string[]'
         : 'Object.freeze(${jsonEncode(capabilities)}) as readonly string[]';
-    out.write(_typescriptInstallHelper);
     out.writeln(
       'export const ${module.name}BindingModule = _flaxInstallBindingModule(${jsonEncode(_literalModuleId(module))}, $_generatedUiProtocol, $capabilityLiteral);',
     );

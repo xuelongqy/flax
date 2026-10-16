@@ -1,5 +1,5 @@
 {
-  "formatVersion": 23,
+  "formatVersion": 24,
   "package": "flax",
   "bindingNamespace": "flax.core",
   "imports": [],
@@ -56,7 +56,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -122,7 +121,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           }
@@ -2079,7 +2077,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -2323,7 +2320,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -2521,7 +2517,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -2655,7 +2650,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -2738,7 +2732,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -2936,7 +2929,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -3343,7 +3335,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -3591,7 +3582,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -3725,7 +3715,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -3814,7 +3803,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -4001,7 +3989,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -4090,7 +4077,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -4213,7 +4199,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -14252,7 +14237,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -15292,7 +15276,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -18434,7 +18417,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -20601,7 +20583,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -23034,7 +23015,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -23762,7 +23742,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -26297,7 +26276,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -29641,7 +29619,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -29929,7 +29906,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -30065,7 +30041,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -30252,7 +30227,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -30355,7 +30329,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -31090,7 +31063,6 @@
               "getters": [],
               "setters": []
             },
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -31661,7 +31633,6 @@
               "getters": [],
               "setters": []
             },
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -32557,7 +32528,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -36289,7 +36259,6 @@
               "getters": [],
               "setters": []
             },
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -37343,7 +37312,6 @@
               "getters": [],
               "setters": []
             },
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -45981,7 +45949,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -46394,7 +46361,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -47226,7 +47192,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -47765,7 +47730,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -48340,7 +48304,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -48384,7 +48347,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -48556,7 +48518,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -49098,7 +49059,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -49258,7 +49218,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -49369,7 +49328,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -49467,7 +49425,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -49604,7 +49561,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -50162,7 +50118,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -50568,7 +50523,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -50887,7 +50841,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {
               "addListener": "removeListener"
@@ -51668,7 +51621,6 @@
               ],
               "setters": []
             },
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {
               "addListener": "removeListener"
@@ -51791,7 +51743,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -51835,7 +51786,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -51919,7 +51869,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -52125,7 +52074,6 @@
               ],
               "setters": []
             },
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -52366,7 +52314,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -52973,7 +52920,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -53185,7 +53131,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -53249,7 +53194,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -53293,7 +53237,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -53410,7 +53353,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -53848,7 +53790,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -54266,7 +54207,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -54558,7 +54498,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -54636,7 +54575,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -54680,7 +54618,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -54724,7 +54661,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -55380,7 +55316,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -56095,7 +56030,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -56763,7 +56697,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -57249,7 +57182,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -57539,7 +57471,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -58299,7 +58230,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -58837,7 +58767,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -59601,7 +59530,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -59645,7 +59573,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -60103,7 +60030,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -60561,7 +60487,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -60730,7 +60655,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -60942,7 +60866,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -61274,7 +61197,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -61662,7 +61584,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -61918,7 +61839,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -62393,7 +62313,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -62814,7 +62733,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -63202,7 +63120,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -64454,7 +64371,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -64498,7 +64414,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -64576,7 +64491,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -65524,7 +65438,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": "dispose",
             "listenerPairs": {
               "addListener": "removeListener"
@@ -66064,7 +65977,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -66984,7 +66896,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -67388,7 +67299,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -68515,7 +68425,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -69613,7 +69522,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -69851,7 +69759,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -70103,7 +70010,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -70319,7 +70225,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -70693,7 +70598,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -71139,7 +71043,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -71384,7 +71287,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -71703,7 +71605,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -71804,7 +71705,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -72090,7 +71990,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -72249,7 +72148,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -72837,7 +72735,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -72957,7 +72854,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -73690,7 +73586,6 @@
               ],
               "setters": []
             },
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -74155,7 +74050,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -74620,7 +74514,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -74833,7 +74726,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -75001,7 +74893,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -75213,7 +75104,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -75977,7 +75867,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -76380,7 +76269,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -77311,7 +77199,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": "dispose",
             "listenerPairs": {
               "addListener": "removeListener"
@@ -77447,7 +77334,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -77615,7 +77501,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -77783,7 +77668,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -77951,7 +77835,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -78119,7 +78002,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -79132,7 +79014,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -79519,7 +79400,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -80631,7 +80511,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": "dispose",
             "listenerPairs": {
               "addListener": "removeListener"
@@ -80922,7 +80801,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -81386,7 +81264,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -81559,7 +81436,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -81904,7 +81780,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -82386,7 +82261,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -83057,7 +82931,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -84212,7 +84085,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -85376,7 +85248,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -86086,7 +85957,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -86507,7 +86377,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -86894,7 +86763,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -87446,7 +87314,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -87702,7 +87569,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -87870,7 +87736,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -88038,7 +87903,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -88250,7 +88114,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -88819,7 +88682,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -89031,7 +88893,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -89243,7 +89104,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -89411,7 +89271,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -89786,7 +89645,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -90777,7 +90635,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -91418,7 +91275,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -91854,7 +91710,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -92418,7 +92273,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           }

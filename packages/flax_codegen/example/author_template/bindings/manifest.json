@@ -1,5 +1,5 @@
 {
-  "formatVersion": 23,
+  "formatVersion": 24,
   "package": "your_package",
   "bindingNamespace": "vendor.example",
   "imports": [
@@ -291,7 +291,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           }

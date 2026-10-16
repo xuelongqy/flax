@@ -94,8 +94,6 @@ const _stateVariantKeys = {
   'providerModule',
 };
 
-const _pageAdapterKeys = {'library', 'function'};
-
 const _routeCallKeys = {'builders'};
 
 const _classKeys = {
@@ -117,7 +115,6 @@ const _classKeys = {
   'supertypes',
   'superTypes',
   'proxy',
-  'pageAdapter',
   'disposeMethod',
   'listenerPairs',
 };
@@ -437,16 +434,6 @@ abstract final class FlaxCodegenManifestCodec {
     FlaxCodegenManifestDiagnostics diagnostics,
     String pointer,
   ) => _decodeProxy(value, diagnostics, pointer);
-
-  static Map<String, Object?> encodePageAdapter(
-    FlaxCodegenPageAdapterModel adapter,
-  ) => _encodePageAdapter(adapter);
-
-  static FlaxCodegenPageAdapterModel? decodePageAdapter(
-    Object? value,
-    FlaxCodegenManifestDiagnostics diagnostics,
-    String pointer,
-  ) => _decodePageAdapter(value, diagnostics, pointer);
 
   static Map<String, Object?> encodeRouteCall(
     FlaxCodegenRouteCallModel route,
@@ -879,23 +866,14 @@ FlaxCodegenRecordFieldModel? _decodeRecordField(
   );
 }
 
-FlaxCodegenTypeRef? _decodeCallbackType(
+// Reserve every declaration before decoding bounds/defaults; later member
+// decoding retains this scope until its owner releases the reserved slots.
+(List<int>, List<FlaxCodegenGenericParameter>?) _decodeGenerics(
   FlaxCodegenManifestObject object,
   FlaxCodegenManifestDiagnostics diagnostics,
   String pointer,
-  _SlotDecodeScope? parent,
-  int start,
+  _SlotDecodeScope scope,
 ) {
-  final scope = parent ?? _SlotDecodeScope();
-  final id = object.nullableString('id');
-  final name = object.nullableString('name');
-  final nullable = object.requiredBool('nullable');
-  final slot = object.nullableString('slot');
-  final slotPointer = flaxCodegenManifestPointer(pointer, 'slot');
-  if (slot != null) {
-    diagnostics.add(pointer: slotPointer, message: 'Unexpected slot.');
-  }
-
   final typeParametersValue = object._fields['typeParameters'];
   if (!object._fields.containsKey('typeParameters')) {
     diagnostics.add(
@@ -935,9 +913,6 @@ FlaxCodegenTypeRef? _decodeCallbackType(
     }
   }
 
-  // ADR 0022: all bounds, then all defaults, then dartArguments, then
-  // positional types (source order), named types (percent-encoded name order),
-  // then result. Original parameter/typeParameter arrays stay source-ordered.
   final bounds = <FlaxCodegenTypeRef?>[
     for (final pending in pendingGenerics)
       _decodeType(
@@ -958,6 +933,55 @@ FlaxCodegenTypeRef? _decodeCallbackType(
               scope,
             ),
   ];
+
+  final typeParameters = <FlaxCodegenGenericParameter>[];
+  if (pendingGenerics.length == bounds.length &&
+      pendingGenerics.length == defaults.length) {
+    for (var index = 0; index < pendingGenerics.length; index++) {
+      final bound = bounds[index];
+      if (bound == null) continue;
+      typeParameters.add(
+        FlaxCodegenGenericParameter(
+          pendingGenerics[index].name,
+          bound,
+          defaultType: defaults[index],
+          genericIdentity: pendingGenerics[index].identity,
+        ),
+      );
+    }
+  }
+  return (
+    reservedIndexes,
+    typeParametersJson == null ||
+            typeParameters.length != pendingGenerics.length
+        ? null
+        : typeParameters,
+  );
+}
+
+FlaxCodegenTypeRef? _decodeCallbackType(
+  FlaxCodegenManifestObject object,
+  FlaxCodegenManifestDiagnostics diagnostics,
+  String pointer,
+  _SlotDecodeScope? parent,
+  int start,
+) {
+  final scope = parent ?? _SlotDecodeScope();
+  final id = object.nullableString('id');
+  final name = object.nullableString('name');
+  final nullable = object.requiredBool('nullable');
+  final slot = object.nullableString('slot');
+  final slotPointer = flaxCodegenManifestPointer(pointer, 'slot');
+  if (slot != null) {
+    diagnostics.add(pointer: slotPointer, message: 'Unexpected slot.');
+  }
+
+  final (reservedIndexes, typeParameters) = _decodeGenerics(
+    object,
+    diagnostics,
+    pointer,
+    scope,
+  );
 
   final dartArguments = object.requiredList(
     'dartArguments',
@@ -1052,23 +1076,6 @@ FlaxCodegenTypeRef? _decodeCallbackType(
 
   scope.release(reservedIndexes);
 
-  final typeParameters = <FlaxCodegenGenericParameter>[];
-  if (pendingGenerics.length == bounds.length &&
-      pendingGenerics.length == defaults.length) {
-    for (var index = 0; index < pendingGenerics.length; index++) {
-      final bound = bounds[index];
-      if (bound == null) continue;
-      typeParameters.add(
-        FlaxCodegenGenericParameter(
-          pendingGenerics[index].name,
-          bound,
-          defaultType: defaults[index],
-          genericIdentity: pendingGenerics[index].identity,
-        ),
-      );
-    }
-  }
-
   final parameters = <FlaxCodegenParameterModel>[];
   if (pendingParameters.length == parameterTypes.length) {
     for (var index = 0; index < pendingParameters.length; index++) {
@@ -1095,8 +1102,7 @@ FlaxCodegenTypeRef? _decodeCallbackType(
   if (diagnostics.items.length != start ||
       nullable == null ||
       parametersJson == null ||
-      typeParametersJson == null ||
-      typeParameters.length != pendingGenerics.length ||
+      typeParameters == null ||
       parameters.length != pendingParameters.length ||
       typeArguments == null ||
       dartArguments == null ||
@@ -1638,65 +1644,12 @@ FlaxCodegenMethodModel? _decodeMethod(
   final deferredFactory = object.requiredBool('deferredFactory');
   final operatorName = object.nullableString('operator');
 
-  final typeParametersValue = object._fields['typeParameters'];
-  if (!object._fields.containsKey('typeParameters')) {
-    diagnostics.add(
-      pointer: flaxCodegenManifestPointer(pointer, 'typeParameters'),
-      message: 'Missing field.',
-    );
-  }
-  final typeParametersJson = _jsonList(typeParametersValue);
-  if (typeParametersValue != null && typeParametersJson == null) {
-    diagnostics.add(
-      pointer: flaxCodegenManifestPointer(pointer, 'typeParameters'),
-      message: 'Expected a list.',
-    );
-  }
-
-  final reservedIndexes = <int>[];
-  final pendingGenerics = <_PendingGeneric>[];
-  if (typeParametersJson != null) {
-    final typeParametersPointer = flaxCodegenManifestPointer(
-      pointer,
-      'typeParameters',
-    );
-    for (var index = 0; index < typeParametersJson.length; index++) {
-      final genericPointer = flaxCodegenManifestPointer(
-        typeParametersPointer,
-        '$index',
-      );
-      final pending = _reserveGenericDeclaration(
-        typeParametersJson[index],
-        diagnostics,
-        genericPointer,
-        scope,
-      );
-      if (pending == null) continue;
-      reservedIndexes.add(pending.index);
-      pendingGenerics.add(pending);
-    }
-  }
-
-  final bounds = <FlaxCodegenTypeRef?>[
-    for (final pending in pendingGenerics)
-      _decodeType(
-        pending.boundJson,
-        diagnostics,
-        flaxCodegenManifestPointer(pending.pointer, 'bound'),
-        scope,
-      ),
-  ];
-  final defaults = <FlaxCodegenTypeRef?>[
-    for (final pending in pendingGenerics)
-      pending.defaultTypeJson == null
-          ? null
-          : _decodeType(
-              pending.defaultTypeJson,
-              diagnostics,
-              flaxCodegenManifestPointer(pending.pointer, 'defaultType'),
-              scope,
-            ),
-  ];
+  final (reservedIndexes, typeParameters) = _decodeGenerics(
+    object,
+    diagnostics,
+    pointer,
+    scope,
+  );
 
   final parametersValue = object._fields['parameters'];
   if (!object._fields.containsKey('parameters')) {
@@ -1774,23 +1727,6 @@ FlaxCodegenMethodModel? _decodeMethod(
 
   scope.release(reservedIndexes);
 
-  final typeParameters = <FlaxCodegenGenericParameter>[];
-  if (pendingGenerics.length == bounds.length &&
-      pendingGenerics.length == defaults.length) {
-    for (var index = 0; index < pendingGenerics.length; index++) {
-      final bound = bounds[index];
-      if (bound == null) continue;
-      typeParameters.add(
-        FlaxCodegenGenericParameter(
-          pendingGenerics[index].name,
-          bound,
-          defaultType: defaults[index],
-          genericIdentity: pendingGenerics[index].identity,
-        ),
-      );
-    }
-  }
-
   final parameters = <FlaxCodegenParameterModel>[];
   if (pendingParameters.length == parameterTypes.length) {
     for (var index = 0; index < pendingParameters.length; index++) {
@@ -1822,9 +1758,8 @@ FlaxCodegenMethodModel? _decodeMethod(
       startsRoute == null ||
       mustCallSuper == null ||
       deferredFactory == null ||
-      typeParametersJson == null ||
+      typeParameters == null ||
       parametersJson == null ||
-      typeParameters.length != pendingGenerics.length ||
       parameters.length != pendingParameters.length) {
     return null;
   }
@@ -2070,32 +2005,6 @@ FlaxCodegenStateVariantModel? _decodeStateVariant(
   );
 }
 
-Map<String, Object?> _encodePageAdapter(FlaxCodegenPageAdapterModel adapter) =>
-    {'library': adapter.library, 'function': adapter.function};
-
-FlaxCodegenPageAdapterModel? _decodePageAdapter(
-  Object? value,
-  FlaxCodegenManifestDiagnostics diagnostics,
-  String pointer,
-) {
-  final start = diagnostics.items.length;
-  final object = FlaxCodegenManifestObject.read(
-    diagnostics,
-    value,
-    pointer,
-    _pageAdapterKeys,
-  );
-  if (object == null) return null;
-  final library = object.requiredString('library');
-  final function = object.requiredString('function');
-  if (diagnostics.items.length != start ||
-      library == null ||
-      function == null) {
-    return null;
-  }
-  return FlaxCodegenPageAdapterModel(library, function);
-}
-
 Map<String, Object?> _encodeRouteCall(FlaxCodegenRouteCallModel route) => {
   'builders': List<String>.of(route.builders),
 };
@@ -2201,9 +2110,6 @@ Map<String, Object?> _encodeClass(FlaxCodegenClassModel type) {
       'supertypes': List<String>.of(type.supertypes),
       'superTypes': superTypeJsons,
       'proxy': proxyJson,
-      'pageAdapter': type.pageAdapter == null
-          ? null
-          : _encodePageAdapter(type.pageAdapter!),
       'disposeMethod': type.disposeMethod,
       'listenerPairs': _encodeStringMap(type.listenerPairs),
     };
@@ -2233,65 +2139,12 @@ FlaxCodegenClassModel? _decodeClass(
   final asyncIterableFactory = object.nullableString('asyncIterableFactory');
   final typeArguments = object.requiredStringList('typeArguments');
 
-  final typeParametersValue = object._fields['typeParameters'];
-  if (!object._fields.containsKey('typeParameters')) {
-    diagnostics.add(
-      pointer: flaxCodegenManifestPointer(pointer, 'typeParameters'),
-      message: 'Missing field.',
-    );
-  }
-  final typeParametersJson = _jsonList(typeParametersValue);
-  if (typeParametersValue != null && typeParametersJson == null) {
-    diagnostics.add(
-      pointer: flaxCodegenManifestPointer(pointer, 'typeParameters'),
-      message: 'Expected a list.',
-    );
-  }
-
-  final reservedIndexes = <int>[];
-  final pendingGenerics = <_PendingGeneric>[];
-  if (typeParametersJson != null) {
-    final typeParametersPointer = flaxCodegenManifestPointer(
-      pointer,
-      'typeParameters',
-    );
-    for (var index = 0; index < typeParametersJson.length; index++) {
-      final genericPointer = flaxCodegenManifestPointer(
-        typeParametersPointer,
-        '$index',
-      );
-      final pending = _reserveGenericDeclaration(
-        typeParametersJson[index],
-        diagnostics,
-        genericPointer,
-        scope,
-      );
-      if (pending == null) continue;
-      reservedIndexes.add(pending.index);
-      pendingGenerics.add(pending);
-    }
-  }
-
-  final bounds = <FlaxCodegenTypeRef?>[
-    for (final pending in pendingGenerics)
-      _decodeType(
-        pending.boundJson,
-        diagnostics,
-        flaxCodegenManifestPointer(pending.pointer, 'bound'),
-        scope,
-      ),
-  ];
-  final defaults = <FlaxCodegenTypeRef?>[
-    for (final pending in pendingGenerics)
-      pending.defaultTypeJson == null
-          ? null
-          : _decodeType(
-              pending.defaultTypeJson,
-              diagnostics,
-              flaxCodegenManifestPointer(pending.pointer, 'defaultType'),
-              scope,
-            ),
-  ];
+  final (reservedIndexes, typeParameters) = _decodeGenerics(
+    object,
+    diagnostics,
+    pointer,
+    scope,
+  );
 
   final constructors = object.requiredList(
     'constructors',
@@ -2360,39 +2213,17 @@ FlaxCodegenClassModel? _decodeClass(
     'proxy',
     _decodeProxyFn(diagnostics, scope),
   );
-  final pageAdapter = object.nullableValue(
-    'pageAdapter',
-    _decodePageAdapterFn(diagnostics),
-  );
   final disposeMethod = object.nullableString('disposeMethod');
   final listenerPairs = object.requiredStringMap('listenerPairs');
 
   scope.release(reservedIndexes);
-
-  final typeParameters = <FlaxCodegenGenericParameter>[];
-  if (pendingGenerics.length == bounds.length &&
-      pendingGenerics.length == defaults.length) {
-    for (var index = 0; index < pendingGenerics.length; index++) {
-      final bound = bounds[index];
-      if (bound == null) continue;
-      typeParameters.add(
-        FlaxCodegenGenericParameter(
-          pendingGenerics[index].name,
-          bound,
-          defaultType: defaults[index],
-          genericIdentity: pendingGenerics[index].identity,
-        ),
-      );
-    }
-  }
 
   if (diagnostics.items.length != start ||
       name == null ||
       id == null ||
       kind == null ||
       typeArguments == null ||
-      typeParametersJson == null ||
-      typeParameters.length != pendingGenerics.length ||
+      typeParameters == null ||
       constructors == null ||
       getters == null ||
       setters == null ||
@@ -2425,7 +2256,6 @@ FlaxCodegenClassModel? _decodeClass(
     supertypes: supertypes,
     superTypes: superTypes,
     proxy: proxy,
-    pageAdapter: pageAdapter,
     disposeMethod: disposeMethod,
     listenerPairs: listenerPairs,
   );
@@ -2507,91 +2337,20 @@ FlaxCodegenNamedTypeModel? _decodeNamedType(
     }
   }
 
-  final typeParametersValue = object._fields['typeParameters'];
-  if (!object._fields.containsKey('typeParameters')) {
-    diagnostics.add(
-      pointer: flaxCodegenManifestPointer(pointer, 'typeParameters'),
-      message: 'Missing field.',
-    );
-  }
-  final typeParametersJson = _jsonList(typeParametersValue);
-  if (typeParametersValue != null && typeParametersJson == null) {
-    diagnostics.add(
-      pointer: flaxCodegenManifestPointer(pointer, 'typeParameters'),
-      message: 'Expected a list.',
-    );
-  }
-
-  final reservedIndexes = <int>[];
-  final pendingGenerics = <_PendingGeneric>[];
-  if (typeParametersJson != null) {
-    final typeParametersPointer = flaxCodegenManifestPointer(
-      pointer,
-      'typeParameters',
-    );
-    for (var index = 0; index < typeParametersJson.length; index++) {
-      final genericPointer = flaxCodegenManifestPointer(
-        typeParametersPointer,
-        '$index',
-      );
-      final pending = _reserveGenericDeclaration(
-        typeParametersJson[index],
-        diagnostics,
-        genericPointer,
-        scope,
-      );
-      if (pending == null) continue;
-      reservedIndexes.add(pending.index);
-      pendingGenerics.add(pending);
-    }
-  }
-
-  final bounds = <FlaxCodegenTypeRef?>[
-    for (final pending in pendingGenerics)
-      _decodeType(
-        pending.boundJson,
-        diagnostics,
-        flaxCodegenManifestPointer(pending.pointer, 'bound'),
-        scope,
-      ),
-  ];
-  final defaults = <FlaxCodegenTypeRef?>[
-    for (final pending in pendingGenerics)
-      pending.defaultTypeJson == null
-          ? null
-          : _decodeType(
-              pending.defaultTypeJson,
-              diagnostics,
-              flaxCodegenManifestPointer(pending.pointer, 'defaultType'),
-              scope,
-            ),
-  ];
+  final (reservedIndexes, typeParameters) = _decodeGenerics(
+    object,
+    diagnostics,
+    pointer,
+    scope,
+  );
 
   scope.release(reservedIndexes);
-
-  final typeParameters = <FlaxCodegenGenericParameter>[];
-  if (pendingGenerics.length == bounds.length &&
-      pendingGenerics.length == defaults.length) {
-    for (var index = 0; index < pendingGenerics.length; index++) {
-      final bound = bounds[index];
-      if (bound == null) continue;
-      typeParameters.add(
-        FlaxCodegenGenericParameter(
-          pendingGenerics[index].name,
-          bound,
-          defaultType: defaults[index],
-          genericIdentity: pendingGenerics[index].identity,
-        ),
-      );
-    }
-  }
 
   if (diagnostics.items.length != start ||
       name == null ||
       id == null ||
       enumNames == null ||
-      typeParametersJson == null ||
-      typeParameters.length != pendingGenerics.length) {
+      typeParameters == null) {
     return null;
   }
   return FlaxCodegenNamedTypeModel(
@@ -3384,10 +3143,6 @@ FlaxCodegenProxyModel? Function(Object? value, String pointer) _decodeProxyFn(
   _SlotDecodeScope? scope,
 ]) =>
     (value, pointer) => _decodeProxy(value, diagnostics, pointer, scope);
-
-FlaxCodegenPageAdapterModel? Function(Object? value, String pointer)
-_decodePageAdapterFn(FlaxCodegenManifestDiagnostics diagnostics) =>
-    (value, pointer) => _decodePageAdapter(value, diagnostics, pointer);
 
 FlaxCodegenRouteCallModel? Function(Object? value, String pointer)
 _decodeRouteCallFn(FlaxCodegenManifestDiagnostics diagnostics) =>

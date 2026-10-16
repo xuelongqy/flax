@@ -432,10 +432,6 @@ void main() {
       getters: [getter],
       setters: const [setter],
     );
-    const adapter = FlaxCodegenPageAdapterModel(
-      'package:example/adapter.dart',
-      'createRoute',
-    );
     const route = FlaxCodegenRouteCallModel(['builder', 'pageBuilder']);
 
     expect(generic.genericIdentity, same(genericIdentity));
@@ -448,7 +444,6 @@ void main() {
     );
     final encodedMethod = FlaxCodegenManifestCodec.encodeMethod(method);
     final encodedProxy = FlaxCodegenManifestCodec.encodeProxy(proxy);
-    final encodedAdapter = FlaxCodegenManifestCodec.encodePageAdapter(adapter);
     final encodedRoute = FlaxCodegenManifestCodec.encodeRouteCall(route);
 
     _expectGetterJson(encodedGetter);
@@ -457,7 +452,6 @@ void main() {
     _expectConstructorJson(encodedConstructor);
     _expectMethodJson(encodedMethod);
     _expectProxyJson(encodedProxy);
-    _expectPageAdapterJson(encodedAdapter);
     _expectRouteCallJson(encodedRoute);
 
     _expectGetter(_decodeGetter(encodedGetter), getter);
@@ -466,7 +460,6 @@ void main() {
     final methodCorrespondence = <Object, Object>{};
     _expectMethod(_decodeMethod(encodedMethod), method, methodCorrespondence);
     _expectProxy(_decodeProxy(encodedProxy), proxy, methodCorrespondence);
-    _expectPageAdapter(_decodePageAdapter(encodedAdapter), adapter);
     _expectRouteCall(_decodeRouteCall(encodedRoute), route);
   });
 
@@ -478,10 +471,6 @@ void main() {
     );
     _expectMappingError(FlaxCodegenManifestCodec.decodeMethod, '/a~1b/~0tilde');
     _expectMappingError(FlaxCodegenManifestCodec.decodeProxy, '/a~1b/~0tilde');
-    _expectMappingError(
-      FlaxCodegenManifestCodec.decodePageAdapter,
-      '/a~1b/~0tilde',
-    );
     _expectMappingError(
       FlaxCodegenManifestCodec.decodeRouteCall,
       '/a~1b/~0tilde',
@@ -609,16 +598,6 @@ void main() {
       _record('/widgetInterface', 'Missing field.'),
     ]);
     _expectDecodeError(
-      FlaxCodegenManifestCodec.decodePageAdapter,
-      _malformedPageAdapter,
-      [
-        _record('/a~1b', 'Unknown field.'),
-        _record('/extra', 'Unknown field.'),
-        _record('/function', 'Expected a string.'),
-        _record('/library', 'Expected a string.'),
-      ],
-    );
-    _expectDecodeError(
       FlaxCodegenManifestCodec.decodeRouteCall,
       _malformedRouteCall,
       [
@@ -725,10 +704,6 @@ void main() {
       getters: [getter],
       setters: const [setter],
     );
-    const adapter = FlaxCodegenPageAdapterModel(
-      'package:example/adapter.dart',
-      'createRoute',
-    );
     const route = FlaxCodegenRouteCallModel(['builder', 'pageBuilder']);
     final type = FlaxCodegenClassModel(
       name: 'Gauge',
@@ -741,7 +716,6 @@ void main() {
       typeArguments: const ['Widget', 'Element'],
       getters: [getter],
       methods: [method],
-      pageAdapter: adapter,
       setters: const [setter],
       disposeMethod: 'dispose',
       listenerPairs: {'watch': 'unwatch', 'addListener': 'removeListener'},
@@ -847,7 +821,6 @@ void main() {
       typeArguments: type.typeArguments,
       getters: type.getters,
       methods: type.methods,
-      pageAdapter: type.pageAdapter,
       setters: type.setters,
       disposeMethod: type.disposeMethod,
       listenerPairs: {'addListener': 'removeListener', 'watch': 'unwatch'},
@@ -944,9 +917,7 @@ void main() {
       _record('/methods/0/typeArguments', 'Missing field.'),
       _record('/methods/0/typeParameters', 'Missing field.'),
       _record('/name', 'Expected a string.'),
-      _record('/pageAdapter/extra', 'Unknown field.'),
-      _record('/pageAdapter/function', 'Expected a string.'),
-      _record('/pageAdapter/library', 'Expected a string.'),
+      _record('/pageAdapter', 'Unknown field.'),
       _record('/proxy/extra', 'Unknown field.'),
       _record('/proxy/getters', 'Missing field.'),
       _record('/proxy/kind', 'Expected a string.'),
@@ -1437,7 +1408,7 @@ void main() {
     }
   });
 
-  group('Manifest 23 typeLibraries URI semantics', () {
+  group('Manifest 24 typeLibraries URI semantics', () {
     test('accepts public package URIs, cross-package names, and dart:core', () {
       final module = _typeLibrariesModule({
         'Core': 'dart:core',
@@ -1684,7 +1655,7 @@ void main() {
     );
   });
 
-  group('Manifest 23 envelope positives', () {
+  group('Manifest 24 envelope positives', () {
     test('fromResolved round-trips rich and zero-entry modules', () {
       final fixture = _envelopeFixture();
       final manifest = FlaxCodegenManifest.fromResolved(
@@ -1845,16 +1816,16 @@ void main() {
     });
   });
 
-  group('Manifest 23 envelope negatives', () {
+  group('Manifest 24 envelope negatives', () {
     test('invalid JSON and duplicate keys fail closed', () {
       _expectEnvelopeFailure('{', [_record('', 'Invalid JSON.')]);
       _expectEnvelopeFailure(
-        '{\n  "formatVersion": 23,\n  "package": "a",\n  "package": "b"\n}\n',
+        '{\n  "formatVersion": 24,\n  "package": "a",\n  "package": "b"\n}\n',
         [_record('', 'Duplicate mapping key.')],
       );
       final withModuleDup =
           '{\n'
-          '  "formatVersion": 23,\n'
+          '  "formatVersion": 24,\n'
           '  "package": "acme_widgets",\n'
           '  "bindingNamespace": "com.acme.widgets",\n'
           '  "imports": [],\n'
@@ -1874,7 +1845,7 @@ void main() {
       ]);
       final withModelDup =
           '{\n'
-          '  "formatVersion": 23,\n'
+          '  "formatVersion": 24,\n'
           '  "package": "acme_widgets",\n'
           '  "bindingNamespace": "com.acme.widgets",\n'
           '  "imports": [],\n'
@@ -2105,7 +2076,7 @@ void main() {
     });
   });
 
-  group('Manifest 23 ownership model and fromResolved negatives', () {
+  group('Manifest 24 ownership model and fromResolved negatives', () {
     test('declaration owner rows are required at id pointers', () {
       const gauge = 'com.acme.widgets/widgets#type:Gauge';
       const axis = 'com.acme.widgets/widgets#type:Axis';
@@ -2582,7 +2553,7 @@ void main() {
     });
   });
 
-  group('Manifest 23 generic lexical slot positives', () {
+  group('Manifest 24 generic lexical slot positives', () {
     test(
       'fresh decoded tokens preserve declaration/reference identity sharing',
       () {
@@ -2880,7 +2851,7 @@ void main() {
     });
   });
 
-  group('Manifest 23 generic lexical slot negatives', () {
+  group('Manifest 24 generic lexical slot negatives', () {
     test('missing declaration slot fails closed', () {
       final json = _cloneJsonMap(
         _slotCallbackJson(_slotSharingCallback(Object())),
@@ -3091,7 +3062,7 @@ void main() {
     });
   });
 
-  group('Manifest 23 Quality P1 maximal projection', () {
+  group('Manifest 24 Quality P1 maximal projection', () {
     test('independently constructed maximal module survives fromResolved encode parse projection and input mutation', () {
       final inIntType = FlaxCodegenTypeRef('int');
       final inStringType = FlaxCodegenTypeRef('String', nullable: true);
@@ -3617,7 +3588,7 @@ void main() {
         FlaxCodegenClassModel(
           name: 'LeafPage',
           id: pageWire.value,
-          kind: 'page',
+          kind: 'object',
           constructors: [
             FlaxCodegenConstructorModel('', [
               FlaxCodegenParameterModel(
@@ -3629,10 +3600,6 @@ void main() {
               ),
             ]),
           ],
-          pageAdapter: const FlaxCodegenPageAdapterModel(
-            'package:pkg_maximal/adapter.dart',
-            'createRoute',
-          ),
           getters: const [],
           methods: const [],
           supertypes: const [],
@@ -4148,7 +4115,7 @@ void main() {
           FlaxCodegenClassModel(
             name: 'LeafPage',
             id: pageWire.value,
-            kind: 'page',
+            kind: 'object',
             constructors: [
               FlaxCodegenConstructorModel('', [
                 FlaxCodegenParameterModel(
@@ -4160,10 +4127,6 @@ void main() {
                 ),
               ]),
             ],
-            pageAdapter: const FlaxCodegenPageAdapterModel(
-              'package:pkg_maximal/adapter.dart',
-              'createRoute',
-            ),
             getters: const [],
             methods: const [],
             supertypes: const [],
@@ -4702,7 +4665,7 @@ void main() {
     });
   });
 
-  group('Manifest 23 direct dependency projection positives', () {
+  group('Manifest 24 direct dependency projection positives', () {
     test('A→B→C flattens packages owners modules and importedPackages', () {
       final chain = _projectionChain();
       final a = chain.aProjection;
@@ -5026,7 +4989,7 @@ bindingNamespace: com.example.local
     );
   });
 
-  group('Manifest 23 direct dependency projection negatives', () {
+  group('Manifest 24 direct dependency projection negatives', () {
     test('missing direct import fails closed', () {
       final b = _packageB(_packageC());
       final a = _packageA(b);
@@ -5908,8 +5871,6 @@ const _stateVariantKeys = {
 };
 const _widgetMemberKeys = {'name', 'kind', 'parameters'};
 
-const _pageAdapterKeys = {'library', 'function'};
-
 const _routeCallKeys = {'builders'};
 
 const _classKeys = {
@@ -5930,7 +5891,6 @@ const _classKeys = {
   'supertypes',
   'superTypes',
   'proxy',
-  'pageAdapter',
   'disposeMethod',
   'listenerPairs',
 };
@@ -6083,13 +6043,6 @@ final _malformedProxy = <String, Object?>{
     <String, Object?>{'encodeKind': 1, '~x': 1, 'cache': false},
   ],
   'extra': true,
-};
-
-final _malformedPageAdapter = <String, Object?>{
-  'library': 1,
-  'function': true,
-  'extra': true,
-  'a/b': false,
 };
 
 final _malformedRouteCall = <String, Object?>{
@@ -6573,18 +6526,6 @@ FlaxCodegenProxyModel _decodeProxy(Object? json) {
   return decoded!;
 }
 
-FlaxCodegenPageAdapterModel _decodePageAdapter(Object? json) {
-  final diagnostics = FlaxCodegenManifestDiagnostics('manifest.json');
-  final decoded = FlaxCodegenManifestCodec.decodePageAdapter(
-    json,
-    diagnostics,
-    '',
-  );
-  diagnostics.throwIfAny();
-  expect(decoded, isNotNull);
-  return decoded!;
-}
-
 FlaxCodegenRouteCallModel _decodeRouteCall(Object? json) {
   final diagnostics = FlaxCodegenManifestDiagnostics('manifest.json');
   final decoded = FlaxCodegenManifestCodec.decodeRouteCall(
@@ -6708,14 +6649,6 @@ void _expectProxy(
   }
 }
 
-void _expectPageAdapter(
-  FlaxCodegenPageAdapterModel actual,
-  FlaxCodegenPageAdapterModel expected,
-) {
-  expect(actual.library, expected.library);
-  expect(actual.function, expected.function);
-}
-
 void _expectRouteCall(
   FlaxCodegenRouteCallModel actual,
   FlaxCodegenRouteCallModel expected,
@@ -6782,10 +6715,6 @@ void _expectStateVariantJson(Object? json) {
   _expectJsonList(object['methods'], _expectMethodJson);
   expect(object['superMethods'], isA<List<String>>());
   expect(object['mustCallSuperMethods'], isA<List<String>>());
-}
-
-void _expectPageAdapterJson(Object? json) {
-  _expectExactKeys(_expectObject(json), _pageAdapterKeys);
 }
 
 void _expectRouteCallJson(Object? json) {
@@ -6932,12 +6861,6 @@ void _expectClass(
     expect(actual.proxy, isNotNull);
     _expectProxy(actual.proxy!, expected.proxy!, correspondence);
   }
-  if (expected.pageAdapter == null) {
-    expect(actual.pageAdapter, isNull);
-  } else {
-    expect(actual.pageAdapter, isNotNull);
-    _expectPageAdapter(actual.pageAdapter!, expected.pageAdapter!);
-  }
   expect(actual.disposeMethod, expected.disposeMethod);
   expect(actual.listenerPairs, expected.listenerPairs);
 }
@@ -7035,9 +6958,7 @@ void _expectClassJson(Object? json) {
   expect(object['supertypes'], isA<List<String>>());
   _expectJsonList(object['superTypes'], _expectTypeJson);
   if (object['proxy'] != null) _expectProxyJson(object['proxy']);
-  if (object['pageAdapter'] != null) {
-    _expectPageAdapterJson(object['pageAdapter']);
-  }
+
   expect(object['listenerPairs'], isA<Map<String, String>>());
   final pairKeys = (object['listenerPairs'] as Map<String, String>).keys
       .toList();
@@ -7530,11 +7451,11 @@ void _expectEnvelopeShape(
   expect(manifest.package, 'acme_widgets');
   expect(manifest.bindingNamespace.value, 'com.acme.widgets');
   expect(manifest.imports, ['flax', 'flax_material']);
-  expect(FlaxCodegenManifest.formatVersion, 23);
+  expect(FlaxCodegenManifest.formatVersion, 24);
   expect(FlaxCodegenManifest.uiProtocol, 24);
   final encoded = manifest.toJson();
   _expectExactKeys(encoded, _envelopeKeys);
-  expect(encoded['formatVersion'], 23);
+  expect(encoded['formatVersion'], 24);
   expect(encoded['modules'], isA<List<Object?>>());
   final modules = encoded['modules']! as List<Object?>;
   expect(modules, hasLength(2));

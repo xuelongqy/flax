@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/flutter/material","owner":"@flax/material-ui:dist/generated/libraries/material/index.js","version":"0.0.0","artifact":"864b8fbe4ed8e6f99f55fea3d3ff6a4da885fe2456a6599eb46a20ad5a759e55","asset":"assets/flax_modules/_flax_flutter_material-4c07c7c9bace.js","package":"@flax/material-ui","source":"dist/generated/libraries/material/index.js","dependencies":{"@flax/core/bindings":"0.0.0","@flax/dart/core":"0.0.0","@flax/flutter/foundation":"0.0.0","@flax/flutter/services":"0.0.0","@flax/flutter/widgets":"0.0.0"},"bindings":[{"moduleId":"flax.material/material","uiProtocol":24,"requiredCapabilities":["generic-member-views","instance-checks","native-navigation-objects","native-widget-proxies"],"types":["flax.material/material#type:AlertDialog","flax.material/material#type:AppBar","flax.material/material#type:Brightness","flax.material/material#type:ButtonStyle","flax.material/material#type:Card","flax.material/material#type:Checkbox","flax.material/material#type:CircularProgressIndicator","flax.material/material#type:ColorScheme","flax.material/material#type:Divider","flax.material/material#type:Drawer","flax.material/material#type:ElevatedButton","flax.material/material#type:FilledButton","flax.material/material#type:FloatingActionButton","flax.material/material#type:IconButton","flax.material/material#type:InkWell","flax.material/material#type:InputDecoration","flax.material/material#type:LinearProgressIndicator","flax.material/material#type:ListTile","flax.material/material#type:ListTileStyle","flax.material/material#type:Material","flax.material/material#type:MaterialApp","flax.material/material#type:MaterialPage","flax.material/material#type:MaterialPageRoute","flax.material/material#type:MaterialType","flax.material/material#type:NavigationBar","flax.material/material#type:NavigationDestination","flax.material/material#type:NavigationDestinationLabelBehavior","flax.material/material#type:OutlinedButton","flax.material/material#type:RefreshIndicator","flax.material/material#type:Scaffold","flax.material/material#type:Switch","flax.material/material#type:TextButton","flax.material/material#type:TextField","flax.material/material#type:TextInputAction","flax.material/material#type:TextTheme","flax.material/material#type:Theme","flax.material/material#type:ThemeData","flax.material/material#type:ThemeMode","flax.material/material#type:VerticalDivider","flax.material/material#type:VisualDensity"],"functions":["flax.material/material#function:showDialog","flax.material/material#read:VisualDensity.comfortable","flax.material/material#read:VisualDensity.compact","flax.material/material#read:VisualDensity.standard","flax.material/material#read:kTabScrollDuration"]}],"subpaths":["@flax/flutter/material/index"]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/flutter/material","owner":"@flax/material-ui:dist/generated/libraries/material/index.js","version":"0.0.0","artifact":"82c18f24ec9a19968248fda8f081b1185edbc3b5db76c6c99679b009a752f2f9","asset":"assets/flax_modules/_flax_flutter_material-4c07c7c9bace.js","package":"@flax/material-ui","source":"dist/generated/libraries/material/index.js","dependencies":{"@flax/core/bindings":"0.0.0","@flax/dart/core":"0.0.0","@flax/flutter/foundation":"0.0.0","@flax/flutter/services":"0.0.0","@flax/flutter/widgets":"0.0.0"},"bindings":[{"moduleId":"flax.material/material","uiProtocol":24,"requiredCapabilities":["generic-member-views","instance-checks","native-navigation-objects","native-widget-proxies"],"types":["flax.material/material#type:AlertDialog","flax.material/material#type:AppBar","flax.material/material#type:Brightness","flax.material/material#type:ButtonStyle","flax.material/material#type:Card","flax.material/material#type:Checkbox","flax.material/material#type:CircularProgressIndicator","flax.material/material#type:ColorScheme","flax.material/material#type:Divider","flax.material/material#type:Drawer","flax.material/material#type:ElevatedButton","flax.material/material#type:FilledButton","flax.material/material#type:FloatingActionButton","flax.material/material#type:IconButton","flax.material/material#type:InkWell","flax.material/material#type:InputDecoration","flax.material/material#type:LinearProgressIndicator","flax.material/material#type:ListTile","flax.material/material#type:ListTileStyle","flax.material/material#type:Material","flax.material/material#type:MaterialApp","flax.material/material#type:MaterialPage","flax.material/material#type:MaterialPageRoute","flax.material/material#type:MaterialType","flax.material/material#type:NavigationBar","flax.material/material#type:NavigationDestination","flax.material/material#type:NavigationDestinationLabelBehavior","flax.material/material#type:OutlinedButton","flax.material/material#type:RefreshIndicator","flax.material/material#type:Scaffold","flax.material/material#type:Switch","flax.material/material#type:TextButton","flax.material/material#type:TextField","flax.material/material#type:TextInputAction","flax.material/material#type:TextTheme","flax.material/material#type:Theme","flax.material/material#type:ThemeData","flax.material/material#type:ThemeMode","flax.material/material#type:VerticalDivider","flax.material/material#type:VisualDensity"],"functions":["flax.material/material#function:showDialog","flax.material/material#read:VisualDensity.comfortable","flax.material/material#read:VisualDensity.compact","flax.material/material#read:VisualDensity.standard","flax.material/material#read:kTabScrollDuration"]}],"subpaths":["@flax/flutter/material/index"]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -79,52 +79,7 @@ var import_bindings2 = require("@flax/core/bindings");
 
 // ../../js/dist/generated/libraries/material/_bindings/material.__module.js
 var import_bindings = require("@flax/core/bindings");
-function _flaxInstallBindingModule(moduleId, uiProtocol, requiredCapabilities) {
-  if (typeof moduleId !== "string" || moduleId.length === 0 || moduleId.indexOf("/") < 1 || moduleId.indexOf("/") !== moduleId.lastIndexOf("/") || moduleId.startsWith("/") || moduleId.endsWith("/")) {
-    throw new TypeError("Invalid binding moduleId");
-  }
-  if (uiProtocol !== import_bindings.bindingVersion) {
-    throw new TypeError(`Incompatible binding uiProtocol: ${uiProtocol}`);
-  }
-  let previous;
-  for (const capability of requiredCapabilities) {
-    if (typeof capability !== "string" || previous !== void 0 && capability <= previous) {
-      throw new TypeError("requiredCapabilities must be sorted unique strings");
-    }
-    previous = capability;
-    if (capability !== "native-functions" && capability !== "lazy-js-iterables" && capability !== "callback-map-keys" && capability !== "proxy-super-constructors" && capability !== "bottom-types" && capability !== "explicit-generic-types" && capability !== "engine-type-handles" && capability !== "generic-call-types" && capability !== "dart-type-tokens" && capability !== "generic-member-views" && capability !== "instance-checks" && capability !== "native-core-inputs" && capability !== "native-bigint" && capability !== "native-widget-proxies" && capability !== "widget-interface-proxies" && capability !== "native-navigation-objects" && capability !== "shared-buffers" && capability !== "shared-uint8") {
-      throw new TypeError(`Unsupported binding capability ${capability}`);
-    }
-  }
-  return Object.freeze({
-    moduleId,
-    uiProtocol,
-    requiredCapabilities: Object.freeze([...requiredCapabilities]),
-    construct: import_bindings.construct,
-    constructProxy: import_bindings.constructProxy,
-    constructObject: import_bindings.constructObject,
-    constructDeferredObject: import_bindings.constructDeferredObject,
-    constructStream: import_bindings.constructStream,
-    constructAsyncIterableStream: import_bindings.constructAsyncIterableStream,
-    bindInstanceType: import_bindings.bindInstanceType,
-    defineDartTypes: import_bindings.defineDartTypes,
-    defineObject: import_bindings.defineObject,
-    defineStream: import_bindings.defineStream,
-    invokeObject: import_bindings.invokeObject,
-    invokeObjectStatic: import_bindings.invokeObjectStatic,
-    invokeStream: import_bindings.invokeStream,
-    enumValue: import_bindings.enumValue,
-    defineEnum: import_bindings.defineEnum,
-    invokeEnum: import_bindings.invokeEnum,
-    defineContext: import_bindings.defineContext,
-    defineState: import_bindings.defineState,
-    contextHandle: import_bindings.contextHandle,
-    invokeStatic: import_bindings.invokeStatic,
-    invokeInstance: import_bindings.invokeInstance,
-    invokeTopLevel: import_bindings.invokeTopLevel
-  });
-}
-var materialBindingModule = _flaxInstallBindingModule("flax.material/material", 24, Object.freeze(["dart-type-tokens", "engine-type-handles", "generic-call-types", "generic-member-views", "instance-checks", "native-navigation-objects", "native-widget-proxies"]));
+var materialBindingModule = (0, import_bindings.installBindingModule)("flax.material/material", 24, Object.freeze(["dart-type-tokens", "engine-type-handles", "generic-call-types", "generic-member-views", "instance-checks", "native-navigation-objects", "native-widget-proxies"]));
 var { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineDartTypes: _flaxDefineDartTypes, bindInstanceType: _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } = materialBindingModule;
 
 // ../../js/dist/generated/libraries/material/_bindings/material_VisualDensity.js

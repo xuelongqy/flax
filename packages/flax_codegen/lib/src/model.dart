@@ -47,8 +47,6 @@ enum FlaxCodegenTypeCategory {
   enumeration('enum'),
   context('context'),
   state('state'),
-  route('route'),
-  page('page'),
   object('object'),
   typeOnly('typeOnly');
 
@@ -71,8 +69,6 @@ enum FlaxCodegenClassCategory {
   context,
   state,
   stream,
-  route,
-  page,
   object,
   enumeration;
 
@@ -252,8 +248,6 @@ class FlaxCodegenTypeRef {
           FlaxCodegenTypeCategory.enumeration ||
           FlaxCodegenTypeCategory.context ||
           FlaxCodegenTypeCategory.state ||
-          FlaxCodegenTypeCategory.route ||
-          FlaxCodegenTypeCategory.page ||
           FlaxCodegenTypeCategory.object => true,
           _ => false,
         };
@@ -346,7 +340,7 @@ class FlaxCodegenTypeRef {
   }
 
   void validateResult(String location) {
-    if ({'route', 'page', 'typeOnly'}.contains(kind)) {
+    if (category == FlaxCodegenTypeCategory.typeOnly) {
       throw StateError('Unsupported Dart result at $location: $kind');
     }
     // Lexical type-parameter results require a bound genericIdentity token.
@@ -436,7 +430,6 @@ class FlaxCodegenTypeRef {
           type.validateCallbacks(position, input: toDart);
           return null;
         }
-        if ({'route', 'page'}.contains(type.kind)) return position;
         // Lexical type-parameter refs require a bound genericIdentity token.
         if (type.kind == 'parameter') {
           return type.genericIdentity != null ? null : position;
@@ -738,7 +731,6 @@ class FlaxCodegenClassModel {
     this.typeArguments = const [],
     this.getters = const [],
     this.methods = const [],
-    this.pageAdapter,
     this.setters = const [],
     this.disposeMethod,
     this.capabilities = const [],
@@ -768,7 +760,6 @@ class FlaxCodegenClassModel {
   final List<String> typeArguments;
   final List<FlaxCodegenGetterModel> getters;
   final List<FlaxCodegenMethodModel> methods;
-  final FlaxCodegenPageAdapterModel? pageAdapter;
   final List<FlaxCodegenGetterModel> setters;
   final String? disposeMethod;
 
@@ -1780,15 +1771,6 @@ class FlaxCodegenModuleModel {
           type.constructors.isNotEmpty) {
         throw StateError('Borrowed ${type.name} cannot have constructors');
       }
-      if ((type.pageAdapter != null &&
-              category != FlaxCodegenClassCategory.page) ||
-          (category == FlaxCodegenClassCategory.page &&
-              type.constructors.isNotEmpty &&
-              type.pageAdapter == null)) {
-        throw StateError(
-          'Constructible Pages require an explicit Page Route adapter',
-        );
-      }
       for (final constructor in type.constructors) {
         if (category == FlaxCodegenClassCategory.enumeration &&
             !flaxCodegenIsExportName(constructor.name)) {
@@ -1984,20 +1966,6 @@ class FlaxCodegenModuleModel {
           if (!nativeStateFactory) {
             callback.validateCallbacks('${type.name}.$name', input: true);
           }
-          if (!name.startsWith('call:')) {
-            bool supported(FlaxCodegenTypeRef value) =>
-                !{'route', 'page'}.contains(value.kind) &&
-                (value.item == null || supported(value.item!)) &&
-                (value.key == null || supported(value.key!)) &&
-                (value.result == null || supported(value.result!)) &&
-                value.parameters.every((p) => supported(p.type)) &&
-                value.recordFields.every((field) => supported(field.type));
-            if (!supported(callback)) {
-              throw StateError(
-                'Unsupported proxy property: ${type.name}.$name',
-              );
-            }
-          }
         }
       }
     }
@@ -2055,7 +2023,6 @@ class FlaxCodegenTopLevelModel {
           throw StateError('Invalid constant literal type: $location');
         }
       }
-      _validateTopLevelOwnership(getter.type, location);
     }
     final setterNames = <String>{};
     final exportedNames = <String>{
@@ -2073,42 +2040,6 @@ class FlaxCodegenTopLevelModel {
       }
       setter.type.validate(location);
       setter.type.validateCallbacks(location, input: true);
-      _validateTopLevelOwnership(setter.type, location);
-    }
-  }
-}
-
-void _validateTopLevelOwnership(FlaxCodegenTypeRef type, String location) {
-  if ({'route', 'page'}.contains(type.kind)) {
-    throw StateError(
-      'Unsupported top-level ownership at $location: ${type.kind}',
-    );
-  }
-  if (type.item case final item?) {
-    _validateTopLevelOwnership(item, location);
-  }
-  if (type.key case final key?) {
-    _validateTopLevelOwnership(key, location);
-  }
-  if (type.result case final result?) {
-    _validateTopLevelOwnership(result, location);
-  }
-  for (final parameter in type.parameters) {
-    _validateTopLevelOwnership(parameter.type, location);
-  }
-  for (final field in type.recordFields) {
-    _validateTopLevelOwnership(field.type, location);
-  }
-  if (type.declaration case final declaration?) {
-    _validateTopLevelOwnership(declaration, location);
-  }
-  for (final argument in [...type.dartArguments, ...type.tsArguments]) {
-    _validateTopLevelOwnership(argument, location);
-  }
-  for (final parameter in type.typeParameters) {
-    _validateTopLevelOwnership(parameter.bound, location);
-    if (parameter.defaultType case final defaultType?) {
-      _validateTopLevelOwnership(defaultType, location);
     }
   }
 }
@@ -2265,12 +2196,6 @@ class FlaxCodegenFunctionModel {
 class FlaxCodegenRouteCallModel {
   const FlaxCodegenRouteCallModel([this.builders = const []]);
   final List<String> builders;
-}
-
-class FlaxCodegenPageAdapterModel {
-  const FlaxCodegenPageAdapterModel(this.library, this.function);
-  final String library;
-  final String function;
 }
 
 class FlaxCodegenGenericParameter {

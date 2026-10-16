@@ -1,5 +1,5 @@
 {
-  "formatVersion": 23,
+  "formatVersion": 24,
   "package": "flax_material_ui",
   "bindingNamespace": "flax.material",
   "imports": [
@@ -656,7 +656,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -1604,7 +1603,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -1992,7 +1990,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -2279,7 +2276,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -2698,7 +2694,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -3261,7 +3256,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -3524,7 +3518,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -5244,7 +5237,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -5684,7 +5676,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -6353,7 +6344,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -6610,7 +6600,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -7150,7 +7139,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -7898,7 +7886,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -8678,7 +8665,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -10288,7 +10274,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -11439,7 +11424,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -12466,7 +12450,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -13620,7 +13603,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -13880,7 +13862,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -14140,7 +14121,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -14400,7 +14380,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -14890,7 +14869,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -17599,7 +17577,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -19516,7 +19493,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -19903,7 +19879,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -20246,7 +20221,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -20589,7 +20563,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -21824,7 +21797,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -22835,7 +22807,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -23556,7 +23527,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -24109,7 +24079,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -24409,7 +24378,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -24708,7 +24676,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           },
@@ -25337,7 +25304,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           }

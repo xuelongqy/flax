@@ -539,7 +539,12 @@ abstract class FlaxComponentStateBase<T extends StatefulWidget>
     if (method == null || arguments.length > method.parameters.length) {
       throw ArgumentError('Unknown State variant method: $member');
     }
-    final values = _scope.session.objectArguments(arguments, method.parameters);
+    final values = _scope.session._callArguments(
+      arguments,
+      method.parameters,
+      0,
+      argumentKind: 'object',
+    );
     try {
       final result = method.invoke(
         this,

@@ -8,12 +8,20 @@ import 'package:flax/src/native/native_runtime.dart';
 import 'package:test/test.dart' hide test;
 import 'package:test/test.dart' as tests;
 
+import 'gc.dart';
+
 class _Owner {
   int value = 7;
   FlaxJsFunction? callback;
 }
 
 final _owners = Expando<_Owner>();
+
+Future<void> _compactFromWorker() async {
+  for (var i = 0; i < 3; i++) {
+    await flaxTestCollectDartGarbage(compact: true);
+  }
+}
 
 @pragma('vm:never-inline')
 (Object, WeakReference<_Owner>) _expandoCycle(FlaxNativeJsRuntime runtime) {
@@ -167,6 +175,20 @@ void flaxEngineGcContract({
       expect(message, contains('Flax requires the Flutter UI isolate'));
     },
   );
+  test('background GC preserves JS-rooted Dart callback targets', () async {
+    final runtime = FlaxEngine.createRuntime() as FlaxNativeJsRuntime;
+    try {
+      final owner = _cycle(runtime, true);
+      await flaxTestCollectDartGarbage();
+      await Isolate.run(_compactFromWorker);
+      expect(_dartAlive(owner), isTrue);
+      expect((runtime.evaluate('root.run()') as FlaxJsNumber).value, 18);
+      runtime.evaluate('delete globalThis.root');
+      await _reclaimed(runtime, owner);
+    } finally {
+      runtime.dispose();
+    }
+  });
   test(
     'engine contexts isolate globals, microtasks and reference ownership',
     () async {

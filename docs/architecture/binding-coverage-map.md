@@ -65,7 +65,7 @@ Verification for this completion is recorded in
 The additive `native-functions`, `callback-map-keys`, `lazy-js-iterables` and
 `proxy-super-constructors` capability requirements reject hosts missing these shared
 paths. Record value conversion additionally requires engine binding extension 8. Current
-manifests use format 23; UI protocol 24 and native ABI 2 remain unchanged.
+manifests use format 24; UI protocol 24 and native ABI 2 remain unchanged.
 
 ### Remaining mechanism gaps
 
@@ -292,7 +292,7 @@ Dart value permits them. See
 
 Class static reads and writes are independent capabilities on every supported class
 category. Reads use `Class.property`; writes use `Class.setProperty(value)`. They retain
-their own types and operation identities in Manifest 23. Static declarations are not
+their own types and operation identities in Manifest 24. Static declarations are not
 inherited; a read-only provider cannot supply a write. A generated setter name collision
 fails explicit selection or produces `static_setter_export_collision` in automatic
 selection. See [static property rules](bindings.md#class-static-properties) and the

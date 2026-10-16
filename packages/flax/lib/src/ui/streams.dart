@@ -598,7 +598,12 @@ extension _StreamCalls on _Session {
       }
       final selected =
           _genericMethod(type, name) ?? actual.instanceMethods[name]!;
-      final values = objectArguments(args, selected.parameters);
+      final values = _callArguments(
+        args,
+        selected.parameters,
+        0,
+        argumentKind: 'object',
+      );
       try {
         for (final parameter in selected.parameters) {
           final value = values[parameter.name];

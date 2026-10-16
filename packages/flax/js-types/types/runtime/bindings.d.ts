@@ -4,6 +4,34 @@ export { dartTypes, flaxDartTypeCases, flaxDartMethodCases, flaxDartTypeKey, fla
 export type { FlaxDartCallable, FlaxDartSignature, FlaxDartMethodCases, FlaxDartMethodSelection, FlaxGenericCall, FlaxDartType, FlaxDartTypeCases, FlaxDartTypeInput, FlaxDartTypeSelection, } from './dart_types.js';
 /** Experimental generated-binding extension. Independent of the native C ABI. */
 export declare const bindingVersion = 24;
+/** @internal Generated modules supply their pinned compatibility tuple. */
+export declare function installBindingModule(moduleId: string, uiProtocol: number, requiredCapabilities: readonly string[]): Readonly<{
+    moduleId: string;
+    uiProtocol: 24;
+    requiredCapabilities: readonly string[];
+    construct: typeof construct;
+    constructProxy: typeof constructProxy;
+    constructObject: typeof constructObject;
+    constructDeferredObject: typeof constructDeferredObject;
+    constructStream: typeof constructStream;
+    constructAsyncIterableStream: typeof constructAsyncIterableStream;
+    bindInstanceType: typeof bindInstanceType;
+    defineDartTypes: typeof defineDartTypes;
+    defineObject: typeof defineObject;
+    defineStream: typeof defineStream;
+    invokeObject: typeof invokeObject;
+    invokeObjectStatic: typeof invokeObjectStatic;
+    invokeStream: typeof invokeStream;
+    enumValue: typeof enumValue;
+    defineEnum: typeof defineEnum;
+    invokeEnum: typeof invokeEnum;
+    defineContext: typeof defineContext;
+    defineState: typeof defineState;
+    contextHandle: typeof contextHandle;
+    invokeStatic: typeof invokeStatic;
+    invokeInstance: typeof invokeInstance;
+    invokeTopLevel: typeof invokeTopLevel;
+}>;
 export type Bindable<T> = T | Binding<T>;
 export interface DartValue {
     readonly kind: 'value';

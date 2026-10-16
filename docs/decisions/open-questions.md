@@ -2,7 +2,7 @@
 
 Current accepted contracts include explicit selection, public-provider manifests, stable
 wire identity, package-atomic generation and trusted compile-time dependencies. Binding
-selection format 2, package metadata format 2, current-only Manifest 23, UI protocol 24
+selection format 2, package metadata format 2, current-only Manifest 24, UI protocol 24
 and native ABI 2 remain separate domains. Generic declarations use one compiled adapter
 factory while TypeScript preserves relationships. The maintained engine instantiates
 those factories from real Dart Type handles on first use, without finite type-tuple

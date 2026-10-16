@@ -46,6 +46,88 @@ const nativeIsView = ArrayBuffer.isView;
 /** Experimental generated-binding extension. Independent of the native C ABI. */
 export const bindingVersion = 24;
 
+const supportedBindingCapabilities = new Set([
+  'native-functions',
+  'lazy-js-iterables',
+  'callback-map-keys',
+  'proxy-super-constructors',
+  'bottom-types',
+  'explicit-generic-types',
+  'engine-type-handles',
+  'generic-call-types',
+  'dart-type-tokens',
+  'generic-member-views',
+  'instance-checks',
+  'native-core-inputs',
+  'native-bigint',
+  'native-widget-proxies',
+  'widget-interface-proxies',
+  'native-navigation-objects',
+  'shared-buffers',
+  'shared-uint8',
+]);
+
+/** @internal Generated modules supply their pinned compatibility tuple. */
+export function installBindingModule(
+  moduleId: string,
+  uiProtocol: number,
+  requiredCapabilities: readonly string[],
+) {
+  if (
+    typeof moduleId !== 'string' ||
+    moduleId.length === 0 ||
+    moduleId.indexOf('/') < 1 ||
+    moduleId.indexOf('/') !== moduleId.lastIndexOf('/') ||
+    moduleId.startsWith('/') ||
+    moduleId.endsWith('/')
+  ) {
+    throw new TypeError('Invalid binding moduleId');
+  }
+  if (uiProtocol !== bindingVersion) {
+    throw new TypeError(`Incompatible binding uiProtocol: ${uiProtocol}`);
+  }
+  let previous: string | undefined;
+  for (const capability of requiredCapabilities) {
+    if (
+      typeof capability !== 'string' ||
+      (previous !== undefined && capability <= previous)
+    ) {
+      throw new TypeError('requiredCapabilities must be sorted unique strings');
+    }
+    previous = capability;
+    if (!supportedBindingCapabilities.has(capability)) {
+      throw new TypeError(`Unsupported binding capability ${capability}`);
+    }
+  }
+  return Object.freeze({
+    moduleId,
+    uiProtocol,
+    requiredCapabilities: Object.freeze([...requiredCapabilities]),
+    construct,
+    constructProxy,
+    constructObject,
+    constructDeferredObject,
+    constructStream,
+    constructAsyncIterableStream,
+    bindInstanceType,
+    defineDartTypes,
+    defineObject,
+    defineStream,
+    invokeObject,
+    invokeObjectStatic,
+    invokeStream,
+    enumValue,
+    defineEnum,
+    invokeEnum,
+    defineContext,
+    defineState,
+    contextHandle,
+    invokeStatic,
+    invokeInstance,
+    invokeTopLevel,
+  });
+}
+
 type CallbackParameter = {
   name: string;
   required: boolean;

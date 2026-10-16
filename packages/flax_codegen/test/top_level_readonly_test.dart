@@ -337,48 +337,45 @@ void main() {
     timeout: const Timeout(Duration(minutes: 3)),
   );
 
-  test(
-    'readonly Route ownership restrictions include declared and generic types',
-    () {
-      const route = FlaxCodegenTypeRef(
-        'route',
-        id: 'package:example/values.dart::Route',
-        name: 'Route',
+  test('readonly values reject retired Route categories in declared and generic types', () {
+    const route = FlaxCodegenTypeRef(
+      'route',
+      id: 'package:example/values.dart::Route',
+      name: 'Route',
+    );
+    for (final type in [
+      const FlaxCodegenTypeRef(
+        'object',
+        id: 'package:example/values.dart::Box',
+        name: 'Box',
+        dartArguments: [route],
+      ),
+      const FlaxCodegenTypeRef(
+        'object',
+        id: 'package:example/values.dart::Box',
+        name: 'Box',
+        tsArguments: [route],
+      ),
+      const FlaxCodegenTypeRef('any', declaration: route),
+    ]) {
+      final values = FlaxCodegenTopLevelModel('Values', [
+        FlaxCodegenTopLevelGetterModel(
+          'package:example/values.dart::value',
+          'value',
+          type,
+          FlaxCodegenReadonlyKind.getter,
+        ),
+      ]);
+      expect(
+        values.validate,
+        throwsA(
+          isA<StateError>().having(
+            (error) => error.message,
+            'message',
+            contains('Unknown model type: route'),
+          ),
+        ),
       );
-      for (final type in [
-        const FlaxCodegenTypeRef(
-          'object',
-          id: 'package:example/values.dart::Box',
-          name: 'Box',
-          dartArguments: [route],
-        ),
-        const FlaxCodegenTypeRef(
-          'object',
-          id: 'package:example/values.dart::Box',
-          name: 'Box',
-          tsArguments: [route],
-        ),
-        const FlaxCodegenTypeRef('any', declaration: route),
-      ]) {
-        final values = FlaxCodegenTopLevelModel('Values', [
-          FlaxCodegenTopLevelGetterModel(
-            'package:example/values.dart::value',
-            'value',
-            type,
-            FlaxCodegenReadonlyKind.getter,
-          ),
-        ]);
-        expect(
-          values.validate,
-          throwsA(
-            isA<StateError>().having(
-              (error) => error.message,
-              'message',
-              contains('Unsupported top-level ownership'),
-            ),
-          ),
-        );
-      }
-    },
-  );
+    }
+  });
 }

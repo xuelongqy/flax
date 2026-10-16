@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"6a33435c83a014a90055d72013aa8e88565709155dc2ea0a63560a5fb5af7df6","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"f29734616ab0783c54d9d815abb1adb073cdb1d21ebc4737ec93d84016994745","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -96,6 +96,7 @@ __export(bindings_exports, {
   flaxDartTypeKey: () => flaxDartTypeKey,
   flaxDartTypeValue: () => flaxDartTypeValue,
   getDartType: () => getDartType,
+  installBindingModule: () => installBindingModule,
   invokeEnum: () => invokeEnum,
   invokeInstance: () => invokeInstance,
   invokeObject: () => invokeObject,
@@ -285,6 +286,71 @@ var nativeWeakMap = WeakMap;
 var nativeIsArray = Array.isArray;
 var nativeIsView = ArrayBuffer.isView;
 var bindingVersion = 24;
+var supportedBindingCapabilities = /* @__PURE__ */ new Set([
+  "native-functions",
+  "lazy-js-iterables",
+  "callback-map-keys",
+  "proxy-super-constructors",
+  "bottom-types",
+  "explicit-generic-types",
+  "engine-type-handles",
+  "generic-call-types",
+  "dart-type-tokens",
+  "generic-member-views",
+  "instance-checks",
+  "native-core-inputs",
+  "native-bigint",
+  "native-widget-proxies",
+  "widget-interface-proxies",
+  "native-navigation-objects",
+  "shared-buffers",
+  "shared-uint8"
+]);
+function installBindingModule(moduleId, uiProtocol, requiredCapabilities) {
+  if (typeof moduleId !== "string" || moduleId.length === 0 || moduleId.indexOf("/") < 1 || moduleId.indexOf("/") !== moduleId.lastIndexOf("/") || moduleId.startsWith("/") || moduleId.endsWith("/")) {
+    throw new TypeError("Invalid binding moduleId");
+  }
+  if (uiProtocol !== bindingVersion) {
+    throw new TypeError(`Incompatible binding uiProtocol: ${uiProtocol}`);
+  }
+  let previous;
+  for (const capability of requiredCapabilities) {
+    if (typeof capability !== "string" || previous !== void 0 && capability <= previous) {
+      throw new TypeError("requiredCapabilities must be sorted unique strings");
+    }
+    previous = capability;
+    if (!supportedBindingCapabilities.has(capability)) {
+      throw new TypeError(`Unsupported binding capability ${capability}`);
+    }
+  }
+  return Object.freeze({
+    moduleId,
+    uiProtocol,
+    requiredCapabilities: Object.freeze([...requiredCapabilities]),
+    construct,
+    constructProxy,
+    constructObject,
+    constructDeferredObject,
+    constructStream,
+    constructAsyncIterableStream,
+    bindInstanceType,
+    defineDartTypes,
+    defineObject,
+    defineStream,
+    invokeObject,
+    invokeObjectStatic,
+    invokeStream,
+    enumValue,
+    defineEnum,
+    invokeEnum,
+    defineContext,
+    defineState,
+    contextHandle,
+    invokeStatic,
+    invokeInstance,
+    invokeTopLevel
+  });
+}
 var components = /* @__PURE__ */ new WeakMap();
 var componentTypes = /* @__PURE__ */ new WeakMap();
 var componentBases = /* @__PURE__ */ new WeakMap();

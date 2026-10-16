@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/flutter/cupertino","owner":"@flax/cupertino-ui:dist/generated/libraries/cupertino/index.js","version":"0.0.0","artifact":"bf9200b319350604455326c39a24fa3c9bb70fcedbd866999e76d63f641504db","asset":"assets/flax_modules/_flax_flutter_cupertino-e4e1688bc6db.js","package":"@flax/cupertino-ui","source":"dist/generated/libraries/cupertino/index.js","dependencies":{"@flax/core/bindings":"0.0.0","@flax/flutter/foundation":"0.0.0","@flax/flutter/services":"0.0.0","@flax/flutter/widgets":"0.0.0"},"bindings":[{"moduleId":"flax.cupertino/cupertino","uiProtocol":24,"requiredCapabilities":["generic-member-views","instance-checks","native-navigation-objects","native-widget-proxies"],"types":["flax.cupertino/cupertino#type:CupertinoApp","flax.cupertino/cupertino#type:CupertinoButton","flax.cupertino/cupertino#type:CupertinoNavigationBar","flax.cupertino/cupertino#type:CupertinoPageScaffold","flax.cupertino/cupertino#type:CupertinoThemeData","flax.cupertino/cupertino#type:ObstructingPreferredSizeWidget"],"functions":[]}],"subpaths":["@flax/flutter/cupertino/index"]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/flutter/cupertino","owner":"@flax/cupertino-ui:dist/generated/libraries/cupertino/index.js","version":"0.0.0","artifact":"2297d0ed01ee497f08782e5855b62433e94d81c33fa900c340e712a95b80ab6e","asset":"assets/flax_modules/_flax_flutter_cupertino-e4e1688bc6db.js","package":"@flax/cupertino-ui","source":"dist/generated/libraries/cupertino/index.js","dependencies":{"@flax/core/bindings":"0.0.0","@flax/flutter/foundation":"0.0.0","@flax/flutter/services":"0.0.0","@flax/flutter/widgets":"0.0.0"},"bindings":[{"moduleId":"flax.cupertino/cupertino","uiProtocol":24,"requiredCapabilities":["generic-member-views","instance-checks","native-navigation-objects","native-widget-proxies"],"types":["flax.cupertino/cupertino#type:CupertinoApp","flax.cupertino/cupertino#type:CupertinoButton","flax.cupertino/cupertino#type:CupertinoNavigationBar","flax.cupertino/cupertino#type:CupertinoPageScaffold","flax.cupertino/cupertino#type:CupertinoThemeData","flax.cupertino/cupertino#type:ObstructingPreferredSizeWidget"],"functions":[]}],"subpaths":["@flax/flutter/cupertino/index"]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -36,52 +36,7 @@ var import_flutter_Color = require("@flax/flutter/services");
 
 // ../../js/dist/generated/libraries/cupertino/_bindings/cupertino.__module.js
 var import_bindings = require("@flax/core/bindings");
-function _flaxInstallBindingModule(moduleId, uiProtocol, requiredCapabilities) {
-  if (typeof moduleId !== "string" || moduleId.length === 0 || moduleId.indexOf("/") < 1 || moduleId.indexOf("/") !== moduleId.lastIndexOf("/") || moduleId.startsWith("/") || moduleId.endsWith("/")) {
-    throw new TypeError("Invalid binding moduleId");
-  }
-  if (uiProtocol !== import_bindings.bindingVersion) {
-    throw new TypeError(`Incompatible binding uiProtocol: ${uiProtocol}`);
-  }
-  let previous;
-  for (const capability of requiredCapabilities) {
-    if (typeof capability !== "string" || previous !== void 0 && capability <= previous) {
-      throw new TypeError("requiredCapabilities must be sorted unique strings");
-    }
-    previous = capability;
-    if (capability !== "native-functions" && capability !== "lazy-js-iterables" && capability !== "callback-map-keys" && capability !== "proxy-super-constructors" && capability !== "bottom-types" && capability !== "explicit-generic-types" && capability !== "engine-type-handles" && capability !== "generic-call-types" && capability !== "dart-type-tokens" && capability !== "generic-member-views" && capability !== "instance-checks" && capability !== "native-core-inputs" && capability !== "native-bigint" && capability !== "native-widget-proxies" && capability !== "widget-interface-proxies" && capability !== "native-navigation-objects" && capability !== "shared-buffers" && capability !== "shared-uint8") {
-      throw new TypeError(`Unsupported binding capability ${capability}`);
-    }
-  }
-  return Object.freeze({
-    moduleId,
-    uiProtocol,
-    requiredCapabilities: Object.freeze([...requiredCapabilities]),
-    construct: import_bindings.construct,
-    constructProxy: import_bindings.constructProxy,
-    constructObject: import_bindings.constructObject,
-    constructDeferredObject: import_bindings.constructDeferredObject,
-    constructStream: import_bindings.constructStream,
-    constructAsyncIterableStream: import_bindings.constructAsyncIterableStream,
-    bindInstanceType: import_bindings.bindInstanceType,
-    defineDartTypes: import_bindings.defineDartTypes,
-    defineObject: import_bindings.defineObject,
-    defineStream: import_bindings.defineStream,
-    invokeObject: import_bindings.invokeObject,
-    invokeObjectStatic: import_bindings.invokeObjectStatic,
-    invokeStream: import_bindings.invokeStream,
-    enumValue: import_bindings.enumValue,
-    defineEnum: import_bindings.defineEnum,
-    invokeEnum: import_bindings.invokeEnum,
-    defineContext: import_bindings.defineContext,
-    defineState: import_bindings.defineState,
-    contextHandle: import_bindings.contextHandle,
-    invokeStatic: import_bindings.invokeStatic,
-    invokeInstance: import_bindings.invokeInstance,
-    invokeTopLevel: import_bindings.invokeTopLevel
-  });
-}
-var cupertinoBindingModule = _flaxInstallBindingModule("flax.cupertino/cupertino", 24, Object.freeze(["generic-member-views", "instance-checks", "native-navigation-objects", "native-widget-proxies", "widget-interface-proxies"]));
+var cupertinoBindingModule = (0, import_bindings.installBindingModule)("flax.cupertino/cupertino", 24, Object.freeze(["generic-member-views", "instance-checks", "native-navigation-objects", "native-widget-proxies", "widget-interface-proxies"]));
 var { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineDartTypes: _flaxDefineDartTypes, bindInstanceType: _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } = cupertinoBindingModule;
 
 // ../../js/dist/generated/libraries/cupertino/_bindings/cupertino_CupertinoThemeData.js

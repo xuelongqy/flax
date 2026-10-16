@@ -427,7 +427,6 @@ FlaxCodegenClassSelection _selectionFromModel(FlaxCodegenClassModel type) {
         .map((interface) => interface.name!)
         .toList(),
     proxy: type.proxy?.kind,
-    pageAdapter: type.pageAdapter,
     disposeMethod: type.disposeMethod,
     listenerPairs: type.listenerPairs,
     callbackSignatures: callbackSignatures,
@@ -3210,7 +3209,6 @@ class FlaxCodegenBindingParser {
           typeArguments: ownerTypeArguments ?? const [],
           getters: getters,
           methods: methods,
-          pageAdapter: selection.pageAdapter,
           setters: setters,
           disposeMethod: selection.disposeMethod,
           capabilities: [if (selection.disposeMethod != null) 'Disposable'],

@@ -21,10 +21,7 @@ void main() {
 
     final app = tester.widget<CupertinoApp>(find.byType(CupertinoApp));
     expect(app.debugShowCheckedModeBanner, isFalse);
-    expect(
-      app.navigatorObservers!.whereType<FlaxNavigatorObserver>(),
-      hasLength(1),
-    );
+    expect(app.navigatorObservers!.whereType<FlaxNavigatorObserver>(), isEmpty);
     expect(app.theme, isA<CupertinoThemeData>());
     expect(app.theme?.primaryColor, const Color(0xff1565c0));
     expect(app.theme?.scaffoldBackgroundColor, const Color(0xffe3f2fd));

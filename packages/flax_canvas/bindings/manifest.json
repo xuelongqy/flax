@@ -1,5 +1,5 @@
 {
-  "formatVersion": 23,
+  "formatVersion": 24,
   "package": "flax_canvas",
   "bindingNamespace": "flax.canvas",
   "imports": [
@@ -550,7 +550,6 @@
               }
             ],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {
               "addListener": "removeListener"
@@ -764,7 +763,6 @@
             ],
             "superTypes": [],
             "proxy": null,
-            "pageAdapter": null,
             "disposeMethod": null,
             "listenerPairs": {}
           }

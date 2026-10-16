@@ -134,8 +134,8 @@ callbacks.echoFutureStream(value => callbacks.futureOrStream(value));
                 : throwsA(
                     isA<StateError>().having(
                       (error) => error.message,
-                      'path',
-                      contains('fixture result item item'),
+                      'retired type',
+                      contains('Unknown model type: $type'),
                     ),
                   ),
           );

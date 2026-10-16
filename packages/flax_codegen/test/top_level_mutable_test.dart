@@ -849,24 +849,30 @@ void main() {
         '''
 import assert from 'node:assert/strict';
 import {transformSync} from 'esbuild';
+import * as sharedBindings from './packages/flax/js/dist/runtime/bindings.js';
 const source = ${jsonEncode(ts)};
-const imports = source.split('\\n').find(line => line.startsWith('import '));
-const helpers = [...imports.matchAll(/as (_flaxHost\\w+)/g)].map(match => match[1]);
 const calls = [];
 let current = 1;
 let active = true;
 const closedError = new Error('Closed Flax session');
-const hosts = helpers.map(name => (...args) => {
-  assert.equal(name, '_flaxHostInvokeTopLevel');
-  calls.push(args);
-  if (!active) throw closedError;
-  if (args[0].endsWith('::failing=')) throw new Error('setter failed');
-  if (args[0].endsWith('=')) { current = args[1][0]; return undefined; }
-  return current;
-});
-const output = transformSync(source.replace(imports, ''), {loader: 'ts', format: 'cjs'}).code;
+const sharedModule = {
+  ...sharedBindings,
+  installBindingModule(...tuple) {
+    return Object.freeze({
+      ...sharedBindings.installBindingModule(...tuple),
+      invokeTopLevel(...args) {
+        calls.push(args);
+        if (!active) throw closedError;
+        if (args[0].endsWith('::failing=')) throw new Error('setter failed');
+        if (args[0].endsWith('=')) { current = args[1][0]; return undefined; }
+        return current;
+      },
+    });
+  },
+};
+const output = transformSync(source, {loader: 'ts', format: 'cjs'}).code;
 const exported = {exports: {}};
-new Function('module', 'exports', 'bindingVersion', ...helpers, output)(exported, exported.exports, 24, ...hosts);
+new Function('module', 'exports', 'require', output)(exported, exported.exports, id => { assert.equal(id, '@flax/core/bindings'); return sharedModule; });
 const api = exported.exports${namespace.isEmpty ? '' : '.$namespace'};
 const readCounter = () => ${namespace.isEmpty ? 'api.getCounter()' : 'api.counter'};
 const readTracked = () => ${namespace.isEmpty ? 'api.getTracked()' : 'api.tracked'};

@@ -584,3 +584,10 @@ class FlaxCodegenExtensionSelection {
     );
   }
 }
+
+/// Retired selection metadata retained only for migration diagnostics.
+class FlaxCodegenPageAdapterModel {
+  const FlaxCodegenPageAdapterModel(this.library, this.function);
+  final String library;
+  final String function;
+}

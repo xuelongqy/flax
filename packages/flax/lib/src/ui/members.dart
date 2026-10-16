@@ -209,9 +209,10 @@ extension _MemberCalls on _Session {
     List<FlaxParameter> parameters,
     int offset, {
     List<String> uiCallbacks = const [],
+    String argumentKind = 'function',
   }) {
     if (args.length > parameters.length + offset) {
-      throw ArgumentError('Too many function arguments');
+      throw ArgumentError('Too many $argumentKind arguments');
     }
     final values = <String, _Value>{};
     try {
@@ -222,10 +223,10 @@ extension _MemberCalls on _Session {
             : const FlaxJsUndefined();
         if (arg is FlaxJsUndefined) {
           if (p.required) {
-            throw ArgumentError('Missing function argument: ${p.name}');
+            throw ArgumentError('Missing $argumentKind argument: ${p.name}');
           }
           if (!p.omitWhenAbsent) values[p.name] = _Value(p.defaultValue);
-        } else if (p.type.kind == 'context' && arg is! FlaxJsNull) {
+        } else if (p.type.kind == 'context' && arg is FlaxJsNumber) {
           values[p.name] = _Value(_context(arg, p.type.id!).requireActive());
         } else {
           values[p.name] = decode(
@@ -444,22 +445,14 @@ extension _MemberCalls on _Session {
         throw ArgumentError('Too many State arguments');
       }
       if (selected.startsRoute) requireOpen();
-      final values = <String, _Value>{};
+      Map<String, _Value>? values;
       try {
-        for (var i = 0; i < selected.parameters.length; i++) {
-          final p = selected.parameters[i];
-          final input = i < args.length ? args[i] : const FlaxJsUndefined();
-          if (input is FlaxJsUndefined) {
-            if (p.required) {
-              throw ArgumentError('Missing method argument: ${p.name}');
-            }
-            if (!p.omitWhenAbsent) values[p.name] = _Value(p.defaultValue);
-          } else {
-            values[p.name] = p.type.kind == 'context' && input is! FlaxJsNull
-                ? _Value(_context(input, p.type.id!).requireActive())
-                : decode(input, p.type);
-          }
-        }
+        values = _callArguments(
+          args,
+          selected.parameters,
+          0,
+          argumentKind: 'method',
+        );
         for (final parameter in selected.parameters) {
           final value = values[parameter.name];
           if (value == null) continue;
@@ -470,8 +463,10 @@ extension _MemberCalls on _Session {
         final result = selected.invoke(state, inputs);
         return holdHostResult(memberResult(result, selected.result));
       } finally {
-        for (final value in values.values.toList().reversed) {
-          value.release();
+        if (values != null) {
+          for (final value in values.values.toList().reversed) {
+            value.release();
+          }
         }
         checkpoint();
       }

@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/canvas","owner":"@flax/canvas-runtime:dist/index.js","version":"0.0.0","artifact":"2bb69997a602ec25d744192afb1a6dfcbbb014ab934b807ce6db661177b27962","asset":"assets/flax_modules/_flax_canvas-b471e7fea32c.js","package":"@flax/canvas-runtime","source":"dist/index.js","dependencies":{"@flax/core/bindings":"0.0.0","@flax/flutter/foundation":"0.0.0"},"bindings":[{"moduleId":"flax.canvas/canvas","uiProtocol":24,"requiredCapabilities":["generic-member-views","instance-checks","native-navigation-objects","native-widget-proxies"],"types":["flax.canvas/canvas#type:FlaxCanvasSurface","flax.canvas/canvas#type:FlaxCanvasView"],"functions":[]}],"subpaths":[]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/canvas","owner":"@flax/canvas-runtime:dist/index.js","version":"0.0.0","artifact":"37ca563477c5908768a2a662d07376bbf11ba4d9af94004ccdfa67f79c87a1a0","asset":"assets/flax_modules/_flax_canvas-b471e7fea32c.js","package":"@flax/canvas-runtime","source":"dist/index.js","dependencies":{"@flax/core/bindings":"0.0.0","@flax/flutter/foundation":"0.0.0"},"bindings":[{"moduleId":"flax.canvas/canvas","uiProtocol":24,"requiredCapabilities":["generic-member-views","instance-checks","native-navigation-objects","native-widget-proxies"],"types":["flax.canvas/canvas#type:FlaxCanvasSurface","flax.canvas/canvas#type:FlaxCanvasView"],"functions":[]}],"subpaths":[]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -33,52 +33,7 @@ var import_foundation = require("@flax/flutter/foundation");
 var import_foundation2 = require("@flax/flutter/foundation");
 var import_bindings2 = require("@flax/core/bindings");
 var _flaxMemberParameters0 = [{ "name": "listener", "required": true, "positional": true }];
-function _flaxInstallBindingModule(moduleId, uiProtocol, requiredCapabilities) {
-  if (typeof moduleId !== "string" || moduleId.length === 0 || moduleId.indexOf("/") < 1 || moduleId.indexOf("/") !== moduleId.lastIndexOf("/") || moduleId.startsWith("/") || moduleId.endsWith("/")) {
-    throw new TypeError("Invalid binding moduleId");
-  }
-  if (uiProtocol !== import_bindings.bindingVersion) {
-    throw new TypeError(`Incompatible binding uiProtocol: ${uiProtocol}`);
-  }
-  let previous;
-  for (const capability of requiredCapabilities) {
-    if (typeof capability !== "string" || previous !== void 0 && capability <= previous) {
-      throw new TypeError("requiredCapabilities must be sorted unique strings");
-    }
-    previous = capability;
-    if (capability !== "native-functions" && capability !== "lazy-js-iterables" && capability !== "callback-map-keys" && capability !== "proxy-super-constructors" && capability !== "bottom-types" && capability !== "explicit-generic-types" && capability !== "engine-type-handles" && capability !== "generic-call-types" && capability !== "dart-type-tokens" && capability !== "generic-member-views" && capability !== "instance-checks" && capability !== "native-core-inputs" && capability !== "native-bigint" && capability !== "native-widget-proxies" && capability !== "widget-interface-proxies" && capability !== "native-navigation-objects" && capability !== "shared-buffers" && capability !== "shared-uint8") {
-      throw new TypeError(`Unsupported binding capability ${capability}`);
-    }
-  }
-  return Object.freeze({
-    moduleId,
-    uiProtocol,
-    requiredCapabilities: Object.freeze([...requiredCapabilities]),
-    construct: import_bindings.construct,
-    constructProxy: import_bindings.constructProxy,
-    constructObject: import_bindings.constructObject,
-    constructDeferredObject: import_bindings.constructDeferredObject,
-    constructStream: import_bindings.constructStream,
-    constructAsyncIterableStream: import_bindings.constructAsyncIterableStream,
-    bindInstanceType: import_bindings.bindInstanceType,
-    defineDartTypes: import_bindings.defineDartTypes,
-    defineObject: import_bindings.defineObject,
-    defineStream: import_bindings.defineStream,
-    invokeObject: import_bindings.invokeObject,
-    invokeObjectStatic: import_bindings.invokeObjectStatic,
-    invokeStream: import_bindings.invokeStream,
-    enumValue: import_bindings.enumValue,
-    defineEnum: import_bindings.defineEnum,
-    invokeEnum: import_bindings.invokeEnum,
-    defineContext: import_bindings.defineContext,
-    defineState: import_bindings.defineState,
-    contextHandle: import_bindings.contextHandle,
-    invokeStatic: import_bindings.invokeStatic,
-    invokeInstance: import_bindings.invokeInstance,
-    invokeTopLevel: import_bindings.invokeTopLevel
-  });
-}
-var canvasBindingModule = _flaxInstallBindingModule("flax.canvas/canvas", 24, Object.freeze(["generic-member-views", "instance-checks", "native-navigation-objects", "native-widget-proxies"]));
+var canvasBindingModule = (0, import_bindings.installBindingModule)("flax.canvas/canvas", 24, Object.freeze(["generic-member-views", "instance-checks", "native-navigation-objects", "native-widget-proxies"]));
 var { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineDartTypes: _flaxDefineDartTypes, bindInstanceType: _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } = canvasBindingModule;
 defineObject("flax.canvas/canvas#type:FlaxCanvasSurface", ["width", "height"], ["width", "height"], (0, import_bindings.bindingMethods)("flax.canvas/canvas#type:FlaxCanvasSurface", "object", { "addListener": _flaxMemberParameters0, "removeListener": _flaxMemberParameters0 }, {}), ["removeListener"]);
 function _FlaxCanvasViewConstruct(canvas, options = {}) {
