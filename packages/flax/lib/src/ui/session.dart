@@ -249,8 +249,6 @@ class _Session {
   bool get active => _status != _SessionStatus.closed;
   bool get closing => _status != _SessionStatus.open;
   int _mounts = 0;
-  int _routeCount = 0;
-  final _heldRoutes = <TransitionRoute<Object?>>{};
   final _closed = Completer<void>();
   final _componentStates = <int, FlaxComponentStateBase>{};
   final _componentDescriptions = <int, WeakReference<_ComponentDescription>>{};
@@ -315,7 +313,7 @@ class _Session {
     if (closing) throw StateError('The Flax session is closing');
   }
 
-  // Retention is also allowed while closing: accepted Routes may rebuild content.
+  // Mounted content may finish cleanup while the session is closing.
   void retainMount() {
     if (!active) throw StateError('Closed Flax session');
     _mounts++;
@@ -325,32 +323,6 @@ class _Session {
     if (_mounts == 0) throw StateError('No mounted resource to release');
     _mounts--;
     _tryClose();
-  }
-
-  void retainRoute() {
-    if (!active) throw StateError('Closed Flax session');
-    _routeCount++;
-  }
-
-  // Navigation retention is separate from callback/object ownership through GC.
-  void releaseRoute() {
-    if (_routeCount == 0) throw StateError('No Route resource to release');
-    _routeCount--;
-    _tryClose();
-  }
-
-  bool ownsPageRoute(ModalRoute<Object?>? route) => _heldRoutes.contains(route);
-
-  void holdPageRoute(TransitionRoute<Object?>? route) {
-    if (route == null || _heldRoutes.contains(route)) return;
-    requireOpen();
-    _heldRoutes.add(route);
-    retainRoute();
-    unawaited(route.completed.then((_) => releasePageRoute(route)));
-  }
-
-  void releasePageRoute(TransitionRoute<Object?> route) {
-    if (_heldRoutes.remove(route)) releaseRoute();
   }
 
   void load(
@@ -962,12 +934,7 @@ class _Session {
       }
       final sources = _inBindingContext(
         definition.id,
-        () => _arguments(
-          value,
-          parameters,
-          allowBindings: true,
-          navigationObservers: true,
-        ),
+        () => _arguments(value, parameters, allowBindings: true),
       );
       final node = FlaxNode._(this, definition, ctor, sources);
       try {
@@ -1006,7 +973,6 @@ class _Session {
     FlaxJsObject descriptor,
     List<FlaxParameter> parameters, {
     required bool allowBindings,
-    bool navigationObservers = false,
     _CallbackScope callbackScope = _CallbackScope.member,
     List<String> uiCallbacks = const [],
   }) => _property(descriptor, 'args', (args) {
@@ -1026,7 +992,6 @@ class _Session {
             ? _CallbackScope.ui
             : callbackScope;
         if (parameter.omitWhenAbsent &&
-            !(navigationObservers && _isNavigationObservers(parameter.type)) &&
             _property(
               args,
               parameter.name,
@@ -1045,7 +1010,6 @@ class _Session {
               this,
               parameter.type,
               _Value(parameter.defaultValue),
-              navigationObservers: navigationObservers,
             );
           }
           final bound =
@@ -1079,7 +1043,6 @@ class _Session {
                 parameter.type,
                 initial,
                 binding: object.retain(),
-                navigationObservers: navigationObservers,
               );
             } catch (_) {
               initial.release();
@@ -1090,7 +1053,6 @@ class _Session {
             this,
             parameter.type,
             decode(value, parameter.type, callbackScope: scope),
-            navigationObservers: navigationObservers,
           );
         });
       }
@@ -1105,10 +1067,9 @@ class _Session {
 
   Future<void> requestClose() {
     if (!closing) {
-      for (final observer in _navigationObservers.toList()) {
-        observer._refresh();
-      }
       _status = _SessionStatus.closing;
+      // Close hooks may reenter; defer disposal until every hook has returned.
+      checkpoint();
       cancelFutures();
       cancelPromises();
       cancelStreamSubscriptions();
@@ -1116,7 +1077,6 @@ class _Session {
       cancelAsyncIterableSources();
       closeHost();
       closeModules();
-      checkpoint();
     }
     _tryClose();
     return _closed.future;
@@ -1125,7 +1085,6 @@ class _Session {
   void _tryClose() {
     if (closing &&
         _mounts == 0 &&
-        _routeCount == 0 &&
         _hostTasks.isEmpty &&
         !_checkpointScheduled &&
         !_checkpointRunning) {

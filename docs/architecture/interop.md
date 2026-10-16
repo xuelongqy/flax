@@ -57,7 +57,7 @@ Flutter references and supported collection, Record, callback, Future and Stream
 combinations. A `Panel(Widget)` value remains the existing Widget reference; it adds no
 bridge owner or GC responsibility. Nullable representations retain null, while required
 arguments still reject missing values and undefined. Context and State validity, foreign
-session rejection and Route/Page ownership boundaries are unchanged. See
+session rejection and Flutter lifecycle boundaries still apply. See
 [representation binding](bindings.md#extension-type-representations) and its
 [real UI regression](../../packages/flax/test/ui/extensions_test.dart).
 
@@ -188,6 +188,14 @@ The JS `next()`/`Symbol.iterator` protocol is not generated for this interface. 
 DartIterable iteration continues to make one snapshot call, so callers can choose that
 existing bulk path when they do not need a native cursor.
 
+Direct JS Iterator protocol adaptation in either direction is **deferred**. A small Dart
+entry accepting `Iterable<T>` can delegate to an Iterator API using `values.iterator`.
+Existing conversion accepts JS generators as Iterables without first collecting them;
+finite inputs may also use a list. A List is not itself an Iterator. This existing path
+is sufficient for the current scope; revisit direct adaptation only for a concrete API
+that cannot use an Iterable entry. No new iterator adapter, JS facade or GC mechanism is
+planned for this deferred item.
+
 ### Collection subclasses
 
 Bound subclasses of List, Map, Set and Iterable combine their selected native members
@@ -308,7 +316,7 @@ The existing `createArrayBuffer` / `readBytes` operations retain their explicit 
 semantics for Blob/Fetch and other snapshot APIs, with one payload copy in each
 direction. Native snapshots are released by Dart's external-data finalizer independently
 of session disposal. The internal binding engine table is version 5; native ABI 2, UI
-protocol 24 and Manifest 22 remain independent. Modules using Uint8List require the
+protocol 24 and Manifest 23 remain independent. Modules using Uint8List require the
 additive `shared-uint8` capability. Other supported binary types require
 `shared-buffers` and use this same storage lease:
 
@@ -670,11 +678,11 @@ An unmounted configuration creates no State, Context or signal subscription. Eac
 owns those resources independently; Flutter decides State reuse by type and key. Unmount
 releases mount resources immediately, while Dart may retain the configuration for later
 mounting. Finalizers do not implement State.dispose or listener removal. After all
-accepted mounts and Routes exit, session close revokes configuration records without
-waiting for GC. Retained Flax Widgets then fail safely on mounting, and late finalizers
-are harmless. Application object disposal remains explicit. The maintained engine's
-joint GC reclaims rootless Dart/JS cycles; session close provides deterministic bridge
-cleanup.
+mounted JS content and active calls drain, session close revokes configuration records
+without waiting for GC. Retained Flax Widgets then fail safely on mounting, and late
+finalizers are harmless. Application object disposal remains explicit. The maintained
+engine's joint GC reclaims rootless Dart/JS cycles; session close provides deterministic
+bridge cleanup.
 
 ## Listenable builders
 

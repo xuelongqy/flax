@@ -178,34 +178,35 @@ void main() {
     await h.finish(t);
   });
 
-  testWidgets('replacement outlives the root and close waits for its Route', (
-    t,
-  ) async {
-    final h = NavigationHarness();
-    await h.enter(t);
-    await t.tap(find.text('Replace root'));
-    await t.pumpAndSettle();
-    expect(h.errors, isEmpty);
-    expect(h.read('navigation.original.mounted'), false);
-    expect(h.read('navigation.navigator.mounted'), true);
-    expect(find.text('Replacement'), findsOneWidget);
-    var closed = false;
-    final closing = h.session.close().then((_) => closed = true);
-    await t.pump();
-    expect(closed, isFalse);
-    expect(
-      () => h.execute('navigation.open()'),
-      throwsA(isA<FlaxJsException>()),
-    );
-    await t.tap(find.text('Detail increment'));
-    await t.pumpAndSettle();
-    expect(find.text('Detail count 1'), findsOneWidget);
-    await t.tap(find.text('Return result'));
-    await t.pumpAndSettle();
-    await closing;
-    expect(h.runtime.isDisposed, isTrue);
-    expect(h.runtime.handlesAtDispose, 0);
-  });
+  testWidgets(
+    'replacement outlives the root and close drains its mounted JS content',
+    (t) async {
+      final h = NavigationHarness();
+      await h.enter(t);
+      await t.tap(find.text('Replace root'));
+      await t.pumpAndSettle();
+      expect(h.errors, isEmpty);
+      expect(h.read('navigation.original.mounted'), false);
+      expect(h.read('navigation.navigator.mounted'), true);
+      expect(find.text('Replacement'), findsOneWidget);
+      var closed = false;
+      final closing = h.session.close().then((_) => closed = true);
+      await t.pump();
+      expect(closed, isFalse);
+      expect(
+        () => h.execute('navigation.open()'),
+        throwsA(isA<FlaxJsException>()),
+      );
+      await t.tap(find.text('Detail increment'));
+      await t.pumpAndSettle();
+      expect(find.text('Detail count 1'), findsOneWidget);
+      await t.tap(find.text('Return result'));
+      await t.pumpAndSettle();
+      await closing;
+      expect(h.runtime.isDisposed, isTrue);
+      expect(h.runtime.handlesAtDispose, 0);
+    },
+  );
 
   testWidgets('JS nested Navigator handles return before the host', (t) async {
     final h = NavigationHarness();

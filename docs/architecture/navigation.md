@@ -20,11 +20,18 @@ explicit session for an application whose pages can outlive its entry view:
 - Nested stack: the mini-app container owns the session above its internal Navigator.
 
 `close()` is idempotent and returns the same Future. It rejects new roots and
-navigation, cancels pending host Future delivery, and waits for existing mounted hosts
-and Routes to retire. Existing pages can still render, update their signals, and pop
-during closing. The host must remove its pages; close never clears a shared Navigator.
-Awaiting close while keeping those pages mounted intentionally waits. Source replacement
-uses a new session; it cannot rewrite an existing session underneath another page.
+navigation, cancels pending host Future delivery, and drains mounted JS content and
+active bridge calls. Existing mounted content can render and finish cleanup while the
+request drains. Routes, Pages and escaped callbacks do not independently delay close. A
+pure Dart page can remain in the Navigator after the JS runtime closes. Source
+replacement uses a new session; it cannot rewrite an existing session underneath a
+mounted page.
+
+After close completes, retained JS callbacks are revoked: void callbacks ignore calls;
+callbacks requiring a result throw StateError before entering the disposed engine. A
+still-installed JS builder can therefore show a Flutter error widget when rebuilt. Keep
+the Session open while such content must remain functional. Close never pops routes or
+disposes application-owned Dart objects.
 
 Flutter owns inherited environments. A route pushed onto an ancestor Navigator does not
 automatically inherit providers or themes below that Navigator. The example explicitly
@@ -106,11 +113,11 @@ the Route retains enough input to build fresh content later. JS state held by th
 Route's closure survives that content disposal.
 
 A pop result and the end of an exit transition are separate events. Completing the
-navigation Promise does not release still-mounted content. Session disposal waits for
-both accepted Route transitions and mounted hosts. Failed construction releases
-temporary resources; base Widget builder failures show an error widget for that
-invocation, while narrower interface builders propagate the original error. Later valid
-builds can recover.
+navigation Promise does not release still-mounted content. Mounted JS content keeps its
+ordinary mount resources through unmount; an otherwise native transition does not delay
+Session disposal. Failed construction releases temporary resources; base Widget builder
+failures show an error widget for that invocation, while narrower interface builders
+propagate the original error. Later valid builds can recover.
 
 Integration tests wait for outgoing content to disappear with a bounded frame-driven
 wait before interacting with a global finder. A completed pop Future or a shorter Pages
@@ -191,24 +198,16 @@ associated pageless Routes when their underlying Page is removed.
 
 The original Page.createRoute and Flutter's own Route.settings updates manage Page
 replacement and transitions. Joint GC keeps callbacks and children reachable through
-that real graph. A generated Widget constructor's List<NavigatorObserver> input installs
-a private FlaxNavigatorObserver before the supplied observers, preserving their order.
-The same observer instance survives reactive updates to that input.
+that real graph while their Session is live. NavigatorObserver inputs retain their
+ordinary constructor defaults and supplied order; Flax injects no private observer.
+FlaxNavigatorObserver remains an optional host observer and does not retain Sessions.
+Route subclasses need only meet Flutter's own navigation contract, including Routes
+without a transition-completion Future.
 
-Install a stable FlaxNavigatorObserver on a host-created Navigator that accepts Flax
-Routes or Pages. It keeps the owning session open through TransitionRoute.completed,
-without owning the application's values or popping its routes. Before session close,
-tracked Routes refresh their current Page settings so a replacement configuration can
-belong to a different session. Merely reading an existing host Route does not acquire
-navigation ownership. Non-TransitionRoute values can use ordinary binding conversion;
-the navigation-close contract requires TransitionRoute because Flutter exposes its
-actual transition completion.
-
-A named page inside a host-owned ModalRoute also retains its session until that route's
-TransitionRoute.completed resolves. Content unmount or a pop result alone cannot release
-the last runtime owner during a transition. Closing rejects new entries and new Pages
-while existing Routes may update, rebuild, pop, and retire. The host must remove its
-retained routes before awaiting close, even if their Flax content has unmounted.
+A named page retains its Session through its actual mounted content, using the same
+mount mechanism outside a Route. Existing named mounts can rebuild during closing; new
+entries and additional Pages are rejected. Once JS content unmounts, the remaining Dart
+Route and its exit animation cannot hold the Session open.
 
 The [Pages owner tests](../../packages/flax_material_ui/test/ui/pages_test.dart) cover
 registered factories, stable Page keys, updates, and replacement behavior. Host routing
@@ -263,30 +262,28 @@ aggregate.
 Navigation requests check session admission before changing the Flutter stack. Page list
 updates snapshot actual objects, validate duplicate keys, and preserve one-to-one
 matching of accepted Pages while closing. Callbacks and JS subclass peers use the same
-joint-GC mechanisms as all other objects; navigation bookkeeping only delays session
-shutdown. GC never invokes application disposal or removes Navigator entries.
+joint-GC mechanisms as all other objects. Session shutdown drains mounted JS content and
+active calls; GC never invokes application disposal or removes Navigator entries.
 
-Navigator member calls and configured Route-producing functions share one observation
-scope. Only actual push/replace notifications acquire navigation retention; a rejected
-call cannot claim an already-installed Route from another session. If invocation throws
-after an accepted push, that Route remains retained until its real exit completes. Known
-non-TransitionRoute inputs to push/replace are rejected before native navigation; Route
-objects returned as pop/replacement data still use ordinary conversion. Observer
-injection applies only to Widget constructors, not ordinary object/Stream inputs.
+Navigator member calls and configured Route-producing functions call Flutter directly.
+They require an open Session before starting navigation, but need no observer, captured
+push notification or fixed number of synchronous pushes. Native side effects are not
+rolled back if a call subsequently throws. Callback and proxy guards reject JS access
+after shutdown without dereferencing the destroyed runtime.
 
 ## Native top-level dialogs
 
-Generated showDialog uses Flutter directly and requires FlaxNavigatorObserver in the
-target Navigator.observers (or app navigatorObservers). Selected MaterialApp,
-CupertinoApp and Navigator constructors install a private observer automatically. Its
-captured Route keeps the session open until TransitionRoute.completed; the actual Dart
-closure owns its callback through joint GC, independently of the result Future and
-source page. The observer serves concurrent sessions without keeping another stack. See
+Generated showDialog uses Flutter directly. Its actual Dart builder owns the JS callback
+through joint GC, independently of the result Future and source page. Mounted JS content
+uses ordinary mount retention; no dialog-specific Session owner exists. See
 [function calls and dialogs](functions.md) for setup, scope and errors.
 
-Ordinary callbacks invoke JS directly with the original native Context and result. The
-retained Dart closure keeps its JS callback alive through joint GC, including when an
-accepted Route is covered before its first build. Explicit Route-function roles still
-capture synchronous pushes, validate exactly one TransitionRoute, and keep its session
-open even when the invocation throws after pushing. Nested calls restore the previous
-capture record. Ordinary callbacks do not retain unrelated host Routes.
+Configured navigation helpers share ordinary function and callback signatures, including
+async bodies and nullable/named callbacks. `route: {}` marks admission; optional
+`route.builders` adds UI error handling. Context/root-Navigator parameters are not
+required, and Flax does not intercept arbitrary application work after an `await`.
+
+An offstage or never-built Dart Route may still hold its builder after explicit Session
+close. That callback is intentionally unusable after close completes. Keeping the
+Session open is the application-level choice when the page must build again; Flutter
+continues to own navigation and disposal.

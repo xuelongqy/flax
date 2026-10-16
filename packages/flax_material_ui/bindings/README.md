@@ -3,14 +3,16 @@
 [config.yaml](config.yaml) selects the public API subset. Types and defaults come from
 analyzer rather than hand-maintained signatures. See the [rules guide](../README.md).
 
-MaterialPageRoute specializes its result to Object?. Its generated subclass retains a
-Route lease until Flutter disposes the actual route. It uses the standard Material
-transition and a page-owned builder; describing a route never executes that builder.
+MaterialPageRoute and MaterialPage use ordinary object bindings, with Object? as their
+default result type. Explicit runtime type selection uses the shared checked type APIs.
+Flutter owns construction, Material transitions and Page.createRoute. Selected inherited
+fields and callbacks come from analyzer; optional private callback defaults remain
+omitted from the actual constructor call.
 
-MaterialPage specializes its result to Object? and selects an explicit same-package Page
-Route adapter. Selected inherited fields and callbacks come from analyzer; optional
-private callback defaults remain omitted from the actual constructor call. The adapter
-uses public MaterialRouteTransitionMixin and shared FlaxPageRoute ownership.
+The original Dart builder retains its JS callback through joint GC while its Session is
+live; describing a route never executes that builder. Mounted JS content retains its own
+bridge resources. Session close drains those mounts, then revokes remaining callbacks
+without waiting for a native Route or exit transition.
 
 TextField selects borrowed controllers, text events, and basic single/multiline input
 configuration from the standalone Material package. Its referenced TextInputAction
@@ -25,9 +27,9 @@ default; null removes it. InputDecoration and ThemeData, TextTheme and ColorSche
 ordinary objects; Theme selects its Widget constructor and static of(context). See
 [styles and themes](../../../docs/architecture/styles.md).
 
-showDialog selects explicit context/rootNavigator/builder roles for observed native
-Route ownership, with Object? results copied as NavigationData. AlertDialog and
-MaterialApp.navigatorObservers complete the selected UI path. See
+showDialog selects navigation admission and UI error handling for its typed builder. Its
+Object? result uses ordinary Dart reference conversion. Navigator lookup stays in
+Flutter and requires no observer. AlertDialog completes the selected UI path. See
 [function selection](../../../docs/architecture/functions.md).
 
 ButtonStyle selects the WidgetStateProperty-backed background, foreground, overlay and

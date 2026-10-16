@@ -53,7 +53,7 @@ const _classFields = {
 
 const _functionFields = {'parameters', 'typeArguments', 'data', 'route'};
 const _functionDataFields = {'parameters', 'result'};
-const _routeFields = {'context', 'rootNavigator', 'builders'};
+const _routeFields = {'builders'};
 const _dataFields = {'constructors', 'getters', 'methods', 'results'};
 const _snapshotFields = {'fields', 'extends'};
 const _pageAdapterFields = {'library', 'function'};
@@ -554,13 +554,7 @@ Map<String, FlaxCodegenFunctionSelection> _readFunctions(_StrictMap root) {
 }
 
 FlaxCodegenRouteCallModel? _route(_StrictMap route) {
-  final context = route.requiredString('context');
-  final rootNavigator = route.requiredString('rootNavigator');
-  final builders = route.requiredStringList('builders');
-  if (context == null || rootNavigator == null || builders == null) {
-    return null;
-  }
-  return FlaxCodegenRouteCallModel(context, rootNavigator, builders);
+  return FlaxCodegenRouteCallModel(route.stringList('builders'));
 }
 
 Map<String, FlaxCodegenCallbackSnapshotSelection> _readSnapshots(

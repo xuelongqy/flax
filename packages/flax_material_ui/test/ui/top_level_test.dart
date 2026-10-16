@@ -651,7 +651,7 @@ void main() {
   });
 
   testWidgets(
-    'observed push then throw survives close before its first build',
+    'an unmounted JS builder is safely invalidated when its Session closes',
     (t) async {
       final h = _harness();
       final routes = _Routes();
@@ -694,12 +694,13 @@ void main() {
         final closing = h.session.close().then((_) => closed = true);
         await t.pumpAndSettle();
         expect(completed, isFalse);
-        expect(closed, isFalse);
-        expect(h.runtime.isDisposed, isFalse);
+        expect(closed, isTrue);
+        expect(h.runtime.isDisposed, isTrue);
         navigator.removeRoute(routes.routes.last);
         await t.pumpAndSettle();
-        expect(t.takeException(), isNull);
-        expect(find.byType(AlertDialog), findsOneWidget);
+        expect(t.takeException(), isA<StateError>());
+        expect(find.byType(ErrorWidget), findsOneWidget);
+        expect(find.byType(AlertDialog), findsNothing);
         navigator.removeRoute(hidden);
         await t.pumpAndSettle();
         await closing;
@@ -804,7 +805,7 @@ void main() {
   });
 
   testWidgets(
-    'JS MaterialApp installs the generated observer without a Dart shell',
+    'JS MaterialApp preserves its supplied observers without adding one',
     (t) async {
       final h = _harness();
       try {
@@ -812,7 +813,7 @@ void main() {
           FlaxView.page(session: h.session, name: 'application'),
         );
         final app = t.widget<MaterialApp>(find.byType(MaterialApp));
-        expect(app.navigatorObservers, hasLength(2));
+        expect(app.navigatorObservers, hasLength(1));
         expect(
           app.navigatorObservers!.every((o) => o is FlaxNavigatorObserver),
           isTrue,
@@ -1121,20 +1122,90 @@ void main() {
   );
 
   testWidgets(
-    'showDialog requires the selected Navigator observer before pushing',
+    'async navigation uses ordinary generic calls and nullable named callbacks',
+    (t) async {
+      final h = _harness();
+      final routes = _Routes();
+      try {
+        await t.pumpWidget(_app(h, observers: [routes]));
+        for (final mode in ['widget', 'empty', 'null', 'omitted']) {
+          h.execute('topLevel.asyncFixture("$mode")');
+          await t.pumpAndSettle();
+          expect(routes.routes.last, isA<Route<String>>());
+          if (mode == 'widget') {
+            expect(find.byType(AlertDialog), findsOneWidget);
+            expect(h.number('topLevel.asyncIndex'), 7);
+          } else {
+            expect(find.text('Native fallback'), findsOneWidget);
+            expect(h.number('topLevel.asyncIndex'), mode == 'empty' ? 7 : 0);
+          }
+          routes.routes.last.navigator!.pop('done-$mode');
+          await t.pumpAndSettle();
+          expect(h.string('topLevel.result'), 'done-$mode');
+          expect(h.runtime.pendingFutures, 0);
+        }
+        expect(h.number('topLevel.created'), h.number('topLevel.disposed'));
+        expect(h.errors, isEmpty);
+      } finally {
+        await h.finish(t);
+      }
+    },
+  );
+
+  testWidgets(
+    'async navigation preserves errors and rejects new calls during close',
+    (t) async {
+      final h = _harness();
+      final routes = _Routes();
+      try {
+        await t.pumpWidget(_app(h, observers: [routes]));
+        final initialRoutes = routes.routes.length;
+        h.execute('topLevel.asyncFixture("failure")');
+        await t.pumpAndSettle();
+        expect(
+          h.string('topLevel.result'),
+          contains('async navigation failure'),
+        );
+        expect(routes.routes, hasLength(initialRoutes));
+        expect(
+          () => h.execute('topLevel.functions.openAsyncPanel(null)'),
+          throwsA(isA<FlaxJsException>()),
+        );
+        h.execute('topLevel.asyncFixture()');
+        await t.pumpAndSettle();
+        final closing = h.session.close();
+        expect(
+          () => h.execute('topLevel.asyncFixture()'),
+          throwsA(isA<FlaxJsException>()),
+        );
+        routes.routes.last.navigator!.pop();
+        await flaxTestUnmount(t);
+        await t.pumpAndSettle();
+        await closing;
+        expect(h.runtime.handlesAtDispose, 0);
+        expect(h.errors, isEmpty);
+      } finally {
+        await h.finish(t);
+      }
+    },
+  );
+
+  testWidgets(
+    'showDialog uses its Navigator without requiring a Flax observer',
     (t) async {
       final h = _harness();
       final routes = _Routes();
       try {
         await t.pumpWidget(_app(h, observers: [routes]));
         final count = routes.routes.length;
-        expect(
-          () => h.execute('topLevel.open()'),
-          throwsA(isA<FlaxJsException>()),
-        );
-        expect(routes.routes.length, count);
+        h.execute('topLevel.open()');
+        await t.pumpAndSettle();
+        expect(routes.routes.length, count + 1);
+        expect(find.byType(AlertDialog), findsOneWidget);
+        routes.routes.last.navigator!.pop();
+        await t.pumpAndSettle();
         expect(h.runtime.pendingFutures, 0);
-        expect(find.byType(AlertDialog), findsNothing);
+        expect(h.errors, isEmpty);
       } finally {
         await h.finish(t);
       }
@@ -1240,7 +1311,7 @@ void main() {
   );
 
   testWidgets(
-    'Route is retained before first build and plugin calls share the mechanism',
+    'mounted dialog callbacks drain through the ordinary Session mechanism',
     (t) async {
       final h = _harness();
       final observer = FlaxNavigatorObserver();

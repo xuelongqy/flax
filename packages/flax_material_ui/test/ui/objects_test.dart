@@ -245,7 +245,7 @@ void main() {
     },
   );
   testWidgets(
-    'maintainState false cleans content and accepted routes can rebuild while closing',
+    'maintainState false cleans and rebuilds content while its Session is open',
     (t) async {
       final h = OwnedHarness();
       final navigator = GlobalKey<NavigatorState>();
@@ -267,14 +267,13 @@ void main() {
       await t.pumpAndSettle();
       expect(h.number('objects.disposed'), 1);
       expect(h.boolean('objects.detached'), isTrue);
-      var closed = false;
-      final closing = h.session.close().then((_) => closed = true);
-      await t.pump();
-      expect(closed, isFalse);
       navigator.currentState!.pop();
       await t.pumpAndSettle();
       expect(h.number('objects.factories'), 2);
       expect(h.boolean('objects.controller.hasClients'), isTrue);
+      var closed = false;
+      final closing = h.session.close().then((_) => closed = true);
+      await t.pump();
       expect(closed, isFalse);
       navigator.currentState!.pop();
       await t.pump(const Duration(milliseconds: 1));
@@ -448,11 +447,10 @@ void main() {
       await t.pumpAndSettle();
       await t.pumpWidget(app(second, '$source\n// Replacement source'));
       await t.pumpAndSettle();
-      // The enclosing native Route still retains the old session until it retires.
-      expect(first.runtime.isDisposed, isFalse);
+      // The native Route stays installed; its former JS content has finished cleanup.
+      expect(first.runtime.isDisposed, isTrue);
       expect(first.calls['removeListener'], 1);
-      expect(first.number('objects.disposed'), 1);
-      expect(first.boolean('objects.detached'), isTrue);
+      expect(first.actualDisposals, first.created.length - 2);
       expect(second.boolean('objects.controller.hasClients'), isTrue);
       await first.finish(t);
       expect(first.runtime.handlesAtDispose, 0);

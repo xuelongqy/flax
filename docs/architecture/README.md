@@ -15,8 +15,8 @@ protocol is version 24, including shared generic owners and State variants under
 [ADR 0035](../decisions/0035-generic-state-variants-and-protocol-21.md). The native ABI
 remains 2.
 
-Shared and nested Navigator bindings, explicit sessions, Route-owned callbacks, and
-Future delivery, named page entries, and declarative Pages are described in
+Shared and nested Navigator bindings, explicit sessions, joint-GC callback ownership,
+and Future delivery, named page entries, and declarative Pages are described in
 [navigation and sessions](navigation.md).
 
 The intended product uses pure JS to describe Flutter interfaces in embedded and

@@ -20,31 +20,24 @@ unclear. Navigator and showDialog introduce no special result conversion or cast
 
 ## Navigation lifetime
 
-GC does not decide when to pop a Route or shut down an application.
-FlaxNavigatorObserver holds the participating session until TransitionRoute.completed,
-independently of its result Future and mounted content. Weak associations identify the
-sessions contributing real Routes and Pages. Observers refresh current Page settings
-before session close; replacing a Page can move this retention to another session
-without replacing the Route. Reading an unrelated host Route acquires no navigation
-ownership.
+GC does not decide when to pop a Route or shut down an application. Real Dart closures
+and proxy peers retain their JS dependencies through joint GC while the Session is live.
+No Route-to-Session registry, navigation capture scope or transition lease exists.
+FlaxNavigatorObserver remains optional; Widget observer-list inputs use ordinary
+defaults and preserve the supplied list without injection.
 
-Selected Widget List<NavigatorObserver> constructor inputs install one stable private
-observer before the supplied observers. A host-created Navigator accepting Flax
-navigation values installs a stable FlaxNavigatorObserver itself. Generated push
-operations validate this before navigation. Configured top-level Route functions still
-synchronously push exactly one observed TransitionRoute. Session close rejects new
-navigation and cancels pending Future delivery; accepted content may rebuild and exit.
-The application removes its Routes, and Flax never calls application disposal as a GC
-side effect.
+Session close rejects new navigation and cancels pending asynchronous delivery. It
+drains mounted JS content and active bridge calls, then revokes all remaining callbacks
+before destroying the runtime. A pure Dart Route, native exit animation or never-built
+builder does not block closing. Late void callbacks are inert; result callbacks throw
+StateError before entering the destroyed engine. Applications keep the Session open
+while offstage JS content must remain usable. Close never pops Routes or disposes
+application objects.
 
-Navigator members and Route functions share the same observation scope. Rejected calls
-acquire no new navigation ownership; accepted native side effects remain retained even
-when the invocation subsequently throws.
-
-Ordinary object and Stream constructor inputs retain their defaults and native list
-identity; they do not acquire observers. Direct push/replace rejects a known
-non-TransitionRoute before native navigation. Pop/replacement results remain ordinary
-values, including Route objects that are being returned as data.
+Navigator members and configured Route functions call Flutter directly. The existing
+navigation roles preserve close admission and UI builder error policy; the runtime no
+longer requires exactly one synchronous push or a TransitionRoute. Ordinary result and
+parameter conversion is unchanged, including Route objects returned as data.
 
 Native Widget hosts transfer their mount retention when Flutter reuses an Element for
 content from another session. Failed updates retain the last valid content and session.
@@ -53,10 +46,12 @@ content from another session. Failed updates retain the last valid content and s
 
 Generated modules require `native-navigation-objects`. Regenerate providers, consumers
 and module assets together. Retired `kind: route`, `kind: page` and `pageAdapter`
-selections fail with migration diagnostics. Manifest 22, selection format 2, UI protocol
-24, engine binding extension 8 and native ABI 2 are unchanged; no engine API is added.
+selections fail with migration diagnostics. Manifest 23 removes obsolete navigation
+Context/root-Navigator roles; regenerate providers and consumers together. Selection
+format 2, UI protocol 24, engine binding extension 8 and native ABI 2 are unchanged; no
+engine API is added.
 
-Non-TransitionRoute values can pass through ordinary bindings, but session-close
-tracking requires Flutter's explicit transition-completion Future. Arbitrary delayed
-navigation side effects are not inferred from callback signatures. The current
-[navigation contract](../architecture/navigation.md) records setup and verification.
+Route subclasses use Flutter's own admission and lifecycle rules. Callback ownership is
+generic; arbitrary delayed navigation side effects are not inferred from signatures. The
+current [navigation contract](../architecture/navigation.md) records setup and
+verification.

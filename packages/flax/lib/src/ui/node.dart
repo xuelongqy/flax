@@ -85,9 +85,6 @@ class _MountedProperty {
         }
       }
       if (!source.session.closing) {
-        for (final page in pages) {
-          source.session.registerNavigationValue(page);
-        }
         return next;
       }
       final old =

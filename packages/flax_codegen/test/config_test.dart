@@ -86,8 +86,6 @@ void main() {
     expect(show.typeArguments, ['Object?']);
     expect(show.dataParameters, ['arguments']);
     expect(show.dataResult, isTrue);
-    expect(show.route!.context, 'context');
-    expect(show.route!.rootNavigator, 'root');
     expect(show.route!.builders, ['builder']);
     expect(config.callbackSnapshots['Offset']!.fields, ['dx', 'dy']);
     expect(config.callbackSnapshots['Scroll']!.extendsName, 'Offset');
@@ -103,6 +101,46 @@ void main() {
     expect(config.functions, isEmpty);
     expect(config.callbackSnapshots, isEmpty);
   });
+
+  test(
+    'navigation selection only adds admission and optional UI callbacks',
+    () {
+      final config = FlaxCodegenBindingConfig.parseStrict('''
+$_minimal
+functions:
+  openPage:
+    parameters: []
+    route: {}
+''');
+      expect(config.functions['openPage']!.route!.builders, isEmpty);
+      expect(
+        FlaxCodegenFunctionSelection.fromMap({
+          'parameters': <String>[],
+          'route': <String, dynamic>{},
+        }).route!.builders,
+        isEmpty,
+      );
+      for (final field in ['context', 'rootNavigator']) {
+        expect(
+          () => FlaxCodegenBindingConfig.parseStrict('''
+$_minimal
+functions:
+  openPage:
+    parameters: []
+    route: {$field: obsolete}
+'''),
+          throwsA(isA<FlaxCodegenException>()),
+        );
+        expect(
+          () => FlaxCodegenFunctionSelection.fromMap({
+            'parameters': <String>[],
+            'route': {field: 'obsolete'},
+          }),
+          throwsStateError,
+        );
+      }
+    },
+  );
 
   test('readStrict reads a format-2 file', () {
     final directory = Directory.systemTemp.createTempSync('flax-config-');
@@ -510,8 +548,6 @@ overrides:
   functions:
     openPage:
       route:
-        context: context
-        rootNavigator: root
         builders: [builder]
   exclude: [legacyHelper]
 ''');
@@ -525,7 +561,7 @@ overrides:
     final functionOverride = overrides.functions['openPage']!;
     expect(functionOverride.fields, {'route'});
     expect(functionOverride.selection.parameters, isEmpty);
-    expect(functionOverride.selection.route?.context, 'context');
+    expect(functionOverride.selection.route?.builders, ['builder']);
     expect(overrides.exclude, ['legacyHelper']);
   });
 }
@@ -601,8 +637,6 @@ functions:
       parameters: [arguments]
       result: true
     route:
-      context: context
-      rootNavigator: root
       builders: [builder]
 callbackSnapshots:
   Offset:

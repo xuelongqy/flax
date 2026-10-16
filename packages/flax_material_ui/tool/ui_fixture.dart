@@ -56,7 +56,7 @@ Future<void> main() async {
       'openInterfacePanel': FlaxCodegenFunctionSelection(
         ['origin', 'content', 'root'],
         dataResult: true,
-        route: FlaxCodegenRouteCallModel('origin', 'root', ['content']),
+        route: FlaxCodegenRouteCallModel(['content']),
       ),
     },
   );

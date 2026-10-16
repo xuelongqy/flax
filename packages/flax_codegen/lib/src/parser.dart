@@ -3518,41 +3518,14 @@ class FlaxCodegenBindingParser {
       );
       final route = selection.route;
       if (route != null) {
-        final context = args.where((p) => p.name == route.context).firstOrNull;
-        final root = args
-            .where((p) => p.name == route.rootNavigator)
-            .firstOrNull;
-        if (result.kind != 'future' ||
-            result.nullable ||
-            function.fragments.any((f) => f.isAsynchronous || f.isGenerator) ||
-            context?.type.kind != 'context' ||
-            context!.type.nullable ||
-            root?.type.kind != 'bool' ||
-            root!.type.nullable ||
-            route.builders.isEmpty ||
-            route.builders.toSet().length != route.builders.length) {
-          throw StateError('Invalid Route function signature: ${entry.key}');
+        if (route.builders.toSet().length != route.builders.length) {
+          throw StateError('Duplicate navigation callback: ${entry.key}');
         }
         for (final name in route.builders) {
           final type = args.where((p) => p.name == name).firstOrNull?.type;
-          final parameter = function.formalParameters
-              .where((parameter) => parameter.name == name)
-              .firstOrNull
-              ?.type;
-          final widgetResult =
-              parameter is FunctionType &&
-              parameter.returnType is InterfaceType &&
-              _isFlutterWidget((parameter.returnType as InterfaceType).element);
-          if (type == null ||
-              type.kind != 'callback' ||
-              type.nullable ||
-              type.result!.kind != 'widget' && !widgetResult ||
-              type.result!.nullable ||
-              type.parameters.length != 1 ||
-              type.parameters.single.type.kind != 'context' ||
-              type.parameters.single.type.nullable) {
+          if (type?.kind != 'callback') {
             throw StateError(
-              'Route functions require a non-null WidgetBuilder: $name',
+              'Navigation callback must select a typed callback: ${entry.key}.$name',
             );
           }
         }

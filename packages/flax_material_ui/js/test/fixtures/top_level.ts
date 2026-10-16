@@ -33,6 +33,7 @@ import { signal } from '@flax/core';
 import * as functions from '../../../.dart_tool/flax/ui/functions_bindings.js';
 
 const StringKey = selectDartType(ValueKey, nativeTypes.string);
+const asyncPanel = selectDartType(functions.openAsyncPanel, nativeTypes.string);
 
 let context: BuildContext;
 let mode = 'valid';
@@ -40,6 +41,7 @@ let builds = 0;
 let created = 0;
 let disposed = 0;
 let result: unknown = 'pending';
+let asyncIndex = 0;
 const label = signal('Dialog label');
 let inline: Widget | null = null;
 const observer = FlaxNavigatorObserver();
@@ -247,6 +249,32 @@ Object.assign(globalThis, {
     asDart,
     TextEditingController,
     open,
+    asyncFixture(mode: 'widget' | 'empty' | 'null' | 'omitted' | 'failure' = 'widget') {
+      result = 'pending';
+      asyncIndex = 0;
+      return asyncPanel(Navigator.of(context), {
+        content:
+          mode === 'omitted'
+            ? undefined
+            : mode === 'null'
+              ? null
+              : ({ index }) => {
+                  asyncIndex = index;
+                  return mode === 'empty' ? null : new DialogContent();
+                },
+        fail: mode === 'failure',
+      }).then(
+        (value) => {
+          result = value;
+        },
+        (error) => {
+          result = String(error);
+        },
+      );
+    },
+    get asyncIndex() {
+      return asyncIndex;
+    },
     get context() {
       return context;
     },

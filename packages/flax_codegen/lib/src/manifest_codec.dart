@@ -96,7 +96,7 @@ const _stateVariantKeys = {
 
 const _pageAdapterKeys = {'library', 'function'};
 
-const _routeCallKeys = {'context', 'rootNavigator', 'builders'};
+const _routeCallKeys = {'builders'};
 
 const _classKeys = {
   'name',
@@ -2097,8 +2097,6 @@ FlaxCodegenPageAdapterModel? _decodePageAdapter(
 }
 
 Map<String, Object?> _encodeRouteCall(FlaxCodegenRouteCallModel route) => {
-  'context': route.context,
-  'rootNavigator': route.rootNavigator,
   'builders': List<String>.of(route.builders),
 };
 
@@ -2115,16 +2113,11 @@ FlaxCodegenRouteCallModel? _decodeRouteCall(
     _routeCallKeys,
   );
   if (object == null) return null;
-  final context = object.requiredString('context');
-  final rootNavigator = object.requiredString('rootNavigator');
   final builders = object.requiredStringList('builders');
-  if (diagnostics.items.length != start ||
-      context == null ||
-      rootNavigator == null ||
-      builders == null) {
+  if (diagnostics.items.length != start || builders == null) {
     return null;
   }
-  return FlaxCodegenRouteCallModel(context, rootNavigator, builders);
+  return FlaxCodegenRouteCallModel(builders);
 }
 
 Map<String, Object?> _encodeClass(FlaxCodegenClassModel type) {

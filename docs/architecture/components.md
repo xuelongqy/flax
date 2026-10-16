@@ -234,9 +234,11 @@ close never disposes those application objects automatically. Component results,
 Contexts, JS State and Widget handles are released after active calls return. Late JS
 State calls fail before entering a retired Dart State.
 
-Existing accepted Routes may rebuild while a session closes. Component mount leases keep
-the runtime alive until their cleanup finishes, alongside existing Route and transition
-leases. Named-page lifecycle cleanup remains available for page-factory resources.
+Existing mounted components may rebuild while a session closes. Their ordinary mount
+leases keep the runtime alive until cleanup finishes. Routes and transitions add no
+separate Session retention. After close completes, all JS callbacks are revoked,
+including builders retained by unmounted Dart Routes. Named-page lifecycle cleanup
+remains available for page-factory resources.
 
 UI protocol 24 includes component type metadata, ancestor queries, returned Dart
 functions and Widget references; previous protocols are rejected. The C ABI and runtime

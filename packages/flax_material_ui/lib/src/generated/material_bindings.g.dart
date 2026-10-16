@@ -6292,7 +6292,7 @@ const materialBindings = FlaxBindingModule(
         future: FlaxFutureBinding("any?:", _future1Adapt),
       ),
       _function_showDialog,
-      route: FlaxRouteCallBinding("context", "useRootNavigator", ["builder"]),
+      route: FlaxRouteCallBinding(["builder"]),
       genericFactory: _flaxGenericFunction0,
     ),
     FlaxFunctionBinding(
@@ -7943,7 +7943,7 @@ _flaxGenericFunction0<_Method0 extends Object?>() => (FlaxDartTypes types) {
     ],
     types.ref<Future<_Method0?>>(),
     invoke,
-    route: FlaxRouteCallBinding("context", "useRootNavigator", ["builder"]),
+    route: FlaxRouteCallBinding(["builder"]),
   );
 };
 Type _flaxType_MaterialPageRoute<_Owner0 extends Object?>() =>

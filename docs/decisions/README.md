@@ -99,7 +99,8 @@ current language support is in the
 
 - [0045: Native Route and Page objects](0045-native-navigation-objects.md) is accepted.
   Ordinary bindings and joint GC replace ownership subclasses, leases and Page adapters;
-  observation retains the session through exit transitions.
+  Session close drains mounted JS content without retaining native Routes or
+  transitions.
 
 [Open Questions](open-questions.md) records decisions that have not been made. Use the
 [decision template](TEMPLATE.md) for a new significant decision. Record the decision,

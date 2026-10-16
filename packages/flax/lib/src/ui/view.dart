@@ -29,11 +29,8 @@ class FlaxSession {
   Object? _loadError;
   Future<void>? _closeFuture;
 
-  _Session _load({
-    void Function(Object, StackTrace)? report,
-    bool allowClosing = false,
-  }) {
-    if (_closeFuture != null && !allowClosing) {
+  _Session _load({void Function(Object, StackTrace)? report}) {
+    if (_closeFuture != null) {
       throw StateError('Closed Flax session');
     }
     if (_loadError != null) throw StateError('The Flax session failed to load');
@@ -79,8 +76,8 @@ class FlaxSession {
     _session!.releaseMount();
   }
 
-  /// Stops new navigation and completes after all mounted pages and routes retire.
-  /// The host must remove its routes; closing never modifies a Navigator's stack.
+  /// Stops new content and drains mounted JS content and active bridge calls.
+  /// Remaining callbacks are revoked on completion; Flutter still owns its routes.
   Future<void> close() =>
       _closeFuture ??= _session?.requestClose() ?? Future<void>.value();
 

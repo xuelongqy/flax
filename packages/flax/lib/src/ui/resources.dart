@@ -480,9 +480,6 @@ mixin _JsInvocation {
     final decoded = session.decode(value, signature.result);
     try {
       decoded.escapeCallbacks();
-      if (decoded.data case final Object value) {
-        session.registerNavigationValue(value);
-      }
       session.escapeWidget(decoded.data, signature.result);
       return decoded.data;
     } finally {
@@ -563,35 +560,8 @@ class _ProxyPeer with _JsInvocation implements FlaxProxyPeer {
 }
 
 class _Source extends _Resource {
-  _Source(
-    this.session,
-    this.type,
-    _Value initial, {
-    this.binding,
-    bool navigationObservers = false,
-  }) : _initial = initial {
-    if (navigationObservers && _isNavigationObservers(type)) {
-      _observer = FlaxNavigatorObserver();
-      _initial = _withNavigationObserver(initial);
-    }
-  }
-  FlaxNavigatorObserver? _observer;
-
-  _Value _withNavigationObserver(_Value value) {
-    if (_observer == null) return value;
-    try {
-      return _Value(
-        <NavigatorObserver>[
-          _observer!,
-          ...?value.data as List<NavigatorObserver>?,
-        ],
-        [value],
-      );
-    } catch (_) {
-      value.release();
-      rethrow;
-    }
-  }
+  _Source(this.session, this.type, _Value initial, {this.binding})
+    : _initial = initial;
 
   final _Session session;
   final FlaxTypeRef type;
@@ -647,7 +617,7 @@ class _Source extends _Resource {
       }
       final value = session.helper('readBindingSnapshot').call([read]);
       try {
-        return _withNavigationObserver(session.decode(value, type));
+        return session.decode(value, type);
       } finally {
         _releaseJs(value);
       }

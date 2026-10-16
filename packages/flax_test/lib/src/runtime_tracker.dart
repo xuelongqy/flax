@@ -60,9 +60,14 @@ class FlaxTestRuntimeTracker implements FlaxJsRuntime {
       _owned.map((entry) => entry.target).whereType<_TrackedObject>();
   int get handles => _live.length;
   List<String> get handleLabels => _live.map((value) => value.label).toList();
-  int get pendingFutures =>
-      (jsCalls['__flaxBindings.future'] ?? 0) -
-      (jsCalls['__flaxBindings.settleFuture'] ?? 0);
+  final _futureIds = Expando<int>();
+  final _pendingFutureOwners = <int, WeakReference<Object>>{};
+  int get pendingFutures {
+    // A rootless Future may be collected without ever receiving a settlement.
+    _pendingFutureOwners.removeWhere((_, owner) => owner.target == null);
+    return _pendingFutureOwners.length;
+  }
+
   int get pendingPromises =>
       (jsCalls['__flaxBindings.observePromise'] ?? 0) -
       (hostCalls['__flaxPromiseSettlement'] ?? 0);
@@ -180,12 +185,12 @@ class FlaxTestRuntimeTracker implements FlaxJsRuntime {
   }
 
   @override
-  void bindDartPeer(FlaxJsObject object, Object target, {Object? origin}) =>
-      inner.bindDartPeer(
-        unwrap(object) as FlaxJsObject,
-        target,
-        origin: origin,
-      );
+  void bindDartPeer(FlaxJsObject object, Object target, {Object? origin}) {
+    inner.bindDartPeer(unwrap(object) as FlaxJsObject, target, origin: origin);
+    if (_futureIds[object] case final id?) {
+      _pendingFutureOwners[id] = WeakReference(target);
+    }
+  }
 
   @override
   int registerProxyMembers(FlaxJsObject layout) =>
@@ -257,12 +262,21 @@ class _TrackedFunction extends _TrackedObject implements FlaxJsFunction {
     FlaxJsValue thisValue = const FlaxJsUndefined(),
   }) {
     runtime.jsCalls.update(label, (n) => n + 1, ifAbsent: () => 1);
-    return runtime.wrap(
+    final result = runtime.wrap(
       (inner as FlaxJsFunction).call(
         arguments.map(runtime.unwrap).toList(),
         thisValue: runtime.unwrap(thisValue),
       ),
       '$label.result',
     );
+    if (label == '__flaxBindings.future' && result is FlaxJsObject) {
+      runtime._futureIds[result] = (arguments.first as FlaxJsNumber).value
+          .toInt();
+    } else if (label == '__flaxBindings.settleFuture') {
+      runtime._pendingFutureOwners.remove(
+        (arguments.first as FlaxJsNumber).value.toInt(),
+      );
+    }
+    return result;
   }
 }

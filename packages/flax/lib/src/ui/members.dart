@@ -152,24 +152,13 @@ extension _MemberCalls on _Session {
       );
       try {
         final inputs = values.map((name, value) => MapEntry(name, value.data));
-        final observer = route == null
-            ? null
-            : _requireNavigationObserver(
-                Navigator.of(
-                  inputs[route.context] as BuildContext,
-                  rootNavigator: inputs[route.rootNavigator] as bool,
-                ),
-              );
         for (final parameter in definition.parameters) {
           final value = values[parameter.name];
           if (value == null) continue;
           value.escapeCallbacks();
           escapeWidget(value.data, parameter.type);
         }
-        final result = observer == null
-            ? definition.invoke(inputs)
-            : _NavigationCall(this)
-                  .invoke(observer, () => definition.invoke(inputs));
+        final result = definition.invoke(inputs);
         return holdHostResult(memberResult(result, definition.result));
       } finally {
         for (final value in values.values.toList().reversed) {
@@ -455,9 +444,6 @@ extension _MemberCalls on _Session {
         throw ArgumentError('Too many State arguments');
       }
       if (selected.startsRoute) requireOpen();
-      final observer = selected.startsRoute && state is NavigatorState
-          ? _requireNavigationObserver(state)
-          : null;
       final values = <String, _Value>{};
       try {
         for (var i = 0; i < selected.parameters.length; i++) {
@@ -481,13 +467,7 @@ extension _MemberCalls on _Session {
           escapeWidget(value.data, parameter.type);
         }
         final inputs = values.map((k, v) => MapEntry(k, v.data));
-        final result = observer == null
-            ? selected.invoke(state, inputs)
-            : _NavigationCall(this).invoke(
-                observer,
-                () => selected.invoke(state, inputs),
-                route: inputs.values.firstOrNull,
-              );
+        final result = selected.invoke(state, inputs);
         return holdHostResult(memberResult(result, selected.result));
       } finally {
         for (final value in values.values.toList().reversed) {

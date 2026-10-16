@@ -2263,13 +2263,7 @@ class FlaxCodegenFunctionModel {
 }
 
 class FlaxCodegenRouteCallModel {
-  const FlaxCodegenRouteCallModel(
-    this.context,
-    this.rootNavigator,
-    this.builders,
-  );
-  final String context;
-  final String rootNavigator;
+  const FlaxCodegenRouteCallModel([this.builders = const []]);
   final List<String> builders;
 }
 

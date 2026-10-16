@@ -40,12 +40,16 @@ class _GuardedNavigatorState extends NavigatorState {
   Future<T?> push<T extends Object?>(Route<T> route) {
     pushCalls++;
     if (route.navigator != null) throw StateError('Route already installed');
-    if (route is! TransitionRoute<Object?>) throw StateError('Untracked Route');
     return super.push(route);
   }
 }
 
-class _ImmediateRoute extends Route<Object?> {}
+class _ImmediateRoute extends OverlayRoute<Object?> {
+  @override
+  Iterable<OverlayEntry> createOverlayEntries() => [
+    OverlayEntry(builder: (_) => const Text('Immediate Dart route')),
+  ];
+}
 
 class _ObserverProbe {
   const _ObserverProbe([this.observers = const []]);
@@ -128,7 +132,7 @@ void main() {
     },
   );
 
-  testWidgets('unsupported Routes are rejected before native navigation', (
+  testWidgets('ordinary Routes need no transition contract or Flax observer', (
     tester,
   ) async {
     final route = _ImmediateRoute();
@@ -165,7 +169,6 @@ void main() {
         MaterialApp(
           home: _GuardedNavigator(
             key: key,
-            observers: [FlaxNavigatorObserver()],
             onGenerateRoute: (_) => MaterialPageRoute<Object?>(
               builder: (_) => FlaxView.session(session: h.session),
             ),
@@ -174,19 +177,13 @@ void main() {
       );
       await tester.pumpAndSettle();
       final before = key.currentState!.pushCalls;
-      expect(
-        () => h.execute(
-          'navigation.navigator.push(${_call('immediateRoute', '')})',
-        ),
-        throwsA(isA<FlaxJsException>()),
-      );
-      expect(
-        key.currentState!.pushCalls,
-        before,
-        reason:
-            'Unsupported Routes must fail before entering the native Navigator',
-      );
-      expect(route.navigator, isNull);
+      h.execute('navigation.navigator.push(${_call('immediateRoute', '')})');
+      await tester.pumpAndSettle();
+      expect(key.currentState!.pushCalls, before + 1);
+      expect(route.navigator, same(key.currentState));
+      expect(find.text('Immediate Dart route'), findsOneWidget);
+      key.currentState!.pop();
+      await tester.pumpAndSettle();
       h.execute(
         'navigation.open().then(value => navigation.replacedResult = value)',
       );
@@ -445,20 +442,15 @@ void main() {
       weak!.target!.completed.then((_) => completed = true);
       h.key.currentState!.removeRoute(sourceRoute);
       await tester.pumpAndSettle();
-      var closed = false;
-      final closing = h.session.close().then((_) => closed = true);
-      await tester.pump();
-      expect(closed, false);
       h.key.currentState!.pop();
       await tester.pump();
       await popped;
-      expect(closed, false);
       expect(completed, false);
+      expect(h.runtime.isDisposed, false);
       await collectWidgetConfigurations(tester);
       await tester.pumpAndSettle();
       expect(completed, true);
-      await closing;
-      expect(closed, true);
+      await flaxTestCloseSession(tester, h.session);
       await collectWidgetConfigurations(tester);
       expect(weak!.target, isNull);
       expect(h.errors, isEmpty);
@@ -541,9 +533,9 @@ void main() {
   );
 
   testWidgets(
-    'a native Page update moves session retention to its current callbacks',
+    'native Page callbacks follow their Session without route ownership',
     (tester) async {
-      final pages = <WeakReference<Page<Object?>>>[];
+      final pages = <Page<Object?>>[];
       final module = testBindingModule(
         'page-session-update',
         const [],
@@ -553,7 +545,7 @@ void main() {
             const [FlaxParameter('page', _pageType, required: true)],
             const FlaxTypeRef('void'),
             (values) {
-              pages.add(WeakReference(values['page'] as Page<Object?>));
+              pages.add(values['page'] as Page<Object?>);
               return null;
             },
           ),
@@ -580,7 +572,7 @@ void main() {
         makePage(first, 'First session page');
         await second.enter(tester);
         makePage(second, 'Second session page');
-        Page<Object?>? page = pages.first.target;
+        Page<Object?>? page = pages.first;
         late StateSetter update;
         final observer = FlaxNavigatorObserver();
         await tester.pumpWidget(
@@ -607,7 +599,8 @@ void main() {
         final route = ModalRoute.of(
           tester.element(find.text('First session page')),
         )!;
-        update(() => page = pages.last.target);
+        update(() => page = pages.last);
+        pages.clear();
         await tester.pumpAndSettle();
         expect(
           ModalRoute.of(tester.element(find.text('Second session page'))),
@@ -618,6 +611,9 @@ void main() {
         expect(second.runtime.isDisposed, false);
         var closed = false;
         final closingSecond = second.session.close().then((_) => closed = true);
+        await tester.pump();
+        expect(closed, false);
+        // The mounted child, rather than the Page or Route, retains this Session.
         route.navigator!.pop();
         await tester.pump();
         expect(second.read('navigation.removed'), true);

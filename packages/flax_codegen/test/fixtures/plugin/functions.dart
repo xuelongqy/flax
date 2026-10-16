@@ -127,11 +127,26 @@ Future<Object?> openFixturePanel({
   return result;
 }
 
+Future<T?> openAsyncPanel<T>(
+  NavigatorState navigator, {
+  Widget? Function({required int index})? content,
+  bool fail = false,
+}) async {
+  await Future<void>.value();
+  if (fail) throw StateError('async navigation failure');
+  return navigator.push<T>(
+    PageRouteBuilder<T>(
+      pageBuilder: (_, _, _) =>
+          content?.call(index: 7) ?? const Text('Native fallback'),
+    ),
+  );
+}
+
 int callNamedCallback(int Function({required int value}) transform) =>
     transform(value: 1);
 void callDebugPrinter(DebugPrintCallback callback) =>
     callback('fixture', wrapWidth: 80);
-Future<Object?> invalidRoute({
+Future<Object?> asyncRoute({
   required BuildContext origin,
   required WidgetBuilder content,
   bool root = false,

@@ -67,8 +67,8 @@ builder still rejects a Promise.
 A generated Dart closure retains its JS function until that closure is collected or the
 session closes. Widget configurations returned by JS retain their own bridge resources;
 Flutter owns their Elements, State, and build scheduling. Ordinary callbacks create no
-extra content host and infer no enclosing Route ownership. Explicit Route-producing
-calls below retain their separate pre-mount and transition guarantee. See
+extra content host and infer no enclosing Route ownership. Configured navigation calls
+below use the same callback graph and explicit Session-close boundary. See
 [bridge references and GC](references.md).
 
 ## Native dialogs
@@ -78,17 +78,8 @@ uses ordinary value conversion, including Dart object, DartList and DartMap refe
 AlertDialog selects key, title, content, actions, and scrollable; child bindings and
 custom State work normally.
 
-Install a stable observer on the Navigator that the function will use. For a Dart host:
-
-```dart
-final observer = FlaxNavigatorObserver();
-// Keep this instance across rebuilds; Flutter associates it with one Navigator.
-final app = MaterialApp(navigatorObservers: [observer], home: content);
-```
-
-Generated MaterialApp, CupertinoApp and Navigator constructors install a private
-observer through their selected observer-list parameter. A JS-owned MaterialApp can
-therefore use the ordinary constructor:
+A host-created or JS-created Navigator needs no Flax observer. Use the ordinary
+MaterialApp, CupertinoApp or Navigator constructor:
 
 ```typescript
 import { Navigator, Text } from '@flax/flutter/widgets';
@@ -117,11 +108,10 @@ const result = await showDialog({
 ```
 
 The caller obtains `context` below the target Navigator. The default uses the root
-Navigator; `useRootNavigator: false` chooses the nearest one. Missing observers fail
-before invoking the function or opening a dialog. Other observers may coexist, and one
-installed Flax observer can serve multiple sessions without belonging to any of them.
+Navigator; `useRootNavigator: false` chooses the nearest one. Flutter owns this lookup
+and any application-supplied observers. FlaxNavigatorObserver remains optional.
 
-## Route callback ownership
+## Navigation admission and callbacks
 
 ```yaml
 functions:
@@ -139,37 +129,50 @@ functions:
       - requestFocus
     typeArguments: ['Object?']
     route:
-      context: context
-      rootNavigator: useRootNavigator
       builders: [builder]
 ```
 
-These roles describe a restricted contract: the function synchronously pushes exactly
-one TransitionRoute and returns a Future. Each selected builder is a synchronous,
-non-null Widget-returning callback with one BuildContext parameter. Its result may be
-base Widget or a selected Widget interface. No function names are inferred. Asynchronous
-navigation, arbitrary Route subclasses, and independent dialog windows are outside this
-contract.
+`route` marks a navigation entry so new calls are rejected during Session closing.
+`route: {}` is sufficient when no callback needs UI error handling. Optional `builders`
+names selected typed callback parameters; duplicate, missing and non-callback names are
+rejected. Context and root-Navigator lookup belong to the original Dart function and are
+not binding roles. Remove the retired `route.context` and `route.rootNavigator` fields
+from existing configurations.
 
-During that call the observer captures the actual didPush notification. A nested call
-temporarily replaces and then restores the current record. The Route retains its
-builders independently of the source Context, page, or event; Flutter first invokes a
-builder when it builds the dialog. The original Dart closure retains its JS callback
-through joint GC; result conversion preserves the actual Widget and its selected
-interfaces. Escaped configurations and their mounted resources use the shared reference
-mechanism. The observer does not maintain a page stack or replace Flutter
-theme/transition code.
+Handwritten bindings use `FlaxRouteCallBinding(['builder'])`, or
+`FlaxRouteCallBinding()` when admission is the only policy. Manifest 23 carries this
+reduced metadata; providers and consumers must be regenerated together.
 
-The result Future and TransitionRoute.completed have separate responsibilities. The
-first delivers the Promise result; the second releases navigation retention after exit.
-Mounted content retains its own resources until unmount. If invocation throws after
-pushing, the accepted Route still owns its resources until it actually exits; native
-side effects are not rolled back.
+The function and its callbacks use ordinary signature validation and conversion: an
+`async` function, nullable Future, synchronous result, no Context parameter, optional
+callback, named/indexed callback arguments, nullable result and supported async callback
+are all permitted. For example, an async helper can take a NavigatorState plus
+`Widget? Function({required int index})?`, await application work, and then push a
+Route. The callback receives a JS options object such as `{ index: 7 }`. A Future
+callback is accepted only when the Dart API declares one; a synchronous Flutter builder
+still rejects a Promise. Generic calls keep the same metadata when selecting runtime
+types.
+
+Function names and application side effects are not inferred. An admitted async call may
+continue its Dart work after close starts; Flax cannot cancel application-owned Futures
+or roll back a later native push. Callback access and result delivery still obey the
+Session boundary. The runtime never captures or counts pushes, and Route subclasses do
+not need a TransitionRoute completion Future.
+
+The original Dart closure retains its JS callback through joint GC. Result conversion
+preserves the actual Widget and its selected interfaces. Escaped configurations and
+mounted resources use the shared reference mechanism. Flutter owns its theme,
+transitions and stack; a native side effect is not rolled back if the call throws.
 
 Failed base Widget builders show an error placeholder for that invocation. Narrow
 interface builders propagate their original error. Errors are reported once and later
-valid builds can recover. Promise builders and invalid Widget returns are rejected.
-Closing rejects new dialogs and cancels pending Promise delivery, while accepted dialogs
-can still rebuild and return. The host must remove them before close can finish.
-Application disposal remains the application's responsibility. See
-[navigation ownership](navigation.md).
+valid builds can recover while the Session is live. Invalid callback values and results
+retain their ordinary type checks; UI error handling does not change a Dart signature.
+
+Closing rejects new dialogs, cancels pending Promise delivery and drains mounted JS
+content and active bridge calls. It does not wait for native Route exit animations or
+for escaped callbacks to become unreachable. On completion all remaining JS callbacks
+are revoked. Void callbacks ignore later calls; result callbacks throw StateError before
+entering the destroyed runtime. A later build may therefore show Flutter's error widget.
+Keep the Session open if a dialog must continue running JS. Application disposal remains
+the application's responsibility. See [navigation ownership](navigation.md).

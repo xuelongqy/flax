@@ -33,6 +33,7 @@ void main() {
       'instance-checks',
       'lazy-js-iterables',
       'native-core-inputs',
+      'native-navigation-objects',
       'native-widget-proxies',
       'widget-interface-proxies',
     ]);

@@ -125,7 +125,7 @@ sizes, obstruction behavior, callback/Future/Stream identities and private senti
 subtypes are preserved. Their native members add no JS calls when Flutter reads them. A
 native setter follows Dart behavior and does not schedule a rebuild.
 
-Manifest 22 additionally records `proxy.widgetInterface`, preserving the native base
+Manifest 23 additionally records `proxy.widgetInterface`, preserving the native base
 choice through generic specialization and dependency projections. Native-only members
 record only kind, name and parameter names, without forwarding source or import fields.
 Previous formats are rejected. Regenerate providers and consumers together. Declaration
@@ -151,7 +151,7 @@ Dart functions use the same conversions. For example,
 `PreferredSizeWidget Function(BuildContext)` can return an AppBar or PreferredSize,
 while a plain Text fails the interface check. Configured Route/Page builders forward the
 original typed closure and preserve its actual result without an extra content host.
-Route-producing functions retain their existing observed-navigation contract.
+Navigation entries add only close admission and optional UI error handling.
 
 Callback results preserve native Widget identity and native configurations' selected
 interfaces. Narrow interface failures propagate the original error; an ErrorWidget

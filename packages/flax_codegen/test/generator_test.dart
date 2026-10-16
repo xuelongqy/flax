@@ -356,22 +356,50 @@ copyData(token);
           '',
           {},
           functions: const {
-            'indexedBuilder': FlaxCodegenFunctionSelection(['builder']),
-            'nullableBuilder': FlaxCodegenFunctionSelection(['builder']),
-            'asyncBuilder': FlaxCodegenFunctionSelection(['builder']),
-            'namedBuilder': FlaxCodegenFunctionSelection(['builder']),
-            'optionalContextBuilder': FlaxCodegenFunctionSelection(['builder']),
-            'nestedBuilders': FlaxCodegenFunctionSelection(['builder']),
-            'interfaceBuilder': FlaxCodegenFunctionSelection(['builder']),
+            'indexedBuilder': FlaxCodegenFunctionSelection([
+              'builder',
+            ], route: FlaxCodegenRouteCallModel(['builder'])),
+            'nullableBuilder': FlaxCodegenFunctionSelection([
+              'builder',
+            ], route: FlaxCodegenRouteCallModel(['builder'])),
+            'asyncBuilder': FlaxCodegenFunctionSelection([
+              'builder',
+            ], route: FlaxCodegenRouteCallModel(['builder'])),
+            'namedBuilder': FlaxCodegenFunctionSelection([
+              'builder',
+            ], route: FlaxCodegenRouteCallModel(['builder'])),
+            'optionalContextBuilder': FlaxCodegenFunctionSelection([
+              'builder',
+            ], route: FlaxCodegenRouteCallModel(['builder'])),
+            'nestedBuilders': FlaxCodegenFunctionSelection([
+              'builder',
+            ], route: FlaxCodegenRouteCallModel()),
+            'interfaceBuilder': FlaxCodegenFunctionSelection([
+              'builder',
+            ], route: FlaxCodegenRouteCallModel(['builder'])),
+            'nullableRoute': FlaxCodegenFunctionSelection([
+              'origin',
+              'content',
+              'root',
+            ], route: FlaxCodegenRouteCallModel(['content'])),
+            'asyncRoute': FlaxCodegenFunctionSelection([
+              'origin',
+              'content',
+              'root',
+            ], route: FlaxCodegenRouteCallModel(['content'])),
+            'addValues': FlaxCodegenFunctionSelection([
+              'left',
+              'right',
+            ], route: FlaxCodegenRouteCallModel()),
             'openInterfacePanel': FlaxCodegenFunctionSelection([
               'origin',
               'content',
               'root',
-            ], route: FlaxCodegenRouteCallModel('origin', 'root', ['content'])),
+            ], route: FlaxCodegenRouteCallModel(['content'])),
           },
         ),
       );
-      expect(callbacks.functions, hasLength(8));
+      expect(callbacks.functions, hasLength(11));
       await compileFixture(
         root,
         FlaxCodegenBindingEmitter([callbacks, core]),
@@ -393,11 +421,12 @@ copyData(token);
           ),
         },
         {
-          'nullableRoute': const FlaxCodegenFunctionSelection([
+          'openFixturePanel': const FlaxCodegenFunctionSelection([
             'origin',
             'content',
             'root',
-          ], route: FlaxCodegenRouteCallModel('origin', 'root', ['content'])),
+            'failAfterPush',
+          ], route: FlaxCodegenRouteCallModel(['origin'])),
         },
         {
           'openFixturePanel': const FlaxCodegenFunctionSelection([
@@ -405,7 +434,7 @@ copyData(token);
             'content',
             'root',
             'failAfterPush',
-          ], route: FlaxCodegenRouteCallModel('origin', 'root', ['absent'])),
+          ], route: FlaxCodegenRouteCallModel(['absent'])),
         },
         {
           'addValues': const FlaxCodegenFunctionSelection(['left', 'left']),
@@ -417,11 +446,12 @@ copyData(token);
           ], dataResult: true),
         },
         {
-          'invalidRoute': const FlaxCodegenFunctionSelection([
+          'openFixturePanel': const FlaxCodegenFunctionSelection([
             'origin',
             'content',
             'root',
-          ], route: FlaxCodegenRouteCallModel('origin', 'root', ['content'])),
+            'failAfterPush',
+          ], route: FlaxCodegenRouteCallModel(['content', 'content'])),
         },
       ]) {
         final invalid = FlaxCodegenBindingConfig(

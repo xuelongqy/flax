@@ -436,10 +436,7 @@ void main() {
       'package:example/adapter.dart',
       'createRoute',
     );
-    const route = FlaxCodegenRouteCallModel('context', 'rootNavigator', [
-      'builder',
-      'pageBuilder',
-    ]);
+    const route = FlaxCodegenRouteCallModel(['builder', 'pageBuilder']);
 
     expect(generic.genericIdentity, same(genericIdentity));
     expect(setter.encodeKind, isNull);
@@ -627,9 +624,9 @@ void main() {
       [
         _record('/builders/0', 'Expected a string.'),
         _record('/builders/1', 'Expected a string.'),
-        _record('/context', 'Expected a string.'),
+        _record('/context', 'Unknown field.'),
         _record('/extra', 'Unknown field.'),
-        _record('/rootNavigator', 'Expected a string.'),
+        _record('/rootNavigator', 'Unknown field.'),
         _record('/~0tilde', 'Unknown field.'),
       ],
     );
@@ -732,10 +729,7 @@ void main() {
       'package:example/adapter.dart',
       'createRoute',
     );
-    const route = FlaxCodegenRouteCallModel('context', 'rootNavigator', [
-      'builder',
-      'pageBuilder',
-    ]);
+    const route = FlaxCodegenRouteCallModel(['builder', 'pageBuilder']);
     final type = FlaxCodegenClassModel(
       name: 'Gauge',
       id: 'com.acme.widgets/widgets#type:Gauge',
@@ -1033,9 +1027,9 @@ void main() {
         _record('/extra', 'Unknown field.'),
         _record('/id', 'Expected a string.'),
         _record('/route/builders/0', 'Expected a string.'),
-        _record('/route/context', 'Expected a string.'),
+        _record('/route/context', 'Unknown field.'),
         _record('/route/extra', 'Unknown field.'),
-        _record('/route/rootNavigator', 'Expected a string.'),
+        _record('/route/rootNavigator', 'Unknown field.'),
         _record('/route/~0tilde', 'Unknown field.'),
         _record('/~0tilde', 'Unknown field.'),
       ],
@@ -1140,9 +1134,7 @@ void main() {
             defaultCode: '0',
           ),
         ], voidType),
-        route: const FlaxCodegenRouteCallModel('context', 'rootNavigator', [
-          'builder',
-        ]),
+        route: const FlaxCodegenRouteCallModel(['builder']),
       );
       const snapshot = FlaxCodegenSnapshotModel(
         name: 'Scroll',
@@ -1294,11 +1286,7 @@ void main() {
                   defaultCode: '0',
                 ),
               ], const FlaxCodegenTypeRef('void')),
-              route: const FlaxCodegenRouteCallModel(
-                'context',
-                'rootNavigator',
-                ['builder'],
-              ),
+              route: const FlaxCodegenRouteCallModel(['builder']),
             ),
           ],
           snapshots: const [
@@ -1449,7 +1437,7 @@ void main() {
     }
   });
 
-  group('Manifest 22 typeLibraries URI semantics', () {
+  group('Manifest 23 typeLibraries URI semantics', () {
     test('accepts public package URIs, cross-package names, and dart:core', () {
       final module = _typeLibrariesModule({
         'Core': 'dart:core',
@@ -1696,7 +1684,7 @@ void main() {
     );
   });
 
-  group('Manifest 22 envelope positives', () {
+  group('Manifest 23 envelope positives', () {
     test('fromResolved round-trips rich and zero-entry modules', () {
       final fixture = _envelopeFixture();
       final manifest = FlaxCodegenManifest.fromResolved(
@@ -1857,16 +1845,16 @@ void main() {
     });
   });
 
-  group('Manifest 22 envelope negatives', () {
+  group('Manifest 23 envelope negatives', () {
     test('invalid JSON and duplicate keys fail closed', () {
       _expectEnvelopeFailure('{', [_record('', 'Invalid JSON.')]);
       _expectEnvelopeFailure(
-        '{\n  "formatVersion": 22,\n  "package": "a",\n  "package": "b"\n}\n',
+        '{\n  "formatVersion": 23,\n  "package": "a",\n  "package": "b"\n}\n',
         [_record('', 'Duplicate mapping key.')],
       );
       final withModuleDup =
           '{\n'
-          '  "formatVersion": 22,\n'
+          '  "formatVersion": 23,\n'
           '  "package": "acme_widgets",\n'
           '  "bindingNamespace": "com.acme.widgets",\n'
           '  "imports": [],\n'
@@ -1886,7 +1874,7 @@ void main() {
       ]);
       final withModelDup =
           '{\n'
-          '  "formatVersion": 22,\n'
+          '  "formatVersion": 23,\n'
           '  "package": "acme_widgets",\n'
           '  "bindingNamespace": "com.acme.widgets",\n'
           '  "imports": [],\n'
@@ -1947,7 +1935,7 @@ void main() {
     test('format protocol package namespace and module tuples fail closed', () {
       final baseline = _envelopeBaseline();
       _expectEnvelopeMutation(baseline, (json) {
-        json['formatVersion'] = 20;
+        json['formatVersion'] = 22;
       }, [_record('/formatVersion', 'Invalid formatVersion.')]);
       _expectEnvelopeMutation(baseline, (json) {
         json['formatVersion'] = 999;
@@ -2117,7 +2105,7 @@ void main() {
     });
   });
 
-  group('Manifest 22 ownership model and fromResolved negatives', () {
+  group('Manifest 23 ownership model and fromResolved negatives', () {
     test('declaration owner rows are required at id pointers', () {
       const gauge = 'com.acme.widgets/widgets#type:Gauge';
       const axis = 'com.acme.widgets/widgets#type:Axis';
@@ -2594,7 +2582,7 @@ void main() {
     });
   });
 
-  group('Manifest 22 generic lexical slot positives', () {
+  group('Manifest 23 generic lexical slot positives', () {
     test(
       'fresh decoded tokens preserve declaration/reference identity sharing',
       () {
@@ -2892,7 +2880,7 @@ void main() {
     });
   });
 
-  group('Manifest 22 generic lexical slot negatives', () {
+  group('Manifest 23 generic lexical slot negatives', () {
     test('missing declaration slot fails closed', () {
       final json = _cloneJsonMap(
         _slotCallbackJson(_slotSharingCallback(Object())),
@@ -3103,7 +3091,7 @@ void main() {
     });
   });
 
-  group('Manifest 22 Quality P1 maximal projection', () {
+  group('Manifest 23 Quality P1 maximal projection', () {
     test('independently constructed maximal module survives fromResolved encode parse projection and input mutation', () {
       final inIntType = FlaxCodegenTypeRef('int');
       final inStringType = FlaxCodegenTypeRef('String', nullable: true);
@@ -3761,10 +3749,7 @@ void main() {
                 defaultCode: '0',
               ),
             ], inVoidType),
-            route: const FlaxCodegenRouteCallModel('context', 'rootNavigator', [
-              'builder',
-              'pageBuilder',
-            ]),
+            route: const FlaxCodegenRouteCallModel(['builder', 'pageBuilder']),
           ),
         ],
         snapshots: const [
@@ -4288,10 +4273,7 @@ void main() {
                 defaultCode: '0',
               ),
             ], exVoidType),
-            route: const FlaxCodegenRouteCallModel('context', 'rootNavigator', [
-              'builder',
-              'pageBuilder',
-            ]),
+            route: const FlaxCodegenRouteCallModel(['builder', 'pageBuilder']),
           ),
         ],
         snapshots: const [
@@ -4720,7 +4702,7 @@ void main() {
     });
   });
 
-  group('Manifest 22 direct dependency projection positives', () {
+  group('Manifest 23 direct dependency projection positives', () {
     test('A→B→C flattens packages owners modules and importedPackages', () {
       final chain = _projectionChain();
       final a = chain.aProjection;
@@ -5044,7 +5026,7 @@ bindingNamespace: com.example.local
     );
   });
 
-  group('Manifest 22 direct dependency projection negatives', () {
+  group('Manifest 23 direct dependency projection negatives', () {
     test('missing direct import fails closed', () {
       final b = _packageB(_packageC());
       final a = _packageA(b);
@@ -5928,7 +5910,7 @@ const _widgetMemberKeys = {'name', 'kind', 'parameters'};
 
 const _pageAdapterKeys = {'library', 'function'};
 
-const _routeCallKeys = {'context', 'rootNavigator', 'builders'};
+const _routeCallKeys = {'builders'};
 
 const _classKeys = {
   'name',
@@ -6738,8 +6720,6 @@ void _expectRouteCall(
   FlaxCodegenRouteCallModel actual,
   FlaxCodegenRouteCallModel expected,
 ) {
-  expect(actual.context, expected.context);
-  expect(actual.rootNavigator, expected.rootNavigator);
   expect(actual.builders, expected.builders);
 }
 
@@ -7523,9 +7503,7 @@ FlaxCodegenModuleModel _widgetsModel({
             defaultCode: '0',
           ),
         ], voidType),
-        route: const FlaxCodegenRouteCallModel('context', 'rootNavigator', [
-          'builder',
-        ]),
+        route: const FlaxCodegenRouteCallModel(['builder']),
       ),
     ],
     snapshots: const [
@@ -7552,11 +7530,11 @@ void _expectEnvelopeShape(
   expect(manifest.package, 'acme_widgets');
   expect(manifest.bindingNamespace.value, 'com.acme.widgets');
   expect(manifest.imports, ['flax', 'flax_material']);
-  expect(FlaxCodegenManifest.formatVersion, 22);
+  expect(FlaxCodegenManifest.formatVersion, 23);
   expect(FlaxCodegenManifest.uiProtocol, 24);
   final encoded = manifest.toJson();
   _expectExactKeys(encoded, _envelopeKeys);
-  expect(encoded['formatVersion'], 22);
+  expect(encoded['formatVersion'], 23);
   expect(encoded['modules'], isA<List<Object?>>());
   final modules = encoded['modules']! as List<Object?>;
   expect(modules, hasLength(2));

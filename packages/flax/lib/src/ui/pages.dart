@@ -27,7 +27,7 @@ class _PageContentHost extends FlaxWidgetHost {
   );
 }
 
-class _NamedPageRoot extends StatelessWidget {
+class _NamedPageRoot extends StatefulWidget {
   const _NamedPageRoot({
     super.key,
     required this.session,
@@ -38,13 +38,23 @@ class _NamedPageRoot extends StatelessWidget {
   final String name;
   final Object? arguments;
   @override
+  State<_NamedPageRoot> createState() => _NamedPageRootState();
+}
+
+class _NamedPageRootState extends State<_NamedPageRoot> {
+  _Session? _loaded;
+
+  @override
   Widget build(BuildContext context) {
+    final session = widget.session;
     try {
-      final route = ModalRoute.of(context);
-      final loaded = session._load(
-        allowClosing: session._session?.ownsPageRoute(route) ?? false,
+      // Rebuilding an existing mount does not admit new content during close.
+      final loaded = _loaded ??= session._load();
+      return _PageBody(
+        session: loaded,
+        name: widget.name,
+        arguments: widget.arguments,
       );
-      return _PageBody(session: loaded, name: name, arguments: arguments);
     } catch (error, stack) {
       if (session._session case final current?) {
         current.report(error, stack);
@@ -95,7 +105,6 @@ class _PageBodyState extends State<_PageBody> {
     super.didChangeDependencies();
     final session = widget.session;
     try {
-      session.holdPageRoute(ModalRoute.of(context));
       _applyArguments();
     } catch (error, stack) {
       _error = error;

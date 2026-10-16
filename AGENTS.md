@@ -5,9 +5,9 @@
 Flax implements experimental macOS arm64 Hermes and V8 runtimes and embedded Flutter UI:
 generated bindings, explicit signals, dynamic keyed subtrees, and synchronous
 Builder/LayoutBuilder callbacks with real Context access. Explicit sessions support
-shared and nested Flutter navigation with Route-owned callbacks and UI Future delivery.
-Named page entries, reactive parameters, and Dart/JS declarative Pages support host
-Router integration. Read the [UI contract](docs/architecture/ui.md) and
+shared and nested Flutter navigation with ordinary callback ownership and UI Future
+delivery. Named page entries, reactive parameters, and Dart/JS declarative Pages support
+host Router integration. Read the [UI contract](docs/architecture/ui.md) and
 [package boundaries](docs/architecture/packaging.md). Generated owned objects and
 ScrollController and TextEditingController support explicit listeners and page cleanup.
 Material TextField supports generated focus and formatters. Ordinary Dart values use
@@ -131,8 +131,8 @@ and V8 UI checks. Native ABI 2 is independent of UI protocol 24.
 Optional WebSocket uses the shared host checkpoint and base types; see
 [WebSocket contracts](docs/architecture/websocket.md). bufferedAmount is deferred.
 
-Generated top-level functions reuse typed member conversion. Route-producing functions
-require explicit FlaxNavigatorObserver installation; see
+Generated top-level functions reuse typed member conversion. Navigation uses ordinary
+callback ownership and needs no FlaxNavigatorObserver installation; see
 [function contracts](docs/architecture/functions.md).
 
 Optional localStorage uses Hive CE and `FlaxSession.namespace`. Initialization is

@@ -736,7 +736,6 @@ extension _ObjectCalls on _Session {
         descriptor,
         parameters,
         allowBindings: false,
-        navigationObservers: declaration is FlaxWidgetBinding,
         callbackScope: navigation ? _CallbackScope.ui : _CallbackScope.member,
       );
       _ProxyPeer? peer;
@@ -777,7 +776,6 @@ extension _ObjectCalls on _Session {
             ...sources.map((k, v) => MapEntry(k, v.initial.data)),
             '@peer': ?peer,
           });
-          registerNavigationValue(value);
           // The peer's native facade already retains its receiver from Dart.
           // Only the returned wrapper (or transferred extends alias) owns the proxy.
           if (value is FlaxWidgetProxy) {
@@ -929,9 +927,6 @@ extension _ObjectCalls on _Session {
         throw ArgumentError('Unknown object method');
       }
       if (method.startsRoute) requireOpen();
-      final observer = method.startsRoute && receiver is NavigatorState
-          ? _requireNavigationObserver(receiver)
-          : null;
       if (name == binding.disposeMethod) {
         if (args.isNotEmpty) {
           throw ArgumentError('Disposal takes no arguments');
@@ -1018,13 +1013,7 @@ extension _ObjectCalls on _Session {
         }
         final inputs = values.map((k, v) => MapEntry(k, v.data));
         final invoke = method.invoke;
-        final result = observer == null
-            ? invoke(receiver, inputs)
-            : _NavigationCall(this).invoke(
-                observer,
-                () => invoke(receiver, inputs),
-                route: inputs.values.firstOrNull,
-              );
+        final result = invoke(receiver, inputs);
         return holdHostResult(memberResult(result, method.result));
       } finally {
         for (final value in values.values.toList().reversed) {

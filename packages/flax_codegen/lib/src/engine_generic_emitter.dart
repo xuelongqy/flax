@@ -386,7 +386,7 @@ extension _EngineGenericEmission on FlaxCodegenBindingEmitter {
       _callbacks.entries.toList(),
     );
     out.writeln(
-      'return ${method.instance ? 'FlaxInstanceMethod' : 'FlaxFunctionBinding'}(${method.instance ? '' : '${_quote(functionId!)}, '}[${parameters.join(',')}], $result, invoke${method.startsRoute && method.instance ? ', startsRoute: true' : ''}${route == null ? '' : ', route: FlaxRouteCallBinding(${_quote(route.context)}, ${_quote(route.rootNavigator)}, ${jsonEncode(route.builders)})'});',
+      'return ${method.instance ? 'FlaxInstanceMethod' : 'FlaxFunctionBinding'}(${method.instance ? '' : '${_quote(functionId!)}, '}[${parameters.join(',')}], $result, invoke${method.startsRoute && method.instance ? ', startsRoute: true' : ''}${route == null ? '' : ', route: FlaxRouteCallBinding(${jsonEncode(route.builders)})'});',
     );
     out.writeln('};');
     _callbacks

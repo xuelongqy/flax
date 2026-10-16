@@ -344,10 +344,7 @@ class FlaxCodegenFunctionSelection {
       throw StateError('Unknown function data selection');
     }
     final route = value['route'] as Map<String, dynamic>?;
-    if (route != null &&
-        route.keys.any(
-          (k) => !{'context', 'rootNavigator', 'builders'}.contains(k),
-        )) {
+    if (route != null && route.keys.any((k) => k != 'builders')) {
       throw StateError('Unknown function Route selection');
     }
     return FlaxCodegenFunctionSelection(
@@ -360,9 +357,7 @@ class FlaxCodegenFunctionSelection {
       route: route == null
           ? null
           : FlaxCodegenRouteCallModel(
-              route['context'] as String,
-              route['rootNavigator'] as String,
-              (route['builders'] as List<dynamic>).cast<String>(),
+              (route['builders'] as List<dynamic>? ?? []).cast<String>(),
             ),
     );
   }

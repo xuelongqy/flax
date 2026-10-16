@@ -1,5 +1,5 @@
 {
-  "formatVersion": 22,
+  "formatVersion": 23,
   "package": "flax_canvas",
   "bindingNamespace": "flax.canvas",
   "imports": [

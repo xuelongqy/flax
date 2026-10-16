@@ -412,10 +412,10 @@ void main() {
       await t.pumpWidget(app('// replacement'));
       await t.pumpAndSettle();
       expect(runtimes, hasLength(2));
-      // Named content keeps its session until the enclosing native Route retires.
-      expect(runtimes.first.isDisposed, isFalse);
+      // Cleanup completes before shutdown, without waiting for the native Route.
+      expect(runtimes.first.isDisposed, isTrue);
       expect(
-        (runtimes.first.evaluate('editing.cleanups') as FlaxJsNumber).value,
+        runtimes.first.jsCalls['__flaxBindings.createPage.result.dispose'],
         1,
       );
       expect(runtimes.first.activeSubscriptions, 0);

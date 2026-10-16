@@ -141,8 +141,9 @@ configuration. Binding transport uses UI protocol 24 and the unchanged native AB
 This mechanism releases bridge holdings. It does not call `dispose`, close application
 controllers, pop Routes or roll back static state. Session shutdown still removes
 bridge-registered listeners through the existing object cleanup path. Mounted signals
-and components keep their existing per-mount resources. Explicit Route and Page leases
-keep their navigation guarantees; they are not inferred from an ordinary Context.
+and components keep their existing per-mount resources. Routes and Pages add no separate
+Session lease. Explicit Session close drains mounted JS content and active calls, then
+revokes escaped callbacks; late calls cannot enter the destroyed runtime.
 
 A Dart controller may hold a JS listener which captures its Dart wrapper. The engine
 follows these real edges rather than treating the bridge tables as permanent roots. If

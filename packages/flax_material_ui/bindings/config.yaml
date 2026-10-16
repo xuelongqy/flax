@@ -36,8 +36,6 @@ functions:
       ]
     typeArguments: ['Object?']
     route:
-      context: context
-      rootNavigator: useRootNavigator
       builders: [builder]
 classes:
   Material:

@@ -40,7 +40,7 @@ dart run flax_codegen generate --library package:foo/foo.dart
 
 `<direct-yaml>` must be an explicit direct child of the package `bindings/` directory.
 The CLI discovers sibling binding configs in that directory, resolves current-only
-Manifest 22 dependency projections through the package config, and (for `generate`)
+Manifest 23 dependency projections through the package config, and (for `generate`)
 writes `lib/...`, `js/...`, and `bindings/manifest.json` below the owning package. The
 old `dart run flax_codegen [--check] <config>` form is not supported.
 
@@ -201,8 +201,6 @@ overrides:
   functions:
     openPage:
       route:
-        context: context
-        rootNavigator: root
         builders: [builder]
   exclude: [internalHelper]
 ```
@@ -221,8 +219,8 @@ with explicit setters, abstract factories, typed List/Map conversion, stored cal
 shared generic owners, validated concrete constructor specializations and explicitly
 selected proxies. Objects need no dispose method. Contexts/State remain borrowed, and
 Widget hosts retain Flutter lifecycle semantics. Route/Page values use ordinary object
-bindings and joint GC; navigation observation delays session shutdown through actual
-exit transitions.
+bindings and joint GC. Session closing drains mounted JS content and active calls;
+native Routes and exit animations do not retain the Session.
 
 Generated class exports also support `Symbol.hasInstance`, including reference-only
 sealed parents and abstract contracts. A returned public child can be narrowed with
@@ -365,7 +363,7 @@ generic arguments are checked by Dart for both `instanceof` and `asDart`.
 
 Ordinary member access still uses one cached operation invocation. No JS class or
 additional heap scanner is generated per signature, and no new GC ownership is added.
-The additive `generic-member-views` capability rejects older runtimes. Manifest 22, UI
+The additive `generic-member-views` capability rejects older runtimes. Manifest 23, UI
 protocol 24 and native ABI 2 stay unchanged; conversion metadata is derived from the
 existing model. Dart type checks validate values without scanning collection elements.
 
@@ -385,7 +383,7 @@ frozen value objects: `Status.ready.label`, `Status.ready.format('hello')` and
 `Status.fromCode(200)`. There is no `new Status`, subclass or proxy. One shared
 prototype serves all values; final primitive fields cache their first real Dart read.
 Other members retain normal typed dispatch and GC. Generic constants preserve their
-concrete arguments, including across Manifest 22 and dependency providers. Generic named
+concrete arguments, including across Manifest 23 and dependency providers. Generic named
 factories use the existing constructor specialization rules; `values` preserves each
 constant's type independently of factory configuration. `types: [Status]` remains a
 constants-only selection. See
@@ -451,7 +449,7 @@ constructor or additional wire identity. Explicit TS type arguments are supporte
 matching all Dart inference is not required. Generic callbacks reuse bound defaults
 where legal and actual invocation types otherwise. Returned generic callbacks support
 `dartType(callback, ...types)`. Unsupported conversions and export-name collisions fail
-explicitly. Manifest 22 preserves alias origins, parameters and targets across packages.
+explicitly. Manifest 23 preserves alias origins, parameters and targets across packages.
 See [ADR 0035](../../docs/decisions/0035-generic-state-variants-and-protocol-21.md).
 Complete Dart type-system coverage remains separate work.
 
@@ -459,7 +457,7 @@ Records are structural values with no wire ID or session identity. Generated Typ
 uses readonly object fields (`$1`, `$2`, ... for positional fields plus named fields),
 while Dart conversion reconstructs real Records and recursively reuses the existing
 conversion rules for nested callbacks, collections, Futures and provider-owned objects.
-Manifest 22 encodes Record fields and all current recursive type metadata.
+Manifest 23 encodes Record fields and all current recursive type metadata.
 
 Style and Theme selections reuse object, static-member and Widget generation. Optional
 named TS inputs explicitly include undefined for exactOptionalPropertyTypes. An
@@ -512,8 +510,8 @@ can use an ErrorWidget placeholder. Concrete native Widget results preserve the 
 Dart subtype. A descriptor accepted by a concrete signature becomes a fixed native
 configuration; signals remain on descriptor hosts, not native constructor inputs.
 Synchronous Flutter builders still reject Promises. Configured Route-producing functions
-keep their explicit navigation roles and FlaxNavigatorObserver. See
-[bridge references and GC](../../docs/architecture/references.md).
+keep explicit navigation admission and UI builder roles without requiring an observer.
+See [bridge references and GC](../../docs/architecture/references.md).
 
 Nested callbacks in typed List elements and Map values receive typed adapters. Nested
 Widget results use independent ownership. Ordinary member callback conversion memoizes a
@@ -565,7 +563,7 @@ keep private types and constant defaults, and `configuration`/`node` member name
 no special conflict. Explicit JS members use the normal converters. Selected
 `proxy: extends` classes retain JS inheritance, private fields, overrides and direct
 `super`. Fixed constructor inputs reject bindings; child Widgets retain their own
-subscriptions. Manifest 22 keeps native member names and parameters without forwarding
+subscriptions. Manifest 23 keeps native member names and parameters without forwarding
 source/imports. See
 [interface generation](../../docs/architecture/widget-interfaces.md).
 
@@ -576,7 +574,7 @@ and implements the selected interface. JS supplies the public interface members 
 contracts use the existing checked types and shared peer ownership. Native-only
 interfaces retain value-only bindings when their signatures cannot be converted.
 Automatic selection includes this constructor when its full conversion is available.
-Manifest 22 records the proxy's native base choice through dependency projection.
+Manifest 23 records the proxy's native base choice through dependency projection.
 
 Top-level `functions` selections generate named JS exports and `FlaxFunctionBinding`
 registrations. Function-only modules, public re-exports, typed callbacks and Future
@@ -593,8 +591,13 @@ Future/FutureOr/Stream compositions. Explicit and automatic selection share one 
 validation rule; ordinary values have no separate callback type whitelist. State
 validity is checked at invocation or async delivery, including after unmount. Retaining
 a callback does not keep a Flutter State mounted. Existing Context validity and
-navigation-close rules still apply. Explicit `route` parameter roles require an observed
-synchronous TransitionRoute and per-Route callback ownership. See
+navigation-close rules still apply. `route: {}` adds navigation admission, and optional
+`route.builders` selects typed callbacks for UI error handling. The original signature
+uses ordinary function/callback conversion, including async functions, nullable and
+named/indexed callbacks, and APIs without Context or root-Navigator parameters. The
+retired `route.context` and `route.rootNavigator` configuration fields are rejected.
+Manifest 23 stores only the optional builder roles and rejects older formats; UI
+protocol 24, selection format 2, binding extension 8 and native ABI 2 are unchanged. See
 [top-level functions](../../docs/architecture/functions.md).
 
 Optional `topLevel: {getters: [name]}` selects public top-level const, final, late final
@@ -615,7 +618,7 @@ reference; they do not keep it mounted. Reads are lazy, invalid writes fail befo
 invoking Dart, and nullable setters accept `null` but reject `undefined`. Static/global
 values belong to the Dart application; closing a session does not reset them or keep a
 stored Context/State mounted. Provider-owned declarations reuse the provider's public
-module without registering twice. Manifest 22 records source identity, read/write
+module without registering twice. Manifest 23 records source identity, read/write
 operations and public-library routing. See
 [readonly generation](../../docs/architecture/bindings.md#public-libraries-and-top-level-readonly-declarations)
 and [ADR 0027](../../docs/decisions/0027-public-library-module-delivery.md).
@@ -628,7 +631,7 @@ writes use the same function channel as top-level declarations; module import do
 read state. Const/final/late-final writes, inherited statics, unsupported conversions
 and generated `setX` export collisions are rejected. Automatic selection skips
 conflicting writes and reports the reason. Static state belongs to the application;
-closing a session does not reset it. Manifest 22 records class-qualified read/write
+closing a session does not reset it. Manifest 23 records class-qualified read/write
 operation IDs and provider capabilities. See
 [static properties](../../docs/architecture/bindings.md#class-static-properties).
 
@@ -647,7 +650,7 @@ Widget results, native fallback and explicit super calls; Dart can retain and mo
 result later without an additional host or lease. Selected concrete extends
 getters/setters enforce inherited `@mustCallSuper`, with separate read/write and nested
 invocation checks. Async getters require super before returning their Promise; nullable
-results and existing rejections retain the same rules. Manifest 22 preserves
+results and existing rejections retain the same rules. Manifest 23 preserves
 `proxy.mustCallSuperAccessors` through providers. Regenerate all providers and consumers
 together; previous formats are rejected. See
 [proxy properties](../../docs/architecture/proxy-properties.md).
@@ -754,7 +757,7 @@ supported, including concurrent invocations with different types. Direct JS call
 ordinary `super` behavior. Omitting the context in a reified override does not preserve
 typed allocation automatically, and `mustCallSuper` checks remain active. See the
 [generic call contract](../../docs/architecture/bindings.md#generic-call-selectors-and-js-super).
-Manifest 22 records call targets and `generic-call-types` gates older frameworks; the UI
+Manifest 23 records call targets and `generic-call-types` gates older frameworks; the UI
 protocol, native ABI and selection formats remain unchanged.
 
 Generic outputs describe the existing bridge conversion: `echo(['a'])` returns a
@@ -805,12 +808,12 @@ static methods/getters. Creating a view does not call Dart or allocate a Dart ob
 views share their methods. Context, Widget and other supported receiver, argument and
 result types reuse ordinary binding conversion and lifetime checks. Generic
 declarations/members and legal Dart operators use the same function call channel. Dart
-always invokes the explicit named extension override. Manifest 22 and operation IDs are
+always invokes the explicit named extension override. Manifest 23 and operation IDs are
 unchanged; regenerate provider and consumer packages together when replacing the
 previous receiver-first API. See the
 [extension binding contract](../../docs/architecture/bindings.md#extension-declarations).
 
-Generic bounds can refer to unbound interfaces through Manifest 22 type-only references.
+Generic bounds can refer to unbound interfaces through Manifest 23 type-only references.
 Recursive/dependent class and method templates keep Dart subtype checks; TS retains
 nominal source identity and generic arguments without exposing bound members. Generic
 aliases need no runtime erasure when their bounds are type-only. Ordinary values still
@@ -859,7 +862,7 @@ each mount must return a fresh JS State. Unoverridden factories preserve native 
 State variants still require a compatible Dart State type; a variant composed for
 `State<StatefulWidget>` cannot impersonate `State<ConcreteWidget>`.
 
-Manifest 22 requires `native-widget-proxies`; selection format 2 and native ABI 2 remain
+Manifest 23 requires `native-widget-proxies`; selection format 2 and native ABI 2 remain
 unchanged. UI protocol 24 requires regeneration of older generated modules. Generated
 proxies share member metadata and retain one actual JS receiver peer per Dart instance.
 Current lookup preserves private/arrow fields, inheritance and later member replacement.
@@ -883,8 +886,8 @@ registered Dart class view without copying the value. No navigation-specific con
 is added.
 
 Joint GC retains actual callback/object cycles and collects them when neither business
-heap can reach them. Navigation still needs a completion boundary before closing a JS
-session. Generated NavigatorObserver list inputs install a private
-FlaxNavigatorObserver; a host-created Navigator must install its own stable observer.
-Session close stops new navigation and waits through exit transitions without clearing
-the Flutter stack. See [navigation ownership](../../docs/architecture/navigation.md).
+heap can reach them. Session close drains mounted JS content and active bridge calls,
+then revokes remaining callbacks. Native Routes and exit transitions do not delay close.
+NavigatorObserver list inputs preserve their defaults and supplied order without
+injection; host Navigators need no Flax observer. Close never clears the Flutter stack.
+See [navigation ownership](../../docs/architecture/navigation.md).

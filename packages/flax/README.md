@@ -86,16 +86,16 @@ See the [UI contract](../../docs/architecture/ui.md) for session ownership, fram
 scheduling, error recovery, and explicit limits. `check:ui` exercises the real V8-backed
 custom Flutter engine.
 
-Navigation now includes explicit sessions, shared or nested Flutter Navigators,
-Route-owned callbacks, copied data, and UI Future delivery. See the
+Navigation includes explicit sessions, shared or nested Flutter Navigators, ordinary
+Dart object results, joint-GC callback ownership and UI Future delivery. See the
 [navigation contract](../../docs/architecture/navigation.md) for the selected subset and
 lifecycle rules.
 
 `FlaxView.page` borrows a session and mounts a registered JS factory without its initial
 root. Same-identity parameter changes update a readonly signal while keeping local
-state. FlaxPageBinding, FlaxPageConfiguration, FlaxPageLease, and FlaxPageRoute are the
-public generation/adapter boundary for standard library Pages. Native host Routes keep
-their named content's session through TransitionRoute.completed.
+state. Routes and Pages use ordinary object bindings. Only mounted JS content and active
+bridge calls delay Session closing; native routes, transitions and escaped callbacks do
+not. Retained callbacks are revoked when close completes.
 
 Session retention and final release use explicit internal methods. Callback scope is
 fixed at creation/mount, while node updates prepare and validate before committing.
@@ -168,8 +168,9 @@ capabilities such as Fetch use separate packages. The runtime host type entry ha
 installation side effects. Bare FlaxJsRuntime instances retain explicit microtask
 scheduling.
 
-Public `FlaxFunctionBinding` and `FlaxNavigatorObserver` support generated top-level
-calls and native Route functions. Core selects applyBoxFit, BoxFit and FittedSizes. See
+Public `FlaxFunctionBinding` supports generated top-level calls and native Route
+functions. FlaxNavigatorObserver is optional and does not retain Sessions. Core selects
+applyBoxFit, BoxFit and FittedSizes. See
 [function and observer contracts](../../docs/architecture/functions.md).
 
 Generated ValueListenable implementations expose a real Dart readonly value and explicit

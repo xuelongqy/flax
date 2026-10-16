@@ -1,5 +1,5 @@
 {
-  "formatVersion": 22,
+  "formatVersion": 23,
   "package": "your_package",
   "bindingNamespace": "vendor.example",
   "imports": [
@@ -13,6 +13,7 @@
       "requiredCapabilities": [
         "generic-member-views",
         "instance-checks",
+        "native-navigation-objects",
         "native-widget-proxies"
       ],
       "model": {

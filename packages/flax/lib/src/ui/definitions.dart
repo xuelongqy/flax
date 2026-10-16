@@ -360,11 +360,9 @@ class FlaxFunctionBinding extends FlaxStaticMethod {
   final FlaxRouteCallBinding? route;
 }
 
-/// Explicit parameter roles for functions that synchronously push a Route.
+/// Navigation admission and UI callback roles for selected function bindings.
 class FlaxRouteCallBinding {
-  const FlaxRouteCallBinding(this.context, this.rootNavigator, this.builders);
-  final String context;
-  final String rootNavigator;
+  const FlaxRouteCallBinding([this.builders = const []]);
   final List<String> builders;
 }
 

@@ -1,5 +1,5 @@
 {
-  "formatVersion": 22,
+  "formatVersion": 23,
   "package": "flax_material_ui",
   "bindingNamespace": "flax.material",
   "imports": [
@@ -26628,8 +26628,6 @@
               "operator": null
             },
             "route": {
-              "context": "context",
-              "rootNavigator": "useRootNavigator",
               "builders": [
                 "builder"
               ]

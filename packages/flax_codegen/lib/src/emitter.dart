@@ -2241,7 +2241,7 @@ class FlaxCodegenBindingEmitter {
       );
       if (function.route case final route?) {
         out.write(
-          ', route: FlaxRouteCallBinding(${_quote(route.context)}, ${_quote(route.rootNavigator)}, ${jsonEncode(route.builders)})',
+          ', route: FlaxRouteCallBinding(${jsonEncode(route.builders)})',
         );
       }
       if (call.typeParameters.isNotEmpty) {

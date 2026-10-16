@@ -628,8 +628,6 @@ overrides:
       data:
         result: true
       route:
-        context: context
-        rootNavigator: rootNavigator
         builders: [builder]
 ''');
   Directory(p.join(root.path, 'lib')).createSync();
@@ -637,7 +635,7 @@ overrides:
 import 'package:flutter/widgets.dart';
 
 Future<Object?> openPage({required BuildContext context,
-    required WidgetBuilder builder, bool rootNavigator = false}) =>
+    required WidgetBuilder builder, bool rootNavigator = false}) async =>
   Navigator.of(context, rootNavigator: rootNavigator).push<Object?>(
     PageRouteBuilder<Object?>(pageBuilder: (context, _, _) => builder(context)));
 

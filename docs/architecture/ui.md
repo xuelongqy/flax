@@ -154,9 +154,9 @@ An internal session root is keyed by factory, source, source URL, and registry. 
 parent rebuilds retain the session. Changing those inputs replaces that entire subtree.
 Flutter unmounts descendants before disposing the internal root, so observer cleanup
 runs while the engine is alive. Root disposal requests session closing; the runtime is
-destroyed after all content and Route leases retire. Owning views use separate engines.
-Borrowing views and their Routes use their explicitly owned session; close waits for its
-remaining mounted hosts and Route leases.
+destroyed after mounted JS content and active bridge calls drain. Owning views use
+separate engines. Borrowing views use their explicitly owned session. Dart Routes and
+escaped callbacks do not independently delay close; callbacks are revoked on completion.
 
 Initial load failures clean up the runtime and display a bounded ErrorWidget.
 Event/binding failures reach `onError`, or FlutterError.reportError by default. Failed

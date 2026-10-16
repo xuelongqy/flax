@@ -57,6 +57,7 @@ const exampleBindings = FlaxBindingModule(
   requiredCapabilities: const <String>[
     "generic-member-views",
     "instance-checks",
+    "native-navigation-objects",
     "native-widget-proxies",
   ],
   stateVariants: [],
