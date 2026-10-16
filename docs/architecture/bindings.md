@@ -808,38 +808,43 @@ member/constructor conflicts fail, automatic selection skips conflicting members
 diagnostic, and runtime registration refuses to overwrite an existing property.
 Non-generic exports keep their ordinary members. Select the original generated class
 before extending it; JS-only subclasses are not independently selectable Dart generic
-templates. Method/function selection continues to use `dartType`; TS `<T>` compilation
-remains unchanged.
+templates. Method/function selection continues to use `dartType`. The shared
+[`@flax/build` compiler](../../packages/flax_build/js/README.md#typescript-compilation)
+lowers ordinary TS generic syntax to these existing selectors before erasure.
 
-The examples require those constructors in the bound Dart API. When all type arguments
-are omitted, the shared analyzer-validated bound defaults apply, commonly `Object?`;
-`dartType(Bag)` is the bare export. Array contents, JS input shapes and TS `<T>` syntax
-never choose the Dart instantiation. Optional-only inputs, empty/named constructors and
-type parameters absent from inputs therefore follow the same rule. Provide the complete
-type-argument tuple when selecting a concrete target. Omitted arguments authenticate the
-generated class independently of its optional type description, so a supported
-`T extends List<BigInt>` constructor and its checked cast retain their legal defaults
-even without a composable type token. An unavailable default description does not
-disable supported concrete targets; a bound such as `Iterable<BigInt>` can still select
-an already compiled bound collection subclass.
+The examples require those constructors in the bound Dart API. `dartType(Bag)` is the
+bare export. Without the Flax build compiler, JS input shapes and erased TS `<T>` syntax
+do not choose the Dart instantiation; shared analyzer-validated bound defaults apply,
+commonly `Object?`. With the compiler, explicit arguments and safe
+resolved-signature/contextual inference select the same checked runtime types. A
+contextual result can supply a type absent from constructor inputs. Empty or ambiguous
+inputs without that evidence keep their legal defaults. Provide the complete
+type-argument tuple when selecting a target with runtime tokens. Omitted arguments
+authenticate the generated class independently of its optional type description, so a
+supported `T extends List<BigInt>` constructor and its checked cast retain their legal
+defaults even without a composable type token. An unavailable default description does
+not disable supported concrete targets; a bound such as `Iterable<BigInt>` can still
+select an already compiled bound collection subclass.
 
-`dartTypes` supplies String, bool, int, double, num, BigInt, void, Never, Null, Object
-and Object? tokens, with List, Map, Set, Iterable, Future, FutureOr, Stream and nullable
-composition. JS uses `dartTypes.bigInt`, `.void`, `.never`, `.null`, `.future(T)`,
-`.futureOr(T)` and `.stream(T)` for the added forms. Generated class tokens include
-their actual Dart default arguments resolved by the engine, including reference-only
-Context/State and Route/Stream owners. A selected object handle is also a nominal token
-for nesting or `asDart`. Type descriptors are authenticated by a shared WeakMap; a
-user-created object with matching properties is not a type token. Tokens preserve Dart
-numeric and nominal identities at runtime. TypeScript represents Dart numeric values as
-`number`, so distinctions such as an `int` bound versus a `double` token are checked by
-the engine. `DartState` from `@flax/flutter/widgets` supplies the native State reference
-token; the JS component `State` base remains its lifecycle API. Explicitly selected
-native Widget proxy factories return real native objects, so their handles expose a
-concrete constructible type instead of a union with deferred descriptions.
+`dartTypes` supplies String, bool, int, double, num, BigInt, void, Never, Null, Object,
+Object? and the shared Widget token, with List, Map, Set, Iterable, Future, FutureOr,
+Stream and nullable composition. JS uses `dartTypes.bigInt`, `.void`, `.never`, `.null`,
+`.future(T)`, `.futureOr(T)` and `.stream(T)` for the added forms. Generated class
+tokens include their actual Dart default arguments resolved by the engine, including
+reference-only Context/State and Route/Stream owners. A selected object handle is also a
+nominal token for nesting or `asDart`. Type descriptors are authenticated by a shared
+WeakMap; a user-created object with matching properties is not a type token. Tokens
+preserve Dart numeric and nominal identities at runtime. TypeScript represents Dart
+numeric values as `number`, so distinctions such as an `int` bound versus a `double`
+token are checked by the engine. `DartState` from `@flax/flutter/widgets` supplies the
+native State reference token; the JS component `State` base remains its lifecycle API.
+Explicitly selected native Widget proxy factories return real native objects, so their
+handles expose a concrete constructible type instead of a union with deferred
+descriptions.
 
-Bare constructor dispatch retains its analyzer-evidenced default inference. Explicit
-selection uses `dartType` and does not guess types from business inputs.
+Bare JS constructor dispatch retains its analyzer-evidenced default inference. The TS
+build compiler selects closed types from static call-site evidence; runtime `dartType`
+never guesses them from business values.
 
 The maintained engine supplies real Dart Type handles and instantiates one compiled Dart
 factory per generic declaration. First use checks arity and Dart bounds, then caches the
@@ -851,8 +856,9 @@ matching tokens remain separate. A JS subclass shares its generated Dart proxy c
 the token's TypeScript view exposes native binding members, not JS-only subclass
 additions. The original object and its overrides stay intact; use JS `instanceof` when
 narrowing to a JS subclass. Existing configured `typeArguments` supplies the default
-owner rather than limiting explicit runtime selection. No type is inferred from JS array
-contents or TS arguments.
+owner rather than limiting explicit runtime selection. The runtime does not infer a type
+from JS values. TS build compilation supplies authenticated tokens from supported
+explicit or statically inferred types.
 
 Class tokens also select intrinsic Streams, enum named factories and ordinary Route/Page
 objects. This does not make enums or reference-only Context/State types constructible.
@@ -945,11 +951,13 @@ const first: string = items.get(0);
 const uppercase: string[] = items.toArray().map((value) => value.toUpperCase());
 ```
 
-Both calls use the same Dart `echo<Object?>` entry. TypeScript retains the input/result
-relationship and generic input conversion, including inherited and enum methods; JS
-subclasses continue to override methods and call `super` through the existing proxy. No
-new bridge operation or per-runtime-type materializer is generated. Known concrete
-member views still specialize owner-dependent inputs and results on demand.
+Without Flax TS compilation, these calls use the same Dart `echo<Object?>` entry.
+`@flax/build` instead selects supported statically inferred argument types. TypeScript
+retains the input/result relationship and generic input conversion, including inherited
+and enum methods; JS subclasses continue to override methods and call `super` through
+the existing proxy. No new bridge operation or per-runtime-type materializer is
+generated. Known concrete member views still specialize owner-dependent inputs and
+results on demand.
 
 Object-erased method-local and callback-local generic results use `DartOutput<T>` to
 describe the actual bridge result. Raw Arrays, Maps, Sets and plain field objects become
@@ -966,10 +974,11 @@ can be written as `<T>(value: DartOutput<T>) => value`; an asynchronous one can 
 but their TypeScript overrides must describe the same converted output contract. Generic
 bounds and concrete factory type arguments remain unprojected.
 
-Erasure does not infer a new Dart `T` from a JS value or a TypeScript type argument.
-`List<T> wrap<T>(T value) => [value]` therefore creates `List<Object?>`, even when a
-caller passes a string; runtime type tests and typed allocations observe the erased
-argument. Use `dartType(object, 'wrap', dartTypes.string)` or the fixed
+Outside the Flax TS build compiler, erasure does not infer a new Dart `T` from a JS
+value or a TypeScript type argument. `List<T> wrap<T>(T value) => [value]` therefore
+creates `List<Object?>`, even when a caller passes a string; runtime type tests and
+typed allocations observe the erased argument. Use
+`dartType(object, 'wrap', dartTypes.string)` or the fixed
 `methodTypeArguments: {wrap: [String]}` configuration when the actual Dart
 `List<String>` contract is required. Passing an existing typed Dart reference through
 `echo` retains its identity and concrete type. Acyclic method-local bounds, such as
@@ -1018,13 +1027,14 @@ dartType(identity(), dartTypes.string)('value');
 
 The VM checks the original bounds, including mutual dependencies and captured owner
 types. If no legal default exists, a bare call is rejected instead of guessing a type;
-TS inference alone does not choose a Dart type. Manifest 24 stores `defaultType: null`
-and the `explicit-generic-types` capability for these entries. The internal `Never`
-declaration witness supplies no business-call default. Engine extension 7 includes the
-Dart VM fix that terminates recursive function-bound substitution inside an enclosing
-generic declaration. Older engines are rejected before runtime creation. Neither
-registration nor a callback signature factory retains a business receiver or argument.
-Generic callback selections follow the existing callback reference ownership and Session
+`@flax/build` supplies supported TS-inferred tokens; TS checking/erasure alone does not
+choose a Dart type. Manifest 24 stores `defaultType: null` and the
+`explicit-generic-types` capability for these entries. The internal `Never` declaration
+witness supplies no business-call default. Engine extension 7 includes the Dart VM fix
+that terminates recursive function-bound substitution inside an enclosing generic
+declaration. Older engines are rejected before runtime creation. Neither registration
+nor a callback signature factory retains a business receiver or argument. Generic
+callback selections follow the existing callback reference ownership and Session
 cleanup.
 
 Static factories with bounds that deferred inference cannot convert use the same checked
@@ -1045,9 +1055,18 @@ Extension getters and setters with open owner bounds use the same selector, for 
 extension-owner types before method types. This calls the existing getter operation; a
 bare property read without a legal default still fails explicitly.
 
-A generic JS override can receive an optional `FlaxGenericCall<F>` as its last argument.
-Its frozen `super` function captures this invocation's native receiver and actual Dart
-type arguments. Use that function for a selected native call:
+With `@flax/build`, `class Strings extends Processor<string>` selects the native parent
+once and preserves the JS prototype chain. `super.wrap<T>(value)` inside a generic
+override forwards a compiler-injected per-invocation context through each lexical JS
+parent before reaching the native super helper. Closed `super.wrap<string>` calls in
+non-generic methods use the same existing checked adapter. `await` does not share
+context between invocations; weak receiver caches and joint GC retain their ordinary
+ownership. The compiler adds no persistent receiver root or per-class super
+implementation.
+
+A generic JS override can also receive an explicit optional `FlaxGenericCall<F>` as its
+last argument. Its frozen `super` function captures this invocation's native receiver
+and actual Dart type arguments. Use that function for a selected native call:
 
 ```js
 class Child extends EchoMethods {
@@ -1362,9 +1381,22 @@ disallows extension declarations of Object members, including `==`.
 
 Every invocation explicitly names the Dart extension override; no implicit resolution or
 TS prototype mutation occurs. Extension and member generic scopes preserve TS type
-relationships, with upper-bound erasure in Dart. Shadowed parameter names are renamed
-only in the TS signature. Receivers, arguments and results reuse existing recursive
-conversions, including Records, aliases, callbacks, collections and Future/FutureOr.
+relationships and selected Dart type handles; calls without a selection use their legal
+bound defaults. Shadowed parameter names are renamed only in the TS signature.
+Receivers, arguments and results reuse existing recursive conversions, including
+Records, aliases, callbacks, collections and Future/FutureOr.
+
+The shared model aligns corresponding runtime/declaration callback binders by position
+before substituting a member's children. It retains each view's lexical identity, so
+captured owner types, nested callback bounds and shadowed names cannot replace one
+another. Default function registrations close owner parameters through the same helper
+as ordinary methods; callback factories still use one template per signature. For
+`List<T> Function<R>(R) get captured`, `ListX<string>(list).captured<number>(3)`
+therefore returns a real `List<String>`, independently of R being num. Class callbacks,
+proxies and extensions share this path; it adds no runtime root or GC hook. Default
+registrations also retain explicit overload transport such as `scalar`, which must
+preserve JS integers before constructor dispatch. That wire rule does not alter symbolic
+Dart substitution or TS inference.
 
 Captured receiver parameters and a member's own parameters use the same `DartOutput<T>`
 projection as ordinary generic functions. For example, `ListX([['a']]).firstValue` is a

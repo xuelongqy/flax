@@ -52,6 +52,12 @@ The checks verify generated bindings, generator and JS tests, JS compilation and
 example/test bundling, Dart analysis, formatting, documentation, and CMake
 configuration. They do not download or build an engine or run platform UI tests.
 
+Application builds and Vite hot reload share
+[`@flax/build`](packages/flax_build/js/README.md). Its TS compiler translates supported
+`Bag<string>(...)`, generic method calls and `extends Processor<string>` syntax to the
+existing checked Dart type handles. JS uses the same package; `$type` and `dartType`
+remain available for explicit runtime tokens.
+
 Use the [Flutter fork](https://github.com/xuelongqy/flutter) on `flax/main` with its
 matching local engine. macOS arm64 requires macOS 15 or newer, Xcode and Ninja. Build
 artifacts from the fork using its revision-checked helper and an already verified V8

@@ -14502,6 +14502,7 @@ const flutterBindings = FlaxBindingModule(
           FlaxTypeRef(
             "stream",
             id: "flax.core/flutter#type:Stream",
+            dartType: FlaxDartTypes.typeOf<api3.Stream<Object?>>,
             item: FlaxTypeRef("any", nullable: true),
             stream: FlaxStreamBinding(
               "stream:flax.core/flutter#type:Stream[any?:]",
@@ -14517,6 +14518,7 @@ const flutterBindings = FlaxBindingModule(
       FlaxTypeRef(
         "stream",
         id: "flax.core/flutter#type:Stream",
+        dartType: FlaxDartTypes.typeOf<api3.Stream<Object?>>,
         item: FlaxTypeRef("any", nullable: true),
         stream: FlaxStreamBinding(
           "stream:flax.core/flutter#type:Stream[any?:]",
@@ -14694,13 +14696,23 @@ const flutterBindings = FlaxBindingModule(
       [
         FlaxParameter(
           "source",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:StreamTransformer"),
+          FlaxTypeRef(
+            "object",
+            id: "flax.core/flutter#type:StreamTransformer",
+            dartType:
+                FlaxDartTypes.typeOf<api3.StreamTransformer<Object?, Object?>>,
+          ),
           required: true,
           defaultValue: null,
           omitWhenAbsent: false,
         ),
       ],
-      FlaxTypeRef("object", id: "flax.core/flutter#type:StreamTransformer"),
+      FlaxTypeRef(
+        "object",
+        id: "flax.core/flutter#type:StreamTransformer",
+        dartType:
+            FlaxDartTypes.typeOf<api3.StreamTransformer<Object?, Object?>>,
+      ),
       _StreamTransformer_castFrom,
       genericFactory: _flaxGenericFunction16,
     ),

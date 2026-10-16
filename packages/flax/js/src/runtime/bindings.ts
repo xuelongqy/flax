@@ -21,6 +21,7 @@ export {
   dartTypes,
   flaxDartTypeCases,
   flaxDartMethodCases,
+  flaxDartExtensionTypes,
   flaxDartTypeKey,
   flaxDartTypeValue,
 } from './dart_types.js';
@@ -1154,9 +1155,10 @@ export function dartType(
     const owner = type === undefined ? undefined : (objectViewTypes.get(type) ?? type);
     const definition = owner === undefined ? undefined : genericMethods.get(owner);
     const key = JSON.stringify(args.slice(1).map(dartTypeDescription));
+    const declarationMember = member.startsWith('@super:') ? member.slice(7) : member;
     const target =
-      definition && Object.hasOwn(definition.methods, member)
-        ? definition.methods[member]
+      definition && Object.hasOwn(definition.methods, declarationMember)
+        ? definition.methods[declarationMember]
         : undefined;
     if (!definition || !target || owner === undefined)
       throw new TypeError('Expected a generated generic method');
@@ -1236,7 +1238,12 @@ export function dartType(
   const cached = metadata.selected.get(key);
   if (cached) return cached;
   const targetId = selectDart('class', metadata.type, arguments_);
-  if (source.category !== 'enum') registerObjectView(targetId, metadata.type);
+  if (
+    objectTypes.has(metadata.type) ||
+    streamTypes.has(metadata.type) ||
+    stateTypes.has(metadata.type)
+  )
+    registerObjectView(targetId, metadata.type);
   else objectViewTypes.set(targetId, metadata.type);
   const target = {
     ...source,
@@ -2373,6 +2380,10 @@ export function defineProxyBase(
     (receiver, member, args) =>
       invokeProxySuper(receiver, definition.type, member, args),
   );
+  for (const name of members) {
+    const value = Object.getOwnPropertyDescriptor(prototype, name)?.value;
+    if (typeof value === 'function') proxySuperFunctions.add(value);
+  }
   proxyLayouts.set(definition, { prototype });
   proxyDefinitions.set(prototype.constructor, definition);
   if (objectTypes.get(definition.type)?.collectionKind !== undefined) {
@@ -2447,6 +2458,46 @@ export function constructExtendedProxy(
   } finally {
     constructingExtendedProxies.delete(receiver);
   }
+}
+
+const proxySuperFunctions = new WeakSet<Function>();
+
+/** Compiler entry: preserve lexical JS super before entering the native super helper. */
+export function invokeDartSuper(
+  receiver: object,
+  method: Function,
+  member: string,
+  args: readonly unknown[],
+  types: readonly FlaxDartTypeInput[] | null,
+  context?: { readonly super: Function },
+): unknown {
+  let call = context;
+  if (types !== null) {
+    const selected = nativeApply(dartType, undefined, [
+      receiver,
+      `@super:${member}`,
+      ...types,
+    ]) as Function;
+    call = Object.freeze({ super: selected });
+  }
+  if (proxySuperFunctions.has(method)) {
+    return call
+      ? nativeApply(call.super, undefined, args)
+      : nativeApply(method, receiver, args);
+  }
+  if (!call) return nativeApply(method, receiver, args);
+  const reference = requireDartReference(receiver);
+  const type = objectHandles.get(reference)?.type ?? stateHandles.get(reference)?.type;
+  const definition = type && genericMethods.get(objectViewTypes.get(type) ?? type);
+  const parameters = definition && definition.methods[member]?.parameters;
+  if (!parameters) throw new TypeError('Expected a generated generic super method');
+  const count =
+    parameters.filter((p) => p.positional).length +
+    (parameters.some((p) => !p.positional) ? 1 : 0);
+  const forwarded = [...args];
+  while (forwarded.length < count) forwarded.push(undefined);
+  forwarded.push(call);
+  return nativeApply(method, receiver, forwarded);
 }
 
 export function invokeProxySuper(

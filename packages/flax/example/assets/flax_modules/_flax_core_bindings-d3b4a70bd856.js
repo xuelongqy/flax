@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"f29734616ab0783c54d9d815abb1adb073cdb1d21ebc4737ec93d84016994745","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"56861fbf988d69eb632e5f7391b5c7748a5b59689d5c5c0821a9cc6f9f7305df","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -91,12 +91,14 @@ __export(bindings_exports, {
   enumValue: () => enumValue,
   extensionReceiver: () => extensionReceiver,
   flaxDartConstructors: () => flaxDartConstructors,
+  flaxDartExtensionTypes: () => flaxDartExtensionTypes,
   flaxDartMethodCases: () => flaxDartMethodCases,
   flaxDartTypeCases: () => flaxDartTypeCases,
   flaxDartTypeKey: () => flaxDartTypeKey,
   flaxDartTypeValue: () => flaxDartTypeValue,
   getDartType: () => getDartType,
   installBindingModule: () => installBindingModule,
+  invokeDartSuper: () => invokeDartSuper,
   invokeEnum: () => invokeEnum,
   invokeInstance: () => invokeInstance,
   invokeObject: () => invokeObject,
@@ -206,6 +208,7 @@ var flaxDartTypeValue = /* @__PURE__ */ Symbol("Flax Dart type value");
 var flaxDartTypeKey = /* @__PURE__ */ Symbol("Flax Dart type key");
 var flaxDartTypeCases = /* @__PURE__ */ Symbol("Flax Dart type cases");
 var flaxDartMethodCases = /* @__PURE__ */ Symbol("Flax Dart method cases");
+var flaxDartExtensionTypes = /* @__PURE__ */ Symbol("Flax Dart extension types");
 var unwrapTypeResult = (value) => value;
 function installDartTypeUnwrap(unwrap) {
   unwrapTypeResult = unwrap;
@@ -247,6 +250,12 @@ var dartTypes = Object.freeze({
   null: primitive("Null", true),
   object: primitive("any", false),
   unknown: primitive("any", true),
+  widget: token([
+    "widget",
+    null,
+    [],
+    false
+  ]),
   list(item) {
     return token(["list", null, [dartTypeDescription(item)], false]);
   },
@@ -787,7 +796,8 @@ function dartType(value, ...args) {
     const owner = type === void 0 ? void 0 : (_d = objectViewTypes.get(type)) != null ? _d : type;
     const definition = owner === void 0 ? void 0 : genericMethods.get(owner);
     const key2 = JSON.stringify(args.slice(1).map(dartTypeDescription));
-    const target2 = definition && Object.hasOwn(definition.methods, member) ? definition.methods[member] : void 0;
+    const declarationMember = member.startsWith("@super:") ? member.slice(7) : member;
+    const target2 = definition && Object.hasOwn(definition.methods, declarationMember) ? definition.methods[declarationMember] : void 0;
     if (!definition || !target2 || owner === void 0)
       throw new TypeError("Expected a generated generic method");
     let cache = selectedMethods.get(value);
@@ -854,7 +864,7 @@ function dartType(value, ...args) {
   if (cached)
     return cached;
   const targetId = selectDart("class", metadata.type, arguments_);
-  if (source.category !== "enum")
+  if (objectTypes.has(metadata.type) || streamTypes.has(metadata.type) || stateTypes.has(metadata.type))
     registerObjectView(targetId, metadata.type);
   else
     objectViewTypes.set(targetId, metadata.type);
@@ -1576,7 +1586,7 @@ function installMembers(prototype, methods, getters, setters, invoke) {
   }
 }
 function defineProxyBase(prototype, definition, nativeGetters = []) {
-  var _a2;
+  var _a2, _b;
   if (definition.nativeWidget)
     componentBases.set(prototype, false);
   installMembers(prototype, {}, nativeGetters, [], (receiver, member, args) => callObject(receiver, definition.type, "get", member.slice(4), args));
@@ -1596,9 +1606,14 @@ function defineProxyBase(prototype, definition, nativeGetters = []) {
   Object.freeze(definition);
   const members = new Set(definition.superMembers);
   installMembers(prototype, Object.fromEntries(Object.entries(definition.methods).filter(([name]) => members.has(name))), definition.getters.filter((name) => members.has(`get:${name}`)), definition.setters.filter((name) => members.has(`set:${name}`)), (receiver, member, args) => invokeProxySuper(receiver, definition.type, member, args));
+  for (const name of members) {
+    const value = (_a2 = Object.getOwnPropertyDescriptor(prototype, name)) == null ? void 0 : _a2.value;
+    if (typeof value === "function")
+      proxySuperFunctions.add(value);
+  }
   proxyLayouts.set(definition, { prototype });
   proxyDefinitions.set(prototype.constructor, definition);
-  if (((_a2 = objectTypes.get(definition.type)) == null ? void 0 : _a2.collectionKind) !== void 0) {
+  if (((_b = objectTypes.get(definition.type)) == null ? void 0 : _b.collectionKind) !== void 0) {
     const selected = /* @__PURE__ */ new Set([
       ...nativeGetters,
       ...definition.getters,
@@ -1640,6 +1655,36 @@ function constructExtendedProxy(receiver, definition, args, widgetType) {
   } finally {
     constructingExtendedProxies.delete(receiver);
   }
+}
+var proxySuperFunctions = /* @__PURE__ */ new WeakSet();
+function invokeDartSuper(receiver, method, member, args, types, context) {
+  var _a2, _b, _c, _d, _e;
+  let call = context;
+  if (types !== null) {
+    const selected = nativeApply(dartType, void 0, [
+      receiver,
+      `@super:${member}`,
+      ...types
+    ]);
+    call = Object.freeze({ super: selected });
+  }
+  if (proxySuperFunctions.has(method)) {
+    return call ? nativeApply(call.super, void 0, args) : nativeApply(method, receiver, args);
+  }
+  if (!call)
+    return nativeApply(method, receiver, args);
+  const reference = requireDartReference(receiver);
+  const type = (_c = (_a2 = objectHandles.get(reference)) == null ? void 0 : _a2.type) != null ? _c : (_b = stateHandles.get(reference)) == null ? void 0 : _b.type;
+  const definition = type && genericMethods.get((_d = objectViewTypes.get(type)) != null ? _d : type);
+  const parameters = definition && ((_e = definition.methods[member]) == null ? void 0 : _e.parameters);
+  if (!parameters)
+    throw new TypeError("Expected a generated generic super method");
+  const count = parameters.filter((p) => p.positional).length + (parameters.some((p) => !p.positional) ? 1 : 0);
+  const forwarded = [...args];
+  while (forwarded.length < count)
+    forwarded.push(void 0);
+  forwarded.push(call);
+  return nativeApply(method, receiver, forwarded);
 }
 function invokeProxySuper(receiver, type, member, args) {
   if (constructingExtendedProxies.has(receiver) && !objectHandles.has(receiver)) {

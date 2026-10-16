@@ -1,4 +1,5 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type DartInput } from '@flax/core/bindings';
+import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/foundation/_bindings/flutter_LocalKey';
 import '@flax/flutter/foundation/_bindings/flutter_LocalKey';
 import type * as upstream1 from '@flax/flutter/foundation/_bindings/flutter_Key';
@@ -10,6 +11,7 @@ export interface ValueKey<T extends unknown | null = unknown | null> extends ups
     readonly __ValueKey: unique symbol;
     readonly value: T;
 }
+declare function _ValueKeyFactory<T extends unknown | null = unknown | null>(value: (T | _FlaxDartOutput<T>)): ValueKey<T>;
 declare function _ValueKeyFactory(value: unknown | null): ValueKey<unknown | null>;
 export declare const ValueKey: typeof _ValueKeyFactory & _FlaxInstanceType<ValueKey<unknown | null>> & _FlaxDartType<ValueKey<unknown | null>, readonly ["class", "flax.core/flutter#type:ValueKey", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
 interface _FlaxSignature0 extends _FlaxDartSignature {

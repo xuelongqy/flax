@@ -394,7 +394,7 @@ list.delayed();
   StringB:
     methods: {size: []}
   ListX:
-    getters: [firstValue]
+    getters: [firstValue, captured, nested]
     setters: [firstValue]
     methods: {mapFirst: [transform], delayed: [], immediate: [], describe: []}
     operators: {'[]': [index], '[]=': [index, value]}
@@ -615,6 +615,10 @@ void main() {
     expect(values, ['b']);
     _extension_ListX_operator_setIndex({'receiver': values, 'index': 0, 'value': 'c'});
     expect(_extension_ListX_method_describe({'receiver': values}), ('c', length: 1));
+    final captured = _extension_ListX_getter_captured({'receiver': values}) as List<Object?> Function<R>(R);
+    expect(captured<int>(1), same(values));
+    final nested = _extension_ListX_getter_nested({'receiver': values}) as Object? Function<S extends R>(S) Function<R>(R);
+    expect(nested<String>('outer')<String>('inner'), 'inner');
     expect(await (_extension_ListX_method_delayed({'receiver': values}) as Future), 'c');
     expect(_extension_NullableX_getter_missing({'receiver': null}), true);
     expect(() => _extension_StringA_method_size({'receiver': 1}), throwsA(isA<TypeError>()));

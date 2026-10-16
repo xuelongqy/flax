@@ -155,7 +155,7 @@ const integer: number = dartType(CorrelatedBag, dartTypes.int)(1, [2]).items.get
 const token: string = TokenBag(['token']).items.get(0);
 // @ts-expect-error both inputs must use the same compiled target
 dartType(CorrelatedBag, dartTypes.string)('a', [1]);
-// @ts-expect-error a union does not select a concrete Dart specialization
+// TS declarations can express unions; the semantic build compiler rejects this Dart type.
 CorrelatedBag<string | number>('a', [1]);
 // @ts-expect-error the observed Bag<String> target cannot be selected by JS type arguments
 Bag<number>([1]);
@@ -219,10 +219,13 @@ PairBag(new Map([[1, [2]]]));
         explicit,
         consumerSource: '''
 import { AmbiguousBag } from './plugin.js';
+import {dartTypes} from '@flax/core/bindings';
 AmbiguousBag([]);
 AmbiguousBag(['a']);
-// @ts-expect-error explicit specialization fixes the array item type
-AmbiguousBag([1]);
+// The build compiler may select a different type from a closed TS call.
+const number: number = AmbiguousBag([1]).items.get(0);
+// @ts-expect-error an explicitly selected handle remains closed
+AmbiguousBag.\$type(dartTypes.string)([1]);
 ''',
       );
     },

@@ -12,7 +12,7 @@ class FlaxModuleAssets {
   List<String> get moduleSpecifiers =>
       List.unmodifiable(_modules.map((module) => module.specifier));
 
-  /// Loads only the factory format emitted by @flax/tools, never arbitrary ESM.
+  /// Loads only the factory format emitted by @flax/build, never arbitrary ESM.
   static Future<FlaxModuleAssets> load({
     required AssetBundle bundle,
     required String manifest,

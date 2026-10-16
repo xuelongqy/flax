@@ -30,9 +30,11 @@ const pressedColor = Color(0xffba315c);
 const background = WidgetStateProperty.resolveWith<Color | null>((states) =>
   states.contains(WidgetState.pressed) ? pressedColor : normalColor,
 );
-const elevation = WidgetStateProperty.resolveWith<number | null>((states) =>
-  states.contains(WidgetState.pressed) ? 8 : 2,
-);
+// ButtonStyle requires double; TS number alone selects the broader Dart num type.
+const elevation = selectDartType(
+  WidgetStateProperty.resolveWith,
+  nativeTypes.nullable(nativeTypes.double),
+)((states) => (states.contains(WidgetState.pressed) ? 8 : 2));
 
 const hooks = {
   Color,

@@ -45,6 +45,7 @@ Run commands from the repository root.
 | Dart packages or manifests                             | `dart run melos run analyze`                              |
 | Formatting across the repository                       | `dart run melos run format:check`                         |
 | JS types, exports, or dependencies                     | `dart run melos run js:typecheck`                         |
+| Build tooling, TS generic lowering and Vite HMR        | `pnpm --filter @flax/build test`                          |
 | JS package output                                      | `dart run melos run js:build`                             |
 | Markdown or local documentation links                  | `dart run melos run docs:check`                           |
 | Native CMake configuration                             | `dart run melos run native:configure`                     |

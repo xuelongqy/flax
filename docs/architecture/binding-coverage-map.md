@@ -76,17 +76,17 @@ patches. The supported behavior and the missing part must be distinguished:
 | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Structural type tokens and JS closures | Plain Record fields from real Type metadata, shared Record construction in JIT/AOT, authentic native Function invocation and type handles. | No public arbitrary function/Record type-token builders. Creating a new typed JS closure layout needs a compiled Dart adapter; unbound generic raw Function layouts are rejected.                      |
 | Mixin composition                      | Bind actual Dart classes that already compose mixins; their JS overrides and super calls use the shared proxy path.                        | No general selection-time mixin-combination generator or runtime Dart class synthesis.                                                                                                                 |
-| Automatic generic inference            | Real checked type handles, legal defaults, supported deferred factories and explicit `Class.$type` / `dartType` selection.                 | No whole-graph or generalized deferred-factory inference. TypeScript generic syntax is erased; a build transform that supplies runtime types has not been implemented.                                 |
+| Automatic generic inference            | Real checked type handles, legal defaults, supported deferred factories and explicit `Class.$type` / `dartType` selection.                 | Shared `@flax/build` lowering supports explicit TS types and safe local/contextual inference. No whole-graph or generalized deferred-factory inference; raw JS/TS erasure keeps the existing defaults. |
 | Library coverage                       | Selected compatible APIs reuse the same mechanisms, default Core provider, public carriers and direct dependencies.                        | Dart/Flutter libraries are not all selected automatically. Whole-graph selection/publication is not provided. Additional APIs need selection and verification, rather than a new conversion mechanism. |
 
 Record field access and Record inputs are no longer an outstanding mechanism gap. The
 remaining Record item is only a public builder for composing a Record **Type token** in
 JS; ordinary field objects and concrete Dart signatures do not need that builder.
-Likewise, automatic inference and a future TS transform improve call-site convenience;
-explicit engine type selection already preserves real Dart generics.
+Likewise, bounded automatic inference and the shared TS compiler improve call-site
+convenience; explicit engine type selection already preserves real Dart generics.
 
-The future TS build transform will handle class construction and function/method generic
-calls together. It remains deferred; navigation adds no separate type inference or
+The `@flax/build` TS compiler handles class construction and function/method generic
+calls together through shared selectors; navigation adds no separate type inference or
 conversion path.
 
 Dart visibility/modifiers, valid Context/session ownership, synchronous Flutter hooks,
@@ -111,19 +111,19 @@ dynamic handler registry can also choose one typed contract, such as
 `Object? Function(List<Object?> arguments)`, rather than arbitrary Dart call layouts.
 
 The following priorities keep the underlying Dart features usable through existing
-paths. Common mixins use fixed configuration; generic syntax improvements are reserved
-for future TS build-tool work; extension calls keep their explicit receiver-view API.
-Public function/Record Type-token builders are deferred. Current use primarily needs
-Record results and typed API inputs, which already supply the actual Dart type. Revisit
-only for a concrete API requiring JS to compose a type without a declaration or value.
+paths. Common mixins use fixed configuration; generic syntax uses the shared
+`@flax/build` compiler; extension calls keep their explicit receiver-view API. Public
+function/Record Type-token builders are deferred. Current use primarily needs Record
+results and typed API inputs, which already supply the actual Dart type. Revisit only
+for a concrete API requiring JS to compose a type without a declaration or value.
 
-| Candidate                                              | Existing practical path                                                                                                                                                                               | Cost and reason to revisit                                                                                                                                                                                                                |
-| ------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Public function/Record Type-token builders (deferred)  | Concrete Dart signatures, ordinary Record field objects and `dartTypes.of` on authentic mapped values already cover value exchange.                                                                   | No current application demand justifies a new public builder. Revisit for a concrete runtime-composed type requirement; ordinary Record input/output is already supported.                                                                |
-| General mixin combinations outside State               | Bind a real Dart class such as `class TrackedCounter = Counter with Tracking;`. State `proxyVariants` supply common fixed combinations, including standalone `KeepAliveState`.                        | Extend the current configuration for concrete common uses. Arbitrary JS-selected combinations remain future research because `on` constraints, member conflicts, `super` order and AOT class availability still need a coherent contract. |
-| Whole-graph and generalized deferred-factory inference | Explicit `Bag.$type(dartTypes.string)` or method `dartType` selects real checked types without guessing from empty or ambiguous inputs.                                                               | The current capability meets application needs. Investigate a TS build transform later for friendlier syntax; do not expand whole-graph inference solely to shorten calls. The transform is not implemented.                              |
-| Implicit extension resolution across libraries         | `StringX('a').repeat(3)` names the extension and avoids conflicts with another extension on String.                                                                                                   | Keep the existing [explicit extension contract](../decisions/0030-extension-binding-adapters.md); it meets current needs. No implicit extension selection or prototype mutation is planned.                                               |
-| Direct JS Iterator protocol adaptation (deferred)      | A Dart entry accepting `Iterable<T>` can delegate to an Iterator API with `values.iterator`. Existing conversion accepts JS Iterables and finite lists; native Dart Iterator references already work. | Direct raw JS Iterator inputs and a JS `next()`/`Symbol.iterator` facade for Dart Iterator are deferred. Revisit only for a concrete API that cannot use the existing Iterable entry; this is not an active binding-completion target.    |
+| Candidate                                              | Existing practical path                                                                                                                                                                               | Cost and reason to revisit                                                                                                                                                                                                                                 |
+| ------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Public function/Record Type-token builders (deferred)  | Concrete Dart signatures, ordinary Record field objects and `dartTypes.of` on authentic mapped values already cover value exchange.                                                                   | No current application demand justifies a new public builder. Revisit for a concrete runtime-composed type requirement; ordinary Record input/output is already supported.                                                                                 |
+| General mixin combinations outside State               | Bind a real Dart class such as `class TrackedCounter = Counter with Tracking;`. State `proxyVariants` supply common fixed combinations, including standalone `KeepAliveState`.                        | Extend the current configuration for concrete common uses. Arbitrary JS-selected combinations remain future research because `on` constraints, member conflicts, `super` order and AOT class availability still need a coherent contract.                  |
+| Whole-graph and generalized deferred-factory inference | Explicit `Bag.$type(dartTypes.string)` or method `dartType` selects real checked types without guessing from empty or ambiguous inputs.                                                               | The current capability meets application needs. The shared TS compiler supplies friendlier syntax and safe local/contextual inference. Do not expand whole-graph inference solely to shorten calls; explicit tokens remain available for unresolved types. |
+| Implicit extension resolution across libraries         | `StringX('a').repeat(3)` names the extension and avoids conflicts with another extension on String.                                                                                                   | Keep the existing [explicit extension contract](../decisions/0030-extension-binding-adapters.md); it meets current needs. No implicit extension selection or prototype mutation is planned.                                                                |
+| Direct JS Iterator protocol adaptation (deferred)      | A Dart entry accepting `Iterable<T>` can delegate to an Iterator API with `values.iterator`. Existing conversion accepts JS Iterables and finite lists; native Dart Iterator references already work. | Direct raw JS Iterator inputs and a JS `next()`/`Symbol.iterator` facade for Dart Iterator are deferred. Revisit only for a concrete API that cannot use the existing Iterable entry; this is not an active binding-completion target.                     |
 
 Widget interface generation now uses the shared native-value/proxy path, including
 generic contracts, private native defaults and names formerly reserved by the forwarding
@@ -134,8 +134,8 @@ non-generic provider views follow the same inheritance and conversion rules. A n
 runtime Dart class is not synthesized from an arbitrary JS object. See
 [native Widget interfaces](widget-interfaces.md#generation-and-ownership).
 
-Wider SDK selection still depends on actual application APIs. A future TS build
-transform is separate convenience work, not a prerequisite for correct Dart generics.
+Wider SDK selection still depends on actual application APIs. TS build compilation
+reuses the same checked type handles; explicit tokens remain available without it.
 
 Current published selections do not yet expose, for example, Material Slider, TabBar,
 showModalBottomSheet or CupertinoDatePicker. These are library-coverage work: add the

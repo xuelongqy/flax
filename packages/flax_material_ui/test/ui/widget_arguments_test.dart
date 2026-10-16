@@ -166,8 +166,8 @@ void main() {
         await t.pumpWidget(h.app('listenables'));
         await t.pumpAndSettle();
         final initial = t
-            .widget<ValueListenableBuilder<Object?>>(
-              find.byType(ValueListenableBuilder<Object?>),
+            .widget<ValueListenableBuilder<num>>(
+              find.byType(ValueListenableBuilder<num>),
             )
             .child;
         final element = t.element(find.text('Static 0'));
@@ -209,8 +209,8 @@ void main() {
         expect(t.element(find.text('Static 0')), same(element));
         expect(
           t
-              .widget<ValueListenableBuilder<Object?>>(
-                find.byType(ValueListenableBuilder<Object?>),
+              .widget<ValueListenableBuilder<num>>(
+                find.byType(ValueListenableBuilder<num>),
               )
               .child,
           same(initial),

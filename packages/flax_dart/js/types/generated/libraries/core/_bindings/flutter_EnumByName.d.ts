@@ -2,7 +2,9 @@ import { type DartIterableInput, type DartMap, type DartInput } from '@flax/core
 import type * as upstream0 from '@flax/dart/core/_bindings/flutter_Enum';
 import '@flax/dart/core/_bindings/flutter_Enum';
 import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature } from '@flax/core/bindings';
+import type { flaxDartExtensionTypes as _flaxDartExtensionTypes } from '@flax/core/bindings';
 export interface EnumByName<T extends upstream0.Enum = upstream0.Enum> {
+    readonly [_flaxDartExtensionTypes]?: readonly [T];
     readonly [_flaxDartMethodCases]?: {
         asNameMap: _FlaxSignature0;
         byName: _FlaxSignature1;

@@ -109,7 +109,7 @@ const extensionSelection = {
   'ListX': FlaxCodegenExtensionSelection(
     staticGetters: ['count'],
     staticSetters: ['count'],
-    getters: ['firstValue'],
+    getters: ['firstValue', 'captured', 'nested'],
     setters: ['firstValue'],
     methods: {
       'mapFirst': ['callback'],

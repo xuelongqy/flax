@@ -1,10 +1,8 @@
 import { access } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import {
-  flaxHostModulesPlugin,
-  prepareModules,
-} from '../../packages/flax_tools/js/src/modules.mjs';
+import { prepareModules } from '../../packages/flax_build/js/src/modules.mjs';
+import { flaxEsbuildPlugin } from '../../packages/flax_build/js/src/esbuild.mjs';
 
 export const root = fileURLToPath(new URL('../../', import.meta.url));
 export const bundleOptions = {
@@ -39,7 +37,7 @@ export async function bundleOptionsFor(projectRoot) {
     if (error.code === 'ENOENT') {
       return {
         ...bundleOptions,
-        plugins: [flaxHostModulesPlugin()],
+        plugins: [flaxEsbuildPlugin()],
       };
     }
     throw error;
@@ -47,6 +45,6 @@ export async function bundleOptionsFor(projectRoot) {
   const prepared = await prepareModules({ configPath, check: true });
   return {
     ...bundleOptions,
-    plugins: [flaxHostModulesPlugin(prepared.manifest)],
+    plugins: [flaxEsbuildPlugin(prepared.manifest)],
   };
 }

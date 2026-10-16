@@ -95,10 +95,14 @@ callback/inheritance, opaque Core value and ordinary-object descriptor-name gaps
 shared conversion paths. Creating a new Dart-typed JS closure from an arbitrary
 runtime-only signature is deferred until a concrete public API cannot use the existing
 typed callback or signature-selection paths. Ordinary callbacks and calling returned
-Dart functions remain supported. Common mixins use configured variants, generic syntax
-improvements are reserved for future TS build-tool work, and extensions keep the
-explicit receiver-view API. Public function/Record type-token builders are also deferred
-until a concrete application needs runtime type composition; see the
+Dart functions remain supported. Common mixins use configured variants,
+[`@flax/build`](../flax_build/js/README.md) lowers class/function/method generic syntax
+and safe local/contextual inference through the existing checked selectors. It uses the
+same compiler for production builds and Vite HMR; extensions keep the explicit
+receiver-view API. Generated generic constructor overloads and extension-owner tuple
+metadata are erased from JS and do not create a per-type runtime catalog. Public
+function/Record type-token builders are also deferred until a concrete application needs
+runtime type composition; see the
 [scope priorities](../../docs/architecture/binding-coverage-map.md#demand-driven-scope).
 Record values already use the shared constructor without a compiled layout catalog.
 
@@ -285,7 +289,8 @@ templates. `$type` is reserved on generic exports: explicit conflicting static m
 or named constructors fail, while automatic selection reports and skips the conflict.
 Non-generic Dart members with that name remain ordinary bindings. Generic enums register
 the selector before their exports are frozen. Method/function selection still uses
-`dartType`; TS build-time generic conversion is not implemented.
+`dartType`. `@flax/build` compiles supported explicit TS generics and safe
+local/contextual inference through these same selectors before type erasure.
 
 These calls require a bound Dart declaration and the maintained engine, not a catalog of
 closed types. Descriptors compose List, Map, Set, Iterable and nullability. Class tokens
@@ -772,7 +777,14 @@ output projection. These declarations add no runtime wrapper or bridge operation
 Generic extension receivers share that projection in getters, setters, operators,
 callbacks and async values: `ListX([['a']]).firstValue` returns a `DartList<string>`.
 The extension's captured parameter and a member-local parameter retain separate scopes;
-closed native bounds and existing Dart references keep their existing conversion.
+closed native bounds and existing Dart references keep their existing conversion. This
+also applies to returned generic callbacks: for `List<T> Function<R>(R) get captured`,
+selecting `ListX<string>(list)` fixes the returned List's element type to String, while
+`view.captured<number>(3)` selects only R as num. Nested callbacks and bounds that
+capture an enclosing parameter use the same lexical substitution as ordinary class
+members. Default adapters close owner parameters before registering callbacks; selected
+calls retain the actual type handles. No type combinations or per-class scope helpers
+are generated.
 
 Ordinary static methods share the static-accessor function transport on every supported
 class category, including Widgets, static-only classes and Widget interfaces. Automatic

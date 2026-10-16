@@ -1,6 +1,7 @@
 import { build } from 'esbuild';
 import { fileURLToPath } from 'node:url';
-import { flaxHostModulesPlugin, readModuleManifest } from '@flax/tools';
+import { readModuleManifest } from '@flax/build';
+import { flaxEsbuildPlugin } from '@flax/build/esbuild';
 
 const workingDirectory = fileURLToPath(new URL('../', import.meta.url));
 const manifest = await readModuleManifest(
@@ -15,7 +16,7 @@ await build({
   platform: 'neutral',
   target: 'es2019',
   supported: { 'async-generator': false, 'for-await': false },
-  plugins: [flaxHostModulesPlugin(manifest)],
+  plugins: [flaxEsbuildPlugin(manifest)],
   legalComments: 'inline',
   logLevel: 'info',
 });

@@ -1,9 +1,7 @@
 import { execFileSync } from 'node:child_process';
 import { build } from 'esbuild';
-import {
-  prepareModules,
-  flaxHostModulesPlugin,
-} from '../packages/flax_tools/js/src/modules.mjs';
+import { prepareModules } from '../packages/flax_build/js/src/modules.mjs';
+import { flaxEsbuildPlugin } from '../packages/flax_build/js/src/esbuild.mjs';
 import { access, readdir, mkdir, writeFile } from 'node:fs/promises';
 import { basename, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -114,7 +112,7 @@ for (const owner of packages) {
     const projectRoot = resolve(owner.root, 'js');
     const options = {
       ...(await bundleOptionsFor(projectRoot)),
-      plugins: [flaxHostModulesPlugin(inventory.manifest)],
+      plugins: [flaxEsbuildPlugin(inventory.manifest)],
     };
     await build({
       ...options,

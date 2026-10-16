@@ -1,7 +1,7 @@
 import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
-import { createMixedFixture } from '../../../flax_tools/js/test/fixture.mjs';
+import { createMixedFixture } from '../../../flax_build/js/test/fixture.mjs';
 
 export async function bundleUiFixtures({ outdir, root }) {
   const source = await readFile(resolve(outdir, 'native_callbacks.js'), 'utf8');

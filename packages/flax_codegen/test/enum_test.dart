@@ -186,6 +186,8 @@ EnumFactory.from(true);
               '''
 void main() {
   test('enum factory invokes the selected Dart type', () {
+    final factory = pluginBindings.functions.singleWhere((f) => f.id.endsWith('EnumFactory.from:factory'));
+    expect(factory.parameters.single.type.kind, '${arguments.isEmpty ? 'scalar' : 'int'}');
     expect(_enum_EnumFactory_factory_from({'value': 4}), same(api.EnumFactory.number));
     ${arguments.isEmpty ? "expect(_enum_EnumFactory_factory_from({'value': 'four'}), same(api.EnumFactory.text));" : ''}
     expect(_enum_EnhancedStatus_call_preserveReceiverName({'_receiver': api.EnhancedStatus.ready, 'receiver': 4}), 4);

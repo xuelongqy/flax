@@ -48,6 +48,8 @@ import '../../../packages/flax/test/ui/future_ownership_test.dart' as ownership;
 import '../../../packages/flax/test/ui/dart_types_test.dart' as dart_types;
 import '../../../packages/flax/test/ui/deferred_generics_test.dart'
     as deferred_generics;
+import '../../../packages/flax/test/ui/typescript_generics_test.dart'
+    as typescript_generics;
 
 void main() {
   if (Platform.isIOS &&
@@ -219,6 +221,7 @@ void _registerTests() {
   group('SDK Future ownership', ownership.main);
   group('Dart type selection', dart_types.main);
   group('deferred generic aliases', deferred_generics.main);
+  group('TS generic compilation', typescript_generics.main);
   if (const bool.fromEnvironment('FLAX_ENGINE_BENCHMARK')) {
     testWidgets('profile GC, frame and memory measurements', (tester) async {
       final previousPolicy = binding.framePolicy;

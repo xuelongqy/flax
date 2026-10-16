@@ -3203,6 +3203,20 @@ const result: number = value.value;
           'callback: ((p0: DartSet<Mode>) => (T | DartInput<T>))): DeferredProperty<T>',
         ),
       );
+      final deferred = module.classes.singleWhere(
+        (type) => type.name == 'DeferredProperty',
+      );
+      final resolveWith = deferred.methods.singleWhere(
+        (method) => method.name == 'resolveWith',
+      );
+      expect(ts, contains('constructDeferredObject("${deferred.id}",'));
+      expect(
+        ts,
+        contains(
+          '_flaxDefineDartCallTypes(_flaxDefault_resolveWith, '
+          '{"id":"${deferred.staticMethodId(resolveWith)}",',
+        ),
+      );
       expect(ts, contains('readonly unique: DartSet<number>'));
       expect(ts, contains('readonly iterable: DartIterable<number>'));
       final dart = emitter.dart(module);

@@ -18,6 +18,11 @@ extension StringB on String {
 }
 
 extension ListX<T> on List<T> {
+  List<T> Function<R>(R) get captured =>
+      <R>(R value) => this;
+  T Function<S extends R>(S) Function<R extends T>(R) get nested =>
+      <R extends T>(R value) =>
+          <S extends R>(S child) => child;
   T get firstValue => first;
   set firstValue(T value) => this[0] = value;
   T operator [](int index) => elementAt(index);

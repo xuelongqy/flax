@@ -1,6 +1,7 @@
 // GENERATED CODE. Selected public API subset; do not edit.
 // Regenerate with dart run melos run bindings:generate.
 import { defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/foundation/_bindings/flutter_LocalKey';
 import '@flax/flutter/foundation/_bindings/flutter_LocalKey';
 import type * as upstream1 from '@flax/flutter/foundation/_bindings/flutter_Key';
@@ -12,7 +13,9 @@ export interface ValueKey<T extends unknown | null = unknown | null> extends ups
 readonly value: T;
 }
 defineObject("flax.core/flutter#type:ValueKey", ["value"], [], _flaxBindingMethods("flax.core/flutter#type:ValueKey", "object", {}, {}), []);
-function _ValueKeyFactory(value: unknown | null): ValueKey<unknown | null> {
+function _ValueKeyFactory<T extends unknown | null = unknown | null>(value: (T | _FlaxDartOutput<T>)): ValueKey<T>;
+function _ValueKeyFactory(value: unknown | null): ValueKey<unknown | null>;
+function _ValueKeyFactory(value: unknown): unknown {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:ValueKey", "", [{"name":"value","required":true,"positional":true}], [value], {}) as ValueKey<unknown | null>;

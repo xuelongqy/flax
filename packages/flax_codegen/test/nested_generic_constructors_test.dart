@@ -160,10 +160,13 @@ void main() {
 ''',
       consumerSource: '''
 import { AmbiguousBox } from './plugin.js';
+import {dartTypes} from '@flax/core/bindings';
 AmbiguousBox([]);
 AmbiguousBox(['a']);
-// @ts-expect-error the selected Dart specialization only accepts strings
+// Static inference can choose another owner; a selected runtime handle stays closed.
 AmbiguousBox([1]);
+// @ts-expect-error a closed List<String> handle rejects numeric elements
+AmbiguousBox.\$type(dartTypes.list(dartTypes.string))([1]);
 ''',
     );
   });

@@ -40,13 +40,17 @@ set onResume(value: (() => void) | null);
 set onCancel(value: (() => void | Promise<void>) | null);
 }
 defineObject("flax.core/flutter#type:StreamController", ["done","onListen","onPause","onResume","onCancel","stream","sink","isClosed","isPaused","hasListener"], ["onListen","onPause","onResume","onCancel"], _flaxBindingMethods("flax.core/flutter#type:StreamController", "object", {"add":_flaxMemberParameters0,"addError":_flaxMemberParameters1,"close":_flaxMemberParameters2,"addStream":_flaxMemberParameters3}, {}), []);
-function _StreamControllerFactory(options: { onListen?: (() => void) | null | undefined; onPause?: (() => void) | null | undefined; onResume?: (() => void) | null | undefined; onCancel?: (() => void | Promise<void>) | null | undefined; sync?: boolean | undefined } = {}): StreamController<unknown | null> {
+function _StreamControllerFactory<T extends unknown | null = unknown | null>(options?: { onListen?: (() => void) | null | undefined; onPause?: (() => void) | null | undefined; onResume?: (() => void) | null | undefined; onCancel?: (() => void | Promise<void>) | null | undefined; sync?: boolean | undefined }): StreamController<T>;
+function _StreamControllerFactory(options?: { onListen?: (() => void) | null | undefined; onPause?: (() => void) | null | undefined; onResume?: (() => void) | null | undefined; onCancel?: (() => void | Promise<void>) | null | undefined; sync?: boolean | undefined }): StreamController<unknown | null>;
+function _StreamControllerFactory(options: Record<string, unknown> = {}): unknown {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:StreamController", "", [{"name":"onListen","required":false,"positional":false},{"name":"onPause","required":false,"positional":false},{"name":"onResume","required":false,"positional":false},{"name":"onCancel","required":false,"positional":false},{"name":"sync","required":false,"positional":false}], [], options) as StreamController<unknown | null>;
 }
 namespace _StreamControllerFactory {
-export function broadcast(options: { onListen?: (() => void) | null | undefined; onCancel?: (() => void) | null | undefined; sync?: boolean | undefined } = {}): StreamController<unknown | null> {
+export function broadcast<T extends unknown | null = unknown | null>(options?: { onListen?: (() => void) | null | undefined; onCancel?: (() => void) | null | undefined; sync?: boolean | undefined }): StreamController<T>;
+export function broadcast(options?: { onListen?: (() => void) | null | undefined; onCancel?: (() => void) | null | undefined; sync?: boolean | undefined }): StreamController<unknown | null>;
+export function broadcast(options: Record<string, unknown> = {}): unknown {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:StreamController", "broadcast", [{"name":"onListen","required":false,"positional":false},{"name":"onCancel","required":false,"positional":false},{"name":"sync","required":false,"positional":false}], [], options) as StreamController<unknown | null>;

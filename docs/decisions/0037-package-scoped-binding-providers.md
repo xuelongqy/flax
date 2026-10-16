@@ -34,7 +34,7 @@ share the original object and lifecycle responsibilities.
 Public npm packages contain declarations. Source delivery packages contain executable
 modules and generated host bootstraps. Public imports stay stable; physical Core and
 optional host packages use `-runtime` names. Material and Cupertino delivery names stay
-unchanged, and `@flax/tools` remains executable tooling.
+unchanged, and `@flax/build` remains executable tooling.
 
 Business bundles consume only prepared plugin modules. Missing inventory entries and
 private implementation imports fail closed. Installing a source package does not

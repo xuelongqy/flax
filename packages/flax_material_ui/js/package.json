@@ -20,7 +20,7 @@
   "scripts": {
     "typecheck": "tsc --project tsconfig.npm.json --noEmit && tsc --project tsconfig.test.json",
     "build": "node --eval \"import { rmSync } from 'node:fs'; rmSync('dist', { recursive: true, force: true })\" && tsc --project tsconfig.npm.json",
-    "test": "node --import @flax/tools/register-node-loader --test test/*.test.mjs"
+    "test": "node --import @flax/build/register-node-loader --test test/*.test.mjs"
   },
   "dependencies": {
     "@flax/core": "workspace:*",
@@ -29,6 +29,6 @@
     "@flax/core-runtime": "workspace:*"
   },
   "devDependencies": {
-    "@flax/tools": "workspace:*"
+    "@flax/build": "workspace:*"
   }
 }

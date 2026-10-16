@@ -267,7 +267,7 @@ console.log('External JS exports and singleton Flax dependencies verified.');
       ..writeAsStringSync(verifyJs);
     await execute('node', [
       '--import',
-      '@flax/tools/register-node-loader',
+      '@flax/build/register-node-loader',
       verifyFile.path,
     ], js);
     await execute('flutter', ['analyze', '--no-pub', '--fatal-infos'], flutter);

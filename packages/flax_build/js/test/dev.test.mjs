@@ -47,7 +47,7 @@ function waitServerEvent(server, name) {
   });
 }
 
-async function connectClient(dev, t) {
+async function connectClient(dev, t, prepare) {
   const batches = [];
   const errors = [];
   const sockets = [];
@@ -70,11 +70,105 @@ async function connectClient(dev, t) {
     `globalThis.__flaxModules = (${createFlaxModuleRegistry.toString()})();`,
     context,
   );
+  prepare?.(context.__flaxModules);
   const ready = waitServerEvent(dev.server, 'flax:ready');
   runInContext(await readFile(dev.out, 'utf8'), context);
   await ready;
   return { registry: context.__flaxModules, batches, errors, socket: sockets[0] };
 }
+
+test('generic method edits preserve instances and type-only superclass changes require restart', async (t) => {
+  const root = await mkdtemp(join(tmpdir(), 'flax-dev-generics-'));
+  const entry = join(root, 'main.ts');
+  const types = join(root, 'types.ts');
+  await writeFile(
+    join(root, 'tsconfig.json'),
+    JSON.stringify({
+      compilerOptions: {
+        strict: true,
+        target: 'ES2022',
+        module: 'ESNext',
+        moduleResolution: 'Bundler',
+      },
+      include: ['*.ts'],
+    }),
+  );
+  await writeFile(
+    join(root, 'bindings.d.ts'),
+    `
+    declare const flaxDartTypeCases: unique symbol;
+    declare const flaxDartTypeKey: unique symbol;
+    export declare abstract class Processor<T> {
+      static readonly [flaxDartTypeCases]: unknown;
+      static readonly [flaxDartTypeKey]: unknown;
+      constructor(value: T);
+      transform(value: T): T;
+    }
+  `,
+  );
+  await writeFile(
+    join(root, 'bindings.js'),
+    `
+    const selected = new Map();
+    export const Processor = { $type(type) {
+      if (!selected.has(type)) selected.set(type, class NativeProcessor {
+        constructor(value) { this.value = value; }
+        transform(value) { return value; }
+      });
+      return selected.get(type);
+    }};
+  `,
+  );
+  const source = (version) => `
+    import {Processor} from './bindings.js';
+    import type {Choice} from './types.js';
+    export class Counter extends Processor<Choice> {
+      count = 1;
+      label(value: Choice) { return super.transform(value) + ':v${version}:' + this.count; }
+    }
+  `;
+  await writeFile(types, 'export type Choice = string;');
+  await writeFile(entry, source(1));
+  const dev = await startFlaxDev({ root, entry: 'main.ts', out: 'app.js', port: 0 });
+  t.after(async () => {
+    await dev.server.close();
+    await rm(root, { recursive: true, force: true });
+  });
+  const client = await connectClient(dev, t, (registry) => {
+    const metadata = {
+      specifier: '@flax/core/bindings',
+      owner: 'test/core',
+      version: '1',
+      artifact: 'test',
+      dependencies: {},
+    };
+    registry.define(metadata, (_module, exports) => {
+      exports.dartTypes = { string: 'String', num: 'num' };
+    });
+    registry.seal([metadata]);
+  });
+  const original = client.registry.dev.require('/main.ts').Counter;
+  const instance = new original('seed');
+  instance.count = 7;
+  const applied = waitServerEvent(dev.server, 'flax:applied');
+  await writeFile(entry, source(2));
+  await applied;
+  assert.equal(client.registry.dev.require('/main.ts').Counter, original);
+  assert.equal(instance.label('x'), 'x:v2:7');
+  const rejected = waitServerEvent(dev.server, 'flax:runtime-error');
+  await writeFile(types, 'export type Choice = number;');
+  const error = await rejected;
+  assert.equal(error.restartRequired, true);
+  assert.match(error.message, /superclass changed/);
+  assert.equal(instance.label('x'), 'x:v2:7');
+  assert.match(await readFile(dev.out, 'utf8'), /dartTypes.num/);
+  const recovered = waitServerEvent(dev.server, 'flax:applied');
+  await writeFile(types, 'export type Choice = string;');
+  await writeFile(entry, source(3));
+  await recovered;
+  assert.equal(instance.label('x'), 'x:v3:7');
+  assert.equal(client.registry.dev.require('/main.ts').Counter, original);
+});
 
 test('class instrumentation records stable structural metadata', () => {
   const source = instrumentReloadableClasses(

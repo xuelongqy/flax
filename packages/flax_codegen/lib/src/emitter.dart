@@ -2189,11 +2189,14 @@ class FlaxCodegenBindingEmitter {
         );
         continue;
       }
-      final surface = call;
+      final surface = _vmDefaultMethod(call);
       out.writeln('FlaxFunctionBinding(${_quote(function.id)}, [');
-      for (final p in surface.parameters) {
+      for (final (index, p) in surface.parameters.indexed) {
+        // Overload dispatch needs its original integer-preserving transport.
+        final original = call.parameters[index].type;
+        final input = original.kind == 'scalar' ? original : p.type;
         out.writeln(
-          'FlaxParameter(${_quote(p.name)}, ${_ref(p.type)}, required: ${p.required}, defaultValue: ${_default(p)}, omitWhenAbsent: ${p.omitWhenAbsent}),',
+          'FlaxParameter(${_quote(p.name)}, ${_ref(input)}, required: ${p.required}, defaultValue: ${_default(p)}, omitWhenAbsent: ${p.omitWhenAbsent}),',
         );
       }
       out.write(
@@ -4752,6 +4755,7 @@ $_typescriptHostImport
       StringBuffer target,
       FlaxCodegenMethodModel method, {
       required String id,
+      String? deferredOwner,
       String? namespace,
       FlaxCodegenClassCategory? category,
       bool functionTransport = false,
@@ -4894,7 +4898,7 @@ $_typescriptHostImport
             .map(_parameterLocalName)
             .join(', ');
         target.writeln(
-          'const _flaxResult = constructDeferredObject(${jsonEncode(id)}, '
+          'const _flaxResult = constructDeferredObject(${jsonEncode(deferredOwner!)}, '
           '${jsonEncode(method.name)}, ${jsonEncode(params)}, '
           '[$positional], ${named.isEmpty ? '{}' : 'options'}) as '
           '${tsType(method.result, declarations: !method.instance)};',
@@ -4976,6 +4980,11 @@ $_typescriptHostImport
     out.writeln(
       "import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';",
     );
+    if (module.extensions.any((e) => e.typeParameters.isNotEmpty)) {
+      out.writeln(
+        "import type { flaxDartExtensionTypes as _flaxDartExtensionTypes } from '@flax/core/bindings';",
+      );
+    }
     final memberLayouts = <String, String>{};
     String memberMetadata(Iterable<FlaxCodegenMethodModel> methods) =>
         '{${methods.map((method) {
@@ -5641,7 +5650,8 @@ $_typescriptHostImport
         emitTsCallable(
           staticMethods,
           method,
-          id: method.deferredFactory ? type.id : type.staticMethodId(method),
+          id: type.staticMethodId(method),
+          deferredOwner: method.deferredFactory ? type.id : null,
           namespace: valueName(type),
           exportNamespace:
               (valueName(type) == type.name ||
@@ -5865,8 +5875,9 @@ $_typescriptHostImport
             .toList();
         String paramType(
           FlaxCodegenParameterModel param,
-          FlaxCodegenConstructorSpecializationModel? target,
-        ) {
+          FlaxCodegenConstructorSpecializationModel? target, {
+          bool generic = false,
+        }) {
           final input = target == null && overloads.isNotEmpty
               ? overloads
                     .map(
@@ -5882,7 +5893,7 @@ $_typescriptHostImport
                   target?.parameterTypes[ctor.parameters.indexOf(param)] ??
                       param.type,
                   input: true,
-                  declarations: !fixed && target == null,
+                  declarations: generic || !fixed && target == null,
                 );
           return type.kind == 'widget' &&
                   !nativeWidget &&
@@ -5895,31 +5906,51 @@ $_typescriptHostImport
         List<String> arguments(
           FlaxCodegenConstructorSpecializationModel? target, {
           bool declaration = false,
+          bool generic = false,
+          bool implementation = false,
         }) {
           final args = ctor.parameters
               .where((param) => param.positional)
               .map(
                 (param) =>
-                    '${_parameterLocalName(param)}${param.required ? '' : '?'}: ${paramType(param, target)}',
+                    '${_parameterLocalName(param)}${param.required ? '' : '?'}: ${implementation ? 'unknown' : paramType(param, target, generic: generic)}',
               )
               .toList();
           if (named.isNotEmpty) {
             final optional = named.every((param) => !param.required);
             args.add(
-              'options${declaration && optional ? '?' : ''}: { ${named.map((param) => namedParameter(param, paramType(param, target))).join('; ')} }${!declaration && optional ? ' = {}' : ''}',
+              implementation
+                  ? 'options: Record<string, unknown>${optional ? ' = {}' : ''}'
+                  : 'options${declaration && optional ? '?' : ''}: { ${named.map((param) => namedParameter(param, paramType(param, target, generic: generic))).join('; ')} }${!declaration && optional ? ' = {}' : ''}',
             );
           }
           return args;
         }
 
+        final genericCallSignature =
+            explicitTypeSelection && type.typeParameters.isNotEmpty;
+        if (genericCallSignature) {
+          final previousConversions = genericConversions;
+          genericConversions = parameterConversions(type.typeParameters);
+          out.writeln(
+            '${ctor.name.isEmpty ? "" : "export "}function $functionName${generics(type.typeParameters)}(${arguments(null, declaration: true, generic: true).join(', ')}): ${type.name}${genericUse(type)};',
+          );
+          genericConversions = previousConversions;
+          out.writeln(
+            '${ctor.name.isEmpty ? "" : "export "}function $functionName(${arguments(specialization, declaration: true).join(', ')}): $resultType;',
+          );
+        }
         for (final target in overloads) {
           out.writeln(
             '${ctor.name.isEmpty ? "" : "export "}function $functionName(${arguments(target, declaration: true).join(', ')}): ${type.name}${resultArguments(target)};',
           );
         }
-        final args = arguments(specialization);
+        final args = arguments(
+          specialization,
+          implementation: genericCallSignature,
+        );
         out.writeln(
-          '${ctor.name.isEmpty ? "" : "export "}function $functionName${fixed || overloads.isNotEmpty ? '' : constructorGenerics(type, ctor)}(${args.join(', ')}): $resultType {',
+          '${ctor.name.isEmpty ? "" : "export "}function $functionName${fixed || overloads.isNotEmpty ? '' : constructorGenerics(type, ctor)}(${args.join(', ')}): ${genericCallSignature ? 'unknown' : resultType} {',
         );
         out.writeln(
           "if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');",
@@ -6062,6 +6093,11 @@ $_typescriptHostImport
           ? ''
           : '<${extension.typeParameters.map((p) => p.name).join(', ')}>';
       out.writeln('export interface $name$typeParameters {');
+      if (extension.typeParameters.isNotEmpty) {
+        out.writeln(
+          'readonly [_flaxDartExtensionTypes]?: readonly [${extension.typeParameters.map((p) => p.name).join(', ')}];',
+        );
+      }
       final selectedMembers = instanceMembers.where(
         (m) => m.call.typeParameters.isNotEmpty,
       );

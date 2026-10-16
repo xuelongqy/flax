@@ -182,6 +182,10 @@ import {BuildContext, Text} from '@flax/flutter/widgets';
 import {State} from '@example/type-components';
 const Bound = dartType(CodegenTypeBound);
 const boundName: string = Bound().typeName;
+const compiledString: string = CodegenTypeBag<string>(['typed']).items.get(0);
+const compiledNamed: string = CodegenTypeBag.named<string>({items: ['named']}).items.get(0);
+// @ts-expect-error explicit constructor type rejects a numeric item
+CodegenTypeBag<string>([1]);
 const checkedBoundName: string = asDart(Bound(), Bound).typeName;
 const Contexts = dartType(CodegenTypeBag, BuildContext);
 const States = dartType(CodegenTypeBag, State);

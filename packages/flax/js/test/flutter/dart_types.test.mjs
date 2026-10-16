@@ -192,3 +192,28 @@ test('generic registration rejects an existing selector without replacing it', (
   );
   assert.equal(Factory.$type, businessMember);
 });
+
+test('generic Widget descriptors select types without registering a native object view', (t) => {
+  const root = 'test.dart-type/descriptor';
+  const Factory = bindInstanceType(function Factory() {}, root, []);
+  defineDartTypes(Factory, root, {
+    category: 'widget',
+    constructors: { '': [{ name: 'value', required: true, positional: false }] },
+  });
+  const previous = globalThis.__flaxDartType;
+  globalThis.__flaxDartType = (_version, operation, id) => {
+    assert.equal(operation, 'class');
+    return id + '@String';
+  };
+  t.after(() => {
+    globalThis.__flaxDartType = previous;
+  });
+  const Selected = Factory.$type(dartTypes.string);
+  assert.deepEqual(Selected({ value: 'descriptor' }), {
+    kind: 'widget',
+    type: root + '@String',
+    ctor: '',
+    args: { value: 'descriptor' },
+  });
+  assert.equal(Selected.prototype, Factory.prototype);
+});

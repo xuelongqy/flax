@@ -1,6 +1,7 @@
 // GENERATED CODE. Selected public API subset; do not edit.
 // Regenerate with dart run melos run bindings:generate.
 import { defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
 const _flaxMemberParameters0 = [] as const;
 import type * as upstream0 from '@flax/dart/async/_bindings/flutter_Stream';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
@@ -12,7 +13,9 @@ moveNext(): Promise<boolean>;
 cancel(): Promise<unknown | null>;
 }
 defineObject("flax.core/flutter#type:StreamIterator", ["current"], [], _flaxBindingMethods("flax.core/flutter#type:StreamIterator", "object", {"moveNext":_flaxMemberParameters0,"cancel":_flaxMemberParameters0}, {}), []);
-function _StreamIteratorFactory(stream: upstream0.Stream<unknown | null>): StreamIterator<unknown | null> {
+function _StreamIteratorFactory<T extends unknown | null = unknown | null>(stream: (upstream0.Stream<_FlaxDartOutput<T>> | upstream0.Stream<(T | _FlaxDartOutput<T>)>)): StreamIterator<T>;
+function _StreamIteratorFactory(stream: upstream0.Stream<unknown | null>): StreamIterator<unknown | null>;
+function _StreamIteratorFactory(stream: unknown): unknown {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:StreamIterator", "", [{"name":"stream","required":true,"positional":true}], [stream], {}) as StreamIterator<unknown | null>;

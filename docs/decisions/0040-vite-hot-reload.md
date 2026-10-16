@@ -14,12 +14,20 @@ already use the `globalThis.__flaxModules` identity boundary.
 
 ## Decision
 
-`@flax/tools` provides `flax-dev` with Vite 8.3.1 for file watching, module graph
+`@flax/build` provides `flax-dev` with Vite 8.3.1 for file watching, module graph
 updates, transforms, and the Vite HMR WebSocket. The initial application remains one
 synchronous asset loaded by the existing `FlaxSession(source: ...)` path. Vite
 ModuleRunner is not used. Successful compilations atomically refresh the complete asset
 before sending the hot batch, including compilations that the running Session rejects.
 Compile errors preserve the last valid asset, and a restarted host loads current source.
+
+The package also supplies production esbuild and Vite adapters sharing one semantic TS
+compiler before type erasure. It lowers closed generic calls and safe local/contextual
+inference to the existing `$type`/`dartType` selectors. Type-only aliases and provider
+declarations invalidate affected callers without becoming runtime module dependencies.
+Changing an actual selected generic superclass follows the same restart rule. Generic JS
+super calls preserve each lexical JS parent and their native per-call context across
+await; no global invocation context or new GC roots are introduced.
 
 Development modules execute as staged CommonJS-style factories inside the existing
 `__flaxModules` registry. Top-level named classes use `<module-id>#<class-name>` as a
@@ -85,9 +93,10 @@ such as `() => state.handle()` observe replaced methods; already-bound or saved 
 objects keep their previous function body. Runtime validation failures are also sent
 back to the Vite process and reported by `flax-dev`.
 
-This implementation does not change `flax_codegen`, the Binding Manifest, UI protocol
-24, native ABI 2, production bundling, or Session startup semantics. Automatic Session
-restart and field/private-state migration remain deferred.
+The compiler uses erased constructor overloads and extension-owner type metadata from
+`flax_codegen`. The Binding Manifest, UI protocol 24, native ABI 2 and Session startup
+semantics are unchanged. Production and development use the same generic lowering.
+Automatic Session restart and field/private-state migration remain deferred.
 
 ## Alternatives
 
