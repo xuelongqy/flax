@@ -72,10 +72,13 @@ inheritance, super and GC assertions were retained. Local evidence is under
 
 Work stays in `feat/binding-architecture-cleanup`. The concurrent build-tool task owns
 `@flax/build` migration, TS generic compilation and HMR integration. Regenerate combined
-outputs after source integration; never hand-merge generated bindings. A read-only
-preview of the three currently overlapping handwritten files merges without textual
-conflicts. Both target checkouts remain untouched. Wait for concurrent source edits to
-finish before preserving the final target state and integrating. The engine worktree is
+outputs after source integration; never hand-merge generated bindings. The latest
+read-only production-source preview merges cleanly. Routine textual conflicts remain in
+`docs/architecture/bindings.md` (keep the new TS-inference description and Manifest 24)
+and `complex_generic_bounds_test.dart` (the global-constructor comment; both sides
+already use the same global class bindings). Recreate the preview after concurrent edits
+finish. Both target checkouts remain untouched. Preserve the final target state before
+integrating. The engine worktree is
 `/Volumes/MAC_HOME/Develop/Flutter/.codex-worktrees/binding-cleanup/flutter`. Hermes
 retries use the dedicated `Flax Binding Cleanup` simulator to avoid concurrent
 application installation on another task's device. No push or publication is authorized.
