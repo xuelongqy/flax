@@ -105,9 +105,9 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/flax_websocket/js
     devDependencies:
-      '@flax/tools':
+      '@flax/build':
         specifier: workspace:*
-        version: link:../../../packages/flax_tools/js
+        version: link:../../../packages/flax_build/js
       esbuild:
         specifier: 0.28.2
         version: 0.28.2
@@ -139,12 +139,12 @@ importers:
       '@exodus/bytes':
         specifier: 1.15.1
         version: 1.15.1
+      '@flax/build':
+        specifier: workspace:*
+        version: link:../../flax_build/js
       '@flax/core':
         specifier: workspace:*
         version: link:../js-types
-      '@flax/tools':
-        specifier: workspace:*
-        version: link:../../flax_tools/js
       core-js-pure:
         specifier: 3.50.0
         version: 3.50.0
@@ -157,6 +157,24 @@ importers:
       web-streams-polyfill:
         specifier: 4.3.0
         version: 4.3.0
+
+  packages/flax_build/js:
+    dependencies:
+      esbuild:
+        specifier: 0.28.2
+        version: 0.28.2
+      js-yaml:
+        specifier: 5.2.2
+        version: 5.2.2
+      magic-string:
+        specifier: 1.4.3
+        version: 1.4.3
+      typescript:
+        specifier: 7.0.2
+        version: 7.0.2
+      vite:
+        specifier: 8.3.1
+        version: 8.3.1(esbuild@0.28.2)
 
   packages/flax_canvas/example/js:
     dependencies:
@@ -188,12 +206,12 @@ importers:
         specifier: workspace:*
         version: link:../../flax_flutter/js
     devDependencies:
+      '@flax/build':
+        specifier: workspace:*
+        version: link:../../flax_build/js
       '@flax/canvas':
         specifier: workspace:*
         version: link:../js-types
-      '@flax/tools':
-        specifier: workspace:*
-        version: link:../../flax_tools/js
 
   packages/flax_canvas/js-types:
     dependencies:
@@ -291,12 +309,12 @@ importers:
         specifier: workspace:*
         version: link:../../flax/js
     devDependencies:
+      '@flax/build':
+        specifier: workspace:*
+        version: link:../../flax_build/js
       '@flax/fetch':
         specifier: workspace:*
         version: link:../js-types
-      '@flax/tools':
-        specifier: workspace:*
-        version: link:../../flax_tools/js
       axios:
         specifier: 1.20.0
         version: 1.20.0(debug@4.4.3)
@@ -343,12 +361,12 @@ importers:
         specifier: workspace:*
         version: link:../../flax/js
     devDependencies:
+      '@flax/build':
+        specifier: workspace:*
+        version: link:../../flax_build/js
       '@flax/local-storage':
         specifier: workspace:*
         version: link:../js-types
-      '@flax/tools':
-        specifier: workspace:*
-        version: link:../../flax_tools/js
 
   packages/flax_local_storage/js-types:
     dependencies:
@@ -386,21 +404,9 @@ importers:
         specifier: workspace:*
         version: link:../../flax_flutter/js
     devDependencies:
-      '@flax/tools':
+      '@flax/build':
         specifier: workspace:*
-        version: link:../../flax_tools/js
-
-  packages/flax_tools/js:
-    dependencies:
-      esbuild:
-        specifier: 0.28.2
-        version: 0.28.2
-      js-yaml:
-        specifier: 5.2.2
-        version: 5.2.2
-      vite:
-        specifier: 8.3.1
-        version: 8.3.1(esbuild@0.28.2)
+        version: link:../../flax_build/js
 
   packages/flax_websocket/example/js:
     dependencies:
@@ -429,9 +435,9 @@ importers:
         specifier: workspace:*
         version: link:../../flax/js
     devDependencies:
-      '@flax/tools':
+      '@flax/build':
         specifier: workspace:*
-        version: link:../../flax_tools/js
+        version: link:../../flax_build/js
       '@flax/websocket':
         specifier: workspace:*
         version: link:../js-types
@@ -608,6 +614,9 @@ packages:
     peerDependenciesMeta:
       '@noble/hashes':
         optional: true
+
+  '@jridgewell/sourcemap-codec@1.6.0':
+    resolution: {integrity: sha512-T7jf+5zgsZHwNJ4lvQ7/aezbyk0nNX+zJVWpmHA7VYsEx7a7qr5Rg5IbtJFqkgze5Y2sruq1RUY8Q837Od7iFw==}
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -1181,6 +1190,9 @@ packages:
   linkify-it@6.1.0:
     resolution: {integrity: sha512-wJ/TwpSDTLepCrQoYWYIExIKg5Zchex2Nn5yk2mFnB+6PtdkHtyLx742md9csRjjOnGkKIS/RrbY7l8D6gT9Vw==}
 
+  magic-string@1.4.3:
+    resolution: {integrity: sha512-z12OxmaPGE0F4xlpGdjuAUckipLpQlTAuAmyGhNoD7ODpYUzvDfvtxUbjM/jwznyP178oju/KDdyi220wNJ0RQ==}
+
   markdown-it@14.3.0:
     resolution: {integrity: sha512-RCEsPjR+sr0x+AuYp601tKTkgFG4YEPLCzHST3cQ/fhlJkqAkz1L2/Qbp1j9qw5SBwQHFBoW8+hoN5xssOF0Tw==}
     hasBin: true
@@ -1526,6 +1538,8 @@ snapshots:
     optional: true
 
   '@exodus/bytes@1.15.1': {}
+
+  '@jridgewell/sourcemap-codec@1.6.0': {}
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -1963,6 +1977,10 @@ snapshots:
   linkify-it@6.1.0:
     dependencies:
       uc.micro: 3.0.0
+
+  magic-string@1.4.3:
+    dependencies:
+      '@jridgewell/sourcemap-codec': 1.6.0
 
   markdown-it@14.3.0:
     dependencies:

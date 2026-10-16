@@ -1,8 +1,9 @@
-import type { DartList, DartIterable, DartMap, DartSet, FlaxDartInstance, FlaxInstanceType, FlaxStreamReference } from './bindings.js';
+import type { DartList, DartIterable, DartMap, DartSet, FlaxDartInstance, FlaxInstanceType, FlaxStreamReference, Widget } from './bindings.js';
 export declare const flaxDartTypeValue: unique symbol;
 export declare const flaxDartTypeKey: unique symbol;
 export declare const flaxDartTypeCases: unique symbol;
 export declare const flaxDartMethodCases: unique symbol;
+export declare const flaxDartExtensionTypes: unique symbol;
 export type FlaxDartTypeDescription = readonly [
     kind: string,
     id: string | null,
@@ -71,6 +72,7 @@ export declare const dartTypes: Readonly<{
     null: FlaxDartType<null, readonly ["Null", null, readonly [], true]>;
     object: FlaxDartType<{}, readonly ["any", null, readonly [], false]>;
     unknown: FlaxDartType<unknown, readonly ["any", null, readonly [], true]>;
+    widget: FlaxDartType<Widget, readonly ["widget", null, readonly [], false]>;
     list<T extends FlaxDartTypeInput>(item: T): FlaxDartType<DartList<FlaxDartTypeValue<T>>, readonly ['list', null, readonly [Key<T>], false]>;
     iterable<T extends FlaxDartTypeInput>(item: T): FlaxDartType<DartIterable<FlaxDartTypeValue<T>>, readonly ['iterable', null, readonly [Key<T>], false]>;
     map<K extends FlaxDartTypeInput, V extends FlaxDartTypeInput>(key: K, value: V): FlaxDartType<DartMap<FlaxDartTypeValue<K>, FlaxDartTypeValue<V>>, readonly ['map', null, readonly [Key<K>, Key<V>], false]>;

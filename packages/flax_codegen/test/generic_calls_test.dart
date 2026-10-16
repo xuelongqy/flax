@@ -9,6 +9,88 @@ import 'generator_test.dart' show compileFixture;
 
 void main() {
   test(
+    'specialization keeps callback runtime and declaration scopes aligned',
+    () {
+      final outer = Object();
+      final runtime = Object();
+      final declaration = Object();
+      final owner = FlaxCodegenTypeRef(
+        'parameter',
+        name: 'T',
+        genericIdentity: outer,
+      );
+      const erased = FlaxCodegenTypeRef('any', nullable: true);
+      FlaxCodegenTypeRef callback(
+        Object identity, {
+        required bool declared,
+        required bool bounded,
+      }) {
+        final parameter = FlaxCodegenTypeRef(
+          'parameter',
+          name: 'R',
+          genericIdentity: identity,
+        );
+        return FlaxCodegenTypeRef(
+          'callback',
+          typeParameters: [
+            FlaxCodegenGenericParameter(
+              'R',
+              bounded ? owner : erased,
+              defaultType: bounded ? owner : erased,
+              genericIdentity: identity,
+            ),
+          ],
+          parameters: [
+            FlaxCodegenParameterModel(
+              name: 'value',
+              type: declared ? parameter : erased.declaredAs(parameter),
+              positional: true,
+              required: true,
+              defaultCode: 'null',
+              scoped: true,
+              encodeKind: 'data',
+            ),
+          ],
+          result: FlaxCodegenTypeRef(
+            'list',
+            item: declared ? owner : erased.declaredAs(owner),
+          ),
+        );
+      }
+
+      for (final bounded in [false, true]) {
+        final type = callback(
+          runtime,
+          declared: false,
+          bounded: bounded,
+        ).declaredAs(callback(declaration, declared: true, bounded: bounded));
+        final closed = type.specialize({
+          outer: const FlaxCodegenTypeRef('String'),
+        });
+        expect(closed.typeParameters.single.genericIdentity, same(runtime));
+        expect(
+          closed.declaration!.typeParameters.single.genericIdentity,
+          same(declaration),
+        );
+        expect(
+          closed.parameters.single.type.declaration!.genericIdentity,
+          same(runtime),
+        );
+        expect(closed.result!.item!.kind, 'String');
+        final argument = FlaxCodegenTypeRef(bounded ? 'String' : 'num');
+        final invocation = FlaxCodegenTypeRef(
+          'callback',
+          parameters: closed.parameters,
+          result: closed.result,
+        ).specialize({runtime: argument});
+        expect(invocation.parameters.single.type.kind, argument.kind);
+        expect(invocation.result!.item!.kind, 'String');
+        expect(invocation.parameters.single.scoped, isTrue);
+        expect(invocation.parameters.single.encodeKind, 'data');
+      }
+    },
+  );
+  test(
     'nested callback target scopes round-trip after method declarations',
     () {
       final outer = Object();

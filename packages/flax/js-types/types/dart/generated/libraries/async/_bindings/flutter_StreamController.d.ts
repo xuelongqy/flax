@@ -37,6 +37,13 @@ export interface StreamController<T extends unknown | null = unknown | null> ext
     set onResume(value: (() => void) | null);
     set onCancel(value: (() => void | Promise<void>) | null);
 }
+declare function _StreamControllerFactory<T extends unknown | null = unknown | null>(options?: {
+    onListen?: (() => void) | null | undefined;
+    onPause?: (() => void) | null | undefined;
+    onResume?: (() => void) | null | undefined;
+    onCancel?: (() => void | Promise<void>) | null | undefined;
+    sync?: boolean | undefined;
+}): StreamController<T>;
 declare function _StreamControllerFactory(options?: {
     onListen?: (() => void) | null | undefined;
     onPause?: (() => void) | null | undefined;
@@ -45,6 +52,11 @@ declare function _StreamControllerFactory(options?: {
     sync?: boolean | undefined;
 }): StreamController<unknown | null>;
 declare namespace _StreamControllerFactory {
+    function broadcast<T extends unknown | null = unknown | null>(options?: {
+        onListen?: (() => void) | null | undefined;
+        onCancel?: (() => void) | null | undefined;
+        sync?: boolean | undefined;
+    }): StreamController<T>;
     function broadcast(options?: {
         onListen?: (() => void) | null | undefined;
         onCancel?: (() => void) | null | undefined;

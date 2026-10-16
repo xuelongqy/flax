@@ -230,7 +230,7 @@ capabilities: [core]
     final byName = {for (final package in packages) package.name: package};
     expect(byName, contains('@flax/dart'));
     expect(byName, contains('@flax/flutter'));
-    expect(byName, isNot(contains('@flax/tools')));
+    expect(byName, isNot(contains('@flax/build')));
     expect(byName['@flax/dart']!.isTypeOnly, isTrue);
     expect(byName['@flax/flutter']!.isTypeOnly, isTrue);
     expect(byName['@flax/core']!.isTypeOnly, isTrue);

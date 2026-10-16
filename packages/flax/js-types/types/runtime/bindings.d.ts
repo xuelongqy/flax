@@ -1,6 +1,6 @@
 import { type Binding, type ReadonlySignal } from './index.js';
 import { type FlaxDartType, type FlaxDartTypeInput, type FlaxDartTypeSelection, type FlaxDartMethodSelection } from './dart_types.js';
-export { dartTypes, flaxDartTypeCases, flaxDartMethodCases, flaxDartTypeKey, flaxDartTypeValue, } from './dart_types.js';
+export { dartTypes, flaxDartTypeCases, flaxDartMethodCases, flaxDartExtensionTypes, flaxDartTypeKey, flaxDartTypeValue, } from './dart_types.js';
 export type { FlaxDartCallable, FlaxDartSignature, FlaxDartMethodCases, FlaxDartMethodSelection, FlaxGenericCall, FlaxDartType, FlaxDartTypeCases, FlaxDartTypeInput, FlaxDartTypeSelection, } from './dart_types.js';
 /** Experimental generated-binding extension. Independent of the native C ABI. */
 export declare const bindingVersion = 24;
@@ -295,6 +295,10 @@ export declare function defineStateMembers(prototype: object, methods: Readonly<
  * being initialized by a generated abstract base class.
  */
 export declare function constructExtendedProxy(receiver: object, definition: ProxyDefinition, args: readonly unknown[], widgetType?: number): void;
+/** Compiler entry: preserve lexical JS super before entering the native super helper. */
+export declare function invokeDartSuper(receiver: object, method: Function, member: string, args: readonly unknown[], types: readonly FlaxDartTypeInput[] | null, context?: {
+    readonly super: Function;
+}): unknown;
 export declare function invokeProxySuper(receiver: object, type: string, member: string, args: readonly unknown[]): unknown;
 export declare function invokeObject(receiver: object, type: string, method: string, args: readonly unknown[]): unknown;
 export declare function invokeObjectStatic(type: string, member: string): unknown;

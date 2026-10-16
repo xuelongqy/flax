@@ -4,7 +4,7 @@
   "bootstrap": "assets/flax_modules/registry.js",
   "lock": {
     "manager": "pnpm",
-    "digest": "beaa69c9154768ae6938817ea1b77341277786988ea0fd85929df26a5782c118"
+    "digest": "2eb66f9bcbb06b0c1b356f69e9e63de90eae41f710cfce4e890e5fa1b5f4464d"
   },
   "modules": [
     {
@@ -23,7 +23,7 @@
       "specifier": "@flax/core/bindings",
       "owner": "@flax/core-runtime:dist/runtime/bindings.js",
       "version": "0.0.0",
-      "artifact": "acfd15496ef8c4317d7f28c4bf5fff1a9b3f21e218c8ebd283f621e5455bb3bd",
+      "artifact": "bec0c1268249f525a400e82428b0cee80b96bd19b3ffafceb2278e934f56a9c0",
       "asset": "assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js",
       "package": "@flax/core-runtime",
       "source": "dist/runtime/bindings.js",
@@ -2017,7 +2017,7 @@
       "specifier": "@flax/flutter/widgets",
       "owner": "@flax/core-runtime:dist/flutter/widgets.js",
       "version": "0.0.0",
-      "artifact": "d9b8dcd0ac25a9a9a4e1a95eec90ace203e84a87f3356d2b0ed09059c7186784",
+      "artifact": "3207d43669b34e4f27b4600b38b80c6c755b63fc84359c9a9aa2e226ad6bb454",
       "asset": "assets/flax_modules/_flax_flutter_widgets-4c2442a10500.js",
       "package": "@flax/core-runtime",
       "source": "dist/flutter/widgets.js",

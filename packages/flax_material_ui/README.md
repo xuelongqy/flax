@@ -43,9 +43,10 @@ lifecycle rules.
 
 MaterialPage and MaterialPageRoute use their real Dart constructors and ordinary object
 bindings. Page.createRoute and current settings are managed by Flutter. Joint GC retains
-callbacks; FlaxNavigatorObserver delays session shutdown until exit transitions finish.
-Generated observer-list inputs preserve user observers and install a private Flax
-observer. Host-created Navigators accepting these values install a stable observer.
+callbacks while either language owns them. Observer-list inputs preserve constructor
+defaults and supplied order; FlaxNavigatorObserver is optional and does not delay
+Session close. Closing a Session revokes its JS callbacks; Flutter still owns Route
+transitions and application disposal.
 
 TextField selects text events and basic input configuration, borrowing the core
 TextEditingController. TextInputAction is a generated enum. See
@@ -92,9 +93,9 @@ Generated MaterialApp selects home, title and basic theme configuration for JS-o
 application roots. See
 [standalone applications](../../docs/architecture/applications.md).
 
-Generated showDialog calls native Flutter directly; install a stable
-FlaxNavigatorObserver on its target Navigator. AlertDialog supplies title, content,
-actions and scrolling. MaterialApp now selects navigatorObservers. See
+Generated showDialog calls native Flutter directly without requiring an observer.
+AlertDialog supplies title, content, actions and scrolling. MaterialApp selects
+navigatorObservers. See
 [dialogs and Route ownership](../../docs/architecture/functions.md).
 
 RefreshIndicator uses the generated reverse direction: its JavaScript `onRefresh`

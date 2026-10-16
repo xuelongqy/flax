@@ -179,7 +179,7 @@ void main() {
         '"syncAsyncMapped":[2,3,3,4],'
         '"asyncMapped":[2,3,3,4],"asyncExpanded":[1,11,2,12],'
         '"expanded":[1,11,2,12],"handled":[],"handledStack":true,'
-        '"reduce":8,"fold":18,"join":"1.0-2.0-2.0-3.0","contains":true,'
+        '"reduce":8,"fold":18,"join":"1-2-2-3","contains":true,'
         '"forEach":8,"every":true,"any":true,"length":4,"last":3,'
         '"list":[1,2,2,3],'
         '"set":[1,2,3],"drain":12,"take":[1,2],'

@@ -31,10 +31,17 @@ package has no concrete engine dependency.
 | `flax_engine_hermes`                                 | Hermes adapter, locked shared SDK, and engine tests                                                      |
 | `flax_engine_v8`                                     | Experimental V8 adapter, locked shared SDK, and engine tests                                             |
 | `flax_native_assets`                                 | Build-only owner of shared Android C++ and Windows CRT native assets                                     |
+| `flax_build` / `@flax/build`                         | Node build tooling: shared TS generic compilation, host assets, esbuild/Vite and HMR                     |
 | `flax_codegen`                                       | Analyzer model, manifest format, and Dart/TypeScript emitters                                            |
 | `flax_test`                                          | Development-only engine-neutral runtime contracts and shared test harnesses                              |
 
-`flax_test` is not a published product API.
+`flax_test` is not a published product API. `@flax/build` is a developer-facing Node
+package with typed root, `./esbuild` and `./vite` exports and the
+`flax-modules`/`flax-dev` commands. It has no Dart plugin, module-delivery descriptor or
+Session registration and is excluded from runtime npm inventories. Source and
+declaration packages keep their existing ownership. Apps install the build package as a
+development dependency; no compiler/Vite code is delivered to the device. See its
+[compiler and HMR contract](../../packages/flax_build/js/README.md).
 
 ## Ecosystem metadata
 
@@ -193,7 +200,7 @@ An application prepares the modules it can provide, for example:
 }
 ```
 
-`@flax/tools` resolves the locked npm implementations, follows declared delivery
+`@flax/build` resolves the locked npm implementations, follows declared delivery
 dependencies, emits Flax-loadable factories into the Flutter assets directory, and
 checks that the asset path is declared. The resulting manifest is an application
 capability inventory, not a per-session injection list. The Flutter application loads it

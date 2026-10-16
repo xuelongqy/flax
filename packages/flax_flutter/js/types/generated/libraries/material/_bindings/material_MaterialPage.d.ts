@@ -1,4 +1,5 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type Widget } from '@flax/core/bindings';
+import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_Page';
 import '@flax/flutter/widgets/_bindings/flutter_Page';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_RouteSettings';
@@ -14,6 +15,18 @@ export interface MaterialPage<T extends unknown | null = unknown | null> extends
     readonly arguments: unknown | null;
     readonly key: upstream2.LocalKey | null;
 }
+declare function _MaterialPageFactory<T extends unknown | null = unknown | null>(options: {
+    child: Widget;
+    maintainState?: boolean | undefined;
+    fullscreenDialog?: boolean | undefined;
+    key?: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/key.dart::LocalKey": readonly [];
+    }> | null | undefined;
+    canPop?: boolean | undefined;
+    onPopInvoked?: ((didPop: boolean, result: _FlaxDartOutput<T> | null) => void) | undefined;
+    name?: string | null | undefined;
+    arguments?: unknown | null | undefined;
+}): MaterialPage<T>;
 declare function _MaterialPageFactory(options: {
     child: Widget;
     maintainState?: boolean | undefined;

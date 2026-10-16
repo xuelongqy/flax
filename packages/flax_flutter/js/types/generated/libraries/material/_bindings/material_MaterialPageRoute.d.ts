@@ -30,6 +30,14 @@ export interface MaterialPageRoute<T extends unknown | null = unknown | null> ex
     readonly isActive: boolean;
     readonly settings: upstream2.RouteSettings;
 }
+declare function _MaterialPageRouteFactory<T extends unknown | null = unknown | null>(options: {
+    builder: ((context: upstream1.BuildContext) => Widget);
+    settings?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/navigator.dart::RouteSettings": readonly [];
+    }> | null | undefined;
+    maintainState?: boolean | undefined;
+    fullscreenDialog?: boolean | undefined;
+}): MaterialPageRoute<T>;
 declare function _MaterialPageRouteFactory(options: {
     builder: ((context: upstream1.BuildContext) => Widget);
     settings?: Readonly<{

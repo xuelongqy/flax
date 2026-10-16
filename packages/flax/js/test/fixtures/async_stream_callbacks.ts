@@ -7,11 +7,16 @@ import {
   Probe,
 } from '../../../.dart_tool/flax/ui/interop_bindings.js';
 
+// Exercise the callback adapter's lazy validation, independently of typed controllers.
+function erasedController<T>(options: { sync: boolean }): StreamController<T> {
+  return Reflect.apply(StreamController, undefined, [options]) as StreamController<T>;
+}
+
 const callbacks = AsyncStreamCallbacks();
 const thenObject = CodegenThenObject();
 const probe = Probe();
-const controller = StreamController<Promise<number>>({ sync: true });
-const mixedController = StreamController<number | Promise<number>>({ sync: true });
+const controller = erasedController<Promise<number>>({ sync: true });
+const mixedController = erasedController<number | Promise<number>>({ sync: true });
 const hooks = {
   mode: 'identity',
   sourceNext: 0,
@@ -67,8 +72,8 @@ const streamFutureOr = callbacks.echoStreamFutureOr((value) =>
   hooks.mode === 'controller' ? mixedController.stream : value,
 );
 
-const nestedOuter = StreamController<Stream<number | null>>({ sync: true });
-const nestedInner = StreamController<number | null>({ sync: true });
+const nestedOuter = erasedController<Stream<number | null>>({ sync: true });
+const nestedInner = erasedController<number | null>({ sync: true });
 const nestedState = {
   outerNext: 0,
   innerNext: 0,

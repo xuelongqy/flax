@@ -6,12 +6,16 @@ import type {
   FlaxDartInstance,
   FlaxInstanceType,
   FlaxStreamReference,
+  Widget,
 } from './bindings.js';
 
 export const flaxDartTypeValue: unique symbol = Symbol('Flax Dart type value');
 export const flaxDartTypeKey: unique symbol = Symbol('Flax Dart type key');
 export const flaxDartTypeCases: unique symbol = Symbol('Flax Dart type cases');
 export const flaxDartMethodCases: unique symbol = Symbol('Flax Dart method cases');
+export const flaxDartExtensionTypes: unique symbol = Symbol(
+  'Flax Dart extension types',
+);
 
 export type FlaxDartTypeDescription = readonly [
   kind: string,
@@ -182,6 +186,12 @@ export const dartTypes = Object.freeze({
   null: primitive('Null', true),
   object: primitive('any', false),
   unknown: primitive('any', true),
+  widget: token<Widget, readonly ['widget', null, readonly [], false]>([
+    'widget',
+    null,
+    [],
+    false,
+  ]),
   list<T extends FlaxDartTypeInput>(
     item: T,
   ): FlaxDartType<

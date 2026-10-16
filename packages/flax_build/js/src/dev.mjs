@@ -3,6 +3,7 @@ import { mkdir, realpath, rename, rm, writeFile } from 'node:fs/promises';
 import { dirname, isAbsolute, relative, resolve, sep } from 'node:path';
 import { build } from 'esbuild';
 import { createServer, parseSync } from 'vite';
+import { flaxVitePlugin } from './vite.mjs';
 
 function clean(value) {
   return value.replace(/[?#].*$/, '');
@@ -444,7 +445,7 @@ export async function startFlaxDev({ entry, out, port = 5173, root = process.cwd
     logLevel: 'warn',
     esbuild: { target: 'esnext' },
     optimizeDeps: { noDiscovery: true },
-    plugins: [hotPlugin(state)],
+    plugins: [flaxVitePlugin(), hotPlugin(state)],
     server: {
       host: '127.0.0.1',
       port,

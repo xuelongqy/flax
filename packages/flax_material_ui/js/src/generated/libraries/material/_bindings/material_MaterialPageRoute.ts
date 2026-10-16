@@ -16,7 +16,9 @@ readonly isActive: boolean;
 readonly settings: upstream2.RouteSettings;
 }
 defineObject("flax.material/material#type:MaterialPageRoute", ["isCurrent","isActive","settings"], [], _flaxBindingMethods("flax.material/material#type:MaterialPageRoute", "object", {}, {}), []);
-function _MaterialPageRouteFactory(options: { builder: ((context: upstream1.BuildContext) => Widget); settings?: Readonly<{ "__flaxBound:package:flutter/src/widgets/navigator.dart::RouteSettings": readonly [] }> | null | undefined; maintainState?: boolean | undefined; fullscreenDialog?: boolean | undefined }): MaterialPageRoute<unknown | null> {
+function _MaterialPageRouteFactory<T extends unknown | null = unknown | null>(options: { builder: ((context: upstream1.BuildContext) => Widget); settings?: Readonly<{ "__flaxBound:package:flutter/src/widgets/navigator.dart::RouteSettings": readonly [] }> | null | undefined; maintainState?: boolean | undefined; fullscreenDialog?: boolean | undefined }): MaterialPageRoute<T>;
+function _MaterialPageRouteFactory(options: { builder: ((context: upstream1.BuildContext) => Widget); settings?: Readonly<{ "__flaxBound:package:flutter/src/widgets/navigator.dart::RouteSettings": readonly [] }> | null | undefined; maintainState?: boolean | undefined; fullscreenDialog?: boolean | undefined }): MaterialPageRoute<unknown | null>;
+function _MaterialPageRouteFactory(options: Record<string, unknown>): unknown {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:MaterialPageRoute", "", [{"name":"builder","required":true,"positional":false},{"name":"settings","required":false,"positional":false},{"name":"maintainState","required":false,"positional":false},{"name":"fullscreenDialog","required":false,"positional":false}], [], options) as MaterialPageRoute<unknown | null>;

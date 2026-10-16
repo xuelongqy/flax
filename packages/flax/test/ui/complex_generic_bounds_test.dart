@@ -104,7 +104,7 @@ void main() {
         await tester.pumpWidget(h.app('complexBounds'));
         expect(h.errors, isEmpty);
         h.execute('''
-        class ComplexChild extends complex.ComplexMethods.\$type(dartTypes.string) {
+        var ComplexChild = class ComplexChild extends complex.ComplexMethods.\$type(dartTypes.string) {
           #suffix = '!';
           recursive(value, call) {
             const result = call.super(value);
@@ -120,7 +120,7 @@ void main() {
           }
         }
         var child = new ComplexChild();
-        class RecursiveChild extends complex.RecursiveBox.\$type(dartTypes.string) {
+        var RecursiveChild = class RecursiveChild extends complex.RecursiveBox.\$type(dartTypes.string) {
           #suffix = '!';
           values() {
             const values = super.values();
@@ -131,7 +131,7 @@ void main() {
         var recursiveChild = new RecursiveChild('class');
         var asynchronous;
         complex.callLater(child, 'async').then(value => asynchronous = value.get(0));
-        class MissingSuper extends complex.ComplexMethods.\$type(dartTypes.string) {
+        var MissingSuper = class MissingSuper extends complex.ComplexMethods.\$type(dartTypes.string) {
           recursive(value) { return [value]; }
           async later(value) { await Promise.resolve(); return [value]; }
         }

@@ -1,6 +1,7 @@
 // GENERATED CODE. Selected public API subset; do not edit.
 // Regenerate with dart run melos run bindings:generate.
 import { defineDartCallTypes as _flaxDefineDartCallTypes, defineDartTypes as _flaxHostDefineDartTypes, bindInstanceType as _flaxHostBindInstanceType, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, bindingVersion, construct as _flaxHostConstruct, constructProxy as _flaxHostConstructProxy, constructObject as _flaxHostConstructObject, constructDeferredObject as _flaxHostConstructDeferredObject, constructStream as _flaxHostConstructStream, constructAsyncIterableStream as _flaxHostConstructAsyncIterableStream, defineObject as _flaxHostDefineObject, defineStream as _flaxHostDefineStream, invokeObject as _flaxHostInvokeObject, invokeObjectStatic as _flaxHostInvokeObjectStatic, invokeStream as _flaxHostInvokeStream, enumValue as _flaxHostEnumValue, defineEnum as _flaxHostDefineEnum, invokeEnum as _flaxHostInvokeEnum, defineContext as _flaxHostDefineContext, defineState as _flaxHostDefineState, contextHandle as _flaxHostContextHandle, invokeStatic as _flaxHostInvokeStatic, invokeInstance as _flaxHostInvokeInstance, invokeTopLevel as _flaxHostInvokeTopLevel, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
 const _flaxMemberParameters0 = [{"name":"state","required":true,"positional":true}] as const;
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_ConnectionState';
 import '@flax/flutter/widgets/_bindings/flutter_ConnectionState';
@@ -21,28 +22,36 @@ inState(state: upstream0.ConnectionState): AsyncSnapshot<T>;
 }
 defineObject("flax.core/flutter#type:AsyncSnapshot", ["connectionState","data","error","stackTrace","hasData","hasError","requireData"], [], _flaxBindingMethods("flax.core/flutter#type:AsyncSnapshot", "object", {"inState":_flaxMemberParameters0}, {}), []);
 namespace _AsyncSnapshotFactory {
-export function nothing(): AsyncSnapshot<unknown | null> {
+export function nothing<T extends unknown | null = unknown | null>(): AsyncSnapshot<T>;
+export function nothing(): AsyncSnapshot<unknown | null>;
+export function nothing(): unknown {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:AsyncSnapshot", "nothing", [], [], {}) as AsyncSnapshot<unknown | null>;
 }
 }
 namespace _AsyncSnapshotFactory {
-export function waiting(): AsyncSnapshot<unknown | null> {
+export function waiting<T extends unknown | null = unknown | null>(): AsyncSnapshot<T>;
+export function waiting(): AsyncSnapshot<unknown | null>;
+export function waiting(): unknown {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:AsyncSnapshot", "waiting", [], [], {}) as AsyncSnapshot<unknown | null>;
 }
 }
 namespace _AsyncSnapshotFactory {
-export function withData(state: upstream0.ConnectionState, data: unknown | null): AsyncSnapshot<unknown | null> {
+export function withData<T extends unknown | null = unknown | null>(state: upstream0.ConnectionState, data: (T | _FlaxDartOutput<T>)): AsyncSnapshot<T>;
+export function withData(state: upstream0.ConnectionState, data: unknown | null): AsyncSnapshot<unknown | null>;
+export function withData(state: unknown, data: unknown): unknown {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:AsyncSnapshot", "withData", [{"name":"state","required":true,"positional":true},{"name":"data","required":true,"positional":true}], [state, data], {}) as AsyncSnapshot<unknown | null>;
 }
 }
 namespace _AsyncSnapshotFactory {
-export function withError(state: upstream0.ConnectionState, error: {}, stackTrace?: Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }>): AsyncSnapshot<unknown | null> {
+export function withError<T extends unknown | null = unknown | null>(state: upstream0.ConnectionState, error: {}, stackTrace?: Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }>): AsyncSnapshot<T>;
+export function withError(state: upstream0.ConnectionState, error: {}, stackTrace?: Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }>): AsyncSnapshot<unknown | null>;
+export function withError(state: unknown, error: unknown, stackTrace?: unknown): unknown {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 3) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:AsyncSnapshot", "withError", [{"name":"state","required":true,"positional":true},{"name":"error","required":true,"positional":true},{"name":"stackTrace","required":false,"positional":true}], [state, error, stackTrace], {}) as AsyncSnapshot<unknown | null>;

@@ -615,7 +615,7 @@ Future<void> _checkNpmConsumers(
     p.join(
       workspaceRoot,
       'packages',
-      'flax_tools',
+      'flax_build',
       'js',
       'src',
       'register-node-loader.mjs',

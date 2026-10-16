@@ -1,7 +1,7 @@
 import { mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
-import { startFlaxDev } from '../../../flax_tools/js/src/dev.mjs';
+import { startFlaxDev } from '../../../flax_build/js/src/dev.mjs';
 
 const root = await mkdtemp(resolve(tmpdir(), 'flax-hmr-e2e-'));
 const entry = resolve(root, 'src/main.ts');

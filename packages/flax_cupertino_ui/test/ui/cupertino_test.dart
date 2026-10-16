@@ -1,4 +1,3 @@
-import 'package:flax/flax.dart';
 import 'package:flax_test/flax_test.dart';
 import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -21,10 +20,7 @@ void main() {
 
     final app = tester.widget<CupertinoApp>(find.byType(CupertinoApp));
     expect(app.debugShowCheckedModeBanner, isFalse);
-    expect(
-      app.navigatorObservers!.whereType<FlaxNavigatorObserver>(),
-      hasLength(1),
-    );
+    expect(app.navigatorObservers, isEmpty);
     expect(app.theme, isA<CupertinoThemeData>());
     expect(app.theme?.primaryColor, const Color(0xff1565c0));
     expect(app.theme?.scaffoldBackgroundColor, const Color(0xffe3f2fd));

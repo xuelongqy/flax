@@ -37,6 +37,11 @@ extension StaticX on String {
 extension ListX<T> on List<T> {
   static int count = 0;
   T get firstValue => first;
+  List<T> Function<R>(R) get captured =>
+      <R>(R value) => this;
+  T Function<S extends R>(S) Function<R extends T>(R) get nested =>
+      <R extends T>(R value) =>
+          <S extends R>(S child) => child;
   set firstValue(T value) => this[0] = value;
   R mapFirst<R>(R Function(T) callback) => callback(first);
   Future<T> later() async => first;

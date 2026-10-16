@@ -1122,14 +1122,29 @@ FlaxCodegenTypeRef _specializeType(
   }
   FlaxCodegenTypeRef specialize(FlaxCodegenTypeRef type) =>
       _specializeType(type, substitutions);
+  final declaration = type.declaration;
+  final declaredShape = declaration?.kind == type.kind ? declaration : null;
+  // Corresponding callback views have separate binders, even for the same name.
+  final runtimeBinders = <Object?, FlaxCodegenTypeRef>{
+    if (declaredShape?.typeParameters.length == type.typeParameters.length)
+      for (final (index, parameter) in type.typeParameters.indexed)
+        declaredShape!.typeParameters[index].genericIdentity:
+            FlaxCodegenTypeRef(
+              'parameter',
+              name: parameter.name,
+              genericIdentity: parameter.genericIdentity,
+            ),
+  };
+  FlaxCodegenTypeRef align(FlaxCodegenTypeRef declared) =>
+      runtimeBinders.isEmpty ? declared : declared.specialize(runtimeBinders);
   FlaxCodegenTypeRef? child(
     FlaxCodegenTypeRef? actual,
     FlaxCodegenTypeRef? declared,
   ) => actual == null
       ? null
-      : specialize(declared == null ? actual : actual.declaredAs(declared));
-  final declaration = type.declaration;
-  final declaredShape = declaration?.kind == type.kind ? declaration : null;
+      : specialize(
+          declared == null ? actual : actual.declaredAs(align(declared)),
+        );
   final typeParameters = <FlaxCodegenGenericParameter>[];
   for (final (index, parameter) in type.typeParameters.indexed) {
     final declaredParameter =
@@ -1139,7 +1154,7 @@ FlaxCodegenTypeRef _specializeType(
     final bound = specialize(
       declaredParameter == null
           ? parameter.bound
-          : parameter.bound.declaredAs(declaredParameter.bound),
+          : parameter.bound.declaredAs(align(declaredParameter.bound)),
     );
     final defaultType = child(
       parameter.defaultType,
@@ -1191,7 +1206,7 @@ FlaxCodegenTypeRef _specializeType(
           parameter,
           substitutions,
           declaredShape?.parameters.length == type.parameters.length
-              ? declaredShape!.parameters[index].type
+              ? align(declaredShape!.parameters[index].type)
               : null,
         ),
     ],

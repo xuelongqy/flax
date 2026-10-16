@@ -819,6 +819,7 @@ class FlaxDartTypes {
           'void',
           'Never',
           'Null',
+          'widget',
         }.contains(input[0]) &&
         arguments.isNotEmpty) {
       throw ArgumentError('Scalar Dart types have no type arguments');
@@ -859,6 +860,8 @@ class FlaxDartTypes {
         type = Never;
       case 'Null':
         type = Null;
+      case 'widget':
+        type = Widget;
       case 'list':
         type = instantiate(<E>() => List<E>, arguments, const []) as Type;
       case 'set':
