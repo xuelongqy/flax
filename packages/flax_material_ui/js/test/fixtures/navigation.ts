@@ -1,12 +1,17 @@
 import {
   dartType as selectDartType,
   dartTypes as nativeTypes,
+  type DartMap,
+  asDart,
+  constructObject,
+  defineObject,
 } from '@flax/core/bindings';
 import { signal, bind } from '@flax/core';
 import {
   Builder,
   Column,
   Text,
+  TextEditingController,
   Navigator,
   NavigatorPopHandler,
   PopScope,
@@ -14,21 +19,28 @@ import {
   runApp,
   type BuildContext,
   type NavigatorState,
-  type NavigationData,
 } from '@flax/flutter/widgets';
 import { ValueKey } from '@flax/flutter/foundation';
-import { MaterialPageRoute, TextButton } from '@flax/flutter/material';
+import { MaterialPage, MaterialPageRoute, TextButton } from '@flax/flutter/material';
 
 const StringKey = selectDartType(ValueKey, nativeTypes.string);
 
 const rootCount = signal(0);
-const result = signal<NavigationData>(null);
+const result = signal<unknown>(null);
 const allowPop = signal(true);
 const events: string[] = [];
 let navigator: NavigatorState;
 let original: BuildContext;
 let detailContext: BuildContext;
 const hooks = {
+  asDart,
+  constructObject,
+  defineObject,
+  TextEditingController,
+  MaterialPage,
+  RouteSettings,
+  materialRoute: (builder: (context: BuildContext) => ReturnType<typeof Text>) =>
+    MaterialPageRoute({ builder }),
   rootCount,
   result,
   allowPop,
@@ -46,10 +58,10 @@ const hooks = {
   detailBuilds: 0,
   throwBuilder: false,
   open: () => navigator.push(route('Detail')),
-  replace: () =>
-    navigator.pushReplacement(route('Replacement'), { result: { replaced: true } }),
+  replace: (value: unknown = { replaced: true }) =>
+    navigator.pushReplacement(route('Replacement'), { result: value }),
   native: () => navigator.pushNamed('/native', { arguments: { input: ['value', 2] } }),
-  pop: (value: NavigationData = { selected: ['a', 3] }) => navigator.pop(value),
+  pop: (value: unknown = { selected: ['a', 3] }) => navigator.pop(value),
   maybePop: () => navigator.maybePop(),
 };
 Object.assign(globalThis, { navigation: hooks });
@@ -103,7 +115,20 @@ const root = Builder({
       children: [
         Text('JS home'),
         Text(bind(() => `Root count ${rootCount.value}`)),
-        Text(bind(() => `Result ${JSON.stringify(result.value)}`)),
+        Text(
+          bind(
+            () =>
+              `Result ${JSON.stringify(
+                result.value &&
+                  typeof result.value === 'object' &&
+                  'toMap' in result.value
+                  ? Object.fromEntries(
+                      (result.value as DartMap<string, unknown>).toMap(),
+                    )
+                  : result.value,
+              )}`,
+          ),
+        ),
         TextButton({
           child: Text('Open detail'),
           onPressed: async () => {

@@ -794,10 +794,10 @@ componentApi.runApp(componentApi.Column({children:[new Left(), new Right('right'
         bindings: registry,
         onError: (e, _) => h.errors.add(e),
         source: script('''
-var {Counter, MaterialPage, MaterialPageRoute, Navigator, ValueKey, signal, runApp} = componentApi;
+var {Counter, MaterialPage, MaterialPageRoute, Navigator, ValueKey, signal, runApp, identical} = componentApi;
 var makePage = initial => MaterialPage({key: ValueKey('base'), maintainState: false, child: new Counter('page', initial)});
 var pages = signal([makePage(2)]);
-runApp(Navigator({pages: pages.bind, onDidRemovePage: page => { pages.value = pages.value.filter(p => p !== page); }}));
+runApp(Navigator({pages: pages.bind, onDidRemovePage: page => { pages.value = pages.value.filter(p => !identical(p, page)); }}));
 '''),
       );
       await t.pumpWidget(

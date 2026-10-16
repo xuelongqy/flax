@@ -134,7 +134,7 @@ void main() {
     timeout: const Timeout(Duration(minutes: 4)),
   );
   test(
-    'Route and Page named adapters forward private defaults and retain leases',
+    'Route and Page ordinary constructors preserve private defaults',
     () async {
       final parser = FlaxCodegenBindingParser(root);
       addTearDown(parser.dispose);
@@ -153,55 +153,37 @@ void main() {
         {
           'OmissionRoute': const FlaxCodegenClassSelection({
             'named': ['a', 'b', 'c', 'd', 'e', 'callback'],
-          }, kind: 'route'),
-          'OmissionPage': FlaxCodegenClassSelection(
-            {
-              'named': ['a', 'b', 'c', 'd', 'e', 'callback'],
-            },
-            kind: 'page',
-            pageAdapter: FlaxCodegenPageAdapterModel(uri, 'adaptOmissionPage'),
-          ),
+          }, kind: 'object'),
+          'OmissionPage': FlaxCodegenClassSelection({
+            'named': ['a', 'b', 'c', 'd', 'e', 'callback'],
+          }, kind: 'object'),
         },
       );
       final module = await parser.parse(config);
       final emitter = FlaxCodegenBindingEmitter([module]);
-      expect(emitter.dart(module), contains('super.callback'));
+      expect(emitter.dart(module), isNot(contains('FlaxRouteLease')));
       expect(emitter.dart(module), isNot(contains('= _privateCallback')));
       await compileFixture(
         root,
         emitter,
         module,
         dartTestSource: r"""
-class _RouteLease implements FlaxRouteLease {
-  @override void Function()? onDiscard;
-  bool disposed = false;
-  @override void routeDisposed() { disposed = true; }
-  @override dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
-class _PageLease implements FlaxPageLease {
-  @override dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
 void main() {
-  test('all leased adapter masks preserve defaults and dispose ownership', () {
+  test('all native constructor masks preserve defaults', () {
     final defaults = api.OmissionRoute.named();
     final expected = [defaults.a, defaults.b, defaults.c, defaults.d, defaults.e, defaults.callback];
     final keys = ['a', 'b', 'c', 'd', 'e', 'callback'];
     for (var mask = 0; mask < 64; mask++) {
       final values = <String, Object?>{for (var i = 0; i < 6; i++) if (mask & (1 << i) != 0) keys[i]: null};
-      final lease = _RouteLease();
-      final route = _createOmissionRoute('named', values, lease) as api.OmissionRoute;
-      final pageLease = _PageLease();
-      final page = _createOmissionPage('named', values, pageLease) as api.OmissionPage;
+      final route = _createOmissionRoute('named', values) as api.OmissionRoute;
+      final page = _createOmissionPage('named', values) as api.OmissionPage;
       final actualRoute = [route.a, route.b, route.c, route.d, route.e, route.callback];
       final actualPage = [page.a, page.b, page.c, page.d, page.e, page.callback];
       for (var i = 0; i < 6; i++) {
         expect(actualRoute[i], same(mask & (1 << i) == 0 ? expected[i] : null));
         expect(actualPage[i], same(mask & (1 << i) == 0 ? expected[i] : null));
       }
-      expect((page as FlaxPageConfiguration).flaxPageLease, same(pageLease));
-      expect(lease.onDiscard, isNotNull);
-      lease.onDiscard!();
-      expect(lease.disposed, isTrue);
+      route.dispose();
     }
     defaults.dispose();
   });

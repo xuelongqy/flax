@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flax/bindings.dart';
 import 'package:flutter/widgets.dart';
 export 'package:flutter/widgets.dart'
     show Widget, Key, Route, Page, BuildContext;
@@ -206,15 +205,11 @@ class InterfacePage extends Page<Object?> {
   const InterfacePage({required this.builder, super.key});
   final ExtentContract Function(BuildContext) builder;
   @override
-  Route<Object?> createRoute(BuildContext context) =>
-      throw UnimplementedError();
+  Route<Object?> createRoute(BuildContext context) => _InterfacePageRoute(this);
 }
 
-FlaxPageRoute<Object?> adaptInterfacePage(InterfacePage page) =>
-    _InterfacePageRoute(page);
-
-class _InterfacePageRoute extends FlaxPageRoute<Object?> {
-  _InterfacePageRoute(InterfacePage page) : super(page: page);
+class _InterfacePageRoute extends PageRoute<Object?> {
+  _InterfacePageRoute(InterfacePage page) : super(settings: page);
   @override
   Widget buildPage(
     BuildContext context,

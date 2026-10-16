@@ -13,6 +13,7 @@
       "requiredCapabilities": [
         "generic-member-views",
         "instance-checks",
+        "native-navigation-objects",
         "native-widget-proxies"
       ],
       "model": {
@@ -42,6 +43,7 @@
           "CupertinoPageScaffold": "package:cupertino_ui/cupertino_ui.dart",
           "CupertinoThemeData": "package:cupertino_ui/cupertino_ui.dart",
           "Key": "package:flutter/widgets.dart",
+          "NavigatorObserver": "package:flutter/widgets.dart",
           "ObstructingPreferredSizeWidget": "package:cupertino_ui/cupertino_ui.dart",
           "PreferredSizeWidget": "package:flutter/widgets.dart",
           "Size": "package:flutter/widgets.dart",
@@ -188,6 +190,82 @@
                     "positional": false,
                     "defaultCode": "null",
                     "omitWhenAbsent": false,
+                    "independentWidgetResult": false,
+                    "snapshot": null,
+                    "encodeKind": null,
+                    "scoped": false
+                  },
+                  {
+                    "name": "navigatorObservers",
+                    "type": {
+                      "kind": "list",
+                      "id": null,
+                      "name": null,
+                      "nullable": false,
+                      "item": {
+                        "kind": "object",
+                        "id": "flax.core/flutter#type:NavigatorObserver",
+                        "name": "NavigatorObserver",
+                        "nullable": false,
+                        "item": null,
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": null,
+                        "tsArguments": [],
+                        "slot": null
+                      },
+                      "key": null,
+                      "parameters": [],
+                      "typeParameters": [],
+                      "result": null,
+                      "typeArguments": [],
+                      "dartArguments": [],
+                      "primitiveKinds": [],
+                      "declaration": {
+                        "kind": "list",
+                        "id": null,
+                        "name": null,
+                        "nullable": false,
+                        "item": {
+                          "kind": "object",
+                          "id": "flax.core/flutter#type:NavigatorObserver",
+                          "name": "NavigatorObserver",
+                          "nullable": false,
+                          "item": null,
+                          "key": null,
+                          "parameters": [],
+                          "typeParameters": [],
+                          "result": null,
+                          "typeArguments": [],
+                          "dartArguments": [],
+                          "primitiveKinds": [],
+                          "declaration": null,
+                          "tsArguments": [],
+                          "slot": null
+                        },
+                        "key": null,
+                        "parameters": [],
+                        "typeParameters": [],
+                        "result": null,
+                        "typeArguments": [],
+                        "dartArguments": [],
+                        "primitiveKinds": [],
+                        "declaration": null,
+                        "tsArguments": [],
+                        "slot": null
+                      },
+                      "tsArguments": [],
+                      "slot": null
+                    },
+                    "required": false,
+                    "positional": false,
+                    "defaultCode": "null",
+                    "omitWhenAbsent": true,
                     "independentWidgetResult": false,
                     "snapshot": null,
                     "encodeKind": null,
@@ -2077,6 +2155,15 @@
               "name": "BuildContext"
             },
             "wireId": "flax.core/flutter#type:BuildContext",
+            "owner": false
+          },
+          {
+            "sourceIdentity": {
+              "kind": "type",
+              "originatingUri": "package:flutter/src/widgets/navigator.dart",
+              "name": "NavigatorObserver"
+            },
+            "wireId": "flax.core/flutter#type:NavigatorObserver",
             "owner": false
           },
           {

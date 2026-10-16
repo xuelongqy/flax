@@ -34,3 +34,13 @@ class FixtureRoute<T> extends PageRoute<T> {
     Animation<double> secondaryAnimation,
   ) => content(context);
 }
+
+class NavigationReferences {
+  NavigationReferences(this.route, this.page);
+  Route<Object?> route;
+  Page<Object?> page;
+  Future<Route<Object?>> get later => Future.value(route);
+  Stream<Page<Object?>> get changes => Stream.value(page);
+  Route<Object?> through(Route<Object?> Function(Page<Object?>) callback) =>
+      callback(page);
+}

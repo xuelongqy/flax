@@ -12,7 +12,7 @@ publicLibraries:
 classes:
   CupertinoApp:
     constructors:
-      '': [key, home, theme, debugShowCheckedModeBanner]
+      '': [key, home, theme, debugShowCheckedModeBanner, navigatorObservers]
   CupertinoPageScaffold:
     constructors:
       '': [key, child, navigationBar, backgroundColor, resizeToAvoidBottomInset]

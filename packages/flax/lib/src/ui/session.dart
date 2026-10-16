@@ -250,7 +250,7 @@ class _Session {
   bool get closing => _status != _SessionStatus.open;
   int _mounts = 0;
   int _routeCount = 0;
-  final _heldRoutes = <ModalRoute<Object?>>{};
+  final _heldRoutes = <TransitionRoute<Object?>>{};
   final _closed = Completer<void>();
   final _componentStates = <int, FlaxComponentStateBase>{};
   final _componentDescriptions = <int, WeakReference<_ComponentDescription>>{};
@@ -332,7 +332,7 @@ class _Session {
     _routeCount++;
   }
 
-  // Call only after releasing the Route's callbacks, snapshots and previews.
+  // Navigation retention is separate from callback/object ownership through GC.
   void releaseRoute() {
     if (_routeCount == 0) throw StateError('No Route resource to release');
     _routeCount--;
@@ -341,18 +341,16 @@ class _Session {
 
   bool ownsPageRoute(ModalRoute<Object?>? route) => _heldRoutes.contains(route);
 
-  void holdPageRoute(ModalRoute<Object?>? route) {
-    if (ownsPageRoute(route)) return;
+  void holdPageRoute(TransitionRoute<Object?>? route) {
+    if (route == null || _heldRoutes.contains(route)) return;
     requireOpen();
-    if (route == null) return;
     _heldRoutes.add(route);
     retainRoute();
-    unawaited(
-      route.completed.then((_) {
-        _heldRoutes.remove(route);
-        releaseRoute();
-      }),
-    );
+    unawaited(route.completed.then((_) => releasePageRoute(route)));
+  }
+
+  void releasePageRoute(TransitionRoute<Object?> route) {
+    if (_heldRoutes.remove(route)) releaseRoute();
   }
 
   void load(
@@ -874,8 +872,7 @@ class _Session {
       throw ArgumentError('Expected ${type.kind}, got ${value.runtimeType}');
     }
     if ({'iterable', 'map', 'set'}.contains(type.kind) ||
-        (type.kind == 'list' &&
-            !{'widget', 'page'}.contains(type.item!.kind))) {
+        (type.kind == 'list' && type.item!.kind != 'widget')) {
       final memo = conversion ?? _CollectionConversion();
       try {
         return decodeCollection(value, type, memo);
@@ -933,18 +930,6 @@ class _Session {
           _checkWidgetKeys(widgets.whereType<Widget>());
           return _Value(widgets, items);
         }
-        if (type.item!.kind == 'page') {
-          final pages = items
-              .map((item) => item.data as Page<Object?>)
-              .toList();
-          final keys = <LocalKey>{};
-          for (final page in pages) {
-            if (page.key != null && !keys.add(page.key!)) {
-              throw ArgumentError('Duplicate Page key: ${page.key}');
-            }
-          }
-          return _Value(List<Page<Object?>>.unmodifiable(pages), items);
-        }
         throw ArgumentError('Unsupported list element type');
       } catch (_) {
         for (final item in items.reversed) {
@@ -977,7 +962,12 @@ class _Session {
       }
       final sources = _inBindingContext(
         definition.id,
-        () => _arguments(value, parameters, allowBindings: true),
+        () => _arguments(
+          value,
+          parameters,
+          allowBindings: true,
+          navigationObservers: true,
+        ),
       );
       final node = FlaxNode._(this, definition, ctor, sources);
       try {
@@ -1007,24 +997,6 @@ class _Session {
         rethrow;
       }
     }
-    if (type.kind == 'page' &&
-        kind == 'value' &&
-        definition is FlaxPageBinding &&
-        (id == type.id ||
-            definition.supertypes.contains(
-              _specializedOwners[type.id] ?? type.id,
-            ))) {
-      return decodePage(value, definition, _textProperty(value, 'ctor'));
-    }
-    if (type.kind == 'route' &&
-        kind == 'value' &&
-        definition is FlaxRouteBinding &&
-        (id == type.id ||
-            definition.supertypes.contains(
-              _specializedOwners[type.id] ?? type.id,
-            ))) {
-      return decodeRoute(value, definition, _textProperty(value, 'ctor'));
-    }
     throw ArgumentError(
       'Unknown or incompatible binding: $id (expected ${type.id ?? type.kind})',
     );
@@ -1034,6 +1006,7 @@ class _Session {
     FlaxJsObject descriptor,
     List<FlaxParameter> parameters, {
     required bool allowBindings,
+    bool navigationObservers = false,
     _CallbackScope callbackScope = _CallbackScope.member,
     List<String> uiCallbacks = const [],
   }) => _property(descriptor, 'args', (args) {
@@ -1053,6 +1026,7 @@ class _Session {
             ? _CallbackScope.ui
             : callbackScope;
         if (parameter.omitWhenAbsent &&
+            !(navigationObservers && _isNavigationObservers(parameter.type)) &&
             _property(
               args,
               parameter.name,
@@ -1071,6 +1045,7 @@ class _Session {
               this,
               parameter.type,
               _Value(parameter.defaultValue),
+              navigationObservers: navigationObservers,
             );
           }
           final bound =
@@ -1099,7 +1074,13 @@ class _Session {
               }
             });
             try {
-              return _Source(this, parameter.type, initial, object.retain());
+              return _Source(
+                this,
+                parameter.type,
+                initial,
+                binding: object.retain(),
+                navigationObservers: navigationObservers,
+              );
             } catch (_) {
               initial.release();
               rethrow;
@@ -1109,6 +1090,7 @@ class _Session {
             this,
             parameter.type,
             decode(value, parameter.type, callbackScope: scope),
+            navigationObservers: navigationObservers,
           );
         });
       }
@@ -1123,6 +1105,9 @@ class _Session {
 
   Future<void> requestClose() {
     if (!closing) {
+      for (final observer in _navigationObservers.toList()) {
+        observer._refresh();
+      }
       _status = _SessionStatus.closing;
       cancelFutures();
       cancelPromises();

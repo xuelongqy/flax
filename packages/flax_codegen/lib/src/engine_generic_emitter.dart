@@ -657,18 +657,8 @@ extension _EngineGenericEmission on FlaxCodegenBindingEmitter {
         out.writeln('}');
       }
     }
-    final lease = type.kind == 'route'
-        ? ', FlaxRouteLease lease'
-        : type.kind == 'page'
-        ? ', FlaxPageLease lease'
-        : '';
-    final returnType = type.kind == 'route'
-        ? '${_dartName('Route')}<Object?>'
-        : type.kind == 'page'
-        ? '${_dartName('Page')}<Object?>'
-        : 'Object';
     out.writeln(
-      '// ignore: unused_element\n$returnType _create${type.name}(String ctor, Map<String, Object?> values$lease) {',
+      '// ignore: unused_element\nObject _create${type.name}(String ctor, Map<String, Object?> values) {',
     );
     out.writeln('switch (ctor) {');
     for (final ctor in _bindingConstructors(type)) {
@@ -708,10 +698,6 @@ extension _EngineGenericEmission on FlaxCodegenBindingEmitter {
       'widget' when _nativeWidgetFactory(type) => object,
       'widget' =>
         'FlaxWidgetBinding(id, ${_constructors(type)}, _${type.name}Host$args.new, matches: _is${type.name}${_hasWidgetObjectView(type) ? ', objectView: $object' : ''})',
-      'route' =>
-        'FlaxRouteBinding(id, ${_constructors(type)}, _create${type.name}, ${jsonEncode(type.supertypes)})',
-      'page' =>
-        'FlaxPageBinding(id, ${_constructors(type)}, _create${type.name}, ${jsonEncode(type.supertypes)})',
       _ => throw StateError('Unknown generic class category: ${type.kind}'),
     };
     final deferred = _deferredLiteral(

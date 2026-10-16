@@ -16,7 +16,7 @@ const stateType = 'flax.core/flutter#type:NavigatorState';
 
 const host = objectHost();
 
-test('Route construction is lazy and settings use real references', () => {
+test('Routes construct real references without executing builders', () => {
   let builds = 0;
   const route = MaterialPageRoute({
     builder: () => {
@@ -27,7 +27,15 @@ test('Route construction is lazy and settings use real references', () => {
   const root = Navigator({ onGenerateRoute: () => route });
   assert.equal(builds, 0);
   assert.equal(root.kind, 'widget');
-  assert.equal(route.kind, 'value');
+  // Native instanceof checks run in the real Flutter navigation regression.
+  assert.equal(
+    host.calls.filter(
+      (call) =>
+        call.type === 'flax.material/material#type:MaterialPageRoute' &&
+        call.descriptor,
+    ).length,
+    1,
+  );
   assert.ok(Object.isFrozen(route));
   const settings = RouteSettings({ name: '/a' });
   assert.equal(settings.name, '/a');
@@ -36,7 +44,7 @@ test('Route construction is lazy and settings use real references', () => {
     settings,
     host.api.object(
       'flax.core/flutter#type:RouteSettings',
-      host.calls.find((c) => c.descriptor).id ?? 100,
+      [...host.objects].find(([, fields]) => fields.name === '/a')[0],
     ),
   );
   assert.throws(

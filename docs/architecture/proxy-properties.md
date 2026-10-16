@@ -30,12 +30,11 @@ remaining abstract accessors and inherit concrete defaults. Implements proxies s
 the required interface, including accessors originating from Dart fields. Required
 implementation members are separate from the selected public wrapper surface.
 
-Generated `extends` subclasses still cannot combine an abstract accessor with a concrete
-accessor for the same property: TypeScript requires getter/setter abstractness to match.
-Explicit selection rejects this pair before emission; automatic selection can use an
-`implements` proxy when Dart permits it. That proxy requires both accessors from JS and
-does not inherit the Dart default. This declaration limitation is independent of async
-value conversion.
+Mixed abstract/concrete accessor halves use the shared extends proxy installer. Each
+abstract half still requires a JS implementation; a concrete half retains its Dart
+`super` fallback unless overridden. Generated TS accessor declarations keep matching
+abstractness without requiring an `implements` proxy or discarding Dart defaults. The
+same rule applies to supported Future and Stream property values.
 
 Getter implementations return Dart inputs; setter implementations receive Dart outputs.
 For example, a List getter may return a JS array or DartList, while a List setter
@@ -73,10 +72,11 @@ an extra host, callback lease or lifecycle configuration. Concrete results such 
 exceptions propagate to the Dart caller, and Context inputs retain their mounted/session
 checks. Concrete Dart methods and explicit JS super calls keep the existing fallback.
 
-Private properties and Route/Page ownership remain unsupported, including inside
-collections and Records. Eligible extends proxies support concrete accessors and
-explicit `super` calls through generated direct Dart parent entries. State host proxies
-keep their existing selected lifecycle/super mechanism.
+Private properties remain unsupported. Route/Page properties, including supported
+collections, Records, Futures and Streams, use ordinary object conversion without
+inferring navigation side effects. Eligible extends proxies support concrete accessors
+and explicit `super` calls through generated direct Dart parent entries. State host
+proxies keep their existing selected lifecycle/super mechanism.
 
 `@mustCallSuper` is enforced for selected concrete methods, getters and setters on
 extends proxies. Requirements follow superclass/mixin implementations, including an

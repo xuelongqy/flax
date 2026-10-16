@@ -86,6 +86,7 @@ void main() {
       'ReflectiveBox',
       'RouteBox',
       'PageBox',
+      'PageFutureCallback',
     ];
     expect(proposal.config.types, containsAll(names));
     expect(
@@ -94,34 +95,25 @@ void main() {
           .map((skip) => skip.code),
       everyElement('no_members'),
     );
-    for (final name in ['PageFutureCallback']) {
-      expect(proposal.config.types, isNot(contains(name)));
-      expect(
-        proposal.skips.singleWhere((skip) => skip.target == name).code,
-        'extension_type_representation',
-      );
-    }
     final automatic = await parser.parse(proposal.config);
     for (final (name, parameters) in [
       ('unownedPageBox', <String>[]),
       ('routeBoxInstalled', ['value']),
       ('pageBoxName', ['value']),
     ]) {
-      expect(proposal.config.functions, isNot(contains(name)));
-      await expectLater(
-        parser.parse(
-          FlaxCodegenBindingConfig(
-            seed.name,
-            seed.library,
-            seed.jsPackage,
-            seed.dartOutput,
-            seed.tsOutput,
-            const {},
-            functions: {name: FlaxCodegenFunctionSelection(parameters)},
-          ),
+      expect(proposal.config.functions, contains(name));
+      final module = await parser.parse(
+        FlaxCodegenBindingConfig(
+          seed.name,
+          seed.library,
+          seed.jsPackage,
+          seed.dartOutput,
+          seed.tsOutput,
+          const {},
+          functions: {name: FlaxCodegenFunctionSelection(parameters)},
         ),
-        throwsA(isA<StateError>()),
       );
+      expect(module.functions.single.call.parameters.length, parameters.length);
     }
     final explicit = await parser.parse(
       FlaxCodegenBindingConfig(

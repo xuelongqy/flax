@@ -11,6 +11,7 @@
           "requiredCapabilities": [
             "generic-member-views",
             "instance-checks",
+            "native-navigation-objects",
             "native-widget-proxies"
           ],
           "types": [

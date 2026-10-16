@@ -72,14 +72,14 @@ const staticAccessorsSelection = {
   ),
   'StaticRoute': FlaxCodegenClassSelection(
     {},
-    kind: 'route',
+    kind: 'object',
     staticGetters: _reads,
     staticSetters: _writes,
     methods: _methods,
   ),
   'StaticPage': FlaxCodegenClassSelection(
     {},
-    kind: 'page',
+    kind: 'object',
     staticGetters: _reads,
     staticSetters: _writes,
     methods: _methods,

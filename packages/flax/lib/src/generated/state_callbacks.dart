@@ -46,6 +46,7 @@ const componentsBindings = FlaxBindingModule(
     "engine-type-handles",
     "generic-member-views",
     "instance-checks",
+    "native-navigation-objects",
     "native-widget-proxies",
   ],
   stateVariants: [

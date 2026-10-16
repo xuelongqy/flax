@@ -7567,6 +7567,7 @@ void _expectEnvelopeShape(
     expect(module['requiredCapabilities'], [
       'generic-member-views',
       'instance-checks',
+      'native-navigation-objects',
       'native-widget-proxies',
     ]);
     final model = _expectObject(module['model']);
@@ -7586,6 +7587,7 @@ void _expectEnvelopeShape(
   expect(host.requiredCapabilities, [
     'generic-member-views',
     'instance-checks',
+    'native-navigation-objects',
     'native-widget-proxies',
   ]);
   expect(host.model.identities, isEmpty);
@@ -7598,6 +7600,7 @@ void _expectEnvelopeShape(
   expect(widgets.requiredCapabilities, [
     'generic-member-views',
     'instance-checks',
+    'native-navigation-objects',
     'native-widget-proxies',
   ]);
   _expectModule(widgets.model.module, fixture.expectedWidgetsModule);

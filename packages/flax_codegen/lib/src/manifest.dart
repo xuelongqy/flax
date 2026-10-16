@@ -355,6 +355,8 @@ FlaxCodegenManifestModule? _decodeModuleEntry(
       'engine-type-handles',
       'native-bigint',
       'native-widget-proxies',
+      'native-navigation-objects',
+      'widget-interface-proxies',
       'shared-uint8',
       'shared-buffers',
     }.contains(capability),

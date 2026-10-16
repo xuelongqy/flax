@@ -218,13 +218,6 @@ class FlaxCodegenTypeRef {
       (item?.containsWidget ?? false) ||
       (key?.containsWidget ?? false) ||
       recordFields.any((field) => field.type.containsWidget);
-  bool get requiresRouteOwner =>
-      (kind == 'callback' && result!.kind == 'route') ||
-      (result?.requiresRouteOwner ?? false) ||
-      parameters.any((parameter) => parameter.type.requiresRouteOwner) ||
-      (item?.requiresRouteOwner ?? false) ||
-      (key?.requiresRouteOwner ?? false) ||
-      recordFields.any((field) => field.type.requiresRouteOwner);
   bool get isDirectMountedWidgetResult =>
       (kind == 'widget' && id == null) ||
       (kind == 'list' &&
@@ -396,20 +389,16 @@ class FlaxCodegenTypeRef {
         FlaxCodegenTypeRef type,
         String position, {
         required bool toDart,
-        bool argument = false,
       }) {
         if (type.kind == 'future' || type.kind == 'futureOr') {
           final item = type.item!;
           final itemPosition = '$position item';
-          if ({'route', 'page'}.contains(item.kind)) {
-            return itemPosition;
-          }
           return unsupportedPosition(item, itemPosition, toDart: toDart);
         }
         if (type.kind == 'stream') {
           final item = type.item!;
           final itemPosition = '$position item';
-          if ({'route', 'page', 'parameter'}.contains(item.kind)) {
+          if (item.kind == 'parameter') {
             return itemPosition;
           }
           return unsupportedPosition(item, itemPosition, toDart: toDart);
@@ -419,7 +408,6 @@ class FlaxCodegenTypeRef {
             type.item!,
             '$position item',
             toDart: toDart,
-            argument: argument,
           );
           if (itemError != null) return itemError;
           if (type.key != null) {
@@ -427,7 +415,6 @@ class FlaxCodegenTypeRef {
               type.key!,
               '$position key',
               toDart: toDart,
-              argument: argument,
             );
           }
           return null;
@@ -438,7 +425,6 @@ class FlaxCodegenTypeRef {
               field.type,
               '$position.${field.name}',
               toDart: toDart,
-              argument: argument,
             );
             if (error != null) return error;
           }
@@ -450,14 +436,13 @@ class FlaxCodegenTypeRef {
           type.validateCallbacks(position, input: toDart);
           return null;
         }
-        if (type.kind == 'page') return argument && !toDart ? null : position;
-        if (type.kind == 'route') return toDart && !argument ? null : position;
+        if ({'route', 'page'}.contains(type.kind)) return position;
         // Lexical type-parameter refs require a bound genericIdentity token.
         if (type.kind == 'parameter') {
           return type.genericIdentity != null ? null : position;
         }
         // Ordinary values use the member converters in both callback directions.
-        // Only ownership and unresolved type constraints need extra rules here.
+        // Only retired roles and unresolved type constraints need extra rules here.
         return type.category == FlaxCodegenTypeCategory.typeOnly
             ? position
             : null;
@@ -469,7 +454,6 @@ class FlaxCodegenTypeRef {
           parameter.type,
           position,
           toDart: !input,
-          argument: true,
         );
         if (unsupported != null) {
           throw StateError(
@@ -1315,6 +1299,7 @@ class FlaxCodegenModuleModel {
     List<String> requiredCapabilities = const <String>[
       'generic-member-views',
       'instance-checks',
+      'native-navigation-objects',
       'native-widget-proxies',
     ],
     this.internalTypeNames = const <String>{},
@@ -2532,12 +2517,6 @@ class FlaxCodegenExtensionModel {
       for (final p in call.parameters) {
         p.type.validate('$name.${call.name}.${p.name}');
         p.type.validateCallbacks('$name.${call.name}.${p.name}', input: true);
-        if (p.type.requiresRouteOwner) {
-          throw StateError(
-            'Callbacks returning Routes require explicit ownership: '
-            '$name.${call.name}.${p.name}',
-          );
-        }
       }
     }
   }

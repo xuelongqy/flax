@@ -6,6 +6,11 @@ The public JavaScript module is `@flax/flutter/cupertino`. The Dart package owns
 corresponding binding registration and `FlaxCupertinoPlugin` opts the module into a
 `FlaxView` host. Flutter/Core-owned values keep their existing provider identity.
 
+`CupertinoApp.navigatorObservers` uses the shared observer-list binding. It installs a
+private `FlaxNavigatorObserver` alongside supplied observers so session shutdown waits
+for accepted Routes to finish their exit animation. Route values and results use
+ordinary object conversion.
+
 See [architecture](../../docs/architecture/README.md) and
 [scoped checks](../../CONTRIBUTING.md#checks).
 

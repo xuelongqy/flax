@@ -36,15 +36,16 @@ install only the `@flax/flutter` declarations; add `FlaxMaterialPlugin` to each
 `FlaxView` / `FlaxSession` that should inject `@flax/flutter/material`. See
 [package boundaries](../../docs/architecture/packaging.md#application-module-inventory-and-host-delivery).
 
-Navigation now includes explicit sessions, shared or nested Flutter Navigators,
-Route-owned callbacks, copied data, and UI Future delivery. See the
+Navigation now includes explicit sessions, shared or nested Flutter Navigators, native
+callback ownership, ordinary Dart reference results, and UI Future delivery. See the
 [navigation contract](../../docs/architecture/navigation.md) for the selected subset and
 lifecycle rules.
 
-The explicit MaterialPage adapter extends FlaxPageRoute and uses the upstream public
-MaterialRouteTransitionMixin. Current Route.settings supply the child and configuration;
-Flutter owns matching and transitions. The adapter's implementation stays in this
-package and imports only the public shared Flax extension.
+MaterialPage and MaterialPageRoute use their real Dart constructors and ordinary object
+bindings. Page.createRoute and current settings are managed by Flutter. Joint GC retains
+callbacks; FlaxNavigatorObserver delays session shutdown until exit transitions finish.
+Generated observer-list inputs preserve user observers and install a private Flax
+observer. Host-created Navigators accepting these values install a stable observer.
 
 TextField selects text events and basic input configuration, borrowing the core
 TextEditingController. TextInputAction is a generated enum. See

@@ -124,7 +124,7 @@ void main() {
   );
 
   testWidgets(
-    'pop uses the current Page callback and returns the original descriptor',
+    'pop uses the current Page callback and returns the same Dart Page through its ordinary view',
     (t) async {
       final h = PagesHarness();
       await h.enter(t);
@@ -142,9 +142,13 @@ void main() {
         await t.pumpAndSettle();
         expect(h.read('pages.original'), true);
         expect(h.read('pages.list.value.length'), 1);
+        expect(h.read('pages.results.at(-1)[0]'), 7);
+        expect(h.read('pages.results.at(-1)[1]'), true);
         expect(
-          h.read('JSON.stringify(pages.results.at(-1))'),
-          '[7,true,{"answer":[42,true]}]',
+          h.read(
+            'JSON.stringify(pages.results.at(-1)[2].get("answer").toArray())',
+          ),
+          '[42,true]',
         );
         expect(find.text('Page {"id":1}'), findsOneWidget);
         await collectWidgetConfigurations(t);

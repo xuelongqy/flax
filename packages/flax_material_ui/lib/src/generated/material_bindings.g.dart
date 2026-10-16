@@ -10,8 +10,6 @@ import 'package:flutter/widgets.dart' as api1;
 import 'dart:core' as api2;
 
 import 'package:flutter/services.dart' as api3;
-import 'package:flax_material_ui/src/material_page_route.dart'
-    as adapterMaterialPage;
 
 // ignore: unused_element
 const _flaxOmitted = Object();
@@ -3388,9 +3386,27 @@ const materialBindings = FlaxBindingModule(
       matches: _isTextField,
       methods: {},
     ),
-    FlaxRouteBinding(
+    FlaxObjectBinding(
       "flax.material/material#type:MaterialPageRoute",
-      {
+      [
+        FlaxGetter(
+          "isCurrent",
+          FlaxTypeRef("bool"),
+          _MaterialPageRoute_isCurrent,
+        ),
+        FlaxGetter(
+          "isActive",
+          FlaxTypeRef("bool"),
+          _MaterialPageRoute_isActive,
+        ),
+        FlaxGetter(
+          "settings",
+          FlaxTypeRef("object", id: "flax.core/flutter#type:RouteSettings"),
+          _MaterialPageRoute_settings,
+        ),
+      ],
+      {},
+      constructors: {
         "": [
           FlaxParameter(
             "builder",
@@ -3446,8 +3462,10 @@ const materialBindings = FlaxBindingModule(
           ),
         ],
       },
-      _createMaterialPageRoute,
-      [
+      create: _createMaterialPageRoute,
+      disposeMethod: null,
+      listenerPairs: {},
+      supertypes: [
         "package:flutter/src/widgets/pages.dart::PageRoute",
         "package:flutter/src/widgets/routes.dart::ModalRoute",
         "package:flutter/src/widgets/routes.dart::TransitionRoute",
@@ -3458,10 +3476,35 @@ const materialBindings = FlaxBindingModule(
         "package:flutter/src/widgets/routes.dart::LocalHistoryRoute",
         "package:material_ui/src/page.dart::MaterialRouteTransitionMixin",
       ],
+      setters: [],
+      matches: _isMaterialPageRoute,
+      methods: const {},
     ),
-    FlaxPageBinding(
+    FlaxObjectBinding(
       "flax.material/material#type:MaterialPage",
-      {
+      [
+        FlaxGetter(
+          "name",
+          FlaxTypeRef("String", nullable: true),
+          _MaterialPage_name,
+        ),
+        FlaxGetter(
+          "arguments",
+          FlaxTypeRef("any", nullable: true),
+          _MaterialPage_arguments,
+        ),
+        FlaxGetter(
+          "key",
+          FlaxTypeRef(
+            "object",
+            id: "flax.core/flutter#type:LocalKey",
+            nullable: true,
+          ),
+          _MaterialPage_key,
+        ),
+      ],
+      {},
+      constructors: {
         "": [
           FlaxParameter(
             "child",
@@ -3516,14 +3559,14 @@ const materialBindings = FlaxBindingModule(
                   ),
                   FlaxCallbackParameter(
                     "result",
-                    FlaxTypeRef("data", nullable: true),
+                    FlaxTypeRef("any", nullable: true),
                     required: true,
                     positional: true,
                   ),
                 ],
                 FlaxTypeRef("void"),
                 _callback27,
-                id: "callback:<>(p:r:didPop:bool:,p:r:result:data?:)->void:",
+                id: "callback:<>(p:r:didPop:bool:,p:r:result:any?:)->void:",
                 invoke: _callback27Invoke,
                 matches: _callback27Matches,
               ),
@@ -3541,19 +3584,24 @@ const materialBindings = FlaxBindingModule(
           ),
           FlaxParameter(
             "arguments",
-            FlaxTypeRef("data", nullable: true),
+            FlaxTypeRef("any", nullable: true),
             required: false,
             defaultValue: null,
             omitWhenAbsent: false,
           ),
         ],
       },
-      _createMaterialPage,
-      [
+      create: _createMaterialPage,
+      disposeMethod: null,
+      listenerPairs: {},
+      supertypes: [
         "flax.core/flutter#type:Page",
         "flax.core/flutter#type:RouteSettings",
         "dart:core::Object",
       ],
+      setters: [],
+      matches: _isMaterialPage,
+      methods: const {},
     ),
     FlaxWidgetBinding(
       "flax.material/material#type:TextButton",
@@ -6240,8 +6288,8 @@ const materialBindings = FlaxBindingModule(
       ],
       FlaxTypeRef(
         "future",
-        item: FlaxTypeRef("data", nullable: true),
-        future: FlaxFutureBinding("data?:", _future1Adapt),
+        item: FlaxTypeRef("any", nullable: true),
+        future: FlaxFutureBinding("any?:", _future1Adapt),
       ),
       _function_showDialog,
       route: FlaxRouteCallBinding("context", "useRootNavigator", ["builder"]),
@@ -6289,6 +6337,7 @@ const materialBindings = FlaxBindingModule(
     "generic-call-types",
     "generic-member-views",
     "instance-checks",
+    "native-navigation-objects",
     "native-widget-proxies",
   ],
   stateVariants: [],
@@ -6376,14 +6425,14 @@ const materialBindings = FlaxBindingModule(
     FlaxDartClassTemplate(
       "flax.material/material#type:MaterialPageRoute",
       api.MaterialPageRoute<Object?>,
-      "route",
+      "object",
       typeFactory: _flaxType_MaterialPageRoute,
       factory: _flaxClass_MaterialPageRoute,
     ),
     FlaxDartClassTemplate(
       "flax.material/material#type:MaterialPage",
       api.MaterialPage<Object?>,
-      "page",
+      "object",
       typeFactory: _flaxType_MaterialPage,
       factory: _flaxClass_MaterialPage,
     ),
@@ -7094,18 +7143,21 @@ api1.Widget _createTextField(String ctor, Map<String, Object?> values) {
   }
 }
 
-api1.Route<Object?> _createMaterialPageRoute(
-  String ctor,
-  Map<String, Object?> values,
-  FlaxRouteLease lease,
-) {
+bool _isMaterialPageRoute(Object value) =>
+    value is api.MaterialPageRoute<Object?>;
+Object? _MaterialPageRoute_isCurrent(Object value) =>
+    (value as api.MaterialPageRoute<Object?>).isCurrent;
+Object? _MaterialPageRoute_isActive(Object value) =>
+    (value as api.MaterialPageRoute<Object?>).isActive;
+Object? _MaterialPageRoute_settings(Object value) =>
+    (value as api.MaterialPageRoute<Object?>).settings;
+Object _createMaterialPageRoute(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
-      return _MaterialPageRoute<Object?>(
-        lease,
-        builder: lease.builder<api1.Widget Function(api1.BuildContext context)>(
-          "builder",
-        ),
+      return api.MaterialPageRoute<Object?>(
+        builder:
+            values["builder"]
+                as api1.Widget Function(api1.BuildContext context),
         settings: values["settings"] as api1.RouteSettings?,
         maintainState: values["maintainState"] as bool,
         fullscreenDialog: values["fullscreenDialog"] as bool,
@@ -7115,16 +7167,18 @@ api1.Route<Object?> _createMaterialPageRoute(
   }
 }
 
-api1.Page<Object?> _createMaterialPage(
-  String ctor,
-  Map<String, Object?> values,
-  FlaxPageLease lease,
-) {
+bool _isMaterialPage(Object value) => value is api.MaterialPage<Object?>;
+Object? _MaterialPage_name(Object value) =>
+    (value as api.MaterialPage<Object?>).name;
+Object? _MaterialPage_arguments(Object value) =>
+    (value as api.MaterialPage<Object?>).arguments;
+Object? _MaterialPage_key(Object value) =>
+    (value as api.MaterialPage<Object?>).key;
+Object _createMaterialPage(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       if (!values.containsKey("onPopInvoked")) {
-        return _MaterialPage<Object?>(
-          lease,
+        return api.MaterialPage<Object?>(
           child: values["child"] as api1.Widget,
           maintainState: values["maintainState"] as bool,
           fullscreenDialog: values["fullscreenDialog"] as bool,
@@ -7134,8 +7188,7 @@ api1.Page<Object?> _createMaterialPage(
           arguments: values["arguments"],
         );
       }
-      return _MaterialPage<Object?>(
-        lease,
+      return api.MaterialPage<Object?>(
         child: values["child"] as api1.Widget,
         maintainState: values["maintainState"] as bool,
         fullscreenDialog: values["fullscreenDialog"] as bool,
@@ -7723,48 +7776,6 @@ api1.Widget _createNavigationBar(String ctor, Map<String, Object?> values) {
   }
 }
 
-class _MaterialPageRoute<_Owner0 extends Object?>
-    extends api.MaterialPageRoute<_Owner0> {
-  final FlaxRouteLease _lease;
-  _MaterialPageRoute(
-    this._lease, {
-    required api1.Widget Function(api1.BuildContext context) super.builder,
-    api1.RouteSettings? super.settings,
-    bool super.maintainState,
-    bool super.fullscreenDialog,
-  }) {
-    _lease.onDiscard = dispose;
-  }
-  @override
-  void dispose() {
-    try {
-      super.dispose();
-    } finally {
-      _lease.routeDisposed();
-    }
-  }
-}
-
-class _MaterialPage<_Owner0 extends Object?> extends api.MaterialPage<_Owner0>
-    implements FlaxPageConfiguration {
-  @override
-  final FlaxPageLease flaxPageLease;
-  _MaterialPage(
-    this.flaxPageLease, {
-    required api1.Widget super.child,
-    bool super.maintainState,
-    bool super.fullscreenDialog,
-    api1.LocalKey? super.key,
-    bool super.canPop,
-    void Function(bool didPop, Object? result) super.onPopInvoked,
-    String? super.name,
-    Object? super.arguments,
-  });
-  @override
-  FlaxPageRoute<_Owner0> createRoute(api1.BuildContext context) =>
-      adapterMaterialPage.createMaterialPageRoute<_Owner0>(this);
-}
-
 Object _deferred0(Map<String, Object?> values) {
   return api1.WidgetStateProperty.resolveWith<api1.Color?>(
     values["callback"] as api1.Color? Function(Set<api1.WidgetState> states),
@@ -7943,19 +7954,25 @@ Function _flaxClass_MaterialPageRoute<_Owner0 extends Object?>() =>
       bool _isMaterialPageRoute(Object value) =>
           value is api.MaterialPageRoute<_Owner0>;
       // ignore: unused_element
-      api1.Route<Object?> _createMaterialPageRoute(
+      Object? _MaterialPageRoute_isCurrent(Object value) =>
+          (value as api.MaterialPageRoute<_Owner0>).isCurrent;
+      // ignore: unused_element
+      Object? _MaterialPageRoute_isActive(Object value) =>
+          (value as api.MaterialPageRoute<_Owner0>).isActive;
+      // ignore: unused_element
+      Object? _MaterialPageRoute_settings(Object value) =>
+          (value as api.MaterialPageRoute<_Owner0>).settings;
+      // ignore: unused_element
+      Object _createMaterialPageRoute(
         String ctor,
         Map<String, Object?> values,
-        FlaxRouteLease lease,
       ) {
         switch (ctor) {
           case "":
-            return _MaterialPageRoute<_Owner0>(
-              lease,
-              builder: lease
-                  .builder<api1.Widget Function(api1.BuildContext context)>(
-                    "builder",
-                  ),
+            return api.MaterialPageRoute<_Owner0>(
+              builder:
+                  values["builder"]
+                      as api1.Widget Function(api1.BuildContext context),
               settings: values["settings"] as api1.RouteSettings?,
               maintainState: values["maintainState"] as bool,
               fullscreenDialog: values["fullscreenDialog"] as bool,
@@ -7986,9 +8003,27 @@ Function _flaxClass_MaterialPageRoute<_Owner0 extends Object?>() =>
 
       return FlaxDartClass(
         api.MaterialPageRoute<_Owner0>,
-        FlaxRouteBinding(
+        FlaxObjectBinding(
           id,
-          {
+          [
+            FlaxGetter(
+              "isCurrent",
+              FlaxTypeRef("bool"),
+              _MaterialPageRoute_isCurrent,
+            ),
+            FlaxGetter(
+              "isActive",
+              FlaxTypeRef("bool"),
+              _MaterialPageRoute_isActive,
+            ),
+            FlaxGetter(
+              "settings",
+              FlaxTypeRef("object", id: "flax.core/flutter#type:RouteSettings"),
+              _MaterialPageRoute_settings,
+            ),
+          ],
+          {},
+          constructors: {
             "": [
               FlaxParameter(
                 "builder",
@@ -8049,18 +8084,25 @@ Function _flaxClass_MaterialPageRoute<_Owner0 extends Object?>() =>
               ),
             ],
           },
-          _createMaterialPageRoute,
-          [
-            "package:flutter/src/widgets/pages.dart::PageRoute",
-            "package:flutter/src/widgets/routes.dart::ModalRoute",
-            "package:flutter/src/widgets/routes.dart::TransitionRoute",
-            "package:flutter/src/widgets/routes.dart::OverlayRoute",
-            "flax.core/flutter#type:Route",
-            "package:flutter/src/widgets/navigator.dart::_RoutePlaceholder",
-            "package:flutter/src/widgets/routes.dart::PredictiveBackRoute",
-            "package:flutter/src/widgets/routes.dart::LocalHistoryRoute",
-            "package:material_ui/src/page.dart::MaterialRouteTransitionMixin",
+          create: _createMaterialPageRoute,
+          matches: _isMaterialPageRoute,
+          setters: [],
+          supertypes: [
+            "flax.material/material#type:MaterialPageRoute",
+            ...[
+              "package:flutter/src/widgets/pages.dart::PageRoute",
+              "package:flutter/src/widgets/routes.dart::ModalRoute",
+              "package:flutter/src/widgets/routes.dart::TransitionRoute",
+              "package:flutter/src/widgets/routes.dart::OverlayRoute",
+              "flax.core/flutter#type:Route",
+              "package:flutter/src/widgets/navigator.dart::_RoutePlaceholder",
+              "package:flutter/src/widgets/routes.dart::PredictiveBackRoute",
+              "package:flutter/src/widgets/routes.dart::LocalHistoryRoute",
+              "package:material_ui/src/page.dart::MaterialRouteTransitionMixin",
+            ],
           ],
+          listenerPairs: {},
+          disposeMethod: null,
         ),
       );
     };
@@ -8072,25 +8114,20 @@ Function _flaxClass_MaterialPage<
   // ignore: unused_element
   bool _isMaterialPage(Object value) => value is api.MaterialPage<_Owner0>;
   // ignore: unused_element
-  Object? _MaterialPage_key(Object value) =>
-      (value as api.MaterialPage<_Owner0>).key;
-  // ignore: unused_element
   Object? _MaterialPage_name(Object value) =>
       (value as api.MaterialPage<_Owner0>).name;
   // ignore: unused_element
   Object? _MaterialPage_arguments(Object value) =>
       (value as api.MaterialPage<_Owner0>).arguments;
   // ignore: unused_element
-  api1.Page<Object?> _createMaterialPage(
-    String ctor,
-    Map<String, Object?> values,
-    FlaxPageLease lease,
-  ) {
+  Object? _MaterialPage_key(Object value) =>
+      (value as api.MaterialPage<_Owner0>).key;
+  // ignore: unused_element
+  Object _createMaterialPage(String ctor, Map<String, Object?> values) {
     switch (ctor) {
       case "":
         if (!values.containsKey("onPopInvoked")) {
-          return _MaterialPage<_Owner0>(
-            lease,
+          return api.MaterialPage<_Owner0>(
             child: values["child"] as api1.Widget,
             maintainState: values["maintainState"] as bool,
             fullscreenDialog: values["fullscreenDialog"] as bool,
@@ -8100,8 +8137,7 @@ Function _flaxClass_MaterialPage<
             arguments: values["arguments"],
           );
         }
-        return _MaterialPage<_Owner0>(
-          lease,
+        return api.MaterialPage<_Owner0>(
           child: values["child"] as api1.Widget,
           maintainState: values["maintainState"] as bool,
           fullscreenDialog: values["fullscreenDialog"] as bool,
@@ -8109,7 +8145,7 @@ Function _flaxClass_MaterialPage<
           canPop: values["canPop"] as bool,
           onPopInvoked:
               values["onPopInvoked"]
-                  as void Function(bool didPop, Object? result),
+                  as void Function(bool didPop, _Owner0? result),
           name: values["name"] as String?,
           arguments: values["arguments"],
         );
@@ -8118,32 +8154,55 @@ Function _flaxClass_MaterialPage<
     }
   }
 
-  Object _callback0(FlaxCallback _flaxBridgeCallback) => (bool p0, Object? p1) {
-    final positional = <Object?>[];
-    final named = <String, Object?>{};
-    positional.add(p0);
-    positional.add(p1);
-    _flaxBridgeCallback.call(positional, named);
-  };
+  Object _callback0(FlaxCallback _flaxBridgeCallback) =>
+      (bool p0, _Owner0? p1) {
+        final positional = <Object?>[];
+        final named = <String, Object?>{};
+        positional.add(p0);
+        positional.add(p1);
+        _flaxBridgeCallback.call(positional, named);
+      };
   bool _callback0Matches(Object value) =>
-      value is void Function(bool didPop, Object? result);
+      value is void Function(bool didPop, _Owner0? result);
   Object? _callback0Invoke(
     Object function,
     List<Object?> positional,
     Map<String, Object?> named,
   ) {
-    (function as void Function(bool didPop, Object? result))(
+    (function as void Function(bool didPop, _Owner0? result))(
       positional[0] as bool,
-      positional[1],
+      positional[1] as _Owner0?,
     );
     return null;
   }
 
   return FlaxDartClass(
     api.MaterialPage<_Owner0>,
-    FlaxPageBinding(
+    FlaxObjectBinding(
       id,
-      {
+      [
+        FlaxGetter(
+          "name",
+          FlaxTypeRef("String", nullable: true),
+          _MaterialPage_name,
+        ),
+        FlaxGetter(
+          "arguments",
+          FlaxTypeRef("any", nullable: true),
+          _MaterialPage_arguments,
+        ),
+        FlaxGetter(
+          "key",
+          FlaxTypeRef(
+            "object",
+            id: "flax.core/flutter#type:LocalKey",
+            nullable: true,
+          ),
+          _MaterialPage_key,
+        ),
+      ],
+      {},
+      constructors: {
         "": [
           FlaxParameter(
             "child",
@@ -8186,30 +8245,31 @@ Function _flaxClass_MaterialPage<
           ),
           FlaxParameter(
             "onPopInvoked",
-            FlaxTypeRef(
-              "callback",
-              callback: FlaxCallbackBinding(
-                [
-                  FlaxCallbackParameter(
-                    "didPop",
-                    FlaxTypeRef("bool"),
-                    required: true,
-                    positional: true,
-                  ),
-                  FlaxCallbackParameter(
-                    "result",
-                    FlaxTypeRef("data", nullable: true),
-                    required: true,
-                    positional: true,
-                  ),
-                ],
-                FlaxTypeRef("void"),
-                _callback0,
-                id:
-                    types.key<void Function(bool didPop, Object? result)>() +
-                    ":callback:<>(p:r:didPop:bool:,p:r:result:data?:)->void:",
-                invoke: _callback0Invoke,
-                matches: _callback0Matches,
+            types.define<void Function(bool didPop, _Owner0? result)>(
+              FlaxTypeRef(
+                "callback",
+                nullable: false,
+                callback: FlaxCallbackBinding(
+                  [
+                    FlaxCallbackParameter(
+                      "didPop",
+                      FlaxTypeRef("bool"),
+                      required: true,
+                      positional: true,
+                    ),
+                    FlaxCallbackParameter(
+                      "result",
+                      types.ref<_Owner0?>(withinCallback: true),
+                      required: true,
+                      positional: true,
+                    ),
+                  ],
+                  FlaxTypeRef("void"),
+                  _callback0,
+                  id: types.key<void Function(bool didPop, _Owner0? result)>() + ":callback:<>(p:r:didPop:bool:,p:r:result:parameter?:)->void:",
+                  invoke: _callback0Invoke,
+                  matches: _callback0Matches,
+                ),
               ),
             ),
             required: false,
@@ -8225,19 +8285,26 @@ Function _flaxClass_MaterialPage<
           ),
           FlaxParameter(
             "arguments",
-            FlaxTypeRef("data", nullable: true),
+            FlaxTypeRef("any", nullable: true),
             required: false,
             defaultValue: null,
             omitWhenAbsent: false,
           ),
         ],
       },
-      _createMaterialPage,
-      [
-        "flax.core/flutter#type:Page",
-        "flax.core/flutter#type:RouteSettings",
-        "dart:core::Object",
+      create: _createMaterialPage,
+      matches: _isMaterialPage,
+      setters: [],
+      supertypes: [
+        "flax.material/material#type:MaterialPage",
+        ...[
+          "flax.core/flutter#type:Page",
+          "flax.core/flutter#type:RouteSettings",
+          "dart:core::Object",
+        ],
       ],
+      listenerPairs: {},
+      disposeMethod: null,
     ),
   );
 };

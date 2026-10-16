@@ -12,7 +12,7 @@ Nullable Object and dynamic appear as TS unknown; non-null Object uses {}. Unsup
 objects, untyped JS functions and unsafe integral numbers fail conversion. Authentic
 native Dart Function references roundtrip through Object/dynamic, including nested
 collections, with their original closure identity. Non-finite doubles remain valid
-outside the explicit navigation-data boundary.
+outside the explicit plain-data boundary.
 
 Object input classification runs in one synchronous JS helper call, preserving the
 existing order for native brands, Dart references, State, thenables, errors and
@@ -21,11 +21,12 @@ metadata object per collection. The decoder still performs its collection checks
 iteration: iterator and Proxy getters can have observable effects. Classification does
 not cache mutable input results or add another ownership path.
 
-Navigation arguments, results and return notifications use the generator's explicit
-`data` selection. They copy plain data and reject cycles, host references, enums and
-unsupported values. Named-page parameters use the same existing explicit copy entry. A
-class may expose both ordinary interop and data-copy methods. A generic position marked
-as data retains its TS parameter association and constrains that parameter to
+Navigator and showDialog arguments, results and pop callbacks use ordinary conversion,
+just like functions and methods. Named-page entry parameters keep their explicit copy
+contract. An API may separately request the generator's `data` selection, which copies
+plain data and rejects cycles, host references, enums and unsupported values. A class
+may expose both ordinary interop and data-copy methods. A generic position marked as
+data retains its TS parameter association and constrains that parameter to
 NavigationData; TS does not change the configured Dart instantiation.
 
 All typed enum results use the canonical JS instance, including getters, methods, static
@@ -238,6 +239,36 @@ schedule Flutter rebuilds. An unusual Dart class implementing unrelated collecti
 shapes, such as both List and Set, has no unique copy shape. Explicit selection rejects
 it and automatic selection reports `ambiguous_core_collection`; use an ordinary
 List/Set-returning API for that view.
+
+## Broad results and checked views
+
+Functions, methods, callbacks, Navigator operations and showDialog share one result
+converter, including Future and Stream delivery. A Dart `Object?` declaration does not
+erase the actual object's runtime type. Scalars use their JS values; collections use
+DartList/DartMap/DartSet references; selected objects use their registered binding view.
+Generic views use the maintained engine's actual Dart type arguments. Unbound or
+ambiguous ordinary objects fail conversion rather than inventing an API.
+
+TypeScript can still describe a broad result as `unknown`. Narrow primitives with normal
+JS checks. For a native class reference, use the shared checked view:
+
+```typescript
+import { asDart } from '@flax/core/bindings';
+import { TextEditingController } from '@flax/flutter/widgets';
+
+const result = await getApplicationValue(); // Dart Future<Object?>
+if (result !== null) {
+  const controller = asDart(result, TextEditingController);
+  controller.text = 'Updated';
+}
+```
+
+The same code applies to a broad Navigator or showDialog result. The target must be a
+registered generated class/token, optionally selected with `Class.$type(...)`. `asDart`
+validates the original Dart object and supplies a compatible view; it does not
+construct, copy or change that object's class. Known typed results need no extra cast.
+TypeScript type arguments alone do not select native generic arguments; explicit native
+selection uses the existing `dartType` mechanism. Navigation adds no result converter.
 
 ## Shared Uint8List bytes
 
@@ -792,9 +823,9 @@ a Promise that resolves without the required pre-yield call completes with the
 the peer exists before the parent constructor runs, but that callback cannot call JS
 `super` until Dart object construction has returned and the object handle is attached.
 Such a call fails explicitly instead of recursing or using a partially initialized
-handle. Private members, Route/Page proxy properties, non-virtual concrete overrides and
-incompatible Dart modifiers fail generation. Flutter lifecycle/build overrides retain
-their declared synchronous signatures.
+handle. Route/Page proxy properties use the ordinary object converter. Private members,
+non-virtual concrete overrides and incompatible Dart modifiers fail generation. Flutter
+lifecycle/build overrides retain their declared synchronous signatures.
 
 ## Verification
 

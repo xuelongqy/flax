@@ -47,3 +47,4 @@ export { Symbol } from "@flax/dart/core/_bindings/flutter_Symbol";
 export { Type } from "@flax/dart/core/_bindings/flutter_Type";
 export { Uri } from "@flax/dart/core/_bindings/flutter_Uri";
 export { UriData } from "@flax/dart/core/_bindings/flutter_UriData";
+export { identical } from "@flax/dart/core/_bindings/flutter_identical";

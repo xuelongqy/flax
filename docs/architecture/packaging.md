@@ -22,7 +22,7 @@ package has no concrete engine dependency.
 | `flax` / `@flax/core-runtime`                        | Runtime interfaces, host base, Core binding implementations, signals, sessions, and shared C ABI/JSI     |
 | `flax_flutter` / `@flax/flutter`                     | Declaration-only public Flutter library surface (`foundation`, `widgets`, `material`, and related paths) |
 | `flax_dart` / `@flax/dart`                           | Declaration-only public Dart SDK library surface (`core`, `async`)                                       |
-| `flax_material_ui` / `@flax/material-ui`             | Material implementation delivery package and Route/Page adapters                                         |
+| `flax_material_ui` / `@flax/material-ui`             | Material implementation delivery package and native Route/Page bindings                                  |
 | `flax_cupertino_ui` / `@flax/cupertino-ui`           | Selected Cupertino bindings, module plugin, and package-local example                                    |
 | `flax_fetch` / `@flax/fetch-runtime`                 | Fetch session plugin                                                                                     |
 | `flax_websocket` / `@flax/websocket-runtime`         | WebSocket session plugin                                                                                 |

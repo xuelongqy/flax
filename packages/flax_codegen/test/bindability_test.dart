@@ -1058,8 +1058,9 @@ void main() {
     },
   );
 
-  test('proxy property Records preserve nested Route ownership restrictions', () async {
-    for (final (name, member) in [('RouteRecordProperty', 'get:value')]) {
+  test(
+    'proxy property Records use ordinary conversion for nested Route Futures',
+    () async {
       final parser = FlaxCodegenBindingParser(repoRoot);
       addTearDown(parser.dispose);
       await parser.prepare([
@@ -1070,26 +1071,25 @@ void main() {
           p.join(repoRoot, 'packages/flax/bindings/components.yaml'),
         ),
       ]);
-      await expectLater(
-        parser.parse(
-          fixture('widget_probe.dart', {
-            name: const FlaxCodegenClassSelection(
-              {},
-              kind: 'object',
-              proxy: 'implements',
-            ),
-          }),
-        ),
-        throwsA(
-          isA<StateError>().having(
-            (error) => error.message,
-            'message',
-            'Unsupported input callback signature at $name.$member result.pending item',
+      final module = await parser.parse(
+        fixture('widget_probe.dart', {
+          'RouteRecordProperty': const FlaxCodegenClassSelection(
+            {},
+            kind: 'object',
+            proxy: 'implements',
           ),
-        ),
+        }),
       );
-    }
-  });
+      final record = module.classes.single.proxy!.getters.single.type;
+      expect(record.kind, 'record');
+      final pending = record.recordFields
+          .singleWhere((field) => field.name == 'pending')
+          .type;
+      expect(pending.kind, 'future');
+      expect(pending.item!.kind, 'object');
+      expect(pending.item!.name, 'Route');
+    },
+  );
 
   test('reuses a prepared pool Duration without a local export', () async {
     final parser = FlaxCodegenBindingParser(repoRoot);

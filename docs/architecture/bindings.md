@@ -115,7 +115,7 @@ arguments, callback results, stale Context/State checks, session ownership and W
 retention follow the ordinary binding path. For
 `extension type MaybePanel(Widget? value) {}`, the JS value can be null even when the
 declared Dart type has no `?` suffix; required arguments still reject missing values and
-undefined. A Route/Page representation does not enable unsupported results or callbacks.
+undefined. Route/Page representations reuse ordinary object conversion as well.
 Unsupported representations fail closed; automatic selection reports their conversion
 reason. Declarations without bindable members remain representation-only; this is not a
 failure of their input/result conversion.
@@ -163,13 +163,13 @@ tokens automatically.
 
 ### Limits of JavaScript instanceof
 
-| Case                                                | Contract                                                                                                                                                                                                                                                                                                                                |
-| --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Parent-only or independent provider view            | No downcast or provider conversion. A parent-only view fails a child check; independently bound views have distinct wire identities. Reusing a dependency provider reuses its identity.                                                                                                                                                 |
-| Private or unselected descendants                   | A selected compatible ancestor can match; no exported child token exists. Sealed results are not an exhaustive TypeScript union and keep a fallback branch.                                                                                                                                                                             |
-| Runtime generic arguments or erased representations | A raw class token checks the bound family; `Box.$type(dartTypes.string)` additionally checks its actual Dart type arguments. Enhanced enums have authenticated tokens. Typedefs, extension types and copied Records/data do not gain independent nominal class identities. Typed Dart calls still validate arguments.                   |
-| Descriptors and deferred construction               | Widget/Route/Page descriptions and unmaterialized deferred factories have no authenticated object handle and return false. Native Widget proxies, ordinary references, Contexts and Streams can match; a type-only State wrapper has no instance-check handle. JS-authored Widget/State classes retain ordinary JS prototype semantics. |
-| Released references and foreign values              | Generated binding tokens reject released handles, raw objects, prototype forgeries, primitives, null and undefined. JS-authored subclass checks follow native JS prototype semantics, which do not validate bridge handles. Member calls still enforce mounted state, session ownership and argument types.                             |
+| Case                                                | Contract                                                                                                                                                                                                                                                                                                                                              |
+| --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Parent-only or independent provider view            | No downcast or provider conversion. A parent-only view fails a child check; independently bound views have distinct wire identities. Reusing a dependency provider reuses its identity.                                                                                                                                                               |
+| Private or unselected descendants                   | A selected compatible ancestor can match; no exported child token exists. Sealed results are not an exhaustive TypeScript union and keep a fallback branch.                                                                                                                                                                                           |
+| Runtime generic arguments or erased representations | A raw class token checks the bound family; `Box.$type(dartTypes.string)` additionally checks its actual Dart type arguments. Enhanced enums have authenticated tokens. Typedefs, extension types and copied Records/data do not gain independent nominal class identities. Typed Dart calls still validate arguments.                                 |
+| Descriptors and deferred construction               | Widget descriptions and unmaterialized deferred factories have no authenticated object handle and return false. Real Route/Page objects, native Widget proxies, ordinary references, Contexts and Streams can match; a type-only State wrapper has no instance-check handle. JS-authored Widget/State classes retain ordinary JS prototype semantics. |
+| Released references and foreign values              | Generated binding tokens reject released handles, raw objects, prototype forgeries, primitives, null and undefined. JS-authored subclass checks follow native JS prototype semantics, which do not validate bridge handles. Member calls still enforce mounted state, session ownership and argument types.                                           |
 
 These limits intentionally prevent a successful check from silently manufacturing a
 different API surface. A successful check does not guarantee a mounted Flutter owner.
@@ -419,12 +419,12 @@ borrow a weak session-local reference to the current native Element. Context and
 reads still require a mounted value when non-null; storing one does not keep it mounted.
 Each session creates its own Context wrapper for the same Dart value; JS references
 remain session-local. Dart-retained Widgets keep their existing configurations and JS
-overrides until ordinary references become unreachable. Unsupported conversions and
-Route/Page ownership, including nested declarations and type arguments, fail generation.
-Reads create no implicit reactive subscriptions or cross-session reference cache.
-Closing uses existing call, reference and pending-delivery cleanup; it does not dispose
-application-owned values or make a JS-backed Widget usable after its owning session has
-closed.
+overrides until ordinary references become unreachable. Route/Page values use ordinary
+object conversion without inferring navigation side effects. Unsupported conversions,
+including nested declarations and type arguments, fail generation. Reads create no
+implicit reactive subscriptions or cross-session reference cache. Closing uses existing
+call, reference and pending-delivery cleanup; it does not dispose application-owned
+values or make a JS-backed Widget usable after its owning session has closed.
 
 Manifest 22 stores public-library routing plus each readonly declaration's source,
 public export, return type, declaration kind, optional literal and ownership/reference
@@ -585,11 +585,11 @@ Element and lifecycle. Constructor identity is a weak matching token, not a sess
 owner. Configuration is frozen after construction when it crosses into Dart. Concrete
 Widget signatures validate the real native configuration; descriptor inputs become fixed
 snapshots at this boundary. Base Widget inputs preserve descriptor reactivity. Page and
-Route descriptors retain their existing hosts and resource leases. Contexts and
-NavigatorState are borrowed Flutter references. `kind: object` represents ordinary
-references, with optional constructors and disposal. Its getters, setters, static
-property reads and explicit setter methods execute direct Dart calls, as do its selected
-instance and static methods.
+Route values use ordinary object bindings and joint GC. Contexts and NavigatorState are
+borrowed Flutter references. `kind: object` represents ordinary references, with
+optional constructors and disposal. Its getters, setters, static property reads and
+explicit setter methods execute direct Dart calls, as do its selected instance and
+static methods.
 
 The type model includes scalars, enums, selected objects, typed List/Map, complete Dart
 callback parameter shapes, supported Futures, FutureOr, and Streams. Callback metadata
@@ -658,7 +658,7 @@ fixed interface configurations accept ordinary callbacks and retain their origin
 closures during native configuration reuse. Only base Widget UI callbacks can use an
 ErrorWidget fallback; narrower interfaces propagate the original error. No synthetic
 content host is allocated. Configured Route-producing calls keep their synchronous
-Observer capture and transition-completion leases. See
+observer capture and session retention through transition completion. See
 [function contracts](functions.md) and [bridge references and GC](references.md).
 
 ## Example object selection
@@ -849,13 +849,13 @@ narrowing to a JS subclass. Existing configured `typeArguments` supplies the def
 owner rather than limiting explicit runtime selection. No type is inferred from JS array
 contents or TS arguments.
 
-Class tokens also select intrinsic Stream, enum named factory and Route/Page adapters.
-This does not make enums or reference-only Context/State types constructible. Records
-use shared native field metadata and construction; concrete native functions use engine
-metadata and shared invocation. Creating a JS callback still requires a compiled typed
-adapter, and unbound generic raw function layouts remain rejected. Union and higher-rank
-type composition is not a public token constructor. Already-generated generic callback
-signatures keep their existing typed adapters.
+Class tokens also select intrinsic Streams, enum named factories and ordinary Route/Page
+objects. This does not make enums or reference-only Context/State types constructible.
+Records use shared native field metadata and construction; concrete native functions use
+engine metadata and shared invocation. Creating a JS callback still requires a compiled
+typed adapter, and unbound generic raw function layouts remain rejected. Union and
+higher-rank type composition is not a public token constructor. Already-generated
+generic callback signatures keep their existing typed adapters.
 
 The generator retains both open declaration types and analyzer-resolved default input
 types. Closed targets use structured type arguments and the same recursive member,
@@ -1282,13 +1282,13 @@ unbound Dart object. Existing typed State views keep their selected binding iden
 real State can have separate base and concrete binding views without changing either
 view's type. Saving a callback or a State does not keep the Flutter State mounted.
 Escaped callbacks retain their existing Dart/JS ownership and session-close behavior.
-Context arguments still register their mount owner; Page arguments and Route results
-retain their explicit lease rules. Nested Streams recurse through the same lazy typed
-views in callback arguments and results, without flattening or implicit subscriptions.
-Unresolved runtime types and unsupported Route/Page positions remain rejected. No
-additional State callback adapter, lifecycle configuration, protocol version or GC
-mechanism is introduced. See the same reference property tests for synchronous,
-asynchronous and retained State callbacks.
+Context arguments still register their mount owner; Page arguments and Route results use
+ordinary object references. Nested Streams recurse through the same lazy typed views in
+callback arguments and results, without flattening or implicit subscriptions. Unresolved
+runtime types remain rejected; navigation admission remains separate from value
+conversion. No additional State callback adapter, lifecycle configuration, protocol
+version or GC mechanism is introduced. See the same reference property tests for
+synchronous, asynchronous and retained State callbacks.
 
 ## Extension declarations
 
@@ -1369,13 +1369,13 @@ references and closed native bounds stay typed. An Object-erased input cannot in
 native Record from a raw field object, and this declaration rule adds no runtime copy,
 adapter, bridge operation or generic type token.
 
-Context, Widget, Widget interfaces, State and Route/Page descriptors use their ordinary
+Context, Widget, Widget interfaces, State and Route/Page values use their ordinary
 binding converters. Native State inputs reuse their existing weak handles and require a
 mounted State. Invalid, unmounted and foreign Context access remains rejected.
-Unsupported ordinary result/callback positions remain unsupported; in particular,
-callbacks returning Routes, including nested callbacks, still require explicit ownership
-and cannot be selected on an extension without it. Native Route and Page results have no
-general callable conversion and fail generation.
+Route/Page results, nested callbacks, properties, Future/Stream values and extension
+receivers share the ordinary object conversion path. This does not infer navigation side
+effects; configured Route-producing functions still use their explicit observer
+contract.
 
 Views do not reify erased generic arguments. Native Dart subtype checks still apply: an
 unconstrained `T` does not convert a JS number into a Dart `int` for a native
@@ -1477,10 +1477,11 @@ formats. Provider reuse requires the requested operator surface. Core injection,
 provider isolation and source/types package ownership are unchanged. Selection format 2,
 The active UI protocol is 24; native ABI 2 is unchanged.
 
-Flutter ownership remains specialized: `FlaxWidgetHost`, `FlaxStateProxy`,
-`FlaxRouteLease` and `FlaxPageRoute` retain mount, State, route callback and disposal
-responsibilities. Host Router/Pages continue to use the existing navigation contract;
-this change does not introduce JS RouterDelegate, route parsers or restoration APIs.
+Flutter ownership remains specialized for mounts and State through `FlaxWidgetHost` and
+`FlaxStateProxy`. Route/Page callbacks use ordinary object references and joint GC;
+`FlaxNavigatorObserver` retains sessions through exit transitions. Host Router/Pages
+continue to use the existing navigation contract; this change does not introduce JS
+RouterDelegate, route parsers or restoration APIs.
 
 A local scale experiment used 100 generated extends classes with 20 required positional
 methods each, the same pre-change emitter and the same runtime. Minified ES modules were

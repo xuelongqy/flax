@@ -997,17 +997,6 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
           if (parameter.isRequired || parameter.isPositional) return null;
           continue;
         }
-        if (scope.typeRef(parameter.type).requiresRouteOwner) {
-          skips.add(
-            FlaxCodegenSkip(
-              target: '$target.$parameterName',
-              reason: 'Callbacks returning Routes require explicit ownership',
-              code: 'route_callback_owner',
-            ),
-          );
-          if (parameter.isRequired || parameter.isPositional) return null;
-          continue;
-        }
         selected.add(parameterName!);
       }
       return selected;
@@ -1193,10 +1182,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
         skips: localSkips,
       );
       final type = scope.tryTypeRef(parameter.type).type;
-      final unsupported =
-          type == null ||
-          {'page', 'route'}.contains(type.kind) ||
-          type.requiresRouteOwner;
+      final unsupported = type == null;
       if (bound == null || unsupported) {
         skips.addAll(localSkips);
         if (unsupported && localSkips.isEmpty) {

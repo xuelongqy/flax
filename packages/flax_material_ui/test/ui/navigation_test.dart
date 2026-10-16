@@ -49,6 +49,7 @@ class NavigationHarness {
 
   Widget app() => MaterialApp(
     navigatorKey: key,
+    navigatorObservers: [FlaxNavigatorObserver()],
     builder: (_, child) => Material(child: child),
     home: const Text('Dart home'),
     onGenerateRoute: (settings) => settings.name == '/native'
@@ -270,21 +271,22 @@ void main() {
   );
 
   testWidgets(
-    'the same builder has independent mounted results and survives Route removal',
+    'the same builder creates distinct native Routes and survives Route removal',
     (t) async {
       final h = NavigationHarness();
       await h.enter(t);
       h.execute('''
       navigation.sharedBuilder = context => ({kind:'widget', type:'flax.core/flutter#type:Text', ctor:'', args:{data:'Shared page'}});
-      navigation.description = {kind:'value', type:'flax.material/material#type:MaterialPageRoute', ctor:'', args:{builder:navigation.sharedBuilder}};
+      navigation.description = navigation.materialRoute(navigation.sharedBuilder);
+      navigation.second = navigation.materialRoute(navigation.sharedBuilder);
       navigation.navigator.push(navigation.description);
-      navigation.navigator.push(navigation.description);
+      navigation.navigator.push(navigation.second);
     ''');
       await t.pumpAndSettle();
       expect(find.text('Shared page'), findsOneWidget);
       expect(
         () => h.execute(
-          'navigation.navigator.pushReplacement(navigation.description, {result: () => 1})',
+          'navigation.navigator.pushReplacement(navigation.description, {result: Symbol("invalid")})',
         ),
         throwsA(isA<FlaxJsException>()),
       );

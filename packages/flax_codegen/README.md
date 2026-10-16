@@ -134,8 +134,8 @@ the existing JS Widget reference. Selected public members additionally expose
 `Panel.view(widget).value`, using the shared named-extension implementation. This view
 does not create a Dart object or independent `instanceof` token; use its representation
 getter for a Dart input. The underlying type's argument, result and lifecycle checks
-still apply: stale Contexts/States and foreign-session references fail, and a Page/Route
-representation does not add an otherwise unsupported result or callback position.
+still apply: stale Contexts/States and foreign-session references fail. Route/Page
+representations use ordinary object conversion in the same supported positions.
 Declarations without selected members remain representation-only; unsupported
 representations are skipped with their actual conversion reason.
 
@@ -198,11 +198,6 @@ exception:
 ```yaml
 format: 2
 overrides:
-  classes:
-    SpecialPage:
-      pageAdapter:
-        library: package:example/adapter.dart
-        function: createRoute
   functions:
     openPage:
       route:
@@ -225,8 +220,9 @@ Protocol 24 includes ordinary references, returned objects, setters, static prop
 with explicit setters, abstract factories, typed List/Map conversion, stored callbacks,
 shared generic owners, validated concrete constructor specializations and explicitly
 selected proxies. Objects need no dispose method. Contexts/State remain borrowed, and
-Widget/Page/Route hosts retain Flutter lifecycle semantics. Material Pages keep their
-explicit public Route adapter.
+Widget hosts retain Flutter lifecycle semantics. Route/Page values use ordinary object
+bindings and joint GC; navigation observation delays session shutdown through actual
+exit transitions.
 
 Generated class exports also support `Symbol.hasInstance`, including reference-only
 sealed parents and abstract contracts. A returned public child can be narrowed with
@@ -249,9 +245,9 @@ named Symbols and the same argument conversions. Selection keeps all bindable
 parameters. Missing or undefined arguments omit defaults; explicit null remains
 provided. Optional positional arguments may only omit a trailing suffix. Redirecting
 factories and super parameters resolve defaults from their target declarations;
-unresolved or cyclic targets fail closed. Route, Page and extends-proxy constructors
-forward super parameters without copying private defaults. No reflection, class-specific
-object adapters or snapshot restoration remain.
+unresolved or cyclic targets fail closed. Route and Page bindings call the original
+constructor without copying private defaults. Extends proxies forward super parameters.
+No reflection, class-specific object adapters or snapshot restoration remain.
 
 Dependent TypeScript generic defaults follow preceding type parameters instead of their
 Dart runtime erasure. Generic interfaces preserve the declared relationships;
@@ -314,11 +310,11 @@ shared `ValueKey<Object?>` owner and does not infer String from its value.
 The selected handle shares the original prototype and static members. Ordinary object
 factories remain callable without `new`. Configured `proxy: extends` handles support JS
 subclasses, private fields, overrides and `super`, with the selected concrete Dart
-constructor and callback conversion. Intrinsic Stream, enum named factory and Route/Page
-selections reuse their existing construction roles. Context/State reference tokens
-remain reference-only; JS State variants retain their component lifecycle API.
-Higher-rank callback and data-conversion boundaries remain checked by the ordinary
-converter.
+constructor and callback conversion. Intrinsic Stream and enum named factories retain
+their existing construction roles; Route/Page use ordinary object construction.
+Context/State reference tokens remain reference-only; JS State variants retain their
+component lifecycle API. Higher-rank callback and data-conversion boundaries remain
+checked by the ordinary converter.
 
 Generic inputs accept the selected native value or its existing `DartInput<T>` form,
 including native Widgets, JS arrays/Maps/Sets and compatible native collection
@@ -510,13 +506,13 @@ arguments do not require an extra Flax host. Supported signatures include indexe
 and optional arguments, nullable Widget results, nested callback values and Future
 results. Widget interfaces such as `PreferredSizeWidget` work in ordinary callback
 arguments and results, with native interface validation in both directions. Mounted
-Widget constructor callbacks and configured Route/Page adapters preserve the same
+Widget constructor callbacks and ordinary Route/Page constructors preserve the same
 selected interfaces. Narrow interface failures propagate; only base Widget UI results
 can use an ErrorWidget placeholder. Concrete native Widget results preserve the actual
 Dart subtype. A descriptor accepted by a concrete signature becomes a fixed native
 configuration; signals remain on descriptor hosts, not native constructor inputs.
 Synchronous Flutter builders still reject Promises. Configured Route-producing functions
-keep their explicit leases and FlaxNavigatorObserver. See
+keep their explicit navigation roles and FlaxNavigatorObserver. See
 [bridge references and GC](../../docs/architecture/references.md).
 
 Nested callbacks in typed List elements and Map values receive typed adapters. Nested
@@ -596,8 +592,8 @@ returned functions, nested callbacks, nullable aggregates and supported
 Future/FutureOr/Stream compositions. Explicit and automatic selection share one callback
 validation rule; ordinary values have no separate callback type whitelist. State
 validity is checked at invocation or async delivery, including after unmount. Retaining
-a callback does not keep a Flutter State mounted. Existing Context owner and Route/Page
-lease rules still apply. Explicit `route` parameter roles require an observed
+a callback does not keep a Flutter State mounted. Existing Context validity and
+navigation-close rules still apply. Explicit `route` parameter roles require an observed
 synchronous TransitionRoute and per-Route callback ownership. See
 [top-level functions](../../docs/architecture/functions.md).
 
@@ -611,17 +607,16 @@ through the existing function binding channel. Importing a module does not trigg
 reads. Initialization, exceptions, object identity, callbacks and async delivery keep
 their existing Dart and session behavior. Writes emit synchronous `setX(value): void`
 functions; getter and setter types follow their separate Dart signatures.
-Const/final/late-final writes and inputs requiring unsupported Route/Page ownership are
-rejected; existing mounted Context and State references and compatible Widgets are
-accepted. Context/State/Widget results use ordinary conversion, including nullable
-values and supported aggregates and async values. Context reads borrow the current
-native Element through a weak session-local reference; they do not keep it mounted.
-Reads are lazy, invalid writes fail before invoking Dart, and nullable setters accept
-`null` but reject `undefined`. Static/global values belong to the Dart application;
-closing a session does not reset them or keep a stored Context/State mounted.
-Provider-owned declarations reuse the provider's public module without registering
-twice. Manifest 22 records source identity, read/write operations and public-library
-routing. See
+Const/final/late-final writes are rejected; existing mounted Context and State
+references and compatible Widgets are accepted. Context/State/Widget results use
+ordinary conversion, including nullable values and supported aggregates and async
+values. Context reads borrow the current native Element through a weak session-local
+reference; they do not keep it mounted. Reads are lazy, invalid writes fail before
+invoking Dart, and nullable setters accept `null` but reject `undefined`. Static/global
+values belong to the Dart application; closing a session does not reset them or keep a
+stored Context/State mounted. Provider-owned declarations reuse the provider's public
+module without registering twice. Manifest 22 records source identity, read/write
+operations and public-library routing. See
 [readonly generation](../../docs/architecture/bindings.md#public-libraries-and-top-level-readonly-declarations)
 and [ADR 0027](../../docs/decisions/0027-public-library-module-delivery.md).
 
@@ -872,3 +867,24 @@ Ordinary wrappers share prototypes and standard method receivers; extracting a m
 requires explicit `.call()` or `.bind()`. No per-member forwarding callbacks or
 additional GC mechanism are generated. Source packages provide implementations and types
 packages declare the same callable/constructible exports. Core remains implicit.
+
+### Route and Page values
+
+Bind Flutter Route and Page declarations with `kind: object`, using the same getters,
+setters, methods, callbacks, Future/Stream properties, generic type handles and checked
+casts as other real Dart objects. `kind: route`, `kind: page` and `pageAdapter` are
+retired and diagnosed with a migration message. Factories construct the actual upstream
+object, without generating ownership subclasses or replacing Page.createRoute.
+
+Navigator and showDialog arguments, results and callbacks use the same converter as
+ordinary functions. Broad `Object?` results retain native object/collection references;
+use shared `asDart(value, Target)` when the JS type is unclear. This validates a
+registered Dart class view without copying the value. No navigation-specific conversion
+is added.
+
+Joint GC retains actual callback/object cycles and collects them when neither business
+heap can reach them. Navigation still needs a completion boundary before closing a JS
+session. Generated NavigatorObserver list inputs install a private
+FlaxNavigatorObserver; a host-created Navigator must install its own stable observer.
+Session close stops new navigation and waits through exit transitions without clearing
+the Flutter stack. See [navigation ownership](../../docs/architecture/navigation.md).

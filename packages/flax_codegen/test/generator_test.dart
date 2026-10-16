@@ -542,7 +542,7 @@ const size = tile.extent;
         }),
         'InterfaceRoute': const FlaxCodegenClassSelection({
           '': ['builder'],
-        }, kind: 'route'),
+        }, kind: 'object'),
         'CallbackTile': const FlaxCodegenClassSelection(
           {
             '': ['callback'],
@@ -1944,6 +1944,118 @@ AlignmentGeometry();
     );
   });
 
+  test(
+    'retired navigation adaptations report the ordinary object migration',
+    () async {
+      for (final selection in [
+        const FlaxCodegenClassSelection({}, kind: 'route'),
+        const FlaxCodegenClassSelection({}, kind: 'page'),
+        const FlaxCodegenClassSelection(
+          {},
+          kind: 'object',
+          pageAdapter: FlaxCodegenPageAdapterModel(
+            'package:example/adapter.dart',
+            'createRoute',
+          ),
+        ),
+      ]) {
+        await expectLater(
+          parser.parse(fixture('navigation.dart', {'FixtureRoute': selection})),
+          throwsA(
+            isA<StateError>().having(
+              (error) => error.message,
+              'migration',
+              contains('Route and Page use kind: object'),
+            ),
+          ),
+        );
+      }
+    },
+  );
+
+  test('Route and Page callbacks, async properties and proxies share object conversion', () async {
+    final coreConfig = FlaxCodegenBindingConfig.read(
+      p.join(root, 'packages/flax/bindings/config.yaml'),
+    );
+    final config = fixture('navigation.dart', {
+      'NavigationReferences': const FlaxCodegenClassSelection(
+        {
+          '': ['route', 'page'],
+        },
+        kind: 'object',
+        proxy: 'extends',
+        getters: ['route', 'page', 'later', 'changes'],
+        setters: ['route', 'page'],
+        instanceMethods: {
+          'through': ['callback'],
+        },
+      ),
+    });
+    await parser.prepare([coreConfig, config]);
+    final core = await parser.parse(coreConfig);
+    final module = await parser.parse(config);
+    final value = module.classes.single;
+    expect(
+      value.getters.take(2).map((g) => g.type.kind),
+      everyElement('object'),
+    );
+    expect(value.getters[2].type.item!.kind, 'object');
+    expect(value.getters[3].type.item!.kind, 'object');
+    final callback = value.methods.single.parameters.single.type;
+    expect(callback.result!.kind, 'object');
+    expect(callback.parameters.single.type.kind, 'object');
+    final emitter = FlaxCodegenBindingEmitter([module, core]);
+    expect(emitter.dart(module), isNot(contains('FlaxRouteLease')));
+    expect(emitter.dart(module), isNot(contains('FlaxPageLease')));
+    await compileFixture(
+      root,
+      emitter,
+      module,
+      consumerSource: r"""
+import {NavigationReferences} from './plugin.js';
+class Relay extends NavigationReferences {
+  override through(callback: Parameters<NavigationReferences['through']>[0]) {
+    return super.through(callback);
+  }
+  override get later() { return super.later; }
+  override get changes() { return super.changes; }
+}
+void Relay;
+""",
+    );
+    final autoParser = FlaxCodegenBindingParser(root);
+    addTearDown(autoParser.dispose);
+    final automatic = await autoParser.proposeLibrary(
+      fixture('navigation.dart', {
+        'Route': const FlaxCodegenClassSelection(
+          {},
+          kind: 'object',
+          typeArguments: ['Object?'],
+        ),
+        'Page': const FlaxCodegenClassSelection(
+          {},
+          kind: 'object',
+          typeArguments: ['Object?'],
+        ),
+      }),
+      inferPublicTypeCarriers: false,
+    );
+    expect(
+      automatic.config.classes,
+      contains('NavigationReferences'),
+      reason: automatic.skips
+          .where((skip) => skip.target.startsWith('NavigationReferences'))
+          .map((skip) => '${skip.target}: ${skip.reason}')
+          .join('\n'),
+    );
+    final selected = automatic.config.classes['NavigationReferences']!;
+    expect(
+      selected.getters,
+      containsAll(['route', 'page', 'later', 'changes']),
+    );
+    expect(selected.instanceMethods, contains('through'));
+  });
+
   test('plugin navigation lifetimes, borrowed State and Future signatures generate executable adapters', () async {
     final module = await parser.parse(
       fixture('navigation.dart', {
@@ -1954,7 +2066,7 @@ AlignmentGeometry();
         ),
         'Route': const FlaxCodegenClassSelection(
           {},
-          kind: 'route',
+          kind: 'object',
           typeArguments: ['Object?'],
         ),
         'RouteSettings': const FlaxCodegenClassSelection(
@@ -1974,7 +2086,7 @@ AlignmentGeometry();
           {
             '': ['content', 'settings'],
           },
-          kind: 'route',
+          kind: 'object',
           typeArguments: ['Object?'],
         ),
         'Probe': const FlaxCodegenClassSelection(
@@ -2004,13 +2116,9 @@ AlignmentGeometry();
     expect(probe.methods.first.parameters.last.defaultCode, 'false');
     expect(probe.methods.last.typeArguments, ['Object?']);
     final emitter = FlaxCodegenBindingEmitter([module]);
-    expect(
-      emitter.dart(module),
-      contains(
-        'lease.builder<api.Widget Function(api.BuildContext context)>("content")',
-      ),
-    );
-    expect(emitter.dart(module), contains('_lease.routeDisposed()'));
+    expect(emitter.dart(module), isNot(contains('lease.builder')));
+    expect(emitter.dart(module), isNot(contains('routeDisposed')));
+    expect(emitter.dart(module), contains('FlaxObjectBinding('));
     expect(emitter.typescript(module), contains('Promise<NavigationData'));
     await compileFixture(root, emitter, module);
     final contextResult = await parser.parse(
@@ -2051,13 +2159,10 @@ AlignmentGeometry();
   });
 
   test('plugin Pages preserve generic fields and omit inherited private callback defaults', () async {
-    final library = Uri.file(
-      p.join(Directory.current.path, 'test/fixtures/plugin/pages.dart'),
-    ).toString();
     final selection = {
       'Page': const FlaxCodegenClassSelection(
         {},
-        kind: 'page',
+        kind: 'object',
         typeArguments: ['Object?'],
         getters: ['key', 'name', 'arguments'],
         data: FlaxCodegenDataSelection(getters: ['arguments']),
@@ -2066,10 +2171,9 @@ AlignmentGeometry();
         {
           '': ['content', 'key', 'name', 'arguments', 'onPopInvoked'],
         },
-        kind: 'page',
+        kind: 'object',
         typeArguments: ['Object?'],
         getters: ['key', 'name', 'arguments'],
-        pageAdapter: FlaxCodegenPageAdapterModel(library, 'adaptScreen'),
         data: const FlaxCodegenDataSelection(
           constructors: {
             '': ['arguments', 'onPopInvoked'],
@@ -2107,7 +2211,7 @@ AlignmentGeometry();
     );
     final emitter = FlaxCodegenBindingEmitter([module]);
     final dart = emitter.dart(module);
-    expect(dart, contains('adapterScreenSpec.adaptScreen<_Owner0>(this)'));
+    expect(dart, isNot(contains('adapterScreenSpec')));
     expect(dart, contains('values.containsKey("onPopInvoked")'));
     expect(dart, isNot(contains('_defaultPop')));
     expect(dart, contains('Function _flaxClass_ValueKey<'));
@@ -2116,19 +2220,16 @@ AlignmentGeometry();
     expect(typescript, contains('readonly value: T'));
     expect(typescript, contains('function _ValueKeyFactory(value: unknown'));
     await compileFixture(root, emitter, module);
-    await expectLater(
-      parser.parse(
-        fixture('pages.dart', {
-          'ScreenSpec': const FlaxCodegenClassSelection(
-            {
-              '': ['content', 'key', 'name', 'arguments', 'onPopInvoked'],
-            },
-            kind: 'page',
-            typeArguments: ['Object?'],
-          ),
-        }),
-      ),
-      throwsStateError,
+    await parser.parse(
+      fixture('pages.dart', {
+        'ScreenSpec': const FlaxCodegenClassSelection(
+          {
+            '': ['content', 'key', 'name', 'arguments', 'onPopInvoked'],
+          },
+          kind: 'object',
+          typeArguments: ['Object?'],
+        ),
+      }),
     );
   });
 
@@ -2615,7 +2716,7 @@ void main() {
     );
     final navigationTs = FlaxCodegenBindingEmitter([navigation])
         .typescript(navigation);
-    expect(navigationTs, contains('T extends NavigationData | null'));
+    expect(navigationTs, contains('T extends unknown | null'));
   });
 
   test(

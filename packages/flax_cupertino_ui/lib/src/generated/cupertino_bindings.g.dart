@@ -46,6 +46,37 @@ const cupertinoBindings = FlaxBindingModule(
             omitWhenAbsent: false,
           ),
           FlaxParameter(
+            "navigatorObservers",
+            FlaxTypeRef(
+              "list",
+              item: FlaxTypeRef(
+                "object",
+                id: "flax.core/flutter#type:NavigatorObserver",
+              ),
+              collection: FlaxCollectionBinding(
+                "list:[object:flax.core/flutter#type:NavigatorObserver]",
+                _collection0Create,
+                _collection0Matches,
+              ),
+              iterable: FlaxTypeRef(
+                "iterable",
+                item: FlaxTypeRef(
+                  "object",
+                  id: "flax.core/flutter#type:NavigatorObserver",
+                ),
+                collection: FlaxCollectionBinding(
+                  "iterable:[object:flax.core/flutter#type:NavigatorObserver]",
+                  _collection1Create,
+                  _collection1Matches,
+                  restore: _collection1Restore,
+                ),
+              ),
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: true,
+          ),
+          FlaxParameter(
             "debugShowCheckedModeBanner",
             FlaxTypeRef("bool"),
             required: false,
@@ -447,6 +478,7 @@ const cupertinoBindings = FlaxBindingModule(
   requiredCapabilities: const <String>[
     "generic-member-views",
     "instance-checks",
+    "native-navigation-objects",
     "native-widget-proxies",
     "widget-interface-proxies",
   ],
@@ -497,10 +529,21 @@ class _CupertinoAppHost extends FlaxWidgetHost {
 api1.Widget _createCupertinoApp(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
+      if (!values.containsKey("navigatorObservers")) {
+        return api.CupertinoApp(
+          key: values["key"] as api1.Key?,
+          home: values["home"] as api1.Widget?,
+          theme: values["theme"] as api.CupertinoThemeData?,
+          debugShowCheckedModeBanner:
+              values["debugShowCheckedModeBanner"] as bool,
+        );
+      }
       return api.CupertinoApp(
         key: values["key"] as api1.Key?,
         home: values["home"] as api1.Widget?,
         theme: values["theme"] as api.CupertinoThemeData?,
+        navigatorObservers:
+            values["navigatorObservers"] as List<api1.NavigatorObserver>,
         debugShowCheckedModeBanner:
             values["debugShowCheckedModeBanner"] as bool,
       );
@@ -787,3 +830,11 @@ Object? _callback3Invoke(
 ) {
   return (function as api1.Size Function())();
 }
+
+Object _collection0Create() => <api1.NavigatorObserver>[];
+bool _collection0Matches(Object value) => value is List<api1.NavigatorObserver>;
+Object _collection1Create() => <api1.NavigatorObserver>[];
+Object _collection1Restore(Object value) =>
+    (value as Iterable<Object?>).cast<api1.NavigatorObserver>();
+bool _collection1Matches(Object value) =>
+    value is Iterable<api1.NavigatorObserver>;

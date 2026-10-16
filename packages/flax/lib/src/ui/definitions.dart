@@ -19,6 +19,7 @@ const _supportedCapabilities = <String>{
   'native-core-inputs',
   'native-bigint',
   'native-widget-proxies',
+  'native-navigation-objects',
   'widget-interface-proxies',
   'shared-uint8',
   'shared-buffers',
@@ -396,33 +397,6 @@ class FlaxStateBinding extends FlaxTypeBinding {
   final List<FlaxGetter> getters;
   final Map<String, FlaxInstanceMethod> instanceMethods;
   final bool Function(Object)? matches;
-}
-
-class FlaxRouteBinding extends FlaxTypeBinding {
-  const FlaxRouteBinding(
-    super.id,
-    this.constructors,
-    this.create,
-    this.supertypes,
-  );
-  final Map<String, List<FlaxParameter>> constructors;
-  final Route<Object?> Function(String, Map<String, Object?>, FlaxRouteLease)
-  create;
-  final List<String> supertypes;
-}
-
-/// A generated Page configuration keeps callbacks alive until its Route retires.
-class FlaxPageBinding extends FlaxTypeBinding {
-  const FlaxPageBinding(
-    super.id,
-    this.constructors,
-    this.create,
-    this.supertypes,
-  );
-  final Map<String, List<FlaxParameter>> constructors;
-  final Page<Object?> Function(String, Map<String, Object?>, FlaxPageLease)
-  create;
-  final List<String> supertypes;
 }
 
 class FlaxParameter {

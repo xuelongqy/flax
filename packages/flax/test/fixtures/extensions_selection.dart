@@ -1,14 +1,10 @@
 import 'package:flax_codegen/flax_codegen.dart';
 
 Map<String, FlaxCodegenClassSelection> extensionClasses(String library) => {
-  'ExtensionPage': FlaxCodegenClassSelection(
-    {
-      '': ['name'],
-    },
-    kind: 'page',
-    pageAdapter: FlaxCodegenPageAdapterModel(library, 'adaptExtensionPage'),
-  ),
-  'ExtensionRoute': FlaxCodegenClassSelection({'': []}, kind: 'route'),
+  'ExtensionPage': FlaxCodegenClassSelection({
+    '': ['name'],
+  }, kind: 'object'),
+  'ExtensionRoute': FlaxCodegenClassSelection({'': []}, kind: 'object'),
   'ExtensionValues': FlaxCodegenClassSelection(
     {'': []},
     kind: 'object',
@@ -65,6 +61,10 @@ const extensionFunctions = {
   'buildWidgetBox': FlaxCodegenFunctionSelection(['callback', 'context']),
   'keepWidgetCallback': FlaxCodegenFunctionSelection(['callback']),
   'echoGenericWidgetBox': FlaxCodegenFunctionSelection(['value']),
+  'unownedPageBox': FlaxCodegenFunctionSelection([]),
+  'routeBoxInstalled': FlaxCodegenFunctionSelection(['value']),
+  'pageBoxName': FlaxCodegenFunctionSelection(['value']),
+  'callPageCallback': FlaxCodegenFunctionSelection(['callback']),
 };
 
 const extensionSelection = {

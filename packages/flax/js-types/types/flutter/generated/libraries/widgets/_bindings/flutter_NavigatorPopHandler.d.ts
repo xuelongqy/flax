@@ -1,4 +1,4 @@
-import { type FlaxInstanceType as _FlaxInstanceType, type NavigationData, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import { type FlaxDartSignature as _FlaxDartSignature, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface NavigatorPopHandler<T extends unknown | null = unknown | null> extends WidgetDescription {
@@ -8,7 +8,7 @@ declare function _NavigatorPopHandlerFactory<T extends unknown | null = unknown 
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
-    onPopWithResult?: Bindable<((result: NavigationData | null) => void) | null> | undefined;
+    onPopWithResult?: Bindable<((result: T | null) => void) | null> | undefined;
     enabled?: Bindable<boolean> | undefined;
     child: Bindable<Widget>;
 }): NavigatorPopHandler<T>;
@@ -19,7 +19,7 @@ interface _FlaxSignature0 extends _FlaxDartSignature {
             key?: Readonly<{
                 "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
             }> | null | undefined;
-            onPopWithResult?: ((result: NavigationData | null) => void) | null | undefined;
+            onPopWithResult?: ((result: _Selected0 | null) => void) | null | undefined;
             enabled?: boolean | undefined;
             child: Widget;
         }): NavigatorPopHandler<_Selected0>;

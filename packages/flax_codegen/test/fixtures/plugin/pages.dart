@@ -1,4 +1,3 @@
-import 'package:flax/bindings.dart';
 import 'package:flutter/widgets.dart';
 export 'package:flutter/widgets.dart';
 
@@ -23,13 +22,11 @@ class ScreenSpec<T> extends BaseScreen<T> {
   });
   final Widget content;
   @override
-  Route<T> createRoute(BuildContext context) => throw UnimplementedError();
+  Route<T> createRoute(BuildContext context) => _ScreenRoute<T>(this);
 }
 
-FlaxPageRoute<T> adaptScreen<T>(ScreenSpec<T> page) => _ScreenRoute<T>(page);
-
-class _ScreenRoute<T> extends FlaxPageRoute<T> {
-  _ScreenRoute(ScreenSpec<T> page) : super(page: page);
+class _ScreenRoute<T> extends PageRoute<T> {
+  _ScreenRoute(ScreenSpec<T> page) : super(settings: page);
   @override
   Widget buildPage(
     BuildContext context,

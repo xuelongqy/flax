@@ -442,7 +442,9 @@ void main() {
         boxedInfo.child === boxedWidget && boxedInfo.context === boxedContext &&
         extensions.buildWidgetBox(boxedCallback, boxedContext) === boxedWidget &&
         boxedCallback(boxedContext) === boxedWidget &&
-        extensions.echoGenericWidgetBox(boxedWidget) === boxedWidget
+        extensions.echoGenericWidgetBox(boxedWidget) === boxedWidget &&
+        extensions.pageBoxName(extensions.unownedPageBox()) === 'native-page' &&
+        extensions.routeBoxInstalled(extensionHooks.route) === false
       '''),
           isTrue,
         );
@@ -471,6 +473,10 @@ void main() {
         expect(
           h.boolean('boxedCallback(boxedContext) === boxedWidget'),
           isTrue,
+        );
+        await settle(
+          'extensions.callPageCallback(() => Promise.resolve(extensions.unownedPageBox()))'
+          '.then(value => extensions.pageBoxName(value) === "native-page")',
         );
         await settle(
           'extensions.echoFutureWidget(Promise.resolve(boxedWidget))'

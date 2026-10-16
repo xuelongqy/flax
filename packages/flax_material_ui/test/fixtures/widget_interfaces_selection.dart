@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flax_codegen/flax_codegen.dart';
 
 final widgetInterfacesSelection = {
@@ -116,18 +114,12 @@ final widgetInterfacesSelection = {
   }),
   'InterfaceRoute': FlaxCodegenClassSelection({
     '': ['builder'],
-  }, kind: 'route'),
+  }, kind: 'object'),
   'InterfacePage': FlaxCodegenClassSelection(
     {
       '': ['key', 'builder'],
     },
-    kind: 'page',
+    kind: 'object',
     getters: ['key'],
-    pageAdapter: FlaxCodegenPageAdapterModel(
-      Directory.current.uri
-          .resolve('test/fixtures/widget_interfaces.dart')
-          .toString(),
-      'adaptInterfacePage',
-    ),
   ),
 };

@@ -2667,6 +2667,7 @@ classes:
         expect(viaWidgets.localModels[0].requiredCapabilities, [
           'generic-member-views',
           'instance-checks',
+          'native-navigation-objects',
           'native-widget-proxies',
         ]);
         expect(viaWidgets.localModels[1].moduleId, 'example.host/widgets');

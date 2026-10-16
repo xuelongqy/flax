@@ -1,3 +1,4 @@
+import { identical } from '@flax/dart/core';
 import {
   dartType as selectDartType,
   dartTypes as nativeTypes,
@@ -95,12 +96,8 @@ runApp(
     pages: list.bind,
     onDidRemovePage: (page) => {
       hooks.removed++;
-      hooks.original &&= list.value.includes(page);
-      list.value = list.value.filter((item) =>
-        page.key === null
-          ? item !== page
-          : (item.key as ValueKey | null)?.value !== (page.key as ValueKey).value,
-      );
+      hooks.original &&= list.value.some((item) => identical(item, page));
+      list.value = list.value.filter((item) => !identical(item, page));
     },
   }),
 );

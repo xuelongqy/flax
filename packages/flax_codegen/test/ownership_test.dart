@@ -49,6 +49,7 @@ void main() {
         expect(module.requiredCapabilities, [
           'generic-member-views',
           'instance-checks',
+          'native-navigation-objects',
           'native-widget-proxies',
         ]);
         expect(
@@ -386,6 +387,7 @@ void main() {
     expect(package.modules.single.requiredCapabilities, [
       'generic-member-views',
       'instance-checks',
+      'native-navigation-objects',
       'native-widget-proxies',
     ]);
   });
@@ -490,6 +492,7 @@ bindingNamespace: flax.core
     expect(package.modules.single.requiredCapabilities, [
       'generic-member-views',
       'instance-checks',
+      'native-navigation-objects',
       'native-widget-proxies',
     ]);
     expect(

@@ -1,6 +1,8 @@
 import "@flax/flutter/material/_bindings/material_ButtonStyle";
 import "@flax/flutter/material/_bindings/material_ColorScheme";
 import "@flax/flutter/material/_bindings/material_InputDecoration";
+import "@flax/flutter/material/_bindings/material_MaterialPage";
+import "@flax/flutter/material/_bindings/material_MaterialPageRoute";
 import "@flax/flutter/material/_bindings/material_TextTheme";
 import "@flax/flutter/material/_bindings/material_ThemeData";
 import "@flax/flutter/material/_bindings/material_VisualDensity";

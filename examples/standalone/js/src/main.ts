@@ -1,6 +1,7 @@
 import {
   dartType as selectDartType,
   dartTypes as nativeTypes,
+  type DartMap,
 } from '@flax/core/bindings';
 import type {} from '@flax/local-storage/globals';
 import type {} from '@flax/fetch/globals';
@@ -35,6 +36,9 @@ import { Color } from '@flax/flutter/services';
 import { CanvasView } from '@flax/canvas';
 
 const StringKey = selectDartType(ValueKey, nativeTypes.string);
+const DetailsRoute = MaterialPageRoute.$type(
+  nativeTypes.map(nativeTypes.string, nativeTypes.unknown),
+);
 
 const themeMode = signal(ThemeMode.system);
 
@@ -73,15 +77,12 @@ class HomeState extends State<HomePage> {
   }
 
   async openDetails(): Promise<void> {
-    const result = await Navigator.of(this.context).push(
-      MaterialPageRoute({ builder: () => new DetailsPage(this.editing.text) }),
+    const result = await Navigator.of(this.context).push<DartMap<string, unknown>>(
+      DetailsRoute({ builder: () => new DetailsPage(this.editing.text) }),
     );
     if (!this.mounted) return;
     this.result.value =
-      result !== null &&
-      typeof result === 'object' &&
-      !Array.isArray(result) &&
-      result['accepted'] === true
+      result !== null && result.get('accepted') === true
         ? 'Result accepted'
         : 'Returned without a result';
   }

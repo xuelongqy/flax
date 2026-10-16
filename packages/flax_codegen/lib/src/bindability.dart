@@ -6,7 +6,7 @@ enum FlaxCodegenProxyCapability {
   canExtend,
 
   /// Generic proxy inference must stop because this declaration participates
-  /// in Flutter-specific Widget/Context/State/Route/Page semantics.
+  /// in Flutter-specific Widget/Context/State semantics.
   flutterSemantics,
   unsupported,
 }

@@ -66,17 +66,6 @@ class _ResourceCleanup {
         handle = WeakReference(resource.wrapper);
       case _Callback():
         callback = WeakReference(resource._handle);
-      case FlaxPageLease():
-        children = [
-          for (final source in resource._sources.values)
-            source._detachedCleanup,
-        ];
-        handle = WeakReference(resource._descriptor);
-      case FlaxRouteLease():
-        children = [
-          for (final source in resource._sources.values)
-            source._detachedCleanup,
-        ];
       default:
         throw StateError('Unsupported configuration resource');
     }
@@ -441,9 +430,6 @@ mixin _JsInvocation {
       if (value == null) return (false, null);
       try {
         if (member == null) session.throwCallFailure(value);
-        if (scope == _CallbackScope.ui && signature.result.kind == 'route') {
-          return (true, _routeResult(signature, value));
-        }
         return (true, _memberResult(signature, value, getter: getter));
       } finally {
         _releaseJs(value);
@@ -494,6 +480,9 @@ mixin _JsInvocation {
     final decoded = session.decode(value, signature.result);
     try {
       decoded.escapeCallbacks();
+      if (decoded.data case final Object value) {
+        session.registerNavigationValue(value);
+      }
       session.escapeWidget(decoded.data, signature.result);
       return decoded.data;
     } finally {
@@ -504,18 +493,6 @@ mixin _JsInvocation {
   Object? _eventResult(FlaxJsValue value) {
     session.observeEvent(value);
     return null;
-  }
-
-  Object? _routeResult(FlaxCallbackBinding signature, FlaxJsValue value) {
-    final decoded = session.decode(value, signature.result);
-    try {
-      for (final lease in decoded.resources.whereType<FlaxRouteLease>()) {
-        lease._transfer();
-      }
-      return decoded.data;
-    } finally {
-      decoded.release();
-    }
   }
 }
 
@@ -586,8 +563,36 @@ class _ProxyPeer with _JsInvocation implements FlaxProxyPeer {
 }
 
 class _Source extends _Resource {
-  _Source(this.session, this.type, _Value initial, [this.binding])
-    : _initial = initial;
+  _Source(
+    this.session,
+    this.type,
+    _Value initial, {
+    this.binding,
+    bool navigationObservers = false,
+  }) : _initial = initial {
+    if (navigationObservers && _isNavigationObservers(type)) {
+      _observer = FlaxNavigatorObserver();
+      _initial = _withNavigationObserver(initial);
+    }
+  }
+  FlaxNavigatorObserver? _observer;
+
+  _Value _withNavigationObserver(_Value value) {
+    if (_observer == null) return value;
+    try {
+      return _Value(
+        <NavigatorObserver>[
+          _observer!,
+          ...?value.data as List<NavigatorObserver>?,
+        ],
+        [value],
+      );
+    } catch (_) {
+      value.release();
+      rethrow;
+    }
+  }
+
   final _Session session;
   final FlaxTypeRef type;
   _Value? _initial;
@@ -642,7 +647,7 @@ class _Source extends _Resource {
       }
       final value = session.helper('readBindingSnapshot').call([read]);
       try {
-        return session.decode(value, type);
+        return _withNavigationObserver(session.decode(value, type));
       } finally {
         _releaseJs(value);
       }

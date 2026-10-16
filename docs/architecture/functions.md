@@ -74,8 +74,9 @@ calls below retain their separate pre-mount and transition guarantee. See
 ## Native dialogs
 
 Material `showDialog` is called directly with Dart `Object?` specialization. Its result
-uses NavigationData copying. AlertDialog selects key, title, content, actions, and
-scrollable; child bindings and custom State work normally.
+uses ordinary value conversion, including Dart object, DartList and DartMap references.
+AlertDialog selects key, title, content, actions, and scrollable; child bindings and
+custom State work normally.
 
 Install a stable observer on the Navigator that the function will use. For a Dart host:
 
@@ -85,10 +86,11 @@ final observer = FlaxNavigatorObserver();
 final app = MaterialApp(navigatorObservers: [observer], home: content);
 ```
 
-For a JS-owned MaterialApp:
+Generated MaterialApp, CupertinoApp and Navigator constructors install a private
+observer through their selected observer-list parameter. A JS-owned MaterialApp can
+therefore use the ordinary constructor:
 
 ```typescript
-import { FlaxNavigatorObserver } from '@flax/core/navigation';
 import { Navigator, Text } from '@flax/flutter/widgets';
 import {
   AlertDialog,
@@ -97,8 +99,7 @@ import {
   showDialog,
 } from '@flax/flutter/material';
 
-const observer = FlaxNavigatorObserver();
-const app = MaterialApp({ navigatorObservers: [observer], home });
+const app = MaterialApp({ home });
 
 const result = await showDialog({
   context,
@@ -137,8 +138,6 @@ functions:
       - fullscreenDialog
       - requestFocus
     typeArguments: ['Object?']
-    data:
-      result: true
     route:
       context: context
       rootNavigator: useRootNavigator
@@ -155,13 +154,14 @@ contract.
 During that call the observer captures the actual didPush notification. A nested call
 temporarily replaces and then restores the current record. The Route retains its
 builders independently of the source Context, page, or event; Flutter first invokes a
-builder when it builds the dialog. The lease forwards the original typed closure; result
-conversion preserves the actual Widget and its selected interfaces. Escaped
-configurations and their mounted resources use the shared reference mechanism. The
-observer does not maintain a page stack or replace Flutter theme/transition code.
+builder when it builds the dialog. The original Dart closure retains its JS callback
+through joint GC; result conversion preserves the actual Widget and its selected
+interfaces. Escaped configurations and their mounted resources use the shared reference
+mechanism. The observer does not maintain a page stack or replace Flutter
+theme/transition code.
 
 The result Future and TransitionRoute.completed have separate responsibilities. The
-first delivers the Promise result; the second releases the Route lease after exit.
+first delivers the Promise result; the second releases navigation retention after exit.
 Mounted content retains its own resources until unmount. If invocation throws after
 pushing, the accepted Route still owns its resources until it actually exits; native
 side effects are not rolled back.

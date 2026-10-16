@@ -110,9 +110,12 @@ const functionSelections = {
   'mapPreferredList': FlaxCodegenFunctionSelection(['transform']),
   'genericPreferredList': FlaxCodegenFunctionSelection(['builder']),
 
-  'openFixturePanel': FlaxCodegenFunctionSelection(
-    ['origin', 'content', 'root', 'failAfterPush', 'before', 'maintainState'],
-    dataResult: true,
-    route: FlaxCodegenRouteCallModel('origin', 'root', ['content']),
-  ),
+  'openFixturePanel': FlaxCodegenFunctionSelection([
+    'origin',
+    'content',
+    'root',
+    'failAfterPush',
+    'before',
+    'maintainState',
+  ], route: FlaxCodegenRouteCallModel('origin', 'root', ['content'])),
 };

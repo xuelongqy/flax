@@ -715,7 +715,7 @@ StringA.version = '2';
             .replaceFirst('extension_shapes.dart', 'extension_semantics.dart')
             .replaceFirst(
               'types: [ExtensionMode]',
-              'classes: {BuildContext: {kind: context}, Route: {kind: route, typeArguments: [Object?]}}',
+              'classes: {BuildContext: {kind: context}, Route: {kind: object, typeArguments: [Object?]}}',
             ),
       );
       final module = await parser.parse(config);
@@ -740,14 +740,17 @@ StringA.version = '2';
         inferPublicTypeCarriers: false,
       );
       final automatic = await parser.parse(proposal.config);
-      expect(automatic.extensions.single.members, hasLength(5));
+      expect(
+        automatic.extensions.singleWhere((e) => e.name == 'ContextX').members,
+        hasLength(5),
+      );
       expect(
         proposal.skips.where((skip) => skip.target.startsWith('ContextX')),
         isEmpty,
       );
       expect(
         proposal.skips.where((skip) => skip.code == 'route_callback_owner'),
-        hasLength(2),
+        isEmpty,
       );
       expect(
         () => const FlaxCodegenTypeRef(
@@ -757,26 +760,17 @@ StringA.version = '2';
         throwsA(isA<StateError>()),
       );
       for (final method in ['call', 'nested']) {
-        await expectLater(
-          parser.parse(
-            FlaxCodegenBindingConfig.parseStrict(
-              yaml('  RouteX: {methods: {$method: [callback]}}')
-                  .replaceFirst(
-                    'extension_shapes.dart',
-                    'extension_semantics.dart',
-                  )
-                  .replaceFirst(
-                    'types: [ExtensionMode]',
-                    'classes: {Route: {kind: route, typeArguments: [Object?]}}',
-                  ),
-            ),
-          ),
-          throwsA(
-            isA<StateError>().having(
-              (error) => error.message,
-              'message',
-              contains('Callbacks returning Routes require explicit ownership'),
-            ),
+        await parser.parse(
+          FlaxCodegenBindingConfig.parseStrict(
+            yaml('  RouteX: {methods: {$method: [callback]}}')
+                .replaceFirst(
+                  'extension_shapes.dart',
+                  'extension_semantics.dart',
+                )
+                .replaceFirst(
+                  'types: [ExtensionMode]',
+                  'classes: {Route: {kind: object, typeArguments: [Object?]}}',
+                ),
           ),
         );
       }

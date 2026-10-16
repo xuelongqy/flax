@@ -9833,24 +9833,24 @@ const flutterBindings = FlaxBindingModule(
             FlaxTypeRef(
               "list",
               item: FlaxTypeRef(
-                "page",
+                "object",
                 id: "flax.core/flutter#type:Page",
                 dartType: FlaxDartTypes.typeOf<api.Page<Object?>>,
               ),
               collection: FlaxCollectionBinding(
-                "list:[page:flax.core/flutter#type:Page<Object?><any?:>]",
+                "list:[object:flax.core/flutter#type:Page<Object?><any?:>]",
                 _collection15Create,
                 _collection15Matches,
               ),
               iterable: FlaxTypeRef(
                 "iterable",
                 item: FlaxTypeRef(
-                  "page",
+                  "object",
                   id: "flax.core/flutter#type:Page",
                   dartType: FlaxDartTypes.typeOf<api.Page<Object?>>,
                 ),
                 collection: FlaxCollectionBinding(
-                  "iterable:[page:flax.core/flutter#type:Page<Object?><any?:>]",
+                  "iterable:[object:flax.core/flutter#type:Page<Object?><any?:>]",
                   _collection16Create,
                   _collection16Matches,
                   restore: _collection16Restore,
@@ -9886,13 +9886,13 @@ const flutterBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef(
-                  "route",
+                  "object",
                   id: "flax.core/flutter#type:Route",
                   dartType: FlaxDartTypes.typeOf<api.Route<Object?>?>,
                   nullable: true,
                 ),
                 _callback120,
-                id: "callback:<>(p:r:settings:object:flax.core/flutter#type:RouteSettings)->route?:flax.core/flutter#type:Route<Object?><any?:>",
+                id: "callback:<>(p:r:settings:object:flax.core/flutter#type:RouteSettings)->object?:flax.core/flutter#type:Route<Object?><any?:>",
                 invoke: _callback120Invoke,
                 matches: _callback120Matches,
               ),
@@ -9919,13 +9919,13 @@ const flutterBindings = FlaxBindingModule(
                   ),
                 ],
                 FlaxTypeRef(
-                  "route",
+                  "object",
                   id: "flax.core/flutter#type:Route",
                   dartType: FlaxDartTypes.typeOf<api.Route<Object?>?>,
                   nullable: true,
                 ),
                 _callback121,
-                id: "callback:<>(p:r:settings:object:flax.core/flutter#type:RouteSettings)->route?:flax.core/flutter#type:Route<Object?><any?:>",
+                id: "callback:<>(p:r:settings:object:flax.core/flutter#type:RouteSettings)->object?:flax.core/flutter#type:Route<Object?><any?:>",
                 invoke: _callback121Invoke,
                 matches: _callback121Matches,
               ),
@@ -9975,7 +9975,7 @@ const flutterBindings = FlaxBindingModule(
                   FlaxCallbackParameter(
                     "page",
                     FlaxTypeRef(
-                      "page",
+                      "object",
                       id: "flax.core/flutter#type:Page",
                       dartType: FlaxDartTypes.typeOf<api.Page<Object?>>,
                     ),
@@ -9985,7 +9985,7 @@ const flutterBindings = FlaxBindingModule(
                 ],
                 FlaxTypeRef("void"),
                 _callback122,
-                id: "callback:<>(p:r:page:page:flax.core/flutter#type:Page<Object?><any?:>)->void:",
+                id: "callback:<>(p:r:page:object:flax.core/flutter#type:Page<Object?><any?:>)->void:",
                 invoke: _callback122Invoke,
                 matches: _callback122Matches,
               ),
@@ -10008,7 +10008,7 @@ const flutterBindings = FlaxBindingModule(
           [
             FlaxParameter(
               "route",
-              FlaxTypeRef("route", id: "flax.core/flutter#type:Route"),
+              FlaxTypeRef("object", id: "flax.core/flutter#type:Route"),
               required: true,
               defaultValue: null,
               omitWhenAbsent: false,
@@ -10016,8 +10016,8 @@ const flutterBindings = FlaxBindingModule(
           ],
           FlaxTypeRef(
             "future",
-            item: FlaxTypeRef("data", nullable: true),
-            future: FlaxFutureBinding("data?:", _future7Adapt),
+            item: FlaxTypeRef("any", nullable: true),
+            future: FlaxFutureBinding("any?:", _future2Adapt),
           ),
           _NavigatorState_push,
           startsRoute: true,
@@ -10035,7 +10035,7 @@ const flutterBindings = FlaxBindingModule(
             ),
             FlaxParameter(
               "arguments",
-              FlaxTypeRef("data", nullable: true),
+              FlaxTypeRef("any", nullable: true),
               required: false,
               defaultValue: null,
               omitWhenAbsent: false,
@@ -10043,8 +10043,8 @@ const flutterBindings = FlaxBindingModule(
           ],
           FlaxTypeRef(
             "future",
-            item: FlaxTypeRef("data", nullable: true),
-            future: FlaxFutureBinding("data?:", _future7Adapt),
+            item: FlaxTypeRef("any", nullable: true),
+            future: FlaxFutureBinding("any?:", _future2Adapt),
           ),
           _NavigatorState_pushNamed,
           startsRoute: true,
@@ -10055,14 +10055,14 @@ const flutterBindings = FlaxBindingModule(
           [
             FlaxParameter(
               "newRoute",
-              FlaxTypeRef("route", id: "flax.core/flutter#type:Route"),
+              FlaxTypeRef("object", id: "flax.core/flutter#type:Route"),
               required: true,
               defaultValue: null,
               omitWhenAbsent: false,
             ),
             FlaxParameter(
               "result",
-              FlaxTypeRef("data", nullable: true),
+              FlaxTypeRef("any", nullable: true),
               required: false,
               defaultValue: null,
               omitWhenAbsent: false,
@@ -10070,8 +10070,8 @@ const flutterBindings = FlaxBindingModule(
           ],
           FlaxTypeRef(
             "future",
-            item: FlaxTypeRef("data", nullable: true),
-            future: FlaxFutureBinding("data?:", _future7Adapt),
+            item: FlaxTypeRef("any", nullable: true),
+            future: FlaxFutureBinding("any?:", _future2Adapt),
           ),
           _NavigatorState_pushReplacement,
           startsRoute: true,
@@ -10082,7 +10082,7 @@ const flutterBindings = FlaxBindingModule(
           [
             FlaxParameter(
               "result",
-              FlaxTypeRef("data", nullable: true),
+              FlaxTypeRef("any", nullable: true),
               required: false,
               defaultValue: null,
               omitWhenAbsent: false,
@@ -10098,7 +10098,7 @@ const flutterBindings = FlaxBindingModule(
           [
             FlaxParameter(
               "result",
-              FlaxTypeRef("data", nullable: true),
+              FlaxTypeRef("any", nullable: true),
               required: false,
               defaultValue: null,
               omitWhenAbsent: false,
@@ -10123,14 +10123,59 @@ const flutterBindings = FlaxBindingModule(
       },
       matches: _isNavigatorState,
     ),
-    FlaxRouteBinding("flax.core/flutter#type:Route", {}, _createRoute, [
-      "package:flutter/src/widgets/navigator.dart::_RoutePlaceholder",
-      "dart:core::Object",
-    ]),
-    FlaxPageBinding("flax.core/flutter#type:Page", {}, _createPage, [
-      "flax.core/flutter#type:RouteSettings",
-      "dart:core::Object",
-    ]),
+    FlaxObjectBinding(
+      "flax.core/flutter#type:Route",
+      [
+        FlaxGetter("isCurrent", FlaxTypeRef("bool"), _Route_isCurrent),
+        FlaxGetter("isActive", FlaxTypeRef("bool"), _Route_isActive),
+        FlaxGetter(
+          "settings",
+          FlaxTypeRef("object", id: "flax.core/flutter#type:RouteSettings"),
+          _Route_settings,
+        ),
+      ],
+      {},
+      constructors: {},
+      create: _createRoute,
+      disposeMethod: null,
+      listenerPairs: {},
+      supertypes: [
+        "package:flutter/src/widgets/navigator.dart::_RoutePlaceholder",
+        "dart:core::Object",
+      ],
+      setters: [],
+      matches: _isRoute,
+      methods: const {},
+    ),
+    FlaxObjectBinding(
+      "flax.core/flutter#type:Page",
+      [
+        FlaxGetter("name", FlaxTypeRef("String", nullable: true), _Page_name),
+        FlaxGetter(
+          "arguments",
+          FlaxTypeRef("any", nullable: true),
+          _Page_arguments,
+        ),
+        FlaxGetter(
+          "key",
+          FlaxTypeRef(
+            "object",
+            id: "flax.core/flutter#type:LocalKey",
+            nullable: true,
+          ),
+          _Page_key,
+        ),
+      ],
+      {},
+      constructors: {},
+      create: _createPage,
+      disposeMethod: null,
+      listenerPairs: {},
+      supertypes: ["flax.core/flutter#type:RouteSettings", "dart:core::Object"],
+      setters: [],
+      matches: _isPage,
+      methods: const {},
+    ),
     FlaxObjectBinding(
       "flax.core/flutter#type:RouteSettings",
       [
@@ -10141,7 +10186,7 @@ const flutterBindings = FlaxBindingModule(
         ),
         FlaxGetter(
           "arguments",
-          FlaxTypeRef("data", nullable: true),
+          FlaxTypeRef("any", nullable: true),
           _RouteSettings_arguments,
         ),
       ],
@@ -10157,7 +10202,7 @@ const flutterBindings = FlaxBindingModule(
           ),
           FlaxParameter(
             "arguments",
-            FlaxTypeRef("data", nullable: true),
+            FlaxTypeRef("any", nullable: true),
             required: false,
             defaultValue: null,
             omitWhenAbsent: false,
@@ -10196,14 +10241,14 @@ const flutterBindings = FlaxBindingModule(
                 [
                   FlaxCallbackParameter(
                     "result",
-                    FlaxTypeRef("data", nullable: true),
+                    FlaxTypeRef("any", nullable: true),
                     required: true,
                     positional: true,
                   ),
                 ],
                 FlaxTypeRef("void"),
                 _callback123,
-                id: "callback:<>(p:r:result:data?:)->void:",
+                id: "callback:<>(p:r:result:any?:)->void:",
                 invoke: _callback123Invoke,
                 matches: _callback123Matches,
               ),
@@ -10276,14 +10321,14 @@ const flutterBindings = FlaxBindingModule(
                   ),
                   FlaxCallbackParameter(
                     "result",
-                    FlaxTypeRef("data", nullable: true),
+                    FlaxTypeRef("any", nullable: true),
                     required: true,
                     positional: true,
                   ),
                 ],
                 FlaxTypeRef("void"),
                 _callback124,
-                id: "callback:<>(p:r:didPop:bool:,p:r:result:data?:)->void:",
+                id: "callback:<>(p:r:didPop:bool:,p:r:result:any?:)->void:",
                 invoke: _callback124Invoke,
                 matches: _callback124Matches,
               ),
@@ -14389,6 +14434,27 @@ const flutterBindings = FlaxBindingModule(
       _read_kIsWeb,
     ),
     FlaxFunctionBinding(
+      "flax.core/flutter#function:identical",
+      [
+        FlaxParameter(
+          "a",
+          FlaxTypeRef("any", nullable: true),
+          required: true,
+          defaultValue: null,
+          omitWhenAbsent: false,
+        ),
+        FlaxParameter(
+          "b",
+          FlaxTypeRef("any", nullable: true),
+          required: true,
+          defaultValue: null,
+          omitWhenAbsent: false,
+        ),
+      ],
+      FlaxTypeRef("bool"),
+      _function_identical,
+    ),
+    FlaxFunctionBinding(
       "flax.core/flutter#function:applyBoxFit",
       [
         FlaxParameter(
@@ -14459,7 +14525,7 @@ const flutterBindings = FlaxBindingModule(
         ),
       ),
       _Stream_castFrom,
-      genericFactory: _flaxGenericFunction3,
+      genericFactory: _flaxGenericFunction4,
     ),
     FlaxFunctionBinding(
       "flax.core/flutter#read:Duration.zero",
@@ -14636,14 +14702,14 @@ const flutterBindings = FlaxBindingModule(
       ],
       FlaxTypeRef("object", id: "flax.core/flutter#type:StreamTransformer"),
       _StreamTransformer_castFrom,
-      genericFactory: _flaxGenericFunction15,
+      genericFactory: _flaxGenericFunction16,
     ),
     FlaxFunctionBinding(
       "flax.core/flutter#function:WidgetStateProperty.resolveWith",
       const [],
       const FlaxTypeRef("any"),
       _flaxDeferredRequiresType,
-      genericFactory: _flaxGenericFunction16,
+      genericFactory: _flaxGenericFunction17,
     ),
     FlaxFunctionBinding(
       "flax.core/flutter#read:Curves.linear",
@@ -15052,7 +15118,7 @@ const flutterBindings = FlaxBindingModule(
         ),
       ),
       _extension_EnumByName_method_asNameMap,
-      genericFactory: _flaxGenericFunction74,
+      genericFactory: _flaxGenericFunction75,
     ),
     FlaxFunctionBinding(
       "flax.core/flutter#function:EnumByName.method.byName",
@@ -15083,7 +15149,7 @@ const flutterBindings = FlaxBindingModule(
       ],
       FlaxTypeRef("object", id: "flax.core/flutter#type:Enum"),
       _extension_EnumByName_method_byName,
-      genericFactory: _flaxGenericFunction75,
+      genericFactory: _flaxGenericFunction76,
     ),
     FlaxFunctionBinding(
       "flax.core/flutter#function:EnumName.getter.name",
@@ -15111,6 +15177,7 @@ const flutterBindings = FlaxBindingModule(
     "instance-checks",
     "lazy-js-iterables",
     "native-core-inputs",
+    "native-navigation-objects",
     "native-widget-proxies",
     "widget-interface-proxies",
   ],
@@ -15567,14 +15634,14 @@ const flutterBindings = FlaxBindingModule(
     FlaxDartClassTemplate(
       "flax.core/flutter#type:Route",
       api.Route<Object?>,
-      "route",
+      "object",
       typeFactory: _flaxType_Route,
       factory: _flaxClass_Route,
     ),
     FlaxDartClassTemplate(
       "flax.core/flutter#type:Page",
       api.Page<Object?>,
-      "page",
+      "object",
       typeFactory: _flaxType_Page,
       factory: _flaxClass_Page,
     ),
@@ -15959,6 +16026,10 @@ Object? _extension_EnumByName_method_byName(Map<String, Object?> values) {
 
 Object? _extension_EnumName_getter_name(Map<String, Object?> values) {
   return api1.EnumName(values["receiver"] as api1.Enum).name;
+}
+
+Object? _function_identical(Map<String, Object?> values) {
+  return api1.identical(values["a"], values["b"]);
 }
 
 Object? _function_applyBoxFit(Map<String, Object?> values) {
@@ -19253,16 +19324,19 @@ Object? _NavigatorState_canPop(Object receiver, Map<String, Object?> values) {
   return (receiver as api.NavigatorState).canPop();
 }
 
-api.Route<Object?> _createRoute(
-  String ctor,
-  Map<String, Object?> values,
-  FlaxRouteLease lease,
-) => throw ArgumentError('Abstract type has no constructor');
-api.Page<Object?> _createPage(
-  String ctor,
-  Map<String, Object?> values,
-  FlaxPageLease lease,
-) => throw ArgumentError('Abstract type has no constructor');
+bool _isRoute(Object value) => value is api.Route<Object?>;
+Object? _Route_isCurrent(Object value) =>
+    (value as api.Route<Object?>).isCurrent;
+Object? _Route_isActive(Object value) => (value as api.Route<Object?>).isActive;
+Object? _Route_settings(Object value) => (value as api.Route<Object?>).settings;
+Object _createRoute(String ctor, Map<String, Object?> values) =>
+    throw ArgumentError('Abstract object has no constructor');
+bool _isPage(Object value) => value is api.Page<Object?>;
+Object? _Page_name(Object value) => (value as api.Page<Object?>).name;
+Object? _Page_arguments(Object value) => (value as api.Page<Object?>).arguments;
+Object? _Page_key(Object value) => (value as api.Page<Object?>).key;
+Object _createPage(String ctor, Map<String, Object?> values) =>
+    throw ArgumentError('Abstract object has no constructor');
 bool _isRouteSettings(Object value) => value is api.RouteSettings;
 Object? _RouteSettings_name(Object value) => (value as api.RouteSettings).name;
 Object? _RouteSettings_arguments(Object value) =>
@@ -19290,7 +19364,7 @@ api.Widget _flaxWidgetNavigatorPopHandlerCreate<_Owner0 extends Object?>(
       return api.NavigatorPopHandler<_Owner0>(
         key: values["key"] as api.Key?,
         onPopWithResult:
-            values["onPopWithResult"] as void Function(Object? result)?,
+            values["onPopWithResult"] as void Function(_Owner0? result)?,
         enabled: values["enabled"] as bool,
         child: values["child"] as api.Widget,
       );
@@ -19319,7 +19393,7 @@ api.Widget _flaxWidgetPopScopeCreate<_Owner0 extends Object?>(
         canPop: values["canPop"] as bool,
         onPopInvokedWithResult:
             values["onPopInvokedWithResult"]
-                as void Function(bool didPop, Object? result)?,
+                as void Function(bool didPop, _Owner0? result)?,
       );
     default:
       throw ArgumentError("Unknown Widget constructor");
@@ -21122,7 +21196,7 @@ typedef _flaxDefault_StreamTransformerBase_0 = Object?;
 typedef _flaxDefault_StreamTransformerBase_1 = Object?;
 typedef _flaxDefault_StreamView_0 = Object?;
 Function
-_flaxGenericFunction3<_Method0 extends Object?, _Method1 extends Object?>() =>
+_flaxGenericFunction4<_Method0 extends Object?, _Method1 extends Object?>() =>
     (FlaxDartTypes types) {
       Object? invoke(Map<String, Object?> values) {
         return api3.Stream.castFrom<_Method0, _Method1>(
@@ -21145,7 +21219,7 @@ _flaxGenericFunction3<_Method0 extends Object?, _Method1 extends Object?>() =>
         invoke,
       );
     };
-Function _flaxGenericFunction15<
+Function _flaxGenericFunction16<
   _Method0 extends Object?,
   _Method1 extends Object?,
   _Method2 extends Object?,
@@ -21176,7 +21250,7 @@ Function _flaxGenericFunction15<
   );
 };
 Function
-_flaxGenericFunction16<_Method0 extends Object?>() => (FlaxDartTypes types) {
+_flaxGenericFunction17<_Method0 extends Object?>() => (FlaxDartTypes types) {
   Object? invoke(Map<String, Object?> values) {
     return api.WidgetStateProperty.resolveWith<_Method0>(
       values["callback"] as _Method0 Function(Set<api.WidgetState> states),
@@ -21261,7 +21335,7 @@ _flaxGenericFunction16<_Method0 extends Object?>() => (FlaxDartTypes types) {
     invoke,
   );
 };
-Function _flaxGenericFunction74<_Method0 extends api1.Enum>() =>
+Function _flaxGenericFunction75<_Method0 extends api1.Enum>() =>
     (FlaxDartTypes types) {
       Object? invoke(Map<String, Object?> values) {
         return api1.EnumByName<_Method0>(
@@ -21284,7 +21358,7 @@ Function _flaxGenericFunction74<_Method0 extends api1.Enum>() =>
         invoke,
       );
     };
-Function _flaxGenericFunction75<_Method0 extends api1.Enum>() =>
+Function _flaxGenericFunction76<_Method0 extends api1.Enum>() =>
     (FlaxDartTypes types) {
       Object? invoke(Map<String, Object?> values) {
         return api1.EnumByName<_Method0>(
@@ -30750,7 +30824,7 @@ Function _flaxClass_WidgetStateProperty<_Owner0 extends Object?>() =>
       FlaxFunctionBinding? _deferred0Binding;
       Object _deferred0(Map<String, Object?> values) {
         _deferred0Binding ??= Function.apply(
-          types.instantiate(_flaxGenericFunction16, [
+          types.instantiate(_flaxGenericFunction17, [
             FlaxDartTypes.typeOf<_Owner0>(),
           ], const []) as Function,
           [types],
@@ -31402,7 +31476,7 @@ Function _flaxGeneric_NavigatorState_pushNamed<_Method0 extends Object?>() =>
           ),
           FlaxParameter(
             "arguments",
-            FlaxTypeRef("data", nullable: true),
+            FlaxTypeRef("any", nullable: true),
             required: false,
             defaultValue: null,
             omitWhenAbsent: false,
@@ -31501,11 +31575,16 @@ Function _flaxClass_Route<_Owner0 extends Object?>() =>
       // ignore: unused_element
       bool _isRoute(Object value) => value is api.Route<_Owner0>;
       // ignore: unused_element
-      api.Route<Object?> _createRoute(
-        String ctor,
-        Map<String, Object?> values,
-        FlaxRouteLease lease,
-      ) {
+      Object? _Route_isCurrent(Object value) =>
+          (value as api.Route<_Owner0>).isCurrent;
+      // ignore: unused_element
+      Object? _Route_isActive(Object value) =>
+          (value as api.Route<_Owner0>).isActive;
+      // ignore: unused_element
+      Object? _Route_settings(Object value) =>
+          (value as api.Route<_Owner0>).settings;
+      // ignore: unused_element
+      Object _createRoute(String ctor, Map<String, Object?> values) {
         switch (ctor) {
           default:
             throw ArgumentError("Unknown constructor");
@@ -31514,10 +31593,32 @@ Function _flaxClass_Route<_Owner0 extends Object?>() =>
 
       return FlaxDartClass(
         api.Route<_Owner0>,
-        FlaxRouteBinding(id, {}, _createRoute, [
-          "package:flutter/src/widgets/navigator.dart::_RoutePlaceholder",
-          "dart:core::Object",
-        ]),
+        FlaxObjectBinding(
+          id,
+          [
+            FlaxGetter("isCurrent", FlaxTypeRef("bool"), _Route_isCurrent),
+            FlaxGetter("isActive", FlaxTypeRef("bool"), _Route_isActive),
+            FlaxGetter(
+              "settings",
+              FlaxTypeRef("object", id: "flax.core/flutter#type:RouteSettings"),
+              _Route_settings,
+            ),
+          ],
+          {},
+          constructors: {},
+          create: _createRoute,
+          matches: _isRoute,
+          setters: [],
+          supertypes: [
+            "flax.core/flutter#type:Route",
+            ...[
+              "package:flutter/src/widgets/navigator.dart::_RoutePlaceholder",
+              "dart:core::Object",
+            ],
+          ],
+          listenerPairs: {},
+          disposeMethod: null,
+        ),
       );
     };
 Type _flaxType_Page<_Owner0 extends Object?>() => api.Page<_Owner0>;
@@ -31526,18 +31627,14 @@ Function _flaxClass_Page<_Owner0 extends Object?>() =>
       // ignore: unused_element
       bool _isPage(Object value) => value is api.Page<_Owner0>;
       // ignore: unused_element
-      Object? _Page_key(Object value) => (value as api.Page<_Owner0>).key;
-      // ignore: unused_element
       Object? _Page_name(Object value) => (value as api.Page<_Owner0>).name;
       // ignore: unused_element
       Object? _Page_arguments(Object value) =>
           (value as api.Page<_Owner0>).arguments;
       // ignore: unused_element
-      api.Page<Object?> _createPage(
-        String ctor,
-        Map<String, Object?> values,
-        FlaxPageLease lease,
-      ) {
+      Object? _Page_key(Object value) => (value as api.Page<_Owner0>).key;
+      // ignore: unused_element
+      Object _createPage(String ctor, Map<String, Object?> values) {
         switch (ctor) {
           default:
             throw ArgumentError("Unknown constructor");
@@ -31546,10 +31643,41 @@ Function _flaxClass_Page<_Owner0 extends Object?>() =>
 
       return FlaxDartClass(
         api.Page<_Owner0>,
-        FlaxPageBinding(id, {}, _createPage, [
-          "flax.core/flutter#type:RouteSettings",
-          "dart:core::Object",
-        ]),
+        FlaxObjectBinding(
+          id,
+          [
+            FlaxGetter(
+              "name",
+              FlaxTypeRef("String", nullable: true),
+              _Page_name,
+            ),
+            FlaxGetter(
+              "arguments",
+              FlaxTypeRef("any", nullable: true),
+              _Page_arguments,
+            ),
+            FlaxGetter(
+              "key",
+              FlaxTypeRef(
+                "object",
+                id: "flax.core/flutter#type:LocalKey",
+                nullable: true,
+              ),
+              _Page_key,
+            ),
+          ],
+          {},
+          constructors: {},
+          create: _createPage,
+          matches: _isPage,
+          setters: [],
+          supertypes: [
+            "flax.core/flutter#type:Page",
+            ...["flax.core/flutter#type:RouteSettings", "dart:core::Object"],
+          ],
+          listenerPairs: {},
+          disposeMethod: null,
+        ),
       );
     };
 Type _flaxType_NavigatorPopHandler<_Owner0 extends Object?>() =>
@@ -31569,7 +31697,7 @@ Function _flaxClass_NavigatorPopHandler<_Owner0 extends Object?>() =>
             return api.NavigatorPopHandler<_Owner0>(
               key: values["key"] as api.Key?,
               onPopWithResult:
-                  values["onPopWithResult"] as void Function(Object? result)?,
+                  values["onPopWithResult"] as void Function(_Owner0? result)?,
               enabled: values["enabled"] as bool,
               child: values["child"] as api.Widget,
             );
@@ -31578,20 +31706,20 @@ Function _flaxClass_NavigatorPopHandler<_Owner0 extends Object?>() =>
         }
       }
 
-      Object _callback0(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
+      Object _callback0(FlaxCallback _flaxBridgeCallback) => (_Owner0? p0) {
         final positional = <Object?>[];
         final named = <String, Object?>{};
         positional.add(p0);
         _flaxBridgeCallback.call(positional, named);
       };
       bool _callback0Matches(Object value) =>
-          value is void Function(Object? result);
+          value is void Function(_Owner0? result);
       Object? _callback0Invoke(
         Object function,
         List<Object?> positional,
         Map<String, Object?> named,
       ) {
-        (function as void Function(Object? result))(positional[0]);
+        (function as void Function(_Owner0? result))(positional[0] as _Owner0?);
         return null;
       }
 
@@ -31614,25 +31742,27 @@ Function _flaxClass_NavigatorPopHandler<_Owner0 extends Object?>() =>
               ),
               FlaxParameter(
                 "onPopWithResult",
-                FlaxTypeRef(
-                  "callback",
-                  nullable: true,
-                  callback: FlaxCallbackBinding(
-                    [
-                      FlaxCallbackParameter(
-                        "result",
-                        FlaxTypeRef("data", nullable: true),
-                        required: true,
-                        positional: true,
-                      ),
-                    ],
-                    FlaxTypeRef("void"),
-                    _callback0,
-                    id:
-                        types.key<void Function(Object? result)?>() +
-                        ":callback:<>(p:r:result:data?:)->void:",
-                    invoke: _callback0Invoke,
-                    matches: _callback0Matches,
+                types.define<void Function(_Owner0? result)?>(
+                  FlaxTypeRef(
+                    "callback",
+                    nullable: true,
+                    callback: FlaxCallbackBinding(
+                      [
+                        FlaxCallbackParameter(
+                          "result",
+                          types.ref<_Owner0?>(withinCallback: true),
+                          required: true,
+                          positional: true,
+                        ),
+                      ],
+                      FlaxTypeRef("void"),
+                      _callback0,
+                      id:
+                          types.key<void Function(_Owner0? result)?>() +
+                          ":callback:<>(p:r:result:parameter?:)->void:",
+                      invoke: _callback0Invoke,
+                      matches: _callback0Matches,
+                    ),
                   ),
                 ),
                 required: false,
@@ -31661,120 +31791,125 @@ Function _flaxClass_NavigatorPopHandler<_Owner0 extends Object?>() =>
       );
     };
 Type _flaxType_PopScope<_Owner0 extends Object?>() => api.PopScope<_Owner0>;
-Function _flaxClass_PopScope<
-  _Owner0 extends Object?
->() => (FlaxDartTypes types, String id) {
-  // ignore: unused_element
-  bool _isPopScope(Object value) => value is api.PopScope<_Owner0>;
-  // ignore: unused_element
-  Object _createPopScope(String ctor, Map<String, Object?> values) {
-    switch (ctor) {
-      case "":
-        return api.PopScope<_Owner0>(
-          key: values["key"] as api.Key?,
-          child: values["child"] as api.Widget,
-          canPop: values["canPop"] as bool,
-          onPopInvokedWithResult:
-              values["onPopInvokedWithResult"]
-                  as void Function(bool didPop, Object? result)?,
+Function _flaxClass_PopScope<_Owner0 extends Object?>() =>
+    (FlaxDartTypes types, String id) {
+      // ignore: unused_element
+      bool _isPopScope(Object value) => value is api.PopScope<_Owner0>;
+      // ignore: unused_element
+      Object _createPopScope(String ctor, Map<String, Object?> values) {
+        switch (ctor) {
+          case "":
+            return api.PopScope<_Owner0>(
+              key: values["key"] as api.Key?,
+              child: values["child"] as api.Widget,
+              canPop: values["canPop"] as bool,
+              onPopInvokedWithResult:
+                  values["onPopInvokedWithResult"]
+                      as void Function(bool didPop, _Owner0? result)?,
+            );
+          default:
+            throw ArgumentError("Unknown constructor");
+        }
+      }
+
+      Object _callback0(FlaxCallback _flaxBridgeCallback) =>
+          (bool p0, _Owner0? p1) {
+            final positional = <Object?>[];
+            final named = <String, Object?>{};
+            positional.add(p0);
+            positional.add(p1);
+            _flaxBridgeCallback.call(positional, named);
+          };
+      bool _callback0Matches(Object value) =>
+          value is void Function(bool didPop, _Owner0? result);
+      Object? _callback0Invoke(
+        Object function,
+        List<Object?> positional,
+        Map<String, Object?> named,
+      ) {
+        (function as void Function(bool didPop, _Owner0? result))(
+          positional[0] as bool,
+          positional[1] as _Owner0?,
         );
-      default:
-        throw ArgumentError("Unknown constructor");
-    }
-  }
+        return null;
+      }
 
-  Object _callback0(FlaxCallback _flaxBridgeCallback) => (bool p0, Object? p1) {
-    final positional = <Object?>[];
-    final named = <String, Object?>{};
-    positional.add(p0);
-    positional.add(p1);
-    _flaxBridgeCallback.call(positional, named);
-  };
-  bool _callback0Matches(Object value) =>
-      value is void Function(bool didPop, Object? result);
-  Object? _callback0Invoke(
-    Object function,
-    List<Object?> positional,
-    Map<String, Object?> named,
-  ) {
-    (function as void Function(bool didPop, Object? result))(
-      positional[0] as bool,
-      positional[1],
-    );
-    return null;
-  }
-
-  return FlaxDartClass(
-    api.PopScope<_Owner0>,
-    FlaxWidgetBinding(
-      id,
-      {
-        "": [
-          FlaxParameter(
-            "key",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Key",
-              nullable: true,
-            ),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "child",
-            FlaxTypeRef("widget"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "canPop",
-            FlaxTypeRef("bool"),
-            required: false,
-            defaultValue: true,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onPopInvokedWithResult",
-            FlaxTypeRef(
-              "callback",
-              nullable: true,
-              callback: FlaxCallbackBinding(
-                [
-                  FlaxCallbackParameter(
-                    "didPop",
-                    FlaxTypeRef("bool"),
-                    required: true,
-                    positional: true,
-                  ),
-                  FlaxCallbackParameter(
-                    "result",
-                    FlaxTypeRef("data", nullable: true),
-                    required: true,
-                    positional: true,
-                  ),
-                ],
-                FlaxTypeRef("void"),
-                _callback0,
-                id:
-                    types.key<void Function(bool didPop, Object? result)?>() +
-                    ":callback:<>(p:r:didPop:bool:,p:r:result:data?:)->void:",
-                invoke: _callback0Invoke,
-                matches: _callback0Matches,
+      return FlaxDartClass(
+        api.PopScope<_Owner0>,
+        FlaxWidgetBinding(
+          id,
+          {
+            "": [
+              FlaxParameter(
+                "key",
+                FlaxTypeRef(
+                  "object",
+                  id: "flax.core/flutter#type:Key",
+                  nullable: true,
+                ),
+                required: false,
+                defaultValue: null,
+                omitWhenAbsent: false,
               ),
-            ),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-        ],
-      },
-      _PopScopeHost<_Owner0>.new,
-      matches: _isPopScope,
-    ),
-  );
-};
+              FlaxParameter(
+                "child",
+                FlaxTypeRef("widget"),
+                required: true,
+                defaultValue: null,
+                omitWhenAbsent: false,
+              ),
+              FlaxParameter(
+                "canPop",
+                FlaxTypeRef("bool"),
+                required: false,
+                defaultValue: true,
+                omitWhenAbsent: false,
+              ),
+              FlaxParameter(
+                "onPopInvokedWithResult",
+                types.define<void Function(bool didPop, _Owner0? result)?>(
+                  FlaxTypeRef(
+                    "callback",
+                    nullable: true,
+                    callback: FlaxCallbackBinding(
+                      [
+                        FlaxCallbackParameter(
+                          "didPop",
+                          FlaxTypeRef("bool"),
+                          required: true,
+                          positional: true,
+                        ),
+                        FlaxCallbackParameter(
+                          "result",
+                          types.ref<_Owner0?>(withinCallback: true),
+                          required: true,
+                          positional: true,
+                        ),
+                      ],
+                      FlaxTypeRef("void"),
+                      _callback0,
+                      id:
+                          types
+                              .key<
+                                void Function(bool didPop, _Owner0? result)?
+                              >() +
+                          ":callback:<>(p:r:didPop:bool:,p:r:result:parameter?:)->void:",
+                      invoke: _callback0Invoke,
+                      matches: _callback0Matches,
+                    ),
+                  ),
+                ),
+                required: false,
+                defaultValue: null,
+                omitWhenAbsent: false,
+              ),
+            ],
+          },
+          _PopScopeHost<_Owner0>.new,
+          matches: _isPopScope,
+        ),
+      );
+    };
 Type _flaxType_ValueKey<_Owner0 extends Object?>() => api.ValueKey<_Owner0>;
 Function _flaxClass_ValueKey<_Owner0 extends Object?>() =>
     (FlaxDartTypes types, String id) {
@@ -35152,7 +35287,6 @@ Future<Object?> _future5Adapt(Future<Object?> value) =>
     value.then<List<Object?>>((value) => value as List<Object?>);
 Future<Object?> _future6Adapt(Future<Object?> value) =>
     value.then<Set<Object?>>((value) => value as Set<Object?>);
-Future<Object?> _future7Adapt(Future<Object?> value) => value;
 bool _stream0Matches(Object value) => value is api3.Stream<Object?>;
 api3.Stream<Object?> _stream0Adapt(Object value) =>
     value as api3.Stream<Object?>;

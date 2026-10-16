@@ -1,3 +1,4 @@
+import { identical } from '@flax/dart/core';
 import {
   dartType as selectDartType,
   dartTypes as nativeTypes,
@@ -121,6 +122,7 @@ class Caption extends ui.StatelessWidget {
 }
 Object.assign(globalThis, {
   componentApi: {
+    identical,
     ...ui,
     ...material,
     ...scheduler,

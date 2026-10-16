@@ -1,6 +1,7 @@
 import {
   dartType as selectDartType,
   dartTypes as nativeTypes,
+  asDart,
 } from '@flax/core/bindings';
 import {
   Builder,
@@ -243,6 +244,8 @@ Object.assign(globalThis, {
       builderKind = value;
     },
     label,
+    asDart,
+    TextEditingController,
     open,
     get context() {
       return context;

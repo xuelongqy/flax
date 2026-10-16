@@ -154,7 +154,7 @@ function _flaxInstallBindingModule(
       throw new TypeError('requiredCapabilities must be sorted unique strings');
     }
     previous = capability;
-    if (capability !== 'native-functions' && capability !== 'lazy-js-iterables' && capability !== 'callback-map-keys' && capability !== 'proxy-super-constructors' && capability !== 'bottom-types' && capability !== 'explicit-generic-types' && capability !== 'engine-type-handles' && capability !== 'generic-call-types' && capability !== 'dart-type-tokens' && capability !== 'generic-member-views' && capability !== 'instance-checks' && capability !== 'native-core-inputs' && capability !== 'native-bigint' && capability !== 'native-widget-proxies' && capability !== 'widget-interface-proxies' && capability !== 'shared-buffers' && capability !== 'shared-uint8') {
+    if (capability !== 'native-functions' && capability !== 'lazy-js-iterables' && capability !== 'callback-map-keys' && capability !== 'proxy-super-constructors' && capability !== 'bottom-types' && capability !== 'explicit-generic-types' && capability !== 'engine-type-handles' && capability !== 'generic-call-types' && capability !== 'dart-type-tokens' && capability !== 'generic-member-views' && capability !== 'instance-checks' && capability !== 'native-core-inputs' && capability !== 'native-bigint' && capability !== 'native-widget-proxies' && capability !== 'widget-interface-proxies' && capability !== 'native-navigation-objects' && capability !== 'shared-buffers' && capability !== 'shared-uint8') {
       throw new TypeError(`Unsupported binding capability ${capability}`);
     }
   }
@@ -218,6 +218,11 @@ class FlaxCodegenBindingEmitter {
         _owners[getter.id] = module;
       }
       for (final type in module.classes) {
+        if ({'route', 'page'}.contains(type.kind) || type.pageAdapter != null) {
+          throw StateError(
+            'Route and Page use ordinary object bindings: ${type.name}',
+          );
+        }
         if (_owners.containsKey(type.id)) {
           throw StateError('Duplicate class binding: ${type.id}');
         }
@@ -1745,12 +1750,8 @@ class FlaxCodegenBindingEmitter {
     if (proxyImplementation) {
       return '_${type.name}Proxy${_typeArgs(type.typeArguments)}.${constructor.name.isEmpty ? 'new' : constructor.name}';
     }
-    final leased =
-        type.category == FlaxCodegenClassCategory.route ||
-        type.category == FlaxCodegenClassCategory.page;
-    final owner = leased
-        ? '_${type.name}${_typeArgs(type.typeArguments)}'
-        : '${_dartName(type.name)}${_typeArgs(specialization?.typeArguments ?? type.typeArguments)}';
+    final owner =
+        '${_dartName(type.name)}${_typeArgs(specialization?.typeArguments ?? type.typeArguments)}';
     return '$owner.${constructor.name.isEmpty ? 'new' : constructor.name}';
   }
 
@@ -1770,31 +1771,18 @@ class FlaxCodegenBindingEmitter {
       ];
       return '_${type.name}Proxy${_typeArgs(type.typeArguments)}${constructor.name.isEmpty ? '' : '.${constructor.name}'}(${args.join(', ')})';
     }
-    final leased =
-        type.category == FlaxCodegenClassCategory.route ||
-        type.category == FlaxCodegenClassCategory.page;
-    var name = leased
-        ? '_${type.name}${_typeArgs(type.typeArguments)}'
-        : _dartName(type.name);
-    if (!leased) {
-      name += _typeArgs(specialization?.typeArguments ?? type.typeArguments);
-    }
+    var name =
+        '${_dartName(type.name)}${_typeArgs(specialization?.typeArguments ?? type.typeArguments)}';
     if (constructor.name.isNotEmpty) name += '.${constructor.name}';
-    final arguments = <String>[if (leased) 'lease'];
+    final arguments = <String>[];
     for (final (index, parameter) in constructor.parameters.indexed) {
       if (omitted.contains(parameter.name)) continue;
-      final routeBuilder =
-          type.category == FlaxCodegenClassCategory.route &&
-          parameter.type.category == FlaxCodegenTypeCategory.callback &&
-          parameter.type.result!.category == FlaxCodegenTypeCategory.widget;
-      final value = routeBuilder
-          ? 'lease.builder<${_dartType(specialization?.parameterTypes[index] ?? parameter.type)}>(${_quote(parameter.name)})'
-          : _constructorArgument(
-              'values[${_quote(parameter.name)}]',
-              constructor,
-              index,
-              specialization,
-            );
+      final value = _constructorArgument(
+        'values[${_quote(parameter.name)}]',
+        constructor,
+        index,
+        specialization,
+      );
       arguments.add(parameter.positional ? value : '${parameter.name}: $value');
     }
     return '$name(${arguments.join(', ')})';
@@ -1837,12 +1825,8 @@ class FlaxCodegenBindingEmitter {
       FlaxCodegenConstructorSpecializationModel? specialization,
     ) {
       if (optional.length >= _applyOmissionThreshold) {
-        final leased =
-            type.category == FlaxCodegenClassCategory.route ||
-            type.category == FlaxCodegenClassCategory.page;
         final prefix = <String>[
           if (proxyImplementation) "values['@peer'] as FlaxProxyPeer",
-          if (leased) 'lease',
         ];
         final call = _applyCall(
           _constructorTarget(
@@ -1852,17 +1836,12 @@ class FlaxCodegenBindingEmitter {
             proxyImplementation: proxyImplementation,
           ),
           ctor.parameters,
-          (p) =>
-              type.category == FlaxCodegenClassCategory.route &&
-                  p.type.category == FlaxCodegenTypeCategory.callback &&
-                  p.type.result!.category == FlaxCodegenTypeCategory.widget
-              ? 'lease.builder<${_dartType(specialization?.parameterTypes[ctor.parameters.indexOf(p)] ?? p.type)}>(${_quote(p.name)})'
-              : _constructorArgument(
-                  'values[${_quote(p.name)}]',
-                  ctor,
-                  ctor.parameters.indexOf(p),
-                  specialization,
-                ),
+          (p) => _constructorArgument(
+            'values[${_quote(p.name)}]',
+            ctor,
+            ctor.parameters.indexOf(p),
+            specialization,
+          ),
           (p) => 'values.containsKey(${_quote(p.name)})',
           prefix: prefix,
         );
@@ -2181,12 +2160,6 @@ class FlaxCodegenBindingEmitter {
           );
         }
         out.writeln('),');
-        continue;
-      }
-      if (type.kind == 'route' || type.kind == 'page') {
-        out.writeln(
-          '${type.kind == 'route' ? 'FlaxRouteBinding' : 'FlaxPageBinding'}(${_quote(type.id)}, ${_constructors(type)}, _create${type.name}, [${type.supertypes.map(_quote).join(', ')}]),',
-        );
         continue;
       }
       if (type.kind == 'members') {
@@ -2601,11 +2574,6 @@ class FlaxCodegenBindingEmitter {
             "Object _create${type.name}(String ctor, Map<String, Object?> values) => throw ArgumentError('Abstract object has no constructor');",
           );
         }
-        if (type.kind == 'route' || type.kind == 'page') {
-          out.writeln(
-            "${_dartName(type.kind == 'route' ? 'Route' : 'Page')}<Object?> _create${type.name}(String ctor, Map<String, Object?> values, ${type.kind == 'route' ? 'FlaxRouteLease' : 'FlaxPageLease'} lease) => throw ArgumentError('Abstract type has no constructor');",
-          );
-        }
         continue;
       }
       if (type.kind == 'widget' && !_nativeWidgetFactory(type)) {
@@ -2616,20 +2584,11 @@ class FlaxCodegenBindingEmitter {
           !_hasWidgetObjectView(type)) {
         continue;
       }
-      final resultType = switch (type.category) {
-        FlaxCodegenClassCategory.widget => _dartName('Widget'),
-        FlaxCodegenClassCategory.route => '${_dartName('Route')}<Object?>',
-        FlaxCodegenClassCategory.page => '${_dartName('Page')}<Object?>',
-        _ => 'Object',
-      };
-      final leaseParameter = switch (type.category) {
-        FlaxCodegenClassCategory.route => ', FlaxRouteLease lease',
-        FlaxCodegenClassCategory.page => ', FlaxPageLease lease',
-        _ => '',
-      };
+      final resultType = type.category == FlaxCodegenClassCategory.widget
+          ? _dartName('Widget')
+          : 'Object';
       out.writeln(
-        '$resultType _create${type.name}(String ctor, '
-        'Map<String, Object?> values$leaseParameter) {',
+        '$resultType _create${type.name}(String ctor, Map<String, Object?> values) {',
       );
       out.writeln('switch (ctor) {');
       if (type.proxy?.kind == 'implements' && !type.proxy!.widgetInterface) {
@@ -2664,52 +2623,6 @@ class FlaxCodegenBindingEmitter {
       out.writeln(
         "default: throw ArgumentError('Unknown generated constructor');\n}\n}",
       );
-    }
-    for (final source in nativeClasses.where(
-      (t) => t.kind == 'route' && t.constructors.isNotEmpty,
-    )) {
-      final type = source.typeParameters.isEmpty
-          ? source
-          : _vmClass(source, _vmParameters(source.typeParameters, '_Owner'));
-      _genericDartParameters.addAll(type.typeArguments);
-      out.writeln(
-        'class _${type.name}${_dartStaticGenerics(type.typeParameters)} extends ${_dartName(type.name)}${_typeArgs(type.typeArguments)} {',
-      );
-      out.writeln('final FlaxRouteLease _lease;');
-      for (final ctor in type.constructors) {
-        final parameters = _superParameters(ctor.parameters);
-        out.writeln(
-          '_${type.name}${ctor.name.isEmpty ? '' : '.${ctor.name}'}(this._lease${parameters.isEmpty ? '' : ', $parameters'})${ctor.name.isEmpty ? '' : ' : super.${ctor.name}()'} { _lease.onDiscard = dispose; }',
-        );
-      }
-      out.writeln(
-        '@override void dispose() { try { super.dispose(); } finally { _lease.routeDisposed(); } }',
-      );
-      out.writeln('}');
-      _genericDartParameters.clear();
-    }
-    for (final source in nativeClasses.where(
-      (t) => t.kind == 'page' && t.constructors.isNotEmpty,
-    )) {
-      final type = source.typeParameters.isEmpty
-          ? source
-          : _vmClass(source, _vmParameters(source.typeParameters, '_Owner'));
-      _genericDartParameters.addAll(type.typeArguments);
-      out.writeln(
-        'class _${type.name}${_dartStaticGenerics(type.typeParameters)} extends ${_dartName(type.name)}${_typeArgs(type.typeArguments)} implements FlaxPageConfiguration {',
-      );
-      out.writeln('@override final FlaxPageLease flaxPageLease;');
-      for (final ctor in type.constructors) {
-        final parameters = _superParameters(ctor.parameters);
-        out.writeln(
-          '_${type.name}${ctor.name.isEmpty ? '' : '.${ctor.name}'}(this.flaxPageLease${parameters.isEmpty ? '' : ', $parameters'})${ctor.name.isEmpty ? '' : ' : super.${ctor.name}()'};',
-        );
-      }
-      out.writeln(
-        '@override FlaxPageRoute${_typeArgs(type.typeArguments.isEmpty ? ['Object?'] : type.typeArguments)} createRoute(${_dartName('BuildContext')} context) => adapter${type.name}.${type.pageAdapter!.function}${_typeArgs(type.typeArguments)}(this);',
-      );
-      out.writeln('}');
-      _genericDartParameters.clear();
     }
     for (final source in nativeClasses.where((t) => t.proxy != null)) {
       final type = source.typeParameters.isEmpty
@@ -3388,12 +3301,6 @@ import 'package:flax/bindings.dart';
       (e) => e.key != module.library,
     )) {
       imports.writeln("import '${entry.key}' as ${entry.value};");
-    }
-    // Adapter imports stay explicit in the binding selection.
-    for (final type in nativeClasses.where((c) => c.pageAdapter != null)) {
-      imports.writeln(
-        "import '${type.pageAdapter!.library}' as adapter${type.name};",
-      );
     }
     imports.writeln();
     return '$imports$out';
@@ -5911,11 +5818,6 @@ $_typescriptHostImport
         if (type.kind == 'widget' && !nativeWidget) {
           out.writeln(
             '${exportPrefix}type ${type.name}${generics(type.typeParameters)} = Widget & { readonly __${type.name}: unique symbol; };',
-          );
-        }
-        if (type.kind == 'route' || type.kind == 'page') {
-          out.writeln(
-            '${exportPrefix}interface ${type.name}${generics(type.typeParameters)} extends DartValue { readonly __${type.name}: unique symbol; ${type.getters.map((g) => 'readonly ${g.name}: ${tsType(g.type)};').join(' ')} }',
           );
         }
         continue;

@@ -1,22 +1,81 @@
 part of '../../bindings.dart';
 
-/// Install on the Navigator used by generated Route-producing functions.
-/// Each observer belongs to one Navigator; it can serve multiple Flax sessions.
+// These weak associations describe who may still call JS, not who owns the value.
+bool _isNavigationObservers(FlaxTypeRef type) =>
+    type.kind == 'list' &&
+    type.item?.id == 'flax.core/flutter#type:NavigatorObserver';
+
+final _navigationSessions = Expando<_WeakReferences<_Session>>();
+final _navigationObservers = _WeakReferences<FlaxNavigatorObserver>();
+
+/// Install on a host Navigator accepting Flax Routes, Pages or Route functions.
+/// Generated Widget observer-list inputs install a private instance as well.
 class FlaxNavigatorObserver extends NavigatorObserver {
-  _TopLevelRouteCall? _call;
+  FlaxNavigatorObserver() {
+    _navigationObservers.add(this);
+  }
+
+  _NavigationCall? _call;
+  final _routes = <TransitionRoute<Object?>, Set<_Session>>{};
+
+  void _track(Route<dynamic> route) {
+    final owners = <_Session>{
+      ...?_navigationSessions[route],
+      ...?_navigationSessions[route.settings],
+    };
+    if (owners.isEmpty && !_routes.containsKey(route)) return;
+    if (route is! TransitionRoute<Object?>) {
+      throw StateError('Flax navigation requires a TransitionRoute');
+    }
+    final sessions = _routes.putIfAbsent(route, () {
+      unawaited(route.completed.then((_) => _routes.remove(route)));
+      return <_Session>{};
+    });
+    for (final session in owners.difference(sessions)) {
+      session.holdPageRoute(route);
+    }
+    for (final session in sessions.difference(owners)) {
+      session.releasePageRoute(route);
+    }
+    _routes[route] = owners;
+  }
+
+  // Flutter can replace Page settings without pushing another Route. Refresh
+  // before closing so the current configuration, not an obsolete Page, owns it.
+  void _refresh() {
+    for (final route in _routes.keys.toList()) {
+      _track(route);
+    }
+  }
 
   @override
   void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
     _call?.accept(route);
+    _track(route);
+  }
+
+  @override
+  void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute}) {
+    if (newRoute != null) {
+      _call?.accept(newRoute);
+      _track(newRoute);
+    }
   }
 }
 
-class _TopLevelRouteCall {
-  _TopLevelRouteCall(this.session, this.lease);
+FlaxNavigatorObserver _requireNavigationObserver(NavigatorState navigator) =>
+    navigator.widget.observers
+        .whereType<FlaxNavigatorObserver>()
+        .where((observer) => identical(observer.navigator, navigator))
+        .firstOrNull ??
+    (throw StateError(
+      'Install FlaxNavigatorObserver in the target Navigator.observers or app navigatorObservers',
+    ));
+
+class _NavigationCall {
+  _NavigationCall(this.session);
   final _Session session;
-  final FlaxRouteLease lease;
   int accepted = 0;
-  int _remaining = 0;
   Object? error;
 
   void accept(Route<dynamic> route) {
@@ -25,34 +84,23 @@ class _TopLevelRouteCall {
       return;
     }
     accepted++;
-    _remaining++;
-    lease._transfer();
-    if (route is ModalRoute<Object?>) session._heldRoutes.add(route);
-    void finish() {
-      if (route is ModalRoute<Object?>) session._heldRoutes.remove(route);
-      if (--_remaining == 0) lease.routeDisposed();
-    }
-
-    unawaited(
-      route.completed.then(
-        (_) => finish(),
-        onError: (Object e, StackTrace s) {
-          session.report(e, s);
-          finish();
-        },
-      ),
-    );
+    session.registerNavigationValue(route);
+    session.holdPageRoute(route);
   }
 
   Object? invoke(
     FlaxNavigatorObserver observer,
-    FlaxFunctionBinding function,
-    Map<String, Object?> values,
-  ) {
+    Object? Function() call, {
+    Object? route,
+  }) {
+    // Push/replace pass their first argument here; replacement results stay data.
+    if (route is Route && route is! TransitionRoute<Object?>) {
+      throw ArgumentError('Flax navigation requires a TransitionRoute');
+    }
     final previous = observer._call;
     observer._call = this;
     try {
-      final result = function.invoke(values);
+      final result = call();
       if (error != null) throw error!;
       if (accepted != 1) {
         throw StateError(
@@ -63,47 +111,6 @@ class _TopLevelRouteCall {
     } finally {
       observer._call = previous;
     }
-  }
-}
-
-/// Generated Routes release at dispose; observed Routes release at completed.
-/// A call owns the initial lease; a successfully handed-off Route owns another.
-class FlaxRouteLease extends _Resource {
-  FlaxRouteLease._(this._session, this._sources);
-  final _Session _session;
-  final Map<String, _Source> _sources;
-  void Function()? onDiscard;
-  bool _transferred = false;
-  bool _disposed = false;
-
-  // The lease already owns the generated typed closure. Returning it preserves
-  // its exact signature and Widget interface without adding an Element.
-  T builder<T extends Function>(String name) =>
-      _sources[name]!.initial.data as T;
-
-  void _transfer() {
-    if (_transferred) return;
-    _transferred = true;
-    retain();
-    _session.retainRoute();
-  }
-
-  /// Called at native Route disposal or observed transition completion.
-  void routeDisposed() {
-    if (_disposed) return;
-    _disposed = true;
-    if (_transferred) {
-      release();
-    }
-    if (_transferred) _session.releaseRoute();
-  }
-
-  @override
-  void close() {
-    for (final source in _sources.values) {
-      source.release();
-    }
-    if (!_disposed) onDiscard?.call();
   }
 }
 
@@ -122,42 +129,10 @@ class _StateReference {
 }
 
 extension _Navigation on _Session {
-  _Value decodeRoute(
-    FlaxJsObject descriptor,
-    FlaxRouteBinding definition,
-    String ctor,
-  ) {
-    if (closing) throw StateError('The Flax session is closing');
-    final parameters = definition.constructors[ctor];
-    if (parameters == null) {
-      throw ArgumentError('Unsupported Route constructor');
-    }
-    final sources = _inBindingContext(
-      definition.id,
-      () => _arguments(
-        descriptor,
-        parameters,
-        allowBindings: false,
-        uiCallbacks: [
-          for (final parameter in parameters)
-            if (parameter.type.kind == 'callback' &&
-                parameter.type.callback!.result.kind == 'widget')
-              parameter.name,
-        ],
-      ),
-    );
-    final lease = FlaxRouteLease._(this, sources);
-    try {
-      final route = definition.create(
-        ctor,
-        sources.map((name, source) => MapEntry(name, source.initial.data)),
-        lease,
-      );
-      return _Value(route, [lease]);
-    } catch (_) {
-      lease.release();
-      rethrow;
-    }
+  void registerNavigationValue(Object value) {
+    if (value is! Route && value is! Page) return;
+    final sessions = _navigationSessions[value] ??= _WeakReferences<_Session>();
+    if (!sessions.contains(this)) sessions.add(this);
   }
 
   FlaxJsValue stateResult(State state, FlaxTypeRef type) {

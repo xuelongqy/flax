@@ -23,7 +23,7 @@ function _flaxInstallBindingModule(
       throw new TypeError('requiredCapabilities must be sorted unique strings');
     }
     previous = capability;
-    if (capability !== 'native-functions' && capability !== 'lazy-js-iterables' && capability !== 'callback-map-keys' && capability !== 'proxy-super-constructors' && capability !== 'bottom-types' && capability !== 'explicit-generic-types' && capability !== 'engine-type-handles' && capability !== 'generic-call-types' && capability !== 'dart-type-tokens' && capability !== 'generic-member-views' && capability !== 'instance-checks' && capability !== 'native-core-inputs' && capability !== 'native-bigint' && capability !== 'native-widget-proxies' && capability !== 'widget-interface-proxies' && capability !== 'shared-buffers' && capability !== 'shared-uint8') {
+    if (capability !== 'native-functions' && capability !== 'lazy-js-iterables' && capability !== 'callback-map-keys' && capability !== 'proxy-super-constructors' && capability !== 'bottom-types' && capability !== 'explicit-generic-types' && capability !== 'engine-type-handles' && capability !== 'generic-call-types' && capability !== 'dart-type-tokens' && capability !== 'generic-member-views' && capability !== 'instance-checks' && capability !== 'native-core-inputs' && capability !== 'native-bigint' && capability !== 'native-widget-proxies' && capability !== 'widget-interface-proxies' && capability !== 'native-navigation-objects' && capability !== 'shared-buffers' && capability !== 'shared-uint8') {
       throw new TypeError(`Unsupported binding capability ${capability}`);
     }
   }
@@ -55,7 +55,7 @@ function _flaxInstallBindingModule(
     invokeTopLevel: _flaxHostInvokeTopLevel,
   });
 }
-export const canvasBindingModule = _flaxInstallBindingModule("flax.canvas/canvas", 24, Object.freeze(["generic-member-views","instance-checks","native-widget-proxies"]) as readonly string[]);
+export const canvasBindingModule = _flaxInstallBindingModule("flax.canvas/canvas", 24, Object.freeze(["generic-member-views","instance-checks","native-navigation-objects","native-widget-proxies"]) as readonly string[]);
 const { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineDartTypes: _flaxDefineDartTypes, bindInstanceType: _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } = canvasBindingModule;
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface FlaxCanvasSurface extends upstream0.Listenable, Readonly<{ "__flaxBound:package:flax_canvas/src/surface.dart::FlaxCanvasSurface": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [] }> { readonly __FlaxCanvasSurface: unique symbol;

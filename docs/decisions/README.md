@@ -97,6 +97,10 @@ current language support is in the
 - [0044: Native Widget interface values](0044-native-widget-interface-values.md) is
   accepted. Real Widget factories and proxies replace native interface forwarding hosts.
 
+- [0045: Native Route and Page objects](0045-native-navigation-objects.md) is accepted.
+  Ordinary bindings and joint GC replace ownership subclasses, leases and Page adapters;
+  observation retains the session through exit transitions.
+
 [Open Questions](open-questions.md) records decisions that have not been made. Use the
 [decision template](TEMPLATE.md) for a new significant decision. Record the decision,
 its reason and practical consequences, and update this index.

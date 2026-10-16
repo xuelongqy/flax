@@ -6,10 +6,10 @@ import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flax
 export interface RouteSettings extends Readonly<{ "__flaxBound:package:flutter/src/widgets/navigator.dart::RouteSettings": readonly [] }> { readonly __RouteSettings: unique symbol;
 
 readonly name: string | null;
-readonly arguments: NavigationData | null;
+readonly arguments: unknown | null;
 }
 defineObject("flax.core/flutter#type:RouteSettings", ["name","arguments"], [], _flaxBindingMethods("flax.core/flutter#type:RouteSettings", "object", {}, {}), []);
-function _RouteSettingsFactory(options: { name?: string | null | undefined; arguments?: NavigationData | null | undefined } = {}): RouteSettings {
+function _RouteSettingsFactory(options: { name?: string | null | undefined; arguments?: unknown | null | undefined } = {}): RouteSettings {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:RouteSettings", "", [{"name":"name","required":false,"positional":false},{"name":"arguments","required":false,"positional":false}], [], options) as RouteSettings;

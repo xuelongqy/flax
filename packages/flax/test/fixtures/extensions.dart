@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flax/bindings.dart';
 import 'package:flutter/widgets.dart';
 
 export 'extension_types.dart';
@@ -177,29 +176,6 @@ class ExtensionPage extends Page<Object?> {
     settings: this,
     pageBuilder: (_, _, _) => const SizedBox(),
   );
-}
-
-FlaxPageRoute<Object?> adaptExtensionPage(ExtensionPage page) =>
-    _ExtensionPageRoute(page);
-
-class _ExtensionPageRoute extends FlaxPageRoute<Object?> {
-  _ExtensionPageRoute(ExtensionPage page) : super(page: page);
-
-  @override
-  Widget buildPage(
-    BuildContext context,
-    Animation<double> animation,
-    Animation<double> secondaryAnimation,
-  ) => const SizedBox();
-
-  @override
-  Duration get transitionDuration => Duration.zero;
-  @override
-  Color? get barrierColor => null;
-  @override
-  String? get barrierLabel => null;
-  @override
-  bool get maintainState => true;
 }
 
 class ExtensionAnchor extends StatefulWidget {

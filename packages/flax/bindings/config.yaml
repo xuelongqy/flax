@@ -76,6 +76,8 @@ types:
   - WrapAlignment
   - WrapCrossAlignment
 functions:
+  identical:
+    parameters: [a, b]
   applyBoxFit:
     parameters: [fit, inputSize, outputSize]
 callbackSnapshots:
@@ -883,45 +885,27 @@ classes:
       pop: ['Object?']
       maybePop: ['Object?']
     startsRoute: [push, pushNamed, pushReplacement]
-    data:
-      methods:
-        pushNamed: [arguments]
-        pushReplacement: [result]
-        pop: [result]
-        maybePop: [result]
-      results: [push, pushNamed, pushReplacement]
   Route:
-    kind: route
+    kind: object
+    getters: [isCurrent, isActive, settings]
     typeArguments: ['Object?']
   Page:
-    kind: page
+    kind: object
     typeArguments: ['Object?']
     getters: [key, name, arguments]
-    data:
-      getters: [arguments]
   RouteSettings:
     kind: object
     constructors:
       '': [name, arguments]
     getters: [name, arguments]
-    data:
-      constructors:
-        '': [arguments]
-      getters: [arguments]
   NavigatorPopHandler:
     typeArguments: ['Object?']
     constructors:
       '': [key, enabled, onPopWithResult, child]
-    data:
-      constructors:
-        '': [onPopWithResult]
   PopScope:
     typeArguments: ['Object?']
     constructors:
       '': [key, canPop, onPopInvokedWithResult, child]
-    data:
-      constructors:
-        '': [onPopInvokedWithResult]
   Builder:
     constructors:
       '': [key, builder]

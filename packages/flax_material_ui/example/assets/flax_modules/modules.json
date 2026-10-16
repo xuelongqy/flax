@@ -49,7 +49,7 @@
       "specifier": "@flax/core/navigation",
       "owner": "@flax/core-runtime:dist/flutter/generated/libraries/navigation/index.js",
       "version": "0.0.0",
-      "artifact": "a9ded0032d8c9840ae490c42fd2f786978d40c5319c27e31322af77a824e2a0b",
+      "artifact": "cad1b64a15098780b072ddb89257bf11540650465a11a5f2b75e4648da0e2e5f",
       "asset": "assets/flax_modules/_flax_core_navigation-33b2cfc211d0.js",
       "package": "@flax/core-runtime",
       "source": "dist/flutter/generated/libraries/navigation/index.js",
@@ -64,6 +64,7 @@
           "requiredCapabilities": [
             "generic-member-views",
             "instance-checks",
+            "native-navigation-objects",
             "native-widget-proxies"
           ],
           "types": [
@@ -245,6 +246,7 @@
             "flax.core/flutter#function:EnumByName.method.byName",
             "flax.core/flutter#function:EnumName.getter.name",
             "flax.core/flutter#function:applyBoxFit",
+            "flax.core/flutter#function:identical",
             "flax.core/flutter#read:Alignment.bottomCenter",
             "flax.core/flutter#read:Alignment.bottomLeft",
             "flax.core/flutter#read:Alignment.bottomRight",
@@ -317,7 +319,7 @@
       "specifier": "@flax/dart/async",
       "owner": "@flax/core-runtime:dist/dart/generated/libraries/async/index.js",
       "version": "0.0.0",
-      "artifact": "886f2c17188df6dfa755fecd610a81d306fc2bc036ed7e3b5aa0749df37ae85c",
+      "artifact": "8c8af2b44800b22694d0de24ff0c48ee2616cdc5d624aa6d8ba27286be979820",
       "asset": "assets/flax_modules/_flax_dart_async-f3c6fbf57a76.js",
       "package": "@flax/core-runtime",
       "source": "dist/dart/generated/libraries/async/index.js",
@@ -332,6 +334,7 @@
           "requiredCapabilities": [
             "generic-member-views",
             "instance-checks",
+            "native-navigation-objects",
             "native-widget-proxies"
           ],
           "types": [
@@ -513,6 +516,7 @@
             "flax.core/flutter#function:EnumByName.method.byName",
             "flax.core/flutter#function:EnumName.getter.name",
             "flax.core/flutter#function:applyBoxFit",
+            "flax.core/flutter#function:identical",
             "flax.core/flutter#read:Alignment.bottomCenter",
             "flax.core/flutter#read:Alignment.bottomLeft",
             "flax.core/flutter#read:Alignment.bottomRight",
@@ -585,7 +589,7 @@
       "specifier": "@flax/dart/core",
       "owner": "@flax/core-runtime:dist/dart/generated/libraries/core/index.js",
       "version": "0.0.0",
-      "artifact": "1524f85a6e046e59de79413d0ed35bcd5907d1ef3aa62d9f876ab8efd0c1e749",
+      "artifact": "8deda30b8d1503404c8efba1800e2f99c0ec92fa8a959a962eb962b546181d4c",
       "asset": "assets/flax_modules/_flax_dart_core-5ad127bf5c9b.js",
       "package": "@flax/core-runtime",
       "source": "dist/dart/generated/libraries/core/index.js",
@@ -600,6 +604,7 @@
           "requiredCapabilities": [
             "generic-member-views",
             "instance-checks",
+            "native-navigation-objects",
             "native-widget-proxies"
           ],
           "types": [
@@ -781,6 +786,7 @@
             "flax.core/flutter#function:EnumByName.method.byName",
             "flax.core/flutter#function:EnumName.getter.name",
             "flax.core/flutter#function:applyBoxFit",
+            "flax.core/flutter#function:identical",
             "flax.core/flutter#read:Alignment.bottomCenter",
             "flax.core/flutter#read:Alignment.bottomLeft",
             "flax.core/flutter#read:Alignment.bottomRight",
@@ -853,7 +859,7 @@
       "specifier": "@flax/flutter/foundation",
       "owner": "@flax/core-runtime:dist/flutter/generated/libraries/foundation/index.js",
       "version": "0.0.0",
-      "artifact": "1a32faa0aaa8d60e4b5b1b6acc96d83e1ca7e68827398cd55feac49d9d92a47f",
+      "artifact": "af48dbcaa331850b6a6e322575ce3320220ff0956cd4a6b30e89a1d9b01eb171",
       "asset": "assets/flax_modules/_flax_flutter_foundation-9748414906bc.js",
       "package": "@flax/core-runtime",
       "source": "dist/flutter/generated/libraries/foundation/index.js",
@@ -867,6 +873,7 @@
           "requiredCapabilities": [
             "generic-member-views",
             "instance-checks",
+            "native-navigation-objects",
             "native-widget-proxies"
           ],
           "types": [
@@ -1048,6 +1055,7 @@
             "flax.core/flutter#function:EnumByName.method.byName",
             "flax.core/flutter#function:EnumName.getter.name",
             "flax.core/flutter#function:applyBoxFit",
+            "flax.core/flutter#function:identical",
             "flax.core/flutter#read:Alignment.bottomCenter",
             "flax.core/flutter#read:Alignment.bottomLeft",
             "flax.core/flutter#read:Alignment.bottomRight",
@@ -1120,7 +1128,7 @@
       "specifier": "@flax/flutter/gestures",
       "owner": "@flax/core-runtime:dist/flutter/generated/libraries/gestures/index.js",
       "version": "0.0.0",
-      "artifact": "cac515a37f60e9665758470c11e41e974fd15f7ed9e96e0e5df0671c70177f41",
+      "artifact": "408d0069e6f9780cb8b87fb1dd422e78ad4beb1f5d9da1939c34eb0484f27c25",
       "asset": "assets/flax_modules/_flax_flutter_gestures-9d8f5a03c3fd.js",
       "package": "@flax/core-runtime",
       "source": "dist/flutter/generated/libraries/gestures/index.js",
@@ -1134,6 +1142,7 @@
           "requiredCapabilities": [
             "generic-member-views",
             "instance-checks",
+            "native-navigation-objects",
             "native-widget-proxies"
           ],
           "types": [
@@ -1315,6 +1324,7 @@
             "flax.core/flutter#function:EnumByName.method.byName",
             "flax.core/flutter#function:EnumName.getter.name",
             "flax.core/flutter#function:applyBoxFit",
+            "flax.core/flutter#function:identical",
             "flax.core/flutter#read:Alignment.bottomCenter",
             "flax.core/flutter#read:Alignment.bottomLeft",
             "flax.core/flutter#read:Alignment.bottomRight",
@@ -1387,7 +1397,7 @@
       "specifier": "@flax/flutter/material",
       "owner": "@flax/material-ui:dist/generated/libraries/material/index.js",
       "version": "0.0.0",
-      "artifact": "a4cbb7b2b0e264d3b8fd29b28bcf70020af2d32964dd248f1b145e54d78c73df",
+      "artifact": "864b8fbe4ed8e6f99f55fea3d3ff6a4da885fe2456a6599eb46a20ad5a759e55",
       "asset": "assets/flax_modules/_flax_flutter_material-4c07c7c9bace.js",
       "package": "@flax/material-ui",
       "source": "dist/generated/libraries/material/index.js",
@@ -1405,6 +1415,7 @@
           "requiredCapabilities": [
             "generic-member-views",
             "instance-checks",
+            "native-navigation-objects",
             "native-widget-proxies"
           ],
           "types": [
@@ -1466,7 +1477,7 @@
       "specifier": "@flax/flutter/scheduler",
       "owner": "@flax/core-runtime:dist/flutter/generated/libraries/scheduler/index.js",
       "version": "0.0.0",
-      "artifact": "f64d09b9d536b7eafd2291549c2fa81e3313be4a0c818e5451fc7bd776a5a927",
+      "artifact": "76ef8b8bb4a3c4fb3e1259bb634cccf4b19e3f694a2d9317d3fc1556b4baea39",
       "asset": "assets/flax_modules/_flax_flutter_scheduler-6129bf1d9d8b.js",
       "package": "@flax/core-runtime",
       "source": "dist/flutter/generated/libraries/scheduler/index.js",
@@ -1480,6 +1491,7 @@
           "requiredCapabilities": [
             "generic-member-views",
             "instance-checks",
+            "native-navigation-objects",
             "native-widget-proxies"
           ],
           "types": [
@@ -1661,6 +1673,7 @@
             "flax.core/flutter#function:EnumByName.method.byName",
             "flax.core/flutter#function:EnumName.getter.name",
             "flax.core/flutter#function:applyBoxFit",
+            "flax.core/flutter#function:identical",
             "flax.core/flutter#read:Alignment.bottomCenter",
             "flax.core/flutter#read:Alignment.bottomLeft",
             "flax.core/flutter#read:Alignment.bottomRight",
@@ -1733,7 +1746,7 @@
       "specifier": "@flax/flutter/services",
       "owner": "@flax/core-runtime:dist/flutter/generated/libraries/services/index.js",
       "version": "0.0.0",
-      "artifact": "410dd3e4d4fd79676baa122200cf1ee57997f320e7badcc16342c9270774b7c0",
+      "artifact": "13f26c53939688db15f659d11bd15abbcacfcbeca235fc1919ebb0908f0392d2",
       "asset": "assets/flax_modules/_flax_flutter_services-e820dad87955.js",
       "package": "@flax/core-runtime",
       "source": "dist/flutter/generated/libraries/services/index.js",
@@ -1749,6 +1762,7 @@
           "requiredCapabilities": [
             "generic-member-views",
             "instance-checks",
+            "native-navigation-objects",
             "native-widget-proxies"
           ],
           "types": [
@@ -1930,6 +1944,7 @@
             "flax.core/flutter#function:EnumByName.method.byName",
             "flax.core/flutter#function:EnumName.getter.name",
             "flax.core/flutter#function:applyBoxFit",
+            "flax.core/flutter#function:identical",
             "flax.core/flutter#read:Alignment.bottomCenter",
             "flax.core/flutter#read:Alignment.bottomLeft",
             "flax.core/flutter#read:Alignment.bottomRight",
@@ -2002,7 +2017,7 @@
       "specifier": "@flax/flutter/widgets",
       "owner": "@flax/core-runtime:dist/flutter/widgets.js",
       "version": "0.0.0",
-      "artifact": "ae7e4ba3d53a265c61b8595677d2b28d639d5450649016a7c69990886abc787f",
+      "artifact": "068b1d48581000199b58b4ae8699eb2c871add9ff0baf1680602da67ed77b532",
       "asset": "assets/flax_modules/_flax_flutter_widgets-4c2442a10500.js",
       "package": "@flax/core-runtime",
       "source": "dist/flutter/widgets.js",
@@ -2021,6 +2036,7 @@
           "requiredCapabilities": [
             "generic-member-views",
             "instance-checks",
+            "native-navigation-objects",
             "native-widget-proxies"
           ],
           "types": [
@@ -2035,6 +2051,7 @@
           "requiredCapabilities": [
             "generic-member-views",
             "instance-checks",
+            "native-navigation-objects",
             "native-widget-proxies"
           ],
           "types": [
@@ -2216,6 +2233,7 @@
             "flax.core/flutter#function:EnumByName.method.byName",
             "flax.core/flutter#function:EnumName.getter.name",
             "flax.core/flutter#function:applyBoxFit",
+            "flax.core/flutter#function:identical",
             "flax.core/flutter#read:Alignment.bottomCenter",
             "flax.core/flutter#read:Alignment.bottomLeft",
             "flax.core/flutter#read:Alignment.bottomRight",

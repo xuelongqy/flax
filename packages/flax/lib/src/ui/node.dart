@@ -68,12 +68,30 @@ class _MountedProperty {
       next.release();
       rethrow;
     }
-    if (source.type.kind == 'list' &&
-        source.type.item!.kind == 'page' &&
-        source.session.closing) {
+    if (next.data case final List<Page<Object?>> input) {
+      final List<Page<Object?>> pages;
+      try {
+        pages = List<Page<Object?>>.unmodifiable(input);
+      } catch (_) {
+        next.release();
+        rethrow;
+      }
+      next = _Value(pages, [next]);
+      final keys = <LocalKey>{};
+      for (final page in pages) {
+        if (page.key != null && !keys.add(page.key!)) {
+          next.release();
+          throw ArgumentError('Duplicate Page key: ${page.key}');
+        }
+      }
+      if (!source.session.closing) {
+        for (final page in pages) {
+          source.session.registerNavigationValue(page);
+        }
+        return next;
+      }
       final old =
           (previous ?? _value)?.data as List<Page<Object?>>? ?? const [];
-      final pages = next.data as List<Page<Object?>>;
       // Closing may update or remove accepted Pages, but cannot add another
       // instance of an unkeyed Page that merely matches an existing type.
       final remaining = List<Page<Object?>>.of(old);
@@ -209,7 +227,7 @@ class _MountedProperty {
 }
 
 class _NodeState extends State<FlaxWidgetHost> with _ContextOwner {
-  bool _retained = false;
+  _Session? _retainedSession;
   FlaxNode? _node;
   FlaxWidgetHost? _host;
   Map<String, _MountedProperty> _properties = {};
@@ -226,7 +244,7 @@ class _NodeState extends State<FlaxWidgetHost> with _ContextOwner {
       return;
     }
     session.retainMount();
-    _retained = true;
+    _retainedSession = session;
     _adopt(widget);
   }
 
@@ -241,6 +259,7 @@ class _NodeState extends State<FlaxWidgetHost> with _ContextOwner {
     final next = <String, _MountedProperty>{};
     late Widget built;
     try {
+      if (!node._session.active) throw StateError('Closed Flax session');
       for (final entry in node._sources.entries) {
         final old = _properties[entry.key];
         if (old != null && old.source.sameBinding(entry.value)) {
@@ -269,6 +288,11 @@ class _NodeState extends State<FlaxWidgetHost> with _ContextOwner {
     }
     // Commit only after all parameters and the native constructor succeeded.
     node.retain();
+    final previousSession = _retainedSession;
+    if (!identical(previousSession, node._session)) {
+      node._session.retainMount();
+      _retainedSession = node._session;
+    }
     final oldNode = _node;
     final oldProperties = _properties;
     _node = node;
@@ -279,6 +303,9 @@ class _NodeState extends State<FlaxWidgetHost> with _ContextOwner {
       if (!identical(next[old.name], old)) old.close();
     }
     oldNode?.release();
+    if (!identical(previousSession, _retainedSession)) {
+      previousSession?.releaseMount();
+    }
   }
 
   void refresh(Set<String> names) {
@@ -353,8 +380,7 @@ class _NodeState extends State<FlaxWidgetHost> with _ContextOwner {
     }
     _contexts.clear();
     _node?.release();
-    final session = widget.node._session;
-    if (_retained) session.releaseMount();
+    _retainedSession?.releaseMount();
     super.dispose();
   }
 }

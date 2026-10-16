@@ -150,61 +150,28 @@ extension _MemberCalls on _Session {
         0,
         uiCallbacks: route?.builders ?? const [],
       );
-      FlaxRouteLease? lease;
       try {
         final inputs = values.map((name, value) => MapEntry(name, value.data));
-        Object? result;
-        if (route == null) {
-          for (final parameter in definition.parameters) {
-            final value = values[parameter.name];
-            if (value == null) continue;
-            value.escapeCallbacks();
-            escapeWidget(value.data, parameter.type);
-          }
-          result = definition.invoke(inputs);
-        } else {
-          final navigator = Navigator.of(
-            inputs[route.context] as BuildContext,
-            rootNavigator: inputs[route.rootNavigator] as bool,
-          );
-          final observer = navigator.widget.observers
-              .whereType<FlaxNavigatorObserver>()
-              .where((o) => identical(o.navigator, navigator))
-              .firstOrNull;
-          if (observer == null) {
-            throw StateError(
-              'Install FlaxNavigatorObserver in the target Navigator.observers or MaterialApp.navigatorObservers',
-            );
-          }
-          final sources = <String, _Source>{};
-          for (final name in route.builders) {
-            final value = values[name]!;
-            value.retain();
-            sources[name] = _Source(
-              this,
-              definition.parameters.firstWhere((p) => p.name == name).type,
-              value,
-            );
-          }
-          lease = FlaxRouteLease._(this, sources);
-          for (final name in route.builders) {
-            inputs[name] = lease.builder(name);
-          }
-          for (final parameter in definition.parameters) {
-            if (route.builders.contains(parameter.name)) continue;
-            final value = values[parameter.name];
-            if (value == null) continue;
-            value.escapeCallbacks();
-            escapeWidget(value.data, parameter.type);
-          }
-          result = _TopLevelRouteCall(
-            this,
-            lease,
-          ).invoke(observer, definition, inputs);
+        final observer = route == null
+            ? null
+            : _requireNavigationObserver(
+                Navigator.of(
+                  inputs[route.context] as BuildContext,
+                  rootNavigator: inputs[route.rootNavigator] as bool,
+                ),
+              );
+        for (final parameter in definition.parameters) {
+          final value = values[parameter.name];
+          if (value == null) continue;
+          value.escapeCallbacks();
+          escapeWidget(value.data, parameter.type);
         }
+        final result = observer == null
+            ? definition.invoke(inputs)
+            : _NavigationCall(this)
+                  .invoke(observer, () => definition.invoke(inputs));
         return holdHostResult(memberResult(result, definition.result));
       } finally {
-        lease?.release();
         for (final value in values.values.toList().reversed) {
           value.release();
         }
@@ -488,6 +455,9 @@ extension _MemberCalls on _Session {
         throw ArgumentError('Too many State arguments');
       }
       if (selected.startsRoute) requireOpen();
+      final observer = selected.startsRoute && state is NavigatorState
+          ? _requireNavigationObserver(state)
+          : null;
       final values = <String, _Value>{};
       try {
         for (var i = 0; i < selected.parameters.length; i++) {
@@ -510,15 +480,14 @@ extension _MemberCalls on _Session {
           value.escapeCallbacks();
           escapeWidget(value.data, parameter.type);
         }
-        final result = selected.invoke(
-          state,
-          values.map((k, v) => MapEntry(k, v.data)),
-        );
-        for (final value in values.values) {
-          for (final lease in value.resources.whereType<FlaxRouteLease>()) {
-            lease._transfer();
-          }
-        }
+        final inputs = values.map((k, v) => MapEntry(k, v.data));
+        final result = observer == null
+            ? selected.invoke(state, inputs)
+            : _NavigationCall(this).invoke(
+                observer,
+                () => selected.invoke(state, inputs),
+                route: inputs.values.firstOrNull,
+              );
         return holdHostResult(memberResult(result, selected.result));
       } finally {
         for (final value in values.values.toList().reversed) {
@@ -605,7 +574,7 @@ extension _MemberCalls on _Session {
     return reference.proxy;
   }
 
-  /// Contexts borrow native Elements; Pages borrow leases. Handles are temporary.
+  /// Contexts borrow native Elements; other references use the shared object path.
   FlaxJsValue encodeArgument(
     Object? value,
     FlaxTypeRef type,
@@ -619,14 +588,6 @@ extension _MemberCalls on _Session {
       return result;
     }
     if (value == null) return memberResult(value, type);
-    if (type.kind == 'page') {
-      if (value is! FlaxPageConfiguration ||
-          !identical(value.flaxPageLease._session, this) ||
-          value.flaxPageLease.released) {
-        throw ArgumentError('Foreign or retired Page');
-      }
-      return value.flaxPageLease._descriptor;
-    }
     if (type.kind == 'context') {
       if (value is! BuildContext) throw ArgumentError('Expected BuildContext');
       final proxy = contextResult(value, type.id!, owner: owner);

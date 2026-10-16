@@ -812,14 +812,20 @@ void main() {
           FlaxView.page(session: h.session, name: 'application'),
         );
         final app = t.widget<MaterialApp>(find.byType(MaterialApp));
-        expect(app.navigatorObservers!.single, isA<FlaxNavigatorObserver>());
+        expect(app.navigatorObservers, hasLength(2));
+        expect(
+          app.navigatorObservers!.every((o) => o is FlaxNavigatorObserver),
+          isTrue,
+        );
         await t.tap(find.text('Open dialog'));
         await t.pumpAndSettle();
         expect(find.byType(AlertDialog), findsOneWidget);
         await t.tap(find.text('Accept dialog'));
         await t.pumpAndSettle();
         expect(
-          h.string('JSON.stringify(topLevel.result)'),
+          h.string(
+            'JSON.stringify(Object.fromEntries(topLevel.result.toMap()))',
+          ),
           '{"accepted":[true,0]}',
         );
         expect(h.errors, isEmpty);
@@ -1163,12 +1169,27 @@ void main() {
         await t.tap(find.text('Accept dialog'));
         await t.pumpAndSettle();
         expect(
-          h.string('JSON.stringify(topLevel.result)'),
+          h.string(
+            'JSON.stringify(Object.fromEntries(topLevel.result.toMap()))',
+          ),
           '{"accepted":[true,1]}',
         );
         expect(h.number('topLevel.created'), 1);
         expect(h.number('topLevel.disposed'), 1);
         expect(t.element(host('static-source')), same(sourceElement));
+        final controller = TextEditingController(text: 'Dialog object result');
+        try {
+          h.execute('topLevel.open()');
+          await t.pumpAndSettle();
+          routes.routes.last.navigator!.pop(controller);
+          await t.pumpAndSettle();
+          h.execute(
+            'topLevel.asDart(topLevel.result, topLevel.TextEditingController).text = "Shared object"',
+          );
+          expect(controller.text, 'Shared object');
+        } finally {
+          controller.dispose();
+        }
         expect(h.errors, isEmpty);
       } finally {
         await h.finish(t);

@@ -35,8 +35,6 @@ functions:
         requestFocus,
       ]
     typeArguments: ['Object?']
-    data:
-      result: true
     route:
       context: context
       rootNavigator: useRootNavigator
@@ -284,16 +282,13 @@ classes:
           inputFormatters,
         ]
   MaterialPageRoute:
-    kind: route
+    kind: object
     typeArguments: ['Object?']
     constructors:
       '': [builder, settings, maintainState, fullscreenDialog]
   MaterialPage:
-    kind: page
+    kind: object
     typeArguments: ['Object?']
-    pageAdapter:
-      library: package:flax_material_ui/src/material_page_route.dart
-      function: createMaterialPageRoute
     constructors:
       '':
         [
@@ -307,10 +302,6 @@ classes:
           onPopInvoked,
         ]
     getters: [key, name, arguments]
-    data:
-      constructors:
-        '': [arguments, onPopInvoked]
-      getters: [arguments]
   TextButton:
     constructors:
       '': [key, onPressed, style, child]

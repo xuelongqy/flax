@@ -715,9 +715,8 @@ extension _ObjectCalls on _Session {
       if (args.length != 3 || args[2] is! FlaxJsObject) {
         throw ArgumentError('Invalid object constructor');
       }
-      final binding = _objectView(
-        _typeBinding((args[1] as FlaxJsString).value),
-      );
+      final declaration = _typeBinding((args[1] as FlaxJsString).value);
+      final binding = _objectView(declaration);
       if (binding is! FlaxObjectBinding) {
         throw ArgumentError('Unknown object type');
       }
@@ -725,7 +724,21 @@ extension _ObjectCalls on _Session {
       final ctor = _textProperty(descriptor, 'ctor');
       final parameters = binding.constructors[ctor];
       if (parameters == null) throw ArgumentError('Unknown object constructor');
-      final sources = _arguments(descriptor, parameters, allowBindings: false);
+      final navigation =
+          binding.id == 'flax.core/flutter#type:Route' ||
+          binding.id == 'flax.core/flutter#type:Page' ||
+          binding.supertypes.any(
+            (id) =>
+                id == 'flax.core/flutter#type:Route' ||
+                id == 'flax.core/flutter#type:Page',
+          );
+      final sources = _arguments(
+        descriptor,
+        parameters,
+        allowBindings: false,
+        navigationObservers: declaration is FlaxWidgetBinding,
+        callbackScope: navigation ? _CallbackScope.ui : _CallbackScope.member,
+      );
       _ProxyPeer? peer;
       var createdPeer = false;
       try {
@@ -764,6 +777,7 @@ extension _ObjectCalls on _Session {
             ...sources.map((k, v) => MapEntry(k, v.initial.data)),
             '@peer': ?peer,
           });
+          registerNavigationValue(value);
           // The peer's native facade already retains its receiver from Dart.
           // Only the returned wrapper (or transferred extends alias) owns the proxy.
           if (value is FlaxWidgetProxy) {
@@ -914,6 +928,10 @@ extension _ObjectCalls on _Session {
       if (operation != 'call' || method == null) {
         throw ArgumentError('Unknown object method');
       }
+      if (method.startsRoute) requireOpen();
+      final observer = method.startsRoute && receiver is NavigatorState
+          ? _requireNavigationObserver(receiver)
+          : null;
       if (name == binding.disposeMethod) {
         if (args.isNotEmpty) {
           throw ArgumentError('Disposal takes no arguments');
@@ -998,10 +1016,15 @@ extension _ObjectCalls on _Session {
           value.escapeCallbacks();
           escapeWidget(value.data, parameter.type);
         }
-        final result = method.invoke(
-          receiver,
-          values.map((k, v) => MapEntry(k, v.data)),
-        );
+        final inputs = values.map((k, v) => MapEntry(k, v.data));
+        final invoke = method.invoke;
+        final result = observer == null
+            ? invoke(receiver, inputs)
+            : _NavigationCall(this).invoke(
+                observer,
+                () => invoke(receiver, inputs),
+                route: inputs.values.firstOrNull,
+              );
         return holdHostResult(memberResult(result, method.result));
       } finally {
         for (final value in values.values.toList().reversed) {

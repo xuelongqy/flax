@@ -375,9 +375,10 @@ extension SharedX on String {
         'WidgetCallback',
         'RouteBox',
         'PageBox',
+        'PageFutureCallback',
       ];
       expect(module.typeLibraries.keys, containsAll(aliases));
-      expect(module.functions, hasLength(16));
+      expect(module.functions, hasLength(20));
       expect(
         automatic.resolvedPackage.modules.single.owners.map(
           (owner) => owner.sourceIdentity.name,
@@ -414,7 +415,7 @@ extension SharedX on String {
         explicit.localModels.single.typeLibraries.keys,
         containsAll(aliases),
       );
-      expect(explicit.localModels.single.functions, hasLength(16));
+      expect(explicit.localModels.single.functions, hasLength(20));
     });
 
     test('automatic library mode carries same-package public dependency routing into parse', () async {

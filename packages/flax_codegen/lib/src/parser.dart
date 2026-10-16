@@ -788,6 +788,12 @@ class FlaxCodegenBindingParser {
     for (final config in configs) {
       final (exports, libraries) = await _resolutionExports(config);
       for (final entry in config.classes.entries) {
+        if ({'route', 'page'}.contains(entry.value.kind) ||
+            entry.value.pageAdapter != null) {
+          throw StateError(
+            'Route and Page use kind: object; remove the retired pageAdapter: ${entry.key}',
+          );
+        }
         final selected = entry.value;
         final declaration = exports[entry.key];
         final kind =
@@ -2075,35 +2081,6 @@ class FlaxCodegenBindingParser {
           in selection.kind == 'widgetInterface'
               ? <String>[]
               : selection.getters) {
-        if (selection.pageAdapter case final adapter?) {
-          final library = await session.getLibraryByUri(adapter.library);
-          final function = library is LibraryElementResult
-              ? library.element.exportNamespace.get2(adapter.function)
-              : null;
-          final adapterType =
-              function is TopLevelFunctionElement &&
-                  function.typeParameters.length ==
-                      element.typeParameters.length
-              ? function.type.instantiate(actualType.typeArguments)
-              : null;
-          if (function is! TopLevelFunctionElement ||
-              function.isPrivate ||
-              function.typeParameters.length != element.typeParameters.length ||
-              function.formalParameters.length != 1 ||
-              !function.formalParameters.single.isRequiredPositional ||
-              adapterType == null ||
-              adapterType.formalParameters.single.type is! InterfaceType ||
-              (adapterType.formalParameters.single.type as InterfaceType)
-                      .element !=
-                  element ||
-              adapterType.returnType is! InterfaceType ||
-              identity((adapterType.returnType as InterfaceType).element) !=
-                  'package:flax/bindings.dart::FlaxPageRoute') {
-            throw StateError(
-              'Page adapter must accept the selected Page and return FlaxPageRoute: ${adapter.function}',
-            );
-          }
-        }
         if (getters.any((g) => g.name == name)) {
           throw StateError('Duplicate getter: $name');
         }
@@ -2411,15 +2388,8 @@ class FlaxCodegenBindingParser {
           callbackErrorParameters: selection.callbackErrorParameters,
           callbackScopedParameters: selection.callbackScopedParameters,
         );
-        if (args.any(
-          (p) => !_setterKinds.contains(p.type.kind) && p.type.kind != 'route',
-        )) {
+        if (args.any((p) => !_setterKinds.contains(p.type.kind))) {
           throw StateError('Unsupported method arguments: ${chosen.key}');
-        }
-        if (args.any((p) => p.type.requiresRouteOwner)) {
-          throw StateError(
-            'Method callbacks returning Routes require explicit ownership',
-          );
         }
         methods.add(
           FlaxCodegenMethodModel(
@@ -3024,9 +2994,6 @@ class FlaxCodegenBindingParser {
               result = _dataType(result, '${entry.key}.$name result');
             }
             final mustCallSuper = _requiresSuper(element, name);
-            if (result.kind == 'route') {
-              throw StateError('Unsupported proxy result: $name');
-            }
             proxyMethods.add(
               FlaxCodegenMethodModel(
                 alias,
@@ -3588,15 +3555,6 @@ class FlaxCodegenBindingParser {
               'Route functions require a non-null WidgetBuilder: $name',
             );
           }
-        }
-      }
-      for (final p in args) {
-        if ({'page', 'route'}.contains(p.type.kind) ||
-            (p.type.requiresRouteOwner &&
-                !(route?.builders.contains(p.name) ?? false))) {
-          throw StateError(
-            'Unsupported function input: ${entry.key}.${p.name}',
-          );
         }
       }
       final dataParameters = _dataParameters([

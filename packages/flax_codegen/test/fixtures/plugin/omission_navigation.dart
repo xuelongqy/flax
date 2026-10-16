@@ -1,4 +1,3 @@
-import 'package:flax/bindings.dart';
 import 'package:flutter/widgets.dart';
 export 'package:flutter/widgets.dart';
 
@@ -54,15 +53,11 @@ class OmissionPage extends _OmissionPageBase {
     super.callback,
   });
   @override
-  Route<Object?> createRoute(BuildContext context) =>
-      throw UnimplementedError();
+  Route<Object?> createRoute(BuildContext context) => _OmissionPageRoute(this);
 }
 
-FlaxPageRoute<Object?> adaptOmissionPage(OmissionPage page) =>
-    _OmissionPageRoute(page);
-
-class _OmissionPageRoute extends FlaxPageRoute<Object?> {
-  _OmissionPageRoute(OmissionPage page) : super(page: page);
+class _OmissionPageRoute extends PageRoute<Object?> {
+  _OmissionPageRoute(OmissionPage page) : super(settings: page);
   @override
   Widget buildPage(
     BuildContext context,

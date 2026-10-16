@@ -1,9 +1,20 @@
 import {
   dartType as selectDartType,
   dartTypes as nativeTypes,
+  asDart,
 } from '@flax/core/bindings';
 import { signal } from '@flax/core';
-import { BorderRadius, Clip, Spacer, Text, TextStyle } from '@flax/flutter/widgets';
+import {
+  BorderRadius,
+  Clip,
+  Spacer,
+  Text,
+  TextStyle,
+  TextEditingController,
+  type BuildContext,
+  type NavigatorState,
+  type Route,
+} from '@flax/flutter/widgets';
 import { ValueKey } from '@flax/flutter/foundation';
 import { Color } from '@flax/flutter/services';
 import {
@@ -11,6 +22,7 @@ import {
   LinearProgressIndicator,
   Material,
   MaterialType,
+  showDialog,
 } from '@flax/flutter/material';
 
 const StringKey = selectDartType(ValueKey, nativeTypes.string);
@@ -67,3 +79,20 @@ InkWell({ child: 1 });
 LinearProgressIndicator({ value: '0.5' });
 // @ts-expect-error Feedback uses a non-nullable boolean.
 InkWell({ enableFeedback: null });
+
+async function broadResults(
+  navigator: NavigatorState,
+  route: Route,
+  context: BuildContext,
+) {
+  const value = await navigator.push(route);
+  const dialogValue = await showDialog({ context, builder: () => Text('Dialog') });
+  if (value !== null) asDart(value, TextEditingController).text = 'Route result';
+  if (dialogValue !== null)
+    asDart(dialogValue, TextEditingController).text = 'Dialog result';
+  // @ts-expect-error A broad result needs narrowing before accessing class members.
+  value.text;
+  // @ts-expect-error Dialog results use the same broad result rule.
+  dialogValue.text;
+}
+void broadResults;

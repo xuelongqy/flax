@@ -30,7 +30,7 @@ extension type PageBox(Page<Object?> value) {}
 
 extension type ReflectiveBox(Type value) {}
 
-// Route/Page callbacks retain their explicit ownership boundary.
+// Navigation values use the ordinary object converter through their representation.
 extension type PageFutureCallback(Future<PageBox> Function() value) {}
 
 WidgetBox echoWidgetBox(WidgetBox value) => value;
@@ -55,4 +55,15 @@ GenericBox<WidgetBox> echoGenericWidgetBox(GenericBox<WidgetBox> value) =>
     value;
 bool routeBoxInstalled(RouteBox value) => value.value.navigator != null;
 String? pageBoxName(PageBox value) => value.value.name;
-PageBox unownedPageBox() => throw StateError('No Page result conversion');
+PageBox unownedPageBox() => PageBox(const _NativePage());
+Future<PageBox> callPageCallback(PageFutureCallback callback) =>
+    callback.value();
+
+class _NativePage extends Page<Object?> {
+  const _NativePage() : super(name: 'native-page');
+  @override
+  Route<Object?> createRoute(BuildContext context) => PageRouteBuilder<Object?>(
+    settings: this,
+    pageBuilder: (_, _, _) => const SizedBox.shrink(),
+  );
+}
