@@ -124,9 +124,10 @@ void main() {
   });
 
   test(
-    'official engine flags select matching modes and reject missing builds',
+    'macOS engine flags select matching modes and reject missing builds',
     () {
       final source = Directory.systemTemp.createTempSync('flax-local-engine-');
+      final target = FlaxNativeTarget('macos-arm64');
       try {
         for (final mode in ['debug', 'profile', 'release']) {
           final output = '${source.path}/out/flax_mac_${mode}_arm64';
@@ -144,7 +145,11 @@ void main() {
           (['build', 'macos', '--debug'], 'debug'),
           (['drive', '--release'], 'release'),
         ]) {
-          final args = localEngineArguments(command, source: source.path);
+          final args = localEngineArguments(
+            command,
+            source: source.path,
+            target: target,
+          );
           expect(args.take(3), [
             '--local-engine-src-path=${source.path}',
             '--local-engine=flax_mac_${mode}_arm64',
@@ -154,8 +159,11 @@ void main() {
         }
         expect(localEngineArguments(['pub', 'get']), ['pub', 'get']);
         expect(
-          () =>
-              localEngineArguments(['test'], source: '${source.path}/missing'),
+          () => localEngineArguments(
+            ['test'],
+            source: '${source.path}/missing',
+            target: target,
+          ),
           throwsStateError,
         );
         expect(

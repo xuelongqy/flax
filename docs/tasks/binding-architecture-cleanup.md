@@ -120,17 +120,25 @@ Manifest 24, native ABI 2 and binding extension 8 are unchanged. This gate does 
 rerun physical devices, Hermes release or full-SDK binding generation, and publishes no
 packages or SDKs.
 
-The first main-branch static CI run exposed a cold-checkout tooling failure:
-`host:check` required an ignored npm bootstrap before the initial JS build. The shared
-host checker now permits absent npm output and still rejects stale committed bundles,
-notices and any existing npm bootstrap. Seven direct cold/warm/generation and stale
-output assertions pass, with the original artifacts restored afterward. Runtime, binding
-and engine sources are unchanged by this tooling correction.
+## Static CI portability
 
-Linux CI also exposed lost rapid saves in the development watcher. Switching the same
-eight HMR tests to the fast native file-watching backend reproduced the same six
-timeouts locally. The development server now uses the existing watcher's 50 ms file
-stability window, which coalesces partial writes and avoids its dropped change events.
-All eight tests then pass, and the existing importer recovery fixture explicitly uses
-the native backend on macOS too. The change affects Node development update latency;
-generated factories, JS class identity, bridge ownership and joint GC are unchanged.
+The shared host checker permits absent ignored npm output before the initial JS build.
+It still rejects stale committed bundles, notices and any existing npm bootstrap. Seven
+direct cold/warm/generation and stale-output assertions pass, with original artifacts
+restored afterward.
+
+The development server uses the existing watcher's 50 ms file-stability window to
+coalesce partial writes and avoid dropped rapid saves. Switching all eight HMR tests to
+the fast native file-watching backend reproduced six Linux-style timeouts locally; all
+eight pass with the fix. The existing importer recovery fixture explicitly uses that
+backend on macOS too. All 188 JS cases and build-package type checks pass.
+
+The synthetic macOS engine-argument fixture explicitly selects `macos-arm64` rather than
+inheriting the runner's platform. It checks the same debug/profile/release flags and
+missing-artifact errors on Linux without loading or adding a Linux engine. A local run
+with `FLAX_CHECK_TARGET=linux-x64` passes all 90 tool cases; the Windows-only CDB check
+remains inapplicable.
+
+These corrections leave generator output, generated factories, JS class identity, bridge
+ownership and joint GC unchanged. Only Node development save handling gains the
+file-stability wait; application runtime scheduling is unchanged.
