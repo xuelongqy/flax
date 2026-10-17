@@ -59,4 +59,5 @@ export {
   SingleTickerProviderState,
   TickerProviderState,
   KeepAliveTickerState,
+  KeepAliveSingleTickerState,
 } from './generated/libraries/widgets/components.js';

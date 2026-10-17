@@ -241,7 +241,12 @@ try {
     },
   );
 
-  for (final variant in ['KeepAliveState', 'KeepAliveTickerState']) {
+  for (final variant in [
+    'KeepAliveState',
+    'KeepAliveTickerState',
+    'KeepAliveSingleTickerState',
+  ]) {
+    final usesTicker = variant != 'KeepAliveState';
     testWidgets('$variant retains and releases list children on demand', (
       t,
     ) async {
@@ -254,13 +259,22 @@ var keptDisposed = 0;
 var keptState;
 class KeptState extends componentApi.$variant {
   keep = true;
-  initState() { super.initState(); keptCreated++; keptState = this; }
+  initState() {
+    super.initState();
+    keptCreated++;
+    keptState = this;
+    ${usesTicker ? 'this.controller = componentApi.TickerProviderProbe({vsync: this});' : ''}
+  }
   get wantKeepAlive() { return this.keep; }
   build(context) {
     super.build(context);
     return componentApi.Text('kept child');
   }
-  dispose() { keptDisposed++; super.dispose(); }
+  dispose() {
+    ${usesTicker ? 'this.controller.dispose();' : ''}
+    keptDisposed++;
+    super.dispose();
+  }
 }
 class Kept extends componentApi.StatefulWidget {
   createState() { return new KeptState(); }

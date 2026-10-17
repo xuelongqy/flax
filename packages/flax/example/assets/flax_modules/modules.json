@@ -1937,7 +1937,7 @@
       "specifier": "@flax/flutter/widgets",
       "owner": "@flax/core-runtime:dist/flutter/widgets.js",
       "version": "0.0.0",
-      "artifact": "4981a7449a38c3ae992bf31028c096cbec75e5338cb1bd1c9dc32d0d5bcd4e8f",
+      "artifact": "86fdbc5222426d3e5dd5665758ed8d1bf2710d97c6fb1673581a82be09083e96",
       "asset": "assets/flax_modules/_flax_flutter_widgets-4c2442a10500.js",
       "package": "@flax/core-runtime",
       "source": "dist/flutter/widgets.js",

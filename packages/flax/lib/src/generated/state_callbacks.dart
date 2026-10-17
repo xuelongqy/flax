@@ -54,6 +54,7 @@ const componentsBindings = FlaxBindingModule(
     _stateVariant_SingleTickerProviderState,
     _stateVariant_TickerProviderState,
     _stateVariant_KeepAliveTickerState,
+    _stateVariant_KeepAliveSingleTickerState,
   ],
   dartTypes: [
     FlaxDartClassTemplate(
@@ -213,6 +214,60 @@ Object? _KeepAliveTickerState_call_updateKeepAlive(
   Map<String, Object?> values,
 ) {
   return (receiver as _KeepAliveTickerStateStateHostBase)
+      ._flaxCall_updateKeepAlive(values);
+}
+
+const _stateVariant_KeepAliveSingleTickerState = FlaxStateVariantBinding(
+  "flax.core/components#stateVariant:KeepAliveSingleTickerState",
+  _KeepAliveSingleTickerStateStateHost.new,
+  stateType: "flax.core/components#type:State",
+  interfaces: ["flax.core/flutter#type:TickerProvider"],
+  getters: [],
+  setters: [],
+  methods: {
+    "updateKeepAlive": FlaxInstanceMethod(
+      [],
+      FlaxTypeRef("void"),
+      _KeepAliveSingleTickerState_call_updateKeepAlive,
+    ),
+  },
+);
+
+abstract class _KeepAliveSingleTickerStateStateHostBase
+    extends FlaxComponentStateBase
+    with
+        api1.AutomaticKeepAliveClientMixin<api.StatefulWidget>,
+        api1.SingleTickerProviderStateMixin<api.StatefulWidget> {
+  _KeepAliveSingleTickerStateStateHostBase(Object seed) : super(seed);
+  @override
+  bool get wantKeepAlive => flaxInvokeMember(
+    "get:wantKeepAlive",
+    const [],
+    const [],
+    FlaxTypeRef("bool"),
+  ) as bool;
+  Object? _flaxCall_updateKeepAlive(Map<String, Object?> values) {
+    updateKeepAlive();
+    return null;
+  }
+
+  @override
+  bool get flaxRequiresBuildSuper => true;
+  @override
+  api.Widget flaxBuildSuper(api.BuildContext context) => super.build(context);
+}
+
+class _KeepAliveSingleTickerStateStateHost
+    extends _KeepAliveSingleTickerStateStateHostBase
+    with FlaxStateProxy {
+  _KeepAliveSingleTickerStateStateHost(Object seed) : super(seed);
+}
+
+Object? _KeepAliveSingleTickerState_call_updateKeepAlive(
+  Object receiver,
+  Map<String, Object?> values,
+) {
+  return (receiver as _KeepAliveSingleTickerStateStateHostBase)
       ._flaxCall_updateKeepAlive(values);
 }
 

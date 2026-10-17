@@ -27,3 +27,7 @@ classes:
         mixins:
           - AutomaticKeepAliveClientMixin
           - TickerProviderStateMixin
+      KeepAliveSingleTickerState:
+        mixins:
+          - AutomaticKeepAliveClientMixin
+          - SingleTickerProviderStateMixin

@@ -460,6 +460,141 @@
               "call:initState"
             ],
             "providerModule": "flax.core/components"
+          },
+          {
+            "name": "KeepAliveSingleTickerState",
+            "variantId": "flax.core/components#stateVariant:KeepAliveSingleTickerState",
+            "stateId": "package:flutter/src/widgets/framework.dart::State",
+            "stateWireId": "flax.core/components#type:State",
+            "mixins": [
+              {
+                "name": "AutomaticKeepAliveClientMixin",
+                "sourceId": "package:flutter/src/widgets/automatic_keep_alive.dart::AutomaticKeepAliveClientMixin",
+                "library": "package:flutter/cupertino.dart",
+                "typeArguments": [
+                  "StatefulWidget"
+                ]
+              },
+              {
+                "name": "SingleTickerProviderStateMixin",
+                "sourceId": "package:flutter/src/widgets/ticker_provider.dart::SingleTickerProviderStateMixin",
+                "library": "package:flutter/cupertino.dart",
+                "typeArguments": [
+                  "StatefulWidget"
+                ]
+              }
+            ],
+            "interfaces": [
+              {
+                "name": "TickerProvider",
+                "sourceId": "package:flutter/src/scheduler/ticker.dart::TickerProvider",
+                "wireId": "flax.core/flutter#type:TickerProvider",
+                "library": "package:flutter/animation.dart"
+              }
+            ],
+            "getters": [
+              {
+                "name": "wantKeepAlive",
+                "type": {
+                  "kind": "bool",
+                  "id": null,
+                  "name": null,
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "bool",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "encodeKind": null,
+                "cache": false
+              }
+            ],
+            "setters": [],
+            "methods": [
+              {
+                "name": "updateKeepAlive",
+                "parameters": [],
+                "result": {
+                  "kind": "void",
+                  "id": null,
+                  "name": null,
+                  "nullable": false,
+                  "item": null,
+                  "key": null,
+                  "parameters": [],
+                  "typeParameters": [],
+                  "result": null,
+                  "typeArguments": [],
+                  "dartArguments": [],
+                  "primitiveKinds": [],
+                  "declaration": {
+                    "kind": "void",
+                    "id": null,
+                    "name": null,
+                    "nullable": false,
+                    "item": null,
+                    "key": null,
+                    "parameters": [],
+                    "typeParameters": [],
+                    "result": null,
+                    "typeArguments": [],
+                    "dartArguments": [],
+                    "primitiveKinds": [],
+                    "declaration": null,
+                    "tsArguments": [],
+                    "slot": null
+                  },
+                  "tsArguments": [],
+                  "slot": null
+                },
+                "instance": true,
+                "typeArguments": [],
+                "startsRoute": false,
+                "typeParameters": [],
+                "mustCallSuper": false,
+                "deferredFactory": false,
+                "operator": null
+              }
+            ],
+            "superMethods": [
+              "call:activate",
+              "call:build",
+              "call:deactivate",
+              "call:dispose",
+              "call:initState",
+              "call:updateKeepAlive"
+            ],
+            "mustCallSuperMethods": [
+              "call:activate",
+              "call:build",
+              "call:deactivate",
+              "call:dispose",
+              "call:initState"
+            ],
+            "providerModule": "flax.core/components"
           }
         ],
         "identities": [

@@ -542,7 +542,11 @@ compose real Dart mixins in YAML order and generate their abstract requirements,
 concrete members and final interfaces. `FlaxStateProxy` is emitted last so explicit JS
 `super` calls enter the real Dart mixin chain. Variant-only dependency overlays can add
 third-party compositions without claiming a second State owner. See
-[components](../../docs/architecture/components.md) and
+[the common mixin selection table](../../docs/architecture/components.md#state-variants-and-native-mixins)
+for plain keep-alive, single/multiple ticker providers, and both keep-alive/ticker
+combinations. The canonical configuration is
+[`components.yaml`](../flax/bindings/components.yaml); variants are compiled once per
+configured combination, not per JS subclass. See also
 [ADR 0035](../../docs/decisions/0035-generic-state-variants-and-protocol-21.md).
 
 Non-constructible mixin selections use the same object/member model as classes, without

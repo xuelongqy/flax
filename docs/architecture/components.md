@@ -104,42 +104,76 @@ Generated native Widget hosts keep their existing types.
 
 ## State variants and native mixins
 
-The exact Flutter `State<T>` binding defines fixed `proxyVariants`. A JavaScript State
-chooses its variant by extending the generated TypeScript base:
+The exact Flutter `State<T>` binding defines fixed `proxyVariants` in
+[`components.yaml`](../../packages/flax/bindings/components.yaml). Import these bases
+from `@flax/flutter/widgets`; ordinary components with neither capability extend
+`State<T>` directly.
+
+| JS State base                   | Native Dart mixins, in order                                      | Use when                                                                   |
+| ------------------------------- | ----------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `KeepAliveState<T>`             | `AutomaticKeepAliveClientMixin`                                   | A lazy-list child needs to retain its State off screen, without a ticker.  |
+| `SingleTickerProviderState<T>`  | `SingleTickerProviderStateMixin`                                  | The State creates one ticker over its entire lifetime.                     |
+| `TickerProviderState<T>`        | `TickerProviderStateMixin`                                        | The State creates multiple tickers, including replacing a disposed ticker. |
+| `KeepAliveSingleTickerState<T>` | `AutomaticKeepAliveClientMixin`, `SingleTickerProviderStateMixin` | A retained lazy-list child also needs one ticker.                          |
+| `KeepAliveTickerState<T>`       | `AutomaticKeepAliveClientMixin`, `TickerProviderStateMixin`       | A retained lazy-list child needs multiple or replacement tickers.          |
+
+A JavaScript State chooses one base; variants do not inherit or stack other variants.
+For example, a list child can keep its State and provide native ticker capability:
 
 ```typescript
-class PageState extends SingleTickerProviderState<Page> {
-  initState(): void {
-    super.initState();
-    this.controller = AnimationController({
-      vsync: this,
-      duration: Duration({ milliseconds: 300 }),
-    });
+import {
+  type BuildContext,
+  KeepAliveSingleTickerState,
+  StatefulWidget,
+  Text,
+  type Widget,
+} from '@flax/flutter/widgets';
+
+class KeptRow extends StatefulWidget {
+  createState(): KeptRowState {
+    return new KeptRowState();
+  }
+}
+
+class KeptRowState extends KeepAliveSingleTickerState<KeptRow> {
+  get wantKeepAlive(): boolean {
+    return true;
   }
 
-  dispose(): void {
-    this.controller.dispose();
-    super.dispose();
+  build(context: BuildContext): Widget {
+    super.build(context);
+    return Text('Retained row');
   }
 }
 ```
 
 Flutter still creates the real State host. Its generated Dart class applies the selected
 Flutter mixins in configuration order and applies `FlaxStateProxy` last. Therefore a JS
-`super.dispose()` or `super.build(context)` enters the actual Dart mixin chain.
-`SingleTickerProviderState` and `TickerProviderState` implement the real
-`TickerProvider` interface; `KeepAliveTickerState` also exposes `wantKeepAlive`,
-`updateKeepAlive()` and the required direct-super build path.
+`super.dispose()` or `super.build(context)` enters the actual Dart mixin chain. Both
+ticker bases and their keep-alive combinations implement the real `TickerProvider`
+interface. Pass `this` to a selected Dart API's `vsync` parameter after mounting. This
+does not automatically bind additional animation APIs. Dispose application-owned
+controllers before calling `super.dispose()`; the State variant does not own them.
 
-`KeepAliveState` applies only `AutomaticKeepAliveClientMixin`, for list children that
-need retention without ticker support. Override `wantKeepAlive`, call
-`super.build(context)` before returning the child, and call `updateKeepAlive()` when the
-retention condition changes. KeepAlive preserves State while Flutter's automatic
-keep-alive parent retains the child; removing the page still disposes it normally.
-Missing `super.build(context)` calls are diagnosed from the selected mixin's analyzer
-metadata. Invalid Context arguments and calls outside the active build callback remain
-rejected. Common additions use these configured, compiled variants. General JS-selected
-mixin combinations remain future research.
+The single-ticker restriction applies to the State's entire lifetime, not just to
+simultaneously active controllers. Choose a multi-ticker base if an existing State may
+create another controller after disposing the first one.
+
+All three keep-alive bases expose `wantKeepAlive` and `updateKeepAlive()`. Override
+`wantKeepAlive`, call `super.build(context)` before returning the child, and call
+`updateKeepAlive()` when the retention condition changes. KeepAlive preserves State
+while Flutter's automatic keep-alive parent retains the child; removing the page still
+disposes it normally. Missing `super.build(context)` calls are diagnosed from the
+selected mixin's analyzer metadata. Invalid Context arguments and calls outside the
+active build callback remain rejected. The table covers the combinations of optional
+keep-alive with no, single or multiple ticker support. Add other concrete compositions
+through the same `proxyVariants` configuration rather than generating every possible
+mixin permutation. List order is Dart `with` order; the analyzer checks the selected
+mixins' generic bounds and `on` constraints. Dependency packages can supply a
+variant-only overlay without republishing Core State; see the
+[generator configuration](../../packages/flax_codegen/README.md) and
+[ADR 0035](../decisions/0035-generic-state-variants-and-protocol-21.md). General
+JS-selected mixin combinations remain future research.
 
 Passing `this` to a Dart interface parameter resolves the live component-State ID back
 to that real host and validates the requested interface. Plain State, arbitrary JS
