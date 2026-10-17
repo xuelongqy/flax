@@ -193,10 +193,11 @@ a separate engine coexistence correctness check.
 
 `host_bundle.mjs` discovers package host metadata and builds each source into a
 committed Dart string plus dependency notices; `--check` regenerates in memory and
-compares. `--package <name>` checks one owner. Plugin bundles are checked for duplicate
-base implementations. `ui_bundle.mjs` discovers package fixtures and invokes
-package-owned UI hooks, including pinned WPT inputs. Consumers only register the Dart
-plugin. No application bundle initializer is needed.
+compares. It also checks an existing npm bootstrap, while allowing ignored `dist` output
+to be absent before the first JS build. `--package <name>` checks one owner. Plugin
+bundles are checked for duplicate base implementations. `ui_bundle.mjs` discovers
+package fixtures and invokes package-owned UI hooks, including pinned WPT inputs.
+Consumers only register the Dart plugin. No application bundle initializer is needed.
 
 Host-owning JavaScript projects use `tsconfig.npm.json` for public npm output and
 `tsconfig.host.json` for the embedded implementation. Public declaration packages export

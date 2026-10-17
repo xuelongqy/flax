@@ -119,3 +119,10 @@ Exact inputs, hashes and receipts are retained under
 Manifest 24, native ABI 2 and binding extension 8 are unchanged. This gate does not
 rerun physical devices, Hermes release or full-SDK binding generation, and publishes no
 packages or SDKs.
+
+The first main-branch static CI run exposed a cold-checkout tooling failure:
+`host:check` required an ignored npm bootstrap before the initial JS build. The shared
+host checker now permits absent npm output and still rejects stale committed bundles,
+notices and any existing npm bootstrap. Seven direct cold/warm/generation and stale
+output assertions pass, with the original artifacts restored afterward. Runtime, binding
+and engine sources are unchanged by this tooling correction.
