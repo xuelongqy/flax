@@ -5,8 +5,8 @@ import type * as upstream1 from '@flax/dart/core/_bindings/flutter_RegExpMatch';
 import '@flax/dart/core/_bindings/flutter_RegExpMatch';
 import type * as upstream2 from '@flax/dart/core/_bindings/flutter_Match';
 import '@flax/dart/core/_bindings/flutter_Match';
-import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
-export interface RegExp extends upstream0.Pattern, Readonly<{
+import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
+export interface RegExp extends Omit<upstream0.Pattern, typeof _flaxDartTypeValue | "pattern" | "isMultiLine" | "isCaseSensitive" | "isUnicode" | "isDotAll" | "allMatches" | "matchAsPrefix" | "firstMatch" | "hasMatch" | "stringMatch">, Readonly<{
     "__flaxBound:dart:core::RegExp": readonly [];
 }> {
     readonly __RegExp: unique symbol;
@@ -17,18 +17,17 @@ export interface RegExp extends upstream0.Pattern, Readonly<{
     readonly isDotAll: boolean;
     allMatches(input: string, start?: number): DartIterable<upstream1.RegExpMatch>;
     matchAsPrefix(string: string, start?: number): upstream2.Match | null;
-    hasMatch(input: string): boolean;
     firstMatch(input: string): upstream1.RegExpMatch | null;
+    hasMatch(input: string): boolean;
     stringMatch(input: string): string | null;
 }
-declare function _RegExpFactory(source: string, options?: {
+export declare function _RegExpFactory(source: string, options?: {
     multiLine?: boolean | undefined;
     caseSensitive?: boolean | undefined;
     unicode?: boolean | undefined;
     dotAll?: boolean | undefined;
 }): RegExp;
-declare namespace _RegExpFactory {
+export declare namespace _RegExpFactory {
     function escape(text: string): string;
 }
 export declare const RegExp: typeof _RegExpFactory & _FlaxInstanceType<RegExp> & _FlaxDartType<RegExp, readonly ["class", "flax.core/flutter#type:RegExp", readonly [], false]>;
-export {};

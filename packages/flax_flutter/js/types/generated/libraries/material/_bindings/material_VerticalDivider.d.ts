@@ -6,7 +6,7 @@ import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface VerticalDivider extends WidgetDescription {
     readonly type: "flax.material/material#type:VerticalDivider";
 }
-declare function _VerticalDividerFactory(options?: {
+export declare function _VerticalDividerFactory(options?: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -22,4 +22,3 @@ declare function _VerticalDividerFactory(options?: {
     }> | null> | undefined;
 }): VerticalDivider;
 export declare const VerticalDivider: typeof _VerticalDividerFactory & _FlaxInstanceType<VerticalDivider> & _FlaxDartType<VerticalDivider, readonly ["class", "flax.material/material#type:VerticalDivider", readonly [], false]>;
-export {};

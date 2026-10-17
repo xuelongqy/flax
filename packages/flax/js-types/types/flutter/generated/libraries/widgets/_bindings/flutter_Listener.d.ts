@@ -7,7 +7,7 @@ import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Listener extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Listener";
 }
-declare function _ListenerFactory(options?: {
+export declare function _ListenerFactory(options?: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -16,9 +16,11 @@ declare function _ListenerFactory(options?: {
     onPointerUp?: Bindable<((event: upstream1.PointerEvent) => void) | null> | undefined;
     onPointerHover?: Bindable<((event: upstream1.PointerEvent) => void) | null> | undefined;
     onPointerCancel?: Bindable<((event: upstream1.PointerEvent) => void) | null> | undefined;
+    onPointerPanZoomStart?: Bindable<((event: upstream1.PointerEvent) => void) | null> | undefined;
+    onPointerPanZoomUpdate?: Bindable<((event: upstream1.PointerEvent) => void) | null> | undefined;
+    onPointerPanZoomEnd?: Bindable<((event: upstream1.PointerEvent) => void) | null> | undefined;
     onPointerSignal?: Bindable<((event: upstream1.PointerEvent) => void) | null> | undefined;
     behavior?: Bindable<upstream2.HitTestBehavior> | undefined;
     child?: Bindable<Widget | null> | undefined;
 }): Listener;
 export declare const Listener: typeof _ListenerFactory & _FlaxInstanceType<Listener> & _FlaxDartType<Listener, readonly ["class", "flax.core/flutter#type:Listener", readonly [], false]>;
-export {};

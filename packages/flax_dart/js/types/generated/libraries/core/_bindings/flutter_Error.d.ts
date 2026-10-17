@@ -9,6 +9,13 @@ export interface Error extends Readonly<{
     readonly stackTrace: upstream0.StackTrace | null;
     toString(): string;
 }
-declare function _ErrorFactory(): Error;
+export declare function _ErrorFactory(): Error;
+export declare namespace _ErrorFactory {
+    function safeToString(object: unknown | null): string;
+}
+export declare namespace _ErrorFactory {
+    function throwWithStackTrace(error: {}, stackTrace: Readonly<{
+        "__flaxBound:dart:core::StackTrace": readonly [];
+    }>): never;
+}
 export declare const Error: typeof _ErrorFactory & _FlaxInstanceType<Error> & _FlaxDartType<Error, readonly ["class", "flax.core/flutter#type:Error", readonly [], false]>;
-export {};

@@ -1,4 +1,34 @@
 import type {} from '../../src/host/index.js';
+import { action, computed, effect, signal, untracked } from '@flax/core';
+
+const count = signal(0);
+const doubled = computed(() => count.value * 2);
+const snapshot: number = doubled.peek();
+const stopCount: () => void = count.subscribe((value) => {
+  const current: number = value;
+  void current;
+});
+const stopDoubled: () => void = doubled.subscribe(() => {});
+const stopEffect: () => void = effect(() => {
+  void count.value;
+  return () => {};
+});
+const increment = action((amount: number) => (count.value += amount));
+const incremented: number = increment(1);
+const untrackedValue: number = untracked(() => count.value);
+// @ts-expect-error Subscription callbacks receive the signal's value type.
+count.subscribe((value: string) => {});
+// @ts-expect-error Computed signals remain readonly.
+doubled.value = 1;
+// @ts-expect-error Effects must return synchronously, with optional synchronous cleanup.
+effect(async () => {});
+stopCount();
+stopDoubled();
+stopEffect();
+void snapshot;
+void incremented;
+void untrackedValue;
+
 import type {
   Blob as HostBlob,
   ReadableStream as HostStream,

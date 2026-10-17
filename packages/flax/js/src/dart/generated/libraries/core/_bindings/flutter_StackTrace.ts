@@ -9,7 +9,15 @@ export interface StackTrace extends Readonly<{ "__flaxBound:dart:core::StackTrac
 toString(): string;
 }
 defineObject("flax.core/flutter#type:StackTrace", [], [], _flaxBindingMethods("flax.core/flutter#type:StackTrace", "object", {"toString":_flaxMemberParameters0}, {}), []);
-const _StackTraceFactory = {} as {readonly current: StackTrace;readonly empty: StackTrace};
-Object.defineProperty(_StackTraceFactory, "current", { get: () => invokeTopLevel("flax.core/flutter#read:StackTrace.current", []) });
+export namespace _StackTraceFactory {
+export function fromString(stackTraceString: string): StackTrace {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/flutter#type:StackTrace", "fromString", [{"name":"stackTraceString","required":true,"positional":true}], [stackTraceString], {}) as StackTrace;
+}
+}
+export namespace _StackTraceFactory { export declare const empty: StackTrace; }
 Object.defineProperty(_StackTraceFactory, "empty", { get: () => invokeTopLevel("flax.core/flutter#read:StackTrace.empty", []) });
+export namespace _StackTraceFactory { export declare const current: StackTrace; }
+Object.defineProperty(_StackTraceFactory, "current", { get: () => invokeTopLevel("flax.core/flutter#read:StackTrace.current", []) });
 export const StackTrace: typeof _StackTraceFactory & _FlaxInstanceType<StackTrace> & _FlaxDartType<StackTrace, readonly ["class", "flax.core/flutter#type:StackTrace", readonly [], false]> = _flaxBindInstanceType<StackTrace, typeof _StackTraceFactory>(_StackTraceFactory, "flax.core/flutter#type:StackTrace", ["dart:core::Object"]) as typeof _StackTraceFactory & _FlaxInstanceType<StackTrace> & _FlaxDartType<StackTrace, readonly ["class", "flax.core/flutter#type:StackTrace", readonly [], false]>;

@@ -16,7 +16,7 @@ import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Wrap extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Wrap";
 }
-declare function _WrapFactory(options?: {
+export declare function _WrapFactory(options?: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -32,4 +32,3 @@ declare function _WrapFactory(options?: {
     children?: Bindable<DartListInput<Widget, Widget>> | undefined;
 }): Wrap;
 export declare const Wrap: typeof _WrapFactory & _FlaxInstanceType<Wrap> & _FlaxDartType<Wrap, readonly ["class", "flax.core/flutter#type:Wrap", readonly [], false]>;
-export {};

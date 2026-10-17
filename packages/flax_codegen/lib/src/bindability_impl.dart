@@ -182,7 +182,10 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
   FlaxCodegenClassSelection? base,
   Iterable<InterfaceType> concreteUses = const [],
   Map<String, String> automaticTypeCarriers = const {},
+  List<FlaxCodegenNotice>? automaticNotices,
   bool ignoreProvider = false,
+  bool expandOwned = false,
+  bool inferProxy = true,
   FlaxCodegenClassSelection? inferred,
 }) async {
   final name = element.name!;
@@ -253,7 +256,10 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
       base: base,
       concreteUses: concreteUses,
       automaticTypeCarriers: automaticTypeCarriers,
+      automaticNotices: automaticNotices,
       ignoreProvider: true,
+      expandOwned: expandOwned,
+      inferProxy: inferProxy,
       inferred: inferred,
     );
     if (requested.selection != null &&
@@ -288,7 +294,10 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
         base: base,
         concreteUses: concreteUses,
         automaticTypeCarriers: automaticTypeCarriers,
+        automaticNotices: automaticNotices,
         ignoreProvider: true,
+        expandOwned: expandOwned,
+        inferProxy: inferProxy,
         inferred: inferred,
       );
       final missing = requested.selection == null
@@ -337,6 +346,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
   }
 
   if (!ignoreProvider &&
+      !expandOwned &&
       (parser._adaptations.containsKey(id) ||
           parser._selections.containsKey(id))) {
     if (base != null) {
@@ -391,7 +401,6 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     for (final method in element.methods)
       if (!method.metadata.hasInternal &&
           !method.metadata.hasVisibleForTesting &&
-          !method.metadata.hasProtected &&
           _isInferredDeferredFactory(scope, element, method))
         method.name!,
   };
@@ -421,6 +430,9 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
         typeArguments: sharedOwner.arguments,
         nullabilitySuffix: NullabilitySuffix.none,
       );
+      if (kind == 'stream') {
+        typeArguments.addAll(sharedOwner.sources);
+      }
     }
   }
 
@@ -512,7 +524,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
         }
         final converted = _tryMemberType(
           scope,
-          getter.returnType,
+          _publicStaticGetterType(element.thisType, getter.returnType),
           '$name.$getterName',
           skips,
         );
@@ -557,7 +569,6 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
       final methodName = method.name!;
       if (!_usableMemberName(methodName) ||
           (method.isStatic && !flaxCodegenIsExportName(methodName)) ||
-          methodName == 'toString' ||
           methodName == 'noSuchMethod') {
         continue;
       }
@@ -689,7 +700,6 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
           !method.isPublic ||
           method.isStatic ||
           method.metadata.hasInternal ||
-          method.metadata.hasProtected ||
           method.metadata.hasVisibleForTesting) {
         continue;
       }
@@ -737,24 +747,30 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
       );
     }
   }
-  final recommendation = await _proxyRecommendation(
-    parser: parser,
-    element: element,
-    library: library,
-    scope: scope,
-    typeArguments: typeArguments,
-    constructors: constructors,
-    getters: getters,
-    setters: setters,
-    instanceMethods: instanceMethods,
-    operators: operators,
-    kind: kind,
-  );
+  final recommendation = inferProxy
+      ? await _proxyRecommendation(
+          parser: parser,
+          element: element,
+          library: library,
+          scope: scope,
+          typeArguments: typeArguments,
+          constructors: constructors,
+          getters: getters,
+          setters: setters,
+          instanceMethods: instanceMethods,
+          operators: operators,
+          kind: kind,
+        )
+      : (
+          capability: FlaxCodegenProxyCapability.unsupported,
+          proxy: null,
+          constructorName: null,
+        );
   final proxyCapability = recommendation.capability;
   final explicitProxy = {'extends', 'implements'}.contains(base?.proxy)
       ? base!.proxy
       : null;
-  final proxy = explicitProxy ?? recommendation.proxy;
+  final proxy = explicitProxy ?? (inferProxy ? recommendation.proxy : null);
   Map<String, List<String>> selectedConstructors = constructors;
   List<String> selectedGetters = getters;
   List<String> selectedSetters = setters;
@@ -783,8 +799,22 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     ];
     selectedInstanceMethods = {
       for (final entry in instanceMethods.entries)
-        if (_proxyMethodCanOverride(element, entry.key)) entry.key: entry.value,
+        if (_proxyMethodCanOverride(element, entry.key) &&
+            element.thisType
+                .lookUpMethod(entry.key, element.library)!
+                .formalParameters
+                .every((parameter) => entry.value.contains(parameter.name)))
+          entry.key: entry.value,
     };
+    for (final name in instanceMethods.keys) {
+      if (!selectedInstanceMethods.containsKey(name)) {
+        skip(
+          '${element.name}.$name',
+          'Proxy overrides require the complete Dart signature',
+          code: 'unsupported_proxy_signature',
+        );
+      }
+    }
   } else if (element is ClassElement && proxy == 'implements') {
     if (base?.proxy == 'implements' && base!.constructors.isNotEmpty) {
       selectedConstructors = {
@@ -847,7 +877,8 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
       proxyCapability: proxyCapability,
     );
   }
-  if (!widget &&
+  if (!expandOwned &&
+      !widget &&
       element is! EnumElement &&
       selectedConstructors.isEmpty &&
       getters.isEmpty &&
@@ -867,17 +898,34 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     );
   }
 
+  // Adapter categories keep the same supported operations as explicit selection.
+  final blockedConstructors = {'context', 'state'}.contains(kind);
+  final blockedSetters = !{'object', 'enum'}.contains(kind) && !widget;
+  final blockedMethods = kind == 'context';
+  final blockedOperators = !{'object', 'enum'}.contains(kind);
+  for (final member in [
+    if (blockedConstructors) ...selectedConstructors.keys,
+    if (blockedSetters) ...selectedSetters,
+    if (blockedMethods) ...selectedInstanceMethods.keys,
+    if (blockedOperators) ...operators.keys,
+  ]) {
+    skip(
+      '$name.$member',
+      'The $kind adapter does not expose this operation',
+      code: 'adapter_operation_unsupported',
+    );
+  }
   final selection = FlaxCodegenClassSelection(
-    selectedConstructors,
+    blockedConstructors ? const {} : selectedConstructors,
     kind: kind,
     proxy: proxy,
     typeArguments: typeArguments,
     getters: selectedGetters,
-    setters: selectedSetters,
+    setters: blockedSetters ? const [] : selectedSetters,
     staticGetters: staticGetters,
     staticSetters: staticSetters,
-    instanceMethods: selectedInstanceMethods,
-    operators: operators,
+    instanceMethods: blockedMethods ? const {} : selectedInstanceMethods,
+    operators: blockedOperators ? const {} : operators,
     methods: methods,
     disposeMethod: base?.disposeMethod ?? inferredDisposeMethod,
     proxyVariants: base?.proxyVariants ?? const {},
@@ -886,7 +934,14 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
   return FlaxCodegenProposedBinding(
     name: name,
     id: id,
-    selection: selection,
+    selection: automaticNotices == null
+        ? selection
+        : parser._filterAutoSelection(
+            element,
+            selection,
+            skips,
+            automaticNotices,
+          ),
     skips: skips,
     proxyCapability: proxyCapability,
   );
@@ -1651,6 +1706,22 @@ List<String>? _bindConstructor({
   required List<FlaxCodegenSkip> skips,
   bool allowRecursiveErasure = false,
 }) {
+  final separator = location.indexOf('.');
+  final parameterType = parameter.type;
+  if (separator >= 0 &&
+      parameterType is InterfaceType &&
+      parameterType.element.library.isDartCore &&
+      parameterType.element.name == 'Function') {
+    final owner = location.substring(0, separator);
+    final signature = location.substring(separator + 1);
+    final selection =
+        scope.config.overrides.classes[owner]?.selection ??
+        scope.config.classes[owner];
+    if (selection?.callbackSignatures.containsKey(signature) == true) {
+      // The ordinary parser validates the supplied signature and its defaults.
+      return (omitWhenAbsent: false);
+    }
+  }
   final converted = scope.tryTypeRef(
     parameter.type,
     allowRecursiveErasure: allowRecursiveErasure,
@@ -2234,6 +2305,7 @@ Future<bool> _proxySelectionParses(
         additionalLibraries: library.additionalLibraries,
         imports: library.imports,
         types: library.types,
+        callbackSnapshots: library.callbackSnapshots,
         publicLibraries: library.publicLibraries,
       ),
     );

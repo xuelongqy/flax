@@ -8,7 +8,7 @@ export interface StreamConsumer<S extends unknown | null = unknown | null> exten
     addStream(stream: (upstream0.Stream<S> | upstream0.Stream<(S | DartInput<S>)>)): Promise<unknown | null>;
     close(): Promise<unknown | null>;
 }
-declare namespace _StreamConsumerFactory {
+export declare namespace _StreamConsumerFactory {
     function implement<S extends unknown | null = unknown | null>(args: [], implementation: {
         addStream: ((stream: upstream0.Stream<S>) => Promise<unknown | null>);
         close: (() => Promise<unknown | null>);

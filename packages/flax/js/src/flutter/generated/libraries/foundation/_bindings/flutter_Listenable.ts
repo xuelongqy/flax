@@ -10,4 +10,11 @@ addListener(listener: (() => void)): void;
 removeListener(listener: (() => void)): void;
 }
 defineObject("flax.core/flutter#type:Listenable", [], [], _flaxBindingMethods("flax.core/flutter#type:Listenable", "object", {"addListener":_flaxMemberParameters0,"removeListener":_flaxMemberParameters0}, {}), ["removeListener"]);
-export const Listenable: object & _FlaxInstanceType<Listenable> & _FlaxDartType<Listenable, readonly ["class", "flax.core/flutter#type:Listenable", readonly [], false]> = _flaxBindInstanceType<Listenable, object>({}, "flax.core/flutter#type:Listenable", ["dart:core::Object"]) as object & _FlaxInstanceType<Listenable> & _FlaxDartType<Listenable, readonly ["class", "flax.core/flutter#type:Listenable", readonly [], false]>;
+export namespace _ListenableFactory {
+export function merge(listenables: DartIterableInput<Listenable | null, Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }> | null>): Listenable {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/flutter#type:Listenable", "merge", [{"name":"listenables","required":true,"positional":true}], [listenables], {}) as Listenable;
+}
+}
+export const Listenable: typeof _ListenableFactory & _FlaxInstanceType<Listenable> & _FlaxDartType<Listenable, readonly ["class", "flax.core/flutter#type:Listenable", readonly [], false]> = _flaxBindInstanceType<Listenable, typeof _ListenableFactory>(_ListenableFactory, "flax.core/flutter#type:Listenable", ["dart:core::Object"]) as typeof _ListenableFactory & _FlaxInstanceType<Listenable> & _FlaxDartType<Listenable, readonly ["class", "flax.core/flutter#type:Listenable", readonly [], false]>;

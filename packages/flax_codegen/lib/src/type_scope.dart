@@ -532,6 +532,11 @@ final class _FlaxCodegenTypeScope {
       usesWidget = true;
       return FlaxCodegenTypeRef('widget', nullable: nullable);
     }
+    if (config.hasAutomaticSelection &&
+        !parser._isPoolType(element) &&
+        !(config.types.contains(name) && exports[name] == element)) {
+      throw StateError('Type is outside the selected binding scope: $name');
+    }
     final id = identity(element);
     final automaticCarrier = automaticTypeCarriers[id];
     if (exports[name] != element) {
@@ -648,6 +653,16 @@ final class _FlaxCodegenTypeScope {
         rethrow;
       }
     }
+    final streamParent = parser._adaptations[id] == 'stream'
+        ? type.allSupertypes
+              .where(
+                (parent) =>
+                    parent.element.library.uri.toString() == 'dart:async' &&
+                    parent.element.name == 'Stream',
+              )
+              .single
+        : null;
+    if (streamParent != null) usesStream = true;
     return FlaxCodegenTypeRef(
       element is EnumElement
           ? 'enum'
@@ -657,6 +672,15 @@ final class _FlaxCodegenTypeScope {
       id: id,
       name: name,
       nullable: nullable,
+      item: streamParent == null
+          ? null
+          : typeRef(
+              streamParent.typeArguments.single,
+              forTypescript: forTypescript,
+              typeOnlyPosition: typeOnlyPosition,
+              erasing: erasing,
+              allowRecursiveErasure: allowRecursiveErasure,
+            ),
       typeArguments: parser._argumentsByType[id] ?? const [],
       dartArguments: forTypescript
           ? const []

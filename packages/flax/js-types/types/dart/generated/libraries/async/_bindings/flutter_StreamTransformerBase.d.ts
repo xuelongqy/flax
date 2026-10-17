@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/dart/async/_bindings/flutter_StreamTransf
 import '@flax/dart/async/_bindings/flutter_StreamTransformer';
 import type * as upstream1 from '@flax/dart/async/_bindings/flutter_Stream';
 import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
-export interface StreamTransformerBase<S extends unknown | null = unknown | null, T extends unknown | null = unknown | null> extends upstream0.StreamTransformer<S, T>, Readonly<{
+export interface StreamTransformerBase<S extends unknown | null = unknown | null, T extends unknown | null = unknown | null> extends Omit<upstream0.StreamTransformer<S, T>, typeof _flaxDartTypeValue | "bind" | "cast">, Readonly<{
     "__flaxBound:dart:async::StreamTransformerBase": readonly [S, T];
 }> {
     readonly __StreamTransformerBase: unique symbol;

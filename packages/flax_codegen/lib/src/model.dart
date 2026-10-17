@@ -1442,6 +1442,13 @@ class FlaxCodegenModuleModel {
     bool uses(bool Function(FlaxCodegenTypeRef) test) =>
         valueTypes.any((type) => contains(type, test));
     final nativeFunctions = uses((type) => type.kind == 'function');
+    final asyncObjects = classes.any(
+      (type) =>
+          type.kind == 'object' &&
+          type.superTypes.any(
+            (parent) => parent.kind == 'future' || parent.kind == 'stream',
+          ),
+    );
     final lazyIterables = uses((type) => type.kind == 'iterable');
     final callbackKeys = uses(
       (type) => type.kind == 'map' && type.key!.containsCallback,
@@ -1469,6 +1476,7 @@ class FlaxCodegenModuleModel {
       'Pattern',
     ].any((name) => typeLibraries[name] == 'dart:core');
     if (!nativeFunctions &&
+        !asyncObjects &&
         !lazyIterables &&
         !callbackKeys &&
         !namedProxyConstructors &&
@@ -1486,6 +1494,7 @@ class FlaxCodegenModuleModel {
     return ({
       ..._requiredCapabilities,
       if (nativeFunctions) 'native-functions',
+      if (asyncObjects) 'native-async-objects',
       if (lazyIterables) 'lazy-js-iterables',
       if (callbackKeys) 'callback-map-keys',
       if (namedProxyConstructors) 'proxy-super-constructors',

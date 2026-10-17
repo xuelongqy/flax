@@ -30,7 +30,7 @@ void main() {
       final parser = FlaxCodegenBindingParser(repoRoot);
       addTearDown(parser.dispose);
       final core = FlaxCodegenBindingConfig.read(
-        p.join(repoRoot, 'packages/flax/bindings/config.yaml'),
+        p.join(repoRoot, 'packages/flax/bindings/flax_bindings.yaml'),
       );
       await parser.prepare([core]);
 

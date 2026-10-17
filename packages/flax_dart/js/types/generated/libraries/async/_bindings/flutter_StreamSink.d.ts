@@ -7,8 +7,8 @@ import type * as upstream2 from '@flax/dart/async/_bindings/flutter_StreamConsum
 import '@flax/dart/async/_bindings/flutter_StreamConsumer';
 import '@flax/dart/core/_bindings/flutter_StackTrace';
 import type * as upstream4 from '@flax/dart/async/_bindings/flutter_Stream';
-import { type FlaxDartSignature as _FlaxDartSignature, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
-export interface StreamSink<S extends unknown | null = unknown | null> extends upstream0.EventSink<S>, upstream1.Sink<S>, upstream2.StreamConsumer<S>, Readonly<{
+import { type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
+export interface StreamSink<S extends unknown | null = unknown | null> extends Omit<upstream0.EventSink<S>, typeof _flaxDartTypeValue | "done" | "add" | "addError" | "close" | "addStream">, Omit<upstream1.Sink<S>, typeof _flaxDartTypeValue | "done" | "add" | "addError" | "close" | "addStream">, Omit<upstream2.StreamConsumer<S>, typeof _flaxDartTypeValue | "done" | "add" | "addError" | "close" | "addStream">, Readonly<{
     "__flaxBound:dart:async::StreamSink": readonly [S];
 }> {
     readonly __StreamSink: unique symbol;

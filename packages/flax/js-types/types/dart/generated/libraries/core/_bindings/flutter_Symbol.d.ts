@@ -6,12 +6,11 @@ export interface Symbol extends Readonly<{
     readonly __Symbol: unique symbol;
     toString(): string;
 }
-declare function _SymbolFactory(name: string): Symbol;
-declare namespace _SymbolFactory {
-    const empty: Symbol;
-}
-declare namespace _SymbolFactory {
+export declare function _SymbolFactory(name: string): Symbol;
+export declare namespace _SymbolFactory {
     const unaryMinus: Symbol;
 }
+export declare namespace _SymbolFactory {
+    const empty: Symbol;
+}
 export declare const Symbol: typeof _SymbolFactory & _FlaxInstanceType<Symbol> & _FlaxDartType<Symbol, readonly ["class", "flax.core/flutter#type:Symbol", readonly [], false]>;
-export {};

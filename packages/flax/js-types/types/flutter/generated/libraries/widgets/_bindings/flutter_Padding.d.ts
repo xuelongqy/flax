@@ -5,7 +5,7 @@ import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Padding extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Padding";
 }
-declare function _PaddingFactory(options: {
+export declare function _PaddingFactory(options: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -15,4 +15,3 @@ declare function _PaddingFactory(options: {
     child?: Bindable<Widget | null> | undefined;
 }): Padding;
 export declare const Padding: typeof _PaddingFactory & _FlaxInstanceType<Padding> & _FlaxDartType<Padding, readonly ["class", "flax.core/flutter#type:Padding", readonly [], false]>;
-export {};

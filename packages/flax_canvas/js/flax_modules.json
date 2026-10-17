@@ -18,7 +18,10 @@
             "flax.canvas/canvas#type:FlaxCanvasSurface",
             "flax.canvas/canvas#type:FlaxCanvasView"
           ],
-          "functions": []
+          "functions": [
+            "flax.canvas/canvas#read:FlaxCanvasSurface.commandBytesLimit",
+            "flax.canvas/canvas#read:FlaxCanvasSurface.pictureLimit"
+          ]
         }
       ],
       "specifier": "@flax/canvas",

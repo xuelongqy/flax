@@ -7,8 +7,10 @@ import { construct, constructProxy, constructObject, constructDeferredObject, co
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface BuildContext extends ComponentContext { readonly __BuildContext: unique symbol;
 
+readonly widget: Widget;
 readonly mounted: boolean;
+readonly debugDoingBuild: boolean;
 readonly size: upstream0.Size | null;
 }
-defineContext("flax.core/flutter#type:BuildContext", ["mounted","size"]);
+defineContext("flax.core/flutter#type:BuildContext", ["widget","mounted","debugDoingBuild","size"]);
 export const BuildContext: object & _FlaxInstanceType<BuildContext> & _FlaxDartType<BuildContext, readonly ["class", "flax.core/flutter#type:BuildContext", readonly [], false]> = _flaxBindInstanceType<BuildContext, object>({}, "flax.core/flutter#type:BuildContext", ["dart:core::Object"]) as object & _FlaxInstanceType<BuildContext> & _FlaxDartType<BuildContext, readonly ["class", "flax.core/flutter#type:BuildContext", readonly [], false]>;

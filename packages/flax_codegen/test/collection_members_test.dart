@@ -174,7 +174,7 @@ class Growing<T> {
         isNotEmpty,
       );
       final selection = FlaxCodegenBindingConfig.read(
-        p.join(root, 'packages/flax/bindings/config.yaml'),
+        p.join(root, 'packages/flax/bindings/flax_bindings.yaml'),
       ).classes['Iterator']!;
       final core = await parser.parse(
         FlaxCodegenBindingConfig(
@@ -184,6 +184,7 @@ class Growing<T> {
           'core.dart',
           'core.ts',
           {'Iterator': selection},
+          automaticClasses: const ['Iterator'],
         ),
       );
       expect(core.classes.single.kind, 'object');

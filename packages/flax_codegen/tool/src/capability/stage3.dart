@@ -231,7 +231,7 @@ Future<Map<String, Object?>> runFoundationStage3({
   bool coreTypeProbe = false,
 }) async {
   final official = FlaxCodegenBindingConfig.read(
-    p.join(workspaceRoot, 'packages/flax/bindings/config.yaml'),
+    p.join(workspaceRoot, 'packages/flax/bindings/flax_bindings.yaml'),
   );
   if (libraryUri != foundationStage3Uri && voidGetterRepro) {
     // The void-getter min-repro names foundation classes only.
@@ -1185,7 +1185,7 @@ Future<Map<String, Object?>> runVoidGetterMinRepro({
   required CapabilityLog log,
 }) async {
   final official = FlaxCodegenBindingConfig.read(
-    p.join(workspaceRoot, 'packages/flax/bindings/config.yaml'),
+    p.join(workspaceRoot, 'packages/flax/bindings/flax_bindings.yaml'),
   );
   final library = FlaxCodegenBindingConfig(
     'capability_foundation',

@@ -1,4 +1,4 @@
-import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartMap, type DartMapInput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/services/_bindings/flutter_TextSelection';
 import '@flax/flutter/services/_bindings/flutter_TextSelection';
 import type * as upstream1 from '@flax/flutter/services/_bindings/flutter_TextRange';
@@ -21,8 +21,13 @@ export interface TextEditingValue extends Readonly<{
         }> | null | undefined;
         text?: string | null | undefined;
     }): TextEditingValue;
+    replaced(replacementRange: Readonly<{
+        "__flaxBound:dart:ui::TextRange": readonly [];
+    }>, replacementString: string): TextEditingValue;
+    toJSON(): DartMap<string, unknown | null>;
+    toString(): string;
 }
-declare function _TextEditingValueFactory(options?: {
+export declare function _TextEditingValueFactory(options?: {
     text?: string | undefined;
     selection?: Readonly<{
         "__flaxBound:package:flutter/src/services/text_editing.dart::TextSelection": readonly [];
@@ -31,8 +36,10 @@ declare function _TextEditingValueFactory(options?: {
         "__flaxBound:dart:ui::TextRange": readonly [];
     }> | undefined;
 }): TextEditingValue;
-declare namespace _TextEditingValueFactory {
+export declare namespace _TextEditingValueFactory {
+    function fromJSON(encoded: DartMapInput<string, unknown | null, string, unknown | null>): TextEditingValue;
+}
+export declare namespace _TextEditingValueFactory {
     const empty: TextEditingValue;
 }
 export declare const TextEditingValue: typeof _TextEditingValueFactory & _FlaxInstanceType<TextEditingValue> & _FlaxDartType<TextEditingValue, readonly ["class", "flax.core/flutter#type:TextEditingValue", readonly [], false]>;
-export {};

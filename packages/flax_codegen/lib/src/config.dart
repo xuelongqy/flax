@@ -1,11 +1,20 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:yaml/yaml.dart';
+import 'package:path/path.dart' as p;
 
 import 'diagnostic.dart';
 import 'model.dart';
 
 part 'config_strict.dart';
+
+const flaxCodegenOverridesFilename = 'flax_overrides.yaml';
+
+bool flaxCodegenIsBindingConfigPath(String path) =>
+    p.basename(path).startsWith('flax_') &&
+    {'.yaml', '.yml'}.contains(p.extension(path)) &&
+    p.basenameWithoutExtension(path) != 'flax_overrides';
 
 class FlaxCodegenBindingConfig {
   FlaxCodegenBindingConfig(
@@ -24,6 +33,10 @@ class FlaxCodegenBindingConfig {
     this.typedefs = const [],
     this.topLevel,
     this.publicLibraries = const {},
+    this.automaticClasses = const [],
+    this.automaticFunctions = const [],
+    this.automaticExtensions = const [],
+    this.overrides = const FlaxCodegenAutoOverrides(),
   });
   final String name;
   final String library;
@@ -41,10 +54,36 @@ class FlaxCodegenBindingConfig {
   final FlaxCodegenTopLevelSelection? topLevel;
   final Map<String, FlaxCodegenLibrarySelection> publicLibraries;
 
+  final List<String> automaticClasses;
+  final List<String> automaticFunctions;
+  final List<String> automaticExtensions;
+  final FlaxCodegenAutoOverrides overrides;
+
+  bool get hasAutomaticSelection =>
+      automaticClasses.isNotEmpty ||
+      automaticFunctions.isNotEmpty ||
+      automaticExtensions.isNotEmpty;
+
   factory FlaxCodegenBindingConfig.read(String filename) =>
       FlaxCodegenBindingConfig.readStrict(filename);
 
   factory FlaxCodegenBindingConfig.fromMap(Map<String, dynamic> data) {
+    List<String> scope(String key) =>
+        data[key] is List ? (data[key] as List).cast<String>() : const [];
+    final automaticClasses = scope('classes');
+    final automaticFunctions = scope('functions');
+    final automaticExtensions = scope('extensions');
+    data = {
+      ...data,
+      for (final key in ['classes', 'functions', 'extensions'])
+        if (data[key] is List)
+          key: {
+            for (final name in (data[key] as List).cast<String>())
+              name: <String, dynamic>{
+                if (key == 'functions') 'parameters': <String>[],
+              },
+          },
+    };
     final classes = data['classes'] as Map<String, dynamic>? ?? {};
     return FlaxCodegenBindingConfig(
       data['name'] as String,
@@ -169,6 +208,14 @@ class FlaxCodegenBindingConfig {
           FlaxCodegenExtensionSelection.fromMap(value as Map<String, dynamic>),
         ),
       ),
+      automaticClasses: automaticClasses,
+      automaticFunctions: automaticFunctions,
+      automaticExtensions: automaticExtensions,
+      overrides: data['overrides'] == null
+          ? const FlaxCodegenAutoOverrides()
+          : FlaxCodegenAutoOverrides.parseStrict(
+              jsonEncode({'format': 2, 'overrides': data['overrides']}),
+            ),
       additionalLibraries: (data['additionalLibraries'] as List<dynamic>? ?? [])
           .cast<String>(),
       functions: (data['functions'] as Map<String, dynamic>? ?? {}).map(
@@ -214,7 +261,7 @@ class FlaxCodegenBindingConfig {
 
   factory FlaxCodegenBindingConfig.parseStrict(
     String contents, {
-    String source = 'config.yaml',
+    String source = 'flax_bindings.yaml',
   }) => _parseBindingConfigStrict(contents, source);
 
   factory FlaxCodegenBindingConfig.readStrict(String filename) {
@@ -256,7 +303,7 @@ final class FlaxCodegenAutoOverrides {
 
   factory FlaxCodegenAutoOverrides.parseStrict(
     String contents, {
-    String source = 'overrides.yaml',
+    String source = flaxCodegenOverridesFilename,
   }) => _parseAutoOverridesStrict(contents, source);
 
   factory FlaxCodegenAutoOverrides.readStrict(String filename) {

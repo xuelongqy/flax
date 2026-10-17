@@ -1,18 +1,25 @@
 # flutter Binding Selection
 
-[config.yaml](config.yaml) selects the public API subset. Types and defaults come from
-analyzer rather than hand-maintained signatures. See the [rules guide](../README.md).
+[flax_bindings.yaml](flax_bindings.yaml) selects declaration names. Ordinary
+constructors, members, parameter types and defaults come from the existing
+analyzer-based automatic selector. Inline overrides retain adapter kinds, proxy choices,
+callback signatures and lifecycle policy. [flax_components.yaml](flax_components.yaml)
+keeps the fixed State mixin combinations. See the [rules guide](../README.md).
 
-The selected context adaptation exposes BuildContext.mounted and size. Size selects
-readonly width/height; the non-constructible SchedulerBinding mixin selects instance and
-endOfFrame. Custom-component ancestor lookup uses the shared Context extension.
-BoxConstraints references select four readonly fields. Directionality selects only the
-static of method; Builder and LayoutBuilder select their real callback signatures.
+The shared `renderOnlyWidget` YAML anchor clears instance members for Widgets that keep
+reactive constructor descriptions. Constructors/static members are still inferred.
+Native Widget views and proxies retain real-object delivery. Fixed generic description
+owners, callback snapshots and State mixins remain explicit.
 
-Navigation selects Navigator, its borrowed State and explicitly instantiated Object?
-methods, Route, constructible RouteSettings references, NavigatorPopHandler, and
-PopScope. Only selected methods may create routes while the session is open. Route
-ownership and Future delivery use the shared UI host, not generated state management.
+The Context adapter exposes convertible BuildContext getters. Size, BoxConstraints,
+Directionality and the non-constructible SchedulerBinding mixin infer their supported
+members within the selected type pool. Custom-component ancestor lookup uses the shared
+Context extension. Builder and LayoutBuilder use their real callback signatures.
+
+Navigation selects Navigator, its borrowed State and shared generic methods, Route,
+constructible RouteSettings references, NavigatorPopHandler, and PopScope. Only selected
+methods may create routes while the session is open. Route ownership and Future delivery
+use the shared UI host, not generated state management.
 
 Declarative navigation adds Page<Object?> identity, key/name/arguments fields,
 Navigator.pages/onDidRemovePage, and ValueKey.value. Empty-list defaults are omitted
@@ -42,7 +49,7 @@ Container/DecoratedBox and decoration, border, corner, inset and constraint sele
 use ordinary generation. See [decoration](../../../docs/architecture/decoration.md).
 
 Top-level applyBoxFit selects BoxFit and FittedSizes source/destination references.
-Navigator selects observers; NavigatorObserver is an opaque type and
+Navigator selects observers; NavigatorObserver uses ordinary object bindings and
 FlaxNavigatorObserver has a generated no-argument factory from the public Flax library.
 
 WidgetState and WidgetStateProperty use generated enum, Set and automatically inferred

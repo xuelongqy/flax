@@ -29,7 +29,7 @@ typedef FlaxCodegenProcessRunner = Future<ProcessResult> Function(
 /// delete). Used by tests to force mid-transaction failure after planning.
 typedef FlaxCodegenInstallMutationProbe = void Function(String absolutePath);
 
-const _autoOverridesFilename = 'overrides.yaml';
+const _autoOverridesFilename = flaxCodegenOverridesFilename;
 
 /// Immutable package validation view through M2.5a Phase D.
 final class FlaxCodegenPackageValidation {
@@ -110,7 +110,10 @@ final class FlaxCodegenPackagePipeline {
     // Reserved for later generate/check stages; validation must not call it.
     processRunner;
     final located = _locateBindingConfig(configPath);
-    final configPaths = _discoverBindingConfigs(located.bindingsDirectory);
+    final configPaths = _discoverBindingConfigs(
+      located.bindingsDirectory,
+      explicitConfig: p.normalize(p.absolute(configPath)),
+    );
     final diagnostics = <FlaxCodegenDiagnostic>[];
     String? dartPackage;
     try {
@@ -154,11 +157,15 @@ final class FlaxCodegenPackagePipeline {
       packageRoots: packageConfig.roots,
     );
 
+    final selectionSkips = <FlaxCodegenSkip>[];
+    final selectionNotices = <FlaxCodegenNotice>[];
     final parsedModels = await _parseLocalModules(
       workspaceRoot: packageConfig.workspaceRoot,
       configs: configs,
       configPaths: configPaths,
       directDependencies: providerCandidates,
+      selectionSkips: selectionSkips,
+      selectionNotices: selectionNotices,
     );
     final directDependencies = _selectDirectDependencyProjections(
       dartPackage: dartPackage,
@@ -210,6 +217,8 @@ final class FlaxCodegenPackagePipeline {
       manifest: manifest,
       projection: projection,
       outputInventory: outputInventory,
+      skips: selectionSkips,
+      notices: selectionNotices,
     );
   }
 
@@ -393,13 +402,14 @@ final class FlaxCodegenPackagePipeline {
   /// Validates once, plans expected Dart/TS/manifest bytes (formatting Dart only
   /// in a cleaned temporary directory outside the package), then compares the
   /// package filesystem without writing, renaming, deleting, or creating paths.
-  static Future<void> checkConfig(
+  static Future<FlaxCodegenPackageValidation> checkConfig(
     String configPath, {
     FlaxCodegenProcessRunner? processRunner,
   }) async {
     final runner = processRunner ?? Process.run;
     final validation = await validateConfig(configPath, processRunner: runner);
     await _checkValidation(validation, runner);
+    return validation;
   }
 
   /// Read-only reproducibility check for automatic [library] binding.
@@ -498,7 +508,7 @@ final class FlaxCodegenPackagePipeline {
   ///
   /// After a successful generate, [checkConfig] on the same config succeeds
   /// without writes.
-  static Future<void> generateConfig(
+  static Future<FlaxCodegenPackageValidation> generateConfig(
     String configPath, {
     FlaxCodegenProcessRunner? processRunner,
     FlaxCodegenInstallMutationProbe? beforeInstallMutation,
@@ -510,6 +520,7 @@ final class FlaxCodegenPackagePipeline {
       runner,
       beforeInstallMutation: beforeInstallMutation,
     );
+    return validation;
   }
 
   /// Package-atomic generation for automatic [library] binding.
@@ -844,7 +855,10 @@ void _rejectSymlinkPathComponents(String absolute) {
   }
 }
 
-List<String> _discoverBindingConfigs(String bindingsDirectory) {
+List<String> _discoverBindingConfigs(
+  String bindingsDirectory, {
+  required String explicitConfig,
+}) {
   final paths = <String>[];
   for (final entity in Directory(
     bindingsDirectory,
@@ -854,10 +868,7 @@ List<String> _discoverBindingConfigs(String bindingsDirectory) {
     if (type != FileSystemEntityType.file) {
       continue;
     }
-    if (!_isLowercaseYamlExtension(path)) {
-      continue;
-    }
-    if (p.basename(path) == _autoOverridesFilename) {
+    if (!flaxCodegenIsBindingConfigPath(path) && path != explicitConfig) {
       continue;
     }
     paths.add(path);
@@ -1376,6 +1387,8 @@ Future<List<FlaxCodegenModuleModel>> _parseLocalModules({
   required List<String> configPaths,
   required Map<String, FlaxCodegenManifestProjection> directDependencies,
   List<Map<String, String>>? automaticTypeCarriers,
+  List<FlaxCodegenSkip>? selectionSkips,
+  List<FlaxCodegenNotice>? selectionNotices,
 }) async {
   final parser = FlaxCodegenBindingParser(workspaceRoot);
   try {
@@ -1414,11 +1427,20 @@ Future<List<FlaxCodegenModuleModel>> _parseLocalModules({
     final diagnostics = <FlaxCodegenDiagnostic>[];
     for (var index = 0; index < configs.length; index++) {
       try {
-        models.add(
-          await parser.parse(
+        var carriers =
+            automaticTypeCarriers?[index] ?? const <String, String>{};
+        if (configs[index].hasAutomaticSelection) {
+          final proposal = await parser.proposeLibrary(
             configs[index],
-            automaticTypeCarriers: automaticTypeCarriers?[index] ?? const {},
-          ),
+            overrides: configs[index].overrides,
+          );
+          configs[index] = proposal.config;
+          carriers = {...proposal.typeCarriers, ...carriers};
+          selectionSkips?.addAll(proposal.skips);
+          selectionNotices?.addAll(proposal.notices);
+        }
+        models.add(
+          await parser.parse(configs[index], automaticTypeCarriers: carriers),
         );
       } on StateError catch (error) {
         diagnostics.add(
@@ -1431,6 +1453,8 @@ Future<List<FlaxCodegenModuleModel>> _parseLocalModules({
     if (diagnostics.isNotEmpty) {
       throw FlaxCodegenException(diagnostics);
     }
+    selectionSkips?.addAll(parser.automaticSkips);
+    selectionNotices?.addAll(parser.automaticNotices);
     return models;
   } finally {
     await parser.dispose();

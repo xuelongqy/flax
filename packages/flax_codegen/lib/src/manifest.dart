@@ -342,6 +342,7 @@ FlaxCodegenManifestModule? _decodeModuleEntry(
   if (requiredCapabilities.any(
     (capability) => !{
       'native-functions',
+      'native-async-objects',
       'lazy-js-iterables',
       'callback-map-keys',
       'proxy-super-constructors',

@@ -17,7 +17,7 @@ void main() {
       addTearDown(source.dispose);
       final parsed = await source.parse(
         FlaxCodegenBindingConfig.read(
-          p.join(root, 'packages/flax/bindings/config.yaml'),
+          p.join(root, 'packages/flax/bindings/flax_bindings.yaml'),
         ),
       );
       final core = FlaxCodegenModuleModel(

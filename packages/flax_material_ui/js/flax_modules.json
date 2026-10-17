@@ -62,8 +62,20 @@
           ],
           "functions": [
             "flax.material/material#function:showDialog",
+            "flax.material/material#read:Checkbox.width",
+            "flax.material/material#read:CircularProgressIndicator.defaultAnimationDuration",
+            "flax.material/material#read:CircularProgressIndicator.strokeAlignCenter",
+            "flax.material/material#read:CircularProgressIndicator.strokeAlignInside",
+            "flax.material/material#read:CircularProgressIndicator.strokeAlignOutside",
+            "flax.material/material#read:LinearProgressIndicator.defaultAnimationDuration",
+            "flax.material/material#read:Material.defaultSplashRadius",
+            "flax.material/material#read:TextField.materialMisspelledTextStyle",
+            "flax.material/material#read:TextField.noMaxLength",
+            "flax.material/material#read:VisualDensity.adaptivePlatformDensity",
             "flax.material/material#read:VisualDensity.comfortable",
             "flax.material/material#read:VisualDensity.compact",
+            "flax.material/material#read:VisualDensity.maximumDensity",
+            "flax.material/material#read:VisualDensity.minimumDensity",
             "flax.material/material#read:VisualDensity.standard",
             "flax.material/material#read:kTabScrollDuration"
           ]

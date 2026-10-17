@@ -100,6 +100,7 @@ Future<int> runFlaxCodegenCli(
             '(${validation.configPaths.length} configs, '
             '${validation.outputInventory.length} outputs).',
           );
+          _writeSelectionDiagnostics(out, validation);
         }
       case 'check':
         if (parsed.automatic) {
@@ -109,8 +110,11 @@ Future<int> runFlaxCodegenCli(
           );
           _writeAutoSummary(out, 'Checked', validation);
         } else {
-          await FlaxCodegenPackagePipeline.checkConfig(parsed.configPath!);
+          final validation = await FlaxCodegenPackagePipeline.checkConfig(
+            parsed.configPath!,
+          );
           out('Generated bindings and manifests are reproducible.');
+          _writeSelectionDiagnostics(out, validation);
         }
       case 'generate':
         if (parsed.automatic) {
@@ -120,8 +124,11 @@ Future<int> runFlaxCodegenCli(
           );
           _writeAutoSummary(out, 'Generated', validation);
         } else {
-          await FlaxCodegenPackagePipeline.generateConfig(parsed.configPath!);
+          final validation = await FlaxCodegenPackagePipeline.generateConfig(
+            parsed.configPath!,
+          );
           out('Generated selected Dart, TypeScript, and manifest bindings.');
+          _writeSelectionDiagnostics(out, validation);
         }
       default:
         throw FlaxCodegenCliUsageException(
@@ -151,6 +158,13 @@ void _writeAutoSummary(
     '(${validation.outputInventory.length} outputs, '
     '${validation.skips.length} skipped items).',
   );
+  _writeSelectionDiagnostics(out, validation);
+}
+
+void _writeSelectionDiagnostics(
+  void Function(String line) out,
+  FlaxCodegenPackageValidation validation,
+) {
   for (final skip in validation.skips) {
     out('SKIP ${skip.target}: ${skip.reason}');
   }

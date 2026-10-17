@@ -1,6 +1,8 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type WidgetDescription } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/foundation';
 import '@flax/flutter/foundation';
+import type * as upstream1 from '@flax/dart/core';
+import '@flax/dart/core';
 import '@flax/flutter/foundation';
 export declare const canvasBindingModule: Readonly<{
     moduleId: string;
@@ -29,24 +31,60 @@ export declare const canvasBindingModule: Readonly<{
     invokeInstance: typeof import("@flax/core/bindings").invokeInstance;
     invokeTopLevel: typeof import("@flax/core/bindings").invokeTopLevel;
 }>;
-import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
-export interface FlaxCanvasSurface extends upstream0.Listenable, Readonly<{
+import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
+export interface FlaxCanvasSurface extends Omit<upstream0.Listenable, typeof _flaxDartTypeValue | "alpha" | "width" | "height" | "generation" | "sequence" | "decodedBytes" | "compressing" | "compressGeneration" | "compressCount" | "compressBytes" | "closed" | "transferred" | "onError" | "hasListeners" | "addListener" | "removeListener" | "resize" | "clearHistory" | "replaceWithClear" | "maybeCompress" | "abandon" | "dispose">, Readonly<{
     "__flaxBound:package:flax_canvas/src/surface.dart::FlaxCanvasSurface": readonly [];
 }>, Readonly<{
     "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
 }> {
     readonly __FlaxCanvasSurface: unique symbol;
+    get alpha(): boolean;
     get width(): number;
     get height(): number;
+    get generation(): number;
+    get sequence(): number;
+    get decodedBytes(): number;
+    get compressing(): boolean;
+    get compressGeneration(): number;
+    get compressCount(): number;
+    get compressBytes(): number;
+    get closed(): boolean;
+    get transferred(): boolean;
+    get onError(): ((error: {}, stack: Readonly<{
+        "__flaxBound:dart:core::StackTrace": readonly [];
+    }>) => void) | null;
+    readonly hasListeners: boolean;
     addListener(listener: (() => void)): void;
     removeListener(listener: (() => void)): void;
+    resize(nextWidth: number, nextHeight: number, options?: {
+        reset?: boolean | undefined;
+    }): void;
+    clearHistory(): void;
+    replaceWithClear(): void;
+    maybeCompress(): void;
+    abandon(): void;
+    dispose(): void;
+    set alpha(value: boolean);
     set width(value: number);
     set height(value: number);
+    set generation(value: number);
+    set sequence(value: number);
+    set decodedBytes(value: number);
+    set compressing(value: boolean);
+    set compressGeneration(value: number);
+    set compressCount(value: number);
+    set compressBytes(value: number);
+    set closed(value: boolean);
+    set transferred(value: boolean);
+    set onError(value: ((error: {}, stack: upstream1.StackTrace) => void) | null);
 }
+export declare function _FlaxCanvasSurfaceFactory(width: number, height: number, options?: {
+    alpha?: boolean | undefined;
+}): FlaxCanvasSurface;
 export interface FlaxCanvasView extends WidgetDescription {
     readonly type: "flax.canvas/canvas#type:FlaxCanvasView";
 }
-declare function _FlaxCanvasViewConstruct(canvas: Bindable<Readonly<{
+export declare function _FlaxCanvasViewConstruct(canvas: Bindable<Readonly<{
     "__flaxBound:package:flax_canvas/src/surface.dart::FlaxCanvasSurface": readonly [];
 }>>, options?: {
     key?: Readonly<{
@@ -55,7 +93,12 @@ declare function _FlaxCanvasViewConstruct(canvas: Bindable<Readonly<{
     width?: Bindable<number | null> | undefined;
     height?: Bindable<number | null> | undefined;
 }): FlaxCanvasView;
-export declare const FlaxCanvasSurface: object & _FlaxInstanceType<FlaxCanvasSurface> & _FlaxDartType<FlaxCanvasSurface, readonly ["class", "flax.canvas/canvas#type:FlaxCanvasSurface", readonly [], false]>;
+export declare namespace _FlaxCanvasSurfaceFactory {
+    const pictureLimit: number;
+}
+export declare namespace _FlaxCanvasSurfaceFactory {
+    const commandBytesLimit: number;
+}
+export declare const FlaxCanvasSurface: typeof _FlaxCanvasSurfaceFactory & _FlaxInstanceType<FlaxCanvasSurface> & _FlaxDartType<FlaxCanvasSurface, readonly ["class", "flax.canvas/canvas#type:FlaxCanvasSurface", readonly [], false]>;
 export declare const FlaxCanvasView: object & _FlaxInstanceType<FlaxCanvasView> & _FlaxDartType<FlaxCanvasView, readonly ["class", "flax.canvas/canvas#type:FlaxCanvasView", readonly [], false]>;
 export declare const CanvasView: typeof _FlaxCanvasViewConstruct & _FlaxInstanceType<FlaxCanvasView>;
-export {};

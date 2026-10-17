@@ -17,6 +17,7 @@ const _configFields = {
   'topLevel',
   'callbackSnapshots',
   'publicLibraries',
+  'overrides',
 };
 
 const _autoOverrideRootFields = {'format', 'overrides'};
@@ -108,6 +109,23 @@ FlaxCodegenBindingConfig _parseBindingConfigStrict(
   final snapshots = _readSnapshots(root);
   final topLevel = _readTopLevel(root);
   final publicLibraries = _readPublicLibraries(root);
+  final overrideMap = root.schemaMap('overrides', _autoOverrideFields);
+  final overrides = overrideMap == null
+      ? const FlaxCodegenAutoOverrides()
+      : _readAutoOverrides(overrideMap);
+  if (overrideMap != null &&
+      ![
+        root.node('classes'),
+        root.node('functions'),
+        root.node('extensions'),
+      ].any((node) => node is YamlList && node.isNotEmpty)) {
+    diagnostics.add(
+      code: FlaxCodegenDiagnosticCode.invalidValue,
+      pointer: root.child('overrides'),
+      message: 'Inline overrides require an automatic declaration list.',
+      node: root.node('overrides'),
+    );
+  }
   diagnostics.throwIfAny();
   return FlaxCodegenBindingConfig(
     name!,
@@ -125,6 +143,16 @@ FlaxCodegenBindingConfig _parseBindingConfigStrict(
     callbackSnapshots: snapshots,
     topLevel: topLevel,
     publicLibraries: publicLibraries,
+    automaticClasses: root.node('classes') is YamlList
+        ? classes.keys.toList()
+        : const [],
+    automaticFunctions: root.node('functions') is YamlList
+        ? functions.keys.toList()
+        : const [],
+    automaticExtensions: root.node('extensions') is YamlList
+        ? extensions.keys.toList()
+        : const [],
+    overrides: overrides,
   );
 }
 
@@ -166,6 +194,11 @@ FlaxCodegenAutoOverrides _parseAutoOverridesStrict(
     throw StateError('Unreachable missing overrides');
   }
 
+  return _readAutoOverrides(overrides);
+}
+
+FlaxCodegenAutoOverrides _readAutoOverrides(_StrictMap overrides) {
+  final diagnostics = overrides.diagnostics;
   final classes = <String, FlaxCodegenClassOverride>{};
   final classNodes = overrides.dynamicMap('classes');
   if (classNodes != null) {
@@ -247,6 +280,12 @@ YamlNode _loadYamlNode(String contents, _StrictDiagnostics diagnostics) {
 }
 
 Map<String, FlaxCodegenClassSelection> _readClasses(_StrictMap root) {
+  if (root.node('classes') is YamlList) {
+    return {
+      for (final name in root.stringList('classes'))
+        name: const FlaxCodegenClassSelection({}),
+    };
+  }
   final node = root.dynamicMap('classes');
   if (node == null) return const {};
   final classes = <String, FlaxCodegenClassSelection>{};
@@ -525,6 +564,12 @@ Map<String, FlaxCodegenLibrarySelection> _readPublicLibraries(_StrictMap root) {
 }
 
 Map<String, FlaxCodegenFunctionSelection> _readFunctions(_StrictMap root) {
+  if (root.node('functions') is YamlList) {
+    return {
+      for (final name in root.stringList('functions'))
+        name: const FlaxCodegenFunctionSelection([]),
+    };
+  }
   final node = root.dynamicMap('functions');
   if (node == null) return const {};
   final functions = <String, FlaxCodegenFunctionSelection>{};
@@ -975,6 +1020,12 @@ String _pointer(String parent, String token) =>
     '$parent/${FlaxCodegenDiagnostic.jsonPointerToken(token)}';
 
 Map<String, FlaxCodegenExtensionSelection> _readExtensions(_StrictMap root) {
+  if (root.node('extensions') is YamlList) {
+    return {
+      for (final name in root.stringList('extensions'))
+        name: const FlaxCodegenExtensionSelection(),
+    };
+  }
   final node = root.dynamicMap('extensions');
   if (node == null) return const {};
   final result = <String, FlaxCodegenExtensionSelection>{};

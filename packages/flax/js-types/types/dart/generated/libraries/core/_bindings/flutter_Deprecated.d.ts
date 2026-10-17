@@ -5,7 +5,25 @@ export interface Deprecated extends Readonly<{
 }> {
     readonly __Deprecated: unique symbol;
     readonly message: string | null;
+    toString(): string;
 }
-declare function _DeprecatedFactory(message: string | null): Deprecated;
+export declare function _DeprecatedFactory(message: string | null): Deprecated;
+export declare namespace _DeprecatedFactory {
+    function implement(message?: string | null): Deprecated;
+}
+export declare namespace _DeprecatedFactory {
+    function extend(message?: string | null): Deprecated;
+}
+export declare namespace _DeprecatedFactory {
+    function subclass(message?: string | null): Deprecated;
+}
+export declare namespace _DeprecatedFactory {
+    function instantiate(message?: string | null): Deprecated;
+}
+export declare namespace _DeprecatedFactory {
+    function mixin(message?: string | null): Deprecated;
+}
+export declare namespace _DeprecatedFactory {
+    function optional(message?: string | null): Deprecated;
+}
 export declare const Deprecated: typeof _DeprecatedFactory & _FlaxInstanceType<Deprecated> & _FlaxDartType<Deprecated, readonly ["class", "flax.core/flutter#type:Deprecated", readonly [], false]>;
-export {};

@@ -11,7 +11,7 @@ import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Container extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Container";
 }
-declare function _ContainerFactory(options?: {
+export declare function _ContainerFactory(options?: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -39,8 +39,10 @@ declare function _ContainerFactory(options?: {
     margin?: Bindable<Readonly<{
         "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
     }> | null> | undefined;
+    transformAlignment?: Bindable<Readonly<{
+        "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];
+    }> | null> | undefined;
     child?: Bindable<Widget | null> | undefined;
     clipBehavior?: Bindable<upstream6.Clip> | undefined;
 }): Container;
 export declare const Container: typeof _ContainerFactory & _FlaxInstanceType<Container> & _FlaxDartType<Container, readonly ["class", "flax.core/flutter#type:Container", readonly [], false]>;
-export {};

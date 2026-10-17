@@ -9,4 +9,9 @@ export interface FittedSizes extends Readonly<{
     readonly source: upstream0.Size;
     readonly destination: upstream0.Size;
 }
-export declare const FittedSizes: object & _FlaxInstanceType<FittedSizes> & _FlaxDartType<FittedSizes, readonly ["class", "flax.core/flutter#type:FittedSizes", readonly [], false]>;
+export declare function _FittedSizesFactory(source: Readonly<{
+    "__flaxBound:dart:ui::Size": readonly [];
+}>, destination: Readonly<{
+    "__flaxBound:dart:ui::Size": readonly [];
+}>): FittedSizes;
+export declare const FittedSizes: typeof _FittedSizesFactory & _FlaxInstanceType<FittedSizes> & _FlaxDartType<FittedSizes, readonly ["class", "flax.core/flutter#type:FittedSizes", readonly [], false]>;

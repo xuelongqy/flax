@@ -6,6 +6,9 @@ export interface MouseCursor extends Readonly<{
     "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
 }> {
     readonly __MouseCursor: unique symbol;
+    readonly debugDescription: string;
+    toString(): string;
+    toStringShort(): string;
 }
 declare const _MouseCursorFactory: {
     readonly defer: MouseCursor;

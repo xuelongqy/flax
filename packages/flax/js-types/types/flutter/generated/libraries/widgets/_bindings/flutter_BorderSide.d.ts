@@ -14,6 +14,9 @@ export interface BorderSide extends Readonly<{
     readonly width: number;
     readonly style: upstream1.BorderStyle;
     readonly strokeAlign: number;
+    readonly strokeInset: number;
+    readonly strokeOutset: number;
+    readonly strokeOffset: number;
     copyWith(options?: {
         color?: Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];
@@ -22,8 +25,10 @@ export interface BorderSide extends Readonly<{
         style?: upstream1.BorderStyle | null | undefined;
         width?: number | null | undefined;
     }): BorderSide;
+    scale(t: number): BorderSide;
+    toStringShort(): string;
 }
-declare function _BorderSideFactory(options?: {
+export declare function _BorderSideFactory(options?: {
     color?: Readonly<{
         "__flaxBound:dart:ui::Color": readonly [];
     }> | undefined;
@@ -31,17 +36,37 @@ declare function _BorderSideFactory(options?: {
     style?: upstream1.BorderStyle | undefined;
     strokeAlign?: number | undefined;
 }): BorderSide;
-declare namespace _BorderSideFactory {
+export declare namespace _BorderSideFactory {
     const none: BorderSide;
 }
-declare namespace _BorderSideFactory {
+export declare namespace _BorderSideFactory {
     const strokeAlignInside: number;
 }
-declare namespace _BorderSideFactory {
+export declare namespace _BorderSideFactory {
     const strokeAlignCenter: number;
 }
-declare namespace _BorderSideFactory {
+export declare namespace _BorderSideFactory {
     const strokeAlignOutside: number;
 }
+export declare namespace _BorderSideFactory {
+    function merge(a: Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [];
+    }>, b: Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [];
+    }>): BorderSide;
+}
+export declare namespace _BorderSideFactory {
+    function canMerge(a: Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [];
+    }>, b: Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [];
+    }>): boolean;
+}
+export declare namespace _BorderSideFactory {
+    function lerp(a: Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [];
+    }>, b: Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [];
+    }>, t: number): BorderSide;
+}
 export declare const BorderSide: typeof _BorderSideFactory & _FlaxInstanceType<BorderSide> & _FlaxDartType<BorderSide, readonly ["class", "flax.core/flutter#type:BorderSide", readonly [], false]>;
-export {};

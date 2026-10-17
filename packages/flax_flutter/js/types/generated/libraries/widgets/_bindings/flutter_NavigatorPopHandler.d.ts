@@ -4,10 +4,11 @@ import { type FlaxDartSignature as _FlaxDartSignature, type FlaxDartType as _Fla
 export interface NavigatorPopHandler<T extends unknown | null = unknown | null> extends WidgetDescription {
     readonly type: "flax.core/flutter#type:NavigatorPopHandler";
 }
-declare function _NavigatorPopHandlerFactory<T extends unknown | null = unknown | null>(options: {
+export declare function _NavigatorPopHandlerFactory<T extends unknown | null = unknown | null>(options: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
+    onPop?: Bindable<(() => void) | null> | undefined;
     onPopWithResult?: Bindable<((result: T | null) => void) | null> | undefined;
     enabled?: Bindable<boolean> | undefined;
     child: Bindable<Widget>;
@@ -19,6 +20,7 @@ interface _FlaxSignature0 extends _FlaxDartSignature {
             key?: Readonly<{
                 "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
             }> | null | undefined;
+            onPop?: (() => void) | null | undefined;
             onPopWithResult?: ((result: _Selected0 | null) => void) | null | undefined;
             enabled?: boolean | undefined;
             child: Widget;

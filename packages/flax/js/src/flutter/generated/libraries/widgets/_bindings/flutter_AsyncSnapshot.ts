@@ -3,6 +3,7 @@
 import { defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
 import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
 const _flaxMemberParameters0 = [{"name":"state","required":true,"positional":true}] as const;
+const _flaxMemberParameters1 = [] as const;
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_ConnectionState';
 import '@flax/flutter/widgets/_bindings/flutter_ConnectionState';
 import type * as upstream1 from '@flax/dart/core/_bindings/flutter_StackTrace';
@@ -13,15 +14,16 @@ export interface AsyncSnapshot<T extends unknown | null = unknown | null> extend
 
 readonly connectionState: upstream0.ConnectionState;
 readonly data: T | null;
+readonly requireData: T;
 readonly error: unknown | null;
 readonly stackTrace: upstream1.StackTrace | null;
 readonly hasData: boolean;
 readonly hasError: boolean;
-readonly requireData: T;
 inState(state: upstream0.ConnectionState): AsyncSnapshot<T>;
+toString(): string;
 }
-defineObject("flax.core/flutter#type:AsyncSnapshot", ["connectionState","data","error","stackTrace","hasData","hasError","requireData"], [], _flaxBindingMethods("flax.core/flutter#type:AsyncSnapshot", "object", {"inState":_flaxMemberParameters0}, {}), []);
-namespace _AsyncSnapshotFactory {
+defineObject("flax.core/flutter#type:AsyncSnapshot", ["connectionState","data","requireData","error","stackTrace","hasData","hasError"], [], _flaxBindingMethods("flax.core/flutter#type:AsyncSnapshot", "object", {"inState":_flaxMemberParameters0,"toString":_flaxMemberParameters1}, {}), []);
+export namespace _AsyncSnapshotFactory {
 export function nothing<T extends unknown | null = unknown | null>(): AsyncSnapshot<T>;
 export function nothing(): AsyncSnapshot<unknown | null>;
 export function nothing(): unknown {
@@ -30,7 +32,7 @@ if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:AsyncSnapshot", "nothing", [], [], {}) as AsyncSnapshot<unknown | null>;
 }
 }
-namespace _AsyncSnapshotFactory {
+export namespace _AsyncSnapshotFactory {
 export function waiting<T extends unknown | null = unknown | null>(): AsyncSnapshot<T>;
 export function waiting(): AsyncSnapshot<unknown | null>;
 export function waiting(): unknown {
@@ -39,7 +41,7 @@ if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:AsyncSnapshot", "waiting", [], [], {}) as AsyncSnapshot<unknown | null>;
 }
 }
-namespace _AsyncSnapshotFactory {
+export namespace _AsyncSnapshotFactory {
 export function withData<T extends unknown | null = unknown | null>(state: upstream0.ConnectionState, data: (T | _FlaxDartOutput<T>)): AsyncSnapshot<T>;
 export function withData(state: upstream0.ConnectionState, data: unknown | null): AsyncSnapshot<unknown | null>;
 export function withData(state: unknown, data: unknown): unknown {
@@ -48,7 +50,7 @@ if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:AsyncSnapshot", "withData", [{"name":"state","required":true,"positional":true},{"name":"data","required":true,"positional":true}], [state, data], {}) as AsyncSnapshot<unknown | null>;
 }
 }
-namespace _AsyncSnapshotFactory {
+export namespace _AsyncSnapshotFactory {
 export function withError<T extends unknown | null = unknown | null>(state: upstream0.ConnectionState, error: {}, stackTrace?: Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }>): AsyncSnapshot<T>;
 export function withError(state: upstream0.ConnectionState, error: {}, stackTrace?: Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }>): AsyncSnapshot<unknown | null>;
 export function withError(state: unknown, error: unknown, stackTrace?: unknown): unknown {

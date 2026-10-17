@@ -5,7 +5,7 @@ repository. Follow this layout, then run the three-command Codegen CLI against a
 YAML config.
 
 This template targets binding selection format **2**, package metadata format **2**,
-Manifest format **23**, UI protocol **24**, and native ABI **2**. These are separate
+Manifest format **24**, UI protocol **24**, and native ABI **2**. These are separate
 current domains; binding authors do not add readers or adapters for other formats.
 
 Open product decisions (do **not** invent values here): license text, Pub/npm package
@@ -37,7 +37,7 @@ your_package/
       generated/
         your_bindings.g.dart   # Codegen output (do not hand-edit)
   bindings/
-    config.yaml                # format: 2 selection (direct child only)
+    flax_bindings.yaml         # format: 2 selection (direct child only)
     manifest.json              # Manifest 24 output (do not hand-edit)
   js-types/
     package.json               # public exports contain only types conditions
@@ -54,8 +54,9 @@ your_package/
 
 Rules:
 
-- Binding configs must be **direct children** of `bindings/` (`*.yaml` / `*.yml`).
-  Nested paths are rejected.
+- Binding configs must be **direct children** of `bindings/`. Use `flax_*.yaml` /
+  `flax_*.yml` for default discovery; explicit `--config` also accepts custom names.
+  Nested paths are rejected. `flax_overrides.yaml` is reserved for `--library` mode.
 - `library:` in the config must be a **public** `package:<name>/...` URI. Do not point
   Codegen at `package:<name>/src/...` (Manifest 24 rejects private `src/` type library
   URIs).
@@ -94,7 +95,7 @@ Requirements:
   values (documentation / tooling; registration is still explicit in application code).
   The name is `<config name>Bindings`, so `name: example` generates `exampleBindings`.
 
-## `bindings/*.yaml` (format 2)
+## `bindings/flax_bindings.yaml` (format 2)
 
 ```yaml
 format: 2
@@ -107,16 +108,12 @@ publicLibraries:
   package:your_package/api.dart:
     jsPackage: '@your-scope/your-package/api'
     tsOutput: js/src/generated/libraries/api/index.ts
-classes:
-  Gauge:
-    kind: object
-    constructors:
-      '': [value]
-    getters: [value]
-    setters: [value]
-    instanceMethods:
-      increment: [by]
+classes: [Gauge]
 ```
+
+Declaration lists reuse automatic member selection. Keep routing and the intended API
+scope here; use inline `overrides` for callback signatures, proxy/mixin choices or a
+deliberate member restriction. Mapping forms remain available for exact member lists.
 
 Notes:
 
@@ -164,9 +161,9 @@ another provider's public/member surface.
 From the binding package directory (or any cwd; pass a path to the config):
 
 ```sh
-dart run flax_codegen validate --config bindings/config.yaml
-dart run flax_codegen generate --config bindings/config.yaml
-dart run flax_codegen check --config bindings/config.yaml
+dart run flax_codegen validate --config bindings/flax_bindings.yaml
+dart run flax_codegen generate --config bindings/flax_bindings.yaml
+dart run flax_codegen check --config bindings/flax_bindings.yaml
 ```
 
 - `validate` — strict YAML + package metadata + ownership / Manifest projection; no

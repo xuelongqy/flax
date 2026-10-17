@@ -5,7 +5,7 @@ import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ConstrainedBox extends WidgetDescription {
     readonly type: "flax.core/flutter#type:ConstrainedBox";
 }
-declare function _ConstrainedBoxFactory(options: {
+export declare function _ConstrainedBoxFactory(options: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -15,4 +15,3 @@ declare function _ConstrainedBoxFactory(options: {
     child?: Bindable<Widget | null> | undefined;
 }): ConstrainedBox;
 export declare const ConstrainedBox: typeof _ConstrainedBoxFactory & _FlaxInstanceType<ConstrainedBox> & _FlaxDartType<ConstrainedBox, readonly ["class", "flax.core/flutter#type:ConstrainedBox", readonly [], false]>;
-export {};

@@ -1,10 +1,12 @@
-import { type FlaxInstanceType as _FlaxInstanceType, type ComponentContext } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type Widget, type ComponentContext } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/services/_bindings/flutter_Size';
 import '@flax/flutter/services/_bindings/flutter_Size';
 import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface BuildContext extends ComponentContext {
     readonly __BuildContext: unique symbol;
+    readonly widget: Widget;
     readonly mounted: boolean;
+    readonly debugDoingBuild: boolean;
     readonly size: upstream0.Size | null;
 }
 export declare const BuildContext: object & _FlaxInstanceType<BuildContext> & _FlaxDartType<BuildContext, readonly ["class", "flax.core/flutter#type:BuildContext", readonly [], false]>;

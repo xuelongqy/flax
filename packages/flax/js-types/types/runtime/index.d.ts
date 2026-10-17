@@ -1,3 +1,5 @@
+import { effect, untracked, action } from '@preact/signals-core';
+export { effect, untracked, action };
 /** @internal Native child previews must not subscribe an evaluating parent. */
 export declare function readBindingSnapshot<T>(read: () => T): T;
 /** @internal Failed conversion inputs must remain able to recover before mounting. */
@@ -10,6 +12,10 @@ export interface Binding<T> {
 export interface ReadonlySignal<T> {
     readonly value: T;
     readonly bind: Binding<T>;
+    /** Read the current value without tracking a dependency. */
+    peek(): T;
+    /** Run immediately and on changes; call the returned function to unsubscribe. */
+    subscribe(listener: (value: T) => void): () => void;
 }
 export interface Signal<T> extends ReadonlySignal<T> {
     value: T;

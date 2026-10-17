@@ -36,7 +36,7 @@ void main() {
       final parser = FlaxCodegenBindingParser(root);
       addTearDown(parser.dispose);
       final coreConfig = FlaxCodegenBindingConfig.read(
-        p.join(root, 'packages/flax/bindings/config.yaml'),
+        p.join(root, 'packages/flax/bindings/flax_bindings.yaml'),
       );
       final selection = config(enumSelection);
       await parser.prepare([selection, coreConfig]);

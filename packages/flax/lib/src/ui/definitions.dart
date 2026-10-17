@@ -6,6 +6,7 @@ const flaxBindingVersion = 24;
 /// Additive features supported without changing the UI protocol.
 const _supportedCapabilities = <String>{
   'native-functions',
+  'native-async-objects',
   'lazy-js-iterables',
   'callback-map-keys',
   'proxy-super-constructors',

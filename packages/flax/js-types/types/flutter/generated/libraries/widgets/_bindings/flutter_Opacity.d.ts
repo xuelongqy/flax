@@ -4,7 +4,7 @@ import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Opacity extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Opacity";
 }
-declare function _OpacityFactory(options: {
+export declare function _OpacityFactory(options: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -13,4 +13,3 @@ declare function _OpacityFactory(options: {
     child?: Bindable<Widget | null> | undefined;
 }): Opacity;
 export declare const Opacity: typeof _OpacityFactory & _FlaxInstanceType<Opacity> & _FlaxDartType<Opacity, readonly ["class", "flax.core/flutter#type:Opacity", readonly [], false]>;
-export {};

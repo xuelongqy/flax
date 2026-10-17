@@ -4,7 +4,10 @@ import {
   effect,
   batch as coreBatch,
   untracked,
+  action,
 } from '@preact/signals-core';
+
+export { effect, untracked, action };
 
 const reads: { readonly value: unknown }[] = [];
 const bindingReaders = new WeakSet<() => unknown>();
@@ -47,6 +50,10 @@ export interface Binding<T> {
 export interface ReadonlySignal<T> {
   readonly value: T;
   readonly bind: Binding<T>;
+  /** Read the current value without tracking a dependency. */
+  peek(): T;
+  /** Run immediately and on changes; call the returned function to unsubscribe. */
+  subscribe(listener: (value: T) => void): () => void;
 }
 
 export interface Signal<T> extends ReadonlySignal<T> {
@@ -107,6 +114,12 @@ export function signal<T>(value: T): Signal<T> {
     set value(next: T) {
       source.value = next;
     },
+    peek(): T {
+      return source.peek();
+    },
+    subscribe(listener: (value: T) => void): () => void {
+      return source.subscribe(listener);
+    },
     bind: binding,
   });
 }
@@ -116,6 +129,12 @@ export function computed<T>(read: () => T): ReadonlySignal<T> {
   return Object.freeze({
     get value(): T {
       return source.value;
+    },
+    peek(): T {
+      return source.peek();
+    },
+    subscribe(listener: (value: T) => void): () => void {
+      return source.subscribe(listener);
     },
     bind: bind(() => source.value),
   });

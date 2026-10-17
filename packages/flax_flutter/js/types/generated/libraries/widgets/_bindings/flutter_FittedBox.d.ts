@@ -9,7 +9,7 @@ import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface FittedBox extends WidgetDescription {
     readonly type: "flax.core/flutter#type:FittedBox";
 }
-declare function _FittedBoxFactory(options?: {
+export declare function _FittedBoxFactory(options?: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -21,4 +21,3 @@ declare function _FittedBoxFactory(options?: {
     child?: Bindable<Widget | null> | undefined;
 }): FittedBox;
 export declare const FittedBox: typeof _FittedBoxFactory & _FlaxInstanceType<FittedBox> & _FlaxDartType<FittedBox, readonly ["class", "flax.core/flutter#type:FittedBox", readonly [], false]>;
-export {};

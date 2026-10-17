@@ -13,7 +13,7 @@ import type * as upstream3 from '@flax/flutter/widgets/_bindings/flutter_BuildCo
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/cupertino/_bindings/cupertino.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
-export interface ObstructingPreferredSizeWidget extends _FlaxDartWidget, upstream0.PreferredSizeWidget { readonly __ObstructingPreferredSizeWidget: unique symbol;
+export interface ObstructingPreferredSizeWidget extends _FlaxDartWidget, Omit<upstream0.PreferredSizeWidget, typeof _flaxDartTypeValue | "preferredSize" | "shouldFullyObstruct"> { readonly __ObstructingPreferredSizeWidget: unique symbol;
 
 readonly preferredSize: upstream2.Size;
 shouldFullyObstruct(context: upstream3.BuildContext): boolean;

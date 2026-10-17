@@ -11,26 +11,27 @@ export interface AsyncSnapshot<T extends unknown | null = unknown | null> extend
     readonly __AsyncSnapshot: unique symbol;
     readonly connectionState: upstream0.ConnectionState;
     readonly data: T | null;
+    readonly requireData: T;
     readonly error: unknown | null;
     readonly stackTrace: upstream1.StackTrace | null;
     readonly hasData: boolean;
     readonly hasError: boolean;
-    readonly requireData: T;
     inState(state: upstream0.ConnectionState): AsyncSnapshot<T>;
+    toString(): string;
 }
-declare namespace _AsyncSnapshotFactory {
+export declare namespace _AsyncSnapshotFactory {
     function nothing<T extends unknown | null = unknown | null>(): AsyncSnapshot<T>;
     function nothing(): AsyncSnapshot<unknown | null>;
 }
-declare namespace _AsyncSnapshotFactory {
+export declare namespace _AsyncSnapshotFactory {
     function waiting<T extends unknown | null = unknown | null>(): AsyncSnapshot<T>;
     function waiting(): AsyncSnapshot<unknown | null>;
 }
-declare namespace _AsyncSnapshotFactory {
+export declare namespace _AsyncSnapshotFactory {
     function withData<T extends unknown | null = unknown | null>(state: upstream0.ConnectionState, data: (T | _FlaxDartOutput<T>)): AsyncSnapshot<T>;
     function withData(state: upstream0.ConnectionState, data: unknown | null): AsyncSnapshot<unknown | null>;
 }
-declare namespace _AsyncSnapshotFactory {
+export declare namespace _AsyncSnapshotFactory {
     function withError<T extends unknown | null = unknown | null>(state: upstream0.ConnectionState, error: {}, stackTrace?: Readonly<{
         "__flaxBound:dart:core::StackTrace": readonly [];
     }>): AsyncSnapshot<T>;

@@ -7,8 +7,8 @@ import type * as upstream2 from '@flax/flutter/services/_bindings/flutter_TextEd
 import '@flax/flutter/services/_bindings/flutter_TextEditingValue';
 import type * as upstream3 from '@flax/flutter/services/_bindings/flutter_TextSelection';
 import '@flax/flutter/services/_bindings/flutter_TextSelection';
-import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
-export interface TextEditingController extends upstream0.Listenable, upstream1.ValueListenable<upstream2.TextEditingValue>, Readonly<{
+import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
+export interface TextEditingController extends Omit<upstream0.Listenable, typeof _flaxDartTypeValue | "value" | "text" | "selection" | "hasListeners" | "addListener" | "removeListener" | "clear" | "clearComposing" | "dispose">, Omit<upstream1.ValueListenable<upstream2.TextEditingValue>, typeof _flaxDartTypeValue | "value" | "text" | "selection" | "hasListeners" | "addListener" | "removeListener" | "clear" | "clearComposing" | "dispose">, Readonly<{
     "__flaxBound:package:flutter/src/widgets/editable_text.dart::TextEditingController": readonly [];
 }>, Readonly<{
     "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream2.TextEditingValue];
@@ -19,6 +19,7 @@ export interface TextEditingController extends upstream0.Listenable, upstream1.V
     get value(): upstream2.TextEditingValue;
     get text(): string;
     get selection(): upstream3.TextSelection;
+    readonly hasListeners: boolean;
     addListener(listener: (() => void)): void;
     removeListener(listener: (() => void)): void;
     clear(): void;
@@ -32,13 +33,12 @@ export interface TextEditingController extends upstream0.Listenable, upstream1.V
         "__flaxBound:package:flutter/src/services/text_editing.dart::TextSelection": readonly [];
     }>);
 }
-declare function _TextEditingControllerFactory(options?: {
+export declare function _TextEditingControllerFactory(options?: {
     text?: string | null | undefined;
 }): TextEditingController;
-declare namespace _TextEditingControllerFactory {
+export declare namespace _TextEditingControllerFactory {
     function fromValue(value: Readonly<{
         "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [];
     }> | null): TextEditingController;
 }
 export declare const TextEditingController: typeof _TextEditingControllerFactory & _FlaxInstanceType<TextEditingController> & _FlaxDartType<TextEditingController, readonly ["class", "flax.core/flutter#type:TextEditingController", readonly [], false]>;
-export {};

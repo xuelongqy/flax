@@ -11,4 +11,9 @@ readonly source: upstream0.Size;
 readonly destination: upstream0.Size;
 }
 defineObject("flax.core/flutter#type:FittedSizes", ["source","destination"], [], _flaxBindingMethods("flax.core/flutter#type:FittedSizes", "object", {}, {}), []);
-export const FittedSizes: object & _FlaxInstanceType<FittedSizes> & _FlaxDartType<FittedSizes, readonly ["class", "flax.core/flutter#type:FittedSizes", readonly [], false]> = _flaxBindInstanceType<FittedSizes, object>({}, "flax.core/flutter#type:FittedSizes", ["dart:core::Object"]) as object & _FlaxInstanceType<FittedSizes> & _FlaxDartType<FittedSizes, readonly ["class", "flax.core/flutter#type:FittedSizes", readonly [], false]>;
+export function _FittedSizesFactory(source: Readonly<{ "__flaxBound:dart:ui::Size": readonly [] }>, destination: Readonly<{ "__flaxBound:dart:ui::Size": readonly [] }>): FittedSizes {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/flutter#type:FittedSizes", "", [{"name":"source","required":true,"positional":true},{"name":"destination","required":true,"positional":true}], [source, destination], {}) as FittedSizes;
+}
+export const FittedSizes: typeof _FittedSizesFactory & _FlaxInstanceType<FittedSizes> & _FlaxDartType<FittedSizes, readonly ["class", "flax.core/flutter#type:FittedSizes", readonly [], false]> = _flaxBindInstanceType<FittedSizes, typeof _FittedSizesFactory>(_FittedSizesFactory, "flax.core/flutter#type:FittedSizes", ["dart:core::Object"]) as typeof _FittedSizesFactory & _FlaxInstanceType<FittedSizes> & _FlaxDartType<FittedSizes, readonly ["class", "flax.core/flutter#type:FittedSizes", readonly [], false]>;

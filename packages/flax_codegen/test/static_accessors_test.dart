@@ -184,7 +184,7 @@ void main() {
     final parser = FlaxCodegenBindingParser(root.path);
     addTearDown(parser.dispose);
     final coreConfig = FlaxCodegenBindingConfig.read(
-      p.join(root.path, 'packages/flax/bindings/config.yaml'),
+      p.join(root.path, 'packages/flax/bindings/flax_bindings.yaml'),
     );
     final seed = FlaxCodegenBindingConfig(
       'static_accessors',

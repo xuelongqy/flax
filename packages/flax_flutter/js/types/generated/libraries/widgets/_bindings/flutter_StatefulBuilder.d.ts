@@ -6,11 +6,10 @@ import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface StatefulBuilder extends WidgetDescription {
     readonly type: "flax.core/flutter#type:StatefulBuilder";
 }
-declare function _StatefulBuilderFactory(options: {
+export declare function _StatefulBuilderFactory(options: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
     builder: Bindable<((context: upstream1.BuildContext, setState: ((fn: (() => void)) => void)) => Widget)>;
 }): StatefulBuilder;
 export declare const StatefulBuilder: typeof _StatefulBuilderFactory & _FlaxInstanceType<StatefulBuilder> & _FlaxDartType<StatefulBuilder, readonly ["class", "flax.core/flutter#type:StatefulBuilder", readonly [], false]>;
-export {};

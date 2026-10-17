@@ -6,8 +6,9 @@ dependency tracking and rendering. There is no JS theme store or style mirror.
 
 ## Selected APIs
 
-The exact selections are in the [core rules](../../packages/flax/bindings/config.yaml)
-and [Material rules](../../packages/flax_material_ui/bindings/config.yaml).
+The exact selections are in the
+[core rules](../../packages/flax/bindings/flax_bindings.yaml) and
+[Material rules](../../packages/flax_material_ui/bindings/flax_bindings.yaml).
 
 | Module   | Selected surface                                                                                                                                                                                                                                                                      |
 | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

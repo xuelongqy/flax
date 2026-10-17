@@ -49,6 +49,7 @@ export const bindingVersion = 24;
 
 const supportedBindingCapabilities = new Set([
   'native-functions',
+  'native-async-objects',
   'lazy-js-iterables',
   'callback-map-keys',
   'proxy-super-constructors',
@@ -1388,6 +1389,40 @@ export function bindInstanceType<T, V extends object>(
 ): V & FlaxInstanceType<T> {
   if (!instanceParents.has(type))
     instanceParents.set(type, Object.freeze([...parents]));
+  if (
+    parents.some(
+      (parent) => parent === 'dart:async::Future' || futureObjectTypes.has(parent),
+    )
+  ) {
+    futureObjectTypes.add(type);
+    const prototype = Object.getOwnPropertyDescriptor(value, 'prototype')?.value as
+      object | undefined;
+    if (typeof value === 'function' && prototype) {
+      const nativeThen = Object.getOwnPropertyDescriptor(prototype, 'then')?.value;
+      if (typeof nativeThen === 'function' && !futureObjectPrototypes.has(prototype)) {
+        Object.defineProperties(prototype, futureMethods(nativeThen));
+        futureObjectPrototypes.add(prototype);
+      }
+    }
+  }
+  if (
+    parents.some(
+      (parent) =>
+        parent === 'dart:async::Stream' ||
+        streamTypes.has(parent) ||
+        streamObjectTypes.has(parent),
+    )
+  ) {
+    streamObjectTypes.add(type);
+    const prototype = Object.getOwnPropertyDescriptor(value, 'prototype')?.value;
+    if (typeof value === 'function' && prototype) {
+      Object.defineProperty(prototype, Symbol.asyncIterator, {
+        configurable: true,
+        writable: true,
+        value: streamObjectIterator,
+      });
+    }
+  }
   Object.defineProperty(value, Symbol.hasInstance, {
     value(this: object, candidate: unknown): boolean {
       // JS subclasses inherit this function, but keep their own prototype test.
@@ -2352,6 +2387,13 @@ export function defineProxyBase(
   definition: ProxyDefinition,
   nativeGetters: readonly string[] = [],
 ): void {
+  // Capture class identity before a Dart business getter can replace constructor.
+  const flaxConstructor = Object.getOwnPropertyDescriptor(
+    prototype,
+    'constructor',
+  )?.value;
+  if (typeof flaxConstructor !== 'function')
+    throw new TypeError('Expected a proxy class prototype');
   if (definition.nativeWidget) componentBases.set(prototype, false);
   installMembers(prototype, {}, nativeGetters, [], (receiver, member, args) =>
     callObject(receiver, definition.type, 'get', member.slice(4), args),
@@ -2385,7 +2427,7 @@ export function defineProxyBase(
     if (typeof value === 'function') proxySuperFunctions.add(value);
   }
   proxyLayouts.set(definition, { prototype });
-  proxyDefinitions.set(prototype.constructor, definition);
+  proxyDefinitions.set(flaxConstructor, definition);
   if (objectTypes.get(definition.type)?.collectionKind !== undefined) {
     const selected = new Set([
       ...nativeGetters,
@@ -2551,6 +2593,68 @@ export function invokeObjectStatic(type: string, member: string): unknown {
 }
 
 const objectPrototypes = new Map<string, object>();
+const futureObjectTypes = new Set<string>();
+const futureObjectPrototypes = new WeakSet<object>();
+const futureObjectPromises = new WeakMap<object, Promise<unknown>>();
+const streamObjectTypes = new Set<string>();
+const objectStreams = new WeakMap<object, AsyncIterable<unknown>>();
+
+function streamObjectIterator(this: object): AsyncIterator<unknown> {
+  let stream = objectStreams.get(this);
+  if (!stream) {
+    stream = invokeOperation('reference', '', 0, 'stream', '', [
+      this,
+    ]) as AsyncIterable<unknown>;
+    objectStreams.set(this, stream);
+  }
+  return stream[Symbol.asyncIterator]();
+}
+
+function futureObjectPromise(receiver: object, nativeThen: Function): Promise<unknown> {
+  let promise = futureObjectPromises.get(receiver);
+  if (!promise) {
+    promise = nativeApply(nativeThen, receiver, [
+      (value: unknown) => value,
+    ]) as Promise<unknown>;
+    futureObjectPromises.set(receiver, promise);
+  }
+  return promise;
+}
+
+function futureMethods(nativeThen: Function): PropertyDescriptorMap {
+  const then = function (this: object, onValue?: unknown, onError?: unknown) {
+    const context = arguments[2] as { super?: Function } | undefined;
+    if (typeof context?.super === 'function')
+      return nativeApply(context.super, undefined, [onValue, onError]);
+    // Dart callers retain named options; JS Promise consumers pass two callbacks.
+    if (onError !== null && typeof onError === 'object')
+      return nativeApply(nativeThen, this, Array.from(arguments));
+    return futureObjectPromise(this, nativeThen).then(
+      onValue as never,
+      onError as never,
+    );
+  };
+  proxySuperFunctions.add(then);
+  return {
+    then: { configurable: true, writable: true, value: then },
+    catch: {
+      configurable: true,
+      writable: true,
+      value(this: object, onError: unknown) {
+        return futureObjectPromise(this, nativeThen).catch(onError as never);
+      },
+    },
+    finally: {
+      configurable: true,
+      writable: true,
+      value(this: object, onFinally: unknown) {
+        return futureObjectPromise(this, nativeThen).finally(onFinally as never);
+      },
+    },
+    [Symbol.toStringTag]: { value: 'Promise' },
+  };
+}
+
 function objectPrototype(type: string): object {
   const base = objectViewTypes.get(type);
   if (base) return objectPrototype(base);
@@ -2581,7 +2685,9 @@ function objectPrototype(type: string): object {
     });
   }
   for (const [name, method] of Object.entries(definition.methods)) {
-    Object.defineProperty(value, name, { value: method });
+    if (name === 'then' && futureObjectTypes.has(type))
+      Object.defineProperties(value, futureMethods(method));
+    else Object.defineProperty(value, name, { value: method });
   }
   if (iterableObjectTypes.has(type)) {
     Object.defineProperty(value, Symbol.iterator, {
@@ -2591,6 +2697,9 @@ function objectPrototype(type: string): object {
         yield* copy;
       },
     });
+  }
+  if (streamObjectTypes.has(type)) {
+    Object.defineProperty(value, Symbol.asyncIterator, { value: streamObjectIterator });
   }
   Object.freeze(value);
   objectPrototypes.set(type, value);

@@ -13,7 +13,7 @@ void main() {
     final source = FlaxCodegenBindingParser(root);
     addTearDown(source.dispose);
     final coreConfig = FlaxCodegenBindingConfig.read(
-      p.join(root, 'packages/flax/bindings/config.yaml'),
+      p.join(root, 'packages/flax/bindings/flax_bindings.yaml'),
     );
     final stateConfig = FlaxCodegenBindingConfig(
       'components',

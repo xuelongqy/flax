@@ -4,12 +4,12 @@ import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface IgnorePointer extends WidgetDescription {
     readonly type: "flax.core/flutter#type:IgnorePointer";
 }
-declare function _IgnorePointerFactory(options?: {
+export declare function _IgnorePointerFactory(options?: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
     ignoring?: Bindable<boolean> | undefined;
+    ignoringSemantics?: Bindable<boolean | null> | undefined;
     child?: Bindable<Widget | null> | undefined;
 }): IgnorePointer;
 export declare const IgnorePointer: typeof _IgnorePointerFactory & _FlaxInstanceType<IgnorePointer> & _FlaxDartType<IgnorePointer, readonly ["class", "flax.core/flutter#type:IgnorePointer", readonly [], false]>;
-export {};

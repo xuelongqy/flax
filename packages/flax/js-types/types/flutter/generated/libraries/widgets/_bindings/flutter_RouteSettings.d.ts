@@ -6,10 +6,10 @@ export interface RouteSettings extends Readonly<{
     readonly __RouteSettings: unique symbol;
     readonly name: string | null;
     readonly arguments: unknown | null;
+    toString(): string;
 }
-declare function _RouteSettingsFactory(options?: {
+export declare function _RouteSettingsFactory(options?: {
     name?: string | null | undefined;
     arguments?: unknown | null | undefined;
 }): RouteSettings;
 export declare const RouteSettings: typeof _RouteSettingsFactory & _FlaxInstanceType<RouteSettings> & _FlaxDartType<RouteSettings, readonly ["class", "flax.core/flutter#type:RouteSettings", readonly [], false]>;
-export {};

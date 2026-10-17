@@ -188,6 +188,27 @@ contains binding metadata and provider context, never a business-instance root.
 Top-level and static calls use the same table with receiver zero. Conversion, ownership,
 provider visibility and foreign-receiver checks remain at the Dart boundary.
 
+Public `@protected` members participate in the same selection, calls and overrides.
+Generated adapters isolate protected-use and visible-for-overriding diagnostics;
+private, `@internal` and `@visibleForTesting` members remain excluded from automatic
+selection. Disposer and listener metadata is normalized with the selected members before
+comparing providers. Deprecated public APIs remain available with notices; generated
+upstream calls isolate their deprecation diagnostic without changing application
+analysis.
+
+Future subclasses use one shared Promise adapter for `then`, `catch`, `finally`, `await`
+and Promise adoption. Dart named options and generic proxy super calls keep their Dart
+semantics. Matching inherited Stream signatures reuse the parent's TypeScript member
+type; async iteration projects the real Stream through the existing typed subscription
+path. Weak object-keyed caches do not turn the bridge registry into a business root.
+Session close cancels bridge subscriptions as usual. These object bindings require the
+additive `native-async-objects` capability; protocol and ABI versions are unchanged.
+Proxy registration captures its class identity before installing business accessors, so
+a legal Dart member named `constructor` cannot execute during module import. Generic
+proxy callback metadata is built by top-level typed factories. Session caches therefore
+retain conversion signatures without capturing the proxy receiver or its per-call
+`super` closure.
+
 Ordinary Widget instance APIs use this same object view and member dispatch. Automatic
 selection includes convertible getters and methods from the effective Dart hierarchy,
 including computed getters, non-virtual methods and final classes. A factory with an
@@ -264,6 +285,11 @@ classes:
       format: [prefix, separator]
 ```
 
+`values` and returned constants preserve Dart's complete order and `index`, including
+private constants. Private constants have no named JS export; generated Dart reads them
+through the public `values` list. A module containing such constants uses a `final`
+binding descriptor because Dart list indexing is not a constant expression.
+
 Automatic selection discovers enhanced enum fields, accessors, methods, static members,
 named public factories and operators. Factories must return an existing constant;
 unnamed factories, generative constructors, JS construction, subclassing and proxies are
@@ -308,16 +334,31 @@ See [generator tests](../../packages/flax_codegen/test/enum_test.dart) and
 
 ## Selection and generation
 
-The canonical selections are [Flutter](../../packages/flax/bindings/config.yaml) and
-[Material](../../packages/flax_material_ui/bindings/config.yaml). They select
-constructors, members and parameters without duplicating signatures.
+The canonical selections are [Flutter](../../packages/flax/bindings/flax_bindings.yaml)
+and [Material](../../packages/flax_material_ui/bindings/flax_bindings.yaml). Lists under
+`classes`, `functions` and `extensions` define a curated declaration scope; the existing
+automatic selector supplies ordinary constructors, members and parameters. Inline
+`overrides` retains only adapter, proxy/mixin, callback and lifecycle policy or
+deliberate member restrictions. Each overridden field replaces its inferred value.
+Mapping forms remain precise member allowlists, without duplicating Dart signatures.
 `additionalLibraries` merges public exports, deduplicating the actual declaration and
 rejecting conflicting names. Declaration identities use their originating library, while
 generated imports use a public library exposing them. No private SDK imports or
 reflection are generated. `proposeSelection` can suggest a bindable subset and skip
 unsupported members without aborting the type, including already-adapted pool identities
 such as Core `Duration` used from a library that does not re-export it. Official
-`generate` input remains an explicit fail-closed allowlist.
+declaration lists keep ordinary factory entry points unless an override requests a
+proxy. Inferred signatures use selected/sibling/provider runtime types; unsupported
+members are reported rather than expanding the configured scope. Explicit names and
+overrides remain fail-closed, including complete signatures required for proxy
+overrides.
+
+Rendering-only Widgets explicitly clear instance getter/setter/method selections to keep
+reactive constructor descriptions. Production configs share that mapping with a YAML
+anchor while inferring constructors and static members. Native Widget views expose
+instance APIs on real Dart objects and use fixed constructor arguments. Simplifying a
+config must not silently switch between these delivery models. Fixed generic Widget
+owners, callback snapshots and State mixins also remain explicit.
 
 ```sh
 dart run melos run bindings:generate
@@ -338,17 +379,21 @@ dart run flax_codegen generate --config <direct-yaml>
 ```
 
 Official selection files carry `format: 2` and live as direct children of package
-`bindings/`. Packages with `bindings` capability keep package metadata format 2 and set
-`bindingNamespace` in `flax_package.yaml`. Generated `bindings/manifest.json` uses
-Manifest `formatVersion: 24`; the reader accepts format 24 only. Retired Route/Page
-categories and Page adapter state are excluded from the semantic model; selection input
-retains actionable migration diagnostics. The shared Core installer validates generated
-literal module/protocol/capability tuples. Navigation metadata contains only
-`route.builders`; retired Context/root-Navigator roles are rejected. Regenerate provider
-and consumer manifests together. The manifest preserves generic declarations and their
-defaults through dependency projection, without method type-tuple catalogs; separate
-read/write super requirements remain in `proxy.mustCallSuperAccessors`. The generator
-has no reader or normalization path for other binding selection or Manifest formats. See
+`bindings/`, using `flax_bindings.yaml` and `flax_components.yaml` by default. Both the
+package CLI and workspace discovery include `flax_*.yaml` / `flax_*.yml`; they ignore
+unrelated YAML and the reserved `flax_overrides` file. An explicit `--config` can use a
+custom direct-child filename. Packages with `bindings` capability keep package metadata
+format 2 and set `bindingNamespace` in `flax_package.yaml`. Generated
+`bindings/manifest.json` uses Manifest `formatVersion: 24`; the reader accepts format 24
+only. Retired Route/Page categories and Page adapter state are excluded from the
+semantic model; selection input retains actionable migration diagnostics. The shared
+Core installer validates generated literal module/protocol/capability tuples. Navigation
+metadata contains only `route.builders`; retired Context/root-Navigator roles are
+rejected. Regenerate provider and consumer manifests together. The manifest preserves
+generic declarations and their defaults through dependency projection, without method
+type-tuple catalogs; separate read/write super requirements remain in
+`proxy.mustCallSuperAccessors`. The generator has no reader or normalization path for
+other binding selection or Manifest formats. See
 [ADR 0035](../decisions/0035-generic-state-variants-and-protocol-21.md) and
 [External Binding Verification](external-binding-verification.md).
 
@@ -363,6 +408,13 @@ remain local. No selection enlarges an imported provider. See
 Single-file generated consumers import public provider libraries. Split implementations
 keep their private declaration imports inside source preparation; business bundles never
 import private binding chunks directly.
+
+Dependency type resolution uses the originating declaration identity. Equal short names
+from different libraries remain distinct, with prefixed Dart imports and TypeScript
+provider namespaces. A valid local export takes precedence over a dependency short-name
+fallback; a genuinely ambiguous Dart public barrel still fails. Full SDK generation must
+declare and build its provider graph in dependency order, beginning with `dart:ui`
+before Foundation. This avoids creating sparse duplicate owners for upstream types.
 
 ## Public libraries and top-level readonly declarations
 
@@ -1227,7 +1279,7 @@ conversion types and callback signatures; nullable containers share the non-null
 
 ## Flutter State variants
 
-`packages/flax/bindings/components.yaml` selects the exact Flutter `State<T>`
+`packages/flax/bindings/flax_components.yaml` selects the exact Flutter `State<T>`
 declaration with `kind: state`. Codegen derives the component lifecycle surface and
 emits a real Flutter State host. Other State-derived classes remain ordinary borrowed
 references.

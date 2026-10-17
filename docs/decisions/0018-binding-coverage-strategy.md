@@ -43,7 +43,7 @@ When estimating protocol ceilings or prioritizing selection:
 - Use `package:material_ui/material_ui.dart` for Material, not
   `package:flutter/material.dart`.
 - Use `package:flutter/widgets.dart` plus the same `additionalLibraries` as
-  `packages/flax/bindings/config.yaml` for the widgets study.
+  `packages/flax/bindings/flax_bindings.yaml` for the widgets study.
 - Parameter and field dependency types outside that denominator may appear in reason
   buckets; they do **not** enter the primary denominator.
 

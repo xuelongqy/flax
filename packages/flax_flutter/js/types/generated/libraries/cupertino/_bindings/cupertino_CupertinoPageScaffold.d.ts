@@ -7,7 +7,7 @@ import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface CupertinoPageScaffold extends WidgetDescription {
     readonly type: "flax.cupertino/cupertino#type:CupertinoPageScaffold";
 }
-declare function _CupertinoPageScaffoldFactory(options: {
+export declare function _CupertinoPageScaffoldFactory(options: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -19,4 +19,3 @@ declare function _CupertinoPageScaffoldFactory(options: {
     child: Bindable<Widget>;
 }): CupertinoPageScaffold;
 export declare const CupertinoPageScaffold: typeof _CupertinoPageScaffoldFactory & _FlaxInstanceType<CupertinoPageScaffold> & _FlaxDartType<CupertinoPageScaffold, readonly ["class", "flax.cupertino/cupertino#type:CupertinoPageScaffold", readonly [], false]>;
-export {};

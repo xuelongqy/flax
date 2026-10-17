@@ -1,18 +1,31 @@
 import 'dart:async';
 import 'dart:collection';
+import 'dart:typed_data';
+
+export 'dart:typed_data' show ByteData, Uint8List, Float64List;
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter/foundation.dart'
-    show internal, protected, visibleForTesting;
+    show
+        immutable,
+        internal,
+        mustCallSuper,
+        protected,
+        visibleForOverriding,
+        visibleForTesting;
 
 typedef LabelBuilder = String Function(int value);
 
-enum AutoMode { compact, expanded }
+enum AutoMode { _unknown, compact, expanded }
+
+AutoMode autoUnknownMode() => AutoMode._unknown;
 
 const autoLimit = 4;
 int autoMutable = 1;
 
 String autoGreeting(String name) => 'Hello $name';
+
+ByteData autoBytes(Uint8List value) => ByteData.sublistView(value);
 
 T autoIdentity<T>(T value) => value;
 
@@ -197,10 +210,17 @@ class AutoInternal {
   AutoInternal();
 }
 
+class AutoInternalParent {
+  AutoInternal get hidden => AutoInternal();
+}
+
+class AutoInternalChild extends AutoInternalParent {}
+
 AutoInternal createInternal() => AutoInternal();
 
+@immutable
 class AutoVisible {
-  AutoVisible();
+  const AutoVisible();
 
   String get label => 'public';
 
@@ -208,7 +228,49 @@ class AutoVisible {
   String get testingLabel => 'test';
 
   @protected
+  @visibleForOverriding
   void protectedAction() {}
+
+  @protected
+  @mustCallSuper
+  void dispose() {}
+}
+
+class AutoTestingDisposer {
+  AutoTestingDisposer();
+
+  String get label => 'public';
+
+  @visibleForTesting
+  void dispose() {}
+}
+
+abstract class AutoSortKey {
+  AutoSortKey();
+  List<double> get storage;
+  int compare(covariant AutoSortKey other);
+}
+
+mixin AutoSortLabel {
+  String get label => 'sorted';
+}
+
+class AutoOrdinalKey extends AutoSortKey with AutoSortLabel {
+  @override
+  Float64List get storage => Float64List(2);
+  @override
+  int compare(AutoOrdinalKey other) => 0;
+}
+
+sealed class AutoMarker {}
+
+class AutoMarkerValue extends AutoMarker {}
+
+T autoMarkerIdentity<T extends AutoMarker>(T value) => value;
+
+class AutoMarkerBag<T extends AutoMarker> {
+  AutoMarkerBag(this.values);
+  final List<T> values;
 }
 
 Widget autoBuild(Widget Function(BuildContext) builder) =>
@@ -225,6 +287,7 @@ class AutoContextBox {
 
   BuildContext context;
   BuildContext? optional;
+  AutoStore<String>? store;
   State? selectedState;
   Widget? child;
   static State? sharedState;

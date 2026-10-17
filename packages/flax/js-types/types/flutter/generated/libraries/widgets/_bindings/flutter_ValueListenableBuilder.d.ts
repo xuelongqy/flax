@@ -7,7 +7,7 @@ import { type FlaxDartSignature as _FlaxDartSignature, type FlaxDartType as _Fla
 export interface ValueListenableBuilder<T extends unknown | null = unknown | null> extends WidgetDescription {
     readonly type: "flax.core/flutter#type:ValueListenableBuilder";
 }
-declare function _ValueListenableBuilderFactory<T extends unknown | null = unknown | null>(options: {
+export declare function _ValueListenableBuilderFactory<T extends unknown | null = unknown | null>(options: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;

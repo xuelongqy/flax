@@ -149,10 +149,10 @@ void main() {
         dartTypesSelection,
       );
       final coreConfig = FlaxCodegenBindingConfig.read(
-        p.join(root, 'packages/flax/bindings/config.yaml'),
+        p.join(root, 'packages/flax/bindings/flax_bindings.yaml'),
       );
       final componentsSource = FlaxCodegenBindingConfig.read(
-        p.join(root, 'packages/flax/bindings/components.yaml'),
+        p.join(root, 'packages/flax/bindings/flax_components.yaml'),
       );
       final componentsConfig = FlaxCodegenBindingConfig(
         componentsSource.name,

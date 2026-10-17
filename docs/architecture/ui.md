@@ -44,9 +44,60 @@ runApp(
 `signal` exposes mutable `.value` and stable `.bind`. `computed` exposes readonly
 `.value` and `.bind`. `bind(fn)` describes an expression, and `batch(fn)` batches JS
 writes. These wrap the unmodified `@preact/signals-core` dependency. Reading `.value`
-alone takes a snapshot. Every mounted dynamic parameter owns its own observer;
-constructing descriptors does not subscribe them. Bind the whole EdgeInsets value to
-change padding. Nullable callbacks, `child`, and `children` can all be bound.
+inside `computed`, `bind`, or `effect` tracks dependencies; an ordinary read outside a
+reactive callback takes a snapshot. Every mounted dynamic parameter owns its own
+observer; constructing descriptors does not subscribe them. Bind the whole EdgeInsets
+value to change padding. Nullable callbacks, `child`, and `children` can all be bound.
+
+## Business subscriptions
+
+`@flax/core` also exports `effect`, `untracked`, and `action` from the same signals-core
+instance used by Flax bindings. Both mutable and computed signals expose `peek()` and
+`subscribe(listener)`. These APIs need no Widget, mounted view, or `__flaxInvalidate`
+host function. A signal can live in a shared business module; consumers in the same JS
+runtime import that instance. Separate session runtimes do not share JS signal objects.
+
+```javascript
+import { signal, effect } from '@flax/core';
+
+const count = signal(0);
+const stop = effect(() => {
+  console.log(count.value);
+  return () => console.log('Cleanup before the next run or stop');
+});
+
+count.value = 1; // Cleans up the previous run, then runs synchronously with 1.
+stop(); // Unsubscribes and runs the final cleanup. Safe to call again.
+count.value = 2; // This effect no longer runs.
+```
+
+`effect` runs immediately, tracks all signal reads in its synchronous callback, and
+reruns when dependencies change. Its optional returned cleanup runs before the next
+execution and when stopped. `signal.subscribe(listener)` also calls the listener
+immediately and returns an unsubscribe function, but observes only that signal: reads
+inside the listener do not add dependencies. Computed subscriptions notify only when
+their result changes. Both forms follow `batch` synchronously, independently of Flutter
+frame scheduling. Keep effect callbacks and cleanup synchronous; reads after an async
+boundary are not tracked.
+
+The caller owns business subscriptions and must call their stop functions when the
+owning service, page, or component ends. Widget unmount only stops Flax-owned property
+bindings; it does not stop independently created effects. A named page factory can
+register `lifecycle.onDispose(stop)`. A custom State can store the stop function and
+call it from `dispose` before `super.dispose()`. Runtime disposal ends JS execution but
+does not replace explicit cleanup of resources acquired by an effect.
+
+`peek()` reads one signal without tracking. `untracked(fn)` does the same for a block
+and returns its result. `action(fn)` returns a function that batches synchronous writes
+and runs without tracking, preserving its arguments, return value, and `this` receiver.
+Use `batch(fn)` for an immediate transaction and `action(fn)` for a reusable operation.
+These APIs retain upstream exception behavior; they do not roll back writes or route
+business errors through the Widget host's `onError` callback.
+
+Upstream `createModel` and concrete `Signal`, `Computed`, and `Effect` classes are not
+public Flax APIs. `createModel` recursively rewrites model objects and expects native
+signal branding, which is incompatible with Flax's frozen signal wrappers. Plain
+business objects with explicit stop functions need no additional model abstraction.
 
 ## Frame and Element behavior
 

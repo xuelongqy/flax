@@ -157,7 +157,8 @@ void main() {
         isA<FlaxCodegenException>().having(
           (error) => error.diagnostics.single.message,
           'ambiguity',
-          'Ambiguous imported owner; bind this declaration locally.',
+          'Ambiguous imported owner; bind this declaration locally. '
+              '${money.originatingUri}::${money.name}',
         ),
       ),
     );
@@ -203,7 +204,7 @@ void main() {
               6,
               3,
               '/classes/App/State',
-              'Missing owner.',
+              'Missing owner. ${state.originatingUri}::${state.name}',
             ),
           ],
         ),

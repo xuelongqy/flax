@@ -12,7 +12,7 @@ void main() {
       final coreParser = FlaxCodegenBindingParser(root);
       addTearDown(coreParser.dispose);
       final config = FlaxCodegenBindingConfig.read(
-        p.join(root, 'packages/flax/bindings/components.yaml'),
+        p.join(root, 'packages/flax/bindings/flax_components.yaml'),
       );
       await coreParser.prepare([config]);
       final core = await coreParser.parse(config);

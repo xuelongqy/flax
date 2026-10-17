@@ -37,8 +37,12 @@ test('ListView descriptors retain callbacks without running them and accept boun
     null,
   );
   assert.throws(() => ListView.builder({}), /Missing required/);
+  assert.equal(
+    ListView.builder({ itemBuilder: builder, prototypeItem: null }).args.prototypeItem,
+    null,
+  );
   assert.throws(
-    () => ListView.builder({ itemBuilder: builder, prototypeItem: null }),
+    () => ListView.builder({ itemBuilder: builder, unknown: null }),
     /Unsupported/,
   );
 });

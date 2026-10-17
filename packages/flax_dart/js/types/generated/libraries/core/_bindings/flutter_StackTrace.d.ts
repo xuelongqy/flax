@@ -6,9 +6,13 @@ export interface StackTrace extends Readonly<{
     readonly __StackTrace: unique symbol;
     toString(): string;
 }
-declare const _StackTraceFactory: {
-    readonly current: StackTrace;
-    readonly empty: StackTrace;
-};
+export declare namespace _StackTraceFactory {
+    function fromString(stackTraceString: string): StackTrace;
+}
+export declare namespace _StackTraceFactory {
+    const empty: StackTrace;
+}
+export declare namespace _StackTraceFactory {
+    const current: StackTrace;
+}
 export declare const StackTrace: typeof _StackTraceFactory & _FlaxInstanceType<StackTrace> & _FlaxDartType<StackTrace, readonly ["class", "flax.core/flutter#type:StackTrace", readonly [], false]>;
-export {};

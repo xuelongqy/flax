@@ -5,7 +5,7 @@ import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Align extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Align";
 }
-declare function _AlignFactory(options?: {
+export declare function _AlignFactory(options?: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -17,4 +17,3 @@ declare function _AlignFactory(options?: {
     child?: Bindable<Widget | null> | undefined;
 }): Align;
 export declare const Align: typeof _AlignFactory & _FlaxInstanceType<Align> & _FlaxDartType<Align, readonly ["class", "flax.core/flutter#type:Align", readonly [], false]>;
-export {};

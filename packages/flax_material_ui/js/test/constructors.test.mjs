@@ -4,6 +4,7 @@ import { signal } from '@flax/core';
 import { BorderRadius, Clip, Spacer, Text, TextStyle } from '@flax/flutter/widgets';
 import { Color } from '@flax/flutter/services';
 import { ValueKey } from '@flax/flutter/foundation';
+import { Duration } from '@flax/dart/core';
 import {
   InkWell,
   LinearProgressIndicator,
@@ -65,7 +66,11 @@ test('surface, ink and progress retain Core values, bindings and native defaults
   );
   assert.equal(Spacer({ flex: signal(2).bind }).args.flex.kind, 'binding');
   assert.throws(() => Spacer({ unknown: 1 }), /Unsupported/);
-  assert.throws(() => Material({ animationDuration: null }), /Unsupported/);
-  assert.throws(() => InkWell({ onDoubleTap: onTap }), /Unsupported/);
+  const duration = Duration({ milliseconds: 50 });
+  assert.equal(
+    Material({ animationDuration: duration }).args.animationDuration,
+    duration,
+  );
+  assert.equal(InkWell({ onDoubleTap: onTap }).args.onDoubleTap, onTap);
   assert.throws(() => LinearProgressIndicator({ valueColor: color }), /Unsupported/);
 });

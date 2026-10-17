@@ -6,15 +6,16 @@ import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Form extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Form";
 }
-declare function _FormFactory(options: {
+export declare function _FormFactory(options: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
     child: Bindable<Widget>;
     canPop?: Bindable<boolean | null> | undefined;
+    onPopInvoked?: Bindable<((didPop: boolean) => void) | null> | undefined;
     onPopInvokedWithResult?: Bindable<((didPop: boolean, result: NavigationData | null) => void) | null> | undefined;
+    onWillPop?: Bindable<(() => Promise<boolean>) | null> | undefined;
     onChanged?: Bindable<(() => void) | null> | undefined;
     autovalidateMode?: Bindable<upstream1.AutovalidateMode | null> | undefined;
 }): Form;
 export declare const Form: typeof _FormFactory & _FlaxInstanceType<Form> & _FlaxDartType<Form, readonly ["class", "flax.core/flutter#type:Form", readonly [], false]>;
-export {};

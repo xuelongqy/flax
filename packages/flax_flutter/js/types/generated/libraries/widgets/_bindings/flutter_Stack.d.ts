@@ -11,7 +11,7 @@ import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Stack extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Stack";
 }
-declare function _StackFactory(options?: {
+export declare function _StackFactory(options?: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -24,4 +24,3 @@ declare function _StackFactory(options?: {
     children?: Bindable<DartListInput<Widget, Widget>> | undefined;
 }): Stack;
 export declare const Stack: typeof _StackFactory & _FlaxInstanceType<Stack> & _FlaxDartType<Stack, readonly ["class", "flax.core/flutter#type:Stack", readonly [], false]>;
-export {};

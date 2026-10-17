@@ -23,6 +23,12 @@ package for host preparation and bundler resolution.
 
 This package is private while Flax is under development.
 
+Signals support Widget-independent business subscriptions through `effect` and
+`signal.subscribe(listener)`. Both return a stop function owned by the caller. Signals
+also expose `peek()`; `untracked` and `action` reuse the same signals-core instance. See
+[subscription cleanup](../../../docs/architecture/ui.md#business-subscriptions) for
+scheduling, ownership, and examples.
+
 Generic Dart class exports provide `Bag.$type(dartTypes.string)` to select a real
 `Bag<String>` owner. The returned handle keeps its default/named constructors and is
 also usable with `asDart` and nested type tokens. All exports share one registered

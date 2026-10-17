@@ -41,6 +41,13 @@ bool _opaqueDefault(DartObject? value, FlaxCodegenTypeRef type) =>
 String identity(InterfaceElement element) =>
     '${element.library.uri}::${element.name}';
 
+DartType _publicStaticGetterType(InterfaceType owner, DartType returned) =>
+    returned is InterfaceType &&
+        returned.element.isPrivate &&
+        owner.element.library.typeSystem.isSubtypeOf(returned, owner)
+    ? owner
+    : returned;
+
 bool _hasOpenTypeParameter(DartType type) => switch (type) {
   TypeParameterType() => true,
   InterfaceType() => type.typeArguments.any(_hasOpenTypeParameter),
@@ -558,10 +565,13 @@ class FlaxCodegenBindingParser {
 
   /// Dependency Manifest `typeLibraries` name → URI, filled by [prepareModules].
   final _dependencyTypeLibraries = <String, String>{};
+  final _dependencyTypeCarriers = <String, Set<String>>{};
 
   /// Lazily resolved public elements for [_dependencyTypeLibraries].
   final _dependencyExports = <String, Element>{};
   final _dependencyOwners = <String, FlaxCodegenModuleModel>{};
+  final _dependencyFunctions =
+      <String, (FlaxCodegenModuleModel, FlaxCodegenFunctionModel)>{};
   final _dependencyTypeOwners = <String, FlaxCodegenModuleModel>{};
   final _privateDependencyExtensions = <String>{};
   final _dependencyExtensions = <String, FlaxCodegenExtensionModel>{};
@@ -721,7 +731,9 @@ class FlaxCodegenBindingParser {
 
   Future<void> _ensureDependencyExports() async {
     if (_dependencyExportsResolved) return;
-    final uris = _dependencyTypeLibraries.values.toSet().toList()..sort();
+    final uris =
+        _dependencyTypeCarriers.values.expand((uris) => uris).toSet().toList()
+          ..sort();
     final libraries = <String, LibraryElement>{};
     final session = _contexts.contexts.first.currentSession;
     for (final uri in uris) {
@@ -733,25 +745,23 @@ class FlaxCodegenBindingParser {
     }
     final names = _dependencyTypeLibraries.keys.toList()..sort();
     for (final name in names) {
-      final uri = _dependencyTypeLibraries[name]!;
-      final namespace = libraries[uri]!.exportNamespace.definedNames2;
-      final element = namespace[name] ?? namespace['$name='];
-      if (element == null) {
-        throw StateError('Unknown dependency type: $name in $uri');
+      final candidates = <Element, String>{};
+      for (final uri in _dependencyTypeCarriers[name]!.toList()..sort()) {
+        final namespace = libraries[uri]!.exportNamespace.definedNames2;
+        final element = namespace[name] ?? namespace['$name='];
+        if (element == null) {
+          throw StateError('Unknown dependency type: $name in $uri');
+        }
+        candidates.putIfAbsent(element, () => uri);
+        if (element is InterfaceElement) {
+          _elementsByIdentity[identity(element)] = element;
+          _libraryByIdentity.putIfAbsent(identity(element), () => uri);
+        }
       }
-      if (_dependencyExports[name] case final previous?
-          when previous != element) {
-        throw StateError('Conflicting dependency type: $name');
-      }
-      if (_dependencyExportLibraries[name] case final previous?
-          when previous != uri) {
-        throw StateError('Conflicting dependency type library: $name');
-      }
-      _dependencyExports[name] = element;
-      _dependencyExportLibraries[name] = uri;
-      if (element is InterfaceElement) {
-        _elementsByIdentity[identity(element)] = element;
-        _libraryByIdentity.putIfAbsent(identity(element), () => uri);
+      // Ambiguous short names stay addressable by their source identity.
+      if (candidates.length == 1) {
+        _dependencyExports[name] = candidates.keys.single;
+        _dependencyExportLibraries[name] = candidates.values.single;
       }
     }
     _dependencyExportsResolved = true;
@@ -773,14 +783,14 @@ class FlaxCodegenBindingParser {
     for (final name in names) {
       final element = _dependencyExports[name]!;
       final uri = _dependencyExportLibraries[name]!;
-      if (exports[name] case final previous? when previous != element) {
-        throw StateError('Conflicting public declaration: $name in $uri');
-      }
-      exports[name] = element;
+      exports.putIfAbsent(name, () => element);
       libraries.putIfAbsent(name, () => uri);
     }
     return (exports, libraries);
   }
+
+  final automaticSkips = <FlaxCodegenSkip>[];
+  final automaticNotices = <FlaxCodegenNotice>[];
 
   /// Resolve adaptations before signatures so module argument order does not matter.
   Future<void> prepare(List<FlaxCodegenBindingConfig> configs) async {
@@ -793,7 +803,10 @@ class FlaxCodegenBindingParser {
             'Route and Page use kind: object; remove the retired pageAdapter: ${entry.key}',
           );
         }
-        final selected = entry.value;
+        final automatic = config.automaticClasses.contains(entry.key);
+        final selected = automatic
+            ? config.overrides.classes[entry.key]?.selection ?? entry.value
+            : entry.value;
         final declaration = exports[entry.key];
         final kind =
             (selected.kind == 'widgetInterface' &&
@@ -810,6 +823,12 @@ class FlaxCodegenBindingParser {
                           'package:flutter/src/widgets/framework.dart::Widget',
                     )
                 ? 'object'
+                : automatic && declaration is EnumElement
+                ? 'enum'
+                : automatic &&
+                      declaration is InterfaceElement &&
+                      !_isFlutterWidget(declaration)
+                ? 'object'
                 : null);
         final element = exports[entry.key];
         if (element is! InterfaceElement ||
@@ -820,9 +839,10 @@ class FlaxCodegenBindingParser {
         }
         if (flaxCodegenIsStateVariantOverlay(selected)) continue;
         final id = identity(element);
-        _validateDuplicates(entry.value, id);
-        _selections[id] = entry.value;
-        _localSelections.add(id);
+        if (automatic && _dependencyTypeOwners.containsKey(id)) continue;
+        _validateDuplicates(selected, id);
+        _selections[id] = selected;
+        if (!automatic) _localSelections.add(id);
         _elementsByIdentity[id] = element;
         _libraryByIdentity[id] = libraries[entry.key] ?? config.library;
         final previous = _adaptations[id];
@@ -830,7 +850,7 @@ class FlaxCodegenBindingParser {
           throw StateError('Conflicting adaptation: $id');
         }
         if (kind != null) _adaptations[id] = kind;
-        _argumentsByType[id] = entry.value.typeArguments;
+        _argumentsByType[id] = selected.typeArguments;
       }
     }
   }
@@ -850,6 +870,7 @@ class FlaxCodegenBindingParser {
     final operationProviders = <String, List<FlaxCodegenModuleModel>>{};
     for (final module in snapshots) {
       for (final id in [
+        for (final function in module.functions) 'function:${function.id}',
         for (final extension in module.extensions)
           if (!extension.isReference)
             'extension:${extension.originatingUri}::${extension.name}',
@@ -881,6 +902,8 @@ class FlaxCodegenBindingParser {
         return false;
       }
       final providers = candidates[id]!;
+      final owner = dependencyTypeOwnerModules[id];
+      if (owner != null) return (module.moduleId ?? module.name) == owner;
       final core = providers
           .where(
             (candidate) => (candidate.moduleId ?? '').startsWith('flax.core/'),
@@ -906,11 +929,10 @@ class FlaxCodegenBindingParser {
         }
       }
       for (final entry in module.typeLibraries.entries) {
-        final previous = _dependencyTypeLibraries[entry.key];
-        if (previous != null && previous != entry.value) {
-          throw StateError('Conflicting dependency type library: ${entry.key}');
-        }
-        _dependencyTypeLibraries[entry.key] = entry.value;
+        _dependencyTypeLibraries.putIfAbsent(entry.key, () => entry.value);
+        _dependencyTypeCarriers
+            .putIfAbsent(entry.key, () => {})
+            .add(entry.value);
       }
       for (final type in module.types) {
         final ownerModuleId = dependencyTypeOwnerModules[type.id];
@@ -928,6 +950,11 @@ class FlaxCodegenBindingParser {
     _dependencyExports.clear();
     _dependencyExportLibraries.clear();
     for (final module in snapshots) {
+      for (final function in module.functions) {
+        if (useOperation(module, 'function:${function.id}')) {
+          _dependencyFunctions[function.id] = (module, function);
+        }
+      }
       for (final getter
           in module.topLevel?.getters ?? <FlaxCodegenTopLevelGetterModel>[]) {
         if (getter.isReference) continue;
@@ -970,7 +997,9 @@ class FlaxCodegenBindingParser {
             module.typeLibraries[type.name] ?? module.library;
         if (type.kind != 'widget') {
           final previous = _adaptations[type.id];
-          if (previous != null && previous != type.kind) {
+          if (previous != null &&
+              previous != type.kind &&
+              _localSelections.contains(type.id)) {
             throw StateError('Conflicting adaptation: ${type.id}');
           }
           _adaptations[type.id] = type.kind;
@@ -985,7 +1014,7 @@ class FlaxCodegenBindingParser {
     if (_adaptations.containsKey(id) || _selections.containsKey(id)) {
       return true;
     }
-    return _dependencyExports[element.name] == element;
+    return _elementsByIdentity[id] == element;
   }
 
   String? _publicLibraryFor(InterfaceElement element, String name) =>
@@ -994,10 +1023,9 @@ class FlaxCodegenBindingParser {
   InterfaceElement? _poolInterface(String name) {
     final dependency = _dependencyExports[name];
     if (dependency is InterfaceElement) return dependency;
-    for (final element in _elementsByIdentity.values) {
-      if (element.name == name) return element;
-    }
-    return null;
+    return _elementsByIdentity.values
+        .where((element) => element.name == name)
+        .singleOrNull;
   }
 
   bool _isFlutterWidget(InterfaceElement element) {
@@ -1381,6 +1409,27 @@ class FlaxCodegenBindingParser {
     FlaxCodegenBindingConfig config, {
     Map<String, String> automaticTypeCarriers = const {},
   }) async {
+    if (!config.hasAutomaticSelection &&
+        (config.overrides.classes.isNotEmpty ||
+            config.overrides.functions.isNotEmpty ||
+            config.overrides.exclude.isNotEmpty)) {
+      throw StateError(
+        'Inline overrides require an automatic declaration list',
+      );
+    }
+    if (config.hasAutomaticSelection) {
+      final proposal = await proposeLibrary(
+        config,
+        overrides: config.overrides,
+      );
+      automaticSkips.addAll(proposal.skips);
+      automaticNotices.addAll(proposal.notices);
+      config = proposal.config;
+      automaticTypeCarriers = {
+        ...proposal.typeCarriers,
+        ...automaticTypeCarriers,
+      };
+    }
     await prepare([config]);
     final session = _contexts.contexts.first.currentSession;
     var typeCarriers = automaticTypeCarriers;
@@ -2509,13 +2558,9 @@ class FlaxCodegenBindingParser {
             selectedMethods.containsKey(name)) {
           throw StateError('Invalid static getter: ${entry.key}.$name');
         }
-        final returned = getter.returnType;
-        final type =
-            returned is InterfaceType &&
-                returned.element.isPrivate &&
-                element.library.typeSystem.isSubtypeOf(returned, actualType)
-            ? typeRef(actualType)
-            : typeRef(returned);
+        final type = typeRef(
+          _publicStaticGetterType(actualType, getter.returnType),
+        );
         staticGetters.add(FlaxCodegenGetterModel(name, type));
       }
       final staticSetters = <FlaxCodegenGetterModel>[];
@@ -3161,11 +3206,13 @@ class FlaxCodegenBindingParser {
                     selection.instanceMethods.isNotEmpty))
               for (final parent in element.thisType.allSupertypes)
                 if (_selections[identity(parent.element)] case final selected?
-                    when selected.kind == null &&
-                        selected.proxy == null &&
-                        (selected.getters.isNotEmpty ||
-                            selected.setters.isNotEmpty ||
-                            selected.instanceMethods.isNotEmpty))
+                    when selected.proxy == null &&
+                        (selected.kind == 'object' &&
+                                _isFlutterWidget(parent.element) ||
+                            selected.kind == null &&
+                                (selected.getters.isNotEmpty ||
+                                    selected.setters.isNotEmpty ||
+                                    selected.instanceMethods.isNotEmpty)))
                   typeRef(parent)
                       .declaredAs(typeRef(parent, forTypescript: true)),
             if (selection.kind == 'widgetInterface' ||
@@ -3818,6 +3865,7 @@ class FlaxCodegenBindingParser {
       }
     }
     for (final type in scope.types.values) {
+      if (_dependencyTypeOwners.containsKey(type.id)) continue;
       final split = type.id.lastIndexOf('::');
       final declarationUri = split < 0 ? type.id : type.id.substring(0, split);
       final carrier =
@@ -3903,6 +3951,21 @@ class FlaxCodegenBindingParser {
 
   String _typeLibraryUri(String name, _FlaxCodegenTypeScope scope) {
     if (scope.usesStream && name == 'Stream') return 'dart:async';
+    final selected = scope.exports[name];
+    final config = scope.config;
+    if (selected != null &&
+        (config.classes.containsKey(name) ||
+            config.functions.containsKey(name) ||
+            config.extensions.containsKey(name) ||
+            config.callbackSnapshots.containsKey(name) ||
+            config.types.contains(name) ||
+            config.typedefs.contains(name) ||
+            config.topLevel?.getters.contains(name) == true ||
+            config.topLevel?.setters.contains(name) == true)) {
+      return scope.publicLibraries[name] ??
+          scope.publicLibraries['$name='] ??
+          config.library;
+    }
     // References retain the provider's public import path through re-exports.
     final providerLibrary = _dependencyTypeLibraries[name];
     if (providerLibrary != null) return providerLibrary;
@@ -4081,6 +4144,8 @@ class FlaxCodegenBindingParser {
         entry.key: List.of(entry.value),
     },
     selections: Map.of(_selections),
+    localSelections: Set.of(_localSelections),
+    snapshots: Map.of(_snapshots),
     libraryByIdentity: Map.of(_libraryByIdentity),
     elementsByIdentity: Map.of(_elementsByIdentity),
   );
@@ -4095,6 +4160,12 @@ class FlaxCodegenBindingParser {
     _selections
       ..clear()
       ..addAll(checkpoint.selections);
+    _localSelections
+      ..clear()
+      ..addAll(checkpoint.localSelections);
+    _snapshots
+      ..clear()
+      ..addAll(checkpoint.snapshots);
     _libraryByIdentity
       ..clear()
       ..addAll(checkpoint.libraryByIdentity);
@@ -4113,6 +4184,8 @@ final class FlaxCodegenParserCheckpoint {
     required this.adaptations,
     required this.argumentsByType,
     required this.selections,
+    required this.localSelections,
+    required this.snapshots,
     required this.libraryByIdentity,
     required this.elementsByIdentity,
   });
@@ -4120,6 +4193,8 @@ final class FlaxCodegenParserCheckpoint {
   final Map<String, String> adaptations;
   final Map<String, List<String>> argumentsByType;
   final Map<String, FlaxCodegenClassSelection> selections;
+  final Set<String> localSelections;
+  final Map<String, FlaxCodegenSnapshotModel> snapshots;
   final Map<String, String> libraryByIdentity;
   final Map<String, InterfaceElement> elementsByIdentity;
 }

@@ -16,6 +16,7 @@ readonly input: string;
 readonly pattern: upstream0.Pattern | string;
 group(group: number): string | null;
 groups(groupIndices: DartListInput<number, number>): DartList<string | null>;
+operatorGetIndex(group: number): string | null;
 }
-defineObject("flax.core/flutter#type:Match", ["start","end","groupCount","input","pattern"], [], _flaxBindingMethods("flax.core/flutter#type:Match", "object", {"group":_flaxMemberParameters0,"groups":_flaxMemberParameters1}, {}), []);
+defineObject("flax.core/flutter#type:Match", ["start","end","groupCount","input","pattern"], [], _flaxBindingMethods("flax.core/flutter#type:Match", "object", {"group":_flaxMemberParameters0,"groups":_flaxMemberParameters1,"operatorGetIndex":_flaxMemberParameters0}, {}), []);
 export const Match: object & _FlaxInstanceType<Match> & _FlaxDartType<Match, readonly ["class", "flax.core/flutter#type:Match", readonly [], false]> = _flaxBindInstanceType<Match, object>({}, "flax.core/flutter#type:Match", ["dart:core::Object"]) as object & _FlaxInstanceType<Match> & _FlaxDartType<Match, readonly ["class", "flax.core/flutter#type:Match", readonly [], false]>;

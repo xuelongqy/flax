@@ -15,6 +15,266 @@ import 'package:test/test.dart';
 
 void main() {
   group('FlaxCodegenPackagePipeline.validateConfig', () {
+    test(
+      'discovers prefixed siblings and honors an explicit custom filename',
+      () async {
+        final package = _tempPackage(
+          name: 'scope_pkg',
+          configs: {
+            'flax_api.yaml': '''
+format: 2
+name: api
+library: package:scope_pkg/api.dart
+jsPackage: '@example/scope'
+dartOutput: lib/api.g.dart
+tsOutput: js/api.ts
+classes: [Counter]
+''',
+            'custom.yml': '''
+format: 2
+name: extra
+library: package:scope_pkg/api.dart
+jsPackage: '@example/scope'
+dartOutput: lib/extra.g.dart
+tsOutput: js/extra.ts
+functions: [readCount]
+''',
+            'notes.yaml': 'not a binding selection',
+            'flax_overrides.yaml': 'only used by library inference',
+          },
+          libraries: {
+            'api.dart':
+                'class Counter { Counter(); int get count => 2; }\n'
+                'int readCount(Counter value) => value.count;\n',
+          },
+        );
+        final selected = await FlaxCodegenPackagePipeline.validateConfig(
+          package.configPath('flax_api.yaml'),
+        );
+        expect(selected.localModels.map((value) => value.name), ['api']);
+        final custom = await FlaxCodegenPackagePipeline.validateConfig(
+          package.configPath('custom.yml'),
+        );
+        expect(custom.localModels.map((value) => value.name), ['extra', 'api']);
+        expect(
+          custom.localModels.first.functions.single.call.name,
+          'readCount',
+        );
+        expect(
+          custom.manifest.bindingNamespace,
+          selected.manifest.bindingNamespace,
+        );
+      },
+    );
+
+    test('automatic providers compare filtered members and reuse functions', () async {
+      final workspace = _tempWorkspace();
+      final base = _writeHostPackage(
+        workspace: workspace,
+        name: 'base_pkg',
+        bindingNamespace: 'example.base',
+        configs: const {},
+        libraries: {
+          'api.dart': '''
+import 'package:meta/meta.dart';
+class Value {
+  Value();
+  @protected int get available => 7;
+  @visibleForTesting int get testing => 9;
+}
+int describe(Value value) => value.available;
+T identify<T>(T value) => value;
+T fixedIdentify<T>(T value) => value;
+Future<Object?> copyData(Future<Object?> value) => value;
+''',
+        },
+      );
+      final middle = _writeHostPackage(
+        workspace: workspace,
+        name: 'middle_pkg',
+        dependencies: ['base_pkg'],
+        configs: const {},
+        libraries: {
+          'api.dart': """
+import 'package:base_pkg/api.dart';
+export 'package:base_pkg/api.dart' show Value;
+Value pass(Value value) => value;
+""",
+        },
+      );
+      final host = _writeHostPackage(
+        workspace: workspace,
+        name: 'host_pkg',
+        dependencies: ['base_pkg', 'middle_pkg'],
+        configs: const {},
+        libraries: {'api.dart': "export 'package:base_pkg/api.dart';"},
+      );
+      for (final package in [base, middle, host]) {
+        final metadata = File(p.join(package.root.path, 'flax_package.yaml'));
+        metadata.writeAsStringSync(
+          '${metadata.readAsStringSync()}javascript: {package: "@example/${p.basename(package.root.path)}", version: same, mode: runtime}\n',
+        );
+      }
+      final repo = File(
+        p.join(Directory.current.path, '../../.dart_tool/package_config.json'),
+      ).absolute;
+      final packages =
+          (jsonDecode(repo.readAsStringSync())
+                  as Map<String, Object?>)['packages']
+              as List<Object?>;
+      final meta = packages.cast<Map<String, Object?>>().singleWhere(
+        (entry) => entry['name'] == 'meta',
+      );
+      final metaRoot = Directory.fromUri(
+        repo.uri.resolve(meta['rootUri'] as String),
+      );
+      _writePackageConfig(workspace, {
+        'base_pkg': base.root,
+        'middle_pkg': middle.root,
+        'host_pkg': host.root,
+        'meta': metaRoot,
+      });
+      File(p.join(base.root.path, 'bindings/flax_overrides.yaml'))
+          .writeAsStringSync('''
+format: 2
+overrides:
+  functions:
+    fixedIdentify: {parameters: [value], typeArguments: [String]}
+    copyData:
+      parameters: [value]
+      data: {parameters: [value], result: true}
+''');
+      final provider = await FlaxCodegenPackagePipeline.validateLibrary(
+        'package:base_pkg/api.dart',
+        packageRoot: base.root.path,
+      );
+      File(p.join(base.root.path, 'bindings/manifest.json'))
+          .writeAsStringSync(provider.manifest.encode());
+      final middleProvider = await FlaxCodegenPackagePipeline.validateLibrary(
+        'package:middle_pkg/api.dart',
+        packageRoot: middle.root.path,
+      );
+      File(p.join(middle.root.path, 'bindings/manifest.json'))
+          .writeAsStringSync(middleProvider.manifest.encode());
+      final value = provider.localModels.single.classes.single;
+      expect(value.getters.map((getter) => getter.name), contains('available'));
+      expect(
+        value.getters.map((getter) => getter.name),
+        isNot(contains('testing')),
+      );
+      final consumer = await FlaxCodegenPackagePipeline.validateLibrary(
+        'package:host_pkg/api.dart',
+        packageRoot: host.root.path,
+      );
+      expect(consumer.localModels.single.classes, isEmpty);
+      expect(
+        consumer.localModels.single.functions.map(
+          (function) => function.call.name,
+        ),
+        ['copyData', 'fixedIdentify'],
+      );
+      expect(
+        consumer.skips
+            .where((skip) => skip.code == 'existing_provider')
+            .map((skip) => skip.target),
+        containsAll(['Value', 'describe', 'identify']),
+      );
+      File(host.configPath('flax_bindings.yaml')).writeAsStringSync('''
+format: 2
+name: scoped
+library: package:host_pkg/api.dart
+jsPackage: '@example/host_pkg'
+dartOutput: lib/scoped.g.dart
+tsOutput: js/scoped.ts
+classes: [Value]
+functions: [describe, identify]
+''');
+      final scoped = await FlaxCodegenPackagePipeline.validateConfig(
+        host.configPath('flax_bindings.yaml'),
+      );
+      expect(scoped.localModels.single.classes, isEmpty);
+      expect(scoped.localModels.single.functions, isEmpty);
+      expect(
+        scoped.skips
+            .where((skip) => skip.code == 'existing_provider')
+            .map((skip) => skip.target),
+        containsAll(['Value', 'describe', 'identify']),
+      );
+    });
+
+    test('distinct provider names use source identities and qualified imports', () async {
+      final workspace = _tempWorkspace();
+      final providers = {
+        for (final name in ['base_a', 'base_b'])
+          name: _writeHostPackage(
+            workspace: workspace,
+            name: name,
+            bindingNamespace: 'example.${name.replaceAll('_', '')}',
+            configs: const {},
+            libraries: {
+              'api.dart':
+                  'class Token { Token(); } int convert(Token value) => 1;',
+            },
+          ),
+      };
+      final host = _writeHostPackage(
+        workspace: workspace,
+        name: 'host_pkg',
+        dependencies: providers.keys.toList(),
+        configs: const {},
+        libraries: {
+          'api.dart': '''
+import 'package:base_a/api.dart' as first;
+import 'package:base_b/api.dart' as second;
+class Token { Token(); }
+first.Token echoFirst(first.Token value) => value;
+second.Token echoSecond(second.Token value) => value;
+Token echoLocal(Token value) => value;
+int convert(int left, int right) => left + right;
+''',
+        },
+      );
+      for (final package in [...providers.values, host]) {
+        final metadata = File(p.join(package.root.path, 'flax_package.yaml'));
+        metadata.writeAsStringSync(
+          '${metadata.readAsStringSync()}javascript: {package: "@example/${p.basename(package.root.path)}", version: same, mode: runtime}\n',
+        );
+      }
+      _writePackageConfig(workspace, {
+        'host_pkg': host.root,
+        for (final entry in providers.entries) entry.key: entry.value.root,
+      });
+      for (final entry in providers.entries) {
+        final provider = await FlaxCodegenPackagePipeline.validateLibrary(
+          'package:${entry.key}/api.dart',
+          packageRoot: entry.value.root.path,
+        );
+        File(p.join(entry.value.root.path, 'bindings/manifest.json'))
+            .writeAsStringSync(provider.manifest.encode());
+      }
+      final consumer = await FlaxCodegenPackagePipeline.validateLibrary(
+        'package:host_pkg/api.dart',
+        packageRoot: host.root.path,
+      );
+      final model = consumer.localModels.single;
+      expect(model.classes.single.name, 'Token');
+      final emitter = FlaxCodegenBindingEmitter([
+        model,
+        for (final dependency in consumer.directDependencies.values)
+          ...dependency.modulesByModuleId.values,
+      ]);
+      final dart = emitter.dart(model);
+      final ts = emitter.typescript(model);
+      expect(model.typeLibraries['convert'], 'package:host_pkg/api.dart');
+      expect(dart, contains('return api.convert('));
+      for (final name in providers.keys) {
+        expect(dart, contains("import 'package:$name/api.dart' as api"));
+        expect(ts, contains("from '@example/$name'"));
+      }
+      expect(ts, contains('upstream0.Token'));
+      expect(ts, contains('upstream1.Token'));
+    });
+
     test('enhanced enum identities and generic constants survive projection', () async {
       final workspace = _tempWorkspace();
       final host = _writeHostPackage(
@@ -34,7 +294,7 @@ enum Status<T> {
 ''',
         },
         configs: {
-          'api.yaml': '''
+          'flax_api.yaml': '''
 format: 2
 name: api
 library: package:enum_pkg/api.dart
@@ -58,7 +318,7 @@ classes:
       );
       _writePackageConfig(workspace, {'enum_pkg': host.root});
       final result = await FlaxCodegenPackagePipeline.validateConfig(
-        host.configPath('api.yaml'),
+        host.configPath('flax_api.yaml'),
       );
       final type = result.localModels.single.classes.single;
       expect(
@@ -95,7 +355,7 @@ classes:
           name: 'host_pkg',
           libraries: {'api.dart': 'class Value { Value(); }'},
           configs: {
-            'api.yaml': _minimalConfig(
+            'flax_api.yaml': _minimalConfig(
               packageName: 'host_pkg',
               name: 'api',
               library: 'package:host_pkg/api.dart',
@@ -115,7 +375,7 @@ javascript: {package: '@host/api', version: same, mode: runtime}
               .writeAsStringSync('name: host_pkg\n$dependency');
           for (final validate in [
             () => FlaxCodegenPackagePipeline.validateConfig(
-              package.configPath('api.yaml'),
+              package.configPath('flax_api.yaml'),
             ),
             () => FlaxCodegenPackagePipeline.validateLibrary(
               'package:host_pkg/api.dart',
@@ -149,7 +409,7 @@ javascript: {package: '@host/api', version: same, mode: runtime}
               'static set tracked(num value) { count = value.round(); } }',
         },
         configs: {
-          'counter.yaml': """
+          'flax_counter.yaml': """
 format: 2
 name: counter
 library: package:static_base/api.dart
@@ -185,7 +445,7 @@ classes:
         'static_base': base.root,
         'static_host': host.root,
       });
-      final configFile = File(base.configPath('counter.yaml'));
+      final configFile = File(base.configPath('flax_counter.yaml'));
       final original = configFile.readAsStringSync();
       final complete = await FlaxCodegenPackagePipeline.validateConfig(
         configFile.path,
@@ -319,14 +579,14 @@ classes:
         name: 'money_a',
         bindingNamespace: 'example.a',
         dependencies: ['money_source'],
-        configs: {'money.yaml': selection('a')},
+        configs: {'flax_money.yaml': selection('a')},
       );
       final b = _writeHostPackage(
         workspace: workspace,
         name: 'money_b',
         bindingNamespace: 'example.b',
         dependencies: ['money_source', 'money_a'],
-        configs: {'money.yaml': selection('b')},
+        configs: {'flax_money.yaml': selection('b')},
       );
       _writePackageConfig(workspace, {
         'money_source': source.root,
@@ -334,12 +594,12 @@ classes:
         'money_b': b.root,
       });
       final first = await FlaxCodegenPackagePipeline.validateConfig(
-        a.configPath('money.yaml'),
+        a.configPath('flax_money.yaml'),
       );
       File(p.join(a.root.path, 'bindings/manifest.json'))
           .writeAsStringSync(first.manifest.encode());
       final second = await FlaxCodegenPackagePipeline.validateConfig(
-        b.configPath('money.yaml'),
+        b.configPath('flax_money.yaml'),
       );
       final models = [first.localModels.single, second.localModels.single];
       expect(models[0].classes.single.id, 'example.a/money#type:Money');
@@ -417,7 +677,7 @@ class Consumer {
 ''',
           },
           configs: {
-            'api.yaml': '''
+            'flax_api.yaml': '''
 format: 2
 name: api
 library: package:host_pkg/api.dart
@@ -439,7 +699,7 @@ classes:
         });
 
         final result = await FlaxCodegenPackagePipeline.validateConfig(
-          host.configPath('api.yaml'),
+          host.configPath('flax_api.yaml'),
         );
         final local = result.localModels.single;
         final consumer = local.classes.singleWhere(
@@ -491,7 +751,7 @@ class Consumer {
 ''',
         },
         configs: {
-          'api.yaml': '''
+          'flax_api.yaml': '''
 format: 2
 name: api
 library: package:host_pkg/api.dart
@@ -512,7 +772,9 @@ classes:
       });
 
       await expectLater(
-        FlaxCodegenPackagePipeline.validateConfig(host.configPath('api.yaml')),
+        FlaxCodegenPackagePipeline.validateConfig(
+          host.configPath('flax_api.yaml'),
+        ),
         throwsA(
           isA<FlaxCodegenException>().having(
             (error) => error.diagnostics.map((item) => item.message).join('\n'),
@@ -539,7 +801,7 @@ typedef Items<T extends Comparable<T>> = List<T>;
 ''',
         },
         configs: {
-          'base.yaml': '''
+          'flax_base.yaml': '''
 format: 2
 name: base
 library: package:base_pkg/base.dart
@@ -573,7 +835,7 @@ class Box<T extends Comparable<T>> {
 ''',
         },
         configs: {
-          'api.yaml': '''
+          'flax_api.yaml': '''
 format: 2
 name: api
 library: package:host_pkg/api.dart
@@ -595,13 +857,13 @@ classes:
         'host_pkg': host.root,
       });
       final provider = await FlaxCodegenPackagePipeline.validateConfig(
-        base.configPath('base.yaml'),
+        base.configPath('flax_base.yaml'),
       );
       File(p.join(base.root.path, 'bindings/manifest.json'))
           .writeAsStringSync(provider.manifest.encode());
-      File(base.configPath('base.yaml')).deleteSync();
+      File(base.configPath('flax_base.yaml')).deleteSync();
       final result = await FlaxCodegenPackagePipeline.validateConfig(
-        host.configPath('api.yaml'),
+        host.configPath('flax_api.yaml'),
       );
       final local = result.localModels.single;
       final box = local.classes.single;
@@ -657,7 +919,7 @@ set token(Token value) {}
 ''',
         },
         configs: {
-          'api.yaml': '''
+          'flax_api.yaml': '''
 format: 2
 name: api
 library: package:host_pkg/api.dart
@@ -676,7 +938,7 @@ topLevel:
       _writePackageConfig(workspace, {'host_pkg': host.root});
       final before = _listing(host.root);
       final result = await FlaxCodegenPackagePipeline.validateConfig(
-        host.configPath('api.yaml'),
+        host.configPath('flax_api.yaml'),
       );
       final modules = result.localModels;
       final module = modules.single;
@@ -753,7 +1015,7 @@ topLevel:
         bindingNamespace: 'example.base',
         libraries: {'base.dart': 'int zeta = 0; int alpha = 1;'},
         configs: {
-          'base.yaml': """
+          'flax_base.yaml': """
 format: 2
 name: base
 library: package:base_pkg/base.dart
@@ -771,7 +1033,7 @@ topLevel:
         name: 'host_pkg',
         libraries: {'consumer.dart': "export 'package:base_pkg/base.dart';"},
         configs: {
-          'consumer.yaml': """
+          'flax_consumer.yaml': """
 format: 2
 name: consumer
 library: package:host_pkg/consumer.dart
@@ -788,7 +1050,7 @@ topLevel:
         'base_pkg': base.root,
         'host_pkg': host.root,
       });
-      final configFile = File(base.configPath('base.yaml'));
+      final configFile = File(base.configPath('flax_base.yaml'));
       final originalConfig = configFile.readAsStringSync();
       final first = await FlaxCodegenPackagePipeline.validateConfig(
         configFile.path,
@@ -829,7 +1091,7 @@ topLevel:
       configFile.deleteSync();
       final before = _listing(base.root);
       final consumer = await FlaxCodegenPackagePipeline.validateConfig(
-        host.configPath('consumer.yaml'),
+        host.configPath('flax_consumer.yaml'),
       );
       final setter = consumer.localModels.single.topLevel!.setters.single;
       expect(setter.isReference, isFalse);
@@ -847,7 +1109,7 @@ topLevel:
           'src/values.dart': 'set sink(int value) {}',
         },
         configs: {
-          'base.yaml': """
+          'flax_base.yaml': """
 format: 2
 name: base
 library: package:base_pkg/base.dart
@@ -871,7 +1133,7 @@ bindingNamespace: example.base
           'consumer.dart': "export 'package:base_pkg/base.dart' show sink;",
         },
         configs: {
-          'consumer.yaml': """
+          'flax_consumer.yaml': """
 format: 2
 name: consumer
 library: package:host_pkg/consumer.dart
@@ -889,7 +1151,7 @@ topLevel:
         'host_pkg': host.root,
       });
       final owner = await FlaxCodegenPackagePipeline.validateConfig(
-        base.configPath('base.yaml'),
+        base.configPath('flax_base.yaml'),
       );
       const id = 'example.base/base#function:sink%3D';
       expect(owner.localModels.single.topLevel!.getters, isEmpty);
@@ -908,10 +1170,10 @@ topLevel:
       );
       File(p.join(base.root.path, 'bindings/manifest.json'))
           .writeAsStringSync(owner.manifest.encode());
-      File(base.configPath('base.yaml')).deleteSync();
+      File(base.configPath('flax_base.yaml')).deleteSync();
       final before = _listing(base.root);
       final result = await FlaxCodegenPackagePipeline.validateConfig(
-        host.configPath('consumer.yaml'),
+        host.configPath('flax_consumer.yaml'),
       );
       final setter = result.localModels.single.topLevel!.setters.single;
       expect(setter.id, id);
@@ -937,7 +1199,7 @@ topLevel:
           'base.dart': 'class Item { Item(this.value); final int value; }',
         },
         configs: {
-          'base.yaml': '''
+          'flax_base.yaml': '''
 format: 2
 name: base
 library: package:base_pkg/base.dart
@@ -967,7 +1229,7 @@ bindingNamespace: example.base
           'src/extensions.dart': "import 'package:base_pkg/base.dart';\nextension ItemX on Item { int scaled(int factor) => value * factor; Item get same => this; int hidden() => value; }",
         },
         configs: {
-          'api.yaml': '''
+          'flax_api.yaml': '''
 format: 2
 name: api
 library: package:host_pkg/api.dart
@@ -994,13 +1256,13 @@ extensions:
         'host_pkg': host.root,
       });
       final provider = await FlaxCodegenPackagePipeline.validateConfig(
-        base.configPath('base.yaml'),
+        base.configPath('flax_base.yaml'),
       );
       File(p.join(base.root.path, 'bindings/manifest.json'))
           .writeAsStringSync(provider.manifest.encode());
-      File(base.configPath('base.yaml')).deleteSync();
+      File(base.configPath('flax_base.yaml')).deleteSync();
       final validated = await FlaxCodegenPackagePipeline.validateConfig(
-        host.configPath('api.yaml'),
+        host.configPath('flax_api.yaml'),
       );
       final module = validated.localModels.single;
       expect(module.extensions.single.name, 'ItemX');
@@ -1041,14 +1303,14 @@ extensions:
       );
       File(p.join(host.root.path, 'bindings/manifest.json'))
           .writeAsStringSync(validated.manifest.encode());
-      File(host.configPath('api.yaml')).deleteSync();
+      File(host.configPath('flax_api.yaml')).deleteSync();
       final consumer = _writeHostPackage(
         workspace: workspace,
         name: 'consumer_pkg',
         dependencies: ['host_pkg'],
         libraries: {'api.dart': "export 'package:host_pkg/api.dart';"},
         configs: {
-          'api.yaml': '''format: 2
+          'flax_api.yaml': '''format: 2
 name: consumer
 library: package:consumer_pkg/api.dart
 jsPackage: '@consumer/api'
@@ -1071,7 +1333,7 @@ extensions:
         'consumer_pkg': consumer.root,
       });
       final consumed = await FlaxCodegenPackagePipeline.validateConfig(
-        consumer.configPath('api.yaml'),
+        consumer.configPath('flax_api.yaml'),
       );
       final reference = consumed.localModels.single;
       expect(reference.extensions.single.isReference, isTrue);
@@ -1094,7 +1356,7 @@ extensions:
         referenceEmitter.typescript(reference),
         contains('= upstream0.ItemX;'),
       );
-      final selection = File(consumer.configPath('api.yaml'));
+      final selection = File(consumer.configPath('flax_api.yaml'));
       selection.writeAsStringSync(
         selection.readAsStringSync().replaceFirst(
           'scaled: [factor]',
@@ -1119,7 +1381,7 @@ extensions:
           'alias.dart': "export 'base.dart';\n",
         },
         configs: {
-          'base.yaml': '''
+          'flax_base.yaml': '''
 format: 2
 name: base
 library: package:base_pkg/base.dart
@@ -1154,7 +1416,7 @@ bindingNamespace: example.base
         name: 'host_pkg',
         libraries: {'consumer.dart': "export 'package:base_pkg/alias.dart';\n"},
         configs: {
-          'consumer.yaml': '''
+          'flax_consumer.yaml': '''
 format: 2
 name: consumer
 library: package:host_pkg/consumer.dart
@@ -1176,14 +1438,14 @@ topLevel:
         'host_pkg': host.root,
       });
       final owner = await FlaxCodegenPackagePipeline.validateConfig(
-        base.configPath('base.yaml'),
+        base.configPath('flax_base.yaml'),
       );
       File(p.join(base.root.path, 'bindings/manifest.json'))
           .writeAsStringSync(owner.manifest.encode());
-      File(base.configPath('base.yaml')).deleteSync();
+      File(base.configPath('flax_base.yaml')).deleteSync();
       final before = _packageFilesystemSnapshot(base.root);
       final result = await FlaxCodegenPackagePipeline.validateConfig(
-        host.configPath('consumer.yaml'),
+        host.configPath('flax_consumer.yaml'),
       );
       final provider = result
           .directDependencies['base_pkg']!
@@ -1236,7 +1498,7 @@ final genericIdentity = identity;
 ''',
           },
           configs: {
-            'base.yaml': '''
+            'flax_base.yaml': '''
 format: 2
 name: base
 library: package:base_pkg/base.dart
@@ -1270,7 +1532,7 @@ const local = 9;
 ''',
           },
           configs: {
-            'consumer.yaml': '''
+            'flax_consumer.yaml': '''
 format: 2
 name: consumer
 library: package:host_pkg/consumer.dart
@@ -1289,14 +1551,14 @@ topLevel:
           'host_pkg': host.root,
         });
         final owner = await FlaxCodegenPackagePipeline.validateConfig(
-          base.configPath('base.yaml'),
+          base.configPath('flax_base.yaml'),
         );
         File(p.join(base.root.path, 'bindings/manifest.json'))
             .writeAsStringSync(owner.manifest.encode());
-        File(base.configPath('base.yaml')).deleteSync();
+        File(base.configPath('flax_base.yaml')).deleteSync();
         final before = _listing(base.root);
         final result = await FlaxCodegenPackagePipeline.validateConfig(
-          host.configPath('consumer.yaml'),
+          host.configPath('flax_consumer.yaml'),
         );
         final provider = result
             .directDependencies['base_pkg']!
@@ -1409,7 +1671,7 @@ typedef Converter<T extends Item> = T Function<U extends T>(U value);
 ''',
         },
         configs: {
-          'base.yaml': '''
+          'flax_base.yaml': '''
 format: 2
 name: base
 library: package:base_pkg/base.dart
@@ -1449,7 +1711,7 @@ class Consumer {
 ''',
         },
         configs: {
-          'consumer.yaml': '''
+          'flax_consumer.yaml': '''
 format: 2
 name: consumer
 library: package:host_pkg/consumer.dart
@@ -1472,16 +1734,16 @@ classes:
         'host_pkg': host.root,
       });
       final owner = await FlaxCodegenPackagePipeline.validateConfig(
-        base.configPath('base.yaml'),
+        base.configPath('flax_base.yaml'),
       );
       final manifestFile = File(
         p.join(base.root.path, 'bindings/manifest.json'),
       );
       manifestFile.writeAsStringSync(owner.manifest.encode());
-      File(base.configPath('base.yaml')).deleteSync();
+      File(base.configPath('flax_base.yaml')).deleteSync();
       final before = _listing(base.root);
       final consumer = await FlaxCodegenPackagePipeline.validateConfig(
-        host.configPath('consumer.yaml'),
+        host.configPath('flax_consumer.yaml'),
         processRunner: (executable, arguments) async =>
             fail('validation must not run processes'),
       );
@@ -1573,7 +1835,7 @@ classes:
       expect(manifestFile.readAsStringSync(), owner.manifest.encode());
 
       // The only nominal reference is in the alias parameter, not its target.
-      File(host.configPath('consumer.yaml')).writeAsStringSync('''
+      File(host.configPath('flax_consumer.yaml')).writeAsStringSync('''
 format: 2
 name: consumer
 library: package:host_pkg/consumer.dart
@@ -1585,7 +1847,7 @@ typedefs: [BoundOnly]
 classes: {}
 ''');
       final bounds = await FlaxCodegenPackagePipeline.validateConfig(
-        host.configPath('consumer.yaml'),
+        host.configPath('flax_consumer.yaml'),
         processRunner: (executable, arguments) async =>
             fail('validation must not run processes'),
       );
@@ -1616,14 +1878,14 @@ classes: {}
           name: 'host_pkg',
           libraries: {'host.dart': 'library;\n', 'widgets.dart': 'library;\n'},
           configs: {
-            'widgets.yaml': _minimalConfig(
+            'flax_widgets.yaml': _minimalConfig(
               packageName: 'host_pkg',
               name: 'widgets',
               library: 'package:host_pkg/widgets.dart',
               dartOutput: 'lib/widgets.g.dart',
               tsOutput: 'js/widgets.ts',
             ),
-            'host.yml': _minimalConfig(
+            'flax_host.yml': _minimalConfig(
               packageName: 'host_pkg',
               name: 'host',
               library: 'package:host_pkg/host.dart',
@@ -1641,11 +1903,11 @@ classes: {}
         }
 
         final viaWidgets = await FlaxCodegenPackagePipeline.validateConfig(
-          package.configPath('widgets.yaml'),
+          package.configPath('flax_widgets.yaml'),
           processRunner: runner,
         );
         final viaHost = await FlaxCodegenPackagePipeline.validateConfig(
-          package.configPath('host.yml'),
+          package.configPath('flax_host.yml'),
           processRunner: runner,
         );
 
@@ -1654,8 +1916,8 @@ classes: {}
         expect(viaWidgets.metadata.capabilities, ['bindings']);
         expect(viaWidgets.metadata.bindingNamespace, 'example.host');
         expect(viaWidgets.configPaths, [
-          package.configPath('host.yml'),
-          package.configPath('widgets.yaml'),
+          package.configPath('flax_host.yml'),
+          package.configPath('flax_widgets.yaml'),
         ]);
         expect(
           [for (final module in viaWidgets.localModels) module.name],
@@ -1671,7 +1933,7 @@ classes: {}
           'lib/widgets.g.dart',
         ]);
         expect(
-          () => viaWidgets.configPaths.add('/extra.yaml'),
+          () => viaWidgets.configPaths.add('/flax_extrflax_a.yaml'),
           throwsUnsupportedError,
         );
         expect(
@@ -1692,7 +1954,7 @@ classes: {}
         name: 'locate_pkg',
         libraries: {'ok.dart': 'library;\n'},
         configs: {
-          'ok.yaml': _minimalConfig(
+          'flax_ok.yaml': _minimalConfig(
             packageName: 'locate_pkg',
             name: 'ok',
             library: 'package:locate_pkg/ok.dart',
@@ -1727,8 +1989,8 @@ classes: {}
       Directory(directoryPath).createSync();
       await expectPathFailure(directoryPath, 'Expected a regular file.');
 
-      final linkPath = p.join(package.bindings.path, 'linked.yaml');
-      Link(linkPath).createSync(package.configPath('ok.yaml'));
+      final linkPath = p.join(package.bindings.path, 'flax_linked.yaml');
+      Link(linkPath).createSync(package.configPath('flax_ok.yaml'));
       await expectPathFailure(linkPath, 'Symbolic links are not allowed.');
 
       final badExtension = p.join(package.bindings.path, 'Ok.YAML');
@@ -1746,7 +2008,7 @@ classes: {}
         'Expected a .yaml or .yml binding config.',
       );
 
-      final nested = p.join(package.bindings.path, 'nested', 'deep.yaml');
+      final nested = p.join(package.bindings.path, 'nested', 'flax_deep.yaml');
       File(nested).parent.createSync(recursive: true);
       File(nested).writeAsStringSync(
         _minimalConfig(
@@ -1762,7 +2024,7 @@ classes: {}
         'Binding config must be a direct child of bindings/.',
       );
 
-      final outside = p.join(package.root.path, 'lib', 'outside.yaml');
+      final outside = p.join(package.root.path, 'lib', 'flax_outside.yaml');
       File(outside).writeAsStringSync(
         _minimalConfig(
           packageName: 'locate_pkg',
@@ -1785,7 +2047,7 @@ classes: {}
       });
       final orphanBindings = Directory(p.join(orphanRoot.path, 'bindings'))
         ..createSync();
-      final orphanConfig = File(p.join(orphanBindings.path, 'orphan.yaml'))
+      final orphanConfig = File(p.join(orphanBindings.path, 'flax_orphan.yaml'))
         ..writeAsStringSync(
           _minimalConfig(
             packageName: 'orphan',
@@ -1813,7 +2075,7 @@ name: link_bindings_pkg
       final actualBindings = Directory(
         p.join(linkedBindingsRoot.path, 'actual_bindings'),
       )..createSync();
-      File(p.join(actualBindings.path, 'ok.yaml')).writeAsStringSync(
+      File(p.join(actualBindings.path, 'flax_ok.yaml')).writeAsStringSync(
         _minimalConfig(
           packageName: 'link_bindings_pkg',
           name: 'ok',
@@ -1825,7 +2087,7 @@ name: link_bindings_pkg
       Link(p.join(linkedBindingsRoot.path, 'bindings'))
           .createSync(actualBindings.path);
       await expectPathFailure(
-        p.join(linkedBindingsRoot.path, 'bindings', 'ok.yaml'),
+        p.join(linkedBindingsRoot.path, 'bindings', 'flax_ok.yaml'),
         'Symbolic links are not allowed.',
       );
 
@@ -1853,7 +2115,7 @@ bindingNamespace: example.host
           .writeAsStringSync('library;\n');
       final realBindings = Directory(p.join(realPackageRoot.path, 'bindings'))
         ..createSync();
-      File(p.join(realBindings.path, 'ok.yaml')).writeAsStringSync(
+      File(p.join(realBindings.path, 'flax_ok.yaml')).writeAsStringSync(
         _minimalConfig(
           packageName: 'pkg_root_link_pkg',
           name: 'ok',
@@ -1881,7 +2143,7 @@ bindingNamespace: example.host
         }
       });
       await expectPathFailure(
-        p.join(packageRootLink, 'bindings', 'ok.yaml'),
+        p.join(packageRootLink, 'bindings', 'flax_ok.yaml'),
         'Symbolic links are not allowed.',
       );
 
@@ -1910,7 +2172,7 @@ bindingNamespace: example.host
           .writeAsStringSync('library;\n');
       final nestedBindings = Directory(p.join(nestedPackage.path, 'bindings'))
         ..createSync();
-      File(p.join(nestedBindings.path, 'ok.yaml')).writeAsStringSync(
+      File(p.join(nestedBindings.path, 'flax_ok.yaml')).writeAsStringSync(
         _minimalConfig(
           packageName: 'ancestor_link_pkg',
           name: 'ok',
@@ -1929,7 +2191,7 @@ bindingNamespace: example.host
       final ancestorLink = p.join(ancestorParent.path, 'alias');
       Link(ancestorLink).createSync(actualAncestor.path);
       await expectPathFailure(
-        p.join(ancestorLink, 'nested_pkg', 'bindings', 'ok.yaml'),
+        p.join(ancestorLink, 'nested_pkg', 'bindings', 'flax_ok.yaml'),
         'Symbolic links are not allowed.',
       );
     });
@@ -1945,7 +2207,7 @@ bindingNamespace: example.broken
 ''',
         libraries: {'a.dart': 'library;\n', 'b.dart': 'library;\n'},
         configs: {
-          'b.yaml': '''
+          'flax_b.yaml': '''
 format: 2
 name: beta
 library: package:broken_pkg/b.dart
@@ -1954,7 +2216,7 @@ dartOutput: lib/b.g.dart
 tsOutput: js/b.ts
 unknown: true
 ''',
-          'a.yaml': '''
+          'flax_a.yaml': '''
 format: 2
 name: alpha
 library: package:broken_pkg/a.dart
@@ -1966,7 +2228,7 @@ dartOutput: lib/a.g.dart
 
       try {
         await FlaxCodegenPackagePipeline.validateConfig(
-          package.configPath('b.yaml'),
+          package.configPath('flax_b.yaml'),
           processRunner: (executable, arguments) async {
             fail('validateConfig must not invoke the process runner');
           },
@@ -1985,13 +2247,13 @@ dartOutput: lib/a.g.dart
           ],
           [
             (
-              package.configPath('a.yaml'),
+              package.configPath('flax_a.yaml'),
               'FCG_MISSING_FIELD',
               '/tsOutput',
               'Missing field.',
             ),
             (
-              package.configPath('b.yaml'),
+              package.configPath('flax_b.yaml'),
               'FCG_UNKNOWN_FIELD',
               '/unknown',
               'Unknown field.',
@@ -2026,7 +2288,7 @@ dartOutput: lib/a.g.dart
 ''',
           libraries: {'ok.dart': 'library;\n'},
           configs: {
-            'ok.yaml': _minimalConfig(
+            'flax_ok.yaml': _minimalConfig(
               packageName: 'bad_root_uri_pkg',
               name: 'ok',
               library: 'package:bad_root_uri_pkg/ok.dart',
@@ -2037,7 +2299,7 @@ dartOutput: lib/a.g.dart
         );
         try {
           await FlaxCodegenPackagePipeline.validateConfig(
-            package.configPath('ok.yaml'),
+            package.configPath('flax_ok.yaml'),
             processRunner: (executable, arguments) async {
               fail('validateConfig must not invoke the process runner');
             },
@@ -2072,7 +2334,7 @@ class Public {
 ''',
         },
         configs: {
-          'api.yaml': '''
+          'flax_api.yaml': '''
 format: 2
 name: api
 library: package:host_pkg/api.dart
@@ -2095,7 +2357,7 @@ classes:
       _writePackageConfig(workspace, {'host_pkg': host.root});
 
       final result = await FlaxCodegenPackagePipeline.validateConfig(
-        host.configPath('api.yaml'),
+        host.configPath('flax_api.yaml'),
       );
       final modules = result.localModels;
       final module = modules.single;
@@ -2150,7 +2412,7 @@ class Public {
 ''',
         },
         configs: {
-          'api.yaml': '''
+          'flax_api.yaml': '''
 format: 2
 name: api
 library: package:host_pkg/api.dart
@@ -2173,7 +2435,7 @@ classes:
       _writePackageConfig(workspace, {'host_pkg': host.root});
 
       final result = await FlaxCodegenPackagePipeline.validateConfig(
-        host.configPath('api.yaml'),
+        host.configPath('flax_api.yaml'),
       );
       final modules = result.localModels;
       final module = modules.single;
@@ -2221,7 +2483,7 @@ class Public {
 ''',
           },
           configs: {
-            'api.yaml': '''
+            'flax_api.yaml': '''
 format: 2
 name: api
 library: package:host_pkg/api.dart
@@ -2246,7 +2508,7 @@ classes:
         _writePackageConfig(workspace, {'host_pkg': host.root});
 
         final result = await FlaxCodegenPackagePipeline.validateConfig(
-          host.configPath('api.yaml'),
+          host.configPath('flax_api.yaml'),
         );
         final modules = result.localModels;
         final module = modules.single;
@@ -2308,7 +2570,7 @@ class B {
 ''',
         },
         configs: {
-          'a.yaml': '''
+          'flax_a.yaml': '''
 format: 2
 name: a
 library: package:host_pkg/a.dart
@@ -2322,7 +2584,7 @@ classes:
       '': []
     getters: [b]
 ''',
-          'b.yaml': '''
+          'flax_b.yaml': '''
 format: 2
 name: b
 library: package:host_pkg/b.dart
@@ -2341,10 +2603,10 @@ classes:
       _writePackageConfig(workspace, {'host_pkg': host.root});
 
       final viaA = await FlaxCodegenPackagePipeline.validateConfig(
-        host.configPath('a.yaml'),
+        host.configPath('flax_a.yaml'),
       );
       final viaB = await FlaxCodegenPackagePipeline.validateConfig(
-        host.configPath('b.yaml'),
+        host.configPath('flax_b.yaml'),
       );
 
       expect(viaA.manifest.encode(), viaB.manifest.encode());
@@ -2378,7 +2640,7 @@ class Public {
 ''',
           },
           configs: {
-            'api.yaml': '''
+            'flax_api.yaml': '''
 format: 2
 name: api
 library: package:host_pkg/api.dart
@@ -2402,7 +2664,7 @@ classes:
         _writePackageConfig(workspace, {'host_pkg': host.root});
 
         final result = await FlaxCodegenPackagePipeline.validateConfig(
-          host.configPath('api.yaml'),
+          host.configPath('flax_api.yaml'),
         );
 
         expect(result.localModels.single.publicLibraries.single.exports, [
@@ -2451,7 +2713,7 @@ class Holder {
 ''',
           },
           configs: {
-            'api.yaml': '''
+            'flax_api.yaml': '''
 format: 2
 name: api
 library: package:host_pkg/api.dart
@@ -2474,7 +2736,7 @@ classes:
         });
 
         final result = await FlaxCodegenPackagePipeline.validateConfig(
-          host.configPath('api.yaml'),
+          host.configPath('flax_api.yaml'),
         );
 
         expect(result.directDependencies.keys.toList(), ['base_pkg', 'flax']);
@@ -2522,7 +2784,7 @@ classes:
           name: 'host_pkg',
           libraries: {'host.dart': 'library;\n', 'widgets.dart': 'library;\n'},
           configs: {
-            'widgets.yaml': _minimalConfig(
+            'flax_widgets.yaml': _minimalConfig(
               packageName: 'host_pkg',
               name: 'widgets',
               library: 'package:host_pkg/widgets.dart',
@@ -2530,7 +2792,7 @@ classes:
               tsOutput: 'js/widgets.ts',
               imports: const ['mid_pkg'],
             ),
-            'host.yml': _minimalConfig(
+            'flax_host.yml': _minimalConfig(
               packageName: 'host_pkg',
               name: 'host',
               library: 'package:host_pkg/host.dart',
@@ -2554,11 +2816,11 @@ classes:
         }
 
         final forward = await FlaxCodegenPackagePipeline.validateConfig(
-          host.configPath('widgets.yaml'),
+          host.configPath('flax_widgets.yaml'),
           processRunner: runner,
         );
         final reversed = await FlaxCodegenPackagePipeline.validateConfig(
-          host.configPath('host.yml'),
+          host.configPath('flax_host.yml'),
           processRunner: runner,
         );
 
@@ -2611,7 +2873,7 @@ class Counter {
 ''',
           },
           configs: {
-            'widgets.yaml': '''
+            'flax_widgets.yaml': '''
 format: 2
 name: widgets
 library: package:host_pkg/widgets.dart
@@ -2626,7 +2888,7 @@ classes:
     getters:
       - value
 ''',
-            'host.yml': _minimalConfig(
+            'flax_host.yml': _minimalConfig(
               packageName: 'host_pkg',
               name: 'host',
               library: 'package:host_pkg/host.dart',
@@ -2650,11 +2912,11 @@ classes:
         }
 
         final viaWidgets = await FlaxCodegenPackagePipeline.validateConfig(
-          host.configPath('widgets.yaml'),
+          host.configPath('flax_widgets.yaml'),
           processRunner: runner,
         );
         final viaHost = await FlaxCodegenPackagePipeline.validateConfig(
-          host.configPath('host.yml'),
+          host.configPath('flax_host.yml'),
           processRunner: runner,
         );
 
@@ -2728,7 +2990,7 @@ class Box<T extends Mid> {
 ''',
         },
         configs: {
-          'widgets.yaml': '''
+          'flax_widgets.yaml': '''
 format: 2
 name: widgets
 library: package:host_pkg/widgets.dart
@@ -2755,7 +3017,7 @@ classes:
       });
 
       final result = await FlaxCodegenPackagePipeline.validateConfig(
-        host.configPath('widgets.yaml'),
+        host.configPath('flax_widgets.yaml'),
         processRunner: (executable, arguments) async {
           fail('validateConfig must not invoke the process runner');
         },
@@ -2795,7 +3057,7 @@ class Child extends Base {
 ''',
           },
           configs: {
-            'child.yaml': '''
+            'flax_child.yaml': '''
 format: 2
 name: child
 library: package:host_pkg/child.dart
@@ -2820,7 +3082,7 @@ classes:
         });
 
         final result = await FlaxCodegenPackagePipeline.validateConfig(
-          host.configPath('child.yaml'),
+          host.configPath('flax_child.yaml'),
           processRunner: (executable, arguments) async {
             fail('validateConfig must not invoke the process runner');
           },
@@ -2903,7 +3165,7 @@ class Child extends Base {
 ''',
           },
           configs: {
-            'child.yaml': '''
+            'flax_child.yaml': '''
 format: 2
 name: child
 library: package:host_pkg/child.dart
@@ -2929,7 +3191,7 @@ classes:
 
         try {
           await FlaxCodegenPackagePipeline.validateConfig(
-            host.configPath('child.yaml'),
+            host.configPath('flax_child.yaml'),
             processRunner: (executable, arguments) async {
               fail('validateConfig must not invoke the process runner');
             },
@@ -2967,7 +3229,7 @@ class Child extends Base {
 ''',
           },
           configs: {
-            'child.yaml': '''
+            'flax_child.yaml': '''
 format: 2
 name: child
 library: package:host_pkg/child.dart
@@ -2992,7 +3254,7 @@ classes:
         });
 
         final result = await FlaxCodegenPackagePipeline.validateConfig(
-          host.configPath('child.yaml'),
+          host.configPath('flax_child.yaml'),
           processRunner: (executable, arguments) async {
             fail('validateConfig must not invoke the process runner');
           },
@@ -3034,7 +3296,7 @@ class Child extends Base {
 ''',
           },
           configs: {
-            'child.yaml': '''
+            'flax_child.yaml': '''
 format: 2
 name: child
 library: package:host_pkg/child.dart
@@ -3059,7 +3321,7 @@ classes:
         });
 
         final result = await FlaxCodegenPackagePipeline.validateConfig(
-          host.configPath('child.yaml'),
+          host.configPath('flax_child.yaml'),
           processRunner: (executable, arguments) async {
             fail('validateConfig must not invoke the process runner');
           },
@@ -3098,7 +3360,7 @@ class Child extends Base {
 ''',
         },
         configs: {
-          'child.yaml': '''
+          'flax_child.yaml': '''
 format: 2
 name: child
 library: package:host_pkg/child.dart
@@ -3123,7 +3385,7 @@ classes:
       });
 
       final result = await FlaxCodegenPackagePipeline.validateConfig(
-        host.configPath('child.yaml'),
+        host.configPath('flax_child.yaml'),
         processRunner: (executable, arguments) async {
           fail('validateConfig must not invoke the process runner');
         },
@@ -3163,7 +3425,7 @@ class Child extends Base {
 ''',
         },
         configs: {
-          'child.yaml': '''
+          'flax_child.yaml': '''
 format: 2
 name: child
 library: package:host_pkg/child.dart
@@ -3188,7 +3450,7 @@ classes:
       });
 
       final result = await FlaxCodegenPackagePipeline.validateConfig(
-        host.configPath('child.yaml'),
+        host.configPath('flax_child.yaml'),
         processRunner: (executable, arguments) async {
           fail('validateConfig must not invoke the process runner');
         },
@@ -3231,7 +3493,7 @@ class Counter {
 ''',
           },
           configs: {
-            'widgets.yaml':
+            'flax_widgets.yaml':
                 '''
 format: 2
 name: widgets
@@ -3250,7 +3512,7 @@ classes:
         );
 
         final result = await FlaxCodegenPackagePipeline.validateConfig(
-          package.configPath('widgets.yaml'),
+          package.configPath('flax_widgets.yaml'),
           processRunner: (executable, arguments) async {
             fail('validateConfig must not invoke the process runner');
           },
@@ -3276,7 +3538,7 @@ class Counter {
 ''',
         },
         configs: {
-          'widgets.yaml': '''
+          'flax_widgets.yaml': '''
 format: 2
 name: widgets
 library: package:host_pkg/widgets.dart
@@ -3292,7 +3554,7 @@ classes:
         },
       );
       final result = await FlaxCodegenPackagePipeline.validateConfig(
-        package.configPath('widgets.yaml'),
+        package.configPath('flax_widgets.yaml'),
         processRunner: (executable, arguments) async {
           fail('validateConfig must not invoke the process runner');
         },
@@ -3315,14 +3577,14 @@ classes:
           name: 'host_pkg',
           libraries: {'a.dart': 'library;\n', 'b.dart': 'library;\n'},
           configs: {
-            'b.yaml': _minimalConfig(
+            'flax_b.yaml': _minimalConfig(
               packageName: 'host_pkg',
               name: 'same',
               library: 'package:host_pkg/b.dart',
               dartOutput: 'lib/b.g.dart',
               tsOutput: 'js/b.ts',
             ),
-            'a.yaml': _minimalConfig(
+            'flax_a.yaml': _minimalConfig(
               packageName: 'host_pkg',
               name: 'same',
               library: 'package:host_pkg/a.dart',
@@ -3333,7 +3595,7 @@ classes:
         );
         try {
           await FlaxCodegenPackagePipeline.validateConfig(
-            package.configPath('a.yaml'),
+            package.configPath('flax_a.yaml'),
             processRunner: (executable, arguments) async {
               fail('validateConfig must not invoke the process runner');
             },
@@ -3359,14 +3621,14 @@ classes:
           name: 'collide_pkg',
           libraries: {'a.dart': 'library;\n', 'b.dart': 'library;\n'},
           configs: {
-            'b.yaml': _minimalConfig(
+            'flax_b.yaml': _minimalConfig(
               packageName: 'collide_pkg',
               name: 'beta',
               library: 'package:collide_pkg/b.dart',
               dartOutput: 'bindings/manifest.json',
               tsOutput: 'js/b.ts',
             ),
-            'a.yaml': _minimalConfig(
+            'flax_a.yaml': _minimalConfig(
               packageName: 'collide_pkg',
               name: 'alpha',
               library: 'package:collide_pkg/a.dart',
@@ -3377,7 +3639,7 @@ classes:
         );
         // Force a second collision between alpha dart and a rewritten beta path
         // by also colliding alpha dart with a shared path via sibling edit:
-        File(package.configPath('a.yaml')).writeAsStringSync(
+        File(package.configPath('flax_a.yaml')).writeAsStringSync(
           _minimalConfig(
             packageName: 'collide_pkg',
             name: 'alpha',
@@ -3386,7 +3648,7 @@ classes:
             tsOutput: 'js/shared.ts',
           ),
         );
-        File(package.configPath('b.yaml')).writeAsStringSync(
+        File(package.configPath('flax_b.yaml')).writeAsStringSync(
           _minimalConfig(
             packageName: 'collide_pkg',
             name: 'beta',
@@ -3398,7 +3660,7 @@ classes:
 
         try {
           await FlaxCodegenPackagePipeline.validateConfig(
-            package.configPath('a.yaml'),
+            package.configPath('flax_a.yaml'),
             processRunner: (executable, arguments) async {
               fail('validateConfig must not invoke the process runner');
             },
@@ -3437,7 +3699,7 @@ classes:
         writePackageConfig: false,
         libraries: {'ok.dart': 'library;\n'},
         configs: {
-          'ok.yaml': _minimalConfig(
+          'flax_ok.yaml': _minimalConfig(
             packageName: 'missing_config_pkg',
             name: 'ok',
             library: 'package:missing_config_pkg/ok.dart',
@@ -3448,7 +3710,7 @@ classes:
       );
       try {
         await FlaxCodegenPackagePipeline.validateConfig(
-          missingConfig.configPath('ok.yaml'),
+          missingConfig.configPath('flax_ok.yaml'),
           processRunner: runner,
         );
         fail('expected missing package config');
@@ -3461,7 +3723,7 @@ classes:
         packageConfigContents: '{not-json',
         libraries: {'ok.dart': 'library;\n'},
         configs: {
-          'ok.yaml': _minimalConfig(
+          'flax_ok.yaml': _minimalConfig(
             packageName: 'malformed_pkg',
             name: 'ok',
             library: 'package:malformed_pkg/ok.dart',
@@ -3472,7 +3734,7 @@ classes:
       );
       try {
         await FlaxCodegenPackagePipeline.validateConfig(
-          malformed.configPath('ok.yaml'),
+          malformed.configPath('flax_ok.yaml'),
           processRunner: runner,
         );
         fail('expected malformed package config');
@@ -3489,7 +3751,7 @@ classes:
         name: 'host_pkg',
         libraries: {'a.dart': 'library;\n', 'b.dart': 'library;\n'},
         configs: {
-          'a.yaml': _minimalConfig(
+          'flax_a.yaml': _minimalConfig(
             packageName: 'host_pkg',
             name: 'alpha',
             library: 'package:host_pkg/a.dart',
@@ -3497,7 +3759,7 @@ classes:
             tsOutput: 'js/a.ts',
             imports: const ['missing_pkg'],
           ),
-          'b.yaml': _minimalConfig(
+          'flax_b.yaml': _minimalConfig(
             packageName: 'host_pkg',
             name: 'beta',
             library: 'package:host_pkg/b.dart',
@@ -3510,7 +3772,7 @@ classes:
       _writePackageConfig(workspace, {'host_pkg': host.root});
       try {
         await FlaxCodegenPackagePipeline.validateConfig(
-          host.configPath('b.yaml'),
+          host.configPath('flax_b.yaml'),
           processRunner: runner,
         );
         fail('expected unknown imports');
@@ -3547,7 +3809,7 @@ classes:
         name: 'host_pkg',
         libraries: {'ok.dart': 'library;\n'},
         configs: {
-          'ok.yaml': _minimalConfig(
+          'flax_ok.yaml': _minimalConfig(
             packageName: 'host_pkg',
             name: 'ok',
             library: 'package:host_pkg/ok.dart',
@@ -3563,7 +3825,7 @@ classes:
       });
       try {
         await FlaxCodegenPackagePipeline.validateConfig(
-          mismatchHost.configPath('ok.yaml'),
+          mismatchHost.configPath('flax_ok.yaml'),
           processRunner: runner,
         );
         fail('expected package mismatch');
@@ -3584,7 +3846,7 @@ classes:
         name: 'host_pkg',
         libraries: {'ok.dart': 'library;\n'},
         configs: {
-          'ok.yaml': _minimalConfig(
+          'flax_ok.yaml': _minimalConfig(
             packageName: 'host_pkg',
             name: 'ok',
             library: 'package:host_pkg/ok.dart',
@@ -3600,7 +3862,7 @@ classes:
       });
       try {
         await FlaxCodegenPackagePipeline.validateConfig(
-          missingHost.configPath('ok.yaml'),
+          missingHost.configPath('flax_ok.yaml'),
           processRunner: runner,
         );
         fail('expected missing manifest');
@@ -3661,7 +3923,7 @@ class Child extends Base {
 ''',
         },
         configs: {
-          'child.yaml': '''
+          'flax_child.yaml': '''
 format: 2
 name: child
 library: package:host_pkg/child.dart
@@ -3686,7 +3948,7 @@ classes:
       });
 
       final validation = await FlaxCodegenPackagePipeline.validateConfig(
-        host.configPath('child.yaml'),
+        host.configPath('flax_child.yaml'),
         processRunner: (executable, arguments) async {
           fail('validateConfig must not invoke the process runner');
         },
@@ -3740,7 +4002,7 @@ classes:
 
       final before = _packageFilesystemSnapshot(host.root);
       await FlaxCodegenPackagePipeline.checkConfig(
-        host.configPath('child.yaml'),
+        host.configPath('flax_child.yaml'),
         processRunner: runner,
       );
       _expectPackageFilesystemUnchanged(host.root, before: before);
@@ -4200,13 +4462,13 @@ classes:
 ''';
         final package = _tempPackage(
           name: 'route_pkg',
-          configs: {'api.yaml': config()},
+          configs: {'flax_api.yaml': config()},
           libraries: {
             'api.dart': 'class Counter { Counter(); }\nconst answer = 42;\n',
             'alias.dart': "export 'api.dart';\n",
           },
         );
-        final path = package.configPath('api.yaml');
+        final path = package.configPath('flax_api.yaml');
         Future<ProcessResult> formatter(
           String executable,
           List<String> arguments,
@@ -4547,7 +4809,7 @@ class Extra {
 ''',
     },
     configs: {
-      'extra.yaml': '''
+      'flax_extrflax_a.yaml': '''
 format: 2
 name: extra
 library: package:generate_pkg/extra.dart
@@ -4560,7 +4822,7 @@ classes:
     constructors:
       create: []
 ''',
-      'widgets.yaml': '''
+      'flax_widgets.yaml': '''
 format: 2
 name: widgets
 library: package:generate_pkg/widgets.dart
@@ -4575,7 +4837,10 @@ classes:
 ''',
     },
   );
-  return (root: package.root, configPath: package.configPath('widgets.yaml'));
+  return (
+    root: package.root,
+    configPath: package.configPath('flax_widgets.yaml'),
+  );
 }
 
 const _normalGeneratedHeader =
@@ -4679,7 +4944,7 @@ class Extra {
 ''',
     },
     configs: {
-      'extra.yaml': '''
+      'flax_extrflax_a.yaml': '''
 format: 2
 name: extra
 library: package:check_pkg/extra.dart
@@ -4692,7 +4957,7 @@ classes:
     constructors:
       create: []
 ''',
-      'widgets.yaml': '''
+      'flax_widgets.yaml': '''
 format: 2
 name: widgets
 library: package:check_pkg/widgets.dart
@@ -4708,7 +4973,7 @@ classes:
     },
   );
   final validation = await FlaxCodegenPackagePipeline.validateConfig(
-    package.configPath('widgets.yaml'),
+    package.configPath('flax_widgets.yaml'),
     processRunner: (executable, arguments) async {
       fail('validateConfig must not invoke the process runner');
     },
@@ -4732,7 +4997,7 @@ classes:
       .writeAsStringSync(validation.manifest.encode());
   return (
     root: package.root,
-    configPath: package.configPath('widgets.yaml'),
+    configPath: package.configPath('flax_widgets.yaml'),
     dartRelative: 'lib/widgets.g.dart',
     tsRelative: 'js/widgets.ts',
     secondDartRelative: 'lib/extra.g.dart',
@@ -4901,7 +5166,7 @@ class GenericValue<T> extends HiddenBase {}
       modules: [
         FlaxCodegenResolvedModule(
           moduleId: moduleId,
-          source: '$moduleName.yaml',
+          source: 'flax_$moduleName.yaml',
           owners: [
             FlaxCodegenResolvedOwner(
               sourceIdentity: ownerSource,
@@ -5047,7 +5312,7 @@ class Base {
       modules: [
         FlaxCodegenResolvedModule(
           moduleId: moduleId,
-          source: '$moduleName.yaml',
+          source: 'flax_$moduleName.yaml',
           owners: [
             FlaxCodegenResolvedOwner(
               sourceIdentity: ownerSource,
@@ -5194,7 +5459,7 @@ class Base {
       modules: [
         FlaxCodegenResolvedModule(
           moduleId: moduleId,
-          source: '$moduleName.yaml',
+          source: 'flax_$moduleName.yaml',
           owners: [
             FlaxCodegenResolvedOwner(
               sourceIdentity: ownerSource,
@@ -5405,7 +5670,7 @@ class Base {
       modules: [
         FlaxCodegenResolvedModule(
           moduleId: moduleId,
-          source: '$moduleName.yaml',
+          source: 'flax_$moduleName.yaml',
           owners: [
             FlaxCodegenResolvedOwner(
               sourceIdentity: ownerSource,
@@ -5608,7 +5873,7 @@ FlaxCodegenManifest _manifestPackage({
       modules: [
         FlaxCodegenResolvedModule(
           moduleId: moduleId,
-          source: '$moduleName.yaml',
+          source: 'flax_$moduleName.yaml',
           owners: [
             FlaxCodegenResolvedOwner(
               sourceIdentity: ownerSource,

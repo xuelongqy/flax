@@ -63,7 +63,7 @@ void main() {
       addTearDown(automatic.dispose);
       final core = await automatic.parse(
         FlaxCodegenBindingConfig.read(
-          '$root/packages/flax/bindings/config.yaml',
+          '$root/packages/flax/bindings/flax_bindings.yaml',
         ),
       );
       automatic.prepareModules([core]);
@@ -196,7 +196,7 @@ const nested: GenericContract<import('@flax/core/bindings').DartList<string>> = 
       addTearDown(providerParser.dispose);
       final core = await providerParser.parse(
         FlaxCodegenBindingConfig.read(
-          '$root/packages/flax/bindings/config.yaml',
+          '$root/packages/flax/bindings/flax_bindings.yaml',
         ),
       );
       providerParser.prepareModules([core]);

@@ -24,7 +24,7 @@ void main() {
       final parser = FlaxCodegenBindingParser(root);
       addTearDown(parser.dispose);
       final coreConfig = FlaxCodegenBindingConfig.read(
-        p.join(root, 'packages/flax/bindings/config.yaml'),
+        p.join(root, 'packages/flax/bindings/flax_bindings.yaml'),
       );
       await parser.prepare([config, coreConfig]);
       final core = await parser.parse(coreConfig);
@@ -44,7 +44,7 @@ void main() {
         );
         expect(selection.instanceMethods, contains('textLength'), reason: name);
         expect(selection.setters, contains('requestedValue'), reason: name);
-        expect(selection.instanceMethods, isNot(contains('protectedLabel')));
+        expect(selection.instanceMethods, contains('protectedLabel'));
       }
       expect(
         proposal.config.classes['ComputedWidget']!.constructors.keys,
@@ -96,7 +96,6 @@ ComputedWidget(() => 'signal');
 new ComputedWidget('invalid');
 // @ts-expect-error The method keeps its Dart input type.
 widget.repeatLength('invalid');
-// @ts-expect-error Protected methods stay excluded.
 widget.protectedLabel();
 widget.requestedValue = 1;
 // @ts-expect-error Widget writes retain their Dart input type.

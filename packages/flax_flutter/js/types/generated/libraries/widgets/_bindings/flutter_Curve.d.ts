@@ -6,6 +6,8 @@ export interface Curve extends Readonly<{
     "__flaxBound:package:flutter/src/animation/curves.dart::ParametricCurve": readonly [number];
 }> {
     readonly __Curve: unique symbol;
+    readonly flipped: Curve;
     transform(t: number): number;
+    transformInternal(t: number): number;
 }
 export declare const Curve: object & _FlaxInstanceType<Curve> & _FlaxDartType<Curve, readonly ["class", "flax.core/flutter#type:Curve", readonly [], false]>;

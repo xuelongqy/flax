@@ -16,7 +16,7 @@ import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Row extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Row";
 }
-declare function _RowFactory(options?: {
+export declare function _RowFactory(options?: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -30,4 +30,3 @@ declare function _RowFactory(options?: {
     children?: Bindable<DartListInput<Widget, Widget>> | undefined;
 }): Row;
 export declare const Row: typeof _RowFactory & _FlaxInstanceType<Row> & _FlaxDartType<Row, readonly ["class", "flax.core/flutter#type:Row", readonly [], false]>;
-export {};

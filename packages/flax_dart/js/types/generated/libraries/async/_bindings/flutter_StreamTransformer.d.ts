@@ -17,13 +17,13 @@ export interface StreamTransformer<S extends unknown | null = unknown | null, T 
     bind(stream: (upstream1.Stream<S> | upstream1.Stream<(S | DartInput<S>)>)): upstream1.Stream<T>;
     cast<RS extends unknown | null = unknown | null, RT extends unknown | null = unknown | null>(): StreamTransformer<_FlaxDartOutput<RS>, _FlaxDartOutput<RT>>;
 }
-declare function _StreamTransformerFactory<S extends unknown | null = unknown | null, T extends unknown | null = unknown | null>(onListen: ((stream: upstream1.Stream<_FlaxDartOutput<S>>, cancelOnError: boolean) => Readonly<{
+export declare function _StreamTransformerFactory<S extends unknown | null = unknown | null, T extends unknown | null = unknown | null>(onListen: ((stream: upstream1.Stream<_FlaxDartOutput<S>>, cancelOnError: boolean) => Readonly<{
     "__flaxBound:dart:async::StreamSubscription": readonly [_FlaxDartOutput<T>];
 }>)): StreamTransformer<S, T>;
-declare function _StreamTransformerFactory(onListen: ((stream: upstream1.Stream<unknown | null>, cancelOnError: boolean) => Readonly<{
+export declare function _StreamTransformerFactory(onListen: ((stream: upstream1.Stream<unknown | null>, cancelOnError: boolean) => Readonly<{
     "__flaxBound:dart:async::StreamSubscription": readonly [unknown | null];
 }>)): StreamTransformer<unknown | null, unknown | null>;
-declare namespace _StreamTransformerFactory {
+export declare namespace _StreamTransformerFactory {
     function fromHandlers<S extends unknown | null = unknown | null, T extends unknown | null = unknown | null>(options?: {
         handleData?: ((data: _FlaxDartOutput<S>, sink: upstream2.EventSink<_FlaxDartOutput<T>>) => void) | null | undefined;
         handleError?: ((error: {}, stackTrace: upstream3.StackTrace, sink: upstream2.EventSink<_FlaxDartOutput<T>>) => void) | null | undefined;
@@ -35,11 +35,11 @@ declare namespace _StreamTransformerFactory {
         handleDone?: ((sink: upstream2.EventSink<unknown | null>) => void) | null | undefined;
     }): StreamTransformer<unknown | null, unknown | null>;
 }
-declare namespace _StreamTransformerFactory {
+export declare namespace _StreamTransformerFactory {
     function fromBind<S extends unknown | null = unknown | null, T extends unknown | null = unknown | null>(bind: ((p0: upstream1.Stream<_FlaxDartOutput<S>>) => (upstream1.Stream<_FlaxDartOutput<T>> | upstream1.Stream<(T | _FlaxDartOutput<T>)>))): StreamTransformer<S, T>;
     function fromBind(bind: ((p0: upstream1.Stream<unknown | null>) => upstream1.Stream<unknown | null>)): StreamTransformer<unknown | null, unknown | null>;
 }
-declare namespace _StreamTransformerFactory {
+export declare namespace _StreamTransformerFactory {
     function implement<S extends unknown | null = unknown | null, T extends unknown | null = unknown | null>(args: [], implementation: {
         bind: ((stream: upstream1.Stream<S>) => (upstream1.Stream<T> | upstream1.Stream<(T | DartInput<T>)>));
         cast: (<RS extends unknown | null, RT extends unknown | null>() => Readonly<{
@@ -47,7 +47,7 @@ declare namespace _StreamTransformerFactory {
         }>);
     }): StreamTransformer<S, T>;
 }
-declare namespace _StreamTransformerFactory {
+export declare namespace _StreamTransformerFactory {
     function _flaxDefault_castFrom<SS extends unknown | null = unknown | null, ST extends unknown | null = unknown | null, TS extends unknown | null = unknown | null, TT extends unknown | null = unknown | null>(source: Readonly<{
         "__flaxBound:dart:async::StreamTransformer": readonly [_FlaxDartOutput<SS>, _FlaxDartOutput<ST>];
     }>): StreamTransformer<_FlaxDartOutput<TS>, _FlaxDartOutput<TT>>;

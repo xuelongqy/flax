@@ -40,7 +40,9 @@ test('layout descriptors keep defaults in Dart and accept whole-property binding
   assert.throws(() => Expanded({ fit: FlexFit.loose, child }), /Unsupported/);
   assert.throws(() => Positioned({}), /Missing required/);
   assert.throws(() => Align({ key: signal(null).bind }), /bind/i);
-  assert.equal(Positioned.fill, undefined);
+  const filled = Positioned.fill({ child });
+  assert.equal(filled.ctor, 'fill');
+  assert.equal(filled.args.child, child);
 });
 
 test('alignment values forward constructors and real getters to Dart', () => {

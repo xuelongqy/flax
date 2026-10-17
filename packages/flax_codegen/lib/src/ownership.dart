@@ -582,14 +582,18 @@ FlaxCodegenResolvedPackage _resolve({
         diagnostics.add(
           _locationDiagnostic(
             reference.location,
-            'Ambiguous imported owner; bind this declaration locally.',
+            'Ambiguous imported owner; bind this declaration locally. '
+            '${reference.sourceIdentity.originatingUri}::${reference.sourceIdentity.name}',
           ),
         );
       }
       if ((local == null || local.isEmpty) &&
           (importedGroup == null || importedGroup.isEmpty)) {
         diagnostics.add(
-          _locationDiagnostic(reference.location, 'Missing owner.'),
+          _locationDiagnostic(
+            reference.location,
+            'Missing owner. ${reference.sourceIdentity.originatingUri}::${reference.sourceIdentity.name}',
+          ),
         );
       }
     }

@@ -50,6 +50,20 @@ class CompletionDecorated extends api.CompletionDecorated {
     return super.decorate(value) + this.#suffix;
   }
 }
+class CompletionFuture extends api.CompletionFuture<number> {
+  #calls = 0;
+  override then(...args: any[]): any {
+    this.#calls++;
+    return Reflect.apply(super.then, this, args);
+  }
+  get calls(): number {
+    return this.#calls;
+  }
+  override echo(result: number): number {
+    return super.echo(result) + 1;
+  }
+}
+class CompletionStream extends api.CompletionStream<number> {}
 class CompletionWidget extends api.CompletionWidget {
   #suffix = '!';
   override label(value: string): string {
@@ -72,6 +86,8 @@ Object.assign(globalThis, {
     CompletionGetter,
     CompletionSetter,
     CompletionDecorated,
+    CompletionFuture,
+    CompletionStream,
     CompletionWidget,
   },
 });

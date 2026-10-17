@@ -31,7 +31,7 @@ selection inference without changing lifetime rules or the UI protocol. Route, p
 host semantic adapters remain explicit. Application resource cleanup remains ordinary
 application code under Flutter lifecycle rules.
 
-Optional `bindings/overrides.yaml` uses format 2 with `overrides.classes`,
+Optional `bindings/flax_overrides.yaml` uses format 2 with `overrides.classes`,
 `overrides.functions`, and a declaration-level `overrides.exclude` list. Only supplied
 fields replace inferred fields. Unknown or unbindable override targets fail. This file
 is reserved for automatic mode and is not an explicit selection config. Ordinary
@@ -58,6 +58,35 @@ Manifest round-trips. See
 [collection subclasses](../architecture/interop.md#collection-subclasses). Native ABI 2
 is unchanged. This settles the initial library-discovery and annotation-policy questions
 in ADR 0018; explicit configuration remains supported.
+
+## Curated configuration follow-up
+
+Curated production packages use `flax_bindings.yaml` and, for fixed State mixins,
+`flax_components.yaml`. Shared default discovery accepts `flax_*.yaml` and `flax_*.yml`
+only; an explicitly supplied `--config` still accepts a custom direct-child filename.
+Unrelated YAML and the reserved `flax_overrides` file do not become sibling selections.
+
+Declaration lists under `classes`, `functions` and `extensions` reuse the existing
+automatic selector within the chosen scope. Ordinary local objects retain factory calls;
+proxy generation requires an explicit override. Runtime member types must be selected,
+provided by a sibling or dependency, or use an existing built-in conversion. Unsupported
+members produce skips. Dependencies retain their own published API and ownership.
+Mapping forms still express precise member allowlists. Inline `overrides` uses the same
+strict field-replacement schema as library mode for adapter kinds, proxies, fixed
+mixins, callback metadata and lifecycle policy. Scope names and overrides fail closed.
+Rendering-only Widgets explicitly clear instance members using a shared YAML mapping;
+constructors/static members remain inferred. This preserves reactive descriptions
+instead of silently switching to fixed native-object construction. Fixed generic
+description owners, callback snapshots and State mixins remain explicit policy.
+
+Production migration preserves module identities and the previous API. Shared selection
+now uses the parser's public-type normalization for constants, stream owner defaults and
+callback snapshot rules. Inference probes restore local selections and snapshots. Widget
+views include their selected native Widget parents. Internal factory symbols are
+exported from generated chunks so TypeScript can emit declarations for aliases; public
+barrels still expose only selected API names. Selection format 2, Manifest 24, UI
+protocol 24 and native ABI 2 remain unchanged. This follow-up supersedes the original
+format/policy snapshot above; protected APIs follow the current ordinary member rules.
 
 ## Verification
 

@@ -1,22 +1,46 @@
 import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/core/_bindings/flutter_Comparable';
 import '@flax/dart/core/_bindings/flutter_Comparable';
-import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
-export interface Duration extends upstream0.Comparable<Duration>, Readonly<{
+import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
+export interface Duration extends Omit<upstream0.Comparable<Duration>, typeof _flaxDartTypeValue | "inMicroseconds" | "inDays" | "inHours" | "inMinutes" | "inSeconds" | "inMilliseconds" | "isNegative" | "compareTo" | "toString" | "abs" | "operatorAdd" | "operatorSubtract" | "operatorMultiply" | "operatorTruncateDivide" | "operatorLessThan" | "operatorGreaterThan" | "operatorLessThanOrEqual" | "operatorGreaterThanOrEqual" | "operatorNegate">, Readonly<{
     "__flaxBound:dart:core::Duration": readonly [];
 }> {
     readonly __Duration: unique symbol;
+    readonly inMicroseconds: number;
     readonly inDays: number;
     readonly inHours: number;
     readonly inMinutes: number;
     readonly inSeconds: number;
     readonly inMilliseconds: number;
-    readonly inMicroseconds: number;
+    readonly isNegative: boolean;
     compareTo(other: Readonly<{
         "__flaxBound:dart:core::Duration": readonly [];
     }>): number;
+    toString(): string;
+    abs(): Duration;
+    operatorAdd(other: Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }>): Duration;
+    operatorSubtract(other: Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }>): Duration;
+    operatorMultiply(factor: number): Duration;
+    operatorTruncateDivide(quotient: number): Duration;
+    operatorLessThan(other: Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }>): boolean;
+    operatorGreaterThan(other: Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }>): boolean;
+    operatorLessThanOrEqual(other: Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }>): boolean;
+    operatorGreaterThanOrEqual(other: Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }>): boolean;
+    operatorNegate(): Duration;
 }
-declare function _DurationFactory(options?: {
+export declare function _DurationFactory(options?: {
     days?: number | undefined;
     hours?: number | undefined;
     minutes?: number | undefined;
@@ -24,8 +48,52 @@ declare function _DurationFactory(options?: {
     milliseconds?: number | undefined;
     microseconds?: number | undefined;
 }): Duration;
-declare namespace _DurationFactory {
+export declare namespace _DurationFactory {
+    const microsecondsPerMillisecond: number;
+}
+export declare namespace _DurationFactory {
+    const millisecondsPerSecond: number;
+}
+export declare namespace _DurationFactory {
+    const secondsPerMinute: number;
+}
+export declare namespace _DurationFactory {
+    const minutesPerHour: number;
+}
+export declare namespace _DurationFactory {
+    const hoursPerDay: number;
+}
+export declare namespace _DurationFactory {
+    const microsecondsPerSecond: number;
+}
+export declare namespace _DurationFactory {
+    const microsecondsPerMinute: number;
+}
+export declare namespace _DurationFactory {
+    const microsecondsPerHour: number;
+}
+export declare namespace _DurationFactory {
+    const microsecondsPerDay: number;
+}
+export declare namespace _DurationFactory {
+    const millisecondsPerMinute: number;
+}
+export declare namespace _DurationFactory {
+    const millisecondsPerHour: number;
+}
+export declare namespace _DurationFactory {
+    const millisecondsPerDay: number;
+}
+export declare namespace _DurationFactory {
+    const secondsPerHour: number;
+}
+export declare namespace _DurationFactory {
+    const secondsPerDay: number;
+}
+export declare namespace _DurationFactory {
+    const minutesPerDay: number;
+}
+export declare namespace _DurationFactory {
     const zero: Duration;
 }
 export declare const Duration: typeof _DurationFactory & _FlaxInstanceType<Duration> & _FlaxDartType<Duration, readonly ["class", "flax.core/flutter#type:Duration", readonly [], false]>;
-export {};

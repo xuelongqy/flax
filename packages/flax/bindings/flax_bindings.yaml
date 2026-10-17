@@ -1,0 +1,435 @@
+format: 2
+name: flutter
+library: package:flutter/widgets.dart
+additionalLibraries:
+  - package:flutter/foundation.dart
+  - package:flutter/gestures.dart
+  - package:flutter/services.dart
+  - package:flutter/scheduler.dart
+  - dart:async
+  - dart:core
+  - package:flax/dart_ui.dart
+  - package:flax/bindings.dart
+jsPackage: '@flax/core/navigation'
+dartOutput: lib/src/generated/flutter_bindings.g.dart
+tsOutput: js/src/flutter/generated/bindings.ts
+publicLibraries:
+  package:flutter/widgets.dart:
+    jsPackage: '@flax/flutter/widgets'
+    tsOutput: js/src/flutter/generated/libraries/widgets/index.ts
+  package:flutter/foundation.dart:
+    jsPackage: '@flax/flutter/foundation'
+    tsOutput: js/src/flutter/generated/libraries/foundation/index.ts
+  package:flutter/gestures.dart:
+    jsPackage: '@flax/flutter/gestures'
+    tsOutput: js/src/flutter/generated/libraries/gestures/index.ts
+  package:flutter/services.dart:
+    jsPackage: '@flax/flutter/services'
+    tsOutput: js/src/flutter/generated/libraries/services/index.ts
+  package:flutter/scheduler.dart:
+    jsPackage: '@flax/flutter/scheduler'
+    tsOutput: js/src/flutter/generated/libraries/scheduler/index.ts
+  dart:async:
+    jsPackage: '@flax/dart/async'
+    tsOutput: js/src/dart/generated/libraries/async/index.ts
+  dart:core:
+    jsPackage: '@flax/dart/core'
+    tsOutput: js/src/dart/generated/libraries/core/index.ts
+  package:flax/dart_ui.dart:
+    jsPackage: '@flax/dart/ui'
+    tsOutput: js/src/dart/generated/libraries/ui/index.ts
+  package:flax/bindings.dart:
+    jsPackage: '@flax/core/navigation'
+    tsOutput: js/src/flutter/generated/libraries/navigation/index.ts
+typedefs:
+  - ValueChanged
+  - ValueGetter
+topLevel:
+  getters:
+    - kIsWeb
+    - defaultTargetPlatform
+types:
+  - AutovalidateMode
+  - Axis
+  - BorderStyle
+  - BoxFit
+  - BoxShape
+  - Clip
+  - ConnectionState
+  - CrossAxisAlignment
+  - DecorationPosition
+  - DragStartBehavior
+  - FlexFit
+  - FontStyle
+  - HitTestBehavior
+  - MainAxisAlignment
+  - MainAxisSize
+  - MaxLengthEnforcement
+  - StackFit
+  - TargetPlatform
+  - TextAffinity
+  - TextAlign
+  - TextBaseline
+  - TextDirection
+  - TextOverflow
+  - UnfocusDisposition
+  - VerticalDirection
+  - WidgetState
+  - WrapAlignment
+  - WrapCrossAlignment
+functions:
+  - identical
+  - applyBoxFit
+callbackSnapshots:
+  Offset:
+    fields:
+      - dx
+      - dy
+  PhysicalKeyboardKey:
+    fields:
+      - usbHidUsage
+  LogicalKeyboardKey:
+    fields:
+      - keyId
+      - keyLabel
+  PointerEvent:
+    fields:
+      - pointer
+      - device
+      - kind
+      - buttons
+      - down
+      - position
+      - localPosition
+      - delta
+      - localDelta
+      - pressure
+      - pressureMin
+      - pressureMax
+      - size
+      - synthesized
+  PointerScrollEvent:
+    extends: PointerEvent
+    fields:
+      - scrollDelta
+  KeyEvent:
+    fields:
+      - physicalKey
+      - logicalKey
+      - character
+      - synthesized
+classes:
+  - MapEntry
+  - Runes
+  - RuneIterator
+  - Error
+  - Enum
+  - Comparable
+  - Invocation
+  - UriData
+  - Deprecated
+  - Type
+  - Symbol
+  - Record
+  - Spacer
+  - Stream
+  - StreamSubscription
+  - StreamController
+  - SynchronousStreamController
+  - MultiStreamController
+  - Duration
+  - DateTime
+  - Uri
+  - StringBuffer
+  - StackTrace
+  - Iterator
+  - Sink
+  - EventSink
+  - StreamConsumer
+  - StreamSink
+  - StreamTransformer
+  - StreamTransformerBase
+  - StreamView
+  - StreamIterator
+  - AsyncSnapshot
+  - StreamBuilder
+  - WidgetStateProperty
+  - TickerProvider
+  - Curve
+  - Cubic
+  - Curves
+  - MouseCursor
+  - SystemMouseCursor
+  - SystemMouseCursors
+  - ValueListenableBuilder
+  - ListenableBuilder
+  - Listenable
+  - ValueListenable
+  - FittedSizes
+  - NavigatorObserver
+  - FlaxNavigatorObserver
+  - PreferredSizeWidget
+  - PreferredSize
+  - Container
+  - DecoratedBox
+  - Decoration
+  - ShapeBorder
+  - OutlinedBorder
+  - RoundedRectangleBorder
+  - CircleBorder
+  - StadiumBorder
+  - BoxBorder
+  - BorderRadiusGeometry
+  - EdgeInsetsGeometry
+  - BoxDecoration
+  - BorderSide
+  - Border
+  - BorderDirectional
+  - Radius
+  - BorderRadius
+  - BorderRadiusDirectional
+  - EdgeInsetsDirectional
+  - AlignmentGeometry
+  - Alignment
+  - AlignmentDirectional
+  - Expanded
+  - Flexible
+  - Stack
+  - Positioned
+  - Align
+  - Color
+  - ImageFilter
+  - FontWeight
+  - TextStyle
+  - Key
+  - LocalKey
+  - TextEditingController
+  - TextEditingValue
+  - TextSelection
+  - TextRange
+  - Navigator
+  - NavigatorState
+  - Route
+  - Page
+  - RouteSettings
+  - NavigatorPopHandler
+  - PopScope
+  - Builder
+  - LayoutBuilder
+  - BuildContext
+  - Size
+  - SchedulerBinding
+  - BoxConstraints
+  - Directionality
+  - Text
+  - Row
+  - Column
+  - Center
+  - Padding
+  - SizedBox
+  - EdgeInsets
+  - ValueKey
+  - ScrollController
+  - ScrollPhysics
+  - ClampingScrollPhysics
+  - BouncingScrollPhysics
+  - AlwaysScrollableScrollPhysics
+  - NeverScrollableScrollPhysics
+  - ListView
+  - SingleChildScrollView
+  - FocusNode
+  - TextInputFormatter
+  - FilteringTextInputFormatter
+  - LengthLimitingTextInputFormatter
+  - Pattern
+  - Match
+  - RegExpMatch
+  - RegExp
+  - Listener
+  - MouseRegion
+  - KeyboardListener
+  - SafeArea
+  - Wrap
+  - FittedBox
+  - AspectRatio
+  - ConstrainedBox
+  - Opacity
+  - Visibility
+  - ColoredBox
+  - ClipRRect
+  - IgnorePointer
+  - IndexedStack
+  - GestureDetector
+  - Focus
+  - Form
+  - StatefulBuilder
+extensions:
+  - EnumName
+  - EnumByName
+overrides:
+  classes:
+    Error:
+      instanceMethods:
+        toString: []
+    Symbol:
+      instanceMethods:
+        toString: []
+    Stream:
+      kind: stream
+      asyncIterableFactory: fromAsyncIterable
+      callbackSignatures:
+        listen.onError:
+          - Object
+          - StackTrace
+        handleError.onError:
+          - Object
+          - StackTrace
+      callbackOptionalParameters:
+        listen.onError:
+          - 1
+        handleError.onError:
+          - 1
+      callbackErrorParameters:
+        listen.onError:
+          - 0
+        handleError.onError:
+          - 0
+      callbackScopedParameters:
+        timeout.onTimeout:
+          - 0
+    StreamSubscription:
+      callbackSignatures:
+        onError.handleError:
+          - Object
+          - StackTrace
+      callbackOptionalParameters:
+        onError.handleError:
+          - 1
+      callbackErrorParameters:
+        onError.handleError:
+          - 0
+    EventSink:
+      proxy: implements
+    StreamConsumer:
+      proxy: implements
+    StreamTransformer:
+      proxy: implements
+      callbackScopedParameters:
+        fromHandlers.handleData:
+          - 1
+        fromHandlers.handleError:
+          - 2
+        fromHandlers.handleDone:
+          - 0
+    StreamTransformerBase:
+      proxy: extends
+    StreamView:
+      kind: stream
+    AsyncSnapshot:
+      errorGetters:
+        - error
+    Listenable:
+      listenerPairs:
+        addListener: removeListener
+    ValueListenable:
+      proxy: extends
+    PreferredSizeWidget:
+      kind: widgetInterface
+      proxy: implements
+    PreferredSize:
+      widgetInterfaces:
+        - PreferredSizeWidget
+    TextEditingController:
+      disposeMethod: dispose
+      listenerPairs:
+        addListener: removeListener
+    NavigatorState:
+      kind: state
+      startsRoute:
+        - push
+        - pushNamed
+        - pushReplacement
+    BuildContext:
+      kind: context
+    Text:
+      proxy: extends
+    ScrollController:
+      disposeMethod: dispose
+      listenerPairs:
+        addListener: removeListener
+    FocusNode:
+      disposeMethod: dispose
+      listenerPairs:
+        addListener: removeListener
+    Form:
+      getters: []
+      setters: []
+      instanceMethods: {}
+      data:
+        constructors:
+          '':
+            - onPopInvokedWithResult
+    Spacer: &renderOnlyWidget
+      getters: []
+      setters: []
+      instanceMethods: {}
+    StreamBuilder:
+      getters: []
+      setters: []
+      instanceMethods: {}
+      typeArguments:
+        - Object?
+    ValueListenableBuilder:
+      getters: []
+      setters: []
+      instanceMethods: {}
+      typeArguments:
+        - Object?
+    ListenableBuilder: *renderOnlyWidget
+    Container: *renderOnlyWidget
+    DecoratedBox: *renderOnlyWidget
+    Expanded: *renderOnlyWidget
+    Flexible: *renderOnlyWidget
+    Stack: *renderOnlyWidget
+    Positioned: *renderOnlyWidget
+    Align: *renderOnlyWidget
+    Navigator: *renderOnlyWidget
+    NavigatorPopHandler:
+      getters: []
+      setters: []
+      instanceMethods: {}
+      typeArguments:
+        - Object?
+    PopScope:
+      getters: []
+      setters: []
+      instanceMethods: {}
+      typeArguments:
+        - Object?
+    Builder: *renderOnlyWidget
+    LayoutBuilder: *renderOnlyWidget
+    Directionality: *renderOnlyWidget
+    Row: *renderOnlyWidget
+    Column: *renderOnlyWidget
+    Center: *renderOnlyWidget
+    Padding: *renderOnlyWidget
+    SizedBox: *renderOnlyWidget
+    ListView: *renderOnlyWidget
+    SingleChildScrollView: *renderOnlyWidget
+    Listener: *renderOnlyWidget
+    MouseRegion: *renderOnlyWidget
+    KeyboardListener: *renderOnlyWidget
+    SafeArea: *renderOnlyWidget
+    Wrap: *renderOnlyWidget
+    FittedBox: *renderOnlyWidget
+    AspectRatio: *renderOnlyWidget
+    ConstrainedBox: *renderOnlyWidget
+    Opacity: *renderOnlyWidget
+    Visibility: *renderOnlyWidget
+    ColoredBox: *renderOnlyWidget
+    ClipRRect: *renderOnlyWidget
+    IgnorePointer: *renderOnlyWidget
+    IndexedStack: *renderOnlyWidget
+    GestureDetector: *renderOnlyWidget
+    Focus: *renderOnlyWidget
+    StatefulBuilder: *renderOnlyWidget

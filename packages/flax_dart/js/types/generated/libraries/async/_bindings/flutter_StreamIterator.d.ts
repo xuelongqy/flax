@@ -10,8 +10,8 @@ export interface StreamIterator<T extends unknown | null = unknown | null> exten
     moveNext(): Promise<boolean>;
     cancel(): Promise<unknown | null>;
 }
-declare function _StreamIteratorFactory<T extends unknown | null = unknown | null>(stream: (upstream0.Stream<_FlaxDartOutput<T>> | upstream0.Stream<(T | _FlaxDartOutput<T>)>)): StreamIterator<T>;
-declare function _StreamIteratorFactory(stream: upstream0.Stream<unknown | null>): StreamIterator<unknown | null>;
+export declare function _StreamIteratorFactory<T extends unknown | null = unknown | null>(stream: (upstream0.Stream<_FlaxDartOutput<T>> | upstream0.Stream<(T | _FlaxDartOutput<T>)>)): StreamIterator<T>;
+export declare function _StreamIteratorFactory(stream: upstream0.Stream<unknown | null>): StreamIterator<unknown | null>;
 export declare const StreamIterator: typeof _StreamIteratorFactory & _FlaxInstanceType<StreamIterator<unknown | null>> & _FlaxDartType<StreamIterator<unknown | null>, readonly ["class", "flax.core/flutter#type:StreamIterator", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? {

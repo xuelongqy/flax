@@ -16,7 +16,7 @@ void main() {
     addTearDown(parser.dispose);
     final core = await parser.parse(
       FlaxCodegenBindingConfig.read(
-        p.join(root, 'packages/flax/bindings/config.yaml'),
+        p.join(root, 'packages/flax/bindings/flax_bindings.yaml'),
       ),
     );
     parser.prepareModules([core]);
@@ -37,10 +37,45 @@ void main() {
     );
     expect(proposal.config.functions, contains('autoBuild'));
     final module = await parser.parse(proposal.config);
+    expect(
+      module.types.singleWhere((type) => type.name == 'AutoMode').enumNames,
+      ['_unknown', 'compact', 'expanded'],
+    );
     await compileFixture(
       root,
       FlaxCodegenBindingEmitter([core, module]),
       module,
+      consumerSource: '''
+import { AutoSortKey, AutoOrdinalKey, AutoContextBox, AutoMode } from './plugin.js';
+const mode: AutoMode = AutoMode.values[0];
+// @ts-expect-error Private constants remain available only through values/results.
+AutoMode._unknown;
+declare const base: AutoSortKey;
+declare const child: AutoOrdinalKey;
+declare const box: AutoContextBox;
+base.compare(child);
+child.compare(child);
+const storage: Float64Array = child.storage;
+// @ts-expect-error A covariant override keeps its actual narrower argument.
+child.compare(base);
+// @ts-expect-error A nullable reference still requires a Dart source brand.
+box.store = {};
+box.store = null;
+''',
+      dartTestSource:
+          '''
+void main() {
+  test('private enum values preserve native identity and indices', () {
+    final binding = auto_libraryBindings.types.whereType<FlaxEnumBinding>()
+        .singleWhere((binding) => binding.id == '${module.types.singleWhere((type) => type.name == 'AutoMode').id}');
+    final values = binding.values.values.cast<api.AutoMode>().toList();
+    expect(values, api.AutoMode.values);
+    expect(binding.values['compact'], api.AutoMode.compact);
+    expect(values.map((value) => value.index), [0, 1, 2]);
+    expect(binding.values['_unknown'], api.autoUnknownMode());
+  });
+}
+''',
     );
   }, timeout: const Timeout(Duration(minutes: 3)));
 
@@ -182,7 +217,7 @@ const fallback: number = ambiguous.value;
     addTearDown(parser.dispose);
     addTearDown(collection.dispose);
     final coreConfig = FlaxCodegenBindingConfig.read(
-      p.join(root, 'packages/flax/bindings/config.yaml'),
+      p.join(root, 'packages/flax/bindings/flax_bindings.yaml'),
     );
     await parser.prepare([coreConfig]);
     final core = await parser.parse(coreConfig);

@@ -65,6 +65,23 @@ capabilities: [codegen]
   }
 
   group('Flutter example discovery', () {
+    test('binding discovery ignores unrelated YAML and reserved overrides', () {
+      final owner = package('binding_names');
+      for (final name in [
+        'flax_bindings.yaml',
+        'flax_components.yml',
+        'config.yaml',
+        'notes.yaml',
+        'flax_overrides.yaml',
+      ]) {
+        _write(owner.directory, 'bindings/$name', '');
+      }
+      expect(bindingConfigs(owner).map(p.basename), [
+        'flax_bindings.yaml',
+        'flax_components.yml',
+      ]);
+    });
+
     test('skips absent and empty examples', () async {
       final missing = package('missing');
       final empty = package('empty');

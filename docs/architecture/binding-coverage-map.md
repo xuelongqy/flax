@@ -16,6 +16,11 @@ source baseline. This is the current mechanism backlog, not a complete Flutter S
 census. A supported mechanism does not expose every library automatically or certify
 every platform. The sections below retain the detailed contracts and regression links.
 
+The separate [Flutter SDK verification](../tasks/flutter-sdk-bindings.md) records the
+2026-10-17 complete public-entry census and production generation/compile matrix. It
+identifies dependency-closure, filtered-metadata and generic subtype blockers; it does
+not claim whole-SDK runtime acceptance.
+
 The maintained engine changes three important boundaries:
 
 | Engine capability                                          | What it enables                                                                                                                                                | What it does not supply                                                                                         |
@@ -106,8 +111,8 @@ This does not defer ordinary callbacks, selected generic callbacks, known SDK ca
 conventions or calling returned Dart functions. For example, a declared
 `void Function(int completed, int total)` callback already supplies its adapter. The
 Core Stream selections describe the bounded `onError` signatures through existing
-[callback metadata](../../packages/flax/bindings/config.yaml). Applications that own a
-dynamic handler registry can also choose one typed contract, such as
+[callback metadata](../../packages/flax/bindings/flax_bindings.yaml). Applications that
+own a dynamic handler registry can also choose one typed contract, such as
 `Object? Function(List<Object?> arguments)`, rather than arbitrary Dart call layouts.
 
 The following priorities keep the underlying Dart features usable through existing
@@ -356,8 +361,9 @@ parent-only/provider views and descriptor-only values have the explicit
 
 Automatic proposal covers `classes`, `types`, `typedefs`, `functions`, `extensions`, and
 `topLevel` selections from the same public inventory. Annotation filtering excludes
-private, `@internal`, `@protected`, and `@visibleForTesting` surfaces. Deprecated public
-API can still be selected and produces a notice.
+private, `@internal`, and `@visibleForTesting` surfaces. Public `@protected` members
+remain callable and overridable through generated adapters. Deprecated public API can
+still be selected and produces a notice.
 
 Selected concrete extends methods and accessors enforce inherited `@mustCallSuper`.
 Reads and writes are separate requirements, reentry restores the outer check, and

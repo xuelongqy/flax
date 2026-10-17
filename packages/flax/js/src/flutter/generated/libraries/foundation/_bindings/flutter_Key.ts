@@ -7,4 +7,9 @@ export interface Key extends Readonly<{ "__flaxBound:package:flutter/src/foundat
 
 }
 defineObject("flax.core/flutter#type:Key", [], [], _flaxBindingMethods("flax.core/flutter#type:Key", "object", {}, {}), []);
-export const Key: object & _FlaxInstanceType<Key> & _FlaxDartType<Key, readonly ["class", "flax.core/flutter#type:Key", readonly [], false]> = _flaxBindInstanceType<Key, object>({}, "flax.core/flutter#type:Key", ["dart:core::Object"]) as object & _FlaxInstanceType<Key> & _FlaxDartType<Key, readonly ["class", "flax.core/flutter#type:Key", readonly [], false]>;
+export function _KeyFactory(value: string): Key {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/flutter#type:Key", "", [{"name":"value","required":true,"positional":true}], [value], {}) as Key;
+}
+export const Key: typeof _KeyFactory & _FlaxInstanceType<Key> & _FlaxDartType<Key, readonly ["class", "flax.core/flutter#type:Key", readonly [], false]> = _flaxBindInstanceType<Key, typeof _KeyFactory>(_KeyFactory, "flax.core/flutter#type:Key", ["dart:core::Object"]) as typeof _KeyFactory & _FlaxInstanceType<Key> & _FlaxDartType<Key, readonly ["class", "flax.core/flutter#type:Key", readonly [], false]>;

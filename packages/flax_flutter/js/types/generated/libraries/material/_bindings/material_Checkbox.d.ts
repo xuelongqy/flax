@@ -1,37 +1,110 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
-import type * as upstream1 from '@flax/flutter/services/_bindings/flutter_Color';
+import '@flax/flutter/services/_bindings/flutter_MouseCursor';
+import type * as upstream2 from '@flax/flutter/services/_bindings/flutter_Color';
 import '@flax/flutter/services/_bindings/flutter_Color';
 import '@flax/flutter/widgets/_bindings/flutter_WidgetStateProperty';
+import '@flax/flutter/material/_bindings/material_VisualDensity';
 import '@flax/flutter/widgets/_bindings/flutter_FocusNode';
+import '@flax/flutter/widgets/_bindings/flutter_OutlinedBorder';
+import '@flax/flutter/widgets/_bindings/flutter_BorderSide';
 import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Checkbox extends WidgetDescription {
     readonly type: "flax.material/material#type:Checkbox";
 }
-declare function _CheckboxFactory(options: {
+export declare function _CheckboxFactory(options: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
     value: Bindable<boolean | null>;
     tristate?: Bindable<boolean> | undefined;
     onChanged: Bindable<((value: boolean | null) => void) | null>;
+    mouseCursor?: Bindable<Readonly<{
+        "__flaxBound:package:flutter/src/services/mouse_cursor.dart::MouseCursor": readonly [];
+    }> | null> | undefined;
     activeColor?: Bindable<Readonly<{
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null> | undefined;
     fillColor?: Bindable<Readonly<{
-        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream1.Color | null];
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
     }> | null> | undefined;
     checkColor?: Bindable<Readonly<{
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null> | undefined;
+    focusColor?: Bindable<Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null> | undefined;
+    hoverColor?: Bindable<Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null> | undefined;
     overlayColor?: Bindable<Readonly<{
-        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream1.Color | null];
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+    }> | null> | undefined;
+    splashRadius?: Bindable<number | null> | undefined;
+    visualDensity?: Bindable<Readonly<{
+        "__flaxBound:package:material_ui/src/theme_data.dart::VisualDensity": readonly [];
     }> | null> | undefined;
     focusNode?: Bindable<Readonly<{
         "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
     }> | null> | undefined;
     autofocus?: Bindable<boolean> | undefined;
+    shape?: Bindable<Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::OutlinedBorder": readonly [];
+    }> | null> | undefined;
+    side?: Bindable<Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [];
+    }> | null> | undefined;
     isError?: Bindable<boolean> | undefined;
+    semanticLabel?: Bindable<string | null> | undefined;
 }): Checkbox;
+export declare namespace _CheckboxFactory {
+    function adaptive(options: {
+        key?: Readonly<{
+            "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
+        }> | null | undefined;
+        value: Bindable<boolean | null>;
+        tristate?: Bindable<boolean> | undefined;
+        onChanged: Bindable<((value: boolean | null) => void) | null>;
+        mouseCursor?: Bindable<Readonly<{
+            "__flaxBound:package:flutter/src/services/mouse_cursor.dart::MouseCursor": readonly [];
+        }> | null> | undefined;
+        activeColor?: Bindable<Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null> | undefined;
+        fillColor?: Bindable<Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+        }> | null> | undefined;
+        checkColor?: Bindable<Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null> | undefined;
+        focusColor?: Bindable<Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null> | undefined;
+        hoverColor?: Bindable<Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null> | undefined;
+        overlayColor?: Bindable<Readonly<{
+            "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
+        }> | null> | undefined;
+        splashRadius?: Bindable<number | null> | undefined;
+        visualDensity?: Bindable<Readonly<{
+            "__flaxBound:package:material_ui/src/theme_data.dart::VisualDensity": readonly [];
+        }> | null> | undefined;
+        focusNode?: Bindable<Readonly<{
+            "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
+        }> | null> | undefined;
+        autofocus?: Bindable<boolean> | undefined;
+        shape?: Bindable<Readonly<{
+            "__flaxBound:package:flutter/src/painting/borders.dart::OutlinedBorder": readonly [];
+        }> | null> | undefined;
+        side?: Bindable<Readonly<{
+            "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [];
+        }> | null> | undefined;
+        isError?: Bindable<boolean> | undefined;
+        semanticLabel?: Bindable<string | null> | undefined;
+    }): Checkbox;
+}
+export declare namespace _CheckboxFactory {
+    const width: number;
+}
 export declare const Checkbox: typeof _CheckboxFactory & _FlaxInstanceType<Checkbox> & _FlaxDartType<Checkbox, readonly ["class", "flax.material/material#type:Checkbox", readonly [], false]>;
-export {};

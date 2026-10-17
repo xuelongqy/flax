@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"56861fbf988d69eb632e5f7391b5c7748a5b59689d5c5c0821a9cc6f9f7305df","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/core/bindings","owner":"@flax/core-runtime:dist/runtime/bindings.js","version":"0.0.0","artifact":"365a33b91504d978e5e3cd5f353a2869ff3ab82bb0228dba35446aadac137442","asset":"assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js","package":"@flax/core-runtime","source":"dist/runtime/bindings.js","dependencies":{"@flax/core":"0.0.0"},"bindings":[],"subpaths":[]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -297,6 +297,7 @@ var nativeIsView = ArrayBuffer.isView;
 var bindingVersion = 24;
 var supportedBindingCapabilities = /* @__PURE__ */ new Set([
   "native-functions",
+  "native-async-objects",
   "lazy-js-iterables",
   "callback-map-keys",
   "proxy-super-constructors",
@@ -964,11 +965,34 @@ function getDartType(value) {
   ]);
 }
 function bindInstanceType(value, type, parents) {
+  var _a2, _b, _c;
   if (!instanceParents.has(type))
     instanceParents.set(type, Object.freeze([...parents]));
+  if (parents.some((parent) => parent === "dart:async::Future" || futureObjectTypes.has(parent))) {
+    futureObjectTypes.add(type);
+    const prototype = (_a2 = Object.getOwnPropertyDescriptor(value, "prototype")) == null ? void 0 : _a2.value;
+    if (typeof value === "function" && prototype) {
+      const nativeThen = (_b = Object.getOwnPropertyDescriptor(prototype, "then")) == null ? void 0 : _b.value;
+      if (typeof nativeThen === "function" && !futureObjectPrototypes.has(prototype)) {
+        Object.defineProperties(prototype, futureMethods(nativeThen));
+        futureObjectPrototypes.add(prototype);
+      }
+    }
+  }
+  if (parents.some((parent) => parent === "dart:async::Stream" || streamTypes.has(parent) || streamObjectTypes.has(parent))) {
+    streamObjectTypes.add(type);
+    const prototype = (_c = Object.getOwnPropertyDescriptor(value, "prototype")) == null ? void 0 : _c.value;
+    if (typeof value === "function" && prototype) {
+      Object.defineProperty(prototype, Symbol.asyncIterator, {
+        configurable: true,
+        writable: true,
+        value: streamObjectIterator
+      });
+    }
+  }
   Object.defineProperty(value, Symbol.hasInstance, {
     value(candidate) {
-      var _a2, _b, _c, _d, _e, _f, _g;
+      var _a3, _b2, _c2, _d, _e, _f, _g;
       if (this !== value) {
         return typeof this === "function" && Function.prototype[Symbol.hasInstance].call(this, candidate);
       }
@@ -978,7 +1002,7 @@ function bindInstanceType(value, type, parents) {
       const context = contextStates.get(candidate);
       if ((object == null ? void 0 : object.alive) === false || (context == null ? void 0 : context.alive) === false)
         return false;
-      const source = (_e = (_c = (_b = object == null ? void 0 : object.type) != null ? _b : (_a2 = stateHandles.get(candidate)) == null ? void 0 : _a2.type) != null ? _c : context == null ? void 0 : context.type) != null ? _e : (_d = enumIdentities.get(candidate)) == null ? void 0 : _d.type;
+      const source = (_e = (_c2 = (_b2 = object == null ? void 0 : object.type) != null ? _b2 : (_a3 = stateHandles.get(candidate)) == null ? void 0 : _a3.type) != null ? _c2 : context == null ? void 0 : context.type) != null ? _e : (_d = enumIdentities.get(candidate)) == null ? void 0 : _d.type;
       if (!source) {
         return recordDartTypes.has(candidate) ? Boolean(invokeOperation("reference", type, 0, "is", "", [candidate])) : false;
       }
@@ -1586,7 +1610,10 @@ function installMembers(prototype, methods, getters, setters, invoke) {
   }
 }
 function defineProxyBase(prototype, definition, nativeGetters = []) {
-  var _a2, _b;
+  var _a2, _b, _c;
+  const flaxConstructor = (_a2 = Object.getOwnPropertyDescriptor(prototype, "constructor")) == null ? void 0 : _a2.value;
+  if (typeof flaxConstructor !== "function")
+    throw new TypeError("Expected a proxy class prototype");
   if (definition.nativeWidget)
     componentBases.set(prototype, false);
   installMembers(prototype, {}, nativeGetters, [], (receiver, member, args) => callObject(receiver, definition.type, "get", member.slice(4), args));
@@ -1607,13 +1634,13 @@ function defineProxyBase(prototype, definition, nativeGetters = []) {
   const members = new Set(definition.superMembers);
   installMembers(prototype, Object.fromEntries(Object.entries(definition.methods).filter(([name]) => members.has(name))), definition.getters.filter((name) => members.has(`get:${name}`)), definition.setters.filter((name) => members.has(`set:${name}`)), (receiver, member, args) => invokeProxySuper(receiver, definition.type, member, args));
   for (const name of members) {
-    const value = (_a2 = Object.getOwnPropertyDescriptor(prototype, name)) == null ? void 0 : _a2.value;
+    const value = (_b = Object.getOwnPropertyDescriptor(prototype, name)) == null ? void 0 : _b.value;
     if (typeof value === "function")
       proxySuperFunctions.add(value);
   }
   proxyLayouts.set(definition, { prototype });
-  proxyDefinitions.set(prototype.constructor, definition);
-  if (((_b = objectTypes.get(definition.type)) == null ? void 0 : _b.collectionKind) !== void 0) {
+  proxyDefinitions.set(flaxConstructor, definition);
+  if (((_c = objectTypes.get(definition.type)) == null ? void 0 : _c.collectionKind) !== void 0) {
     const selected = /* @__PURE__ */ new Set([
       ...nativeGetters,
       ...definition.getters,
@@ -1717,6 +1744,60 @@ function invokeObjectStatic(type, member) {
   return invokeOperation("object", type, 0, "static", member, []);
 }
 var objectPrototypes = /* @__PURE__ */ new Map();
+var futureObjectTypes = /* @__PURE__ */ new Set();
+var futureObjectPrototypes = /* @__PURE__ */ new WeakSet();
+var futureObjectPromises = /* @__PURE__ */ new WeakMap();
+var streamObjectTypes = /* @__PURE__ */ new Set();
+var objectStreams = /* @__PURE__ */ new WeakMap();
+function streamObjectIterator() {
+  let stream = objectStreams.get(this);
+  if (!stream) {
+    stream = invokeOperation("reference", "", 0, "stream", "", [
+      this
+    ]);
+    objectStreams.set(this, stream);
+  }
+  return stream[Symbol.asyncIterator]();
+}
+function futureObjectPromise(receiver, nativeThen) {
+  let promise = futureObjectPromises.get(receiver);
+  if (!promise) {
+    promise = nativeApply(nativeThen, receiver, [
+      (value) => value
+    ]);
+    futureObjectPromises.set(receiver, promise);
+  }
+  return promise;
+}
+function futureMethods(nativeThen) {
+  const then = function(onValue, onError) {
+    const context = arguments[2];
+    if (typeof (context == null ? void 0 : context.super) === "function")
+      return nativeApply(context.super, void 0, [onValue, onError]);
+    if (onError !== null && typeof onError === "object")
+      return nativeApply(nativeThen, this, Array.from(arguments));
+    return futureObjectPromise(this, nativeThen).then(onValue, onError);
+  };
+  proxySuperFunctions.add(then);
+  return {
+    then: { configurable: true, writable: true, value: then },
+    catch: {
+      configurable: true,
+      writable: true,
+      value(onError) {
+        return futureObjectPromise(this, nativeThen).catch(onError);
+      }
+    },
+    finally: {
+      configurable: true,
+      writable: true,
+      value(onFinally) {
+        return futureObjectPromise(this, nativeThen).finally(onFinally);
+      }
+    },
+    [Symbol.toStringTag]: { value: "Promise" }
+  };
+}
 function objectPrototype(type) {
   const base = objectViewTypes.get(type);
   if (base)
@@ -1746,7 +1827,10 @@ function objectPrototype(type) {
     });
   }
   for (const [name, method] of Object.entries(definition.methods)) {
-    Object.defineProperty(value, name, { value: method });
+    if (name === "then" && futureObjectTypes.has(type))
+      Object.defineProperties(value, futureMethods(method));
+    else
+      Object.defineProperty(value, name, { value: method });
   }
   if (iterableObjectTypes.has(type)) {
     Object.defineProperty(value, Symbol.iterator, {
@@ -1757,6 +1841,9 @@ function objectPrototype(type) {
         yield* __yieldStar(copy);
       }
     });
+  }
+  if (streamObjectTypes.has(type)) {
+    Object.defineProperty(value, Symbol.asyncIterator, { value: streamObjectIterator });
   }
   Object.freeze(value);
   objectPrototypes.set(type, value);

@@ -202,6 +202,9 @@ importers:
       '@flax/core-runtime':
         specifier: workspace:*
         version: link:../../flax/js
+      '@flax/dart':
+        specifier: workspace:*
+        version: link:../../flax_dart/js
       '@flax/flutter':
         specifier: workspace:*
         version: link:../../flax_flutter/js
@@ -218,6 +221,9 @@ importers:
       '@flax/core':
         specifier: workspace:*
         version: link:../../flax/js-types
+      '@flax/dart':
+        specifier: workspace:*
+        version: link:../../flax_dart/js
       '@flax/flutter':
         specifier: workspace:*
         version: link:../../flax_flutter/js

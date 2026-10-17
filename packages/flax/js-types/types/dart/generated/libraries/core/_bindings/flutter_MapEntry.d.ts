@@ -7,9 +7,10 @@ export interface MapEntry<K extends unknown | null = unknown | null, V extends u
     readonly __MapEntry: unique symbol;
     readonly key: K;
     readonly value: V;
+    toString(): string;
 }
-declare function _MapEntryFactory<K extends unknown | null = unknown | null, V extends unknown | null = unknown | null>(key: (K | _FlaxDartOutput<K>), value: (V | _FlaxDartOutput<V>)): MapEntry<K, V>;
-declare function _MapEntryFactory(key: unknown | null, value: unknown | null): MapEntry<unknown | null, unknown | null>;
+export declare function _MapEntryFactory<K extends unknown | null = unknown | null, V extends unknown | null = unknown | null>(key: (K | _FlaxDartOutput<K>), value: (V | _FlaxDartOutput<V>)): MapEntry<K, V>;
+export declare function _MapEntryFactory(key: unknown | null, value: unknown | null): MapEntry<unknown | null, unknown | null>;
 export declare const MapEntry: typeof _MapEntryFactory & _FlaxInstanceType<MapEntry<unknown | null, unknown | null>> & _FlaxDartType<MapEntry<unknown | null, unknown | null>, readonly ["class", "flax.core/flutter#type:MapEntry", readonly [readonly ["any", null, readonly [], true], readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0, infer _Selected1] ? [_Selected0] extends [unknown | null] ? [_Selected1] extends [unknown | null] ? {

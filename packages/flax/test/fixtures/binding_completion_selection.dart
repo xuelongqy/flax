@@ -1,6 +1,25 @@
 import 'package:flax_codegen/flax_codegen.dart';
 
 const bindingCompletionSelection = {
+  'CompletionFuture': FlaxCodegenClassSelection(
+    {
+      '': ['value'],
+    },
+    kind: 'object',
+    proxy: 'extends',
+    instanceMethods: {
+      'then': ['onValue', 'onError'],
+      'observe': [],
+      'echo': ['result'],
+    },
+  ),
+  'CompletionStream': FlaxCodegenClassSelection(
+    {
+      '': ['stream'],
+    },
+    kind: 'object',
+    proxy: 'extends',
+  ),
   'GenericCell': FlaxCodegenClassSelection(
     {},
     kind: 'widgetInterface',

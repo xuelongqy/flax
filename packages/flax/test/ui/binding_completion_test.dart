@@ -13,6 +13,54 @@ void main() {
     extra: [binding_completionBindings],
   );
 
+  testWidgets('async native subclasses preserve Promise, iteration and super', (
+    tester,
+  ) async {
+    final h = harness();
+    values.resetCompletionAsyncValues();
+    try {
+      await tester.pumpWidget(h.app('binding-completion'));
+      h.execute('''
+        var future = new completion.CompletionFuture(7);
+        var asyncResults = [];
+        var asyncDone = false;
+        var asyncError = '';
+        future.observe().then(v => asyncResults.push(v));
+        Promise.resolve(future).then(v => asyncResults.push(v));
+        (async () => {
+          asyncResults.push(await future);
+          var stream = new completion.CompletionStream(completion.Stream.value(3));
+          for await (const value of stream) asyncResults.push(value);
+        })().then(() => { asyncDone = true; }, error => { asyncError = String(error); asyncDone = true; });
+      ''');
+      for (var i = 0; i < 80 && !h.boolean('asyncDone'); i++) {
+        await tester.pump(const Duration(milliseconds: 1));
+        await _pump(tester);
+      }
+      expect(h.boolean('asyncDone'), isTrue);
+      expect(h.string('asyncError'), isEmpty);
+      expect(h.errors, isEmpty);
+      expect(
+        h.string('JSON.stringify(asyncResults.sort((a,b) => a-b))'),
+        '[3,7,7,7]',
+      );
+      expect(h.number('future.calls'), greaterThan(0));
+      expect(h.number('future.echo(4)'), 5);
+      h.execute('future = undefined');
+      for (var i = 0; i < 4 && values.liveCompletionAsyncValues != 0; i++) {
+        await _collect(tester, h);
+      }
+      expect(
+        values.liveCompletionAsyncValues,
+        0,
+        reason:
+            '${values.liveCompletionAsyncTypes}; futures=${h.runtime.pendingFutures}; promises=${h.runtime.pendingPromises}',
+      );
+    } finally {
+      if (!h.runtime.isDisposed) await h.finish(tester);
+    }
+  });
+
   testWidgets(
     'shared types, native structures and proxy dispatch retain Dart semantics',
     (tester) async {

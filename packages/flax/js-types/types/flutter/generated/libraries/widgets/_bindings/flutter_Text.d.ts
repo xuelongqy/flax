@@ -2,6 +2,7 @@ import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget,
 import { FlaxProxyBase as _FlaxProxyBase, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
+import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_TextStyle';
 import '@flax/flutter/widgets/_bindings/flutter_TextStyle';
 import type * as upstream2 from '@flax/flutter/services/_bindings/flutter_TextAlign';
 import '@flax/flutter/services/_bindings/flutter_TextAlign';
@@ -9,7 +10,9 @@ import type * as upstream3 from '@flax/flutter/services/_bindings/flutter_TextDi
 import '@flax/flutter/services/_bindings/flutter_TextDirection';
 import type * as upstream4 from '@flax/flutter/widgets/_bindings/flutter_TextOverflow';
 import '@flax/flutter/widgets/_bindings/flutter_TextOverflow';
-import type * as upstream5 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import type * as upstream5 from '@flax/flutter/services/_bindings/flutter_Color';
+import '@flax/flutter/services/_bindings/flutter_Color';
+import type * as upstream6 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export type Text = TextDescription | _TextNative;
@@ -18,8 +21,19 @@ export type TextDescription = WidgetDescription & {
 };
 export interface _TextNative extends _FlaxDartWidget {
     readonly [_flaxDartTypeValue]: _TextNative;
-    build(context: upstream5.BuildContext): Widget;
+    build(context: upstream6.BuildContext): Widget;
+    toStringShort(): string;
     get data(): string | null;
+    get style(): upstream1.TextStyle | null;
+    get textAlign(): upstream2.TextAlign | null;
+    get textDirection(): upstream3.TextDirection | null;
+    get softWrap(): boolean | null;
+    get overflow(): upstream4.TextOverflow | null;
+    get textScaleFactor(): number | null;
+    get maxLines(): number | null;
+    get semanticsLabel(): string | null;
+    get semanticsIdentifier(): string | null;
+    get selectionColor(): upstream5.Color | null;
     get key(): upstream0.Key | null;
 }
 export declare abstract class _TextNative extends _FlaxProxyBase {
@@ -37,10 +51,16 @@ export declare abstract class _TextNative extends _FlaxProxyBase {
         textDirection?: upstream3.TextDirection | null | undefined;
         softWrap?: boolean | null | undefined;
         overflow?: upstream4.TextOverflow | null | undefined;
+        textScaleFactor?: number | null | undefined;
         maxLines?: number | null | undefined;
+        semanticsLabel?: string | null | undefined;
+        semanticsIdentifier?: string | null | undefined;
+        selectionColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
     });
 }
-declare function _TextFactory(data: Bindable<string>, options?: {
+export declare function _TextFactory(data: Bindable<string>, options?: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -51,7 +71,13 @@ declare function _TextFactory(data: Bindable<string>, options?: {
     textDirection?: Bindable<upstream3.TextDirection | null> | undefined;
     softWrap?: Bindable<boolean | null> | undefined;
     overflow?: Bindable<upstream4.TextOverflow | null> | undefined;
+    textScaleFactor?: Bindable<number | null> | undefined;
     maxLines?: Bindable<number | null> | undefined;
+    semanticsLabel?: Bindable<string | null> | undefined;
+    semanticsIdentifier?: Bindable<string | null> | undefined;
+    selectionColor?: Bindable<Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null> | undefined;
 }): Text;
 declare const _TextBinding: typeof _TextFactory & {
     new (data: string, options?: {
@@ -65,7 +91,13 @@ declare const _TextBinding: typeof _TextFactory & {
         textDirection?: upstream3.TextDirection | null | undefined;
         softWrap?: boolean | null | undefined;
         overflow?: upstream4.TextOverflow | null | undefined;
+        textScaleFactor?: number | null | undefined;
         maxLines?: number | null | undefined;
+        semanticsLabel?: string | null | undefined;
+        semanticsIdentifier?: string | null | undefined;
+        selectionColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
     }): _TextNative;
 };
 export declare const Text: typeof _TextBinding & _FlaxInstanceType<Text> & _FlaxDartType<Text, readonly ["class", "flax.core/flutter#type:Text", readonly [], false]>;

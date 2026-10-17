@@ -105,9 +105,9 @@ Generated native Widget hosts keep their existing types.
 ## State variants and native mixins
 
 The exact Flutter `State<T>` binding defines fixed `proxyVariants` in
-[`components.yaml`](../../packages/flax/bindings/components.yaml). Import these bases
-from `@flax/flutter/widgets`; ordinary components with neither capability extend
-`State<T>` directly.
+[`flax_components.yaml`](../../packages/flax/bindings/flax_components.yaml). Import
+these bases from `@flax/flutter/widgets`; ordinary components with neither capability
+extend `State<T>` directly.
 
 | JS State base                   | Native Dart mixins, in order                                      | Use when                                                                   |
 | ------------------------------- | ----------------------------------------------------------------- | -------------------------------------------------------------------------- |

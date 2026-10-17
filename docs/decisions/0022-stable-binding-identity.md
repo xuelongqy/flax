@@ -395,7 +395,8 @@ Re-exports do not create owners. `sourceIdentity` is the canonical originating
 declaration, so two public re-export paths cannot produce two owners.
 
 Input order does not change ownership, `moduleId`, `wireId`, or derived IDs. Loading
-`bindings/components.yaml` before `bindings/config.yaml`, or the reverse, is equivalent.
+`bindings/flax_components.yaml` before `bindings/flax_bindings.yaml`, or the reverse, is
+equivalent.
 
 Core's `flutter` and `components` modules, for example, must not both own `State`. A
 type used only through signatures is not owned by the discovering module.

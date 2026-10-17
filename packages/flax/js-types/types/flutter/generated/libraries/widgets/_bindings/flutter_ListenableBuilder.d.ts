@@ -7,7 +7,7 @@ import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ListenableBuilder extends WidgetDescription {
     readonly type: "flax.core/flutter#type:ListenableBuilder";
 }
-declare function _ListenableBuilderFactory(options: {
+export declare function _ListenableBuilderFactory(options: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -18,4 +18,3 @@ declare function _ListenableBuilderFactory(options: {
     child?: Bindable<Widget | null> | undefined;
 }): ListenableBuilder;
 export declare const ListenableBuilder: typeof _ListenableBuilderFactory & _FlaxInstanceType<ListenableBuilder> & _FlaxDartType<ListenableBuilder, readonly ["class", "flax.core/flutter#type:ListenableBuilder", readonly [], false]>;
-export {};

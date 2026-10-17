@@ -5,4 +5,5 @@ export interface Key extends Readonly<{
 }> {
     readonly __Key: unique symbol;
 }
-export declare const Key: object & _FlaxInstanceType<Key> & _FlaxDartType<Key, readonly ["class", "flax.core/flutter#type:Key", readonly [], false]>;
+export declare function _KeyFactory(value: string): Key;
+export declare const Key: typeof _KeyFactory & _FlaxInstanceType<Key> & _FlaxDartType<Key, readonly ["class", "flax.core/flutter#type:Key", readonly [], false]>;

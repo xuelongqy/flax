@@ -14,10 +14,10 @@ void main() {
         final parsed = parseFlaxCodegenCliArgs([
           command,
           '--config',
-          'bindings/widgets.yaml',
+          'bindings/flax_widgets.yaml',
         ]);
         expect(parsed.command, command);
-        expect(parsed.configPath, 'bindings/widgets.yaml');
+        expect(parsed.configPath, 'bindings/flax_widgets.yaml');
       }
     });
 
@@ -38,18 +38,18 @@ void main() {
     test('rejects unknown commands and malformed --config usage', () {
       for (final arguments in const [
         <String>[],
-        ['unknown', '--config', 'bindings/widgets.yaml'],
-        ['bindings/widgets.yaml'],
-        ['--check', 'bindings/widgets.yaml'],
+        ['unknown', '--config', 'bindings/flax_widgets.yaml'],
+        ['bindings/flax_widgets.yaml'],
+        ['--check', 'bindings/flax_widgets.yaml'],
         ['--check'],
         ['widgets.yml'],
-        ['check', '--check', '--config', 'bindings/widgets.yaml'],
+        ['check', '--check', '--config', 'bindings/flax_widgets.yaml'],
         ['validate'],
-        ['validate', 'bindings/widgets.yaml'],
+        ['validate', 'bindings/flax_widgets.yaml'],
         ['validate', '--config'],
         ['validate', '--config', '--flag'],
         ['check', '--config', 'a.yaml', 'extra'],
-        ['generate', '-c', 'bindings/widgets.yaml'],
+        ['generate', '-c', 'bindings/flax_widgets.yaml'],
       ]) {
         expect(
           () => parseFlaxCodegenCliArgs(arguments),
@@ -125,7 +125,8 @@ void main() {
     test('automatic library mode discovers and generates public API', () async {
       final package = _tempCliPackage();
       File(package.configPath).deleteSync();
-      File(p.join(package.root.path, 'bindings', 'extra.yaml')).deleteSync();
+      File(p.join(package.root.path, 'bindings', 'flax_extra.yaml'))
+          .deleteSync();
       final stdout = <String>[];
       final stderr = <String>[];
       const library = 'package:cli_pkg/widgets.dart';
@@ -225,7 +226,7 @@ void main() {
       'automatic library mode applies partial overrides and excludes',
       () async {
         final package = _tempCliPackage();
-        File(p.join(package.root.path, 'bindings', 'overrides.yaml'))
+        File(p.join(package.root.path, 'bindings', 'flax_overrides.yaml'))
             .writeAsStringSync('''
 format: 2
 overrides:
@@ -304,7 +305,8 @@ overrides:
       'automatic library generation publishes named extension static writes',
       () async {
         final package = _tempWidgetCliPackage();
-        File(p.join(package.path, 'bindings', 'overrides.yaml')).deleteSync();
+        File(p.join(package.path, 'bindings', 'flax_overrides.yaml'))
+            .deleteSync();
         File(p.join(package.path, 'lib', 'widget_package.dart'))
             .writeAsStringSync('''
 extension SharedX on String {
@@ -346,7 +348,8 @@ extension SharedX on String {
 
     test('extension type generation retains representations without claiming owners', () async {
       final package = _tempWidgetCliPackage();
-      File(p.join(package.path, 'bindings', 'overrides.yaml')).deleteSync();
+      File(p.join(package.path, 'bindings', 'flax_overrides.yaml'))
+          .deleteSync();
       final repoRoot = p.normalize(p.join(Directory.current.path, '../..'));
       File(p.join(repoRoot, 'packages/flax/test/fixtures/extension_types.dart'))
           .copySync(p.join(package.path, 'lib', 'widget_package.dart'));
@@ -560,7 +563,7 @@ class ExternalCounter {
 }
 ''');
   final bindings = Directory(p.join(root.path, 'bindings'))..createSync();
-  File(p.join(bindings.path, 'extra.yaml')).writeAsStringSync('''
+  File(p.join(bindings.path, 'flax_extra.yaml')).writeAsStringSync('''
 format: 2
 name: extra
 library: package:cli_pkg/extra.dart
@@ -573,7 +576,7 @@ classes:
     constructors:
       create: []
 ''');
-  File(p.join(bindings.path, 'widgets.yaml')).writeAsStringSync('''
+  File(p.join(bindings.path, 'flax_widgets.yaml')).writeAsStringSync('''
 format: 2
 name: widgets
 library: package:cli_pkg/widgets.dart
@@ -589,7 +592,7 @@ classes:
   _copyWorkspacePackageConfig(root, 'cli_pkg', extra: {'api_pkg': apiPackage});
   return (
     root: root,
-    configPath: p.normalize(p.join(bindings.path, 'widgets.yaml')),
+    configPath: p.normalize(p.join(bindings.path, 'flax_widgets.yaml')),
   );
 }
 
@@ -620,7 +623,8 @@ capabilities:
 bindingNamespace: example.widgetcli
 ''');
   Directory(p.join(root.path, 'bindings')).createSync();
-  File(p.join(root.path, 'bindings', 'overrides.yaml')).writeAsStringSync('''
+  File(p.join(root.path, 'bindings', 'flax_overrides.yaml'))
+      .writeAsStringSync('''
 format: 2
 overrides:
   functions:

@@ -11,16 +11,16 @@ import type * as upstream4 from '@flax/dart/async/_bindings/flutter_StreamConsum
 import '@flax/dart/async/_bindings/flutter_StreamConsumer';
 import type * as upstream5 from '@flax/dart/async/_bindings/flutter_Stream';
 import '@flax/dart/core/_bindings/flutter_StackTrace';
-import { type FlaxDartSignature as _FlaxDartSignature, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
-export interface SynchronousStreamController<T extends unknown | null = unknown | null> extends upstream0.StreamController<T>, upstream1.StreamSink<T>, upstream2.EventSink<T>, upstream3.Sink<T>, upstream4.StreamConsumer<T>, Readonly<{
+import { type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
+export interface SynchronousStreamController<T extends unknown | null = unknown | null> extends Omit<upstream0.StreamController<T>, typeof _flaxDartTypeValue | "stream" | "onListen" | "onPause" | "onResume" | "onCancel" | "sink" | "isClosed" | "isPaused" | "hasListener" | "done" | "add" | "addError" | "close" | "addStream">, Omit<upstream1.StreamSink<T>, typeof _flaxDartTypeValue | "stream" | "onListen" | "onPause" | "onResume" | "onCancel" | "sink" | "isClosed" | "isPaused" | "hasListener" | "done" | "add" | "addError" | "close" | "addStream">, Omit<upstream2.EventSink<T>, typeof _flaxDartTypeValue | "stream" | "onListen" | "onPause" | "onResume" | "onCancel" | "sink" | "isClosed" | "isPaused" | "hasListener" | "done" | "add" | "addError" | "close" | "addStream">, Omit<upstream3.Sink<T>, typeof _flaxDartTypeValue | "stream" | "onListen" | "onPause" | "onResume" | "onCancel" | "sink" | "isClosed" | "isPaused" | "hasListener" | "done" | "add" | "addError" | "close" | "addStream">, Omit<upstream4.StreamConsumer<T>, typeof _flaxDartTypeValue | "stream" | "onListen" | "onPause" | "onResume" | "onCancel" | "sink" | "isClosed" | "isPaused" | "hasListener" | "done" | "add" | "addError" | "close" | "addStream">, Readonly<{
     "__flaxBound:dart:async::SynchronousStreamController": readonly [T];
 }> {
     readonly __SynchronousStreamController: unique symbol;
+    readonly stream: upstream5.Stream<T>;
     get onListen(): (() => void) | null;
     get onPause(): (() => void) | null;
     get onResume(): (() => void) | null;
     get onCancel(): (() => void | Promise<void>) | null;
-    readonly stream: upstream5.Stream<T>;
     readonly sink: upstream1.StreamSink<T>;
     readonly isClosed: boolean;
     readonly isPaused: boolean;

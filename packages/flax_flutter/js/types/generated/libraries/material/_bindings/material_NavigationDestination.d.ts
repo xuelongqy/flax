@@ -4,7 +4,7 @@ import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface NavigationDestination extends WidgetDescription {
     readonly type: "flax.material/material#type:NavigationDestination";
 }
-declare function _NavigationDestinationFactory(options: {
+export declare function _NavigationDestinationFactory(options: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -15,4 +15,3 @@ declare function _NavigationDestinationFactory(options: {
     enabled?: Bindable<boolean> | undefined;
 }): NavigationDestination;
 export declare const NavigationDestination: typeof _NavigationDestinationFactory & _FlaxInstanceType<NavigationDestination> & _FlaxDartType<NavigationDestination, readonly ["class", "flax.material/material#type:NavigationDestination", readonly [], false]>;
-export {};

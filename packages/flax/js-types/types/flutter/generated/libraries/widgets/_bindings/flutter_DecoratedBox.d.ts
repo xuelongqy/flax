@@ -7,7 +7,7 @@ import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface DecoratedBox extends WidgetDescription {
     readonly type: "flax.core/flutter#type:DecoratedBox";
 }
-declare function _DecoratedBoxFactory(options: {
+export declare function _DecoratedBoxFactory(options: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -18,4 +18,3 @@ declare function _DecoratedBoxFactory(options: {
     child?: Bindable<Widget | null> | undefined;
 }): DecoratedBox;
 export declare const DecoratedBox: typeof _DecoratedBoxFactory & _FlaxInstanceType<DecoratedBox> & _FlaxDartType<DecoratedBox, readonly ["class", "flax.core/flutter#type:DecoratedBox", readonly [], false]>;
-export {};

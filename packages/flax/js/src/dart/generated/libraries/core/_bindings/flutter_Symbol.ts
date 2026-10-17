@@ -9,13 +9,13 @@ export interface Symbol extends Readonly<{ "__flaxBound:dart:core::Symbol": read
 toString(): string;
 }
 defineObject("flax.core/flutter#type:Symbol", [], [], _flaxBindingMethods("flax.core/flutter#type:Symbol", "object", {"toString":_flaxMemberParameters0}, {}), []);
-function _SymbolFactory(name: string): Symbol {
+export function _SymbolFactory(name: string): Symbol {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:Symbol", "", [{"name":"name","required":true,"positional":true}], [name], {}) as Symbol;
 }
-namespace _SymbolFactory { export declare const empty: Symbol; }
-Object.defineProperty(_SymbolFactory, "empty", { get: () => invokeTopLevel("flax.core/flutter#read:Symbol.empty", []) });
-namespace _SymbolFactory { export declare const unaryMinus: Symbol; }
+export namespace _SymbolFactory { export declare const unaryMinus: Symbol; }
 Object.defineProperty(_SymbolFactory, "unaryMinus", { get: () => invokeTopLevel("flax.core/flutter#read:Symbol.unaryMinus", []) });
+export namespace _SymbolFactory { export declare const empty: Symbol; }
+Object.defineProperty(_SymbolFactory, "empty", { get: () => invokeTopLevel("flax.core/flutter#read:Symbol.empty", []) });
 export const Symbol: typeof _SymbolFactory & _FlaxInstanceType<Symbol> & _FlaxDartType<Symbol, readonly ["class", "flax.core/flutter#type:Symbol", readonly [], false]> = _flaxBindInstanceType<Symbol, typeof _SymbolFactory>(_SymbolFactory, "flax.core/flutter#type:Symbol", ["dart:core::Object"]) as typeof _SymbolFactory & _FlaxInstanceType<Symbol> & _FlaxDartType<Symbol, readonly ["class", "flax.core/flutter#type:Symbol", readonly [], false]>;

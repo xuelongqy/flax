@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:path/path.dart' as p;
 import 'package:yaml/yaml.dart';
+import 'package:flax_codegen/src/config.dart'
+    show flaxCodegenIsBindingConfigPath;
 
 import 'package_metadata_strict.dart';
 
@@ -504,9 +506,7 @@ List<String> bindingConfigs(FlaxWorkspacePackage package) {
       package.bindings
           .listSync()
           .whereType<File>()
-          .where(
-            (file) => file.path.endsWith('.yaml') || file.path.endsWith('.yml'),
-          )
+          .where((file) => flaxCodegenIsBindingConfigPath(file.path))
           .map((file) => file.path)
           .toList()
         ..sort();

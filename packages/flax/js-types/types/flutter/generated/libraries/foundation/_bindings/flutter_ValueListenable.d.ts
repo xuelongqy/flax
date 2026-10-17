@@ -2,8 +2,9 @@ import { type FlaxInstanceType as _FlaxInstanceType, type DartInput } from '@fla
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/foundation/_bindings/flutter_Listenable';
 import '@flax/flutter/foundation/_bindings/flutter_Listenable';
+import '@flax/flutter/services/_bindings/flutter_TextEditingValue';
 import { type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
-export interface ValueListenable<T extends unknown | null = unknown | null> extends upstream0.Listenable, Readonly<{
+export interface ValueListenable<T extends unknown | null = unknown | null> extends Omit<upstream0.Listenable, typeof _flaxDartTypeValue | "value" | "addListener" | "removeListener">, Readonly<{
     "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [T];
 }> {
     readonly __ValueListenable: unique symbol;

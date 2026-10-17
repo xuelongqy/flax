@@ -2,9 +2,10 @@
 // Regenerate with dart run melos run bindings:generate.
 import { defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
 const _flaxMemberParameters0 = [{"name":"listener","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"value","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"offset","required":true,"positional":true},{"name":"curve","required":true,"positional":false},{"name":"duration","required":true,"positional":false}] as const;
+const _flaxMemberParameters1 = [{"name":"offset","required":true,"positional":true},{"name":"curve","required":true,"positional":false},{"name":"duration","required":true,"positional":false}] as const;
+const _flaxMemberParameters2 = [{"name":"value","required":true,"positional":true}] as const;
 const _flaxMemberParameters3 = [] as const;
+const _flaxMemberParameters4 = [{"name":"description","required":true,"positional":true}] as const;
 import type * as upstream0 from '@flax/flutter/foundation/_bindings/flutter_Listenable';
 import '@flax/flutter/foundation/_bindings/flutter_Listenable';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_Curve';
@@ -13,18 +14,24 @@ import type * as upstream2 from '@flax/dart/core/_bindings/flutter_Duration';
 import '@flax/dart/core/_bindings/flutter_Duration';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
-export interface ScrollController extends upstream0.Listenable, Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::ScrollController": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [] }> { readonly __ScrollController: unique symbol;
+export interface ScrollController extends Omit<upstream0.Listenable, typeof _flaxDartTypeValue | "initialScrollOffset" | "keepScrollOffset" | "debugLabel" | "hasClients" | "offset" | "hasListeners" | "addListener" | "removeListener" | "animateTo" | "jumpTo" | "dispose" | "toString" | "debugFillDescription">, Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::ScrollController": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [] }> { readonly __ScrollController: unique symbol;
 
+readonly initialScrollOffset: number;
+readonly keepScrollOffset: boolean;
+readonly debugLabel: string | null;
 readonly hasClients: boolean;
 readonly offset: number;
+readonly hasListeners: boolean;
 addListener(listener: (() => void)): void;
 removeListener(listener: (() => void)): void;
-jumpTo(value: number): void;
 animateTo(offset: number, options: {curve: Readonly<{ "__flaxBound:package:flutter/src/animation/curves.dart::Curve": readonly [] }>; duration: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }>}): Promise<void>;
+jumpTo(value: number): void;
 dispose(): void;
+toString(): string;
+debugFillDescription(description: DartListInput<string, string>): void;
 }
-defineObject("flax.core/flutter#type:ScrollController", ["hasClients","offset"], [], _flaxBindingMethods("flax.core/flutter#type:ScrollController", "object", {"addListener":_flaxMemberParameters0,"removeListener":_flaxMemberParameters0,"jumpTo":_flaxMemberParameters1,"animateTo":_flaxMemberParameters2,"dispose":_flaxMemberParameters3}, {}), ["removeListener"]);
-function _ScrollControllerFactory(options: { initialScrollOffset?: number | undefined; keepScrollOffset?: boolean | undefined; debugLabel?: string | null | undefined } = {}): ScrollController {
+defineObject("flax.core/flutter#type:ScrollController", ["initialScrollOffset","keepScrollOffset","debugLabel","hasClients","offset","hasListeners"], [], _flaxBindingMethods("flax.core/flutter#type:ScrollController", "object", {"addListener":_flaxMemberParameters0,"removeListener":_flaxMemberParameters0,"animateTo":_flaxMemberParameters1,"jumpTo":_flaxMemberParameters2,"dispose":_flaxMemberParameters3,"toString":_flaxMemberParameters3,"debugFillDescription":_flaxMemberParameters4}, {}), ["removeListener"]);
+export function _ScrollControllerFactory(options: { initialScrollOffset?: number | undefined; keepScrollOffset?: boolean | undefined; debugLabel?: string | null | undefined } = {}): ScrollController {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:ScrollController", "", [{"name":"initialScrollOffset","required":false,"positional":false},{"name":"keepScrollOffset","required":false,"positional":false},{"name":"debugLabel","required":false,"positional":false}], [], options) as ScrollController;

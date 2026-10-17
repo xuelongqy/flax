@@ -5,7 +5,7 @@ import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ColoredBox extends WidgetDescription {
     readonly type: "flax.core/flutter#type:ColoredBox";
 }
-declare function _ColoredBoxFactory(options: {
+export declare function _ColoredBoxFactory(options: {
     color: Bindable<Readonly<{
         "__flaxBound:dart:ui::Color": readonly [];
     }>>;
@@ -16,4 +16,3 @@ declare function _ColoredBoxFactory(options: {
     }> | null | undefined;
 }): ColoredBox;
 export declare const ColoredBox: typeof _ColoredBoxFactory & _FlaxInstanceType<ColoredBox> & _FlaxDartType<ColoredBox, readonly ["class", "flax.core/flutter#type:ColoredBox", readonly [], false]>;
-export {};

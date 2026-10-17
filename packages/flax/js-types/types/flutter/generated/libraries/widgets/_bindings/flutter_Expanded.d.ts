@@ -4,7 +4,7 @@ import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Expanded extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Expanded";
 }
-declare function _ExpandedFactory(options: {
+export declare function _ExpandedFactory(options: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -12,4 +12,3 @@ declare function _ExpandedFactory(options: {
     child: Bindable<Widget>;
 }): Expanded;
 export declare const Expanded: typeof _ExpandedFactory & _FlaxInstanceType<Expanded> & _FlaxDartType<Expanded, readonly ["class", "flax.core/flutter#type:Expanded", readonly [], false]>;
-export {};

@@ -85,6 +85,8 @@ void main() {
 
     final config = proposal.config;
     expect(config.classes, isNot(contains('AutoInternal')));
+    expect(config.classes, isNot(contains('AutoInternalParent')));
+    expect(config.classes, isNot(contains('AutoInternalChild')));
     expect(config.functions, isNot(contains('createInternal')));
     expect(config.classes['AutoVisible']!.getters, contains('label'));
     expect(
@@ -93,11 +95,20 @@ void main() {
     );
     expect(
       config.classes['AutoVisible']!.instanceMethods,
-      isNot(contains('protectedAction')),
+      contains('protectedAction'),
+    );
+    expect(config.classes['AutoVisible']!.disposeMethod, 'dispose');
+    expect(config.classes['AutoTestingDisposer']!.disposeMethod, isNull);
+    expect(config.classes['AutoMarker']?.kind, 'object');
+    expect(config.functions, contains('autoMarkerIdentity'));
+    expect(
+      config.classes['AutoTestingDisposer']!.instanceMethods,
+      isNot(contains('dispose')),
     );
     expect(config.classes['AutoMode']?.kind, 'enum');
     expect(config.typedefs, contains('LabelBuilder'));
     expect(config.functions.keys, contains('autoGreeting'));
+    expect(config.functions.keys, contains('autoBytes'));
     expect(config.functions['autoContextMounted']?.parameters, ['context']);
     expect(config.functions['autoStateMounted']?.parameters, ['value']);
     expect(config.functions['autoStateCallback']?.parameters, ['callback']);
@@ -385,10 +396,15 @@ void main() {
       addTearDown(parser.dispose);
       final proposal = await parser.proposeLibrary(
         fixture('auto_library.dart', const {}),
-        overrides: const FlaxCodegenAutoOverrides(exclude: ['AutoStore']),
+        overrides: const FlaxCodegenAutoOverrides(
+          exclude: ['AutoStore', 'AutoMarker'],
+        ),
       );
       expect(proposal.config.classes, isNot(contains('AutoStore')));
       expect(proposal.config.classes, isNot(contains('AutoStoreUser')));
+      expect(proposal.config.classes, isNot(contains('AutoMarker')));
+      expect(proposal.config.classes, isNot(contains('AutoMarkerBag')));
+      expect(proposal.config.functions, isNot(contains('autoMarkerIdentity')));
       expect(proposal.config.functions, contains('autoGreeting'));
       expect(
         proposal.skips.map((skip) => skip.target),
@@ -1015,7 +1031,7 @@ void main() {
         addTearDown(parser.dispose);
         await parser.prepare([
           FlaxCodegenBindingConfig.read(
-            p.join(repoRoot, 'packages/flax/bindings/config.yaml'),
+            p.join(repoRoot, 'packages/flax/bindings/flax_bindings.yaml'),
           ),
           FlaxCodegenBindingConfig(
             'components',
@@ -1065,10 +1081,10 @@ void main() {
       addTearDown(parser.dispose);
       await parser.prepare([
         FlaxCodegenBindingConfig.read(
-          p.join(repoRoot, 'packages/flax/bindings/config.yaml'),
+          p.join(repoRoot, 'packages/flax/bindings/flax_bindings.yaml'),
         ),
         FlaxCodegenBindingConfig.read(
-          p.join(repoRoot, 'packages/flax/bindings/components.yaml'),
+          p.join(repoRoot, 'packages/flax/bindings/flax_components.yaml'),
         ),
       ]);
       final module = await parser.parse(
@@ -1095,7 +1111,7 @@ void main() {
     final parser = FlaxCodegenBindingParser(repoRoot);
     addTearDown(parser.dispose);
     final core = FlaxCodegenBindingConfig.read(
-      p.join(repoRoot, 'packages/flax/bindings/config.yaml'),
+      p.join(repoRoot, 'packages/flax/bindings/flax_bindings.yaml'),
     );
     await parser.prepare([core]);
     final waitLibrary = fixture('duration_user.dart', const {});
@@ -1389,7 +1405,7 @@ void main() {
     final parser = FlaxCodegenBindingParser(repoRoot);
     addTearDown(parser.dispose);
     final core = FlaxCodegenBindingConfig.read(
-      p.join(repoRoot, 'packages/flax/bindings/config.yaml'),
+      p.join(repoRoot, 'packages/flax/bindings/flax_bindings.yaml'),
     );
     await parser.prepare([core]);
     for (final (uri, name) in [
@@ -1409,7 +1425,7 @@ void main() {
     'Flutter generic proposals separate shared owners from constructors',
     () async {
       final core = FlaxCodegenBindingConfig.read(
-        p.join(repoRoot, 'packages/flax/bindings/config.yaml'),
+        p.join(repoRoot, 'packages/flax/bindings/flax_bindings.yaml'),
       );
 
       Future<

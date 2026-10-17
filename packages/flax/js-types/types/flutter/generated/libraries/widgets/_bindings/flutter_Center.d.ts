@@ -4,7 +4,7 @@ import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Center extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Center";
 }
-declare function _CenterFactory(options?: {
+export declare function _CenterFactory(options?: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -13,4 +13,3 @@ declare function _CenterFactory(options?: {
     child?: Bindable<Widget | null> | undefined;
 }): Center;
 export declare const Center: typeof _CenterFactory & _FlaxInstanceType<Center> & _FlaxDartType<Center, readonly ["class", "flax.core/flutter#type:Center", readonly [], false]>;
-export {};

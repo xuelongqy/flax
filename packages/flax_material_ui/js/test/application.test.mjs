@@ -20,5 +20,7 @@ test('MaterialApp exposes selected ordinary bindings and preserves omission', ()
     () => MaterialApp({ home, key: signal(null).bind }),
     /Bind widget properties/,
   );
-  assert.throws(() => MaterialApp({ home, routes: {} }), /Unsupported argument/);
+  const routes = {};
+  assert.equal(MaterialApp({ home, routes }).args.routes, routes);
+  assert.throws(() => MaterialApp({ home, unknown: true }), /Unsupported argument/);
 });

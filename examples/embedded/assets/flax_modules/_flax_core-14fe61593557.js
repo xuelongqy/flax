@@ -1,4 +1,4 @@
-globalThis.__flaxModules.define({"specifier":"@flax/core","owner":"@flax/core-runtime:dist/runtime/index.js","version":"0.0.0","artifact":"4aef0353a226e88d4e100086729b16906bf8dffe1643875a6edb74f8c23e37e3","asset":"assets/flax_modules/_flax_core-14fe61593557.js","package":"@flax/core-runtime","source":"dist/runtime/index.js","dependencies":{},"bindings":[],"subpaths":[]}, function(module, exports, require) {
+globalThis.__flaxModules.define({"specifier":"@flax/core","owner":"@flax/core-runtime:dist/runtime/index.js","version":"0.0.0","artifact":"731ff3c5b2d198cf696ca107a166ca269278998e3ec7c4932a80bb65dd5beaec","asset":"assets/flax_modules/_flax_core-14fe61593557.js","package":"@flax/core-runtime","source":"dist/runtime/index.js","dependencies":{},"bindings":[],"subpaths":[]}, function(module, exports, require) {
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -21,11 +21,14 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // ../../../packages/flax/js/dist/runtime/index.js
 var index_exports = {};
 __export(index_exports, {
+  action: () => C,
   batch: () => batch,
   bind: () => bind,
   computed: () => computed,
+  effect: () => j,
   readBindingSnapshot: () => readBindingSnapshot,
   signal: () => signal,
+  untracked: () => r,
   withBindingSnapshots: () => withBindingSnapshots
 });
 module.exports = __toCommonJS(index_exports);
@@ -413,6 +416,11 @@ function j(i2, t2) {
   o2[Symbol.dispose] = o2;
   return o2;
 }
+function C(i2) {
+  return function(...t2) {
+    return n(() => r(() => i2.apply(this, t2)));
+  };
+}
 
 // ../../../packages/flax/js/dist/runtime/index.js
 var reads = [];
@@ -488,6 +496,12 @@ function signal(value) {
     set value(next) {
       source.value = next;
     },
+    peek() {
+      return source.peek();
+    },
+    subscribe(listener) {
+      return source.subscribe(listener);
+    },
     bind: binding
   });
 }
@@ -496,6 +510,12 @@ function computed(read) {
   return Object.freeze({
     get value() {
       return source.value;
+    },
+    peek() {
+      return source.peek();
+    },
+    subscribe(listener) {
+      return source.subscribe(listener);
     },
     bind: bind(() => source.value)
   });

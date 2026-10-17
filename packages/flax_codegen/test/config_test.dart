@@ -9,7 +9,7 @@ void main() {
 
   test('read is strict; fromMap preserves explicit type selection', () {
     final config = FlaxCodegenBindingConfig.read(
-      p.join(root, 'packages/flax/bindings/components.yaml'),
+      p.join(root, 'packages/flax/bindings/flax_components.yaml'),
     );
     expect(config.name, 'components');
     expect(config.types, isEmpty);

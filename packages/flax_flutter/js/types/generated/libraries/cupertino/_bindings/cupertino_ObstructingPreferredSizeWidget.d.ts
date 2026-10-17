@@ -8,7 +8,7 @@ import '@flax/flutter/services/_bindings/flutter_Size';
 import type * as upstream3 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
-export interface ObstructingPreferredSizeWidget extends _FlaxDartWidget, upstream0.PreferredSizeWidget {
+export interface ObstructingPreferredSizeWidget extends _FlaxDartWidget, Omit<upstream0.PreferredSizeWidget, typeof _flaxDartTypeValue | "preferredSize" | "shouldFullyObstruct"> {
     readonly __ObstructingPreferredSizeWidget: unique symbol;
     readonly preferredSize: upstream2.Size;
     shouldFullyObstruct(context: upstream3.BuildContext): boolean;

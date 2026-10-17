@@ -5,7 +5,7 @@ import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface SafeArea extends WidgetDescription {
     readonly type: "flax.core/flutter#type:SafeArea";
 }
-declare function _SafeAreaFactory(options: {
+export declare function _SafeAreaFactory(options: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -20,4 +20,3 @@ declare function _SafeAreaFactory(options: {
     child: Bindable<Widget>;
 }): SafeArea;
 export declare const SafeArea: typeof _SafeAreaFactory & _FlaxInstanceType<SafeArea> & _FlaxDartType<SafeArea, readonly ["class", "flax.core/flutter#type:SafeArea", readonly [], false]>;
-export {};

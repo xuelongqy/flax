@@ -11,7 +11,7 @@ import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface IndexedStack extends WidgetDescription {
     readonly type: "flax.core/flutter#type:IndexedStack";
 }
-declare function _IndexedStackFactory(options?: {
+export declare function _IndexedStackFactory(options?: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -25,4 +25,3 @@ declare function _IndexedStackFactory(options?: {
     children?: Bindable<DartListInput<Widget, Widget>> | undefined;
 }): IndexedStack;
 export declare const IndexedStack: typeof _IndexedStackFactory & _FlaxInstanceType<IndexedStack> & _FlaxDartType<IndexedStack, readonly ["class", "flax.core/flutter#type:IndexedStack", readonly [], false]>;
-export {};

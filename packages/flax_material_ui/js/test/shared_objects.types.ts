@@ -87,12 +87,10 @@ services.MouseCursor();
 services.SystemMouseCursor();
 // @ts-expect-error Static cursor constants have no instance constructor.
 services.SystemMouseCursors();
-// @ts-expect-error Unselected provider members are not consumer extensions.
-curve.transformInternal(0.5);
+const transformedInternal: number = curve.transformInternal(0.5);
 // @ts-expect-error Cursor lifecycle APIs are outside the selected surface.
 cursor.createSession(1);
-// @ts-expect-error Physics algorithms are outside the selected surface.
-physics.applyTo(parent);
+const appliedPhysics: widgets.ScrollPhysics = physics.applyTo(parent);
 // @ts-expect-error Border is a ShapeBorder, but not an OutlinedBorder.
 const wrongOutline: widgets.OutlinedBorder = border;
 // @ts-expect-error A BoxBorder cannot be the result of an outlined-shape callback.

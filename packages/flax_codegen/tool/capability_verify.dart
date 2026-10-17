@@ -344,7 +344,7 @@ Future<void> main(List<String> args) async {
 
     if (!skipAssess) {
       final official = FlaxCodegenBindingConfig.read(
-        p.join(root, 'packages/flax/bindings/config.yaml'),
+        p.join(root, 'packages/flax/bindings/flax_bindings.yaml'),
       );
       final target = FlaxCodegenBindingConfig(
         'capability',

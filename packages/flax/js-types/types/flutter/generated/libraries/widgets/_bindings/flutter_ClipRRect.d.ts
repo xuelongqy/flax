@@ -7,7 +7,7 @@ import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ClipRRect extends WidgetDescription {
     readonly type: "flax.core/flutter#type:ClipRRect";
 }
-declare function _ClipRRectFactory(options?: {
+export declare function _ClipRRectFactory(options?: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -18,4 +18,3 @@ declare function _ClipRRectFactory(options?: {
     child?: Bindable<Widget | null> | undefined;
 }): ClipRRect;
 export declare const ClipRRect: typeof _ClipRRectFactory & _FlaxInstanceType<ClipRRect> & _FlaxDartType<ClipRRect, readonly ["class", "flax.core/flutter#type:ClipRRect", readonly [], false]>;
-export {};

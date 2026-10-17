@@ -6,7 +6,9 @@ import { construct, constructProxy, constructObject, constructDeferredObject, co
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface Curve extends Readonly<{ "__flaxBound:package:flutter/src/animation/curves.dart::Curve": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/animation/curves.dart::ParametricCurve": readonly [number] }> { readonly __Curve: unique symbol;
 
+readonly flipped: Curve;
 transform(t: number): number;
+transformInternal(t: number): number;
 }
-defineObject("flax.core/flutter#type:Curve", [], [], _flaxBindingMethods("flax.core/flutter#type:Curve", "object", {"transform":_flaxMemberParameters0}, {}), []);
+defineObject("flax.core/flutter#type:Curve", ["flipped"], [], _flaxBindingMethods("flax.core/flutter#type:Curve", "object", {"transform":_flaxMemberParameters0,"transformInternal":_flaxMemberParameters0}, {}), []);
 export const Curve: object & _FlaxInstanceType<Curve> & _FlaxDartType<Curve, readonly ["class", "flax.core/flutter#type:Curve", readonly [], false]> = _flaxBindInstanceType<Curve, object>({}, "flax.core/flutter#type:Curve", ["package:flutter/src/animation/curves.dart::ParametricCurve","dart:core::Object"]) as object & _FlaxInstanceType<Curve> & _FlaxDartType<Curve, readonly ["class", "flax.core/flutter#type:Curve", readonly [], false]>;

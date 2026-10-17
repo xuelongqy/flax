@@ -6,7 +6,7 @@ import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Flexible extends WidgetDescription {
     readonly type: "flax.core/flutter#type:Flexible";
 }
-declare function _FlexibleFactory(options: {
+export declare function _FlexibleFactory(options: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -15,4 +15,3 @@ declare function _FlexibleFactory(options: {
     child: Bindable<Widget>;
 }): Flexible;
 export declare const Flexible: typeof _FlexibleFactory & _FlaxInstanceType<Flexible> & _FlaxDartType<Flexible, readonly ["class", "flax.core/flutter#type:Flexible", readonly [], false]>;
-export {};

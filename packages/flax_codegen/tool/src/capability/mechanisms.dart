@@ -710,7 +710,7 @@ Future<Stage2MechanismProbe> probeStage2MechanismShape({
 /// Reads the official binding configuration used by the matrix.
 FlaxCodegenBindingConfig officialBindingConfig(String workspaceRoot) =>
     FlaxCodegenBindingConfig.read(
-      p.join(workspaceRoot, 'packages/flax/bindings/config.yaml'),
+      p.join(workspaceRoot, 'packages/flax/bindings/flax_bindings.yaml'),
     );
 
 /// Runs the matrix and writes `stage2-mechanisms.json` plus

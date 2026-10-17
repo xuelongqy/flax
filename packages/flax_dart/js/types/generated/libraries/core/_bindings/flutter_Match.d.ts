@@ -13,5 +13,6 @@ export interface Match extends Readonly<{
     readonly pattern: upstream0.Pattern | string;
     group(group: number): string | null;
     groups(groupIndices: DartListInput<number, number>): DartList<string | null>;
+    operatorGetIndex(group: number): string | null;
 }
 export declare const Match: object & _FlaxInstanceType<Match> & _FlaxDartType<Match, readonly ["class", "flax.core/flutter#type:Match", readonly [], false]>;

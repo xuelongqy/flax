@@ -6,7 +6,14 @@ export interface Comparable<T extends unknown | null = unknown | null> extends R
     readonly __Comparable: unique symbol;
     compareTo(other: (T | DartInput<T>)): number;
 }
-export declare const Comparable: object & _FlaxInstanceType<Comparable<unknown | null>> & _FlaxDartType<Comparable<unknown | null>, readonly ["class", "flax.core/flutter#type:Comparable", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
+export declare namespace _ComparableFactory {
+    function compare(a: Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [unknown | null];
+    }> | string | number, b: Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [unknown | null];
+    }> | string | number): number;
+}
+export declare const Comparable: typeof _ComparableFactory & _FlaxInstanceType<Comparable<unknown | null>> & _FlaxDartType<Comparable<unknown | null>, readonly ["class", "flax.core/flutter#type:Comparable", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? {
         readonly prototype: Comparable<_Selected0>;

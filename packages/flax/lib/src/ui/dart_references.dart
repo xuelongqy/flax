@@ -63,7 +63,7 @@ extension _DartReferences on _Session {
   ) {
     final target = _typeBinding(type);
     if (name.isNotEmpty ||
-        !(operation == 'type' && type.isEmpty ||
+        !((operation == 'type' || operation == 'stream') && type.isEmpty ||
             (operation == 'cast' || operation == 'is') && target != null)) {
       throw ArgumentError('Unknown Dart reference operation');
     }
@@ -110,6 +110,22 @@ extension _DartReferences on _Session {
         }
       }
       final (value, source) = _dartReferenceValue(input);
+      if (operation == 'stream') {
+        if (value is! Stream<Object?>) {
+          throw ArgumentError('Expected a Dart Stream');
+        }
+        final core = dartTypes._template(
+          dartTypes.parts(Stream<Object?>),
+          Stream<Object?>,
+        );
+        final projected = core == null
+            ? null
+            : dartTypes._projection(core.id, dartTypes.instanceType(value));
+        if (projected == null) throw StateError('Missing Dart Stream provider');
+        return holdHostResult(
+          streamResult(value, dartTypes.resolve(projected)),
+        );
+      }
       if (value is State && !value.mounted) throw StateError('Unmounted State');
       if (value is BuildContext) {
         final context = _contextIds[value];

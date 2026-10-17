@@ -59,9 +59,10 @@ existing Dart object and Widget paths.
 
 Generated MaterialType, Material, InkWell and LinearProgressIndicator reuse Core Color,
 TextStyle, BorderRadius, Clip, keys and callback conversion. The
-[owning selection](bindings/config.yaml) defines the exposed constructor parameters;
-unselected parameters retain their upstream defaults. Material supplies the native ink
-surface. Text style animation retains Flutter's `TextStyle.inherit` constraints.
+[owning selection](bindings/flax_bindings.yaml) defines the exposed constructor
+parameters; unselected parameters retain their upstream defaults. Material supplies the
+native ink surface. Text style animation retains Flutter's `TextStyle.inherit`
+constraints.
 
 The [combined UI tests](test/ui/binding_slice_test.dart) exercise Core Spacer geometry,
 tap/long-press/hover/highlight callbacks, reactive progress, inherited and explicit

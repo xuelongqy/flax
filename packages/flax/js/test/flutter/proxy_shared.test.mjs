@@ -6,7 +6,80 @@ import {
   defineProxyBase,
   defineObject,
   bindingMethods,
+  bindInstanceType,
 } from '../../dist/runtime/bindings.js';
+
+test('a Dart constructor getter does not replace internal proxy identity', () => {
+  const type = 'fixture:FactoryConstructor';
+  defineObject(type, ['constructor'], [], {}, []);
+  const definition = {
+    type,
+    parameters: [],
+    methods: {},
+    getters: ['constructor'],
+    setters: [],
+    superMembers: ['get:constructor'],
+    contextMembers: [],
+  };
+  class Factory extends FlaxProxyBase {
+    constructor() {
+      super(definition, []);
+    }
+  }
+  // Registration has no receiver and must not execute a business getter.
+  assert.doesNotThrow(() => defineProxyBase(Factory.prototype, definition));
+  assert.equal(
+    typeof Object.getOwnPropertyDescriptor(Factory.prototype, 'constructor').get,
+    'function',
+  );
+});
+
+test('Future object views share Promise adoption and preserve Dart named calls', async () => {
+  const type = 'fixture:FutureObject';
+  let observations = 0;
+  let rejected = false;
+  const methods = {
+    then(onValue, options) {
+      observations++;
+      const future = rejected
+        ? Promise.reject(new Error('future failed'))
+        : Promise.resolve(7);
+      return future.then(onValue, options?.onError);
+    },
+  };
+  defineObject(type, [], [], methods, []);
+  function FutureToken() {}
+  FutureToken.prototype.then = methods.then;
+  bindInstanceType(FutureToken, type, ['dart:async::Future']);
+  const then = FutureToken.prototype.then;
+  for (let i = 0; i < 8; i++) {
+    function Selected() {}
+    Selected.prototype = FutureToken.prototype;
+    bindInstanceType(Selected, `${type}:selected:${i}`, [type]);
+  }
+  assert.equal(FutureToken.prototype.then, then);
+  const value = globalThis.__flaxBindings.object(type, 4101);
+  assert.equal(await value, 7);
+  assert.equal(await Promise.resolve(value), 7);
+  assert.equal(await value.then(), 7);
+  assert.equal(await value.then((v) => v + 1), 8);
+  let finalized = false;
+  assert.equal(
+    await value.finally(() => {
+      finalized = true;
+    }),
+    7,
+  );
+  assert.equal(finalized, true);
+  assert.equal(observations, 1);
+  assert.equal(await value.then((v) => v + 2, { onError: () => 0 }), 9);
+  assert.equal(observations, 2);
+  rejected = true;
+  const failure = globalThis.__flaxBindings.object(type, 4102);
+  await assert.rejects(Promise.resolve(failure), /future failed/);
+  assert.equal(await failure.then(null, () => 3), 3);
+  assert.equal(await failure.catch(() => 4), 4);
+});
 
 test('shared prototype forwarding preserves receiver, direct super and omission', (t) => {
   const type = 'fixture:SharedProxy';

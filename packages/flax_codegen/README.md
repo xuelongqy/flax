@@ -39,10 +39,13 @@ dart run flax_codegen generate --library package:foo/foo.dart
 ```
 
 `<direct-yaml>` must be an explicit direct child of the package `bindings/` directory.
-The CLI discovers sibling binding configs in that directory, resolves current-only
-Manifest 24 dependency projections through the package config, and (for `generate`)
-writes `lib/...`, `js/...`, and `bindings/manifest.json` below the owning package. The
-old `dart run flax_codegen [--check] <config>` form is not supported.
+The default name is `flax_bindings.yaml`; additional scopes can use names such as
+`flax_components.yaml`. Discovery includes only `flax_*.yaml` and `flax_*.yml`,
+excluding the reserved `flax_overrides` file. A custom filename still works when
+explicitly passed to `--config`, and unrelated YAML files are ignored. The CLI resolves
+current-only Manifest 24 dependency projections through the package config, and (for
+`generate`) writes `lib/...`, `js/...`, and `bindings/manifest.json` below the owning
+package. The old `dart run flax_codegen [--check] <config>` form is not supported.
 
 `--library` is the low-configuration path. It accepts one public `package:` library,
 uses that library's export namespace as the public API, reuses compatible provider
@@ -68,8 +71,25 @@ optional constructor callbacks. Public Widget setters use the native member view
 call Dart once and do not imply a Flutter rebuild. Ordinary object business members
 named `kind`, `type`, `ctor` or `args` are available, including through proxies and
 super; transport-field conflicts apply only to actual descriptor representations.
-Private, `@internal`, `@visibleForTesting`, and `@protected` API is excluded from
-automatic exposure.
+Private, `@internal`, and `@visibleForTesting` APIs are excluded from automatic
+exposure. Public `@protected` members remain callable and overridable; generated
+adapters suppress only the corresponding protected-use diagnostic. Selection is
+normalized before provider comparison, including disposer and listener metadata.
+
+Dependency lookup preserves the Dart declaration identity, even when providers export
+the same short name. Generated Dart uses prefixed imports and TypeScript uses provider
+namespaces. Generate complete upstream providers before consumers and declare those
+packages as dependencies; a valid public barrel never needs invented aliases. Missing
+and ambiguous owner diagnostics name the originating declaration. Core operations are
+reused rather than republished.
+
+Ordinary Future subclasses share Promise-compatible `then`, `catch` and `finally`
+adapters, including `await` and `Promise.resolve`. Dart named `onError` calls and
+generic proxy `super` retain their existing dispatch. Stream subclasses expose async
+iteration through the existing typed Stream projection. These shared adapters use weak
+caches and the existing Session subscription cleanup; they do not add per-class JS
+implementations or business-object GC roots. Such bindings require
+`native-async-objects` support.
 
 Core supplies native `Type` and `Symbol` references. Symbols use Dart's
 constructor/constants, not JavaScript Symbols. Every Record result, including bare
@@ -196,8 +216,8 @@ and ordinary receiver conversion. See the
 [Dart type selection contract](../../docs/architecture/bindings.md#dart-type-selection).
 
 Most packages need no binding YAML in automatic mode. If analyzer types cannot express a
-lifecycle or product decision, an optional `bindings/overrides.yaml` can change only the
-exception:
+lifecycle or product decision, an optional `bindings/flax_overrides.yaml` can change
+only the exception:
 
 ```yaml
 format: 2
@@ -211,9 +231,49 @@ overrides:
 
 Override fields replace only those inferred fields; inferred constructors and ordinary
 members remain intact. An explicit override for an unknown or unbindable declaration is
-fail-closed. Full `--config` mode remains the precise fail-closed surface for advanced
-bindings and existing packages. `bindings/overrides.yaml` is reserved for automatic mode
-and is ignored by explicit config discovery.
+fail-closed. `bindings/flax_overrides.yaml` is reserved for `--library` mode and is
+ignored by config discovery.
+
+Rename an existing `bindings/overrides.yaml` to `bindings/flax_overrides.yaml` when
+migrating library mode; unprefixed files are no longer discovered implicitly.
+
+For a curated API, `flax_bindings.yaml` can select declaration names and infer their
+ordinary members with the same automatic rules:
+
+```yaml
+format: 2
+name: core_values
+library: dart:core
+jsPackage: '@example/values'
+dartOutput: lib/src/generated/values.g.dart
+tsOutput: js/src/generated/values.ts
+classes: [Duration, DateTime]
+functions: [identical]
+extensions: [EnumName]
+overrides:
+  classes:
+    Duration:
+      getters: [inSeconds, inMilliseconds]
+```
+
+Lists define the declaration scope; they do not select every export of the library. Only
+selected, sibling or dependency-provided runtime types can appear in inferred members.
+Unsupported members are reported as skips. Ordinary objects keep their factory API; a
+proxy is generated only when explicitly requested in an override. Reused dependencies
+keep their published API. Proxy overrides need a complete convertible Dart signature.
+Overrides replace only their named fields; keep adapter kinds, proxy/mixin choices,
+callback signatures and lifecycle policy there. Unknown scoped names and invalid
+overrides fail. Mapping forms remain precise member allowlists, and can be mixed with
+list forms in other sections. Inline overrides require at least one nonempty declaration
+list. Output routes, module IDs, selection format 2, Manifest 24 and UI protocol 24 are
+unchanged.
+
+Rendering-only Widgets retain reactive constructor descriptions by overriding
+`getters: []`, `setters: []` and `instanceMethods: {}`. Production configs share this
+mapping with a YAML anchor; constructors and static members remain inferred. Exposing
+instance members requires a real Dart Widget receiver and fixed constructor arguments.
+Configuration migration preserves that delivery choice. Fixed generic Widget owners,
+State mixins and callback snapshots also remain explicit policy.
 
 Third-party authors: start from [docs/author-template.md](docs/author-template.md) and
 the copyable skeleton under [example/author_template/](example/author_template/).
@@ -391,7 +451,9 @@ Other members retain normal typed dispatch and GC. Generic constants preserve th
 concrete arguments, including across Manifest 24 and dependency providers. Generic named
 factories use the existing constructor specialization rules; `values` preserves each
 constant's type independently of factory configuration. `types: [Status]` remains a
-constants-only selection. See
+constants-only selection. Private constants remain in `values` and results with their
+original indices but have no named JS export. Modules containing them use a `final`
+binding descriptor to read the public Dart `values` list. See
 [enum bindings](../../docs/architecture/bindings.md#enum-bindings).
 
 See [binding selections](../../docs/architecture/bindings.md),
@@ -545,8 +607,8 @@ third-party compositions without claiming a second State owner. See
 [the common mixin selection table](../../docs/architecture/components.md#state-variants-and-native-mixins)
 for plain keep-alive, single/multiple ticker providers, and both keep-alive/ticker
 combinations. The canonical configuration is
-[`components.yaml`](../flax/bindings/components.yaml); variants are compiled once per
-configured combination, not per JS subclass. See also
+[`flax_components.yaml`](../flax/bindings/flax_components.yaml); variants are compiled
+once per configured combination, not per JS subclass. See also
 [ADR 0035](../../docs/decisions/0035-generic-state-variants-and-protocol-21.md).
 
 Non-constructible mixin selections use the same object/member model as classes, without

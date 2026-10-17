@@ -8,11 +8,12 @@ import '@flax/flutter/widgets/_bindings/flutter_BorderRadiusGeometry';
 import '@flax/flutter/widgets/_bindings/flutter_ShapeBorder';
 import type * as upstream6 from '@flax/flutter/widgets/_bindings/flutter_Clip';
 import '@flax/flutter/widgets/_bindings/flutter_Clip';
+import '@flax/dart/core/_bindings/flutter_Duration';
 import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Material extends WidgetDescription {
     readonly type: "flax.material/material#type:Material";
 }
-declare function _MaterialFactory(options?: {
+export declare function _MaterialFactory(options?: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -36,8 +37,15 @@ declare function _MaterialFactory(options?: {
     shape?: Bindable<Readonly<{
         "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
     }> | null> | undefined;
+    borderOnForeground?: Bindable<boolean> | undefined;
     clipBehavior?: Bindable<upstream6.Clip> | undefined;
+    animationDuration?: Bindable<Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }>> | undefined;
     child?: Bindable<Widget | null> | undefined;
+    animateColor?: Bindable<boolean> | undefined;
 }): Material;
+export declare namespace _MaterialFactory {
+    const defaultSplashRadius: number;
+}
 export declare const Material: typeof _MaterialFactory & _FlaxInstanceType<Material> & _FlaxDartType<Material, readonly ["class", "flax.material/material#type:Material", readonly [], false]>;
-export {};

@@ -5,6 +5,9 @@ import {
   computed,
   bind,
   batch,
+  effect,
+  untracked,
+  action,
   withBindingSnapshots,
   readBindingSnapshot,
 } from '../../dist/runtime/index.js';
@@ -213,4 +216,133 @@ test('failed expressions report through read and recover after dependencies chan
   assert.equal(value.read(), 2);
   assert.deepEqual(notifications, [8, 8]);
   stop();
+});
+
+test('business effects run without a host and clean up before reruns and disposal', () => {
+  delete globalThis.__flaxInvalidate;
+  const count = signal(1);
+  const doubled = computed(() => count.value * 2);
+  const events = [];
+  const stop = effect(() => {
+    const value = doubled.value;
+    events.push(`run:${value}`);
+    return () => events.push(`cleanup:${value}`);
+  });
+  try {
+    assert.deepEqual(events, ['run:2']);
+    batch(() => {
+      count.value = 2;
+      count.value = 3;
+    });
+    assert.deepEqual(events, ['run:2', 'cleanup:2', 'run:6']);
+    stop();
+    stop();
+    count.value = 4;
+    assert.deepEqual(events, ['run:2', 'cleanup:2', 'run:6', 'cleanup:6']);
+  } finally {
+    stop();
+  }
+});
+
+test('business subscriptions track only their source and dispose independently', () => {
+  delete globalThis.__flaxInvalidate;
+  const count = signal(1);
+  const other = signal(0);
+  const parity = computed(() => count.value % 2);
+  const values = [];
+  const parities = [];
+  const stopCount = count.subscribe((value) => {
+    values.push([value, other.value]);
+  });
+  const stopParity = parity.subscribe((value) => parities.push(value));
+  try {
+    assert.deepEqual(values, [[1, 0]]);
+    assert.deepEqual(parities, [1]);
+    other.value = 1;
+    count.value = 3;
+    count.value = 3;
+    assert.deepEqual(values, [
+      [1, 0],
+      [3, 1],
+    ]);
+    assert.deepEqual(parities, [1]);
+    stopCount();
+    stopCount();
+    count.value = 4;
+    assert.deepEqual(values, [
+      [1, 0],
+      [3, 1],
+    ]);
+    assert.deepEqual(parities, [1, 0]);
+    stopParity();
+    count.value = 5;
+    assert.deepEqual(parities, [1, 0]);
+  } finally {
+    stopCount();
+    stopParity();
+  }
+});
+
+test('peek and untracked read values without adding effect dependencies', () => {
+  const trigger = signal(0);
+  const ignored = signal(1);
+  const doubled = computed(() => ignored.value * 2);
+  const values = [];
+  const stop = effect(() => {
+    values.push([
+      trigger.value,
+      ignored.peek(),
+      doubled.peek(),
+      untracked(() => ignored.value + doubled.value),
+    ]);
+  });
+  try {
+    ignored.value = 2;
+    assert.deepEqual(values, [[0, 1, 2, 3]]);
+    trigger.value = 1;
+    assert.deepEqual(values, [
+      [0, 1, 2, 3],
+      [1, 2, 4, 6],
+    ]);
+  } finally {
+    stop();
+  }
+});
+
+test('actions preserve arguments, return values and this while batching untracked writes', () => {
+  const first = signal(0);
+  const second = signal(0);
+  const values = [];
+  const stopValues = effect(() => {
+    values.push([first.value, second.value]);
+  });
+  const counter = {
+    increment: 2,
+    update: action(function (value) {
+      first.value = value;
+      second.value = value + this.increment;
+      return second.value;
+    }),
+  };
+  try {
+    assert.equal(counter.update(3), 5);
+    assert.deepEqual(values, [
+      [0, 0],
+      [3, 5],
+    ]);
+  } finally {
+    stopValues();
+  }
+  let runs = 0;
+  const read = action(() => first.value);
+  const stopReader = effect(() => {
+    runs++;
+    read();
+  });
+  try {
+    first.value = 4;
+    assert.equal(runs, 1);
+  } finally {
+    stopReader();
+  }
 });

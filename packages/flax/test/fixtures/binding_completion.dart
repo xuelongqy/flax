@@ -1,7 +1,35 @@
 import 'package:flutter/widgets.dart';
+
+import 'dart:async';
+
+import 'package:flutter/foundation.dart';
 export 'package:flutter/widgets.dart' show Widget, Text;
 
 const _defaultWidget = Text('default');
+
+final _completionAsyncValues = <WeakReference<Object>>[];
+void resetCompletionAsyncValues() => _completionAsyncValues.clear();
+int get liveCompletionAsyncValues =>
+    _completionAsyncValues.where((entry) => entry.target != null).length;
+List<String> get liveCompletionAsyncTypes => [
+  for (final entry in _completionAsyncValues)
+    if (entry.target case final target?) target.runtimeType.toString(),
+];
+
+class CompletionFuture<T> extends SynchronousFuture<T> {
+  CompletionFuture(super.value) {
+    _completionAsyncValues.add(WeakReference(this));
+  }
+  Future<T> observe() => then<T>((value) => value);
+  T echo(T result) => result;
+}
+
+class CompletionStream<T> extends StreamView<T> {
+  CompletionStream(super.stream) {
+    _completionAsyncValues.add(WeakReference(this));
+  }
+}
+
 const _defaultSet = {1, 2};
 Widget defaultWidget([Widget value = _defaultWidget]) => value;
 bool defaultSet({Set<int> value = _defaultSet}) =>

@@ -6,7 +6,7 @@ import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface KeyboardListener extends WidgetDescription {
     readonly type: "flax.core/flutter#type:KeyboardListener";
 }
-declare function _KeyboardListenerFactory(options: {
+export declare function _KeyboardListenerFactory(options: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
@@ -19,4 +19,3 @@ declare function _KeyboardListenerFactory(options: {
     child: Bindable<Widget>;
 }): KeyboardListener;
 export declare const KeyboardListener: typeof _KeyboardListenerFactory & _FlaxInstanceType<KeyboardListener> & _FlaxDartType<KeyboardListener, readonly ["class", "flax.core/flutter#type:KeyboardListener", readonly [], false]>;
-export {};

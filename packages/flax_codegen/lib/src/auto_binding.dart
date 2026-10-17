@@ -17,10 +17,30 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     if (result is! LibraryElementResult) {
       throw StateError('Cannot resolve ${seed.library}');
     }
-    final exports = <String, Element>{
-      for (final entry in result.element.exportNamespace.definedNames2.entries)
-        entry.key: entry.value,
+    final (publicExports, _) = await _publicExports(seed);
+    final exports = seed.hasAutomaticSelection
+        ? publicExports
+        : result.element.exportNamespace.definedNames2;
+    _parseSnapshots(seed, publicExports);
+    final requested = {
+      ...seed.automaticClasses,
+      ...seed.automaticFunctions,
+      ...seed.automaticExtensions,
     };
+    final scoped = seed.hasAutomaticSelection;
+    for (final name in requested) {
+      final element = exports[name];
+      if (element == null ||
+          seed.automaticClasses.contains(name) &&
+              element is! InterfaceElement ||
+          seed.automaticFunctions.contains(name) &&
+              element is! TopLevelFunctionElement ||
+          seed.automaticExtensions.contains(name) &&
+              element is! ExtensionElement &&
+              element is! ExtensionTypeElement) {
+        throw StateError('Unknown public automatic declaration: $name');
+      }
+    }
     final typeCarriers = inferPublicTypeCarriers
         ? await _discoverAutoTypeCarriers(seed.library, result.element)
         : const <String, String>{};
@@ -31,10 +51,19 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     final skips = <FlaxCodegenSkip>[];
     final notices = <FlaxCodegenNotice>[];
     final concreteUses = _autoConcreteUses(exports.values);
-    final classes = <String, FlaxCodegenClassSelection>{...seed.classes};
-    final functions = <String, FlaxCodegenFunctionSelection>{...seed.functions};
+    final classes = <String, FlaxCodegenClassSelection>{
+      for (final entry in seed.classes.entries)
+        if (!seed.automaticClasses.contains(entry.key)) entry.key: entry.value,
+    };
+    final functions = <String, FlaxCodegenFunctionSelection>{
+      for (final entry in seed.functions.entries)
+        if (!seed.automaticFunctions.contains(entry.key))
+          entry.key: entry.value,
+    };
     final extensions = <String, FlaxCodegenExtensionSelection>{
-      ...seed.extensions,
+      for (final entry in seed.extensions.entries)
+        if (!seed.automaticExtensions.contains(entry.key))
+          entry.key: entry.value,
     };
     final types = <String>{...seed.types};
     final typedefs = <String>{...seed.typedefs};
@@ -52,6 +81,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
             .toList()
           ..sort();
     for (final name in names) {
+      if (scoped && !requested.contains(name)) continue;
       final element = exports[name] ?? exports['$name='];
       if (element == null || element.isPrivate) continue;
       if (excluded.contains(name)) {
@@ -123,12 +153,9 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       if (element is TopLevelFunctionElement) {
         if (overrides.functions.containsKey(name)) seenOverrides.add(name);
         if (functions.containsKey(name)) continue;
-        // Explicit semantic overrides are checked by the fail-closed parser.
-        // Infer the parameter names even when lifecycle inference is blocked.
-        if (overrides.functions.containsKey(name)) {
-          functions[name] = FlaxCodegenFunctionSelection([
-            for (final parameter in element.formalParameters) parameter.name!,
-          ]);
+        // Exact parameter overrides are validated by the fail-closed parser.
+        if (overrides.functions[name]?.fields.contains('parameters') == true) {
+          functions[name] = overrides.functions[name]!.selection;
           continue;
         }
         final selection = _autoFunctionSelection(
@@ -137,7 +164,32 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
           name: name,
           skips: skips,
         );
-        if (selection != null) functions[name] = selection;
+        final provider =
+            _dependencyFunctions['${element.library.uri}::${element.name}'];
+        if (selection != null &&
+            provider != null &&
+            (provider.$1.moduleId?.startsWith('flax.core/') == true ||
+                !_containsData(provider.$2.call.result) &&
+                    !provider.$2.call.parameters.any(
+                      (p) => _containsData(p.type),
+                    ) &&
+                    selection.typeArguments.join(',') ==
+                        provider.$2.call.typeArguments.join(',') &&
+                    selection.parameters.every(
+                      (name) => provider.$2.call.parameters.any(
+                        (p) => p.name == name,
+                      ),
+                    ))) {
+          skips.add(
+            FlaxCodegenSkip(
+              target: name,
+              code: 'existing_provider',
+              reason: 'Reuses existing provider ${provider.$1.jsPackage}',
+            ),
+          );
+        } else if (selection != null) {
+          functions[name] = selection;
+        }
         continue;
       }
       if (element is GetterElement ||
@@ -171,12 +223,13 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
         base: _autoProposalBase(classOverride),
         concreteUses: concreteUses[identity(element)] ?? const [],
         automaticTypeCarriers: typeCarriers,
+        automaticNotices: notices,
         inferred: inferred,
+        expandOwned: seed.automaticClasses.contains(name),
+        inferProxy: !scoped,
       );
       skips.addAll(proposed.skips);
-      final selection = proposed.selection == null || widgetInterface
-          ? proposed.selection
-          : _filterAutoSelection(element, proposed.selection!, skips, notices);
+      final selection = proposed.selection;
       if (proposed.provider != null && selection == null) {
         skips.add(
           FlaxCodegenSkip(
@@ -189,12 +242,72 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       if (selection != null) classes[name] = selection;
     }
 
+    // Nominal generic bounds need reference tokens even without callable members.
+    void boundTypes(DartType type) {
+      if (type is! InterfaceType || type.isDartCoreObject) return;
+      final element = type.element;
+      final name = element.name!;
+      if (!classes.containsKey(name) &&
+          !types.contains(name) &&
+          !excluded.contains(name) &&
+          exports[name] == element &&
+          !_autoHidden(element) &&
+          _nativeJsValueType(element) == null &&
+          !_selections.containsKey(identity(element)) &&
+          !_dependencyTypeOwners.containsKey(identity(element))) {
+        classes[name] = const FlaxCodegenClassSelection({}, kind: 'object');
+        for (final parameter in element.typeParameters) {
+          if (parameter.bound case final bound?) boundTypes(bound);
+        }
+      }
+      for (final argument in type.typeArguments) {
+        boundTypes(argument);
+      }
+    }
+
+    void bounds(Iterable<TypeParameterElement> parameters) {
+      for (final parameter in parameters) {
+        if (parameter.bound case final bound?) boundTypes(bound);
+      }
+    }
+
+    for (final name in classes.keys.toList()) {
+      final element = elements[name];
+      if (element == null) continue;
+      bounds(element.typeParameters);
+      for (final member in classes[name]!.instanceMethods.keys) {
+        bounds(
+          element.thisType
+                  .lookUpMethod(member, element.library)
+                  ?.typeParameters ??
+              [],
+        );
+      }
+      for (final member in classes[name]!.methods.keys) {
+        bounds(element.getMethod(member)?.typeParameters ?? []);
+      }
+    }
+    for (final name in functions.keys) {
+      final element = exports[name];
+      if (element is TopLevelFunctionElement) bounds(element.typeParameters);
+    }
+    for (final name in extensions.keys) {
+      final element = exports[name];
+      if (element is ExtensionElement) bounds(element.typeParameters);
+    }
+    for (final name in typedefs) {
+      final element = exports[name];
+      if (element is TypeAliasElement) bounds(element.typeParameters);
+    }
+
     // A skipped runtime specialization cannot supply values to its consumers.
     // Remove dependent declarations before dependency closure can resurrect it.
     final unavailable = <String>{
       ...hiddenTypes,
       for (final entry in elements.entries)
         if (!classes.containsKey(entry.key) &&
+            !types.contains(entry.key) &&
+            _nativeJsValueType(entry.value) == null &&
             !_dependencyTypeOwners.containsKey(identity(entry.value)))
           identity(entry.value),
     };
@@ -202,14 +315,17 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     do {
       changed = false;
       for (final entry in classes.entries.toList()) {
-        if (seed.classes.containsKey(entry.key) ||
+        if (seed.classes.containsKey(entry.key) &&
+                !seed.automaticClasses.contains(entry.key) ||
             overrides.classes.containsKey(entry.key)) {
           continue;
         }
         final element = elements[entry.key];
         if (element == null) continue;
         final selection = entry.value;
-        final signatures = <DartType>[];
+        final signatures = <DartType>[
+          for (final parameter in element.typeParameters) ?parameter.bound,
+        ];
         if (element is ClassElement || element is EnumElement) {
           for (final constructor in element.constructors) {
             final params =
@@ -224,25 +340,29 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
             );
           }
         }
-        for (final getter in element.getters) {
-          if (selection.getters.contains(getter.name) ||
-              selection.staticGetters.contains(getter.name)) {
-            signatures.add(getter.returnType);
-          }
+        for (final name in selection.getters) {
+          final getter = element.thisType.lookUpGetter(name, element.library);
+          if (getter != null) signatures.add(getter.returnType);
         }
-        for (final setter in element.setters) {
-          if (selection.setters.contains(setter.name) ||
-              selection.staticSetters.contains(
-                setter.name?.replaceFirst(RegExp(r'=$'), ''),
-              )) {
-            signatures.add(setter.type);
-          }
+        for (final name in selection.staticGetters) {
+          final getter = element.getGetter(name);
+          if (getter != null) signatures.add(getter.returnType);
         }
-        for (final method in element.methods) {
-          if (selection.instanceMethods.containsKey(method.name) ||
-              selection.methods.containsKey(method.name)) {
-            signatures.add(method.type);
-          }
+        for (final name in selection.setters) {
+          final setter = element.thisType.lookUpSetter(name, element.library);
+          if (setter != null) signatures.add(setter.type);
+        }
+        for (final name in selection.staticSetters) {
+          final setter = element.getSetter(name);
+          if (setter != null) signatures.add(setter.type);
+        }
+        for (final name in selection.instanceMethods.keys) {
+          final method = element.thisType.lookUpMethod(name, element.library);
+          if (method != null) signatures.add(method.type);
+        }
+        for (final name in selection.methods.keys) {
+          final method = element.getMethod(name);
+          if (method != null) signatures.add(method.type);
         }
         for (final name in selection.operators.keys) {
           final method = _classOperator(element.thisType, name);
@@ -267,7 +387,8 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     } while (changed);
     for (final name in functions.keys.toList()) {
       final element = exports[name];
-      if (seed.functions.containsKey(name) ||
+      if (seed.functions.containsKey(name) &&
+              !seed.automaticFunctions.contains(name) ||
           overrides.functions.containsKey(name)) {
         continue;
       }
@@ -353,6 +474,31 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       throw StateError(
         'Auto override target is not a public declaration: ${names.join(', ')}',
       );
+    }
+
+    for (final name in requested.difference(excluded)) {
+      final element = exports[name];
+      final id = element is InterfaceElement ? identity(element) : null;
+      final reused =
+          id != null && _dependencyTypeOwners.containsKey(id) ||
+          element is TopLevelFunctionElement &&
+              _dependencyFunctions.containsKey(
+                '${element.library.uri}::${element.name}',
+              );
+      if (!classes.containsKey(name) &&
+          !functions.containsKey(name) &&
+          !extensions.containsKey(name) &&
+          !types.contains(name) &&
+          !reused) {
+        final reasons = skips
+            .where(
+              (skip) => skip.target == name || skip.target.startsWith('$name.'),
+            )
+            .map((skip) => skip.reason)
+            .toSet()
+            .join('; ');
+        throw StateError('Cannot infer scoped declaration $name: $reasons');
+      }
     }
 
     return FlaxCodegenAutoBindingProposal(
@@ -443,9 +589,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
   }
 
   bool _autoHidden(Element element) =>
-      element.metadata.hasInternal ||
-      element.metadata.hasVisibleForTesting ||
-      element.metadata.hasProtected;
+      element.metadata.hasInternal || element.metadata.hasVisibleForTesting;
 
   bool _autoUsesUnavailable(DartType type, Set<String> unavailable) =>
       switch (type) {
@@ -456,6 +600,11 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
               ),
         FunctionType() =>
           _autoUsesUnavailable(type.returnType, unavailable) ||
+              type.typeParameters.any(
+                (p) =>
+                    p.bound != null &&
+                    _autoUsesUnavailable(p.bound!, unavailable),
+              ) ||
               type.formalParameters.any(
                 (p) => _autoUsesUnavailable(p.type, unavailable),
               ),
@@ -1474,8 +1623,19 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     errorGetters: source.errorGetters,
     pageAdapter: source.pageAdapter,
     setters: setters ?? source.setters,
-    disposeMethod: source.disposeMethod,
-    listenerPairs: source.listenerPairs,
+    disposeMethod:
+        instanceMethods == null ||
+            instanceMethods.containsKey(source.disposeMethod)
+        ? source.disposeMethod
+        : null,
+    listenerPairs: instanceMethods == null
+        ? source.listenerPairs
+        : {
+            for (final pair in source.listenerPairs.entries)
+              if (instanceMethods.containsKey(pair.key) &&
+                  instanceMethods.containsKey(pair.value))
+                pair.key: pair.value,
+          },
     getters: getters ?? source.getters,
     methods: methods ?? source.methods,
     operators: source.operators,

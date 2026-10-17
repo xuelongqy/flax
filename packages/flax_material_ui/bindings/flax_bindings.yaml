@@ -1,0 +1,100 @@
+format: 2
+name: material
+imports:
+  - flax
+library: package:material_ui/material_ui.dart
+additionalLibraries:
+  - package:flutter/services.dart
+jsPackage: '@flax/flutter/material'
+dartOutput: lib/src/generated/material_bindings.g.dart
+tsOutput: js/src/generated/bindings.ts
+publicLibraries:
+  package:material_ui/material_ui.dart:
+    jsPackage: '@flax/flutter/material'
+    tsOutput: js/src/generated/libraries/material/index.ts
+topLevel:
+  getters:
+    - kToolbarHeight
+    - kTabScrollDuration
+types:
+  - Brightness
+  - ListTileStyle
+  - MaterialType
+  - NavigationDestinationLabelBehavior
+  - TextInputAction
+  - ThemeMode
+functions:
+  - showDialog
+classes:
+  - Material
+  - InkWell
+  - LinearProgressIndicator
+  - AlertDialog
+  - MaterialApp
+  - Scaffold
+  - RefreshIndicator
+  - ButtonStyle
+  - VisualDensity
+  - AppBar
+  - Theme
+  - ThemeData
+  - TextTheme
+  - ColorScheme
+  - InputDecoration
+  - TextField
+  - MaterialPageRoute
+  - MaterialPage
+  - TextButton
+  - ElevatedButton
+  - OutlinedButton
+  - FilledButton
+  - IconButton
+  - FloatingActionButton
+  - Drawer
+  - Divider
+  - VerticalDivider
+  - Card
+  - ListTile
+  - Checkbox
+  - Switch
+  - CircularProgressIndicator
+  - NavigationDestination
+  - NavigationBar
+overrides:
+  classes:
+    AppBar:
+      widgetInterfaces:
+        - PreferredSizeWidget
+    Material: &renderOnlyWidget
+      getters: []
+      setters: []
+      instanceMethods: {}
+    InkWell: *renderOnlyWidget
+    LinearProgressIndicator: *renderOnlyWidget
+    AlertDialog: *renderOnlyWidget
+    MaterialApp: *renderOnlyWidget
+    Scaffold: *renderOnlyWidget
+    RefreshIndicator: *renderOnlyWidget
+    Theme: *renderOnlyWidget
+    TextField: *renderOnlyWidget
+    TextButton: *renderOnlyWidget
+    ElevatedButton: *renderOnlyWidget
+    OutlinedButton: *renderOnlyWidget
+    FilledButton: *renderOnlyWidget
+    IconButton: *renderOnlyWidget
+    FloatingActionButton: *renderOnlyWidget
+    Drawer: *renderOnlyWidget
+    Divider: *renderOnlyWidget
+    VerticalDivider: *renderOnlyWidget
+    Card: *renderOnlyWidget
+    ListTile: *renderOnlyWidget
+    Checkbox: *renderOnlyWidget
+    Switch: *renderOnlyWidget
+    CircularProgressIndicator: *renderOnlyWidget
+    NavigationDestination: *renderOnlyWidget
+    NavigationBar: *renderOnlyWidget
+  functions:
+    showDialog:
+      route:
+        builders:
+          - builder

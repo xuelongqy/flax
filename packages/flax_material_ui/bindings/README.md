@@ -1,7 +1,9 @@
 # material_ui Binding Selection
 
-[config.yaml](config.yaml) selects the public API subset. Types and defaults come from
-analyzer rather than hand-maintained signatures. See the [rules guide](../README.md).
+[flax_bindings.yaml](flax_bindings.yaml) selects the public declarations. Ordinary
+members use automatic selection; inline overrides retain Widget interfaces and route
+builder metadata. Types and defaults come from analyzer rather than hand-maintained
+signatures. See the [rules guide](../README.md).
 
 MaterialPageRoute and MaterialPage use ordinary object bindings, with Object? as their
 default result type. Explicit runtime type selection uses the shared checked type APIs.

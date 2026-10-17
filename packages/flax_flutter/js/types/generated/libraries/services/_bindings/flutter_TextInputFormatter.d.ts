@@ -6,11 +6,15 @@ export interface TextInputFormatter extends Readonly<{
     "__flaxBound:package:flutter/src/services/text_formatter.dart::TextInputFormatter": readonly [];
 }> {
     readonly __TextInputFormatter: unique symbol;
+    formatEditUpdate(oldValue: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [];
+    }>, newValue: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [];
+    }>): upstream0.TextEditingValue;
 }
-declare namespace _TextInputFormatterFactory {
+export declare namespace _TextInputFormatterFactory {
     function withFunction(formatFunction: ((oldValue: upstream0.TextEditingValue, newValue: upstream0.TextEditingValue) => Readonly<{
         "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [];
     }>)): TextInputFormatter;
 }
 export declare const TextInputFormatter: typeof _TextInputFormatterFactory & _FlaxInstanceType<TextInputFormatter> & _FlaxDartType<TextInputFormatter, readonly ["class", "flax.core/flutter#type:TextInputFormatter", readonly [], false]>;
-export {};

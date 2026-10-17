@@ -9,16 +9,19 @@ export interface TextRange extends Readonly<{
     readonly isValid: boolean;
     readonly isCollapsed: boolean;
     readonly isNormalized: boolean;
+    textBefore(text: string): string;
+    textAfter(text: string): string;
+    textInside(text: string): string;
+    toString(): string;
 }
-declare function _TextRangeFactory(options: {
+export declare function _TextRangeFactory(options: {
     start: number;
     end: number;
 }): TextRange;
-declare namespace _TextRangeFactory {
+export declare namespace _TextRangeFactory {
     function collapsed(offset: number): TextRange;
 }
-declare namespace _TextRangeFactory {
+export declare namespace _TextRangeFactory {
     const empty: TextRange;
 }
 export declare const TextRange: typeof _TextRangeFactory & _FlaxInstanceType<TextRange> & _FlaxDartType<TextRange, readonly ["class", "flax.core/flutter#type:TextRange", readonly [], false]>;
-export {};

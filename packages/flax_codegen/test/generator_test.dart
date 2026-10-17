@@ -21,7 +21,7 @@ void main() {
       final parser = FlaxCodegenBindingParser(root);
       addTearDown(parser.dispose);
       final coreConfig = FlaxCodegenBindingConfig.read(
-        p.join(root, 'packages/flax/bindings/config.yaml'),
+        p.join(root, 'packages/flax/bindings/flax_bindings.yaml'),
       );
       final config = FlaxCodegenBindingConfig(
         'plugin',
@@ -110,7 +110,7 @@ child.value = 3;
       final parser = FlaxCodegenBindingParser(root);
       addTearDown(parser.dispose);
       final coreConfig = FlaxCodegenBindingConfig.read(
-        p.join(root, 'packages/flax/bindings/config.yaml'),
+        p.join(root, 'packages/flax/bindings/flax_bindings.yaml'),
       );
       final componentsConfig = FlaxCodegenBindingConfig(
         'components',
@@ -581,7 +581,7 @@ const size = tile.extent;
         ),
       });
       final coreConfig = FlaxCodegenBindingConfig.read(
-        p.join(root, 'packages/flax/bindings/config.yaml'),
+        p.join(root, 'packages/flax/bindings/flax_bindings.yaml'),
       );
       await parser.prepare([config, coreConfig]);
       final core = await parser.parse(coreConfig);
@@ -1039,7 +1039,7 @@ const labels: FlaxStreamReference<string> = Pulse.instance.labels;
 
   test('Stream parameters generate typed references', () async {
     final coreConfig = FlaxCodegenBindingConfig.read(
-      p.join(root, 'packages/flax/bindings/config.yaml'),
+      p.join(root, 'packages/flax/bindings/flax_bindings.yaml'),
     );
     await parser.prepare([coreConfig]);
     final core = await parser.parse(coreConfig);
@@ -1274,7 +1274,7 @@ TileBatch({render: async () => null});
   test('decoration selections preserve public geometry and constructor defaults', () async {
     final module = await parser.parse(
       FlaxCodegenBindingConfig.read(
-        p.join(root, 'packages/flax/bindings/config.yaml'),
+        p.join(root, 'packages/flax/bindings/flax_bindings.yaml'),
       ),
     );
     FlaxCodegenClassModel selected(String name) =>
@@ -1289,7 +1289,10 @@ TileBatch({render: async () => null});
       ('EdgeInsetsDirectional', 'EdgeInsetsGeometry'),
     ]) {
       expect(selected(pair.$1).supertypes, contains(selected(pair.$2).id));
-      expect(selected(pair.$2).constructors, isEmpty);
+      expect(
+        selected(pair.$2).constructors.map((ctor) => ctor.name),
+        isNot(contains('')),
+      );
     }
     final constraints = selected('BoxConstraints').constructors.first;
     expect(constraints.parameters.map((p) => p.defaultCode), [
@@ -1305,7 +1308,10 @@ TileBatch({render: async () => null});
         isTrue,
       );
     }
-    expect(selected('BorderRadiusDirectional').methods, isEmpty);
+    expect(
+      selected('BorderRadiusDirectional').methods.map((method) => method.name),
+      isNot(contains('copyWith')),
+    );
     expect(
       module.types.where((t) => t.isEnum).map((t) => t.name),
       containsAll(['DecorationPosition', 'BoxShape', 'BorderStyle', 'Clip']),
@@ -1351,7 +1357,7 @@ Container({transform: null});
   test('layout selections preserve ParentData parameters and alignment defaults', () async {
     final module = await parser.parse(
       FlaxCodegenBindingConfig.read(
-        p.join(root, 'packages/flax/bindings/config.yaml'),
+        p.join(root, 'packages/flax/bindings/flax_bindings.yaml'),
       ),
     );
     FlaxCodegenClassModel selected(String name) =>
@@ -1374,7 +1380,10 @@ Container({transform: null});
       expect(alignment.type.nullable, isFalse);
       expect(alignment.omitWhenAbsent, isTrue);
     }
-    expect(selected('AlignmentGeometry').constructors, isEmpty);
+    expect(
+      selected('AlignmentGeometry').constructors.map((ctor) => ctor.name),
+      isNot(contains('')),
+    );
     for (final name in ['Alignment', 'AlignmentDirectional']) {
       final type = selected(name);
       expect(type.staticGetters, hasLength(9));
@@ -1385,7 +1394,8 @@ Container({transform: null});
         isTrue,
       );
     }
-    final positioned = selected('Positioned').constructors.single;
+    final positioned = selected('Positioned').constructors
+        .singleWhere((ctor) => ctor.name.isEmpty);
     expect(positioned.name, '');
     expect(
       positioned.parameters
@@ -1424,7 +1434,7 @@ AlignmentGeometry();
     );
     stdout.writeln(
       'Layout constructor call combinations: ${{
-        for (final name in ['Expanded', 'Flexible', 'Stack', 'Positioned', 'Align']) name: 1 << selected(name).constructors.single.parameters.where((p) => p.omitWhenAbsent).length,
+        for (final name in ['Expanded', 'Flexible', 'Stack', 'Positioned', 'Align']) name: 1 << selected(name).constructors.singleWhere((ctor) => ctor.name.isEmpty).parameters.where((p) => p.omitWhenAbsent).length,
       }}',
     );
   });
@@ -1432,7 +1442,7 @@ AlignmentGeometry();
   test('real public Flutter exports resolve inherited defaults and selected nullable arguments', () async {
     final module = await parser.parse(
       FlaxCodegenBindingConfig.read(
-        p.join(root, 'packages/flax/bindings/config.yaml'),
+        p.join(root, 'packages/flax/bindings/flax_bindings.yaml'),
       ),
     );
     final column = module.classes.singleWhere((type) => type.name == 'Column');
@@ -1463,7 +1473,7 @@ AlignmentGeometry();
     );
     final material = await parser.parse(
       FlaxCodegenBindingConfig.read(
-        p.join(root, 'packages/flax_material_ui/bindings/config.yaml'),
+        p.join(root, 'packages/flax_material_ui/bindings/flax_bindings.yaml'),
       ),
     );
     final key = module.types.singleWhere((t) => t.name == 'Key');
@@ -1471,19 +1481,25 @@ AlignmentGeometry();
       (c) => c.name == 'MaterialApp',
     );
     final appParams = {
-      for (final param in application.constructors.single.parameters)
+      for (final param
+          in application.constructors
+              .singleWhere((ctor) => ctor.name.isEmpty)
+              .parameters)
         param.name: param,
     };
-    expect(appParams.keys, [
-      'key',
-      'home',
-      'navigatorObservers',
-      'title',
-      'theme',
-      'darkTheme',
-      'themeMode',
-      'debugShowCheckedModeBanner',
-    ]);
+    expect(
+      appParams.keys,
+      containsAll([
+        'key',
+        'home',
+        'navigatorObservers',
+        'title',
+        'theme',
+        'darkTheme',
+        'themeMode',
+        'debugShowCheckedModeBanner',
+      ]),
+    );
     expect(appParams['home']!.type.kind, 'widget');
     expect(appParams['home']!.type.nullable, isTrue);
     expect(appParams['themeMode']!.defaultCode, 'ThemeMode.system');
@@ -1506,10 +1522,13 @@ AlignmentGeometry();
       (type) => type.name == 'RefreshIndicator',
     );
     final refreshParams = {
-      for (final parameter in refresh.constructors.single.parameters)
+      for (final parameter
+          in refresh.constructors
+              .singleWhere((ctor) => ctor.name.isEmpty)
+              .parameters)
         parameter.name: parameter,
     };
-    expect(refreshParams.keys, ['key', 'onRefresh', 'child']);
+    expect(refreshParams.keys, containsAll(['key', 'onRefresh', 'child']));
     expect(refreshParams['onRefresh']!.type.result!.kind, 'future');
     expect(refreshParams['onRefresh']!.type.result!.item!.kind, 'void');
     expect(refreshParams['child']!.type.kind, 'widget');
@@ -1537,11 +1556,30 @@ AlignmentGeometry();
       'BuildContext',
     );
     final list = module.classes.singleWhere((c) => c.name == 'ListView');
-    expect(list.constructors.single.name, 'builder');
-    final listParams = {
-      for (final p in list.constructors.single.parameters) p.name: p,
-    };
-    expect(listParams.length, 15);
+    final listConstructor = list.constructors.singleWhere(
+      (ctor) => ctor.name == 'builder',
+    );
+    final listParams = {for (final p in listConstructor.parameters) p.name: p};
+    expect(
+      listParams.keys,
+      containsAll([
+        'key',
+        'scrollDirection',
+        'reverse',
+        'controller',
+        'primary',
+        'physics',
+        'shrinkWrap',
+        'padding',
+        'itemExtent',
+        'itemBuilder',
+        'findChildIndexCallback',
+        'itemCount',
+        'addAutomaticKeepAlives',
+        'addRepaintBoundaries',
+        'addSemanticIndexes',
+      ]),
+    );
     expect(listParams['itemBuilder']!.independentWidgetResult, isTrue);
     expect(listParams['itemBuilder']!.type.result!.nullable, isTrue);
     expect(listParams['itemBuilder']!.type.parameters.map((p) => p.type.kind), [
@@ -1570,7 +1608,9 @@ AlignmentGeometry();
     );
     expect(editing.kind, 'object');
     expect(
-      editing.constructors.single.parameters
+      editing.constructors
+          .singleWhere((ctor) => ctor.name.isEmpty)
+          .parameters
           .where((p) => p.omitWhenAbsent)
           .map((p) => p.name),
       ['selection', 'composing'],
@@ -1588,9 +1628,10 @@ AlignmentGeometry();
     );
     expect(module.typeLibraries['TextRange'], 'package:flutter/widgets.dart');
     final field = material.classes.singleWhere((c) => c.name == 'TextField');
-    final decoration = field.constructors.single.parameters.singleWhere(
-      (p) => p.name == 'decoration',
-    );
+    final decoration = field.constructors
+        .singleWhere((ctor) => ctor.name.isEmpty)
+        .parameters
+        .singleWhere((p) => p.name == 'decoration');
     expect(decoration.omitWhenAbsent, isTrue);
     expect(decoration.type.nullable, isTrue);
     final style = module.classes.singleWhere((c) => c.name == 'TextStyle');
@@ -1599,9 +1640,11 @@ AlignmentGeometry();
       style.id,
     );
     expect(style.setters, isEmpty);
-    expect(style.methods.single.name, 'copyWith');
+    expect(style.methods.map((method) => method.name), contains('copyWith'));
     expect(
-      style.constructors.single.parameters
+      style.constructors
+          .singleWhere((ctor) => ctor.name.isEmpty)
+          .parameters
           .singleWhere((p) => p.name == 'inherit')
           .defaultCode,
       'true',
@@ -1620,34 +1663,77 @@ AlignmentGeometry();
       (c) => c.name == 'ImageFilter',
     );
     expect(imageFilter.id, 'dart:ui::ImageFilter');
-    expect(imageFilter.constructors.map((constructor) => constructor.name), [
-      'blur',
-      'dilate',
-      'erode',
-      'compose',
-    ]);
+    expect(
+      imageFilter.constructors.map((constructor) => constructor.name),
+      containsAll(['blur', 'dilate', 'erode', 'compose']),
+    );
     expect(module.typeLibraries['ImageFilter'], 'package:flax/dart_ui.dart');
     final inputDecoration = material.classes.singleWhere(
       (c) => c.name == 'InputDecoration',
     );
-    expect(inputDecoration.constructors.single.parameters, hasLength(12));
-    expect(inputDecoration.methods.single.result.id, inputDecoration.id);
+    expect(
+      inputDecoration.constructors
+          .singleWhere((ctor) => ctor.name.isEmpty)
+          .parameters
+          .map((parameter) => parameter.name),
+      containsAll([
+        'labelText',
+        'labelStyle',
+        'helperText',
+        'helperStyle',
+        'hintText',
+        'hintStyle',
+        'errorText',
+        'errorStyle',
+        'isDense',
+        'contentPadding',
+        'filled',
+        'fillColor',
+      ]),
+    );
+    expect(
+      inputDecoration.methods
+          .singleWhere((method) => method.name == 'copyWith')
+          .result
+          .id,
+      inputDecoration.id,
+    );
     final theme = material.classes.singleWhere((c) => c.name == 'Theme');
     expect(theme.kind, 'widget');
-    expect(theme.methods.single.name, 'of');
-    expect(theme.methods.single.parameters.single.type.kind, 'context');
+    final themeOf = theme.methods.singleWhere((method) => method.name == 'of');
+    expect(themeOf.parameters.single.type.kind, 'context');
     final themeData = material.classes.singleWhere(
       (c) => c.name == 'ThemeData',
     );
-    expect(theme.methods.single.result.id, themeData.id);
-    expect(themeData.constructors.single.parameters, hasLength(4));
+    expect(themeOf.result.id, themeData.id);
+    expect(
+      themeData.constructors
+          .singleWhere((ctor) => ctor.name.isEmpty)
+          .parameters
+          .map((parameter) => parameter.name),
+      containsAll([
+        'colorScheme',
+        'brightness',
+        'colorSchemeSeed',
+        'textTheme',
+      ]),
+    );
     final colorScheme = material.classes.singleWhere(
       (c) => c.name == 'ColorScheme',
     );
-    expect(colorScheme.constructors.single.name, 'fromSeed');
-    expect(colorScheme.constructors.single.parameters.first.required, isTrue);
+    final fromSeed = colorScheme.constructors.singleWhere(
+      (ctor) => ctor.name == 'fromSeed',
+    );
     expect(
-      colorScheme.constructors.single.parameters.last.defaultCode,
+      fromSeed.parameters
+          .singleWhere((parameter) => parameter.name == 'seedColor')
+          .required,
+      isTrue,
+    );
+    expect(
+      fromSeed.parameters
+          .singleWhere((parameter) => parameter.name == 'brightness')
+          .defaultCode,
       'Brightness.light',
     );
     final textTheme = material.classes.singleWhere(
@@ -1666,10 +1752,11 @@ AlignmentGeometry();
       emitter.typescript(material),
       isNot(contains('export interface Color ')),
     );
-    final omitted = field.constructors.single.parameters.where(
-      (p) => p.omitWhenAbsent,
-    );
-    expect(omitted.map((p) => p.name), ['decoration']);
+    final omitted = field.constructors
+        .singleWhere((ctor) => ctor.name.isEmpty)
+        .parameters
+        .where((p) => p.omitWhenAbsent);
+    expect(omitted.map((p) => p.name), contains('decoration'));
     final calls = <String, int>{
       for (final type in [
         style,
@@ -1708,7 +1795,9 @@ AlignmentGeometry();
       );
     }
     expect(
-      field.constructors.single.parameters
+      field.constructors
+          .singleWhere((ctor) => ctor.name.isEmpty)
+          .parameters
           .singleWhere((p) => p.name == 'onChanged')
           .type
           .parameters
@@ -1719,8 +1808,17 @@ AlignmentGeometry();
     );
     final context = module.classes.singleWhere((c) => c.name == 'BuildContext');
     expect(context.constructors, isEmpty);
-    expect(context.getters.map((g) => g.name), ['mounted', 'size']);
-    expect(context.getters.last.type.nullable, isTrue);
+    expect(
+      context.getters.map((g) => g.name),
+      containsAll(['mounted', 'size']),
+    );
+    expect(
+      context.getters
+          .singleWhere((getter) => getter.name == 'size')
+          .type
+          .nullable,
+      isTrue,
+    );
     expect(emitter.dart(module), contains('api.LayoutBuilder('));
     expect(
       emitter.dart(module),
@@ -2005,7 +2103,7 @@ AlignmentGeometry();
 
   test('Route and Page callbacks, async properties and proxies share object conversion', () async {
     final coreConfig = FlaxCodegenBindingConfig.read(
-      p.join(root, 'packages/flax/bindings/config.yaml'),
+      p.join(root, 'packages/flax/bindings/flax_bindings.yaml'),
     );
     final config = fixture('navigation.dart', {
       'NavigationReferences': const FlaxCodegenClassSelection(
@@ -2380,9 +2478,13 @@ void main() {
   });
 
   test('adapted types are shared by declaration across modules regardless of input order', () async {
-    final selected = FlaxCodegenBindingConfig.read(
-      p.join(root, 'packages/flax/bindings/config.yaml'),
+    final input = FlaxCodegenBindingConfig.read(
+      p.join(root, 'packages/flax/bindings/flax_bindings.yaml'),
     );
+    final selected = (await parser.proposeLibrary(
+      input,
+      overrides: input.overrides,
+    )).config;
     final core = FlaxCodegenBindingConfig(
       selected.name,
       selected.library,
@@ -2702,7 +2804,7 @@ void main() {
         );
         expect(
           emitter.typescript(descendants),
-          contains('extends upstream0.Store<T>'),
+          contains('Omit<upstream0.Store<T>, typeof _flaxDartTypeValue'),
         );
         expect(emitter.dart(descendants), contains('api.Child).ping'));
       }
@@ -2741,7 +2843,7 @@ void main() {
     );
     final navigation = await parser.parse(
       FlaxCodegenBindingConfig.read(
-        p.join(root, 'packages/flax/bindings/config.yaml'),
+        p.join(root, 'packages/flax/bindings/flax_bindings.yaml'),
       ),
     );
     final navigationTs = FlaxCodegenBindingEmitter([navigation])
@@ -2864,7 +2966,7 @@ void main() {
         },
       );
       final coreConfig = FlaxCodegenBindingConfig.read(
-        p.join(root, 'packages/flax/bindings/config.yaml'),
+        p.join(root, 'packages/flax/bindings/flax_bindings.yaml'),
       );
       final componentsConfig = FlaxCodegenBindingConfig(
         'components',
@@ -2940,7 +3042,7 @@ function properties(child: Widget, context: Context, state: State) {
         },
       );
       final coreConfig = FlaxCodegenBindingConfig.read(
-        p.join(root, 'packages/flax/bindings/config.yaml'),
+        p.join(root, 'packages/flax/bindings/flax_bindings.yaml'),
       );
       await parser.prepare([config, coreConfig]);
       final core = await parser.parse(coreConfig);
@@ -3229,7 +3331,7 @@ const result: number = value.value;
       expect(
         dart,
         contains(
-          'return result.then<int>((_) => throw StateError("load must call super.load()"));',
+          'return _flaxConvertedResult.then<int>((_) => throw StateError("load must call super.load()"));',
         ),
       );
       expect(dart, contains('api.DeferredProperty.resolveWith<api.Token?>'));
@@ -3461,10 +3563,10 @@ BoundedProperty.resolveWith<InvalidBound>(() => InvalidBound());
     'jsName CanvasView and callback snapshot inheritance fail loudly',
     () async {
       final canvasConfig = FlaxCodegenBindingConfig.read(
-        p.join(root, 'packages/flax_canvas/bindings/config.yaml'),
+        p.join(root, 'packages/flax_canvas/bindings/flax_bindings.yaml'),
       );
       final coreConfig = FlaxCodegenBindingConfig.read(
-        p.join(root, 'packages/flax/bindings/config.yaml'),
+        p.join(root, 'packages/flax/bindings/flax_bindings.yaml'),
       );
       await parser.prepare([coreConfig, canvasConfig]);
       final core = await parser.parse(coreConfig);
@@ -3552,6 +3654,7 @@ Future<void> compileFixture(
   FlaxCodegenModuleModel module, {
   String? consumerSource,
   String? dartTestSource,
+  bool emitDeclarations = false,
 }) async {
   final parent = Directory(p.join(root, '.dart_tool', 'flax'))
     ..createSync(recursive: true);
@@ -3667,7 +3770,13 @@ FlaxObjectMemberView typedFixtureMembers(Function factory) {
           'compilerOptions': {
             'strict': true,
             'exactOptionalPropertyTypes': true,
-            'noEmit': true,
+            'noEmit': !emitDeclarations,
+            if (emitDeclarations) ...{
+              'declaration': true,
+              'emitDeclarationOnly': true,
+              'rootDir': root,
+              'outDir': p.join(directory.path, 'declarations'),
+            },
             'target': 'ES2019',
             'lib': ['ES2022'],
             'module': 'NodeNext',

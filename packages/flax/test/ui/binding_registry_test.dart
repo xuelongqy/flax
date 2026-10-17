@@ -26,6 +26,7 @@ void main() {
     expect(flutterBindings.moduleId, 'flax.core/flutter');
     expect(flutterBindings.uiProtocol, 24);
     expect(flutterBindings.requiredCapabilities, [
+      'bottom-types',
       'dart-type-tokens',
       'engine-type-handles',
       'generic-call-types',
@@ -35,6 +36,8 @@ void main() {
       'native-core-inputs',
       'native-navigation-objects',
       'native-widget-proxies',
+      'shared-buffers',
+      'shared-uint8',
       'widget-interface-proxies',
     ]);
     expect(FlaxBindingRegistry([flutterBindings]).modules, [flutterBindings]);

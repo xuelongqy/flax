@@ -8,4 +8,20 @@ export interface Enum extends Readonly<{ "__flaxBound:dart:core::Enum": readonly
 readonly index: number;
 }
 defineObject("flax.core/flutter#type:Enum", ["index"], [], _flaxBindingMethods("flax.core/flutter#type:Enum", "object", {}, {}), []);
-export const Enum: object & _FlaxInstanceType<Enum> & _FlaxDartType<Enum, readonly ["class", "flax.core/flutter#type:Enum", readonly [], false]> = _flaxBindInstanceType<Enum, object>({}, "flax.core/flutter#type:Enum", ["dart:core::Object"]) as object & _FlaxInstanceType<Enum> & _FlaxDartType<Enum, readonly ["class", "flax.core/flutter#type:Enum", readonly [], false]>;
+export namespace _EnumFactory { function _flaxDefault_compareByIndex<T extends Enum = Enum>(value1: (T | DartInput<T>), value2: (T | DartInput<T>)): number {
+if (arguments.length > 2) throw new TypeError('Too many method arguments');
+const _flaxResult = invokeTopLevel("flax.core/flutter#function:Enum.compareByIndex", [value1, value2]);
+return _flaxResult as number;
+}
+export const compareByIndex = _flaxDefineDartCallTypes(_flaxDefault_compareByIndex, {"id":"flax.core/flutter#function:Enum.compareByIndex","parameters":[{"name":"value1","required":true,"positional":true},{"name":"value2","required":true,"positional":true}]}) as _FlaxDartCallable<typeof _flaxDefault_compareByIndex, _FlaxSignature0>;
+}
+export namespace _EnumFactory { function _flaxDefault_compareByName<T extends Enum = Enum>(value1: (T | DartInput<T>), value2: (T | DartInput<T>)): number {
+if (arguments.length > 2) throw new TypeError('Too many method arguments');
+const _flaxResult = invokeTopLevel("flax.core/flutter#function:Enum.compareByName", [value1, value2]);
+return _flaxResult as number;
+}
+export const compareByName = _flaxDefineDartCallTypes(_flaxDefault_compareByName, {"id":"flax.core/flutter#function:Enum.compareByName","parameters":[{"name":"value1","required":true,"positional":true},{"name":"value2","required":true,"positional":true}]}) as _FlaxDartCallable<typeof _flaxDefault_compareByName, _FlaxSignature1>;
+}
+export const Enum: typeof _EnumFactory & _FlaxInstanceType<Enum> & _FlaxDartType<Enum, readonly ["class", "flax.core/flutter#type:Enum", readonly [], false]> = _flaxBindInstanceType<Enum, typeof _EnumFactory>(_EnumFactory, "flax.core/flutter#type:Enum", ["dart:core::Object"]) as typeof _EnumFactory & _FlaxInstanceType<Enum> & _FlaxDartType<Enum, readonly ["class", "flax.core/flutter#type:Enum", readonly [], false]>;
+interface _FlaxSignature0 extends _FlaxDartSignature { readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [Enum] ? (value1: (_Selected0 | DartInput<_Selected0>),value2: (_Selected0 | DartInput<_Selected0>)) => number : never : never; }
+interface _FlaxSignature1 extends _FlaxDartSignature { readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [Enum] ? (value1: (_Selected0 | DartInput<_Selected0>),value2: (_Selected0 | DartInput<_Selected0>)) => number : never : never; }

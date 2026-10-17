@@ -9,11 +9,4 @@ publicLibraries:
     jsPackage: '@your-scope/your-package/api'
     tsOutput: js/src/generated/libraries/api/index.ts
 classes:
-  Gauge:
-    kind: object
-    constructors:
-      '': [value]
-    getters: [value]
-    setters: [value]
-    instanceMethods:
-      increment: [by]
+  - Gauge

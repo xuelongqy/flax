@@ -12,9 +12,19 @@ readonly stackTrace: upstream0.StackTrace | null;
 toString(): string;
 }
 defineObject("flax.core/flutter#type:Error", ["stackTrace"], [], _flaxBindingMethods("flax.core/flutter#type:Error", "object", {"toString":_flaxMemberParameters0}, {}), []);
-function _ErrorFactory(): Error {
+export function _ErrorFactory(): Error {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:Error", "", [], [], {}) as Error;
 }
+export namespace _ErrorFactory { export function safeToString(object: unknown | null): string {
+if (arguments.length > 1) throw new TypeError('Too many method arguments');
+const _flaxResult = invokeTopLevel("flax.core/flutter#function:Error.safeToString", [object]);
+return _flaxResult as string;
+} }
+export namespace _ErrorFactory { export function throwWithStackTrace(error: {}, stackTrace: Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }>): never {
+if (arguments.length > 2) throw new TypeError('Too many method arguments');
+const _flaxResult = invokeTopLevel("flax.core/flutter#function:Error.throwWithStackTrace", [error, stackTrace]);
+return _flaxResult as never;
+} }
 export const Error: typeof _ErrorFactory & _FlaxInstanceType<Error> & _FlaxDartType<Error, readonly ["class", "flax.core/flutter#type:Error", readonly [], false]> = _flaxBindInstanceType<Error, typeof _ErrorFactory>(_ErrorFactory, "flax.core/flutter#type:Error", ["dart:core::Object"]) as typeof _ErrorFactory & _FlaxInstanceType<Error> & _FlaxDartType<Error, readonly ["class", "flax.core/flutter#type:Error", readonly [], false]>;
