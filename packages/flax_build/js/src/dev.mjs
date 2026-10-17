@@ -451,6 +451,10 @@ export async function startFlaxDev({ entry, out, port = 5173, root = process.cwd
       port,
       strictPort: port !== 0,
       preTransformRequests: false,
+      watch: {
+        // Coalesce writes instead of losing rapid saves to change-event throttling.
+        awaitWriteFinish: { stabilityThreshold: 50, pollInterval: 10 },
+      },
     },
   });
   state.server = server;

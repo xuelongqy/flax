@@ -249,6 +249,11 @@ export default class DefaultCounter extends Counter {
 
 test('vite emits importer batches, refreshes the startup asset, and recovers after errors', async (t) => {
   const root = await mkdtemp(join(tmpdir(), 'flax-dev-'));
+  // Cover the fast native watcher on macOS as well as Linux.
+  await writeFile(
+    join(root, 'vite.config.mjs'),
+    'export default { server: { watch: { useFsEvents: false, usePolling: false } } };',
+  );
   const sourceDir = join(root, 'src');
   const dependency = join(sourceDir, 'dep.ts');
   await mkdir(sourceDir);

@@ -156,6 +156,10 @@ modules. Changing a type alias recompiles affected callers; changing the actual 
 generic superclass requires the existing restart boundary. Compile errors preserve the
 last valid startup asset and fixing them retries the pending dependency changes.
 
+The development server waits for 50 ms of file stability before compiling a save. This
+coalesces partial and rapid writes without losing a later save to the native watcher's
+change-event throttle. It affects development update latency only.
+
 The generated asset requires the existing Flax module registry. Install
 `FlaxWebSocketPlugin` in the session to receive updates. Compatible class method changes
 preserve the canonical constructor and existing State instances; constructor or instance

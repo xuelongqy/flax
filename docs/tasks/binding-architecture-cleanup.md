@@ -126,3 +126,11 @@ host checker now permits absent npm output and still rejects stale committed bun
 notices and any existing npm bootstrap. Seven direct cold/warm/generation and stale
 output assertions pass, with the original artifacts restored afterward. Runtime, binding
 and engine sources are unchanged by this tooling correction.
+
+Linux CI also exposed lost rapid saves in the development watcher. Switching the same
+eight HMR tests to the fast native file-watching backend reproduced the same six
+timeouts locally. The development server now uses the existing watcher's 50 ms file
+stability window, which coalesces partial writes and avoids its dropped change events.
+All eight tests then pass, and the existing importer recovery fixture explicitly uses
+the native backend on macOS too. The change affects Node development update latency;
+generated factories, JS class identity, bridge ownership and joint GC are unchanged.
